@@ -1,0 +1,43 @@
+from .protocol import Symbol
+
+{% for binary in symbols %}
+class {{ region.class_prefix() }}{{ binary.class_name }}Functions:
+    {% if not binary.functions | length %}
+    pass
+    {% endif %}
+    {% for fn in binary.functions %}
+    {{ fn.name }} = Symbol(
+        {{ fn.addresses[region] | as_hex }}, 
+        {{ fn.lengths[region] | as_hex }}, 
+        "{{ fn.description | escape_py }}"
+    )
+    {% endfor %}
+
+class {{ region.class_prefix() }}{{ binary.class_name }}Data:
+    {% if not binary.data | length %}
+    pass
+    {% endif %}
+    {% for dt in binary.data %}
+    {{ dt.name }} = Symbol(
+        {{ dt.addresses[region] | as_hex }}, 
+        {{ dt.lengths[region] | as_hex }}, 
+        "{{ dt.description | escape_py }}"
+    )
+    {% endfor %}
+
+class {{ region.class_prefix() }}{{ binary.class_name }}Section:
+    name = "{{ binary.name }}"
+    description = "{{ binary.description | escape_py }}"
+    loadaddress = {{ binary.loadaddresses[region] | as_hex }}
+    length = {{ binary.lengths[region] | as_hex }}
+    functions = {{ region.class_prefix() }}{{ binary.class_name }}Functions
+    data = {{ region.class_prefix() }}{{ binary.class_name }}Data
+{% endfor %}
+
+class {{ region.class_prefix() }}Sections:
+    {% if not symbols | length %}
+    pass
+    {% endif %}
+    {% for binary in symbols %}
+    {{ binary.name }} = {{ region.class_prefix() }}{{ binary.class_name }}Section
+    {% endfor %}

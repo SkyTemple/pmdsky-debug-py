@@ -1,0 +1,59 @@
+name: Generate
+
+on:
+  workflow_dispatch: {}
+  repository_dispatch: {}
+  schedule:
+    - cron: "5 4 * * *"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    name: Generate
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+    - name: Checkout newest tag
+      run: |
+        git fetch --tags
+        latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+        git checkout $latestTag
+      working-directory: pmdsky-debug
+    - name: Check if new tag available
+      id: check
+      run: |
+        git diff --exit-code --quiet ../pmdsky-debug && echo "::set-output name=newtag::no_new_tag" || echo "::set-output name=newtag::new_tag"
+    - name: Set up Python 3.10
+      if: steps.check.outputs.newtag == 'new_tag'
+      uses: actions/setup-python@v1
+      with:
+        python-version: "3.10"
+    - name: Install generator and yq
+      if: steps.check.outputs.newtag == 'new_tag'
+      run: |
+        python -m pip install --upgrade pip
+        pip install yq
+        pip install .
+      working-directory: generator
+    - name: Run generator
+      if: steps.check.outputs.newtag == 'new_tag'
+      run: |
+        python -m pmdsky_debug_py_generator.main \
+          -i ../pmdsky-debug/symbols \
+          -o ../src \
+          -r $(git -C "../pmdsky-debug" tag -l --points-at HEAD | head -1)
+      working-directory: generator
+    - name: Commit and Push
+      if: steps.check.outputs.newtag == 'new_tag'
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: .
+        message: 'Release {{ env.RELEASE }}'
+        push: false  # todo!!
+    - name: Create tag
+      if: steps.check.outputs.newtag == 'new_tag'
+      run: |
+        VERSION=$(tomlq '.project.version' pyproject.toml -r)
+        git tag $VERSION
+        #git push -u origin $VERSION  # todo!!

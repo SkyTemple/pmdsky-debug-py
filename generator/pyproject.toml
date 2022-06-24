@@ -1,0 +1,35 @@
+[project]
+name = "pmdsky-debug-py-generator"
+version = "1.0.0"
+description = "Generator for pdmsky-debug-py."
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Marco 'Capypara' Köpcke", email = "hello@capypara.de" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python"
+]
+dependencies = [
+    'PyYAML >= 5.0',
+    'toml >= 0.10',
+    'types-toml >= 0.10',
+    'click >= 8.0',
+    'jinja2 >= 3.0',
+    'black >= 22.0'
+]
+
+[project.urls]
+repository = "https://github.com/SkyTemple/pmdsky-debug-py"
+
+
+[build-system]
+requires = ["setuptools >= 61.0.0"]
+build-backend = "setuptools.build_meta"
+
+
+[tool.setuptools.package-data]
+pmdsky_debug_py = ["py.typed"]

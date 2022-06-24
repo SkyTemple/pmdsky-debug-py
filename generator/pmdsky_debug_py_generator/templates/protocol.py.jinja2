@@ -1,0 +1,65 @@
+from typing import Protocol, Optional, TypeVar, List, Generic
+from dataclasses import dataclass
+
+A = TypeVar('A')
+B = TypeVar('B')
+
+@dataclass
+class Symbol(Generic[A, B]):
+    # Either a list of at least one address or None if not defined for the region.
+    addresses: A
+    # None for most functions. Data fields should generally have a length defined.
+    length: B
+    description: str
+
+
+T = TypeVar('T')
+U = TypeVar('U')
+L = TypeVar('L')
+L2 = TypeVar('L2')
+
+
+class SectionProtocol(Protocol[T, U, L, L2]):
+    name: str
+    description: str
+    loadaddress: L
+    length: L2
+    functions: T
+    data: U
+
+{% for binary in symbols %}
+class {{ binary.class_name }}FunctionsProtocol(Protocol):
+    {% if not binary.functions | length %}
+    pass
+    {% endif %}
+    {% for fn in binary.functions %}
+    {{ fn.name }}: Symbol[ \
+        {{ fn.addresses | has_all_else_optional("List[int]") }}, \
+        {{ fn.lengths | has_all_else_optional("int") }}, \
+    ]
+    {% endfor %}
+
+class {{ binary.class_name }}DataProtocol(Protocol):
+    {% if not binary.data | length %}
+    pass
+    {% endif %}
+    {% for dt in binary.data %}
+    {{ dt.name }}: Symbol[ \
+        {{ dt.addresses | has_all_else_optional("List[int]") }}, \
+        {{ dt.lengths | has_all_else_optional("int") }}, \
+    ]
+    {% endfor %}
+{% endfor %}
+
+class AllSymbolsProtocol(Protocol):
+    {% if not symbols | length %}
+    pass
+    {% endif %}
+    {% for binary in symbols %}
+    {{ binary.name }}: SectionProtocol[ \
+        {{ binary.class_name }}FunctionsProtocol, \
+        {{ binary.class_name }}DataProtocol, \
+        {{ binary.loadaddresses | has_all_else_optional("int") }}, \
+        {{ binary.lengths | has_all_else_optional("int") }} \
+    ]
+    {% endfor %}
