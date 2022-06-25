@@ -2,7 +2,7 @@
 # Deploys to PyPi on "release".
 name: Build and publish
 
-on: [push, pull_request]
+on: [workflow_dispatch, push, pull_request]
 
 jobs:
   build:
@@ -23,24 +23,33 @@ jobs:
           path: src/dist/*.whl
 
   deploy:
-    if: startsWith(github.ref, 'refs/tags/')
     needs: build
     runs-on: ubuntu-latest
-    name: Deploy wheels to PyPI
+    name: Deploy wheels to PyPI if tag
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Check if on tag
+        id: check
+        run: |
+          git describe --exact-match HEAD && echo "::set-output name=hastag::yes" || echo "::set-output name=hastag::no"
       - name: Download wheels
+        if: steps.check.outputs.hastag == 'yes'
         uses: actions/download-artifact@v2
         with:
           name: wheels
       - name: Set up Python 3.8
+        if: steps.check.outputs.hastag == 'yes'
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
       - name: Upgrade pip
+        if: steps.check.outputs.hastag == 'yes'
         run: |
           python -m pip install --upgrade pip
           pip install twine
       - name: Publish wheels to PyPI
+        if: steps.check.outputs.hastag == 'yes'
         env:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
