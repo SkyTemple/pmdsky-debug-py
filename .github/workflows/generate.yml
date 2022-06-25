@@ -23,12 +23,12 @@ jobs:
     - name: Check if new tag available
       id: check
       run: |
-        git diff --exit-code --quiet ../pmdsky-debug && echo "::set-output name=newtag::no_new_tag" || echo "::set-output name=newtag::new_tag"
-    - name: Set up Python 3.10
+        git diff --exit-code --quiet pmdsky-debug && echo "::set-output name=newtag::no_new_tag" || echo "::set-output name=newtag::new_tag"
+    - name: Set up Python 3.8
       if: steps.check.outputs.newtag == 'new_tag'
       uses: actions/setup-python@v1
       with:
-        python-version: "3.10"
+        python-version: 3.8
     - name: Install generator and yq
       if: steps.check.outputs.newtag == 'new_tag'
       run: |
@@ -36,13 +36,17 @@ jobs:
         pip install yq
         pip install .
       working-directory: generator
+    - name: Get release
+      if: steps.check.outputs.newtag == 'new_tag'
+      run: |
+        echo "RELEASE=$(git -C "pmdsky-debug" tag -l --points-at HEAD | head -1)" >> $GITHUB_ENV
     - name: Run generator
       if: steps.check.outputs.newtag == 'new_tag'
       run: |
         python -m pmdsky_debug_py_generator.main \
           -i ../pmdsky-debug/symbols \
           -o ../src \
-          -r $(git -C "../pmdsky-debug" tag -l --points-at HEAD | head -1)
+          -r $RELEASE
       working-directory: generator
     - name: Commit and Push
       if: steps.check.outputs.newtag == 'new_tag'
@@ -50,10 +54,10 @@ jobs:
       with:
         add: .
         message: 'Release {{ env.RELEASE }}'
-        push: false  # todo!!
+        push: true
     - name: Create tag
       if: steps.check.outputs.newtag == 'new_tag'
       run: |
         VERSION=$(tomlq '.project.version' pyproject.toml -r)
-        git tag $VERSION
-        #git push -u origin $VERSION  # todo!!
+        git tag $VERSION -m "Release $RELEASE"
+        git push -u origin $VERSION

@@ -30,7 +30,6 @@ OVERLAY_REGEX = re.compile(r"overlay(\d+)")
 T = TypeVar('T')
 
 
-# noinspection PyCompatibility
 class Region(Enum):
     NA = "na"
     EU = "eu"
@@ -38,15 +37,14 @@ class Region(Enum):
 
     @classmethod
     def from_str(cls, region_str: str):
-        match region_str.lower():
-            case "na":
-                return Region.NA
-            case "eu":
-                return Region.EU
-            case "jp":
-                return Region.JP
-            case _:
-                raise ValueError(f"Unknown region string: {region_str}")
+        region_str = region_str.lower()
+        if region_str == "na":
+            return Region.NA
+        if region_str == "eu":
+            return Region.EU
+        if region_str == "jp":
+            return Region.JP
+        raise ValueError(f"Unknown region string: {region_str}")
 
     @classmethod
     def fill_missing(cls, dic: Dict[Region, Optional[T]]):
