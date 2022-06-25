@@ -6,7 +6,7 @@ B = TypeVar("B")
 
 
 @dataclass
-class Symbol(Generic[A, B, C]):
+class Symbol(Generic[A, B]):
     # Either a list of at least one address or None if not defined for the region.
     addresses: A
     # Like addresses but memory-absolute
@@ -15,14 +15,14 @@ class Symbol(Generic[A, B, C]):
     length: B
     description: str
 
-    @no_type_check
     @property
+    @no_type_check
     def address(self) -> int:
         """First / main address. Raises an IndexError/TypeError if no address is defined."""
         return self.addresses[0]
 
-    @no_type_check
     @property
+    @no_type_check
     def absolute_address(self) -> int:
         """First / main address (absolute). Raises an IndexError/TypeError if no address is defined."""
         return self.absolute_addresses[0]
@@ -31,14 +31,13 @@ class Symbol(Generic[A, B, C]):
 T = TypeVar("T")
 U = TypeVar("U")
 L = TypeVar("L")
-L2 = TypeVar("L2")
 
 
-class SectionProtocol(Protocol[T, U, L, L2]):
+class SectionProtocol(Protocol[T, U, L]):
     name: str
     description: str
     loadaddress: L
-    length: L2
+    length: int
     functions: T
     data: U
 

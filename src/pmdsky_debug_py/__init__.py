@@ -8,7 +8,7 @@ from pmdsky_debug_py.eu import EuSections as _EuSections
 from pmdsky_debug_py.na import NaSections as _NaSections
 from pmdsky_debug_py.jp import JpSections as _JpSections
 from pmdsky_debug_py.protocol import AllSymbolsProtocol
-from _release import RELEASE
+from ._release import RELEASE
 
 eu: AllSymbolsProtocol = _EuSections
 na: AllSymbolsProtocol = _NaSections
