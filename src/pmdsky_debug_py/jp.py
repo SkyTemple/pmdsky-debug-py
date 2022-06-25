@@ -1,44 +1,10 @@
 from .protocol import Symbol
 
 
-class JpOverlay18Functions:
-
-    pass
-
-
-class JpOverlay18Data:
-
-    MOVES_MENU_CONFIRM = Symbol(None, None, "")
-
-    MOVES_SUBMENU_1 = Symbol(None, None, "")
-
-    MOVES_SUBMENU_2 = Symbol(None, None, "")
-
-    MOVES_MAIN_MENU = Symbol(None, None, "")
-
-    MOVES_SUBMENU_3 = Symbol(None, None, "")
-
-    MOVES_SUBMENU_4 = Symbol(None, None, "")
-
-    MOVES_SUBMENU_5 = Symbol(None, None, "")
-
-    MOVES_SUBMENU_6 = Symbol(None, None, "")
-
-    MOVES_SUBMENU_7 = Symbol(None, None, "")
-
-
-class JpOverlay18Section:
-    name = "overlay18"
-    description = "Controls the Electivire Link Shop."
-    loadaddress = 0x238B6A0
-    length = 0x3520
-    functions = JpOverlay18Functions
-    data = JpOverlay18Data
-
-
 class JpArm9Functions:
 
     InitMemAllocTable = Symbol(
+        [0xDE0],
         [0x2000DE0],
         None,
         "Initializes MEMORY_ALLOCATION_TABLE.\n\nSets up the default memory arena, sets"
@@ -47,6 +13,7 @@ class JpArm9Functions:
     )
 
     SetMemAllocatorParams = Symbol(
+        [0xE70],
         [0x2000E70],
         None,
         "Sets global parameters for the memory allocator.\n\nThis includes"
@@ -59,6 +26,7 @@ class JpArm9Functions:
     )
 
     GetAllocArenaDefault = Symbol(
+        [0xEC0],
         [0x2000EC0],
         None,
         "The default function for retrieving the arena for memory allocations. This"
@@ -68,6 +36,7 @@ class JpArm9Functions:
     )
 
     GetFreeArenaDefault = Symbol(
+        [0xEC4],
         [0x2000EC4],
         None,
         "The default function for retrieving the arena for memory freeing. This"
@@ -77,6 +46,7 @@ class JpArm9Functions:
     )
 
     InitMemArena = Symbol(
+        [0xEC8],
         [0x2000EC8],
         None,
         "Initializes a new memory arena with the given specifications, and records it"
@@ -87,6 +57,7 @@ class JpArm9Functions:
     )
 
     MemAllocFlagsToBlockType = Symbol(
+        [0xF44],
         [0x2000F44],
         None,
         "Converts the internal alloc flags bitfield (struct mem_block field 0x4) to the"
@@ -95,6 +66,7 @@ class JpArm9Functions:
     )
 
     FindAvailableMemBlock = Symbol(
+        [0xF88],
         [0x2000F88],
         None,
         "Searches through the given memory arena for a block with enough free"
@@ -107,6 +79,7 @@ class JpArm9Functions:
     )
 
     SplitMemBlock = Symbol(
+        [0x1070],
         [0x2001070],
         None,
         "Given a memory block at a given index, splits off another memory block of the"
@@ -119,6 +92,7 @@ class JpArm9Functions:
     )
 
     MemAlloc = Symbol(
+        [0x1170],
         [0x2001170],
         None,
         "Allocates some memory on the heap, returning a pointer to the starting"
@@ -129,6 +103,7 @@ class JpArm9Functions:
     )
 
     MemFree = Symbol(
+        [0x1188],
         [0x2001188],
         None,
         "Frees heap-allocated memory.\n\nThis function is just a wrapper around"
@@ -136,6 +111,7 @@ class JpArm9Functions:
     )
 
     MemArenaAlloc = Symbol(
+        [0x119C],
         [0x200119C],
         None,
         "Allocates some memory on the heap and creates a new global memory arena with"
@@ -146,6 +122,7 @@ class JpArm9Functions:
     )
 
     CreateMemArena = Symbol(
+        [0x1280],
         [0x2001280],
         None,
         "Creates a new memory arena within a given block of memory.\n\nThis is"
@@ -156,6 +133,7 @@ class JpArm9Functions:
     )
 
     MemLocateSet = Symbol(
+        [0x1390],
         [0x2001390],
         None,
         "The implementation for MemAlloc.\n\nAt a high level, memory is allocated by"
@@ -171,6 +149,7 @@ class JpArm9Functions:
     )
 
     MemLocateUnset = Symbol(
+        [0x1638],
         [0x2001638],
         None,
         "The implementation for MemFree.\n\nAt a high level, memory is freed by"
@@ -181,6 +160,7 @@ class JpArm9Functions:
     )
 
     RoundUpDiv256 = Symbol(
+        [0x1894],
         [0x2001894],
         None,
         "Divide a number by 256 and round up to the nearest integer.\n\nr0:"
@@ -188,6 +168,7 @@ class JpArm9Functions:
     )
 
     MultiplyByFixedPoint = Symbol(
+        [0x1A54],
         [0x2001A54],
         None,
         "Multiply a signed integer x by a signed binary fixed-point multiplier (8"
@@ -195,19 +176,21 @@ class JpArm9Functions:
     )
 
     UMultiplyByFixedPoint = Symbol(
+        [0x1B0C],
         [0x2001B0C],
         None,
         "Multiplies an unsigned integer x by an unsigned binary fixed-point multiplier"
         " (8 fraction bits).\n\nr0: x\nr1: multiplier\nreturn: x * multiplier",
     )
 
-    GetRngSeed = Symbol(None, None, "Get the current value of PRNG_SEQUENCE_NUM.")
+    GetRngSeed = Symbol(None, None, None, "Get the current value of PRNG_SEQUENCE_NUM.")
 
     SetRngSeed = Symbol(
-        None, None, "Seed PRNG_SEQUENCE_NUM to a given value.\n\nr0: seed"
+        None, None, None, "Seed PRNG_SEQUENCE_NUM to a given value.\n\nr0: seed"
     )
 
     Rand16Bit = Symbol(
+        [0x224C],
         [0x200224C],
         None,
         "Computes a pseudorandom 16-bit integer using the general-purpose PRNG.\n\nNote"
@@ -221,6 +204,7 @@ class JpArm9Functions:
     )
 
     RandInt = Symbol(
+        [0x2274],
         [0x2002274],
         None,
         "Compute a pseudorandom integer under a given maximum value using the"
@@ -231,6 +215,7 @@ class JpArm9Functions:
     )
 
     RandRange = Symbol(
+        [0x228C],
         [0x200228C],
         None,
         "Compute a pseudorandom value between two integers using the general-purpose"
@@ -241,6 +226,7 @@ class JpArm9Functions:
     )
 
     Rand32Bit = Symbol(
+        [0x22AC],
         [0x20022AC],
         None,
         "Computes a random 32-bit integer using the general-purpose PRNG. The upper and"
@@ -250,6 +236,7 @@ class JpArm9Functions:
     )
 
     RandIntSafe = Symbol(
+        [0x22F8],
         [0x20022F8],
         None,
         "Same as RandInt, except explicitly masking out the upper 16 bits of the output"
@@ -258,6 +245,7 @@ class JpArm9Functions:
     )
 
     RandRangeSafe = Symbol(
+        [0x2318],
         [0x2002318],
         None,
         "Like RandRange, except reordering the inputs as needed, and explicitly masking"
@@ -267,6 +255,7 @@ class JpArm9Functions:
     )
 
     WaitForever = Symbol(
+        [0x2438],
         [0x2002438],
         None,
         "Sets some program state and calls WaitForInterrupt in an infinite"
@@ -275,6 +264,7 @@ class JpArm9Functions:
     )
 
     InitMemAllocTableVeneer = Symbol(
+        [0x321C],
         [0x200321C],
         None,
         "Likely a linker-generated veneer for InitMemAllocTable.\n\nSee"
@@ -282,9 +272,12 @@ class JpArm9Functions:
         " params.",
     )
 
-    MemZero = Symbol([0x2003250], None, "Zeroes a buffer.\n\nr0: ptr\nr1: len")
+    MemZero = Symbol(
+        [0x3250], [0x2003250], None, "Zeroes a buffer.\n\nr0: ptr\nr1: len"
+    )
 
     MemcpySimple = Symbol(
+        [0x32E4],
         [0x20032E4],
         None,
         "A simple implementation of the memcpy(3) C library function.\n\nThis function"
@@ -295,6 +288,7 @@ class JpArm9Functions:
     )
 
     TaskProcBoot = Symbol(
+        [0x3328],
         [0x2003328],
         None,
         "Probably related to booting the game?\n\nThis function prints the debug"
@@ -302,6 +296,7 @@ class JpArm9Functions:
     )
 
     EnableAllInterrupts = Symbol(
+        [0x3608],
         [0x2003608],
         None,
         "Sets the Interrupt Master Enable (IME) register to 1, which enables all CPU"
@@ -311,6 +306,7 @@ class JpArm9Functions:
     )
 
     GetTime = Symbol(
+        [0x37B4],
         [0x20037B4],
         None,
         "Seems to get the current (system?) time as an IEEE 754 floating-point"
@@ -318,6 +314,7 @@ class JpArm9Functions:
     )
 
     DisableAllInterrupts = Symbol(
+        [0x3824],
         [0x2003824],
         None,
         "Sets the Interrupt Master Enable (IME) register to 0, which disables all CPU"
@@ -327,6 +324,7 @@ class JpArm9Functions:
     )
 
     SoundResume = Symbol(
+        [0x3CC4],
         [0x2003CC4],
         None,
         "Probably resumes the sound player if paused?\n\nThis function prints the debug"
@@ -334,6 +332,7 @@ class JpArm9Functions:
     )
 
     CardPullOutWithStatus = Symbol(
+        [0x3D2C],
         [0x2003D2C],
         None,
         "Probably aborts the program with some status code? It seems to serve a similar"
@@ -342,6 +341,7 @@ class JpArm9Functions:
     )
 
     CardPullOut = Symbol(
+        [0x3D70],
         [0x2003D70],
         None,
         "Sets some global flag that probably triggers system exit?\n\nThis function"
@@ -349,6 +349,7 @@ class JpArm9Functions:
     )
 
     CardBackupError = Symbol(
+        [0x3D94],
         [0x2003D94],
         None,
         "Sets some global flag that maybe indicates a save error?\n\nThis function"
@@ -356,6 +357,7 @@ class JpArm9Functions:
     )
 
     HaltProcessDisp = Symbol(
+        [0x3DB8],
         [0x2003DB8],
         None,
         "Maybe halts the process display?\n\nThis function prints the debug string"
@@ -363,6 +365,7 @@ class JpArm9Functions:
     )
 
     OverlayIsLoaded = Symbol(
+        [0x3ED0],
         [0x2003ED0],
         None,
         "Checks if an overlay with a certain group ID is currently loaded.\n\nSee the"
@@ -373,6 +376,7 @@ class JpArm9Functions:
     )
 
     LoadOverlay = Symbol(
+        [0x40AC],
         [0x20040AC],
         None,
         "Loads an overlay from ROM by its group ID.\n\nSee the LOADED_OVERLAY_GROUP_*"
@@ -381,6 +385,7 @@ class JpArm9Functions:
     )
 
     UnloadOverlay = Symbol(
+        [0x4868],
         [0x2004868],
         None,
         "Unloads an overlay from ROM by its group ID.\n\nSee the LOADED_OVERLAY_GROUP_*"
@@ -392,11 +397,13 @@ class JpArm9Functions:
     EuclideanNorm = Symbol(
         None,
         None,
+        None,
         "Computes the Euclidean norm of a two-component integer array, sort of like"
         " hypotf(3).\n\nr0: integer array [x, y]\nreturn: sqrt(x*x + y*y)",
     )
 
     ClampComponentAbs = Symbol(
+        [0x5110],
         [0x2005110],
         None,
         "Clamps the absolute values in a two-component integer array.\n\nGiven an"
@@ -407,6 +414,7 @@ class JpArm9Functions:
     )
 
     KeyWaitInit = Symbol(
+        [0x6DA4],
         [0x2006DA4],
         None,
         "Implements (most of?) SPECIAL_PROC_KEY_WAIT_INIT (see"
@@ -414,6 +422,7 @@ class JpArm9Functions:
     )
 
     DataTransferInit = Symbol(
+        [0x8168],
         [0x2008168],
         None,
         "Initializes data transfer mode to get data from the ROM cartridge.\n\nNo"
@@ -421,6 +430,7 @@ class JpArm9Functions:
     )
 
     DataTransferStop = Symbol(
+        [0x8194],
         [0x2008194],
         None,
         "Finalizes data transfer from the ROM cartridge.\n\nThis function must always"
@@ -431,12 +441,14 @@ class JpArm9Functions:
     FileInitVeneer = Symbol(
         None,
         None,
+        None,
         "Likely a linker-generated veneer for FileInit.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
         " file_stream pointer",
     )
 
     FileOpen = Symbol(
+        [0x8210],
         [0x2008210],
         None,
         "Opens a file from the ROM file system at the given path, sort of like C's"
@@ -444,12 +456,14 @@ class JpArm9Functions:
     )
 
     FileGetSize = Symbol(
+        [0x8244],
         [0x2008244],
         None,
         "Gets the size of an open file.\n\nr0: file_stream pointer\nreturn: file size",
     )
 
     FileRead = Symbol(
+        [0x8254],
         [0x2008254],
         None,
         "Reads the contents of a file into the given buffer, and moves the file cursor"
@@ -461,6 +475,7 @@ class JpArm9Functions:
     )
 
     FileSeek = Symbol(
+        [0x82A8],
         [0x20082A8],
         None,
         "Sets a file stream's position indicator.\n\nThis function has the a similar"
@@ -470,6 +485,7 @@ class JpArm9Functions:
     )
 
     FileClose = Symbol(
+        [0x82C4],
         [0x20082C4],
         None,
         "Closes a file.\n\nData transfer mode must have been initialized (with"
@@ -480,6 +496,7 @@ class JpArm9Functions:
     )
 
     LoadFileFromRom = Symbol(
+        [0x8C3C],
         [0x2008C3C],
         None,
         "Loads a file from ROM by filepath into a heap-allocated buffer.\n\nr0:"
@@ -487,11 +504,14 @@ class JpArm9Functions:
         " pointer\nr2: flags",
     )
 
-    GetDebugFlag1 = Symbol([0x200C110], None, "Just returns 0 in the final binary.")
+    GetDebugFlag1 = Symbol(
+        [0xC110], [0x200C110], None, "Just returns 0 in the final binary."
+    )
 
-    SetDebugFlag1 = Symbol([0x200C118], None, "A no-op in the final binary.")
+    SetDebugFlag1 = Symbol([0xC118], [0x200C118], None, "A no-op in the final binary.")
 
     AppendProgPos = Symbol(
+        [0xC120],
         [0x200C120],
         None,
         "Write a base message into a string and append the file name and line number to"
@@ -502,6 +522,7 @@ class JpArm9Functions:
     )
 
     DebugPrintTrace = Symbol(
+        [0xC16C],
         [0x200C16C],
         None,
         "Would log a printf format string tagged with the file name and line number in"
@@ -514,16 +535,20 @@ class JpArm9Functions:
     DebugPrint0 = Symbol(
         None,
         None,
+        None,
         "Would log a printf format string in the debug binary.\n\nThis still constructs"
         " the string with Vsprintf, but doesn't actually do anything with it in the"
         " final binary.\n\nr0: format\n...: variadic",
     )
 
-    GetDebugFlag2 = Symbol([0x200C234], None, "Just returns 0 in the final binary.")
+    GetDebugFlag2 = Symbol(
+        [0xC234], [0x200C234], None, "Just returns 0 in the final binary."
+    )
 
-    SetDebugFlag2 = Symbol([0x200C23C], None, "A no-op in the final binary.")
+    SetDebugFlag2 = Symbol([0xC23C], [0x200C23C], None, "A no-op in the final binary.")
 
     DebugPrint = Symbol(
+        [0xC240],
         [0x200C240],
         None,
         "Would log a printf format string in the debug binary. A no-op in the final"
@@ -531,6 +556,7 @@ class JpArm9Functions:
     )
 
     FatalError = Symbol(
+        [0xC25C],
         [0x200C25C],
         None,
         "Logs some debug messages, then hangs the process.\n\nThis function is called"
@@ -542,6 +568,7 @@ class JpArm9Functions:
     )
 
     IsAuraBow = Symbol(
+        [0xCC14],
         [0x200CC14],
         None,
         "Checks if an item is one of the aura bows received at the start of the"
@@ -549,6 +576,7 @@ class JpArm9Functions:
     )
 
     SprintfStatic = Symbol(
+        None,
         None,
         None,
         "Functionally the same as Sprintf, just defined statically in many different"
@@ -560,6 +588,7 @@ class JpArm9Functions:
     )
 
     SetMoneyCarried = Symbol(
+        [0xED4C],
         [0x200ED4C],
         None,
         "Sets the amount of money the player is carrying, clamping the value to the"
@@ -567,6 +596,7 @@ class JpArm9Functions:
     )
 
     IsBagFull = Symbol(
+        [0xEDF0],
         [0x200EDF0],
         None,
         "Implements SPECIAL_PROC_IS_BAG_FULL (see ScriptSpecialProcessCall).\n\nreturn:"
@@ -574,6 +604,7 @@ class JpArm9Functions:
     )
 
     CountItemTypeInBag = Symbol(
+        [0xEEB8],
         [0x200EEB8],
         None,
         "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_BAG (see"
@@ -582,6 +613,7 @@ class JpArm9Functions:
     )
 
     AddItemToBag = Symbol(
+        [0xF81C],
         [0x200F81C],
         None,
         "Implements SPECIAL_PROC_ADD_ITEM_TO_BAG (see ScriptSpecialProcessCall).\n\nr0:"
@@ -589,12 +621,14 @@ class JpArm9Functions:
     )
 
     ScriptSpecialProcess0x39 = Symbol(
+        [0xFD24],
         [0x200FD24],
         None,
         "Implements SPECIAL_PROC_0x39 (see ScriptSpecialProcessCall).\n\nreturn: bool",
     )
 
     CountItemTypeInStorage = Symbol(
+        [0xFEB4],
         [0x200FEB4],
         None,
         "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_STORAGE (see"
@@ -603,6 +637,7 @@ class JpArm9Functions:
     )
 
     RemoveItemsTypeInStorage = Symbol(
+        [0x101B4],
         [0x20101B4],
         None,
         "Probably? Implements SPECIAL_PROC_0x2A (see ScriptSpecialProcessCall).\n\nr0:"
@@ -610,6 +645,7 @@ class JpArm9Functions:
     )
 
     AddItemToStorage = Symbol(
+        [0x102EC],
         [0x20102EC],
         None,
         "Implements SPECIAL_PROC_ADD_ITEM_TO_STORAGE (see"
@@ -617,6 +653,7 @@ class JpArm9Functions:
     )
 
     SetMoneyStored = Symbol(
+        [0x106F4],
         [0x20106F4],
         None,
         "Sets the amount of money the player has stored in the Duskull Bank, clamping"
@@ -624,6 +661,7 @@ class JpArm9Functions:
     )
 
     GetExclusiveItemOffset = Symbol(
+        [0x10E10],
         [0x2010E10],
         None,
         "Gets the exclusive item offset, which is the item ID relative to that of the"
@@ -631,6 +669,7 @@ class JpArm9Functions:
     )
 
     ApplyExclusiveItemStatBoosts = Symbol(
+        [0x10E34],
         [0x2010E34],
         None,
         "Applies stat boosts from an exclusive item.\n\nr0: item ID\nr1: pointer to"
@@ -640,6 +679,7 @@ class JpArm9Functions:
     )
 
     SetExclusiveItemEffect = Symbol(
+        [0x10F50],
         [0x2010F50],
         None,
         "Sets the bit for an exclusive item effect.\n\nr0: pointer to the effects"
@@ -647,6 +687,7 @@ class JpArm9Functions:
     )
 
     ExclusiveItemEffectFlagTest = Symbol(
+        [0x10F74],
         [0x2010F74],
         None,
         "Tests the exclusive item bitvector for a specific exclusive item"
@@ -657,6 +698,7 @@ class JpArm9Functions:
     ApplyGummiBoostsGroundMode = Symbol(
         None,
         None,
+        None,
         "Applies the IQ boosts from eating a Gummi to the target monster.\n\nr0:"
         " Pointer to something\nr1: Pointer to something\nr2: Pointer to something\nr3:"
         " Pointer to something\nstack[0]: ?\nstack[1]: ?\nstack[2]: Pointer to a buffer"
@@ -664,6 +706,7 @@ class JpArm9Functions:
     )
 
     GetMoveTargetAndRange = Symbol(
+        [0x13810],
         [0x2013810],
         None,
         "Gets the move target-and-range field. See struct move_target_and_range in the"
@@ -675,10 +718,12 @@ class JpArm9Functions:
     GetMoveType = Symbol(
         None,
         None,
+        None,
         "Gets the type of a move\n\nr0: Pointer to move data\nreturn: Type of the move",
     )
 
     GetMoveBasePower = Symbol(
+        [0x1399C],
         [0x201399C],
         None,
         "Gets the base power of a move from the move data table.\n\nr0: move"
@@ -686,6 +731,7 @@ class JpArm9Functions:
     )
 
     GetMoveAccuracyOrAiChance = Symbol(
+        None,
         None,
         None,
         "Gets one of the two accuracy values of a move or its"
@@ -696,6 +742,7 @@ class JpArm9Functions:
     )
 
     GetMaxPp = Symbol(
+        [0x13A20],
         [0x2013A20],
         None,
         "Gets the maximum PP for a given move.\n\nr0: move pointer\nreturn: max PP for"
@@ -703,6 +750,7 @@ class JpArm9Functions:
     )
 
     GetMoveCritChance = Symbol(
+        [0x13AE0],
         [0x2013AE0],
         None,
         "Gets the critical hit chance of a move.\n\nr0: move pointer\nreturn: base"
@@ -712,6 +760,7 @@ class JpArm9Functions:
     IsRecoilMove = Symbol(
         None,
         None,
+        None,
         "Checks if the given move is a recoil move (affected by Reckless).\n\nr0: move"
         " ID\nreturn: bool",
     )
@@ -719,11 +768,13 @@ class JpArm9Functions:
     IsPunchMove = Symbol(
         None,
         None,
+        None,
         "Checks if the given move is a punch move (affected by Iron Fist).\n\nr0: move"
         " ID\nreturn: bool",
     )
 
     GetMoveCategory = Symbol(
+        [0x15198],
         [0x2015198],
         None,
         "Gets a move's category (physical, special, status).\n\nr0: move ID\nreturn:"
@@ -731,6 +782,7 @@ class JpArm9Functions:
     )
 
     LoadWteFromRom = Symbol(
+        [0x1DEA4],
         [0x201DEA4],
         None,
         "Loads a SIR0-wrapped WTE file from ROM, and returns a handle to it\n\nr0:"
@@ -738,6 +790,7 @@ class JpArm9Functions:
     )
 
     LoadWteFromFileDirectory = Symbol(
+        [0x1DF1C],
         [0x201DF1C],
         None,
         "Loads a SIR0-wrapped WTE file from a file directory, and returns a handle to"
@@ -746,6 +799,7 @@ class JpArm9Functions:
     )
 
     UnloadWte = Symbol(
+        [0x1DF70],
         [0x201DF70],
         None,
         "Frees the buffer used to store the WTE data in the handle, and sets both"
@@ -753,6 +807,7 @@ class JpArm9Functions:
     )
 
     HandleSir0Translation = Symbol(
+        [0x1F50C],
         [0x201F50C],
         None,
         "Translates the offsets in a SIR0 file into NDS memory addresses, changes the"
@@ -764,6 +819,7 @@ class JpArm9Functions:
     HandleSir0TranslationVeneer = Symbol(
         None,
         None,
+        None,
         "Likely a linker-generated veneer for HandleSir0Translation.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
         " [output] double pointer to beginning of data\nr1: pointer to source file"
@@ -771,6 +827,7 @@ class JpArm9Functions:
     )
 
     GetLanguageType = Symbol(
+        [0x205F8],
         [0x20205F8],
         None,
         "Gets the language type.\n\nThis is the value backing the special LANGUAGE_TYPE"
@@ -778,6 +835,7 @@ class JpArm9Functions:
     )
 
     GetLanguage = Symbol(
+        [0x20608],
         [0x2020608],
         None,
         "Gets the single-byte language ID of the current program.\n\nThe language ID"
@@ -785,6 +843,7 @@ class JpArm9Functions:
     )
 
     PreprocessString = Symbol(
+        [0x22440],
         [0x2022440],
         None,
         "An enhanced sprintf, which recognizes certain tags and replaces them with"
@@ -797,6 +856,7 @@ class JpArm9Functions:
     )
 
     StrcpySimple = Symbol(
+        [0x25150],
         [0x2025150],
         None,
         "A simple implementation of the strcpy(3) C library function.\n\nThis function"
@@ -805,6 +865,7 @@ class JpArm9Functions:
     )
 
     StrncpySimple = Symbol(
+        [0x2516C],
         [0x202516C],
         None,
         "A simple implementation of the strncpy(3) C library function.\n\nThis function"
@@ -813,6 +874,7 @@ class JpArm9Functions:
     )
 
     StringFromMessageId = Symbol(
+        [0x258A4],
         [0x20258A4],
         None,
         "Gets the string corresponding to a given message ID.\n\nr0: message"
@@ -820,6 +882,7 @@ class JpArm9Functions:
     )
 
     SetScreenWindowsColor = Symbol(
+        [0x27DC8],
         [0x2027DC8],
         None,
         "Sets the palette of the frames of windows in the specified screen\n\nr0:"
@@ -827,6 +890,7 @@ class JpArm9Functions:
     )
 
     SetBothScreensWindowsColor = Symbol(
+        [0x27DE0],
         [0x2027DE0],
         None,
         "Sets the palette of the frames of windows in both screens\n\nr0: palette"
@@ -834,14 +898,15 @@ class JpArm9Functions:
     )
 
     GetNotifyNote = Symbol(
-        None, None, "Returns the current value of NOTIFY_NOTE.\n\nreturn: bool"
+        None, None, None, "Returns the current value of NOTIFY_NOTE.\n\nreturn: bool"
     )
 
     SetNotifyNote = Symbol(
-        None, None, "Sets NOTIFY_NOTE to the given value.\n\nr0: bool"
+        None, None, None, "Sets NOTIFY_NOTE to the given value.\n\nr0: bool"
     )
 
     InitMainTeamAfterQuiz = Symbol(
+        [0x48B30],
         [0x2048B30],
         None,
         "Implements SPECIAL_PROC_INIT_MAIN_TEAM_AFTER_QUIZ (see"
@@ -849,18 +914,21 @@ class JpArm9Functions:
     )
 
     ScriptSpecialProcess0x3 = Symbol(
+        [0x48D78],
         [0x2048D78],
         None,
         "Implements SPECIAL_PROC_0x3 (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ScriptSpecialProcess0x4 = Symbol(
+        [0x48DF0],
         [0x2048DF0],
         None,
         "Implements SPECIAL_PROC_0x4 (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     NoteSaveBase = Symbol(
+        [0x492F0],
         [0x20492F0],
         None,
         "Probably related to saving or quicksaving?\n\nThis function prints the debug"
@@ -870,6 +938,7 @@ class JpArm9Functions:
     )
 
     NoteLoadBase = Symbol(
+        [0x496DC],
         [0x20496DC],
         None,
         "Probably related to loading a save file or quicksave?\n\nThis function prints"
@@ -878,10 +947,11 @@ class JpArm9Functions:
     )
 
     GetGameMode = Symbol(
-        None, None, "Gets the value of GAME_MODE.\n\nreturn: game mode"
+        None, None, None, "Gets the value of GAME_MODE.\n\nreturn: game mode"
     )
 
     InitScriptVariableValues = Symbol(
+        [0x4B3B4],
         [0x204B3B4],
         None,
         "Initialize the script variable values table (SCRIPT_VARS_VALUES).\n\nThe whole"
@@ -893,11 +963,13 @@ class JpArm9Functions:
     InitEventFlagScriptVars = Symbol(
         None,
         None,
+        None,
         "Initializes an assortment of event flag script variables (see the code for an"
         " exhaustive list).\n\nNo params.",
     )
 
     ZinitScriptVariable = Symbol(
+        [0x4B794],
         [0x204B794],
         None,
         "Zero-initialize the values of the given script variable.\n\nr0: pointer to the"
@@ -906,6 +978,7 @@ class JpArm9Functions:
     )
 
     LoadScriptVariableRaw = Symbol(
+        [0x4B7FC],
         [0x204B7FC],
         None,
         "Loads a script variable descriptor for a given ID.\n\nr0: [output] script"
@@ -915,6 +988,7 @@ class JpArm9Functions:
     )
 
     LoadScriptVariableValue = Symbol(
+        [0x4B84C],
         [0x204B84C],
         None,
         "Loads the value of a script variable.\n\nr0: pointer to the local variable"
@@ -923,6 +997,7 @@ class JpArm9Functions:
     )
 
     LoadScriptVariableValueAtIndex = Symbol(
+        [0x4B9D8],
         [0x204B9D8],
         None,
         "Loads the value of a script variable at some index (for script variables that"
@@ -932,6 +1007,7 @@ class JpArm9Functions:
     )
 
     SaveScriptVariableValue = Symbol(
+        [0x4BB80],
         [0x204BB80],
         None,
         "Saves the given value to a script variable.\n\nr0: pointer to local variable"
@@ -940,6 +1016,7 @@ class JpArm9Functions:
     )
 
     SaveScriptVariableValueAtIndex = Symbol(
+        [0x4BCE8],
         [0x204BCE8],
         None,
         "Saves the given value to a script variable at some index (for script variables"
@@ -949,6 +1026,7 @@ class JpArm9Functions:
     )
 
     LoadScriptVariableValueSum = Symbol(
+        [0x4BE60],
         [0x204BE60],
         None,
         "Loads the sum of all values of a given script variable (for script variables"
@@ -957,6 +1035,7 @@ class JpArm9Functions:
     )
 
     LoadScriptVariableValueBytes = Symbol(
+        [0x4BEC4],
         [0x204BEC4],
         None,
         "Loads some number of bytes from the value of a given script variable.\n\nr0:"
@@ -965,6 +1044,7 @@ class JpArm9Functions:
     )
 
     SaveScriptVariableValueBytes = Symbol(
+        [0x4BF2C],
         [0x204BF2C],
         None,
         "Saves some number of bytes to the given script variable.\n\nr0: script"
@@ -972,6 +1052,7 @@ class JpArm9Functions:
     )
 
     ScriptVariablesEqual = Symbol(
+        [0x4BF78],
         [0x204BF78],
         None,
         "Checks if two script variables have equal values. For arrays, compares"
@@ -982,6 +1063,7 @@ class JpArm9Functions:
     )
 
     EventFlagBackup = Symbol(
+        [0x4C544],
         [0x204C544],
         None,
         "Saves event flag script variables (see the code for an exhaustive list) to"
@@ -991,6 +1073,7 @@ class JpArm9Functions:
     )
 
     DumpScriptVariableValues = Symbol(
+        [0x4C768],
         [0x204C768],
         None,
         "Runs EventFlagBackup, then copies the script variable values table"
@@ -999,6 +1082,7 @@ class JpArm9Functions:
     )
 
     RestoreScriptVariableValues = Symbol(
+        [0x4C790],
         [0x204C790],
         None,
         "Restores the script variable values table (SCRIPT_VARS_VALUES) with the given"
@@ -1008,6 +1092,7 @@ class JpArm9Functions:
     )
 
     InitScenarioScriptVars = Symbol(
+        [0x4C7E8],
         [0x204C7E8],
         None,
         "Initializes most of the SCENARIO_* script variables (except"
@@ -1016,6 +1101,7 @@ class JpArm9Functions:
     )
 
     SetScenarioScriptVar = Symbol(
+        [0x4C978],
         [0x204C978],
         None,
         "Sets the given SCENARIO_* script variable with a given pair of values [val0,"
@@ -1025,6 +1111,7 @@ class JpArm9Functions:
     )
 
     GetSpecialEpisodeType = Symbol(
+        [0x4CC4C],
         [0x204CC4C],
         None,
         "Gets the special episode type from the SPECIAL_EPISODE_TYPE script"
@@ -1032,6 +1119,7 @@ class JpArm9Functions:
     )
 
     ScenarioFlagBackup = Symbol(
+        [0x4D018],
         [0x204D018],
         None,
         "Saves scenario flag script variables (SCENARIO_SELECT, SCENARIO_MAIN_BIT_FLAG)"
@@ -1041,6 +1129,7 @@ class JpArm9Functions:
     )
 
     InitWorldMapScriptVars = Symbol(
+        [0x4D0E8],
         [0x204D0E8],
         None,
         "Initializes the WORLD_MAP_* script variable values (IDs 0x55-0x57).\n\nNo"
@@ -1048,6 +1137,7 @@ class JpArm9Functions:
     )
 
     InitDungeonListScriptVars = Symbol(
+        [0x4D1F0],
         [0x204D1F0],
         None,
         "Initializes the DUNGEON_*_LIST script variable values (IDs 0x4f-0x54).\n\nNo"
@@ -1057,10 +1147,12 @@ class JpArm9Functions:
     SetDungeonTipShown = Symbol(
         None,
         None,
+        None,
         "Marks a dungeon tip as already shown to the player\n\nr0: Dungeon tip ID",
     )
 
     GetDungeonTipShown = Symbol(
+        None,
         None,
         None,
         "Checks if a dungeon tip has already been shown before or not.\n\nr0: Dungeon"
@@ -1068,6 +1160,7 @@ class JpArm9Functions:
     )
 
     MonsterSpawnsEnabled = Symbol(
+        [0x4D6C0],
         [0x204D6C0],
         None,
         "Always returns true.\n\nThis function seems to be a debug switch that the"
@@ -1077,6 +1170,7 @@ class JpArm9Functions:
     )
 
     SetAdventureLogStructLocation = Symbol(
+        [0x4FD70],
         [0x204FD70],
         None,
         "Sets the location of the adventure log struct in memory.\n\nSets it in a"
@@ -1085,28 +1179,35 @@ class JpArm9Functions:
     )
 
     SetAdventureLogDungeonFloor = Symbol(
+        [0x4FD88],
         [0x204FD88],
         None,
         "Sets the current dungeon floor pair.\n\nr0: struct dungeon_floor_pair",
     )
 
     GetAdventureLogDungeonFloor = Symbol(
+        [0x4FDA8],
         [0x204FDA8],
         None,
         "Gets the current dungeon floor pair.\n\nreturn: struct dungeon_floor_pair",
     )
 
     ClearAdventureLogStruct = Symbol(
-        [0x204FDBC], None, "Clears the adventure log structure.\n\nNo params."
+        [0x4FDBC],
+        [0x204FDBC],
+        None,
+        "Clears the adventure log structure.\n\nNo params.",
     )
 
     SetAdventureLogCompleted = Symbol(
+        [0x4FEE8],
         [0x204FEE8],
         None,
         "Marks one of the adventure log entry as completed.\n\nr0: entry ID",
     )
 
     IsAdventureLogNotEmpty = Symbol(
+        [0x4FF10],
         [0x204FF10],
         None,
         "Checks if at least one of the adventure log entry is completed.\n\nreturn:"
@@ -1114,12 +1215,14 @@ class JpArm9Functions:
     )
 
     GetAdventureLogCompleted = Symbol(
+        [0x4FF48],
         [0x204FF48],
         None,
         "Checks if one adventure log entry is completed.\n\nr0: entry ID\nreturn: bool",
     )
 
     IncrementNbDungeonsCleared = Symbol(
+        [0x4FF74],
         [0x204FF74],
         None,
         "Increments by 1 the number of dungeons cleared.\n\nImplements"
@@ -1127,6 +1230,7 @@ class JpArm9Functions:
     )
 
     GetNbDungeonsCleared = Symbol(
+        [0x4FFB8],
         [0x204FFB8],
         None,
         "Gets the number of dungeons cleared.\n\nreturn: the number of dungeons"
@@ -1134,12 +1238,14 @@ class JpArm9Functions:
     )
 
     IncrementNbFriendRescues = Symbol(
+        [0x4FFCC],
         [0x204FFCC],
         None,
         "Increments by 1 the number of successful friend rescues.\n\nNo params.",
     )
 
     GetNbFriendRescues = Symbol(
+        [0x50014],
         [0x2050014],
         None,
         "Gets the number of successful friend rescues.\n\nreturn: the number of"
@@ -1147,16 +1253,21 @@ class JpArm9Functions:
     )
 
     IncrementNbEvolutions = Symbol(
-        [0x2050028], None, "Increments by 1 the number of evolutions.\n\nNo params."
+        [0x50028],
+        [0x2050028],
+        None,
+        "Increments by 1 the number of evolutions.\n\nNo params.",
     )
 
     GetNbEvolutions = Symbol(
+        [0x50070],
         [0x2050070],
         None,
         "Gets the number of evolutions.\n\nreturn: the number of evolutions",
     )
 
     IncrementNbSteals = Symbol(
+        [0x50084],
         [0x2050084],
         None,
         "Leftover from Time & Darkness. Does not do anything.\n\nCalls to this matches"
@@ -1165,16 +1276,21 @@ class JpArm9Functions:
     )
 
     IncrementNbEggsHatched = Symbol(
-        [0x2050088], None, "Increments by 1 the number of eggs hatched.\n\nNo params."
+        [0x50088],
+        [0x2050088],
+        None,
+        "Increments by 1 the number of eggs hatched.\n\nNo params.",
     )
 
     GetNbEggsHatched = Symbol(
+        [0x500C4],
         [0x20500C4],
         None,
         "Gets the number of eggs hatched.\n\nreturn: the number of eggs hatched",
     )
 
     GetNbPokemonJoined = Symbol(
+        [0x500D8],
         [0x20500D8],
         None,
         "Gets the number of different pokémon that joined.\n\nreturn: the number of"
@@ -1182,6 +1298,7 @@ class JpArm9Functions:
     )
 
     GetNbMovesLearned = Symbol(
+        [0x500EC],
         [0x20500EC],
         None,
         "Gets the number of different moves learned.\n\nreturn: the number of different"
@@ -1189,26 +1306,29 @@ class JpArm9Functions:
     )
 
     SetVictoriesOnOneFloor = Symbol(
+        [0x50100],
         [0x2050100],
         None,
         "Sets the record of victories on one floor.\n\nr0: the new record of victories",
     )
 
     GetVictoriesOnOneFloor = Symbol(
+        [0x50134],
         [0x2050134],
         None,
         "Gets the record of victories on one floor.\n\nreturn: the record of victories",
     )
 
     SetPokemonJoined = Symbol(
-        [0x2050148], None, "Marks one pokémon as joined.\n\nr0: monster ID"
+        [0x50148], [0x2050148], None, "Marks one pokémon as joined.\n\nr0: monster ID"
     )
 
     SetPokemonBattled = Symbol(
-        [0x20501A4], None, "Marks one pokémon as battled.\n\nr0: monster ID"
+        [0x501A4], [0x20501A4], None, "Marks one pokémon as battled.\n\nr0: monster ID"
     )
 
     GetNbPokemonBattled = Symbol(
+        [0x50200],
         [0x2050200],
         None,
         "Gets the number of different pokémon that battled against you.\n\nreturn: the"
@@ -1216,6 +1336,7 @@ class JpArm9Functions:
     )
 
     IncrementNbBigTreasureWins = Symbol(
+        [0x50214],
         [0x2050214],
         None,
         "Increments by 1 the number of big treasure wins.\n\nImplements"
@@ -1223,6 +1344,7 @@ class JpArm9Functions:
     )
 
     SetNbBigTreasureWins = Symbol(
+        [0x50234],
         [0x2050234],
         None,
         "Sets the number of big treasure wins.\n\nr0: the new number of big treasure"
@@ -1230,6 +1352,7 @@ class JpArm9Functions:
     )
 
     GetNbBigTreasureWins = Symbol(
+        [0x5026C],
         [0x205026C],
         None,
         "Gets the number of big treasure wins.\n\nreturn: the number of big treasure"
@@ -1237,18 +1360,21 @@ class JpArm9Functions:
     )
 
     SetNbRecycled = Symbol(
+        [0x50280],
         [0x2050280],
         None,
         "Sets the number of items recycled.\n\nr0: the new number of items recycled",
     )
 
     GetNbRecycled = Symbol(
+        [0x502B8],
         [0x20502B8],
         None,
         "Gets the number of items recycled.\n\nreturn: the number of items recycled",
     )
 
     IncrementNbSkyGiftsSent = Symbol(
+        [0x502CC],
         [0x20502CC],
         None,
         "Increments by 1 the number of sky gifts sent.\n\nImplements"
@@ -1257,18 +1383,21 @@ class JpArm9Functions:
     )
 
     SetNbSkyGiftsSent = Symbol(
+        [0x502EC],
         [0x20502EC],
         None,
         "Sets the number of Sky Gifts sent.\n\nreturn: the number of Sky Gifts sent",
     )
 
     GetNbSkyGiftsSent = Symbol(
+        [0x50324],
         [0x2050324],
         None,
         "Gets the number of Sky Gifts sent.\n\nreturn: the number of Sky Gifts sent",
     )
 
     ComputeSpecialCounters = Symbol(
+        [0x50338],
         [0x2050338],
         None,
         "Computes the counters from the bit fields in the adventure log, as they are"
@@ -1278,6 +1407,7 @@ class JpArm9Functions:
     )
 
     RecruitSpecialPokemonLog = Symbol(
+        [0x50590],
         [0x2050590],
         None,
         "Marks a specified special pokémon as recruited in the adventure log.\n\nr0:"
@@ -1285,12 +1415,14 @@ class JpArm9Functions:
     )
 
     IncrementNbFainted = Symbol(
+        [0x505FC],
         [0x20505FC],
         None,
         "Increments by 1 the number of times you fainted.\n\nNo params.",
     )
 
     GetNbFainted = Symbol(
+        [0x50638],
         [0x2050638],
         None,
         "Gets the number of times you fainted.\n\nreturn: the number of times you"
@@ -1298,20 +1430,28 @@ class JpArm9Functions:
     )
 
     SetItemAcquired = Symbol(
-        [0x205064C], None, "Marks one specific item as acquired.\n\nr0: item ID"
+        [0x5064C],
+        [0x205064C],
+        None,
+        "Marks one specific item as acquired.\n\nr0: item ID",
     )
 
     GetNbItemAcquired = Symbol(
+        [0x50718],
         [0x2050718],
         None,
         "Gets the number of items acquired.\n\nreturn: the number of items acquired",
     )
 
     SetChallengeLetterCleared = Symbol(
-        [0x205076C], None, "Sets a challenge letter as cleared.\n\nr0: challenge ID"
+        [0x5076C],
+        [0x205076C],
+        None,
+        "Sets a challenge letter as cleared.\n\nr0: challenge ID",
     )
 
     GetSentryDutyGamePoints = Symbol(
+        [0x507F0],
         [0x20507F0],
         None,
         "Gets the points for the associated rank in the footprints minigame.\n\nr0: the"
@@ -1319,6 +1459,7 @@ class JpArm9Functions:
     )
 
     SetSentryDutyGamePoints = Symbol(
+        [0x50808],
         [0x2050808],
         None,
         "Sets a new record in the footprints minigame.\n\nr0: points\nreturn: the rank"
@@ -1326,6 +1467,7 @@ class JpArm9Functions:
     )
 
     SubFixedPoint = Symbol(
+        [0x51260],
         [0x2051260],
         None,
         "Compute the subtraction of two decimal fixed-point numbers (16 fraction"
@@ -1335,6 +1477,7 @@ class JpArm9Functions:
     )
 
     BinToDecFixedPoint = Symbol(
+        [0x51370],
         [0x2051370],
         None,
         "Convert a binary fixed-point number (16 fraction bits) to the decimal"
@@ -1348,6 +1491,7 @@ class JpArm9Functions:
     )
 
     CeilFixedPoint = Symbol(
+        [0x513B4],
         [0x20513B4],
         None,
         "Compute the ceiling of a decimal fixed-point number (16 fraction"
@@ -1357,6 +1501,7 @@ class JpArm9Functions:
     )
 
     DungeonGoesUp = Symbol(
+        [0x515D8],
         [0x20515D8],
         None,
         "Returns whether the specified dungeon is considered as going upward or"
@@ -1366,11 +1511,13 @@ class JpArm9Functions:
     GetMaxRescueAttempts = Symbol(
         None,
         None,
+        None,
         "Returns the maximum rescue attempts allowed in the specified dungeon.\n\nr0:"
         " dungeon id\nreturn: Max rescue attempts, or -1 if rescues are disabled.",
     )
 
     JoinedAtRangeCheck = Symbol(
+        None,
         None,
         None,
         "Returns whether a certain joined_at field value is between"
@@ -1381,12 +1528,14 @@ class JpArm9Functions:
     ShouldCauseGameOverOnFaint = Symbol(
         None,
         None,
+        None,
         "Returns whether a game over should happen when a monster with the specified"
         " joined_at ID faints (as long as the other conditions are met). It might have"
         " a more generic meaning.\n\nr0: joined_at id\nreturn: bool",
     )
 
     GetMonsterGender = Symbol(
+        None,
         None,
         None,
         "Returns the gender field of a monster given its ID.\n\nr0: monster id\nreturn:"
@@ -1396,11 +1545,13 @@ class JpArm9Functions:
     GetSpriteSize = Symbol(
         None,
         None,
+        None,
         "Returns the sprite size of the specified monster. If the size is between 1 and"
         " 6, 6 will be returned.\n\nr0: monster id\nreturn: sprite size",
     )
 
     GetSpriteFileSize = Symbol(
+        None,
         None,
         None,
         "Returns the sprite file size of the specified monster.\n\nr0: monster"
@@ -1410,11 +1561,13 @@ class JpArm9Functions:
     GetMonsterPreEvolution = Symbol(
         None,
         None,
+        None,
         "Returns the pre-evolution id of a monster given its ID.\n\nr0: monster"
         " id\nreturn: ID of the monster that evolves into the one specified in r0",
     )
 
     GetEvolutions = Symbol(
+        None,
         None,
         None,
         "Returns a list of all the possible evolutions for a given monster id.\n\nr0:"
@@ -1429,11 +1582,13 @@ class JpArm9Functions:
     GetMonsterIdFromSpawnEntry = Symbol(
         None,
         None,
+        None,
         "Returns the monster ID of the specified monster spawn entry\n\nr0: Pointer to"
         " the monster spawn entry\nreturn: monster_spawn_entry::id",
     )
 
     GetMonsterLevelFromSpawnEntry = Symbol(
+        [0x547F0],
         [0x20547F0],
         None,
         "Returns the level of the specified monster spawn entry.\n\nr0: pointer to the"
@@ -1443,42 +1598,49 @@ class JpArm9Functions:
     GetMonsterGenderVeneer = Symbol(
         None,
         None,
+        None,
         "Likely a linker-generated veneer for GetMonsterGender.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
         " monster id\nreturn: monster gender",
     )
 
     IsUnown = Symbol(
+        [0x54DC0],
         [0x2054DC0],
         None,
         "Checks if a monster ID is an Unown.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsShaymin = Symbol(
+        [0x54DDC],
         [0x2054DDC],
         None,
         "Checks if a monster ID is a Shaymin form.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsCastform = Symbol(
+        [0x54E0C],
         [0x2054E0C],
         None,
         "Checks if a monster ID is a Castform form.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsCherrim = Symbol(
+        [0x54E64],
         [0x2054E64],
         None,
         "Checks if a monster ID is a Cherrim form.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsDeoxys = Symbol(
+        [0x54EAC],
         [0x2054EAC],
         None,
         "Checks if a monster ID is a Deoxys form.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsMonsterOnTeam = Symbol(
+        [0x55480],
         [0x2055480],
         None,
         "Checks if a given monster is on the exploration team (not necessarily the"
@@ -1488,11 +1650,13 @@ class JpArm9Functions:
     GetTeamMemberData = Symbol(
         None,
         None,
+        None,
         "Returns a struct containing information about a team member.\n\nr0:"
         " Index\nreturn: Pointer to struct containing team member information",
     )
 
     SetTeamSetupHeroAndPartnerOnly = Symbol(
+        [0x56D68],
         [0x2056D68],
         None,
         "Implements SPECIAL_PROC_SET_TEAM_SETUP_HERO_AND_PARTNER_ONLY (see"
@@ -1500,6 +1664,7 @@ class JpArm9Functions:
     )
 
     SetTeamSetupHeroOnly = Symbol(
+        [0x56E48],
         [0x2056E48],
         None,
         "Implements SPECIAL_PROC_SET_TEAM_SETUP_HERO_ONLY (see"
@@ -1507,6 +1672,7 @@ class JpArm9Functions:
     )
 
     GetPartyMembers = Symbol(
+        [0x56FB4],
         [0x2056FB4],
         None,
         "Appears to get the team's active party members. Implements most of"
@@ -1518,6 +1684,7 @@ class JpArm9Functions:
     )
 
     IqSkillFlagTest = Symbol(
+        [0x59200],
         [0x2059200],
         None,
         "Tests whether an IQ skill with a given ID is active.\n\nr0: IQ skill bitvector"
@@ -1527,12 +1694,14 @@ class JpArm9Functions:
     GetExplorerMazeMonster = Symbol(
         None,
         None,
+        None,
         "Returns the data of a monster sent into the Explorer Dojo using the 'exchange"
         " teams' option.\n\nr0: Entry number (0-3)\nreturn: Ground monster data of the"
         " specified entry",
     )
 
     GetSosMailCount = Symbol(
+        [0x5BC7C],
         [0x205BC7C],
         None,
         "Implements SPECIAL_PROC_GET_SOS_MAIL_COUNT (see"
@@ -1540,6 +1709,7 @@ class JpArm9Functions:
     )
 
     DungeonRequestsDone = Symbol(
+        [0x5F0A4],
         [0x205F0A4],
         None,
         "Seems to return the number of missions completed.\n\nPart of the"
@@ -1551,11 +1721,13 @@ class JpArm9Functions:
     DungeonRequestsDoneWrapper = Symbol(
         None,
         None,
+        None,
         "Calls DungeonRequestsDone with the second argument set to false.\n\nr0:"
         " ?\nreturn: number of mission completed",
     )
 
     AnyDungeonRequestsDone = Symbol(
+        [0x5F120],
         [0x205F120],
         None,
         "Calls DungeonRequestsDone with the second argument set to true, and converts"
@@ -1564,24 +1736,28 @@ class JpArm9Functions:
     )
 
     ScriptSpecialProcess0x3D = Symbol(
+        [0x65E38],
         [0x2065E38],
         None,
         "Implements SPECIAL_PROC_0x3D (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ScriptSpecialProcess0x3E = Symbol(
+        [0x65E48],
         [0x2065E48],
         None,
         "Implements SPECIAL_PROC_0x3E (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ScriptSpecialProcess0x17 = Symbol(
+        [0x65F30],
         [0x2065F30],
         None,
         "Implements SPECIAL_PROC_0x17 (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ItemAtTableIdx = Symbol(
+        [0x65FE0],
         [0x2065FE0],
         None,
         "Gets info about the item at a given item table (not sure what this table"
@@ -1591,6 +1767,7 @@ class JpArm9Functions:
     )
 
     WaitForInterrupt = Symbol(
+        [0x7BF18],
         [0x207BF18],
         None,
         "Presumably blocks until the program receives an interrupt.\n\nThis just calls"
@@ -1600,6 +1777,7 @@ class JpArm9Functions:
     )
 
     FileInit = Symbol(
+        [0x7F6CC],
         [0x207F6CC],
         None,
         "Initializes a file_stream structure for file I/O.\n\nThis function must always"
@@ -1607,12 +1785,14 @@ class JpArm9Functions:
     )
 
     Abs = Symbol(
+        [0x86844],
         [0x2086844],
         None,
         "Takes the absolute value of an integer.\n\nr0: x\nreturn: abs(x)",
     )
 
     Mbtowc = Symbol(
+        [0x874A4],
         [0x20874A4],
         None,
         "The mbtowc(3) C library function.\n\nr0: pwc\nr1: s\nr2: n\nreturn: number of"
@@ -1620,6 +1800,7 @@ class JpArm9Functions:
     )
 
     TryAssignByte = Symbol(
+        [0x874DC],
         [0x20874DC],
         None,
         "Assign a byte to the target of a pointer if the pointer is non-null.\n\nr0:"
@@ -1627,6 +1808,7 @@ class JpArm9Functions:
     )
 
     TryAssignByteWrapper = Symbol(
+        [0x874F0],
         [0x20874F0],
         None,
         "Wrapper around TryAssignByte.\n\nAccesses the TryAssignByte function with a"
@@ -1635,6 +1817,7 @@ class JpArm9Functions:
     )
 
     Wcstombs = Symbol(
+        [0x8750C],
         [0x208750C],
         None,
         "The wcstombs(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn:"
@@ -1642,12 +1825,14 @@ class JpArm9Functions:
     )
 
     Memcpy = Symbol(
+        [0x87584],
         [0x2087584],
         None,
         "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
     )
 
     Memmove = Symbol(
+        [0x875A4],
         [0x20875A4],
         None,
         "The memmove(3) C library function.\n\nThe implementation is nearly the same as"
@@ -1656,6 +1841,7 @@ class JpArm9Functions:
     )
 
     Memset = Symbol(
+        [0x875F0],
         [0x20875F0],
         None,
         "The memset(3) C library function.\n\nThis is just a wrapper around"
@@ -1664,6 +1850,7 @@ class JpArm9Functions:
     )
 
     Memchr = Symbol(
+        [0x87604],
         [0x2087604],
         None,
         "The memchr(3) C library function.\n\nr0: s\nr1: c\nr2: n\nreturn: pointer to"
@@ -1671,6 +1858,7 @@ class JpArm9Functions:
     )
 
     Memcmp = Symbol(
+        [0x87630],
         [0x2087630],
         None,
         "The memcmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn: comparison"
@@ -1678,6 +1866,7 @@ class JpArm9Functions:
     )
 
     MemsetInternal = Symbol(
+        [0x87670],
         [0x2087670],
         None,
         "The actual memory-setting implementation for the memset(3) C library"
@@ -1689,6 +1878,7 @@ class JpArm9Functions:
     )
 
     VsprintfInternalSlice = Symbol(
+        [0x88F5C],
         [0x2088F5C],
         None,
         "This is what implements the bulk of VsprintfInternal.\n\nThe"
@@ -1701,6 +1891,7 @@ class JpArm9Functions:
     )
 
     TryAppendToSlice = Symbol(
+        [0x89780],
         [0x2089780],
         None,
         "Best-effort append the given data to a slice. If the slice's capacity is"
@@ -1710,6 +1901,7 @@ class JpArm9Functions:
     )
 
     VsprintfInternal = Symbol(
+        [0x897C4],
         [0x20897C4],
         None,
         "This is what implements Vsprintf. It's akin to __vsprintf_internal in the"
@@ -1720,6 +1912,7 @@ class JpArm9Functions:
     )
 
     Vsprintf = Symbol(
+        [0x8982C],
         [0x208982C],
         None,
         "The vsprintf(3) C library function.\n\nr0: str\nr1: format\nr2: ap\nreturn:"
@@ -1727,6 +1920,7 @@ class JpArm9Functions:
     )
 
     Snprintf = Symbol(
+        [0x89844],
         [0x2089844],
         None,
         "The snprintf(3) C library function.\n\nThis calls VsprintfInternal directly,"
@@ -1736,6 +1930,7 @@ class JpArm9Functions:
     )
 
     Sprintf = Symbol(
+        [0x8986C],
         [0x208986C],
         None,
         "The sprintf(3) C library function.\n\nThis calls VsprintfInternal directly, so"
@@ -1745,12 +1940,14 @@ class JpArm9Functions:
     )
 
     Strlen = Symbol(
+        [0x89960],
         [0x2089960],
         None,
         "The strlen(3) C library function.\n\nr0: s\nreturn: length of s",
     )
 
     Strcpy = Symbol(
+        [0x8997C],
         [0x208997C],
         None,
         "The strcpy(3) C library function.\n\nThis function is optimized to copy"
@@ -1759,22 +1956,28 @@ class JpArm9Functions:
     )
 
     Strncpy = Symbol(
+        [0x89A44],
         [0x2089A44],
         None,
         "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
     )
 
     Strcat = Symbol(
-        [0x2089A94], None, "The strcat(3) C library function.\n\nr0: dest\nr1: src"
+        [0x89A94],
+        [0x2089A94],
+        None,
+        "The strcat(3) C library function.\n\nr0: dest\nr1: src",
     )
 
     Strncat = Symbol(
+        [0x89AC4],
         [0x2089AC4],
         None,
         "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
     )
 
     Strcmp = Symbol(
+        [0x89B14],
         [0x2089B14],
         None,
         "The strcmp(3) C library function.\n\nSimilarly to Strcpy, this function is"
@@ -1783,6 +1986,7 @@ class JpArm9Functions:
     )
 
     Strncmp = Symbol(
+        [0x89C28],
         [0x2089C28],
         None,
         "The strncmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn:"
@@ -1790,6 +1994,7 @@ class JpArm9Functions:
     )
 
     Strchr = Symbol(
+        [0x89C5C],
         [0x2089C5C],
         None,
         "The strchr(3) C library function.\n\nr0: string\nr1: c\nreturn: pointer to the"
@@ -1797,6 +2002,7 @@ class JpArm9Functions:
     )
 
     Strcspn = Symbol(
+        [0x89C98],
         [0x2089C98],
         None,
         "The strcspn(3) C library function.\n\nr0: string\nr1: stopset\nreturn: offset"
@@ -1804,6 +2010,7 @@ class JpArm9Functions:
     )
 
     Strstr = Symbol(
+        [0x89D58],
         [0x2089D58],
         None,
         "The strstr(3) C library function.\n\nr0: haystack\nr1: needle\nreturn: pointer"
@@ -1811,12 +2018,14 @@ class JpArm9Functions:
     )
 
     Wcslen = Symbol(
+        [0x8B6D0],
         [0x208B6D0],
         None,
         "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
     )
 
     AddFloat = Symbol(
+        [0x8EFA0],
         [0x208EFA0],
         None,
         "This appears to be the libgcc implementation of __addsf3 (not sure which gcc"
@@ -1825,6 +2034,7 @@ class JpArm9Functions:
     )
 
     DivideFloat = Symbol(
+        [0x8F51C],
         [0x208F51C],
         None,
         "This appears to be the libgcc implementation of __divsf3 (not sure which gcc"
@@ -1833,6 +2043,7 @@ class JpArm9Functions:
     )
 
     FloatToDouble = Symbol(
+        [0x8F8D4],
         [0x208F8D4],
         None,
         "This appears to be the libgcc implementation of __extendsfdf2 (not sure which"
@@ -1841,6 +2052,7 @@ class JpArm9Functions:
     )
 
     FloatToInt = Symbol(
+        [0x8F958],
         [0x208F958],
         None,
         "This appears to be the libgcc implementation of __fixsfsi (not sure which gcc"
@@ -1850,6 +2062,7 @@ class JpArm9Functions:
     )
 
     IntToFloat = Symbol(
+        [0x8F98C],
         [0x208F98C],
         None,
         "This appears to be the libgcc implementation of __floatsisf (not sure which"
@@ -1858,6 +2071,7 @@ class JpArm9Functions:
     )
 
     UIntToFloat = Symbol(
+        [0x8F9D4],
         [0x208F9D4],
         None,
         "This appears to be the libgcc implementation of __floatunsisf (not sure which"
@@ -1866,6 +2080,7 @@ class JpArm9Functions:
     )
 
     MultiplyFloat = Symbol(
+        [0x8FA1C],
         [0x208FA1C],
         None,
         "This appears to be the libgcc implementation of __mulsf3 (not sure which gcc"
@@ -1874,10 +2089,14 @@ class JpArm9Functions:
     )
 
     Sqrtf = Symbol(
-        [0x208FBFC], None, "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)"
+        [0x8FBFC],
+        [0x208FBFC],
+        None,
+        "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)",
     )
 
     SubtractFloat = Symbol(
+        [0x8FCEC],
         [0x208FCEC],
         None,
         "This appears to be the libgcc implementation of __subsf3 (not sure which gcc"
@@ -1886,6 +2105,7 @@ class JpArm9Functions:
     )
 
     DivideInt = Symbol(
+        [0x9018C],
         [0x209018C],
         None,
         "This appears to be the libgcc implementation of __divsi3 (not sure which gcc"
@@ -1894,6 +2114,7 @@ class JpArm9Functions:
     )
 
     DivideUInt = Symbol(
+        [0x90398],
         [0x2090398],
         None,
         "This appears to be the libgcc implementation of __udivsi3 (not sure which gcc"
@@ -1903,6 +2124,7 @@ class JpArm9Functions:
     )
 
     DivideUIntNoZeroCheck = Symbol(
+        [0x903A0],
         [0x20903A0],
         None,
         "Subsidiary function to DivideUInt. Skips the initial check for divisor =="
@@ -1914,32 +2136,37 @@ class JpArm9Functions:
 class JpArm9Data:
 
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
-        None, None, "Length in bytes of the default memory allocation arena, 1991680."
+        None,
+        None,
+        None,
+        "Length in bytes of the default memory allocation arena, 1991680.",
     )
 
-    AURA_BOW_ID_LAST = Symbol(None, None, "Highest item ID of the aura bows.")
+    AURA_BOW_ID_LAST = Symbol(None, None, None, "Highest item ID of the aura bows.")
 
-    NUMBER_OF_ITEMS = Symbol(None, None, "Number of items in the game.")
+    NUMBER_OF_ITEMS = Symbol(None, None, None, "Number of items in the game.")
 
     MAX_MONEY_CARRIED = Symbol(
-        None, None, "Maximum amount of money the player can carry, 99999."
+        None, None, None, "Maximum amount of money the player can carry, 99999."
     )
 
     MAX_MONEY_STORED = Symbol(
+        None,
         None,
         None,
         "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
     )
 
     SCRIPT_VARS_VALUES_PTR = Symbol(
-        None, None, "Hard-coded pointer to SCRIPT_VARS_VALUES."
+        None, None, None, "Hard-coded pointer to SCRIPT_VARS_VALUES."
     )
 
     MONSTER_ID_LIMIT = Symbol(
-        None, None, "One more than the maximum valid monster ID (0x483)."
+        None, None, None, "One more than the maximum valid monster ID (0x483)."
     )
 
     MAX_RECRUITABLE_TEAM_MEMBERS = Symbol(
+        None,
         None,
         None,
         "555, appears to be the maximum number of members recruited to an exploration"
@@ -1947,9 +2174,10 @@ class JpArm9Data:
         " team members.",
     )
 
-    CART_REMOVED_IMG_DATA = Symbol(None, None, "")
+    CART_REMOVED_IMG_DATA = Symbol(None, None, None, "")
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA = Symbol(
+        None,
         None,
         None,
         "Contains stat boost effects for different exclusive item classes.\n\nEach"
@@ -1959,22 +2187,23 @@ class JpArm9Data:
     )
 
     EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
-        None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
+        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
     )
 
     EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
-        None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
+        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
     )
 
     EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
-        None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
+        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
     )
 
     EXCLUSIVE_ITEM_SPECIAL_DEFENSE_BOOSTS = Symbol(
-        None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 3"
+        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 3"
     )
 
     EXCLUSIVE_ITEM_EFFECT_DATA = Symbol(
+        None,
         None,
         None,
         "Contains special effects for each exclusive item.\n\nEach entry is 2 bytes,"
@@ -1985,10 +2214,11 @@ class JpArm9Data:
     )
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
-        None, None, "EXCLUSIVE_ITEM_EFFECT_DATA, offset by 1"
+        None, None, None, "EXCLUSIVE_ITEM_EFFECT_DATA, offset by 1"
     )
 
     RECOIL_MOVE_LIST = Symbol(
+        None,
         None,
         None,
         "Null-terminated list of all the recoil moves, as 2-byte move IDs.\n\ntype:"
@@ -1998,11 +2228,13 @@ class JpArm9Data:
     PUNCH_MOVE_LIST = Symbol(
         None,
         None,
+        None,
         "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
         " struct move_id_16[16]",
     )
 
     SCRIPT_VARS_LOCALS = Symbol(
+        None,
         None,
         None,
         "List of special 'local' variables available to the script engine. There are 4"
@@ -2011,6 +2243,7 @@ class JpArm9Data:
     )
 
     SCRIPT_VARS = Symbol(
+        [0x9EC44],
         [0x209EC44],
         0x730,
         "List of predefined global variables that track game state, which are available"
@@ -2020,6 +2253,7 @@ class JpArm9Data:
     )
 
     DUNGEON_DATA_LIST = Symbol(
+        None,
         None,
         None,
         "Data about every dungeon in the game.\n\nThis is an array of 180 dungeon data"
@@ -2032,6 +2266,7 @@ class JpArm9Data:
     DUNGEON_RESTRICTIONS = Symbol(
         None,
         None,
+        None,
         "Data related to dungeon restrictions for every dungeon in the game.\n\nThis is"
         " an array of 256 dungeon restriction structs. Each entry is 12 bytes, and"
         " contains information about restrictions within the given dungeon.\n\nSee the"
@@ -2040,42 +2275,62 @@ class JpArm9Data:
     )
 
     SPECIAL_BAND_STAT_BOOST = Symbol(
-        None, None, "Stat boost value for the Special Band."
+        None, None, None, "Stat boost value for the Special Band."
     )
 
-    MUNCH_BELT_STAT_BOOST = Symbol(None, None, "Stat boost value for the Munch Belt.")
+    MUNCH_BELT_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the Munch Belt."
+    )
 
     GUMMI_STAT_BOOST = Symbol(
-        None, None, "Stat boost value if a stat boost occurs when eating normal Gummis."
+        None,
+        None,
+        None,
+        "Stat boost value if a stat boost occurs when eating normal Gummis.",
     )
 
-    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol(None, None, "")
+    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol(None, None, None, "")
 
-    WONDER_GUMMI_IQ_GAIN = Symbol(None, None, "IQ gain when ingesting wonder gummis.")
+    WONDER_GUMMI_IQ_GAIN = Symbol(
+        None, None, None, "IQ gain when ingesting wonder gummis."
+    )
 
-    AURA_BOW_STAT_BOOST = Symbol(None, None, "Stat boost value for the aura bows.")
+    AURA_BOW_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the aura bows."
+    )
 
-    MIN_IQ_ITEM_MASTER = Symbol(None, None, "")
+    MIN_IQ_ITEM_MASTER = Symbol(None, None, None, "")
 
-    DEF_SCARF_STAT_BOOST = Symbol(None, None, "Stat boost value for the Defense Scarf.")
+    DEF_SCARF_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the Defense Scarf."
+    )
 
-    POWER_BAND_STAT_BOOST = Symbol(None, None, "Stat boost value for the Power Band.")
+    POWER_BAND_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the Power Band."
+    )
 
     WONDER_GUMMI_STAT_BOOST = Symbol(
-        None, None, "Stat boost value if a stat boost occurs when eating Wonder Gummis."
+        None,
+        None,
+        None,
+        "Stat boost value if a stat boost occurs when eating Wonder Gummis.",
     )
 
-    ZINC_BAND_STAT_BOOST = Symbol(None, None, "Stat boost value for the Zinc Band.")
+    ZINC_BAND_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the Zinc Band."
+    )
 
-    TACTICS_UNLOCK_LEVEL_TABLE = Symbol(None, None, "")
+    TACTICS_UNLOCK_LEVEL_TABLE = Symbol(None, None, None, "")
 
     OUTLAW_LEVEL_TABLE = Symbol(
+        None,
         None,
         None,
         "Table of 2-byte outlaw levels for outlaw missions, indexed by mission rank.",
     )
 
     OUTLAW_MINION_LEVEL_TABLE = Symbol(
+        None,
         None,
         None,
         "Table of 2-byte outlaw minion levels for outlaw hideout missions, indexed by"
@@ -2085,6 +2340,7 @@ class JpArm9Data:
     IQ_SKILL_RESTRICTIONS = Symbol(
         None,
         None,
+        None,
         "Table of 2-byte values for each IQ skill that represent a group. IQ skills in"
         " the same group can not be enabled at the same time.",
     )
@@ -2092,35 +2348,39 @@ class JpArm9Data:
     SECONDARY_TERRAIN_TYPES = Symbol(
         None,
         None,
+        None,
         "The type of secondary terrain for each dungeon in the game.\n\nThis is an"
         " array of 200 bytes. Each byte is an enum corresponding to one"
         " dungeon.\n\ntype: struct secondary_terrain_type_8[200]",
     )
 
-    SENTRY_MINIGAME_DATA = Symbol(None, None, "")
+    SENTRY_MINIGAME_DATA = Symbol(None, None, None, "")
 
     IQ_SKILLS = Symbol(
+        None,
         None,
         None,
         "Table of 4-byte values for each IQ skill that represent the required IQ value"
         " to unlock a skill.",
     )
 
-    IQ_GROUP_SKILLS = Symbol(None, None, "")
+    IQ_GROUP_SKILLS = Symbol(None, None, None, "")
 
-    IQ_GUMMI_GAIN_TABLE = Symbol(None, None, "")
+    IQ_GUMMI_GAIN_TABLE = Symbol(None, None, None, "")
 
-    GUMMI_BELLY_RESTORE_TABLE = Symbol(None, None, "")
+    GUMMI_BELLY_RESTORE_TABLE = Symbol(None, None, None, "")
 
     BAG_CAPACITY_TABLE = Symbol(
+        None,
         None,
         None,
         "Array of 4-byte integers containing the bag capacity for each bag level.",
     )
 
-    SPECIAL_EPISODE_MAIN_CHARACTERS = Symbol(None, None, "")
+    SPECIAL_EPISODE_MAIN_CHARACTERS = Symbol(None, None, None, "")
 
     GUEST_MONSTER_DATA = Symbol(
+        None,
         None,
         None,
         "Data for guest monsters that join you during certain story dungeons.\n\nArray"
@@ -2128,13 +2388,14 @@ class JpArm9Data:
         " document for more info.\n\ntype: struct guest_monster[18]",
     )
 
-    RANK_UP_TABLE = Symbol(None, None, "")
+    RANK_UP_TABLE = Symbol(None, None, None, "")
 
-    MONSTER_SPRITE_DATA = Symbol(None, None, "")
+    MONSTER_SPRITE_DATA = Symbol(None, None, None, "")
 
-    MISSION_DUNGEON_UNLOCK_TABLE = Symbol(None, None, "")
+    MISSION_DUNGEON_UNLOCK_TABLE = Symbol(None, None, None, "")
 
     EVENTS = Symbol(
+        [0xA6894],
         [0x20A6894],
         0x1470,
         "Table of levels for the script engine, in which scenes can take place. There"
@@ -2143,6 +2404,7 @@ class JpArm9Data:
     )
 
     ENTITIES = Symbol(
+        [0xA9438],
         [0x20A9438],
         0x1218,
         "Table of entities for the script engine, which can move around and do things"
@@ -2151,6 +2413,7 @@ class JpArm9Data:
     )
 
     MAP_MARKER_PLACEMENTS = Symbol(
+        None,
         None,
         None,
         "The map marker position of each dungeon on the Wonder Map.\n\nThis is an array"
@@ -2162,6 +2425,7 @@ class JpArm9Data:
     MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
         None,
         None,
+        None,
         "Functions to get the desired memory arena for allocating and freeing heap"
         " memory.\n\ntype: struct mem_arena_getters",
     )
@@ -2169,11 +2433,13 @@ class JpArm9Data:
     PRNG_SEQUENCE_NUM = Symbol(
         None,
         None,
+        None,
         "[Runtime] The current PRNG sequence number for the general-purpose PRNG. See"
         " Rand16Bit for more information on how the general-purpose PRNG works.",
     )
 
     LOADED_OVERLAY_GROUP_0 = Symbol(
+        None,
         None,
         None,
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 0. A"
@@ -2192,6 +2458,7 @@ class JpArm9Data:
     LOADED_OVERLAY_GROUP_1 = Symbol(
         None,
         None,
+        None,
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 1. A"
         " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
         " slot 1:\n- 0x4 (overlay 1)\n- 0x5 (overlay 2)\n- 0xD (overlay 11)\n- 0xE"
@@ -2199,6 +2466,7 @@ class JpArm9Data:
     )
 
     LOADED_OVERLAY_GROUP_2 = Symbol(
+        None,
         None,
         None,
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 2. A"
@@ -2210,13 +2478,15 @@ class JpArm9Data:
     PACK_FILE_PATHS_TABLE = Symbol(
         None,
         None,
+        None,
         "List of pointers to path strings to all known pack files.\nThe game uses this"
         " table to load its resources when launching dungeon mode.",
     )
 
-    GAME_STATE_VALUES = Symbol(None, None, "[Runtime]")
+    GAME_STATE_VALUES = Symbol(None, None, None, "[Runtime]")
 
     DUNGEON_MOVE_TABLES = Symbol(
+        None,
         None,
         None,
         "[Runtime] Seems to be some sort of region (a table of tables?) that holds"
@@ -2226,17 +2496,22 @@ class JpArm9Data:
     MOVE_DATA_TABLE_PTR = Symbol(
         None,
         None,
+        None,
         "[Runtime] Points to the contents of the move data table loaded from"
         " waza_p.bin\n\ntype: struct move_data_table*",
     )
 
-    LANGUAGE_INFO_DATA = Symbol(None, None, "[Runtime]")
+    LANGUAGE_INFO_DATA = Symbol(None, None, None, "[Runtime]")
 
     NOTIFY_NOTE = Symbol(
-        None, None, "[Runtime] Flag related to saving and loading state?\n\ntype: bool"
+        None,
+        None,
+        None,
+        "[Runtime] Flag related to saving and loading state?\n\ntype: bool",
     )
 
     DEFAULT_HERO_ID = Symbol(
+        None,
         None,
         None,
         "The default monster ID for the hero (0x4: Charmander)\n\ntype: struct"
@@ -2246,21 +2521,23 @@ class JpArm9Data:
     DEFAULT_PARTNER_ID = Symbol(
         None,
         None,
+        None,
         "The default monster ID for the partner (0x1: Bulbasaur)\n\ntype: struct"
         " monster_id_16",
     )
 
-    GAME_MODE = Symbol(None, None, "[Runtime]\n\ntype: uint8_t")
+    GAME_MODE = Symbol(None, None, None, "[Runtime]\n\ntype: uint8_t")
 
     ADVENTURE_LOG_PTR = Symbol(
-        [0x20B17EC], 0x4, "[Runtime]\n\ntype: struct adventure_log*"
+        [0xB17EC], [0x20B17EC], 0x4, "[Runtime]\n\ntype: struct adventure_log*"
     )
 
-    ITEM_TABLES_PTRS_1 = Symbol(None, None, "")
+    ITEM_TABLES_PTRS_1 = Symbol(None, None, None, "")
 
-    SMD_EVENTS_FUN_TABLE = Symbol(None, None, "")
+    SMD_EVENTS_FUN_TABLE = Symbol(None, None, None, "")
 
     MEMORY_ALLOCATION_TABLE = Symbol(
+        None,
         None,
         None,
         "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
@@ -2278,6 +2555,7 @@ class JpArm9Data:
     DEFAULT_MEMORY_ARENA = Symbol(
         None,
         None,
+        None,
         "[Runtime] The default memory allocation arena. This is part of"
         " MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various"
         " functions.\n\ntype: struct mem_arena",
@@ -2286,19 +2564,20 @@ class JpArm9Data:
     DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
         None,
         None,
+        None,
         "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\ntype: struct"
         " mem_block[256]",
     )
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        None, None, "IQ gain when ingesting nectar at the Juice Bar."
+        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
     )
 
-    TEXT_SPEED = Symbol(None, None, "Controls text speed.")
+    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
 
-    HERO_START_LEVEL = Symbol(None, None, "Starting level of the hero.")
+    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
 
-    PARTNER_START_LEVEL = Symbol(None, None, "Starting level of the partner.")
+    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
 
 
 class JpArm9Section:
@@ -2316,154 +2595,91 @@ class JpArm9Section:
     data = JpArm9Data
 
 
-class JpOverlay13Functions:
+class JpOverlay5Functions:
 
     pass
 
 
-class JpOverlay13Data:
+class JpOverlay5Data:
 
-    STARTERS_PARTNER_IDS = Symbol(None, None, "type: struct monster_id_16[21]")
-
-    STARTERS_HERO_IDS = Symbol(None, None, "type: struct monster_id_16[32]")
-
-    STARTERS_STRINGS = Symbol(None, None, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol(None, None, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol(None, None, "")
-
-    UNKNOWN_MENU_1 = Symbol(None, None, "")
+    pass
 
 
-class JpOverlay13Section:
-    name = "overlay13"
-    description = (
-        "Controls the personality test, including the available partners and playable"
-        " Pokémon. The actual personality test questions are stored in the MESSAGE"
-        " folder."
+class JpOverlay5Section:
+    name = "overlay5"
+    description = "Controls the Trade Team submenu within the top menu."
+    loadaddress = 0x233E300
+    length = 0x3260
+    functions = JpOverlay5Functions
+    data = JpOverlay5Data
+
+
+class JpOverlay14Functions:
+
+    pass
+
+
+class JpOverlay14Data:
+
+    FOOTPRINT_DEBUG_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay14Section:
+    name = "overlay14"
+    description = "Runs the sentry duty minigame."
+    loadaddress = 0x238B6A0
+    length = 0x3AE0
+    functions = JpOverlay14Functions
+    data = JpOverlay14Data
+
+
+class JpOverlay27Functions:
+
+    pass
+
+
+class JpOverlay27Data:
+
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay27Section:
+    name = "overlay27"
+    description = "Controls the special episode item discard menu."
+    loadaddress = 0x238B6A0
+    length = 0x2DA0
+    functions = JpOverlay27Functions
+    data = JpOverlay27Data
+
+
+class JpOverlay9Functions:
+
+    pass
+
+
+class JpOverlay9Data:
+
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        None,
+        None,
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
     )
-    loadaddress = 0x238B6A0
-    length = 0x2E80
-    functions = JpOverlay13Functions
-    data = JpOverlay13Data
 
 
-class JpOverlay25Functions:
-
-    pass
-
-
-class JpOverlay25Data:
-
-    APPRAISAL_MENU_CONFIRM = Symbol(None, None, "")
-
-    APPRAISAL_MAIN_MENU = Symbol(None, None, "")
-
-    APPRAISAL_SUBMENU = Symbol(None, None, "")
-
-
-class JpOverlay25Section:
-    name = "overlay25"
-    description = "Controls Xatu Appraisal."
-    loadaddress = 0x238B6A0
-    length = 0x14C0
-    functions = JpOverlay25Functions
-    data = JpOverlay25Data
-
-
-class JpOverlay16Functions:
-
-    pass
-
-
-class JpOverlay16Data:
-
-    EVO_MENU_CONFIRM = Symbol(None, None, "")
-
-    EVO_SUBMENU = Symbol(None, None, "")
-
-    EVO_MAIN_MENU = Symbol(None, None, "")
-
-
-class JpOverlay16Section:
-    name = "overlay16"
-    description = "Controls Luminous Spring."
-    loadaddress = 0x238B6A0
-    length = 0x2D40
-    functions = JpOverlay16Functions
-    data = JpOverlay16Data
-
-
-class JpOverlay26Functions:
-
-    pass
-
-
-class JpOverlay26Data:
-
-    pass
-
-
-class JpOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Related to mission completion. It's loaded when the dungeon completion summary"
-        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
-        " mission rewards from clients."
-    )
-    loadaddress = 0x238B6A0
-    length = 0xE40
-    functions = JpOverlay26Functions
-    data = JpOverlay26Data
-
-
-class JpOverlay30Functions:
-
-    pass
-
-
-class JpOverlay30Data:
-
-    pass
-
-
-class JpOverlay30Section:
-    name = "overlay30"
-    description = "Controls quicksaving in dungeons."
-    loadaddress = 0x2383AA0
-    length = 0x3880
-    functions = JpOverlay30Functions
-    data = JpOverlay30Data
-
-
-class JpOverlay21Functions:
-
-    pass
-
-
-class JpOverlay21Data:
-
-    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, "")
-
-    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, "")
-
-    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, "")
-
-    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, "")
-
-    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, "")
-
-
-class JpOverlay21Section:
-    name = "overlay21"
-    description = "Controls the Croagunk Swap Shop."
-    loadaddress = 0x238B6A0
-    length = 0x2E40
-    functions = JpOverlay21Functions
-    data = JpOverlay21Data
+class JpOverlay9Section:
+    name = "overlay9"
+    description = "Controls the Sky Jukebox."
+    loadaddress = 0x233E300
+    length = 0x2D20
+    functions = JpOverlay9Functions
+    data = JpOverlay9Data
 
 
 class JpOverlay32Functions:
@@ -2485,271 +2701,6 @@ class JpOverlay32Section:
     data = JpOverlay32Data
 
 
-class JpRamFunctions:
-
-    pass
-
-
-class JpRamData:
-
-    DUNGEON_COLORMAP_PTR = Symbol(
-        None,
-        None,
-        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
-        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
-        " indexes into when rendering colors. Some weather conditions modify the"
-        " colormap, which is how the color scheme changes when it's, e.g., raining.",
-    )
-
-    DUNGEON_STRUCT = Symbol(
-        None,
-        None,
-        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
-        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
-        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
-        " 29.\n\ntype: struct dungeon",
-    )
-
-    MOVE_DATA_TABLE = Symbol(
-        None,
-        None,
-        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
-        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
-        " ARM 9 binary.\n\ntype: struct move_data_table",
-    )
-
-    FRAMES_SINCE_LAUNCH = Symbol(
-        None,
-        None,
-        "Starts at 0 when the game is first launched, and continuously ticks up once"
-        " per frame while the game is running.",
-    )
-
-    BAG_ITEMS = Symbol(
-        None,
-        None,
-        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
-        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
-        " if filled.\n\ntype: struct item[50]",
-    )
-
-    BAG_ITEMS_PTR = Symbol(None, None, "Pointer to BAG_ITEMS.")
-
-    STORAGE_ITEMS = Symbol(
-        None,
-        None,
-        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
-        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
-        " item_id_16[1000]",
-    )
-
-    STORAGE_ITEM_QUANTITIES = Symbol(
-        None,
-        None,
-        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
-        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
-        " entry in this array is unused, and will be 0.",
-    )
-
-    KECLEON_SHOP_ITEMS_PTR = Symbol(None, None, "Pointer to KECLEON_SHOP_ITEMS.")
-
-    KECLEON_SHOP_ITEMS = Symbol(
-        None,
-        None,
-        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
-        None,
-        None,
-        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
-        " to be used by the Kecleon Shop.",
-    )
-
-    KECLEON_WARES_ITEMS_PTR = Symbol(None, None, "Pointer to KECLEON_WARES_ITEMS.")
-
-    KECLEON_WARES_ITEMS = Symbol(
-        None,
-        None,
-        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_WARES_ITEMS = Symbol(
-        None,
-        None,
-        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
-        " to be used by Kecleon Wares.",
-    )
-
-    MONEY_CARRIED = Symbol(
-        None, None, "The amount of money the player is currently carrying."
-    )
-
-    MONEY_STORED = Symbol(
-        None,
-        None,
-        "The amount of money the player currently has stored in the Duskull Bank.",
-    )
-
-    LAST_NEW_MOVE = Symbol(
-        None,
-        None,
-        "Move struct of the last new move introduced when learning a new move. Persists"
-        " even after the move selection is made in the menu.\n\ntype: struct move",
-    )
-
-    SCRIPT_VARS_VALUES = Symbol(
-        None,
-        None,
-        "The table of game variable values. Its structure is determined by"
-        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
-        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
-        " the real length of this table is 0x400 based on the game code.\n\ntype:"
-        " struct script_var_value_table",
-    )
-
-    BAG_LEVEL = Symbol(
-        None,
-        None,
-        "The player's bag level, which determines the bag capacity. This indexes"
-        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
-    )
-
-    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
-        None,
-        None,
-        "The number of the special episode currently being played.\n\n0: normal,"
-        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
-        " Comes Team Charm!\n4: In the Future of Darkness",
-    )
-
-    PENDING_DUNGEON_ID = Symbol(
-        None,
-        None,
-        "The ID of the selected dungeon when setting off from the"
-        " overworld.\n\nControls the text and map location during the 'map cutscene'"
-        " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
-    )
-
-    PENDING_STARTING_FLOOR = Symbol(
-        None,
-        None,
-        "The floor number to start from in the dungeon specified by"
-        " PENDING_DUNGEON_ID.",
-    )
-
-    PLAY_TIME_SECONDS = Symbol(None, None, "The player's total play time in seconds.")
-
-    PLAY_TIME_FRAME_COUNTER = Symbol(
-        None,
-        None,
-        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
-        " with each rollover.",
-    )
-
-    TEAM_NAME = Symbol(
-        None,
-        None,
-        "The team name.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    HERO_SPECIES_ID = Symbol(
-        None,
-        None,
-        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
-        " with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    HERO_NICKNAME = Symbol(
-        None,
-        None,
-        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    PARTNER_SPECIES_ID = Symbol(
-        None,
-        None,
-        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
-        " together with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    LEADER_IQ_SKILLS = Symbol(
-        None,
-        None,
-        "Unlocked IQ skills of the current leader, available for selection from the IQ"
-        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
-        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
-        " larger struct, together with other nearby data.",
-    )
-
-    LEADER_NICKNAME = Symbol(
-        None,
-        None,
-        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
-        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
-        " typically uses.\n\nThis is presumably part of a larger struct, together with"
-        " other nearby data.",
-    )
-
-    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
-        None,
-        None,
-        "Unlocked IQ skills of the second party member, available for selection from"
-        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
-        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
-        " a larger struct, together with other nearby data.",
-    )
-
-    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
-        None,
-        None,
-        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
-        " the game is running.",
-    )
-
-    TURNING_ON_THE_SPOT_FLAG = Symbol(
-        None,
-        None,
-        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
-    )
-
-    FLOOR_GENERATION_STATUS = Symbol(
-        None,
-        None,
-        "[Runtime] Status data related to generation of the current floor in a"
-        " dungeon.\n\nThis data is populated as the dungeon floor is"
-        " generated.\n\ntype: struct floor_generation_status",
-    )
-
-
-class JpRamSection:
-    name = "ram"
-    description = (
-        "Main memory.\nData in this file aren't located in the ROM itself, and are"
-        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
-        " dumping ground for addresses that are useful to know about, but don't fall in"
-        " the address ranges of any of the other files. Dynamically loaded constructs"
-        " that do fall within the address range of a relevant binary should be listed"
-        " in the corresponding YAML file of that binary, since it still has direct"
-        " utility when reverse-engineering that particular binary."
-    )
-    loadaddress = 0x2000000
-    length = 0x400000
-    functions = JpRamFunctions
-    data = JpRamData
-
-
 class JpOverlay17Functions:
 
     pass
@@ -2757,25 +2708,25 @@ class JpOverlay17Functions:
 
 class JpOverlay17Data:
 
-    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, "")
+    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
 
-    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, "")
+    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
 
-    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, "")
+    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
 
-    ASSEMBLY_SUBMENU_1 = Symbol(None, None, "")
+    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
 
-    ASSEMBLY_SUBMENU_2 = Symbol(None, None, "")
+    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
 
-    ASSEMBLY_SUBMENU_3 = Symbol(None, None, "")
+    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
 
-    ASSEMBLY_SUBMENU_4 = Symbol(None, None, "")
+    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
 
-    ASSEMBLY_SUBMENU_5 = Symbol(None, None, "")
+    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
 
-    ASSEMBLY_SUBMENU_6 = Symbol(None, None, "")
+    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
 
-    ASSEMBLY_SUBMENU_7 = Symbol(None, None, "")
+    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
 
 
 class JpOverlay17Section:
@@ -2787,849 +2738,58 @@ class JpOverlay17Section:
     data = JpOverlay17Data
 
 
-class JpOverlay19Functions:
+class JpOverlay21Functions:
 
     pass
 
 
-class JpOverlay19Data:
+class JpOverlay21Data:
 
-    BAR_MENU_CONFIRM_1 = Symbol(None, None, "")
+    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
 
-    BAR_MENU_CONFIRM_2 = Symbol(None, None, "")
+    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
 
-    BAR_MAIN_MENU = Symbol(None, None, "")
+    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
 
-    BAR_SUBMENU_1 = Symbol(None, None, "")
+    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
 
-    BAR_SUBMENU_2 = Symbol(None, None, "")
+    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
 
 
-class JpOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
+class JpOverlay21Section:
+    name = "overlay21"
+    description = "Controls the Croagunk Swap Shop."
     loadaddress = 0x238B6A0
-    length = 0x4220
-    functions = JpOverlay19Functions
-    data = JpOverlay19Data
+    length = 0x2E40
+    functions = JpOverlay21Functions
+    data = JpOverlay21Data
 
 
-class JpOverlay33Functions:
-
-    pass
-
-
-class JpOverlay33Data:
+class JpOverlay15Functions:
 
     pass
 
 
-class JpOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383AA0
-    length = 0x20
-    functions = JpOverlay33Functions
-    data = JpOverlay33Data
+class JpOverlay15Data:
+
+    BANK_MAIN_MENU = Symbol(None, None, None, "")
 
 
-class JpOverlay22Functions:
-
-    pass
-
-
-class JpOverlay22Data:
-
-    SHOP_MENU_CONFIRM = Symbol(None, None, "")
-
-    SHOP_MAIN_MENU_1 = Symbol(None, None, "")
-
-    SHOP_MAIN_MENU_2 = Symbol(None, None, "")
-
-    SHOP_MAIN_MENU_3 = Symbol(None, None, "")
-
-
-class JpOverlay22Section:
-    name = "overlay22"
-    description = "Controls the Kecleon Shop in Treasure Town."
+class JpOverlay15Section:
+    name = "overlay15"
+    description = "Controls the Duskull Bank."
     loadaddress = 0x238B6A0
-    length = 0x4B40
-    functions = JpOverlay22Functions
-    data = JpOverlay22Data
-
-
-class JpOverlay28Functions:
-
-    pass
-
-
-class JpOverlay28Data:
-
-    pass
-
-
-class JpOverlay28Section:
-    name = "overlay28"
-    description = "Controls the staff credits sequence."
-    loadaddress = 0x238B6A0
-    length = 0xC60
-    functions = JpOverlay28Functions
-    data = JpOverlay28Data
-
-
-class JpOverlay4Functions:
-
-    pass
-
-
-class JpOverlay4Data:
-
-    pass
-
-
-class JpOverlay4Section:
-    name = "overlay4"
-    description = "Controls the Trade Items submenu within the top menu."
-    loadaddress = 0x233E300
-    length = 0x2BE0
-    functions = JpOverlay4Functions
-    data = JpOverlay4Data
-
-
-class JpOverlay14Functions:
-
-    pass
-
-
-class JpOverlay14Data:
-
-    FOOTPRINT_DEBUG_MENU = Symbol(None, None, "")
-
-
-class JpOverlay14Section:
-    name = "overlay14"
-    description = "Runs the sentry duty minigame."
-    loadaddress = 0x238B6A0
-    length = 0x3AE0
-    functions = JpOverlay14Functions
-    data = JpOverlay14Data
-
-
-class JpOverlay7Functions:
-
-    pass
-
-
-class JpOverlay7Data:
-
-    pass
-
-
-class JpOverlay7Section:
-    name = "overlay7"
-    description = (
-        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233E300
-    length = 0x53E0
-    functions = JpOverlay7Functions
-    data = JpOverlay7Data
-
-
-class JpOverlay6Functions:
-
-    pass
-
-
-class JpOverlay6Data:
-
-    pass
-
-
-class JpOverlay6Section:
-    name = "overlay6"
-    description = "Controls the Wonder Mail S submenu within the top menu."
-    loadaddress = 0x233E300
-    length = 0x2460
-    functions = JpOverlay6Functions
-    data = JpOverlay6Data
-
-
-class JpOverlay35Functions:
-
-    pass
-
-
-class JpOverlay35Data:
-
-    pass
-
-
-class JpOverlay35Section:
-    name = "overlay35"
-    description = "Unused; all zeroes."
-    loadaddress = 0x22BE220
-    length = 0x20
-    functions = JpOverlay35Functions
-    data = JpOverlay35Data
-
-
-class JpOverlay23Functions:
-
-    pass
-
-
-class JpOverlay23Data:
-
-    STORAGE_MENU_CONFIRM = Symbol(None, None, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol(None, None, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol(None, None, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol(None, None, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol(None, None, "")
-
-
-class JpOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x37E0
-    functions = JpOverlay23Functions
-    data = JpOverlay23Data
-
-
-class JpOverlay8Functions:
-
-    pass
-
-
-class JpOverlay8Data:
-
-    pass
-
-
-class JpOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233E300
-    length = 0x2200
-    functions = JpOverlay8Functions
-    data = JpOverlay8Data
-
-
-class JpOverlay9Functions:
-
-    pass
-
-
-class JpOverlay9Data:
-
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        None, None, "Song playing in the main menu when returning from the Sky Jukebox."
-    )
-
-
-class JpOverlay9Section:
-    name = "overlay9"
-    description = "Controls the Sky Jukebox."
-    loadaddress = 0x233E300
-    length = 0x2D20
-    functions = JpOverlay9Functions
-    data = JpOverlay9Data
-
-
-class JpOverlay24Functions:
-
-    pass
-
-
-class JpOverlay24Data:
-
-    DAYCARE_MENU_CONFIRM = Symbol(None, None, "")
-
-    DAYCARE_MAIN_MENU = Symbol(None, None, "")
-
-
-class JpOverlay24Section:
-    name = "overlay24"
-    description = "Controls the Chansey Day Care."
-    loadaddress = 0x238B6A0
-    length = 0x24E0
-    functions = JpOverlay24Functions
-    data = JpOverlay24Data
-
-
-class JpOverlay0Functions:
-
-    pass
-
-
-class JpOverlay0Data:
-
-    TOP_MENU_MUSIC_ID = Symbol(None, None, "Music ID to play in the top menu.")
-
-
-class JpOverlay0Section:
-    name = "overlay0"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 0."
-    )
-    loadaddress = 0x22BE220
-    length = 0x609A0
-    functions = JpOverlay0Functions
-    data = JpOverlay0Data
-
-
-class JpOverlay10Functions:
-
-    SprintfStatic = Symbol(
-        None,
-        None,
-        "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
-        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
-        " characters printed, excluding the null-terminator",
-    )
-
-
-class JpOverlay10Data:
-
-    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
-        None,
-        None,
-        "The first dungeon that can have extra traps spawn in Monster Houses, Dark"
-        " Hill\n\ntype: struct dungeon_id_8",
-    )
-
-    BAD_POISON_DAMAGE_COOLDOWN = Symbol(
-        None, None, "The number of turns between passive bad poison (toxic) damage."
-    )
-
-    PROTEIN_STAT_BOOST = Symbol(
-        None, None, "The permanent attack boost from ingesting a Protein."
-    )
-
-    SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
-        None,
-        None,
-        "The maximum number of enemies that can spawn on a floor without a monster"
-        " house (15).",
-    )
-
-    OREN_BERRY_DAMAGE = Symbol(None, None, "Damage dealt by eating an Oren Berry.")
-
-    SITRUS_BERRY_HP_RESTORATION = Symbol(
-        None, None, "The amount of HP restored by eating a Sitrus Berry."
-    )
-
-    EXP_ELITE_EXP_BOOST = Symbol(
-        None, None, "The percentage increase in experience from the Exp. Elite IQ skill"
-    )
-
-    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
-        None,
-        None,
-        "The maximum number of extra non-monster spawns (items/traps) in a Monster"
-        " House, 7",
-    )
-
-    GOLD_THORN_POWER = Symbol(None, None, "Attack power for Golden Thorns.")
-
-    SPAWN_COOLDOWN = Symbol(
-        None, None, "The number of turns between enemy spawns under normal conditions."
-    )
-
-    ORAN_BERRY_FULL_HP_BOOST = Symbol(
-        None, None, "The permanent HP boost from eating an Oran Berry at full HP (0)."
-    )
-
-    LIFE_SEED_HP_BOOST = Symbol(
-        None, None, "The permanent HP boost from eating a Life Seed."
-    )
-
-    EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
-        None,
-        None,
-        "The percentage increase in experience from exp-boosting exclusive items",
-    )
-
-    INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
-        None, None, "The percentage chance that Intimidator will activate."
-    )
-
-    ORAN_BERRY_HP_RESTORATION = Symbol(
-        None, None, "The amount of HP restored by eating a Oran Berry."
-    )
-
-    SITRUS_BERRY_FULL_HP_BOOST = Symbol(
-        None, None, "The permanent HP boost from eating a Sitrus Berry at full HP."
-    )
-
-    BURN_DAMAGE_COOLDOWN = Symbol(
-        None, None, "The number of turns between passive burn damage."
-    )
-
-    STICK_POWER = Symbol(None, None, "Attack power for Sticks.")
-
-    SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
-        None,
-        None,
-        "The number of turns between enemy spawns when the Thief Alert condition is"
-        " active.",
-    )
-
-    MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
-        None,
-        None,
-        "The maximum number of monster spawns in a Monster House, 30, but multiplied by"
-        " 2/3 for some reason (so the actual maximum is 45)",
-    )
-
-    SPEED_BOOST_TURNS = Symbol(
-        None,
-        None,
-        "Number of turns (250) after which Speed Boost will trigger and increase speed"
-        " by one stage.",
-    )
-
-    MIRACLE_CHEST_EXP_BOOST = Symbol(
-        None, None, "The percentage increase in experience from the Miracle Chest item"
-    )
-
-    WONDER_CHEST_EXP_BOOST = Symbol(
-        None, None, "The percentage increase in experience from the Wonder Chest item"
-    )
-
-    SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
-        None,
-        None,
-        "The maximum number of enemies that can spawn on a floor with a monster house,"
-        " not counting those in the monster house (4).",
-    )
-
-    POISON_DAMAGE_COOLDOWN = Symbol(
-        None, None, "The number of turns between passive poison damage."
-    )
-
-    GEO_PEBBLE_DAMAGE = Symbol(None, None, "Damage dealt by Geo Pebbles.")
-
-    GRAVELEROCK_DAMAGE = Symbol(None, None, "Damage dealt by Gravelerocks.")
-
-    RARE_FOSSIL_DAMAGE = Symbol(None, None, "Damage dealt by Rare Fossils.")
-
-    GINSENG_CHANCE_3 = Symbol(
-        None,
-        None,
-        "The percentage chance for...something to be set to 3 in a calculation related"
-        " to the Ginseng boost.",
-    )
-
-    ZINC_STAT_BOOST = Symbol(
-        None, None, "The permanent special defense boost from ingesting a Zinc."
-    )
-
-    IRON_STAT_BOOST = Symbol(
-        None, None, "The permanent defense boost from ingesting an Iron."
-    )
-
-    CALCIUM_STAT_BOOST = Symbol(
-        None, None, "The permanent special attack boost from ingesting a Calcium."
-    )
-
-    CORSOLA_TWIG_POWER = Symbol(None, None, "Attack power for Corsola Twigs.")
-
-    CACNEA_SPIKE_POWER = Symbol(None, None, "Attack power for Cacnea Spikes.")
-
-    GOLD_FANG_POWER = Symbol(None, None, "Attack power for Gold Fangs.")
-
-    SILVER_SPIKE_POWER = Symbol(None, None, "Attack power for Silver Spikes.")
-
-    IRON_THORN_POWER = Symbol(None, None, "Attack power for Iron Thorns.")
-
-    SLEEP_DURATION_RANGE = Symbol(
-        None,
-        None,
-        "Appears to control the range of turns for which the sleep condition can"
-        " last.\n\nThe first two bytes are the low value of the range, and the later"
-        " two bytes are the high value.",
-    )
-
-    POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
-        " fixed-point number (8 fraction bits)",
-    )
-
-    AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
-        " number (8 fraction bits)",
-    )
-
-    SPEED_BOOST_DURATION_RANGE = Symbol(
-        None,
-        None,
-        "Appears to control the range of turns for which a speed boost can last.\n\nThe"
-        " first two bytes are the low value of the range, and the later two bytes are"
-        " the high value.",
-    )
-
-    OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        "Table of multipliers for offensive stats (attack/special attack) for each"
-        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-    )
-
-    DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        "Table of multipliers for defensive stats (defense/special defense) for each"
-        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-    )
-
-    RANDOM_MUSIC_ID_TABLE = Symbol(
-        None,
-        None,
-        "Table of music IDs for dungeons with a random assortment of music"
-        " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
-        " row contains the possible music IDs for a given group, from which the music"
-        " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
-    )
-
-    MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        "Table of multipliers for the accuracy stat for males for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        "Table of multipliers for the evasion stat for males for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        "Table of multipliers for the accuracy stat for females for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        "Table of multipliers for the evasion stat for females for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    MUSIC_ID_TABLE = Symbol(
-        None,
-        None,
-        "List of music IDs used in dungeons with a single music track.\n\nThis is an"
-        " array of 170 2-byte music IDs, and is indexed into by the music value in the"
-        " floor properties struct for a given floor. Music IDs with the highest bit set"
-        " (0x8000) are indexes into the RANDOM_MUSIC_ID_TABLE.\n\ntype: struct"
-        " music_id_16[170] (or not a music ID if the highest bit is set)",
-    )
-
-    TYPE_MATCHUP_TABLE = Symbol(
-        None,
-        None,
-        "Table of type matchups.\n\nEach row corresponds to the type matchups of a"
-        " specific attack type, with each entry within the row specifying the type's"
-        " effectiveness against a target type.\n\ntype: struct type_matchup_table",
-    )
-
-    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
-        None,
-        None,
-        "Table of stats for monsters that can spawn in fixed rooms, pointed into by the"
-        " FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries"
-        " containing stat spreads for one monster entry each.\n\ntype: struct"
-        " fixed_room_monster_spawn_stats_entry[99]",
-    )
-
-    TILESET_PROPERTIES = Symbol(None, None, "")
-
-    FIXED_ROOM_PROPERTIES_TABLE = Symbol(
-        None,
-        None,
-        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte"
-        " entries containing properties for a given fixed room ID.\n\nSee the struct"
-        " definitions and End45's dungeon data document for more info.\n\ntype: struct"
-        " fixed_room_properties_entry[256]",
-    )
-
-    MOVE_ANIMATION_INFO = Symbol(None, None, "")
-
-
-class JpOverlay10Section:
-    name = "overlay10"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 10."
-    )
-    loadaddress = 0x22BE220
-    length = 0x1F6A0
-    functions = JpOverlay10Functions
-    data = JpOverlay10Data
-
-
-class JpOverlay11Functions:
-
-    FuncThatCallsCommandParsing = Symbol([0x22DE804], None, "")
-
-    ScriptCommandParsing = Symbol([0x22DF404], None, "")
-
-    SsbLoad2 = Symbol([0x22E5D28], None, "")
-
-    StationLoadHanger = Symbol([0x22E6200], None, "")
-
-    ScriptStationLoadTalk = Symbol([0x22E6A10], None, "")
-
-    SsbLoad1 = Symbol([0x22E737C], None, "")
-
-    ScriptSpecialProcessCall = Symbol(
-        [0x22E874C],
-        None,
-        "Processes calls to the OPCODE_PROCESS_SPECIAL script opcode.\n\nr0: some"
-        " struct containing a callback of some sort, only used for special process ID"
-        " 18\nr1: special process ID\nr2: first argument, if relevant? Probably"
-        " corresponds to the second parameter of OPCODE_PROCESS_SPECIAL\nr3: second"
-        " argument, if relevant? Probably corresponds to the third parameter of"
-        " OPCODE_PROCESS_SPECIAL\nreturn: return value of the special process if it has"
-        " one, otherwise 0",
-    )
-
-    GetSpecialRecruitmentSpecies = Symbol(
-        [0x22E9670],
-        None,
-        "Returns an entry from RECRUITMENT_TABLE_SPECIES.\n\nNote: This indexes without"
-        " doing bounds checking.\n\nr0: index into RECRUITMENT_TABLE_SPECIES\nreturn:"
-        " enum monster_id",
-    )
-
-    PrepareMenuAcceptTeamMember = Symbol(
-        [0x22E96B4],
-        None,
-        "Implements SPECIAL_PROC_PREPARE_MENU_ACCEPT_TEAM_MEMBER (see"
-        " ScriptSpecialProcessCall).\n\nr0: index into RECRUITMENT_TABLE_SPECIES",
-    )
-
-    InitRandomNpcJobs = Symbol(
-        [0x22E9758],
-        None,
-        "Implements SPECIAL_PROC_INIT_RANDOM_NPC_JOBS (see"
-        " ScriptSpecialProcessCall).\n\nr0: job type? 0 is a random NPC job, 1 is a"
-        " bottle mission\nr1: ?",
-    )
-
-    GetRandomNpcJobType = Symbol(
-        [0x22E97F0],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_TYPE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: job type?",
-    )
-
-    GetRandomNpcJobSubtype = Symbol(
-        [0x22E9808],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_SUBTYPE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: job subtype?",
-    )
-
-    GetRandomNpcJobStillAvailable = Symbol(
-        [0x22E9824],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_STILL_AVAILABLE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: bool",
-    )
-
-    AcceptRandomNpcJob = Symbol(
-        [0x22E988C],
-        None,
-        "Implements SPECIAL_PROC_ACCEPT_RANDOM_NPC_JOB (see"
-        " ScriptSpecialProcessCall).\n\nreturn: bool",
-    )
-
-    GroundMainLoop = Symbol(
-        [0x22E9DA8],
-        None,
-        "Appears to be the main loop for ground mode.\n\nBased on debug print"
-        " statements and general code structure, it seems contain a core loop, and"
-        " dispatches to various functions in response to different events.\n\nr0: mode,"
-        " which is stored globally and used in switch statements for dispatch\nreturn:"
-        " return code",
-    )
-
-    GetAllocArenaGround = Symbol(
-        [0x22EA990],
-        None,
-        "The GetAllocArena function used for ground mode. See SetMemAllocatorParams for"
-        " more information.\n\nr0: initial memory arena pointer, or null\nr1: flags"
-        " (see MemAlloc)\nreturn: memory arena pointer, or null",
-    )
-
-    GetFreeArenaGround = Symbol(
-        [0x22EA9F4],
-        None,
-        "The GetFreeArena function used for ground mode. See SetMemAllocatorParams for"
-        " more information.\n\nr0: initial memory arena pointer, or null\nr1: pointer"
-        " to free\nreturn: memory arena pointer, or null",
-    )
-
-    GroundMainReturnDungeon = Symbol(
-        [0x22EAA48],
-        None,
-        "Implements SPECIAL_PROC_RETURN_DUNGEON (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-    GroundMainNextDay = Symbol(
-        [0x22EAA6C],
-        None,
-        "Implements SPECIAL_PROC_NEXT_DAY (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-    JumpToTitleScreen = Symbol(
-        [0x22EAC10],
-        None,
-        "Implements SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and SPECIAL_PROC_0x1A (see"
-        " ScriptSpecialProcessCall).\n\nr0: int, argument value for"
-        " SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and -1 for SPECIAL_PROC_0x1A\nreturn: bool"
-        " (but note that the special process ignores this and always returns 0)",
-    )
-
-    ReturnToTitleScreen = Symbol(
-        [0x22EACC8],
-        None,
-        "Implements SPECIAL_PROC_RETURN_TO_TITLE_SCREEN (see"
-        " ScriptSpecialProcessCall).\n\nr0: fade duration\nreturn: bool (but note that"
-        " the special process ignores this and always returns 0)",
-    )
-
-    ScriptSpecialProcess0x16 = Symbol(
-        [0x22EAD28],
-        None,
-        "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
-    )
-
-    SprintfStatic = Symbol(
-        [0x230A478],
-        None,
-        "Statically defined copy of sprintf(3) in overlay 11. See arm9.yml for more"
-        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
-        " characters printed, excluding the null-terminator",
-    )
-
-    StatusUpdate = Symbol(
-        [0x2314FFC],
-        None,
-        "Implements SPECIAL_PROC_STATUS_UPDATE (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-
-class JpOverlay11Data:
-
-    SCRIPT_OP_CODES = Symbol(
-        [0x2319B74],
-        0xBF8,
-        "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
-        " opcodes underpin the various ExplorerScript functions you can call in the"
-        " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
-    )
-
-    C_ROUTINES = Symbol(
-        [0x231DD8C],
-        0x15E8,
-        "Common routines used within the unionall.ssb script (the master script). There"
-        " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
-        " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
-        " common_routine_table",
-    )
-
-    OBJECTS = Symbol(
-        [0x23203B8],
-        0x1A04,
-        "Table of objects for the script engine, which can be placed in scenes. There"
-        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
-        " script_object[length / 12]",
-    )
-
-    RECRUITMENT_TABLE_LOCATIONS = Symbol(
-        None,
-        None,
-        "Table of dungeon IDs corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
-    )
-
-    RECRUITMENT_TABLE_LEVELS = Symbol(
-        None,
-        None,
-        "Table of levels for recruited Pokémon, corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
-    )
-
-    RECRUITMENT_TABLE_SPECIES = Symbol(
-        None,
-        None,
-        "Table of Pokémon recruited at special locations, such as at the ends of"
-        " certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during"
-        " a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes"
-        " both Heatran genders. It also includes Darkrai for some reason?\n\ntype:"
-        " struct monster_id_16[22]",
-    )
-
-    LEVEL_TILEMAP_LIST = Symbol(None, None, "")
-
-    OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
-        None,
-        None,
-        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16"
-        " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
-        " overlay_group_id in the C headers for a mapping between group ID and overlay"
-        " number)\n- function pointer to entry point\n- function pointer to"
-        " destructor\n- possibly function pointer to frame-update function?",
-    )
-
-    UNIONALL_RAM_ADDRESS = Symbol(None, None, "[Runtime]")
-
-    GROUND_STATE_MAP = Symbol(None, None, "[Runtime]")
-
-    GROUND_STATE_PTRS = Symbol(
-        None,
-        None,
-        "Host pointers to multiple structure used for performing an overworld"
-        " scene\n\ntype: struct main_ground_data",
-    )
-
-
-class JpOverlay11Section:
-    name = "overlay11"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 11."
-    )
-    loadaddress = 0x22DD8E0
-    length = 0x48B00
-    functions = JpOverlay11Functions
-    data = JpOverlay11Data
+    length = 0x1060
+    functions = JpOverlay15Functions
+    data = JpOverlay15Data
 
 
 class JpOverlay29Functions:
 
     DungeonAlloc = Symbol(
+        [0x281C],
         [0x22E00FC],
         None,
         "Allocates a new dungeon struct.\n\nThis updates the master dungeon pointer and"
@@ -3640,11 +2800,13 @@ class JpOverlay29Functions:
     GetDungeonPtrMaster = Symbol(
         None,
         None,
+        None,
         "Returns the master dungeon pointer (a global, see"
         " DUNGEON_PTR_MASTER).\n\nreturn: pointer to a newly allocated dungeon struct",
     )
 
     DungeonZInit = Symbol(
+        [0x2850],
         [0x22E0130],
         None,
         "Zero-initializes the dungeon struct pointed to by the master dungeon"
@@ -3654,11 +2816,13 @@ class JpOverlay29Functions:
     DungeonFree = Symbol(
         None,
         None,
+        None,
         "Frees the dungeons struct pointer to by the master dungeon pointer, and"
         " nullifies the pointer.\n\nNo params.",
     )
 
     RunDungeon = Symbol(
+        [0x2CF8],
         [0x22E05D8],
         None,
         "Called at the start of a dungeon. Initializes the dungeon struct from"
@@ -3672,11 +2836,13 @@ class JpOverlay29Functions:
     EntityIsValid = Symbol(
         None,
         None,
+        None,
         "Checks if an entity pointer points to a valid entity (not entity type 0, which"
         " represents no entity).\n\nr0: entity pointer\nreturn: bool",
     )
 
     GetFloorType = Symbol(
+        [0x4168],
         [0x22E1A48],
         None,
         "Get the current floor type.\n\nFloor types:\n  0 appears to mean the current"
@@ -3685,6 +2851,7 @@ class JpOverlay29Functions:
     )
 
     TryForcedLoss = Symbol(
+        [0x43CC],
         [0x22E1CAC],
         None,
         "Attempts to trigger a forced loss of the type specified in"
@@ -3696,11 +2863,13 @@ class JpOverlay29Functions:
     FixedRoomIsSubstituteRoom = Symbol(
         None,
         None,
+        None,
         "Checks if the current fixed room is the 'substitute room' (ID"
         " 0x6E).\n\nreturn: bool",
     )
 
     ShouldGameOverOnImportantTeamMemberFaint = Symbol(
+        None,
         None,
         None,
         "Returns true if you should get kicked out of the dungeon if an important team"
@@ -3709,10 +2878,14 @@ class JpOverlay29Functions:
     )
 
     FadeToBlack = Symbol(
-        None, None, "Fades the screen to black across several frames.\n\nNo params."
+        None,
+        None,
+        None,
+        "Fades the screen to black across several frames.\n\nNo params.",
     )
 
     GetTileAtEntity = Symbol(
+        [0x53D8],
         [0x22E2CB8],
         None,
         "Returns a pointer to the tile where an entity is located.\n\nr0: pointer to"
@@ -3720,6 +2893,7 @@ class JpOverlay29Functions:
     )
 
     SubstitutePlaceholderStringTags = Symbol(
+        [0x688C],
         [0x22E416C],
         None,
         "Replaces instances of a given placeholder tag by the string representation of"
@@ -3735,6 +2909,7 @@ class JpOverlay29Functions:
     UpdateMapSurveyorFlag = Symbol(
         None,
         None,
+        None,
         "Sets the Map Surveyor flag in the dungeon struct to true if a team member has"
         " Map Surveyor, sets it to false otherwise.\n\nThis function has two variants:"
         " in the EU ROM, it will return true if the flag was changed. The NA version"
@@ -3744,11 +2919,13 @@ class JpOverlay29Functions:
     ItemIsActive = Symbol(
         None,
         None,
+        None,
         "Checks if a monster is holding a certain item that isn't disabled by"
         " Klutz.\n\nr0: entity pointer\nr1: item ID\nreturn: bool",
     )
 
     IsOnMonsterSpawnList = Symbol(
+        None,
         None,
         None,
         "Returns true if the specified monster is included in the floor's monster spawn"
@@ -3757,6 +2934,7 @@ class JpOverlay29Functions:
     )
 
     GetMonsterIdToSpawn = Symbol(
+        [0xBB28],
         [0x22E9408],
         None,
         "Get the id of the monster to be randomly spawned.\n\nr0: the spawn weight to"
@@ -3764,6 +2942,7 @@ class JpOverlay29Functions:
     )
 
     GetMonsterLevelToSpawn = Symbol(
+        [0xBBE0],
         [0x22E94C0],
         None,
         "Get the level of the monster to be spawned, given its id.\n\nr0: monster"
@@ -3774,6 +2953,7 @@ class JpOverlay29Functions:
     GetLeader = Symbol(
         None,
         None,
+        None,
         "Gets the pointer to the entity that is currently leading the team, or null if"
         " none of the first 4 entities is a valid monster with its is_team_leader flag"
         " set. It also sets LEADER_PTR to the result before returning it.\n\nreturn:"
@@ -3782,6 +2962,7 @@ class JpOverlay29Functions:
     )
 
     TickStatusTurnCounter = Symbol(
+        [0xD7CC],
         [0x22EB0AC],
         None,
         "Ticks down a turn counter for a status condition. If the counter equals 0x7F,"
@@ -3792,11 +2973,13 @@ class JpOverlay29Functions:
     AdvanceFrame = Symbol(
         None,
         None,
+        None,
         "Advances one frame. Does not return until the next frame starts.\n\nr0: ? -"
         " Unused by the function",
     )
 
     GenerateDungeonRngSeed = Symbol(
+        [0xE708],
         [0x22EBFE8],
         None,
         "Generates a seed with which to initialize the dungeon PRNG.\n\nThe seed is"
@@ -3811,6 +2994,7 @@ class JpOverlay29Functions:
     )
 
     GetDungeonRngPreseed = Symbol(
+        [0xE754],
         [0x22EC034],
         None,
         "Gets the current preseed stored in the global dungeon PRNG state. See"
@@ -3819,6 +3003,7 @@ class JpOverlay29Functions:
     )
 
     SetDungeonRngPreseed = Symbol(
+        [0xE764],
         [0x22EC044],
         None,
         "Sets the preseed in the global dungeon PRNG state. See GenerateDungeonRngSeed"
@@ -3826,6 +3011,7 @@ class JpOverlay29Functions:
     )
 
     InitDungeonRng = Symbol(
+        [0xE774],
         [0x22EC054],
         None,
         "Initialize (or reinitialize) the dungeon PRNG with a given seed. The primary"
@@ -3834,6 +3020,7 @@ class JpOverlay29Functions:
     )
 
     DungeonRand16Bit = Symbol(
+        [0xE7A8],
         [0x22EC088],
         None,
         "Computes a pseudorandom 16-bit integer using the dungeon PRNG.\n\nNote that"
@@ -3858,6 +3045,7 @@ class JpOverlay29Functions:
     )
 
     DungeonRandInt = Symbol(
+        [0xE820],
         [0x22EC100],
         None,
         "Compute a pseudorandom integer under a given maximum value using the dungeon"
@@ -3866,6 +3054,7 @@ class JpOverlay29Functions:
     )
 
     DungeonRandRange = Symbol(
+        [0xE848],
         [0x22EC128],
         None,
         "Compute a pseudorandom value between two integers using the dungeon"
@@ -3876,6 +3065,7 @@ class JpOverlay29Functions:
     DungeonRandOutcome = Symbol(
         None,
         None,
+        None,
         "Returns the result of a possibly biased coin flip (a Bernoulli random"
         " variable) with some success probability p, using the dungeon PRNG.\n\nr0:"
         " success percentage (100*p)\nreturn: true with probability p, false with"
@@ -3883,6 +3073,7 @@ class JpOverlay29Functions:
     )
 
     CalcStatusDuration = Symbol(
+        [0xE908],
         [0x22EC1E8],
         None,
         "Seems to calculate the duration of a volatile status on a monster.\n\nr0:"
@@ -3893,6 +3084,7 @@ class JpOverlay29Functions:
     )
 
     DungeonRngUnsetSecondary = Symbol(
+        [0xE9BC],
         [0x22EC29C],
         None,
         "Sets the dungeon PRNG to use the primary LCG for subsequent random number"
@@ -3902,6 +3094,7 @@ class JpOverlay29Functions:
     )
 
     DungeonRngSetSecondary = Symbol(
+        [0xE9D4],
         [0x22EC2B4],
         None,
         "Sets the dungeon PRNG to use one of the 5 secondary LCGs for subsequent random"
@@ -3911,11 +3104,13 @@ class JpOverlay29Functions:
     DungeonRngSetPrimary = Symbol(
         None,
         None,
+        None,
         "Sets the dungeon PRNG to use the primary LCG for subsequent random number"
         " generation.\n\nNo params.",
     )
 
     TrySwitchPlace = Symbol(
+        [0xEF00],
         [0x22EC7E0],
         None,
         "The user entity attempts to switch places with the target entity (i.e. by the"
@@ -3925,6 +3120,7 @@ class JpOverlay29Functions:
     )
 
     RunFractionalTurn = Symbol(
+        [0xFA90],
         [0x22ED370],
         None,
         "The main function which executes the actions that take place in a fractional"
@@ -3935,6 +3131,7 @@ class JpOverlay29Functions:
     RunLeaderTurn = Symbol(
         None,
         None,
+        None,
         "Handles the leader's turn. Includes a movement speed check that might cause it"
         " to return early if the leader isn't fast enough to act in this fractional"
         " turn. If that check (and some others) pass, the function does not return"
@@ -3943,6 +3140,7 @@ class JpOverlay29Functions:
     )
 
     TrySpawnMonsterAndActivatePlusMinus = Symbol(
+        [0x10464],
         [0x22EDD44],
         None,
         "Called at the beginning of RunFractionalTurn. Executed only if"
@@ -3953,6 +3151,7 @@ class JpOverlay29Functions:
     )
 
     IsFloorOver = Symbol(
+        [0x10570],
         [0x22EDE50],
         None,
         "Checks if the current floor should end, and updates dungeon::floor_loop_status"
@@ -3967,6 +3166,7 @@ class JpOverlay29Functions:
     DecrementWindCounter = Symbol(
         None,
         None,
+        None,
         "Decrements dungeon::wind_turns and displays a wind warning message if"
         " required.\n\nNo params.",
     )
@@ -3974,15 +3174,20 @@ class JpOverlay29Functions:
     SetForcedLossReason = Symbol(
         None,
         None,
+        None,
         "Sets dungeon::forced_loss_reason to the specified value\n\nr0: Forced loss"
         " reason",
     )
 
     GetForcedLossReason = Symbol(
-        None, None, "Returns dungeon::forced_loss_reason\n\nreturn: forced_loss_reason"
+        None,
+        None,
+        None,
+        "Returns dungeon::forced_loss_reason\n\nreturn: forced_loss_reason",
     )
 
     ResetDamageDesc = Symbol(
+        [0x1AB1C],
         [0x22F83FC],
         None,
         "Seems to zero some damage description struct, which is output by the damage"
@@ -3992,11 +3197,13 @@ class JpOverlay29Functions:
     GetSpriteIndex = Symbol(
         None,
         None,
+        None,
         "Gets the sprite index of the specified monster on this floor\n\nr0: Monster"
         " ID\nreturn: Sprite index of the specified monster ID",
     )
 
     FloorNumberIsEven = Symbol(
+        [0x1B09C],
         [0x22F897C],
         None,
         "Checks if the current dungeon floor number is even.\n\nHas a special check to"
@@ -4005,6 +3212,7 @@ class JpOverlay29Functions:
     )
 
     GetKecleonIdToSpawnByFloor = Symbol(
+        [0x1B0D4],
         [0x22F89B4],
         None,
         "If the current floor number is even, returns female Kecleon's id (0x3D7),"
@@ -4014,11 +3222,13 @@ class JpOverlay29Functions:
     LoadMonsterSprite = Symbol(
         None,
         None,
+        None,
         "Loads the sprite of the specified monster to use it in a dungeon.\n\nr0:"
         " Monster id\nr1: ?",
     )
 
     EuFaintCheck = Symbol(
+        None,
         None,
         None,
         "This function is exclusive to the EU ROM. Seems to perform a check to see if"
@@ -4035,12 +3245,14 @@ class JpOverlay29Functions:
     HandleFaint = Symbol(
         None,
         None,
+        None,
         "Handles a fainted pokémon (reviving does not count as fainting).\n\nr0:"
         " Fainted entity\nr1: Faint reason (move ID or greater than the max move id for"
         " other causes)\nr2: Entity responsible of the fainting",
     )
 
     TryActivateSlowStart = Symbol(
+        [0x1CF20],
         [0x22FA800],
         None,
         "Runs a check over all monsters on the field for the ability Slow Start, and"
@@ -4048,6 +3260,7 @@ class JpOverlay29Functions:
     )
 
     TryActivateArtificialWeatherAbilities = Symbol(
+        [0x1CFBC],
         [0x22FA89C],
         None,
         "Runs a check over all monsters on the field for abilities that affect the"
@@ -4055,6 +3268,7 @@ class JpOverlay29Functions:
     )
 
     DefenderAbilityIsActive = Symbol(
+        None,
         None,
         None,
         "Checks if a defender has an active ability that isn't disabled by an"
@@ -4069,11 +3283,13 @@ class JpOverlay29Functions:
     IsMonster = Symbol(
         None,
         None,
+        None,
         "Checks if an entity is a monster (entity type 1).\n\nr0: entity"
         " pointer\nreturn: bool",
     )
 
     TryActivateTruant = Symbol(
+        [0x1D4C8],
         [0x22FADA8],
         None,
         "Checks if an entity has the ability Truant, and if so tries to apply the pause"
@@ -4083,6 +3299,7 @@ class JpOverlay29Functions:
     RestorePpAllMovesSetFlags = Symbol(
         None,
         None,
+        None,
         "Restores PP for all moves, clears flags move::f_consume_2_pp,"
         " move::flags2_unk5 and move::flags2_unk7, and sets flag"
         " move::f_consume_pp.\nCalled when a monster is revived.\n\nr0: pointer to"
@@ -4090,6 +3307,7 @@ class JpOverlay29Functions:
     )
 
     MewSpawnCheck = Symbol(
+        [0x1E2B8],
         [0x22FBB98],
         None,
         "If the monster id parameter is 0x97 (Mew), returns false if either"
@@ -4102,12 +3320,14 @@ class JpOverlay29Functions:
     ExclusiveItemEffectIsActive = Symbol(
         None,
         None,
+        None,
         "Checks if a monster is a team member under the effects of a certain exclusive"
         " item effect.\n\nr0: entity pointer\nr1: exclusive item effect ID\nreturn:"
         " bool",
     )
 
     GetTeamMemberWithIqSkill = Symbol(
+        [0x1ECA0],
         [0x22FC580],
         None,
         "Returns an entity pointer to the first team member which has the specified iq"
@@ -4115,6 +3335,7 @@ class JpOverlay29Functions:
     )
 
     TeamMemberHasEnabledIqSkill = Symbol(
+        [0x1ED0C],
         [0x22FC5EC],
         None,
         "Returns true if any team member has the specified iq skill.\n\nr0: iq skill"
@@ -4122,6 +3343,7 @@ class JpOverlay29Functions:
     )
 
     TeamLeaderIqSkillIsEnabled = Symbol(
+        [0x1ED28],
         [0x22FC608],
         None,
         "Returns true the leader has the specified iq skill.\n\nr0: iq skill"
@@ -4129,6 +3351,7 @@ class JpOverlay29Functions:
     )
 
     HasLowHealth = Symbol(
+        [0x1F204],
         [0x22FCAE4],
         None,
         "Checks if the entity passed is a valid monster, and if it's at low health"
@@ -4136,6 +3359,7 @@ class JpOverlay29Functions:
     )
 
     IsSpecialStoryAlly = Symbol(
+        [0x1F6C4],
         [0x22FCFA4],
         None,
         "Checks if a monster is a special story ally.\n\nThis is a hard-coded check"
@@ -4145,6 +3369,7 @@ class JpOverlay29Functions:
     )
 
     IsExperienceLocked = Symbol(
+        [0x1F6E4],
         [0x22FCFC4],
         None,
         "Checks if a monster does not gain experience.\n\nThis basically just inverts"
@@ -4154,10 +3379,14 @@ class JpOverlay29Functions:
     )
 
     InitTeam = Symbol(
-        None, None, "Seems to initialize the team when entering a dungeon.\n\nr0: ?"
+        None,
+        None,
+        None,
+        "Seems to initialize the team when entering a dungeon.\n\nr0: ?",
     )
 
     SpawnMonster = Symbol(
+        [0x20B98],
         [0x22FE478],
         None,
         "Spawns the given monster on a tile.\n\nr0: pointer to struct"
@@ -4166,6 +3395,7 @@ class JpOverlay29Functions:
     )
 
     InitTeamMember = Symbol(
+        None,
         None,
         None,
         "Initializes a team member. Run at the start of each floor in a dungeon.\n\nr0:"
@@ -4177,6 +3407,7 @@ class JpOverlay29Functions:
     ExecuteMonsterAction = Symbol(
         None,
         None,
+        None,
         "Executes the set action for the specified monster. Used for both AI actions"
         " and player-inputted actions. If the action is not ACTION_NOTHING,"
         " ACTION_PASS_TURN, ACTION_WALK or ACTION_UNK_4, the monster's already_acted"
@@ -4186,6 +3417,7 @@ class JpOverlay29Functions:
     )
 
     CalcSpeedStage = Symbol(
+        [0x23944],
         [0x2301224],
         None,
         "Calculates the speed stage of a monster from its speed up/down counters. The"
@@ -4200,11 +3432,13 @@ class JpOverlay29Functions:
     CalcSpeedStageWrapper = Symbol(
         None,
         None,
+        None,
         "Calls CalcSpeedStage with a speed counter weight of 1.\n\nr0: pointer to"
         " entity\nreturn: speed stage",
     )
 
     GetNumberOfAttacks = Symbol(
+        [0x23AAC],
         [0x230138C],
         None,
         "Returns the number of attacks that a monster can do in one turn (1 or"
@@ -4213,6 +3447,7 @@ class JpOverlay29Functions:
     )
 
     SprintfStatic = Symbol(
+        [0x23DF0],
         [0x23016D0],
         None,
         "Statically defined copy of sprintf(3) in overlay 29. See arm9.yml for more"
@@ -4221,6 +3456,7 @@ class JpOverlay29Functions:
     )
 
     NoGastroAcidStatus = Symbol(
+        [0x25954],
         [0x2303234],
         None,
         "Checks if a monster does not have the Gastro Acid status.\n\nr0: entity"
@@ -4228,6 +3464,7 @@ class JpOverlay29Functions:
     )
 
     AbilityIsActive = Symbol(
+        [0x25988],
         [0x2303268],
         None,
         "Checks if a monster has a certain ability that isn't disabled by Gastro"
@@ -4235,6 +3472,7 @@ class JpOverlay29Functions:
     )
 
     LevitateIsActive = Symbol(
+        [0x25A88],
         [0x2303368],
         None,
         "Checks if a monster is levitating (has the effect of Levitate and Gravity is"
@@ -4242,6 +3480,7 @@ class JpOverlay29Functions:
     )
 
     MonsterIsType = Symbol(
+        [0x25AC0],
         [0x23033A0],
         None,
         "Checks if a monster is a given type.\n\nr0: entity pointer\nr1: type"
@@ -4249,6 +3488,7 @@ class JpOverlay29Functions:
     )
 
     IqSkillIsEnabled = Symbol(
+        [0x25BF0],
         [0x23034D0],
         None,
         "Checks if a monster has a certain IQ skill enabled.\n\nr0: entity pointer\nr1:"
@@ -4258,12 +3498,14 @@ class JpOverlay29Functions:
     GetMoveTypeForMonster = Symbol(
         None,
         None,
+        None,
         "Check the type of a move when used by a certain monster. Accounts for special"
         " cases such as Hidden Power, Weather Ball, the regular attack...\n\nr0: Entity"
         " pointer\nr1: Pointer to move data\nreturn: Type of the move",
     )
 
     GetMovePower = Symbol(
+        [0x25F8C],
         [0x230386C],
         None,
         "Gets the power of a move, factoring in Ginseng/Space Globe boosts.\n\nr0: user"
@@ -4271,6 +3513,7 @@ class JpOverlay29Functions:
     )
 
     AddExpSpecial = Symbol(
+        [0x261AC],
         [0x2303A8C],
         None,
         "Adds to a monster's experience points, subject to experience boosting"
@@ -4286,6 +3529,7 @@ class JpOverlay29Functions:
     EnemyEvolution = Symbol(
         None,
         None,
+        None,
         "Checks if the specified enemy should evolve because it just defeated an ally,"
         " and if so, attempts to evolve it.\n\nr0: Pointer to the enemy to check",
     )
@@ -4293,11 +3537,13 @@ class JpOverlay29Functions:
     EvolveMonster = Symbol(
         None,
         None,
+        None,
         "Makes the specified monster evolve into the specified species.\n\nr0: Pointer"
         " to the entity to evolve\nr1: ?\nr2: Species to evolve into",
     )
 
     GetSleepAnimationId = Symbol(
+        [0x28724],
         [0x2306004],
         None,
         "Returns the animation id to be applied to a monster that has the sleep,"
@@ -4309,6 +3555,7 @@ class JpOverlay29Functions:
     DisplayActions = Symbol(
         None,
         None,
+        None,
         "Graphically displays any pending actions that have happened but haven't been"
         " shown on screen yet. All actions are displayed at the same time. For example,"
         " this delayed display system is used to display multiple monsters moving at"
@@ -4318,6 +3565,7 @@ class JpOverlay29Functions:
     )
 
     EndFrozenClassStatus = Symbol(
+        [0x29EC8],
         [0x23077A8],
         None,
         "Cures the target's freeze, shadow hold, ingrain, petrified, constriction or"
@@ -4327,6 +3575,7 @@ class JpOverlay29Functions:
     )
 
     EndCringeClassStatus = Symbol(
+        [0x2A024],
         [0x2307904],
         None,
         "Cures the target's cringe, confusion, cowering, pause, taunt, encore or"
@@ -4335,6 +3584,7 @@ class JpOverlay29Functions:
     )
 
     ApplyDamage = Symbol(
+        None,
         None,
         None,
         "Applies damage to a monster. Displays the damage animation, lowers its health"
@@ -4348,6 +3598,7 @@ class JpOverlay29Functions:
     )
 
     GetTypeMatchup = Symbol(
+        [0x2E8F0],
         [0x230C1D0],
         None,
         "Gets the type matchup for a given combat interaction.\n\nNote that the actual"
@@ -4364,6 +3615,7 @@ class JpOverlay29Functions:
     CalcDamage = Symbol(
         None,
         None,
+        None,
         "Probably the damage calculation function.\n\nr0: attacker pointer\nr1:"
         " defender pointer\nr2: attack type\nr3: attack power\nstack[0]: crit"
         " chance\nstack[1]: [output] struct containing info about the damage"
@@ -4372,6 +3624,7 @@ class JpOverlay29Functions:
     )
 
     CalcRecoilDamageFixed = Symbol(
+        [0x30DEC],
         [0x230E6CC],
         None,
         "Appears to calculate recoil damage to a monster.\n\nThis function wraps"
@@ -4385,6 +3638,7 @@ class JpOverlay29Functions:
     )
 
     CalcDamageFixed = Symbol(
+        [0x30EA0],
         [0x230E780],
         None,
         "Appears to calculate damage from a fixed-damage effect.\n\nr0: attacker"
@@ -4395,6 +3649,7 @@ class JpOverlay29Functions:
     )
 
     CalcDamageFixedNoCategory = Symbol(
+        [0x31004],
         [0x230E8E4],
         None,
         "A wrapper around CalcDamageFixed with the move category set to none.\n\nr0:"
@@ -4404,6 +3659,7 @@ class JpOverlay29Functions:
     )
 
     CalcDamageFixedWrapper = Symbol(
+        [0x31050],
         [0x230E930],
         None,
         "A wrapper around CalcDamageFixed.\n\nr0: attacker pointer\nr1: defender"
@@ -4413,6 +3669,7 @@ class JpOverlay29Functions:
     )
 
     ResetDamageCalcScratchSpace = Symbol(
+        [0x31184],
         [0x230EA64],
         None,
         "CalcDamage seems to use scratch space of some kind, which this function"
@@ -4420,6 +3677,7 @@ class JpOverlay29Functions:
     )
 
     TrySpawnMonsterAndTickSpawnCounter = Symbol(
+        [0x32318],
         [0x230FBF8],
         None,
         "First ticks up the spawn counter, and if it's equal or greater than the spawn"
@@ -4429,6 +3687,7 @@ class JpOverlay29Functions:
     )
 
     AuraBowIsActive = Symbol(
+        [0x33324],
         [0x2310C04],
         None,
         "Checks if a monster is holding an aura bow that isn't disabled by"
@@ -4436,6 +3695,7 @@ class JpOverlay29Functions:
     )
 
     ExclusiveItemOffenseBoost = Symbol(
+        None,
         None,
         None,
         "Gets the exclusive item boost for attack/special attack for a monster\n\nr0:"
@@ -4446,12 +3706,14 @@ class JpOverlay29Functions:
     ExclusiveItemDefenseBoost = Symbol(
         None,
         None,
+        None,
         "Gets the exclusive item boost for defense/special defense for a monster\n\nr0:"
         " entity pointer\nr1: move category index (0 for physical, 1 for"
         " special)\nreturn: boost",
     )
 
     TickNoSlipCap = Symbol(
+        [0x337EC],
         [0x23110CC],
         None,
         "Checks if the entity is a team member and holds the No-Slip Cap, and if so"
@@ -4459,6 +3721,7 @@ class JpOverlay29Functions:
     )
 
     TickStatusAndHealthRegen = Symbol(
+        [0x34CD0],
         [0x23125B0],
         None,
         "Applies the natural HP regen effect by taking modifiers into account (Poison"
@@ -4468,6 +3731,7 @@ class JpOverlay29Functions:
     )
 
     InflictSleepStatusSingle = Symbol(
+        [0x3545C],
         [0x2312D3C],
         None,
         "This is called by TryInflictSleepStatus.\n\nr0: entity pointer\nr1: number of"
@@ -4475,6 +3739,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictSleepStatus = Symbol(
+        [0x35510],
         [0x2312DF0],
         None,
         "Inflicts the Sleep status condition on a target monster if possible.\n\nr0:"
@@ -4483,6 +3748,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictNightmareStatus = Symbol(
+        [0x35878],
         [0x2313158],
         None,
         "Inflicts the Nightmare status condition on a target monster if"
@@ -4491,6 +3757,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictNappingStatus = Symbol(
+        [0x35988],
         [0x2313268],
         None,
         "Inflicts the Napping status condition (from Rest) on a target monster if"
@@ -4499,6 +3766,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictYawningStatus = Symbol(
+        [0x35A94],
         [0x2313374],
         None,
         "Inflicts the Yawning status condition on a target monster if possible.\n\nr0:"
@@ -4506,6 +3774,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictSleeplessStatus = Symbol(
+        [0x35BA4],
         [0x2313484],
         None,
         "Inflicts the Sleepless status condition on a target monster if"
@@ -4513,6 +3782,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictPausedStatus = Symbol(
+        [0x35C90],
         [0x2313570],
         None,
         "Inflicts the Paused status condition on a target monster if possible.\n\nr0:"
@@ -4523,6 +3793,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictInfatuatedStatus = Symbol(
+        [0x35DD0],
         [0x23136B0],
         None,
         "Inflicts the Infatuated status condition on a target monster if"
@@ -4533,6 +3804,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictBurnStatus = Symbol(
+        [0x35F58],
         [0x2313838],
         None,
         "Inflicts the Burn status condition on a target monster if possible.\n\nr0:"
@@ -4543,6 +3815,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictBurnStatusWholeTeam = Symbol(
+        [0x36234],
         [0x2313B14],
         None,
         "Inflicts the Burn status condition on all team members if possible.\n\nNo"
@@ -4550,6 +3823,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictPoisonedStatus = Symbol(
+        None,
         None,
         None,
         "Inflicts the Poisoned status condition on a target monster if possible.\n\nr0:"
@@ -4561,6 +3835,7 @@ class JpOverlay29Functions:
     TryInflictBadlyPoisonedStatus = Symbol(
         None,
         None,
+        None,
         "Inflicts the Badly Poisoned status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
         " log a message on failure\nr3: flag to only perform the check for inflicting"
@@ -4569,6 +3844,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictFrozenStatus = Symbol(
+        [0x3680C],
         [0x23140EC],
         None,
         "Inflicts the Frozen status condition on a target monster if possible.\n\nr0:"
@@ -4577,6 +3853,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictConstrictionStatus = Symbol(
+        [0x36A30],
         [0x2314310],
         None,
         "Inflicts the Constriction status condition on a target monster if"
@@ -4585,6 +3862,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictShadowHoldStatus = Symbol(
+        [0x36B88],
         [0x2314468],
         None,
         "Inflicts the Shadow Hold (AKA Immobilized) status condition on a target"
@@ -4593,6 +3871,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictIngrainStatus = Symbol(
+        [0x36D3C],
         [0x231461C],
         None,
         "Inflicts the Ingrain status condition on a target monster if possible.\n\nr0:"
@@ -4600,6 +3879,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictWrappedStatus = Symbol(
+        [0x36E00],
         [0x23146E0],
         None,
         "Inflicts the Wrapped status condition on a target monster if possible.\n\nThis"
@@ -4608,6 +3888,7 @@ class JpOverlay29Functions:
     )
 
     FreeOtherWrappedMonsters = Symbol(
+        [0x36FFC],
         [0x23148DC],
         None,
         "Frees from the wrap status all monsters which are wrapped by/around the"
@@ -4615,6 +3896,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictPetrifiedStatus = Symbol(
+        [0x37078],
         [0x2314958],
         None,
         "Inflicts the Petrified status condition on a target monster if"
@@ -4624,12 +3906,14 @@ class JpOverlay29Functions:
     LowerOffensiveStat = Symbol(
         None,
         None,
+        None,
         "Lowers the specified offensive stat on the target monster.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: stat index\nr3: number of"
         " stages\nstack[0]: ?\nstack[1]: ?",
     )
 
     LowerDefensiveStat = Symbol(
+        [0x3741C],
         [0x2314CFC],
         None,
         "Lowers the specified defensive stat on the target monster.\n\nr0: user entity"
@@ -4638,6 +3922,7 @@ class JpOverlay29Functions:
     )
 
     BoostOffensiveStat = Symbol(
+        [0x375A4],
         [0x2314E84],
         None,
         "Boosts the specified offensive stat on the target monster.\n\nr0: user entity"
@@ -4645,6 +3930,7 @@ class JpOverlay29Functions:
     )
 
     BoostDefensiveStat = Symbol(
+        [0x37710],
         [0x2314FF0],
         None,
         "Boosts the specified defensive stat on the target monster.\n\nr0: user entity"
@@ -4652,6 +3938,7 @@ class JpOverlay29Functions:
     )
 
     ApplyOffensiveStatMultiplier = Symbol(
+        None,
         None,
         None,
         "Applies a multiplier to the specified offensive stat on the target"
@@ -4662,6 +3949,7 @@ class JpOverlay29Functions:
     )
 
     ApplyDefensiveStatMultiplier = Symbol(
+        [0x37B64],
         [0x2315444],
         None,
         "Applies a multiplier to the specified defensive stat on the target"
@@ -4672,6 +3960,7 @@ class JpOverlay29Functions:
     )
 
     BoostHitChanceStat = Symbol(
+        [0x37CE4],
         [0x23155C4],
         None,
         "Boosts the specified hit chance stat (accuracy or evasion) on the target"
@@ -4680,6 +3969,7 @@ class JpOverlay29Functions:
     )
 
     LowerHitChanceStat = Symbol(
+        [0x37E2C],
         [0x231570C],
         None,
         "Lowers the specified hit chance stat (accuracy or evasion) on the target"
@@ -4688,6 +3978,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictCringeStatus = Symbol(
+        [0x37FE4],
         [0x23158C4],
         None,
         "Inflicts the Cringe status condition on a target monster if possible.\n\nr0:"
@@ -4697,6 +3988,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictParalysisStatus = Symbol(
+        [0x3813C],
         [0x2315A1C],
         None,
         "Inflicts the Paralysis status condition on a target monster if"
@@ -4707,6 +3999,7 @@ class JpOverlay29Functions:
     )
 
     BoostSpeed = Symbol(
+        [0x38404],
         [0x2315CE4],
         None,
         "Boosts the speed of the target monster.\n\nIf the number of turns specified is"
@@ -4717,6 +4010,7 @@ class JpOverlay29Functions:
     )
 
     BoostSpeedOneStage = Symbol(
+        [0x38530],
         [0x2315E10],
         None,
         "A wrapper around BoostSpeed with the number of stages set to 1.\n\nr0: user"
@@ -4725,6 +4019,7 @@ class JpOverlay29Functions:
     )
 
     LowerSpeed = Symbol(
+        [0x38548],
         [0x2315E28],
         None,
         "Lowers the speed of the target monster.\n\nr0: user entity pointer\nr1: target"
@@ -4732,6 +4027,7 @@ class JpOverlay29Functions:
     )
 
     TrySealMove = Symbol(
+        [0x386B0],
         [0x2315F90],
         None,
         "Seals one of the target monster's moves. The move to be sealed is randomly"
@@ -4740,6 +4036,7 @@ class JpOverlay29Functions:
     )
 
     BoostOrLowerSpeed = Symbol(
+        [0x38820],
         [0x2316100],
         None,
         "Randomly boosts or lowers the speed of the target monster by one stage with"
@@ -4747,6 +4044,7 @@ class JpOverlay29Functions:
     )
 
     ResetHitChanceStat = Symbol(
+        [0x38880],
         [0x2316160],
         None,
         "Resets the specified hit chance stat (accuracy or evasion) back to normal on"
@@ -4755,6 +4053,7 @@ class JpOverlay29Functions:
     )
 
     TryActivateQuickFeet = Symbol(
+        [0x38A10],
         [0x23162F0],
         None,
         "Activate the Quick Feet ability on the defender, if the monster has it and"
@@ -4763,6 +4062,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictConfusedStatus = Symbol(
+        [0x38B30],
         [0x2316410],
         None,
         "Inflicts the Confused status condition on a target monster if possible.\n\nr0:"
@@ -4772,6 +4072,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictCoweringStatus = Symbol(
+        [0x38E64],
         [0x2316744],
         None,
         "Inflicts the Cowering status condition on a target monster if possible.\n\nr0:"
@@ -4781,6 +4082,7 @@ class JpOverlay29Functions:
     )
 
     TryIncreaseHp = Symbol(
+        [0x38EDC],
         [0x23167BC],
         None,
         "Restore HP and possibly boost max HP of the target monster if possible.\n\nr0:"
@@ -4789,6 +4091,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictLeechSeedStatus = Symbol(
+        [0x393E4],
         [0x2316CC4],
         None,
         "Inflicts the Leech Seed status condition on a target monster if"
@@ -4799,6 +4102,7 @@ class JpOverlay29Functions:
     )
 
     TryInflictDestinyBond = Symbol(
+        [0x39648],
         [0x2316F28],
         None,
         "Inflicts the Destiny Bond status condition on a target monster if"
@@ -4806,6 +4110,7 @@ class JpOverlay29Functions:
     )
 
     IsBlinded = Symbol(
+        [0x3B3D4],
         [0x2318CB4],
         None,
         "Returns true if the monster has the blinded status (see statuses::blinded), or"
@@ -4814,6 +4119,7 @@ class JpOverlay29Functions:
     )
 
     RestoreMovePP = Symbol(
+        [0x3B810],
         [0x23190F0],
         None,
         "Restores the PP of all the target's moves by the specified amount.\n\nr0: user"
@@ -4822,6 +4128,7 @@ class JpOverlay29Functions:
     )
 
     SetReflectDamageCountdownTo4 = Symbol(
+        [0x3BFB0],
         [0x2319890],
         None,
         "Sets the monster's reflect damage countdown to a global value (0x4).\n\nr0:"
@@ -4829,6 +4136,7 @@ class JpOverlay29Functions:
     )
 
     HasConditionalGroundImmunity = Symbol(
+        [0x3C63C],
         [0x2319F1C],
         None,
         "Checks if a monster is currently immune to Ground-type moves for reasons other"
@@ -4837,6 +4145,7 @@ class JpOverlay29Functions:
     )
 
     Conversion2IsActive = Symbol(
+        [0x3D404],
         [0x231ACE4],
         None,
         "Checks if the monster is under the effect of Conversion 2 (its type was"
@@ -4845,6 +4154,7 @@ class JpOverlay29Functions:
     )
 
     IsTargetInRange = Symbol(
+        [0x3E284],
         [0x231BB64],
         None,
         "Returns true if the target is within range of the user's move, false"
@@ -4857,6 +4167,7 @@ class JpOverlay29Functions:
     )
 
     GetEntityMoveTargetAndRange = Symbol(
+        [0x3E89C],
         [0x231C17C],
         None,
         "Gets the move target-and-range field when used by a given entity. See struct"
@@ -4866,6 +4177,7 @@ class JpOverlay29Functions:
     )
 
     ApplyItemEffect = Symbol(
+        [0x3F278],
         [0x231CB58],
         None,
         "Seems to apply an item's effect via a giant switch statement?\n\nr3: attacker"
@@ -4876,11 +4188,13 @@ class JpOverlay29Functions:
     ViolentSeedBoost = Symbol(
         None,
         None,
+        None,
         "Applies the Violent Seed boost to an entity.\n\nr0: attacker pointer\nr1:"
         " defender pointer",
     )
 
     ApplyGummiBoostsDungeonMode = Symbol(
+        [0x40CA8],
         [0x231E588],
         None,
         "Applies the IQ and possible stat boosts from eating a Gummi to the target"
@@ -4889,6 +4203,7 @@ class JpOverlay29Functions:
     )
 
     GetMaxPpWrapper = Symbol(
+        [0x425BC],
         [0x231FE9C],
         None,
         "Gets the maximum PP for a given move. A wrapper around the function in the ARM"
@@ -4897,12 +4212,14 @@ class JpOverlay29Functions:
     )
 
     MoveIsNotPhysical = Symbol(
+        [0x425E4],
         [0x231FEC4],
         None,
         "Checks if a move isn't a physical move.\n\nr0: move ID\nreturn: bool",
     )
 
     TryPounce = Symbol(
+        [0x437EC],
         [0x23210CC],
         None,
         "Makes the target monster execute the Pounce action in a given direction if"
@@ -4912,6 +4229,7 @@ class JpOverlay29Functions:
     )
 
     TryBlowAway = Symbol(
+        [0x439AC],
         [0x232128C],
         None,
         "Blows away the target monster in a given direction if possible.\n\nr0: user"
@@ -4919,6 +4237,7 @@ class JpOverlay29Functions:
     )
 
     TryWarp = Symbol(
+        [0x448D4],
         [0x23221B4],
         None,
         "Makes the target monster warp if possible.\n\nr0: user entity pointer\nr1:"
@@ -4927,6 +4246,7 @@ class JpOverlay29Functions:
     )
 
     MoveHitCheck = Symbol(
+        None,
         None,
         None,
         "Determines if a move used hits or misses the target. It gets called twice per"
@@ -4938,6 +4258,7 @@ class JpOverlay29Functions:
     )
 
     DungeonRandOutcomeUserTargetInteraction = Symbol(
+        [0x484E4],
         [0x2325DC4],
         None,
         "Like DungeonRandOutcome, but specifically for user-target"
@@ -4948,6 +4269,7 @@ class JpOverlay29Functions:
     )
 
     DungeonRandOutcomeUserAction = Symbol(
+        [0x485CC],
         [0x2325EAC],
         None,
         "Like DungeonRandOutcome, but specifically for user actions.\n\nThis modifies"
@@ -4957,6 +4279,7 @@ class JpOverlay29Functions:
     )
 
     UpdateMovePp = Symbol(
+        [0x48938],
         [0x2326218],
         None,
         "Updates the PP of any moves that were used by a monster, if PP should be"
@@ -4965,6 +4288,7 @@ class JpOverlay29Functions:
     )
 
     LowerSshort = Symbol(
+        [0x48A10],
         [0x23262F0],
         None,
         "Gets the lower 2 bytes of a 4-byte number and interprets it as a signed"
@@ -4972,6 +4296,7 @@ class JpOverlay29Functions:
     )
 
     DealDamageWithRecoil = Symbol(
+        [0x4BADC],
         [0x23293BC],
         None,
         "Deals damage from a move or item used by an attacking monster on a defending"
@@ -4983,6 +4308,7 @@ class JpOverlay29Functions:
     ExecuteMoveEffect = Symbol(
         None,
         None,
+        None,
         "Handles the effects that happen after a move is used. Includes a loop that is"
         " run for each target, mutiple ability checks and the giant switch statement"
         " that executes the effect of the move used given its ID.\n\nr0: pointer to"
@@ -4991,6 +4317,7 @@ class JpOverlay29Functions:
     )
 
     DealDamage = Symbol(
+        [0x56630],
         [0x2333F10],
         None,
         "Deals damage from a move or item used by an attacking monster on a defending"
@@ -5000,6 +4327,7 @@ class JpOverlay29Functions:
     )
 
     CalcDamageProjectile = Symbol(
+        [0x5675C],
         [0x233403C],
         None,
         "Appears to calculate damage from a variable-damage projectile.\n\nr0: entity"
@@ -5010,6 +4338,7 @@ class JpOverlay29Functions:
     CalcDamageFinal = Symbol(
         None,
         None,
+        None,
         "Last function called by DealDamage to determine the final damage dealt by the"
         " move. The result of this call is the return value of DealDamage. \n\nr0:"
         " Attacker pointer\nr1: Defender pointer\nr2: Move pointer\nr3: ?\nstack[0]:"
@@ -5017,6 +4346,7 @@ class JpOverlay29Functions:
     )
 
     GetApparentWeather = Symbol(
+        [0x58814],
         [0x23360F4],
         None,
         "Get the weather, as experienced by a specific entity.\n\nr0: entity"
@@ -5024,6 +4354,7 @@ class JpOverlay29Functions:
     )
 
     TryWeatherFormChange = Symbol(
+        [0x58C7C],
         [0x233655C],
         None,
         "Tries to change a monster into one of its weather-related alternative forms."
@@ -5032,6 +4363,7 @@ class JpOverlay29Functions:
     )
 
     GetTile = Symbol(
+        [0x59BEC],
         [0x23374CC],
         None,
         "Get the tile at some position. If the coordinates are out of bounds, returns a"
@@ -5039,6 +4371,7 @@ class JpOverlay29Functions:
     )
 
     GetTileSafe = Symbol(
+        [0x59C54],
         [0x2337534],
         None,
         "Get the tile at some position. If the coordinates are out of bounds, returns a"
@@ -5047,14 +4380,18 @@ class JpOverlay29Functions:
     )
 
     GravityIsActive = Symbol(
-        None, None, "Checks if gravity is active on the floor.\n\nreturn: bool"
+        None, None, None, "Checks if gravity is active on the floor.\n\nreturn: bool"
     )
 
     IsSecretBazaar = Symbol(
-        None, None, "Checks if the current floor is the Secret Bazaar.\n\nreturn: bool"
+        None,
+        None,
+        None,
+        "Checks if the current floor is the Secret Bazaar.\n\nreturn: bool",
     )
 
     IsSecretRoom = Symbol(
+        None,
         None,
         None,
         "Checks if the current floor is the Secret Room fixed floor (from hidden"
@@ -5062,6 +4399,7 @@ class JpOverlay29Functions:
     )
 
     IsSecretFloor = Symbol(
+        [0x5C168],
         [0x2339A48],
         None,
         "Checks if the current floor is a secret bazaar or a secret room.\n\nreturn:"
@@ -5069,10 +4407,11 @@ class JpOverlay29Functions:
     )
 
     GetDungeonGenInfoUnk0C = Symbol(
-        None, None, "return: dungeon_generation_info::field_0xc"
+        None, None, None, "return: dungeon_generation_info::field_0xc"
     )
 
     GetMinimapData = Symbol(
+        None,
         None,
         None,
         "Returns a pointer to the minimap_display_data struct in the dungeon"
@@ -5082,11 +4421,13 @@ class JpOverlay29Functions:
     SetMinimapDataE447 = Symbol(
         None,
         None,
+        None,
         "Sets minimap_display_data::field_0xE447 to the specified value\n\nr0: Value to"
         " set the field to",
     )
 
     GetMinimapDataE447 = Symbol(
+        None,
         None,
         None,
         "Exclusive to the EU ROM. Returns"
@@ -5097,11 +4438,13 @@ class JpOverlay29Functions:
     SetMinimapDataE448 = Symbol(
         None,
         None,
+        None,
         "Sets minimap_display_data::field_0xE448 to the specified value\n\nr0: Value to"
         " set the field to",
     )
 
     LoadFixedRoomDataVeneer = Symbol(
+        None,
         None,
         None,
         "Likely a linker-generated veneer for LoadFixedRoomData.\n\nSee"
@@ -5110,6 +4453,7 @@ class JpOverlay29Functions:
     )
 
     IsNormalFloor = Symbol(
+        [0x5E138],
         [0x233BA18],
         None,
         "Checks if the current floor is a normal layout.\n\n'Normal' means any layout"
@@ -5120,6 +4464,7 @@ class JpOverlay29Functions:
     )
 
     GenerateFloor = Symbol(
+        [0x5E1BC],
         [0x233BA9C],
         None,
         "This is the master function that generates the dungeon floor.\n\nVery loosely"
@@ -5134,12 +4479,14 @@ class JpOverlay29Functions:
     )
 
     GetTileTerrain = Symbol(
+        [0x5E95C],
         [0x233C23C],
         None,
         "Gets the terrain type of a tile.\n\nr0: tile pointer\nreturn: terrain ID",
     )
 
     DungeonRand100 = Symbol(
+        [0x5E968],
         [0x233C248],
         None,
         "Compute a pseudorandom integer on the interval [0, 100) using the dungeon"
@@ -5147,6 +4494,7 @@ class JpOverlay29Functions:
     )
 
     FlagHallwayJunctions = Symbol(
+        [0x5E9F0],
         [0x233C2D0],
         None,
         "Sets the junction flag (bit 3 of the terrain flags) on any hallway junction"
@@ -5156,6 +4504,7 @@ class JpOverlay29Functions:
     )
 
     GenerateStandardFloor = Symbol(
+        [0x5EB0C],
         [0x233C3EC],
         None,
         "Generate a standard floor with the given parameters.\n\nBroadly speaking, a"
@@ -5167,6 +4516,7 @@ class JpOverlay29Functions:
     )
 
     GenerateOuterRingFloor = Symbol(
+        [0x5EC74],
         [0x233C554],
         None,
         "Generates a floor layout with a 4x2 grid of rooms, surrounded by an outer ring"
@@ -5174,6 +4524,7 @@ class JpOverlay29Functions:
     )
 
     GenerateCrossroadsFloor = Symbol(
+        [0x5F100],
         [0x233C9E0],
         None,
         "Generates a floor layout with a mesh of hallways on the interior 3x2 grid,"
@@ -5182,6 +4533,7 @@ class JpOverlay29Functions:
     )
 
     GenerateLineFloor = Symbol(
+        [0x5F560],
         [0x233CE40],
         None,
         "Generates a floor layout with 5 grid cells in a horizontal line.\n\nr0: floor"
@@ -5189,6 +4541,7 @@ class JpOverlay29Functions:
     )
 
     GenerateCrossFloor = Symbol(
+        [0x5F6C0],
         [0x233CFA0],
         None,
         "Generates a floor layout with 5 rooms arranged in a cross ('plus sign')"
@@ -5196,6 +4549,7 @@ class JpOverlay29Functions:
     )
 
     GenerateBeetleFloor = Symbol(
+        [0x5F858],
         [0x233D138],
         None,
         "Generates a floor layout in a 'beetle' formation, which is created by taking a"
@@ -5204,6 +4558,7 @@ class JpOverlay29Functions:
     )
 
     MergeRoomsVertically = Symbol(
+        [0x5FA14],
         [0x233D2F4],
         None,
         "Merges two vertically stacked rooms into one larger room.\n\nr0: x grid"
@@ -5213,6 +4568,7 @@ class JpOverlay29Functions:
     )
 
     GenerateOuterRoomsFloor = Symbol(
+        [0x5FB60],
         [0x233D440],
         None,
         "Generates a floor layout with a ring of rooms on the grid boundary and nothing"
@@ -5222,6 +4578,7 @@ class JpOverlay29Functions:
     )
 
     IsNotFullFloorFixedRoom = Symbol(
+        [0x5FDF4],
         [0x233D6D4],
         None,
         "Checks if a fixed room ID does not correspond to a fixed, full-floor"
@@ -5232,11 +4589,13 @@ class JpOverlay29Functions:
     GenerateFixedRoom = Symbol(
         None,
         None,
+        None,
         "Handles fixed room generation if the floor contains a fixed room.\n\nr0: fixed"
         " room ID\nr1: floor properties\nreturn: bool",
     )
 
     GenerateOneRoomMonsterHouseFloor = Symbol(
+        [0x60254],
         [0x233DB34],
         None,
         "Generates a floor layout with just a large, one-room Monster House.\n\nThis is"
@@ -5244,6 +4603,7 @@ class JpOverlay29Functions:
     )
 
     GenerateTwoRoomsWithMonsterHouseFloor = Symbol(
+        [0x60324],
         [0x233DC04],
         None,
         "Generate a floor layout with two rooms (left and right), one of which is a"
@@ -5251,6 +4611,7 @@ class JpOverlay29Functions:
     )
 
     GenerateExtraHallways = Symbol(
+        [0x604C8],
         [0x233DDA8],
         None,
         "Generate extra hallways on the floor via a series of random walks.\n\nEach"
@@ -5263,6 +4624,7 @@ class JpOverlay29Functions:
     )
 
     GetGridPositions = Symbol(
+        [0x60A64],
         [0x233E344],
         None,
         "Get the grid cell positions for a given set of floor grid dimensions.\n\nr0:"
@@ -5272,6 +4634,7 @@ class JpOverlay29Functions:
     )
 
     InitDungeonGrid = Symbol(
+        [0x60AE4],
         [0x233E3C4],
         None,
         "Initialize a dungeon grid with defaults.\n\nThe grid is an array of grid cells"
@@ -5288,6 +4651,7 @@ class JpOverlay29Functions:
     )
 
     AssignRooms = Symbol(
+        [0x60BE4],
         [0x233E4C4],
         None,
         "Randomly selects a subset of grid cells to become rooms.\n\nThe given number"
@@ -5302,6 +4666,7 @@ class JpOverlay29Functions:
     )
 
     CreateRoomsAndAnchors = Symbol(
+        [0x60DF8],
         [0x233E6D8],
         None,
         "Creates rooms and hallway anchors in each grid cell as designated by"
@@ -5315,6 +4680,7 @@ class JpOverlay29Functions:
     )
 
     GenerateSecondaryStructures = Symbol(
+        [0x61154],
         [0x233EA34],
         None,
         "Try to generate secondary structures in flagged rooms.\n\nIf a valid room with"
@@ -5331,6 +4697,7 @@ class JpOverlay29Functions:
     )
 
     AssignGridCellConnections = Symbol(
+        [0x61B3C],
         [0x233F41C],
         None,
         "Randomly assigns connections between adjacent grid cells.\n\nConnections are"
@@ -5351,6 +4718,7 @@ class JpOverlay29Functions:
     )
 
     CreateGridCellConnections = Symbol(
+        [0x61F1C],
         [0x233F7FC],
         None,
         "Create grid cell connections either by creating hallways or merging"
@@ -5368,6 +4736,7 @@ class JpOverlay29Functions:
     )
 
     GenerateRoomImperfections = Symbol(
+        [0x62814],
         [0x23400F4],
         None,
         "Attempt to generate room imperfections for each room in the floor layout, if"
@@ -5379,6 +4748,7 @@ class JpOverlay29Functions:
     )
 
     CreateHallway = Symbol(
+        [0x62C00],
         [0x23404E0],
         None,
         "Create a hallway between two points.\n\nIf the two points share no coordinates"
@@ -5396,6 +4766,7 @@ class JpOverlay29Functions:
     )
 
     EnsureConnectedGrid = Symbol(
+        [0x62F04],
         [0x23407E4],
         None,
         "Ensure the grid forms a connected graph (all valid cells are reachable) by"
@@ -5406,6 +4777,7 @@ class JpOverlay29Functions:
     )
 
     SetTerrainObstacleChecked = Symbol(
+        [0x633E0],
         [0x2340CC0],
         None,
         "Set the terrain of a specific tile to be an obstacle (wall or secondary"
@@ -5416,6 +4788,7 @@ class JpOverlay29Functions:
     )
 
     FinalizeJunctions = Symbol(
+        [0x6341C],
         [0x2340CFC],
         None,
         "Finalizes junction tiles by setting the junction flag (bit 3 of the terrain"
@@ -5439,6 +4812,7 @@ class JpOverlay29Functions:
     )
 
     GenerateKecleonShop = Symbol(
+        [0x636C8],
         [0x2340FA8],
         None,
         "Possibly generate a Kecleon shop on the floor.\n\nA Kecleon shop will be"
@@ -5451,6 +4825,7 @@ class JpOverlay29Functions:
     )
 
     GenerateMonsterHouse = Symbol(
+        [0x63A7C],
         [0x234135C],
         None,
         "Possibly generate a Monster House on the floor.\n\nA Monster House will be"
@@ -5463,6 +4838,7 @@ class JpOverlay29Functions:
     )
 
     GenerateMazeRoom = Symbol(
+        [0x63D04],
         [0x23415E4],
         None,
         "Possibly generate a maze room on the floor.\n\nA maze room will be generated"
@@ -5473,6 +4849,7 @@ class JpOverlay29Functions:
     )
 
     GenerateMaze = Symbol(
+        [0x63F38],
         [0x2341818],
         None,
         "Generate a maze room within a given grid cell.\n\nA 'maze' is generated within"
@@ -5486,6 +4863,7 @@ class JpOverlay29Functions:
     )
 
     GenerateMazeLine = Symbol(
+        [0x641B4],
         [0x2341A94],
         None,
         "Generate a 'maze line' from a given starting point, within the given"
@@ -5498,12 +4876,14 @@ class JpOverlay29Functions:
     )
 
     SetSpawnFlag5 = Symbol(
+        [0x6435C],
         [0x2341C3C],
         None,
         "Set spawn flag 5 (0b100000 or 0x20) on all tiles in a room.\n\nr0: grid cell",
     )
 
     IsNextToHallway = Symbol(
+        [0x643B0],
         [0x2341C90],
         None,
         "Checks if a tile position is either in a hallway or next to one.\n\nr0: x\nr1:"
@@ -5511,6 +4891,7 @@ class JpOverlay29Functions:
     )
 
     ResolveInvalidSpawns = Symbol(
+        [0x64454],
         [0x2341D34],
         None,
         "Resolve invalid spawn flags on tiles.\n\nSpawn flags can be invalid due to"
@@ -5520,22 +4901,25 @@ class JpOverlay29Functions:
     )
 
     ConvertSecondaryTerrainToChasms = Symbol(
+        [0x644EC],
         [0x2341DCC],
         None,
         "Converts all secondary terrain tiles (water/lava) to chasms.\n\nNo params.",
     )
 
     EnsureImpassableTilesAreWalls = Symbol(
+        [0x64558],
         [0x2341E38],
         None,
         "Ensures all tiles with the impassable flag are walls.\n\nNo params.",
     )
 
     InitializeTile = Symbol(
-        [0x2341E94], None, "Initialize a tile struct.\n\nr0: tile pointer"
+        [0x645B4], [0x2341E94], None, "Initialize a tile struct.\n\nr0: tile pointer"
     )
 
     ResetFloor = Symbol(
+        [0x645EC],
         [0x2341ECC],
         None,
         "Resets the floor in preparation for a floor generation attempt.\n\nResets all"
@@ -5544,6 +4928,7 @@ class JpOverlay29Functions:
     )
 
     PosIsOutOfBounds = Symbol(
+        [0x6478C],
         [0x234206C],
         None,
         "Checks if a position (x, y) is out of bounds on the map: !((0 <= x <= 55) &&"
@@ -5551,6 +4936,7 @@ class JpOverlay29Functions:
     )
 
     ShuffleSpawnPositions = Symbol(
+        [0x647C4],
         [0x23420A4],
         None,
         "Randomly shuffle an array of spawn positions.\n\nr0: spawn position array"
@@ -5559,6 +4945,7 @@ class JpOverlay29Functions:
     )
 
     SpawnNonEnemies = Symbol(
+        [0x6482C],
         [0x234210C],
         None,
         "Spawn all non-enemy entities, which includes stairs, items, traps, and the"
@@ -5586,6 +4973,7 @@ class JpOverlay29Functions:
     )
 
     SpawnEnemies = Symbol(
+        [0x64F50],
         [0x2342830],
         None,
         "Spawn all enemies, which includes normal enemies and those in Monster"
@@ -5599,6 +4987,7 @@ class JpOverlay29Functions:
     )
 
     SetSecondaryTerrainOnWall = Symbol(
+        [0x6524C],
         [0x2342B2C],
         None,
         "Set a specific tile to have secondary terrain (water/lava), but only if it's a"
@@ -5606,6 +4995,7 @@ class JpOverlay29Functions:
     )
 
     GenerateSecondaryTerrainFormations = Symbol(
+        [0x6528C],
         [0x2342B6C],
         None,
         "Generate secondary terrain (water/lava) formations.\n\nThis includes 'rivers'"
@@ -5621,6 +5011,7 @@ class JpOverlay29Functions:
     )
 
     StairsAlwaysReachable = Symbol(
+        [0x6594C],
         [0x234322C],
         None,
         "Checks that the stairs are reachable from every walkable tile on the"
@@ -5634,10 +5025,11 @@ class JpOverlay29Functions:
     )
 
     ConvertWallsToChasms = Symbol(
-        [0x2343908], None, "Converts all wall tiles to chasms.\n\nNo params."
+        [0x66028], [0x2343908], None, "Converts all wall tiles to chasms.\n\nNo params."
     )
 
     ResetInnerBoundaryTileRows = Symbol(
+        [0x6665C],
         [0x2343F3C],
         None,
         "Reset the inner boundary tile rows (y == 1 and y == 30) to their initial state"
@@ -5646,6 +5038,7 @@ class JpOverlay29Functions:
     )
 
     SpawnStairs = Symbol(
+        [0x6676C],
         [0x234404C],
         None,
         "Spawn stairs at the given location.\n\nIf the hidden stairs flag is set,"
@@ -5657,6 +5050,7 @@ class JpOverlay29Functions:
     )
 
     LoadFixedRoomData = Symbol(
+        [0x67874],
         [0x2345154],
         None,
         "Loads fixed room data from BALANCE/fixed.bin into the buffer pointed to by"
@@ -5664,6 +5058,7 @@ class JpOverlay29Functions:
     )
 
     IsHiddenStairsFloor = Symbol(
+        [0x67FF0],
         [0x23458D0],
         None,
         "Checks if the current floor is either the Secret Bazaar or a Secret"
@@ -5671,6 +5066,7 @@ class JpOverlay29Functions:
     )
 
     HasHeldItem = Symbol(
+        [0x6A2B4],
         [0x2347B94],
         None,
         "Checks if a monster has a certain held item.\n\nr0: entity pointer\nr1: item"
@@ -5680,12 +5076,14 @@ class JpOverlay29Functions:
     IsOutlawOrChallengeRequestFloor = Symbol(
         None,
         None,
+        None,
         "Checks if the current floor is an active mission destination of type"
         " MISSION_TAKE_ITEM_FROM_OUTLAW, MISSION_ARREST_OUTLAW or"
         " MISSION_CHALLENGE_REQUEST.\n\nreturn: bool",
     )
 
     IsCurrentMissionType = Symbol(
+        [0x6CC64],
         [0x234A544],
         None,
         "Checks if the current floor is an active mission destination of a given type"
@@ -5693,6 +5091,7 @@ class JpOverlay29Functions:
     )
 
     IsCurrentMissionTypeExact = Symbol(
+        [0x6CC98],
         [0x234A578],
         None,
         "Checks if the current floor is an active mission destination of a given type"
@@ -5700,6 +5099,7 @@ class JpOverlay29Functions:
     )
 
     IsOutlawMonsterHouseFloor = Symbol(
+        [0x6CCD4],
         [0x234A5B4],
         None,
         "Checks if the current floor is a mission destination for a Monster House"
@@ -5707,12 +5107,14 @@ class JpOverlay29Functions:
     )
 
     IsGoldenChamber = Symbol(
+        [0x6CCF8],
         [0x234A5D8],
         None,
         "Checks if the current floor is a Golden Chamber floor.\n\nreturn: bool",
     )
 
     IsLegendaryChallengeFloor = Symbol(
+        [0x6CD1C],
         [0x234A5FC],
         None,
         "Checks if the current floor is a boss floor for a Legendary Challenge Letter"
@@ -5720,6 +5122,7 @@ class JpOverlay29Functions:
     )
 
     IsJirachiChallengeFloor = Symbol(
+        [0x6CD5C],
         [0x234A63C],
         None,
         "Checks if the current floor is the boss floor in Star Cave Pit for Jirachi's"
@@ -5727,6 +5130,7 @@ class JpOverlay29Functions:
     )
 
     IsDestinationFloorWithMonster = Symbol(
+        [0x6CD94],
         [0x234A674],
         None,
         "Checks if the current floor is a mission destination floor with a special"
@@ -5734,6 +5138,7 @@ class JpOverlay29Functions:
     )
 
     MissionTargetEnemyIsDefeated = Symbol(
+        [0x6CEB8],
         [0x234A798],
         None,
         "Checks if the target enemy of the mission on the current floor has been"
@@ -5741,6 +5146,7 @@ class JpOverlay29Functions:
     )
 
     SetMissionTargetEnemyDefeated = Symbol(
+        [0x6CED8],
         [0x234A7B8],
         None,
         "Set the flag for whether or not the target enemy of the current mission has"
@@ -5748,6 +5154,7 @@ class JpOverlay29Functions:
     )
 
     IsDestinationFloorWithFixedRoom = Symbol(
+        [0x6CEEC],
         [0x234A7CC],
         None,
         "Checks if the current floor is a mission destination floor with a fixed"
@@ -5756,6 +5163,7 @@ class JpOverlay29Functions:
     )
 
     GetItemToRetrieve = Symbol(
+        [0x6CF14],
         [0x234A7F4],
         None,
         "Get the ID of the item that needs to be retrieve on the current floor for a"
@@ -5763,6 +5171,7 @@ class JpOverlay29Functions:
     )
 
     GetItemToDeliver = Symbol(
+        [0x6CF38],
         [0x234A818],
         None,
         "Get the ID of the item that needs to be delivered to a mission client on the"
@@ -5770,6 +5179,7 @@ class JpOverlay29Functions:
     )
 
     GetSpecialTargetItem = Symbol(
+        [0x6CF64],
         [0x234A844],
         None,
         "Get the ID of the special target item for a Sealed Chamber or Treasure Memo"
@@ -5777,6 +5187,7 @@ class JpOverlay29Functions:
     )
 
     IsDestinationFloorWithItem = Symbol(
+        [0x6CFAC],
         [0x234A88C],
         None,
         "Checks if the current floor is a mission destination floor with a special"
@@ -5785,6 +5196,7 @@ class JpOverlay29Functions:
     )
 
     IsDestinationFloorWithHiddenOutlaw = Symbol(
+        [0x6D00C],
         [0x234A8EC],
         None,
         "Checks if the current floor is a mission destination floor with a 'hidden"
@@ -5792,6 +5204,7 @@ class JpOverlay29Functions:
     )
 
     IsDestinationFloorWithFleeingOutlaw = Symbol(
+        [0x6D030],
         [0x234A910],
         None,
         "Checks if the current floor is a mission destination floor with a 'fleeing"
@@ -5799,6 +5212,7 @@ class JpOverlay29Functions:
     )
 
     GetMissionTargetEnemy = Symbol(
+        [0x6D068],
         [0x234A948],
         None,
         "Get the monster ID of the target enemy to be defeated on the current floor for"
@@ -5806,6 +5220,7 @@ class JpOverlay29Functions:
     )
 
     GetMissionEnemyMinionGroup = Symbol(
+        [0x6D080],
         [0x234A960],
         None,
         "Get the monster ID of the specified minion group on the current floor for a"
@@ -5815,6 +5230,7 @@ class JpOverlay29Functions:
     )
 
     FloorHasMissionMonster = Symbol(
+        [0x6D190],
         [0x234AA70],
         None,
         "Checks if a given floor is a mission destination with a special monster,"
@@ -5826,6 +5242,7 @@ class JpOverlay29Functions:
     )
 
     LogMessageByIdWithPopupCheckUser = Symbol(
+        [0x6EC34],
         [0x234C514],
         None,
         "Logs a message in the message log alongside a message popup, if the user"
@@ -5833,6 +5250,7 @@ class JpOverlay29Functions:
     )
 
     LogMessageWithPopupCheckUser = Symbol(
+        [0x6EC74],
         [0x234C554],
         None,
         "Logs a message in the message log alongside a message popup, if the user"
@@ -5840,6 +5258,7 @@ class JpOverlay29Functions:
     )
 
     LogMessageByIdQuiet = Symbol(
+        [0x6ECAC],
         [0x234C58C],
         None,
         "Logs a message in the message log (but without a message popup).\n\nr0: user"
@@ -5847,6 +5266,7 @@ class JpOverlay29Functions:
     )
 
     LogMessageQuiet = Symbol(
+        [0x6ECD0],
         [0x234C5B0],
         None,
         "Logs a message in the message log (but without a message popup).\n\nr0: user"
@@ -5854,6 +5274,7 @@ class JpOverlay29Functions:
     )
 
     LogMessageByIdWithPopupCheckUserTarget = Symbol(
+        [0x6ECE0],
         [0x234C5C0],
         None,
         "Logs a message in the message log alongside a message popup, if some user"
@@ -5862,6 +5283,7 @@ class JpOverlay29Functions:
     )
 
     LogMessageWithPopupCheckUserTarget = Symbol(
+        [0x6ED34],
         [0x234C614],
         None,
         "Logs a message in the message log alongside a message popup, if some user"
@@ -5870,6 +5292,7 @@ class JpOverlay29Functions:
     )
 
     LogMessageByIdQuietCheckUserTarget = Symbol(
+        [0x6ED80],
         [0x234C660],
         None,
         "Logs a message in the message log (but without a message popup), if some user"
@@ -5878,6 +5301,7 @@ class JpOverlay29Functions:
     )
 
     LogMessageByIdWithPopupCheckUserUnknown = Symbol(
+        [0x6EDD4],
         [0x234C6B4],
         None,
         "Logs a message in the message log alongside a message popup, if the user"
@@ -5886,6 +5310,7 @@ class JpOverlay29Functions:
     )
 
     LogMessageByIdWithPopup = Symbol(
+        [0x6EE28],
         [0x234C708],
         None,
         "Logs a message in the message log alongside a message popup.\n\nr0: user"
@@ -5895,11 +5320,13 @@ class JpOverlay29Functions:
     LogMessageWithPopup = Symbol(
         None,
         None,
+        None,
         "Logs a message in the message log alongside a message popup.\n\nr0: user"
         " entity pointer\nr1: message string",
     )
 
     LogMessage = Symbol(
+        [0x6EE98],
         [0x234C778],
         None,
         "Logs a message in the message log.\n\nr0: user entity pointer\nr1: message"
@@ -5907,15 +5334,19 @@ class JpOverlay29Functions:
     )
 
     LogMessageById = Symbol(
+        [0x6F0A4],
         [0x234C984],
         None,
         "Logs a message in the message log.\n\nr0: user entity pointer\nr1: message"
         " ID\nr2: bool, whether or not to present a message popup",
     )
 
-    OpenMessageLog = Symbol(None, None, "Opens the message log window.\n\nr0: ?\nr1: ?")
+    OpenMessageLog = Symbol(
+        None, None, None, "Opens the message log window.\n\nr0: ?\nr1: ?"
+    )
 
     RunDungeonMode = Symbol(
+        [0x6F8AC],
         [0x234D18C],
         None,
         "This appears to be the top-level function for running dungeon mode.\n\nIt gets"
@@ -5928,6 +5359,7 @@ class JpOverlay29Functions:
     DisplayDungeonTip = Symbol(
         None,
         None,
+        None,
         "Checks if a given dungeon tip should be displayed at the start of a floor and"
         " if so, displays it. Called up to 4 times at the start of each new floor, with"
         " a different r0 parameter each time.\n\nr0: Pointer to the message_tip struct"
@@ -5936,6 +5368,7 @@ class JpOverlay29Functions:
     )
 
     SetBothScreensWindowColorToDefault = Symbol(
+        [0x708E4],
         [0x234E1C4],
         None,
         "This changes the palettes of windows in both screens to an appropiate value"
@@ -5947,15 +5380,17 @@ class JpOverlay29Functions:
     DisplayMessage = Symbol(
         None,
         None,
+        None,
         "Displays a message in a dialogue box that optionally waits for player input"
         " before closing.\n\nr0: ?\nr1: ID of the string to display\nr2: True to wait"
         " for player input before closing the dialogue box, false to close it"
         " automatically once all the characters get printed.",
     )
 
-    DisplayMessage2 = Symbol(None, None, "Very similar to DisplayMessage")
+    DisplayMessage2 = Symbol(None, None, None, "Very similar to DisplayMessage")
 
     DisplayMessageInternal = Symbol(
+        None,
         None,
         None,
         "Called by DisplayMessage. Seems to be the function that handles the display of"
@@ -5970,17 +5405,19 @@ class JpOverlay29Functions:
 
 class JpOverlay29Data:
 
-    NECTAR_IQ_BOOST = Symbol(None, None, "IQ boost from ingesting Nectar.")
-
-    DUNGEON_STRUCT_SIZE = Symbol(None, None, "Size of the dungeon struct (0x2CB14)")
+    DUNGEON_STRUCT_SIZE = Symbol(
+        None, None, None, "Size of the dungeon struct (0x2CB14)"
+    )
 
     OFFSET_OF_DUNGEON_FLOOR_PROPERTIES = Symbol(
+        None,
         None,
         None,
         "Offset of the floor properties field in the dungeon struct (0x286B2)",
     )
 
     SPAWN_RAND_MAX = Symbol(
+        None,
         None,
         None,
         "Equal to 10,000 (0x2710). Used as parameter for DungeonRandInt to generate the"
@@ -5990,11 +5427,13 @@ class JpOverlay29Data:
     DUNGEON_PRNG_LCG_MULTIPLIER = Symbol(
         None,
         None,
+        None,
         "The multiplier shared by all of the dungeon PRNG's LCGs, 1566083941"
         " (0x5D588B65).",
     )
 
     DUNGEON_PRNG_LCG_INCREMENT_SECONDARY = Symbol(
+        None,
         None,
         None,
         "The increment for the dungeon PRNG's secondary LCGs, 2531011 (0x269EC3). This"
@@ -6003,14 +5442,21 @@ class JpOverlay29Data:
     )
 
     KECLEON_FEMALE_ID = Symbol(
-        None, None, "0x3D7 (983). Used when spawning Kecleon on an even numbered floor."
+        None,
+        None,
+        None,
+        "0x3D7 (983). Used when spawning Kecleon on an even numbered floor.",
     )
 
     KECLEON_MALE_ID = Symbol(
-        None, None, "0x17F (383). Used when spawning Kecleon on an odd numbered floor."
+        None,
+        None,
+        None,
+        "0x17F (383). Used when spawning Kecleon on an odd numbered floor.",
     )
 
     MSG_ID_SLOW_START = Symbol(
+        None,
         None,
         None,
         "ID of the message printed when a monster has the ability Slow Start at the"
@@ -6020,19 +5466,21 @@ class JpOverlay29Data:
     EXPERIENCE_POINT_GAIN_CAP = Symbol(
         None,
         None,
+        None,
         "A cap on the experience that can be given to a monster in one call to"
         " AddExpSpecial",
     )
 
     JUDGMENT_MOVE_ID = Symbol(
-        None, None, "Move ID for Judgment (0x1D3)\n\ntype: enum move_id"
+        None, None, None, "Move ID for Judgment (0x1D3)\n\ntype: enum move_id"
     )
 
     REGULAR_ATTACK_MOVE_ID = Symbol(
-        None, None, "Move ID for the regular attack (0x163)\n\ntype: enum move_id"
+        None, None, None, "Move ID for the regular attack (0x163)\n\ntype: enum move_id"
     )
 
     DEOXYS_ATTACK_ID = Symbol(
+        None,
         None,
         None,
         "Monster ID for Deoxys in Attack Forme (0x1A3)\n\ntype: enum monster_id",
@@ -6041,20 +5489,23 @@ class JpOverlay29Data:
     DEOXYS_SPEED_ID = Symbol(
         None,
         None,
+        None,
         "Monster ID for Deoxys in Speed Forme (0x1A5)\n\ntype: enum monster_id",
     )
 
     GIRATINA_ALTERED_ID = Symbol(
         None,
         None,
+        None,
         "Monster ID for Giratina in Altered Forme (0x211)\n\ntype: enum monster_id",
     )
 
     PUNISHMENT_MOVE_ID = Symbol(
-        None, None, "Move ID for Punishment (0x1BD)\n\ntype: enum move_id"
+        None, None, None, "Move ID for Punishment (0x1BD)\n\ntype: enum move_id"
     )
 
     OFFENSE_STAT_MAX = Symbol(
+        None,
         None,
         None,
         "Cap on an attacker's modified offense (attack or special attack) stat after"
@@ -6064,10 +5515,12 @@ class JpOverlay29Data:
     PROJECTILE_MOVE_ID = Symbol(
         None,
         None,
+        None,
         "The move ID of the special 'projectile' move (0x195)\n\ntype: enum move_id",
     )
 
     BELLY_LOST_PER_TURN = Symbol(
+        None,
         None,
         None,
         "The base value by which belly is decreased every turn.\n\nIts raw value is"
@@ -6077,10 +5530,11 @@ class JpOverlay29Data:
     )
 
     MAX_HP_CAP = Symbol(
-        None, None, "The maximum amount of HP a monster can have (999)."
+        None, None, None, "The maximum amount of HP a monster can have (999)."
     )
 
     MOVE_TARGET_AND_RANGE_SPECIAL_USER_HEALING = Symbol(
+        None,
         None,
         None,
         "The move target and range code for special healing moves that target just the"
@@ -6088,38 +5542,42 @@ class JpOverlay29Data:
     )
 
     PLAIN_SEED_VALUE = Symbol(
-        None, None, "Some value related to the Plain Seed (0xBE9)."
+        None, None, None, "Some value related to the Plain Seed (0xBE9)."
     )
 
     MAX_ELIXIR_PP_RESTORATION = Symbol(
         None,
         None,
+        None,
         "The amount of PP restored per move by ingesting a Max Elixir (0x3E7).",
     )
 
-    SLIP_SEED_VALUE = Symbol(None, None, "Some value related to the Slip Seed (0xC75).")
+    SLIP_SEED_VALUE = Symbol(
+        None, None, None, "Some value related to the Slip Seed (0xC75)."
+    )
 
     CASTFORM_NORMAL_FORM_MALE_ID = Symbol(
-        None, None, "Castform's male normal form ID (0x17B)"
+        None, None, None, "Castform's male normal form ID (0x17B)"
     )
 
     CASTFORM_NORMAL_FORM_FEMALE_ID = Symbol(
-        None, None, "Castform's female normal form ID (0x3D3)"
+        None, None, None, "Castform's female normal form ID (0x3D3)"
     )
 
     CHERRIM_SUNSHINE_FORM_MALE_ID = Symbol(
-        None, None, "Cherrim's male sunshine form ID (0x1CD)"
+        None, None, None, "Cherrim's male sunshine form ID (0x1CD)"
     )
 
     CHERRIM_OVERCAST_FORM_FEMALE_ID = Symbol(
-        None, None, "Cherrim's female overcast form ID (0x424)"
+        None, None, None, "Cherrim's female overcast form ID (0x424)"
     )
 
     CHERRIM_SUNSHINE_FORM_FEMALE_ID = Symbol(
-        None, None, "Cherrim's female sunshine form ID (0x425)"
+        None, None, None, "Cherrim's female sunshine form ID (0x425)"
     )
 
     FLOOR_GENERATION_STATUS_PTR = Symbol(
+        None,
         None,
         None,
         "Pointer to the global FLOOR_GENERATION_STATUS\n\ntype: struct"
@@ -6129,11 +5587,13 @@ class JpOverlay29Data:
     OFFSET_OF_DUNGEON_N_NORMAL_ITEM_SPAWNS = Symbol(
         None,
         None,
+        None,
         "Offset of the (number of base items + 1) field on the dungeon struct"
         " (0x12AFA)",
     )
 
     DUNGEON_GRID_COLUMN_BYTES = Symbol(
+        None,
         None,
         None,
         "The number of bytes in one column of the dungeon grid cell array, 450, which"
@@ -6143,6 +5603,7 @@ class JpOverlay29Data:
     DEFAULT_MAX_POSITION = Symbol(
         None,
         None,
+        None,
         "A large number (9999) to use as a default position for keeping track of"
         " min/max position values",
     )
@@ -6150,10 +5611,12 @@ class JpOverlay29Data:
     OFFSET_OF_DUNGEON_GUARANTEED_ITEM_ID = Symbol(
         None,
         None,
+        None,
         "Offset of the guaranteed item ID field in the dungeon struct (0x2C9E8)",
     )
 
     FIXED_ROOM_TILE_SPAWN_TABLE = Symbol(
+        None,
         None,
         None,
         "Table of tiles that can spawn in fixed rooms, pointed into by the"
@@ -6163,6 +5626,7 @@ class JpOverlay29Data:
     )
 
     FIXED_ROOM_REVISIT_OVERRIDES = Symbol(
+        None,
         None,
         None,
         "Table of fixed room IDs, which if nonzero, overrides the normal fixed room ID"
@@ -6175,6 +5639,7 @@ class JpOverlay29Data:
     FIXED_ROOM_MONSTER_SPAWN_TABLE = Symbol(
         None,
         None,
+        None,
         "Table of monsters that can spawn in fixed rooms, pointed into by the"
         " FIXED_ROOM_ENTITY_SPAWN_TABLE.\n\nThis is an array of 120 4-byte entries"
         " containing info about one monster each. Info includes the monster ID, stats,"
@@ -6184,12 +5649,14 @@ class JpOverlay29Data:
     FIXED_ROOM_ITEM_SPAWN_TABLE = Symbol(
         None,
         None,
+        None,
         "Table of items that can spawn in fixed rooms, pointed into by the"
         " FIXED_ROOM_ENTITY_SPAWN_TABLE.\n\nThis is an array of 63 8-byte entries"
         " containing one item ID each.\n\ntype: struct fixed_room_item_spawn_entry[63]",
     )
 
     FIXED_ROOM_ENTITY_SPAWN_TABLE = Symbol(
+        None,
         None,
         None,
         "Table of entities (items, monsters, tiles) that can spawn in fixed rooms,"
@@ -6204,6 +5671,7 @@ class JpOverlay29Data:
     DIRECTIONS_XY = Symbol(
         None,
         None,
+        None,
         "An array mapping each direction index to its x and y"
         " displacements.\n\nDirections start with 0=down and proceed counterclockwise"
         " (see enum direction_id). Displacements for x and y are interleaved and"
@@ -6215,6 +5683,7 @@ class JpOverlay29Data:
     FRACTIONAL_TURN_SEQUENCE = Symbol(
         None,
         None,
+        None,
         "Read by certain functions that are called by RunFractionalTurn to see if they"
         " should be executed.\n\nArray is accessed via a pointer added to some multiple"
         " of fractional_turn, so that if the resulting memory location is zero, the"
@@ -6224,11 +5693,13 @@ class JpOverlay29Data:
     BELLY_DRAIN_IN_WALLS_INT = Symbol(
         None,
         None,
+        None,
         "The additional amount by which belly is decreased every turn when inside walls"
         " (integer part)",
     )
 
     BELLY_DRAIN_IN_WALLS_THOUSANDTHS = Symbol(
+        None,
         None,
         None,
         "The additional amount by which belly is decreased every turn when inside walls"
@@ -6238,6 +5709,7 @@ class JpOverlay29Data:
     SPATK_STAT_IDX = Symbol(
         None,
         None,
+        None,
         "The index (1) of the special attack entry in internal stat structs, such as"
         " the stat modifier array for a monster.",
     )
@@ -6245,11 +5717,13 @@ class JpOverlay29Data:
     ATK_STAT_IDX = Symbol(
         None,
         None,
+        None,
         "The index (0) of the attack entry in internal stat structs, such as the stat"
         " modifier array for a monster.",
     )
 
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN = Symbol(
+        None,
         None,
         None,
         "An array mapping each (corner index, neighbor direction index) to whether or"
@@ -6267,6 +5741,7 @@ class JpOverlay29Data:
     DUNGEON_PTR = Symbol(
         None,
         None,
+        None,
         "[Runtime] Pointer to the dungeon struct in dungeon mode.\n\nThis is a 'working"
         " copy' of DUNGEON_PTR_MASTER. The main dungeon engine uses this pointer (or"
         " rather pointers to this pointer) when actually running dungeon mode.\n\ntype:"
@@ -6274,6 +5749,7 @@ class JpOverlay29Data:
     )
 
     DUNGEON_PTR_MASTER = Symbol(
+        None,
         None,
         None,
         "[Runtime] Pointer to the dungeon struct in dungeon mode.\n\nThis is a 'master"
@@ -6285,10 +5761,12 @@ class JpOverlay29Data:
     LEADER_PTR = Symbol(
         None,
         None,
+        None,
         "[Runtime] Pointer to the current leader of the team.\n\ntype: struct entity*",
     )
 
     DUNGEON_PRNG_STATE = Symbol(
+        None,
         None,
         None,
         "[Runtime] The global PRNG state for dungeon mode, not including the current"
@@ -6301,12 +5779,14 @@ class JpOverlay29Data:
     DUNGEON_PRNG_STATE_SECONDARY_VALUES = Symbol(
         None,
         None,
+        None,
         "[Runtime] An array of 5 integers corresponding to the last value generated for"
         " each secondary LCG sequence.\n\nBased on the assembly, this appears to be its"
         " own global array, separate from DUNGEON_PRNG_STATE.",
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_ATK_SPEED_BOOST = Symbol(
+        None,
         None,
         None,
         "Array of IDs for exclusive item effects that increase attack speed with"
@@ -6316,11 +5796,13 @@ class JpOverlay29Data:
     EXCL_ITEM_EFFECTS_WEATHER_MOVE_SPEED_BOOST = Symbol(
         None,
         None,
+        None,
         "Array of IDs for exclusive item effects that increase movement speed with"
         " certain weather conditions.",
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_NO_STATUS = Symbol(
+        None,
         None,
         None,
         "Array of IDs for exclusive item effects that grant status immunity with"
@@ -6330,11 +5812,13 @@ class JpOverlay29Data:
     EXCL_ITEM_EFFECTS_EVASION_BOOST = Symbol(
         None,
         None,
+        None,
         "Array of IDs for exclusive item effects that grant an evasion boost with"
         " certain weather conditions.",
     )
 
     DEFAULT_TILE = Symbol(
+        None,
         None,
         None,
         "The default tile struct.\n\nThis is just a struct full of zeroes, but is used"
@@ -6345,15 +5829,21 @@ class JpOverlay29Data:
     FIXED_ROOM_DATA_PTR = Symbol(
         None,
         None,
+        None,
         "[Runtime] Pointer to decoded fixed room data loaded from the BALANCE/fixed.bin"
         " file.",
     )
+
+    NECTAR_IQ_BOOST = Symbol(None, None, None, "IQ boost from ingesting Nectar.")
 
 
 class JpOverlay29Section:
     name = "overlay29"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 29."
+        "The dungeon engine.\n\nThis is the 'main' overlay of dungeon mode. It controls"
+        " most things that happen in a Mystery Dungeon, such as dungeon layout"
+        " generation, dungeon menus, enemy AI, and generally just running each turn"
+        " while within a dungeon."
     )
     loadaddress = 0x22DD8E0
     length = 0x77200
@@ -6361,27 +5851,447 @@ class JpOverlay29Section:
     data = JpOverlay29Data
 
 
-class JpOverlay34Functions:
+class JpOverlay0Functions:
 
     pass
 
 
-class JpOverlay34Data:
+class JpOverlay0Data:
 
-    UNKNOWN_MENU_CONFIRM = Symbol(None, None, "")
-
-    DUNGEON_DEBUG_MENU = Symbol(None, None, "")
+    TOP_MENU_MUSIC_ID = Symbol(None, None, None, "Music ID to play in the top menu.")
 
 
-class JpOverlay34Section:
-    name = "overlay34"
+class JpOverlay0Section:
+    name = "overlay0"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
+        "Likely contains supporting data and code related to the top menu.\n\nThis is"
+        " loaded together with overlay 1 while in the top menu. Since it's in overlay"
+        " group 2 (together with overlay 10, which is another 'data' overlay), this"
+        " overlay probably plays a similar role. It mentions several files from the"
+        " BACK folder that are known backgrounds for the top menu."
+    )
+    loadaddress = 0x22BE220
+    length = 0x609A0
+    functions = JpOverlay0Functions
+    data = JpOverlay0Data
+
+
+class JpOverlay20Functions:
+
+    pass
+
+
+class JpOverlay20Data:
+
+    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class JpOverlay20Section:
+    name = "overlay20"
+    description = "Controls the Recycle Shop."
+    loadaddress = 0x238B6A0
+    length = 0x3000
+    functions = JpOverlay20Functions
+    data = JpOverlay20Data
+
+
+class JpOverlay13Functions:
+
+    pass
+
+
+class JpOverlay13Data:
+
+    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
+
+    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
+
+    STARTERS_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
+
+    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
+
+
+class JpOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Controls the personality test, including the available partners and playable"
+        " Pokémon. The actual personality test questions are stored in the MESSAGE"
+        " folder."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x2E80
+    functions = JpOverlay13Functions
+    data = JpOverlay13Data
+
+
+class JpOverlay11Functions:
+
+    FuncThatCallsCommandParsing = Symbol([0xF24], [0x22DE804], None, "")
+
+    ScriptCommandParsing = Symbol([0x1B24], [0x22DF404], None, "")
+
+    SsbLoad2 = Symbol([0x8448], [0x22E5D28], None, "")
+
+    StationLoadHanger = Symbol([0x8920], [0x22E6200], None, "")
+
+    ScriptStationLoadTalk = Symbol([0x9130], [0x22E6A10], None, "")
+
+    SsbLoad1 = Symbol([0x9A9C], [0x22E737C], None, "")
+
+    ScriptSpecialProcessCall = Symbol(
+        [0xAE6C],
+        [0x22E874C],
+        None,
+        "Processes calls to the OPCODE_PROCESS_SPECIAL script opcode.\n\nr0: some"
+        " struct containing a callback of some sort, only used for special process ID"
+        " 18\nr1: special process ID\nr2: first argument, if relevant? Probably"
+        " corresponds to the second parameter of OPCODE_PROCESS_SPECIAL\nr3: second"
+        " argument, if relevant? Probably corresponds to the third parameter of"
+        " OPCODE_PROCESS_SPECIAL\nreturn: return value of the special process if it has"
+        " one, otherwise 0",
+    )
+
+    GetSpecialRecruitmentSpecies = Symbol(
+        [0xBD90],
+        [0x22E9670],
+        None,
+        "Returns an entry from RECRUITMENT_TABLE_SPECIES.\n\nNote: This indexes without"
+        " doing bounds checking.\n\nr0: index into RECRUITMENT_TABLE_SPECIES\nreturn:"
+        " enum monster_id",
+    )
+
+    PrepareMenuAcceptTeamMember = Symbol(
+        [0xBDD4],
+        [0x22E96B4],
+        None,
+        "Implements SPECIAL_PROC_PREPARE_MENU_ACCEPT_TEAM_MEMBER (see"
+        " ScriptSpecialProcessCall).\n\nr0: index into RECRUITMENT_TABLE_SPECIES",
+    )
+
+    InitRandomNpcJobs = Symbol(
+        [0xBE78],
+        [0x22E9758],
+        None,
+        "Implements SPECIAL_PROC_INIT_RANDOM_NPC_JOBS (see"
+        " ScriptSpecialProcessCall).\n\nr0: job type? 0 is a random NPC job, 1 is a"
+        " bottle mission\nr1: ?",
+    )
+
+    GetRandomNpcJobType = Symbol(
+        [0xBF10],
+        [0x22E97F0],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_TYPE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: job type?",
+    )
+
+    GetRandomNpcJobSubtype = Symbol(
+        [0xBF28],
+        [0x22E9808],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_SUBTYPE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: job subtype?",
+    )
+
+    GetRandomNpcJobStillAvailable = Symbol(
+        [0xBF44],
+        [0x22E9824],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_STILL_AVAILABLE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    AcceptRandomNpcJob = Symbol(
+        [0xBFAC],
+        [0x22E988C],
+        None,
+        "Implements SPECIAL_PROC_ACCEPT_RANDOM_NPC_JOB (see"
+        " ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    GroundMainLoop = Symbol(
+        [0xC4C8],
+        [0x22E9DA8],
+        None,
+        "Appears to be the main loop for ground mode.\n\nBased on debug print"
+        " statements and general code structure, it seems contain a core loop, and"
+        " dispatches to various functions in response to different events.\n\nr0: mode,"
+        " which is stored globally and used in switch statements for dispatch\nreturn:"
+        " return code",
+    )
+
+    GetAllocArenaGround = Symbol(
+        [0xD0B0],
+        [0x22EA990],
+        None,
+        "The GetAllocArena function used for ground mode. See SetMemAllocatorParams for"
+        " more information.\n\nr0: initial memory arena pointer, or null\nr1: flags"
+        " (see MemAlloc)\nreturn: memory arena pointer, or null",
+    )
+
+    GetFreeArenaGround = Symbol(
+        [0xD114],
+        [0x22EA9F4],
+        None,
+        "The GetFreeArena function used for ground mode. See SetMemAllocatorParams for"
+        " more information.\n\nr0: initial memory arena pointer, or null\nr1: pointer"
+        " to free\nreturn: memory arena pointer, or null",
+    )
+
+    GroundMainReturnDungeon = Symbol(
+        [0xD168],
+        [0x22EAA48],
+        None,
+        "Implements SPECIAL_PROC_RETURN_DUNGEON (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+    GroundMainNextDay = Symbol(
+        [0xD18C],
+        [0x22EAA6C],
+        None,
+        "Implements SPECIAL_PROC_NEXT_DAY (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+    JumpToTitleScreen = Symbol(
+        [0xD330],
+        [0x22EAC10],
+        None,
+        "Implements SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and SPECIAL_PROC_0x1A (see"
+        " ScriptSpecialProcessCall).\n\nr0: int, argument value for"
+        " SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and -1 for SPECIAL_PROC_0x1A\nreturn: bool"
+        " (but note that the special process ignores this and always returns 0)",
+    )
+
+    ReturnToTitleScreen = Symbol(
+        [0xD3E8],
+        [0x22EACC8],
+        None,
+        "Implements SPECIAL_PROC_RETURN_TO_TITLE_SCREEN (see"
+        " ScriptSpecialProcessCall).\n\nr0: fade duration\nreturn: bool (but note that"
+        " the special process ignores this and always returns 0)",
+    )
+
+    ScriptSpecialProcess0x16 = Symbol(
+        [0xD448],
+        [0x22EAD28],
+        None,
+        "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
+    )
+
+    SprintfStatic = Symbol(
+        [0x2CB98],
+        [0x230A478],
+        None,
+        "Statically defined copy of sprintf(3) in overlay 11. See arm9.yml for more"
+        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
+        " characters printed, excluding the null-terminator",
+    )
+
+    StatusUpdate = Symbol(
+        [0x3771C],
+        [0x2314FFC],
+        None,
+        "Implements SPECIAL_PROC_STATUS_UPDATE (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+
+class JpOverlay11Data:
+
+    SCRIPT_OP_CODES = Symbol(
+        [0x3C294],
+        [0x2319B74],
+        0xBF8,
+        "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
+        " opcodes underpin the various ExplorerScript functions you can call in the"
+        " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
+    )
+
+    C_ROUTINES = Symbol(
+        [0x404AC],
+        [0x231DD8C],
+        0x15E8,
+        "Common routines used within the unionall.ssb script (the master script). There"
+        " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
+        " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
+        " common_routine_table",
+    )
+
+    OBJECTS = Symbol(
+        [0x42AD8],
+        [0x23203B8],
+        0x1A04,
+        "Table of objects for the script engine, which can be placed in scenes. There"
+        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
+        " script_object[length / 12]",
+    )
+
+    RECRUITMENT_TABLE_LOCATIONS = Symbol(
+        None,
+        None,
+        None,
+        "Table of dungeon IDs corresponding to entries in"
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
+    )
+
+    RECRUITMENT_TABLE_LEVELS = Symbol(
+        None,
+        None,
+        None,
+        "Table of levels for recruited Pokémon, corresponding to entries in"
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
+    )
+
+    RECRUITMENT_TABLE_SPECIES = Symbol(
+        None,
+        None,
+        None,
+        "Table of Pokémon recruited at special locations, such as at the ends of"
+        " certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during"
+        " a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes"
+        " both Heatran genders. It also includes Darkrai for some reason?\n\ntype:"
+        " struct monster_id_16[22]",
+    )
+
+    LEVEL_TILEMAP_LIST = Symbol(None, None, None, "")
+
+    OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16"
+        " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
+        " overlay_group_id in the C headers for a mapping between group ID and overlay"
+        " number)\n- function pointer to entry point\n- function pointer to"
+        " destructor\n- possibly function pointer to frame-update function?",
+    )
+
+    UNIONALL_RAM_ADDRESS = Symbol(None, None, None, "[Runtime]")
+
+    GROUND_STATE_MAP = Symbol(None, None, None, "[Runtime]")
+
+    GROUND_STATE_PTRS = Symbol(
+        None,
+        None,
+        None,
+        "Host pointers to multiple structure used for performing an overworld"
+        " scene\n\ntype: struct main_ground_data",
+    )
+
+
+class JpOverlay11Section:
+    name = "overlay11"
+    description = (
+        "The script engine.\n\nThis is the 'main' overlay of ground mode. The script"
+        " engine is what runs the ground mode scripts contained in the SCRIPT folder,"
+        " which are written in a custom scripting language. These scripts encode things"
+        " like cutscenes, screen transitions, ground mode events, and tons of other"
+        " things related to ground mode."
     )
     loadaddress = 0x22DD8E0
-    length = 0xDC0
-    functions = JpOverlay34Functions
-    data = JpOverlay34Data
+    length = 0x48B00
+    functions = JpOverlay11Functions
+    data = JpOverlay11Data
+
+
+class JpOverlay28Functions:
+
+    pass
+
+
+class JpOverlay28Data:
+
+    pass
+
+
+class JpOverlay28Section:
+    name = "overlay28"
+    description = "Controls the staff credits sequence."
+    loadaddress = 0x238B6A0
+    length = 0xC60
+    functions = JpOverlay28Functions
+    data = JpOverlay28Data
+
+
+class JpOverlay25Functions:
+
+    pass
+
+
+class JpOverlay25Data:
+
+    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
+
+    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
+
+
+class JpOverlay25Section:
+    name = "overlay25"
+    description = "Controls Xatu Appraisal."
+    loadaddress = 0x238B6A0
+    length = 0x14C0
+    functions = JpOverlay25Functions
+    data = JpOverlay25Data
+
+
+class JpOverlay4Functions:
+
+    pass
+
+
+class JpOverlay4Data:
+
+    pass
+
+
+class JpOverlay4Section:
+    name = "overlay4"
+    description = "Controls the Trade Items submenu within the top menu."
+    loadaddress = 0x233E300
+    length = 0x2BE0
+    functions = JpOverlay4Functions
+    data = JpOverlay4Data
+
+
+class JpOverlay7Functions:
+
+    pass
+
+
+class JpOverlay7Data:
+
+    pass
+
+
+class JpOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
+    )
+    loadaddress = 0x233E300
+    length = 0x53E0
+    functions = JpOverlay7Functions
+    data = JpOverlay7Data
 
 
 class JpOverlay1Functions:
@@ -6391,28 +6301,86 @@ class JpOverlay1Functions:
 
 class JpOverlay1Data:
 
-    CONTINUE_CHOICE = Symbol(None, None, "")
+    CONTINUE_CHOICE = Symbol(None, None, None, "")
 
-    SUBMENU = Symbol(None, None, "")
+    SUBMENU = Symbol(None, None, None, "")
 
-    MAIN_MENU = Symbol(None, None, "")
+    MAIN_MENU = Symbol(None, None, None, "")
 
-    MAIN_MENU_CONFIRM = Symbol(None, None, "")
+    MAIN_MENU_CONFIRM = Symbol(None, None, None, "")
 
-    MAIN_DEBUG_MENU_1 = Symbol(None, None, "")
+    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
 
-    MAIN_DEBUG_MENU_2 = Symbol(None, None, "")
+    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
 
 
 class JpOverlay1Section:
     name = "overlay1"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
+        "Likely controls the top menu.\n\nThis is loaded together with overlay 0 while"
+        " in the top menu. Since it's in overlay group 1 (together with other 'main'"
+        " overlays like overlay 11 and overlay 29), this is probably the"
+        " controller.\n\nSeems to contain code related to Wi-Fi rescue. It mentions"
+        " several files from the GROUND and BACK folders."
     )
     loadaddress = 0x232ACC0
     length = 0x12E00
     functions = JpOverlay1Functions
     data = JpOverlay1Data
+
+
+class JpOverlay6Functions:
+
+    pass
+
+
+class JpOverlay6Data:
+
+    pass
+
+
+class JpOverlay6Section:
+    name = "overlay6"
+    description = "Controls the Wonder Mail S submenu within the top menu."
+    loadaddress = 0x233E300
+    length = 0x2460
+    functions = JpOverlay6Functions
+    data = JpOverlay6Data
+
+
+class JpOverlay18Functions:
+
+    pass
+
+
+class JpOverlay18Data:
+
+    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
+
+    MOVES_MAIN_MENU = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
+
+
+class JpOverlay18Section:
+    name = "overlay18"
+    description = "Controls the Electivire Link Shop."
+    loadaddress = 0x238B6A0
+    length = 0x3520
+    functions = JpOverlay18Functions
+    data = JpOverlay18Data
 
 
 class JpOverlay2Functions:
@@ -6428,12 +6396,427 @@ class JpOverlay2Data:
 class JpOverlay2Section:
     name = "overlay2"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 2."
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
     )
     loadaddress = 0x232ACC0
     length = 0x2AFA0
     functions = JpOverlay2Functions
     data = JpOverlay2Data
+
+
+class JpOverlay12Functions:
+
+    pass
+
+
+class JpOverlay12Data:
+
+    pass
+
+
+class JpOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = 0x238B6A0
+    length = 0x20
+    functions = JpOverlay12Functions
+    data = JpOverlay12Data
+
+
+class JpOverlay22Functions:
+
+    pass
+
+
+class JpOverlay22Data:
+
+    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class JpOverlay22Section:
+    name = "overlay22"
+    description = "Controls the Kecleon Shop in Treasure Town."
+    loadaddress = 0x238B6A0
+    length = 0x4B40
+    functions = JpOverlay22Functions
+    data = JpOverlay22Data
+
+
+class JpOverlay10Functions:
+
+    SprintfStatic = Symbol(
+        None,
+        None,
+        None,
+        "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
+        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
+        " characters printed, excluding the null-terminator",
+    )
+
+
+class JpOverlay10Data:
+
+    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
+        None,
+        None,
+        None,
+        "The first dungeon that can have extra traps spawn in Monster Houses, Dark"
+        " Hill\n\ntype: struct dungeon_id_8",
+    )
+
+    BAD_POISON_DAMAGE_COOLDOWN = Symbol(
+        None,
+        None,
+        None,
+        "The number of turns between passive bad poison (toxic) damage.",
+    )
+
+    PROTEIN_STAT_BOOST = Symbol(
+        None, None, None, "The permanent attack boost from ingesting a Protein."
+    )
+
+    SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
+        None,
+        None,
+        None,
+        "The maximum number of enemies that can spawn on a floor without a monster"
+        " house (15).",
+    )
+
+    OREN_BERRY_DAMAGE = Symbol(
+        None, None, None, "Damage dealt by eating an Oren Berry."
+    )
+
+    SITRUS_BERRY_HP_RESTORATION = Symbol(
+        None, None, None, "The amount of HP restored by eating a Sitrus Berry."
+    )
+
+    EXP_ELITE_EXP_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "The percentage increase in experience from the Exp. Elite IQ skill",
+    )
+
+    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
+        None,
+        None,
+        None,
+        "The maximum number of extra non-monster spawns (items/traps) in a Monster"
+        " House, 7",
+    )
+
+    GOLD_THORN_POWER = Symbol(None, None, None, "Attack power for Golden Thorns.")
+
+    SPAWN_COOLDOWN = Symbol(
+        None,
+        None,
+        None,
+        "The number of turns between enemy spawns under normal conditions.",
+    )
+
+    ORAN_BERRY_FULL_HP_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "The permanent HP boost from eating an Oran Berry at full HP (0).",
+    )
+
+    LIFE_SEED_HP_BOOST = Symbol(
+        None, None, None, "The permanent HP boost from eating a Life Seed."
+    )
+
+    EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "The percentage increase in experience from exp-boosting exclusive items",
+    )
+
+    INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
+        None, None, None, "The percentage chance that Intimidator will activate."
+    )
+
+    ORAN_BERRY_HP_RESTORATION = Symbol(
+        None, None, None, "The amount of HP restored by eating a Oran Berry."
+    )
+
+    SITRUS_BERRY_FULL_HP_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "The permanent HP boost from eating a Sitrus Berry at full HP.",
+    )
+
+    BURN_DAMAGE_COOLDOWN = Symbol(
+        None, None, None, "The number of turns between passive burn damage."
+    )
+
+    STICK_POWER = Symbol(None, None, None, "Attack power for Sticks.")
+
+    SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
+        None,
+        None,
+        None,
+        "The number of turns between enemy spawns when the Thief Alert condition is"
+        " active.",
+    )
+
+    MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
+        None,
+        None,
+        None,
+        "The maximum number of monster spawns in a Monster House, 30, but multiplied by"
+        " 2/3 for some reason (so the actual maximum is 45)",
+    )
+
+    SPEED_BOOST_TURNS = Symbol(
+        None,
+        None,
+        None,
+        "Number of turns (250) after which Speed Boost will trigger and increase speed"
+        " by one stage.",
+    )
+
+    MIRACLE_CHEST_EXP_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "The percentage increase in experience from the Miracle Chest item",
+    )
+
+    WONDER_CHEST_EXP_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "The percentage increase in experience from the Wonder Chest item",
+    )
+
+    SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
+        None,
+        None,
+        None,
+        "The maximum number of enemies that can spawn on a floor with a monster house,"
+        " not counting those in the monster house (4).",
+    )
+
+    POISON_DAMAGE_COOLDOWN = Symbol(
+        None, None, None, "The number of turns between passive poison damage."
+    )
+
+    GEO_PEBBLE_DAMAGE = Symbol(None, None, None, "Damage dealt by Geo Pebbles.")
+
+    GRAVELEROCK_DAMAGE = Symbol(None, None, None, "Damage dealt by Gravelerocks.")
+
+    RARE_FOSSIL_DAMAGE = Symbol(None, None, None, "Damage dealt by Rare Fossils.")
+
+    GINSENG_CHANCE_3 = Symbol(
+        None,
+        None,
+        None,
+        "The percentage chance for...something to be set to 3 in a calculation related"
+        " to the Ginseng boost.",
+    )
+
+    ZINC_STAT_BOOST = Symbol(
+        None, None, None, "The permanent special defense boost from ingesting a Zinc."
+    )
+
+    IRON_STAT_BOOST = Symbol(
+        None, None, None, "The permanent defense boost from ingesting an Iron."
+    )
+
+    CALCIUM_STAT_BOOST = Symbol(
+        None, None, None, "The permanent special attack boost from ingesting a Calcium."
+    )
+
+    CORSOLA_TWIG_POWER = Symbol(None, None, None, "Attack power for Corsola Twigs.")
+
+    CACNEA_SPIKE_POWER = Symbol(None, None, None, "Attack power for Cacnea Spikes.")
+
+    GOLD_FANG_POWER = Symbol(None, None, None, "Attack power for Gold Fangs.")
+
+    SILVER_SPIKE_POWER = Symbol(None, None, None, "Attack power for Silver Spikes.")
+
+    IRON_THORN_POWER = Symbol(None, None, None, "Attack power for Iron Thorns.")
+
+    SLEEP_DURATION_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "Appears to control the range of turns for which the sleep condition can"
+        " last.\n\nThe first two bytes are the low value of the range, and the later"
+        " two bytes are the high value.",
+    )
+
+    POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
+        " fixed-point number (8 fraction bits)",
+    )
+
+    AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
+        " number (8 fraction bits)",
+    )
+
+    SPEED_BOOST_DURATION_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "Appears to control the range of turns for which a speed boost can last.\n\nThe"
+        " first two bytes are the low value of the range, and the later two bytes are"
+        " the high value.",
+    )
+
+    OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
+        None,
+        None,
+        None,
+        "Table of multipliers for offensive stats (attack/special attack) for each"
+        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
+    )
+
+    DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
+        None,
+        None,
+        None,
+        "Table of multipliers for defensive stats (defense/special defense) for each"
+        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
+    )
+
+    RANDOM_MUSIC_ID_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of music IDs for dungeons with a random assortment of music"
+        " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
+        " row contains the possible music IDs for a given group, from which the music"
+        " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
+    )
+
+    MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
+        None,
+        None,
+        None,
+        "Table of multipliers for the accuracy stat for males for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
+        None,
+        None,
+        None,
+        "Table of multipliers for the evasion stat for males for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
+        None,
+        None,
+        None,
+        "Table of multipliers for the accuracy stat for females for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
+        None,
+        None,
+        None,
+        "Table of multipliers for the evasion stat for females for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    MUSIC_ID_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "List of music IDs used in dungeons with a single music track.\n\nThis is an"
+        " array of 170 2-byte music IDs, and is indexed into by the music value in the"
+        " floor properties struct for a given floor. Music IDs with the highest bit set"
+        " (0x8000) are indexes into the RANDOM_MUSIC_ID_TABLE.\n\ntype: struct"
+        " music_id_16[170] (or not a music ID if the highest bit is set)",
+    )
+
+    TYPE_MATCHUP_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of type matchups.\n\nEach row corresponds to the type matchups of a"
+        " specific attack type, with each entry within the row specifying the type's"
+        " effectiveness against a target type.\n\ntype: struct type_matchup_table",
+    )
+
+    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of stats for monsters that can spawn in fixed rooms, pointed into by the"
+        " FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries"
+        " containing stat spreads for one monster entry each.\n\ntype: struct"
+        " fixed_room_monster_spawn_stats_entry[99]",
+    )
+
+    TILESET_PROPERTIES = Symbol(None, None, None, "")
+
+    FIXED_ROOM_PROPERTIES_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte"
+        " entries containing properties for a given fixed room ID.\n\nSee the struct"
+        " definitions and End45's dungeon data document for more info.\n\ntype: struct"
+        " fixed_room_properties_entry[256]",
+    )
+
+    MOVE_ANIMATION_INFO = Symbol(None, None, None, "")
+
+
+class JpOverlay10Section:
+    name = "overlay10"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 10."
+    )
+    loadaddress = 0x22BE220
+    length = 0x1F6A0
+    functions = JpOverlay10Functions
+    data = JpOverlay10Data
+
+
+class JpOverlay34Functions:
+
+    pass
+
+
+class JpOverlay34Data:
+
+    UNKNOWN_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay34Section:
+    name = "overlay34"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 34."
+    )
+    loadaddress = 0x22DD8E0
+    length = 0xDC0
+    functions = JpOverlay34Functions
+    data = JpOverlay34Data
 
 
 class JpOverlay3Functions:
@@ -6457,25 +6840,46 @@ class JpOverlay3Section:
     data = JpOverlay3Data
 
 
-class JpOverlay5Functions:
+class JpOverlay8Functions:
 
     pass
 
 
-class JpOverlay5Data:
+class JpOverlay8Data:
 
     pass
 
 
-class JpOverlay5Section:
-    name = "overlay5"
+class JpOverlay8Section:
+    name = "overlay8"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
     )
     loadaddress = 0x233E300
-    length = 0x3260
-    functions = JpOverlay5Functions
-    data = JpOverlay5Data
+    length = 0x2200
+    functions = JpOverlay8Functions
+    data = JpOverlay8Data
+
+
+class JpOverlay30Functions:
+
+    pass
+
+
+class JpOverlay30Data:
+
+    pass
+
+
+class JpOverlay30Section:
+    name = "overlay30"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 30."
+    )
+    loadaddress = 0x2383AA0
+    length = 0x3880
+    functions = JpOverlay30Functions
+    data = JpOverlay30Data
 
 
 class JpOverlay31Functions:
@@ -6485,19 +6889,19 @@ class JpOverlay31Functions:
 
 class JpOverlay31Data:
 
-    DUNGEON_MAIN_MENU = Symbol(None, None, "")
+    DUNGEON_MAIN_MENU = Symbol(None, None, None, "")
 
-    DUNGEON_SUBMENU_1 = Symbol(None, None, "")
+    DUNGEON_SUBMENU_1 = Symbol(None, None, None, "")
 
-    DUNGEON_SUBMENU_2 = Symbol(None, None, "")
+    DUNGEON_SUBMENU_2 = Symbol(None, None, None, "")
 
-    DUNGEON_SUBMENU_3 = Symbol(None, None, "")
+    DUNGEON_SUBMENU_3 = Symbol(None, None, None, "")
 
-    DUNGEON_SUBMENU_4 = Symbol(None, None, "")
+    DUNGEON_SUBMENU_4 = Symbol(None, None, None, "")
 
-    DUNGEON_SUBMENU_5 = Symbol(None, None, "")
+    DUNGEON_SUBMENU_5 = Symbol(None, None, None, "")
 
-    DUNGEON_SUBMENU_6 = Symbol(None, None, "")
+    DUNGEON_SUBMENU_6 = Symbol(None, None, None, "")
 
 
 class JpOverlay31Section:
@@ -6511,180 +6915,543 @@ class JpOverlay31Section:
     data = JpOverlay31Data
 
 
-class JpOverlay15Functions:
+class JpOverlay16Functions:
 
     pass
 
 
-class JpOverlay15Data:
+class JpOverlay16Data:
 
-    BANK_MAIN_MENU = Symbol(None, None, "")
+    EVO_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    EVO_SUBMENU = Symbol(None, None, None, "")
+
+    EVO_MAIN_MENU = Symbol(None, None, None, "")
 
 
-class JpOverlay15Section:
-    name = "overlay15"
+class JpOverlay16Section:
+    name = "overlay16"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
+        "Hard-coded immediate values (literals) in instructions within overlay 16."
     )
     loadaddress = 0x238B6A0
-    length = 0x1060
-    functions = JpOverlay15Functions
-    data = JpOverlay15Data
+    length = 0x2D40
+    functions = JpOverlay16Functions
+    data = JpOverlay16Data
 
 
-class JpOverlay20Functions:
+class JpOverlay19Functions:
 
     pass
 
 
-class JpOverlay20Data:
+class JpOverlay19Data:
 
-    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, "")
+    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
 
-    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, "")
+    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
 
-    RECYCLE_SUBMENU_1 = Symbol(None, None, "")
+    BAR_MAIN_MENU = Symbol(None, None, None, "")
 
-    RECYCLE_SUBMENU_2 = Symbol(None, None, "")
+    BAR_SUBMENU_1 = Symbol(None, None, None, "")
 
-    RECYCLE_MAIN_MENU_1 = Symbol(None, None, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol(None, None, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol(None, None, "")
+    BAR_SUBMENU_2 = Symbol(None, None, None, "")
 
 
-class JpOverlay20Section:
-    name = "overlay20"
+class JpOverlay19Section:
+    name = "overlay19"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 20."
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
     )
     loadaddress = 0x238B6A0
-    length = 0x3000
-    functions = JpOverlay20Functions
-    data = JpOverlay20Data
+    length = 0x4220
+    functions = JpOverlay19Functions
+    data = JpOverlay19Data
 
 
-class JpOverlay27Functions:
+class JpOverlay23Functions:
 
     pass
 
 
-class JpOverlay27Data:
+class JpOverlay23Data:
 
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, "")
+    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
 
-    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, "")
+    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
 
-    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, "")
+    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
 
-    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, "")
+    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
 
 
-class JpOverlay27Section:
-    name = "overlay27"
+class JpOverlay23Section:
+    name = "overlay23"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
+        "Hard-coded immediate values (literals) in instructions within overlay 23."
     )
     loadaddress = 0x238B6A0
-    length = 0x2DA0
-    functions = JpOverlay27Functions
-    data = JpOverlay27Data
+    length = 0x37E0
+    functions = JpOverlay23Functions
+    data = JpOverlay23Data
 
 
-class JpOverlay12Functions:
-
-    pass
-
-
-class JpOverlay12Data:
+class JpOverlay24Functions:
 
     pass
 
 
-class JpOverlay12Section:
-    name = "overlay12"
+class JpOverlay24Data:
+
+    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay24Section:
+    name = "overlay24"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 24."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x24E0
+    functions = JpOverlay24Functions
+    data = JpOverlay24Data
+
+
+class JpOverlay26Functions:
+
+    pass
+
+
+class JpOverlay26Data:
+
+    pass
+
+
+class JpOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 26."
+    )
+    loadaddress = 0x238B6A0
+    length = 0xE40
+    functions = JpOverlay26Functions
+    data = JpOverlay26Data
+
+
+class JpOverlay33Functions:
+
+    pass
+
+
+class JpOverlay33Data:
+
+    pass
+
+
+class JpOverlay33Section:
+    name = "overlay33"
     description = "Unused; all zeroes."
-    loadaddress = 0x238B6A0
+    loadaddress = 0x2383AA0
     length = 0x20
-    functions = JpOverlay12Functions
-    data = JpOverlay12Data
+    functions = JpOverlay33Functions
+    data = JpOverlay33Data
+
+
+class JpOverlay35Functions:
+
+    pass
+
+
+class JpOverlay35Data:
+
+    pass
+
+
+class JpOverlay35Section:
+    name = "overlay35"
+    description = "Unused; all zeroes."
+    loadaddress = 0x22BE220
+    length = 0x20
+    functions = JpOverlay35Functions
+    data = JpOverlay35Data
+
+
+class JpRamFunctions:
+
+    pass
+
+
+class JpRamData:
+
+    DUNGEON_COLORMAP_PTR = Symbol(
+        None,
+        None,
+        None,
+        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
+        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
+        " indexes into when rendering colors. Some weather conditions modify the"
+        " colormap, which is how the color scheme changes when it's, e.g., raining.",
+    )
+
+    DUNGEON_STRUCT = Symbol(
+        None,
+        None,
+        None,
+        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
+        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
+        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
+        " 29.\n\ntype: struct dungeon",
+    )
+
+    MOVE_DATA_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
+        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
+        " ARM 9 binary.\n\ntype: struct move_data_table",
+    )
+
+    FRAMES_SINCE_LAUNCH = Symbol(
+        None,
+        None,
+        None,
+        "Starts at 0 when the game is first launched, and continuously ticks up once"
+        " per frame while the game is running.",
+    )
+
+    BAG_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
+        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
+        " if filled.\n\ntype: struct item[50]",
+    )
+
+    BAG_ITEMS_PTR = Symbol(None, None, None, "Pointer to BAG_ITEMS.")
+
+    STORAGE_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
+        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
+        " item_id_16[1000]",
+    )
+
+    STORAGE_ITEM_QUANTITIES = Symbol(
+        None,
+        None,
+        None,
+        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
+        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
+        " entry in this array is unused, and will be 0.",
+    )
+
+    KECLEON_SHOP_ITEMS_PTR = Symbol(None, None, None, "Pointer to KECLEON_SHOP_ITEMS.")
+
+    KECLEON_SHOP_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
+        " to be used by the Kecleon Shop.",
+    )
+
+    KECLEON_WARES_ITEMS_PTR = Symbol(
+        None, None, None, "Pointer to KECLEON_WARES_ITEMS."
+    )
+
+    KECLEON_WARES_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_WARES_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
+        " to be used by Kecleon Wares.",
+    )
+
+    MONEY_CARRIED = Symbol(
+        None, None, None, "The amount of money the player is currently carrying."
+    )
+
+    MONEY_STORED = Symbol(
+        None,
+        None,
+        None,
+        "The amount of money the player currently has stored in the Duskull Bank.",
+    )
+
+    LAST_NEW_MOVE = Symbol(
+        None,
+        None,
+        None,
+        "Move struct of the last new move introduced when learning a new move. Persists"
+        " even after the move selection is made in the menu.\n\ntype: struct move",
+    )
+
+    SCRIPT_VARS_VALUES = Symbol(
+        None,
+        None,
+        None,
+        "The table of game variable values. Its structure is determined by"
+        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
+        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
+        " the real length of this table is 0x400 based on the game code.\n\ntype:"
+        " struct script_var_value_table",
+    )
+
+    BAG_LEVEL = Symbol(
+        None,
+        None,
+        None,
+        "The player's bag level, which determines the bag capacity. This indexes"
+        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
+    )
+
+    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
+        None,
+        None,
+        None,
+        "The number of the special episode currently being played.\n\n0: normal,"
+        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
+        " Comes Team Charm!\n4: In the Future of Darkness",
+    )
+
+    PENDING_DUNGEON_ID = Symbol(
+        None,
+        None,
+        None,
+        "The ID of the selected dungeon when setting off from the"
+        " overworld.\n\nControls the text and map location during the 'map cutscene'"
+        " just before entering a dungeon, as well as the actual dungeon loaded"
+        " afterwards.\n\ntype: struct dungeon_id_8",
+    )
+
+    PENDING_STARTING_FLOOR = Symbol(
+        None,
+        None,
+        None,
+        "The floor number to start from in the dungeon specified by"
+        " PENDING_DUNGEON_ID.",
+    )
+
+    PLAY_TIME_SECONDS = Symbol(
+        None, None, None, "The player's total play time in seconds."
+    )
+
+    PLAY_TIME_FRAME_COUNTER = Symbol(
+        None,
+        None,
+        None,
+        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
+        " with each rollover.",
+    )
+
+    TEAM_NAME = Symbol(
+        None,
+        None,
+        None,
+        "The team name.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    HERO_SPECIES_ID = Symbol(
+        None,
+        None,
+        None,
+        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
+        " with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    HERO_NICKNAME = Symbol(
+        None,
+        None,
+        None,
+        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    PARTNER_SPECIES_ID = Symbol(
+        None,
+        None,
+        None,
+        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
+        " together with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    LEADER_IQ_SKILLS = Symbol(
+        None,
+        None,
+        None,
+        "Unlocked IQ skills of the current leader, available for selection from the IQ"
+        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
+        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
+        " larger struct, together with other nearby data.",
+    )
+
+    LEADER_NICKNAME = Symbol(
+        None,
+        None,
+        None,
+        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
+        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
+        " typically uses.\n\nThis is presumably part of a larger struct, together with"
+        " other nearby data.",
+    )
+
+    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
+        None,
+        None,
+        None,
+        "Unlocked IQ skills of the second party member, available for selection from"
+        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
+        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
+        " a larger struct, together with other nearby data.",
+    )
+
+    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
+        None,
+        None,
+        None,
+        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
+        " the game is running.",
+    )
+
+    TURNING_ON_THE_SPOT_FLAG = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    FLOOR_GENERATION_STATUS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Status data related to generation of the current floor in a"
+        " dungeon.\n\nThis data is populated as the dungeon floor is"
+        " generated.\n\ntype: struct floor_generation_status",
+    )
+
+
+class JpRamSection:
+    name = "ram"
+    description = (
+        "Main memory.\nData in this file aren't located in the ROM itself, and are"
+        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
+        " dumping ground for addresses that are useful to know about, but don't fall in"
+        " the address ranges of any of the other files. Dynamically loaded constructs"
+        " that do fall within the address range of a relevant binary should be listed"
+        " in the corresponding YAML file of that binary, since it still has direct"
+        " utility when reverse-engineering that particular binary."
+    )
+    loadaddress = 0x2000000
+    length = 0x400000
+    functions = JpRamFunctions
+    data = JpRamData
 
 
 class JpSections:
 
-    overlay18 = JpOverlay18Section
-
     arm9 = JpArm9Section
-
-    overlay13 = JpOverlay13Section
-
-    overlay25 = JpOverlay25Section
-
-    overlay16 = JpOverlay16Section
-
-    overlay26 = JpOverlay26Section
-
-    overlay30 = JpOverlay30Section
-
-    overlay21 = JpOverlay21Section
-
-    overlay32 = JpOverlay32Section
-
-    ram = JpRamSection
-
-    overlay17 = JpOverlay17Section
-
-    overlay19 = JpOverlay19Section
-
-    overlay33 = JpOverlay33Section
-
-    overlay22 = JpOverlay22Section
-
-    overlay28 = JpOverlay28Section
-
-    overlay4 = JpOverlay4Section
-
-    overlay14 = JpOverlay14Section
-
-    overlay7 = JpOverlay7Section
-
-    overlay6 = JpOverlay6Section
-
-    overlay35 = JpOverlay35Section
-
-    overlay23 = JpOverlay23Section
-
-    overlay8 = JpOverlay8Section
-
-    overlay9 = JpOverlay9Section
-
-    overlay24 = JpOverlay24Section
-
-    overlay0 = JpOverlay0Section
-
-    overlay10 = JpOverlay10Section
-
-    overlay11 = JpOverlay11Section
-
-    overlay29 = JpOverlay29Section
-
-    overlay34 = JpOverlay34Section
-
-    overlay1 = JpOverlay1Section
-
-    overlay2 = JpOverlay2Section
-
-    overlay3 = JpOverlay3Section
 
     overlay5 = JpOverlay5Section
 
-    overlay31 = JpOverlay31Section
-
-    overlay15 = JpOverlay15Section
-
-    overlay20 = JpOverlay20Section
+    overlay14 = JpOverlay14Section
 
     overlay27 = JpOverlay27Section
 
+    overlay9 = JpOverlay9Section
+
+    overlay32 = JpOverlay32Section
+
+    overlay17 = JpOverlay17Section
+
+    overlay21 = JpOverlay21Section
+
+    overlay15 = JpOverlay15Section
+
+    overlay29 = JpOverlay29Section
+
+    overlay0 = JpOverlay0Section
+
+    overlay20 = JpOverlay20Section
+
+    overlay13 = JpOverlay13Section
+
+    overlay11 = JpOverlay11Section
+
+    overlay28 = JpOverlay28Section
+
+    overlay25 = JpOverlay25Section
+
+    overlay4 = JpOverlay4Section
+
+    overlay7 = JpOverlay7Section
+
+    overlay1 = JpOverlay1Section
+
+    overlay6 = JpOverlay6Section
+
+    overlay18 = JpOverlay18Section
+
+    overlay2 = JpOverlay2Section
+
     overlay12 = JpOverlay12Section
+
+    overlay22 = JpOverlay22Section
+
+    overlay10 = JpOverlay10Section
+
+    overlay34 = JpOverlay34Section
+
+    overlay3 = JpOverlay3Section
+
+    overlay8 = JpOverlay8Section
+
+    overlay30 = JpOverlay30Section
+
+    overlay31 = JpOverlay31Section
+
+    overlay16 = JpOverlay16Section
+
+    overlay19 = JpOverlay19Section
+
+    overlay23 = JpOverlay23Section
+
+    overlay24 = JpOverlay24Section
+
+    overlay26 = JpOverlay26Section
+
+    overlay33 = JpOverlay33Section
+
+    overlay35 = JpOverlay35Section
+
+    ram = JpRamSection

@@ -1,16 +1,30 @@
-from typing import Protocol, Optional, TypeVar, List, Generic
+from typing import Protocol, Optional, TypeVar, List, Generic, no_type_check
 from dataclasses import dataclass
 
 A = TypeVar('A')
 B = TypeVar('B')
 
 @dataclass
-class Symbol(Generic[A, B]):
+class Symbol(Generic[A, B, C]):
     # Either a list of at least one address or None if not defined for the region.
     addresses: A
+    # Like addresses but memory-absolute
+    absolute_addresses: A
     # None for most functions. Data fields should generally have a length defined.
     length: B
     description: str
+
+    @no_type_check
+    @property
+    def address(self) -> int:
+        """First / main address. Raises an IndexError/TypeError if no address is defined."""
+        return self.addresses[0]
+
+    @no_type_check
+    @property
+    def absolute_address(self) -> int:
+        """First / main address (absolute). Raises an IndexError/TypeError if no address is defined."""
+        return self.absolute_addresses[0]
 
 
 T = TypeVar('T')
@@ -49,6 +63,12 @@ class {{ binary.class_name }}DataProtocol(Protocol):
         {{ dt.lengths | has_all_else_optional("int") }}, \
     ]
     {% endfor %}
+
+{{ binary.class_name }}Protocol = SectionProtocol[ \
+    {{ binary.class_name }}FunctionsProtocol, \
+    {{ binary.class_name }}DataProtocol, \
+    {{ binary.loadaddresses | has_all_else_optional("int") }}, \
+]
 {% endfor %}
 
 class AllSymbolsProtocol(Protocol):
@@ -56,10 +76,5 @@ class AllSymbolsProtocol(Protocol):
     pass
     {% endif %}
     {% for binary in symbols %}
-    {{ binary.name }}: SectionProtocol[ \
-        {{ binary.class_name }}FunctionsProtocol, \
-        {{ binary.class_name }}DataProtocol, \
-        {{ binary.loadaddresses | has_all_else_optional("int") }}, \
-        {{ binary.lengths | has_all_else_optional("int") }} \
-    ]
+    {{ binary.name }}: {{ binary.class_name }}Protocol
     {% endfor %}

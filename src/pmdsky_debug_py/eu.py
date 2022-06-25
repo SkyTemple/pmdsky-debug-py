@@ -1,44 +1,10 @@
 from .protocol import Symbol
 
 
-class EuOverlay18Functions:
-
-    pass
-
-
-class EuOverlay18Data:
-
-    MOVES_MENU_CONFIRM = Symbol([0x238DE60], 0x18, "")
-
-    MOVES_SUBMENU_1 = Symbol([0x238DE78], 0x20, "")
-
-    MOVES_SUBMENU_2 = Symbol([0x238DE98], 0x20, "")
-
-    MOVES_MAIN_MENU = Symbol([0x238DEB8], 0x20, "")
-
-    MOVES_SUBMENU_3 = Symbol([0x238DED8], 0x28, "")
-
-    MOVES_SUBMENU_4 = Symbol([0x238DF00], 0x30, "")
-
-    MOVES_SUBMENU_5 = Symbol([0x238DF30], 0x48, "")
-
-    MOVES_SUBMENU_6 = Symbol([0x238DF78], 0x48, "")
-
-    MOVES_SUBMENU_7 = Symbol([0x238DFC0], 0x48, "")
-
-
-class EuOverlay18Section:
-    name = "overlay18"
-    description = "Controls the Electivire Link Shop."
-    loadaddress = 0x238AC80
-    length = 0x3500
-    functions = EuOverlay18Functions
-    data = EuOverlay18Data
-
-
 class EuArm9Functions:
 
     InitMemAllocTable = Symbol(
+        [0xDE0],
         [0x2000DE0],
         None,
         "Initializes MEMORY_ALLOCATION_TABLE.\n\nSets up the default memory arena, sets"
@@ -47,6 +13,7 @@ class EuArm9Functions:
     )
 
     SetMemAllocatorParams = Symbol(
+        [0xE70],
         [0x2000E70],
         None,
         "Sets global parameters for the memory allocator.\n\nThis includes"
@@ -59,6 +26,7 @@ class EuArm9Functions:
     )
 
     GetAllocArenaDefault = Symbol(
+        [0xEC0],
         [0x2000EC0],
         None,
         "The default function for retrieving the arena for memory allocations. This"
@@ -68,6 +36,7 @@ class EuArm9Functions:
     )
 
     GetFreeArenaDefault = Symbol(
+        [0xEC4],
         [0x2000EC4],
         None,
         "The default function for retrieving the arena for memory freeing. This"
@@ -77,6 +46,7 @@ class EuArm9Functions:
     )
 
     InitMemArena = Symbol(
+        [0xEC8],
         [0x2000EC8],
         None,
         "Initializes a new memory arena with the given specifications, and records it"
@@ -87,6 +57,7 @@ class EuArm9Functions:
     )
 
     MemAllocFlagsToBlockType = Symbol(
+        [0xF44],
         [0x2000F44],
         None,
         "Converts the internal alloc flags bitfield (struct mem_block field 0x4) to the"
@@ -95,6 +66,7 @@ class EuArm9Functions:
     )
 
     FindAvailableMemBlock = Symbol(
+        [0xF88],
         [0x2000F88],
         None,
         "Searches through the given memory arena for a block with enough free"
@@ -107,6 +79,7 @@ class EuArm9Functions:
     )
 
     SplitMemBlock = Symbol(
+        [0x1070],
         [0x2001070],
         None,
         "Given a memory block at a given index, splits off another memory block of the"
@@ -119,6 +92,7 @@ class EuArm9Functions:
     )
 
     MemAlloc = Symbol(
+        [0x1170],
         [0x2001170],
         None,
         "Allocates some memory on the heap, returning a pointer to the starting"
@@ -129,6 +103,7 @@ class EuArm9Functions:
     )
 
     MemFree = Symbol(
+        [0x1188],
         [0x2001188],
         None,
         "Frees heap-allocated memory.\n\nThis function is just a wrapper around"
@@ -136,6 +111,7 @@ class EuArm9Functions:
     )
 
     MemArenaAlloc = Symbol(
+        [0x119C],
         [0x200119C],
         None,
         "Allocates some memory on the heap and creates a new global memory arena with"
@@ -146,6 +122,7 @@ class EuArm9Functions:
     )
 
     CreateMemArena = Symbol(
+        [0x1280],
         [0x2001280],
         None,
         "Creates a new memory arena within a given block of memory.\n\nThis is"
@@ -156,6 +133,7 @@ class EuArm9Functions:
     )
 
     MemLocateSet = Symbol(
+        [0x1390],
         [0x2001390],
         None,
         "The implementation for MemAlloc.\n\nAt a high level, memory is allocated by"
@@ -171,6 +149,7 @@ class EuArm9Functions:
     )
 
     MemLocateUnset = Symbol(
+        [0x1638],
         [0x2001638],
         None,
         "The implementation for MemFree.\n\nAt a high level, memory is freed by"
@@ -181,6 +160,7 @@ class EuArm9Functions:
     )
 
     RoundUpDiv256 = Symbol(
+        [0x1894],
         [0x2001894],
         None,
         "Divide a number by 256 and round up to the nearest integer.\n\nr0:"
@@ -188,6 +168,7 @@ class EuArm9Functions:
     )
 
     MultiplyByFixedPoint = Symbol(
+        [0x1A54],
         [0x2001A54],
         None,
         "Multiply a signed integer x by a signed binary fixed-point multiplier (8"
@@ -195,6 +176,7 @@ class EuArm9Functions:
     )
 
     UMultiplyByFixedPoint = Symbol(
+        [0x1B0C],
         [0x2001B0C],
         None,
         "Multiplies an unsigned integer x by an unsigned binary fixed-point multiplier"
@@ -202,14 +184,18 @@ class EuArm9Functions:
     )
 
     GetRngSeed = Symbol(
-        [0x200222C], None, "Get the current value of PRNG_SEQUENCE_NUM."
+        [0x222C], [0x200222C], None, "Get the current value of PRNG_SEQUENCE_NUM."
     )
 
     SetRngSeed = Symbol(
-        [0x200223C], None, "Seed PRNG_SEQUENCE_NUM to a given value.\n\nr0: seed"
+        [0x223C],
+        [0x200223C],
+        None,
+        "Seed PRNG_SEQUENCE_NUM to a given value.\n\nr0: seed",
     )
 
     Rand16Bit = Symbol(
+        [0x224C],
         [0x200224C],
         None,
         "Computes a pseudorandom 16-bit integer using the general-purpose PRNG.\n\nNote"
@@ -223,6 +209,7 @@ class EuArm9Functions:
     )
 
     RandInt = Symbol(
+        [0x2274],
         [0x2002274],
         None,
         "Compute a pseudorandom integer under a given maximum value using the"
@@ -233,6 +220,7 @@ class EuArm9Functions:
     )
 
     RandRange = Symbol(
+        [0x228C],
         [0x200228C],
         None,
         "Compute a pseudorandom value between two integers using the general-purpose"
@@ -243,6 +231,7 @@ class EuArm9Functions:
     )
 
     Rand32Bit = Symbol(
+        [0x22AC],
         [0x20022AC],
         None,
         "Computes a random 32-bit integer using the general-purpose PRNG. The upper and"
@@ -252,6 +241,7 @@ class EuArm9Functions:
     )
 
     RandIntSafe = Symbol(
+        [0x22F8],
         [0x20022F8],
         None,
         "Same as RandInt, except explicitly masking out the upper 16 bits of the output"
@@ -260,6 +250,7 @@ class EuArm9Functions:
     )
 
     RandRangeSafe = Symbol(
+        [0x2318],
         [0x2002318],
         None,
         "Like RandRange, except reordering the inputs as needed, and explicitly masking"
@@ -269,6 +260,7 @@ class EuArm9Functions:
     )
 
     WaitForever = Symbol(
+        [0x2438],
         [0x2002438],
         None,
         "Sets some program state and calls WaitForInterrupt in an infinite"
@@ -277,6 +269,7 @@ class EuArm9Functions:
     )
 
     InitMemAllocTableVeneer = Symbol(
+        [0x321C],
         [0x200321C],
         None,
         "Likely a linker-generated veneer for InitMemAllocTable.\n\nSee"
@@ -284,9 +277,12 @@ class EuArm9Functions:
         " params.",
     )
 
-    MemZero = Symbol([0x2003250], None, "Zeroes a buffer.\n\nr0: ptr\nr1: len")
+    MemZero = Symbol(
+        [0x3250], [0x2003250], None, "Zeroes a buffer.\n\nr0: ptr\nr1: len"
+    )
 
     MemcpySimple = Symbol(
+        [0x32E4],
         [0x20032E4],
         None,
         "A simple implementation of the memcpy(3) C library function.\n\nThis function"
@@ -297,6 +293,7 @@ class EuArm9Functions:
     )
 
     TaskProcBoot = Symbol(
+        [0x3328],
         [0x2003328],
         None,
         "Probably related to booting the game?\n\nThis function prints the debug"
@@ -304,6 +301,7 @@ class EuArm9Functions:
     )
 
     EnableAllInterrupts = Symbol(
+        [0x3608],
         [0x2003608],
         None,
         "Sets the Interrupt Master Enable (IME) register to 1, which enables all CPU"
@@ -313,6 +311,7 @@ class EuArm9Functions:
     )
 
     GetTime = Symbol(
+        [0x37B4],
         [0x20037B4],
         None,
         "Seems to get the current (system?) time as an IEEE 754 floating-point"
@@ -320,6 +319,7 @@ class EuArm9Functions:
     )
 
     DisableAllInterrupts = Symbol(
+        [0x3824],
         [0x2003824],
         None,
         "Sets the Interrupt Master Enable (IME) register to 0, which disables all CPU"
@@ -329,6 +329,7 @@ class EuArm9Functions:
     )
 
     SoundResume = Symbol(
+        [0x3CC4],
         [0x2003CC4],
         None,
         "Probably resumes the sound player if paused?\n\nThis function prints the debug"
@@ -336,6 +337,7 @@ class EuArm9Functions:
     )
 
     CardPullOutWithStatus = Symbol(
+        [0x3D2C],
         [0x2003D2C],
         None,
         "Probably aborts the program with some status code? It seems to serve a similar"
@@ -344,6 +346,7 @@ class EuArm9Functions:
     )
 
     CardPullOut = Symbol(
+        [0x3D70],
         [0x2003D70],
         None,
         "Sets some global flag that probably triggers system exit?\n\nThis function"
@@ -351,6 +354,7 @@ class EuArm9Functions:
     )
 
     CardBackupError = Symbol(
+        [0x3D94],
         [0x2003D94],
         None,
         "Sets some global flag that maybe indicates a save error?\n\nThis function"
@@ -358,6 +362,7 @@ class EuArm9Functions:
     )
 
     HaltProcessDisp = Symbol(
+        [0x3DB8],
         [0x2003DB8],
         None,
         "Maybe halts the process display?\n\nThis function prints the debug string"
@@ -365,6 +370,7 @@ class EuArm9Functions:
     )
 
     OverlayIsLoaded = Symbol(
+        [0x3ED0],
         [0x2003ED0],
         None,
         "Checks if an overlay with a certain group ID is currently loaded.\n\nSee the"
@@ -375,6 +381,7 @@ class EuArm9Functions:
     )
 
     LoadOverlay = Symbol(
+        [0x40AC],
         [0x20040AC],
         None,
         "Loads an overlay from ROM by its group ID.\n\nSee the LOADED_OVERLAY_GROUP_*"
@@ -383,6 +390,7 @@ class EuArm9Functions:
     )
 
     UnloadOverlay = Symbol(
+        [0x4868],
         [0x2004868],
         None,
         "Unloads an overlay from ROM by its group ID.\n\nSee the LOADED_OVERLAY_GROUP_*"
@@ -392,6 +400,7 @@ class EuArm9Functions:
     )
 
     EuclideanNorm = Symbol(
+        [0x5050, 0x50B0],
         [0x2005050, 0x20050B0],
         None,
         "Computes the Euclidean norm of a two-component integer array, sort of like"
@@ -399,6 +408,7 @@ class EuArm9Functions:
     )
 
     ClampComponentAbs = Symbol(
+        [0x5110],
         [0x2005110],
         None,
         "Clamps the absolute values in a two-component integer array.\n\nGiven an"
@@ -409,6 +419,7 @@ class EuArm9Functions:
     )
 
     KeyWaitInit = Symbol(
+        [0x6DA4],
         [0x2006DA4],
         None,
         "Implements (most of?) SPECIAL_PROC_KEY_WAIT_INIT (see"
@@ -416,6 +427,7 @@ class EuArm9Functions:
     )
 
     DataTransferInit = Symbol(
+        [0x8168],
         [0x2008168],
         None,
         "Initializes data transfer mode to get data from the ROM cartridge.\n\nNo"
@@ -423,6 +435,7 @@ class EuArm9Functions:
     )
 
     DataTransferStop = Symbol(
+        [0x8194],
         [0x2008194],
         None,
         "Finalizes data transfer from the ROM cartridge.\n\nThis function must always"
@@ -431,6 +444,7 @@ class EuArm9Functions:
     )
 
     FileInitVeneer = Symbol(
+        [0x8204],
         [0x2008204],
         None,
         "Likely a linker-generated veneer for FileInit.\n\nSee"
@@ -439,6 +453,7 @@ class EuArm9Functions:
     )
 
     FileOpen = Symbol(
+        [0x8210],
         [0x2008210],
         None,
         "Opens a file from the ROM file system at the given path, sort of like C's"
@@ -446,12 +461,14 @@ class EuArm9Functions:
     )
 
     FileGetSize = Symbol(
+        [0x8244],
         [0x2008244],
         None,
         "Gets the size of an open file.\n\nr0: file_stream pointer\nreturn: file size",
     )
 
     FileRead = Symbol(
+        [0x8254],
         [0x2008254],
         None,
         "Reads the contents of a file into the given buffer, and moves the file cursor"
@@ -463,6 +480,7 @@ class EuArm9Functions:
     )
 
     FileSeek = Symbol(
+        [0x82A8],
         [0x20082A8],
         None,
         "Sets a file stream's position indicator.\n\nThis function has the a similar"
@@ -472,6 +490,7 @@ class EuArm9Functions:
     )
 
     FileClose = Symbol(
+        [0x82C4],
         [0x20082C4],
         None,
         "Closes a file.\n\nData transfer mode must have been initialized (with"
@@ -482,6 +501,7 @@ class EuArm9Functions:
     )
 
     LoadFileFromRom = Symbol(
+        [0x8C3C],
         [0x2008C3C],
         None,
         "Loads a file from ROM by filepath into a heap-allocated buffer.\n\nr0:"
@@ -489,11 +509,14 @@ class EuArm9Functions:
         " pointer\nr2: flags",
     )
 
-    GetDebugFlag1 = Symbol([0x200C198], None, "Just returns 0 in the final binary.")
+    GetDebugFlag1 = Symbol(
+        [0xC198], [0x200C198], None, "Just returns 0 in the final binary."
+    )
 
-    SetDebugFlag1 = Symbol([0x200C1A0], None, "A no-op in the final binary.")
+    SetDebugFlag1 = Symbol([0xC1A0], [0x200C1A0], None, "A no-op in the final binary.")
 
     AppendProgPos = Symbol(
+        [0xC1A8],
         [0x200C1A8],
         None,
         "Write a base message into a string and append the file name and line number to"
@@ -504,6 +527,7 @@ class EuArm9Functions:
     )
 
     DebugPrintTrace = Symbol(
+        [0xC1F4],
         [0x200C1F4],
         None,
         "Would log a printf format string tagged with the file name and line number in"
@@ -514,6 +538,7 @@ class EuArm9Functions:
     )
 
     DebugPrint0 = Symbol(
+        [0xC284],
         [0x200C284],
         None,
         "Would log a printf format string in the debug binary.\n\nThis still constructs"
@@ -521,11 +546,14 @@ class EuArm9Functions:
         " final binary.\n\nr0: format\n...: variadic",
     )
 
-    GetDebugFlag2 = Symbol([0x200C2BC], None, "Just returns 0 in the final binary.")
+    GetDebugFlag2 = Symbol(
+        [0xC2BC], [0x200C2BC], None, "Just returns 0 in the final binary."
+    )
 
-    SetDebugFlag2 = Symbol([0x200C2C4], None, "A no-op in the final binary.")
+    SetDebugFlag2 = Symbol([0xC2C4], [0x200C2C4], None, "A no-op in the final binary.")
 
     DebugPrint = Symbol(
+        [0xC2C8],
         [0x200C2C8],
         None,
         "Would log a printf format string in the debug binary. A no-op in the final"
@@ -533,6 +561,7 @@ class EuArm9Functions:
     )
 
     FatalError = Symbol(
+        [0xC2E4],
         [0x200C2E4],
         None,
         "Logs some debug messages, then hangs the process.\n\nThis function is called"
@@ -544,6 +573,7 @@ class EuArm9Functions:
     )
 
     IsAuraBow = Symbol(
+        [0xCC9C],
         [0x200CC9C],
         None,
         "Checks if an item is one of the aura bows received at the start of the"
@@ -551,6 +581,24 @@ class EuArm9Functions:
     )
 
     SprintfStatic = Symbol(
+        [
+            0xD6BC,
+            0xE808,
+            0x13800,
+            0x177C4,
+            0x17ADC,
+            0x2378C,
+            0x239B0,
+            0x3822C,
+            0x39734,
+            0x3AC6C,
+            0x3D2A0,
+            0x41A48,
+            0x42DA0,
+            0x52750,
+            0x54DDC,
+            0x60D64,
+        ],
         [
             0x200D6BC,
             0x200E808,
@@ -579,6 +627,7 @@ class EuArm9Functions:
     )
 
     SetMoneyCarried = Symbol(
+        [0xEDC4],
         [0x200EDC4],
         None,
         "Sets the amount of money the player is carrying, clamping the value to the"
@@ -586,6 +635,7 @@ class EuArm9Functions:
     )
 
     IsBagFull = Symbol(
+        [0xEE68],
         [0x200EE68],
         None,
         "Implements SPECIAL_PROC_IS_BAG_FULL (see ScriptSpecialProcessCall).\n\nreturn:"
@@ -593,6 +643,7 @@ class EuArm9Functions:
     )
 
     CountItemTypeInBag = Symbol(
+        [0xEF30],
         [0x200EF30],
         None,
         "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_BAG (see"
@@ -601,6 +652,7 @@ class EuArm9Functions:
     )
 
     AddItemToBag = Symbol(
+        [0xF8F4],
         [0x200F8F4],
         None,
         "Implements SPECIAL_PROC_ADD_ITEM_TO_BAG (see ScriptSpecialProcessCall).\n\nr0:"
@@ -608,12 +660,14 @@ class EuArm9Functions:
     )
 
     ScriptSpecialProcess0x39 = Symbol(
+        [0xFDFC],
         [0x200FDFC],
         None,
         "Implements SPECIAL_PROC_0x39 (see ScriptSpecialProcessCall).\n\nreturn: bool",
     )
 
     CountItemTypeInStorage = Symbol(
+        [0xFF8C],
         [0x200FF8C],
         None,
         "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_STORAGE (see"
@@ -622,6 +676,7 @@ class EuArm9Functions:
     )
 
     RemoveItemsTypeInStorage = Symbol(
+        [0x1028C],
         [0x201028C],
         None,
         "Probably? Implements SPECIAL_PROC_0x2A (see ScriptSpecialProcessCall).\n\nr0:"
@@ -629,6 +684,7 @@ class EuArm9Functions:
     )
 
     AddItemToStorage = Symbol(
+        [0x103C4],
         [0x20103C4],
         None,
         "Implements SPECIAL_PROC_ADD_ITEM_TO_STORAGE (see"
@@ -636,6 +692,7 @@ class EuArm9Functions:
     )
 
     SetMoneyStored = Symbol(
+        [0x107CC],
         [0x20107CC],
         None,
         "Sets the amount of money the player has stored in the Duskull Bank, clamping"
@@ -643,6 +700,7 @@ class EuArm9Functions:
     )
 
     GetExclusiveItemOffset = Symbol(
+        [0x10EE8],
         [0x2010EE8],
         None,
         "Gets the exclusive item offset, which is the item ID relative to that of the"
@@ -650,6 +708,7 @@ class EuArm9Functions:
     )
 
     ApplyExclusiveItemStatBoosts = Symbol(
+        [0x10F0C],
         [0x2010F0C],
         None,
         "Applies stat boosts from an exclusive item.\n\nr0: item ID\nr1: pointer to"
@@ -659,6 +718,7 @@ class EuArm9Functions:
     )
 
     SetExclusiveItemEffect = Symbol(
+        [0x11028],
         [0x2011028],
         None,
         "Sets the bit for an exclusive item effect.\n\nr0: pointer to the effects"
@@ -666,6 +726,7 @@ class EuArm9Functions:
     )
 
     ExclusiveItemEffectFlagTest = Symbol(
+        [0x1104C],
         [0x201104C],
         None,
         "Tests the exclusive item bitvector for a specific exclusive item"
@@ -674,6 +735,7 @@ class EuArm9Functions:
     )
 
     ApplyGummiBoostsGroundMode = Symbol(
+        [0x11944],
         [0x2011944],
         None,
         "Applies the IQ boosts from eating a Gummi to the target monster.\n\nr0:"
@@ -683,6 +745,7 @@ class EuArm9Functions:
     )
 
     GetMoveTargetAndRange = Symbol(
+        [0x138E8],
         [0x20138E8],
         None,
         "Gets the move target-and-range field. See struct move_target_and_range in the"
@@ -692,12 +755,14 @@ class EuArm9Functions:
     )
 
     GetMoveType = Symbol(
+        [0x1390C],
         [0x201390C],
         None,
         "Gets the type of a move\n\nr0: Pointer to move data\nreturn: Type of the move",
     )
 
     GetMoveBasePower = Symbol(
+        [0x13A74],
         [0x2013A74],
         None,
         "Gets the base power of a move from the move data table.\n\nr0: move"
@@ -705,6 +770,7 @@ class EuArm9Functions:
     )
 
     GetMoveAccuracyOrAiChance = Symbol(
+        [0x13AB4],
         [0x2013AB4],
         None,
         "Gets one of the two accuracy values of a move or its"
@@ -715,6 +781,7 @@ class EuArm9Functions:
     )
 
     GetMaxPp = Symbol(
+        [0x13AF8],
         [0x2013AF8],
         None,
         "Gets the maximum PP for a given move.\n\nr0: move pointer\nreturn: max PP for"
@@ -722,6 +789,7 @@ class EuArm9Functions:
     )
 
     GetMoveCritChance = Symbol(
+        [0x13BB8],
         [0x2013BB8],
         None,
         "Gets the critical hit chance of a move.\n\nr0: move pointer\nreturn: base"
@@ -729,6 +797,7 @@ class EuArm9Functions:
     )
 
     IsRecoilMove = Symbol(
+        [0x13EBC],
         [0x2013EBC],
         None,
         "Checks if the given move is a recoil move (affected by Reckless).\n\nr0: move"
@@ -736,6 +805,7 @@ class EuArm9Functions:
     )
 
     IsPunchMove = Symbol(
+        [0x14DC0],
         [0x2014DC0],
         None,
         "Checks if the given move is a punch move (affected by Iron Fist).\n\nr0: move"
@@ -743,6 +813,7 @@ class EuArm9Functions:
     )
 
     GetMoveCategory = Symbol(
+        [0x15270],
         [0x2015270],
         None,
         "Gets a move's category (physical, special, status).\n\nr0: move ID\nreturn:"
@@ -750,6 +821,7 @@ class EuArm9Functions:
     )
 
     LoadWteFromRom = Symbol(
+        [0x1DEE8],
         [0x201DEE8],
         None,
         "Loads a SIR0-wrapped WTE file from ROM, and returns a handle to it\n\nr0:"
@@ -757,6 +829,7 @@ class EuArm9Functions:
     )
 
     LoadWteFromFileDirectory = Symbol(
+        [0x1DF60],
         [0x201DF60],
         None,
         "Loads a SIR0-wrapped WTE file from a file directory, and returns a handle to"
@@ -765,6 +838,7 @@ class EuArm9Functions:
     )
 
     UnloadWte = Symbol(
+        [0x1DFB4],
         [0x201DFB4],
         None,
         "Frees the buffer used to store the WTE data in the handle, and sets both"
@@ -772,6 +846,7 @@ class EuArm9Functions:
     )
 
     HandleSir0Translation = Symbol(
+        [0x1F550],
         [0x201F550],
         None,
         "Translates the offsets in a SIR0 file into NDS memory addresses, changes the"
@@ -781,6 +856,7 @@ class EuArm9Functions:
     )
 
     HandleSir0TranslationVeneer = Symbol(
+        [0x1F628],
         [0x201F628],
         None,
         "Likely a linker-generated veneer for HandleSir0Translation.\n\nSee"
@@ -790,6 +866,7 @@ class EuArm9Functions:
     )
 
     GetLanguageType = Symbol(
+        [0x20688],
         [0x2020688],
         None,
         "Gets the language type.\n\nThis is the value backing the special LANGUAGE_TYPE"
@@ -797,6 +874,7 @@ class EuArm9Functions:
     )
 
     GetLanguage = Symbol(
+        [0x206B0],
         [0x20206B0],
         None,
         "Gets the single-byte language ID of the current program.\n\nThe language ID"
@@ -804,6 +882,7 @@ class EuArm9Functions:
     )
 
     PreprocessString = Symbol(
+        [0x225EC],
         [0x20225EC],
         None,
         "An enhanced sprintf, which recognizes certain tags and replaces them with"
@@ -816,6 +895,7 @@ class EuArm9Functions:
     )
 
     StrcpySimple = Symbol(
+        [0x253CC],
         [0x20253CC],
         None,
         "A simple implementation of the strcpy(3) C library function.\n\nThis function"
@@ -824,6 +904,7 @@ class EuArm9Functions:
     )
 
     StrncpySimple = Symbol(
+        [0x253E8],
         [0x20253E8],
         None,
         "A simple implementation of the strncpy(3) C library function.\n\nThis function"
@@ -832,6 +913,7 @@ class EuArm9Functions:
     )
 
     StringFromMessageId = Symbol(
+        [0x25B90],
         [0x2025B90],
         None,
         "Gets the string corresponding to a given message ID.\n\nr0: message"
@@ -839,6 +921,7 @@ class EuArm9Functions:
     )
 
     SetScreenWindowsColor = Symbol(
+        [0x27D5C],
         [0x2027D5C],
         None,
         "Sets the palette of the frames of windows in the specified screen\n\nr0:"
@@ -846,6 +929,7 @@ class EuArm9Functions:
     )
 
     SetBothScreensWindowsColor = Symbol(
+        [0x27D74],
         [0x2027D74],
         None,
         "Sets the palette of the frames of windows in both screens\n\nr0: palette"
@@ -853,14 +937,18 @@ class EuArm9Functions:
     )
 
     GetNotifyNote = Symbol(
-        [0x20487BC], None, "Returns the current value of NOTIFY_NOTE.\n\nreturn: bool"
+        [0x487BC],
+        [0x20487BC],
+        None,
+        "Returns the current value of NOTIFY_NOTE.\n\nreturn: bool",
     )
 
     SetNotifyNote = Symbol(
-        [0x20487CC], None, "Sets NOTIFY_NOTE to the given value.\n\nr0: bool"
+        [0x487CC], [0x20487CC], None, "Sets NOTIFY_NOTE to the given value.\n\nr0: bool"
     )
 
     InitMainTeamAfterQuiz = Symbol(
+        [0x48AE0],
         [0x2048AE0],
         None,
         "Implements SPECIAL_PROC_INIT_MAIN_TEAM_AFTER_QUIZ (see"
@@ -868,18 +956,21 @@ class EuArm9Functions:
     )
 
     ScriptSpecialProcess0x3 = Symbol(
+        [0x48D28],
         [0x2048D28],
         None,
         "Implements SPECIAL_PROC_0x3 (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ScriptSpecialProcess0x4 = Symbol(
+        [0x48DA0],
         [0x2048DA0],
         None,
         "Implements SPECIAL_PROC_0x4 (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     NoteSaveBase = Symbol(
+        [0x492A0],
         [0x20492A0],
         None,
         "Probably related to saving or quicksaving?\n\nThis function prints the debug"
@@ -889,6 +980,7 @@ class EuArm9Functions:
     )
 
     NoteLoadBase = Symbol(
+        [0x496A8],
         [0x20496A8],
         None,
         "Probably related to loading a save file or quicksave?\n\nThis function prints"
@@ -897,10 +989,14 @@ class EuArm9Functions:
     )
 
     GetGameMode = Symbol(
-        [0x204B2F8], None, "Gets the value of GAME_MODE.\n\nreturn: game mode"
+        [0x4B2F8],
+        [0x204B2F8],
+        None,
+        "Gets the value of GAME_MODE.\n\nreturn: game mode",
     )
 
     InitScriptVariableValues = Symbol(
+        [0x4B384],
         [0x204B384],
         None,
         "Initialize the script variable values table (SCRIPT_VARS_VALUES).\n\nThe whole"
@@ -910,6 +1006,7 @@ class EuArm9Functions:
     )
 
     InitEventFlagScriptVars = Symbol(
+        [0x4B63C],
         [0x204B63C],
         None,
         "Initializes an assortment of event flag script variables (see the code for an"
@@ -917,6 +1014,7 @@ class EuArm9Functions:
     )
 
     ZinitScriptVariable = Symbol(
+        [0x4B76C],
         [0x204B76C],
         None,
         "Zero-initialize the values of the given script variable.\n\nr0: pointer to the"
@@ -925,6 +1023,7 @@ class EuArm9Functions:
     )
 
     LoadScriptVariableRaw = Symbol(
+        [0x4B7D4],
         [0x204B7D4],
         None,
         "Loads a script variable descriptor for a given ID.\n\nr0: [output] script"
@@ -934,6 +1033,7 @@ class EuArm9Functions:
     )
 
     LoadScriptVariableValue = Symbol(
+        [0x4B824],
         [0x204B824],
         None,
         "Loads the value of a script variable.\n\nr0: pointer to the local variable"
@@ -942,6 +1042,7 @@ class EuArm9Functions:
     )
 
     LoadScriptVariableValueAtIndex = Symbol(
+        [0x4B9B0],
         [0x204B9B0],
         None,
         "Loads the value of a script variable at some index (for script variables that"
@@ -951,6 +1052,7 @@ class EuArm9Functions:
     )
 
     SaveScriptVariableValue = Symbol(
+        [0x4BB58],
         [0x204BB58],
         None,
         "Saves the given value to a script variable.\n\nr0: pointer to local variable"
@@ -959,6 +1061,7 @@ class EuArm9Functions:
     )
 
     SaveScriptVariableValueAtIndex = Symbol(
+        [0x4BCC0],
         [0x204BCC0],
         None,
         "Saves the given value to a script variable at some index (for script variables"
@@ -968,6 +1071,7 @@ class EuArm9Functions:
     )
 
     LoadScriptVariableValueSum = Symbol(
+        [0x4BE38],
         [0x204BE38],
         None,
         "Loads the sum of all values of a given script variable (for script variables"
@@ -976,6 +1080,7 @@ class EuArm9Functions:
     )
 
     LoadScriptVariableValueBytes = Symbol(
+        [0x4BE9C],
         [0x204BE9C],
         None,
         "Loads some number of bytes from the value of a given script variable.\n\nr0:"
@@ -984,6 +1089,7 @@ class EuArm9Functions:
     )
 
     SaveScriptVariableValueBytes = Symbol(
+        [0x4BF04],
         [0x204BF04],
         None,
         "Saves some number of bytes to the given script variable.\n\nr0: script"
@@ -991,6 +1097,7 @@ class EuArm9Functions:
     )
 
     ScriptVariablesEqual = Symbol(
+        [0x4BF50],
         [0x204BF50],
         None,
         "Checks if two script variables have equal values. For arrays, compares"
@@ -1001,6 +1108,7 @@ class EuArm9Functions:
     )
 
     EventFlagBackup = Symbol(
+        [0x4C51C],
         [0x204C51C],
         None,
         "Saves event flag script variables (see the code for an exhaustive list) to"
@@ -1010,6 +1118,7 @@ class EuArm9Functions:
     )
 
     DumpScriptVariableValues = Symbol(
+        [0x4C740],
         [0x204C740],
         None,
         "Runs EventFlagBackup, then copies the script variable values table"
@@ -1018,6 +1127,7 @@ class EuArm9Functions:
     )
 
     RestoreScriptVariableValues = Symbol(
+        [0x4C768],
         [0x204C768],
         None,
         "Restores the script variable values table (SCRIPT_VARS_VALUES) with the given"
@@ -1027,6 +1137,7 @@ class EuArm9Functions:
     )
 
     InitScenarioScriptVars = Symbol(
+        [0x4C7C0],
         [0x204C7C0],
         None,
         "Initializes most of the SCENARIO_* script variables (except"
@@ -1035,6 +1146,7 @@ class EuArm9Functions:
     )
 
     SetScenarioScriptVar = Symbol(
+        [0x4C950],
         [0x204C950],
         None,
         "Sets the given SCENARIO_* script variable with a given pair of values [val0,"
@@ -1044,6 +1156,7 @@ class EuArm9Functions:
     )
 
     GetSpecialEpisodeType = Symbol(
+        [0x4CC24],
         [0x204CC24],
         None,
         "Gets the special episode type from the SPECIAL_EPISODE_TYPE script"
@@ -1051,6 +1164,7 @@ class EuArm9Functions:
     )
 
     ScenarioFlagBackup = Symbol(
+        [0x4CFF0],
         [0x204CFF0],
         None,
         "Saves scenario flag script variables (SCENARIO_SELECT, SCENARIO_MAIN_BIT_FLAG)"
@@ -1060,6 +1174,7 @@ class EuArm9Functions:
     )
 
     InitWorldMapScriptVars = Symbol(
+        [0x4D0C0],
         [0x204D0C0],
         None,
         "Initializes the WORLD_MAP_* script variable values (IDs 0x55-0x57).\n\nNo"
@@ -1067,6 +1182,7 @@ class EuArm9Functions:
     )
 
     InitDungeonListScriptVars = Symbol(
+        [0x4D1C8],
         [0x204D1C8],
         None,
         "Initializes the DUNGEON_*_LIST script variable values (IDs 0x4f-0x54).\n\nNo"
@@ -1074,12 +1190,14 @@ class EuArm9Functions:
     )
 
     SetDungeonTipShown = Symbol(
+        [0x4D588],
         [0x204D588],
         None,
         "Marks a dungeon tip as already shown to the player\n\nr0: Dungeon tip ID",
     )
 
     GetDungeonTipShown = Symbol(
+        [0x4D5C8],
         [0x204D5C8],
         None,
         "Checks if a dungeon tip has already been shown before or not.\n\nr0: Dungeon"
@@ -1087,6 +1205,7 @@ class EuArm9Functions:
     )
 
     MonsterSpawnsEnabled = Symbol(
+        [0x4D698],
         [0x204D698],
         None,
         "Always returns true.\n\nThis function seems to be a debug switch that the"
@@ -1096,6 +1215,7 @@ class EuArm9Functions:
     )
 
     SetAdventureLogStructLocation = Symbol(
+        [0x4FD5C],
         [0x204FD5C],
         None,
         "Sets the location of the adventure log struct in memory.\n\nSets it in a"
@@ -1104,28 +1224,35 @@ class EuArm9Functions:
     )
 
     SetAdventureLogDungeonFloor = Symbol(
+        [0x4FD74],
         [0x204FD74],
         None,
         "Sets the current dungeon floor pair.\n\nr0: struct dungeon_floor_pair",
     )
 
     GetAdventureLogDungeonFloor = Symbol(
+        [0x4FD94],
         [0x204FD94],
         None,
         "Gets the current dungeon floor pair.\n\nreturn: struct dungeon_floor_pair",
     )
 
     ClearAdventureLogStruct = Symbol(
-        [0x204FDA8], None, "Clears the adventure log structure.\n\nNo params."
+        [0x4FDA8],
+        [0x204FDA8],
+        None,
+        "Clears the adventure log structure.\n\nNo params.",
     )
 
     SetAdventureLogCompleted = Symbol(
+        [0x4FED4],
         [0x204FED4],
         None,
         "Marks one of the adventure log entry as completed.\n\nr0: entry ID",
     )
 
     IsAdventureLogNotEmpty = Symbol(
+        [0x4FEFC],
         [0x204FEFC],
         None,
         "Checks if at least one of the adventure log entry is completed.\n\nreturn:"
@@ -1133,12 +1260,14 @@ class EuArm9Functions:
     )
 
     GetAdventureLogCompleted = Symbol(
+        [0x4FF34],
         [0x204FF34],
         None,
         "Checks if one adventure log entry is completed.\n\nr0: entry ID\nreturn: bool",
     )
 
     IncrementNbDungeonsCleared = Symbol(
+        [0x4FF60],
         [0x204FF60],
         None,
         "Increments by 1 the number of dungeons cleared.\n\nImplements"
@@ -1146,6 +1275,7 @@ class EuArm9Functions:
     )
 
     GetNbDungeonsCleared = Symbol(
+        [0x4FFA4],
         [0x204FFA4],
         None,
         "Gets the number of dungeons cleared.\n\nreturn: the number of dungeons"
@@ -1153,12 +1283,14 @@ class EuArm9Functions:
     )
 
     IncrementNbFriendRescues = Symbol(
+        [0x4FFB8],
         [0x204FFB8],
         None,
         "Increments by 1 the number of successful friend rescues.\n\nNo params.",
     )
 
     GetNbFriendRescues = Symbol(
+        [0x50000],
         [0x2050000],
         None,
         "Gets the number of successful friend rescues.\n\nreturn: the number of"
@@ -1166,16 +1298,21 @@ class EuArm9Functions:
     )
 
     IncrementNbEvolutions = Symbol(
-        [0x2050014], None, "Increments by 1 the number of evolutions.\n\nNo params."
+        [0x50014],
+        [0x2050014],
+        None,
+        "Increments by 1 the number of evolutions.\n\nNo params.",
     )
 
     GetNbEvolutions = Symbol(
+        [0x5005C],
         [0x205005C],
         None,
         "Gets the number of evolutions.\n\nreturn: the number of evolutions",
     )
 
     IncrementNbSteals = Symbol(
+        [0x50070],
         [0x2050070],
         None,
         "Leftover from Time & Darkness. Does not do anything.\n\nCalls to this matches"
@@ -1184,16 +1321,21 @@ class EuArm9Functions:
     )
 
     IncrementNbEggsHatched = Symbol(
-        [0x2050074], None, "Increments by 1 the number of eggs hatched.\n\nNo params."
+        [0x50074],
+        [0x2050074],
+        None,
+        "Increments by 1 the number of eggs hatched.\n\nNo params.",
     )
 
     GetNbEggsHatched = Symbol(
+        [0x500B0],
         [0x20500B0],
         None,
         "Gets the number of eggs hatched.\n\nreturn: the number of eggs hatched",
     )
 
     GetNbPokemonJoined = Symbol(
+        [0x500C4],
         [0x20500C4],
         None,
         "Gets the number of different pokémon that joined.\n\nreturn: the number of"
@@ -1201,6 +1343,7 @@ class EuArm9Functions:
     )
 
     GetNbMovesLearned = Symbol(
+        [0x500D8],
         [0x20500D8],
         None,
         "Gets the number of different moves learned.\n\nreturn: the number of different"
@@ -1208,26 +1351,29 @@ class EuArm9Functions:
     )
 
     SetVictoriesOnOneFloor = Symbol(
+        [0x500EC],
         [0x20500EC],
         None,
         "Sets the record of victories on one floor.\n\nr0: the new record of victories",
     )
 
     GetVictoriesOnOneFloor = Symbol(
+        [0x50120],
         [0x2050120],
         None,
         "Gets the record of victories on one floor.\n\nreturn: the record of victories",
     )
 
     SetPokemonJoined = Symbol(
-        [0x2050134], None, "Marks one pokémon as joined.\n\nr0: monster ID"
+        [0x50134], [0x2050134], None, "Marks one pokémon as joined.\n\nr0: monster ID"
     )
 
     SetPokemonBattled = Symbol(
-        [0x2050190], None, "Marks one pokémon as battled.\n\nr0: monster ID"
+        [0x50190], [0x2050190], None, "Marks one pokémon as battled.\n\nr0: monster ID"
     )
 
     GetNbPokemonBattled = Symbol(
+        [0x501EC],
         [0x20501EC],
         None,
         "Gets the number of different pokémon that battled against you.\n\nreturn: the"
@@ -1235,6 +1381,7 @@ class EuArm9Functions:
     )
 
     IncrementNbBigTreasureWins = Symbol(
+        [0x50200],
         [0x2050200],
         None,
         "Increments by 1 the number of big treasure wins.\n\nImplements"
@@ -1242,6 +1389,7 @@ class EuArm9Functions:
     )
 
     SetNbBigTreasureWins = Symbol(
+        [0x50220],
         [0x2050220],
         None,
         "Sets the number of big treasure wins.\n\nr0: the new number of big treasure"
@@ -1249,6 +1397,7 @@ class EuArm9Functions:
     )
 
     GetNbBigTreasureWins = Symbol(
+        [0x50258],
         [0x2050258],
         None,
         "Gets the number of big treasure wins.\n\nreturn: the number of big treasure"
@@ -1256,18 +1405,21 @@ class EuArm9Functions:
     )
 
     SetNbRecycled = Symbol(
+        [0x5026C],
         [0x205026C],
         None,
         "Sets the number of items recycled.\n\nr0: the new number of items recycled",
     )
 
     GetNbRecycled = Symbol(
+        [0x502A4],
         [0x20502A4],
         None,
         "Gets the number of items recycled.\n\nreturn: the number of items recycled",
     )
 
     IncrementNbSkyGiftsSent = Symbol(
+        [0x502B8],
         [0x20502B8],
         None,
         "Increments by 1 the number of sky gifts sent.\n\nImplements"
@@ -1276,18 +1428,21 @@ class EuArm9Functions:
     )
 
     SetNbSkyGiftsSent = Symbol(
+        [0x502D8],
         [0x20502D8],
         None,
         "Sets the number of Sky Gifts sent.\n\nreturn: the number of Sky Gifts sent",
     )
 
     GetNbSkyGiftsSent = Symbol(
+        [0x50310],
         [0x2050310],
         None,
         "Gets the number of Sky Gifts sent.\n\nreturn: the number of Sky Gifts sent",
     )
 
     ComputeSpecialCounters = Symbol(
+        [0x50324],
         [0x2050324],
         None,
         "Computes the counters from the bit fields in the adventure log, as they are"
@@ -1297,6 +1452,7 @@ class EuArm9Functions:
     )
 
     RecruitSpecialPokemonLog = Symbol(
+        [0x5057C],
         [0x205057C],
         None,
         "Marks a specified special pokémon as recruited in the adventure log.\n\nr0:"
@@ -1304,12 +1460,14 @@ class EuArm9Functions:
     )
 
     IncrementNbFainted = Symbol(
+        [0x505E8],
         [0x20505E8],
         None,
         "Increments by 1 the number of times you fainted.\n\nNo params.",
     )
 
     GetNbFainted = Symbol(
+        [0x50624],
         [0x2050624],
         None,
         "Gets the number of times you fainted.\n\nreturn: the number of times you"
@@ -1317,20 +1475,28 @@ class EuArm9Functions:
     )
 
     SetItemAcquired = Symbol(
-        [0x2050638], None, "Marks one specific item as acquired.\n\nr0: item ID"
+        [0x50638],
+        [0x2050638],
+        None,
+        "Marks one specific item as acquired.\n\nr0: item ID",
     )
 
     GetNbItemAcquired = Symbol(
+        [0x50704],
         [0x2050704],
         None,
         "Gets the number of items acquired.\n\nreturn: the number of items acquired",
     )
 
     SetChallengeLetterCleared = Symbol(
-        [0x2050758], None, "Sets a challenge letter as cleared.\n\nr0: challenge ID"
+        [0x50758],
+        [0x2050758],
+        None,
+        "Sets a challenge letter as cleared.\n\nr0: challenge ID",
     )
 
     GetSentryDutyGamePoints = Symbol(
+        [0x507DC],
         [0x20507DC],
         None,
         "Gets the points for the associated rank in the footprints minigame.\n\nr0: the"
@@ -1338,6 +1504,7 @@ class EuArm9Functions:
     )
 
     SetSentryDutyGamePoints = Symbol(
+        [0x507F4],
         [0x20507F4],
         None,
         "Sets a new record in the footprints minigame.\n\nr0: points\nreturn: the rank"
@@ -1345,6 +1512,7 @@ class EuArm9Functions:
     )
 
     SubFixedPoint = Symbol(
+        [0x51248],
         [0x2051248],
         None,
         "Compute the subtraction of two decimal fixed-point numbers (16 fraction"
@@ -1354,6 +1522,7 @@ class EuArm9Functions:
     )
 
     BinToDecFixedPoint = Symbol(
+        [0x51358],
         [0x2051358],
         None,
         "Convert a binary fixed-point number (16 fraction bits) to the decimal"
@@ -1367,6 +1536,7 @@ class EuArm9Functions:
     )
 
     CeilFixedPoint = Symbol(
+        [0x5139C],
         [0x205139C],
         None,
         "Compute the ceiling of a decimal fixed-point number (16 fraction"
@@ -1376,6 +1546,7 @@ class EuArm9Functions:
     )
 
     DungeonGoesUp = Symbol(
+        [0x515C0],
         [0x20515C0],
         None,
         "Returns whether the specified dungeon is considered as going upward or"
@@ -1383,6 +1554,7 @@ class EuArm9Functions:
     )
 
     GetMaxRescueAttempts = Symbol(
+        [0x516B8],
         [0x20516B8],
         None,
         "Returns the maximum rescue attempts allowed in the specified dungeon.\n\nr0:"
@@ -1390,6 +1562,7 @@ class EuArm9Functions:
     )
 
     JoinedAtRangeCheck = Symbol(
+        [0x517C8],
         [0x20517C8],
         None,
         "Returns whether a certain joined_at field value is between"
@@ -1398,6 +1571,7 @@ class EuArm9Functions:
     )
 
     ShouldCauseGameOverOnFaint = Symbol(
+        [0x51A98],
         [0x2051A98],
         None,
         "Returns whether a game over should happen when a monster with the specified"
@@ -1406,6 +1580,7 @@ class EuArm9Functions:
     )
 
     GetMonsterGender = Symbol(
+        [0x52AE0],
         [0x2052AE0],
         None,
         "Returns the gender field of a monster given its ID.\n\nr0: monster id\nreturn:"
@@ -1413,6 +1588,7 @@ class EuArm9Functions:
     )
 
     GetSpriteSize = Symbol(
+        [0x52B18],
         [0x2052B18],
         None,
         "Returns the sprite size of the specified monster. If the size is between 1 and"
@@ -1420,6 +1596,7 @@ class EuArm9Functions:
     )
 
     GetSpriteFileSize = Symbol(
+        [0x52B54],
         [0x2052B54],
         None,
         "Returns the sprite file size of the specified monster.\n\nr0: monster"
@@ -1427,6 +1604,7 @@ class EuArm9Functions:
     )
 
     GetMonsterPreEvolution = Symbol(
+        [0x52CE0],
         [0x2052CE0],
         None,
         "Returns the pre-evolution id of a monster given its ID.\n\nr0: monster"
@@ -1434,6 +1612,7 @@ class EuArm9Functions:
     )
 
     GetEvolutions = Symbol(
+        [0x54204],
         [0x2054204],
         None,
         "Returns a list of all the possible evolutions for a given monster id.\n\nr0:"
@@ -1446,6 +1625,7 @@ class EuArm9Functions:
     )
 
     GetMonsterIdFromSpawnEntry = Symbol(
+        [0x547FC],
         [0x20547FC],
         None,
         "Returns the monster ID of the specified monster spawn entry\n\nr0: Pointer to"
@@ -1453,6 +1633,7 @@ class EuArm9Functions:
     )
 
     GetMonsterLevelFromSpawnEntry = Symbol(
+        [0x54834],
         [0x2054834],
         None,
         "Returns the level of the specified monster spawn entry.\n\nr0: pointer to the"
@@ -1460,6 +1641,7 @@ class EuArm9Functions:
     )
 
     GetMonsterGenderVeneer = Symbol(
+        [0x54ADC],
         [0x2054ADC],
         None,
         "Likely a linker-generated veneer for GetMonsterGender.\n\nSee"
@@ -1468,36 +1650,42 @@ class EuArm9Functions:
     )
 
     IsUnown = Symbol(
+        [0x54E04],
         [0x2054E04],
         None,
         "Checks if a monster ID is an Unown.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsShaymin = Symbol(
+        [0x54E20],
         [0x2054E20],
         None,
         "Checks if a monster ID is a Shaymin form.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsCastform = Symbol(
+        [0x54E50],
         [0x2054E50],
         None,
         "Checks if a monster ID is a Castform form.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsCherrim = Symbol(
+        [0x54EA8],
         [0x2054EA8],
         None,
         "Checks if a monster ID is a Cherrim form.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsDeoxys = Symbol(
+        [0x54EF0],
         [0x2054EF0],
         None,
         "Checks if a monster ID is a Deoxys form.\n\nr0: monster ID\nreturn: bool",
     )
 
     IsMonsterOnTeam = Symbol(
+        [0x554C4],
         [0x20554C4],
         None,
         "Checks if a given monster is on the exploration team (not necessarily the"
@@ -1505,6 +1693,7 @@ class EuArm9Functions:
     )
 
     GetTeamMemberData = Symbol(
+        [0x56708],
         [0x2056708],
         None,
         "Returns a struct containing information about a team member.\n\nr0:"
@@ -1512,6 +1701,7 @@ class EuArm9Functions:
     )
 
     SetTeamSetupHeroAndPartnerOnly = Symbol(
+        [0x56D48],
         [0x2056D48],
         None,
         "Implements SPECIAL_PROC_SET_TEAM_SETUP_HERO_AND_PARTNER_ONLY (see"
@@ -1519,6 +1709,7 @@ class EuArm9Functions:
     )
 
     SetTeamSetupHeroOnly = Symbol(
+        [0x56E2C],
         [0x2056E2C],
         None,
         "Implements SPECIAL_PROC_SET_TEAM_SETUP_HERO_ONLY (see"
@@ -1526,6 +1717,7 @@ class EuArm9Functions:
     )
 
     GetPartyMembers = Symbol(
+        [0x56F9C],
         [0x2056F9C],
         None,
         "Appears to get the team's active party members. Implements most of"
@@ -1537,6 +1729,7 @@ class EuArm9Functions:
     )
 
     IqSkillFlagTest = Symbol(
+        [0x59280],
         [0x2059280],
         None,
         "Tests whether an IQ skill with a given ID is active.\n\nr0: IQ skill bitvector"
@@ -1544,6 +1737,7 @@ class EuArm9Functions:
     )
 
     GetExplorerMazeMonster = Symbol(
+        [0x59474],
         [0x2059474],
         None,
         "Returns the data of a monster sent into the Explorer Dojo using the 'exchange"
@@ -1552,6 +1746,7 @@ class EuArm9Functions:
     )
 
     GetSosMailCount = Symbol(
+        [0x5BCF8],
         [0x205BCF8],
         None,
         "Implements SPECIAL_PROC_GET_SOS_MAIL_COUNT (see"
@@ -1559,6 +1754,7 @@ class EuArm9Functions:
     )
 
     DungeonRequestsDone = Symbol(
+        [0x5F120],
         [0x205F120],
         None,
         "Seems to return the number of missions completed.\n\nPart of the"
@@ -1568,6 +1764,7 @@ class EuArm9Functions:
     )
 
     DungeonRequestsDoneWrapper = Symbol(
+        [0x5F18C],
         [0x205F18C],
         None,
         "Calls DungeonRequestsDone with the second argument set to false.\n\nr0:"
@@ -1575,6 +1772,7 @@ class EuArm9Functions:
     )
 
     AnyDungeonRequestsDone = Symbol(
+        [0x5F19C],
         [0x205F19C],
         None,
         "Calls DungeonRequestsDone with the second argument set to true, and converts"
@@ -1583,24 +1781,28 @@ class EuArm9Functions:
     )
 
     ScriptSpecialProcess0x3D = Symbol(
+        [0x65ECC],
         [0x2065ECC],
         None,
         "Implements SPECIAL_PROC_0x3D (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ScriptSpecialProcess0x3E = Symbol(
+        [0x65EDC],
         [0x2065EDC],
         None,
         "Implements SPECIAL_PROC_0x3E (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ScriptSpecialProcess0x17 = Symbol(
+        [0x65FC4],
         [0x2065FC4],
         None,
         "Implements SPECIAL_PROC_0x17 (see ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ItemAtTableIdx = Symbol(
+        [0x66074],
         [0x2066074],
         None,
         "Gets info about the item at a given item table (not sure what this table"
@@ -1610,6 +1812,7 @@ class EuArm9Functions:
     )
 
     WaitForInterrupt = Symbol(
+        [0x7BFC8],
         [0x207BFC8],
         None,
         "Presumably blocks until the program receives an interrupt.\n\nThis just calls"
@@ -1619,6 +1822,7 @@ class EuArm9Functions:
     )
 
     FileInit = Symbol(
+        [0x7F77C],
         [0x207F77C],
         None,
         "Initializes a file_stream structure for file I/O.\n\nThis function must always"
@@ -1626,12 +1830,14 @@ class EuArm9Functions:
     )
 
     Abs = Symbol(
+        [0x868F4],
         [0x20868F4],
         None,
         "Takes the absolute value of an integer.\n\nr0: x\nreturn: abs(x)",
     )
 
     Mbtowc = Symbol(
+        [0x87554],
         [0x2087554],
         None,
         "The mbtowc(3) C library function.\n\nr0: pwc\nr1: s\nr2: n\nreturn: number of"
@@ -1639,6 +1845,7 @@ class EuArm9Functions:
     )
 
     TryAssignByte = Symbol(
+        [0x8758C],
         [0x208758C],
         None,
         "Assign a byte to the target of a pointer if the pointer is non-null.\n\nr0:"
@@ -1646,6 +1853,7 @@ class EuArm9Functions:
     )
 
     TryAssignByteWrapper = Symbol(
+        [0x875A0],
         [0x20875A0],
         None,
         "Wrapper around TryAssignByte.\n\nAccesses the TryAssignByte function with a"
@@ -1654,6 +1862,7 @@ class EuArm9Functions:
     )
 
     Wcstombs = Symbol(
+        [0x875BC],
         [0x20875BC],
         None,
         "The wcstombs(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn:"
@@ -1661,12 +1870,14 @@ class EuArm9Functions:
     )
 
     Memcpy = Symbol(
+        [0x87634],
         [0x2087634],
         None,
         "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
     )
 
     Memmove = Symbol(
+        [0x87654],
         [0x2087654],
         None,
         "The memmove(3) C library function.\n\nThe implementation is nearly the same as"
@@ -1675,6 +1886,7 @@ class EuArm9Functions:
     )
 
     Memset = Symbol(
+        [0x876A0],
         [0x20876A0],
         None,
         "The memset(3) C library function.\n\nThis is just a wrapper around"
@@ -1683,6 +1895,7 @@ class EuArm9Functions:
     )
 
     Memchr = Symbol(
+        [0x876B4],
         [0x20876B4],
         None,
         "The memchr(3) C library function.\n\nr0: s\nr1: c\nr2: n\nreturn: pointer to"
@@ -1690,6 +1903,7 @@ class EuArm9Functions:
     )
 
     Memcmp = Symbol(
+        [0x876E0],
         [0x20876E0],
         None,
         "The memcmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn: comparison"
@@ -1697,6 +1911,7 @@ class EuArm9Functions:
     )
 
     MemsetInternal = Symbol(
+        [0x87720],
         [0x2087720],
         None,
         "The actual memory-setting implementation for the memset(3) C library"
@@ -1708,6 +1923,7 @@ class EuArm9Functions:
     )
 
     VsprintfInternalSlice = Symbol(
+        [0x8900C],
         [0x208900C],
         None,
         "This is what implements the bulk of VsprintfInternal.\n\nThe"
@@ -1720,6 +1936,7 @@ class EuArm9Functions:
     )
 
     TryAppendToSlice = Symbol(
+        [0x89830],
         [0x2089830],
         None,
         "Best-effort append the given data to a slice. If the slice's capacity is"
@@ -1729,6 +1946,7 @@ class EuArm9Functions:
     )
 
     VsprintfInternal = Symbol(
+        [0x89874],
         [0x2089874],
         None,
         "This is what implements Vsprintf. It's akin to __vsprintf_internal in the"
@@ -1739,6 +1957,7 @@ class EuArm9Functions:
     )
 
     Vsprintf = Symbol(
+        [0x898DC],
         [0x20898DC],
         None,
         "The vsprintf(3) C library function.\n\nr0: str\nr1: format\nr2: ap\nreturn:"
@@ -1746,6 +1965,7 @@ class EuArm9Functions:
     )
 
     Snprintf = Symbol(
+        [0x898F4],
         [0x20898F4],
         None,
         "The snprintf(3) C library function.\n\nThis calls VsprintfInternal directly,"
@@ -1755,6 +1975,7 @@ class EuArm9Functions:
     )
 
     Sprintf = Symbol(
+        [0x8991C],
         [0x208991C],
         None,
         "The sprintf(3) C library function.\n\nThis calls VsprintfInternal directly, so"
@@ -1764,12 +1985,14 @@ class EuArm9Functions:
     )
 
     Strlen = Symbol(
+        [0x89A10],
         [0x2089A10],
         None,
         "The strlen(3) C library function.\n\nr0: s\nreturn: length of s",
     )
 
     Strcpy = Symbol(
+        [0x89A2C],
         [0x2089A2C],
         None,
         "The strcpy(3) C library function.\n\nThis function is optimized to copy"
@@ -1778,22 +2001,28 @@ class EuArm9Functions:
     )
 
     Strncpy = Symbol(
+        [0x89AF4],
         [0x2089AF4],
         None,
         "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
     )
 
     Strcat = Symbol(
-        [0x2089B44], None, "The strcat(3) C library function.\n\nr0: dest\nr1: src"
+        [0x89B44],
+        [0x2089B44],
+        None,
+        "The strcat(3) C library function.\n\nr0: dest\nr1: src",
     )
 
     Strncat = Symbol(
+        [0x89B74],
         [0x2089B74],
         None,
         "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
     )
 
     Strcmp = Symbol(
+        [0x89BC4],
         [0x2089BC4],
         None,
         "The strcmp(3) C library function.\n\nSimilarly to Strcpy, this function is"
@@ -1802,6 +2031,7 @@ class EuArm9Functions:
     )
 
     Strncmp = Symbol(
+        [0x89CD8],
         [0x2089CD8],
         None,
         "The strncmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn:"
@@ -1809,6 +2039,7 @@ class EuArm9Functions:
     )
 
     Strchr = Symbol(
+        [0x89D0C],
         [0x2089D0C],
         None,
         "The strchr(3) C library function.\n\nr0: string\nr1: c\nreturn: pointer to the"
@@ -1816,6 +2047,7 @@ class EuArm9Functions:
     )
 
     Strcspn = Symbol(
+        [0x89D48],
         [0x2089D48],
         None,
         "The strcspn(3) C library function.\n\nr0: string\nr1: stopset\nreturn: offset"
@@ -1823,6 +2055,7 @@ class EuArm9Functions:
     )
 
     Strstr = Symbol(
+        [0x89E08],
         [0x2089E08],
         None,
         "The strstr(3) C library function.\n\nr0: haystack\nr1: needle\nreturn: pointer"
@@ -1830,12 +2063,14 @@ class EuArm9Functions:
     )
 
     Wcslen = Symbol(
+        [0x8B780],
         [0x208B780],
         None,
         "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
     )
 
     AddFloat = Symbol(
+        [0x8F050],
         [0x208F050],
         None,
         "This appears to be the libgcc implementation of __addsf3 (not sure which gcc"
@@ -1844,6 +2079,7 @@ class EuArm9Functions:
     )
 
     DivideFloat = Symbol(
+        [0x8F5CC],
         [0x208F5CC],
         None,
         "This appears to be the libgcc implementation of __divsf3 (not sure which gcc"
@@ -1852,6 +2088,7 @@ class EuArm9Functions:
     )
 
     FloatToDouble = Symbol(
+        [0x8F984],
         [0x208F984],
         None,
         "This appears to be the libgcc implementation of __extendsfdf2 (not sure which"
@@ -1860,6 +2097,7 @@ class EuArm9Functions:
     )
 
     FloatToInt = Symbol(
+        [0x8FA08],
         [0x208FA08],
         None,
         "This appears to be the libgcc implementation of __fixsfsi (not sure which gcc"
@@ -1869,6 +2107,7 @@ class EuArm9Functions:
     )
 
     IntToFloat = Symbol(
+        [0x8FA3C],
         [0x208FA3C],
         None,
         "This appears to be the libgcc implementation of __floatsisf (not sure which"
@@ -1877,6 +2116,7 @@ class EuArm9Functions:
     )
 
     UIntToFloat = Symbol(
+        [0x8FA84],
         [0x208FA84],
         None,
         "This appears to be the libgcc implementation of __floatunsisf (not sure which"
@@ -1885,6 +2125,7 @@ class EuArm9Functions:
     )
 
     MultiplyFloat = Symbol(
+        [0x8FACC],
         [0x208FACC],
         None,
         "This appears to be the libgcc implementation of __mulsf3 (not sure which gcc"
@@ -1893,10 +2134,14 @@ class EuArm9Functions:
     )
 
     Sqrtf = Symbol(
-        [0x208FCAC], None, "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)"
+        [0x8FCAC],
+        [0x208FCAC],
+        None,
+        "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)",
     )
 
     SubtractFloat = Symbol(
+        [0x8FD9C],
         [0x208FD9C],
         None,
         "This appears to be the libgcc implementation of __subsf3 (not sure which gcc"
@@ -1905,6 +2150,7 @@ class EuArm9Functions:
     )
 
     DivideInt = Symbol(
+        [0x9023C],
         [0x209023C],
         None,
         "This appears to be the libgcc implementation of __divsi3 (not sure which gcc"
@@ -1913,6 +2159,7 @@ class EuArm9Functions:
     )
 
     DivideUInt = Symbol(
+        [0x90448],
         [0x2090448],
         None,
         "This appears to be the libgcc implementation of __udivsi3 (not sure which gcc"
@@ -1922,6 +2169,7 @@ class EuArm9Functions:
     )
 
     DivideUIntNoZeroCheck = Symbol(
+        [0x90450],
         [0x2090450],
         None,
         "Subsidiary function to DivideUInt. Skips the initial check for divisor =="
@@ -1933,36 +2181,48 @@ class EuArm9Functions:
 class EuArm9Data:
 
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
+        [0xE58],
         [0x2000E58],
         0x4,
         "Length in bytes of the default memory allocation arena, 1991680.",
     )
 
-    AURA_BOW_ID_LAST = Symbol([0x200CCBC], 0x4, "Highest item ID of the aura bows.")
+    AURA_BOW_ID_LAST = Symbol(
+        [0xCCBC], [0x200CCBC], 0x4, "Highest item ID of the aura bows."
+    )
 
-    NUMBER_OF_ITEMS = Symbol([0x200E930], 0x4, "Number of items in the game.")
+    NUMBER_OF_ITEMS = Symbol([0xE930], [0x200E930], 0x4, "Number of items in the game.")
 
     MAX_MONEY_CARRIED = Symbol(
-        [0x200EDF8], 0x4, "Maximum amount of money the player can carry, 99999."
+        [0xEDF8],
+        [0x200EDF8],
+        0x4,
+        "Maximum amount of money the player can carry, 99999.",
     )
 
     MAX_MONEY_STORED = Symbol(
+        [0x107F8],
         [0x20107F8],
         0x4,
         "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
     )
 
     SCRIPT_VARS_VALUES_PTR = Symbol(
+        [0x4B630, 0x4B81C, 0x4C764, 0x4C7BC],
         [0x204B630, 0x204B81C, 0x204C764, 0x204C7BC],
         0x4,
         "Hard-coded pointer to SCRIPT_VARS_VALUES.",
     )
 
     MONSTER_ID_LIMIT = Symbol(
-        [0x2054818], 0x4, "One more than the maximum valid monster ID (0x483)."
+        [0x54818],
+        [0x2054818],
+        0x4,
+        "One more than the maximum valid monster ID (0x483).",
     )
 
     MAX_RECRUITABLE_TEAM_MEMBERS = Symbol(
+        [0x555B4, 0x559C8],
         [0x20555B4, 0x20559C8],
         None,
         "555, appears to be the maximum number of members recruited to an exploration"
@@ -1970,9 +2230,10 @@ class EuArm9Data:
         " team members.",
     )
 
-    CART_REMOVED_IMG_DATA = Symbol([0x2092EE4], 0x2000, "")
+    CART_REMOVED_IMG_DATA = Symbol([0x92EE4], [0x2092EE4], 0x2000, "")
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA = Symbol(
+        [0x9852C],
         [0x209852C],
         0x3C,
         "Contains stat boost effects for different exclusive item classes.\n\nEach"
@@ -1982,22 +2243,23 @@ class EuArm9Data:
     )
 
     EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
-        [0x209852C], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
+        [0x9852C], [0x209852C], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
     )
 
     EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
-        [0x209852D], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
+        [0x9852D], [0x209852D], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
     )
 
     EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
-        [0x209852E], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
+        [0x9852E], [0x209852E], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
     )
 
     EXCLUSIVE_ITEM_SPECIAL_DEFENSE_BOOSTS = Symbol(
-        [0x209852F], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 3"
+        [0x9852F], [0x209852F], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 3"
     )
 
     EXCLUSIVE_ITEM_EFFECT_DATA = Symbol(
+        [0x98568],
         [0x2098568],
         0x778,
         "Contains special effects for each exclusive item.\n\nEach entry is 2 bytes,"
@@ -2008,10 +2270,11 @@ class EuArm9Data:
     )
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
-        [0x2098569], 0x777, "EXCLUSIVE_ITEM_EFFECT_DATA, offset by 1"
+        [0x98569], [0x2098569], 0x777, "EXCLUSIVE_ITEM_EFFECT_DATA, offset by 1"
     )
 
     RECOIL_MOVE_LIST = Symbol(
+        [0x991B8],
         [0x20991B8],
         0x16,
         "Null-terminated list of all the recoil moves, as 2-byte move IDs.\n\ntype:"
@@ -2019,6 +2282,7 @@ class EuArm9Data:
     )
 
     PUNCH_MOVE_LIST = Symbol(
+        [0x991CE],
         [0x20991CE],
         0x20,
         "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
@@ -2026,6 +2290,7 @@ class EuArm9Data:
     )
 
     SCRIPT_VARS_LOCALS = Symbol(
+        [0x9D450],
         [0x209D450],
         0x40,
         "List of special 'local' variables available to the script engine. There are 4"
@@ -2034,6 +2299,7 @@ class EuArm9Data:
     )
 
     SCRIPT_VARS = Symbol(
+        [0x9DDF4],
         [0x209DDF4],
         0x730,
         "List of predefined global variables that track game state, which are available"
@@ -2043,6 +2309,7 @@ class EuArm9Data:
     )
 
     DUNGEON_DATA_LIST = Symbol(
+        [0x9E924],
         [0x209E924],
         0x2D0,
         "Data about every dungeon in the game.\n\nThis is an array of 180 dungeon data"
@@ -2053,6 +2320,7 @@ class EuArm9Data:
     )
 
     DUNGEON_RESTRICTIONS = Symbol(
+        [0xA11E8],
         [0x20A11E8],
         0xC00,
         "Data related to dungeon restrictions for every dungeon in the game.\n\nThis is"
@@ -2063,58 +2331,62 @@ class EuArm9Data:
     )
 
     SPECIAL_BAND_STAT_BOOST = Symbol(
-        [0x20A1DF0], 0x2, "Stat boost value for the Special Band."
+        [0xA1DF0], [0x20A1DF0], 0x2, "Stat boost value for the Special Band."
     )
 
     MUNCH_BELT_STAT_BOOST = Symbol(
-        [0x20A1E00], 0x2, "Stat boost value for the Munch Belt."
+        [0xA1E00], [0x20A1E00], 0x2, "Stat boost value for the Munch Belt."
     )
 
     GUMMI_STAT_BOOST = Symbol(
+        [0xA1E0C],
         [0x20A1E0C],
         0x2,
         "Stat boost value if a stat boost occurs when eating normal Gummis.",
     )
 
-    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol([0x20A1E10], 0x4, "")
+    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol([0xA1E10], [0x20A1E10], 0x4, "")
 
     WONDER_GUMMI_IQ_GAIN = Symbol(
-        [0x20A1E14], 0x2, "IQ gain when ingesting wonder gummis."
+        [0xA1E14], [0x20A1E14], 0x2, "IQ gain when ingesting wonder gummis."
     )
 
     AURA_BOW_STAT_BOOST = Symbol(
-        [0x20A1E1C], 0x2, "Stat boost value for the aura bows."
+        [0xA1E1C], [0x20A1E1C], 0x2, "Stat boost value for the aura bows."
     )
 
-    MIN_IQ_ITEM_MASTER = Symbol([0x20A1E28], 0x4, "")
+    MIN_IQ_ITEM_MASTER = Symbol([0xA1E28], [0x20A1E28], 0x4, "")
 
     DEF_SCARF_STAT_BOOST = Symbol(
-        [0x20A1E2C], 0x2, "Stat boost value for the Defense Scarf."
+        [0xA1E2C], [0x20A1E2C], 0x2, "Stat boost value for the Defense Scarf."
     )
 
     POWER_BAND_STAT_BOOST = Symbol(
-        [0x20A1E30], 0x2, "Stat boost value for the Power Band."
+        [0xA1E30], [0x20A1E30], 0x2, "Stat boost value for the Power Band."
     )
 
     WONDER_GUMMI_STAT_BOOST = Symbol(
+        [0xA1E34],
         [0x20A1E34],
         0x2,
         "Stat boost value if a stat boost occurs when eating Wonder Gummis.",
     )
 
     ZINC_BAND_STAT_BOOST = Symbol(
-        [0x20A1E38], 0x2, "Stat boost value for the Zinc Band."
+        [0xA1E38], [0x20A1E38], 0x2, "Stat boost value for the Zinc Band."
     )
 
-    TACTICS_UNLOCK_LEVEL_TABLE = Symbol([0x20A1EC4], 0x18, "")
+    TACTICS_UNLOCK_LEVEL_TABLE = Symbol([0xA1EC4], [0x20A1EC4], 0x18, "")
 
     OUTLAW_LEVEL_TABLE = Symbol(
+        [0xA1F1C],
         [0x20A1F1C],
         0x20,
         "Table of 2-byte outlaw levels for outlaw missions, indexed by mission rank.",
     )
 
     OUTLAW_MINION_LEVEL_TABLE = Symbol(
+        [0xA1F3C],
         [0x20A1F3C],
         0x20,
         "Table of 2-byte outlaw minion levels for outlaw hideout missions, indexed by"
@@ -2122,6 +2394,7 @@ class EuArm9Data:
     )
 
     IQ_SKILL_RESTRICTIONS = Symbol(
+        [0xA1FE0],
         [0x20A1FE0],
         0x8A,
         "Table of 2-byte values for each IQ skill that represent a group. IQ skills in"
@@ -2129,6 +2402,7 @@ class EuArm9Data:
     )
 
     SECONDARY_TERRAIN_TYPES = Symbol(
+        [0xA206C],
         [0x20A206C],
         0xC8,
         "The type of secondary terrain for each dungeon in the game.\n\nThis is an"
@@ -2136,30 +2410,33 @@ class EuArm9Data:
         " dungeon.\n\ntype: struct secondary_terrain_type_8[200]",
     )
 
-    SENTRY_MINIGAME_DATA = Symbol([0x20A2134], None, "")
+    SENTRY_MINIGAME_DATA = Symbol([0xA2134], [0x20A2134], None, "")
 
     IQ_SKILLS = Symbol(
+        [0xA2200],
         [0x20A2200],
         0x114,
         "Table of 4-byte values for each IQ skill that represent the required IQ value"
         " to unlock a skill.",
     )
 
-    IQ_GROUP_SKILLS = Symbol([0x20A2314], 0x190, "")
+    IQ_GROUP_SKILLS = Symbol([0xA2314], [0x20A2314], 0x190, "")
 
-    IQ_GUMMI_GAIN_TABLE = Symbol([0x20A2834], 0x288, "")
+    IQ_GUMMI_GAIN_TABLE = Symbol([0xA2834], [0x20A2834], 0x288, "")
 
-    GUMMI_BELLY_RESTORE_TABLE = Symbol([0x20A2ABC], 0x288, "")
+    GUMMI_BELLY_RESTORE_TABLE = Symbol([0xA2ABC], [0x20A2ABC], 0x288, "")
 
     BAG_CAPACITY_TABLE = Symbol(
+        [0xA2D58],
         [0x20A2D58],
         None,
         "Array of 4-byte integers containing the bag capacity for each bag level.",
     )
 
-    SPECIAL_EPISODE_MAIN_CHARACTERS = Symbol([0x20A2D78], 0xC8, "")
+    SPECIAL_EPISODE_MAIN_CHARACTERS = Symbol([0xA2D78], [0x20A2D78], 0xC8, "")
 
     GUEST_MONSTER_DATA = Symbol(
+        [0xA2E40],
         [0x20A2E40],
         0x288,
         "Data for guest monsters that join you during certain story dungeons.\n\nArray"
@@ -2167,13 +2444,14 @@ class EuArm9Data:
         " document for more info.\n\ntype: struct guest_monster[18]",
     )
 
-    RANK_UP_TABLE = Symbol([0x20A30C8], 0xD0, "")
+    RANK_UP_TABLE = Symbol([0xA30C8], [0x20A30C8], 0xD0, "")
 
-    MONSTER_SPRITE_DATA = Symbol([0x20A332C], 0x4B0, "")
+    MONSTER_SPRITE_DATA = Symbol([0xA332C], [0x20A332C], 0x4B0, "")
 
-    MISSION_DUNGEON_UNLOCK_TABLE = Symbol([0x20A42AC], None, "")
+    MISSION_DUNGEON_UNLOCK_TABLE = Symbol([0xA42AC], [0x20A42AC], None, "")
 
     EVENTS = Symbol(
+        [0xA5BD8],
         [0x20A5BD8],
         0x1584,
         "Table of levels for the script engine, in which scenes can take place. There"
@@ -2182,6 +2460,7 @@ class EuArm9Data:
     )
 
     ENTITIES = Symbol(
+        [0xA8890],
         [0x20A8890],
         0x1218,
         "Table of entities for the script engine, which can move around and do things"
@@ -2190,6 +2469,7 @@ class EuArm9Data:
     )
 
     MAP_MARKER_PLACEMENTS = Symbol(
+        [0xA9D70],
         [0x20A9D70],
         0x9B0,
         "The map marker position of each dungeon on the Wonder Map.\n\nThis is an array"
@@ -2199,6 +2479,7 @@ class EuArm9Data:
     )
 
     MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
+        [0xAF7A0],
         [0x20AF7A0],
         0x8,
         "Functions to get the desired memory arena for allocating and freeing heap"
@@ -2206,6 +2487,7 @@ class EuArm9Data:
     )
 
     PRNG_SEQUENCE_NUM = Symbol(
+        [0xAF7CC],
         [0x20AF7CC],
         0x2,
         "[Runtime] The current PRNG sequence number for the general-purpose PRNG. See"
@@ -2213,6 +2495,7 @@ class EuArm9Data:
     )
 
     LOADED_OVERLAY_GROUP_0 = Symbol(
+        [0xAFAD0],
         [0x20AFAD0],
         0x4,
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 0. A"
@@ -2229,6 +2512,7 @@ class EuArm9Data:
     )
 
     LOADED_OVERLAY_GROUP_1 = Symbol(
+        [0xAFAD4],
         [0x20AFAD4],
         0x4,
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 1. A"
@@ -2238,6 +2522,7 @@ class EuArm9Data:
     )
 
     LOADED_OVERLAY_GROUP_2 = Symbol(
+        [0xAFAD8],
         [0x20AFAD8],
         0x4,
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 2. A"
@@ -2247,15 +2532,17 @@ class EuArm9Data:
     )
 
     PACK_FILE_PATHS_TABLE = Symbol(
+        [0xAFF58],
         [0x20AFF58],
         0x18,
         "List of pointers to path strings to all known pack files.\nThe game uses this"
         " table to load its resources when launching dungeon mode.",
     )
 
-    GAME_STATE_VALUES = Symbol([0x20AFF70], None, "[Runtime]")
+    GAME_STATE_VALUES = Symbol([0xAFF70], [0x20AFF70], None, "[Runtime]")
 
     DUNGEON_MOVE_TABLES = Symbol(
+        [0xAFFA8],
         [0x20AFFA8],
         None,
         "[Runtime] Seems to be some sort of region (a table of tables?) that holds"
@@ -2263,21 +2550,24 @@ class EuArm9Data:
     )
 
     MOVE_DATA_TABLE_PTR = Symbol(
+        [0xAFFB0],
         [0x20AFFB0],
         0x4,
         "[Runtime] Points to the contents of the move data table loaded from"
         " waza_p.bin\n\ntype: struct move_data_table*",
     )
 
-    LANGUAGE_INFO_DATA = Symbol([0x20B05A8], None, "[Runtime]")
+    LANGUAGE_INFO_DATA = Symbol([0xB05A8], [0x20B05A8], None, "[Runtime]")
 
     NOTIFY_NOTE = Symbol(
+        [0xB0814],
         [0x20B0814],
         None,
         "[Runtime] Flag related to saving and loading state?\n\ntype: bool",
     )
 
     DEFAULT_HERO_ID = Symbol(
+        [0xB0818],
         [0x20B0818],
         0x2,
         "The default monster ID for the hero (0x4: Charmander)\n\ntype: struct"
@@ -2285,23 +2575,25 @@ class EuArm9Data:
     )
 
     DEFAULT_PARTNER_ID = Symbol(
+        [0xB081A],
         [0x20B081A],
         0x2,
         "The default monster ID for the partner (0x1: Bulbasaur)\n\ntype: struct"
         " monster_id_16",
     )
 
-    GAME_MODE = Symbol([0x20B088C], None, "[Runtime]\n\ntype: uint8_t")
+    GAME_MODE = Symbol([0xB088C], [0x20B088C], None, "[Runtime]\n\ntype: uint8_t")
 
     ADVENTURE_LOG_PTR = Symbol(
-        [0x20B0894], 0x4, "[Runtime]\n\ntype: struct adventure_log*"
+        [0xB0894], [0x20B0894], 0x4, "[Runtime]\n\ntype: struct adventure_log*"
     )
 
-    ITEM_TABLES_PTRS_1 = Symbol([0x20B1264], 0x68, "")
+    ITEM_TABLES_PTRS_1 = Symbol([0xB1264], [0x20B1264], 0x68, "")
 
-    SMD_EVENTS_FUN_TABLE = Symbol([0x20B14D4], 0x1FC, "")
+    SMD_EVENTS_FUN_TABLE = Symbol([0xB14D4], [0x20B14D4], 0x1FC, "")
 
     MEMORY_ALLOCATION_TABLE = Symbol(
+        [0xB3CC0],
         [0x20B3CC0],
         0x40,
         "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
@@ -2317,6 +2609,7 @@ class EuArm9Data:
     )
 
     DEFAULT_MEMORY_ARENA = Symbol(
+        [0xB3CC4],
         [0x20B3CC4],
         0x1C,
         "[Runtime] The default memory allocation arena. This is part of"
@@ -2325,6 +2618,7 @@ class EuArm9Data:
     )
 
     DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
+        [0xB3D00],
         [0x20B3D00],
         0x1800,
         "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\ntype: struct"
@@ -2332,14 +2626,18 @@ class EuArm9Data:
     )
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
+        [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
     )
 
-    TEXT_SPEED = Symbol([0x2020DF0], None, "Controls text speed.")
+    TEXT_SPEED = Symbol([0x20DF0], [0x2020DF0], None, "Controls text speed.")
 
-    HERO_START_LEVEL = Symbol([0x2048B9C], None, "Starting level of the hero.")
+    HERO_START_LEVEL = Symbol(
+        [0x48B9C], [0x2048B9C], None, "Starting level of the hero."
+    )
 
-    PARTNER_START_LEVEL = Symbol([0x2048C0C], None, "Starting level of the partner.")
+    PARTNER_START_LEVEL = Symbol(
+        [0x48C0C], [0x2048C0C], None, "Starting level of the partner."
+    )
 
 
 class EuArm9Section:
@@ -2357,154 +2655,91 @@ class EuArm9Section:
     data = EuArm9Data
 
 
-class EuOverlay13Functions:
+class EuOverlay5Functions:
 
     pass
 
 
-class EuOverlay13Data:
+class EuOverlay5Data:
 
-    STARTERS_PARTNER_IDS = Symbol([0x238CBCC], 0x2A, "type: struct monster_id_16[21]")
-
-    STARTERS_HERO_IDS = Symbol([0x238CBF8], 0x40, "type: struct monster_id_16[32]")
-
-    STARTERS_STRINGS = Symbol([0x238CC8C], 0x60, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol([0x238CCEC], 0x84, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol([0x238CD70], 0x160, "")
-
-    UNKNOWN_MENU_1 = Symbol([0x238DA0C], 0x48, "")
+    pass
 
 
-class EuOverlay13Section:
-    name = "overlay13"
-    description = (
-        "Controls the personality test, including the available partners and playable"
-        " Pokémon. The actual personality test questions are stored in the MESSAGE"
-        " folder."
+class EuOverlay5Section:
+    name = "overlay5"
+    description = "Controls the Trade Team submenu within the top menu."
+    loadaddress = 0x233D200
+    length = 0x3240
+    functions = EuOverlay5Functions
+    data = EuOverlay5Data
+
+
+class EuOverlay14Functions:
+
+    pass
+
+
+class EuOverlay14Data:
+
+    FOOTPRINT_DEBUG_MENU = Symbol([0x39C0], [0x238E640], 0x48, "")
+
+
+class EuOverlay14Section:
+    name = "overlay14"
+    description = "Runs the sentry duty minigame."
+    loadaddress = 0x238AC80
+    length = 0x3B40
+    functions = EuOverlay14Functions
+    data = EuOverlay14Data
+
+
+class EuOverlay27Functions:
+
+    pass
+
+
+class EuOverlay27Data:
+
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238D49C], 0x18, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238D4B4], 0x20, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238D4D4], 0x20, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238D4F4], 0x28, "")
+
+
+class EuOverlay27Section:
+    name = "overlay27"
+    description = "Controls the special episode item discard menu."
+    loadaddress = 0x238AC80
+    length = 0x2D60
+    functions = EuOverlay27Functions
+    data = EuOverlay27Data
+
+
+class EuOverlay9Functions:
+
+    pass
+
+
+class EuOverlay9Data:
+
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        [0xE80],
+        [0x233E080],
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
     )
-    loadaddress = 0x238AC80
-    length = 0x2E80
-    functions = EuOverlay13Functions
-    data = EuOverlay13Data
 
 
-class EuOverlay25Functions:
-
-    pass
-
-
-class EuOverlay25Data:
-
-    APPRAISAL_MENU_CONFIRM = Symbol([0x238BFF4], 0x18, "")
-
-    APPRAISAL_MAIN_MENU = Symbol([0x238C00C], 0x20, "")
-
-    APPRAISAL_SUBMENU = Symbol([0x238C02C], 0x20, "")
-
-
-class EuOverlay25Section:
-    name = "overlay25"
-    description = "Controls Xatu Appraisal."
-    loadaddress = 0x238AC80
-    length = 0x14C0
-    functions = EuOverlay25Functions
-    data = EuOverlay25Data
-
-
-class EuOverlay16Functions:
-
-    pass
-
-
-class EuOverlay16Data:
-
-    EVO_MENU_CONFIRM = Symbol([0x238D84C], 0x18, "")
-
-    EVO_SUBMENU = Symbol([0x238D864], 0x20, "")
-
-    EVO_MAIN_MENU = Symbol([0x238D884], 0x20, "")
-
-
-class EuOverlay16Section:
-    name = "overlay16"
-    description = "Controls Luminous Spring."
-    loadaddress = 0x238AC80
-    length = 0x2D20
-    functions = EuOverlay16Functions
-    data = EuOverlay16Data
-
-
-class EuOverlay26Functions:
-
-    pass
-
-
-class EuOverlay26Data:
-
-    pass
-
-
-class EuOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Related to mission completion. It's loaded when the dungeon completion summary"
-        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
-        " mission rewards from clients."
-    )
-    loadaddress = 0x238AC80
-    length = 0xE40
-    functions = EuOverlay26Functions
-    data = EuOverlay26Data
-
-
-class EuOverlay30Functions:
-
-    pass
-
-
-class EuOverlay30Data:
-
-    pass
-
-
-class EuOverlay30Section:
-    name = "overlay30"
-    description = "Controls quicksaving in dungeons."
-    loadaddress = 0x2383420
-    length = 0x38A0
-    functions = EuOverlay30Functions
-    data = EuOverlay30Data
-
-
-class EuOverlay21Functions:
-
-    pass
-
-
-class EuOverlay21Data:
-
-    SWAP_SHOP_MENU_CONFIRM = Symbol([0x238D578], 0x18, "")
-
-    SWAP_SHOP_SUBMENU_1 = Symbol([0x238D590], 0x18, "")
-
-    SWAP_SHOP_SUBMENU_2 = Symbol([0x238D5A8], 0x20, "")
-
-    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x238D5C8], 0x20, "")
-
-    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x238D5E8], 0x28, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol([0x238D610], 0x30, "")
-
-
-class EuOverlay21Section:
-    name = "overlay21"
-    description = "Controls the Croagunk Swap Shop."
-    loadaddress = 0x238AC80
-    length = 0x2E20
-    functions = EuOverlay21Functions
-    data = EuOverlay21Data
+class EuOverlay9Section:
+    name = "overlay9"
+    description = "Controls the Sky Jukebox."
+    loadaddress = 0x233D200
+    length = 0x2D80
+    functions = EuOverlay9Functions
+    data = EuOverlay9Data
 
 
 class EuOverlay32Functions:
@@ -2526,275 +2761,6 @@ class EuOverlay32Section:
     data = EuOverlay32Data
 
 
-class EuRamFunctions:
-
-    pass
-
-
-class EuRamData:
-
-    DUNGEON_COLORMAP_PTR = Symbol(
-        [0x21BA634],
-        0x4,
-        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
-        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
-        " indexes into when rendering colors. Some weather conditions modify the"
-        " colormap, which is how the color scheme changes when it's, e.g., raining.",
-    )
-
-    DUNGEON_STRUCT = Symbol(
-        [0x21BA674],
-        0x2CB14,
-        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
-        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
-        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
-        " 29.\n\ntype: struct dungeon",
-    )
-
-    MOVE_DATA_TABLE = Symbol(
-        [0x2211D0C],
-        0x38C6,
-        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
-        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
-        " ARM 9 binary.\n\ntype: struct move_data_table",
-    )
-
-    FRAMES_SINCE_LAUNCH = Symbol(
-        [0x22A3E8C, 0x22A3EDC],
-        0x4,
-        "Starts at 0 when the game is first launched, and continuously ticks up once"
-        " per frame while the game is running.",
-    )
-
-    BAG_ITEMS = Symbol(
-        [0x22A4164],
-        0x12C,
-        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
-        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
-        " if filled.\n\ntype: struct item[50]",
-    )
-
-    BAG_ITEMS_PTR = Symbol([0x22A44E8], 0x4, "Pointer to BAG_ITEMS.")
-
-    STORAGE_ITEMS = Symbol(
-        [0x22A44EE],
-        0x7D0,
-        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
-        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
-        " item_id_16[1000]",
-    )
-
-    STORAGE_ITEM_QUANTITIES = Symbol(
-        [0x22A4CBE],
-        0x7D0,
-        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
-        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
-        " entry in this array is unused, and will be 0.",
-    )
-
-    KECLEON_SHOP_ITEMS_PTR = Symbol([0x22A5490], 0x4, "Pointer to KECLEON_SHOP_ITEMS.")
-
-    KECLEON_SHOP_ITEMS = Symbol(
-        [0x22A5494],
-        0x20,
-        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
-        [0x22A54B4],
-        0x20,
-        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
-        " to be used by the Kecleon Shop.",
-    )
-
-    KECLEON_WARES_ITEMS_PTR = Symbol(
-        [0x22A54D4], 0x4, "Pointer to KECLEON_WARES_ITEMS."
-    )
-
-    KECLEON_WARES_ITEMS = Symbol(
-        [0x22A54D8],
-        0x10,
-        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_WARES_ITEMS = Symbol(
-        [0x22A54E8],
-        0x10,
-        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
-        " to be used by Kecleon Wares.",
-    )
-
-    MONEY_CARRIED = Symbol(
-        [0x22A54F8], 0x4, "The amount of money the player is currently carrying."
-    )
-
-    MONEY_STORED = Symbol(
-        [0x22A5504],
-        0x4,
-        "The amount of money the player currently has stored in the Duskull Bank.",
-    )
-
-    LAST_NEW_MOVE = Symbol(
-        [0x22AB78C],
-        0x8,
-        "Move struct of the last new move introduced when learning a new move. Persists"
-        " even after the move selection is made in the menu.\n\ntype: struct move",
-    )
-
-    SCRIPT_VARS_VALUES = Symbol(
-        [0x22AB9EC],
-        0x400,
-        "The table of game variable values. Its structure is determined by"
-        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
-        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
-        " the real length of this table is 0x400 based on the game code.\n\ntype:"
-        " struct script_var_value_table",
-    )
-
-    BAG_LEVEL = Symbol(
-        [0x22ABA9C],
-        0x1,
-        "The player's bag level, which determines the bag capacity. This indexes"
-        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
-    )
-
-    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
-        [0x22ABDEC],
-        0x1,
-        "The number of the special episode currently being played.\n\n0: normal,"
-        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
-        " Comes Team Charm!\n4: In the Future of Darkness",
-    )
-
-    PENDING_DUNGEON_ID = Symbol(
-        [0x22ABE3C],
-        0x1,
-        "The ID of the selected dungeon when setting off from the"
-        " overworld.\n\nControls the text and map location during the 'map cutscene'"
-        " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
-    )
-
-    PENDING_STARTING_FLOOR = Symbol(
-        [0x22ABE3D],
-        0x1,
-        "The floor number to start from in the dungeon specified by"
-        " PENDING_DUNGEON_ID.",
-    )
-
-    PLAY_TIME_SECONDS = Symbol(
-        [0x22ABFD4], 0x4, "The player's total play time in seconds."
-    )
-
-    PLAY_TIME_FRAME_COUNTER = Symbol(
-        [0x22ABFD8],
-        0x1,
-        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
-        " with each rollover.",
-    )
-
-    TEAM_NAME = Symbol(
-        [0x22AC258],
-        0xC,
-        "The team name.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    HERO_SPECIES_ID = Symbol(
-        [0x22AC724],
-        0x2,
-        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
-        " with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    HERO_NICKNAME = Symbol(
-        [0x22AC75A],
-        0xA,
-        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    PARTNER_SPECIES_ID = Symbol(
-        [0x22AC768],
-        0x2,
-        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
-        " together with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    LEADER_IQ_SKILLS = Symbol(
-        [0x22B5AD8],
-        0xC,
-        "Unlocked IQ skills of the current leader, available for selection from the IQ"
-        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
-        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
-        " larger struct, together with other nearby data.",
-    )
-
-    LEADER_NICKNAME = Symbol(
-        [0x22B5AEA],
-        0xA,
-        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
-        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
-        " typically uses.\n\nThis is presumably part of a larger struct, together with"
-        " other nearby data.",
-    )
-
-    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
-        [0x22B5B40],
-        0xC,
-        "Unlocked IQ skills of the second party member, available for selection from"
-        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
-        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
-        " a larger struct, together with other nearby data.",
-    )
-
-    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
-        [0x22BA304],
-        0x4,
-        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
-        " the game is running.",
-    )
-
-    TURNING_ON_THE_SPOT_FLAG = Symbol(
-        [0x237D5A6],
-        0x1,
-        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
-    )
-
-    FLOOR_GENERATION_STATUS = Symbol(
-        [0x237DBBC],
-        0x40,
-        "[Runtime] Status data related to generation of the current floor in a"
-        " dungeon.\n\nThis data is populated as the dungeon floor is"
-        " generated.\n\ntype: struct floor_generation_status",
-    )
-
-
-class EuRamSection:
-    name = "ram"
-    description = (
-        "Main memory.\nData in this file aren't located in the ROM itself, and are"
-        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
-        " dumping ground for addresses that are useful to know about, but don't fall in"
-        " the address ranges of any of the other files. Dynamically loaded constructs"
-        " that do fall within the address range of a relevant binary should be listed"
-        " in the corresponding YAML file of that binary, since it still has direct"
-        " utility when reverse-engineering that particular binary."
-    )
-    loadaddress = 0x2000000
-    length = 0x400000
-    functions = EuRamFunctions
-    data = EuRamData
-
-
 class EuOverlay17Functions:
 
     pass
@@ -2802,25 +2768,25 @@ class EuOverlay17Functions:
 
 class EuOverlay17Data:
 
-    ASSEMBLY_MENU_CONFIRM = Symbol([0x238C6C4], 0x18, "")
+    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238C6C4], 0x18, "")
 
-    ASSEMBLY_MAIN_MENU_1 = Symbol([0x238C6DC], 0x18, "")
+    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238C6DC], 0x18, "")
 
-    ASSEMBLY_MAIN_MENU_2 = Symbol([0x238C6F4], 0x20, "")
+    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238C6F4], 0x20, "")
 
-    ASSEMBLY_SUBMENU_1 = Symbol([0x238C714], 0x28, "")
+    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238C714], 0x28, "")
 
-    ASSEMBLY_SUBMENU_2 = Symbol([0x238C73C], 0x30, "")
+    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238C73C], 0x30, "")
 
-    ASSEMBLY_SUBMENU_3 = Symbol([0x238C76C], 0x30, "")
+    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238C76C], 0x30, "")
 
-    ASSEMBLY_SUBMENU_4 = Symbol([0x238C79C], 0x38, "")
+    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238C79C], 0x38, "")
 
-    ASSEMBLY_SUBMENU_5 = Symbol([0x238C7D4], 0x38, "")
+    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238C7D4], 0x38, "")
 
-    ASSEMBLY_SUBMENU_6 = Symbol([0x238C80C], 0x38, "")
+    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238C80C], 0x38, "")
 
-    ASSEMBLY_SUBMENU_7 = Symbol([0x238C844], 0x40, "")
+    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238C844], 0x40, "")
 
 
 class EuOverlay17Section:
@@ -2832,867 +2798,58 @@ class EuOverlay17Section:
     data = EuOverlay17Data
 
 
-class EuOverlay19Functions:
+class EuOverlay21Functions:
 
     pass
 
 
-class EuOverlay19Data:
+class EuOverlay21Data:
 
-    BAR_MENU_CONFIRM_1 = Symbol([0x238ED3C], 0x18, "")
+    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238D578], 0x18, "")
 
-    BAR_MENU_CONFIRM_2 = Symbol([0x238ED54], 0x18, "")
+    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238D590], 0x18, "")
 
-    BAR_MAIN_MENU = Symbol([0x238ED84], 0x20, "")
+    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238D5A8], 0x20, "")
 
-    BAR_SUBMENU_1 = Symbol([0x238EDA4], 0x20, "")
+    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238D5C8], 0x20, "")
 
-    BAR_SUBMENU_2 = Symbol([0x238EDC4], 0x30, "")
+    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238D5E8], 0x28, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238D610], 0x30, "")
 
 
-class EuOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
+class EuOverlay21Section:
+    name = "overlay21"
+    description = "Controls the Croagunk Swap Shop."
     loadaddress = 0x238AC80
-    length = 0x4220
-    functions = EuOverlay19Functions
-    data = EuOverlay19Data
+    length = 0x2E20
+    functions = EuOverlay21Functions
+    data = EuOverlay21Data
 
 
-class EuOverlay33Functions:
-
-    pass
-
-
-class EuOverlay33Data:
+class EuOverlay15Functions:
 
     pass
 
 
-class EuOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383420
-    length = 0x20
-    functions = EuOverlay33Functions
-    data = EuOverlay33Data
+class EuOverlay15Data:
+
+    BANK_MAIN_MENU = Symbol([0xF40], [0x238BBC0], 0x28, "")
 
 
-class EuOverlay22Functions:
-
-    pass
-
-
-class EuOverlay22Data:
-
-    SHOP_MENU_CONFIRM = Symbol([0x238F3A8], 0x18, "")
-
-    SHOP_MAIN_MENU_1 = Symbol([0x238F3C0], 0x20, "")
-
-    SHOP_MAIN_MENU_2 = Symbol([0x238F3E0], 0x20, "")
-
-    SHOP_MAIN_MENU_3 = Symbol([0x238F400], 0x30, "")
-
-
-class EuOverlay22Section:
-    name = "overlay22"
-    description = "Controls the Kecleon Shop in Treasure Town."
+class EuOverlay15Section:
+    name = "overlay15"
+    description = "Controls the Duskull Bank."
     loadaddress = 0x238AC80
-    length = 0x4B40
-    functions = EuOverlay22Functions
-    data = EuOverlay22Data
-
-
-class EuOverlay28Functions:
-
-    pass
-
-
-class EuOverlay28Data:
-
-    pass
-
-
-class EuOverlay28Section:
-    name = "overlay28"
-    description = "Controls the staff credits sequence."
-    loadaddress = 0x238AC80
-    length = 0xC60
-    functions = EuOverlay28Functions
-    data = EuOverlay28Data
-
-
-class EuOverlay4Functions:
-
-    pass
-
-
-class EuOverlay4Data:
-
-    pass
-
-
-class EuOverlay4Section:
-    name = "overlay4"
-    description = "Controls the Trade Items submenu within the top menu."
-    loadaddress = 0x233D200
-    length = 0x2BE0
-    functions = EuOverlay4Functions
-    data = EuOverlay4Data
-
-
-class EuOverlay14Functions:
-
-    pass
-
-
-class EuOverlay14Data:
-
-    FOOTPRINT_DEBUG_MENU = Symbol([0x238E640], 0x48, "")
-
-
-class EuOverlay14Section:
-    name = "overlay14"
-    description = "Runs the sentry duty minigame."
-    loadaddress = 0x238AC80
-    length = 0x3B40
-    functions = EuOverlay14Functions
-    data = EuOverlay14Data
-
-
-class EuOverlay7Functions:
-
-    pass
-
-
-class EuOverlay7Data:
-
-    pass
-
-
-class EuOverlay7Section:
-    name = "overlay7"
-    description = (
-        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233D200
-    length = 0x3300
-    functions = EuOverlay7Functions
-    data = EuOverlay7Data
-
-
-class EuOverlay6Functions:
-
-    pass
-
-
-class EuOverlay6Data:
-
-    pass
-
-
-class EuOverlay6Section:
-    name = "overlay6"
-    description = "Controls the Wonder Mail S submenu within the top menu."
-    loadaddress = 0x233D200
-    length = 0x2460
-    functions = EuOverlay6Functions
-    data = EuOverlay6Data
-
-
-class EuOverlay35Functions:
-
-    pass
-
-
-class EuOverlay35Data:
-
-    pass
-
-
-class EuOverlay35Section:
-    name = "overlay35"
-    description = "Unused; all zeroes."
-    loadaddress = 0x22BD3C0
-    length = 0x20
-    functions = EuOverlay35Functions
-    data = EuOverlay35Data
-
-
-class EuOverlay23Functions:
-
-    pass
-
-
-class EuOverlay23Data:
-
-    STORAGE_MENU_CONFIRM = Symbol([0x238DE3C], 0x18, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol([0x238DE54], 0x20, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol([0x238DE74], 0x20, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol([0x238DE94], 0x20, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol([0x238DEB4], 0x28, "")
-
-
-class EuOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
-    )
-    loadaddress = 0x238AC80
-    length = 0x3780
-    functions = EuOverlay23Functions
-    data = EuOverlay23Data
-
-
-class EuOverlay8Functions:
-
-    pass
-
-
-class EuOverlay8Data:
-
-    pass
-
-
-class EuOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233D200
-    length = 0x2620
-    functions = EuOverlay8Functions
-    data = EuOverlay8Data
-
-
-class EuOverlay9Functions:
-
-    pass
-
-
-class EuOverlay9Data:
-
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        [0x233E080],
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class EuOverlay9Section:
-    name = "overlay9"
-    description = "Controls the Sky Jukebox."
-    loadaddress = 0x233D200
-    length = 0x2D80
-    functions = EuOverlay9Functions
-    data = EuOverlay9Data
-
-
-class EuOverlay24Functions:
-
-    pass
-
-
-class EuOverlay24Data:
-
-    DAYCARE_MENU_CONFIRM = Symbol([0x238D060], 0x18, "")
-
-    DAYCARE_MAIN_MENU = Symbol([0x238D078], 0x20, "")
-
-
-class EuOverlay24Section:
-    name = "overlay24"
-    description = "Controls the Chansey Day Care."
-    loadaddress = 0x238AC80
-    length = 0x24E0
-    functions = EuOverlay24Functions
-    data = EuOverlay24Data
-
-
-class EuOverlay0Functions:
-
-    pass
-
-
-class EuOverlay0Data:
-
-    TOP_MENU_MUSIC_ID = Symbol([0x22BE9B4], None, "Music ID to play in the top menu.")
-
-
-class EuOverlay0Section:
-    name = "overlay0"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 0."
-    )
-    loadaddress = 0x22BD3C0
-    length = 0x60880
-    functions = EuOverlay0Functions
-    data = EuOverlay0Data
-
-
-class EuOverlay10Functions:
-
-    SprintfStatic = Symbol(
-        [0x22BDD8C, 0x22C2194],
-        None,
-        "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
-        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
-        " characters printed, excluding the null-terminator",
-    )
-
-
-class EuOverlay10Data:
-
-    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
-        [0x22C4D64],
-        0x1,
-        "The first dungeon that can have extra traps spawn in Monster Houses, Dark"
-        " Hill\n\ntype: struct dungeon_id_8",
-    )
-
-    BAD_POISON_DAMAGE_COOLDOWN = Symbol(
-        [0x22C4D6C],
-        0x2,
-        "The number of turns between passive bad poison (toxic) damage.",
-    )
-
-    PROTEIN_STAT_BOOST = Symbol(
-        [0x22C4D78], 0x2, "The permanent attack boost from ingesting a Protein."
-    )
-
-    SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
-        [0x22C4D88],
-        None,
-        "The maximum number of enemies that can spawn on a floor without a monster"
-        " house (15).",
-    )
-
-    OREN_BERRY_DAMAGE = Symbol(
-        [0x22C4D90], 0x2, "Damage dealt by eating an Oren Berry."
-    )
-
-    SITRUS_BERRY_HP_RESTORATION = Symbol(
-        [0x22C4DD0], 0x2, "The amount of HP restored by eating a Sitrus Berry."
-    )
-
-    EXP_ELITE_EXP_BOOST = Symbol(
-        [0x22C4E00],
-        0x2,
-        "The percentage increase in experience from the Exp. Elite IQ skill",
-    )
-
-    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
-        [0x22C4E04],
-        0x2,
-        "The maximum number of extra non-monster spawns (items/traps) in a Monster"
-        " House, 7",
-    )
-
-    GOLD_THORN_POWER = Symbol([0x22C4E28], 0x2, "Attack power for Golden Thorns.")
-
-    SPAWN_COOLDOWN = Symbol(
-        [0x22C4E34],
-        0x2,
-        "The number of turns between enemy spawns under normal conditions.",
-    )
-
-    ORAN_BERRY_FULL_HP_BOOST = Symbol(
-        [0x22C4E4C],
-        0x2,
-        "The permanent HP boost from eating an Oran Berry at full HP (0).",
-    )
-
-    LIFE_SEED_HP_BOOST = Symbol(
-        [0x22C4E50], 0x2, "The permanent HP boost from eating a Life Seed."
-    )
-
-    EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
-        [0x22C4EE4],
-        0x2,
-        "The percentage increase in experience from exp-boosting exclusive items",
-    )
-
-    INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
-        [0x22C4F10], 0x2, "The percentage chance that Intimidator will activate."
-    )
-
-    ORAN_BERRY_HP_RESTORATION = Symbol(
-        [0x22C4F44], 0x2, "The amount of HP restored by eating a Oran Berry."
-    )
-
-    SITRUS_BERRY_FULL_HP_BOOST = Symbol(
-        [0x22C4F4C],
-        0x2,
-        "The permanent HP boost from eating a Sitrus Berry at full HP.",
-    )
-
-    BURN_DAMAGE_COOLDOWN = Symbol(
-        [0x22C4F68], 0x2, "The number of turns between passive burn damage."
-    )
-
-    STICK_POWER = Symbol([0x22C4F7C], 0x2, "Attack power for Sticks.")
-
-    SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
-        [0x22C4F98],
-        0x2,
-        "The number of turns between enemy spawns when the Thief Alert condition is"
-        " active.",
-    )
-
-    MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
-        [0x22C4FB8],
-        0x2,
-        "The maximum number of monster spawns in a Monster House, 30, but multiplied by"
-        " 2/3 for some reason (so the actual maximum is 45)",
-    )
-
-    SPEED_BOOST_TURNS = Symbol(
-        [0x22C4FC4],
-        None,
-        "Number of turns (250) after which Speed Boost will trigger and increase speed"
-        " by one stage.",
-    )
-
-    MIRACLE_CHEST_EXP_BOOST = Symbol(
-        [0x22C4FF0],
-        0x2,
-        "The percentage increase in experience from the Miracle Chest item",
-    )
-
-    WONDER_CHEST_EXP_BOOST = Symbol(
-        [0x22C4FF4],
-        0x2,
-        "The percentage increase in experience from the Wonder Chest item",
-    )
-
-    SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
-        [0x22C4FFC],
-        None,
-        "The maximum number of enemies that can spawn on a floor with a monster house,"
-        " not counting those in the monster house (4).",
-    )
-
-    POISON_DAMAGE_COOLDOWN = Symbol(
-        [0x22C5000], 0x2, "The number of turns between passive poison damage."
-    )
-
-    GEO_PEBBLE_DAMAGE = Symbol([0x22C500C], 0x2, "Damage dealt by Geo Pebbles.")
-
-    GRAVELEROCK_DAMAGE = Symbol([0x22C5010], 0x2, "Damage dealt by Gravelerocks.")
-
-    RARE_FOSSIL_DAMAGE = Symbol([0x22C5014], 0x2, "Damage dealt by Rare Fossils.")
-
-    GINSENG_CHANCE_3 = Symbol(
-        [0x22C5018],
-        0x2,
-        "The percentage chance for...something to be set to 3 in a calculation related"
-        " to the Ginseng boost.",
-    )
-
-    ZINC_STAT_BOOST = Symbol(
-        [0x22C501C], 0x2, "The permanent special defense boost from ingesting a Zinc."
-    )
-
-    IRON_STAT_BOOST = Symbol(
-        [0x22C5020], 0x2, "The permanent defense boost from ingesting an Iron."
-    )
-
-    CALCIUM_STAT_BOOST = Symbol(
-        [0x22C5024], 0x2, "The permanent special attack boost from ingesting a Calcium."
-    )
-
-    CORSOLA_TWIG_POWER = Symbol([0x22C5030], 0x2, "Attack power for Corsola Twigs.")
-
-    CACNEA_SPIKE_POWER = Symbol([0x22C5034], 0x2, "Attack power for Cacnea Spikes.")
-
-    GOLD_FANG_POWER = Symbol([0x22C5038], 0x2, "Attack power for Gold Fangs.")
-
-    SILVER_SPIKE_POWER = Symbol([0x22C503C], 0x2, "Attack power for Silver Spikes.")
-
-    IRON_THORN_POWER = Symbol([0x22C5040], 0x2, "Attack power for Iron Thorns.")
-
-    SLEEP_DURATION_RANGE = Symbol(
-        [0x22C5078],
-        0x4,
-        "Appears to control the range of turns for which the sleep condition can"
-        " last.\n\nThe first two bytes are the low value of the range, and the later"
-        " two bytes are the high value.",
-    )
-
-    POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
-        [0x22C5150],
-        0x4,
-        "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
-        " fixed-point number (8 fraction bits)",
-    )
-
-    AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
-        [0x22C519C],
-        None,
-        "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
-        " number (8 fraction bits)",
-    )
-
-    SPEED_BOOST_DURATION_RANGE = Symbol(
-        [0x22C51E0],
-        0x4,
-        "Appears to control the range of turns for which a speed boost can last.\n\nThe"
-        " first two bytes are the low value of the range, and the later two bytes are"
-        " the high value.",
-    )
-
-    OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        [0x22C56F0],
-        0x54,
-        "Table of multipliers for offensive stats (attack/special attack) for each"
-        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-    )
-
-    DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        [0x22C5744],
-        0x54,
-        "Table of multipliers for defensive stats (defense/special defense) for each"
-        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-    )
-
-    RANDOM_MUSIC_ID_TABLE = Symbol(
-        [0x22C5B54],
-        0xF0,
-        "Table of music IDs for dungeons with a random assortment of music"
-        " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
-        " row contains the possible music IDs for a given group, from which the music"
-        " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
-    )
-
-    MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        [0x22C5D64],
-        0x54,
-        "Table of multipliers for the accuracy stat for males for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        [0x22C5DB8],
-        0x54,
-        "Table of multipliers for the evasion stat for males for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        [0x22C5E0C],
-        0x54,
-        "Table of multipliers for the accuracy stat for females for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        [0x22C5E60],
-        0x54,
-        "Table of multipliers for the evasion stat for females for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    MUSIC_ID_TABLE = Symbol(
-        [0x22C5EB4],
-        0x154,
-        "List of music IDs used in dungeons with a single music track.\n\nThis is an"
-        " array of 170 2-byte music IDs, and is indexed into by the music value in the"
-        " floor properties struct for a given floor. Music IDs with the highest bit set"
-        " (0x8000) are indexes into the RANDOM_MUSIC_ID_TABLE.\n\ntype: struct"
-        " music_id_16[170] (or not a music ID if the highest bit is set)",
-    )
-
-    TYPE_MATCHUP_TABLE = Symbol(
-        [0x22C6008],
-        0x288,
-        "Table of type matchups.\n\nEach row corresponds to the type matchups of a"
-        " specific attack type, with each entry within the row specifying the type's"
-        " effectiveness against a target type.\n\ntype: struct type_matchup_table",
-    )
-
-    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
-        [0x22C6290],
-        0x4A4,
-        "Table of stats for monsters that can spawn in fixed rooms, pointed into by the"
-        " FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries"
-        " containing stat spreads for one monster entry each.\n\ntype: struct"
-        " fixed_room_monster_spawn_stats_entry[99]",
-    )
-
-    TILESET_PROPERTIES = Symbol([0x22C6C74], 0x954, "")
-
-    FIXED_ROOM_PROPERTIES_TABLE = Symbol(
-        [0x22C75C8],
-        0xC00,
-        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte"
-        " entries containing properties for a given fixed room ID.\n\nSee the struct"
-        " definitions and End45's dungeon data document for more info.\n\ntype: struct"
-        " fixed_room_properties_entry[256]",
-    )
-
-    MOVE_ANIMATION_INFO = Symbol([0x22C99BC], None, "")
-
-
-class EuOverlay10Section:
-    name = "overlay10"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 10."
-    )
-    loadaddress = 0x22BD3C0
-    length = 0x1F7A0
-    functions = EuOverlay10Functions
-    data = EuOverlay10Data
-
-
-class EuOverlay11Functions:
-
-    FuncThatCallsCommandParsing = Symbol([0x22DDAA4], None, "")
-
-    ScriptCommandParsing = Symbol([0x22DE6A4], None, "")
-
-    SsbLoad2 = Symbol([0x22E503C], None, "")
-
-    StationLoadHanger = Symbol([0x22E5514], None, "")
-
-    ScriptStationLoadTalk = Symbol([0x22E5D24], None, "")
-
-    SsbLoad1 = Symbol([0x22E6690], None, "")
-
-    ScriptSpecialProcessCall = Symbol(
-        [0x22E7A58],
-        None,
-        "Processes calls to the OPCODE_PROCESS_SPECIAL script opcode.\n\nr0: some"
-        " struct containing a callback of some sort, only used for special process ID"
-        " 18\nr1: special process ID\nr2: first argument, if relevant? Probably"
-        " corresponds to the second parameter of OPCODE_PROCESS_SPECIAL\nr3: second"
-        " argument, if relevant? Probably corresponds to the third parameter of"
-        " OPCODE_PROCESS_SPECIAL\nreturn: return value of the special process if it has"
-        " one, otherwise 0",
-    )
-
-    GetSpecialRecruitmentSpecies = Symbol(
-        [0x22E897C],
-        None,
-        "Returns an entry from RECRUITMENT_TABLE_SPECIES.\n\nNote: This indexes without"
-        " doing bounds checking.\n\nr0: index into RECRUITMENT_TABLE_SPECIES\nreturn:"
-        " enum monster_id",
-    )
-
-    PrepareMenuAcceptTeamMember = Symbol(
-        [0x22E89C0],
-        None,
-        "Implements SPECIAL_PROC_PREPARE_MENU_ACCEPT_TEAM_MEMBER (see"
-        " ScriptSpecialProcessCall).\n\nr0: index into RECRUITMENT_TABLE_SPECIES",
-    )
-
-    InitRandomNpcJobs = Symbol(
-        [0x22E8A64],
-        None,
-        "Implements SPECIAL_PROC_INIT_RANDOM_NPC_JOBS (see"
-        " ScriptSpecialProcessCall).\n\nr0: job type? 0 is a random NPC job, 1 is a"
-        " bottle mission\nr1: ?",
-    )
-
-    GetRandomNpcJobType = Symbol(
-        [0x22E8AFC],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_TYPE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: job type?",
-    )
-
-    GetRandomNpcJobSubtype = Symbol(
-        [0x22E8B14],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_SUBTYPE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: job subtype?",
-    )
-
-    GetRandomNpcJobStillAvailable = Symbol(
-        [0x22E8B30],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_STILL_AVAILABLE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: bool",
-    )
-
-    AcceptRandomNpcJob = Symbol(
-        [0x22E8B98],
-        None,
-        "Implements SPECIAL_PROC_ACCEPT_RANDOM_NPC_JOB (see"
-        " ScriptSpecialProcessCall).\n\nreturn: bool",
-    )
-
-    GroundMainLoop = Symbol(
-        [0x22E90B4],
-        None,
-        "Appears to be the main loop for ground mode.\n\nBased on debug print"
-        " statements and general code structure, it seems contain a core loop, and"
-        " dispatches to various functions in response to different events.\n\nr0: mode,"
-        " which is stored globally and used in switch statements for dispatch\nreturn:"
-        " return code",
-    )
-
-    GetAllocArenaGround = Symbol(
-        [0x22E9C9C],
-        None,
-        "The GetAllocArena function used for ground mode. See SetMemAllocatorParams for"
-        " more information.\n\nr0: initial memory arena pointer, or null\nr1: flags"
-        " (see MemAlloc)\nreturn: memory arena pointer, or null",
-    )
-
-    GetFreeArenaGround = Symbol(
-        [0x22E9D00],
-        None,
-        "The GetFreeArena function used for ground mode. See SetMemAllocatorParams for"
-        " more information.\n\nr0: initial memory arena pointer, or null\nr1: pointer"
-        " to free\nreturn: memory arena pointer, or null",
-    )
-
-    GroundMainReturnDungeon = Symbol(
-        [0x22E9D54],
-        None,
-        "Implements SPECIAL_PROC_RETURN_DUNGEON (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-    GroundMainNextDay = Symbol(
-        [0x22E9D78],
-        None,
-        "Implements SPECIAL_PROC_NEXT_DAY (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-    JumpToTitleScreen = Symbol(
-        [0x22E9F1C],
-        None,
-        "Implements SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and SPECIAL_PROC_0x1A (see"
-        " ScriptSpecialProcessCall).\n\nr0: int, argument value for"
-        " SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and -1 for SPECIAL_PROC_0x1A\nreturn: bool"
-        " (but note that the special process ignores this and always returns 0)",
-    )
-
-    ReturnToTitleScreen = Symbol(
-        [0x22E9FD4],
-        None,
-        "Implements SPECIAL_PROC_RETURN_TO_TITLE_SCREEN (see"
-        " ScriptSpecialProcessCall).\n\nr0: fade duration\nreturn: bool (but note that"
-        " the special process ignores this and always returns 0)",
-    )
-
-    ScriptSpecialProcess0x16 = Symbol(
-        [0x22EA034],
-        None,
-        "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
-    )
-
-    SprintfStatic = Symbol(
-        [0x2309868],
-        None,
-        "Statically defined copy of sprintf(3) in overlay 11. See arm9.yml for more"
-        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
-        " characters printed, excluding the null-terminator",
-    )
-
-    StatusUpdate = Symbol(
-        [0x2314478],
-        None,
-        "Implements SPECIAL_PROC_STATUS_UPDATE (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-
-class EuOverlay11Data:
-
-    SCRIPT_OP_CODES = Symbol(
-        [0x2318FF0],
-        0xBF8,
-        "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
-        " opcodes underpin the various ExplorerScript functions you can call in the"
-        " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
-    )
-
-    C_ROUTINES = Symbol(
-        [0x231D208],
-        None,
-        "Common routines used within the unionall.ssb script (the master script). There"
-        " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
-        " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
-        " common_routine_table",
-    )
-
-    OBJECTS = Symbol(
-        [0x231F8DC],
-        0x1AAC,
-        "Table of objects for the script engine, which can be placed in scenes. There"
-        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
-        " script_object[length / 12]",
-    )
-
-    RECRUITMENT_TABLE_LOCATIONS = Symbol(
-        [0x23213C4],
-        0x16,
-        "Table of dungeon IDs corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
-    )
-
-    RECRUITMENT_TABLE_LEVELS = Symbol(
-        [0x23213DC],
-        0x2C,
-        "Table of levels for recruited Pokémon, corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
-    )
-
-    RECRUITMENT_TABLE_SPECIES = Symbol(
-        [0x2321408],
-        0x2C,
-        "Table of Pokémon recruited at special locations, such as at the ends of"
-        " certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during"
-        " a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes"
-        " both Heatran genders. It also includes Darkrai for some reason?\n\ntype:"
-        " struct monster_id_16[22]",
-    )
-
-    LEVEL_TILEMAP_LIST = Symbol([0x232185C], 0x288, "")
-
-    OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
-        [0x2323B9C],
-        None,
-        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16"
-        " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
-        " overlay_group_id in the C headers for a mapping between group ID and overlay"
-        " number)\n- function pointer to entry point\n- function pointer to"
-        " destructor\n- possibly function pointer to frame-update function?",
-    )
-
-    UNIONALL_RAM_ADDRESS = Symbol([0x23257E4], None, "[Runtime]")
-
-    GROUND_STATE_MAP = Symbol([0x2325800], None, "[Runtime]")
-
-    GROUND_STATE_PTRS = Symbol(
-        [0x2325834],
-        0x18,
-        "Host pointers to multiple structure used for performing an overworld"
-        " scene\n\ntype: struct main_ground_data",
-    )
-
-
-class EuOverlay11Section:
-    name = "overlay11"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 11."
-    )
-    loadaddress = 0x22DCB80
-    length = 0x48E40
-    functions = EuOverlay11Functions
-    data = EuOverlay11Data
+    length = 0x1080
+    functions = EuOverlay15Functions
+    data = EuOverlay15Data
 
 
 class EuOverlay29Functions:
 
     DungeonAlloc = Symbol(
+        [0x281C],
         [0x22DF39C],
         None,
         "Allocates a new dungeon struct.\n\nThis updates the master dungeon pointer and"
@@ -3701,6 +2858,7 @@ class EuOverlay29Functions:
     )
 
     GetDungeonPtrMaster = Symbol(
+        [0x2840],
         [0x22DF3C0],
         None,
         "Returns the master dungeon pointer (a global, see"
@@ -3708,6 +2866,7 @@ class EuOverlay29Functions:
     )
 
     DungeonZInit = Symbol(
+        [0x2850],
         [0x22DF3D0],
         None,
         "Zero-initializes the dungeon struct pointed to by the master dungeon"
@@ -3715,6 +2874,7 @@ class EuOverlay29Functions:
     )
 
     DungeonFree = Symbol(
+        [0x2870],
         [0x22DF3F0],
         None,
         "Frees the dungeons struct pointer to by the master dungeon pointer, and"
@@ -3722,6 +2882,7 @@ class EuOverlay29Functions:
     )
 
     RunDungeon = Symbol(
+        [0x2CF8],
         [0x22DF878],
         None,
         "Called at the start of a dungeon. Initializes the dungeon struct from"
@@ -3733,6 +2894,61 @@ class EuOverlay29Functions:
     )
 
     EntityIsValid = Symbol(
+        [
+            0x4114,
+            0x57DC,
+            0x5DC7,
+            0x7118,
+            0x75E8,
+            0xD424,
+            0x10438,
+            0x10BF0,
+            0x12178,
+            0x135D4,
+            0x143C4,
+            0x190C8,
+            0x1A0E0,
+            0x1B19C,
+            0x20818,
+            0x22338,
+            0x23F90,
+            0x268E4,
+            0x28664,
+            0x29438,
+            0x29AB0,
+            0x2BDA4,
+            0x2CE68,
+            0x327E4,
+            0x32EFC,
+            0x34EF0,
+            0x35794,
+            0x38FF8,
+            0x3CC14,
+            0x3CD2C,
+            0x3DE6C,
+            0x3F074,
+            0x40AB0,
+            0x42CC0,
+            0x43458,
+            0x43AE4,
+            0x44064,
+            0x4464C,
+            0x49508,
+            0x4BEF8,
+            0x4E2C4,
+            0x503F0,
+            0x52110,
+            0x52700,
+            0x57E6C,
+            0x58F98,
+            0x5BCF8,
+            0x68B5C,
+            0x69704,
+            0x6BC24,
+            0x6D8FC,
+            0x71E50,
+            0x72CA0,
+        ],
         [
             0x22E0C94,
             0x22E235C,
@@ -3794,6 +3010,7 @@ class EuOverlay29Functions:
     )
 
     GetFloorType = Symbol(
+        [0x4170],
         [0x22E0CF0],
         None,
         "Get the current floor type.\n\nFloor types:\n  0 appears to mean the current"
@@ -3802,6 +3019,7 @@ class EuOverlay29Functions:
     )
 
     TryForcedLoss = Symbol(
+        [0x43E0],
         [0x22E0F60],
         None,
         "Attempts to trigger a forced loss of the type specified in"
@@ -3811,6 +3029,7 @@ class EuOverlay29Functions:
     )
 
     FixedRoomIsSubstituteRoom = Symbol(
+        [0x468C],
         [0x22E120C],
         None,
         "Checks if the current fixed room is the 'substitute room' (ID"
@@ -3818,6 +3037,7 @@ class EuOverlay29Functions:
     )
 
     ShouldGameOverOnImportantTeamMemberFaint = Symbol(
+        [0x46E8],
         [0x22E1268],
         None,
         "Returns true if you should get kicked out of the dungeon if an important team"
@@ -3826,12 +3046,14 @@ class EuOverlay29Functions:
     )
 
     FadeToBlack = Symbol(
+        [0x4728],
         [0x22E12A8],
         None,
         "Fades the screen to black across several frames.\n\nNo params.",
     )
 
     GetTileAtEntity = Symbol(
+        [0x53E8],
         [0x22E1F68],
         None,
         "Returns a pointer to the tile where an entity is located.\n\nr0: pointer to"
@@ -3839,6 +3061,7 @@ class EuOverlay29Functions:
     )
 
     SubstitutePlaceholderStringTags = Symbol(
+        [0x6898],
         [0x22E3418],
         None,
         "Replaces instances of a given placeholder tag by the string representation of"
@@ -3852,6 +3075,7 @@ class EuOverlay29Functions:
     )
 
     UpdateMapSurveyorFlag = Symbol(
+        [0x6BDC],
         [0x22E375C],
         None,
         "Sets the Map Surveyor flag in the dungeon struct to true if a team member has"
@@ -3861,6 +3085,21 @@ class EuOverlay29Functions:
     )
 
     ItemIsActive = Symbol(
+        [
+            0x713C,
+            0x12148,
+            0x197D0,
+            0x23744,
+            0x26578,
+            0x2BDC8,
+            0x2E8D0,
+            0x3246C,
+            0x33704,
+            0x34F14,
+            0x35AD8,
+            0x3901C,
+            0x6BBD0,
+        ],
         [
             0x22E3CBC,
             0x22EECC8,
@@ -3882,6 +3121,7 @@ class EuOverlay29Functions:
     )
 
     IsOnMonsterSpawnList = Symbol(
+        [0xBB7C],
         [0x22E86FC],
         None,
         "Returns true if the specified monster is included in the floor's monster spawn"
@@ -3890,6 +3130,7 @@ class EuOverlay29Functions:
     )
 
     GetMonsterIdToSpawn = Symbol(
+        [0xBBD0],
         [0x22E8750],
         None,
         "Get the id of the monster to be randomly spawned.\n\nr0: the spawn weight to"
@@ -3897,6 +3138,7 @@ class EuOverlay29Functions:
     )
 
     GetMonsterLevelToSpawn = Symbol(
+        [0xBC88],
         [0x22E8808],
         None,
         "Get the level of the monster to be spawned, given its id.\n\nr0: monster"
@@ -3905,6 +3147,7 @@ class EuOverlay29Functions:
     )
 
     GetLeader = Symbol(
+        [0xD3B0],
         [0x22E9F30],
         None,
         "Gets the pointer to the entity that is currently leading the team, or null if"
@@ -3915,6 +3158,7 @@ class EuOverlay29Functions:
     )
 
     TickStatusTurnCounter = Symbol(
+        [0xD874],
         [0x22EA3F4],
         None,
         "Ticks down a turn counter for a status condition. If the counter equals 0x7F,"
@@ -3923,6 +3167,7 @@ class EuOverlay29Functions:
     )
 
     AdvanceFrame = Symbol(
+        [0xDE10],
         [0x22EA990],
         None,
         "Advances one frame. Does not return until the next frame starts.\n\nr0: ? -"
@@ -3930,6 +3175,7 @@ class EuOverlay29Functions:
     )
 
     GenerateDungeonRngSeed = Symbol(
+        [0xE7B0],
         [0x22EB330],
         None,
         "Generates a seed with which to initialize the dungeon PRNG.\n\nThe seed is"
@@ -3944,6 +3190,7 @@ class EuOverlay29Functions:
     )
 
     GetDungeonRngPreseed = Symbol(
+        [0xE7FC],
         [0x22EB37C],
         None,
         "Gets the current preseed stored in the global dungeon PRNG state. See"
@@ -3952,6 +3199,7 @@ class EuOverlay29Functions:
     )
 
     SetDungeonRngPreseed = Symbol(
+        [0xE80C],
         [0x22EB38C],
         None,
         "Sets the preseed in the global dungeon PRNG state. See GenerateDungeonRngSeed"
@@ -3959,6 +3207,7 @@ class EuOverlay29Functions:
     )
 
     InitDungeonRng = Symbol(
+        [0xE81C],
         [0x22EB39C],
         None,
         "Initialize (or reinitialize) the dungeon PRNG with a given seed. The primary"
@@ -3967,6 +3216,7 @@ class EuOverlay29Functions:
     )
 
     DungeonRand16Bit = Symbol(
+        [0xE850],
         [0x22EB3D0],
         None,
         "Computes a pseudorandom 16-bit integer using the dungeon PRNG.\n\nNote that"
@@ -3991,6 +3241,7 @@ class EuOverlay29Functions:
     )
 
     DungeonRandInt = Symbol(
+        [0xE8C8],
         [0x22EB448],
         None,
         "Compute a pseudorandom integer under a given maximum value using the dungeon"
@@ -3999,6 +3250,7 @@ class EuOverlay29Functions:
     )
 
     DungeonRandRange = Symbol(
+        [0xE8F0],
         [0x22EB470],
         None,
         "Compute a pseudorandom value between two integers using the dungeon"
@@ -4007,6 +3259,7 @@ class EuOverlay29Functions:
     )
 
     DungeonRandOutcome = Symbol(
+        [0xE950, 0xE980],
         [0x22EB4D0, 0x22EB500],
         None,
         "Returns the result of a possibly biased coin flip (a Bernoulli random"
@@ -4016,6 +3269,7 @@ class EuOverlay29Functions:
     )
 
     CalcStatusDuration = Symbol(
+        [0xE9B0],
         [0x22EB530],
         None,
         "Seems to calculate the duration of a volatile status on a monster.\n\nr0:"
@@ -4026,6 +3280,7 @@ class EuOverlay29Functions:
     )
 
     DungeonRngUnsetSecondary = Symbol(
+        [0xEA64],
         [0x22EB5E4],
         None,
         "Sets the dungeon PRNG to use the primary LCG for subsequent random number"
@@ -4035,6 +3290,7 @@ class EuOverlay29Functions:
     )
 
     DungeonRngSetSecondary = Symbol(
+        [0xEA7C],
         [0x22EB5FC],
         None,
         "Sets the dungeon PRNG to use one of the 5 secondary LCGs for subsequent random"
@@ -4042,6 +3298,7 @@ class EuOverlay29Functions:
     )
 
     DungeonRngSetPrimary = Symbol(
+        [0xEA94],
         [0x22EB614],
         None,
         "Sets the dungeon PRNG to use the primary LCG for subsequent random number"
@@ -4049,6 +3306,7 @@ class EuOverlay29Functions:
     )
 
     TrySwitchPlace = Symbol(
+        [0xEFA8],
         [0x22EBB28],
         None,
         "The user entity attempts to switch places with the target entity (i.e. by the"
@@ -4058,6 +3316,7 @@ class EuOverlay29Functions:
     )
 
     RunFractionalTurn = Symbol(
+        [0xFB38],
         [0x22EC6B8],
         None,
         "The main function which executes the actions that take place in a fractional"
@@ -4066,6 +3325,7 @@ class EuOverlay29Functions:
     )
 
     RunLeaderTurn = Symbol(
+        [0x10138],
         [0x22ECCB8],
         None,
         "Handles the leader's turn. Includes a movement speed check that might cause it"
@@ -4076,6 +3336,7 @@ class EuOverlay29Functions:
     )
 
     TrySpawnMonsterAndActivatePlusMinus = Symbol(
+        [0x1050C],
         [0x22ED08C],
         None,
         "Called at the beginning of RunFractionalTurn. Executed only if"
@@ -4086,6 +3347,7 @@ class EuOverlay29Functions:
     )
 
     IsFloorOver = Symbol(
+        [0x10618],
         [0x22ED198],
         None,
         "Checks if the current floor should end, and updates dungeon::floor_loop_status"
@@ -4098,6 +3360,7 @@ class EuOverlay29Functions:
     )
 
     DecrementWindCounter = Symbol(
+        [0x10978],
         [0x22ED4F8],
         None,
         "Decrements dungeon::wind_turns and displays a wind warning message if"
@@ -4105,6 +3368,7 @@ class EuOverlay29Functions:
     )
 
     SetForcedLossReason = Symbol(
+        [0x10E38],
         [0x22ED9B8],
         None,
         "Sets dungeon::forced_loss_reason to the specified value\n\nr0: Forced loss"
@@ -4112,12 +3376,14 @@ class EuOverlay29Functions:
     )
 
     GetForcedLossReason = Symbol(
+        [0x10E4C],
         [0x22ED9CC],
         None,
         "Returns dungeon::forced_loss_reason\n\nreturn: forced_loss_reason",
     )
 
     ResetDamageDesc = Symbol(
+        [0x1AC50],
         [0x22F77D0],
         None,
         "Seems to zero some damage description struct, which is output by the damage"
@@ -4125,6 +3391,7 @@ class EuOverlay29Functions:
     )
 
     GetSpriteIndex = Symbol(
+        [0x1B1C0],
         [0x22F7D40],
         None,
         "Gets the sprite index of the specified monster on this floor\n\nr0: Monster"
@@ -4132,6 +3399,7 @@ class EuOverlay29Functions:
     )
 
     FloorNumberIsEven = Symbol(
+        [0x1B1EC],
         [0x22F7D6C],
         None,
         "Checks if the current dungeon floor number is even.\n\nHas a special check to"
@@ -4140,6 +3408,7 @@ class EuOverlay29Functions:
     )
 
     GetKecleonIdToSpawnByFloor = Symbol(
+        [0x1B224],
         [0x22F7DA4],
         None,
         "If the current floor number is even, returns female Kecleon's id (0x3D7),"
@@ -4147,6 +3416,7 @@ class EuOverlay29Functions:
     )
 
     LoadMonsterSprite = Symbol(
+        [0x1B48C],
         [0x22F800C],
         None,
         "Loads the sprite of the specified monster to use it in a dungeon.\n\nr0:"
@@ -4154,6 +3424,7 @@ class EuOverlay29Functions:
     )
 
     EuFaintCheck = Symbol(
+        [0x1BD68],
         [0x22F88E8],
         None,
         "This function is exclusive to the EU ROM. Seems to perform a check to see if"
@@ -4168,6 +3439,7 @@ class EuOverlay29Functions:
     )
 
     HandleFaint = Symbol(
+        [0x1BDB8],
         [0x22F8938],
         None,
         "Handles a fainted pokémon (reviving does not count as fainting).\n\nr0:"
@@ -4176,6 +3448,7 @@ class EuOverlay29Functions:
     )
 
     TryActivateSlowStart = Symbol(
+        [0x1D0C8],
         [0x22F9C48],
         None,
         "Runs a check over all monsters on the field for the ability Slow Start, and"
@@ -4183,6 +3456,7 @@ class EuOverlay29Functions:
     )
 
     TryActivateArtificialWeatherAbilities = Symbol(
+        [0x1D164],
         [0x22F9CE4],
         None,
         "Runs a check over all monsters on the field for abilities that affect the"
@@ -4190,6 +3464,18 @@ class EuOverlay29Functions:
     )
 
     DefenderAbilityIsActive = Symbol(
+        [
+            0x1D558,
+            0x258B8,
+            0x2E834,
+            0x35A74,
+            0x46C4C,
+            0x4C520,
+            0x4DE00,
+            0x4FCC0,
+            0x51CE0,
+            0x568CC,
+        ],
         [
             0x22FA0D8,
             0x2302438,
@@ -4214,6 +3500,17 @@ class EuOverlay29Functions:
 
     IsMonster = Symbol(
         [
+            0x1D5AC,
+            0x2590C,
+            0x2E888,
+            0x33874,
+            0x3C990,
+            0x3E8B4,
+            0x3F1F8,
+            0x46CA0,
+            0x714E0,
+        ],
+        [
             0x22FA12C,
             0x230248C,
             0x230B408,
@@ -4230,6 +3527,7 @@ class EuOverlay29Functions:
     )
 
     TryActivateTruant = Symbol(
+        [0x1D67C],
         [0x22FA1FC],
         None,
         "Checks if an entity has the ability Truant, and if so tries to apply the pause"
@@ -4237,6 +3535,7 @@ class EuOverlay29Functions:
     )
 
     RestorePpAllMovesSetFlags = Symbol(
+        [0x1D900],
         [0x22FA480],
         None,
         "Restores PP for all moves, clears flags move::f_consume_2_pp,"
@@ -4246,6 +3545,7 @@ class EuOverlay29Functions:
     )
 
     MewSpawnCheck = Symbol(
+        [0x1E47C],
         [0x22FAFFC],
         None,
         "If the monster id parameter is 0x97 (Mew), returns false if either"
@@ -4256,6 +3556,20 @@ class EuOverlay29Functions:
     )
 
     ExclusiveItemEffectIsActive = Symbol(
+        [
+            0x1EB24,
+            0x23DD4,
+            0x2E8AC,
+            0x337A0,
+            0x34F44,
+            0x386CC,
+            0x3D688,
+            0x3E75C,
+            0x47800,
+            0x568A8,
+            0x6BC00,
+            0x6C330,
+        ],
         [
             0x22FB6A4,
             0x2300954,
@@ -4277,6 +3591,7 @@ class EuOverlay29Functions:
     )
 
     GetTeamMemberWithIqSkill = Symbol(
+        [0x1EE84],
         [0x22FBA04],
         None,
         "Returns an entity pointer to the first team member which has the specified iq"
@@ -4284,6 +3599,7 @@ class EuOverlay29Functions:
     )
 
     TeamMemberHasEnabledIqSkill = Symbol(
+        [0x1EEF0],
         [0x22FBA70],
         None,
         "Returns true if any team member has the specified iq skill.\n\nr0: iq skill"
@@ -4291,6 +3607,7 @@ class EuOverlay29Functions:
     )
 
     TeamLeaderIqSkillIsEnabled = Symbol(
+        [0x1EF0C],
         [0x22FBA8C],
         None,
         "Returns true the leader has the specified iq skill.\n\nr0: iq skill"
@@ -4298,6 +3615,7 @@ class EuOverlay29Functions:
     )
 
     HasLowHealth = Symbol(
+        [0x1F49C],
         [0x22FC01C],
         None,
         "Checks if the entity passed is a valid monster, and if it's at low health"
@@ -4305,6 +3623,7 @@ class EuOverlay29Functions:
     )
 
     IsSpecialStoryAlly = Symbol(
+        [0x1F94C],
         [0x22FC4CC],
         None,
         "Checks if a monster is a special story ally.\n\nThis is a hard-coded check"
@@ -4314,6 +3633,7 @@ class EuOverlay29Functions:
     )
 
     IsExperienceLocked = Symbol(
+        [0x1F96C],
         [0x22FC4EC],
         None,
         "Checks if a monster does not gain experience.\n\nThis basically just inverts"
@@ -4323,12 +3643,14 @@ class EuOverlay29Functions:
     )
 
     InitTeam = Symbol(
+        [0x20388],
         [0x22FCF08],
         None,
         "Seems to initialize the team when entering a dungeon.\n\nr0: ?",
     )
 
     SpawnMonster = Symbol(
+        [0x20F00],
         [0x22FDA80],
         None,
         "Spawns the given monster on a tile.\n\nr0: pointer to struct"
@@ -4337,6 +3659,7 @@ class EuOverlay29Functions:
     )
 
     InitTeamMember = Symbol(
+        [0x21230],
         [0x22FDDB0],
         None,
         "Initializes a team member. Run at the start of each floor in a dungeon.\n\nr0:"
@@ -4346,6 +3669,7 @@ class EuOverlay29Functions:
     )
 
     ExecuteMonsterAction = Symbol(
+        [0x2235C],
         [0x22FEEDC],
         None,
         "Executes the set action for the specified monster. Used for both AI actions"
@@ -4357,6 +3681,7 @@ class EuOverlay29Functions:
     )
 
     CalcSpeedStage = Symbol(
+        [0x23CA0],
         [0x2300820],
         None,
         "Calculates the speed stage of a monster from its speed up/down counters. The"
@@ -4369,6 +3694,7 @@ class EuOverlay29Functions:
     )
 
     CalcSpeedStageWrapper = Symbol(
+        [0x23DF8],
         [0x2300978],
         None,
         "Calls CalcSpeedStage with a speed counter weight of 1.\n\nr0: pointer to"
@@ -4376,6 +3702,7 @@ class EuOverlay29Functions:
     )
 
     GetNumberOfAttacks = Symbol(
+        [0x23E08],
         [0x2300988],
         None,
         "Returns the number of attacks that a monster can do in one turn (1 or"
@@ -4384,6 +3711,7 @@ class EuOverlay29Functions:
     )
 
     SprintfStatic = Symbol(
+        [0x24174],
         [0x2300CF4],
         None,
         "Statically defined copy of sprintf(3) in overlay 29. See arm9.yml for more"
@@ -4392,6 +3720,7 @@ class EuOverlay29Functions:
     )
 
     NoGastroAcidStatus = Symbol(
+        [0x25B88],
         [0x2302708],
         None,
         "Checks if a monster does not have the Gastro Acid status.\n\nr0: entity"
@@ -4399,6 +3728,7 @@ class EuOverlay29Functions:
     )
 
     AbilityIsActive = Symbol(
+        [0x25BBC],
         [0x230273C],
         None,
         "Checks if a monster has a certain ability that isn't disabled by Gastro"
@@ -4406,6 +3736,7 @@ class EuOverlay29Functions:
     )
 
     LevitateIsActive = Symbol(
+        [0x25CC4],
         [0x2302844],
         None,
         "Checks if a monster is levitating (has the effect of Levitate and Gravity is"
@@ -4413,6 +3744,7 @@ class EuOverlay29Functions:
     )
 
     MonsterIsType = Symbol(
+        [0x25CFC],
         [0x230287C],
         None,
         "Checks if a monster is a given type.\n\nr0: entity pointer\nr1: type"
@@ -4420,6 +3752,7 @@ class EuOverlay29Functions:
     )
 
     IqSkillIsEnabled = Symbol(
+        [0x25E2C],
         [0x23029AC],
         None,
         "Checks if a monster has a certain IQ skill enabled.\n\nr0: entity pointer\nr1:"
@@ -4427,6 +3760,7 @@ class EuOverlay29Functions:
     )
 
     GetMoveTypeForMonster = Symbol(
+        [0x26128],
         [0x2302CA8],
         None,
         "Check the type of a move when used by a certain monster. Accounts for special"
@@ -4435,6 +3769,7 @@ class EuOverlay29Functions:
     )
 
     GetMovePower = Symbol(
+        [0x261C8],
         [0x2302D48],
         None,
         "Gets the power of a move, factoring in Ginseng/Space Globe boosts.\n\nr0: user"
@@ -4442,6 +3777,7 @@ class EuOverlay29Functions:
     )
 
     AddExpSpecial = Symbol(
+        [0x263E8],
         [0x2302F68],
         None,
         "Adds to a monster's experience points, subject to experience boosting"
@@ -4455,6 +3791,7 @@ class EuOverlay29Functions:
     )
 
     EnemyEvolution = Symbol(
+        [0x265A8],
         [0x2303128],
         None,
         "Checks if the specified enemy should evolve because it just defeated an ally,"
@@ -4462,6 +3799,7 @@ class EuOverlay29Functions:
     )
 
     EvolveMonster = Symbol(
+        [0x27B28],
         [0x23046A8],
         None,
         "Makes the specified monster evolve into the specified species.\n\nr0: Pointer"
@@ -4469,6 +3807,7 @@ class EuOverlay29Functions:
     )
 
     GetSleepAnimationId = Symbol(
+        [0x28960],
         [0x23054E0],
         None,
         "Returns the animation id to be applied to a monster that has the sleep,"
@@ -4478,6 +3817,7 @@ class EuOverlay29Functions:
     )
 
     DisplayActions = Symbol(
+        [0x28E8C],
         [0x2305A0C],
         None,
         "Graphically displays any pending actions that have happened but haven't been"
@@ -4489,6 +3829,7 @@ class EuOverlay29Functions:
     )
 
     EndFrozenClassStatus = Symbol(
+        [0x2A104],
         [0x2306C84],
         None,
         "Cures the target's freeze, shadow hold, ingrain, petrified, constriction or"
@@ -4498,6 +3839,7 @@ class EuOverlay29Functions:
     )
 
     EndCringeClassStatus = Symbol(
+        [0x2A280],
         [0x2306E00],
         None,
         "Cures the target's cringe, confusion, cowering, pause, taunt, encore or"
@@ -4506,6 +3848,7 @@ class EuOverlay29Functions:
     )
 
     ApplyDamage = Symbol(
+        [0x2CE8C],
         [0x2309A0C],
         None,
         "Applies damage to a monster. Displays the damage animation, lowers its health"
@@ -4519,6 +3862,7 @@ class EuOverlay29Functions:
     )
 
     GetTypeMatchup = Symbol(
+        [0x2EB4C],
         [0x230B6CC],
         None,
         "Gets the type matchup for a given combat interaction.\n\nNote that the actual"
@@ -4533,6 +3877,7 @@ class EuOverlay29Functions:
     )
 
     CalcDamage = Symbol(
+        [0x2FAA0],
         [0x230C620],
         None,
         "Probably the damage calculation function.\n\nr0: attacker pointer\nr1:"
@@ -4543,6 +3888,7 @@ class EuOverlay29Functions:
     )
 
     CalcRecoilDamageFixed = Symbol(
+        [0x31080],
         [0x230DC00],
         None,
         "Appears to calculate recoil damage to a monster.\n\nThis function wraps"
@@ -4556,6 +3902,7 @@ class EuOverlay29Functions:
     )
 
     CalcDamageFixed = Symbol(
+        [0x31134],
         [0x230DCB4],
         None,
         "Appears to calculate damage from a fixed-damage effect.\n\nr0: attacker"
@@ -4566,6 +3913,7 @@ class EuOverlay29Functions:
     )
 
     CalcDamageFixedNoCategory = Symbol(
+        [0x3129C],
         [0x230DE1C],
         None,
         "A wrapper around CalcDamageFixed with the move category set to none.\n\nr0:"
@@ -4575,6 +3923,7 @@ class EuOverlay29Functions:
     )
 
     CalcDamageFixedWrapper = Symbol(
+        [0x312E8],
         [0x230DE68],
         None,
         "A wrapper around CalcDamageFixed.\n\nr0: attacker pointer\nr1: defender"
@@ -4584,6 +3933,7 @@ class EuOverlay29Functions:
     )
 
     ResetDamageCalcScratchSpace = Symbol(
+        [0x3141C],
         [0x230DF9C],
         None,
         "CalcDamage seems to use scratch space of some kind, which this function"
@@ -4591,6 +3941,7 @@ class EuOverlay29Functions:
     )
 
     TrySpawnMonsterAndTickSpawnCounter = Symbol(
+        [0x325B0],
         [0x230F130],
         None,
         "First ticks up the spawn counter, and if it's equal or greater than the spawn"
@@ -4600,6 +3951,7 @@ class EuOverlay29Functions:
     )
 
     AuraBowIsActive = Symbol(
+        [0x335BC],
         [0x231013C],
         None,
         "Checks if a monster is holding an aura bow that isn't disabled by"
@@ -4607,6 +3959,7 @@ class EuOverlay29Functions:
     )
 
     ExclusiveItemOffenseBoost = Symbol(
+        [0x3366C],
         [0x23101EC],
         None,
         "Gets the exclusive item boost for attack/special attack for a monster\n\nr0:"
@@ -4615,6 +3968,7 @@ class EuOverlay29Functions:
     )
 
     ExclusiveItemDefenseBoost = Symbol(
+        [0x3367C],
         [0x23101FC],
         None,
         "Gets the exclusive item boost for defense/special defense for a monster\n\nr0:"
@@ -4623,6 +3977,7 @@ class EuOverlay29Functions:
     )
 
     TickNoSlipCap = Symbol(
+        [0x33A84],
         [0x2310604],
         None,
         "Checks if the entity is a team member and holds the No-Slip Cap, and if so"
@@ -4630,6 +3985,7 @@ class EuOverlay29Functions:
     )
 
     TickStatusAndHealthRegen = Symbol(
+        [0x34F68],
         [0x2311AE8],
         None,
         "Applies the natural HP regen effect by taking modifiers into account (Poison"
@@ -4639,6 +3995,7 @@ class EuOverlay29Functions:
     )
 
     InflictSleepStatusSingle = Symbol(
+        [0x35704],
         [0x2312284],
         None,
         "This is called by TryInflictSleepStatus.\n\nr0: entity pointer\nr1: number of"
@@ -4646,6 +4003,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictSleepStatus = Symbol(
+        [0x357B8],
         [0x2312338],
         None,
         "Inflicts the Sleep status condition on a target monster if possible.\n\nr0:"
@@ -4654,6 +4012,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictNightmareStatus = Symbol(
+        [0x35B2C],
         [0x23126AC],
         None,
         "Inflicts the Nightmare status condition on a target monster if"
@@ -4662,6 +4021,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictNappingStatus = Symbol(
+        [0x35C40],
         [0x23127C0],
         None,
         "Inflicts the Napping status condition (from Rest) on a target monster if"
@@ -4670,6 +4030,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictYawningStatus = Symbol(
+        [0x35D50],
         [0x23128D0],
         None,
         "Inflicts the Yawning status condition on a target monster if possible.\n\nr0:"
@@ -4677,6 +4038,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictSleeplessStatus = Symbol(
+        [0x35E60],
         [0x23129E0],
         None,
         "Inflicts the Sleepless status condition on a target monster if"
@@ -4684,6 +4046,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictPausedStatus = Symbol(
+        [0x35F4C],
         [0x2312ACC],
         None,
         "Inflicts the Paused status condition on a target monster if possible.\n\nr0:"
@@ -4694,6 +4057,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictInfatuatedStatus = Symbol(
+        [0x3608C],
         [0x2312C0C],
         None,
         "Inflicts the Infatuated status condition on a target monster if"
@@ -4704,6 +4068,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictBurnStatus = Symbol(
+        [0x36218],
         [0x2312D98],
         None,
         "Inflicts the Burn status condition on a target monster if possible.\n\nr0:"
@@ -4714,6 +4079,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictBurnStatusWholeTeam = Symbol(
+        [0x364F8],
         [0x2313078],
         None,
         "Inflicts the Burn status condition on all team members if possible.\n\nNo"
@@ -4721,6 +4087,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictPoisonedStatus = Symbol(
+        [0x36544],
         [0x23130C4],
         None,
         "Inflicts the Poisoned status condition on a target monster if possible.\n\nr0:"
@@ -4730,6 +4097,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictBadlyPoisonedStatus = Symbol(
+        [0x3681C],
         [0x231339C],
         None,
         "Inflicts the Badly Poisoned status condition on a target monster if"
@@ -4740,6 +4108,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictFrozenStatus = Symbol(
+        [0x36AD8],
         [0x2313658],
         None,
         "Inflicts the Frozen status condition on a target monster if possible.\n\nr0:"
@@ -4748,6 +4117,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictConstrictionStatus = Symbol(
+        [0x36D00],
         [0x2313880],
         None,
         "Inflicts the Constriction status condition on a target monster if"
@@ -4756,6 +4126,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictShadowHoldStatus = Symbol(
+        [0x36E58],
         [0x23139D8],
         None,
         "Inflicts the Shadow Hold (AKA Immobilized) status condition on a target"
@@ -4764,6 +4135,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictIngrainStatus = Symbol(
+        [0x37010],
         [0x2313B90],
         None,
         "Inflicts the Ingrain status condition on a target monster if possible.\n\nr0:"
@@ -4771,6 +4143,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictWrappedStatus = Symbol(
+        [0x370D4],
         [0x2313C54],
         None,
         "Inflicts the Wrapped status condition on a target monster if possible.\n\nThis"
@@ -4779,6 +4152,7 @@ class EuOverlay29Functions:
     )
 
     FreeOtherWrappedMonsters = Symbol(
+        [0x372D0],
         [0x2313E50],
         None,
         "Frees from the wrap status all monsters which are wrapped by/around the"
@@ -4786,6 +4160,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictPetrifiedStatus = Symbol(
+        [0x3734C],
         [0x2313ECC],
         None,
         "Inflicts the Petrified status condition on a target monster if"
@@ -4793,6 +4168,7 @@ class EuOverlay29Functions:
     )
 
     LowerOffensiveStat = Symbol(
+        [0x374DC],
         [0x231405C],
         None,
         "Lowers the specified offensive stat on the target monster.\n\nr0: user entity"
@@ -4801,6 +4177,7 @@ class EuOverlay29Functions:
     )
 
     LowerDefensiveStat = Symbol(
+        [0x376F4],
         [0x2314274],
         None,
         "Lowers the specified defensive stat on the target monster.\n\nr0: user entity"
@@ -4809,6 +4186,7 @@ class EuOverlay29Functions:
     )
 
     BoostOffensiveStat = Symbol(
+        [0x3787C],
         [0x23143FC],
         None,
         "Boosts the specified offensive stat on the target monster.\n\nr0: user entity"
@@ -4816,6 +4194,7 @@ class EuOverlay29Functions:
     )
 
     BoostDefensiveStat = Symbol(
+        [0x379E8],
         [0x2314568],
         None,
         "Boosts the specified defensive stat on the target monster.\n\nr0: user entity"
@@ -4823,6 +4202,7 @@ class EuOverlay29Functions:
     )
 
     ApplyOffensiveStatMultiplier = Symbol(
+        [0x37C20],
         [0x23147A0],
         None,
         "Applies a multiplier to the specified offensive stat on the target"
@@ -4833,6 +4213,7 @@ class EuOverlay29Functions:
     )
 
     ApplyDefensiveStatMultiplier = Symbol(
+        [0x37E44],
         [0x23149C4],
         None,
         "Applies a multiplier to the specified defensive stat on the target"
@@ -4843,6 +4224,7 @@ class EuOverlay29Functions:
     )
 
     BoostHitChanceStat = Symbol(
+        [0x37FC4],
         [0x2314B44],
         None,
         "Boosts the specified hit chance stat (accuracy or evasion) on the target"
@@ -4851,6 +4233,7 @@ class EuOverlay29Functions:
     )
 
     LowerHitChanceStat = Symbol(
+        [0x3810C],
         [0x2314C8C],
         None,
         "Lowers the specified hit chance stat (accuracy or evasion) on the target"
@@ -4859,6 +4242,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictCringeStatus = Symbol(
+        [0x382C8],
         [0x2314E48],
         None,
         "Inflicts the Cringe status condition on a target monster if possible.\n\nr0:"
@@ -4868,6 +4252,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictParalysisStatus = Symbol(
+        [0x38424],
         [0x2314FA4],
         None,
         "Inflicts the Paralysis status condition on a target monster if"
@@ -4878,6 +4263,7 @@ class EuOverlay29Functions:
     )
 
     BoostSpeed = Symbol(
+        [0x386F0],
         [0x2315270],
         None,
         "Boosts the speed of the target monster.\n\nIf the number of turns specified is"
@@ -4888,6 +4274,7 @@ class EuOverlay29Functions:
     )
 
     BoostSpeedOneStage = Symbol(
+        [0x3881C],
         [0x231539C],
         None,
         "A wrapper around BoostSpeed with the number of stages set to 1.\n\nr0: user"
@@ -4896,6 +4283,7 @@ class EuOverlay29Functions:
     )
 
     LowerSpeed = Symbol(
+        [0x38834],
         [0x23153B4],
         None,
         "Lowers the speed of the target monster.\n\nr0: user entity pointer\nr1: target"
@@ -4903,6 +4291,7 @@ class EuOverlay29Functions:
     )
 
     TrySealMove = Symbol(
+        [0x3899C],
         [0x231551C],
         None,
         "Seals one of the target monster's moves. The move to be sealed is randomly"
@@ -4911,6 +4300,7 @@ class EuOverlay29Functions:
     )
 
     BoostOrLowerSpeed = Symbol(
+        [0x38B0C],
         [0x231568C],
         None,
         "Randomly boosts or lowers the speed of the target monster by one stage with"
@@ -4918,6 +4308,7 @@ class EuOverlay29Functions:
     )
 
     ResetHitChanceStat = Symbol(
+        [0x38B6C],
         [0x23156EC],
         None,
         "Resets the specified hit chance stat (accuracy or evasion) back to normal on"
@@ -4926,6 +4317,7 @@ class EuOverlay29Functions:
     )
 
     TryActivateQuickFeet = Symbol(
+        [0x38CFC],
         [0x231587C],
         None,
         "Activate the Quick Feet ability on the defender, if the monster has it and"
@@ -4934,6 +4326,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictConfusedStatus = Symbol(
+        [0x38E18],
         [0x2315998],
         None,
         "Inflicts the Confused status condition on a target monster if possible.\n\nr0:"
@@ -4943,6 +4336,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictCoweringStatus = Symbol(
+        [0x3914C],
         [0x2315CCC],
         None,
         "Inflicts the Cowering status condition on a target monster if possible.\n\nr0:"
@@ -4952,6 +4346,7 @@ class EuOverlay29Functions:
     )
 
     TryIncreaseHp = Symbol(
+        [0x391C4],
         [0x2315D44],
         None,
         "Restore HP and possibly boost max HP of the target monster if possible.\n\nr0:"
@@ -4960,6 +4355,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictLeechSeedStatus = Symbol(
+        [0x396CC],
         [0x231624C],
         None,
         "Inflicts the Leech Seed status condition on a target monster if"
@@ -4970,6 +4366,7 @@ class EuOverlay29Functions:
     )
 
     TryInflictDestinyBond = Symbol(
+        [0x39930],
         [0x23164B0],
         None,
         "Inflicts the Destiny Bond status condition on a target monster if"
@@ -4977,6 +4374,7 @@ class EuOverlay29Functions:
     )
 
     IsBlinded = Symbol(
+        [0x3B6C4],
         [0x2318244],
         None,
         "Returns true if the monster has the blinded status (see statuses::blinded), or"
@@ -4985,6 +4383,7 @@ class EuOverlay29Functions:
     )
 
     RestoreMovePP = Symbol(
+        [0x3BB00],
         [0x2318680],
         None,
         "Restores the PP of all the target's moves by the specified amount.\n\nr0: user"
@@ -4993,6 +4392,7 @@ class EuOverlay29Functions:
     )
 
     SetReflectDamageCountdownTo4 = Symbol(
+        [0x3C2A0],
         [0x2318E20],
         None,
         "Sets the monster's reflect damage countdown to a global value (0x4).\n\nr0:"
@@ -5000,6 +4400,7 @@ class EuOverlay29Functions:
     )
 
     HasConditionalGroundImmunity = Symbol(
+        [0x3C92C],
         [0x23194AC],
         None,
         "Checks if a monster is currently immune to Ground-type moves for reasons other"
@@ -5008,6 +4409,7 @@ class EuOverlay29Functions:
     )
 
     Conversion2IsActive = Symbol(
+        [0x3D6F4],
         [0x231A274],
         None,
         "Checks if the monster is under the effect of Conversion 2 (its type was"
@@ -5016,6 +4418,7 @@ class EuOverlay29Functions:
     )
 
     IsTargetInRange = Symbol(
+        [0x3E574],
         [0x231B0F4],
         None,
         "Returns true if the target is within range of the user's move, false"
@@ -5028,6 +4431,7 @@ class EuOverlay29Functions:
     )
 
     GetEntityMoveTargetAndRange = Symbol(
+        [0x3EB8C],
         [0x231B70C],
         None,
         "Gets the move target-and-range field when used by a given entity. See struct"
@@ -5037,6 +4441,7 @@ class EuOverlay29Functions:
     )
 
     ApplyItemEffect = Symbol(
+        [0x3F56C],
         [0x231C0EC],
         None,
         "Seems to apply an item's effect via a giant switch statement?\n\nr3: attacker"
@@ -5045,6 +4450,7 @@ class EuOverlay29Functions:
     )
 
     ViolentSeedBoost = Symbol(
+        [0x40D04],
         [0x231D884],
         None,
         "Applies the Violent Seed boost to an entity.\n\nr0: attacker pointer\nr1:"
@@ -5052,6 +4458,7 @@ class EuOverlay29Functions:
     )
 
     ApplyGummiBoostsDungeonMode = Symbol(
+        [0x40FA8],
         [0x231DB28],
         None,
         "Applies the IQ and possible stat boosts from eating a Gummi to the target"
@@ -5060,6 +4467,7 @@ class EuOverlay29Functions:
     )
 
     GetMaxPpWrapper = Symbol(
+        [0x428D8],
         [0x231F458],
         None,
         "Gets the maximum PP for a given move. A wrapper around the function in the ARM"
@@ -5068,12 +4476,14 @@ class EuOverlay29Functions:
     )
 
     MoveIsNotPhysical = Symbol(
+        [0x42900],
         [0x231F480],
         None,
         "Checks if a move isn't a physical move.\n\nr0: move ID\nreturn: bool",
     )
 
     TryPounce = Symbol(
+        [0x43B08],
         [0x2320688],
         None,
         "Makes the target monster execute the Pounce action in a given direction if"
@@ -5083,6 +4493,7 @@ class EuOverlay29Functions:
     )
 
     TryBlowAway = Symbol(
+        [0x43CC8],
         [0x2320848],
         None,
         "Blows away the target monster in a given direction if possible.\n\nr0: user"
@@ -5090,6 +4501,7 @@ class EuOverlay29Functions:
     )
 
     TryWarp = Symbol(
+        [0x44BF0],
         [0x2321770],
         None,
         "Makes the target monster warp if possible.\n\nr0: user entity pointer\nr1:"
@@ -5098,6 +4510,7 @@ class EuOverlay29Functions:
     )
 
     MoveHitCheck = Symbol(
+        [0x47B30],
         [0x23246B0],
         None,
         "Determines if a move used hits or misses the target. It gets called twice per"
@@ -5109,6 +4522,7 @@ class EuOverlay29Functions:
     )
 
     DungeonRandOutcomeUserTargetInteraction = Symbol(
+        [0x4881C],
         [0x232539C],
         None,
         "Like DungeonRandOutcome, but specifically for user-target"
@@ -5119,6 +4533,7 @@ class EuOverlay29Functions:
     )
 
     DungeonRandOutcomeUserAction = Symbol(
+        [0x48908],
         [0x2325488],
         None,
         "Like DungeonRandOutcome, but specifically for user actions.\n\nThis modifies"
@@ -5128,6 +4543,7 @@ class EuOverlay29Functions:
     )
 
     UpdateMovePp = Symbol(
+        [0x48C74],
         [0x23257F4],
         None,
         "Updates the PP of any moves that were used by a monster, if PP should be"
@@ -5136,6 +4552,7 @@ class EuOverlay29Functions:
     )
 
     LowerSshort = Symbol(
+        [0x48D4C],
         [0x23258CC],
         None,
         "Gets the lower 2 bytes of a 4-byte number and interprets it as a signed"
@@ -5143,6 +4560,7 @@ class EuOverlay29Functions:
     )
 
     DealDamageWithRecoil = Symbol(
+        [0x4BE20],
         [0x23289A0],
         None,
         "Deals damage from a move or item used by an attacking monster on a defending"
@@ -5152,6 +4570,7 @@ class EuOverlay29Functions:
     )
 
     ExecuteMoveEffect = Symbol(
+        [0x52724],
         [0x232F2A4],
         None,
         "Handles the effects that happen after a move is used. Includes a loop that is"
@@ -5162,6 +4581,7 @@ class EuOverlay29Functions:
     )
 
     DealDamage = Symbol(
+        [0x569E0],
         [0x2333560],
         None,
         "Deals damage from a move or item used by an attacking monster on a defending"
@@ -5171,6 +4591,7 @@ class EuOverlay29Functions:
     )
 
     CalcDamageProjectile = Symbol(
+        [0x56B0C],
         [0x233368C],
         None,
         "Appears to calculate damage from a variable-damage projectile.\n\nr0: entity"
@@ -5179,6 +4600,7 @@ class EuOverlay29Functions:
     )
 
     CalcDamageFinal = Symbol(
+        [0x56C2C],
         [0x23337AC],
         None,
         "Last function called by DealDamage to determine the final damage dealt by the"
@@ -5188,6 +4610,7 @@ class EuOverlay29Functions:
     )
 
     GetApparentWeather = Symbol(
+        [0x58BC8],
         [0x2335748],
         None,
         "Get the weather, as experienced by a specific entity.\n\nr0: entity"
@@ -5195,6 +4618,7 @@ class EuOverlay29Functions:
     )
 
     TryWeatherFormChange = Symbol(
+        [0x59030],
         [0x2335BB0],
         None,
         "Tries to change a monster into one of its weather-related alternative forms."
@@ -5203,6 +4627,7 @@ class EuOverlay29Functions:
     )
 
     GetTile = Symbol(
+        [0x5A14C],
         [0x2336CCC],
         None,
         "Get the tile at some position. If the coordinates are out of bounds, returns a"
@@ -5210,6 +4635,7 @@ class EuOverlay29Functions:
     )
 
     GetTileSafe = Symbol(
+        [0x5A1B4],
         [0x2336D34],
         None,
         "Get the tile at some position. If the coordinates are out of bounds, returns a"
@@ -5218,16 +4644,21 @@ class EuOverlay29Functions:
     )
 
     GravityIsActive = Symbol(
-        [0x2338F60], None, "Checks if gravity is active on the floor.\n\nreturn: bool"
+        [0x5C3E0],
+        [0x2338F60],
+        None,
+        "Checks if gravity is active on the floor.\n\nreturn: bool",
     )
 
     IsSecretBazaar = Symbol(
+        [0x5C614],
         [0x2339194],
         None,
         "Checks if the current floor is the Secret Bazaar.\n\nreturn: bool",
     )
 
     IsSecretRoom = Symbol(
+        [0x5C6AC],
         [0x233922C],
         None,
         "Checks if the current floor is the Secret Room fixed floor (from hidden"
@@ -5235,6 +4666,7 @@ class EuOverlay29Functions:
     )
 
     IsSecretFloor = Symbol(
+        [0x5C6D4],
         [0x2339254],
         None,
         "Checks if the current floor is a secret bazaar or a secret room.\n\nreturn:"
@@ -5242,10 +4674,11 @@ class EuOverlay29Functions:
     )
 
     GetDungeonGenInfoUnk0C = Symbol(
-        [0x2339450], None, "return: dungeon_generation_info::field_0xc"
+        [0x5C8D0], [0x2339450], None, "return: dungeon_generation_info::field_0xc"
     )
 
     GetMinimapData = Symbol(
+        [0x5D168],
         [0x2339CE8],
         None,
         "Returns a pointer to the minimap_display_data struct in the dungeon"
@@ -5253,6 +4686,7 @@ class EuOverlay29Functions:
     )
 
     SetMinimapDataE447 = Symbol(
+        [0x5E268],
         [0x233ADE8],
         None,
         "Sets minimap_display_data::field_0xE447 to the specified value\n\nr0: Value to"
@@ -5260,6 +4694,7 @@ class EuOverlay29Functions:
     )
 
     GetMinimapDataE447 = Symbol(
+        [0x5E280],
         [0x233AE00],
         None,
         "Exclusive to the EU ROM. Returns"
@@ -5268,6 +4703,7 @@ class EuOverlay29Functions:
     )
 
     SetMinimapDataE448 = Symbol(
+        [0x5E294],
         [0x233AE14],
         None,
         "Sets minimap_display_data::field_0xE448 to the specified value\n\nr0: Value to"
@@ -5275,6 +4711,7 @@ class EuOverlay29Functions:
     )
 
     LoadFixedRoomDataVeneer = Symbol(
+        [0x5E688],
         [0x233B208],
         None,
         "Likely a linker-generated veneer for LoadFixedRoomData.\n\nSee"
@@ -5283,6 +4720,7 @@ class EuOverlay29Functions:
     )
 
     IsNormalFloor = Symbol(
+        [0x5E6B8],
         [0x233B238],
         None,
         "Checks if the current floor is a normal layout.\n\n'Normal' means any layout"
@@ -5293,6 +4731,7 @@ class EuOverlay29Functions:
     )
 
     GenerateFloor = Symbol(
+        [0x5E73C],
         [0x233B2BC],
         None,
         "This is the master function that generates the dungeon floor.\n\nVery loosely"
@@ -5307,12 +4746,14 @@ class EuOverlay29Functions:
     )
 
     GetTileTerrain = Symbol(
+        [0x5EEDC],
         [0x233BA5C],
         None,
         "Gets the terrain type of a tile.\n\nr0: tile pointer\nreturn: terrain ID",
     )
 
     DungeonRand100 = Symbol(
+        [0x5EEE8],
         [0x233BA68],
         None,
         "Compute a pseudorandom integer on the interval [0, 100) using the dungeon"
@@ -5320,6 +4761,7 @@ class EuOverlay29Functions:
     )
 
     FlagHallwayJunctions = Symbol(
+        [0x5EF70],
         [0x233BAF0],
         None,
         "Sets the junction flag (bit 3 of the terrain flags) on any hallway junction"
@@ -5329,6 +4771,7 @@ class EuOverlay29Functions:
     )
 
     GenerateStandardFloor = Symbol(
+        [0x5F08C],
         [0x233BC0C],
         None,
         "Generate a standard floor with the given parameters.\n\nBroadly speaking, a"
@@ -5340,6 +4783,7 @@ class EuOverlay29Functions:
     )
 
     GenerateOuterRingFloor = Symbol(
+        [0x5F1F4],
         [0x233BD74],
         None,
         "Generates a floor layout with a 4x2 grid of rooms, surrounded by an outer ring"
@@ -5347,6 +4791,7 @@ class EuOverlay29Functions:
     )
 
     GenerateCrossroadsFloor = Symbol(
+        [0x5F680],
         [0x233C200],
         None,
         "Generates a floor layout with a mesh of hallways on the interior 3x2 grid,"
@@ -5355,6 +4800,7 @@ class EuOverlay29Functions:
     )
 
     GenerateLineFloor = Symbol(
+        [0x5FAE0],
         [0x233C660],
         None,
         "Generates a floor layout with 5 grid cells in a horizontal line.\n\nr0: floor"
@@ -5362,6 +4808,7 @@ class EuOverlay29Functions:
     )
 
     GenerateCrossFloor = Symbol(
+        [0x5FC40],
         [0x233C7C0],
         None,
         "Generates a floor layout with 5 rooms arranged in a cross ('plus sign')"
@@ -5369,6 +4816,7 @@ class EuOverlay29Functions:
     )
 
     GenerateBeetleFloor = Symbol(
+        [0x5FDD8],
         [0x233C958],
         None,
         "Generates a floor layout in a 'beetle' formation, which is created by taking a"
@@ -5377,6 +4825,7 @@ class EuOverlay29Functions:
     )
 
     MergeRoomsVertically = Symbol(
+        [0x5FF94],
         [0x233CB14],
         None,
         "Merges two vertically stacked rooms into one larger room.\n\nr0: x grid"
@@ -5386,6 +4835,7 @@ class EuOverlay29Functions:
     )
 
     GenerateOuterRoomsFloor = Symbol(
+        [0x600E0],
         [0x233CC60],
         None,
         "Generates a floor layout with a ring of rooms on the grid boundary and nothing"
@@ -5395,6 +4845,7 @@ class EuOverlay29Functions:
     )
 
     IsNotFullFloorFixedRoom = Symbol(
+        [0x60374],
         [0x233CEF4],
         None,
         "Checks if a fixed room ID does not correspond to a fixed, full-floor"
@@ -5403,6 +4854,7 @@ class EuOverlay29Functions:
     )
 
     GenerateFixedRoom = Symbol(
+        [0x60390],
         [0x233CF10],
         None,
         "Handles fixed room generation if the floor contains a fixed room.\n\nr0: fixed"
@@ -5410,6 +4862,7 @@ class EuOverlay29Functions:
     )
 
     GenerateOneRoomMonsterHouseFloor = Symbol(
+        [0x607D8],
         [0x233D358],
         None,
         "Generates a floor layout with just a large, one-room Monster House.\n\nThis is"
@@ -5417,6 +4870,7 @@ class EuOverlay29Functions:
     )
 
     GenerateTwoRoomsWithMonsterHouseFloor = Symbol(
+        [0x608A8],
         [0x233D428],
         None,
         "Generate a floor layout with two rooms (left and right), one of which is a"
@@ -5424,6 +4878,7 @@ class EuOverlay29Functions:
     )
 
     GenerateExtraHallways = Symbol(
+        [0x60A4C],
         [0x233D5CC],
         None,
         "Generate extra hallways on the floor via a series of random walks.\n\nEach"
@@ -5436,6 +4891,7 @@ class EuOverlay29Functions:
     )
 
     GetGridPositions = Symbol(
+        [0x60FE8],
         [0x233DB68],
         None,
         "Get the grid cell positions for a given set of floor grid dimensions.\n\nr0:"
@@ -5445,6 +4901,7 @@ class EuOverlay29Functions:
     )
 
     InitDungeonGrid = Symbol(
+        [0x61068],
         [0x233DBE8],
         None,
         "Initialize a dungeon grid with defaults.\n\nThe grid is an array of grid cells"
@@ -5461,6 +4918,7 @@ class EuOverlay29Functions:
     )
 
     AssignRooms = Symbol(
+        [0x61168],
         [0x233DCE8],
         None,
         "Randomly selects a subset of grid cells to become rooms.\n\nThe given number"
@@ -5475,6 +4933,7 @@ class EuOverlay29Functions:
     )
 
     CreateRoomsAndAnchors = Symbol(
+        [0x6137C],
         [0x233DEFC],
         None,
         "Creates rooms and hallway anchors in each grid cell as designated by"
@@ -5488,6 +4947,7 @@ class EuOverlay29Functions:
     )
 
     GenerateSecondaryStructures = Symbol(
+        [0x616D8],
         [0x233E258],
         None,
         "Try to generate secondary structures in flagged rooms.\n\nIf a valid room with"
@@ -5504,6 +4964,7 @@ class EuOverlay29Functions:
     )
 
     AssignGridCellConnections = Symbol(
+        [0x620C0],
         [0x233EC40],
         None,
         "Randomly assigns connections between adjacent grid cells.\n\nConnections are"
@@ -5524,6 +4985,7 @@ class EuOverlay29Functions:
     )
 
     CreateGridCellConnections = Symbol(
+        [0x624A0],
         [0x233F020],
         None,
         "Create grid cell connections either by creating hallways or merging"
@@ -5541,6 +5003,7 @@ class EuOverlay29Functions:
     )
 
     GenerateRoomImperfections = Symbol(
+        [0x62D98],
         [0x233F918],
         None,
         "Attempt to generate room imperfections for each room in the floor layout, if"
@@ -5552,6 +5015,7 @@ class EuOverlay29Functions:
     )
 
     CreateHallway = Symbol(
+        [0x63184],
         [0x233FD04],
         None,
         "Create a hallway between two points.\n\nIf the two points share no coordinates"
@@ -5569,6 +5033,7 @@ class EuOverlay29Functions:
     )
 
     EnsureConnectedGrid = Symbol(
+        [0x63488],
         [0x2340008],
         None,
         "Ensure the grid forms a connected graph (all valid cells are reachable) by"
@@ -5579,6 +5044,7 @@ class EuOverlay29Functions:
     )
 
     SetTerrainObstacleChecked = Symbol(
+        [0x63964],
         [0x23404E4],
         None,
         "Set the terrain of a specific tile to be an obstacle (wall or secondary"
@@ -5589,6 +5055,7 @@ class EuOverlay29Functions:
     )
 
     FinalizeJunctions = Symbol(
+        [0x639A0],
         [0x2340520],
         None,
         "Finalizes junction tiles by setting the junction flag (bit 3 of the terrain"
@@ -5612,6 +5079,7 @@ class EuOverlay29Functions:
     )
 
     GenerateKecleonShop = Symbol(
+        [0x63C4C],
         [0x23407CC],
         None,
         "Possibly generate a Kecleon shop on the floor.\n\nA Kecleon shop will be"
@@ -5624,6 +5092,7 @@ class EuOverlay29Functions:
     )
 
     GenerateMonsterHouse = Symbol(
+        [0x64000],
         [0x2340B80],
         None,
         "Possibly generate a Monster House on the floor.\n\nA Monster House will be"
@@ -5636,6 +5105,7 @@ class EuOverlay29Functions:
     )
 
     GenerateMazeRoom = Symbol(
+        [0x64288],
         [0x2340E08],
         None,
         "Possibly generate a maze room on the floor.\n\nA maze room will be generated"
@@ -5646,6 +5116,7 @@ class EuOverlay29Functions:
     )
 
     GenerateMaze = Symbol(
+        [0x644BC],
         [0x234103C],
         None,
         "Generate a maze room within a given grid cell.\n\nA 'maze' is generated within"
@@ -5659,6 +5130,7 @@ class EuOverlay29Functions:
     )
 
     GenerateMazeLine = Symbol(
+        [0x64738],
         [0x23412B8],
         None,
         "Generate a 'maze line' from a given starting point, within the given"
@@ -5671,12 +5143,14 @@ class EuOverlay29Functions:
     )
 
     SetSpawnFlag5 = Symbol(
+        [0x648E0],
         [0x2341460],
         None,
         "Set spawn flag 5 (0b100000 or 0x20) on all tiles in a room.\n\nr0: grid cell",
     )
 
     IsNextToHallway = Symbol(
+        [0x64934],
         [0x23414B4],
         None,
         "Checks if a tile position is either in a hallway or next to one.\n\nr0: x\nr1:"
@@ -5684,6 +5158,7 @@ class EuOverlay29Functions:
     )
 
     ResolveInvalidSpawns = Symbol(
+        [0x649D8],
         [0x2341558],
         None,
         "Resolve invalid spawn flags on tiles.\n\nSpawn flags can be invalid due to"
@@ -5693,22 +5168,25 @@ class EuOverlay29Functions:
     )
 
     ConvertSecondaryTerrainToChasms = Symbol(
+        [0x64A70],
         [0x23415F0],
         None,
         "Converts all secondary terrain tiles (water/lava) to chasms.\n\nNo params.",
     )
 
     EnsureImpassableTilesAreWalls = Symbol(
+        [0x64ADC],
         [0x234165C],
         None,
         "Ensures all tiles with the impassable flag are walls.\n\nNo params.",
     )
 
     InitializeTile = Symbol(
-        [0x23416B8], None, "Initialize a tile struct.\n\nr0: tile pointer"
+        [0x64B38], [0x23416B8], None, "Initialize a tile struct.\n\nr0: tile pointer"
     )
 
     ResetFloor = Symbol(
+        [0x64B70],
         [0x23416F0],
         None,
         "Resets the floor in preparation for a floor generation attempt.\n\nResets all"
@@ -5717,6 +5195,7 @@ class EuOverlay29Functions:
     )
 
     PosIsOutOfBounds = Symbol(
+        [0x64D10],
         [0x2341890],
         None,
         "Checks if a position (x, y) is out of bounds on the map: !((0 <= x <= 55) &&"
@@ -5724,6 +5203,7 @@ class EuOverlay29Functions:
     )
 
     ShuffleSpawnPositions = Symbol(
+        [0x64D48],
         [0x23418C8],
         None,
         "Randomly shuffle an array of spawn positions.\n\nr0: spawn position array"
@@ -5732,6 +5212,7 @@ class EuOverlay29Functions:
     )
 
     SpawnNonEnemies = Symbol(
+        [0x64DB0],
         [0x2341930],
         None,
         "Spawn all non-enemy entities, which includes stairs, items, traps, and the"
@@ -5759,6 +5240,7 @@ class EuOverlay29Functions:
     )
 
     SpawnEnemies = Symbol(
+        [0x654D4],
         [0x2342054],
         None,
         "Spawn all enemies, which includes normal enemies and those in Monster"
@@ -5772,6 +5254,7 @@ class EuOverlay29Functions:
     )
 
     SetSecondaryTerrainOnWall = Symbol(
+        [0x657D0],
         [0x2342350],
         None,
         "Set a specific tile to have secondary terrain (water/lava), but only if it's a"
@@ -5779,6 +5262,7 @@ class EuOverlay29Functions:
     )
 
     GenerateSecondaryTerrainFormations = Symbol(
+        [0x65810],
         [0x2342390],
         None,
         "Generate secondary terrain (water/lava) formations.\n\nThis includes 'rivers'"
@@ -5794,6 +5278,7 @@ class EuOverlay29Functions:
     )
 
     StairsAlwaysReachable = Symbol(
+        [0x65ED0],
         [0x2342A50],
         None,
         "Checks that the stairs are reachable from every walkable tile on the"
@@ -5807,10 +5292,11 @@ class EuOverlay29Functions:
     )
 
     ConvertWallsToChasms = Symbol(
-        [0x234312C], None, "Converts all wall tiles to chasms.\n\nNo params."
+        [0x665AC], [0x234312C], None, "Converts all wall tiles to chasms.\n\nNo params."
     )
 
     ResetInnerBoundaryTileRows = Symbol(
+        [0x66BE0],
         [0x2343760],
         None,
         "Reset the inner boundary tile rows (y == 1 and y == 30) to their initial state"
@@ -5819,6 +5305,7 @@ class EuOverlay29Functions:
     )
 
     SpawnStairs = Symbol(
+        [0x66CF0],
         [0x2343870],
         None,
         "Spawn stairs at the given location.\n\nIf the hidden stairs flag is set,"
@@ -5830,6 +5317,7 @@ class EuOverlay29Functions:
     )
 
     LoadFixedRoomData = Symbol(
+        [0x67DF4],
         [0x2344974],
         None,
         "Loads fixed room data from BALANCE/fixed.bin into the buffer pointed to by"
@@ -5837,6 +5325,7 @@ class EuOverlay29Functions:
     )
 
     IsHiddenStairsFloor = Symbol(
+        [0x68570],
         [0x23450F0],
         None,
         "Checks if the current floor is either the Secret Bazaar or a Secret"
@@ -5844,6 +5333,7 @@ class EuOverlay29Functions:
     )
 
     HasHeldItem = Symbol(
+        [0x6A850],
         [0x23473D0],
         None,
         "Checks if a monster has a certain held item.\n\nr0: entity pointer\nr1: item"
@@ -5851,6 +5341,7 @@ class EuOverlay29Functions:
     )
 
     IsOutlawOrChallengeRequestFloor = Symbol(
+        [0x6D244],
         [0x2349DC4],
         None,
         "Checks if the current floor is an active mission destination of type"
@@ -5859,6 +5350,7 @@ class EuOverlay29Functions:
     )
 
     IsCurrentMissionType = Symbol(
+        [0x6D29C],
         [0x2349E1C],
         None,
         "Checks if the current floor is an active mission destination of a given type"
@@ -5866,6 +5358,7 @@ class EuOverlay29Functions:
     )
 
     IsCurrentMissionTypeExact = Symbol(
+        [0x6D2D0],
         [0x2349E50],
         None,
         "Checks if the current floor is an active mission destination of a given type"
@@ -5873,6 +5366,7 @@ class EuOverlay29Functions:
     )
 
     IsOutlawMonsterHouseFloor = Symbol(
+        [0x6D30C],
         [0x2349E8C],
         None,
         "Checks if the current floor is a mission destination for a Monster House"
@@ -5880,12 +5374,14 @@ class EuOverlay29Functions:
     )
 
     IsGoldenChamber = Symbol(
+        [0x6D330],
         [0x2349EB0],
         None,
         "Checks if the current floor is a Golden Chamber floor.\n\nreturn: bool",
     )
 
     IsLegendaryChallengeFloor = Symbol(
+        [0x6D354],
         [0x2349ED4],
         None,
         "Checks if the current floor is a boss floor for a Legendary Challenge Letter"
@@ -5893,6 +5389,7 @@ class EuOverlay29Functions:
     )
 
     IsJirachiChallengeFloor = Symbol(
+        [0x6D394],
         [0x2349F14],
         None,
         "Checks if the current floor is the boss floor in Star Cave Pit for Jirachi's"
@@ -5900,6 +5397,7 @@ class EuOverlay29Functions:
     )
 
     IsDestinationFloorWithMonster = Symbol(
+        [0x6D3CC],
         [0x2349F4C],
         None,
         "Checks if the current floor is a mission destination floor with a special"
@@ -5907,6 +5405,7 @@ class EuOverlay29Functions:
     )
 
     MissionTargetEnemyIsDefeated = Symbol(
+        [0x6D4F0],
         [0x234A070],
         None,
         "Checks if the target enemy of the mission on the current floor has been"
@@ -5914,6 +5413,7 @@ class EuOverlay29Functions:
     )
 
     SetMissionTargetEnemyDefeated = Symbol(
+        [0x6D510],
         [0x234A090],
         None,
         "Set the flag for whether or not the target enemy of the current mission has"
@@ -5921,6 +5421,7 @@ class EuOverlay29Functions:
     )
 
     IsDestinationFloorWithFixedRoom = Symbol(
+        [0x6D524],
         [0x234A0A4],
         None,
         "Checks if the current floor is a mission destination floor with a fixed"
@@ -5929,6 +5430,7 @@ class EuOverlay29Functions:
     )
 
     GetItemToRetrieve = Symbol(
+        [0x6D54C],
         [0x234A0CC],
         None,
         "Get the ID of the item that needs to be retrieve on the current floor for a"
@@ -5936,6 +5438,7 @@ class EuOverlay29Functions:
     )
 
     GetItemToDeliver = Symbol(
+        [0x6D570],
         [0x234A0F0],
         None,
         "Get the ID of the item that needs to be delivered to a mission client on the"
@@ -5943,6 +5446,7 @@ class EuOverlay29Functions:
     )
 
     GetSpecialTargetItem = Symbol(
+        [0x6D59C],
         [0x234A11C],
         None,
         "Get the ID of the special target item for a Sealed Chamber or Treasure Memo"
@@ -5950,6 +5454,7 @@ class EuOverlay29Functions:
     )
 
     IsDestinationFloorWithItem = Symbol(
+        [0x6D5E4],
         [0x234A164],
         None,
         "Checks if the current floor is a mission destination floor with a special"
@@ -5958,6 +5463,7 @@ class EuOverlay29Functions:
     )
 
     IsDestinationFloorWithHiddenOutlaw = Symbol(
+        [0x6D644],
         [0x234A1C4],
         None,
         "Checks if the current floor is a mission destination floor with a 'hidden"
@@ -5965,6 +5471,7 @@ class EuOverlay29Functions:
     )
 
     IsDestinationFloorWithFleeingOutlaw = Symbol(
+        [0x6D668],
         [0x234A1E8],
         None,
         "Checks if the current floor is a mission destination floor with a 'fleeing"
@@ -5972,6 +5479,7 @@ class EuOverlay29Functions:
     )
 
     GetMissionTargetEnemy = Symbol(
+        [0x6D6A0],
         [0x234A220],
         None,
         "Get the monster ID of the target enemy to be defeated on the current floor for"
@@ -5979,6 +5487,7 @@ class EuOverlay29Functions:
     )
 
     GetMissionEnemyMinionGroup = Symbol(
+        [0x6D6B8],
         [0x234A238],
         None,
         "Get the monster ID of the specified minion group on the current floor for a"
@@ -5988,6 +5497,7 @@ class EuOverlay29Functions:
     )
 
     FloorHasMissionMonster = Symbol(
+        [0x6D7C8],
         [0x234A348],
         None,
         "Checks if a given floor is a mission destination with a special monster,"
@@ -5999,6 +5509,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageByIdWithPopupCheckUser = Symbol(
+        [0x6F324],
         [0x234BEA4],
         None,
         "Logs a message in the message log alongside a message popup, if the user"
@@ -6006,6 +5517,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageWithPopupCheckUser = Symbol(
+        [0x6F364],
         [0x234BEE4],
         None,
         "Logs a message in the message log alongside a message popup, if the user"
@@ -6013,6 +5525,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageByIdQuiet = Symbol(
+        [0x6F39C],
         [0x234BF1C],
         None,
         "Logs a message in the message log (but without a message popup).\n\nr0: user"
@@ -6020,6 +5533,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageQuiet = Symbol(
+        [0x6F3C0],
         [0x234BF40],
         None,
         "Logs a message in the message log (but without a message popup).\n\nr0: user"
@@ -6027,6 +5541,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageByIdWithPopupCheckUserTarget = Symbol(
+        [0x6F3D0],
         [0x234BF50],
         None,
         "Logs a message in the message log alongside a message popup, if some user"
@@ -6035,6 +5550,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageWithPopupCheckUserTarget = Symbol(
+        [0x6F424],
         [0x234BFA4],
         None,
         "Logs a message in the message log alongside a message popup, if some user"
@@ -6043,6 +5559,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageByIdQuietCheckUserTarget = Symbol(
+        [0x6F470],
         [0x234BFF0],
         None,
         "Logs a message in the message log (but without a message popup), if some user"
@@ -6051,6 +5568,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageByIdWithPopupCheckUserUnknown = Symbol(
+        [0x6F4C4],
         [0x234C044],
         None,
         "Logs a message in the message log alongside a message popup, if the user"
@@ -6059,6 +5577,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageByIdWithPopup = Symbol(
+        [0x6F518],
         [0x234C098],
         None,
         "Logs a message in the message log alongside a message popup.\n\nr0: user"
@@ -6066,6 +5585,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageWithPopup = Symbol(
+        [0x6F53C],
         [0x234C0BC],
         None,
         "Logs a message in the message log alongside a message popup.\n\nr0: user"
@@ -6073,6 +5593,7 @@ class EuOverlay29Functions:
     )
 
     LogMessage = Symbol(
+        [0x6F588],
         [0x234C108],
         None,
         "Logs a message in the message log.\n\nr0: user entity pointer\nr1: message"
@@ -6080,6 +5601,7 @@ class EuOverlay29Functions:
     )
 
     LogMessageById = Symbol(
+        [0x6F794],
         [0x234C314],
         None,
         "Logs a message in the message log.\n\nr0: user entity pointer\nr1: message"
@@ -6087,10 +5609,11 @@ class EuOverlay29Functions:
     )
 
     OpenMessageLog = Symbol(
-        [0x234C75C], None, "Opens the message log window.\n\nr0: ?\nr1: ?"
+        [0x6FBDC], [0x234C75C], None, "Opens the message log window.\n\nr0: ?\nr1: ?"
     )
 
     RunDungeonMode = Symbol(
+        [0x6FFA8],
         [0x234CB28],
         None,
         "This appears to be the top-level function for running dungeon mode.\n\nIt gets"
@@ -6101,6 +5624,7 @@ class EuOverlay29Functions:
     )
 
     DisplayDungeonTip = Symbol(
+        [0x70F70],
         [0x234DAF0],
         None,
         "Checks if a given dungeon tip should be displayed at the start of a floor and"
@@ -6111,6 +5635,7 @@ class EuOverlay29Functions:
     )
 
     SetBothScreensWindowColorToDefault = Symbol(
+        [0x70FE0],
         [0x234DB60],
         None,
         "This changes the palettes of windows in both screens to an appropiate value"
@@ -6120,6 +5645,7 @@ class EuOverlay29Functions:
     )
 
     DisplayMessage = Symbol(
+        [0x712D8],
         [0x234DE58],
         None,
         "Displays a message in a dialogue box that optionally waits for player input"
@@ -6128,9 +5654,12 @@ class EuOverlay29Functions:
         " automatically once all the characters get printed.",
     )
 
-    DisplayMessage2 = Symbol([0x234DEAC], None, "Very similar to DisplayMessage")
+    DisplayMessage2 = Symbol(
+        [0x7132C], [0x234DEAC], None, "Very similar to DisplayMessage"
+    )
 
     DisplayMessageInternal = Symbol(
+        [0x71610],
         [0x234E190],
         None,
         "Called by DisplayMessage. Seems to be the function that handles the display of"
@@ -6145,19 +5674,22 @@ class EuOverlay29Functions:
 
 class EuOverlay29Data:
 
-    NECTAR_IQ_BOOST = Symbol([0x231CDE4], None, "IQ boost from ingesting Nectar.")
-
     DUNGEON_STRUCT_SIZE = Symbol(
-        [0x22DF3B8, 0x22DF3EC], 0x4, "Size of the dungeon struct (0x2CB14)"
+        [0x2838, 0x286C],
+        [0x22DF3B8, 0x22DF3EC],
+        0x4,
+        "Size of the dungeon struct (0x2CB14)",
     )
 
     OFFSET_OF_DUNGEON_FLOOR_PROPERTIES = Symbol(
+        [0xB828, 0x5EECC],
         [0x22E83A8, 0x233BA4C],
         0x4,
         "Offset of the floor properties field in the dungeon struct (0x286B2)",
     )
 
     SPAWN_RAND_MAX = Symbol(
+        [0xBC80],
         [0x22E8800],
         0x4,
         "Equal to 10,000 (0x2710). Used as parameter for DungeonRandInt to generate the"
@@ -6165,6 +5697,7 @@ class EuOverlay29Data:
     )
 
     DUNGEON_PRNG_LCG_MULTIPLIER = Symbol(
+        [0xE7F8, 0xE8BC],
         [0x22EB378, 0x22EB43C],
         0x4,
         "The multiplier shared by all of the dungeon PRNG's LCGs, 1566083941"
@@ -6172,6 +5705,7 @@ class EuOverlay29Data:
     )
 
     DUNGEON_PRNG_LCG_INCREMENT_SECONDARY = Symbol(
+        [0xE8C4],
         [0x22EB444],
         0x4,
         "The increment for the dungeon PRNG's secondary LCGs, 2531011 (0x269EC3). This"
@@ -6180,18 +5714,21 @@ class EuOverlay29Data:
     )
 
     KECLEON_FEMALE_ID = Symbol(
+        [0x1B23C],
         [0x22F7DBC],
         0x4,
         "0x3D7 (983). Used when spawning Kecleon on an even numbered floor.",
     )
 
     KECLEON_MALE_ID = Symbol(
+        [0x1B240],
         [0x22F7DC0],
         0x4,
         "0x17F (383). Used when spawning Kecleon on an odd numbered floor.",
     )
 
     MSG_ID_SLOW_START = Symbol(
+        [0x1D15C],
         [0x22F9CDC],
         0x4,
         "ID of the message printed when a monster has the ability Slow Start at the"
@@ -6199,6 +5736,7 @@ class EuOverlay29Data:
     )
 
     EXPERIENCE_POINT_GAIN_CAP = Symbol(
+        [0x26574],
         [0x23030F4],
         0x4,
         "A cap on the experience that can be given to a monster in one call to"
@@ -6206,36 +5744,49 @@ class EuOverlay29Data:
     )
 
     JUDGMENT_MOVE_ID = Symbol(
-        [0x230CECC], 0x4, "Move ID for Judgment (0x1D3)\n\ntype: enum move_id"
+        [0x3034C],
+        [0x230CECC],
+        0x4,
+        "Move ID for Judgment (0x1D3)\n\ntype: enum move_id",
     )
 
     REGULAR_ATTACK_MOVE_ID = Symbol(
-        [0x230CED0], 0x4, "Move ID for the regular attack (0x163)\n\ntype: enum move_id"
+        [0x30350],
+        [0x230CED0],
+        0x4,
+        "Move ID for the regular attack (0x163)\n\ntype: enum move_id",
     )
 
     DEOXYS_ATTACK_ID = Symbol(
+        [0x30354],
         [0x230CED4],
         0x4,
         "Monster ID for Deoxys in Attack Forme (0x1A3)\n\ntype: enum monster_id",
     )
 
     DEOXYS_SPEED_ID = Symbol(
+        [0x30358],
         [0x230CED8],
         0x4,
         "Monster ID for Deoxys in Speed Forme (0x1A5)\n\ntype: enum monster_id",
     )
 
     GIRATINA_ALTERED_ID = Symbol(
+        [0x3035C],
         [0x230CEDC],
         0x4,
         "Monster ID for Giratina in Altered Forme (0x211)\n\ntype: enum monster_id",
     )
 
     PUNISHMENT_MOVE_ID = Symbol(
-        [0x230CEE0], 0x4, "Move ID for Punishment (0x1BD)\n\ntype: enum move_id"
+        [0x30360],
+        [0x230CEE0],
+        0x4,
+        "Move ID for Punishment (0x1BD)\n\ntype: enum move_id",
     )
 
     OFFENSE_STAT_MAX = Symbol(
+        [0x30390],
         [0x230CF10],
         0x4,
         "Cap on an attacker's modified offense (attack or special attack) stat after"
@@ -6243,12 +5794,14 @@ class EuOverlay29Data:
     )
 
     PROJECTILE_MOVE_ID = Symbol(
+        [0x30F70, 0x405E0],
         [0x230DAF0, 0x231D160],
         0x4,
         "The move ID of the special 'projectile' move (0x195)\n\ntype: enum move_id",
     )
 
     BELLY_LOST_PER_TURN = Symbol(
+        [0x34950],
         [0x23114D0],
         0x4,
         "The base value by which belly is decreased every turn.\n\nIts raw value is"
@@ -6258,12 +5811,14 @@ class EuOverlay29Data:
     )
 
     MAX_HP_CAP = Symbol(
+        [0x356F4, 0x3C334],
         [0x2312274, 0x2318EB4],
         0x4,
         "The maximum amount of HP a monster can have (999).",
     )
 
     MOVE_TARGET_AND_RANGE_SPECIAL_USER_HEALING = Symbol(
+        [0x3EC14],
         [0x231B794],
         0x4,
         "The move target and range code for special healing moves that target just the"
@@ -6271,40 +5826,70 @@ class EuOverlay29Data:
     )
 
     PLAIN_SEED_VALUE = Symbol(
-        [0x231D1A8], 0x4, "Some value related to the Plain Seed (0xBE9)."
+        [0x40628], [0x231D1A8], 0x4, "Some value related to the Plain Seed (0xBE9)."
     )
 
     MAX_ELIXIR_PP_RESTORATION = Symbol(
+        [0x4062C],
         [0x231D1AC],
         0x4,
         "The amount of PP restored per move by ingesting a Max Elixir (0x3E7).",
     )
 
     SLIP_SEED_VALUE = Symbol(
-        [0x231D614], 0x4, "Some value related to the Slip Seed (0xC75)."
+        [0x40A94], [0x231D614], 0x4, "Some value related to the Slip Seed (0xC75)."
     )
 
     CASTFORM_NORMAL_FORM_MALE_ID = Symbol(
-        [0x2335E78], 0x4, "Castform's male normal form ID (0x17B)"
+        [0x592F8], [0x2335E78], 0x4, "Castform's male normal form ID (0x17B)"
     )
 
     CASTFORM_NORMAL_FORM_FEMALE_ID = Symbol(
-        [0x2335E7C], 0x4, "Castform's female normal form ID (0x3D3)"
+        [0x592FC], [0x2335E7C], 0x4, "Castform's female normal form ID (0x3D3)"
     )
 
     CHERRIM_SUNSHINE_FORM_MALE_ID = Symbol(
-        [0x2335E80], 0x4, "Cherrim's male sunshine form ID (0x1CD)"
+        [0x59300], [0x2335E80], 0x4, "Cherrim's male sunshine form ID (0x1CD)"
     )
 
     CHERRIM_OVERCAST_FORM_FEMALE_ID = Symbol(
-        [0x2335E84], 0x4, "Cherrim's female overcast form ID (0x424)"
+        [0x59304], [0x2335E84], 0x4, "Cherrim's female overcast form ID (0x424)"
     )
 
     CHERRIM_SUNSHINE_FORM_FEMALE_ID = Symbol(
-        [0x2335E88], 0x4, "Cherrim's female sunshine form ID (0x425)"
+        [0x59308], [0x2335E88], 0x4, "Cherrim's female sunshine form ID (0x425)"
     )
 
     FLOOR_GENERATION_STATUS_PTR = Symbol(
+        [
+            0x5EED0,
+            0x5EF6C,
+            0x5F1F0,
+            0x5F67C,
+            0x5FADC,
+            0x5FC3C,
+            0x5FDD4,
+            0x5FF90,
+            0x60370,
+            0x607D0,
+            0x60FE4,
+            0x61164,
+            0x61374,
+            0x616D4,
+            0x620BC,
+            0x63FF4,
+            0x64280,
+            0x64734,
+            0x654C0,
+            0x657C8,
+            0x661DC,
+            0x66574,
+            0x66844,
+            0x66BD8,
+            0x66CC8,
+            0x66DFC,
+            0x66F8C,
+        ],
         [
             0x233BA50,
             0x233BAEC,
@@ -6340,6 +5925,7 @@ class EuOverlay29Data:
     )
 
     OFFSET_OF_DUNGEON_N_NORMAL_ITEM_SPAWNS = Symbol(
+        [0x5EED8, 0x654C8],
         [0x233BA58, 0x2342048],
         0x4,
         "Offset of the (number of base items + 1) field on the dungeon struct"
@@ -6347,6 +5933,28 @@ class EuOverlay29Data:
     )
 
     DUNGEON_GRID_COLUMN_BYTES = Symbol(
+        [
+            0x5F678,
+            0x5FAD8,
+            0x5FDD0,
+            0x5FF8C,
+            0x6036C,
+            0x607D4,
+            0x60A48,
+            0x60FDC,
+            0x61160,
+            0x61378,
+            0x616D0,
+            0x620B8,
+            0x6249C,
+            0x62D94,
+            0x63178,
+            0x63960,
+            0x63FF8,
+            0x64284,
+            0x644B8,
+            0x66530,
+        ],
         [
             0x233C1F8,
             0x233C658,
@@ -6375,6 +5983,7 @@ class EuOverlay29Data:
     )
 
     DEFAULT_MAX_POSITION = Symbol(
+        [0x63FFC],
         [0x2340B7C],
         0x4,
         "A large number (9999) to use as a default position for keeping track of"
@@ -6382,12 +5991,14 @@ class EuOverlay29Data:
     )
 
     OFFSET_OF_DUNGEON_GUARANTEED_ITEM_ID = Symbol(
+        [0x654C4, 0x68EE4],
         [0x2342044, 0x2345A64],
         0x4,
         "Offset of the guaranteed item ID field in the dungeon struct (0x2C9E8)",
     )
 
     FIXED_ROOM_TILE_SPAWN_TABLE = Symbol(
+        [0x73E5C],
         [0x23509DC],
         0x2C,
         "Table of tiles that can spawn in fixed rooms, pointed into by the"
@@ -6397,6 +6008,7 @@ class EuOverlay29Data:
     )
 
     FIXED_ROOM_REVISIT_OVERRIDES = Symbol(
+        [0x73EA0],
         [0x2350A20],
         0x100,
         "Table of fixed room IDs, which if nonzero, overrides the normal fixed room ID"
@@ -6407,6 +6019,7 @@ class EuOverlay29Data:
     )
 
     FIXED_ROOM_MONSTER_SPAWN_TABLE = Symbol(
+        [0x73FA0],
         [0x2350B20],
         0x1E0,
         "Table of monsters that can spawn in fixed rooms, pointed into by the"
@@ -6416,6 +6029,7 @@ class EuOverlay29Data:
     )
 
     FIXED_ROOM_ITEM_SPAWN_TABLE = Symbol(
+        [0x74180],
         [0x2350D00],
         0x1F8,
         "Table of items that can spawn in fixed rooms, pointed into by the"
@@ -6424,6 +6038,7 @@ class EuOverlay29Data:
     )
 
     FIXED_ROOM_ENTITY_SPAWN_TABLE = Symbol(
+        [0x74378],
         [0x2350EF8],
         0xC9C,
         "Table of entities (items, monsters, tiles) that can spawn in fixed rooms,"
@@ -6436,6 +6051,7 @@ class EuOverlay29Data:
     )
 
     DIRECTIONS_XY = Symbol(
+        [0x757A8],
         [0x2352328],
         0x20,
         "An array mapping each direction index to its x and y"
@@ -6447,6 +6063,7 @@ class EuOverlay29Data:
     )
 
     FRACTIONAL_TURN_SEQUENCE = Symbol(
+        [0x76342],
         [0x2352EC2],
         0xFA,
         "Read by certain functions that are called by RunFractionalTurn to see if they"
@@ -6456,6 +6073,7 @@ class EuOverlay29Data:
     )
 
     BELLY_DRAIN_IN_WALLS_INT = Symbol(
+        [0x767F4],
         [0x2353374],
         0x2,
         "The additional amount by which belly is decreased every turn when inside walls"
@@ -6463,6 +6081,7 @@ class EuOverlay29Data:
     )
 
     BELLY_DRAIN_IN_WALLS_THOUSANDTHS = Symbol(
+        [0x767F6],
         [0x2353376],
         0x2,
         "The additional amount by which belly is decreased every turn when inside walls"
@@ -6470,6 +6089,7 @@ class EuOverlay29Data:
     )
 
     SPATK_STAT_IDX = Symbol(
+        [0x76B74],
         [0x23536F4],
         0x4,
         "The index (1) of the special attack entry in internal stat structs, such as"
@@ -6477,6 +6097,7 @@ class EuOverlay29Data:
     )
 
     ATK_STAT_IDX = Symbol(
+        [0x76B78],
         [0x23536F8],
         0x4,
         "The index (0) of the attack entry in internal stat structs, such as the stat"
@@ -6484,6 +6105,7 @@ class EuOverlay29Data:
     )
 
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN = Symbol(
+        [0x770A4],
         [0x2353C24],
         0x20,
         "An array mapping each (corner index, neighbor direction index) to whether or"
@@ -6499,6 +6121,7 @@ class EuOverlay29Data:
     )
 
     DUNGEON_PTR = Symbol(
+        [0x775B8],
         [0x2354138],
         0x4,
         "[Runtime] Pointer to the dungeon struct in dungeon mode.\n\nThis is a 'working"
@@ -6508,6 +6131,7 @@ class EuOverlay29Data:
     )
 
     DUNGEON_PTR_MASTER = Symbol(
+        [0x775BC],
         [0x235413C],
         0x4,
         "[Runtime] Pointer to the dungeon struct in dungeon mode.\n\nThis is a 'master"
@@ -6517,12 +6141,14 @@ class EuOverlay29Data:
     )
 
     LEADER_PTR = Symbol(
+        [0x775DC],
         [0x235415C],
         0x4,
         "[Runtime] Pointer to the current leader of the team.\n\ntype: struct entity*",
     )
 
     DUNGEON_PRNG_STATE = Symbol(
+        [0x775F0],
         [0x2354170],
         0x14,
         "[Runtime] The global PRNG state for dungeon mode, not including the current"
@@ -6533,6 +6159,7 @@ class EuOverlay29Data:
     )
 
     DUNGEON_PRNG_STATE_SECONDARY_VALUES = Symbol(
+        [0x77604],
         [0x2354184],
         0x14,
         "[Runtime] An array of 5 integers corresponding to the last value generated for"
@@ -6541,6 +6168,7 @@ class EuOverlay29Data:
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_ATK_SPEED_BOOST = Symbol(
+        [0x77630],
         [0x23541B0],
         0x8,
         "Array of IDs for exclusive item effects that increase attack speed with"
@@ -6548,6 +6176,7 @@ class EuOverlay29Data:
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_MOVE_SPEED_BOOST = Symbol(
+        [0x77638],
         [0x23541B8],
         0x8,
         "Array of IDs for exclusive item effects that increase movement speed with"
@@ -6555,6 +6184,7 @@ class EuOverlay29Data:
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_NO_STATUS = Symbol(
+        [0x77640],
         [0x23541C0],
         0x8,
         "Array of IDs for exclusive item effects that grant status immunity with"
@@ -6562,6 +6192,7 @@ class EuOverlay29Data:
     )
 
     EXCL_ITEM_EFFECTS_EVASION_BOOST = Symbol(
+        [0x77790],
         [0x2354310],
         0x8,
         "Array of IDs for exclusive item effects that grant an evasion boost with"
@@ -6569,6 +6200,7 @@ class EuOverlay29Data:
     )
 
     DEFAULT_TILE = Symbol(
+        [0x777BC],
         [0x235433C],
         0x14,
         "The default tile struct.\n\nThis is just a struct full of zeroes, but is used"
@@ -6577,17 +6209,25 @@ class EuOverlay29Data:
     )
 
     FIXED_ROOM_DATA_PTR = Symbol(
+        [0x7782C],
         [0x23543AC],
         0x4,
         "[Runtime] Pointer to decoded fixed room data loaded from the BALANCE/fixed.bin"
         " file.",
     )
 
+    NECTAR_IQ_BOOST = Symbol(
+        [0x40264], [0x231CDE4], None, "IQ boost from ingesting Nectar."
+    )
+
 
 class EuOverlay29Section:
     name = "overlay29"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 29."
+        "The dungeon engine.\n\nThis is the 'main' overlay of dungeon mode. It controls"
+        " most things that happen in a Mystery Dungeon, such as dungeon layout"
+        " generation, dungeon menus, enemy AI, and generally just running each turn"
+        " while within a dungeon."
     )
     loadaddress = 0x22DCB80
     length = 0x77900
@@ -6595,27 +6235,453 @@ class EuOverlay29Section:
     data = EuOverlay29Data
 
 
-class EuOverlay34Functions:
+class EuOverlay0Functions:
 
     pass
 
 
-class EuOverlay34Data:
+class EuOverlay0Data:
 
-    UNKNOWN_MENU_CONFIRM = Symbol([0x22DD8CC], 0x18, "")
+    TOP_MENU_MUSIC_ID = Symbol(
+        [0x15F4], [0x22BE9B4], None, "Music ID to play in the top menu."
+    )
 
-    DUNGEON_DEBUG_MENU = Symbol([0x22DD8F4], 0x28, "")
 
-
-class EuOverlay34Section:
-    name = "overlay34"
+class EuOverlay0Section:
+    name = "overlay0"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
+        "Likely contains supporting data and code related to the top menu.\n\nThis is"
+        " loaded together with overlay 1 while in the top menu. Since it's in overlay"
+        " group 2 (together with overlay 10, which is another 'data' overlay), this"
+        " overlay probably plays a similar role. It mentions several files from the"
+        " BACK folder that are known backgrounds for the top menu."
+    )
+    loadaddress = 0x22BD3C0
+    length = 0x60880
+    functions = EuOverlay0Functions
+    data = EuOverlay0Data
+
+
+class EuOverlay20Functions:
+
+    pass
+
+
+class EuOverlay20Data:
+
+    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238DAC4], 0x18, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238DADC], 0x18, "")
+
+    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238DAF4], 0x18, "")
+
+    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238DB0C], 0x20, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238DB2C], 0x28, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238DBC8], 0x20, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238DC38], 0x18, "")
+
+
+class EuOverlay20Section:
+    name = "overlay20"
+    description = "Controls the Recycle Shop."
+    loadaddress = 0x238AC80
+    length = 0x3000
+    functions = EuOverlay20Functions
+    data = EuOverlay20Data
+
+
+class EuOverlay13Functions:
+
+    pass
+
+
+class EuOverlay13Data:
+
+    STARTERS_PARTNER_IDS = Symbol(
+        [0x1F4C], [0x238CBCC], 0x2A, "type: struct monster_id_16[21]"
+    )
+
+    STARTERS_HERO_IDS = Symbol(
+        [0x1F78], [0x238CBF8], 0x40, "type: struct monster_id_16[32]"
+    )
+
+    STARTERS_STRINGS = Symbol([0x200C], [0x238CC8C], 0x60, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238CCEC], 0x84, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238CD70], 0x160, "")
+
+    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238DA0C], 0x48, "")
+
+
+class EuOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Controls the personality test, including the available partners and playable"
+        " Pokémon. The actual personality test questions are stored in the MESSAGE"
+        " folder."
+    )
+    loadaddress = 0x238AC80
+    length = 0x2E80
+    functions = EuOverlay13Functions
+    data = EuOverlay13Data
+
+
+class EuOverlay11Functions:
+
+    FuncThatCallsCommandParsing = Symbol([0xF24], [0x22DDAA4], None, "")
+
+    ScriptCommandParsing = Symbol([0x1B24], [0x22DE6A4], None, "")
+
+    SsbLoad2 = Symbol([0x84BC], [0x22E503C], None, "")
+
+    StationLoadHanger = Symbol([0x8994], [0x22E5514], None, "")
+
+    ScriptStationLoadTalk = Symbol([0x91A4], [0x22E5D24], None, "")
+
+    SsbLoad1 = Symbol([0x9B10], [0x22E6690], None, "")
+
+    ScriptSpecialProcessCall = Symbol(
+        [0xAED8],
+        [0x22E7A58],
+        None,
+        "Processes calls to the OPCODE_PROCESS_SPECIAL script opcode.\n\nr0: some"
+        " struct containing a callback of some sort, only used for special process ID"
+        " 18\nr1: special process ID\nr2: first argument, if relevant? Probably"
+        " corresponds to the second parameter of OPCODE_PROCESS_SPECIAL\nr3: second"
+        " argument, if relevant? Probably corresponds to the third parameter of"
+        " OPCODE_PROCESS_SPECIAL\nreturn: return value of the special process if it has"
+        " one, otherwise 0",
+    )
+
+    GetSpecialRecruitmentSpecies = Symbol(
+        [0xBDFC],
+        [0x22E897C],
+        None,
+        "Returns an entry from RECRUITMENT_TABLE_SPECIES.\n\nNote: This indexes without"
+        " doing bounds checking.\n\nr0: index into RECRUITMENT_TABLE_SPECIES\nreturn:"
+        " enum monster_id",
+    )
+
+    PrepareMenuAcceptTeamMember = Symbol(
+        [0xBE40],
+        [0x22E89C0],
+        None,
+        "Implements SPECIAL_PROC_PREPARE_MENU_ACCEPT_TEAM_MEMBER (see"
+        " ScriptSpecialProcessCall).\n\nr0: index into RECRUITMENT_TABLE_SPECIES",
+    )
+
+    InitRandomNpcJobs = Symbol(
+        [0xBEE4],
+        [0x22E8A64],
+        None,
+        "Implements SPECIAL_PROC_INIT_RANDOM_NPC_JOBS (see"
+        " ScriptSpecialProcessCall).\n\nr0: job type? 0 is a random NPC job, 1 is a"
+        " bottle mission\nr1: ?",
+    )
+
+    GetRandomNpcJobType = Symbol(
+        [0xBF7C],
+        [0x22E8AFC],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_TYPE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: job type?",
+    )
+
+    GetRandomNpcJobSubtype = Symbol(
+        [0xBF94],
+        [0x22E8B14],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_SUBTYPE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: job subtype?",
+    )
+
+    GetRandomNpcJobStillAvailable = Symbol(
+        [0xBFB0],
+        [0x22E8B30],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_STILL_AVAILABLE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    AcceptRandomNpcJob = Symbol(
+        [0xC018],
+        [0x22E8B98],
+        None,
+        "Implements SPECIAL_PROC_ACCEPT_RANDOM_NPC_JOB (see"
+        " ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    GroundMainLoop = Symbol(
+        [0xC534],
+        [0x22E90B4],
+        None,
+        "Appears to be the main loop for ground mode.\n\nBased on debug print"
+        " statements and general code structure, it seems contain a core loop, and"
+        " dispatches to various functions in response to different events.\n\nr0: mode,"
+        " which is stored globally and used in switch statements for dispatch\nreturn:"
+        " return code",
+    )
+
+    GetAllocArenaGround = Symbol(
+        [0xD11C],
+        [0x22E9C9C],
+        None,
+        "The GetAllocArena function used for ground mode. See SetMemAllocatorParams for"
+        " more information.\n\nr0: initial memory arena pointer, or null\nr1: flags"
+        " (see MemAlloc)\nreturn: memory arena pointer, or null",
+    )
+
+    GetFreeArenaGround = Symbol(
+        [0xD180],
+        [0x22E9D00],
+        None,
+        "The GetFreeArena function used for ground mode. See SetMemAllocatorParams for"
+        " more information.\n\nr0: initial memory arena pointer, or null\nr1: pointer"
+        " to free\nreturn: memory arena pointer, or null",
+    )
+
+    GroundMainReturnDungeon = Symbol(
+        [0xD1D4],
+        [0x22E9D54],
+        None,
+        "Implements SPECIAL_PROC_RETURN_DUNGEON (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+    GroundMainNextDay = Symbol(
+        [0xD1F8],
+        [0x22E9D78],
+        None,
+        "Implements SPECIAL_PROC_NEXT_DAY (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+    JumpToTitleScreen = Symbol(
+        [0xD39C],
+        [0x22E9F1C],
+        None,
+        "Implements SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and SPECIAL_PROC_0x1A (see"
+        " ScriptSpecialProcessCall).\n\nr0: int, argument value for"
+        " SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and -1 for SPECIAL_PROC_0x1A\nreturn: bool"
+        " (but note that the special process ignores this and always returns 0)",
+    )
+
+    ReturnToTitleScreen = Symbol(
+        [0xD454],
+        [0x22E9FD4],
+        None,
+        "Implements SPECIAL_PROC_RETURN_TO_TITLE_SCREEN (see"
+        " ScriptSpecialProcessCall).\n\nr0: fade duration\nreturn: bool (but note that"
+        " the special process ignores this and always returns 0)",
+    )
+
+    ScriptSpecialProcess0x16 = Symbol(
+        [0xD4B4],
+        [0x22EA034],
+        None,
+        "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
+    )
+
+    SprintfStatic = Symbol(
+        [0x2CCE8],
+        [0x2309868],
+        None,
+        "Statically defined copy of sprintf(3) in overlay 11. See arm9.yml for more"
+        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
+        " characters printed, excluding the null-terminator",
+    )
+
+    StatusUpdate = Symbol(
+        [0x378F8],
+        [0x2314478],
+        None,
+        "Implements SPECIAL_PROC_STATUS_UPDATE (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+
+class EuOverlay11Data:
+
+    SCRIPT_OP_CODES = Symbol(
+        [0x3C470],
+        [0x2318FF0],
+        0xBF8,
+        "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
+        " opcodes underpin the various ExplorerScript functions you can call in the"
+        " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
+    )
+
+    C_ROUTINES = Symbol(
+        [0x40688],
+        [0x231D208],
+        None,
+        "Common routines used within the unionall.ssb script (the master script). There"
+        " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
+        " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
+        " common_routine_table",
+    )
+
+    OBJECTS = Symbol(
+        [0x42D5C],
+        [0x231F8DC],
+        0x1AAC,
+        "Table of objects for the script engine, which can be placed in scenes. There"
+        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
+        " script_object[length / 12]",
+    )
+
+    RECRUITMENT_TABLE_LOCATIONS = Symbol(
+        [0x44844],
+        [0x23213C4],
+        0x16,
+        "Table of dungeon IDs corresponding to entries in"
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
+    )
+
+    RECRUITMENT_TABLE_LEVELS = Symbol(
+        [0x4485C],
+        [0x23213DC],
+        0x2C,
+        "Table of levels for recruited Pokémon, corresponding to entries in"
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
+    )
+
+    RECRUITMENT_TABLE_SPECIES = Symbol(
+        [0x44888],
+        [0x2321408],
+        0x2C,
+        "Table of Pokémon recruited at special locations, such as at the ends of"
+        " certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during"
+        " a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes"
+        " both Heatran genders. It also includes Darkrai for some reason?\n\ntype:"
+        " struct monster_id_16[22]",
+    )
+
+    LEVEL_TILEMAP_LIST = Symbol([0x44CDC], [0x232185C], 0x288, "")
+
+    OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
+        [0x4701C],
+        [0x2323B9C],
+        None,
+        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16"
+        " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
+        " overlay_group_id in the C headers for a mapping between group ID and overlay"
+        " number)\n- function pointer to entry point\n- function pointer to"
+        " destructor\n- possibly function pointer to frame-update function?",
+    )
+
+    UNIONALL_RAM_ADDRESS = Symbol([0x48C64], [0x23257E4], None, "[Runtime]")
+
+    GROUND_STATE_MAP = Symbol([0x48C80], [0x2325800], None, "[Runtime]")
+
+    GROUND_STATE_PTRS = Symbol(
+        [0x48CB4],
+        [0x2325834],
+        0x18,
+        "Host pointers to multiple structure used for performing an overworld"
+        " scene\n\ntype: struct main_ground_data",
+    )
+
+
+class EuOverlay11Section:
+    name = "overlay11"
+    description = (
+        "The script engine.\n\nThis is the 'main' overlay of ground mode. The script"
+        " engine is what runs the ground mode scripts contained in the SCRIPT folder,"
+        " which are written in a custom scripting language. These scripts encode things"
+        " like cutscenes, screen transitions, ground mode events, and tons of other"
+        " things related to ground mode."
     )
     loadaddress = 0x22DCB80
-    length = 0xDC0
-    functions = EuOverlay34Functions
-    data = EuOverlay34Data
+    length = 0x48E40
+    functions = EuOverlay11Functions
+    data = EuOverlay11Data
+
+
+class EuOverlay28Functions:
+
+    pass
+
+
+class EuOverlay28Data:
+
+    pass
+
+
+class EuOverlay28Section:
+    name = "overlay28"
+    description = "Controls the staff credits sequence."
+    loadaddress = 0x238AC80
+    length = 0xC60
+    functions = EuOverlay28Functions
+    data = EuOverlay28Data
+
+
+class EuOverlay25Functions:
+
+    pass
+
+
+class EuOverlay25Data:
+
+    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238BFF4], 0x18, "")
+
+    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238C00C], 0x20, "")
+
+    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238C02C], 0x20, "")
+
+
+class EuOverlay25Section:
+    name = "overlay25"
+    description = "Controls Xatu Appraisal."
+    loadaddress = 0x238AC80
+    length = 0x14C0
+    functions = EuOverlay25Functions
+    data = EuOverlay25Data
+
+
+class EuOverlay4Functions:
+
+    pass
+
+
+class EuOverlay4Data:
+
+    pass
+
+
+class EuOverlay4Section:
+    name = "overlay4"
+    description = "Controls the Trade Items submenu within the top menu."
+    loadaddress = 0x233D200
+    length = 0x2BE0
+    functions = EuOverlay4Functions
+    data = EuOverlay4Data
+
+
+class EuOverlay7Functions:
+
+    pass
+
+
+class EuOverlay7Data:
+
+    pass
+
+
+class EuOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
+    )
+    loadaddress = 0x233D200
+    length = 0x3300
+    functions = EuOverlay7Functions
+    data = EuOverlay7Data
 
 
 class EuOverlay1Functions:
@@ -6625,28 +6691,86 @@ class EuOverlay1Functions:
 
 class EuOverlay1Data:
 
-    CONTINUE_CHOICE = Symbol([0x233BCB4], 0x20, "")
+    CONTINUE_CHOICE = Symbol([0x11F74], [0x233BCB4], 0x20, "")
 
-    SUBMENU = Symbol([0x233BCD4], 0x48, "")
+    SUBMENU = Symbol([0x11F94], [0x233BCD4], 0x48, "")
 
-    MAIN_MENU = Symbol([0x233BD1C], 0xA0, "")
+    MAIN_MENU = Symbol([0x11FDC], [0x233BD1C], 0xA0, "")
 
-    MAIN_MENU_CONFIRM = Symbol([0x233BE98], 0x18, "")
+    MAIN_MENU_CONFIRM = Symbol([0x12158], [0x233BE98], 0x18, "")
 
-    MAIN_DEBUG_MENU_1 = Symbol([0x233BF5C], 0x60, "")
+    MAIN_DEBUG_MENU_1 = Symbol([0x1221C], [0x233BF5C], 0x60, "")
 
-    MAIN_DEBUG_MENU_2 = Symbol([0x233BFDC], 0x38, "")
+    MAIN_DEBUG_MENU_2 = Symbol([0x1229C], [0x233BFDC], 0x38, "")
 
 
 class EuOverlay1Section:
     name = "overlay1"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
+        "Likely controls the top menu.\n\nThis is loaded together with overlay 0 while"
+        " in the top menu. Since it's in overlay group 1 (together with other 'main'"
+        " overlays like overlay 11 and overlay 29), this is probably the"
+        " controller.\n\nSeems to contain code related to Wi-Fi rescue. It mentions"
+        " several files from the GROUND and BACK folders."
     )
     loadaddress = 0x2329D40
     length = 0x12C80
     functions = EuOverlay1Functions
     data = EuOverlay1Data
+
+
+class EuOverlay6Functions:
+
+    pass
+
+
+class EuOverlay6Data:
+
+    pass
+
+
+class EuOverlay6Section:
+    name = "overlay6"
+    description = "Controls the Wonder Mail S submenu within the top menu."
+    loadaddress = 0x233D200
+    length = 0x2460
+    functions = EuOverlay6Functions
+    data = EuOverlay6Data
+
+
+class EuOverlay18Functions:
+
+    pass
+
+
+class EuOverlay18Data:
+
+    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238DE60], 0x18, "")
+
+    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238DE78], 0x20, "")
+
+    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238DE98], 0x20, "")
+
+    MOVES_MAIN_MENU = Symbol([0x3238], [0x238DEB8], 0x20, "")
+
+    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238DED8], 0x28, "")
+
+    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238DF00], 0x30, "")
+
+    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238DF30], 0x48, "")
+
+    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238DF78], 0x48, "")
+
+    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238DFC0], 0x48, "")
+
+
+class EuOverlay18Section:
+    name = "overlay18"
+    description = "Controls the Electivire Link Shop."
+    loadaddress = 0x238AC80
+    length = 0x3500
+    functions = EuOverlay18Functions
+    data = EuOverlay18Data
 
 
 class EuOverlay2Functions:
@@ -6662,12 +6786,461 @@ class EuOverlay2Data:
 class EuOverlay2Section:
     name = "overlay2"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 2."
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
     )
     loadaddress = 0x2329D40
     length = 0x2AFC0
     functions = EuOverlay2Functions
     data = EuOverlay2Data
+
+
+class EuOverlay12Functions:
+
+    pass
+
+
+class EuOverlay12Data:
+
+    pass
+
+
+class EuOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = 0x238AC80
+    length = 0x20
+    functions = EuOverlay12Functions
+    data = EuOverlay12Data
+
+
+class EuOverlay22Functions:
+
+    pass
+
+
+class EuOverlay22Data:
+
+    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238F3A8], 0x18, "")
+
+    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238F3C0], 0x20, "")
+
+    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238F3E0], 0x20, "")
+
+    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238F400], 0x30, "")
+
+
+class EuOverlay22Section:
+    name = "overlay22"
+    description = "Controls the Kecleon Shop in Treasure Town."
+    loadaddress = 0x238AC80
+    length = 0x4B40
+    functions = EuOverlay22Functions
+    data = EuOverlay22Data
+
+
+class EuOverlay10Functions:
+
+    SprintfStatic = Symbol(
+        [0x9CC, 0x4DD4],
+        [0x22BDD8C, 0x22C2194],
+        None,
+        "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
+        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
+        " characters printed, excluding the null-terminator",
+    )
+
+
+class EuOverlay10Data:
+
+    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
+        [0x79A4],
+        [0x22C4D64],
+        0x1,
+        "The first dungeon that can have extra traps spawn in Monster Houses, Dark"
+        " Hill\n\ntype: struct dungeon_id_8",
+    )
+
+    BAD_POISON_DAMAGE_COOLDOWN = Symbol(
+        [0x79AC],
+        [0x22C4D6C],
+        0x2,
+        "The number of turns between passive bad poison (toxic) damage.",
+    )
+
+    PROTEIN_STAT_BOOST = Symbol(
+        [0x79B8],
+        [0x22C4D78],
+        0x2,
+        "The permanent attack boost from ingesting a Protein.",
+    )
+
+    SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
+        [0x79C8],
+        [0x22C4D88],
+        None,
+        "The maximum number of enemies that can spawn on a floor without a monster"
+        " house (15).",
+    )
+
+    OREN_BERRY_DAMAGE = Symbol(
+        [0x79D0], [0x22C4D90], 0x2, "Damage dealt by eating an Oren Berry."
+    )
+
+    SITRUS_BERRY_HP_RESTORATION = Symbol(
+        [0x7A10],
+        [0x22C4DD0],
+        0x2,
+        "The amount of HP restored by eating a Sitrus Berry.",
+    )
+
+    EXP_ELITE_EXP_BOOST = Symbol(
+        [0x7A40],
+        [0x22C4E00],
+        0x2,
+        "The percentage increase in experience from the Exp. Elite IQ skill",
+    )
+
+    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
+        [0x7A44],
+        [0x22C4E04],
+        0x2,
+        "The maximum number of extra non-monster spawns (items/traps) in a Monster"
+        " House, 7",
+    )
+
+    GOLD_THORN_POWER = Symbol(
+        [0x7A68], [0x22C4E28], 0x2, "Attack power for Golden Thorns."
+    )
+
+    SPAWN_COOLDOWN = Symbol(
+        [0x7A74],
+        [0x22C4E34],
+        0x2,
+        "The number of turns between enemy spawns under normal conditions.",
+    )
+
+    ORAN_BERRY_FULL_HP_BOOST = Symbol(
+        [0x7A8C],
+        [0x22C4E4C],
+        0x2,
+        "The permanent HP boost from eating an Oran Berry at full HP (0).",
+    )
+
+    LIFE_SEED_HP_BOOST = Symbol(
+        [0x7A90], [0x22C4E50], 0x2, "The permanent HP boost from eating a Life Seed."
+    )
+
+    EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
+        [0x7B24],
+        [0x22C4EE4],
+        0x2,
+        "The percentage increase in experience from exp-boosting exclusive items",
+    )
+
+    INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
+        [0x7B50],
+        [0x22C4F10],
+        0x2,
+        "The percentage chance that Intimidator will activate.",
+    )
+
+    ORAN_BERRY_HP_RESTORATION = Symbol(
+        [0x7B84], [0x22C4F44], 0x2, "The amount of HP restored by eating a Oran Berry."
+    )
+
+    SITRUS_BERRY_FULL_HP_BOOST = Symbol(
+        [0x7B8C],
+        [0x22C4F4C],
+        0x2,
+        "The permanent HP boost from eating a Sitrus Berry at full HP.",
+    )
+
+    BURN_DAMAGE_COOLDOWN = Symbol(
+        [0x7BA8], [0x22C4F68], 0x2, "The number of turns between passive burn damage."
+    )
+
+    STICK_POWER = Symbol([0x7BBC], [0x22C4F7C], 0x2, "Attack power for Sticks.")
+
+    SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
+        [0x7BD8],
+        [0x22C4F98],
+        0x2,
+        "The number of turns between enemy spawns when the Thief Alert condition is"
+        " active.",
+    )
+
+    MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
+        [0x7BF8],
+        [0x22C4FB8],
+        0x2,
+        "The maximum number of monster spawns in a Monster House, 30, but multiplied by"
+        " 2/3 for some reason (so the actual maximum is 45)",
+    )
+
+    SPEED_BOOST_TURNS = Symbol(
+        [0x7C04],
+        [0x22C4FC4],
+        None,
+        "Number of turns (250) after which Speed Boost will trigger and increase speed"
+        " by one stage.",
+    )
+
+    MIRACLE_CHEST_EXP_BOOST = Symbol(
+        [0x7C30],
+        [0x22C4FF0],
+        0x2,
+        "The percentage increase in experience from the Miracle Chest item",
+    )
+
+    WONDER_CHEST_EXP_BOOST = Symbol(
+        [0x7C34],
+        [0x22C4FF4],
+        0x2,
+        "The percentage increase in experience from the Wonder Chest item",
+    )
+
+    SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
+        [0x7C3C],
+        [0x22C4FFC],
+        None,
+        "The maximum number of enemies that can spawn on a floor with a monster house,"
+        " not counting those in the monster house (4).",
+    )
+
+    POISON_DAMAGE_COOLDOWN = Symbol(
+        [0x7C40], [0x22C5000], 0x2, "The number of turns between passive poison damage."
+    )
+
+    GEO_PEBBLE_DAMAGE = Symbol(
+        [0x7C4C], [0x22C500C], 0x2, "Damage dealt by Geo Pebbles."
+    )
+
+    GRAVELEROCK_DAMAGE = Symbol(
+        [0x7C50], [0x22C5010], 0x2, "Damage dealt by Gravelerocks."
+    )
+
+    RARE_FOSSIL_DAMAGE = Symbol(
+        [0x7C54], [0x22C5014], 0x2, "Damage dealt by Rare Fossils."
+    )
+
+    GINSENG_CHANCE_3 = Symbol(
+        [0x7C58],
+        [0x22C5018],
+        0x2,
+        "The percentage chance for...something to be set to 3 in a calculation related"
+        " to the Ginseng boost.",
+    )
+
+    ZINC_STAT_BOOST = Symbol(
+        [0x7C5C],
+        [0x22C501C],
+        0x2,
+        "The permanent special defense boost from ingesting a Zinc.",
+    )
+
+    IRON_STAT_BOOST = Symbol(
+        [0x7C60],
+        [0x22C5020],
+        0x2,
+        "The permanent defense boost from ingesting an Iron.",
+    )
+
+    CALCIUM_STAT_BOOST = Symbol(
+        [0x7C64],
+        [0x22C5024],
+        0x2,
+        "The permanent special attack boost from ingesting a Calcium.",
+    )
+
+    CORSOLA_TWIG_POWER = Symbol(
+        [0x7C70], [0x22C5030], 0x2, "Attack power for Corsola Twigs."
+    )
+
+    CACNEA_SPIKE_POWER = Symbol(
+        [0x7C74], [0x22C5034], 0x2, "Attack power for Cacnea Spikes."
+    )
+
+    GOLD_FANG_POWER = Symbol([0x7C78], [0x22C5038], 0x2, "Attack power for Gold Fangs.")
+
+    SILVER_SPIKE_POWER = Symbol(
+        [0x7C7C], [0x22C503C], 0x2, "Attack power for Silver Spikes."
+    )
+
+    IRON_THORN_POWER = Symbol(
+        [0x7C80], [0x22C5040], 0x2, "Attack power for Iron Thorns."
+    )
+
+    SLEEP_DURATION_RANGE = Symbol(
+        [0x7CB8],
+        [0x22C5078],
+        0x4,
+        "Appears to control the range of turns for which the sleep condition can"
+        " last.\n\nThe first two bytes are the low value of the range, and the later"
+        " two bytes are the high value.",
+    )
+
+    POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
+        [0x7D90],
+        [0x22C5150],
+        0x4,
+        "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
+        " fixed-point number (8 fraction bits)",
+    )
+
+    AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
+        [0x7DDC],
+        [0x22C519C],
+        None,
+        "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
+        " number (8 fraction bits)",
+    )
+
+    SPEED_BOOST_DURATION_RANGE = Symbol(
+        [0x7E20],
+        [0x22C51E0],
+        0x4,
+        "Appears to control the range of turns for which a speed boost can last.\n\nThe"
+        " first two bytes are the low value of the range, and the later two bytes are"
+        " the high value.",
+    )
+
+    OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
+        [0x8330],
+        [0x22C56F0],
+        0x54,
+        "Table of multipliers for offensive stats (attack/special attack) for each"
+        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
+    )
+
+    DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
+        [0x8384],
+        [0x22C5744],
+        0x54,
+        "Table of multipliers for defensive stats (defense/special defense) for each"
+        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
+    )
+
+    RANDOM_MUSIC_ID_TABLE = Symbol(
+        [0x8794],
+        [0x22C5B54],
+        0xF0,
+        "Table of music IDs for dungeons with a random assortment of music"
+        " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
+        " row contains the possible music IDs for a given group, from which the music"
+        " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
+    )
+
+    MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
+        [0x89A4],
+        [0x22C5D64],
+        0x54,
+        "Table of multipliers for the accuracy stat for males for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
+        [0x89F8],
+        [0x22C5DB8],
+        0x54,
+        "Table of multipliers for the evasion stat for males for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
+        [0x8A4C],
+        [0x22C5E0C],
+        0x54,
+        "Table of multipliers for the accuracy stat for females for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
+        [0x8AA0],
+        [0x22C5E60],
+        0x54,
+        "Table of multipliers for the evasion stat for females for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    MUSIC_ID_TABLE = Symbol(
+        [0x8AF4],
+        [0x22C5EB4],
+        0x154,
+        "List of music IDs used in dungeons with a single music track.\n\nThis is an"
+        " array of 170 2-byte music IDs, and is indexed into by the music value in the"
+        " floor properties struct for a given floor. Music IDs with the highest bit set"
+        " (0x8000) are indexes into the RANDOM_MUSIC_ID_TABLE.\n\ntype: struct"
+        " music_id_16[170] (or not a music ID if the highest bit is set)",
+    )
+
+    TYPE_MATCHUP_TABLE = Symbol(
+        [0x8C48],
+        [0x22C6008],
+        0x288,
+        "Table of type matchups.\n\nEach row corresponds to the type matchups of a"
+        " specific attack type, with each entry within the row specifying the type's"
+        " effectiveness against a target type.\n\ntype: struct type_matchup_table",
+    )
+
+    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
+        [0x8ED0],
+        [0x22C6290],
+        0x4A4,
+        "Table of stats for monsters that can spawn in fixed rooms, pointed into by the"
+        " FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries"
+        " containing stat spreads for one monster entry each.\n\ntype: struct"
+        " fixed_room_monster_spawn_stats_entry[99]",
+    )
+
+    TILESET_PROPERTIES = Symbol([0x98B4], [0x22C6C74], 0x954, "")
+
+    FIXED_ROOM_PROPERTIES_TABLE = Symbol(
+        [0xA208],
+        [0x22C75C8],
+        0xC00,
+        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte"
+        " entries containing properties for a given fixed room ID.\n\nSee the struct"
+        " definitions and End45's dungeon data document for more info.\n\ntype: struct"
+        " fixed_room_properties_entry[256]",
+    )
+
+    MOVE_ANIMATION_INFO = Symbol([0xC5FC], [0x22C99BC], None, "")
+
+
+class EuOverlay10Section:
+    name = "overlay10"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 10."
+    )
+    loadaddress = 0x22BD3C0
+    length = 0x1F7A0
+    functions = EuOverlay10Functions
+    data = EuOverlay10Data
+
+
+class EuOverlay34Functions:
+
+    pass
+
+
+class EuOverlay34Data:
+
+    UNKNOWN_MENU_CONFIRM = Symbol([0xD4C], [0x22DD8CC], 0x18, "")
+
+    DUNGEON_DEBUG_MENU = Symbol([0xD74], [0x22DD8F4], 0x28, "")
+
+
+class EuOverlay34Section:
+    name = "overlay34"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 34."
+    )
+    loadaddress = 0x22DCB80
+    length = 0xDC0
+    functions = EuOverlay34Functions
+    data = EuOverlay34Data
 
 
 class EuOverlay3Functions:
@@ -6691,25 +7264,46 @@ class EuOverlay3Section:
     data = EuOverlay3Data
 
 
-class EuOverlay5Functions:
+class EuOverlay8Functions:
 
     pass
 
 
-class EuOverlay5Data:
+class EuOverlay8Data:
 
     pass
 
 
-class EuOverlay5Section:
-    name = "overlay5"
+class EuOverlay8Section:
+    name = "overlay8"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
     )
     loadaddress = 0x233D200
-    length = 0x3240
-    functions = EuOverlay5Functions
-    data = EuOverlay5Data
+    length = 0x2620
+    functions = EuOverlay8Functions
+    data = EuOverlay8Data
+
+
+class EuOverlay30Functions:
+
+    pass
+
+
+class EuOverlay30Data:
+
+    pass
+
+
+class EuOverlay30Section:
+    name = "overlay30"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 30."
+    )
+    loadaddress = 0x2383420
+    length = 0x38A0
+    functions = EuOverlay30Functions
+    data = EuOverlay30Data
 
 
 class EuOverlay31Functions:
@@ -6719,19 +7313,19 @@ class EuOverlay31Functions:
 
 class EuOverlay31Data:
 
-    DUNGEON_MAIN_MENU = Symbol([0x238A9F8], 0x40, "")
+    DUNGEON_MAIN_MENU = Symbol([0x75D8], [0x238A9F8], 0x40, "")
 
-    DUNGEON_SUBMENU_1 = Symbol([0x238AA94], 0x20, "")
+    DUNGEON_SUBMENU_1 = Symbol([0x7674], [0x238AA94], 0x20, "")
 
-    DUNGEON_SUBMENU_2 = Symbol([0x238AAB4], 0x20, "")
+    DUNGEON_SUBMENU_2 = Symbol([0x7694], [0x238AAB4], 0x20, "")
 
-    DUNGEON_SUBMENU_3 = Symbol([0x238AAD4], 0x20, "")
+    DUNGEON_SUBMENU_3 = Symbol([0x76B4], [0x238AAD4], 0x20, "")
 
-    DUNGEON_SUBMENU_4 = Symbol([0x238AAF4], 0x20, "")
+    DUNGEON_SUBMENU_4 = Symbol([0x76D4], [0x238AAF4], 0x20, "")
 
-    DUNGEON_SUBMENU_5 = Symbol([0x238AD40], 0x18, "")
+    DUNGEON_SUBMENU_5 = Symbol([0x7920], [0x238AD40], 0x18, "")
 
-    DUNGEON_SUBMENU_6 = Symbol([0x238ADC4], 0x48, "")
+    DUNGEON_SUBMENU_6 = Symbol([0x79A4], [0x238ADC4], 0x48, "")
 
 
 class EuOverlay31Section:
@@ -6745,180 +7339,548 @@ class EuOverlay31Section:
     data = EuOverlay31Data
 
 
-class EuOverlay15Functions:
+class EuOverlay16Functions:
 
     pass
 
 
-class EuOverlay15Data:
+class EuOverlay16Data:
 
-    BANK_MAIN_MENU = Symbol([0x238BBC0], 0x28, "")
+    EVO_MENU_CONFIRM = Symbol([0x2BCC], [0x238D84C], 0x18, "")
+
+    EVO_SUBMENU = Symbol([0x2BE4], [0x238D864], 0x20, "")
+
+    EVO_MAIN_MENU = Symbol([0x2C04], [0x238D884], 0x20, "")
 
 
-class EuOverlay15Section:
-    name = "overlay15"
+class EuOverlay16Section:
+    name = "overlay16"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
+        "Hard-coded immediate values (literals) in instructions within overlay 16."
     )
     loadaddress = 0x238AC80
-    length = 0x1080
-    functions = EuOverlay15Functions
-    data = EuOverlay15Data
+    length = 0x2D20
+    functions = EuOverlay16Functions
+    data = EuOverlay16Data
 
 
-class EuOverlay20Functions:
+class EuOverlay19Functions:
 
     pass
 
 
-class EuOverlay20Data:
+class EuOverlay19Data:
 
-    RECYCLE_MENU_CONFIRM_1 = Symbol([0x238DAC4], 0x18, "")
+    BAR_MENU_CONFIRM_1 = Symbol([0x40BC], [0x238ED3C], 0x18, "")
 
-    RECYCLE_MENU_CONFIRM_2 = Symbol([0x238DADC], 0x18, "")
+    BAR_MENU_CONFIRM_2 = Symbol([0x40D4], [0x238ED54], 0x18, "")
 
-    RECYCLE_SUBMENU_1 = Symbol([0x238DAF4], 0x18, "")
+    BAR_MAIN_MENU = Symbol([0x4104], [0x238ED84], 0x20, "")
 
-    RECYCLE_SUBMENU_2 = Symbol([0x238DB0C], 0x20, "")
+    BAR_SUBMENU_1 = Symbol([0x4124], [0x238EDA4], 0x20, "")
 
-    RECYCLE_MAIN_MENU_1 = Symbol([0x238DB2C], 0x28, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol([0x238DBC8], 0x20, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol([0x238DC38], 0x18, "")
+    BAR_SUBMENU_2 = Symbol([0x4144], [0x238EDC4], 0x30, "")
 
 
-class EuOverlay20Section:
-    name = "overlay20"
+class EuOverlay19Section:
+    name = "overlay19"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 20."
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
     )
     loadaddress = 0x238AC80
-    length = 0x3000
-    functions = EuOverlay20Functions
-    data = EuOverlay20Data
+    length = 0x4220
+    functions = EuOverlay19Functions
+    data = EuOverlay19Data
 
 
-class EuOverlay27Functions:
+class EuOverlay23Functions:
 
     pass
 
 
-class EuOverlay27Data:
+class EuOverlay23Data:
 
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x238D49C], 0x18, "")
+    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238DE3C], 0x18, "")
 
-    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x238D4B4], 0x20, "")
+    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238DE54], 0x20, "")
 
-    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x238D4D4], 0x20, "")
+    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238DE74], 0x20, "")
 
-    DISCARD_ITEMS_MAIN_MENU = Symbol([0x238D4F4], 0x28, "")
+    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238DE94], 0x20, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238DEB4], 0x28, "")
 
 
-class EuOverlay27Section:
-    name = "overlay27"
+class EuOverlay23Section:
+    name = "overlay23"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
+        "Hard-coded immediate values (literals) in instructions within overlay 23."
     )
     loadaddress = 0x238AC80
-    length = 0x2D60
-    functions = EuOverlay27Functions
-    data = EuOverlay27Data
+    length = 0x3780
+    functions = EuOverlay23Functions
+    data = EuOverlay23Data
 
 
-class EuOverlay12Functions:
-
-    pass
-
-
-class EuOverlay12Data:
+class EuOverlay24Functions:
 
     pass
 
 
-class EuOverlay12Section:
-    name = "overlay12"
+class EuOverlay24Data:
+
+    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238D060], 0x18, "")
+
+    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238D078], 0x20, "")
+
+
+class EuOverlay24Section:
+    name = "overlay24"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 24."
+    )
+    loadaddress = 0x238AC80
+    length = 0x24E0
+    functions = EuOverlay24Functions
+    data = EuOverlay24Data
+
+
+class EuOverlay26Functions:
+
+    pass
+
+
+class EuOverlay26Data:
+
+    pass
+
+
+class EuOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 26."
+    )
+    loadaddress = 0x238AC80
+    length = 0xE40
+    functions = EuOverlay26Functions
+    data = EuOverlay26Data
+
+
+class EuOverlay33Functions:
+
+    pass
+
+
+class EuOverlay33Data:
+
+    pass
+
+
+class EuOverlay33Section:
+    name = "overlay33"
     description = "Unused; all zeroes."
-    loadaddress = 0x238AC80
+    loadaddress = 0x2383420
     length = 0x20
-    functions = EuOverlay12Functions
-    data = EuOverlay12Data
+    functions = EuOverlay33Functions
+    data = EuOverlay33Data
+
+
+class EuOverlay35Functions:
+
+    pass
+
+
+class EuOverlay35Data:
+
+    pass
+
+
+class EuOverlay35Section:
+    name = "overlay35"
+    description = "Unused; all zeroes."
+    loadaddress = 0x22BD3C0
+    length = 0x20
+    functions = EuOverlay35Functions
+    data = EuOverlay35Data
+
+
+class EuRamFunctions:
+
+    pass
+
+
+class EuRamData:
+
+    DUNGEON_COLORMAP_PTR = Symbol(
+        [0x1BA634],
+        [0x21BA634],
+        0x4,
+        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
+        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
+        " indexes into when rendering colors. Some weather conditions modify the"
+        " colormap, which is how the color scheme changes when it's, e.g., raining.",
+    )
+
+    DUNGEON_STRUCT = Symbol(
+        [0x1BA674],
+        [0x21BA674],
+        0x2CB14,
+        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
+        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
+        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
+        " 29.\n\ntype: struct dungeon",
+    )
+
+    MOVE_DATA_TABLE = Symbol(
+        [0x211D0C],
+        [0x2211D0C],
+        0x38C6,
+        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
+        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
+        " ARM 9 binary.\n\ntype: struct move_data_table",
+    )
+
+    FRAMES_SINCE_LAUNCH = Symbol(
+        [0x2A3E8C, 0x2A3EDC],
+        [0x22A3E8C, 0x22A3EDC],
+        0x4,
+        "Starts at 0 when the game is first launched, and continuously ticks up once"
+        " per frame while the game is running.",
+    )
+
+    BAG_ITEMS = Symbol(
+        [0x2A4164],
+        [0x22A4164],
+        0x12C,
+        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
+        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
+        " if filled.\n\ntype: struct item[50]",
+    )
+
+    BAG_ITEMS_PTR = Symbol([0x2A44E8], [0x22A44E8], 0x4, "Pointer to BAG_ITEMS.")
+
+    STORAGE_ITEMS = Symbol(
+        [0x2A44EE],
+        [0x22A44EE],
+        0x7D0,
+        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
+        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
+        " item_id_16[1000]",
+    )
+
+    STORAGE_ITEM_QUANTITIES = Symbol(
+        [0x2A4CBE],
+        [0x22A4CBE],
+        0x7D0,
+        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
+        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
+        " entry in this array is unused, and will be 0.",
+    )
+
+    KECLEON_SHOP_ITEMS_PTR = Symbol(
+        [0x2A5490], [0x22A5490], 0x4, "Pointer to KECLEON_SHOP_ITEMS."
+    )
+
+    KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A5494],
+        [0x22A5494],
+        0x20,
+        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A54B4],
+        [0x22A54B4],
+        0x20,
+        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
+        " to be used by the Kecleon Shop.",
+    )
+
+    KECLEON_WARES_ITEMS_PTR = Symbol(
+        [0x2A54D4], [0x22A54D4], 0x4, "Pointer to KECLEON_WARES_ITEMS."
+    )
+
+    KECLEON_WARES_ITEMS = Symbol(
+        [0x2A54D8],
+        [0x22A54D8],
+        0x10,
+        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_WARES_ITEMS = Symbol(
+        [0x2A54E8],
+        [0x22A54E8],
+        0x10,
+        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
+        " to be used by Kecleon Wares.",
+    )
+
+    MONEY_CARRIED = Symbol(
+        [0x2A54F8],
+        [0x22A54F8],
+        0x4,
+        "The amount of money the player is currently carrying.",
+    )
+
+    MONEY_STORED = Symbol(
+        [0x2A5504],
+        [0x22A5504],
+        0x4,
+        "The amount of money the player currently has stored in the Duskull Bank.",
+    )
+
+    LAST_NEW_MOVE = Symbol(
+        [0x2AB78C],
+        [0x22AB78C],
+        0x8,
+        "Move struct of the last new move introduced when learning a new move. Persists"
+        " even after the move selection is made in the menu.\n\ntype: struct move",
+    )
+
+    SCRIPT_VARS_VALUES = Symbol(
+        [0x2AB9EC],
+        [0x22AB9EC],
+        0x400,
+        "The table of game variable values. Its structure is determined by"
+        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
+        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
+        " the real length of this table is 0x400 based on the game code.\n\ntype:"
+        " struct script_var_value_table",
+    )
+
+    BAG_LEVEL = Symbol(
+        [0x2ABA9C],
+        [0x22ABA9C],
+        0x1,
+        "The player's bag level, which determines the bag capacity. This indexes"
+        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
+    )
+
+    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
+        [0x2ABDEC],
+        [0x22ABDEC],
+        0x1,
+        "The number of the special episode currently being played.\n\n0: normal,"
+        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
+        " Comes Team Charm!\n4: In the Future of Darkness",
+    )
+
+    PENDING_DUNGEON_ID = Symbol(
+        [0x2ABE3C],
+        [0x22ABE3C],
+        0x1,
+        "The ID of the selected dungeon when setting off from the"
+        " overworld.\n\nControls the text and map location during the 'map cutscene'"
+        " just before entering a dungeon, as well as the actual dungeon loaded"
+        " afterwards.\n\ntype: struct dungeon_id_8",
+    )
+
+    PENDING_STARTING_FLOOR = Symbol(
+        [0x2ABE3D],
+        [0x22ABE3D],
+        0x1,
+        "The floor number to start from in the dungeon specified by"
+        " PENDING_DUNGEON_ID.",
+    )
+
+    PLAY_TIME_SECONDS = Symbol(
+        [0x2ABFD4], [0x22ABFD4], 0x4, "The player's total play time in seconds."
+    )
+
+    PLAY_TIME_FRAME_COUNTER = Symbol(
+        [0x2ABFD8],
+        [0x22ABFD8],
+        0x1,
+        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
+        " with each rollover.",
+    )
+
+    TEAM_NAME = Symbol(
+        [0x2AC258],
+        [0x22AC258],
+        0xC,
+        "The team name.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    HERO_SPECIES_ID = Symbol(
+        [0x2AC724],
+        [0x22AC724],
+        0x2,
+        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
+        " with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    HERO_NICKNAME = Symbol(
+        [0x2AC75A],
+        [0x22AC75A],
+        0xA,
+        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    PARTNER_SPECIES_ID = Symbol(
+        [0x2AC768],
+        [0x22AC768],
+        0x2,
+        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
+        " together with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    LEADER_IQ_SKILLS = Symbol(
+        [0x2B5AD8],
+        [0x22B5AD8],
+        0xC,
+        "Unlocked IQ skills of the current leader, available for selection from the IQ"
+        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
+        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
+        " larger struct, together with other nearby data.",
+    )
+
+    LEADER_NICKNAME = Symbol(
+        [0x2B5AEA],
+        [0x22B5AEA],
+        0xA,
+        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
+        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
+        " typically uses.\n\nThis is presumably part of a larger struct, together with"
+        " other nearby data.",
+    )
+
+    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
+        [0x2B5B40],
+        [0x22B5B40],
+        0xC,
+        "Unlocked IQ skills of the second party member, available for selection from"
+        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
+        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
+        " a larger struct, together with other nearby data.",
+    )
+
+    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
+        [0x2BA304],
+        [0x22BA304],
+        0x4,
+        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
+        " the game is running.",
+    )
+
+    TURNING_ON_THE_SPOT_FLAG = Symbol(
+        [0x37D5A6],
+        [0x237D5A6],
+        0x1,
+        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    FLOOR_GENERATION_STATUS = Symbol(
+        [0x37DBBC],
+        [0x237DBBC],
+        0x40,
+        "[Runtime] Status data related to generation of the current floor in a"
+        " dungeon.\n\nThis data is populated as the dungeon floor is"
+        " generated.\n\ntype: struct floor_generation_status",
+    )
+
+
+class EuRamSection:
+    name = "ram"
+    description = (
+        "Main memory.\nData in this file aren't located in the ROM itself, and are"
+        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
+        " dumping ground for addresses that are useful to know about, but don't fall in"
+        " the address ranges of any of the other files. Dynamically loaded constructs"
+        " that do fall within the address range of a relevant binary should be listed"
+        " in the corresponding YAML file of that binary, since it still has direct"
+        " utility when reverse-engineering that particular binary."
+    )
+    loadaddress = 0x2000000
+    length = 0x400000
+    functions = EuRamFunctions
+    data = EuRamData
 
 
 class EuSections:
 
-    overlay18 = EuOverlay18Section
-
     arm9 = EuArm9Section
-
-    overlay13 = EuOverlay13Section
-
-    overlay25 = EuOverlay25Section
-
-    overlay16 = EuOverlay16Section
-
-    overlay26 = EuOverlay26Section
-
-    overlay30 = EuOverlay30Section
-
-    overlay21 = EuOverlay21Section
-
-    overlay32 = EuOverlay32Section
-
-    ram = EuRamSection
-
-    overlay17 = EuOverlay17Section
-
-    overlay19 = EuOverlay19Section
-
-    overlay33 = EuOverlay33Section
-
-    overlay22 = EuOverlay22Section
-
-    overlay28 = EuOverlay28Section
-
-    overlay4 = EuOverlay4Section
-
-    overlay14 = EuOverlay14Section
-
-    overlay7 = EuOverlay7Section
-
-    overlay6 = EuOverlay6Section
-
-    overlay35 = EuOverlay35Section
-
-    overlay23 = EuOverlay23Section
-
-    overlay8 = EuOverlay8Section
-
-    overlay9 = EuOverlay9Section
-
-    overlay24 = EuOverlay24Section
-
-    overlay0 = EuOverlay0Section
-
-    overlay10 = EuOverlay10Section
-
-    overlay11 = EuOverlay11Section
-
-    overlay29 = EuOverlay29Section
-
-    overlay34 = EuOverlay34Section
-
-    overlay1 = EuOverlay1Section
-
-    overlay2 = EuOverlay2Section
-
-    overlay3 = EuOverlay3Section
 
     overlay5 = EuOverlay5Section
 
-    overlay31 = EuOverlay31Section
-
-    overlay15 = EuOverlay15Section
-
-    overlay20 = EuOverlay20Section
+    overlay14 = EuOverlay14Section
 
     overlay27 = EuOverlay27Section
 
+    overlay9 = EuOverlay9Section
+
+    overlay32 = EuOverlay32Section
+
+    overlay17 = EuOverlay17Section
+
+    overlay21 = EuOverlay21Section
+
+    overlay15 = EuOverlay15Section
+
+    overlay29 = EuOverlay29Section
+
+    overlay0 = EuOverlay0Section
+
+    overlay20 = EuOverlay20Section
+
+    overlay13 = EuOverlay13Section
+
+    overlay11 = EuOverlay11Section
+
+    overlay28 = EuOverlay28Section
+
+    overlay25 = EuOverlay25Section
+
+    overlay4 = EuOverlay4Section
+
+    overlay7 = EuOverlay7Section
+
+    overlay1 = EuOverlay1Section
+
+    overlay6 = EuOverlay6Section
+
+    overlay18 = EuOverlay18Section
+
+    overlay2 = EuOverlay2Section
+
     overlay12 = EuOverlay12Section
+
+    overlay22 = EuOverlay22Section
+
+    overlay10 = EuOverlay10Section
+
+    overlay34 = EuOverlay34Section
+
+    overlay3 = EuOverlay3Section
+
+    overlay8 = EuOverlay8Section
+
+    overlay30 = EuOverlay30Section
+
+    overlay31 = EuOverlay31Section
+
+    overlay16 = EuOverlay16Section
+
+    overlay19 = EuOverlay19Section
+
+    overlay23 = EuOverlay23Section
+
+    overlay24 = EuOverlay24Section
+
+    overlay26 = EuOverlay26Section
+
+    overlay33 = EuOverlay33Section
+
+    overlay35 = EuOverlay35Section
+
+    ram = EuRamSection

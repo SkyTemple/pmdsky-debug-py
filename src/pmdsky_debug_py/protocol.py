@@ -1,4 +1,4 @@
-from typing import Protocol, Optional, TypeVar, List, Generic
+from typing import Protocol, Optional, TypeVar, List, Generic, no_type_check
 from dataclasses import dataclass
 
 A = TypeVar("A")
@@ -6,12 +6,26 @@ B = TypeVar("B")
 
 
 @dataclass
-class Symbol(Generic[A, B]):
+class Symbol(Generic[A, B, C]):
     # Either a list of at least one address or None if not defined for the region.
     addresses: A
+    # Like addresses but memory-absolute
+    absolute_addresses: A
     # None for most functions. Data fields should generally have a length defined.
     length: B
     description: str
+
+    @no_type_check
+    @property
+    def address(self) -> int:
+        """First / main address. Raises an IndexError/TypeError if no address is defined."""
+        return self.addresses[0]
+
+    @no_type_check
+    @property
+    def absolute_address(self) -> int:
+        """First / main address (absolute). Raises an IndexError/TypeError if no address is defined."""
+        return self.absolute_addresses[0]
 
 
 T = TypeVar("T")
@@ -27,59 +41,6 @@ class SectionProtocol(Protocol[T, U, L, L2]):
     length: L2
     functions: T
     data: U
-
-
-class Overlay18FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay18DataProtocol(Protocol):
-
-    MOVES_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_4: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_5: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_6: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_7: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
 
 
 class Arm9FunctionsProtocol(Protocol):
@@ -1713,146 +1674,103 @@ class Arm9DataProtocol(Protocol):
     ]
 
 
-class Overlay13FunctionsProtocol(Protocol):
+Arm9Protocol = SectionProtocol[
+    Arm9FunctionsProtocol,
+    Arm9DataProtocol,
+    int,
+]
+
+
+class Overlay5FunctionsProtocol(Protocol):
 
     pass
 
 
-class Overlay13DataProtocol(Protocol):
-
-    STARTERS_PARTNER_IDS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    STARTERS_HERO_IDS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    STARTERS_STRINGS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    QUIZ_QUESTION_STRINGS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    QUIZ_ANSWER_STRINGS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    UNKNOWN_MENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-
-class Overlay25FunctionsProtocol(Protocol):
+class Overlay5DataProtocol(Protocol):
 
     pass
 
 
-class Overlay25DataProtocol(Protocol):
-
-    APPRAISAL_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    APPRAISAL_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    APPRAISAL_SUBMENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
+Overlay5Protocol = SectionProtocol[
+    Overlay5FunctionsProtocol,
+    Overlay5DataProtocol,
+    int,
+]
 
 
-class Overlay16FunctionsProtocol(Protocol):
+class Overlay14FunctionsProtocol(Protocol):
 
     pass
 
 
-class Overlay16DataProtocol(Protocol):
+class Overlay14DataProtocol(Protocol):
 
-    EVO_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    EVO_SUBMENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    EVO_MAIN_MENU: Symbol[
+    FOOTPRINT_DEBUG_MENU: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
 
-class Overlay26FunctionsProtocol(Protocol):
+Overlay14Protocol = SectionProtocol[
+    Overlay14FunctionsProtocol,
+    Overlay14DataProtocol,
+    int,
+]
+
+
+class Overlay27FunctionsProtocol(Protocol):
 
     pass
 
 
-class Overlay26DataProtocol(Protocol):
+class Overlay27DataProtocol(Protocol):
+
+    DISCARD_ITEMS_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_ITEMS_SUBMENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_ITEMS_SUBMENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_ITEMS_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay27Protocol = SectionProtocol[
+    Overlay27FunctionsProtocol,
+    Overlay27DataProtocol,
+    int,
+]
+
+
+class Overlay9FunctionsProtocol(Protocol):
 
     pass
 
 
-class Overlay30FunctionsProtocol(Protocol):
+class Overlay9DataProtocol(Protocol):
 
-    pass
-
-
-class Overlay30DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay21FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay21DataProtocol(Protocol):
-
-    SWAP_SHOP_MENU_CONFIRM: Symbol[
+    TOP_MENU_RETURN_MUSIC_ID: Symbol[
         Optional[List[int]],
-        Optional[int],
+        None,
     ]
 
-    SWAP_SHOP_SUBMENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
 
-    SWAP_SHOP_SUBMENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SWAP_SHOP_MAIN_MENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SWAP_SHOP_MAIN_MENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SWAP_SHOP_SUBMENU_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
+Overlay9Protocol = SectionProtocol[
+    Overlay9FunctionsProtocol,
+    Overlay9DataProtocol,
+    int,
+]
 
 
 class Overlay32FunctionsProtocol(Protocol):
@@ -1865,182 +1783,11 @@ class Overlay32DataProtocol(Protocol):
     pass
 
 
-class RamFunctionsProtocol(Protocol):
-
-    pass
-
-
-class RamDataProtocol(Protocol):
-
-    DUNGEON_COLORMAP_PTR: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_STRUCT: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVE_DATA_TABLE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FRAMES_SINCE_LAUNCH: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BAG_ITEMS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BAG_ITEMS_PTR: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    STORAGE_ITEMS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    STORAGE_ITEM_QUANTITIES: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    KECLEON_SHOP_ITEMS_PTR: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    KECLEON_SHOP_ITEMS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    UNUSED_KECLEON_SHOP_ITEMS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    KECLEON_WARES_ITEMS_PTR: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    KECLEON_WARES_ITEMS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    UNUSED_KECLEON_WARES_ITEMS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MONEY_CARRIED: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MONEY_STORED: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LAST_NEW_MOVE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SCRIPT_VARS_VALUES: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BAG_LEVEL: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DEBUG_SPECIAL_EPISODE_NUMBER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    PENDING_DUNGEON_ID: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    PENDING_STARTING_FLOOR: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    PLAY_TIME_SECONDS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    PLAY_TIME_FRAME_COUNTER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TEAM_NAME: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    HERO_SPECIES_ID: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    HERO_NICKNAME: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    PARTNER_SPECIES_ID: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LEADER_IQ_SKILLS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LEADER_NICKNAME: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    PARTY_MEMBER_2_IQ_SKILLS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FRAMES_SINCE_LAUNCH_TIMES_THREE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TURNING_ON_THE_SPOT_FLAG: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FLOOR_GENERATION_STATUS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
+Overlay32Protocol = SectionProtocol[
+    Overlay32FunctionsProtocol,
+    Overlay32DataProtocol,
+    int,
+]
 
 
 class Overlay17FunctionsProtocol(Protocol):
@@ -2101,687 +1848,76 @@ class Overlay17DataProtocol(Protocol):
     ]
 
 
-class Overlay19FunctionsProtocol(Protocol):
+Overlay17Protocol = SectionProtocol[
+    Overlay17FunctionsProtocol,
+    Overlay17DataProtocol,
+    int,
+]
+
+
+class Overlay21FunctionsProtocol(Protocol):
 
     pass
 
 
-class Overlay19DataProtocol(Protocol):
+class Overlay21DataProtocol(Protocol):
 
-    BAR_MENU_CONFIRM_1: Symbol[
+    SWAP_SHOP_MENU_CONFIRM: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    BAR_MENU_CONFIRM_2: Symbol[
+    SWAP_SHOP_SUBMENU_1: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    BAR_MAIN_MENU: Symbol[
+    SWAP_SHOP_SUBMENU_2: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    BAR_SUBMENU_1: Symbol[
+    SWAP_SHOP_MAIN_MENU_1: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    BAR_SUBMENU_2: Symbol[
+    SWAP_SHOP_MAIN_MENU_2: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-
-class Overlay33FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay33DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay22FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay22DataProtocol(Protocol):
-
-    SHOP_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SHOP_MAIN_MENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SHOP_MAIN_MENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SHOP_MAIN_MENU_3: Symbol[
+    SWAP_SHOP_SUBMENU_3: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
 
-class Overlay28FunctionsProtocol(Protocol):
+Overlay21Protocol = SectionProtocol[
+    Overlay21FunctionsProtocol,
+    Overlay21DataProtocol,
+    int,
+]
+
+
+class Overlay15FunctionsProtocol(Protocol):
 
     pass
 
 
-class Overlay28DataProtocol(Protocol):
+class Overlay15DataProtocol(Protocol):
 
-    pass
-
-
-class Overlay4FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay4DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay14FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay14DataProtocol(Protocol):
-
-    FOOTPRINT_DEBUG_MENU: Symbol[
+    BANK_MAIN_MENU: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
 
-class Overlay7FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay7DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay6FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay6DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay35FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay35DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay23FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay23DataProtocol(Protocol):
-
-    STORAGE_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    STORAGE_MAIN_MENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    STORAGE_MAIN_MENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    STORAGE_MAIN_MENU_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    STORAGE_MAIN_MENU_4: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-
-class Overlay8FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay8DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay9FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay9DataProtocol(Protocol):
-
-    TOP_MENU_RETURN_MUSIC_ID: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-
-class Overlay24FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay24DataProtocol(Protocol):
-
-    DAYCARE_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DAYCARE_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-
-class Overlay0FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay0DataProtocol(Protocol):
-
-    TOP_MENU_MUSIC_ID: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-
-class Overlay10FunctionsProtocol(Protocol):
-
-    SprintfStatic: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-
-class Overlay10DataProtocol(Protocol):
-
-    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BAD_POISON_DAMAGE_COOLDOWN: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    PROTEIN_STAT_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SPAWN_CAP_NO_MONSTER_HOUSE: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    OREN_BERRY_DAMAGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SITRUS_BERRY_HP_RESTORATION: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    EXP_ELITE_EXP_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    GOLD_THORN_POWER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SPAWN_COOLDOWN: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ORAN_BERRY_FULL_HP_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LIFE_SEED_HP_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    EXCLUSIVE_ITEM_EXP_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    INTIMIDATOR_ACTIVATION_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ORAN_BERRY_HP_RESTORATION: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SITRUS_BERRY_FULL_HP_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BURN_DAMAGE_COOLDOWN: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    STICK_POWER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SPAWN_COOLDOWN_THIEF_ALERT: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MONSTER_HOUSE_MAX_MONSTER_SPAWNS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SPEED_BOOST_TURNS: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    MIRACLE_CHEST_EXP_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    WONDER_CHEST_EXP_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SPAWN_CAP_WITH_MONSTER_HOUSE: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    POISON_DAMAGE_COOLDOWN: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    GEO_PEBBLE_DAMAGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    GRAVELEROCK_DAMAGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    RARE_FOSSIL_DAMAGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    GINSENG_CHANCE_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ZINC_STAT_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    IRON_STAT_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    CALCIUM_STAT_BOOST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    CORSOLA_TWIG_POWER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    CACNEA_SPIKE_POWER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    GOLD_FANG_POWER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SILVER_SPIKE_POWER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    IRON_THORN_POWER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SLEEP_DURATION_RANGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    POWER_PITCHER_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    AIR_BLADE_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    SPEED_BOOST_DURATION_RANGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OFFENSIVE_STAT_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DEFENSIVE_STAT_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    RANDOM_MUSIC_ID_TABLE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MALE_ACCURACY_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MALE_EVASION_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FEMALE_ACCURACY_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FEMALE_EVASION_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MUSIC_ID_TABLE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TYPE_MATCHUP_TABLE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TILESET_PROPERTIES: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FIXED_ROOM_PROPERTIES_TABLE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVE_ANIMATION_INFO: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-
-class Overlay11FunctionsProtocol(Protocol):
-
-    FuncThatCallsCommandParsing: Symbol[
-        List[int],
-        None,
-    ]
-
-    ScriptCommandParsing: Symbol[
-        List[int],
-        None,
-    ]
-
-    SsbLoad2: Symbol[
-        List[int],
-        None,
-    ]
-
-    StationLoadHanger: Symbol[
-        List[int],
-        None,
-    ]
-
-    ScriptStationLoadTalk: Symbol[
-        List[int],
-        None,
-    ]
-
-    SsbLoad1: Symbol[
-        List[int],
-        None,
-    ]
-
-    ScriptSpecialProcessCall: Symbol[
-        List[int],
-        None,
-    ]
-
-    GetSpecialRecruitmentSpecies: Symbol[
-        List[int],
-        None,
-    ]
-
-    PrepareMenuAcceptTeamMember: Symbol[
-        List[int],
-        None,
-    ]
-
-    InitRandomNpcJobs: Symbol[
-        List[int],
-        None,
-    ]
-
-    GetRandomNpcJobType: Symbol[
-        List[int],
-        None,
-    ]
-
-    GetRandomNpcJobSubtype: Symbol[
-        List[int],
-        None,
-    ]
-
-    GetRandomNpcJobStillAvailable: Symbol[
-        List[int],
-        None,
-    ]
-
-    AcceptRandomNpcJob: Symbol[
-        List[int],
-        None,
-    ]
-
-    GroundMainLoop: Symbol[
-        List[int],
-        None,
-    ]
-
-    GetAllocArenaGround: Symbol[
-        List[int],
-        None,
-    ]
-
-    GetFreeArenaGround: Symbol[
-        List[int],
-        None,
-    ]
-
-    GroundMainReturnDungeon: Symbol[
-        List[int],
-        None,
-    ]
-
-    GroundMainNextDay: Symbol[
-        List[int],
-        None,
-    ]
-
-    JumpToTitleScreen: Symbol[
-        List[int],
-        None,
-    ]
-
-    ReturnToTitleScreen: Symbol[
-        List[int],
-        None,
-    ]
-
-    ScriptSpecialProcess0x16: Symbol[
-        List[int],
-        None,
-    ]
-
-    SprintfStatic: Symbol[
-        List[int],
-        None,
-    ]
-
-    StatusUpdate: Symbol[
-        List[int],
-        None,
-    ]
-
-
-class Overlay11DataProtocol(Protocol):
-
-    SCRIPT_OP_CODES: Symbol[
-        List[int],
-        int,
-    ]
-
-    C_ROUTINES: Symbol[
-        List[int],
-        Optional[int],
-    ]
-
-    OBJECTS: Symbol[
-        List[int],
-        int,
-    ]
-
-    RECRUITMENT_TABLE_LOCATIONS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    RECRUITMENT_TABLE_LEVELS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    RECRUITMENT_TABLE_SPECIES: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LEVEL_TILEMAP_LIST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY11_OVERLAY_LOAD_TABLE: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    UNIONALL_RAM_ADDRESS: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    GROUND_STATE_MAP: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    GROUND_STATE_PTRS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
+Overlay15Protocol = SectionProtocol[
+    Overlay15FunctionsProtocol,
+    Overlay15DataProtocol,
+    int,
+]
 
 
 class Overlay29FunctionsProtocol(Protocol):
@@ -4149,11 +3285,6 @@ class Overlay29FunctionsProtocol(Protocol):
 
 class Overlay29DataProtocol(Protocol):
 
-    NECTAR_IQ_BOOST: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
     DUNGEON_STRUCT_SIZE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4434,147 +3565,37 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    NECTAR_IQ_BOOST: Symbol[
+        Optional[List[int]],
+        None,
+    ]
 
-class Overlay34FunctionsProtocol(Protocol):
+
+Overlay29Protocol = SectionProtocol[
+    Overlay29FunctionsProtocol,
+    Overlay29DataProtocol,
+    int,
+]
+
+
+class Overlay0FunctionsProtocol(Protocol):
 
     pass
 
 
-class Overlay34DataProtocol(Protocol):
+class Overlay0DataProtocol(Protocol):
 
-    UNKNOWN_MENU_CONFIRM: Symbol[
+    TOP_MENU_MUSIC_ID: Symbol[
         Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_DEBUG_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
+        None,
     ]
 
 
-class Overlay1FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay1DataProtocol(Protocol):
-
-    CONTINUE_CHOICE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SUBMENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MAIN_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MAIN_DEBUG_MENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MAIN_DEBUG_MENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-
-class Overlay2FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay2DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay3FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay3DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay5FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay5DataProtocol(Protocol):
-
-    pass
-
-
-class Overlay31FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay31DataProtocol(Protocol):
-
-    DUNGEON_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_4: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_5: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_6: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-
-class Overlay15FunctionsProtocol(Protocol):
-
-    pass
-
-
-class Overlay15DataProtocol(Protocol):
-
-    BANK_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
+Overlay0Protocol = SectionProtocol[
+    Overlay0FunctionsProtocol,
+    Overlay0DataProtocol,
+    int,
+]
 
 
 class Overlay20FunctionsProtocol(Protocol):
@@ -4620,32 +3641,464 @@ class Overlay20DataProtocol(Protocol):
     ]
 
 
-class Overlay27FunctionsProtocol(Protocol):
+Overlay20Protocol = SectionProtocol[
+    Overlay20FunctionsProtocol,
+    Overlay20DataProtocol,
+    int,
+]
+
+
+class Overlay13FunctionsProtocol(Protocol):
 
     pass
 
 
-class Overlay27DataProtocol(Protocol):
+class Overlay13DataProtocol(Protocol):
 
-    DISCARD_ITEMS_MENU_CONFIRM: Symbol[
+    STARTERS_PARTNER_IDS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    DISCARD_ITEMS_SUBMENU_1: Symbol[
+    STARTERS_HERO_IDS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    DISCARD_ITEMS_SUBMENU_2: Symbol[
+    STARTERS_STRINGS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    DISCARD_ITEMS_MAIN_MENU: Symbol[
+    QUIZ_QUESTION_STRINGS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
+
+    QUIZ_ANSWER_STRINGS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    UNKNOWN_MENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay13Protocol = SectionProtocol[
+    Overlay13FunctionsProtocol,
+    Overlay13DataProtocol,
+    int,
+]
+
+
+class Overlay11FunctionsProtocol(Protocol):
+
+    FuncThatCallsCommandParsing: Symbol[
+        List[int],
+        None,
+    ]
+
+    ScriptCommandParsing: Symbol[
+        List[int],
+        None,
+    ]
+
+    SsbLoad2: Symbol[
+        List[int],
+        None,
+    ]
+
+    StationLoadHanger: Symbol[
+        List[int],
+        None,
+    ]
+
+    ScriptStationLoadTalk: Symbol[
+        List[int],
+        None,
+    ]
+
+    SsbLoad1: Symbol[
+        List[int],
+        None,
+    ]
+
+    ScriptSpecialProcessCall: Symbol[
+        List[int],
+        None,
+    ]
+
+    GetSpecialRecruitmentSpecies: Symbol[
+        List[int],
+        None,
+    ]
+
+    PrepareMenuAcceptTeamMember: Symbol[
+        List[int],
+        None,
+    ]
+
+    InitRandomNpcJobs: Symbol[
+        List[int],
+        None,
+    ]
+
+    GetRandomNpcJobType: Symbol[
+        List[int],
+        None,
+    ]
+
+    GetRandomNpcJobSubtype: Symbol[
+        List[int],
+        None,
+    ]
+
+    GetRandomNpcJobStillAvailable: Symbol[
+        List[int],
+        None,
+    ]
+
+    AcceptRandomNpcJob: Symbol[
+        List[int],
+        None,
+    ]
+
+    GroundMainLoop: Symbol[
+        List[int],
+        None,
+    ]
+
+    GetAllocArenaGround: Symbol[
+        List[int],
+        None,
+    ]
+
+    GetFreeArenaGround: Symbol[
+        List[int],
+        None,
+    ]
+
+    GroundMainReturnDungeon: Symbol[
+        List[int],
+        None,
+    ]
+
+    GroundMainNextDay: Symbol[
+        List[int],
+        None,
+    ]
+
+    JumpToTitleScreen: Symbol[
+        List[int],
+        None,
+    ]
+
+    ReturnToTitleScreen: Symbol[
+        List[int],
+        None,
+    ]
+
+    ScriptSpecialProcess0x16: Symbol[
+        List[int],
+        None,
+    ]
+
+    SprintfStatic: Symbol[
+        List[int],
+        None,
+    ]
+
+    StatusUpdate: Symbol[
+        List[int],
+        None,
+    ]
+
+
+class Overlay11DataProtocol(Protocol):
+
+    SCRIPT_OP_CODES: Symbol[
+        List[int],
+        int,
+    ]
+
+    C_ROUTINES: Symbol[
+        List[int],
+        Optional[int],
+    ]
+
+    OBJECTS: Symbol[
+        List[int],
+        int,
+    ]
+
+    RECRUITMENT_TABLE_LOCATIONS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECRUITMENT_TABLE_LEVELS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECRUITMENT_TABLE_SPECIES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LEVEL_TILEMAP_LIST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY11_OVERLAY_LOAD_TABLE: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UNIONALL_RAM_ADDRESS: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GROUND_STATE_MAP: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GROUND_STATE_PTRS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay11Protocol = SectionProtocol[
+    Overlay11FunctionsProtocol,
+    Overlay11DataProtocol,
+    int,
+]
+
+
+class Overlay28FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay28DataProtocol(Protocol):
+
+    pass
+
+
+Overlay28Protocol = SectionProtocol[
+    Overlay28FunctionsProtocol,
+    Overlay28DataProtocol,
+    int,
+]
+
+
+class Overlay25FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay25DataProtocol(Protocol):
+
+    APPRAISAL_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_SUBMENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay25Protocol = SectionProtocol[
+    Overlay25FunctionsProtocol,
+    Overlay25DataProtocol,
+    int,
+]
+
+
+class Overlay4FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay4DataProtocol(Protocol):
+
+    pass
+
+
+Overlay4Protocol = SectionProtocol[
+    Overlay4FunctionsProtocol,
+    Overlay4DataProtocol,
+    int,
+]
+
+
+class Overlay7FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay7DataProtocol(Protocol):
+
+    pass
+
+
+Overlay7Protocol = SectionProtocol[
+    Overlay7FunctionsProtocol,
+    Overlay7DataProtocol,
+    int,
+]
+
+
+class Overlay1FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay1DataProtocol(Protocol):
+
+    CONTINUE_CHOICE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SUBMENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MAIN_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MAIN_DEBUG_MENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MAIN_DEBUG_MENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay1Protocol = SectionProtocol[
+    Overlay1FunctionsProtocol,
+    Overlay1DataProtocol,
+    int,
+]
+
+
+class Overlay6FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay6DataProtocol(Protocol):
+
+    pass
+
+
+Overlay6Protocol = SectionProtocol[
+    Overlay6FunctionsProtocol,
+    Overlay6DataProtocol,
+    int,
+]
+
+
+class Overlay18FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay18DataProtocol(Protocol):
+
+    MOVES_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay18Protocol = SectionProtocol[
+    Overlay18FunctionsProtocol,
+    Overlay18DataProtocol,
+    int,
+]
+
+
+class Overlay2FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay2DataProtocol(Protocol):
+
+    pass
+
+
+Overlay2Protocol = SectionProtocol[
+    Overlay2FunctionsProtocol,
+    Overlay2DataProtocol,
+    int,
+]
 
 
 class Overlay12FunctionsProtocol(Protocol):
@@ -4658,132 +4111,907 @@ class Overlay12DataProtocol(Protocol):
     pass
 
 
+Overlay12Protocol = SectionProtocol[
+    Overlay12FunctionsProtocol,
+    Overlay12DataProtocol,
+    int,
+]
+
+
+class Overlay22FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay22DataProtocol(Protocol):
+
+    SHOP_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_MAIN_MENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_MAIN_MENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_MAIN_MENU_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay22Protocol = SectionProtocol[
+    Overlay22FunctionsProtocol,
+    Overlay22DataProtocol,
+    int,
+]
+
+
+class Overlay10FunctionsProtocol(Protocol):
+
+    SprintfStatic: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+
+class Overlay10DataProtocol(Protocol):
+
+    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAD_POISON_DAMAGE_COOLDOWN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    PROTEIN_STAT_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SPAWN_CAP_NO_MONSTER_HOUSE: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    OREN_BERRY_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SITRUS_BERRY_HP_RESTORATION: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EXP_ELITE_EXP_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GOLD_THORN_POWER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SPAWN_COOLDOWN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ORAN_BERRY_FULL_HP_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LIFE_SEED_HP_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_EXP_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    INTIMIDATOR_ACTIVATION_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ORAN_BERRY_HP_RESTORATION: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SITRUS_BERRY_FULL_HP_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BURN_DAMAGE_COOLDOWN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STICK_POWER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SPAWN_COOLDOWN_THIEF_ALERT: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MONSTER_HOUSE_MAX_MONSTER_SPAWNS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SPEED_BOOST_TURNS: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MIRACLE_CHEST_EXP_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WONDER_CHEST_EXP_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SPAWN_CAP_WITH_MONSTER_HOUSE: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    POISON_DAMAGE_COOLDOWN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GEO_PEBBLE_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GRAVELEROCK_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RARE_FOSSIL_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GINSENG_CHANCE_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ZINC_STAT_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    IRON_STAT_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CALCIUM_STAT_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CORSOLA_TWIG_POWER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CACNEA_SPIKE_POWER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GOLD_FANG_POWER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SILVER_SPIKE_POWER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    IRON_THORN_POWER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SLEEP_DURATION_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    POWER_PITCHER_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    AIR_BLADE_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SPEED_BOOST_DURATION_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OFFENSIVE_STAT_STAGE_MULTIPLIERS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DEFENSIVE_STAT_STAGE_MULTIPLIERS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RANDOM_MUSIC_ID_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MALE_ACCURACY_STAGE_MULTIPLIERS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MALE_EVASION_STAGE_MULTIPLIERS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FEMALE_ACCURACY_STAGE_MULTIPLIERS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FEMALE_EVASION_STAGE_MULTIPLIERS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MUSIC_ID_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TYPE_MATCHUP_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TILESET_PROPERTIES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FIXED_ROOM_PROPERTIES_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVE_ANIMATION_INFO: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+
+Overlay10Protocol = SectionProtocol[
+    Overlay10FunctionsProtocol,
+    Overlay10DataProtocol,
+    int,
+]
+
+
+class Overlay34FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay34DataProtocol(Protocol):
+
+    UNKNOWN_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_DEBUG_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay34Protocol = SectionProtocol[
+    Overlay34FunctionsProtocol,
+    Overlay34DataProtocol,
+    int,
+]
+
+
+class Overlay3FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay3DataProtocol(Protocol):
+
+    pass
+
+
+Overlay3Protocol = SectionProtocol[
+    Overlay3FunctionsProtocol,
+    Overlay3DataProtocol,
+    int,
+]
+
+
+class Overlay8FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay8DataProtocol(Protocol):
+
+    pass
+
+
+Overlay8Protocol = SectionProtocol[
+    Overlay8FunctionsProtocol,
+    Overlay8DataProtocol,
+    int,
+]
+
+
+class Overlay30FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay30DataProtocol(Protocol):
+
+    pass
+
+
+Overlay30Protocol = SectionProtocol[
+    Overlay30FunctionsProtocol,
+    Overlay30DataProtocol,
+    int,
+]
+
+
+class Overlay31FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay31DataProtocol(Protocol):
+
+    DUNGEON_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay31Protocol = SectionProtocol[
+    Overlay31FunctionsProtocol,
+    Overlay31DataProtocol,
+    int,
+]
+
+
+class Overlay16FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay16DataProtocol(Protocol):
+
+    EVO_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_SUBMENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay16Protocol = SectionProtocol[
+    Overlay16FunctionsProtocol,
+    Overlay16DataProtocol,
+    int,
+]
+
+
+class Overlay19FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay19DataProtocol(Protocol):
+
+    BAR_MENU_CONFIRM_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_MENU_CONFIRM_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_SUBMENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_SUBMENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay19Protocol = SectionProtocol[
+    Overlay19FunctionsProtocol,
+    Overlay19DataProtocol,
+    int,
+]
+
+
+class Overlay23FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay23DataProtocol(Protocol):
+
+    STORAGE_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_MAIN_MENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_MAIN_MENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_MAIN_MENU_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_MAIN_MENU_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay23Protocol = SectionProtocol[
+    Overlay23FunctionsProtocol,
+    Overlay23DataProtocol,
+    int,
+]
+
+
+class Overlay24FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay24DataProtocol(Protocol):
+
+    DAYCARE_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAYCARE_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Overlay24Protocol = SectionProtocol[
+    Overlay24FunctionsProtocol,
+    Overlay24DataProtocol,
+    int,
+]
+
+
+class Overlay26FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay26DataProtocol(Protocol):
+
+    pass
+
+
+Overlay26Protocol = SectionProtocol[
+    Overlay26FunctionsProtocol,
+    Overlay26DataProtocol,
+    int,
+]
+
+
+class Overlay33FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay33DataProtocol(Protocol):
+
+    pass
+
+
+Overlay33Protocol = SectionProtocol[
+    Overlay33FunctionsProtocol,
+    Overlay33DataProtocol,
+    int,
+]
+
+
+class Overlay35FunctionsProtocol(Protocol):
+
+    pass
+
+
+class Overlay35DataProtocol(Protocol):
+
+    pass
+
+
+Overlay35Protocol = SectionProtocol[
+    Overlay35FunctionsProtocol,
+    Overlay35DataProtocol,
+    int,
+]
+
+
+class RamFunctionsProtocol(Protocol):
+
+    pass
+
+
+class RamDataProtocol(Protocol):
+
+    DUNGEON_COLORMAP_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_STRUCT: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVE_DATA_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FRAMES_SINCE_LAUNCH: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAG_ITEMS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAG_ITEMS_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_ITEMS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_ITEM_QUANTITIES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    KECLEON_SHOP_ITEMS_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    KECLEON_SHOP_ITEMS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    UNUSED_KECLEON_SHOP_ITEMS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    KECLEON_WARES_ITEMS_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    KECLEON_WARES_ITEMS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    UNUSED_KECLEON_WARES_ITEMS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MONEY_CARRIED: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MONEY_STORED: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LAST_NEW_MOVE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SCRIPT_VARS_VALUES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAG_LEVEL: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DEBUG_SPECIAL_EPISODE_NUMBER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    PENDING_DUNGEON_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    PENDING_STARTING_FLOOR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    PLAY_TIME_SECONDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    PLAY_TIME_FRAME_COUNTER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TEAM_NAME: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    HERO_SPECIES_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    HERO_NICKNAME: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    PARTNER_SPECIES_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LEADER_IQ_SKILLS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LEADER_NICKNAME: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    PARTY_MEMBER_2_IQ_SKILLS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FRAMES_SINCE_LAUNCH_TIMES_THREE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TURNING_ON_THE_SPOT_FLAG: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FLOOR_GENERATION_STATUS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+RamProtocol = SectionProtocol[
+    RamFunctionsProtocol,
+    RamDataProtocol,
+    int,
+]
+
+
 class AllSymbolsProtocol(Protocol):
 
-    overlay18: SectionProtocol[
-        Overlay18FunctionsProtocol, Overlay18DataProtocol, int, int
-    ]
+    arm9: Arm9Protocol
 
-    arm9: SectionProtocol[Arm9FunctionsProtocol, Arm9DataProtocol, int, int]
+    overlay5: Overlay5Protocol
 
-    overlay13: SectionProtocol[
-        Overlay13FunctionsProtocol, Overlay13DataProtocol, int, int
-    ]
+    overlay14: Overlay14Protocol
 
-    overlay25: SectionProtocol[
-        Overlay25FunctionsProtocol, Overlay25DataProtocol, int, int
-    ]
+    overlay27: Overlay27Protocol
 
-    overlay16: SectionProtocol[
-        Overlay16FunctionsProtocol, Overlay16DataProtocol, int, int
-    ]
+    overlay9: Overlay9Protocol
 
-    overlay26: SectionProtocol[
-        Overlay26FunctionsProtocol, Overlay26DataProtocol, int, int
-    ]
+    overlay32: Overlay32Protocol
 
-    overlay30: SectionProtocol[
-        Overlay30FunctionsProtocol, Overlay30DataProtocol, int, int
-    ]
+    overlay17: Overlay17Protocol
 
-    overlay21: SectionProtocol[
-        Overlay21FunctionsProtocol, Overlay21DataProtocol, int, int
-    ]
+    overlay21: Overlay21Protocol
 
-    overlay32: SectionProtocol[
-        Overlay32FunctionsProtocol, Overlay32DataProtocol, int, int
-    ]
+    overlay15: Overlay15Protocol
 
-    ram: SectionProtocol[RamFunctionsProtocol, RamDataProtocol, int, int]
+    overlay29: Overlay29Protocol
 
-    overlay17: SectionProtocol[
-        Overlay17FunctionsProtocol, Overlay17DataProtocol, int, int
-    ]
+    overlay0: Overlay0Protocol
 
-    overlay19: SectionProtocol[
-        Overlay19FunctionsProtocol, Overlay19DataProtocol, int, int
-    ]
+    overlay20: Overlay20Protocol
 
-    overlay33: SectionProtocol[
-        Overlay33FunctionsProtocol, Overlay33DataProtocol, int, int
-    ]
+    overlay13: Overlay13Protocol
 
-    overlay22: SectionProtocol[
-        Overlay22FunctionsProtocol, Overlay22DataProtocol, int, int
-    ]
+    overlay11: Overlay11Protocol
 
-    overlay28: SectionProtocol[
-        Overlay28FunctionsProtocol, Overlay28DataProtocol, int, int
-    ]
+    overlay28: Overlay28Protocol
 
-    overlay4: SectionProtocol[Overlay4FunctionsProtocol, Overlay4DataProtocol, int, int]
+    overlay25: Overlay25Protocol
 
-    overlay14: SectionProtocol[
-        Overlay14FunctionsProtocol, Overlay14DataProtocol, int, int
-    ]
+    overlay4: Overlay4Protocol
 
-    overlay7: SectionProtocol[Overlay7FunctionsProtocol, Overlay7DataProtocol, int, int]
+    overlay7: Overlay7Protocol
 
-    overlay6: SectionProtocol[Overlay6FunctionsProtocol, Overlay6DataProtocol, int, int]
+    overlay1: Overlay1Protocol
 
-    overlay35: SectionProtocol[
-        Overlay35FunctionsProtocol, Overlay35DataProtocol, int, int
-    ]
+    overlay6: Overlay6Protocol
 
-    overlay23: SectionProtocol[
-        Overlay23FunctionsProtocol, Overlay23DataProtocol, int, int
-    ]
+    overlay18: Overlay18Protocol
 
-    overlay8: SectionProtocol[Overlay8FunctionsProtocol, Overlay8DataProtocol, int, int]
+    overlay2: Overlay2Protocol
 
-    overlay9: SectionProtocol[Overlay9FunctionsProtocol, Overlay9DataProtocol, int, int]
+    overlay12: Overlay12Protocol
 
-    overlay24: SectionProtocol[
-        Overlay24FunctionsProtocol, Overlay24DataProtocol, int, int
-    ]
+    overlay22: Overlay22Protocol
 
-    overlay0: SectionProtocol[Overlay0FunctionsProtocol, Overlay0DataProtocol, int, int]
+    overlay10: Overlay10Protocol
 
-    overlay10: SectionProtocol[
-        Overlay10FunctionsProtocol, Overlay10DataProtocol, int, int
-    ]
+    overlay34: Overlay34Protocol
 
-    overlay11: SectionProtocol[
-        Overlay11FunctionsProtocol, Overlay11DataProtocol, int, int
-    ]
+    overlay3: Overlay3Protocol
 
-    overlay29: SectionProtocol[
-        Overlay29FunctionsProtocol, Overlay29DataProtocol, int, int
-    ]
+    overlay8: Overlay8Protocol
 
-    overlay34: SectionProtocol[
-        Overlay34FunctionsProtocol, Overlay34DataProtocol, int, int
-    ]
+    overlay30: Overlay30Protocol
 
-    overlay1: SectionProtocol[Overlay1FunctionsProtocol, Overlay1DataProtocol, int, int]
+    overlay31: Overlay31Protocol
 
-    overlay2: SectionProtocol[Overlay2FunctionsProtocol, Overlay2DataProtocol, int, int]
+    overlay16: Overlay16Protocol
 
-    overlay3: SectionProtocol[Overlay3FunctionsProtocol, Overlay3DataProtocol, int, int]
+    overlay19: Overlay19Protocol
 
-    overlay5: SectionProtocol[Overlay5FunctionsProtocol, Overlay5DataProtocol, int, int]
+    overlay23: Overlay23Protocol
 
-    overlay31: SectionProtocol[
-        Overlay31FunctionsProtocol, Overlay31DataProtocol, int, int
-    ]
+    overlay24: Overlay24Protocol
 
-    overlay15: SectionProtocol[
-        Overlay15FunctionsProtocol, Overlay15DataProtocol, int, int
-    ]
+    overlay26: Overlay26Protocol
 
-    overlay20: SectionProtocol[
-        Overlay20FunctionsProtocol, Overlay20DataProtocol, int, int
-    ]
+    overlay33: Overlay33Protocol
 
-    overlay27: SectionProtocol[
-        Overlay27FunctionsProtocol, Overlay27DataProtocol, int, int
-    ]
+    overlay35: Overlay35Protocol
 
-    overlay12: SectionProtocol[
-        Overlay12FunctionsProtocol, Overlay12DataProtocol, int, int
-    ]
+    ram: RamProtocol

@@ -19,6 +19,14 @@ def has_all_else_optional(value: Dict[Region, Optional[Any]], typ: str):
     return f"Optional[{typ}]"
 
 
+def make_relative(value: Union[None, int, List[int]], based_on: int) -> Union[None, int, List[int]]:
+    if value is None:
+        return None
+    if isinstance(value, int):
+        return value - based_on
+    return [ x - based_on for x in value]
+
+
 def as_hex(value: Union[None, int, List[int]]) -> str:
     if value is None:
         return "None"
@@ -36,6 +44,7 @@ J2ENV = Environment(
     loader=PackageLoader(__package__)
 )
 J2ENV.filters['has_all_else_optional'] = has_all_else_optional
+J2ENV.filters['make_relative'] = make_relative
 J2ENV.filters['as_hex'] = as_hex
 J2ENV.filters['escape_py'] = escape_py
 
