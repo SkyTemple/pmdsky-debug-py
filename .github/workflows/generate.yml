@@ -61,9 +61,3 @@ jobs:
         VERSION=$(tomlq '.project.version' src/pyproject.toml -r)
         git tag $VERSION -m "Release $RELEASE"
         git push -u origin $VERSION
-    - name: Invoke Push workflow
-      # the push event doesn't fire when a Github action pushes
-      uses: benc-uk/workflow-dispatch@v1
-      with:
-        workflow: Build and publish
-        token: ${{ secrets.PERSONAL_TOKEN }}

@@ -2,7 +2,13 @@
 # Deploys to PyPi on "release".
 name: Build and publish
 
-on: [workflow_dispatch, push, pull_request]
+on:
+  push: {}
+  pull_request: {}
+  workflow_run:
+    workflows: [ "Generate" ]
+    types:
+      - completed
 
 jobs:
   build:
@@ -32,6 +38,7 @@ jobs:
       - name: Check if on tag
         id: check
         run: |
+          git fetch --tags
           git describe --exact-match HEAD && echo "::set-output name=hastag::yes" || echo "::set-output name=hastag::no"
       - name: Download wheels
         if: steps.check.outputs.hastag == 'yes'
