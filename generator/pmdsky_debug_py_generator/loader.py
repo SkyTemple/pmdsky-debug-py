@@ -34,6 +34,9 @@ class Region(Enum):
     NA = "na"
     EU = "eu"
     JP = "jp"
+    NA_ITCM = "na-itcm"
+    EU_ITCM = "eu-itcm"
+    JP_ITCM = "jp-itcm"
 
     @classmethod
     def from_str(cls, region_str: str):
@@ -44,6 +47,12 @@ class Region(Enum):
             return Region.EU
         if region_str == "jp":
             return Region.JP
+        if region_str == "na-itcm":
+            return Region.NA_ITCM
+        if region_str == "eu-itcm":
+            return Region.EU_ITCM
+        if region_str == "jp-itcm":
+            return Region.JP_ITCM
         raise ValueError(f"Unknown region string: {region_str}")
 
     @classmethod
@@ -54,6 +63,12 @@ class Region(Enum):
             dic[cls.EU] = None
         if cls.JP not in dic:
             dic[cls.JP] = None
+        if cls.NA_ITCM not in dic:
+            dic[cls.NA_ITCM] = None
+        if cls.EU_ITCM not in dic:
+            dic[cls.EU_ITCM] = None
+        if cls.JP_ITCM not in dic:
+            dic[cls.JP_ITCM] = None
 
     def __repr__(self):
         return str(self)
@@ -62,10 +77,21 @@ class Region(Enum):
         return f"{self.__class__.__name__}.{self.name}"
 
     def file_name(self):
-        return self.value
+        return self.value.replace("-", "_")
 
     def class_prefix(self):
-        return self.value.capitalize()
+        if self == Region.NA:
+            return "Na"
+        if self == Region.EU:
+            return "Eu"
+        if self == Region.JP:
+            return "Jp"
+        if self == Region.NA_ITCM:
+            return "NaItcm"
+        if self == Region.EU_ITCM:
+            return "EuItcm"
+        if self == Region.JP_ITCM:
+            return "JpItcm"
 
 
 @dataclass

@@ -7,12 +7,18 @@ from typing import TYPE_CHECKING
 from pmdsky_debug_py.eu import EuSections as _EuSections
 from pmdsky_debug_py.na import NaSections as _NaSections
 from pmdsky_debug_py.jp import JpSections as _JpSections
+from pmdsky_debug_py.eu_itcm import EuItcmSections as _EuItcmSections
+from pmdsky_debug_py.na_itcm import NaItcmSections as _NaItcmSections
+from pmdsky_debug_py.jp_itcm import JpItcmSections as _JpItcmSections
 from pmdsky_debug_py.protocol import AllSymbolsProtocol
 from ._release import RELEASE
 
 eu: AllSymbolsProtocol = _EuSections
 na: AllSymbolsProtocol = _NaSections
 jp: AllSymbolsProtocol = _JpSections
+eu_itcm: AllSymbolsProtocol = _EuItcmSections
+na_itcm: AllSymbolsProtocol = _NaItcmSections
+jp_itcm: AllSymbolsProtocol = _JpItcmSections
 # not needed but to clarify these are indeed re-exports:
 AllSymbolsProtocol = AllSymbolsProtocol
 RELEASE = RELEASE
