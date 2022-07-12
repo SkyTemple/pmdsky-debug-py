@@ -1,8 +1,40 @@
 from .protocol import Symbol
 
 
-class NaArm9Functions:
+class NaOverlay18Functions:
+    pass
 
+
+class NaOverlay18Data:
+    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238D320], 0x18, "")
+
+    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238D338], 0x20, "")
+
+    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238D358], 0x20, "")
+
+    MOVES_MAIN_MENU = Symbol([0x3238], [0x238D378], 0x20, "")
+
+    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238D398], 0x28, "")
+
+    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238D3C0], 0x30, "")
+
+    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238D3F0], 0x48, "")
+
+    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238D438], 0x48, "")
+
+    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238D480], 0x48, "")
+
+
+class NaOverlay18Section:
+    name = "overlay18"
+    description = "Controls the Electivire Link Shop."
+    loadaddress = 0x238A140
+    length = 0x3500
+    functions = NaOverlay18Functions
+    data = NaOverlay18Data
+
+
+class NaArm9Functions:
     InitMemAllocTable = Symbol(
         [0xDE0],
         [0x2000DE0],
@@ -572,6 +604,70 @@ class NaArm9Functions:
         " code.\n\nr0: program position info\nr1: format\n...: variadic",
     )
 
+    OpenAllPackFiles = Symbol(
+        None,
+        None,
+        None,
+        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILE_OPENED. Called during"
+        " game initialisation.\n\nNo params.",
+    )
+
+    GetFileLengthInPackWithPackNb = Symbol(
+        None,
+        None,
+        None,
+        "Call GetFileLengthInPack after looking up the global Pack archive by its"
+        " number\n\nr0: pack file number\nr1: file number\nreturn: size of the file in"
+        " bytes from the Pack Table of Content",
+    )
+
+    LoadFileInPackWithPackId = Symbol(
+        None,
+        None,
+        None,
+        "Call LoadFileInPack after looking up the global Pack archive by its"
+        " identifier\n\nr0: pack file identifier\nr1: [output] target buffer\nr2: file"
+        " index\nreturn: number of read bytes (identical to the length of the pack from"
+        " the Table of Content)",
+    )
+
+    AllocAndLoadFileInPack = Symbol(
+        None,
+        None,
+        None,
+        "Allocate a file and load a file from the pack archive inside.\nThe data"
+        " pointed by the pointer in the output need to be freed once is not needed"
+        " anymore.\n\nr0: pack file identifier\nr1: file index\nr2: [output] result"
+        " struct (will contain length and pointer)\nr3: allocation flags",
+    )
+
+    OpenPackFile = Symbol(
+        None,
+        None,
+        None,
+        "Open a Pack file, to be read later. Initialise the output structure.\n\nr0:"
+        " [output] pack file struct\nr1: file name",
+    )
+
+    GetFileLengthInPack = Symbol(
+        None,
+        None,
+        None,
+        "Get the length of a file entry from a Pack archive\n\nr0: pack file"
+        " struct\nr1: file index\nreturn: size of the file in bytes from the Pack Table"
+        " of Content",
+    )
+
+    LoadFileInPack = Symbol(
+        None,
+        None,
+        None,
+        "Load the indexed file from the Pack archive, itself loaded from the"
+        " ROM.\n\nr0: pack file struct\nr1: [output] target buffer\nr2: file"
+        " index\nreturn: number of read bytes (identical to the length of the pack from"
+        " the Table of Content)",
+    )
+
     IsAuraBow = Symbol(
         [0xCC14],
         [0x200CC14],
@@ -757,6 +853,14 @@ class NaArm9Functions:
         "Gets the type of a move\n\nr0: Pointer to move data\nreturn: Type of the move",
     )
 
+    GetMoveAiWeight = Symbol(
+        [0x1398C],
+        [0x201398C],
+        None,
+        "Gets the AI weight of a move\n\nr0: Pointer to move data\nreturn: AI weight of"
+        " the move",
+    )
+
     GetMoveBasePower = Symbol(
         [0x139CC],
         [0x20139CC],
@@ -790,6 +894,14 @@ class NaArm9Functions:
         None,
         "Gets the critical hit chance of a move.\n\nr0: move pointer\nreturn: base"
         " power",
+    )
+
+    IsMoveRangeString19 = Symbol(
+        [0x13C04],
+        [0x2013C04],
+        None,
+        "Returns whether a move's range string is 19 ('User').\n\nr0: Move"
+        " pointer\nreturn: True if the move's range string field has a value of 19.",
     )
 
     IsRecoilMove = Symbol(
@@ -1566,13 +1678,13 @@ class NaArm9Functions:
         " dungeon_id::DUNGEON_DUMMY_0xE3.\n\nr0: joined_at id\nreturn: bool",
     )
 
-    ShouldCauseGameOverOnFaint = Symbol(
+    JoinedAtRangeCheck2 = Symbol(
         [0x51760],
         [0x2051760],
         None,
-        "Returns whether a game over should happen when a monster with the specified"
-        " joined_at ID faints (as long as the other conditions are met). It might have"
-        " a more generic meaning.\n\nr0: joined_at id\nreturn: bool",
+        "Returns whether a certain joined_at field value is equal to"
+        " dungeon_id::DUNGEON_BEACH or is between dungeon_id::DUNGEON_DUMMY_0xEC and"
+        " dungeon_id::DUNGEON_DUMMY_0xF0.\n\nr0: joined_at id\nreturn: bool",
     )
 
     GetMonsterGender = Symbol(
@@ -1597,6 +1709,14 @@ class NaArm9Functions:
         None,
         "Returns the sprite file size of the specified monster.\n\nr0: monster"
         " id\nreturn: sprite file size",
+    )
+
+    GetCanMoveFlag = Symbol(
+        [0x528B4],
+        [0x20528B4],
+        None,
+        "Returns the flag that determines if a monster can move in dungeons.\n\nr0:"
+        " Monster ID\nreturn: 'Can move' flag",
     )
 
     GetMonsterPreEvolution = Symbol(
@@ -1686,6 +1806,16 @@ class NaArm9Functions:
         None,
         "Checks if a given monster is on the exploration team (not necessarily the"
         " active party)?\n\nr0: monster ID\nr1: ?\nreturn: bool",
+    )
+
+    CheckTeamMemberField8 = Symbol(
+        [0x56228],
+        [0x2056228],
+        None,
+        "Checks if a value obtained from team_member::field_0x8 is equal to certain"
+        " values.\n\nThis is known to return true for some or all of the guest"
+        " monsters.\n\nr0: Value read from team_member::field_0x8\nreturn: True if the"
+        " value is equal to 0x55AA or 0x5AA5",
     )
 
     GetTeamMemberData = Symbol(
@@ -2150,8 +2280,14 @@ class NaArm9Functions:
         [0x208FEA4],
         None,
         "This appears to be the libgcc implementation of __divsi3 (not sure which gcc"
-        " version), which implements the division operator for signed ints.\n\nr0:"
-        " dividend\nr1: divisor\nreturn: dividend / divisor",
+        " version), which implements the division operator for signed ints.\n\nThe"
+        " return value is a 64-bit integer, with the quotient (dividend / divisor) in"
+        " the lower 32 bits and the remainder (dividend % divisor) in the upper 32"
+        " bits. In accordance with the Procedure Call Standard for the Arm Architecture"
+        " (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
+        " this means that the quotient is returned in r0 and the remainder is returned"
+        " in r1.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
     )
 
     DivideUInt = Symbol(
@@ -2159,9 +2295,15 @@ class NaArm9Functions:
         [0x20900B0],
         None,
         "This appears to be the libgcc implementation of __udivsi3 (not sure which gcc"
-        " version), which implements the division operator for unsigned ints.\n\nNote:"
-        " This function falls through to DivideUIntNoZeroCheck.\n\nr0: dividend\nr1:"
-        " divisor\nreturn: dividend / divisor",
+        " version), which implements the division operator for unsigned ints.\n\nThe"
+        " return value is a 64-bit integer, with the quotient (dividend / divisor) in"
+        " the lower 32 bits and the remainder (dividend % divisor) in the upper 32"
+        " bits. In accordance with the Procedure Call Standard for the Arm Architecture"
+        " (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
+        " this means that the quotient is returned in r0 and the remainder is returned"
+        " in r1.\nNote: This function falls through to DivideUIntNoZeroCheck.\n\nr0:"
+        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
     )
 
     DivideUIntNoZeroCheck = Symbol(
@@ -2169,13 +2311,18 @@ class NaArm9Functions:
         [0x20900B8],
         None,
         "Subsidiary function to DivideUInt. Skips the initial check for divisor =="
-        " 0.\n\nThis function appears to only be called internally.\n\nr0:"
-        " dividend\nr1: divisor\nreturn: dividend / divisor",
+        " 0.\n\nThe return value is a 64-bit integer, with the quotient (dividend /"
+        " divisor) in the lower 32 bits and the remainder (dividend % divisor) in the"
+        " upper 32 bits. In accordance with the Procedure Call Standard for the Arm"
+        " Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
+        " this means that the quotient is returned in r0 and the remainder is returned"
+        " in r1.\nThis function appears to only be called internally.\n\nr0:"
+        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
     )
 
 
 class NaArm9Data:
-
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
         [0xE58],
         [0x2000E58],
@@ -2527,12 +2674,20 @@ class NaArm9Data:
         " enum overlay_group_id",
     )
 
+    PACK_FILE_OPENED = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] A pointer to the 6 opened Pack files (listed at"
+        " PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
+    )
+
     PACK_FILE_PATHS_TABLE = Symbol(
         [0xAF6A0],
         [0x20AF6A0],
         0x18,
         "List of pointers to path strings to all known pack files.\nThe game uses this"
-        " table to load its resources when launching dungeon mode.",
+        " table to load its resources when launching dungeon mode.\n\ntype: char*[6]",
     )
 
     GAME_STATE_VALUES = Symbol([0xAF6B8], [0x20AF6B8], None, "[Runtime]")
@@ -2588,39 +2743,6 @@ class NaArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol([0xB0B90], [0x20B0B90], 0x1FC, "")
 
-    MEMORY_ALLOCATION_TABLE = Symbol(
-        [0xB3380],
-        [0x20B3380],
-        0x40,
-        "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
-        " in the ARM9 binary uses region-based memory management (see"
-        " https://en.wikipedia.org/wiki/Region-based_memory_management). The heap is"
-        " broken up into smaller contiguous chunks called arenas (struct mem_arena),"
-        " which are in turn broken up into chunks referred to as blocks (struct"
-        " mem_block). Most of the time, an allocation results in a block being split"
-        " off from a free part of an existing memory arena.\n\nNote: There seems to be"
-        " some other static data at this address in the ARM9 binary itself. It gets"
-        " overwritten at runtime when the allocator sets up.\n\ntype: struct"
-        " mem_alloc_table",
-    )
-
-    DEFAULT_MEMORY_ARENA = Symbol(
-        [0xB3384],
-        [0x20B3384],
-        0x1C,
-        "[Runtime] The default memory allocation arena. This is part of"
-        " MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various"
-        " functions.\n\ntype: struct mem_arena",
-    )
-
-    DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
-        [0xB33C0],
-        [0x20B33C0],
-        0x1800,
-        "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\ntype: struct"
-        " mem_block[256]",
-    )
-
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x11810], [0x2011810], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
     )
@@ -2651,100 +2773,153 @@ class NaArm9Section:
     data = NaArm9Data
 
 
-class NaOverlay5Functions:
-
+class NaOverlay13Functions:
     pass
 
 
-class NaOverlay5Data:
-
-    pass
-
-
-class NaOverlay5Section:
-    name = "overlay5"
-    description = "Controls the Trade Team submenu within the top menu."
-    loadaddress = 0x233CA80
-    length = 0x3240
-    functions = NaOverlay5Functions
-    data = NaOverlay5Data
-
-
-class NaOverlay14Functions:
-
-    pass
-
-
-class NaOverlay14Data:
-
-    FOOTPRINT_DEBUG_MENU = Symbol([0x3960], [0x238DAA0], 0x48, "")
-
-
-class NaOverlay14Section:
-    name = "overlay14"
-    description = "Runs the sentry duty minigame."
-    loadaddress = 0x238A140
-    length = 0x3AE0
-    functions = NaOverlay14Functions
-    data = NaOverlay14Data
-
-
-class NaOverlay27Functions:
-
-    pass
-
-
-class NaOverlay27Data:
-
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238C95C], 0x18, "")
-
-    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238C974], 0x20, "")
-
-    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238C994], 0x20, "")
-
-    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238C9B4], 0x28, "")
-
-
-class NaOverlay27Section:
-    name = "overlay27"
-    description = "Controls the special episode item discard menu."
-    loadaddress = 0x238A140
-    length = 0x2D60
-    functions = NaOverlay27Functions
-    data = NaOverlay27Data
-
-
-class NaOverlay9Functions:
-
-    pass
-
-
-class NaOverlay9Data:
-
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        [0xE80],
-        [0x233D900],
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
+class NaOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(
+        [0x1F4C], [0x238C08C], 0x2A, "type: struct monster_id_16[21]"
     )
 
+    STARTERS_HERO_IDS = Symbol(
+        [0x1F78], [0x238C0B8], 0x40, "type: struct monster_id_16[32]"
+    )
 
-class NaOverlay9Section:
-    name = "overlay9"
-    description = "Controls the Sky Jukebox."
-    loadaddress = 0x233CA80
-    length = 0x2D80
-    functions = NaOverlay9Functions
-    data = NaOverlay9Data
+    STARTERS_STRINGS = Symbol([0x200C], [0x238C14C], 0x60, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238C1AC], 0x84, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238C230], 0x160, "")
+
+    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238CECC], 0x48, "")
+
+
+class NaOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Controls the personality test, including the available partners and playable"
+        " Pokémon. The actual personality test questions are stored in the MESSAGE"
+        " folder."
+    )
+    loadaddress = 0x238A140
+    length = 0x2E80
+    functions = NaOverlay13Functions
+    data = NaOverlay13Data
+
+
+class NaOverlay25Functions:
+    pass
+
+
+class NaOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
+
+    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238B4CC], 0x20, "")
+
+    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238B4EC], 0x20, "")
+
+
+class NaOverlay25Section:
+    name = "overlay25"
+    description = "Controls Xatu Appraisal."
+    loadaddress = 0x238A140
+    length = 0x14C0
+    functions = NaOverlay25Functions
+    data = NaOverlay25Data
+
+
+class NaOverlay16Functions:
+    pass
+
+
+class NaOverlay16Data:
+    EVO_MENU_CONFIRM = Symbol([0x2BC8], [0x238CD08], 0x18, "")
+
+    EVO_SUBMENU = Symbol([0x2BE0], [0x238CD20], 0x20, "")
+
+    EVO_MAIN_MENU = Symbol([0x2C00], [0x238CD40], 0x20, "")
+
+
+class NaOverlay16Section:
+    name = "overlay16"
+    description = "Controls Luminous Spring."
+    loadaddress = 0x238A140
+    length = 0x2D20
+    functions = NaOverlay16Functions
+    data = NaOverlay16Data
+
+
+class NaOverlay26Functions:
+    pass
+
+
+class NaOverlay26Data:
+    pass
+
+
+class NaOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Related to mission completion. It's loaded when the dungeon completion summary"
+        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
+        " mission rewards from clients."
+    )
+    loadaddress = 0x238A140
+    length = 0xE40
+    functions = NaOverlay26Functions
+    data = NaOverlay26Data
+
+
+class NaOverlay30Functions:
+    pass
+
+
+class NaOverlay30Data:
+    pass
+
+
+class NaOverlay30Section:
+    name = "overlay30"
+    description = "Controls quicksaving in dungeons."
+    loadaddress = 0x2382820
+    length = 0x38A0
+    functions = NaOverlay30Functions
+    data = NaOverlay30Data
+
+
+class NaOverlay21Functions:
+    pass
+
+
+class NaOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238CA38], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238CA50], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238CA68], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238CA88], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238CAA8], 0x28, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238CAD0], 0x30, "")
+
+
+class NaOverlay21Section:
+    name = "overlay21"
+    description = "Controls the Croagunk Swap Shop."
+    loadaddress = 0x238A140
+    length = 0x2E20
+    functions = NaOverlay21Functions
+    data = NaOverlay21Data
 
 
 class NaOverlay32Functions:
-
     pass
 
 
 class NaOverlay32Data:
-
     pass
 
 
@@ -2757,13 +2932,312 @@ class NaOverlay32Section:
     data = NaOverlay32Data
 
 
-class NaOverlay17Functions:
+class NaRamFunctions:
+    pass
 
+
+class NaRamData:
+    DUNGEON_COLORMAP_PTR = Symbol(
+        [0x1B9CF4],
+        [0x21B9CF4],
+        0x4,
+        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
+        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
+        " indexes into when rendering colors. Some weather conditions modify the"
+        " colormap, which is how the color scheme changes when it's, e.g., raining.",
+    )
+
+    DUNGEON_STRUCT = Symbol(
+        [0x1B9D34],
+        [0x21B9D34],
+        0x2CB14,
+        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
+        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
+        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
+        " 29.\n\ntype: struct dungeon",
+    )
+
+    MOVE_DATA_TABLE = Symbol(
+        [0x2113CC],
+        [0x22113CC],
+        0x38C6,
+        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
+        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
+        " ARM 9 binary.\n\ntype: struct move_data_table",
+    )
+
+    FRAMES_SINCE_LAUNCH = Symbol(
+        [0x2A354C, 0x2A359C],
+        [0x22A354C, 0x22A359C],
+        0x4,
+        "Starts at 0 when the game is first launched, and continuously ticks up once"
+        " per frame while the game is running.",
+    )
+
+    BAG_ITEMS = Symbol(
+        [0x2A3824],
+        [0x22A3824],
+        0x12C,
+        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
+        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
+        " if filled.\n\ntype: struct item[50]",
+    )
+
+    BAG_ITEMS_PTR = Symbol([0x2A3BA8], [0x22A3BA8], 0x4, "Pointer to BAG_ITEMS.")
+
+    STORAGE_ITEMS = Symbol(
+        [0x2A3BAE],
+        [0x22A3BAE],
+        0x7D0,
+        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
+        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
+        " item_id_16[1000]",
+    )
+
+    STORAGE_ITEM_QUANTITIES = Symbol(
+        [0x2A437E],
+        [0x22A437E],
+        0x7D0,
+        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
+        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
+        " entry in this array is unused, and will be 0.",
+    )
+
+    KECLEON_SHOP_ITEMS_PTR = Symbol(
+        [0x2A4B50], [0x22A4B50], 0x4, "Pointer to KECLEON_SHOP_ITEMS."
+    )
+
+    KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A4B54],
+        [0x22A4B54],
+        0x20,
+        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A4B74],
+        [0x22A4B74],
+        0x20,
+        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
+        " to be used by the Kecleon Shop.",
+    )
+
+    KECLEON_WARES_ITEMS_PTR = Symbol(
+        [0x2A4B94], [0x22A4B94], 0x4, "Pointer to KECLEON_WARES_ITEMS."
+    )
+
+    KECLEON_WARES_ITEMS = Symbol(
+        [0x2A4B98],
+        [0x22A4B98],
+        0x10,
+        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_WARES_ITEMS = Symbol(
+        [0x2A4BA8],
+        [0x22A4BA8],
+        0x10,
+        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
+        " to be used by Kecleon Wares.",
+    )
+
+    MONEY_CARRIED = Symbol(
+        [0x2A4BB8],
+        [0x22A4BB8],
+        0x4,
+        "The amount of money the player is currently carrying.",
+    )
+
+    MONEY_STORED = Symbol(
+        [0x2A4BC4],
+        [0x22A4BC4],
+        0x4,
+        "The amount of money the player currently has stored in the Duskull Bank.",
+    )
+
+    LAST_NEW_MOVE = Symbol(
+        [0x2AAE4C],
+        [0x22AAE4C],
+        0x8,
+        "Move struct of the last new move introduced when learning a new move. Persists"
+        " even after the move selection is made in the menu.\n\ntype: struct move",
+    )
+
+    SCRIPT_VARS_VALUES = Symbol(
+        [0x2AB0AC],
+        [0x22AB0AC],
+        0x400,
+        "The table of game variable values. Its structure is determined by"
+        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
+        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
+        " the real length of this table is 0x400 based on the game code.\n\ntype:"
+        " struct script_var_value_table",
+    )
+
+    BAG_LEVEL = Symbol(
+        [0x2AB15C],
+        [0x22AB15C],
+        0x1,
+        "The player's bag level, which determines the bag capacity. This indexes"
+        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
+    )
+
+    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
+        [0x2AB4AC],
+        [0x22AB4AC],
+        0x1,
+        "The number of the special episode currently being played.\n\n0: normal,"
+        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
+        " Comes Team Charm!\n4: In the Future of Darkness",
+    )
+
+    PENDING_DUNGEON_ID = Symbol(
+        [0x2AB4FC],
+        [0x22AB4FC],
+        0x1,
+        "The ID of the selected dungeon when setting off from the"
+        " overworld.\n\nControls the text and map location during the 'map cutscene'"
+        " just before entering a dungeon, as well as the actual dungeon loaded"
+        " afterwards.\n\ntype: struct dungeon_id_8",
+    )
+
+    PENDING_STARTING_FLOOR = Symbol(
+        [0x2AB4FD],
+        [0x22AB4FD],
+        0x1,
+        "The floor number to start from in the dungeon specified by"
+        " PENDING_DUNGEON_ID.",
+    )
+
+    PLAY_TIME_SECONDS = Symbol(
+        [0x2AB694], [0x22AB694], 0x4, "The player's total play time in seconds."
+    )
+
+    PLAY_TIME_FRAME_COUNTER = Symbol(
+        [0x2AB698],
+        [0x22AB698],
+        0x1,
+        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
+        " with each rollover.",
+    )
+
+    TEAM_NAME = Symbol(
+        [0x2AB918],
+        [0x22AB918],
+        0xC,
+        "The team name.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    HERO_SPECIES_ID = Symbol(
+        [0x2ABDE4],
+        [0x22ABDE4],
+        0x2,
+        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
+        " with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    HERO_NICKNAME = Symbol(
+        [0x2ABE1A],
+        [0x22ABE1A],
+        0xA,
+        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    PARTNER_SPECIES_ID = Symbol(
+        [0x2ABE28],
+        [0x22ABE28],
+        0x2,
+        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
+        " together with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    LEADER_IQ_SKILLS = Symbol(
+        [0x2B5198],
+        [0x22B5198],
+        0xC,
+        "Unlocked IQ skills of the current leader, available for selection from the IQ"
+        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
+        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
+        " larger struct, together with other nearby data.",
+    )
+
+    LEADER_NICKNAME = Symbol(
+        [0x2B51AA],
+        [0x22B51AA],
+        0xA,
+        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
+        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
+        " typically uses.\n\nThis is presumably part of a larger struct, together with"
+        " other nearby data.",
+    )
+
+    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
+        [0x2B5200],
+        [0x22B5200],
+        0xC,
+        "Unlocked IQ skills of the second party member, available for selection from"
+        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
+        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
+        " a larger struct, together with other nearby data.",
+    )
+
+    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
+        [0x2B99C4],
+        [0x22B99C4],
+        0x4,
+        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
+        " the game is running.",
+    )
+
+    TURNING_ON_THE_SPOT_FLAG = Symbol(
+        [0x37C9A6],
+        [0x237C9A6],
+        0x1,
+        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    FLOOR_GENERATION_STATUS = Symbol(
+        [0x37CFBC],
+        [0x237CFBC],
+        0x40,
+        "[Runtime] Status data related to generation of the current floor in a"
+        " dungeon.\n\nThis data is populated as the dungeon floor is"
+        " generated.\n\ntype: struct floor_generation_status",
+    )
+
+
+class NaRamSection:
+    name = "ram"
+    description = (
+        "Main memory.\nData in this file aren't located in the ROM itself, and are"
+        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
+        " dumping ground for addresses that are useful to know about, but don't fall in"
+        " the address ranges of any of the other files. Dynamically loaded constructs"
+        " that do fall within the address range of a relevant binary should be listed"
+        " in the corresponding YAML file of that binary, since it still has direct"
+        " utility when reverse-engineering that particular binary."
+    )
+    loadaddress = 0x2000000
+    length = 0x400000
+    functions = NaRamFunctions
+    data = NaRamData
+
+
+class NaOverlay17Functions:
     pass
 
 
 class NaOverlay17Data:
-
     ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238BB84], 0x18, "")
 
     ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238BB9C], 0x18, "")
@@ -2794,56 +3268,928 @@ class NaOverlay17Section:
     data = NaOverlay17Data
 
 
-class NaOverlay21Functions:
-
+class NaOverlay19Functions:
     pass
 
 
-class NaOverlay21Data:
+class NaOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
 
-    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238CA38], 0x18, "")
+    BAR_MENU_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
 
-    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238CA50], 0x18, "")
+    BAR_MAIN_MENU = Symbol([0x4110], [0x238E250], 0x20, "")
 
-    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238CA68], 0x20, "")
+    BAR_SUBMENU_1 = Symbol([0x4130], [0x238E270], 0x20, "")
 
-    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238CA88], 0x20, "")
-
-    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238CAA8], 0x28, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238CAD0], 0x30, "")
+    BAR_SUBMENU_2 = Symbol([0x4150], [0x238E290], 0x30, "")
 
 
-class NaOverlay21Section:
-    name = "overlay21"
-    description = "Controls the Croagunk Swap Shop."
+class NaOverlay19Section:
+    name = "overlay19"
+    description = "Controls Spinda's Juice Bar."
     loadaddress = 0x238A140
-    length = 0x2E20
-    functions = NaOverlay21Functions
-    data = NaOverlay21Data
+    length = 0x4240
+    functions = NaOverlay19Functions
+    data = NaOverlay19Data
 
 
-class NaOverlay15Functions:
-
+class NaOverlay33Functions:
     pass
 
 
-class NaOverlay15Data:
+class NaOverlay33Data:
+    pass
 
-    BANK_MAIN_MENU = Symbol([0xF14], [0x238B054], 0x28, "")
+
+class NaOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2382820
+    length = 0x20
+    functions = NaOverlay33Functions
+    data = NaOverlay33Data
 
 
-class NaOverlay15Section:
-    name = "overlay15"
-    description = "Controls the Duskull Bank."
+class NaOverlay22Functions:
+    pass
+
+
+class NaOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
+
+    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238E880], 0x20, "")
+
+    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
+
+    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
+
+
+class NaOverlay22Section:
+    name = "overlay22"
+    description = "Controls the Kecleon Shop in Treasure Town."
     loadaddress = 0x238A140
-    length = 0x1060
-    functions = NaOverlay15Functions
-    data = NaOverlay15Data
+    length = 0x4B40
+    functions = NaOverlay22Functions
+    data = NaOverlay22Data
+
+
+class NaOverlay28Functions:
+    pass
+
+
+class NaOverlay28Data:
+    pass
+
+
+class NaOverlay28Section:
+    name = "overlay28"
+    description = "Controls the staff credits sequence."
+    loadaddress = 0x238A140
+    length = 0xC60
+    functions = NaOverlay28Functions
+    data = NaOverlay28Data
+
+
+class NaOverlay4Functions:
+    pass
+
+
+class NaOverlay4Data:
+    pass
+
+
+class NaOverlay4Section:
+    name = "overlay4"
+    description = "Controls the Trade Items submenu within the top menu."
+    loadaddress = 0x233CA80
+    length = 0x2BE0
+    functions = NaOverlay4Functions
+    data = NaOverlay4Data
+
+
+class NaOverlay14Functions:
+    pass
+
+
+class NaOverlay14Data:
+    FOOTPRINT_DEBUG_MENU = Symbol([0x3960], [0x238DAA0], 0x48, "")
+
+
+class NaOverlay14Section:
+    name = "overlay14"
+    description = "Runs the sentry duty minigame."
+    loadaddress = 0x238A140
+    length = 0x3AE0
+    functions = NaOverlay14Functions
+    data = NaOverlay14Data
+
+
+class NaOverlay7Functions:
+    pass
+
+
+class NaOverlay7Data:
+    pass
+
+
+class NaOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
+    )
+    loadaddress = 0x233CA80
+    length = 0x5100
+    functions = NaOverlay7Functions
+    data = NaOverlay7Data
+
+
+class NaOverlay6Functions:
+    pass
+
+
+class NaOverlay6Data:
+    pass
+
+
+class NaOverlay6Section:
+    name = "overlay6"
+    description = "Controls the Wonder Mail S submenu within the top menu."
+    loadaddress = 0x233CA80
+    length = 0x2460
+    functions = NaOverlay6Functions
+    data = NaOverlay6Data
+
+
+class NaOverlay35Functions:
+    pass
+
+
+class NaOverlay35Data:
+    pass
+
+
+class NaOverlay35Section:
+    name = "overlay35"
+    description = "Unused; all zeroes."
+    loadaddress = 0x22BCA80
+    length = 0x20
+    functions = NaOverlay35Functions
+    data = NaOverlay35Data
+
+
+class NaOverlay23Functions:
+    pass
+
+
+class NaOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238D354], 0x20, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238D374], 0x28, "")
+
+
+class NaOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
+    )
+    loadaddress = 0x238A140
+    length = 0x3780
+    functions = NaOverlay23Functions
+    data = NaOverlay23Data
+
+
+class NaOverlay8Functions:
+    pass
+
+
+class NaOverlay8Data:
+    pass
+
+
+class NaOverlay8Section:
+    name = "overlay8"
+    description = (
+        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
+    )
+    loadaddress = 0x233CA80
+    length = 0x2200
+    functions = NaOverlay8Functions
+    data = NaOverlay8Data
+
+
+class NaOverlay9Functions:
+    pass
+
+
+class NaOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        [0xE80],
+        [0x233D900],
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class NaOverlay9Section:
+    name = "overlay9"
+    description = "Controls the Sky Jukebox."
+    loadaddress = 0x233CA80
+    length = 0x2D80
+    functions = NaOverlay9Functions
+    data = NaOverlay9Data
+
+
+class NaOverlay24Functions:
+    pass
+
+
+class NaOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
+
+    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238C538], 0x20, "")
+
+
+class NaOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = 0x238A140
+    length = 0x24E0
+    functions = NaOverlay24Functions
+    data = NaOverlay24Data
+
+
+class NaOverlay0Functions:
+    pass
+
+
+class NaOverlay0Data:
+    TOP_MENU_MUSIC_ID = Symbol(
+        [0x1720], [0x22BE1A0], None, "Music ID to play in the top menu."
+    )
+
+
+class NaOverlay0Section:
+    name = "overlay0"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 0."
+    )
+    loadaddress = 0x22BCA80
+    length = 0x609A0
+    functions = NaOverlay0Functions
+    data = NaOverlay0Data
+
+
+class NaOverlay10Functions:
+    SprintfStatic = Symbol(
+        [0x9CC, 0x4DBC],
+        [0x22BD44C, 0x22C183C],
+        None,
+        "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
+        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
+        " characters printed, excluding the null-terminator",
+    )
+
+
+class NaOverlay10Data:
+    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
+        [0x798C],
+        [0x22C440C],
+        0x1,
+        "The first dungeon that can have extra traps spawn in Monster Houses, Dark"
+        " Hill\n\ntype: struct dungeon_id_8",
+    )
+
+    BAD_POISON_DAMAGE_COOLDOWN = Symbol(
+        [0x7994],
+        [0x22C4414],
+        0x2,
+        "The number of turns between passive bad poison (toxic) damage.",
+    )
+
+    PROTEIN_STAT_BOOST = Symbol(
+        [0x79A0],
+        [0x22C4420],
+        0x2,
+        "The permanent attack boost from ingesting a Protein.",
+    )
+
+    SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
+        [0x79B0],
+        [0x22C4430],
+        None,
+        "The maximum number of enemies that can spawn on a floor without a monster"
+        " house (15).",
+    )
+
+    OREN_BERRY_DAMAGE = Symbol(
+        [0x79B8], [0x22C4438], 0x2, "Damage dealt by eating an Oren Berry."
+    )
+
+    SITRUS_BERRY_HP_RESTORATION = Symbol(
+        [0x79F8],
+        [0x22C4478],
+        0x2,
+        "The amount of HP restored by eating a Sitrus Berry.",
+    )
+
+    EXP_ELITE_EXP_BOOST = Symbol(
+        [0x7A28],
+        [0x22C44A8],
+        0x2,
+        "The percentage increase in experience from the Exp. Elite IQ skill",
+    )
+
+    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
+        [0x7A2C],
+        [0x22C44AC],
+        0x2,
+        "The maximum number of extra non-monster spawns (items/traps) in a Monster"
+        " House, 7",
+    )
+
+    GOLD_THORN_POWER = Symbol(
+        [0x7A50], [0x22C44D0], 0x2, "Attack power for Golden Thorns."
+    )
+
+    SPAWN_COOLDOWN = Symbol(
+        [0x7A5C],
+        [0x22C44DC],
+        0x2,
+        "The number of turns between enemy spawns under normal conditions.",
+    )
+
+    ORAN_BERRY_FULL_HP_BOOST = Symbol(
+        [0x7A74],
+        [0x22C44F4],
+        0x2,
+        "The permanent HP boost from eating an Oran Berry at full HP (0).",
+    )
+
+    LIFE_SEED_HP_BOOST = Symbol(
+        [0x7A78], [0x22C44F8], 0x2, "The permanent HP boost from eating a Life Seed."
+    )
+
+    EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
+        [0x7B0C],
+        [0x22C458C],
+        0x2,
+        "The percentage increase in experience from exp-boosting exclusive items",
+    )
+
+    INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
+        [0x7B38],
+        [0x22C45B8],
+        0x2,
+        "The percentage chance that Intimidator will activate.",
+    )
+
+    ORAN_BERRY_HP_RESTORATION = Symbol(
+        [0x7B6C], [0x22C45EC], 0x2, "The amount of HP restored by eating a Oran Berry."
+    )
+
+    SITRUS_BERRY_FULL_HP_BOOST = Symbol(
+        [0x7B74],
+        [0x22C45F4],
+        0x2,
+        "The permanent HP boost from eating a Sitrus Berry at full HP.",
+    )
+
+    BURN_DAMAGE_COOLDOWN = Symbol(
+        [0x7B90], [0x22C4610], 0x2, "The number of turns between passive burn damage."
+    )
+
+    STICK_POWER = Symbol([0x7BA4], [0x22C4624], 0x2, "Attack power for Sticks.")
+
+    SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
+        [0x7BC0],
+        [0x22C4640],
+        0x2,
+        "The number of turns between enemy spawns when the Thief Alert condition is"
+        " active.",
+    )
+
+    MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
+        [0x7BE0],
+        [0x22C4660],
+        0x2,
+        "The maximum number of monster spawns in a Monster House, 30, but multiplied by"
+        " 2/3 for some reason (so the actual maximum is 45)",
+    )
+
+    SPEED_BOOST_TURNS = Symbol(
+        [0x7BEC],
+        [0x22C466C],
+        None,
+        "Number of turns (250) after which Speed Boost will trigger and increase speed"
+        " by one stage.",
+    )
+
+    MIRACLE_CHEST_EXP_BOOST = Symbol(
+        [0x7C18],
+        [0x22C4698],
+        0x2,
+        "The percentage increase in experience from the Miracle Chest item",
+    )
+
+    WONDER_CHEST_EXP_BOOST = Symbol(
+        [0x7C1C],
+        [0x22C469C],
+        0x2,
+        "The percentage increase in experience from the Wonder Chest item",
+    )
+
+    SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
+        [0x7C24],
+        [0x22C46A4],
+        None,
+        "The maximum number of enemies that can spawn on a floor with a monster house,"
+        " not counting those in the monster house (4).",
+    )
+
+    POISON_DAMAGE_COOLDOWN = Symbol(
+        [0x7C28], [0x22C46A8], 0x2, "The number of turns between passive poison damage."
+    )
+
+    GEO_PEBBLE_DAMAGE = Symbol(
+        [0x7C34], [0x22C46B4], 0x2, "Damage dealt by Geo Pebbles."
+    )
+
+    GRAVELEROCK_DAMAGE = Symbol(
+        [0x7C38], [0x22C46B8], 0x2, "Damage dealt by Gravelerocks."
+    )
+
+    RARE_FOSSIL_DAMAGE = Symbol(
+        [0x7C3C], [0x22C46BC], 0x2, "Damage dealt by Rare Fossils."
+    )
+
+    GINSENG_CHANCE_3 = Symbol(
+        [0x7C40],
+        [0x22C46C0],
+        0x2,
+        "The percentage chance for...something to be set to 3 in a calculation related"
+        " to the Ginseng boost.",
+    )
+
+    ZINC_STAT_BOOST = Symbol(
+        [0x7C44],
+        [0x22C46C4],
+        0x2,
+        "The permanent special defense boost from ingesting a Zinc.",
+    )
+
+    IRON_STAT_BOOST = Symbol(
+        [0x7C48],
+        [0x22C46C8],
+        0x2,
+        "The permanent defense boost from ingesting an Iron.",
+    )
+
+    CALCIUM_STAT_BOOST = Symbol(
+        [0x7C4C],
+        [0x22C46CC],
+        0x2,
+        "The permanent special attack boost from ingesting a Calcium.",
+    )
+
+    CORSOLA_TWIG_POWER = Symbol(
+        [0x7C58], [0x22C46D8], 0x2, "Attack power for Corsola Twigs."
+    )
+
+    CACNEA_SPIKE_POWER = Symbol(
+        [0x7C5C], [0x22C46DC], 0x2, "Attack power for Cacnea Spikes."
+    )
+
+    GOLD_FANG_POWER = Symbol([0x7C60], [0x22C46E0], 0x2, "Attack power for Gold Fangs.")
+
+    SILVER_SPIKE_POWER = Symbol(
+        [0x7C64], [0x22C46E4], 0x2, "Attack power for Silver Spikes."
+    )
+
+    IRON_THORN_POWER = Symbol(
+        [0x7C68], [0x22C46E8], 0x2, "Attack power for Iron Thorns."
+    )
+
+    SLEEP_DURATION_RANGE = Symbol(
+        [0x7CA0],
+        [0x22C4720],
+        0x4,
+        "Appears to control the range of turns for which the sleep condition can"
+        " last.\n\nThe first two bytes are the low value of the range, and the later"
+        " two bytes are the high value.",
+    )
+
+    POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
+        [0x7D78],
+        [0x22C47F8],
+        0x4,
+        "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
+        " fixed-point number (8 fraction bits)",
+    )
+
+    AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
+        [0x7DC4],
+        [0x22C4844],
+        None,
+        "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
+        " number (8 fraction bits)",
+    )
+
+    SPEED_BOOST_DURATION_RANGE = Symbol(
+        [0x7E08],
+        [0x22C4888],
+        0x4,
+        "Appears to control the range of turns for which a speed boost can last.\n\nThe"
+        " first two bytes are the low value of the range, and the later two bytes are"
+        " the high value.",
+    )
+
+    OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
+        [0x8318],
+        [0x22C4D98],
+        0x54,
+        "Table of multipliers for offensive stats (attack/special attack) for each"
+        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
+    )
+
+    DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
+        [0x836C],
+        [0x22C4DEC],
+        0x54,
+        "Table of multipliers for defensive stats (defense/special defense) for each"
+        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
+    )
+
+    RANDOM_MUSIC_ID_TABLE = Symbol(
+        [0x877C],
+        [0x22C51FC],
+        0xF0,
+        "Table of music IDs for dungeons with a random assortment of music"
+        " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
+        " row contains the possible music IDs for a given group, from which the music"
+        " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
+    )
+
+    MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
+        [0x898C],
+        [0x22C540C],
+        0x54,
+        "Table of multipliers for the accuracy stat for males for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
+        [0x89E0],
+        [0x22C5460],
+        0x54,
+        "Table of multipliers for the evasion stat for males for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
+        [0x8A34],
+        [0x22C54B4],
+        0x54,
+        "Table of multipliers for the accuracy stat for females for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
+        [0x8A88],
+        [0x22C5508],
+        0x54,
+        "Table of multipliers for the evasion stat for females for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    MUSIC_ID_TABLE = Symbol(
+        [0x8ADC],
+        [0x22C555C],
+        0x154,
+        "List of music IDs used in dungeons with a single music track.\n\nThis is an"
+        " array of 170 2-byte music IDs, and is indexed into by the music value in the"
+        " floor properties struct for a given floor. Music IDs with the highest bit set"
+        " (0x8000) are indexes into the RANDOM_MUSIC_ID_TABLE.\n\ntype: struct"
+        " music_id_16[170] (or not a music ID if the highest bit is set)",
+    )
+
+    TYPE_MATCHUP_TABLE = Symbol(
+        [0x8C30],
+        [0x22C56B0],
+        0x288,
+        "Table of type matchups.\n\nEach row corresponds to the type matchups of a"
+        " specific attack type, with each entry within the row specifying the type's"
+        " effectiveness against a target type.\n\ntype: struct type_matchup_table",
+    )
+
+    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
+        [0x8EB8],
+        [0x22C5938],
+        0x4A4,
+        "Table of stats for monsters that can spawn in fixed rooms, pointed into by the"
+        " FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries"
+        " containing stat spreads for one monster entry each.\n\ntype: struct"
+        " fixed_room_monster_spawn_stats_entry[99]",
+    )
+
+    TILESET_PROPERTIES = Symbol([0x989C], [0x22C631C], 0x954, "")
+
+    FIXED_ROOM_PROPERTIES_TABLE = Symbol(
+        [0xA1F0],
+        [0x22C6C70],
+        0xC00,
+        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte"
+        " entries containing properties for a given fixed room ID.\n\nSee the struct"
+        " definitions and End45's dungeon data document for more info.\n\ntype: struct"
+        " fixed_room_properties_entry[256]",
+    )
+
+    MOVE_ANIMATION_INFO = Symbol([0xC5E4], [0x22C9064], None, "")
+
+
+class NaOverlay10Section:
+    name = "overlay10"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 10."
+    )
+    loadaddress = 0x22BCA80
+    length = 0x1F7A0
+    functions = NaOverlay10Functions
+    data = NaOverlay10Data
+
+
+class NaOverlay11Functions:
+    FuncThatCallsCommandParsing = Symbol([0xF24], [0x22DD164], None, "")
+
+    ScriptCommandParsing = Symbol([0x1B24], [0x22DDD64], None, "")
+
+    SsbLoad2 = Symbol([0x84BC], [0x22E46FC], None, "")
+
+    StationLoadHanger = Symbol([0x8994], [0x22E4BD4], None, "")
+
+    ScriptStationLoadTalk = Symbol([0x91A4], [0x22E53E4], None, "")
+
+    SsbLoad1 = Symbol([0x9B10], [0x22E5D50], None, "")
+
+    ScriptSpecialProcessCall = Symbol(
+        [0xAED8],
+        [0x22E7118],
+        None,
+        "Processes calls to the OPCODE_PROCESS_SPECIAL script opcode.\n\nr0: some"
+        " struct containing a callback of some sort, only used for special process ID"
+        " 18\nr1: special process ID\nr2: first argument, if relevant? Probably"
+        " corresponds to the second parameter of OPCODE_PROCESS_SPECIAL\nr3: second"
+        " argument, if relevant? Probably corresponds to the third parameter of"
+        " OPCODE_PROCESS_SPECIAL\nreturn: return value of the special process if it has"
+        " one, otherwise 0",
+    )
+
+    GetSpecialRecruitmentSpecies = Symbol(
+        [0xBDFC],
+        [0x22E803C],
+        None,
+        "Returns an entry from RECRUITMENT_TABLE_SPECIES.\n\nNote: This indexes without"
+        " doing bounds checking.\n\nr0: index into RECRUITMENT_TABLE_SPECIES\nreturn:"
+        " enum monster_id",
+    )
+
+    PrepareMenuAcceptTeamMember = Symbol(
+        [0xBE40],
+        [0x22E8080],
+        None,
+        "Implements SPECIAL_PROC_PREPARE_MENU_ACCEPT_TEAM_MEMBER (see"
+        " ScriptSpecialProcessCall).\n\nr0: index into RECRUITMENT_TABLE_SPECIES",
+    )
+
+    InitRandomNpcJobs = Symbol(
+        [0xBEE4],
+        [0x22E8124],
+        None,
+        "Implements SPECIAL_PROC_INIT_RANDOM_NPC_JOBS (see"
+        " ScriptSpecialProcessCall).\n\nr0: job type? 0 is a random NPC job, 1 is a"
+        " bottle mission\nr1: ?",
+    )
+
+    GetRandomNpcJobType = Symbol(
+        [0xBF7C],
+        [0x22E81BC],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_TYPE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: job type?",
+    )
+
+    GetRandomNpcJobSubtype = Symbol(
+        [0xBF94],
+        [0x22E81D4],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_SUBTYPE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: job subtype?",
+    )
+
+    GetRandomNpcJobStillAvailable = Symbol(
+        [0xBFB0],
+        [0x22E81F0],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_STILL_AVAILABLE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    AcceptRandomNpcJob = Symbol(
+        [0xC018],
+        [0x22E8258],
+        None,
+        "Implements SPECIAL_PROC_ACCEPT_RANDOM_NPC_JOB (see"
+        " ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    GroundMainLoop = Symbol(
+        [0xC534],
+        [0x22E8774],
+        None,
+        "Appears to be the main loop for ground mode.\n\nBased on debug print"
+        " statements and general code structure, it seems contain a core loop, and"
+        " dispatches to various functions in response to different events.\n\nr0: mode,"
+        " which is stored globally and used in switch statements for dispatch\nreturn:"
+        " return code",
+    )
+
+    GetAllocArenaGround = Symbol(
+        [0xD11C],
+        [0x22E935C],
+        None,
+        "The GetAllocArena function used for ground mode. See SetMemAllocatorParams for"
+        " more information.\n\nr0: initial memory arena pointer, or null\nr1: flags"
+        " (see MemAlloc)\nreturn: memory arena pointer, or null",
+    )
+
+    GetFreeArenaGround = Symbol(
+        [0xD180],
+        [0x22E93C0],
+        None,
+        "The GetFreeArena function used for ground mode. See SetMemAllocatorParams for"
+        " more information.\n\nr0: initial memory arena pointer, or null\nr1: pointer"
+        " to free\nreturn: memory arena pointer, or null",
+    )
+
+    GroundMainReturnDungeon = Symbol(
+        [0xD1D4],
+        [0x22E9414],
+        None,
+        "Implements SPECIAL_PROC_RETURN_DUNGEON (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+    GroundMainNextDay = Symbol(
+        [0xD1F8],
+        [0x22E9438],
+        None,
+        "Implements SPECIAL_PROC_NEXT_DAY (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+    JumpToTitleScreen = Symbol(
+        [0xD39C],
+        [0x22E95DC],
+        None,
+        "Implements SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and SPECIAL_PROC_0x1A (see"
+        " ScriptSpecialProcessCall).\n\nr0: int, argument value for"
+        " SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and -1 for SPECIAL_PROC_0x1A\nreturn: bool"
+        " (but note that the special process ignores this and always returns 0)",
+    )
+
+    ReturnToTitleScreen = Symbol(
+        [0xD454],
+        [0x22E9694],
+        None,
+        "Implements SPECIAL_PROC_RETURN_TO_TITLE_SCREEN (see"
+        " ScriptSpecialProcessCall).\n\nr0: fade duration\nreturn: bool (but note that"
+        " the special process ignores this and always returns 0)",
+    )
+
+    ScriptSpecialProcess0x16 = Symbol(
+        [0xD4B4],
+        [0x22E96F4],
+        None,
+        "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
+    )
+
+    SprintfStatic = Symbol(
+        [0x2CC8C],
+        [0x2308ECC],
+        None,
+        "Statically defined copy of sprintf(3) in overlay 11. See arm9.yml for more"
+        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
+        " characters printed, excluding the null-terminator",
+    )
+
+    StatusUpdate = Symbol(
+        [0x37858],
+        [0x2313A98],
+        None,
+        "Implements SPECIAL_PROC_STATUS_UPDATE (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+
+class NaOverlay11Data:
+    SCRIPT_OP_CODES = Symbol(
+        [0x3C3D0],
+        [0x2318610],
+        0xBF8,
+        "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
+        " opcodes underpin the various ExplorerScript functions you can call in the"
+        " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
+    )
+
+    C_ROUTINES = Symbol(
+        [0x405E8],
+        [0x231C828],
+        0x15E8,
+        "Common routines used within the unionall.ssb script (the master script). There"
+        " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
+        " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
+        " common_routine_table",
+    )
+
+    OBJECTS = Symbol(
+        [0x42C14],
+        [0x231EE54],
+        0x1A04,
+        "Table of objects for the script engine, which can be placed in scenes. There"
+        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
+        " script_object[length / 12]",
+    )
+
+    RECRUITMENT_TABLE_LOCATIONS = Symbol(
+        [0x44654],
+        [0x2320894],
+        0x16,
+        "Table of dungeon IDs corresponding to entries in"
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
+    )
+
+    RECRUITMENT_TABLE_LEVELS = Symbol(
+        [0x4466C],
+        [0x23208AC],
+        0x2C,
+        "Table of levels for recruited Pokémon, corresponding to entries in"
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
+    )
+
+    RECRUITMENT_TABLE_SPECIES = Symbol(
+        [0x44698],
+        [0x23208D8],
+        0x2C,
+        "Table of Pokémon recruited at special locations, such as at the ends of"
+        " certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during"
+        " a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes"
+        " both Heatran genders. It also includes Darkrai for some reason?\n\ntype:"
+        " struct monster_id_16[22]",
+    )
+
+    LEVEL_TILEMAP_LIST = Symbol([0x44AEC], [0x2320D2C], 0x288, "")
+
+    OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
+        [0x46E2C],
+        [0x232306C],
+        None,
+        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16"
+        " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
+        " overlay_group_id in the C headers for a mapping between group ID and overlay"
+        " number)\n- function pointer to entry point\n- function pointer to"
+        " destructor\n- possibly function pointer to frame-update function?",
+    )
+
+    UNIONALL_RAM_ADDRESS = Symbol([0x48A64], [0x2324CA4], None, "[Runtime]")
+
+    GROUND_STATE_MAP = Symbol([0x48A80], [0x2324CC0], None, "[Runtime]")
+
+    GROUND_STATE_PTRS = Symbol(
+        [0x48AB4],
+        [0x2324CF4],
+        0x18,
+        "Host pointers to multiple structure used for performing an overworld"
+        " scene\n\ntype: struct main_ground_data",
+    )
+
+
+class NaOverlay11Section:
+    name = "overlay11"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 11."
+    )
+    loadaddress = 0x22DC240
+    length = 0x48C40
+    functions = NaOverlay11Functions
+    data = NaOverlay11Data
 
 
 class NaOverlay29Functions:
-
     DungeonAlloc = Symbol(
         [0x281C],
         [0x22DEA5C],
@@ -3034,13 +4380,14 @@ class NaOverlay29Functions:
         " 0x6E).\n\nreturn: bool",
     )
 
-    ShouldGameOverOnImportantTeamMemberFaint = Symbol(
+    StoryRestrictionsEnabled = Symbol(
         [0x46E8],
         [0x22E0928],
         None,
-        "Returns true if you should get kicked out of the dungeon if an important team"
-        " member (like the partner or certain story allies) faints.\n\nreturn:"
-        " dungeon::nonstory_flag || dungeon::hidden_land_flag",
+        "Returns true if certain special restrictions are enabled.\n\nIf true, you will"
+        " get kicked out of the dungeon if a team member that passes the"
+        " arm9::JoinedAtRangeCheck2 check faints.\n\nreturn: !dungeon::nonstory_flag ||"
+        " dungeon::hidden_land_flag",
     )
 
     FadeToBlack = Symbol(
@@ -3056,6 +4403,29 @@ class NaOverlay29Functions:
         None,
         "Returns a pointer to the tile where an entity is located.\n\nr0: pointer to"
         " entity\nreturns: pointer to tile",
+    )
+
+    CanTargetEntity = Symbol(
+        [0x65D0],
+        [0x22E2810],
+        None,
+        "Checks if a monster can target another entity when controlled by the AI.\nMore"
+        " specifically, it checks if the target is invisible, if the user can see"
+        " invisible monsters, if the user is blinded and if the target position is in"
+        " sight from the position of the user (this last check is done by calling"
+        " IsPositionInSight with the user's and the target's position).\n\nr0: User"
+        " entity pointer\nr1: Target entity pointer\nreturn: True if the user can"
+        " target the target",
+    )
+
+    CanTargetPosition = Symbol(
+        [0x6714],
+        [0x22E2954],
+        None,
+        "Checks if a monster can target a position. This function just calls"
+        " IsPositionInSight using the position of the user as the origin.\n\nr0: Entity"
+        " pointer\nr1: Target position\nreturn: True if the specified monster can"
+        " target the target position, false otherwise.",
     )
 
     SubstitutePlaceholderStringTags = Symbol(
@@ -3142,6 +4512,37 @@ class NaOverlay29Functions:
         "Get the level of the monster to be spawned, given its id.\n\nr0: monster"
         " ID\nreturn: Level of the monster to be spawned, or 1 if the specified ID"
         " can't be found on the floor's spawn table.",
+    )
+
+    GetDirectionTowardsPosition = Symbol(
+        [0xCDE0],
+        [0x22E9020],
+        None,
+        "Gets the direction in which a monster should move to go from the origin"
+        " position to the target position\n\nr0: Origin position\nr1: Target"
+        " position\nreturn: Direction in which to move to reach the target position"
+        " from the origin position",
+    )
+
+    GetChebyshevDistance = Symbol(
+        [0xCE4C],
+        [0x22E908C],
+        None,
+        "Returns the Chebyshev distance between two positions. Calculated as"
+        " max(abs(x0-x1), abs(y0-y1)).\n\nr0: Position A\nr1: Position B\nreturn:"
+        " Chebyshev Distance between position A and position B",
+    )
+
+    IsPositionInSight = Symbol(
+        [0xCF64],
+        [0x22E91A4],
+        None,
+        "Checks if a given target position is in sight from a given origin"
+        " position.\nThere's multiple factors that affect this check, but generally,"
+        " it's true if both positions are in the same room or within 2 tiles of each"
+        " other.\n\nr0: Origin position\nr1: Target position\nr2: True to assume the"
+        " entity standing on the origin position has the dropeye status\nreturn: True"
+        " if the target position is in sight from the origin position",
     )
 
     GetLeader = Symbol(
@@ -3313,6 +4714,58 @@ class NaOverlay29Functions:
         " the user.\n\nr0: pointer to user entity\nr1: pointer to target entity",
     )
 
+    ClearMonsterActionFields = Symbol(
+        [0xF1B4],
+        [0x22EB3F4],
+        None,
+        "Clears the fields related to AI in the monster's data struct, setting them all"
+        " to 0.\nSpecifically, monster::action_id, monster::action_use_idx and"
+        " monster::field_0x54 are cleared.\n\nr0: Pointer to the monster's action_id"
+        " field (this field is probably contained in a struct)",
+    )
+
+    SetMonsterActionFields = Symbol(
+        [0xF1C8],
+        [0x22EB408],
+        None,
+        "Sets some the fields related to AI in the monster's data"
+        " struct.\nSpecifically, monster::action_id, monster::action_use_idx and"
+        " monster::field_0x54. The last 2 are always set to 0.\n\nr0: Pointer to the"
+        " monster's action_id field (this field is probably contained in a struct)\nr1:"
+        " Value to set monster::action_id to.",
+    )
+
+    SetActionPassTurnOrWalk = Symbol(
+        [0xF1DC],
+        [0x22EB41C],
+        None,
+        "Sets a monster's action to action::ACTION_PASS_TURN or action::ACTION_WALK,"
+        " depending on the result of GetCanMoveFlag for the monster's ID.\n\nr0:"
+        " Pointer to the monster's action_id field (this field is probably contained in"
+        " a struct)\nr1: Monster ID",
+    )
+
+    SetActionRegularAttack = Symbol(
+        [0xFA10],
+        [0x22EBC50],
+        None,
+        "Sets a monster's action to action::ACTION_REGULAR_ATTACK, with a specified"
+        " direction.\n\nr0: Pointer to the monster's action_id field (this field is"
+        " probably contained in a struct)\nr1: Direction in which to use the move. Gets"
+        " stored in monster::direction.",
+    )
+
+    SetActionUseMoveAi = Symbol(
+        [0xFA7C],
+        [0x22EBCBC],
+        None,
+        "Sets a monster's action to action::ACTION_USE_MOVE_AI, with a specified"
+        " direction and move index.\n\nr0: Pointer to the monster's action_id field"
+        " (this field is probably contained in a struct)\nr1: Index of the move to use"
+        " (0-3). Gets stored in monster::action_use_idx.\nr2: Direction in which to use"
+        " the move. Gets stored in monster::direction.",
+    )
+
     RunFractionalTurn = Symbol(
         [0xFAC8],
         [0x22EBD08],
@@ -3396,6 +4849,15 @@ class NaOverlay29Functions:
         " ID\nreturn: Sprite index of the specified monster ID",
     )
 
+    JoinedAtRangeCheck2Veneer = Symbol(
+        [0x1B168],
+        [0x22F73A8],
+        None,
+        "Likely a linker-generated veneer for arm9::JoinedAtRangeCheck2.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo"
+        " params.",
+    )
+
     FloorNumberIsEven = Symbol(
         [0x1B174],
         [0x22F73B4],
@@ -3443,6 +4905,14 @@ class NaOverlay29Functions:
         "Handles a fainted pokémon (reviving does not count as fainting).\n\nr0:"
         " Fainted entity\nr1: Faint reason (move ID or greater than the max move id for"
         " other causes)\nr2: Entity responsible of the fainting",
+    )
+
+    UpdateAiTargetPos = Symbol(
+        [0x1CF04],
+        [0x22F9144],
+        None,
+        "Given a monster, updates its target_pos field based on its current position"
+        " and the direction in which it plans to attack.\n\nr0: Entity pointer",
     )
 
     TryActivateSlowStart = Symbol(
@@ -3540,6 +5010,15 @@ class NaOverlay29Functions:
         " move::flags2_unk5 and move::flags2_unk7, and sets flag"
         " move::f_consume_pp.\nCalled when a monster is revived.\n\nr0: pointer to"
         " entity whose moves will be restored",
+    )
+
+    ShouldMonsterHeadToStairs = Symbol(
+        [0x1E1F0],
+        [0x22FA430],
+        None,
+        "Checks if a given monster should try to reach the stairs when controlled by"
+        " the AI\n\nr0: Entity pointer\nreturn: True if the monster should try to reach"
+        " the stairs, false otherwise",
     )
 
     MewSpawnCheck = Symbol(
@@ -3678,6 +5157,15 @@ class NaOverlay29Functions:
         " Pointer to monster entity",
     )
 
+    HasStatusThatPreventsActing = Symbol(
+        [0x22F88],
+        [0x22FF1C8],
+        None,
+        "Returns true if the monster has any status problem that prevents it from"
+        " acting\n\nr0: Entity pointer\nreturn: True if the specified monster can't act"
+        " because of a status problem, false otherwise.",
+    )
+
     CalcSpeedStage = Symbol(
         [0x23BB4],
         [0x22FFDF4],
@@ -3717,6 +5205,58 @@ class NaOverlay29Functions:
         " characters printed, excluding the null-terminator",
     )
 
+    IsMonsterCornered = Symbol(
+        [0x24ED8],
+        [0x2301118],
+        None,
+        "True if the given monster is cornered (it can't move in any direction)\n\nr0:"
+        " Entity pointer\nreturn: True if the monster can't move in any direction,"
+        " false otherwise.",
+    )
+
+    CanAttackInDirection = Symbol(
+        [0x24FF4],
+        [0x2301234],
+        None,
+        "Returns whether a monster can attack in a given direction.\nThe check fails if"
+        " the destination tile is impassable, contains a monster that isn't of type"
+        " entity_type::ENTITY_MONSTER or if the monster can't directly move from the"
+        " current tile into the destination tile.\n\nr0: Entity pointer\nr1:"
+        " Direction\nreturn: True if the monster can attack into the tile adjacent to"
+        " them in the specified direction, false otherwise.",
+    )
+
+    CanAiMonsterMoveInDirection = Symbol(
+        [0x250B8],
+        [0x23012F8],
+        None,
+        "Checks whether an AI-controlled monster can move in the specified"
+        " direction.\nAccounts for walls, other monsters on the target position and IQ"
+        " skills that might prevent a monster from moving into a specific location,"
+        " such as House Avoider, Trap Avoider or Lava Evader.\n\nr0: Entity"
+        " pointer\nr1: Direction\nr2: (output) If movement was not possible because"
+        " there was another monster on the target tile, its entity pointer is returned"
+        " here\nreturn: True if the monster can move in the specified direction, false"
+        " otherwise.",
+    )
+
+    ShouldMonsterRunAway = Symbol(
+        [0x25378],
+        [0x23015B8],
+        None,
+        "Checks if a monster should run away from other monsters\n\nr0: Entity"
+        " pointer\nreturn: True if the monster should run away, false otherwise",
+    )
+
+    ShouldMonsterRunAwayVariation = Symbol(
+        [0x25468],
+        [0x23016A8],
+        None,
+        "Calls ShouldMonsterRunAway and returns its result. It also calls another"
+        " function if the result was true.\n\nr0: Entity pointer\nr1: ?\nreturn: Result"
+        " of the call to ShouldMonsterRunAway",
+    )
+
     NoGastroAcidStatus = Symbol(
         [0x25A9C],
         [0x2301CDC],
@@ -3747,6 +5287,25 @@ class NaOverlay29Functions:
         None,
         "Checks if a monster is a given type.\n\nr0: entity pointer\nr1: type"
         " ID\nreturn: bool",
+    )
+
+    CanSeeInvisibleMonsters = Symbol(
+        [0x25CAC],
+        [0x2301EEC],
+        None,
+        "Returns whether a certain monster can see other invisible monsters.\nTo be"
+        " precise, this function returns true if the monster is holding Goggle Specs or"
+        " if it has the status status::STATUS_EYEDROPS.\n\nr0: Entity pointer\nreturn:"
+        " True if the monster can see invisible monsters.",
+    )
+
+    HasDropeyeStatus = Symbol(
+        [0x25D10],
+        [0x2301F50],
+        None,
+        "Returns whether a certain monster is under the effect of"
+        " status::STATUS_DROPEYE.\n\nr0: Entity pointer\nreturn: True if the monster"
+        " has dropeye status.",
     )
 
     IqSkillIsEnabled = Symbol(
@@ -3843,6 +5402,14 @@ class NaOverlay29Functions:
         "Cures the target's cringe, confusion, cowering, pause, taunt, encore or"
         " infatuated status due to the action of the user, and prints the event to the"
         " log.\n\nr0: pointer to user\nr1: pointer to target",
+    )
+
+    RunMonsterAi = Symbol(
+        [0x2C100],
+        [0x2308340],
+        None,
+        "Runs the AI for a single monster to determine whether the monster can act and"
+        " which action it should perform if so\n\nr0: Pointer to monster\nr1: ?",
     )
 
     ApplyDamage = Symbol(
@@ -4415,6 +5982,49 @@ class NaOverlay29Functions:
         " exclusive item, 0 otherwise.\n\nr0: pointer to entity\nreturn: int",
     )
 
+    AiConsiderMove = Symbol(
+        [0x3D640],
+        [0x2319880],
+        None,
+        "The AI uses this function to check if a move has any potential targets, to"
+        " calculate the list of potential targets and to calculate the move's special"
+        " weight.\nThis weight will be higher if the pokémon has weak-type picker and"
+        " the target is weak to the move (allies only, enemies always get a result of 1"
+        " even if the move is super effective). More things could affect the"
+        " result.\nThis function also sets the flag can_be_used on the ai_possible_move"
+        " struct if it makes sense to use it.\nMore research is needed. There's more"
+        " documentation about this special weight. Does all the documented behavior"
+        " happen in this function?\n\nr0: ai_possible_move struct for this move\nr1:"
+        " Entity pointer\nr2: Move pointer\nreturn: Move's calculated special weight",
+    )
+
+    TryAddTargetToAiTargetList = Symbol(
+        [0x3DD70],
+        [0x2319FB0],
+        None,
+        "Checks if the specified target is eligible to be targeted by the AI and if so"
+        " adds it to the list of targets. This function also fills an array that seems"
+        " to contain the directions in which the user should turn to look at each of"
+        " the targets in the list, as well as a third unknown array.\n\nr0: Number of"
+        " existing targets in the list\nr1: Move's AI range field\nr2: User entity"
+        " pointer\nr3: Target entity pointer\nstack[0]: Move pointer\nstack[1]:"
+        " check_all_conditions parameter to pass to IsAiTargetEligible\nreturn: New"
+        " number of targets in the target list",
+    )
+
+    IsAiTargetEligible = Symbol(
+        [0x3DE64],
+        [0x231A0A4],
+        None,
+        "Checks if a given target is eligible to be targeted by the AI with a certain"
+        " move\n\nr0: Move's AI range field\nr1: User entity pointer\nr2: Target entity"
+        " pointer\nr3: Move pointer\nstack[0]: True to check all the possible"
+        " move_ai_condition values, false to only check for"
+        " move_ai_condition::AI_CONDITION_RANDOM (if the move has a different ai"
+        " condition, the result will be false).\nreturn: True if the target is"
+        " eligible, false otherwise",
+    )
+
     IsTargetInRange = Symbol(
         [0x3E454],
         [0x231A694],
@@ -4540,6 +6150,35 @@ class NaOverlay29Functions:
         " percentage (100*p). 0 is treated specially and guarantees success.",
     )
 
+    CanAiUseMove = Symbol(
+        [0x48834],
+        [0x2324A74],
+        None,
+        "Checks if an AI-controlled monster can use a move.\nWill return false if the"
+        " any of the flags move::f_exists, move::f_subsequent_in_link_chain or"
+        " move::f_disabled is true. The function does not check if the flag"
+        " move::f_enabled_for_ai is set. This function also returns true if the call to"
+        " CanMonsterUseMove is true.\nThe function contains a loop that is supposed to"
+        " check other moves after the specified one, but the loop breaks after it finds"
+        " a move that isn't linked, which is always true given the checks in place at"
+        " the start of the function.\n\nr0: Entity pointer\nr1: Move index\nr2:"
+        " extra_checks parameter when calling CanMonsterUseMove\nreturn: True if the AI"
+        " can use the move (not accounting for move::f_enabled_for_ai)",
+    )
+
+    CanMonsterUseMove = Symbol(
+        [0x488E4],
+        [0x2324B24],
+        None,
+        "Checks if a monster can use the given move.\nWill always return true for the"
+        " regular attack. Will return false if the move if the flag move::f_disabled is"
+        " true, if the flag move::f_sealed is true. More things will be checked if the"
+        " extra_checks parameter is true.\n\nr0: Entity pointer\nr1: Move pointer\nr2:"
+        " True to check whether the move is out of PP, whether it can be used under the"
+        " taunted status and whether the encore status prevents using the move\nreturn:"
+        " True if the monster can use the move, false otherwise.",
+    )
+
     UpdateMovePp = Symbol(
         [0x48B4C],
         [0x2324D8C],
@@ -4554,7 +6193,30 @@ class NaOverlay29Functions:
         [0x2324E64],
         None,
         "Gets the lower 2 bytes of a 4-byte number and interprets it as a signed"
-        " short.\n\nr0: 4-byte number x\nreturn: (short)x",
+        " short.\n\nr0: 4-byte number x\nreturn: (short) x",
+    )
+
+    GetMoveAnimationId = Symbol(
+        [0x498D0],
+        [0x2325B10],
+        None,
+        "Returns the move animation ID that should be played for a move.\nIt contains a"
+        " check for weather ball. After that, if the parameter"
+        " should_play_alternative_animation is false, the move ID is returned. If it's"
+        " true, there's a bunch of manual ID checks that result on a certain hardcoded"
+        " return value.\n\nr0: Move ID\nr1: Apparent weather for the monster who used"
+        " the move\nr2: Result of ShouldMovePlayADifferentAnimation\nreturn: Move"
+        " animation ID",
+    )
+
+    ShouldMovePlayAlternativeAnimation = Symbol(
+        [0x49A38],
+        [0x2325C78],
+        None,
+        "Checks whether a moved used by a monster should play its alternative"
+        " animation. Includes checks for Curse, Snore, Sleep Talk, Solar Beam and"
+        " 2-turn moves.\n\nr0: Pointer to the entity that used the move\nr1: Move"
+        " pointer\nreturn: True if the move should play its alternative animation",
     )
 
     DealDamageWithRecoil = Symbol(
@@ -4607,6 +6269,18 @@ class NaOverlay29Functions:
         " Pointer to some struct. The first byte contains the ID of the move used.",
     )
 
+    StatusCheckerCheck = Symbol(
+        [0x56E34],
+        [0x2333074],
+        None,
+        "Determines if using a given move against its intended targets would be"
+        " redundant because all of them already have the effect caused by said"
+        " move.\n\nr0: Pointer to the entity that is considering using the move\nr1:"
+        " Move pointer\nreturn: True if it makes sense to use the move, false if it"
+        " would be redundant given the effects it causes and the effects that all the"
+        " targets already have.",
+    )
+
     GetApparentWeather = Symbol(
         [0x58AC8],
         [0x2334D08],
@@ -4639,6 +6313,13 @@ class NaOverlay29Functions:
         "Get the tile at some position. If the coordinates are out of bounds, returns a"
         " pointer to a copy of the default tile.\n\nr0: x position\nr1: y"
         " position\nreturn: tile pointer",
+    )
+
+    GetStairsRoom = Symbol(
+        [0x5A1E8],
+        [0x2336428],
+        None,
+        "Returns the index of the room that contains the stairs\n\nreturn: Room index",
     )
 
     GravityIsActive = Symbol(
@@ -5671,6 +7352,9 @@ class NaOverlay29Functions:
 
 
 class NaOverlay29Data:
+    NECTAR_IQ_BOOST = Symbol(
+        [0x40144], [0x231C384], None, "IQ boost from ingesting Nectar."
+    )
 
     DUNGEON_STRUCT_SIZE = Symbol(
         [0x2838, 0x286C],
@@ -6214,18 +7898,11 @@ class NaOverlay29Data:
         " file.",
     )
 
-    NECTAR_IQ_BOOST = Symbol(
-        [0x40144], [0x231C384], None, "IQ boost from ingesting Nectar."
-    )
-
 
 class NaOverlay29Section:
     name = "overlay29"
     description = (
-        "The dungeon engine.\n\nThis is the 'main' overlay of dungeon mode. It controls"
-        " most things that happen in a Mystery Dungeon, such as dungeon layout"
-        " generation, dungeon menus, enemy AI, and generally just running each turn"
-        " while within a dungeon."
+        "Hard-coded immediate values (literals) in instructions within overlay 29."
     )
     loadaddress = 0x22DC240
     length = 0x77620
@@ -6233,998 +7910,11 @@ class NaOverlay29Section:
     data = NaOverlay29Data
 
 
-class NaOverlay0Functions:
-
-    pass
-
-
-class NaOverlay0Data:
-
-    TOP_MENU_MUSIC_ID = Symbol(
-        [0x1720], [0x22BE1A0], None, "Music ID to play in the top menu."
-    )
-
-
-class NaOverlay0Section:
-    name = "overlay0"
-    description = (
-        "Likely contains supporting data and code related to the top menu.\n\nThis is"
-        " loaded together with overlay 1 while in the top menu. Since it's in overlay"
-        " group 2 (together with overlay 10, which is another 'data' overlay), this"
-        " overlay probably plays a similar role. It mentions several files from the"
-        " BACK folder that are known backgrounds for the top menu."
-    )
-    loadaddress = 0x22BCA80
-    length = 0x609A0
-    functions = NaOverlay0Functions
-    data = NaOverlay0Data
-
-
-class NaOverlay20Functions:
-
-    pass
-
-
-class NaOverlay20Data:
-
-    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238CF84], 0x18, "")
-
-    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238CF9C], 0x18, "")
-
-    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238CFB4], 0x18, "")
-
-    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238CFCC], 0x20, "")
-
-    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238CFEC], 0x28, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
-
-
-class NaOverlay20Section:
-    name = "overlay20"
-    description = "Controls the Recycle Shop."
-    loadaddress = 0x238A140
-    length = 0x3000
-    functions = NaOverlay20Functions
-    data = NaOverlay20Data
-
-
-class NaOverlay13Functions:
-
-    pass
-
-
-class NaOverlay13Data:
-
-    STARTERS_PARTNER_IDS = Symbol(
-        [0x1F4C], [0x238C08C], 0x2A, "type: struct monster_id_16[21]"
-    )
-
-    STARTERS_HERO_IDS = Symbol(
-        [0x1F78], [0x238C0B8], 0x40, "type: struct monster_id_16[32]"
-    )
-
-    STARTERS_STRINGS = Symbol([0x200C], [0x238C14C], 0x60, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238C1AC], 0x84, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238C230], 0x160, "")
-
-    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238CECC], 0x48, "")
-
-
-class NaOverlay13Section:
-    name = "overlay13"
-    description = (
-        "Controls the personality test, including the available partners and playable"
-        " Pokémon. The actual personality test questions are stored in the MESSAGE"
-        " folder."
-    )
-    loadaddress = 0x238A140
-    length = 0x2E80
-    functions = NaOverlay13Functions
-    data = NaOverlay13Data
-
-
-class NaOverlay11Functions:
-
-    FuncThatCallsCommandParsing = Symbol([0xF24], [0x22DD164], None, "")
-
-    ScriptCommandParsing = Symbol([0x1B24], [0x22DDD64], None, "")
-
-    SsbLoad2 = Symbol([0x84BC], [0x22E46FC], None, "")
-
-    StationLoadHanger = Symbol([0x8994], [0x22E4BD4], None, "")
-
-    ScriptStationLoadTalk = Symbol([0x91A4], [0x22E53E4], None, "")
-
-    SsbLoad1 = Symbol([0x9B10], [0x22E5D50], None, "")
-
-    ScriptSpecialProcessCall = Symbol(
-        [0xAED8],
-        [0x22E7118],
-        None,
-        "Processes calls to the OPCODE_PROCESS_SPECIAL script opcode.\n\nr0: some"
-        " struct containing a callback of some sort, only used for special process ID"
-        " 18\nr1: special process ID\nr2: first argument, if relevant? Probably"
-        " corresponds to the second parameter of OPCODE_PROCESS_SPECIAL\nr3: second"
-        " argument, if relevant? Probably corresponds to the third parameter of"
-        " OPCODE_PROCESS_SPECIAL\nreturn: return value of the special process if it has"
-        " one, otherwise 0",
-    )
-
-    GetSpecialRecruitmentSpecies = Symbol(
-        [0xBDFC],
-        [0x22E803C],
-        None,
-        "Returns an entry from RECRUITMENT_TABLE_SPECIES.\n\nNote: This indexes without"
-        " doing bounds checking.\n\nr0: index into RECRUITMENT_TABLE_SPECIES\nreturn:"
-        " enum monster_id",
-    )
-
-    PrepareMenuAcceptTeamMember = Symbol(
-        [0xBE40],
-        [0x22E8080],
-        None,
-        "Implements SPECIAL_PROC_PREPARE_MENU_ACCEPT_TEAM_MEMBER (see"
-        " ScriptSpecialProcessCall).\n\nr0: index into RECRUITMENT_TABLE_SPECIES",
-    )
-
-    InitRandomNpcJobs = Symbol(
-        [0xBEE4],
-        [0x22E8124],
-        None,
-        "Implements SPECIAL_PROC_INIT_RANDOM_NPC_JOBS (see"
-        " ScriptSpecialProcessCall).\n\nr0: job type? 0 is a random NPC job, 1 is a"
-        " bottle mission\nr1: ?",
-    )
-
-    GetRandomNpcJobType = Symbol(
-        [0xBF7C],
-        [0x22E81BC],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_TYPE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: job type?",
-    )
-
-    GetRandomNpcJobSubtype = Symbol(
-        [0xBF94],
-        [0x22E81D4],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_SUBTYPE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: job subtype?",
-    )
-
-    GetRandomNpcJobStillAvailable = Symbol(
-        [0xBFB0],
-        [0x22E81F0],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_STILL_AVAILABLE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: bool",
-    )
-
-    AcceptRandomNpcJob = Symbol(
-        [0xC018],
-        [0x22E8258],
-        None,
-        "Implements SPECIAL_PROC_ACCEPT_RANDOM_NPC_JOB (see"
-        " ScriptSpecialProcessCall).\n\nreturn: bool",
-    )
-
-    GroundMainLoop = Symbol(
-        [0xC534],
-        [0x22E8774],
-        None,
-        "Appears to be the main loop for ground mode.\n\nBased on debug print"
-        " statements and general code structure, it seems contain a core loop, and"
-        " dispatches to various functions in response to different events.\n\nr0: mode,"
-        " which is stored globally and used in switch statements for dispatch\nreturn:"
-        " return code",
-    )
-
-    GetAllocArenaGround = Symbol(
-        [0xD11C],
-        [0x22E935C],
-        None,
-        "The GetAllocArena function used for ground mode. See SetMemAllocatorParams for"
-        " more information.\n\nr0: initial memory arena pointer, or null\nr1: flags"
-        " (see MemAlloc)\nreturn: memory arena pointer, or null",
-    )
-
-    GetFreeArenaGround = Symbol(
-        [0xD180],
-        [0x22E93C0],
-        None,
-        "The GetFreeArena function used for ground mode. See SetMemAllocatorParams for"
-        " more information.\n\nr0: initial memory arena pointer, or null\nr1: pointer"
-        " to free\nreturn: memory arena pointer, or null",
-    )
-
-    GroundMainReturnDungeon = Symbol(
-        [0xD1D4],
-        [0x22E9414],
-        None,
-        "Implements SPECIAL_PROC_RETURN_DUNGEON (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-    GroundMainNextDay = Symbol(
-        [0xD1F8],
-        [0x22E9438],
-        None,
-        "Implements SPECIAL_PROC_NEXT_DAY (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-    JumpToTitleScreen = Symbol(
-        [0xD39C],
-        [0x22E95DC],
-        None,
-        "Implements SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and SPECIAL_PROC_0x1A (see"
-        " ScriptSpecialProcessCall).\n\nr0: int, argument value for"
-        " SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and -1 for SPECIAL_PROC_0x1A\nreturn: bool"
-        " (but note that the special process ignores this and always returns 0)",
-    )
-
-    ReturnToTitleScreen = Symbol(
-        [0xD454],
-        [0x22E9694],
-        None,
-        "Implements SPECIAL_PROC_RETURN_TO_TITLE_SCREEN (see"
-        " ScriptSpecialProcessCall).\n\nr0: fade duration\nreturn: bool (but note that"
-        " the special process ignores this and always returns 0)",
-    )
-
-    ScriptSpecialProcess0x16 = Symbol(
-        [0xD4B4],
-        [0x22E96F4],
-        None,
-        "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
-    )
-
-    SprintfStatic = Symbol(
-        [0x2CC8C],
-        [0x2308ECC],
-        None,
-        "Statically defined copy of sprintf(3) in overlay 11. See arm9.yml for more"
-        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
-        " characters printed, excluding the null-terminator",
-    )
-
-    StatusUpdate = Symbol(
-        [0x37858],
-        [0x2313A98],
-        None,
-        "Implements SPECIAL_PROC_STATUS_UPDATE (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-
-class NaOverlay11Data:
-
-    SCRIPT_OP_CODES = Symbol(
-        [0x3C3D0],
-        [0x2318610],
-        0xBF8,
-        "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
-        " opcodes underpin the various ExplorerScript functions you can call in the"
-        " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
-    )
-
-    C_ROUTINES = Symbol(
-        [0x405E8],
-        [0x231C828],
-        0x15E8,
-        "Common routines used within the unionall.ssb script (the master script). There"
-        " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
-        " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
-        " common_routine_table",
-    )
-
-    OBJECTS = Symbol(
-        [0x42C14],
-        [0x231EE54],
-        0x1A04,
-        "Table of objects for the script engine, which can be placed in scenes. There"
-        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
-        " script_object[length / 12]",
-    )
-
-    RECRUITMENT_TABLE_LOCATIONS = Symbol(
-        [0x44654],
-        [0x2320894],
-        0x16,
-        "Table of dungeon IDs corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
-    )
-
-    RECRUITMENT_TABLE_LEVELS = Symbol(
-        [0x4466C],
-        [0x23208AC],
-        0x2C,
-        "Table of levels for recruited Pokémon, corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
-    )
-
-    RECRUITMENT_TABLE_SPECIES = Symbol(
-        [0x44698],
-        [0x23208D8],
-        0x2C,
-        "Table of Pokémon recruited at special locations, such as at the ends of"
-        " certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during"
-        " a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes"
-        " both Heatran genders. It also includes Darkrai for some reason?\n\ntype:"
-        " struct monster_id_16[22]",
-    )
-
-    LEVEL_TILEMAP_LIST = Symbol([0x44AEC], [0x2320D2C], 0x288, "")
-
-    OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
-        [0x46E2C],
-        [0x232306C],
-        None,
-        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16"
-        " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
-        " overlay_group_id in the C headers for a mapping between group ID and overlay"
-        " number)\n- function pointer to entry point\n- function pointer to"
-        " destructor\n- possibly function pointer to frame-update function?",
-    )
-
-    UNIONALL_RAM_ADDRESS = Symbol([0x48A64], [0x2324CA4], None, "[Runtime]")
-
-    GROUND_STATE_MAP = Symbol([0x48A80], [0x2324CC0], None, "[Runtime]")
-
-    GROUND_STATE_PTRS = Symbol(
-        [0x48AB4],
-        [0x2324CF4],
-        0x18,
-        "Host pointers to multiple structure used for performing an overworld"
-        " scene\n\ntype: struct main_ground_data",
-    )
-
-
-class NaOverlay11Section:
-    name = "overlay11"
-    description = (
-        "The script engine.\n\nThis is the 'main' overlay of ground mode. The script"
-        " engine is what runs the ground mode scripts contained in the SCRIPT folder,"
-        " which are written in a custom scripting language. These scripts encode things"
-        " like cutscenes, screen transitions, ground mode events, and tons of other"
-        " things related to ground mode."
-    )
-    loadaddress = 0x22DC240
-    length = 0x48C40
-    functions = NaOverlay11Functions
-    data = NaOverlay11Data
-
-
-class NaOverlay28Functions:
-
-    pass
-
-
-class NaOverlay28Data:
-
-    pass
-
-
-class NaOverlay28Section:
-    name = "overlay28"
-    description = "Controls the staff credits sequence."
-    loadaddress = 0x238A140
-    length = 0xC60
-    functions = NaOverlay28Functions
-    data = NaOverlay28Data
-
-
-class NaOverlay25Functions:
-
-    pass
-
-
-class NaOverlay25Data:
-
-    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
-
-    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238B4CC], 0x20, "")
-
-    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238B4EC], 0x20, "")
-
-
-class NaOverlay25Section:
-    name = "overlay25"
-    description = "Controls Xatu Appraisal."
-    loadaddress = 0x238A140
-    length = 0x14C0
-    functions = NaOverlay25Functions
-    data = NaOverlay25Data
-
-
-class NaOverlay4Functions:
-
-    pass
-
-
-class NaOverlay4Data:
-
-    pass
-
-
-class NaOverlay4Section:
-    name = "overlay4"
-    description = "Controls the Trade Items submenu within the top menu."
-    loadaddress = 0x233CA80
-    length = 0x2BE0
-    functions = NaOverlay4Functions
-    data = NaOverlay4Data
-
-
-class NaOverlay7Functions:
-
-    pass
-
-
-class NaOverlay7Data:
-
-    pass
-
-
-class NaOverlay7Section:
-    name = "overlay7"
-    description = (
-        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233CA80
-    length = 0x5100
-    functions = NaOverlay7Functions
-    data = NaOverlay7Data
-
-
-class NaOverlay1Functions:
-
-    pass
-
-
-class NaOverlay1Data:
-
-    CONTINUE_CHOICE = Symbol([0x12048], [0x233B568], 0x20, "")
-
-    SUBMENU = Symbol([0x12068], [0x233B588], 0x48, "")
-
-    MAIN_MENU = Symbol([0x120B0], [0x233B5D0], 0xA0, "")
-
-    MAIN_MENU_CONFIRM = Symbol([0x1222C], [0x233B74C], 0x18, "")
-
-    MAIN_DEBUG_MENU_1 = Symbol([0x122F0], [0x233B810], 0x60, "")
-
-    MAIN_DEBUG_MENU_2 = Symbol([0x12370], [0x233B890], 0x38, "")
-
-
-class NaOverlay1Section:
-    name = "overlay1"
-    description = (
-        "Likely controls the top menu.\n\nThis is loaded together with overlay 0 while"
-        " in the top menu. Since it's in overlay group 1 (together with other 'main'"
-        " overlays like overlay 11 and overlay 29), this is probably the"
-        " controller.\n\nSeems to contain code related to Wi-Fi rescue. It mentions"
-        " several files from the GROUND and BACK folders."
-    )
-    loadaddress = 0x2329520
-    length = 0x12D20
-    functions = NaOverlay1Functions
-    data = NaOverlay1Data
-
-
-class NaOverlay6Functions:
-
-    pass
-
-
-class NaOverlay6Data:
-
-    pass
-
-
-class NaOverlay6Section:
-    name = "overlay6"
-    description = "Controls the Wonder Mail S submenu within the top menu."
-    loadaddress = 0x233CA80
-    length = 0x2460
-    functions = NaOverlay6Functions
-    data = NaOverlay6Data
-
-
-class NaOverlay18Functions:
-
-    pass
-
-
-class NaOverlay18Data:
-
-    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238D320], 0x18, "")
-
-    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238D338], 0x20, "")
-
-    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238D358], 0x20, "")
-
-    MOVES_MAIN_MENU = Symbol([0x3238], [0x238D378], 0x20, "")
-
-    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238D398], 0x28, "")
-
-    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238D3C0], 0x30, "")
-
-    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238D3F0], 0x48, "")
-
-    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238D438], 0x48, "")
-
-    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238D480], 0x48, "")
-
-
-class NaOverlay18Section:
-    name = "overlay18"
-    description = "Controls the Electivire Link Shop."
-    loadaddress = 0x238A140
-    length = 0x3500
-    functions = NaOverlay18Functions
-    data = NaOverlay18Data
-
-
-class NaOverlay2Functions:
-
-    pass
-
-
-class NaOverlay2Data:
-
-    pass
-
-
-class NaOverlay2Section:
-    name = "overlay2"
-    description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
-    )
-    loadaddress = 0x2329520
-    length = 0x2AFA0
-    functions = NaOverlay2Functions
-    data = NaOverlay2Data
-
-
-class NaOverlay12Functions:
-
-    pass
-
-
-class NaOverlay12Data:
-
-    pass
-
-
-class NaOverlay12Section:
-    name = "overlay12"
-    description = "Unused; all zeroes."
-    loadaddress = 0x238A140
-    length = 0x20
-    functions = NaOverlay12Functions
-    data = NaOverlay12Data
-
-
-class NaOverlay22Functions:
-
-    pass
-
-
-class NaOverlay22Data:
-
-    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
-
-    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238E880], 0x20, "")
-
-    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
-
-    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
-
-
-class NaOverlay22Section:
-    name = "overlay22"
-    description = "Controls the Kecleon Shop in Treasure Town."
-    loadaddress = 0x238A140
-    length = 0x4B40
-    functions = NaOverlay22Functions
-    data = NaOverlay22Data
-
-
-class NaOverlay10Functions:
-
-    SprintfStatic = Symbol(
-        [0x9CC, 0x4DBC],
-        [0x22BD44C, 0x22C183C],
-        None,
-        "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
-        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
-        " characters printed, excluding the null-terminator",
-    )
-
-
-class NaOverlay10Data:
-
-    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
-        [0x798C],
-        [0x22C440C],
-        0x1,
-        "The first dungeon that can have extra traps spawn in Monster Houses, Dark"
-        " Hill\n\ntype: struct dungeon_id_8",
-    )
-
-    BAD_POISON_DAMAGE_COOLDOWN = Symbol(
-        [0x7994],
-        [0x22C4414],
-        0x2,
-        "The number of turns between passive bad poison (toxic) damage.",
-    )
-
-    PROTEIN_STAT_BOOST = Symbol(
-        [0x79A0],
-        [0x22C4420],
-        0x2,
-        "The permanent attack boost from ingesting a Protein.",
-    )
-
-    SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
-        [0x79B0],
-        [0x22C4430],
-        None,
-        "The maximum number of enemies that can spawn on a floor without a monster"
-        " house (15).",
-    )
-
-    OREN_BERRY_DAMAGE = Symbol(
-        [0x79B8], [0x22C4438], 0x2, "Damage dealt by eating an Oren Berry."
-    )
-
-    SITRUS_BERRY_HP_RESTORATION = Symbol(
-        [0x79F8],
-        [0x22C4478],
-        0x2,
-        "The amount of HP restored by eating a Sitrus Berry.",
-    )
-
-    EXP_ELITE_EXP_BOOST = Symbol(
-        [0x7A28],
-        [0x22C44A8],
-        0x2,
-        "The percentage increase in experience from the Exp. Elite IQ skill",
-    )
-
-    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
-        [0x7A2C],
-        [0x22C44AC],
-        0x2,
-        "The maximum number of extra non-monster spawns (items/traps) in a Monster"
-        " House, 7",
-    )
-
-    GOLD_THORN_POWER = Symbol(
-        [0x7A50], [0x22C44D0], 0x2, "Attack power for Golden Thorns."
-    )
-
-    SPAWN_COOLDOWN = Symbol(
-        [0x7A5C],
-        [0x22C44DC],
-        0x2,
-        "The number of turns between enemy spawns under normal conditions.",
-    )
-
-    ORAN_BERRY_FULL_HP_BOOST = Symbol(
-        [0x7A74],
-        [0x22C44F4],
-        0x2,
-        "The permanent HP boost from eating an Oran Berry at full HP (0).",
-    )
-
-    LIFE_SEED_HP_BOOST = Symbol(
-        [0x7A78], [0x22C44F8], 0x2, "The permanent HP boost from eating a Life Seed."
-    )
-
-    EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
-        [0x7B0C],
-        [0x22C458C],
-        0x2,
-        "The percentage increase in experience from exp-boosting exclusive items",
-    )
-
-    INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
-        [0x7B38],
-        [0x22C45B8],
-        0x2,
-        "The percentage chance that Intimidator will activate.",
-    )
-
-    ORAN_BERRY_HP_RESTORATION = Symbol(
-        [0x7B6C], [0x22C45EC], 0x2, "The amount of HP restored by eating a Oran Berry."
-    )
-
-    SITRUS_BERRY_FULL_HP_BOOST = Symbol(
-        [0x7B74],
-        [0x22C45F4],
-        0x2,
-        "The permanent HP boost from eating a Sitrus Berry at full HP.",
-    )
-
-    BURN_DAMAGE_COOLDOWN = Symbol(
-        [0x7B90], [0x22C4610], 0x2, "The number of turns between passive burn damage."
-    )
-
-    STICK_POWER = Symbol([0x7BA4], [0x22C4624], 0x2, "Attack power for Sticks.")
-
-    SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
-        [0x7BC0],
-        [0x22C4640],
-        0x2,
-        "The number of turns between enemy spawns when the Thief Alert condition is"
-        " active.",
-    )
-
-    MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
-        [0x7BE0],
-        [0x22C4660],
-        0x2,
-        "The maximum number of monster spawns in a Monster House, 30, but multiplied by"
-        " 2/3 for some reason (so the actual maximum is 45)",
-    )
-
-    SPEED_BOOST_TURNS = Symbol(
-        [0x7BEC],
-        [0x22C466C],
-        None,
-        "Number of turns (250) after which Speed Boost will trigger and increase speed"
-        " by one stage.",
-    )
-
-    MIRACLE_CHEST_EXP_BOOST = Symbol(
-        [0x7C18],
-        [0x22C4698],
-        0x2,
-        "The percentage increase in experience from the Miracle Chest item",
-    )
-
-    WONDER_CHEST_EXP_BOOST = Symbol(
-        [0x7C1C],
-        [0x22C469C],
-        0x2,
-        "The percentage increase in experience from the Wonder Chest item",
-    )
-
-    SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
-        [0x7C24],
-        [0x22C46A4],
-        None,
-        "The maximum number of enemies that can spawn on a floor with a monster house,"
-        " not counting those in the monster house (4).",
-    )
-
-    POISON_DAMAGE_COOLDOWN = Symbol(
-        [0x7C28], [0x22C46A8], 0x2, "The number of turns between passive poison damage."
-    )
-
-    GEO_PEBBLE_DAMAGE = Symbol(
-        [0x7C34], [0x22C46B4], 0x2, "Damage dealt by Geo Pebbles."
-    )
-
-    GRAVELEROCK_DAMAGE = Symbol(
-        [0x7C38], [0x22C46B8], 0x2, "Damage dealt by Gravelerocks."
-    )
-
-    RARE_FOSSIL_DAMAGE = Symbol(
-        [0x7C3C], [0x22C46BC], 0x2, "Damage dealt by Rare Fossils."
-    )
-
-    GINSENG_CHANCE_3 = Symbol(
-        [0x7C40],
-        [0x22C46C0],
-        0x2,
-        "The percentage chance for...something to be set to 3 in a calculation related"
-        " to the Ginseng boost.",
-    )
-
-    ZINC_STAT_BOOST = Symbol(
-        [0x7C44],
-        [0x22C46C4],
-        0x2,
-        "The permanent special defense boost from ingesting a Zinc.",
-    )
-
-    IRON_STAT_BOOST = Symbol(
-        [0x7C48],
-        [0x22C46C8],
-        0x2,
-        "The permanent defense boost from ingesting an Iron.",
-    )
-
-    CALCIUM_STAT_BOOST = Symbol(
-        [0x7C4C],
-        [0x22C46CC],
-        0x2,
-        "The permanent special attack boost from ingesting a Calcium.",
-    )
-
-    CORSOLA_TWIG_POWER = Symbol(
-        [0x7C58], [0x22C46D8], 0x2, "Attack power for Corsola Twigs."
-    )
-
-    CACNEA_SPIKE_POWER = Symbol(
-        [0x7C5C], [0x22C46DC], 0x2, "Attack power for Cacnea Spikes."
-    )
-
-    GOLD_FANG_POWER = Symbol([0x7C60], [0x22C46E0], 0x2, "Attack power for Gold Fangs.")
-
-    SILVER_SPIKE_POWER = Symbol(
-        [0x7C64], [0x22C46E4], 0x2, "Attack power for Silver Spikes."
-    )
-
-    IRON_THORN_POWER = Symbol(
-        [0x7C68], [0x22C46E8], 0x2, "Attack power for Iron Thorns."
-    )
-
-    SLEEP_DURATION_RANGE = Symbol(
-        [0x7CA0],
-        [0x22C4720],
-        0x4,
-        "Appears to control the range of turns for which the sleep condition can"
-        " last.\n\nThe first two bytes are the low value of the range, and the later"
-        " two bytes are the high value.",
-    )
-
-    POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
-        [0x7D78],
-        [0x22C47F8],
-        0x4,
-        "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
-        " fixed-point number (8 fraction bits)",
-    )
-
-    AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
-        [0x7DC4],
-        [0x22C4844],
-        None,
-        "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
-        " number (8 fraction bits)",
-    )
-
-    SPEED_BOOST_DURATION_RANGE = Symbol(
-        [0x7E08],
-        [0x22C4888],
-        0x4,
-        "Appears to control the range of turns for which a speed boost can last.\n\nThe"
-        " first two bytes are the low value of the range, and the later two bytes are"
-        " the high value.",
-    )
-
-    OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        [0x8318],
-        [0x22C4D98],
-        0x54,
-        "Table of multipliers for offensive stats (attack/special attack) for each"
-        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-    )
-
-    DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        [0x836C],
-        [0x22C4DEC],
-        0x54,
-        "Table of multipliers for defensive stats (defense/special defense) for each"
-        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-    )
-
-    RANDOM_MUSIC_ID_TABLE = Symbol(
-        [0x877C],
-        [0x22C51FC],
-        0xF0,
-        "Table of music IDs for dungeons with a random assortment of music"
-        " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
-        " row contains the possible music IDs for a given group, from which the music"
-        " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
-    )
-
-    MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        [0x898C],
-        [0x22C540C],
-        0x54,
-        "Table of multipliers for the accuracy stat for males for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        [0x89E0],
-        [0x22C5460],
-        0x54,
-        "Table of multipliers for the evasion stat for males for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        [0x8A34],
-        [0x22C54B4],
-        0x54,
-        "Table of multipliers for the accuracy stat for females for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        [0x8A88],
-        [0x22C5508],
-        0x54,
-        "Table of multipliers for the evasion stat for females for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    MUSIC_ID_TABLE = Symbol(
-        [0x8ADC],
-        [0x22C555C],
-        0x154,
-        "List of music IDs used in dungeons with a single music track.\n\nThis is an"
-        " array of 170 2-byte music IDs, and is indexed into by the music value in the"
-        " floor properties struct for a given floor. Music IDs with the highest bit set"
-        " (0x8000) are indexes into the RANDOM_MUSIC_ID_TABLE.\n\ntype: struct"
-        " music_id_16[170] (or not a music ID if the highest bit is set)",
-    )
-
-    TYPE_MATCHUP_TABLE = Symbol(
-        [0x8C30],
-        [0x22C56B0],
-        0x288,
-        "Table of type matchups.\n\nEach row corresponds to the type matchups of a"
-        " specific attack type, with each entry within the row specifying the type's"
-        " effectiveness against a target type.\n\ntype: struct type_matchup_table",
-    )
-
-    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
-        [0x8EB8],
-        [0x22C5938],
-        0x4A4,
-        "Table of stats for monsters that can spawn in fixed rooms, pointed into by the"
-        " FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries"
-        " containing stat spreads for one monster entry each.\n\ntype: struct"
-        " fixed_room_monster_spawn_stats_entry[99]",
-    )
-
-    TILESET_PROPERTIES = Symbol([0x989C], [0x22C631C], 0x954, "")
-
-    FIXED_ROOM_PROPERTIES_TABLE = Symbol(
-        [0xA1F0],
-        [0x22C6C70],
-        0xC00,
-        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte"
-        " entries containing properties for a given fixed room ID.\n\nSee the struct"
-        " definitions and End45's dungeon data document for more info.\n\ntype: struct"
-        " fixed_room_properties_entry[256]",
-    )
-
-    MOVE_ANIMATION_INFO = Symbol([0xC5E4], [0x22C9064], None, "")
-
-
-class NaOverlay10Section:
-    name = "overlay10"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 10."
-    )
-    loadaddress = 0x22BCA80
-    length = 0x1F7A0
-    functions = NaOverlay10Functions
-    data = NaOverlay10Data
-
-
 class NaOverlay34Functions:
-
     pass
 
 
 class NaOverlay34Data:
-
     UNKNOWN_MENU_CONFIRM = Symbol([0xDE4], [0x22DD024], 0x18, "")
 
     DUNGEON_DEBUG_MENU = Symbol([0xE0C], [0x22DD04C], 0x28, "")
@@ -7241,13 +7931,59 @@ class NaOverlay34Section:
     data = NaOverlay34Data
 
 
-class NaOverlay3Functions:
+class NaOverlay1Functions:
+    pass
 
+
+class NaOverlay1Data:
+    CONTINUE_CHOICE = Symbol([0x12048], [0x233B568], 0x20, "")
+
+    SUBMENU = Symbol([0x12068], [0x233B588], 0x48, "")
+
+    MAIN_MENU = Symbol([0x120B0], [0x233B5D0], 0xA0, "")
+
+    MAIN_MENU_CONFIRM = Symbol([0x1222C], [0x233B74C], 0x18, "")
+
+    MAIN_DEBUG_MENU_1 = Symbol([0x122F0], [0x233B810], 0x60, "")
+
+    MAIN_DEBUG_MENU_2 = Symbol([0x12370], [0x233B890], 0x38, "")
+
+
+class NaOverlay1Section:
+    name = "overlay1"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 1."
+    )
+    loadaddress = 0x2329520
+    length = 0x12D20
+    functions = NaOverlay1Functions
+    data = NaOverlay1Data
+
+
+class NaOverlay2Functions:
+    pass
+
+
+class NaOverlay2Data:
+    pass
+
+
+class NaOverlay2Section:
+    name = "overlay2"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 2."
+    )
+    loadaddress = 0x2329520
+    length = 0x2AFA0
+    functions = NaOverlay2Functions
+    data = NaOverlay2Data
+
+
+class NaOverlay3Functions:
     pass
 
 
 class NaOverlay3Data:
-
     pass
 
 
@@ -7262,55 +7998,30 @@ class NaOverlay3Section:
     data = NaOverlay3Data
 
 
-class NaOverlay8Functions:
-
+class NaOverlay5Functions:
     pass
 
 
-class NaOverlay8Data:
-
+class NaOverlay5Data:
     pass
 
 
-class NaOverlay8Section:
-    name = "overlay8"
+class NaOverlay5Section:
+    name = "overlay5"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 8."
+        "Hard-coded immediate values (literals) in instructions within overlay 5."
     )
     loadaddress = 0x233CA80
-    length = 0x2200
-    functions = NaOverlay8Functions
-    data = NaOverlay8Data
-
-
-class NaOverlay30Functions:
-
-    pass
-
-
-class NaOverlay30Data:
-
-    pass
-
-
-class NaOverlay30Section:
-    name = "overlay30"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 30."
-    )
-    loadaddress = 0x2382820
-    length = 0x38A0
-    functions = NaOverlay30Functions
-    data = NaOverlay30Data
+    length = 0x3240
+    functions = NaOverlay5Functions
+    data = NaOverlay5Data
 
 
 class NaOverlay31Functions:
-
     pass
 
 
 class NaOverlay31Data:
-
     DUNGEON_MAIN_MENU = Symbol([0x75B4], [0x2389DD4], 0x40, "")
 
     DUNGEON_SUBMENU_1 = Symbol([0x7650], [0x2389E70], 0x20, "")
@@ -7337,548 +8048,171 @@ class NaOverlay31Section:
     data = NaOverlay31Data
 
 
-class NaOverlay16Functions:
-
+class NaOverlay15Functions:
     pass
 
 
-class NaOverlay16Data:
-
-    EVO_MENU_CONFIRM = Symbol([0x2BC8], [0x238CD08], 0x18, "")
-
-    EVO_SUBMENU = Symbol([0x2BE0], [0x238CD20], 0x20, "")
-
-    EVO_MAIN_MENU = Symbol([0x2C00], [0x238CD40], 0x20, "")
+class NaOverlay15Data:
+    BANK_MAIN_MENU = Symbol([0xF14], [0x238B054], 0x28, "")
 
 
-class NaOverlay16Section:
-    name = "overlay16"
+class NaOverlay15Section:
+    name = "overlay15"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 16."
+        "Hard-coded immediate values (literals) in instructions within overlay 15."
     )
     loadaddress = 0x238A140
-    length = 0x2D20
-    functions = NaOverlay16Functions
-    data = NaOverlay16Data
+    length = 0x1060
+    functions = NaOverlay15Functions
+    data = NaOverlay15Data
 
 
-class NaOverlay19Functions:
-
+class NaOverlay20Functions:
     pass
 
 
-class NaOverlay19Data:
+class NaOverlay20Data:
+    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238CF84], 0x18, "")
 
-    BAR_MENU_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
+    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238CF9C], 0x18, "")
 
-    BAR_MENU_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
+    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238CFB4], 0x18, "")
 
-    BAR_MAIN_MENU = Symbol([0x4110], [0x238E250], 0x20, "")
+    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238CFCC], 0x20, "")
 
-    BAR_SUBMENU_1 = Symbol([0x4130], [0x238E270], 0x20, "")
+    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238CFEC], 0x28, "")
 
-    BAR_SUBMENU_2 = Symbol([0x4150], [0x238E290], 0x30, "")
+    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
 
 
-class NaOverlay19Section:
-    name = "overlay19"
+class NaOverlay20Section:
+    name = "overlay20"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 19."
+        "Hard-coded immediate values (literals) in instructions within overlay 20."
     )
     loadaddress = 0x238A140
-    length = 0x4240
-    functions = NaOverlay19Functions
-    data = NaOverlay19Data
+    length = 0x3000
+    functions = NaOverlay20Functions
+    data = NaOverlay20Data
 
 
-class NaOverlay23Functions:
-
+class NaOverlay27Functions:
     pass
 
 
-class NaOverlay23Data:
+class NaOverlay27Data:
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238C95C], 0x18, "")
 
-    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
+    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238C974], 0x20, "")
 
-    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
+    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238C994], 0x20, "")
 
-    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238D354], 0x20, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238D374], 0x28, "")
+    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238C9B4], 0x28, "")
 
 
-class NaOverlay23Section:
-    name = "overlay23"
+class NaOverlay27Section:
+    name = "overlay27"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 23."
+        "Hard-coded immediate values (literals) in instructions within overlay 27."
     )
     loadaddress = 0x238A140
-    length = 0x3780
-    functions = NaOverlay23Functions
-    data = NaOverlay23Data
+    length = 0x2D60
+    functions = NaOverlay27Functions
+    data = NaOverlay27Data
 
 
-class NaOverlay24Functions:
-
+class NaOverlay12Functions:
     pass
 
 
-class NaOverlay24Data:
-
-    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
-
-    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238C538], 0x20, "")
-
-
-class NaOverlay24Section:
-    name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
-    loadaddress = 0x238A140
-    length = 0x24E0
-    functions = NaOverlay24Functions
-    data = NaOverlay24Data
-
-
-class NaOverlay26Functions:
-
+class NaOverlay12Data:
     pass
 
 
-class NaOverlay26Data:
-
-    pass
-
-
-class NaOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
-    )
-    loadaddress = 0x238A140
-    length = 0xE40
-    functions = NaOverlay26Functions
-    data = NaOverlay26Data
-
-
-class NaOverlay33Functions:
-
-    pass
-
-
-class NaOverlay33Data:
-
-    pass
-
-
-class NaOverlay33Section:
-    name = "overlay33"
+class NaOverlay12Section:
+    name = "overlay12"
     description = "Unused; all zeroes."
-    loadaddress = 0x2382820
+    loadaddress = 0x238A140
     length = 0x20
-    functions = NaOverlay33Functions
-    data = NaOverlay33Data
-
-
-class NaOverlay35Functions:
-
-    pass
-
-
-class NaOverlay35Data:
-
-    pass
-
-
-class NaOverlay35Section:
-    name = "overlay35"
-    description = "Unused; all zeroes."
-    loadaddress = 0x22BCA80
-    length = 0x20
-    functions = NaOverlay35Functions
-    data = NaOverlay35Data
-
-
-class NaRamFunctions:
-
-    pass
-
-
-class NaRamData:
-
-    DUNGEON_COLORMAP_PTR = Symbol(
-        [0x1B9CF4],
-        [0x21B9CF4],
-        0x4,
-        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
-        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
-        " indexes into when rendering colors. Some weather conditions modify the"
-        " colormap, which is how the color scheme changes when it's, e.g., raining.",
-    )
-
-    DUNGEON_STRUCT = Symbol(
-        [0x1B9D34],
-        [0x21B9D34],
-        0x2CB14,
-        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
-        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
-        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
-        " 29.\n\ntype: struct dungeon",
-    )
-
-    MOVE_DATA_TABLE = Symbol(
-        [0x2113CC],
-        [0x22113CC],
-        0x38C6,
-        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
-        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
-        " ARM 9 binary.\n\ntype: struct move_data_table",
-    )
-
-    FRAMES_SINCE_LAUNCH = Symbol(
-        [0x2A354C, 0x2A359C],
-        [0x22A354C, 0x22A359C],
-        0x4,
-        "Starts at 0 when the game is first launched, and continuously ticks up once"
-        " per frame while the game is running.",
-    )
-
-    BAG_ITEMS = Symbol(
-        [0x2A3824],
-        [0x22A3824],
-        0x12C,
-        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
-        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
-        " if filled.\n\ntype: struct item[50]",
-    )
-
-    BAG_ITEMS_PTR = Symbol([0x2A3BA8], [0x22A3BA8], 0x4, "Pointer to BAG_ITEMS.")
-
-    STORAGE_ITEMS = Symbol(
-        [0x2A3BAE],
-        [0x22A3BAE],
-        0x7D0,
-        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
-        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
-        " item_id_16[1000]",
-    )
-
-    STORAGE_ITEM_QUANTITIES = Symbol(
-        [0x2A437E],
-        [0x22A437E],
-        0x7D0,
-        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
-        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
-        " entry in this array is unused, and will be 0.",
-    )
-
-    KECLEON_SHOP_ITEMS_PTR = Symbol(
-        [0x2A4B50], [0x22A4B50], 0x4, "Pointer to KECLEON_SHOP_ITEMS."
-    )
-
-    KECLEON_SHOP_ITEMS = Symbol(
-        [0x2A4B54],
-        [0x22A4B54],
-        0x20,
-        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
-        [0x2A4B74],
-        [0x22A4B74],
-        0x20,
-        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
-        " to be used by the Kecleon Shop.",
-    )
-
-    KECLEON_WARES_ITEMS_PTR = Symbol(
-        [0x2A4B94], [0x22A4B94], 0x4, "Pointer to KECLEON_WARES_ITEMS."
-    )
-
-    KECLEON_WARES_ITEMS = Symbol(
-        [0x2A4B98],
-        [0x22A4B98],
-        0x10,
-        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_WARES_ITEMS = Symbol(
-        [0x2A4BA8],
-        [0x22A4BA8],
-        0x10,
-        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
-        " to be used by Kecleon Wares.",
-    )
-
-    MONEY_CARRIED = Symbol(
-        [0x2A4BB8],
-        [0x22A4BB8],
-        0x4,
-        "The amount of money the player is currently carrying.",
-    )
-
-    MONEY_STORED = Symbol(
-        [0x2A4BC4],
-        [0x22A4BC4],
-        0x4,
-        "The amount of money the player currently has stored in the Duskull Bank.",
-    )
-
-    LAST_NEW_MOVE = Symbol(
-        [0x2AAE4C],
-        [0x22AAE4C],
-        0x8,
-        "Move struct of the last new move introduced when learning a new move. Persists"
-        " even after the move selection is made in the menu.\n\ntype: struct move",
-    )
-
-    SCRIPT_VARS_VALUES = Symbol(
-        [0x2AB0AC],
-        [0x22AB0AC],
-        0x400,
-        "The table of game variable values. Its structure is determined by"
-        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
-        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
-        " the real length of this table is 0x400 based on the game code.\n\ntype:"
-        " struct script_var_value_table",
-    )
-
-    BAG_LEVEL = Symbol(
-        [0x2AB15C],
-        [0x22AB15C],
-        0x1,
-        "The player's bag level, which determines the bag capacity. This indexes"
-        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
-    )
-
-    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
-        [0x2AB4AC],
-        [0x22AB4AC],
-        0x1,
-        "The number of the special episode currently being played.\n\n0: normal,"
-        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
-        " Comes Team Charm!\n4: In the Future of Darkness",
-    )
-
-    PENDING_DUNGEON_ID = Symbol(
-        [0x2AB4FC],
-        [0x22AB4FC],
-        0x1,
-        "The ID of the selected dungeon when setting off from the"
-        " overworld.\n\nControls the text and map location during the 'map cutscene'"
-        " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
-    )
-
-    PENDING_STARTING_FLOOR = Symbol(
-        [0x2AB4FD],
-        [0x22AB4FD],
-        0x1,
-        "The floor number to start from in the dungeon specified by"
-        " PENDING_DUNGEON_ID.",
-    )
-
-    PLAY_TIME_SECONDS = Symbol(
-        [0x2AB694], [0x22AB694], 0x4, "The player's total play time in seconds."
-    )
-
-    PLAY_TIME_FRAME_COUNTER = Symbol(
-        [0x2AB698],
-        [0x22AB698],
-        0x1,
-        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
-        " with each rollover.",
-    )
-
-    TEAM_NAME = Symbol(
-        [0x2AB918],
-        [0x22AB918],
-        0xC,
-        "The team name.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    HERO_SPECIES_ID = Symbol(
-        [0x2ABDE4],
-        [0x22ABDE4],
-        0x2,
-        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
-        " with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    HERO_NICKNAME = Symbol(
-        [0x2ABE1A],
-        [0x22ABE1A],
-        0xA,
-        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    PARTNER_SPECIES_ID = Symbol(
-        [0x2ABE28],
-        [0x22ABE28],
-        0x2,
-        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
-        " together with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    LEADER_IQ_SKILLS = Symbol(
-        [0x2B5198],
-        [0x22B5198],
-        0xC,
-        "Unlocked IQ skills of the current leader, available for selection from the IQ"
-        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
-        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
-        " larger struct, together with other nearby data.",
-    )
-
-    LEADER_NICKNAME = Symbol(
-        [0x2B51AA],
-        [0x22B51AA],
-        0xA,
-        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
-        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
-        " typically uses.\n\nThis is presumably part of a larger struct, together with"
-        " other nearby data.",
-    )
-
-    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
-        [0x2B5200],
-        [0x22B5200],
-        0xC,
-        "Unlocked IQ skills of the second party member, available for selection from"
-        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
-        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
-        " a larger struct, together with other nearby data.",
-    )
-
-    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
-        [0x2B99C4],
-        [0x22B99C4],
-        0x4,
-        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
-        " the game is running.",
-    )
-
-    TURNING_ON_THE_SPOT_FLAG = Symbol(
-        [0x37C9A6],
-        [0x237C9A6],
-        0x1,
-        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
-    )
-
-    FLOOR_GENERATION_STATUS = Symbol(
-        [0x37CFBC],
-        [0x237CFBC],
-        0x40,
-        "[Runtime] Status data related to generation of the current floor in a"
-        " dungeon.\n\nThis data is populated as the dungeon floor is"
-        " generated.\n\ntype: struct floor_generation_status",
-    )
-
-
-class NaRamSection:
-    name = "ram"
-    description = (
-        "Main memory.\nData in this file aren't located in the ROM itself, and are"
-        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
-        " dumping ground for addresses that are useful to know about, but don't fall in"
-        " the address ranges of any of the other files. Dynamically loaded constructs"
-        " that do fall within the address range of a relevant binary should be listed"
-        " in the corresponding YAML file of that binary, since it still has direct"
-        " utility when reverse-engineering that particular binary."
-    )
-    loadaddress = 0x2000000
-    length = 0x400000
-    functions = NaRamFunctions
-    data = NaRamData
+    functions = NaOverlay12Functions
+    data = NaOverlay12Data
 
 
 class NaSections:
+    overlay18 = NaOverlay18Section
 
     arm9 = NaArm9Section
 
-    overlay5 = NaOverlay5Section
-
-    overlay14 = NaOverlay14Section
-
-    overlay27 = NaOverlay27Section
-
-    overlay9 = NaOverlay9Section
-
-    overlay32 = NaOverlay32Section
-
-    overlay17 = NaOverlay17Section
-
-    overlay21 = NaOverlay21Section
-
-    overlay15 = NaOverlay15Section
-
-    overlay29 = NaOverlay29Section
-
-    overlay0 = NaOverlay0Section
-
-    overlay20 = NaOverlay20Section
-
     overlay13 = NaOverlay13Section
-
-    overlay11 = NaOverlay11Section
-
-    overlay28 = NaOverlay28Section
 
     overlay25 = NaOverlay25Section
 
-    overlay4 = NaOverlay4Section
-
-    overlay7 = NaOverlay7Section
-
-    overlay1 = NaOverlay1Section
-
-    overlay6 = NaOverlay6Section
-
-    overlay18 = NaOverlay18Section
-
-    overlay2 = NaOverlay2Section
-
-    overlay12 = NaOverlay12Section
-
-    overlay22 = NaOverlay22Section
-
-    overlay10 = NaOverlay10Section
-
-    overlay34 = NaOverlay34Section
-
-    overlay3 = NaOverlay3Section
-
-    overlay8 = NaOverlay8Section
-
-    overlay30 = NaOverlay30Section
-
-    overlay31 = NaOverlay31Section
-
     overlay16 = NaOverlay16Section
-
-    overlay19 = NaOverlay19Section
-
-    overlay23 = NaOverlay23Section
-
-    overlay24 = NaOverlay24Section
 
     overlay26 = NaOverlay26Section
 
+    overlay30 = NaOverlay30Section
+
+    overlay21 = NaOverlay21Section
+
+    overlay32 = NaOverlay32Section
+
+    ram = NaRamSection
+
+    overlay17 = NaOverlay17Section
+
+    overlay19 = NaOverlay19Section
+
     overlay33 = NaOverlay33Section
+
+    overlay22 = NaOverlay22Section
+
+    overlay28 = NaOverlay28Section
+
+    overlay4 = NaOverlay4Section
+
+    overlay14 = NaOverlay14Section
+
+    overlay7 = NaOverlay7Section
+
+    overlay6 = NaOverlay6Section
 
     overlay35 = NaOverlay35Section
 
-    ram = NaRamSection
+    overlay23 = NaOverlay23Section
+
+    overlay8 = NaOverlay8Section
+
+    overlay9 = NaOverlay9Section
+
+    overlay24 = NaOverlay24Section
+
+    overlay0 = NaOverlay0Section
+
+    overlay10 = NaOverlay10Section
+
+    overlay11 = NaOverlay11Section
+
+    overlay29 = NaOverlay29Section
+
+    overlay34 = NaOverlay34Section
+
+    overlay1 = NaOverlay1Section
+
+    overlay2 = NaOverlay2Section
+
+    overlay3 = NaOverlay3Section
+
+    overlay5 = NaOverlay5Section
+
+    overlay31 = NaOverlay31Section
+
+    overlay15 = NaOverlay15Section
+
+    overlay20 = NaOverlay20Section
+
+    overlay27 = NaOverlay27Section
+
+    overlay12 = NaOverlay12Section
