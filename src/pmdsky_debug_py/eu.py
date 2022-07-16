@@ -1,4198 +1,6 @@
 from .protocol import Symbol
 
 
-class EuOverlay18Functions:
-    pass
-
-
-class EuOverlay18Data:
-    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238DE60], 0x18, "")
-
-    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238DE78], 0x20, "")
-
-    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238DE98], 0x20, "")
-
-    MOVES_MAIN_MENU = Symbol([0x3238], [0x238DEB8], 0x20, "")
-
-    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238DED8], 0x28, "")
-
-    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238DF00], 0x30, "")
-
-    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238DF30], 0x48, "")
-
-    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238DF78], 0x48, "")
-
-    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238DFC0], 0x48, "")
-
-
-class EuOverlay18Section:
-    name = "overlay18"
-    description = "Controls the Electivire Link Shop."
-    loadaddress = 0x238AC80
-    length = 0x3500
-    functions = EuOverlay18Functions
-    data = EuOverlay18Data
-
-
-class EuArm9Functions:
-    InitMemAllocTable = Symbol(
-        [0xDE0],
-        [0x2000DE0],
-        None,
-        "Initializes MEMORY_ALLOCATION_TABLE.\n\nSets up the default memory arena, sets"
-        " the default memory allocator parameters (calls SetMemAllocatorParams(0, 0)),"
-        " and does some other stuff.\n\nNo params.",
-    )
-
-    SetMemAllocatorParams = Symbol(
-        [0xE70],
-        [0x2000E70],
-        None,
-        "Sets global parameters for the memory allocator.\n\nThis includes"
-        " MEMORY_ALLOCATION_ARENA_GETTERS and some other stuff.\n\nDungeon mode uses"
-        " the default arena getters. Ground mode uses its own arena getters, which are"
-        " defined in overlay 11 and set (by calling this function) at the start of"
-        " GroundMainLoop.\n\nr0: GetAllocArena function pointer (GetAllocArenaDefault"
-        " is used if null)\nr1: GetFreeArena function pointer (GetFreeArenaDefault is"
-        " used if null)",
-    )
-
-    GetAllocArenaDefault = Symbol(
-        [0xEC0],
-        [0x2000EC0],
-        None,
-        "The default function for retrieving the arena for memory allocations. This"
-        " function always just returns the initial arena pointer.\n\nr0: initial memory"
-        " arena pointer, or null\nr1: flags (see MemAlloc)\nreturn: memory arena"
-        " pointer, or null",
-    )
-
-    GetFreeArenaDefault = Symbol(
-        [0xEC4],
-        [0x2000EC4],
-        None,
-        "The default function for retrieving the arena for memory freeing. This"
-        " function always just returns the initial arena pointer.\n\nr0: initial memory"
-        " arena pointer, or null\nr1: pointer to free\nreturn: memory arena pointer, or"
-        " null",
-    )
-
-    InitMemArena = Symbol(
-        [0xEC8],
-        [0x2000EC8],
-        None,
-        "Initializes a new memory arena with the given specifications, and records it"
-        " in the global MEMORY_ALLOCATION_TABLE.\n\nr0: arena struct to be"
-        " initialized\nr1: memory region to be owned by the arena, as {pointer,"
-        " length}\nr2: pointer to block metadata array for the arena to use\nr3:"
-        " maximum number of blocks that the arena can hold",
-    )
-
-    MemAllocFlagsToBlockType = Symbol(
-        [0xF44],
-        [0x2000F44],
-        None,
-        "Converts the internal alloc flags bitfield (struct mem_block field 0x4) to the"
-        " block type bitfield (struct mem_block field 0x0).\n\nr0: internal alloc"
-        " flags\nreturn: block type flags",
-    )
-
-    FindAvailableMemBlock = Symbol(
-        [0xF88],
-        [0x2000F88],
-        None,
-        "Searches through the given memory arena for a block with enough free"
-        " space.\n\nBlocks are searched in reverse order. For object allocations (i.e.,"
-        " not arenas), the block with the smallest amount of free space that still"
-        " suffices is returned. For arena allocations, the first satisfactory block"
-        " found is returned.\n\nr0: memory arena to search\nr1: internal alloc"
-        " flags\nr2: amount of space needed, in bytes\nreturn: index of the located"
-        " block in the arena's block array, or -1 if nothing is available",
-    )
-
-    SplitMemBlock = Symbol(
-        [0x1070],
-        [0x2001070],
-        None,
-        "Given a memory block at a given index, splits off another memory block of the"
-        " specified size from the end.\n\nSince blocks are stored in an array on the"
-        " memory arena struct, this is essentially an insertion operation, plus some"
-        " processing on the block being split and its child.\n\nr0: memory arena\nr1:"
-        " block index\nr2: internal alloc flags\nr3: number of bytes to split"
-        " off\nstack[0]: user alloc flags (to assign to the new block)\nreturn: the"
-        " newly split-off memory block",
-    )
-
-    MemAlloc = Symbol(
-        [0x1170],
-        [0x2001170],
-        None,
-        "Allocates some memory on the heap, returning a pointer to the starting"
-        " address.\n\nMemory allocation is done with region-based memory management."
-        " See MEMORY_ALLOCATION_TABLE for more information.\n\nThis function is just a"
-        " wrapper around MemLocateSet.\n\nr0: length in bytes\nr1: flags (see the"
-        " comment on struct mem_block::user_flags)\nreturn: pointer",
-    )
-
-    MemFree = Symbol(
-        [0x1188],
-        [0x2001188],
-        None,
-        "Frees heap-allocated memory.\n\nThis function is just a wrapper around"
-        " MemLocateUnset.\n\nr0: pointer",
-    )
-
-    MemArenaAlloc = Symbol(
-        [0x119C],
-        [0x200119C],
-        None,
-        "Allocates some memory on the heap and creates a new global memory arena with"
-        " it.\n\nThe actual allocation part works similarly to the normal"
-        " MemAlloc.\n\nr0: desired parent memory arena, or null\nr1: length of the"
-        " arena in bytes\nr2: maximum number of blocks that the arena can hold\nr3:"
-        " flags (see MemAlloc)\nreturn: memory arena pointer",
-    )
-
-    CreateMemArena = Symbol(
-        [0x1280],
-        [0x2001280],
-        None,
-        "Creates a new memory arena within a given block of memory.\n\nThis is"
-        " essentially a wrapper around InitMemArena, accounting for the space needed by"
-        " the arena metadata.\n\nr0: memory region in which to create the arena, as"
-        " {pointer, length}\nr1: maximum number of blocks that the arena can"
-        " hold\nreturn: memory arena pointer",
-    )
-
-    MemLocateSet = Symbol(
-        [0x1390],
-        [0x2001390],
-        None,
-        "The implementation for MemAlloc.\n\nAt a high level, memory is allocated by"
-        " choosing a memory arena, looking through blocks in the memory arena until a"
-        " free one that's large enough is found, then splitting off a new memory block"
-        " of the needed size.\n\nThis function is not fallible, i.e., it hangs the"
-        " whole program on failure, so callers can assume it never fails.\n\nThe name"
-        " for this function comes from the error message logged on failure, and it"
-        " reflects what the function does: locate an available block of memory and set"
-        " it up for the caller.\n\nr0: desired memory arena for allocation, or null"
-        " (MemAlloc passes null)\nr1: length in bytes\nr2: flags (see"
-        " MemAlloc)\nreturn: pointer to allocated memory",
-    )
-
-    MemLocateUnset = Symbol(
-        [0x1638],
-        [0x2001638],
-        None,
-        "The implementation for MemFree.\n\nAt a high level, memory is freed by"
-        " locating the pointer in its memory arena (searching block-by-block) and"
-        " emptying the block so it's available for future allocations, and merging it"
-        " with neighboring blocks if they're available.\n\nr0: desired memory arena for"
-        " freeing, or null (MemFree passes null)\nr1: pointer to free",
-    )
-
-    RoundUpDiv256 = Symbol(
-        [0x1894],
-        [0x2001894],
-        None,
-        "Divide a number by 256 and round up to the nearest integer.\n\nr0:"
-        " number\nreturn: number // 256",
-    )
-
-    MultiplyByFixedPoint = Symbol(
-        [0x1A54],
-        [0x2001A54],
-        None,
-        "Multiply a signed integer x by a signed binary fixed-point multiplier (8"
-        " fraction bits).\n\nr0: x\nr1: multiplier\nreturn: x * multiplier",
-    )
-
-    UMultiplyByFixedPoint = Symbol(
-        [0x1B0C],
-        [0x2001B0C],
-        None,
-        "Multiplies an unsigned integer x by an unsigned binary fixed-point multiplier"
-        " (8 fraction bits).\n\nr0: x\nr1: multiplier\nreturn: x * multiplier",
-    )
-
-    GetRngSeed = Symbol(
-        [0x222C], [0x200222C], None, "Get the current value of PRNG_SEQUENCE_NUM."
-    )
-
-    SetRngSeed = Symbol(
-        [0x223C],
-        [0x200223C],
-        None,
-        "Seed PRNG_SEQUENCE_NUM to a given value.\n\nr0: seed",
-    )
-
-    Rand16Bit = Symbol(
-        [0x224C],
-        [0x200224C],
-        None,
-        "Computes a pseudorandom 16-bit integer using the general-purpose PRNG.\n\nNote"
-        " that much of dungeon mode uses its own (slightly higher-quality) PRNG within"
-        " overlay 29. See overlay29.yml for more information.\n\nRandom numbers are"
-        " generated with a linear congruential generator (LCG), using a modulus of"
-        " 2^16, a multiplier of 109, and an increment of 1021. I.e., the recurrence"
-        " relation is `x = (109*x_prev + 1021) % 2^16`.\n\nThe LCG has a hard-coded"
-        " seed of 13452 (0x348C), but can be seeded with a call to"
-        " SetRngSeed.\n\nreturn: pseudorandom int on the interval [0, 65535]",
-    )
-
-    RandInt = Symbol(
-        [0x2274],
-        [0x2002274],
-        None,
-        "Compute a pseudorandom integer under a given maximum value using the"
-        " general-purpose PRNG.\n\nThis function relies on a single call to Rand16Bit."
-        " Even though it takes a 32-bit integer as input, the number of unique outcomes"
-        " is capped at 2^16.\n\nr0: high\nreturn: pseudorandom integer on the interval"
-        " [0, high - 1]",
-    )
-
-    RandRange = Symbol(
-        [0x228C],
-        [0x200228C],
-        None,
-        "Compute a pseudorandom value between two integers using the general-purpose"
-        " PRNG.\n\nThis function relies on a single call to Rand16Bit. Even though it"
-        " takes 32-bit integers as input, the number of unique outcomes is capped at"
-        " 2^16.\n\nr0: x\nr1: y\nreturn: pseudorandom integer on the interval [x, y"
-        " - 1]",
-    )
-
-    Rand32Bit = Symbol(
-        [0x22AC],
-        [0x20022AC],
-        None,
-        "Computes a random 32-bit integer using the general-purpose PRNG. The upper and"
-        " lower 16 bits are each generated with a separate call to Rand16Bit (so this"
-        " function advances the PRNG twice).\n\nreturn: pseudorandom int on the"
-        " interval [0, 4294967295]",
-    )
-
-    RandIntSafe = Symbol(
-        [0x22F8],
-        [0x20022F8],
-        None,
-        "Same as RandInt, except explicitly masking out the upper 16 bits of the output"
-        " from Rand16Bit (which should be zero anyway).\n\nr0: high\nreturn:"
-        " pseudorandom integer on the interval [0, high - 1]",
-    )
-
-    RandRangeSafe = Symbol(
-        [0x2318],
-        [0x2002318],
-        None,
-        "Like RandRange, except reordering the inputs as needed, and explicitly masking"
-        " out the upper 16 bits of the output from Rand16Bit (which should be zero"
-        " anyway).\n\nr0: x\nr1: y\nreturn: pseudorandom integer on the interval"
-        " [min(x, y), max(x, y) - 1]",
-    )
-
-    WaitForever = Symbol(
-        [0x2438],
-        [0x2002438],
-        None,
-        "Sets some program state and calls WaitForInterrupt in an infinite"
-        " loop.\n\nThis is called on fatal errors to hang the program"
-        " indefinitely.\n\nNo params.",
-    )
-
-    InitMemAllocTableVeneer = Symbol(
-        [0x321C],
-        [0x200321C],
-        None,
-        "Likely a linker-generated veneer for InitMemAllocTable.\n\nSee"
-        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo"
-        " params.",
-    )
-
-    MemZero = Symbol(
-        [0x3250], [0x2003250], None, "Zeroes a buffer.\n\nr0: ptr\nr1: len"
-    )
-
-    MemcpySimple = Symbol(
-        [0x32E4],
-        [0x20032E4],
-        None,
-        "A simple implementation of the memcpy(3) C library function.\n\nThis function"
-        " was probably manually implemented by the developers. See Memcpy for what's"
-        " probably the real libc function.\n\nThis function copies from src to dst in"
-        " backwards byte order, so this is safe to call for overlapping src and dst if"
-        " src <= dst.\n\nr0: dest\nr1: src\nr2: n",
-    )
-
-    TaskProcBoot = Symbol(
-        [0x3328],
-        [0x2003328],
-        None,
-        "Probably related to booting the game?\n\nThis function prints the debug"
-        " message 'task proc boot'.\n\nNo params.",
-    )
-
-    EnableAllInterrupts = Symbol(
-        [0x3608],
-        [0x2003608],
-        None,
-        "Sets the Interrupt Master Enable (IME) register to 1, which enables all CPU"
-        " interrupts (if enabled in the Interrupt Enable (IE) register).\n\nSee"
-        " https://problemkaputt.de/gbatek.htm#dsiomaps.\n\nreturn: old value in the IME"
-        " register",
-    )
-
-    GetTime = Symbol(
-        [0x37B4],
-        [0x20037B4],
-        None,
-        "Seems to get the current (system?) time as an IEEE 754 floating-point"
-        " number.\n\nreturn: current time (maybe in seconds?)",
-    )
-
-    DisableAllInterrupts = Symbol(
-        [0x3824],
-        [0x2003824],
-        None,
-        "Sets the Interrupt Master Enable (IME) register to 0, which disables all CPU"
-        " interrupts (even if enabled in the Interrupt Enable (IE) register).\n\nSee"
-        " https://problemkaputt.de/gbatek.htm#dsiomaps.\n\nreturn: old value in the IME"
-        " register",
-    )
-
-    SoundResume = Symbol(
-        [0x3CC4],
-        [0x2003CC4],
-        None,
-        "Probably resumes the sound player if paused?\n\nThis function prints the debug"
-        " string 'sound resume'.",
-    )
-
-    CardPullOutWithStatus = Symbol(
-        [0x3D2C],
-        [0x2003D2C],
-        None,
-        "Probably aborts the program with some status code? It seems to serve a similar"
-        " purpose to the exit(3) function.\n\nThis function prints the debug string"
-        " 'card pull out %d' with the status code.\n\nr0: status code",
-    )
-
-    CardPullOut = Symbol(
-        [0x3D70],
-        [0x2003D70],
-        None,
-        "Sets some global flag that probably triggers system exit?\n\nThis function"
-        " prints the debug string 'card pull out'.\n\nNo params.",
-    )
-
-    CardBackupError = Symbol(
-        [0x3D94],
-        [0x2003D94],
-        None,
-        "Sets some global flag that maybe indicates a save error?\n\nThis function"
-        " prints the debug string 'card backup error'.\n\nNo params.",
-    )
-
-    HaltProcessDisp = Symbol(
-        [0x3DB8],
-        [0x2003DB8],
-        None,
-        "Maybe halts the process display?\n\nThis function prints the debug string"
-        " 'halt process disp %d' with the status code.\n\nr0: status code",
-    )
-
-    OverlayIsLoaded = Symbol(
-        [0x3ED0],
-        [0x2003ED0],
-        None,
-        "Checks if an overlay with a certain group ID is currently loaded.\n\nSee the"
-        " LOADED_OVERLAY_GROUP_* data symbols or enum overlay_group_id in the C headers"
-        " for a mapping between group ID and overlay number.\n\nr0: group ID of the"
-        " overlay to check. A group ID of 0 denotes no overlay, and the return value"
-        " will always be true in this case.\nreturn: bool",
-    )
-
-    LoadOverlay = Symbol(
-        [0x40AC],
-        [0x20040AC],
-        None,
-        "Loads an overlay from ROM by its group ID.\n\nSee the LOADED_OVERLAY_GROUP_*"
-        " data symbols or enum overlay_group_id in the C headers for a mapping between"
-        " group ID and overlay number.\n\nr0: group ID of the overlay to load",
-    )
-
-    UnloadOverlay = Symbol(
-        [0x4868],
-        [0x2004868],
-        None,
-        "Unloads an overlay from ROM by its group ID.\n\nSee the LOADED_OVERLAY_GROUP_*"
-        " data symbols or enum overlay_group_id in the C headers for a mapping between"
-        " group ID and overlay number.\n\nr0: group ID of the overlay to"
-        " unload\nothers: ?",
-    )
-
-    EuclideanNorm = Symbol(
-        [0x5050, 0x50B0],
-        [0x2005050, 0x20050B0],
-        None,
-        "Computes the Euclidean norm of a two-component integer array, sort of like"
-        " hypotf(3).\n\nr0: integer array [x, y]\nreturn: sqrt(x*x + y*y)",
-    )
-
-    ClampComponentAbs = Symbol(
-        [0x5110],
-        [0x2005110],
-        None,
-        "Clamps the absolute values in a two-component integer array.\n\nGiven an"
-        " integer array [x, y] and a maximum absolute value M, clamps each element of"
-        " the array to M such that the output array is [min(max(x, -M), M), min(max(y,"
-        " -M), M)].\n\nr0: 2-element integer array, will be mutated\nr1: max absolute"
-        " value",
-    )
-
-    KeyWaitInit = Symbol(
-        [0x6DA4],
-        [0x2006DA4],
-        None,
-        "Implements (most of?) SPECIAL_PROC_KEY_WAIT_INIT (see"
-        " ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    DataTransferInit = Symbol(
-        [0x8168],
-        [0x2008168],
-        None,
-        "Initializes data transfer mode to get data from the ROM cartridge.\n\nNo"
-        " params.",
-    )
-
-    DataTransferStop = Symbol(
-        [0x8194],
-        [0x2008194],
-        None,
-        "Finalizes data transfer from the ROM cartridge.\n\nThis function must always"
-        " be called if DataTransferInit was called, or the game will crash.\n\nNo"
-        " params.",
-    )
-
-    FileInitVeneer = Symbol(
-        [0x8204],
-        [0x2008204],
-        None,
-        "Likely a linker-generated veneer for FileInit.\n\nSee"
-        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
-        " file_stream pointer",
-    )
-
-    FileOpen = Symbol(
-        [0x8210],
-        [0x2008210],
-        None,
-        "Opens a file from the ROM file system at the given path, sort of like C's"
-        " fopen(3) library function.\n\nr0: file_stream pointer\nr1: file path string",
-    )
-
-    FileGetSize = Symbol(
-        [0x8244],
-        [0x2008244],
-        None,
-        "Gets the size of an open file.\n\nr0: file_stream pointer\nreturn: file size",
-    )
-
-    FileRead = Symbol(
-        [0x8254],
-        [0x2008254],
-        None,
-        "Reads the contents of a file into the given buffer, and moves the file cursor"
-        " accordingly.\n\nData transfer mode must have been initialized (with"
-        " DataTransferInit) prior to calling this function. This function looks like"
-        " it's doing something akin to calling read(2) or fread(3) in a loop until all"
-        " the bytes have been successfully read.\n\nr0: file_stream pointer\nr1:"
-        " [output] buffer\nr2: number of bytes to read\nreturn: number of bytes read",
-    )
-
-    FileSeek = Symbol(
-        [0x82A8],
-        [0x20082A8],
-        None,
-        "Sets a file stream's position indicator.\n\nThis function has the a similar"
-        " API to the fseek(3) library function from C, including using the same codes"
-        " for the `whence` parameter:\n- SEEK_SET=0\n- SEEK_CUR=1\n- SEEK_END=2\n\nr0:"
-        " file_stream pointer\nr1: offset\nr2: whence",
-    )
-
-    FileClose = Symbol(
-        [0x82C4],
-        [0x20082C4],
-        None,
-        "Closes a file.\n\nData transfer mode must have been initialized (with"
-        " DataTransferInit) prior to calling this function.\n\nNote: It is possible to"
-        " keep a file stream open even if data transfer mode has been stopped, in which"
-        " case the file stream can be used again if data transfer mode is"
-        " reinitialized.\n\nr0: file_stream pointer",
-    )
-
-    LoadFileFromRom = Symbol(
-        [0x8C3C],
-        [0x2008C3C],
-        None,
-        "Loads a file from ROM by filepath into a heap-allocated buffer.\n\nr0:"
-        " [output] pointer to an IO struct {ptr, len}\nr1: file path string"
-        " pointer\nr2: flags",
-    )
-
-    GetDebugFlag1 = Symbol(
-        [0xC198], [0x200C198], None, "Just returns 0 in the final binary."
-    )
-
-    SetDebugFlag1 = Symbol([0xC1A0], [0x200C1A0], None, "A no-op in the final binary.")
-
-    AppendProgPos = Symbol(
-        [0xC1A8],
-        [0x200C1A8],
-        None,
-        "Write a base message into a string and append the file name and line number to"
-        " the end in the format 'file = '%s'  line = %5d\n'.\n\nIf no program position"
-        " info is given, 'ProgPos info NULL\n' is appended instead.\n\nr0: [output]"
-        " str\nr1: program position info\nr2: base message\nreturn: number of"
-        " characters printed, excluding the null-terminator",
-    )
-
-    DebugPrintTrace = Symbol(
-        [0xC1F4],
-        [0x200C1F4],
-        None,
-        "Would log a printf format string tagged with the file name and line number in"
-        " the debug binary.\n\nThis still constructs the string, but doesn't actually"
-        " do anything with it in the final binary.\n\nIf message is a null pointer, the"
-        " string '  Print  ' is used instead.\n\nr0: message\nr1: program position info"
-        " (can be null)",
-    )
-
-    DebugPrint0 = Symbol(
-        [0xC284],
-        [0x200C284],
-        None,
-        "Would log a printf format string in the debug binary.\n\nThis still constructs"
-        " the string with Vsprintf, but doesn't actually do anything with it in the"
-        " final binary.\n\nr0: format\n...: variadic",
-    )
-
-    GetDebugFlag2 = Symbol(
-        [0xC2BC], [0x200C2BC], None, "Just returns 0 in the final binary."
-    )
-
-    SetDebugFlag2 = Symbol([0xC2C4], [0x200C2C4], None, "A no-op in the final binary.")
-
-    DebugPrint = Symbol(
-        [0xC2C8],
-        [0x200C2C8],
-        None,
-        "Would log a printf format string in the debug binary. A no-op in the final"
-        " binary.\n\nr0: log level\nr1: format\n...: variadic",
-    )
-
-    FatalError = Symbol(
-        [0xC2E4],
-        [0x200C2E4],
-        None,
-        "Logs some debug messages, then hangs the process.\n\nThis function is called"
-        " in lots of places to bail on a fatal error. Looking at the static data"
-        " callers use to fill in the program position info is informative, as it tells"
-        " you the original file name (probably from the standard __FILE__ macro) and"
-        " line number (probably from the standard __LINE__ macro) in the source"
-        " code.\n\nr0: program position info\nr1: format\n...: variadic",
-    )
-
-    OpenAllPackFiles = Symbol(
-        [0xC364],
-        [0x200C364],
-        None,
-        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILE_OPENED. Called during"
-        " game initialisation.\n\nNo params.",
-    )
-
-    GetFileLengthInPackWithPackNb = Symbol(
-        [0xC3C4],
-        [0x200C3C4],
-        None,
-        "Call GetFileLengthInPack after looking up the global Pack archive by its"
-        " number\n\nr0: pack file number\nr1: file number\nreturn: size of the file in"
-        " bytes from the Pack Table of Content",
-    )
-
-    LoadFileInPackWithPackId = Symbol(
-        [0xC3E4],
-        [0x200C3E4],
-        None,
-        "Call LoadFileInPack after looking up the global Pack archive by its"
-        " identifier\n\nr0: pack file identifier\nr1: [output] target buffer\nr2: file"
-        " index\nreturn: number of read bytes (identical to the length of the pack from"
-        " the Table of Content)",
-    )
-
-    AllocAndLoadFileInPack = Symbol(
-        [0xC410],
-        [0x200C410],
-        None,
-        "Allocate a file and load a file from the pack archive inside.\nThe data"
-        " pointed by the pointer in the output need to be freed once is not needed"
-        " anymore.\n\nr0: pack file identifier\nr1: file index\nr2: [output] result"
-        " struct (will contain length and pointer)\nr3: allocation flags",
-    )
-
-    OpenPackFile = Symbol(
-        [0xC468],
-        [0x200C468],
-        None,
-        "Open a Pack file, to be read later. Initialise the output structure.\n\nr0:"
-        " [output] pack file struct\nr1: file name",
-    )
-
-    GetFileLengthInPack = Symbol(
-        [0xC4FC],
-        [0x200C4FC],
-        None,
-        "Get the length of a file entry from a Pack archive\n\nr0: pack file"
-        " struct\nr1: file index\nreturn: size of the file in bytes from the Pack Table"
-        " of Content",
-    )
-
-    LoadFileInPack = Symbol(
-        [0xC50C],
-        [0x200C50C],
-        None,
-        "Load the indexed file from the Pack archive, itself loaded from the"
-        " ROM.\n\nr0: pack file struct\nr1: [output] target buffer\nr2: file"
-        " index\nreturn: number of read bytes (identical to the length of the pack from"
-        " the Table of Content)",
-    )
-
-    IsAuraBow = Symbol(
-        [0xCC9C],
-        [0x200CC9C],
-        None,
-        "Checks if an item is one of the aura bows received at the start of the"
-        " game.\n\nr0: item ID\nreturn: bool",
-    )
-
-    SprintfStatic = Symbol(
-        [
-            0xD6BC,
-            0xE808,
-            0x13800,
-            0x177C4,
-            0x17ADC,
-            0x2378C,
-            0x239B0,
-            0x3822C,
-            0x39734,
-            0x3AC6C,
-            0x3D2A0,
-            0x41A48,
-            0x42DA0,
-            0x52750,
-            0x54DDC,
-            0x60D64,
-        ],
-        [
-            0x200D6BC,
-            0x200E808,
-            0x2013800,
-            0x20177C4,
-            0x2017ADC,
-            0x202378C,
-            0x20239B0,
-            0x203822C,
-            0x2039734,
-            0x203AC6C,
-            0x203D2A0,
-            0x2041A48,
-            0x2042DA0,
-            0x2052750,
-            0x2054DDC,
-            0x2060D64,
-        ],
-        None,
-        "Functionally the same as Sprintf, just defined statically in many different"
-        " places.\n\nSince this is essentially just a wrapper around vsprintf(3), this"
-        " function was probably statically defined in a header somewhere and included"
-        " in a bunch of different places. See the actual Sprintf for the one in"
-        " libc.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of characters"
-        " printed, excluding the null-terminator",
-    )
-
-    SetMoneyCarried = Symbol(
-        [0xEDC4],
-        [0x200EDC4],
-        None,
-        "Sets the amount of money the player is carrying, clamping the value to the"
-        " range [0, MAX_MONEY_CARRIED].\n\nr0: new value",
-    )
-
-    IsBagFull = Symbol(
-        [0xEE68],
-        [0x200EE68],
-        None,
-        "Implements SPECIAL_PROC_IS_BAG_FULL (see ScriptSpecialProcessCall).\n\nreturn:"
-        " bool",
-    )
-
-    CountItemTypeInBag = Symbol(
-        [0xEF30],
-        [0x200EF30],
-        None,
-        "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_BAG (see"
-        " ScriptSpecialProcessCall).\n\nr0: item ID\nreturn: number of items of the"
-        " specified ID in the bag",
-    )
-
-    AddItemToBag = Symbol(
-        [0xF8F4],
-        [0x200F8F4],
-        None,
-        "Implements SPECIAL_PROC_ADD_ITEM_TO_BAG (see ScriptSpecialProcessCall).\n\nr0:"
-        " pointer to an owned_item\nreturn: bool",
-    )
-
-    ScriptSpecialProcess0x39 = Symbol(
-        [0xFDFC],
-        [0x200FDFC],
-        None,
-        "Implements SPECIAL_PROC_0x39 (see ScriptSpecialProcessCall).\n\nreturn: bool",
-    )
-
-    CountItemTypeInStorage = Symbol(
-        [0xFF8C],
-        [0x200FF8C],
-        None,
-        "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_STORAGE (see"
-        " ScriptSpecialProcessCall).\n\nr0: pointer to an owned_item\nreturn: number of"
-        " items of the specified ID in storage",
-    )
-
-    RemoveItemsTypeInStorage = Symbol(
-        [0x1028C],
-        [0x201028C],
-        None,
-        "Probably? Implements SPECIAL_PROC_0x2A (see ScriptSpecialProcessCall).\n\nr0:"
-        " pointer to an owned_item\nreturn: bool",
-    )
-
-    AddItemToStorage = Symbol(
-        [0x103C4],
-        [0x20103C4],
-        None,
-        "Implements SPECIAL_PROC_ADD_ITEM_TO_STORAGE (see"
-        " ScriptSpecialProcessCall).\n\nr0: pointer to an owned_item\nreturn: bool",
-    )
-
-    SetMoneyStored = Symbol(
-        [0x107CC],
-        [0x20107CC],
-        None,
-        "Sets the amount of money the player has stored in the Duskull Bank, clamping"
-        " the value to the range [0, MAX_MONEY_STORED].\n\nr0: new value",
-    )
-
-    GetExclusiveItemOffset = Symbol(
-        [0x10EE8],
-        [0x2010EE8],
-        None,
-        "Gets the exclusive item offset, which is the item ID relative to that of the"
-        " first exclusive item, the Prism Ruff.\n\nr0: item ID\nreturn: offset",
-    )
-
-    ApplyExclusiveItemStatBoosts = Symbol(
-        [0x10F0C],
-        [0x2010F0C],
-        None,
-        "Applies stat boosts from an exclusive item.\n\nr0: item ID\nr1: pointer to"
-        " attack stat to modify\nr2: pointer to special attack stat to modify\nr3:"
-        " pointer to defense stat to modify\nstack[0]: pointer to special defense stat"
-        " to modify",
-    )
-
-    SetExclusiveItemEffect = Symbol(
-        [0x11028],
-        [0x2011028],
-        None,
-        "Sets the bit for an exclusive item effect.\n\nr0: pointer to the effects"
-        " bitvector to modify\nr1: exclusive item effect ID",
-    )
-
-    ExclusiveItemEffectFlagTest = Symbol(
-        [0x1104C],
-        [0x201104C],
-        None,
-        "Tests the exclusive item bitvector for a specific exclusive item"
-        " effect.\n\nr0: the effects bitvector to test\nr1: exclusive item effect"
-        " ID\nreturn: bool",
-    )
-
-    ApplyGummiBoostsGroundMode = Symbol(
-        [0x11944],
-        [0x2011944],
-        None,
-        "Applies the IQ boosts from eating a Gummi to the target monster.\n\nr0:"
-        " Pointer to something\nr1: Pointer to something\nr2: Pointer to something\nr3:"
-        " Pointer to something\nstack[0]: ?\nstack[1]: ?\nstack[2]: Pointer to a buffer"
-        " to store some result into",
-    )
-
-    GetMoveTargetAndRange = Symbol(
-        [0x138E8],
-        [0x20138E8],
-        None,
-        "Gets the move target-and-range field. See struct move_target_and_range in the"
-        " C headers.\n\nr0: move pointer\nr1: AI flag (every move has two"
-        " target-and-range fields, one for players and one for AI)\nreturn: move target"
-        " and range",
-    )
-
-    GetMoveType = Symbol(
-        [0x1390C],
-        [0x201390C],
-        None,
-        "Gets the type of a move\n\nr0: Pointer to move data\nreturn: Type of the move",
-    )
-
-    GetMoveAiWeight = Symbol(
-        [0x13A34],
-        [0x2013A34],
-        None,
-        "Gets the AI weight of a move\n\nr0: Pointer to move data\nreturn: AI weight of"
-        " the move",
-    )
-
-    GetMoveBasePower = Symbol(
-        [0x13A74],
-        [0x2013A74],
-        None,
-        "Gets the base power of a move from the move data table.\n\nr0: move"
-        " pointer\nreturn: base power",
-    )
-
-    GetMoveAccuracyOrAiChance = Symbol(
-        [0x13AB4],
-        [0x2013AB4],
-        None,
-        "Gets one of the two accuracy values of a move or its"
-        " ai_condition_random_chance field.\n\nr0: Move pointer\nr1: 0 to get the"
-        " move's first accuracy1 field, 1 to get its accuracy2, 2 to get its"
-        " ai_condition_random_chance.\nreturn: Move's accuracy1, accuracy2 or"
-        " ai_condition_random_chance",
-    )
-
-    GetMaxPp = Symbol(
-        [0x13AF8],
-        [0x2013AF8],
-        None,
-        "Gets the maximum PP for a given move.\n\nr0: move pointer\nreturn: max PP for"
-        " the given move, capped at 99",
-    )
-
-    GetMoveCritChance = Symbol(
-        [0x13BB8],
-        [0x2013BB8],
-        None,
-        "Gets the critical hit chance of a move.\n\nr0: move pointer\nreturn: base"
-        " power",
-    )
-
-    IsMoveRangeString19 = Symbol(
-        [0x13CAC],
-        [0x2013CAC],
-        None,
-        "Returns whether a move's range string is 19 ('User').\n\nr0: Move"
-        " pointer\nreturn: True if the move's range string field has a value of 19.",
-    )
-
-    IsRecoilMove = Symbol(
-        [0x13EBC],
-        [0x2013EBC],
-        None,
-        "Checks if the given move is a recoil move (affected by Reckless).\n\nr0: move"
-        " ID\nreturn: bool",
-    )
-
-    IsPunchMove = Symbol(
-        [0x14DC0],
-        [0x2014DC0],
-        None,
-        "Checks if the given move is a punch move (affected by Iron Fist).\n\nr0: move"
-        " ID\nreturn: bool",
-    )
-
-    GetMoveCategory = Symbol(
-        [0x15270],
-        [0x2015270],
-        None,
-        "Gets a move's category (physical, special, status).\n\nr0: move ID\nreturn:"
-        " move category enum",
-    )
-
-    LoadWteFromRom = Symbol(
-        [0x1DEE8],
-        [0x201DEE8],
-        None,
-        "Loads a SIR0-wrapped WTE file from ROM, and returns a handle to it\n\nr0:"
-        " [output] pointer to wte handle\nr1: file path string\nr2: load file flags",
-    )
-
-    LoadWteFromFileDirectory = Symbol(
-        [0x1DF60],
-        [0x201DF60],
-        None,
-        "Loads a SIR0-wrapped WTE file from a file directory, and returns a handle to"
-        " it\n\nr0: [output] pointer to wte handle\nr1: file directory id\nr2: file"
-        " index\nr3: malloc flags",
-    )
-
-    UnloadWte = Symbol(
-        [0x1DFB4],
-        [0x201DFB4],
-        None,
-        "Frees the buffer used to store the WTE data in the handle, and sets both"
-        " pointers to null\n\nr0: pointer to wte handle",
-    )
-
-    HandleSir0Translation = Symbol(
-        [0x1F550],
-        [0x201F550],
-        None,
-        "Translates the offsets in a SIR0 file into NDS memory addresses, changes the"
-        " magic number to SirO (opened), and returns a pointer to the first pointer"
-        " specified in the SIR0 header (beginning of the data).\n\nr0: [output] double"
-        " pointer to beginning of data\nr1: pointer to source file buffer",
-    )
-
-    HandleSir0TranslationVeneer = Symbol(
-        [0x1F628],
-        [0x201F628],
-        None,
-        "Likely a linker-generated veneer for HandleSir0Translation.\n\nSee"
-        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
-        " [output] double pointer to beginning of data\nr1: pointer to source file"
-        " buffer",
-    )
-
-    GetLanguageType = Symbol(
-        [0x20688],
-        [0x2020688],
-        None,
-        "Gets the language type.\n\nThis is the value backing the special LANGUAGE_TYPE"
-        " script variable.\n\nreturn: language type",
-    )
-
-    GetLanguage = Symbol(
-        [0x206B0],
-        [0x20206B0],
-        None,
-        "Gets the single-byte language ID of the current program.\n\nThe language ID"
-        " appears to be used to index some global tables.\n\nreturn: language ID",
-    )
-
-    PreprocessString = Symbol(
-        [0x225EC],
-        [0x20225EC],
-        None,
-        "An enhanced sprintf, which recognizes certain tags and replaces them with"
-        " appropiate game values.\nThis function can also be used to simply insert"
-        " values passed within the preprocessor args\n\nThe tags utilized for this"
-        " function are lowercase, it might produce uppercase tags\nthat only are used"
-        " when the text is being typewrited into a message box\n\nr0: [output]"
-        " formatted string\nr1: maximum capacity of the output buffer\nr2: input format"
-        " string\nr3: preprocessor flags\nstack[0]: pointer to preprocessor args",
-    )
-
-    StrcpySimple = Symbol(
-        [0x253CC],
-        [0x20253CC],
-        None,
-        "A simple implementation of the strcpy(3) C library function.\n\nThis function"
-        " was probably manually implemented by the developers. See Strcpy for what's"
-        " probably the real libc function.\n\nr0: dest\nr1: src",
-    )
-
-    StrncpySimple = Symbol(
-        [0x253E8],
-        [0x20253E8],
-        None,
-        "A simple implementation of the strncpy(3) C library function.\n\nThis function"
-        " was probably manually implemented by the developers. See Strncpy for what's"
-        " probably the real libc function.\n\nr0: dest\nr1: src\nr2: n",
-    )
-
-    StringFromMessageId = Symbol(
-        [0x25B90],
-        [0x2025B90],
-        None,
-        "Gets the string corresponding to a given message ID.\n\nr0: message"
-        " ID\nreturn: string from the string files with the given message ID",
-    )
-
-    SetScreenWindowsColor = Symbol(
-        [0x27D5C],
-        [0x2027D5C],
-        None,
-        "Sets the palette of the frames of windows in the specified screen\n\nr0:"
-        " palette index\nr1: is upper screen",
-    )
-
-    SetBothScreensWindowsColor = Symbol(
-        [0x27D74],
-        [0x2027D74],
-        None,
-        "Sets the palette of the frames of windows in both screens\n\nr0: palette"
-        " index",
-    )
-
-    GetNotifyNote = Symbol(
-        [0x487BC],
-        [0x20487BC],
-        None,
-        "Returns the current value of NOTIFY_NOTE.\n\nreturn: bool",
-    )
-
-    SetNotifyNote = Symbol(
-        [0x487CC], [0x20487CC], None, "Sets NOTIFY_NOTE to the given value.\n\nr0: bool"
-    )
-
-    InitMainTeamAfterQuiz = Symbol(
-        [0x48AE0],
-        [0x2048AE0],
-        None,
-        "Implements SPECIAL_PROC_INIT_MAIN_TEAM_AFTER_QUIZ (see"
-        " ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    ScriptSpecialProcess0x3 = Symbol(
-        [0x48D28],
-        [0x2048D28],
-        None,
-        "Implements SPECIAL_PROC_0x3 (see ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    ScriptSpecialProcess0x4 = Symbol(
-        [0x48DA0],
-        [0x2048DA0],
-        None,
-        "Implements SPECIAL_PROC_0x4 (see ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    NoteSaveBase = Symbol(
-        [0x492A0],
-        [0x20492A0],
-        None,
-        "Probably related to saving or quicksaving?\n\nThis function prints the debug"
-        " message 'NoteSave Base %d %d' with some values. It's also the only place"
-        " where GetRngSeed is called.\n\nr0: possibly a flag/code that controls the"
-        " type of save file to generate?\nothers: ?\nreturn: status code",
-    )
-
-    NoteLoadBase = Symbol(
-        [0x496A8],
-        [0x20496A8],
-        None,
-        "Probably related to loading a save file or quicksave?\n\nThis function prints"
-        " the debug message 'NoteLoad Base %d' with some value. It's also the only"
-        " place where SetRngSeed is called.\n\nreturn: status code",
-    )
-
-    GetGameMode = Symbol(
-        [0x4B2F8],
-        [0x204B2F8],
-        None,
-        "Gets the value of GAME_MODE.\n\nreturn: game mode",
-    )
-
-    InitScriptVariableValues = Symbol(
-        [0x4B384],
-        [0x204B384],
-        None,
-        "Initialize the script variable values table (SCRIPT_VARS_VALUES).\n\nThe whole"
-        " table is first zero-initialized. Then, all script variable values are first"
-        " initialized to their defaults, after which some of them are overwritten with"
-        " other hard-coded values.\n\nNo params.",
-    )
-
-    InitEventFlagScriptVars = Symbol(
-        [0x4B63C],
-        [0x204B63C],
-        None,
-        "Initializes an assortment of event flag script variables (see the code for an"
-        " exhaustive list).\n\nNo params.",
-    )
-
-    ZinitScriptVariable = Symbol(
-        [0x4B76C],
-        [0x204B76C],
-        None,
-        "Zero-initialize the values of the given script variable.\n\nr0: pointer to the"
-        " local variable table (only needed if id >= VAR_LOCAL0)\nr1: script"
-        " variable ID",
-    )
-
-    LoadScriptVariableRaw = Symbol(
-        [0x4B7D4],
-        [0x204B7D4],
-        None,
-        "Loads a script variable descriptor for a given ID.\n\nr0: [output] script"
-        " variable descriptor pointer\nr1: pointer to the local variable table (doesn't"
-        " need to be valid; just controls the output value pointer)\nr2: script"
-        " variable ID",
-    )
-
-    LoadScriptVariableValue = Symbol(
-        [0x4B824],
-        [0x204B824],
-        None,
-        "Loads the value of a script variable.\n\nr0: pointer to the local variable"
-        " table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID\nreturn:"
-        " value",
-    )
-
-    LoadScriptVariableValueAtIndex = Symbol(
-        [0x4B9B0],
-        [0x204B9B0],
-        None,
-        "Loads the value of a script variable at some index (for script variables that"
-        " are arrays).\n\nr0: pointer to the local variable table (only needed if id >="
-        " VAR_LOCAL0)\nr1: script variable ID\nr2: value index for the given script"
-        " var\nreturn: value",
-    )
-
-    SaveScriptVariableValue = Symbol(
-        [0x4BB58],
-        [0x204BB58],
-        None,
-        "Saves the given value to a script variable.\n\nr0: pointer to local variable"
-        " table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID\nr2: value to"
-        " save",
-    )
-
-    SaveScriptVariableValueAtIndex = Symbol(
-        [0x4BCC0],
-        [0x204BCC0],
-        None,
-        "Saves the given value to a script variable at some index (for script variables"
-        " that are arrays).\n\nr0: pointer to local variable table (only needed if id"
-        " >= VAR_LOCAL0)\nr1: script variable ID\nr2: value index for the given script"
-        " var\nr3: value to save",
-    )
-
-    LoadScriptVariableValueSum = Symbol(
-        [0x4BE38],
-        [0x204BE38],
-        None,
-        "Loads the sum of all values of a given script variable (for script variables"
-        " that are arrays).\n\nr0: pointer to the local variable table (only needed if"
-        " id >= VAR_LOCAL0)\nr1: script variable ID\nreturn: sum of values",
-    )
-
-    LoadScriptVariableValueBytes = Symbol(
-        [0x4BE9C],
-        [0x204BE9C],
-        None,
-        "Loads some number of bytes from the value of a given script variable.\n\nr0:"
-        " script variable ID\nr1: [output] script variable value bytes\nr2: number of"
-        " bytes to load",
-    )
-
-    SaveScriptVariableValueBytes = Symbol(
-        [0x4BF04],
-        [0x204BF04],
-        None,
-        "Saves some number of bytes to the given script variable.\n\nr0: script"
-        " variable ID\nr1: bytes to save\nr2: number of bytes",
-    )
-
-    ScriptVariablesEqual = Symbol(
-        [0x4BF50],
-        [0x204BF50],
-        None,
-        "Checks if two script variables have equal values. For arrays, compares"
-        " elementwise for the length of the first variable.\n\nr0: pointer to the local"
-        " variable table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID"
-        " 1\nr2: script variable ID 2\nreturn: true if values are equal, false"
-        " otherwise",
-    )
-
-    EventFlagBackup = Symbol(
-        [0x4C51C],
-        [0x204C51C],
-        None,
-        "Saves event flag script variables (see the code for an exhaustive list) to"
-        " their respective BACKUP script variables, but only in certain game"
-        " modes.\n\nThis function prints the debug string 'EventFlag BackupGameMode %d'"
-        " with the game mode.\n\nNo params.",
-    )
-
-    DumpScriptVariableValues = Symbol(
-        [0x4C740],
-        [0x204C740],
-        None,
-        "Runs EventFlagBackup, then copies the script variable values table"
-        " (SCRIPT_VARS_VALUES) to the given pointer.\n\nr0: destination pointer for the"
-        " data dump\nreturn: always 1",
-    )
-
-    RestoreScriptVariableValues = Symbol(
-        [0x4C768],
-        [0x204C768],
-        None,
-        "Restores the script variable values table (SCRIPT_VARS_VALUES) with the given"
-        " data. The source data is assumed to be exactly 1024 bytes in length.\n\nr0:"
-        " raw data to copy to the values table\nreturn: whether the restored value for"
-        " VAR_VERSION is equal to its default value",
-    )
-
-    InitScenarioScriptVars = Symbol(
-        [0x4C7C0],
-        [0x204C7C0],
-        None,
-        "Initializes most of the SCENARIO_* script variables (except"
-        " SCENARIO_TALK_BIT_FLAG for some reason). Also initializes the PLAY_OLD_GAME"
-        " variable.\n\nNo params.",
-    )
-
-    SetScenarioScriptVar = Symbol(
-        [0x4C950],
-        [0x204C950],
-        None,
-        "Sets the given SCENARIO_* script variable with a given pair of values [val0,"
-        " val1].\n\nIn the special case when the ID is VAR_SCENARIO_MAIN, and the set"
-        " value is different from the old one, the REQUEST_CLEAR_COUNT script variable"
-        " will be set to 0.\n\nr0: script variable ID\nr1: val0\nr2: val1",
-    )
-
-    GetSpecialEpisodeType = Symbol(
-        [0x4CC24],
-        [0x204CC24],
-        None,
-        "Gets the special episode type from the SPECIAL_EPISODE_TYPE script"
-        " variable.\n\nreturn: special episode type",
-    )
-
-    ScenarioFlagBackup = Symbol(
-        [0x4CFF0],
-        [0x204CFF0],
-        None,
-        "Saves scenario flag script variables (SCENARIO_SELECT, SCENARIO_MAIN_BIT_FLAG)"
-        " to their respective BACKUP script variables, but only in certain game"
-        " modes.\n\nThis function prints the debug string 'ScenarioFlag BackupGameMode"
-        " %d' with the game mode.\n\nNo params.",
-    )
-
-    InitWorldMapScriptVars = Symbol(
-        [0x4D0C0],
-        [0x204D0C0],
-        None,
-        "Initializes the WORLD_MAP_* script variable values (IDs 0x55-0x57).\n\nNo"
-        " params.",
-    )
-
-    InitDungeonListScriptVars = Symbol(
-        [0x4D1C8],
-        [0x204D1C8],
-        None,
-        "Initializes the DUNGEON_*_LIST script variable values (IDs 0x4f-0x54).\n\nNo"
-        " params.",
-    )
-
-    SetDungeonTipShown = Symbol(
-        [0x4D588],
-        [0x204D588],
-        None,
-        "Marks a dungeon tip as already shown to the player\n\nr0: Dungeon tip ID",
-    )
-
-    GetDungeonTipShown = Symbol(
-        [0x4D5C8],
-        [0x204D5C8],
-        None,
-        "Checks if a dungeon tip has already been shown before or not.\n\nr0: Dungeon"
-        " tip ID\nreturn: True if the tip has been shown before, false otherwise.",
-    )
-
-    MonsterSpawnsEnabled = Symbol(
-        [0x4D698],
-        [0x204D698],
-        None,
-        "Always returns true.\n\nThis function seems to be a debug switch that the"
-        " developers may have used to disable the random enemy spawn. \nIf it returned"
-        " false, the call to SpawnMonster inside TrySpawnMonsterAndTickSpawnCounter"
-        " would not be executed.\n\nreturn: bool (always true)",
-    )
-
-    SetAdventureLogStructLocation = Symbol(
-        [0x4FD5C],
-        [0x204FD5C],
-        None,
-        "Sets the location of the adventure log struct in memory.\n\nSets it in a"
-        " static memory location (At 0x22AB69C [US], 0x22ABFDC [EU], 0x22ACE58"
-        " [JP])\n\nNo params.",
-    )
-
-    SetAdventureLogDungeonFloor = Symbol(
-        [0x4FD74],
-        [0x204FD74],
-        None,
-        "Sets the current dungeon floor pair.\n\nr0: struct dungeon_floor_pair",
-    )
-
-    GetAdventureLogDungeonFloor = Symbol(
-        [0x4FD94],
-        [0x204FD94],
-        None,
-        "Gets the current dungeon floor pair.\n\nreturn: struct dungeon_floor_pair",
-    )
-
-    ClearAdventureLogStruct = Symbol(
-        [0x4FDA8],
-        [0x204FDA8],
-        None,
-        "Clears the adventure log structure.\n\nNo params.",
-    )
-
-    SetAdventureLogCompleted = Symbol(
-        [0x4FED4],
-        [0x204FED4],
-        None,
-        "Marks one of the adventure log entry as completed.\n\nr0: entry ID",
-    )
-
-    IsAdventureLogNotEmpty = Symbol(
-        [0x4FEFC],
-        [0x204FEFC],
-        None,
-        "Checks if at least one of the adventure log entry is completed.\n\nreturn:"
-        " bool",
-    )
-
-    GetAdventureLogCompleted = Symbol(
-        [0x4FF34],
-        [0x204FF34],
-        None,
-        "Checks if one adventure log entry is completed.\n\nr0: entry ID\nreturn: bool",
-    )
-
-    IncrementNbDungeonsCleared = Symbol(
-        [0x4FF60],
-        [0x204FF60],
-        None,
-        "Increments by 1 the number of dungeons cleared.\n\nImplements"
-        " SPECIAL_PROC_0x3A (see ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    GetNbDungeonsCleared = Symbol(
-        [0x4FFA4],
-        [0x204FFA4],
-        None,
-        "Gets the number of dungeons cleared.\n\nreturn: the number of dungeons"
-        " cleared",
-    )
-
-    IncrementNbFriendRescues = Symbol(
-        [0x4FFB8],
-        [0x204FFB8],
-        None,
-        "Increments by 1 the number of successful friend rescues.\n\nNo params.",
-    )
-
-    GetNbFriendRescues = Symbol(
-        [0x50000],
-        [0x2050000],
-        None,
-        "Gets the number of successful friend rescues.\n\nreturn: the number of"
-        " successful friend rescues",
-    )
-
-    IncrementNbEvolutions = Symbol(
-        [0x50014],
-        [0x2050014],
-        None,
-        "Increments by 1 the number of evolutions.\n\nNo params.",
-    )
-
-    GetNbEvolutions = Symbol(
-        [0x5005C],
-        [0x205005C],
-        None,
-        "Gets the number of evolutions.\n\nreturn: the number of evolutions",
-    )
-
-    IncrementNbSteals = Symbol(
-        [0x50070],
-        [0x2050070],
-        None,
-        "Leftover from Time & Darkness. Does not do anything.\n\nCalls to this matches"
-        " the ones for incrementing the number of successful steals in Time &"
-        " Darkness.\n\nNo params.",
-    )
-
-    IncrementNbEggsHatched = Symbol(
-        [0x50074],
-        [0x2050074],
-        None,
-        "Increments by 1 the number of eggs hatched.\n\nNo params.",
-    )
-
-    GetNbEggsHatched = Symbol(
-        [0x500B0],
-        [0x20500B0],
-        None,
-        "Gets the number of eggs hatched.\n\nreturn: the number of eggs hatched",
-    )
-
-    GetNbPokemonJoined = Symbol(
-        [0x500C4],
-        [0x20500C4],
-        None,
-        "Gets the number of different pokémon that joined.\n\nreturn: the number of"
-        " different pokémon that joined",
-    )
-
-    GetNbMovesLearned = Symbol(
-        [0x500D8],
-        [0x20500D8],
-        None,
-        "Gets the number of different moves learned.\n\nreturn: the number of different"
-        " moves learned",
-    )
-
-    SetVictoriesOnOneFloor = Symbol(
-        [0x500EC],
-        [0x20500EC],
-        None,
-        "Sets the record of victories on one floor.\n\nr0: the new record of victories",
-    )
-
-    GetVictoriesOnOneFloor = Symbol(
-        [0x50120],
-        [0x2050120],
-        None,
-        "Gets the record of victories on one floor.\n\nreturn: the record of victories",
-    )
-
-    SetPokemonJoined = Symbol(
-        [0x50134], [0x2050134], None, "Marks one pokémon as joined.\n\nr0: monster ID"
-    )
-
-    SetPokemonBattled = Symbol(
-        [0x50190], [0x2050190], None, "Marks one pokémon as battled.\n\nr0: monster ID"
-    )
-
-    GetNbPokemonBattled = Symbol(
-        [0x501EC],
-        [0x20501EC],
-        None,
-        "Gets the number of different pokémon that battled against you.\n\nreturn: the"
-        " number of different pokémon that battled against you",
-    )
-
-    IncrementNbBigTreasureWins = Symbol(
-        [0x50200],
-        [0x2050200],
-        None,
-        "Increments by 1 the number of big treasure wins.\n\nImplements"
-        " SPECIAL_PROC_0x3B (see ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    SetNbBigTreasureWins = Symbol(
-        [0x50220],
-        [0x2050220],
-        None,
-        "Sets the number of big treasure wins.\n\nr0: the new number of big treasure"
-        " wins",
-    )
-
-    GetNbBigTreasureWins = Symbol(
-        [0x50258],
-        [0x2050258],
-        None,
-        "Gets the number of big treasure wins.\n\nreturn: the number of big treasure"
-        " wins",
-    )
-
-    SetNbRecycled = Symbol(
-        [0x5026C],
-        [0x205026C],
-        None,
-        "Sets the number of items recycled.\n\nr0: the new number of items recycled",
-    )
-
-    GetNbRecycled = Symbol(
-        [0x502A4],
-        [0x20502A4],
-        None,
-        "Gets the number of items recycled.\n\nreturn: the number of items recycled",
-    )
-
-    IncrementNbSkyGiftsSent = Symbol(
-        [0x502B8],
-        [0x20502B8],
-        None,
-        "Increments by 1 the number of sky gifts sent.\n\nImplements"
-        " SPECIAL_PROC_SEND_SKY_GIFT_TO_GUILDMASTER (see"
-        " ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    SetNbSkyGiftsSent = Symbol(
-        [0x502D8],
-        [0x20502D8],
-        None,
-        "Sets the number of Sky Gifts sent.\n\nreturn: the number of Sky Gifts sent",
-    )
-
-    GetNbSkyGiftsSent = Symbol(
-        [0x50310],
-        [0x2050310],
-        None,
-        "Gets the number of Sky Gifts sent.\n\nreturn: the number of Sky Gifts sent",
-    )
-
-    ComputeSpecialCounters = Symbol(
-        [0x50324],
-        [0x2050324],
-        None,
-        "Computes the counters from the bit fields in the adventure log, as they are"
-        " not updated automatically when bit fields are altered.\n\nAffects"
-        " GetNbPokemonJoined, GetNbMovesLearned, GetNbPokemonBattled and"
-        " GetNbItemAcquired.\n\nNo params.",
-    )
-
-    RecruitSpecialPokemonLog = Symbol(
-        [0x5057C],
-        [0x205057C],
-        None,
-        "Marks a specified special pokémon as recruited in the adventure log.\n\nr0:"
-        " monster ID",
-    )
-
-    IncrementNbFainted = Symbol(
-        [0x505E8],
-        [0x20505E8],
-        None,
-        "Increments by 1 the number of times you fainted.\n\nNo params.",
-    )
-
-    GetNbFainted = Symbol(
-        [0x50624],
-        [0x2050624],
-        None,
-        "Gets the number of times you fainted.\n\nreturn: the number of times you"
-        " fainted",
-    )
-
-    SetItemAcquired = Symbol(
-        [0x50638],
-        [0x2050638],
-        None,
-        "Marks one specific item as acquired.\n\nr0: item ID",
-    )
-
-    GetNbItemAcquired = Symbol(
-        [0x50704],
-        [0x2050704],
-        None,
-        "Gets the number of items acquired.\n\nreturn: the number of items acquired",
-    )
-
-    SetChallengeLetterCleared = Symbol(
-        [0x50758],
-        [0x2050758],
-        None,
-        "Sets a challenge letter as cleared.\n\nr0: challenge ID",
-    )
-
-    GetSentryDutyGamePoints = Symbol(
-        [0x507DC],
-        [0x20507DC],
-        None,
-        "Gets the points for the associated rank in the footprints minigame.\n\nr0: the"
-        " rank (range 0-4, 1st to 5th)\nreturn: points",
-    )
-
-    SetSentryDutyGamePoints = Symbol(
-        [0x507F4],
-        [0x20507F4],
-        None,
-        "Sets a new record in the footprints minigame.\n\nr0: points\nreturn: the rank"
-        " (range 0-4, 1st to 5th; -1 if out of ranking)",
-    )
-
-    SubFixedPoint = Symbol(
-        [0x51248],
-        [0x2051248],
-        None,
-        "Compute the subtraction of two decimal fixed-point numbers (16 fraction"
-        " bits).\n\nFloats are in the format {16-bit integer part, 16-bit thousandths},"
-        " where the integer part is the lower word. Probably used primarily for"
-        " belly.\n\nr0: float\nr1: decrement\nreturn: max(float - decrement, 0)",
-    )
-
-    BinToDecFixedPoint = Symbol(
-        [0x51358],
-        [0x2051358],
-        None,
-        "Convert a binary fixed-point number (16 fraction bits) to the decimal"
-        " fixed-point number (16 fraction bits) used for belly calculations."
-        " Thousandths are floored.\n\nIf <data> holds the raw binary data, a binary"
-        " fixed-point number (16 fraction bits) has the value ((unsigned)data) *"
-        " 2^-16), and the decimal fixed-point number (16 fraction bits) used for belly"
-        " has the value (data & 0xffff) + (data >> 16)/1000.\n\nr0: pointer p, where"
-        " ((const unsigned *)p)[1] is the fractional number in binary fixed-point"
-        " format to convert\nreturn: fractional number in decimal fixed-point format",
-    )
-
-    CeilFixedPoint = Symbol(
-        [0x5139C],
-        [0x205139C],
-        None,
-        "Compute the ceiling of a decimal fixed-point number (16 fraction"
-        " bits).\n\nFloats are in the format {16-bit integer part, 16-bit thousandths},"
-        " where the integer part is the lower word. Probably used primarily for"
-        " belly.\n\nr0: float\nreturn: ceil(float)",
-    )
-
-    DungeonGoesUp = Symbol(
-        [0x515C0],
-        [0x20515C0],
-        None,
-        "Returns whether the specified dungeon is considered as going upward or"
-        " not\n\nr0: dungeon id\nreturn: bool",
-    )
-
-    GetMaxRescueAttempts = Symbol(
-        [0x516B8],
-        [0x20516B8],
-        None,
-        "Returns the maximum rescue attempts allowed in the specified dungeon.\n\nr0:"
-        " dungeon id\nreturn: Max rescue attempts, or -1 if rescues are disabled.",
-    )
-
-    JoinedAtRangeCheck = Symbol(
-        [0x517C8],
-        [0x20517C8],
-        None,
-        "Returns whether a certain joined_at field value is between"
-        " dungeon_id::DUNGEON_JOINED_AT_BIDOOF and"
-        " dungeon_id::DUNGEON_DUMMY_0xE3.\n\nr0: joined_at id\nreturn: bool",
-    )
-
-    JoinedAtRangeCheck2 = Symbol(
-        [0x51A98],
-        [0x2051A98],
-        None,
-        "Returns whether a certain joined_at field value is equal to"
-        " dungeon_id::DUNGEON_BEACH or is between dungeon_id::DUNGEON_DUMMY_0xEC and"
-        " dungeon_id::DUNGEON_DUMMY_0xF0.\n\nr0: joined_at id\nreturn: bool",
-    )
-
-    GetMonsterGender = Symbol(
-        [0x52AE0],
-        [0x2052AE0],
-        None,
-        "Returns the gender field of a monster given its ID.\n\nr0: monster id\nreturn:"
-        " monster gender",
-    )
-
-    GetSpriteSize = Symbol(
-        [0x52B18],
-        [0x2052B18],
-        None,
-        "Returns the sprite size of the specified monster. If the size is between 1 and"
-        " 6, 6 will be returned.\n\nr0: monster id\nreturn: sprite size",
-    )
-
-    GetSpriteFileSize = Symbol(
-        [0x52B54],
-        [0x2052B54],
-        None,
-        "Returns the sprite file size of the specified monster.\n\nr0: monster"
-        " id\nreturn: sprite file size",
-    )
-
-    GetCanMoveFlag = Symbol(
-        [0x52BEC],
-        [0x2052BEC],
-        None,
-        "Returns the flag that determines if a monster can move in dungeons.\n\nr0:"
-        " Monster ID\nreturn: 'Can move' flag",
-    )
-
-    GetMonsterPreEvolution = Symbol(
-        [0x52CE0],
-        [0x2052CE0],
-        None,
-        "Returns the pre-evolution id of a monster given its ID.\n\nr0: monster"
-        " id\nreturn: ID of the monster that evolves into the one specified in r0",
-    )
-
-    GetEvolutions = Symbol(
-        [0x54204],
-        [0x2054204],
-        None,
-        "Returns a list of all the possible evolutions for a given monster id.\n\nr0:"
-        " Monster id\nr1: [Output] Array that will hold the list of monster ids the"
-        " specified monster can evolve into\nr2: True to skip the check that prevents"
-        " returning monsters with a different sprite size than the current one\nr3:"
-        " True to skip the check that prevents Shedinja from being counted as a"
-        " potential evolution\nreturn: Number of possible evolutions for the specified"
-        " monster id",
-    )
-
-    GetMonsterIdFromSpawnEntry = Symbol(
-        [0x547FC],
-        [0x20547FC],
-        None,
-        "Returns the monster ID of the specified monster spawn entry\n\nr0: Pointer to"
-        " the monster spawn entry\nreturn: monster_spawn_entry::id",
-    )
-
-    GetMonsterLevelFromSpawnEntry = Symbol(
-        [0x54834],
-        [0x2054834],
-        None,
-        "Returns the level of the specified monster spawn entry.\n\nr0: pointer to the"
-        " monster spawn entry\nreturn: uint8_t",
-    )
-
-    GetMonsterGenderVeneer = Symbol(
-        [0x54ADC],
-        [0x2054ADC],
-        None,
-        "Likely a linker-generated veneer for GetMonsterGender.\n\nSee"
-        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
-        " monster id\nreturn: monster gender",
-    )
-
-    IsUnown = Symbol(
-        [0x54E04],
-        [0x2054E04],
-        None,
-        "Checks if a monster ID is an Unown.\n\nr0: monster ID\nreturn: bool",
-    )
-
-    IsShaymin = Symbol(
-        [0x54E20],
-        [0x2054E20],
-        None,
-        "Checks if a monster ID is a Shaymin form.\n\nr0: monster ID\nreturn: bool",
-    )
-
-    IsCastform = Symbol(
-        [0x54E50],
-        [0x2054E50],
-        None,
-        "Checks if a monster ID is a Castform form.\n\nr0: monster ID\nreturn: bool",
-    )
-
-    IsCherrim = Symbol(
-        [0x54EA8],
-        [0x2054EA8],
-        None,
-        "Checks if a monster ID is a Cherrim form.\n\nr0: monster ID\nreturn: bool",
-    )
-
-    IsDeoxys = Symbol(
-        [0x54EF0],
-        [0x2054EF0],
-        None,
-        "Checks if a monster ID is a Deoxys form.\n\nr0: monster ID\nreturn: bool",
-    )
-
-    IsMonsterOnTeam = Symbol(
-        [0x554C4],
-        [0x20554C4],
-        None,
-        "Checks if a given monster is on the exploration team (not necessarily the"
-        " active party)?\n\nr0: monster ID\nr1: ?\nreturn: bool",
-    )
-
-    CheckTeamMemberField8 = Symbol(
-        [0x565E0],
-        [0x20565E0],
-        None,
-        "Checks if a value obtained from team_member::field_0x8 is equal to certain"
-        " values.\n\nThis is known to return true for some or all of the guest"
-        " monsters.\n\nr0: Value read from team_member::field_0x8\nreturn: True if the"
-        " value is equal to 0x55AA or 0x5AA5",
-    )
-
-    GetTeamMemberData = Symbol(
-        [0x56708],
-        [0x2056708],
-        None,
-        "Returns a struct containing information about a team member.\n\nr0:"
-        " Index\nreturn: Pointer to struct containing team member information",
-    )
-
-    SetTeamSetupHeroAndPartnerOnly = Symbol(
-        [0x56D48],
-        [0x2056D48],
-        None,
-        "Implements SPECIAL_PROC_SET_TEAM_SETUP_HERO_AND_PARTNER_ONLY (see"
-        " ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    SetTeamSetupHeroOnly = Symbol(
-        [0x56E2C],
-        [0x2056E2C],
-        None,
-        "Implements SPECIAL_PROC_SET_TEAM_SETUP_HERO_ONLY (see"
-        " ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    GetPartyMembers = Symbol(
-        [0x56F9C],
-        [0x2056F9C],
-        None,
-        "Appears to get the team's active party members. Implements most of"
-        " SPECIAL_PROC_IS_TEAM_SETUP_SOLO (see ScriptSpecialProcessCall).\n\nr0:"
-        " [output] Array of 4 2-byte values (they seem to be indexes of some sort)"
-        " describing each party member, which will be filled in by the function. The"
-        " input can be a null pointer if the party members aren't needed\nreturn:"
-        " Number of party members",
-    )
-
-    IqSkillFlagTest = Symbol(
-        [0x59280],
-        [0x2059280],
-        None,
-        "Tests whether an IQ skill with a given ID is active.\n\nr0: IQ skill bitvector"
-        " to test\nr1: IQ skill ID\nreturn: bool",
-    )
-
-    GetExplorerMazeMonster = Symbol(
-        [0x59474],
-        [0x2059474],
-        None,
-        "Returns the data of a monster sent into the Explorer Dojo using the 'exchange"
-        " teams' option.\n\nr0: Entry number (0-3)\nreturn: Ground monster data of the"
-        " specified entry",
-    )
-
-    GetSosMailCount = Symbol(
-        [0x5BCF8],
-        [0x205BCF8],
-        None,
-        "Implements SPECIAL_PROC_GET_SOS_MAIL_COUNT (see"
-        " ScriptSpecialProcessCall).\n\nr0: ?\nr1: some flag?\nreturn: SOS mail count",
-    )
-
-    DungeonRequestsDone = Symbol(
-        [0x5F120],
-        [0x205F120],
-        None,
-        "Seems to return the number of missions completed.\n\nPart of the"
-        " implementation for SPECIAL_PROC_DUNGEON_HAD_REQUEST_DONE (see"
-        " ScriptSpecialProcessCall).\n\nr0: ?\nr1: some flag?\nreturn: number of"
-        " missions completed",
-    )
-
-    DungeonRequestsDoneWrapper = Symbol(
-        [0x5F18C],
-        [0x205F18C],
-        None,
-        "Calls DungeonRequestsDone with the second argument set to false.\n\nr0:"
-        " ?\nreturn: number of mission completed",
-    )
-
-    AnyDungeonRequestsDone = Symbol(
-        [0x5F19C],
-        [0x205F19C],
-        None,
-        "Calls DungeonRequestsDone with the second argument set to true, and converts"
-        " the integer output to a boolean.\n\nr0: ?\nreturn: bool: whether the number"
-        " of missions completed is greater than 0",
-    )
-
-    ScriptSpecialProcess0x3D = Symbol(
-        [0x65ECC],
-        [0x2065ECC],
-        None,
-        "Implements SPECIAL_PROC_0x3D (see ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    ScriptSpecialProcess0x3E = Symbol(
-        [0x65EDC],
-        [0x2065EDC],
-        None,
-        "Implements SPECIAL_PROC_0x3E (see ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    ScriptSpecialProcess0x17 = Symbol(
-        [0x65FC4],
-        [0x2065FC4],
-        None,
-        "Implements SPECIAL_PROC_0x17 (see ScriptSpecialProcessCall).\n\nNo params.",
-    )
-
-    ItemAtTableIdx = Symbol(
-        [0x66074],
-        [0x2066074],
-        None,
-        "Gets info about the item at a given item table (not sure what this table"
-        " is...) index.\n\nUsed by SPECIAL_PROC_COUNT_TABLE_ITEM_TYPE_IN_BAG and"
-        " friends (see ScriptSpecialProcessCall).\n\nr0: table index\nr1: [output]"
-        " pointer to an owned_item",
-    )
-
-    WaitForInterrupt = Symbol(
-        [0x7BFC8],
-        [0x207BFC8],
-        None,
-        "Presumably blocks until the program receives an interrupt.\n\nThis just calls"
-        " (in Ghidra terminology) coproc_moveto_Wait_for_interrupt(0). See"
-        " https://en.wikipedia.org/wiki/ARM_architecture_family#Coprocessors.\n\nNo"
-        " params.",
-    )
-
-    FileInit = Symbol(
-        [0x7F77C],
-        [0x207F77C],
-        None,
-        "Initializes a file_stream structure for file I/O.\n\nThis function must always"
-        " be called before opening a file.\n\nr0: file_stream pointer",
-    )
-
-    Abs = Symbol(
-        [0x868F4],
-        [0x20868F4],
-        None,
-        "Takes the absolute value of an integer.\n\nr0: x\nreturn: abs(x)",
-    )
-
-    Mbtowc = Symbol(
-        [0x87554],
-        [0x2087554],
-        None,
-        "The mbtowc(3) C library function.\n\nr0: pwc\nr1: s\nr2: n\nreturn: number of"
-        " consumed bytes, or -1 on failure",
-    )
-
-    TryAssignByte = Symbol(
-        [0x8758C],
-        [0x208758C],
-        None,
-        "Assign a byte to the target of a pointer if the pointer is non-null.\n\nr0:"
-        " pointer\nr1: value\nreturn: true on success, false on failure",
-    )
-
-    TryAssignByteWrapper = Symbol(
-        [0x875A0],
-        [0x20875A0],
-        None,
-        "Wrapper around TryAssignByte.\n\nAccesses the TryAssignByte function with a"
-        " weird chain of pointer dereferences.\n\nr0: pointer\nr1: value\nreturn: true"
-        " on success, false on failure",
-    )
-
-    Wcstombs = Symbol(
-        [0x875BC],
-        [0x20875BC],
-        None,
-        "The wcstombs(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn:"
-        " characters converted",
-    )
-
-    Memcpy = Symbol(
-        [0x87634],
-        [0x2087634],
-        None,
-        "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
-    )
-
-    Memmove = Symbol(
-        [0x87654],
-        [0x2087654],
-        None,
-        "The memmove(3) C library function.\n\nThe implementation is nearly the same as"
-        " Memcpy, but it copies bytes from back to front if src < dst.\n\nr0: dest\nr1:"
-        " src\nr2: n",
-    )
-
-    Memset = Symbol(
-        [0x876A0],
-        [0x20876A0],
-        None,
-        "The memset(3) C library function.\n\nThis is just a wrapper around"
-        " MemsetInternal that returns the pointer at the end.\n\nr0: s\nr1: c (int, but"
-        " must be a single-byte value)\nr2: n\nreturn: s",
-    )
-
-    Memchr = Symbol(
-        [0x876B4],
-        [0x20876B4],
-        None,
-        "The memchr(3) C library function.\n\nr0: s\nr1: c\nr2: n\nreturn: pointer to"
-        " first occurrence of c in s, or a null pointer if no match",
-    )
-
-    Memcmp = Symbol(
-        [0x876E0],
-        [0x20876E0],
-        None,
-        "The memcmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn: comparison"
-        " value",
-    )
-
-    MemsetInternal = Symbol(
-        [0x87720],
-        [0x2087720],
-        None,
-        "The actual memory-setting implementation for the memset(3) C library"
-        " function.\n\nThis function is optimized to set bytes in 4-byte chunks for n"
-        " >= 32, correctly handling any unaligned bytes at the front/back. In this"
-        " case, it also further optimizes by unrolling a for loop to set 8 4-byte"
-        " values at once (effectively a 32-byte chunk).\n\nr0: s\nr1: c (int, but must"
-        " be a single-byte value)\nr2: n",
-    )
-
-    VsprintfInternalSlice = Symbol(
-        [0x8900C],
-        [0x208900C],
-        None,
-        "This is what implements the bulk of VsprintfInternal.\n\nThe"
-        " __vsprintf_internal in the modern-day version of glibc relies on"
-        " __vfprintf_internal; this function has a slightly different interface, but it"
-        " serves a similar role.\n\nr0: function pointer to append to the string being"
-        " built (VsprintfInternal uses TryAppendToSlice)\nr1: string buffer slice\nr2:"
-        " format\nr3: ap\nreturn: number of characters printed, excluding the"
-        " null-terminator",
-    )
-
-    TryAppendToSlice = Symbol(
-        [0x89830],
-        [0x2089830],
-        None,
-        "Best-effort append the given data to a slice. If the slice's capacity is"
-        " reached, any remaining data will be truncated.\n\nr0: slice pointer\nr1:"
-        " buffer of data to append\nr2: number of bytes in the data buffer\nreturn:"
-        " true",
-    )
-
-    VsprintfInternal = Symbol(
-        [0x89874],
-        [0x2089874],
-        None,
-        "This is what implements Vsprintf. It's akin to __vsprintf_internal in the"
-        " modern-day version of glibc (in fact, it's probably an older version of"
-        " this).\n\nr0: str\nr1: maxlen (Vsprintf passes UINT32_MAX for this)\nr2:"
-        " format\nr3: ap\nreturn: number of characters printed, excluding the"
-        " null-terminator",
-    )
-
-    Vsprintf = Symbol(
-        [0x898DC],
-        [0x20898DC],
-        None,
-        "The vsprintf(3) C library function.\n\nr0: str\nr1: format\nr2: ap\nreturn:"
-        " number of characters printed, excluding the null-terminator",
-    )
-
-    Snprintf = Symbol(
-        [0x898F4],
-        [0x20898F4],
-        None,
-        "The snprintf(3) C library function.\n\nThis calls VsprintfInternal directly,"
-        " so it's presumably the real snprintf.\n\nr0: str\nr1: n\nr2: format\n...:"
-        " variadic\nreturn: number of characters printed, excluding the"
-        " null-terminator",
-    )
-
-    Sprintf = Symbol(
-        [0x8991C],
-        [0x208991C],
-        None,
-        "The sprintf(3) C library function.\n\nThis calls VsprintfInternal directly, so"
-        " it's presumably the real sprintf.\n\nr0: str\nr1: format\n...:"
-        " variadic\nreturn: number of characters printed, excluding the"
-        " null-terminator",
-    )
-
-    Strlen = Symbol(
-        [0x89A10],
-        [0x2089A10],
-        None,
-        "The strlen(3) C library function.\n\nr0: s\nreturn: length of s",
-    )
-
-    Strcpy = Symbol(
-        [0x89A2C],
-        [0x2089A2C],
-        None,
-        "The strcpy(3) C library function.\n\nThis function is optimized to copy"
-        " characters in aligned 4-byte chunks if possible, correctly handling any"
-        " unaligned bytes at the front/back.\n\nr0: dest\nr1: src",
-    )
-
-    Strncpy = Symbol(
-        [0x89AF4],
-        [0x2089AF4],
-        None,
-        "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
-    )
-
-    Strcat = Symbol(
-        [0x89B44],
-        [0x2089B44],
-        None,
-        "The strcat(3) C library function.\n\nr0: dest\nr1: src",
-    )
-
-    Strncat = Symbol(
-        [0x89B74],
-        [0x2089B74],
-        None,
-        "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
-    )
-
-    Strcmp = Symbol(
-        [0x89BC4],
-        [0x2089BC4],
-        None,
-        "The strcmp(3) C library function.\n\nSimilarly to Strcpy, this function is"
-        " optimized to compare characters in aligned 4-byte chunks if possible.\n\nr0:"
-        " s1\nr1: s2\nreturn: comparison value",
-    )
-
-    Strncmp = Symbol(
-        [0x89CD8],
-        [0x2089CD8],
-        None,
-        "The strncmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn:"
-        " comparison value",
-    )
-
-    Strchr = Symbol(
-        [0x89D0C],
-        [0x2089D0C],
-        None,
-        "The strchr(3) C library function.\n\nr0: string\nr1: c\nreturn: pointer to the"
-        " located byte c, or null pointer if no match",
-    )
-
-    Strcspn = Symbol(
-        [0x89D48],
-        [0x2089D48],
-        None,
-        "The strcspn(3) C library function.\n\nr0: string\nr1: stopset\nreturn: offset"
-        " of the first character in string within stopset",
-    )
-
-    Strstr = Symbol(
-        [0x89E08],
-        [0x2089E08],
-        None,
-        "The strstr(3) C library function.\n\nr0: haystack\nr1: needle\nreturn: pointer"
-        " into haystack where needle starts, or null pointer if no match",
-    )
-
-    Wcslen = Symbol(
-        [0x8B780],
-        [0x208B780],
-        None,
-        "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
-    )
-
-    AddFloat = Symbol(
-        [0x8F050],
-        [0x208F050],
-        None,
-        "This appears to be the libgcc implementation of __addsf3 (not sure which gcc"
-        " version), which implements the addition operator for IEEE 754 floating-point"
-        " numbers.\n\nr0: a\nr1: b\nreturn: a + b",
-    )
-
-    DivideFloat = Symbol(
-        [0x8F5CC],
-        [0x208F5CC],
-        None,
-        "This appears to be the libgcc implementation of __divsf3 (not sure which gcc"
-        " version), which implements the division operator for IEEE 754 floating-point"
-        " numbers.\n\nr0: dividend\nr1: divisor\nreturn: dividend / divisor",
-    )
-
-    FloatToDouble = Symbol(
-        [0x8F984],
-        [0x208F984],
-        None,
-        "This appears to be the libgcc implementation of __extendsfdf2 (not sure which"
-        " gcc version), which implements the float to double cast operation for IEEE"
-        " 754 floating-point numbers.\n\nr0: float\nreturn: (double)float",
-    )
-
-    FloatToInt = Symbol(
-        [0x8FA08],
-        [0x208FA08],
-        None,
-        "This appears to be the libgcc implementation of __fixsfsi (not sure which gcc"
-        " version), which implements the float to int cast operation for IEEE 754"
-        " floating-point numbers. The output saturates if the input is out of the"
-        " representable range for the int type.\n\nr0: float\nreturn: (int)float",
-    )
-
-    IntToFloat = Symbol(
-        [0x8FA3C],
-        [0x208FA3C],
-        None,
-        "This appears to be the libgcc implementation of __floatsisf (not sure which"
-        " gcc version), which implements the int to float cast operation for IEEE 754"
-        " floating-point numbers.\n\nr0: int\nreturn: (float)int",
-    )
-
-    UIntToFloat = Symbol(
-        [0x8FA84],
-        [0x208FA84],
-        None,
-        "This appears to be the libgcc implementation of __floatunsisf (not sure which"
-        " gcc version), which implements the unsigned int to float cast operation for"
-        " IEEE 754 floating-point numbers.\n\nr0: uint\nreturn: (float)uint",
-    )
-
-    MultiplyFloat = Symbol(
-        [0x8FACC],
-        [0x208FACC],
-        None,
-        "This appears to be the libgcc implementation of __mulsf3 (not sure which gcc"
-        " version), which implements the multiplication operator for IEEE 754"
-        " floating-point numbers.",
-    )
-
-    Sqrtf = Symbol(
-        [0x8FCAC],
-        [0x208FCAC],
-        None,
-        "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)",
-    )
-
-    SubtractFloat = Symbol(
-        [0x8FD9C],
-        [0x208FD9C],
-        None,
-        "This appears to be the libgcc implementation of __subsf3 (not sure which gcc"
-        " version), which implements the subtraction operator for IEEE 754"
-        " floating-point numbers.\n\nr0: a\nr1: b\nreturn: a - b",
-    )
-
-    DivideInt = Symbol(
-        [0x9023C],
-        [0x209023C],
-        None,
-        "This appears to be the libgcc implementation of __divsi3 (not sure which gcc"
-        " version), which implements the division operator for signed ints.\n\nThe"
-        " return value is a 64-bit integer, with the quotient (dividend / divisor) in"
-        " the lower 32 bits and the remainder (dividend % divisor) in the upper 32"
-        " bits. In accordance with the Procedure Call Standard for the Arm Architecture"
-        " (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
-        " this means that the quotient is returned in r0 and the remainder is returned"
-        " in r1.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
-    )
-
-    DivideUInt = Symbol(
-        [0x90448],
-        [0x2090448],
-        None,
-        "This appears to be the libgcc implementation of __udivsi3 (not sure which gcc"
-        " version), which implements the division operator for unsigned ints.\n\nThe"
-        " return value is a 64-bit integer, with the quotient (dividend / divisor) in"
-        " the lower 32 bits and the remainder (dividend % divisor) in the upper 32"
-        " bits. In accordance with the Procedure Call Standard for the Arm Architecture"
-        " (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
-        " this means that the quotient is returned in r0 and the remainder is returned"
-        " in r1.\nNote: This function falls through to DivideUIntNoZeroCheck.\n\nr0:"
-        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
-    )
-
-    DivideUIntNoZeroCheck = Symbol(
-        [0x90450],
-        [0x2090450],
-        None,
-        "Subsidiary function to DivideUInt. Skips the initial check for divisor =="
-        " 0.\n\nThe return value is a 64-bit integer, with the quotient (dividend /"
-        " divisor) in the lower 32 bits and the remainder (dividend % divisor) in the"
-        " upper 32 bits. In accordance with the Procedure Call Standard for the Arm"
-        " Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
-        " this means that the quotient is returned in r0 and the remainder is returned"
-        " in r1.\nThis function appears to only be called internally.\n\nr0:"
-        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
-    )
-
-
-class EuArm9Data:
-    DEFAULT_MEMORY_ARENA_SIZE = Symbol(
-        [0xE58],
-        [0x2000E58],
-        0x4,
-        "Length in bytes of the default memory allocation arena, 1991680.",
-    )
-
-    AURA_BOW_ID_LAST = Symbol(
-        [0xCCBC], [0x200CCBC], 0x4, "Highest item ID of the aura bows."
-    )
-
-    NUMBER_OF_ITEMS = Symbol([0xE930], [0x200E930], 0x4, "Number of items in the game.")
-
-    MAX_MONEY_CARRIED = Symbol(
-        [0xEDF8],
-        [0x200EDF8],
-        0x4,
-        "Maximum amount of money the player can carry, 99999.",
-    )
-
-    MAX_MONEY_STORED = Symbol(
-        [0x107F8],
-        [0x20107F8],
-        0x4,
-        "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
-    )
-
-    SCRIPT_VARS_VALUES_PTR = Symbol(
-        [0x4B630, 0x4B81C, 0x4C764, 0x4C7BC],
-        [0x204B630, 0x204B81C, 0x204C764, 0x204C7BC],
-        0x4,
-        "Hard-coded pointer to SCRIPT_VARS_VALUES.",
-    )
-
-    MONSTER_ID_LIMIT = Symbol(
-        [0x54818],
-        [0x2054818],
-        0x4,
-        "One more than the maximum valid monster ID (0x483).",
-    )
-
-    MAX_RECRUITABLE_TEAM_MEMBERS = Symbol(
-        [0x555B4, 0x559C8],
-        [0x20555B4, 0x20559C8],
-        None,
-        "555, appears to be the maximum number of members recruited to an exploration"
-        " team, at least for the purposes of some checks that need to iterate over all"
-        " team members.",
-    )
-
-    CART_REMOVED_IMG_DATA = Symbol([0x92EE4], [0x2092EE4], 0x2000, "")
-
-    EXCLUSIVE_ITEM_STAT_BOOST_DATA = Symbol(
-        [0x9852C],
-        [0x209852C],
-        0x3C,
-        "Contains stat boost effects for different exclusive item classes.\n\nEach"
-        " 4-byte entry contains the boost data for (attack, special attack, defense,"
-        " special defense), 1 byte each, for a specific exclusive item class, indexed"
-        " according to the stat boost data index list.",
-    )
-
-    EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
-        [0x9852C], [0x209852C], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
-    )
-
-    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
-        [0x9852D], [0x209852D], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
-    )
-
-    EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
-        [0x9852E], [0x209852E], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
-    )
-
-    EXCLUSIVE_ITEM_SPECIAL_DEFENSE_BOOSTS = Symbol(
-        [0x9852F], [0x209852F], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 3"
-    )
-
-    EXCLUSIVE_ITEM_EFFECT_DATA = Symbol(
-        [0x98568],
-        [0x2098568],
-        0x778,
-        "Contains special effects for each exclusive item.\n\nEach entry is 2 bytes,"
-        " with the first entry corresponding to the first exclusive item (Prism Ruff)."
-        " The first byte is the exclusive item effect ID, and the second byte is an"
-        " index into other data tables (related to the more generic stat boosting"
-        " effects for specific monsters).",
-    )
-
-    EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
-        [0x98569], [0x2098569], 0x777, "EXCLUSIVE_ITEM_EFFECT_DATA, offset by 1"
-    )
-
-    RECOIL_MOVE_LIST = Symbol(
-        [0x991B8],
-        [0x20991B8],
-        0x16,
-        "Null-terminated list of all the recoil moves, as 2-byte move IDs.\n\ntype:"
-        " struct move_id_16[11]",
-    )
-
-    PUNCH_MOVE_LIST = Symbol(
-        [0x991CE],
-        [0x20991CE],
-        0x20,
-        "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
-        " struct move_id_16[16]",
-    )
-
-    SCRIPT_VARS_LOCALS = Symbol(
-        [0x9D450],
-        [0x209D450],
-        0x40,
-        "List of special 'local' variables available to the script engine. There are 4"
-        " 16-byte entries.\n\nEach entry has the same structure as an entry in"
-        " SCRIPT_VARS.\n\ntype: struct script_local_var_table",
-    )
-
-    SCRIPT_VARS = Symbol(
-        [0x9DDF4],
-        [0x209DDF4],
-        0x730,
-        "List of predefined global variables that track game state, which are available"
-        " to the script engine. There are 115 16-byte entries.\n\nThese variables"
-        " underpin the various ExplorerScript global variables you can use in the"
-        " SkyTemple SSB debugger.\n\ntype: struct script_var_table",
-    )
-
-    DUNGEON_DATA_LIST = Symbol(
-        [0x9E924],
-        [0x209E924],
-        0x2D0,
-        "Data about every dungeon in the game.\n\nThis is an array of 180 dungeon data"
-        " list entry structs. Each entry is 4 bytes, and contains floor count"
-        " information along with an index into the bulk of the dungeon's data in"
-        " mappa_s.bin.\n\nSee the struct definitions and End45's dungeon data document"
-        " for more info.\n\ntype: struct dungeon_data_list_entry[180]",
-    )
-
-    DUNGEON_RESTRICTIONS = Symbol(
-        [0xA11E8],
-        [0x20A11E8],
-        0xC00,
-        "Data related to dungeon restrictions for every dungeon in the game.\n\nThis is"
-        " an array of 256 dungeon restriction structs. Each entry is 12 bytes, and"
-        " contains information about restrictions within the given dungeon.\n\nSee the"
-        " struct definitions and End45's dungeon data document for more info.\n\ntype:"
-        " struct dungeon_restriction[256]",
-    )
-
-    SPECIAL_BAND_STAT_BOOST = Symbol(
-        [0xA1DF0], [0x20A1DF0], 0x2, "Stat boost value for the Special Band."
-    )
-
-    MUNCH_BELT_STAT_BOOST = Symbol(
-        [0xA1E00], [0x20A1E00], 0x2, "Stat boost value for the Munch Belt."
-    )
-
-    GUMMI_STAT_BOOST = Symbol(
-        [0xA1E0C],
-        [0x20A1E0C],
-        0x2,
-        "Stat boost value if a stat boost occurs when eating normal Gummis.",
-    )
-
-    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol([0xA1E10], [0x20A1E10], 0x4, "")
-
-    WONDER_GUMMI_IQ_GAIN = Symbol(
-        [0xA1E14], [0x20A1E14], 0x2, "IQ gain when ingesting wonder gummis."
-    )
-
-    AURA_BOW_STAT_BOOST = Symbol(
-        [0xA1E1C], [0x20A1E1C], 0x2, "Stat boost value for the aura bows."
-    )
-
-    MIN_IQ_ITEM_MASTER = Symbol([0xA1E28], [0x20A1E28], 0x4, "")
-
-    DEF_SCARF_STAT_BOOST = Symbol(
-        [0xA1E2C], [0x20A1E2C], 0x2, "Stat boost value for the Defense Scarf."
-    )
-
-    POWER_BAND_STAT_BOOST = Symbol(
-        [0xA1E30], [0x20A1E30], 0x2, "Stat boost value for the Power Band."
-    )
-
-    WONDER_GUMMI_STAT_BOOST = Symbol(
-        [0xA1E34],
-        [0x20A1E34],
-        0x2,
-        "Stat boost value if a stat boost occurs when eating Wonder Gummis.",
-    )
-
-    ZINC_BAND_STAT_BOOST = Symbol(
-        [0xA1E38], [0x20A1E38], 0x2, "Stat boost value for the Zinc Band."
-    )
-
-    TACTICS_UNLOCK_LEVEL_TABLE = Symbol([0xA1EC4], [0x20A1EC4], 0x18, "")
-
-    OUTLAW_LEVEL_TABLE = Symbol(
-        [0xA1F1C],
-        [0x20A1F1C],
-        0x20,
-        "Table of 2-byte outlaw levels for outlaw missions, indexed by mission rank.",
-    )
-
-    OUTLAW_MINION_LEVEL_TABLE = Symbol(
-        [0xA1F3C],
-        [0x20A1F3C],
-        0x20,
-        "Table of 2-byte outlaw minion levels for outlaw hideout missions, indexed by"
-        " mission rank.",
-    )
-
-    IQ_SKILL_RESTRICTIONS = Symbol(
-        [0xA1FE0],
-        [0x20A1FE0],
-        0x8A,
-        "Table of 2-byte values for each IQ skill that represent a group. IQ skills in"
-        " the same group can not be enabled at the same time.",
-    )
-
-    SECONDARY_TERRAIN_TYPES = Symbol(
-        [0xA206C],
-        [0x20A206C],
-        0xC8,
-        "The type of secondary terrain for each dungeon in the game.\n\nThis is an"
-        " array of 200 bytes. Each byte is an enum corresponding to one"
-        " dungeon.\n\ntype: struct secondary_terrain_type_8[200]",
-    )
-
-    SENTRY_MINIGAME_DATA = Symbol([0xA2134], [0x20A2134], None, "")
-
-    IQ_SKILLS = Symbol(
-        [0xA2200],
-        [0x20A2200],
-        0x114,
-        "Table of 4-byte values for each IQ skill that represent the required IQ value"
-        " to unlock a skill.",
-    )
-
-    IQ_GROUP_SKILLS = Symbol([0xA2314], [0x20A2314], 0x190, "")
-
-    IQ_GUMMI_GAIN_TABLE = Symbol([0xA2834], [0x20A2834], 0x288, "")
-
-    GUMMI_BELLY_RESTORE_TABLE = Symbol([0xA2ABC], [0x20A2ABC], 0x288, "")
-
-    BAG_CAPACITY_TABLE = Symbol(
-        [0xA2D58],
-        [0x20A2D58],
-        None,
-        "Array of 4-byte integers containing the bag capacity for each bag level.",
-    )
-
-    SPECIAL_EPISODE_MAIN_CHARACTERS = Symbol([0xA2D78], [0x20A2D78], 0xC8, "")
-
-    GUEST_MONSTER_DATA = Symbol(
-        [0xA2E40],
-        [0x20A2E40],
-        0x288,
-        "Data for guest monsters that join you during certain story dungeons.\n\nArray"
-        " of 18 36-byte entries.\n\nSee the struct definitions and End45's dungeon data"
-        " document for more info.\n\ntype: struct guest_monster[18]",
-    )
-
-    RANK_UP_TABLE = Symbol([0xA30C8], [0x20A30C8], 0xD0, "")
-
-    MONSTER_SPRITE_DATA = Symbol([0xA332C], [0x20A332C], 0x4B0, "")
-
-    MISSION_DUNGEON_UNLOCK_TABLE = Symbol([0xA42AC], [0x20A42AC], None, "")
-
-    EVENTS = Symbol(
-        [0xA5BD8],
-        [0x20A5BD8],
-        0x1584,
-        "Table of levels for the script engine, in which scenes can take place. There"
-        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
-        " script_level[length / 12]",
-    )
-
-    ENTITIES = Symbol(
-        [0xA8890],
-        [0x20A8890],
-        0x1218,
-        "Table of entities for the script engine, which can move around and do things"
-        " within a scene. There are 386 12-byte entries.\n\ntype: struct"
-        " script_entity[386]",
-    )
-
-    MAP_MARKER_PLACEMENTS = Symbol(
-        [0xA9D70],
-        [0x20A9D70],
-        0x9B0,
-        "The map marker position of each dungeon on the Wonder Map.\n\nThis is an array"
-        " of 310 map marker structs. Each entry is 8 bytes, and contains positional"
-        " information about a dungeon on the map.\n\nSee the struct definitions and"
-        " End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
-    )
-
-    MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
-        [0xAF7A0],
-        [0x20AF7A0],
-        0x8,
-        "Functions to get the desired memory arena for allocating and freeing heap"
-        " memory.\n\ntype: struct mem_arena_getters",
-    )
-
-    PRNG_SEQUENCE_NUM = Symbol(
-        [0xAF7CC],
-        [0x20AF7CC],
-        0x2,
-        "[Runtime] The current PRNG sequence number for the general-purpose PRNG. See"
-        " Rand16Bit for more information on how the general-purpose PRNG works.",
-    )
-
-    LOADED_OVERLAY_GROUP_0 = Symbol(
-        [0xAFAD0],
-        [0x20AFAD0],
-        0x4,
-        "[Runtime] The overlay group ID of the overlay currently loaded in slot 0. A"
-        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
-        " slot 0:\n- 0x06 (overlay 3)\n- 0x07 (overlay 6)\n- 0x08 (overlay 4)\n- 0x09"
-        " (overlay 5)\n- 0x0A (overlay 7)\n- 0x0B (overlay 8)\n- 0x0C (overlay 9)\n-"
-        " 0x10 (overlay 12)\n- 0x11 (overlay 13)\n- 0x12 (overlay 14)\n- 0x13 (overlay"
-        " 15)\n- 0x14 (overlay 16)\n- 0x15 (overlay 17)\n- 0x16 (overlay 18)\n- 0x17"
-        " (overlay 19)\n- 0x18 (overlay 20)\n- 0x19 (overlay 21)\n- 0x1A (overlay"
-        " 22)\n- 0x1B (overlay 23)\n- 0x1C (overlay 24)\n- 0x1D (overlay 25)\n- 0x1E"
-        " (overlay 26)\n- 0x1F (overlay 27)\n- 0x20 (overlay 28)\n- 0x21 (overlay"
-        " 30)\n- 0x22 (overlay 31)\n- 0x23 (overlay 32)\n- 0x24 (overlay 33)\n\ntype:"
-        " enum overlay_group_id",
-    )
-
-    LOADED_OVERLAY_GROUP_1 = Symbol(
-        [0xAFAD4],
-        [0x20AFAD4],
-        0x4,
-        "[Runtime] The overlay group ID of the overlay currently loaded in slot 1. A"
-        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
-        " slot 1:\n- 0x4 (overlay 1)\n- 0x5 (overlay 2)\n- 0xD (overlay 11)\n- 0xE"
-        " (overlay 29)\n- 0xF (overlay 34)\n\ntype: enum overlay_group_id",
-    )
-
-    LOADED_OVERLAY_GROUP_2 = Symbol(
-        [0xAFAD8],
-        [0x20AFAD8],
-        0x4,
-        "[Runtime] The overlay group ID of the overlay currently loaded in slot 2. A"
-        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
-        " slot 2:\n- 0x1 (overlay 0)\n- 0x2 (overlay 10)\n- 0x3 (overlay 35)\n\ntype:"
-        " enum overlay_group_id",
-    )
-
-    PACK_FILE_OPENED = Symbol(
-        [0xAFF54],
-        [0x20AFF54],
-        0x4,
-        "[Runtime] A pointer to the 6 opened Pack files (listed at"
-        " PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
-    )
-
-    PACK_FILE_PATHS_TABLE = Symbol(
-        [0xAFF58],
-        [0x20AFF58],
-        0x18,
-        "List of pointers to path strings to all known pack files.\nThe game uses this"
-        " table to load its resources when launching dungeon mode.\n\ntype: char*[6]",
-    )
-
-    GAME_STATE_VALUES = Symbol([0xAFF70], [0x20AFF70], None, "[Runtime]")
-
-    DUNGEON_MOVE_TABLES = Symbol(
-        [0xAFFA8],
-        [0x20AFFA8],
-        None,
-        "[Runtime] Seems to be some sort of region (a table of tables?) that holds"
-        " pointers to various important tables related to moves.",
-    )
-
-    MOVE_DATA_TABLE_PTR = Symbol(
-        [0xAFFB0],
-        [0x20AFFB0],
-        0x4,
-        "[Runtime] Points to the contents of the move data table loaded from"
-        " waza_p.bin\n\ntype: struct move_data_table*",
-    )
-
-    LANGUAGE_INFO_DATA = Symbol([0xB05A8], [0x20B05A8], None, "[Runtime]")
-
-    NOTIFY_NOTE = Symbol(
-        [0xB0814],
-        [0x20B0814],
-        None,
-        "[Runtime] Flag related to saving and loading state?\n\ntype: bool",
-    )
-
-    DEFAULT_HERO_ID = Symbol(
-        [0xB0818],
-        [0x20B0818],
-        0x2,
-        "The default monster ID for the hero (0x4: Charmander)\n\ntype: struct"
-        " monster_id_16",
-    )
-
-    DEFAULT_PARTNER_ID = Symbol(
-        [0xB081A],
-        [0x20B081A],
-        0x2,
-        "The default monster ID for the partner (0x1: Bulbasaur)\n\ntype: struct"
-        " monster_id_16",
-    )
-
-    GAME_MODE = Symbol([0xB088C], [0x20B088C], None, "[Runtime]\n\ntype: uint8_t")
-
-    ADVENTURE_LOG_PTR = Symbol(
-        [0xB0894], [0x20B0894], 0x4, "[Runtime]\n\ntype: struct adventure_log*"
-    )
-
-    ITEM_TABLES_PTRS_1 = Symbol([0xB1264], [0x20B1264], 0x68, "")
-
-    SMD_EVENTS_FUN_TABLE = Symbol([0xB14D4], [0x20B14D4], 0x1FC, "")
-
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol([0x20DF0], [0x2020DF0], None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(
-        [0x48B9C], [0x2048B9C], None, "Starting level of the hero."
-    )
-
-    PARTNER_START_LEVEL = Symbol(
-        [0x48C0C], [0x2048C0C], None, "Starting level of the partner."
-    )
-
-
-class EuArm9Section:
-    name = "arm9"
-    description = (
-        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
-        " launched, and contains the core code that runs the game, low level facilities"
-        " such as memory allocation, compression, other external dependencies (such as"
-        " linked functions from libc and libgcc), and the functions and tables"
-        " necessary to load overlays and dispatch execution to them."
-    )
-    loadaddress = 0x2000000
-    length = 0xB7D38
-    functions = EuArm9Functions
-    data = EuArm9Data
-
-
-class EuOverlay13Functions:
-    pass
-
-
-class EuOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(
-        [0x1F4C], [0x238CBCC], 0x2A, "type: struct monster_id_16[21]"
-    )
-
-    STARTERS_HERO_IDS = Symbol(
-        [0x1F78], [0x238CBF8], 0x40, "type: struct monster_id_16[32]"
-    )
-
-    STARTERS_STRINGS = Symbol([0x200C], [0x238CC8C], 0x60, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238CCEC], 0x84, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238CD70], 0x160, "")
-
-    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238DA0C], 0x48, "")
-
-
-class EuOverlay13Section:
-    name = "overlay13"
-    description = (
-        "Controls the personality test, including the available partners and playable"
-        " Pokémon. The actual personality test questions are stored in the MESSAGE"
-        " folder."
-    )
-    loadaddress = 0x238AC80
-    length = 0x2E80
-    functions = EuOverlay13Functions
-    data = EuOverlay13Data
-
-
-class EuOverlay25Functions:
-    pass
-
-
-class EuOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238BFF4], 0x18, "")
-
-    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238C00C], 0x20, "")
-
-    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238C02C], 0x20, "")
-
-
-class EuOverlay25Section:
-    name = "overlay25"
-    description = "Controls Xatu Appraisal."
-    loadaddress = 0x238AC80
-    length = 0x14C0
-    functions = EuOverlay25Functions
-    data = EuOverlay25Data
-
-
-class EuOverlay16Functions:
-    pass
-
-
-class EuOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol([0x2BCC], [0x238D84C], 0x18, "")
-
-    EVO_SUBMENU = Symbol([0x2BE4], [0x238D864], 0x20, "")
-
-    EVO_MAIN_MENU = Symbol([0x2C04], [0x238D884], 0x20, "")
-
-
-class EuOverlay16Section:
-    name = "overlay16"
-    description = "Controls Luminous Spring."
-    loadaddress = 0x238AC80
-    length = 0x2D20
-    functions = EuOverlay16Functions
-    data = EuOverlay16Data
-
-
-class EuOverlay26Functions:
-    pass
-
-
-class EuOverlay26Data:
-    pass
-
-
-class EuOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Related to mission completion. It's loaded when the dungeon completion summary"
-        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
-        " mission rewards from clients."
-    )
-    loadaddress = 0x238AC80
-    length = 0xE40
-    functions = EuOverlay26Functions
-    data = EuOverlay26Data
-
-
-class EuOverlay30Functions:
-    pass
-
-
-class EuOverlay30Data:
-    pass
-
-
-class EuOverlay30Section:
-    name = "overlay30"
-    description = "Controls quicksaving in dungeons."
-    loadaddress = 0x2383420
-    length = 0x38A0
-    functions = EuOverlay30Functions
-    data = EuOverlay30Data
-
-
-class EuOverlay21Functions:
-    pass
-
-
-class EuOverlay21Data:
-    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238D578], 0x18, "")
-
-    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238D590], 0x18, "")
-
-    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238D5A8], 0x20, "")
-
-    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238D5C8], 0x20, "")
-
-    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238D5E8], 0x28, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238D610], 0x30, "")
-
-
-class EuOverlay21Section:
-    name = "overlay21"
-    description = "Controls the Croagunk Swap Shop."
-    loadaddress = 0x238AC80
-    length = 0x2E20
-    functions = EuOverlay21Functions
-    data = EuOverlay21Data
-
-
-class EuOverlay32Functions:
-    pass
-
-
-class EuOverlay32Data:
-    pass
-
-
-class EuOverlay32Section:
-    name = "overlay32"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383420
-    length = 0x20
-    functions = EuOverlay32Functions
-    data = EuOverlay32Data
-
-
-class EuRamFunctions:
-    pass
-
-
-class EuRamData:
-    DUNGEON_COLORMAP_PTR = Symbol(
-        [0x1BA634],
-        [0x21BA634],
-        0x4,
-        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
-        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
-        " indexes into when rendering colors. Some weather conditions modify the"
-        " colormap, which is how the color scheme changes when it's, e.g., raining.",
-    )
-
-    DUNGEON_STRUCT = Symbol(
-        [0x1BA674],
-        [0x21BA674],
-        0x2CB14,
-        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
-        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
-        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
-        " 29.\n\ntype: struct dungeon",
-    )
-
-    MOVE_DATA_TABLE = Symbol(
-        [0x211D0C],
-        [0x2211D0C],
-        0x38C6,
-        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
-        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
-        " ARM 9 binary.\n\ntype: struct move_data_table",
-    )
-
-    FRAMES_SINCE_LAUNCH = Symbol(
-        [0x2A3E8C, 0x2A3EDC],
-        [0x22A3E8C, 0x22A3EDC],
-        0x4,
-        "Starts at 0 when the game is first launched, and continuously ticks up once"
-        " per frame while the game is running.",
-    )
-
-    BAG_ITEMS = Symbol(
-        [0x2A4164],
-        [0x22A4164],
-        0x12C,
-        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
-        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
-        " if filled.\n\ntype: struct item[50]",
-    )
-
-    BAG_ITEMS_PTR = Symbol([0x2A44E8], [0x22A44E8], 0x4, "Pointer to BAG_ITEMS.")
-
-    STORAGE_ITEMS = Symbol(
-        [0x2A44EE],
-        [0x22A44EE],
-        0x7D0,
-        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
-        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
-        " item_id_16[1000]",
-    )
-
-    STORAGE_ITEM_QUANTITIES = Symbol(
-        [0x2A4CBE],
-        [0x22A4CBE],
-        0x7D0,
-        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
-        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
-        " entry in this array is unused, and will be 0.",
-    )
-
-    KECLEON_SHOP_ITEMS_PTR = Symbol(
-        [0x2A5490], [0x22A5490], 0x4, "Pointer to KECLEON_SHOP_ITEMS."
-    )
-
-    KECLEON_SHOP_ITEMS = Symbol(
-        [0x2A5494],
-        [0x22A5494],
-        0x20,
-        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
-        [0x2A54B4],
-        [0x22A54B4],
-        0x20,
-        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
-        " to be used by the Kecleon Shop.",
-    )
-
-    KECLEON_WARES_ITEMS_PTR = Symbol(
-        [0x2A54D4], [0x22A54D4], 0x4, "Pointer to KECLEON_WARES_ITEMS."
-    )
-
-    KECLEON_WARES_ITEMS = Symbol(
-        [0x2A54D8],
-        [0x22A54D8],
-        0x10,
-        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_WARES_ITEMS = Symbol(
-        [0x2A54E8],
-        [0x22A54E8],
-        0x10,
-        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
-        " to be used by Kecleon Wares.",
-    )
-
-    MONEY_CARRIED = Symbol(
-        [0x2A54F8],
-        [0x22A54F8],
-        0x4,
-        "The amount of money the player is currently carrying.",
-    )
-
-    MONEY_STORED = Symbol(
-        [0x2A5504],
-        [0x22A5504],
-        0x4,
-        "The amount of money the player currently has stored in the Duskull Bank.",
-    )
-
-    LAST_NEW_MOVE = Symbol(
-        [0x2AB78C],
-        [0x22AB78C],
-        0x8,
-        "Move struct of the last new move introduced when learning a new move. Persists"
-        " even after the move selection is made in the menu.\n\ntype: struct move",
-    )
-
-    SCRIPT_VARS_VALUES = Symbol(
-        [0x2AB9EC],
-        [0x22AB9EC],
-        0x400,
-        "The table of game variable values. Its structure is determined by"
-        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
-        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
-        " the real length of this table is 0x400 based on the game code.\n\ntype:"
-        " struct script_var_value_table",
-    )
-
-    BAG_LEVEL = Symbol(
-        [0x2ABA9C],
-        [0x22ABA9C],
-        0x1,
-        "The player's bag level, which determines the bag capacity. This indexes"
-        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
-    )
-
-    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
-        [0x2ABDEC],
-        [0x22ABDEC],
-        0x1,
-        "The number of the special episode currently being played.\n\n0: normal,"
-        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
-        " Comes Team Charm!\n4: In the Future of Darkness",
-    )
-
-    PENDING_DUNGEON_ID = Symbol(
-        [0x2ABE3C],
-        [0x22ABE3C],
-        0x1,
-        "The ID of the selected dungeon when setting off from the"
-        " overworld.\n\nControls the text and map location during the 'map cutscene'"
-        " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
-    )
-
-    PENDING_STARTING_FLOOR = Symbol(
-        [0x2ABE3D],
-        [0x22ABE3D],
-        0x1,
-        "The floor number to start from in the dungeon specified by"
-        " PENDING_DUNGEON_ID.",
-    )
-
-    PLAY_TIME_SECONDS = Symbol(
-        [0x2ABFD4], [0x22ABFD4], 0x4, "The player's total play time in seconds."
-    )
-
-    PLAY_TIME_FRAME_COUNTER = Symbol(
-        [0x2ABFD8],
-        [0x22ABFD8],
-        0x1,
-        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
-        " with each rollover.",
-    )
-
-    TEAM_NAME = Symbol(
-        [0x2AC258],
-        [0x22AC258],
-        0xC,
-        "The team name.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    HERO_SPECIES_ID = Symbol(
-        [0x2AC724],
-        [0x22AC724],
-        0x2,
-        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
-        " with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    HERO_NICKNAME = Symbol(
-        [0x2AC75A],
-        [0x22AC75A],
-        0xA,
-        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    PARTNER_SPECIES_ID = Symbol(
-        [0x2AC768],
-        [0x22AC768],
-        0x2,
-        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
-        " together with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    LEADER_IQ_SKILLS = Symbol(
-        [0x2B5AD8],
-        [0x22B5AD8],
-        0xC,
-        "Unlocked IQ skills of the current leader, available for selection from the IQ"
-        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
-        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
-        " larger struct, together with other nearby data.",
-    )
-
-    LEADER_NICKNAME = Symbol(
-        [0x2B5AEA],
-        [0x22B5AEA],
-        0xA,
-        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
-        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
-        " typically uses.\n\nThis is presumably part of a larger struct, together with"
-        " other nearby data.",
-    )
-
-    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
-        [0x2B5B40],
-        [0x22B5B40],
-        0xC,
-        "Unlocked IQ skills of the second party member, available for selection from"
-        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
-        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
-        " a larger struct, together with other nearby data.",
-    )
-
-    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
-        [0x2BA304],
-        [0x22BA304],
-        0x4,
-        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
-        " the game is running.",
-    )
-
-    TURNING_ON_THE_SPOT_FLAG = Symbol(
-        [0x37D5A6],
-        [0x237D5A6],
-        0x1,
-        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
-    )
-
-    FLOOR_GENERATION_STATUS = Symbol(
-        [0x37DBBC],
-        [0x237DBBC],
-        0x40,
-        "[Runtime] Status data related to generation of the current floor in a"
-        " dungeon.\n\nThis data is populated as the dungeon floor is"
-        " generated.\n\ntype: struct floor_generation_status",
-    )
-
-
-class EuRamSection:
-    name = "ram"
-    description = (
-        "Main memory.\nData in this file aren't located in the ROM itself, and are"
-        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
-        " dumping ground for addresses that are useful to know about, but don't fall in"
-        " the address ranges of any of the other files. Dynamically loaded constructs"
-        " that do fall within the address range of a relevant binary should be listed"
-        " in the corresponding YAML file of that binary, since it still has direct"
-        " utility when reverse-engineering that particular binary."
-    )
-    loadaddress = 0x2000000
-    length = 0x400000
-    functions = EuRamFunctions
-    data = EuRamData
-
-
-class EuOverlay17Functions:
-    pass
-
-
-class EuOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238C6C4], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238C6DC], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238C6F4], 0x20, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238C714], 0x28, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238C73C], 0x30, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238C76C], 0x30, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238C79C], 0x38, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238C7D4], 0x38, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238C80C], 0x38, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238C844], 0x40, "")
-
-
-class EuOverlay17Section:
-    name = "overlay17"
-    description = "Controls the Chimecho Assembly."
-    loadaddress = 0x238AC80
-    length = 0x1CE0
-    functions = EuOverlay17Functions
-    data = EuOverlay17Data
-
-
-class EuOverlay19Functions:
-    pass
-
-
-class EuOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol([0x40BC], [0x238ED3C], 0x18, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol([0x40D4], [0x238ED54], 0x18, "")
-
-    BAR_MAIN_MENU = Symbol([0x4104], [0x238ED84], 0x20, "")
-
-    BAR_SUBMENU_1 = Symbol([0x4124], [0x238EDA4], 0x20, "")
-
-    BAR_SUBMENU_2 = Symbol([0x4144], [0x238EDC4], 0x30, "")
-
-
-class EuOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
-    loadaddress = 0x238AC80
-    length = 0x4220
-    functions = EuOverlay19Functions
-    data = EuOverlay19Data
-
-
-class EuOverlay33Functions:
-    pass
-
-
-class EuOverlay33Data:
-    pass
-
-
-class EuOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383420
-    length = 0x20
-    functions = EuOverlay33Functions
-    data = EuOverlay33Data
-
-
-class EuOverlay22Functions:
-    pass
-
-
-class EuOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238F3A8], 0x18, "")
-
-    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238F3C0], 0x20, "")
-
-    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238F3E0], 0x20, "")
-
-    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238F400], 0x30, "")
-
-
-class EuOverlay22Section:
-    name = "overlay22"
-    description = "Controls the Kecleon Shop in Treasure Town."
-    loadaddress = 0x238AC80
-    length = 0x4B40
-    functions = EuOverlay22Functions
-    data = EuOverlay22Data
-
-
-class EuOverlay28Functions:
-    pass
-
-
-class EuOverlay28Data:
-    pass
-
-
-class EuOverlay28Section:
-    name = "overlay28"
-    description = "Controls the staff credits sequence."
-    loadaddress = 0x238AC80
-    length = 0xC60
-    functions = EuOverlay28Functions
-    data = EuOverlay28Data
-
-
-class EuOverlay4Functions:
-    pass
-
-
-class EuOverlay4Data:
-    pass
-
-
-class EuOverlay4Section:
-    name = "overlay4"
-    description = "Controls the Trade Items submenu within the top menu."
-    loadaddress = 0x233D200
-    length = 0x2BE0
-    functions = EuOverlay4Functions
-    data = EuOverlay4Data
-
-
-class EuOverlay14Functions:
-    pass
-
-
-class EuOverlay14Data:
-    FOOTPRINT_DEBUG_MENU = Symbol([0x39C0], [0x238E640], 0x48, "")
-
-
-class EuOverlay14Section:
-    name = "overlay14"
-    description = "Runs the sentry duty minigame."
-    loadaddress = 0x238AC80
-    length = 0x3B40
-    functions = EuOverlay14Functions
-    data = EuOverlay14Data
-
-
-class EuOverlay7Functions:
-    pass
-
-
-class EuOverlay7Data:
-    pass
-
-
-class EuOverlay7Section:
-    name = "overlay7"
-    description = (
-        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233D200
-    length = 0x3300
-    functions = EuOverlay7Functions
-    data = EuOverlay7Data
-
-
-class EuOverlay6Functions:
-    pass
-
-
-class EuOverlay6Data:
-    pass
-
-
-class EuOverlay6Section:
-    name = "overlay6"
-    description = "Controls the Wonder Mail S submenu within the top menu."
-    loadaddress = 0x233D200
-    length = 0x2460
-    functions = EuOverlay6Functions
-    data = EuOverlay6Data
-
-
-class EuOverlay35Functions:
-    pass
-
-
-class EuOverlay35Data:
-    pass
-
-
-class EuOverlay35Section:
-    name = "overlay35"
-    description = "Unused; all zeroes."
-    loadaddress = 0x22BD3C0
-    length = 0x20
-    functions = EuOverlay35Functions
-    data = EuOverlay35Data
-
-
-class EuOverlay23Functions:
-    pass
-
-
-class EuOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238DE3C], 0x18, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238DE54], 0x20, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238DE74], 0x20, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238DE94], 0x20, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238DEB4], 0x28, "")
-
-
-class EuOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
-    )
-    loadaddress = 0x238AC80
-    length = 0x3780
-    functions = EuOverlay23Functions
-    data = EuOverlay23Data
-
-
-class EuOverlay8Functions:
-    pass
-
-
-class EuOverlay8Data:
-    pass
-
-
-class EuOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233D200
-    length = 0x2620
-    functions = EuOverlay8Functions
-    data = EuOverlay8Data
-
-
-class EuOverlay9Functions:
-    pass
-
-
-class EuOverlay9Data:
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        [0xE80],
-        [0x233E080],
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class EuOverlay9Section:
-    name = "overlay9"
-    description = "Controls the Sky Jukebox."
-    loadaddress = 0x233D200
-    length = 0x2D80
-    functions = EuOverlay9Functions
-    data = EuOverlay9Data
-
-
-class EuOverlay24Functions:
-    pass
-
-
-class EuOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238D060], 0x18, "")
-
-    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238D078], 0x20, "")
-
-
-class EuOverlay24Section:
-    name = "overlay24"
-    description = "Controls the Chansey Day Care."
-    loadaddress = 0x238AC80
-    length = 0x24E0
-    functions = EuOverlay24Functions
-    data = EuOverlay24Data
-
-
-class EuOverlay0Functions:
-    pass
-
-
-class EuOverlay0Data:
-    TOP_MENU_MUSIC_ID = Symbol(
-        [0x15F4], [0x22BE9B4], None, "Music ID to play in the top menu."
-    )
-
-
-class EuOverlay0Section:
-    name = "overlay0"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 0."
-    )
-    loadaddress = 0x22BD3C0
-    length = 0x60880
-    functions = EuOverlay0Functions
-    data = EuOverlay0Data
-
-
-class EuOverlay10Functions:
-    SprintfStatic = Symbol(
-        [0x9CC, 0x4DD4],
-        [0x22BDD8C, 0x22C2194],
-        None,
-        "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
-        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
-        " characters printed, excluding the null-terminator",
-    )
-
-
-class EuOverlay10Data:
-    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
-        [0x79A4],
-        [0x22C4D64],
-        0x1,
-        "The first dungeon that can have extra traps spawn in Monster Houses, Dark"
-        " Hill\n\ntype: struct dungeon_id_8",
-    )
-
-    BAD_POISON_DAMAGE_COOLDOWN = Symbol(
-        [0x79AC],
-        [0x22C4D6C],
-        0x2,
-        "The number of turns between passive bad poison (toxic) damage.",
-    )
-
-    PROTEIN_STAT_BOOST = Symbol(
-        [0x79B8],
-        [0x22C4D78],
-        0x2,
-        "The permanent attack boost from ingesting a Protein.",
-    )
-
-    SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
-        [0x79C8],
-        [0x22C4D88],
-        None,
-        "The maximum number of enemies that can spawn on a floor without a monster"
-        " house (15).",
-    )
-
-    OREN_BERRY_DAMAGE = Symbol(
-        [0x79D0], [0x22C4D90], 0x2, "Damage dealt by eating an Oren Berry."
-    )
-
-    SITRUS_BERRY_HP_RESTORATION = Symbol(
-        [0x7A10],
-        [0x22C4DD0],
-        0x2,
-        "The amount of HP restored by eating a Sitrus Berry.",
-    )
-
-    EXP_ELITE_EXP_BOOST = Symbol(
-        [0x7A40],
-        [0x22C4E00],
-        0x2,
-        "The percentage increase in experience from the Exp. Elite IQ skill",
-    )
-
-    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
-        [0x7A44],
-        [0x22C4E04],
-        0x2,
-        "The maximum number of extra non-monster spawns (items/traps) in a Monster"
-        " House, 7",
-    )
-
-    GOLD_THORN_POWER = Symbol(
-        [0x7A68], [0x22C4E28], 0x2, "Attack power for Golden Thorns."
-    )
-
-    SPAWN_COOLDOWN = Symbol(
-        [0x7A74],
-        [0x22C4E34],
-        0x2,
-        "The number of turns between enemy spawns under normal conditions.",
-    )
-
-    ORAN_BERRY_FULL_HP_BOOST = Symbol(
-        [0x7A8C],
-        [0x22C4E4C],
-        0x2,
-        "The permanent HP boost from eating an Oran Berry at full HP (0).",
-    )
-
-    LIFE_SEED_HP_BOOST = Symbol(
-        [0x7A90], [0x22C4E50], 0x2, "The permanent HP boost from eating a Life Seed."
-    )
-
-    EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
-        [0x7B24],
-        [0x22C4EE4],
-        0x2,
-        "The percentage increase in experience from exp-boosting exclusive items",
-    )
-
-    INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
-        [0x7B50],
-        [0x22C4F10],
-        0x2,
-        "The percentage chance that Intimidator will activate.",
-    )
-
-    ORAN_BERRY_HP_RESTORATION = Symbol(
-        [0x7B84], [0x22C4F44], 0x2, "The amount of HP restored by eating a Oran Berry."
-    )
-
-    SITRUS_BERRY_FULL_HP_BOOST = Symbol(
-        [0x7B8C],
-        [0x22C4F4C],
-        0x2,
-        "The permanent HP boost from eating a Sitrus Berry at full HP.",
-    )
-
-    BURN_DAMAGE_COOLDOWN = Symbol(
-        [0x7BA8], [0x22C4F68], 0x2, "The number of turns between passive burn damage."
-    )
-
-    STICK_POWER = Symbol([0x7BBC], [0x22C4F7C], 0x2, "Attack power for Sticks.")
-
-    SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
-        [0x7BD8],
-        [0x22C4F98],
-        0x2,
-        "The number of turns between enemy spawns when the Thief Alert condition is"
-        " active.",
-    )
-
-    MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
-        [0x7BF8],
-        [0x22C4FB8],
-        0x2,
-        "The maximum number of monster spawns in a Monster House, 30, but multiplied by"
-        " 2/3 for some reason (so the actual maximum is 45)",
-    )
-
-    SPEED_BOOST_TURNS = Symbol(
-        [0x7C04],
-        [0x22C4FC4],
-        None,
-        "Number of turns (250) after which Speed Boost will trigger and increase speed"
-        " by one stage.",
-    )
-
-    MIRACLE_CHEST_EXP_BOOST = Symbol(
-        [0x7C30],
-        [0x22C4FF0],
-        0x2,
-        "The percentage increase in experience from the Miracle Chest item",
-    )
-
-    WONDER_CHEST_EXP_BOOST = Symbol(
-        [0x7C34],
-        [0x22C4FF4],
-        0x2,
-        "The percentage increase in experience from the Wonder Chest item",
-    )
-
-    SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
-        [0x7C3C],
-        [0x22C4FFC],
-        None,
-        "The maximum number of enemies that can spawn on a floor with a monster house,"
-        " not counting those in the monster house (4).",
-    )
-
-    POISON_DAMAGE_COOLDOWN = Symbol(
-        [0x7C40], [0x22C5000], 0x2, "The number of turns between passive poison damage."
-    )
-
-    GEO_PEBBLE_DAMAGE = Symbol(
-        [0x7C4C], [0x22C500C], 0x2, "Damage dealt by Geo Pebbles."
-    )
-
-    GRAVELEROCK_DAMAGE = Symbol(
-        [0x7C50], [0x22C5010], 0x2, "Damage dealt by Gravelerocks."
-    )
-
-    RARE_FOSSIL_DAMAGE = Symbol(
-        [0x7C54], [0x22C5014], 0x2, "Damage dealt by Rare Fossils."
-    )
-
-    GINSENG_CHANCE_3 = Symbol(
-        [0x7C58],
-        [0x22C5018],
-        0x2,
-        "The percentage chance for...something to be set to 3 in a calculation related"
-        " to the Ginseng boost.",
-    )
-
-    ZINC_STAT_BOOST = Symbol(
-        [0x7C5C],
-        [0x22C501C],
-        0x2,
-        "The permanent special defense boost from ingesting a Zinc.",
-    )
-
-    IRON_STAT_BOOST = Symbol(
-        [0x7C60],
-        [0x22C5020],
-        0x2,
-        "The permanent defense boost from ingesting an Iron.",
-    )
-
-    CALCIUM_STAT_BOOST = Symbol(
-        [0x7C64],
-        [0x22C5024],
-        0x2,
-        "The permanent special attack boost from ingesting a Calcium.",
-    )
-
-    CORSOLA_TWIG_POWER = Symbol(
-        [0x7C70], [0x22C5030], 0x2, "Attack power for Corsola Twigs."
-    )
-
-    CACNEA_SPIKE_POWER = Symbol(
-        [0x7C74], [0x22C5034], 0x2, "Attack power for Cacnea Spikes."
-    )
-
-    GOLD_FANG_POWER = Symbol([0x7C78], [0x22C5038], 0x2, "Attack power for Gold Fangs.")
-
-    SILVER_SPIKE_POWER = Symbol(
-        [0x7C7C], [0x22C503C], 0x2, "Attack power for Silver Spikes."
-    )
-
-    IRON_THORN_POWER = Symbol(
-        [0x7C80], [0x22C5040], 0x2, "Attack power for Iron Thorns."
-    )
-
-    SLEEP_DURATION_RANGE = Symbol(
-        [0x7CB8],
-        [0x22C5078],
-        0x4,
-        "Appears to control the range of turns for which the sleep condition can"
-        " last.\n\nThe first two bytes are the low value of the range, and the later"
-        " two bytes are the high value.",
-    )
-
-    POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
-        [0x7D90],
-        [0x22C5150],
-        0x4,
-        "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
-        " fixed-point number (8 fraction bits)",
-    )
-
-    AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
-        [0x7DDC],
-        [0x22C519C],
-        None,
-        "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
-        " number (8 fraction bits)",
-    )
-
-    SPEED_BOOST_DURATION_RANGE = Symbol(
-        [0x7E20],
-        [0x22C51E0],
-        0x4,
-        "Appears to control the range of turns for which a speed boost can last.\n\nThe"
-        " first two bytes are the low value of the range, and the later two bytes are"
-        " the high value.",
-    )
-
-    OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        [0x8330],
-        [0x22C56F0],
-        0x54,
-        "Table of multipliers for offensive stats (attack/special attack) for each"
-        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-    )
-
-    DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        [0x8384],
-        [0x22C5744],
-        0x54,
-        "Table of multipliers for defensive stats (defense/special defense) for each"
-        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-    )
-
-    RANDOM_MUSIC_ID_TABLE = Symbol(
-        [0x8794],
-        [0x22C5B54],
-        0xF0,
-        "Table of music IDs for dungeons with a random assortment of music"
-        " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
-        " row contains the possible music IDs for a given group, from which the music"
-        " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
-    )
-
-    MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        [0x89A4],
-        [0x22C5D64],
-        0x54,
-        "Table of multipliers for the accuracy stat for males for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        [0x89F8],
-        [0x22C5DB8],
-        0x54,
-        "Table of multipliers for the evasion stat for males for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        [0x8A4C],
-        [0x22C5E0C],
-        0x54,
-        "Table of multipliers for the accuracy stat for females for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        [0x8AA0],
-        [0x22C5E60],
-        0x54,
-        "Table of multipliers for the evasion stat for females for each stage 0-20, as"
-        " binary fixed-point numbers (8 fraction bits)",
-    )
-
-    MUSIC_ID_TABLE = Symbol(
-        [0x8AF4],
-        [0x22C5EB4],
-        0x154,
-        "List of music IDs used in dungeons with a single music track.\n\nThis is an"
-        " array of 170 2-byte music IDs, and is indexed into by the music value in the"
-        " floor properties struct for a given floor. Music IDs with the highest bit set"
-        " (0x8000) are indexes into the RANDOM_MUSIC_ID_TABLE.\n\ntype: struct"
-        " music_id_16[170] (or not a music ID if the highest bit is set)",
-    )
-
-    TYPE_MATCHUP_TABLE = Symbol(
-        [0x8C48],
-        [0x22C6008],
-        0x288,
-        "Table of type matchups.\n\nEach row corresponds to the type matchups of a"
-        " specific attack type, with each entry within the row specifying the type's"
-        " effectiveness against a target type.\n\ntype: struct type_matchup_table",
-    )
-
-    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
-        [0x8ED0],
-        [0x22C6290],
-        0x4A4,
-        "Table of stats for monsters that can spawn in fixed rooms, pointed into by the"
-        " FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries"
-        " containing stat spreads for one monster entry each.\n\ntype: struct"
-        " fixed_room_monster_spawn_stats_entry[99]",
-    )
-
-    TILESET_PROPERTIES = Symbol([0x98B4], [0x22C6C74], 0x954, "")
-
-    FIXED_ROOM_PROPERTIES_TABLE = Symbol(
-        [0xA208],
-        [0x22C75C8],
-        0xC00,
-        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte"
-        " entries containing properties for a given fixed room ID.\n\nSee the struct"
-        " definitions and End45's dungeon data document for more info.\n\ntype: struct"
-        " fixed_room_properties_entry[256]",
-    )
-
-    MOVE_ANIMATION_INFO = Symbol([0xC5FC], [0x22C99BC], None, "")
-
-
-class EuOverlay10Section:
-    name = "overlay10"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 10."
-    )
-    loadaddress = 0x22BD3C0
-    length = 0x1F7A0
-    functions = EuOverlay10Functions
-    data = EuOverlay10Data
-
-
-class EuOverlay11Functions:
-    FuncThatCallsCommandParsing = Symbol([0xF24], [0x22DDAA4], None, "")
-
-    ScriptCommandParsing = Symbol([0x1B24], [0x22DE6A4], None, "")
-
-    SsbLoad2 = Symbol([0x84BC], [0x22E503C], None, "")
-
-    StationLoadHanger = Symbol([0x8994], [0x22E5514], None, "")
-
-    ScriptStationLoadTalk = Symbol([0x91A4], [0x22E5D24], None, "")
-
-    SsbLoad1 = Symbol([0x9B10], [0x22E6690], None, "")
-
-    ScriptSpecialProcessCall = Symbol(
-        [0xAED8],
-        [0x22E7A58],
-        None,
-        "Processes calls to the OPCODE_PROCESS_SPECIAL script opcode.\n\nr0: some"
-        " struct containing a callback of some sort, only used for special process ID"
-        " 18\nr1: special process ID\nr2: first argument, if relevant? Probably"
-        " corresponds to the second parameter of OPCODE_PROCESS_SPECIAL\nr3: second"
-        " argument, if relevant? Probably corresponds to the third parameter of"
-        " OPCODE_PROCESS_SPECIAL\nreturn: return value of the special process if it has"
-        " one, otherwise 0",
-    )
-
-    GetSpecialRecruitmentSpecies = Symbol(
-        [0xBDFC],
-        [0x22E897C],
-        None,
-        "Returns an entry from RECRUITMENT_TABLE_SPECIES.\n\nNote: This indexes without"
-        " doing bounds checking.\n\nr0: index into RECRUITMENT_TABLE_SPECIES\nreturn:"
-        " enum monster_id",
-    )
-
-    PrepareMenuAcceptTeamMember = Symbol(
-        [0xBE40],
-        [0x22E89C0],
-        None,
-        "Implements SPECIAL_PROC_PREPARE_MENU_ACCEPT_TEAM_MEMBER (see"
-        " ScriptSpecialProcessCall).\n\nr0: index into RECRUITMENT_TABLE_SPECIES",
-    )
-
-    InitRandomNpcJobs = Symbol(
-        [0xBEE4],
-        [0x22E8A64],
-        None,
-        "Implements SPECIAL_PROC_INIT_RANDOM_NPC_JOBS (see"
-        " ScriptSpecialProcessCall).\n\nr0: job type? 0 is a random NPC job, 1 is a"
-        " bottle mission\nr1: ?",
-    )
-
-    GetRandomNpcJobType = Symbol(
-        [0xBF7C],
-        [0x22E8AFC],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_TYPE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: job type?",
-    )
-
-    GetRandomNpcJobSubtype = Symbol(
-        [0xBF94],
-        [0x22E8B14],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_SUBTYPE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: job subtype?",
-    )
-
-    GetRandomNpcJobStillAvailable = Symbol(
-        [0xBFB0],
-        [0x22E8B30],
-        None,
-        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_STILL_AVAILABLE (see"
-        " ScriptSpecialProcessCall).\n\nreturn: bool",
-    )
-
-    AcceptRandomNpcJob = Symbol(
-        [0xC018],
-        [0x22E8B98],
-        None,
-        "Implements SPECIAL_PROC_ACCEPT_RANDOM_NPC_JOB (see"
-        " ScriptSpecialProcessCall).\n\nreturn: bool",
-    )
-
-    GroundMainLoop = Symbol(
-        [0xC534],
-        [0x22E90B4],
-        None,
-        "Appears to be the main loop for ground mode.\n\nBased on debug print"
-        " statements and general code structure, it seems contain a core loop, and"
-        " dispatches to various functions in response to different events.\n\nr0: mode,"
-        " which is stored globally and used in switch statements for dispatch\nreturn:"
-        " return code",
-    )
-
-    GetAllocArenaGround = Symbol(
-        [0xD11C],
-        [0x22E9C9C],
-        None,
-        "The GetAllocArena function used for ground mode. See SetMemAllocatorParams for"
-        " more information.\n\nr0: initial memory arena pointer, or null\nr1: flags"
-        " (see MemAlloc)\nreturn: memory arena pointer, or null",
-    )
-
-    GetFreeArenaGround = Symbol(
-        [0xD180],
-        [0x22E9D00],
-        None,
-        "The GetFreeArena function used for ground mode. See SetMemAllocatorParams for"
-        " more information.\n\nr0: initial memory arena pointer, or null\nr1: pointer"
-        " to free\nreturn: memory arena pointer, or null",
-    )
-
-    GroundMainReturnDungeon = Symbol(
-        [0xD1D4],
-        [0x22E9D54],
-        None,
-        "Implements SPECIAL_PROC_RETURN_DUNGEON (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-    GroundMainNextDay = Symbol(
-        [0xD1F8],
-        [0x22E9D78],
-        None,
-        "Implements SPECIAL_PROC_NEXT_DAY (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-    JumpToTitleScreen = Symbol(
-        [0xD39C],
-        [0x22E9F1C],
-        None,
-        "Implements SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and SPECIAL_PROC_0x1A (see"
-        " ScriptSpecialProcessCall).\n\nr0: int, argument value for"
-        " SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and -1 for SPECIAL_PROC_0x1A\nreturn: bool"
-        " (but note that the special process ignores this and always returns 0)",
-    )
-
-    ReturnToTitleScreen = Symbol(
-        [0xD454],
-        [0x22E9FD4],
-        None,
-        "Implements SPECIAL_PROC_RETURN_TO_TITLE_SCREEN (see"
-        " ScriptSpecialProcessCall).\n\nr0: fade duration\nreturn: bool (but note that"
-        " the special process ignores this and always returns 0)",
-    )
-
-    ScriptSpecialProcess0x16 = Symbol(
-        [0xD4B4],
-        [0x22EA034],
-        None,
-        "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
-    )
-
-    SprintfStatic = Symbol(
-        [0x2CCE8],
-        [0x2309868],
-        None,
-        "Statically defined copy of sprintf(3) in overlay 11. See arm9.yml for more"
-        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
-        " characters printed, excluding the null-terminator",
-    )
-
-    StatusUpdate = Symbol(
-        [0x378F8],
-        [0x2314478],
-        None,
-        "Implements SPECIAL_PROC_STATUS_UPDATE (see ScriptSpecialProcessCall).\n\nNo"
-        " params.",
-    )
-
-
-class EuOverlay11Data:
-    SCRIPT_OP_CODES = Symbol(
-        [0x3C470],
-        [0x2318FF0],
-        0xBF8,
-        "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
-        " opcodes underpin the various ExplorerScript functions you can call in the"
-        " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
-    )
-
-    C_ROUTINES = Symbol(
-        [0x40688],
-        [0x231D208],
-        None,
-        "Common routines used within the unionall.ssb script (the master script). There"
-        " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
-        " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
-        " common_routine_table",
-    )
-
-    OBJECTS = Symbol(
-        [0x42D5C],
-        [0x231F8DC],
-        0x1AAC,
-        "Table of objects for the script engine, which can be placed in scenes. There"
-        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
-        " script_object[length / 12]",
-    )
-
-    RECRUITMENT_TABLE_LOCATIONS = Symbol(
-        [0x44844],
-        [0x23213C4],
-        0x16,
-        "Table of dungeon IDs corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
-    )
-
-    RECRUITMENT_TABLE_LEVELS = Symbol(
-        [0x4485C],
-        [0x23213DC],
-        0x2C,
-        "Table of levels for recruited Pokémon, corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
-    )
-
-    RECRUITMENT_TABLE_SPECIES = Symbol(
-        [0x44888],
-        [0x2321408],
-        0x2C,
-        "Table of Pokémon recruited at special locations, such as at the ends of"
-        " certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during"
-        " a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes"
-        " both Heatran genders. It also includes Darkrai for some reason?\n\ntype:"
-        " struct monster_id_16[22]",
-    )
-
-    LEVEL_TILEMAP_LIST = Symbol([0x44CDC], [0x232185C], 0x288, "")
-
-    OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
-        [0x4701C],
-        [0x2323B9C],
-        None,
-        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16"
-        " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
-        " overlay_group_id in the C headers for a mapping between group ID and overlay"
-        " number)\n- function pointer to entry point\n- function pointer to"
-        " destructor\n- possibly function pointer to frame-update function?",
-    )
-
-    UNIONALL_RAM_ADDRESS = Symbol([0x48C64], [0x23257E4], None, "[Runtime]")
-
-    GROUND_STATE_MAP = Symbol([0x48C80], [0x2325800], None, "[Runtime]")
-
-    GROUND_STATE_PTRS = Symbol(
-        [0x48CB4],
-        [0x2325834],
-        0x18,
-        "Host pointers to multiple structure used for performing an overworld"
-        " scene\n\ntype: struct main_ground_data",
-    )
-
-
-class EuOverlay11Section:
-    name = "overlay11"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 11."
-    )
-    loadaddress = 0x22DCB80
-    length = 0x48E40
-    functions = EuOverlay11Functions
-    data = EuOverlay11Data
-
-
 class EuOverlay29Functions:
     DungeonAlloc = Symbol(
         [0x281C],
@@ -7354,10 +3162,6 @@ class EuOverlay29Functions:
 
 
 class EuOverlay29Data:
-    NECTAR_IQ_BOOST = Symbol(
-        [0x40264], [0x231CDE4], None, "IQ boost from ingesting Nectar."
-    )
-
     DUNGEON_STRUCT_SIZE = Symbol(
         [0x2838, 0x286C],
         [0x22DF3B8, 0x22DF3EC],
@@ -7900,11 +3704,18 @@ class EuOverlay29Data:
         " file.",
     )
 
+    NECTAR_IQ_BOOST = Symbol(
+        [0x40264], [0x231CDE4], None, "IQ boost from ingesting Nectar."
+    )
+
 
 class EuOverlay29Section:
     name = "overlay29"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 29."
+        "The dungeon engine.\n\nThis is the 'main' overlay of dungeon mode. It controls"
+        " most things that happen in a Mystery Dungeon, such as dungeon layout"
+        " generation, dungeon menus, enemy AI, and generally just running each turn"
+        " while within a dungeon."
     )
     loadaddress = 0x22DCB80
     length = 0x77900
@@ -7912,25 +3723,52 @@ class EuOverlay29Section:
     data = EuOverlay29Data
 
 
-class EuOverlay34Functions:
+class EuOverlay0Functions:
     pass
 
 
-class EuOverlay34Data:
-    UNKNOWN_MENU_CONFIRM = Symbol([0xD4C], [0x22DD8CC], 0x18, "")
-
-    DUNGEON_DEBUG_MENU = Symbol([0xD74], [0x22DD8F4], 0x28, "")
-
-
-class EuOverlay34Section:
-    name = "overlay34"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
+class EuOverlay0Data:
+    TOP_MENU_MUSIC_ID = Symbol(
+        [0x15F4], [0x22BE9B4], None, "Music ID to play in the top menu."
     )
-    loadaddress = 0x22DCB80
-    length = 0xDC0
-    functions = EuOverlay34Functions
-    data = EuOverlay34Data
+
+
+class EuOverlay0Section:
+    name = "overlay0"
+    description = (
+        "Likely contains supporting data and code related to the top menu.\n\nThis is"
+        " loaded together with overlay 1 while in the top menu. Since it's in overlay"
+        " group 2 (together with overlay 10, which is another 'data' overlay), this"
+        " overlay probably plays a similar role. It mentions several files from the"
+        " BACK folder that are known backgrounds for the top menu."
+    )
+    loadaddress = 0x22BD3C0
+    length = 0x60880
+    functions = EuOverlay0Functions
+    data = EuOverlay0Data
+
+
+class EuOverlay22Functions:
+    pass
+
+
+class EuOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238F3A8], 0x18, "")
+
+    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238F3C0], 0x20, "")
+
+    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238F3E0], 0x20, "")
+
+    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238F400], 0x30, "")
+
+
+class EuOverlay22Section:
+    name = "overlay22"
+    description = "Controls the Kecleon Shop in Treasure Town."
+    loadaddress = 0x238AC80
+    length = 0x4B40
+    functions = EuOverlay22Functions
+    data = EuOverlay22Data
 
 
 class EuOverlay1Functions:
@@ -7954,12 +3792,4046 @@ class EuOverlay1Data:
 class EuOverlay1Section:
     name = "overlay1"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
+        "Likely controls the top menu.\n\nThis is loaded together with overlay 0 while"
+        " in the top menu. Since it's in overlay group 1 (together with other 'main'"
+        " overlays like overlay 11 and overlay 29), this is probably the"
+        " controller.\n\nSeems to contain code related to Wi-Fi rescue. It mentions"
+        " several files from the GROUND and BACK folders."
     )
     loadaddress = 0x2329D40
     length = 0x12C80
     functions = EuOverlay1Functions
     data = EuOverlay1Data
+
+
+class EuOverlay24Functions:
+    pass
+
+
+class EuOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238D060], 0x18, "")
+
+    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238D078], 0x20, "")
+
+
+class EuOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = 0x238AC80
+    length = 0x24E0
+    functions = EuOverlay24Functions
+    data = EuOverlay24Data
+
+
+class EuOverlay34Functions:
+    pass
+
+
+class EuOverlay34Data:
+    UNKNOWN_MENU_CONFIRM = Symbol([0xD4C], [0x22DD8CC], 0x18, "")
+
+    DUNGEON_DEBUG_MENU = Symbol([0xD74], [0x22DD8F4], 0x28, "")
+
+
+class EuOverlay34Section:
+    name = "overlay34"
+    description = (
+        "Related to launching the game.\n\nThere are mention in the strings of logos"
+        " like the ESRB logo. This only seems to be loaded during the ESRB rating"
+        " splash screen, so this is likely the sole purpose of this overlay."
+    )
+    loadaddress = 0x22DCB80
+    length = 0xDC0
+    functions = EuOverlay34Functions
+    data = EuOverlay34Data
+
+
+class EuOverlay9Functions:
+    pass
+
+
+class EuOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        [0xE80],
+        [0x233E080],
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class EuOverlay9Section:
+    name = "overlay9"
+    description = "Controls the Sky Jukebox."
+    loadaddress = 0x233D200
+    length = 0x2D80
+    functions = EuOverlay9Functions
+    data = EuOverlay9Data
+
+
+class EuOverlay5Functions:
+    pass
+
+
+class EuOverlay5Data:
+    pass
+
+
+class EuOverlay5Section:
+    name = "overlay5"
+    description = "Controls the Trade Team submenu within the top menu."
+    loadaddress = 0x233D200
+    length = 0x3240
+    functions = EuOverlay5Functions
+    data = EuOverlay5Data
+
+
+class EuOverlay17Functions:
+    pass
+
+
+class EuOverlay17Data:
+    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238C6C4], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238C6DC], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238C6F4], 0x20, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238C714], 0x28, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238C73C], 0x30, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238C76C], 0x30, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238C79C], 0x38, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238C7D4], 0x38, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238C80C], 0x38, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238C844], 0x40, "")
+
+
+class EuOverlay17Section:
+    name = "overlay17"
+    description = "Controls the Chimecho Assembly."
+    loadaddress = 0x238AC80
+    length = 0x1CE0
+    functions = EuOverlay17Functions
+    data = EuOverlay17Data
+
+
+class EuOverlay10Functions:
+    SprintfStatic = Symbol(
+        [0x9CC, 0x4DD4],
+        [0x22BDD8C, 0x22C2194],
+        None,
+        "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
+        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
+        " characters printed, excluding the null-terminator",
+    )
+
+
+class EuOverlay10Data:
+    FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
+        [0x79A4],
+        [0x22C4D64],
+        0x1,
+        "The first dungeon that can have extra traps spawn in Monster Houses, Dark"
+        " Hill\n\ntype: struct dungeon_id_8",
+    )
+
+    BAD_POISON_DAMAGE_COOLDOWN = Symbol(
+        [0x79AC],
+        [0x22C4D6C],
+        0x2,
+        "The number of turns between passive bad poison (toxic) damage.",
+    )
+
+    PROTEIN_STAT_BOOST = Symbol(
+        [0x79B8],
+        [0x22C4D78],
+        0x2,
+        "The permanent attack boost from ingesting a Protein.",
+    )
+
+    SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
+        [0x79C8],
+        [0x22C4D88],
+        None,
+        "The maximum number of enemies that can spawn on a floor without a monster"
+        " house (15).",
+    )
+
+    OREN_BERRY_DAMAGE = Symbol(
+        [0x79D0], [0x22C4D90], 0x2, "Damage dealt by eating an Oren Berry."
+    )
+
+    SITRUS_BERRY_HP_RESTORATION = Symbol(
+        [0x7A10],
+        [0x22C4DD0],
+        0x2,
+        "The amount of HP restored by eating a Sitrus Berry.",
+    )
+
+    EXP_ELITE_EXP_BOOST = Symbol(
+        [0x7A40],
+        [0x22C4E00],
+        0x2,
+        "The percentage increase in experience from the Exp. Elite IQ skill",
+    )
+
+    MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
+        [0x7A44],
+        [0x22C4E04],
+        0x2,
+        "The maximum number of extra non-monster spawns (items/traps) in a Monster"
+        " House, 7",
+    )
+
+    GOLD_THORN_POWER = Symbol(
+        [0x7A68], [0x22C4E28], 0x2, "Attack power for Golden Thorns."
+    )
+
+    SPAWN_COOLDOWN = Symbol(
+        [0x7A74],
+        [0x22C4E34],
+        0x2,
+        "The number of turns between enemy spawns under normal conditions.",
+    )
+
+    ORAN_BERRY_FULL_HP_BOOST = Symbol(
+        [0x7A8C],
+        [0x22C4E4C],
+        0x2,
+        "The permanent HP boost from eating an Oran Berry at full HP (0).",
+    )
+
+    LIFE_SEED_HP_BOOST = Symbol(
+        [0x7A90], [0x22C4E50], 0x2, "The permanent HP boost from eating a Life Seed."
+    )
+
+    EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
+        [0x7B24],
+        [0x22C4EE4],
+        0x2,
+        "The percentage increase in experience from exp-boosting exclusive items",
+    )
+
+    INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
+        [0x7B50],
+        [0x22C4F10],
+        0x2,
+        "The percentage chance that Intimidator will activate.",
+    )
+
+    ORAN_BERRY_HP_RESTORATION = Symbol(
+        [0x7B84], [0x22C4F44], 0x2, "The amount of HP restored by eating a Oran Berry."
+    )
+
+    SITRUS_BERRY_FULL_HP_BOOST = Symbol(
+        [0x7B8C],
+        [0x22C4F4C],
+        0x2,
+        "The permanent HP boost from eating a Sitrus Berry at full HP.",
+    )
+
+    BURN_DAMAGE_COOLDOWN = Symbol(
+        [0x7BA8], [0x22C4F68], 0x2, "The number of turns between passive burn damage."
+    )
+
+    STICK_POWER = Symbol([0x7BBC], [0x22C4F7C], 0x2, "Attack power for Sticks.")
+
+    SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
+        [0x7BD8],
+        [0x22C4F98],
+        0x2,
+        "The number of turns between enemy spawns when the Thief Alert condition is"
+        " active.",
+    )
+
+    MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
+        [0x7BF8],
+        [0x22C4FB8],
+        0x2,
+        "The maximum number of monster spawns in a Monster House, 30, but multiplied by"
+        " 2/3 for some reason (so the actual maximum is 45)",
+    )
+
+    SPEED_BOOST_TURNS = Symbol(
+        [0x7C04],
+        [0x22C4FC4],
+        None,
+        "Number of turns (250) after which Speed Boost will trigger and increase speed"
+        " by one stage.",
+    )
+
+    MIRACLE_CHEST_EXP_BOOST = Symbol(
+        [0x7C30],
+        [0x22C4FF0],
+        0x2,
+        "The percentage increase in experience from the Miracle Chest item",
+    )
+
+    WONDER_CHEST_EXP_BOOST = Symbol(
+        [0x7C34],
+        [0x22C4FF4],
+        0x2,
+        "The percentage increase in experience from the Wonder Chest item",
+    )
+
+    SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
+        [0x7C3C],
+        [0x22C4FFC],
+        None,
+        "The maximum number of enemies that can spawn on a floor with a monster house,"
+        " not counting those in the monster house (4).",
+    )
+
+    POISON_DAMAGE_COOLDOWN = Symbol(
+        [0x7C40], [0x22C5000], 0x2, "The number of turns between passive poison damage."
+    )
+
+    GEO_PEBBLE_DAMAGE = Symbol(
+        [0x7C4C], [0x22C500C], 0x2, "Damage dealt by Geo Pebbles."
+    )
+
+    GRAVELEROCK_DAMAGE = Symbol(
+        [0x7C50], [0x22C5010], 0x2, "Damage dealt by Gravelerocks."
+    )
+
+    RARE_FOSSIL_DAMAGE = Symbol(
+        [0x7C54], [0x22C5014], 0x2, "Damage dealt by Rare Fossils."
+    )
+
+    GINSENG_CHANCE_3 = Symbol(
+        [0x7C58],
+        [0x22C5018],
+        0x2,
+        "The percentage chance for...something to be set to 3 in a calculation related"
+        " to the Ginseng boost.",
+    )
+
+    ZINC_STAT_BOOST = Symbol(
+        [0x7C5C],
+        [0x22C501C],
+        0x2,
+        "The permanent special defense boost from ingesting a Zinc.",
+    )
+
+    IRON_STAT_BOOST = Symbol(
+        [0x7C60],
+        [0x22C5020],
+        0x2,
+        "The permanent defense boost from ingesting an Iron.",
+    )
+
+    CALCIUM_STAT_BOOST = Symbol(
+        [0x7C64],
+        [0x22C5024],
+        0x2,
+        "The permanent special attack boost from ingesting a Calcium.",
+    )
+
+    CORSOLA_TWIG_POWER = Symbol(
+        [0x7C70], [0x22C5030], 0x2, "Attack power for Corsola Twigs."
+    )
+
+    CACNEA_SPIKE_POWER = Symbol(
+        [0x7C74], [0x22C5034], 0x2, "Attack power for Cacnea Spikes."
+    )
+
+    GOLD_FANG_POWER = Symbol([0x7C78], [0x22C5038], 0x2, "Attack power for Gold Fangs.")
+
+    SILVER_SPIKE_POWER = Symbol(
+        [0x7C7C], [0x22C503C], 0x2, "Attack power for Silver Spikes."
+    )
+
+    IRON_THORN_POWER = Symbol(
+        [0x7C80], [0x22C5040], 0x2, "Attack power for Iron Thorns."
+    )
+
+    SLEEP_DURATION_RANGE = Symbol(
+        [0x7CB8],
+        [0x22C5078],
+        0x4,
+        "Appears to control the range of turns for which the sleep condition can"
+        " last.\n\nThe first two bytes are the low value of the range, and the later"
+        " two bytes are the high value.",
+    )
+
+    POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
+        [0x7D90],
+        [0x22C5150],
+        0x4,
+        "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
+        " fixed-point number (8 fraction bits)",
+    )
+
+    AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
+        [0x7DDC],
+        [0x22C519C],
+        None,
+        "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
+        " number (8 fraction bits)",
+    )
+
+    SPEED_BOOST_DURATION_RANGE = Symbol(
+        [0x7E20],
+        [0x22C51E0],
+        0x4,
+        "Appears to control the range of turns for which a speed boost can last.\n\nThe"
+        " first two bytes are the low value of the range, and the later two bytes are"
+        " the high value.",
+    )
+
+    OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
+        [0x8330],
+        [0x22C56F0],
+        0x54,
+        "Table of multipliers for offensive stats (attack/special attack) for each"
+        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
+    )
+
+    DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
+        [0x8384],
+        [0x22C5744],
+        0x54,
+        "Table of multipliers for defensive stats (defense/special defense) for each"
+        " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
+    )
+
+    RANDOM_MUSIC_ID_TABLE = Symbol(
+        [0x8794],
+        [0x22C5B54],
+        0xF0,
+        "Table of music IDs for dungeons with a random assortment of music"
+        " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
+        " row contains the possible music IDs for a given group, from which the music"
+        " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
+    )
+
+    MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
+        [0x89A4],
+        [0x22C5D64],
+        0x54,
+        "Table of multipliers for the accuracy stat for males for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
+        [0x89F8],
+        [0x22C5DB8],
+        0x54,
+        "Table of multipliers for the evasion stat for males for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
+        [0x8A4C],
+        [0x22C5E0C],
+        0x54,
+        "Table of multipliers for the accuracy stat for females for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
+        [0x8AA0],
+        [0x22C5E60],
+        0x54,
+        "Table of multipliers for the evasion stat for females for each stage 0-20, as"
+        " binary fixed-point numbers (8 fraction bits)",
+    )
+
+    MUSIC_ID_TABLE = Symbol(
+        [0x8AF4],
+        [0x22C5EB4],
+        0x154,
+        "List of music IDs used in dungeons with a single music track.\n\nThis is an"
+        " array of 170 2-byte music IDs, and is indexed into by the music value in the"
+        " floor properties struct for a given floor. Music IDs with the highest bit set"
+        " (0x8000) are indexes into the RANDOM_MUSIC_ID_TABLE.\n\ntype: struct"
+        " music_id_16[170] (or not a music ID if the highest bit is set)",
+    )
+
+    TYPE_MATCHUP_TABLE = Symbol(
+        [0x8C48],
+        [0x22C6008],
+        0x288,
+        "Table of type matchups.\n\nEach row corresponds to the type matchups of a"
+        " specific attack type, with each entry within the row specifying the type's"
+        " effectiveness against a target type.\n\ntype: struct type_matchup_table",
+    )
+
+    FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
+        [0x8ED0],
+        [0x22C6290],
+        0x4A4,
+        "Table of stats for monsters that can spawn in fixed rooms, pointed into by the"
+        " FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries"
+        " containing stat spreads for one monster entry each.\n\ntype: struct"
+        " fixed_room_monster_spawn_stats_entry[99]",
+    )
+
+    TILESET_PROPERTIES = Symbol([0x98B4], [0x22C6C74], 0x954, "")
+
+    FIXED_ROOM_PROPERTIES_TABLE = Symbol(
+        [0xA208],
+        [0x22C75C8],
+        0xC00,
+        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte"
+        " entries containing properties for a given fixed room ID.\n\nSee the struct"
+        " definitions and End45's dungeon data document for more info.\n\ntype: struct"
+        " fixed_room_properties_entry[256]",
+    )
+
+    MOVE_ANIMATION_INFO = Symbol([0xC5FC], [0x22C99BC], None, "")
+
+
+class EuOverlay10Section:
+    name = "overlay10"
+    description = (
+        "Appears to be used both during ground mode and dungeon mode. With dungeon"
+        " mode, whereas overlay 29 contains the main dungeon engine, this overlay seems"
+        " to contain routines and data for dungeon mechanics."
+    )
+    loadaddress = 0x22BD3C0
+    length = 0x1F7A0
+    functions = EuOverlay10Functions
+    data = EuOverlay10Data
+
+
+class EuOverlay27Functions:
+    pass
+
+
+class EuOverlay27Data:
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238D49C], 0x18, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238D4B4], 0x20, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238D4D4], 0x20, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238D4F4], 0x28, "")
+
+
+class EuOverlay27Section:
+    name = "overlay27"
+    description = "Controls the special episode item discard menu."
+    loadaddress = 0x238AC80
+    length = 0x2D60
+    functions = EuOverlay27Functions
+    data = EuOverlay27Data
+
+
+class EuOverlay16Functions:
+    pass
+
+
+class EuOverlay16Data:
+    EVO_MENU_CONFIRM = Symbol([0x2BCC], [0x238D84C], 0x18, "")
+
+    EVO_SUBMENU = Symbol([0x2BE4], [0x238D864], 0x20, "")
+
+    EVO_MAIN_MENU = Symbol([0x2C04], [0x238D884], 0x20, "")
+
+
+class EuOverlay16Section:
+    name = "overlay16"
+    description = "Controls Luminous Spring."
+    loadaddress = 0x238AC80
+    length = 0x2D20
+    functions = EuOverlay16Functions
+    data = EuOverlay16Data
+
+
+class EuOverlay8Functions:
+    pass
+
+
+class EuOverlay8Data:
+    pass
+
+
+class EuOverlay8Section:
+    name = "overlay8"
+    description = (
+        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
+    )
+    loadaddress = 0x233D200
+    length = 0x2620
+    functions = EuOverlay8Functions
+    data = EuOverlay8Data
+
+
+class EuRamFunctions:
+    pass
+
+
+class EuRamData:
+    DUNGEON_COLORMAP_PTR = Symbol(
+        [0x1BA634],
+        [0x21BA634],
+        0x4,
+        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
+        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
+        " indexes into when rendering colors. Some weather conditions modify the"
+        " colormap, which is how the color scheme changes when it's, e.g., raining.",
+    )
+
+    DUNGEON_STRUCT = Symbol(
+        [0x1BA674],
+        [0x21BA674],
+        0x2CB14,
+        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
+        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
+        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
+        " 29.\n\ntype: struct dungeon",
+    )
+
+    MOVE_DATA_TABLE = Symbol(
+        [0x211D0C],
+        [0x2211D0C],
+        0x38C6,
+        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
+        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
+        " ARM 9 binary.\n\ntype: struct move_data_table",
+    )
+
+    FRAMES_SINCE_LAUNCH = Symbol(
+        [0x2A3E8C, 0x2A3EDC],
+        [0x22A3E8C, 0x22A3EDC],
+        0x4,
+        "Starts at 0 when the game is first launched, and continuously ticks up once"
+        " per frame while the game is running.",
+    )
+
+    BAG_ITEMS = Symbol(
+        [0x2A4164],
+        [0x22A4164],
+        0x12C,
+        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
+        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
+        " if filled.\n\ntype: struct item[50]",
+    )
+
+    BAG_ITEMS_PTR = Symbol([0x2A44E8], [0x22A44E8], 0x4, "Pointer to BAG_ITEMS.")
+
+    STORAGE_ITEMS = Symbol(
+        [0x2A44EE],
+        [0x22A44EE],
+        0x7D0,
+        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
+        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
+        " item_id_16[1000]",
+    )
+
+    STORAGE_ITEM_QUANTITIES = Symbol(
+        [0x2A4CBE],
+        [0x22A4CBE],
+        0x7D0,
+        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
+        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
+        " entry in this array is unused, and will be 0.",
+    )
+
+    KECLEON_SHOP_ITEMS_PTR = Symbol(
+        [0x2A5490], [0x22A5490], 0x4, "Pointer to KECLEON_SHOP_ITEMS."
+    )
+
+    KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A5494],
+        [0x22A5494],
+        0x20,
+        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A54B4],
+        [0x22A54B4],
+        0x20,
+        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
+        " to be used by the Kecleon Shop.",
+    )
+
+    KECLEON_WARES_ITEMS_PTR = Symbol(
+        [0x2A54D4], [0x22A54D4], 0x4, "Pointer to KECLEON_WARES_ITEMS."
+    )
+
+    KECLEON_WARES_ITEMS = Symbol(
+        [0x2A54D8],
+        [0x22A54D8],
+        0x10,
+        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_WARES_ITEMS = Symbol(
+        [0x2A54E8],
+        [0x22A54E8],
+        0x10,
+        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
+        " to be used by Kecleon Wares.",
+    )
+
+    MONEY_CARRIED = Symbol(
+        [0x2A54F8],
+        [0x22A54F8],
+        0x4,
+        "The amount of money the player is currently carrying.",
+    )
+
+    MONEY_STORED = Symbol(
+        [0x2A5504],
+        [0x22A5504],
+        0x4,
+        "The amount of money the player currently has stored in the Duskull Bank.",
+    )
+
+    LAST_NEW_MOVE = Symbol(
+        [0x2AB78C],
+        [0x22AB78C],
+        0x8,
+        "Move struct of the last new move introduced when learning a new move. Persists"
+        " even after the move selection is made in the menu.\n\ntype: struct move",
+    )
+
+    SCRIPT_VARS_VALUES = Symbol(
+        [0x2AB9EC],
+        [0x22AB9EC],
+        0x400,
+        "The table of game variable values. Its structure is determined by"
+        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
+        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
+        " the real length of this table is 0x400 based on the game code.\n\ntype:"
+        " struct script_var_value_table",
+    )
+
+    BAG_LEVEL = Symbol(
+        [0x2ABA9C],
+        [0x22ABA9C],
+        0x1,
+        "The player's bag level, which determines the bag capacity. This indexes"
+        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
+    )
+
+    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
+        [0x2ABDEC],
+        [0x22ABDEC],
+        0x1,
+        "The number of the special episode currently being played.\n\n0: normal,"
+        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
+        " Comes Team Charm!\n4: In the Future of Darkness",
+    )
+
+    PENDING_DUNGEON_ID = Symbol(
+        [0x2ABE3C],
+        [0x22ABE3C],
+        0x1,
+        "The ID of the selected dungeon when setting off from the"
+        " overworld.\n\nControls the text and map location during the 'map cutscene'"
+        " just before entering a dungeon, as well as the actual dungeon loaded"
+        " afterwards.\n\ntype: struct dungeon_id_8",
+    )
+
+    PENDING_STARTING_FLOOR = Symbol(
+        [0x2ABE3D],
+        [0x22ABE3D],
+        0x1,
+        "The floor number to start from in the dungeon specified by"
+        " PENDING_DUNGEON_ID.",
+    )
+
+    PLAY_TIME_SECONDS = Symbol(
+        [0x2ABFD4], [0x22ABFD4], 0x4, "The player's total play time in seconds."
+    )
+
+    PLAY_TIME_FRAME_COUNTER = Symbol(
+        [0x2ABFD8],
+        [0x22ABFD8],
+        0x1,
+        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
+        " with each rollover.",
+    )
+
+    TEAM_NAME = Symbol(
+        [0x2AC258],
+        [0x22AC258],
+        0xC,
+        "The team name.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    HERO_SPECIES_ID = Symbol(
+        [0x2AC724],
+        [0x22AC724],
+        0x2,
+        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
+        " with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    HERO_NICKNAME = Symbol(
+        [0x2AC75A],
+        [0x22AC75A],
+        0xA,
+        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    PARTNER_SPECIES_ID = Symbol(
+        [0x2AC768],
+        [0x22AC768],
+        0x2,
+        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
+        " together with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    LEADER_IQ_SKILLS = Symbol(
+        [0x2B5AD8],
+        [0x22B5AD8],
+        0xC,
+        "Unlocked IQ skills of the current leader, available for selection from the IQ"
+        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
+        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
+        " larger struct, together with other nearby data.",
+    )
+
+    LEADER_NICKNAME = Symbol(
+        [0x2B5AEA],
+        [0x22B5AEA],
+        0xA,
+        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
+        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
+        " typically uses.\n\nThis is presumably part of a larger struct, together with"
+        " other nearby data.",
+    )
+
+    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
+        [0x2B5B40],
+        [0x22B5B40],
+        0xC,
+        "Unlocked IQ skills of the second party member, available for selection from"
+        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
+        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
+        " a larger struct, together with other nearby data.",
+    )
+
+    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
+        [0x2BA304],
+        [0x22BA304],
+        0x4,
+        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
+        " the game is running.",
+    )
+
+    TURNING_ON_THE_SPOT_FLAG = Symbol(
+        [0x37D5A6],
+        [0x237D5A6],
+        0x1,
+        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    FLOOR_GENERATION_STATUS = Symbol(
+        [0x37DBBC],
+        [0x237DBBC],
+        0x40,
+        "[Runtime] Status data related to generation of the current floor in a"
+        " dungeon.\n\nThis data is populated as the dungeon floor is"
+        " generated.\n\ntype: struct floor_generation_status",
+    )
+
+
+class EuRamSection:
+    name = "ram"
+    description = (
+        "Main memory.\nData in this file aren't located in the ROM itself, and are"
+        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
+        " dumping ground for addresses that are useful to know about, but don't fall in"
+        " the address ranges of any of the other files. Dynamically loaded constructs"
+        " that do fall within the address range of a relevant binary should be listed"
+        " in the corresponding YAML file of that binary, since it still has direct"
+        " utility when reverse-engineering that particular binary."
+    )
+    loadaddress = 0x2000000
+    length = 0x400000
+    functions = EuRamFunctions
+    data = EuRamData
+
+
+class EuOverlay32Functions:
+    pass
+
+
+class EuOverlay32Data:
+    pass
+
+
+class EuOverlay32Section:
+    name = "overlay32"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2383420
+    length = 0x20
+    functions = EuOverlay32Functions
+    data = EuOverlay32Data
+
+
+class EuOverlay6Functions:
+    pass
+
+
+class EuOverlay6Data:
+    pass
+
+
+class EuOverlay6Section:
+    name = "overlay6"
+    description = "Controls the Wonder Mail S submenu within the top menu."
+    loadaddress = 0x233D200
+    length = 0x2460
+    functions = EuOverlay6Functions
+    data = EuOverlay6Data
+
+
+class EuOverlay18Functions:
+    pass
+
+
+class EuOverlay18Data:
+    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238DE60], 0x18, "")
+
+    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238DE78], 0x20, "")
+
+    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238DE98], 0x20, "")
+
+    MOVES_MAIN_MENU = Symbol([0x3238], [0x238DEB8], 0x20, "")
+
+    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238DED8], 0x28, "")
+
+    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238DF00], 0x30, "")
+
+    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238DF30], 0x48, "")
+
+    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238DF78], 0x48, "")
+
+    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238DFC0], 0x48, "")
+
+
+class EuOverlay18Section:
+    name = "overlay18"
+    description = "Controls the Electivire Link Shop."
+    loadaddress = 0x238AC80
+    length = 0x3500
+    functions = EuOverlay18Functions
+    data = EuOverlay18Data
+
+
+class EuOverlay30Functions:
+    pass
+
+
+class EuOverlay30Data:
+    pass
+
+
+class EuOverlay30Section:
+    name = "overlay30"
+    description = "Controls quicksaving in dungeons."
+    loadaddress = 0x2383420
+    length = 0x38A0
+    functions = EuOverlay30Functions
+    data = EuOverlay30Data
+
+
+class EuOverlay26Functions:
+    pass
+
+
+class EuOverlay26Data:
+    pass
+
+
+class EuOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Related to mission completion. It's loaded when the dungeon completion summary"
+        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
+        " mission rewards from clients."
+    )
+    loadaddress = 0x238AC80
+    length = 0xE40
+    functions = EuOverlay26Functions
+    data = EuOverlay26Data
+
+
+class EuOverlay3Functions:
+    pass
+
+
+class EuOverlay3Data:
+    pass
+
+
+class EuOverlay3Section:
+    name = "overlay3"
+    description = "Controls the Friend Rescue submenu within the top menu."
+    loadaddress = 0x233D200
+    length = 0xA160
+    functions = EuOverlay3Functions
+    data = EuOverlay3Data
+
+
+class EuOverlay14Functions:
+    pass
+
+
+class EuOverlay14Data:
+    FOOTPRINT_DEBUG_MENU = Symbol([0x39C0], [0x238E640], 0x48, "")
+
+
+class EuOverlay14Section:
+    name = "overlay14"
+    description = "Runs the sentry duty minigame."
+    loadaddress = 0x238AC80
+    length = 0x3B40
+    functions = EuOverlay14Functions
+    data = EuOverlay14Data
+
+
+class EuOverlay25Functions:
+    pass
+
+
+class EuOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238BFF4], 0x18, "")
+
+    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238C00C], 0x20, "")
+
+    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238C02C], 0x20, "")
+
+
+class EuOverlay25Section:
+    name = "overlay25"
+    description = "Controls Xatu Appraisal."
+    loadaddress = 0x238AC80
+    length = 0x14C0
+    functions = EuOverlay25Functions
+    data = EuOverlay25Data
+
+
+class EuOverlay11Functions:
+    FuncThatCallsCommandParsing = Symbol([0xF24], [0x22DDAA4], None, "")
+
+    ScriptCommandParsing = Symbol([0x1B24], [0x22DE6A4], None, "")
+
+    SsbLoad2 = Symbol([0x84BC], [0x22E503C], None, "")
+
+    StationLoadHanger = Symbol([0x8994], [0x22E5514], None, "")
+
+    ScriptStationLoadTalk = Symbol([0x91A4], [0x22E5D24], None, "")
+
+    SsbLoad1 = Symbol([0x9B10], [0x22E6690], None, "")
+
+    ScriptSpecialProcessCall = Symbol(
+        [0xAED8],
+        [0x22E7A58],
+        None,
+        "Processes calls to the OPCODE_PROCESS_SPECIAL script opcode.\n\nr0: some"
+        " struct containing a callback of some sort, only used for special process ID"
+        " 18\nr1: special process ID\nr2: first argument, if relevant? Probably"
+        " corresponds to the second parameter of OPCODE_PROCESS_SPECIAL\nr3: second"
+        " argument, if relevant? Probably corresponds to the third parameter of"
+        " OPCODE_PROCESS_SPECIAL\nreturn: return value of the special process if it has"
+        " one, otherwise 0",
+    )
+
+    GetSpecialRecruitmentSpecies = Symbol(
+        [0xBDFC],
+        [0x22E897C],
+        None,
+        "Returns an entry from RECRUITMENT_TABLE_SPECIES.\n\nNote: This indexes without"
+        " doing bounds checking.\n\nr0: index into RECRUITMENT_TABLE_SPECIES\nreturn:"
+        " enum monster_id",
+    )
+
+    PrepareMenuAcceptTeamMember = Symbol(
+        [0xBE40],
+        [0x22E89C0],
+        None,
+        "Implements SPECIAL_PROC_PREPARE_MENU_ACCEPT_TEAM_MEMBER (see"
+        " ScriptSpecialProcessCall).\n\nr0: index into RECRUITMENT_TABLE_SPECIES",
+    )
+
+    InitRandomNpcJobs = Symbol(
+        [0xBEE4],
+        [0x22E8A64],
+        None,
+        "Implements SPECIAL_PROC_INIT_RANDOM_NPC_JOBS (see"
+        " ScriptSpecialProcessCall).\n\nr0: job type? 0 is a random NPC job, 1 is a"
+        " bottle mission\nr1: ?",
+    )
+
+    GetRandomNpcJobType = Symbol(
+        [0xBF7C],
+        [0x22E8AFC],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_TYPE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: job type?",
+    )
+
+    GetRandomNpcJobSubtype = Symbol(
+        [0xBF94],
+        [0x22E8B14],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_SUBTYPE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: job subtype?",
+    )
+
+    GetRandomNpcJobStillAvailable = Symbol(
+        [0xBFB0],
+        [0x22E8B30],
+        None,
+        "Implements SPECIAL_PROC_GET_RANDOM_NPC_JOB_STILL_AVAILABLE (see"
+        " ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    AcceptRandomNpcJob = Symbol(
+        [0xC018],
+        [0x22E8B98],
+        None,
+        "Implements SPECIAL_PROC_ACCEPT_RANDOM_NPC_JOB (see"
+        " ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    GroundMainLoop = Symbol(
+        [0xC534],
+        [0x22E90B4],
+        None,
+        "Appears to be the main loop for ground mode.\n\nBased on debug print"
+        " statements and general code structure, it seems contain a core loop, and"
+        " dispatches to various functions in response to different events.\n\nr0: mode,"
+        " which is stored globally and used in switch statements for dispatch\nreturn:"
+        " return code",
+    )
+
+    GetAllocArenaGround = Symbol(
+        [0xD11C],
+        [0x22E9C9C],
+        None,
+        "The GetAllocArena function used for ground mode. See SetMemAllocatorParams for"
+        " more information.\n\nr0: initial memory arena pointer, or null\nr1: flags"
+        " (see MemAlloc)\nreturn: memory arena pointer, or null",
+    )
+
+    GetFreeArenaGround = Symbol(
+        [0xD180],
+        [0x22E9D00],
+        None,
+        "The GetFreeArena function used for ground mode. See SetMemAllocatorParams for"
+        " more information.\n\nr0: initial memory arena pointer, or null\nr1: pointer"
+        " to free\nreturn: memory arena pointer, or null",
+    )
+
+    GroundMainReturnDungeon = Symbol(
+        [0xD1D4],
+        [0x22E9D54],
+        None,
+        "Implements SPECIAL_PROC_RETURN_DUNGEON (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+    GroundMainNextDay = Symbol(
+        [0xD1F8],
+        [0x22E9D78],
+        None,
+        "Implements SPECIAL_PROC_NEXT_DAY (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+    JumpToTitleScreen = Symbol(
+        [0xD39C],
+        [0x22E9F1C],
+        None,
+        "Implements SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and SPECIAL_PROC_0x1A (see"
+        " ScriptSpecialProcessCall).\n\nr0: int, argument value for"
+        " SPECIAL_PROC_JUMP_TO_TITLE_SCREEN and -1 for SPECIAL_PROC_0x1A\nreturn: bool"
+        " (but note that the special process ignores this and always returns 0)",
+    )
+
+    ReturnToTitleScreen = Symbol(
+        [0xD454],
+        [0x22E9FD4],
+        None,
+        "Implements SPECIAL_PROC_RETURN_TO_TITLE_SCREEN (see"
+        " ScriptSpecialProcessCall).\n\nr0: fade duration\nreturn: bool (but note that"
+        " the special process ignores this and always returns 0)",
+    )
+
+    ScriptSpecialProcess0x16 = Symbol(
+        [0xD4B4],
+        [0x22EA034],
+        None,
+        "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
+    )
+
+    SprintfStatic = Symbol(
+        [0x2CCE8],
+        [0x2309868],
+        None,
+        "Statically defined copy of sprintf(3) in overlay 11. See arm9.yml for more"
+        " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
+        " characters printed, excluding the null-terminator",
+    )
+
+    StatusUpdate = Symbol(
+        [0x378F8],
+        [0x2314478],
+        None,
+        "Implements SPECIAL_PROC_STATUS_UPDATE (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
+    )
+
+
+class EuOverlay11Data:
+    SCRIPT_OP_CODES = Symbol(
+        [0x3C470],
+        [0x2318FF0],
+        0xBF8,
+        "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
+        " opcodes underpin the various ExplorerScript functions you can call in the"
+        " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
+    )
+
+    C_ROUTINES = Symbol(
+        [0x40688],
+        [0x231D208],
+        None,
+        "Common routines used within the unionall.ssb script (the master script). There"
+        " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
+        " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
+        " common_routine_table",
+    )
+
+    OBJECTS = Symbol(
+        [0x42D5C],
+        [0x231F8DC],
+        0x1AAC,
+        "Table of objects for the script engine, which can be placed in scenes. There"
+        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
+        " script_object[length / 12]",
+    )
+
+    RECRUITMENT_TABLE_LOCATIONS = Symbol(
+        [0x44844],
+        [0x23213C4],
+        0x16,
+        "Table of dungeon IDs corresponding to entries in"
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
+    )
+
+    RECRUITMENT_TABLE_LEVELS = Symbol(
+        [0x4485C],
+        [0x23213DC],
+        0x2C,
+        "Table of levels for recruited Pokémon, corresponding to entries in"
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
+    )
+
+    RECRUITMENT_TABLE_SPECIES = Symbol(
+        [0x44888],
+        [0x2321408],
+        0x2C,
+        "Table of Pokémon recruited at special locations, such as at the ends of"
+        " certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during"
+        " a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes"
+        " both Heatran genders. It also includes Darkrai for some reason?\n\ntype:"
+        " struct monster_id_16[22]",
+    )
+
+    LEVEL_TILEMAP_LIST = Symbol([0x44CDC], [0x232185C], 0x288, "")
+
+    OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
+        [0x4701C],
+        [0x2323B9C],
+        None,
+        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16"
+        " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
+        " overlay_group_id in the C headers for a mapping between group ID and overlay"
+        " number)\n- function pointer to entry point\n- function pointer to"
+        " destructor\n- possibly function pointer to frame-update function?",
+    )
+
+    UNIONALL_RAM_ADDRESS = Symbol([0x48C64], [0x23257E4], None, "[Runtime]")
+
+    GROUND_STATE_MAP = Symbol([0x48C80], [0x2325800], None, "[Runtime]")
+
+    GROUND_STATE_PTRS = Symbol(
+        [0x48CB4],
+        [0x2325834],
+        0x18,
+        "Host pointers to multiple structure used for performing an overworld"
+        " scene\n\ntype: struct main_ground_data",
+    )
+
+
+class EuOverlay11Section:
+    name = "overlay11"
+    description = (
+        "The script engine.\n\nThis is the 'main' overlay of ground mode. The script"
+        " engine is what runs the ground mode scripts contained in the SCRIPT folder,"
+        " which are written in a custom scripting language. These scripts encode things"
+        " like cutscenes, screen transitions, ground mode events, and tons of other"
+        " things related to ground mode."
+    )
+    loadaddress = 0x22DCB80
+    length = 0x48E40
+    functions = EuOverlay11Functions
+    data = EuOverlay11Data
+
+
+class EuArm9Functions:
+    InitMemAllocTable = Symbol(
+        [0xDE0],
+        [0x2000DE0],
+        None,
+        "Initializes MEMORY_ALLOCATION_TABLE.\n\nSets up the default memory arena, sets"
+        " the default memory allocator parameters (calls SetMemAllocatorParams(0, 0)),"
+        " and does some other stuff.\n\nNo params.",
+    )
+
+    SetMemAllocatorParams = Symbol(
+        [0xE70],
+        [0x2000E70],
+        None,
+        "Sets global parameters for the memory allocator.\n\nThis includes"
+        " MEMORY_ALLOCATION_ARENA_GETTERS and some other stuff.\n\nDungeon mode uses"
+        " the default arena getters. Ground mode uses its own arena getters, which are"
+        " defined in overlay 11 and set (by calling this function) at the start of"
+        " GroundMainLoop.\n\nr0: GetAllocArena function pointer (GetAllocArenaDefault"
+        " is used if null)\nr1: GetFreeArena function pointer (GetFreeArenaDefault is"
+        " used if null)",
+    )
+
+    GetAllocArenaDefault = Symbol(
+        [0xEC0],
+        [0x2000EC0],
+        None,
+        "The default function for retrieving the arena for memory allocations. This"
+        " function always just returns the initial arena pointer.\n\nr0: initial memory"
+        " arena pointer, or null\nr1: flags (see MemAlloc)\nreturn: memory arena"
+        " pointer, or null",
+    )
+
+    GetFreeArenaDefault = Symbol(
+        [0xEC4],
+        [0x2000EC4],
+        None,
+        "The default function for retrieving the arena for memory freeing. This"
+        " function always just returns the initial arena pointer.\n\nr0: initial memory"
+        " arena pointer, or null\nr1: pointer to free\nreturn: memory arena pointer, or"
+        " null",
+    )
+
+    InitMemArena = Symbol(
+        [0xEC8],
+        [0x2000EC8],
+        None,
+        "Initializes a new memory arena with the given specifications, and records it"
+        " in the global MEMORY_ALLOCATION_TABLE.\n\nr0: arena struct to be"
+        " initialized\nr1: memory region to be owned by the arena, as {pointer,"
+        " length}\nr2: pointer to block metadata array for the arena to use\nr3:"
+        " maximum number of blocks that the arena can hold",
+    )
+
+    MemAllocFlagsToBlockType = Symbol(
+        [0xF44],
+        [0x2000F44],
+        None,
+        "Converts the internal alloc flags bitfield (struct mem_block field 0x4) to the"
+        " block type bitfield (struct mem_block field 0x0).\n\nr0: internal alloc"
+        " flags\nreturn: block type flags",
+    )
+
+    FindAvailableMemBlock = Symbol(
+        [0xF88],
+        [0x2000F88],
+        None,
+        "Searches through the given memory arena for a block with enough free"
+        " space.\n\nBlocks are searched in reverse order. For object allocations (i.e.,"
+        " not arenas), the block with the smallest amount of free space that still"
+        " suffices is returned. For arena allocations, the first satisfactory block"
+        " found is returned.\n\nr0: memory arena to search\nr1: internal alloc"
+        " flags\nr2: amount of space needed, in bytes\nreturn: index of the located"
+        " block in the arena's block array, or -1 if nothing is available",
+    )
+
+    SplitMemBlock = Symbol(
+        [0x1070],
+        [0x2001070],
+        None,
+        "Given a memory block at a given index, splits off another memory block of the"
+        " specified size from the end.\n\nSince blocks are stored in an array on the"
+        " memory arena struct, this is essentially an insertion operation, plus some"
+        " processing on the block being split and its child.\n\nr0: memory arena\nr1:"
+        " block index\nr2: internal alloc flags\nr3: number of bytes to split"
+        " off\nstack[0]: user alloc flags (to assign to the new block)\nreturn: the"
+        " newly split-off memory block",
+    )
+
+    MemAlloc = Symbol(
+        [0x1170],
+        [0x2001170],
+        None,
+        "Allocates some memory on the heap, returning a pointer to the starting"
+        " address.\n\nMemory allocation is done with region-based memory management."
+        " See MEMORY_ALLOCATION_TABLE for more information.\n\nThis function is just a"
+        " wrapper around MemLocateSet.\n\nr0: length in bytes\nr1: flags (see the"
+        " comment on struct mem_block::user_flags)\nreturn: pointer",
+    )
+
+    MemFree = Symbol(
+        [0x1188],
+        [0x2001188],
+        None,
+        "Frees heap-allocated memory.\n\nThis function is just a wrapper around"
+        " MemLocateUnset.\n\nr0: pointer",
+    )
+
+    MemArenaAlloc = Symbol(
+        [0x119C],
+        [0x200119C],
+        None,
+        "Allocates some memory on the heap and creates a new global memory arena with"
+        " it.\n\nThe actual allocation part works similarly to the normal"
+        " MemAlloc.\n\nr0: desired parent memory arena, or null\nr1: length of the"
+        " arena in bytes\nr2: maximum number of blocks that the arena can hold\nr3:"
+        " flags (see MemAlloc)\nreturn: memory arena pointer",
+    )
+
+    CreateMemArena = Symbol(
+        [0x1280],
+        [0x2001280],
+        None,
+        "Creates a new memory arena within a given block of memory.\n\nThis is"
+        " essentially a wrapper around InitMemArena, accounting for the space needed by"
+        " the arena metadata.\n\nr0: memory region in which to create the arena, as"
+        " {pointer, length}\nr1: maximum number of blocks that the arena can"
+        " hold\nreturn: memory arena pointer",
+    )
+
+    MemLocateSet = Symbol(
+        [0x1390],
+        [0x2001390],
+        None,
+        "The implementation for MemAlloc.\n\nAt a high level, memory is allocated by"
+        " choosing a memory arena, looking through blocks in the memory arena until a"
+        " free one that's large enough is found, then splitting off a new memory block"
+        " of the needed size.\n\nThis function is not fallible, i.e., it hangs the"
+        " whole program on failure, so callers can assume it never fails.\n\nThe name"
+        " for this function comes from the error message logged on failure, and it"
+        " reflects what the function does: locate an available block of memory and set"
+        " it up for the caller.\n\nr0: desired memory arena for allocation, or null"
+        " (MemAlloc passes null)\nr1: length in bytes\nr2: flags (see"
+        " MemAlloc)\nreturn: pointer to allocated memory",
+    )
+
+    MemLocateUnset = Symbol(
+        [0x1638],
+        [0x2001638],
+        None,
+        "The implementation for MemFree.\n\nAt a high level, memory is freed by"
+        " locating the pointer in its memory arena (searching block-by-block) and"
+        " emptying the block so it's available for future allocations, and merging it"
+        " with neighboring blocks if they're available.\n\nr0: desired memory arena for"
+        " freeing, or null (MemFree passes null)\nr1: pointer to free",
+    )
+
+    RoundUpDiv256 = Symbol(
+        [0x1894],
+        [0x2001894],
+        None,
+        "Divide a number by 256 and round up to the nearest integer.\n\nr0:"
+        " number\nreturn: number // 256",
+    )
+
+    MultiplyByFixedPoint = Symbol(
+        [0x1A54],
+        [0x2001A54],
+        None,
+        "Multiply a signed integer x by a signed binary fixed-point multiplier (8"
+        " fraction bits).\n\nr0: x\nr1: multiplier\nreturn: x * multiplier",
+    )
+
+    UMultiplyByFixedPoint = Symbol(
+        [0x1B0C],
+        [0x2001B0C],
+        None,
+        "Multiplies an unsigned integer x by an unsigned binary fixed-point multiplier"
+        " (8 fraction bits).\n\nr0: x\nr1: multiplier\nreturn: x * multiplier",
+    )
+
+    GetRngSeed = Symbol(
+        [0x222C], [0x200222C], None, "Get the current value of PRNG_SEQUENCE_NUM."
+    )
+
+    SetRngSeed = Symbol(
+        [0x223C],
+        [0x200223C],
+        None,
+        "Seed PRNG_SEQUENCE_NUM to a given value.\n\nr0: seed",
+    )
+
+    Rand16Bit = Symbol(
+        [0x224C],
+        [0x200224C],
+        None,
+        "Computes a pseudorandom 16-bit integer using the general-purpose PRNG.\n\nNote"
+        " that much of dungeon mode uses its own (slightly higher-quality) PRNG within"
+        " overlay 29. See overlay29.yml for more information.\n\nRandom numbers are"
+        " generated with a linear congruential generator (LCG), using a modulus of"
+        " 2^16, a multiplier of 109, and an increment of 1021. I.e., the recurrence"
+        " relation is `x = (109*x_prev + 1021) % 2^16`.\n\nThe LCG has a hard-coded"
+        " seed of 13452 (0x348C), but can be seeded with a call to"
+        " SetRngSeed.\n\nreturn: pseudorandom int on the interval [0, 65535]",
+    )
+
+    RandInt = Symbol(
+        [0x2274],
+        [0x2002274],
+        None,
+        "Compute a pseudorandom integer under a given maximum value using the"
+        " general-purpose PRNG.\n\nThis function relies on a single call to Rand16Bit."
+        " Even though it takes a 32-bit integer as input, the number of unique outcomes"
+        " is capped at 2^16.\n\nr0: high\nreturn: pseudorandom integer on the interval"
+        " [0, high - 1]",
+    )
+
+    RandRange = Symbol(
+        [0x228C],
+        [0x200228C],
+        None,
+        "Compute a pseudorandom value between two integers using the general-purpose"
+        " PRNG.\n\nThis function relies on a single call to Rand16Bit. Even though it"
+        " takes 32-bit integers as input, the number of unique outcomes is capped at"
+        " 2^16.\n\nr0: x\nr1: y\nreturn: pseudorandom integer on the interval [x, y"
+        " - 1]",
+    )
+
+    Rand32Bit = Symbol(
+        [0x22AC],
+        [0x20022AC],
+        None,
+        "Computes a random 32-bit integer using the general-purpose PRNG. The upper and"
+        " lower 16 bits are each generated with a separate call to Rand16Bit (so this"
+        " function advances the PRNG twice).\n\nreturn: pseudorandom int on the"
+        " interval [0, 4294967295]",
+    )
+
+    RandIntSafe = Symbol(
+        [0x22F8],
+        [0x20022F8],
+        None,
+        "Same as RandInt, except explicitly masking out the upper 16 bits of the output"
+        " from Rand16Bit (which should be zero anyway).\n\nr0: high\nreturn:"
+        " pseudorandom integer on the interval [0, high - 1]",
+    )
+
+    RandRangeSafe = Symbol(
+        [0x2318],
+        [0x2002318],
+        None,
+        "Like RandRange, except reordering the inputs as needed, and explicitly masking"
+        " out the upper 16 bits of the output from Rand16Bit (which should be zero"
+        " anyway).\n\nr0: x\nr1: y\nreturn: pseudorandom integer on the interval"
+        " [min(x, y), max(x, y) - 1]",
+    )
+
+    WaitForever = Symbol(
+        [0x2438],
+        [0x2002438],
+        None,
+        "Sets some program state and calls WaitForInterrupt in an infinite"
+        " loop.\n\nThis is called on fatal errors to hang the program"
+        " indefinitely.\n\nNo params.",
+    )
+
+    InitMemAllocTableVeneer = Symbol(
+        [0x321C],
+        [0x200321C],
+        None,
+        "Likely a linker-generated veneer for InitMemAllocTable.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo"
+        " params.",
+    )
+
+    MemZero = Symbol(
+        [0x3250], [0x2003250], None, "Zeroes a buffer.\n\nr0: ptr\nr1: len"
+    )
+
+    MemcpySimple = Symbol(
+        [0x32E4],
+        [0x20032E4],
+        None,
+        "A simple implementation of the memcpy(3) C library function.\n\nThis function"
+        " was probably manually implemented by the developers. See Memcpy for what's"
+        " probably the real libc function.\n\nThis function copies from src to dst in"
+        " backwards byte order, so this is safe to call for overlapping src and dst if"
+        " src <= dst.\n\nr0: dest\nr1: src\nr2: n",
+    )
+
+    TaskProcBoot = Symbol(
+        [0x3328],
+        [0x2003328],
+        None,
+        "Probably related to booting the game?\n\nThis function prints the debug"
+        " message 'task proc boot'.\n\nNo params.",
+    )
+
+    EnableAllInterrupts = Symbol(
+        [0x3608],
+        [0x2003608],
+        None,
+        "Sets the Interrupt Master Enable (IME) register to 1, which enables all CPU"
+        " interrupts (if enabled in the Interrupt Enable (IE) register).\n\nSee"
+        " https://problemkaputt.de/gbatek.htm#dsiomaps.\n\nreturn: old value in the IME"
+        " register",
+    )
+
+    GetTime = Symbol(
+        [0x37B4],
+        [0x20037B4],
+        None,
+        "Seems to get the current (system?) time as an IEEE 754 floating-point"
+        " number.\n\nreturn: current time (maybe in seconds?)",
+    )
+
+    DisableAllInterrupts = Symbol(
+        [0x3824],
+        [0x2003824],
+        None,
+        "Sets the Interrupt Master Enable (IME) register to 0, which disables all CPU"
+        " interrupts (even if enabled in the Interrupt Enable (IE) register).\n\nSee"
+        " https://problemkaputt.de/gbatek.htm#dsiomaps.\n\nreturn: old value in the IME"
+        " register",
+    )
+
+    SoundResume = Symbol(
+        [0x3CC4],
+        [0x2003CC4],
+        None,
+        "Probably resumes the sound player if paused?\n\nThis function prints the debug"
+        " string 'sound resume'.",
+    )
+
+    CardPullOutWithStatus = Symbol(
+        [0x3D2C],
+        [0x2003D2C],
+        None,
+        "Probably aborts the program with some status code? It seems to serve a similar"
+        " purpose to the exit(3) function.\n\nThis function prints the debug string"
+        " 'card pull out %d' with the status code.\n\nr0: status code",
+    )
+
+    CardPullOut = Symbol(
+        [0x3D70],
+        [0x2003D70],
+        None,
+        "Sets some global flag that probably triggers system exit?\n\nThis function"
+        " prints the debug string 'card pull out'.\n\nNo params.",
+    )
+
+    CardBackupError = Symbol(
+        [0x3D94],
+        [0x2003D94],
+        None,
+        "Sets some global flag that maybe indicates a save error?\n\nThis function"
+        " prints the debug string 'card backup error'.\n\nNo params.",
+    )
+
+    HaltProcessDisp = Symbol(
+        [0x3DB8],
+        [0x2003DB8],
+        None,
+        "Maybe halts the process display?\n\nThis function prints the debug string"
+        " 'halt process disp %d' with the status code.\n\nr0: status code",
+    )
+
+    OverlayIsLoaded = Symbol(
+        [0x3ED0],
+        [0x2003ED0],
+        None,
+        "Checks if an overlay with a certain group ID is currently loaded.\n\nSee the"
+        " LOADED_OVERLAY_GROUP_* data symbols or enum overlay_group_id in the C headers"
+        " for a mapping between group ID and overlay number.\n\nr0: group ID of the"
+        " overlay to check. A group ID of 0 denotes no overlay, and the return value"
+        " will always be true in this case.\nreturn: bool",
+    )
+
+    LoadOverlay = Symbol(
+        [0x40AC],
+        [0x20040AC],
+        None,
+        "Loads an overlay from ROM by its group ID.\n\nSee the LOADED_OVERLAY_GROUP_*"
+        " data symbols or enum overlay_group_id in the C headers for a mapping between"
+        " group ID and overlay number.\n\nr0: group ID of the overlay to load",
+    )
+
+    UnloadOverlay = Symbol(
+        [0x4868],
+        [0x2004868],
+        None,
+        "Unloads an overlay from ROM by its group ID.\n\nSee the LOADED_OVERLAY_GROUP_*"
+        " data symbols or enum overlay_group_id in the C headers for a mapping between"
+        " group ID and overlay number.\n\nr0: group ID of the overlay to"
+        " unload\nothers: ?",
+    )
+
+    EuclideanNorm = Symbol(
+        [0x5050, 0x50B0],
+        [0x2005050, 0x20050B0],
+        None,
+        "Computes the Euclidean norm of a two-component integer array, sort of like"
+        " hypotf(3).\n\nr0: integer array [x, y]\nreturn: sqrt(x*x + y*y)",
+    )
+
+    ClampComponentAbs = Symbol(
+        [0x5110],
+        [0x2005110],
+        None,
+        "Clamps the absolute values in a two-component integer array.\n\nGiven an"
+        " integer array [x, y] and a maximum absolute value M, clamps each element of"
+        " the array to M such that the output array is [min(max(x, -M), M), min(max(y,"
+        " -M), M)].\n\nr0: 2-element integer array, will be mutated\nr1: max absolute"
+        " value",
+    )
+
+    KeyWaitInit = Symbol(
+        [0x6DA4],
+        [0x2006DA4],
+        None,
+        "Implements (most of?) SPECIAL_PROC_KEY_WAIT_INIT (see"
+        " ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    DataTransferInit = Symbol(
+        [0x8168],
+        [0x2008168],
+        None,
+        "Initializes data transfer mode to get data from the ROM cartridge.\n\nNo"
+        " params.",
+    )
+
+    DataTransferStop = Symbol(
+        [0x8194],
+        [0x2008194],
+        None,
+        "Finalizes data transfer from the ROM cartridge.\n\nThis function must always"
+        " be called if DataTransferInit was called, or the game will crash.\n\nNo"
+        " params.",
+    )
+
+    FileInitVeneer = Symbol(
+        [0x8204],
+        [0x2008204],
+        None,
+        "Likely a linker-generated veneer for FileInit.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " file_stream pointer",
+    )
+
+    FileOpen = Symbol(
+        [0x8210],
+        [0x2008210],
+        None,
+        "Opens a file from the ROM file system at the given path, sort of like C's"
+        " fopen(3) library function.\n\nr0: file_stream pointer\nr1: file path string",
+    )
+
+    FileGetSize = Symbol(
+        [0x8244],
+        [0x2008244],
+        None,
+        "Gets the size of an open file.\n\nr0: file_stream pointer\nreturn: file size",
+    )
+
+    FileRead = Symbol(
+        [0x8254],
+        [0x2008254],
+        None,
+        "Reads the contents of a file into the given buffer, and moves the file cursor"
+        " accordingly.\n\nData transfer mode must have been initialized (with"
+        " DataTransferInit) prior to calling this function. This function looks like"
+        " it's doing something akin to calling read(2) or fread(3) in a loop until all"
+        " the bytes have been successfully read.\n\nr0: file_stream pointer\nr1:"
+        " [output] buffer\nr2: number of bytes to read\nreturn: number of bytes read",
+    )
+
+    FileSeek = Symbol(
+        [0x82A8],
+        [0x20082A8],
+        None,
+        "Sets a file stream's position indicator.\n\nThis function has the a similar"
+        " API to the fseek(3) library function from C, including using the same codes"
+        " for the `whence` parameter:\n- SEEK_SET=0\n- SEEK_CUR=1\n- SEEK_END=2\n\nr0:"
+        " file_stream pointer\nr1: offset\nr2: whence",
+    )
+
+    FileClose = Symbol(
+        [0x82C4],
+        [0x20082C4],
+        None,
+        "Closes a file.\n\nData transfer mode must have been initialized (with"
+        " DataTransferInit) prior to calling this function.\n\nNote: It is possible to"
+        " keep a file stream open even if data transfer mode has been stopped, in which"
+        " case the file stream can be used again if data transfer mode is"
+        " reinitialized.\n\nr0: file_stream pointer",
+    )
+
+    LoadFileFromRom = Symbol(
+        [0x8C3C],
+        [0x2008C3C],
+        None,
+        "Loads a file from ROM by filepath into a heap-allocated buffer.\n\nr0:"
+        " [output] pointer to an IO struct {ptr, len}\nr1: file path string"
+        " pointer\nr2: flags",
+    )
+
+    GetDebugFlag1 = Symbol(
+        [0xC198], [0x200C198], None, "Just returns 0 in the final binary."
+    )
+
+    SetDebugFlag1 = Symbol([0xC1A0], [0x200C1A0], None, "A no-op in the final binary.")
+
+    AppendProgPos = Symbol(
+        [0xC1A8],
+        [0x200C1A8],
+        None,
+        "Write a base message into a string and append the file name and line number to"
+        " the end in the format 'file = '%s'  line = %5d\n'.\n\nIf no program position"
+        " info is given, 'ProgPos info NULL\n' is appended instead.\n\nr0: [output]"
+        " str\nr1: program position info\nr2: base message\nreturn: number of"
+        " characters printed, excluding the null-terminator",
+    )
+
+    DebugPrintTrace = Symbol(
+        [0xC1F4],
+        [0x200C1F4],
+        None,
+        "Would log a printf format string tagged with the file name and line number in"
+        " the debug binary.\n\nThis still constructs the string, but doesn't actually"
+        " do anything with it in the final binary.\n\nIf message is a null pointer, the"
+        " string '  Print  ' is used instead.\n\nr0: message\nr1: program position info"
+        " (can be null)",
+    )
+
+    DebugPrint0 = Symbol(
+        [0xC284],
+        [0x200C284],
+        None,
+        "Would log a printf format string in the debug binary.\n\nThis still constructs"
+        " the string with Vsprintf, but doesn't actually do anything with it in the"
+        " final binary.\n\nr0: format\n...: variadic",
+    )
+
+    GetDebugFlag2 = Symbol(
+        [0xC2BC], [0x200C2BC], None, "Just returns 0 in the final binary."
+    )
+
+    SetDebugFlag2 = Symbol([0xC2C4], [0x200C2C4], None, "A no-op in the final binary.")
+
+    DebugPrint = Symbol(
+        [0xC2C8],
+        [0x200C2C8],
+        None,
+        "Would log a printf format string in the debug binary. A no-op in the final"
+        " binary.\n\nr0: log level\nr1: format\n...: variadic",
+    )
+
+    FatalError = Symbol(
+        [0xC2E4],
+        [0x200C2E4],
+        None,
+        "Logs some debug messages, then hangs the process.\n\nThis function is called"
+        " in lots of places to bail on a fatal error. Looking at the static data"
+        " callers use to fill in the program position info is informative, as it tells"
+        " you the original file name (probably from the standard __FILE__ macro) and"
+        " line number (probably from the standard __LINE__ macro) in the source"
+        " code.\n\nr0: program position info\nr1: format\n...: variadic",
+    )
+
+    OpenAllPackFiles = Symbol(
+        [0xC364],
+        [0x200C364],
+        None,
+        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILE_OPENED. Called during"
+        " game initialisation.\n\nNo params.",
+    )
+
+    GetFileLengthInPackWithPackNb = Symbol(
+        [0xC3C4],
+        [0x200C3C4],
+        None,
+        "Call GetFileLengthInPack after looking up the global Pack archive by its"
+        " number\n\nr0: pack file number\nr1: file number\nreturn: size of the file in"
+        " bytes from the Pack Table of Content",
+    )
+
+    LoadFileInPackWithPackId = Symbol(
+        [0xC3E4],
+        [0x200C3E4],
+        None,
+        "Call LoadFileInPack after looking up the global Pack archive by its"
+        " identifier\n\nr0: pack file identifier\nr1: [output] target buffer\nr2: file"
+        " index\nreturn: number of read bytes (identical to the length of the pack from"
+        " the Table of Content)",
+    )
+
+    AllocAndLoadFileInPack = Symbol(
+        [0xC410],
+        [0x200C410],
+        None,
+        "Allocate a file and load a file from the pack archive inside.\nThe data"
+        " pointed by the pointer in the output need to be freed once is not needed"
+        " anymore.\n\nr0: pack file identifier\nr1: file index\nr2: [output] result"
+        " struct (will contain length and pointer)\nr3: allocation flags",
+    )
+
+    OpenPackFile = Symbol(
+        [0xC468],
+        [0x200C468],
+        None,
+        "Open a Pack file, to be read later. Initialise the output structure.\n\nr0:"
+        " [output] pack file struct\nr1: file name",
+    )
+
+    GetFileLengthInPack = Symbol(
+        [0xC4FC],
+        [0x200C4FC],
+        None,
+        "Get the length of a file entry from a Pack archive\n\nr0: pack file"
+        " struct\nr1: file index\nreturn: size of the file in bytes from the Pack Table"
+        " of Content",
+    )
+
+    LoadFileInPack = Symbol(
+        [0xC50C],
+        [0x200C50C],
+        None,
+        "Load the indexed file from the Pack archive, itself loaded from the"
+        " ROM.\n\nr0: pack file struct\nr1: [output] target buffer\nr2: file"
+        " index\nreturn: number of read bytes (identical to the length of the pack from"
+        " the Table of Content)",
+    )
+
+    IsAuraBow = Symbol(
+        [0xCC9C],
+        [0x200CC9C],
+        None,
+        "Checks if an item is one of the aura bows received at the start of the"
+        " game.\n\nr0: item ID\nreturn: bool",
+    )
+
+    SprintfStatic = Symbol(
+        [
+            0xD6BC,
+            0xE808,
+            0x13800,
+            0x177C4,
+            0x17ADC,
+            0x2378C,
+            0x239B0,
+            0x3822C,
+            0x39734,
+            0x3AC6C,
+            0x3D2A0,
+            0x41A48,
+            0x42DA0,
+            0x52750,
+            0x54DDC,
+            0x60D64,
+        ],
+        [
+            0x200D6BC,
+            0x200E808,
+            0x2013800,
+            0x20177C4,
+            0x2017ADC,
+            0x202378C,
+            0x20239B0,
+            0x203822C,
+            0x2039734,
+            0x203AC6C,
+            0x203D2A0,
+            0x2041A48,
+            0x2042DA0,
+            0x2052750,
+            0x2054DDC,
+            0x2060D64,
+        ],
+        None,
+        "Functionally the same as Sprintf, just defined statically in many different"
+        " places.\n\nSince this is essentially just a wrapper around vsprintf(3), this"
+        " function was probably statically defined in a header somewhere and included"
+        " in a bunch of different places. See the actual Sprintf for the one in"
+        " libc.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of characters"
+        " printed, excluding the null-terminator",
+    )
+
+    SetMoneyCarried = Symbol(
+        [0xEDC4],
+        [0x200EDC4],
+        None,
+        "Sets the amount of money the player is carrying, clamping the value to the"
+        " range [0, MAX_MONEY_CARRIED].\n\nr0: new value",
+    )
+
+    IsBagFull = Symbol(
+        [0xEE68],
+        [0x200EE68],
+        None,
+        "Implements SPECIAL_PROC_IS_BAG_FULL (see ScriptSpecialProcessCall).\n\nreturn:"
+        " bool",
+    )
+
+    CountItemTypeInBag = Symbol(
+        [0xEF30],
+        [0x200EF30],
+        None,
+        "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_BAG (see"
+        " ScriptSpecialProcessCall).\n\nr0: item ID\nreturn: number of items of the"
+        " specified ID in the bag",
+    )
+
+    AddItemToBag = Symbol(
+        [0xF8F4],
+        [0x200F8F4],
+        None,
+        "Implements SPECIAL_PROC_ADD_ITEM_TO_BAG (see ScriptSpecialProcessCall).\n\nr0:"
+        " pointer to an owned_item\nreturn: bool",
+    )
+
+    ScriptSpecialProcess0x39 = Symbol(
+        [0xFDFC],
+        [0x200FDFC],
+        None,
+        "Implements SPECIAL_PROC_0x39 (see ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    CountItemTypeInStorage = Symbol(
+        [0xFF8C],
+        [0x200FF8C],
+        None,
+        "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_STORAGE (see"
+        " ScriptSpecialProcessCall).\n\nr0: pointer to an owned_item\nreturn: number of"
+        " items of the specified ID in storage",
+    )
+
+    RemoveItemsTypeInStorage = Symbol(
+        [0x1028C],
+        [0x201028C],
+        None,
+        "Probably? Implements SPECIAL_PROC_0x2A (see ScriptSpecialProcessCall).\n\nr0:"
+        " pointer to an owned_item\nreturn: bool",
+    )
+
+    AddItemToStorage = Symbol(
+        [0x103C4],
+        [0x20103C4],
+        None,
+        "Implements SPECIAL_PROC_ADD_ITEM_TO_STORAGE (see"
+        " ScriptSpecialProcessCall).\n\nr0: pointer to an owned_item\nreturn: bool",
+    )
+
+    SetMoneyStored = Symbol(
+        [0x107CC],
+        [0x20107CC],
+        None,
+        "Sets the amount of money the player has stored in the Duskull Bank, clamping"
+        " the value to the range [0, MAX_MONEY_STORED].\n\nr0: new value",
+    )
+
+    GetExclusiveItemOffset = Symbol(
+        [0x10EE8],
+        [0x2010EE8],
+        None,
+        "Gets the exclusive item offset, which is the item ID relative to that of the"
+        " first exclusive item, the Prism Ruff.\n\nr0: item ID\nreturn: offset",
+    )
+
+    ApplyExclusiveItemStatBoosts = Symbol(
+        [0x10F0C],
+        [0x2010F0C],
+        None,
+        "Applies stat boosts from an exclusive item.\n\nr0: item ID\nr1: pointer to"
+        " attack stat to modify\nr2: pointer to special attack stat to modify\nr3:"
+        " pointer to defense stat to modify\nstack[0]: pointer to special defense stat"
+        " to modify",
+    )
+
+    SetExclusiveItemEffect = Symbol(
+        [0x11028],
+        [0x2011028],
+        None,
+        "Sets the bit for an exclusive item effect.\n\nr0: pointer to the effects"
+        " bitvector to modify\nr1: exclusive item effect ID",
+    )
+
+    ExclusiveItemEffectFlagTest = Symbol(
+        [0x1104C],
+        [0x201104C],
+        None,
+        "Tests the exclusive item bitvector for a specific exclusive item"
+        " effect.\n\nr0: the effects bitvector to test\nr1: exclusive item effect"
+        " ID\nreturn: bool",
+    )
+
+    ApplyGummiBoostsGroundMode = Symbol(
+        [0x11944],
+        [0x2011944],
+        None,
+        "Applies the IQ boosts from eating a Gummi to the target monster.\n\nr0:"
+        " Pointer to something\nr1: Pointer to something\nr2: Pointer to something\nr3:"
+        " Pointer to something\nstack[0]: ?\nstack[1]: ?\nstack[2]: Pointer to a buffer"
+        " to store some result into",
+    )
+
+    GetMoveTargetAndRange = Symbol(
+        [0x138E8],
+        [0x20138E8],
+        None,
+        "Gets the move target-and-range field. See struct move_target_and_range in the"
+        " C headers.\n\nr0: move pointer\nr1: AI flag (every move has two"
+        " target-and-range fields, one for players and one for AI)\nreturn: move target"
+        " and range",
+    )
+
+    GetMoveType = Symbol(
+        [0x1390C],
+        [0x201390C],
+        None,
+        "Gets the type of a move\n\nr0: Pointer to move data\nreturn: Type of the move",
+    )
+
+    GetMoveAiWeight = Symbol(
+        [0x13A34],
+        [0x2013A34],
+        None,
+        "Gets the AI weight of a move\n\nr0: Pointer to move data\nreturn: AI weight of"
+        " the move",
+    )
+
+    GetMoveBasePower = Symbol(
+        [0x13A74],
+        [0x2013A74],
+        None,
+        "Gets the base power of a move from the move data table.\n\nr0: move"
+        " pointer\nreturn: base power",
+    )
+
+    GetMoveAccuracyOrAiChance = Symbol(
+        [0x13AB4],
+        [0x2013AB4],
+        None,
+        "Gets one of the two accuracy values of a move or its"
+        " ai_condition_random_chance field.\n\nr0: Move pointer\nr1: 0 to get the"
+        " move's first accuracy1 field, 1 to get its accuracy2, 2 to get its"
+        " ai_condition_random_chance.\nreturn: Move's accuracy1, accuracy2 or"
+        " ai_condition_random_chance",
+    )
+
+    GetMaxPp = Symbol(
+        [0x13AF8],
+        [0x2013AF8],
+        None,
+        "Gets the maximum PP for a given move.\n\nr0: move pointer\nreturn: max PP for"
+        " the given move, capped at 99",
+    )
+
+    GetMoveCritChance = Symbol(
+        [0x13BB8],
+        [0x2013BB8],
+        None,
+        "Gets the critical hit chance of a move.\n\nr0: move pointer\nreturn: base"
+        " power",
+    )
+
+    IsMoveRangeString19 = Symbol(
+        [0x13CAC],
+        [0x2013CAC],
+        None,
+        "Returns whether a move's range string is 19 ('User').\n\nr0: Move"
+        " pointer\nreturn: True if the move's range string field has a value of 19.",
+    )
+
+    IsRecoilMove = Symbol(
+        [0x13EBC],
+        [0x2013EBC],
+        None,
+        "Checks if the given move is a recoil move (affected by Reckless).\n\nr0: move"
+        " ID\nreturn: bool",
+    )
+
+    IsPunchMove = Symbol(
+        [0x14DC0],
+        [0x2014DC0],
+        None,
+        "Checks if the given move is a punch move (affected by Iron Fist).\n\nr0: move"
+        " ID\nreturn: bool",
+    )
+
+    GetMoveCategory = Symbol(
+        [0x15270],
+        [0x2015270],
+        None,
+        "Gets a move's category (physical, special, status).\n\nr0: move ID\nreturn:"
+        " move category enum",
+    )
+
+    LoadWteFromRom = Symbol(
+        [0x1DEE8],
+        [0x201DEE8],
+        None,
+        "Loads a SIR0-wrapped WTE file from ROM, and returns a handle to it\n\nr0:"
+        " [output] pointer to wte handle\nr1: file path string\nr2: load file flags",
+    )
+
+    LoadWteFromFileDirectory = Symbol(
+        [0x1DF60],
+        [0x201DF60],
+        None,
+        "Loads a SIR0-wrapped WTE file from a file directory, and returns a handle to"
+        " it\n\nr0: [output] pointer to wte handle\nr1: file directory id\nr2: file"
+        " index\nr3: malloc flags",
+    )
+
+    UnloadWte = Symbol(
+        [0x1DFB4],
+        [0x201DFB4],
+        None,
+        "Frees the buffer used to store the WTE data in the handle, and sets both"
+        " pointers to null\n\nr0: pointer to wte handle",
+    )
+
+    HandleSir0Translation = Symbol(
+        [0x1F550],
+        [0x201F550],
+        None,
+        "Translates the offsets in a SIR0 file into NDS memory addresses, changes the"
+        " magic number to SirO (opened), and returns a pointer to the first pointer"
+        " specified in the SIR0 header (beginning of the data).\n\nr0: [output] double"
+        " pointer to beginning of data\nr1: pointer to source file buffer",
+    )
+
+    HandleSir0TranslationVeneer = Symbol(
+        [0x1F628],
+        [0x201F628],
+        None,
+        "Likely a linker-generated veneer for HandleSir0Translation.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " [output] double pointer to beginning of data\nr1: pointer to source file"
+        " buffer",
+    )
+
+    GetLanguageType = Symbol(
+        [0x20688],
+        [0x2020688],
+        None,
+        "Gets the language type.\n\nThis is the value backing the special LANGUAGE_TYPE"
+        " script variable.\n\nreturn: language type",
+    )
+
+    GetLanguage = Symbol(
+        [0x206B0],
+        [0x20206B0],
+        None,
+        "Gets the single-byte language ID of the current program.\n\nThe language ID"
+        " appears to be used to index some global tables.\n\nreturn: language ID",
+    )
+
+    PreprocessString = Symbol(
+        [0x225EC],
+        [0x20225EC],
+        None,
+        "An enhanced sprintf, which recognizes certain tags and replaces them with"
+        " appropiate game values.\nThis function can also be used to simply insert"
+        " values passed within the preprocessor args\n\nThe tags utilized for this"
+        " function are lowercase, it might produce uppercase tags\nthat only are used"
+        " when the text is being typewrited into a message box\n\nr0: [output]"
+        " formatted string\nr1: maximum capacity of the output buffer\nr2: input format"
+        " string\nr3: preprocessor flags\nstack[0]: pointer to preprocessor args",
+    )
+
+    StrcpySimple = Symbol(
+        [0x253CC],
+        [0x20253CC],
+        None,
+        "A simple implementation of the strcpy(3) C library function.\n\nThis function"
+        " was probably manually implemented by the developers. See Strcpy for what's"
+        " probably the real libc function.\n\nr0: dest\nr1: src",
+    )
+
+    StrncpySimple = Symbol(
+        [0x253E8],
+        [0x20253E8],
+        None,
+        "A simple implementation of the strncpy(3) C library function.\n\nThis function"
+        " was probably manually implemented by the developers. See Strncpy for what's"
+        " probably the real libc function.\n\nr0: dest\nr1: src\nr2: n",
+    )
+
+    StringFromMessageId = Symbol(
+        [0x25B90],
+        [0x2025B90],
+        None,
+        "Gets the string corresponding to a given message ID.\n\nr0: message"
+        " ID\nreturn: string from the string files with the given message ID",
+    )
+
+    SetScreenWindowsColor = Symbol(
+        [0x27D5C],
+        [0x2027D5C],
+        None,
+        "Sets the palette of the frames of windows in the specified screen\n\nr0:"
+        " palette index\nr1: is upper screen",
+    )
+
+    SetBothScreensWindowsColor = Symbol(
+        [0x27D74],
+        [0x2027D74],
+        None,
+        "Sets the palette of the frames of windows in both screens\n\nr0: palette"
+        " index",
+    )
+
+    GetNotifyNote = Symbol(
+        [0x487BC],
+        [0x20487BC],
+        None,
+        "Returns the current value of NOTIFY_NOTE.\n\nreturn: bool",
+    )
+
+    SetNotifyNote = Symbol(
+        [0x487CC], [0x20487CC], None, "Sets NOTIFY_NOTE to the given value.\n\nr0: bool"
+    )
+
+    InitMainTeamAfterQuiz = Symbol(
+        [0x48AE0],
+        [0x2048AE0],
+        None,
+        "Implements SPECIAL_PROC_INIT_MAIN_TEAM_AFTER_QUIZ (see"
+        " ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    ScriptSpecialProcess0x3 = Symbol(
+        [0x48D28],
+        [0x2048D28],
+        None,
+        "Implements SPECIAL_PROC_0x3 (see ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    ScriptSpecialProcess0x4 = Symbol(
+        [0x48DA0],
+        [0x2048DA0],
+        None,
+        "Implements SPECIAL_PROC_0x4 (see ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    NoteSaveBase = Symbol(
+        [0x492A0],
+        [0x20492A0],
+        None,
+        "Probably related to saving or quicksaving?\n\nThis function prints the debug"
+        " message 'NoteSave Base %d %d' with some values. It's also the only place"
+        " where GetRngSeed is called.\n\nr0: possibly a flag/code that controls the"
+        " type of save file to generate?\nothers: ?\nreturn: status code",
+    )
+
+    NoteLoadBase = Symbol(
+        [0x496A8],
+        [0x20496A8],
+        None,
+        "Probably related to loading a save file or quicksave?\n\nThis function prints"
+        " the debug message 'NoteLoad Base %d' with some value. It's also the only"
+        " place where SetRngSeed is called.\n\nreturn: status code",
+    )
+
+    GetGameMode = Symbol(
+        [0x4B2F8],
+        [0x204B2F8],
+        None,
+        "Gets the value of GAME_MODE.\n\nreturn: game mode",
+    )
+
+    InitScriptVariableValues = Symbol(
+        [0x4B384],
+        [0x204B384],
+        None,
+        "Initialize the script variable values table (SCRIPT_VARS_VALUES).\n\nThe whole"
+        " table is first zero-initialized. Then, all script variable values are first"
+        " initialized to their defaults, after which some of them are overwritten with"
+        " other hard-coded values.\n\nNo params.",
+    )
+
+    InitEventFlagScriptVars = Symbol(
+        [0x4B63C],
+        [0x204B63C],
+        None,
+        "Initializes an assortment of event flag script variables (see the code for an"
+        " exhaustive list).\n\nNo params.",
+    )
+
+    ZinitScriptVariable = Symbol(
+        [0x4B76C],
+        [0x204B76C],
+        None,
+        "Zero-initialize the values of the given script variable.\n\nr0: pointer to the"
+        " local variable table (only needed if id >= VAR_LOCAL0)\nr1: script"
+        " variable ID",
+    )
+
+    LoadScriptVariableRaw = Symbol(
+        [0x4B7D4],
+        [0x204B7D4],
+        None,
+        "Loads a script variable descriptor for a given ID.\n\nr0: [output] script"
+        " variable descriptor pointer\nr1: pointer to the local variable table (doesn't"
+        " need to be valid; just controls the output value pointer)\nr2: script"
+        " variable ID",
+    )
+
+    LoadScriptVariableValue = Symbol(
+        [0x4B824],
+        [0x204B824],
+        None,
+        "Loads the value of a script variable.\n\nr0: pointer to the local variable"
+        " table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID\nreturn:"
+        " value",
+    )
+
+    LoadScriptVariableValueAtIndex = Symbol(
+        [0x4B9B0],
+        [0x204B9B0],
+        None,
+        "Loads the value of a script variable at some index (for script variables that"
+        " are arrays).\n\nr0: pointer to the local variable table (only needed if id >="
+        " VAR_LOCAL0)\nr1: script variable ID\nr2: value index for the given script"
+        " var\nreturn: value",
+    )
+
+    SaveScriptVariableValue = Symbol(
+        [0x4BB58],
+        [0x204BB58],
+        None,
+        "Saves the given value to a script variable.\n\nr0: pointer to local variable"
+        " table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID\nr2: value to"
+        " save",
+    )
+
+    SaveScriptVariableValueAtIndex = Symbol(
+        [0x4BCC0],
+        [0x204BCC0],
+        None,
+        "Saves the given value to a script variable at some index (for script variables"
+        " that are arrays).\n\nr0: pointer to local variable table (only needed if id"
+        " >= VAR_LOCAL0)\nr1: script variable ID\nr2: value index for the given script"
+        " var\nr3: value to save",
+    )
+
+    LoadScriptVariableValueSum = Symbol(
+        [0x4BE38],
+        [0x204BE38],
+        None,
+        "Loads the sum of all values of a given script variable (for script variables"
+        " that are arrays).\n\nr0: pointer to the local variable table (only needed if"
+        " id >= VAR_LOCAL0)\nr1: script variable ID\nreturn: sum of values",
+    )
+
+    LoadScriptVariableValueBytes = Symbol(
+        [0x4BE9C],
+        [0x204BE9C],
+        None,
+        "Loads some number of bytes from the value of a given script variable.\n\nr0:"
+        " script variable ID\nr1: [output] script variable value bytes\nr2: number of"
+        " bytes to load",
+    )
+
+    SaveScriptVariableValueBytes = Symbol(
+        [0x4BF04],
+        [0x204BF04],
+        None,
+        "Saves some number of bytes to the given script variable.\n\nr0: script"
+        " variable ID\nr1: bytes to save\nr2: number of bytes",
+    )
+
+    ScriptVariablesEqual = Symbol(
+        [0x4BF50],
+        [0x204BF50],
+        None,
+        "Checks if two script variables have equal values. For arrays, compares"
+        " elementwise for the length of the first variable.\n\nr0: pointer to the local"
+        " variable table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID"
+        " 1\nr2: script variable ID 2\nreturn: true if values are equal, false"
+        " otherwise",
+    )
+
+    EventFlagBackup = Symbol(
+        [0x4C51C],
+        [0x204C51C],
+        None,
+        "Saves event flag script variables (see the code for an exhaustive list) to"
+        " their respective BACKUP script variables, but only in certain game"
+        " modes.\n\nThis function prints the debug string 'EventFlag BackupGameMode %d'"
+        " with the game mode.\n\nNo params.",
+    )
+
+    DumpScriptVariableValues = Symbol(
+        [0x4C740],
+        [0x204C740],
+        None,
+        "Runs EventFlagBackup, then copies the script variable values table"
+        " (SCRIPT_VARS_VALUES) to the given pointer.\n\nr0: destination pointer for the"
+        " data dump\nreturn: always 1",
+    )
+
+    RestoreScriptVariableValues = Symbol(
+        [0x4C768],
+        [0x204C768],
+        None,
+        "Restores the script variable values table (SCRIPT_VARS_VALUES) with the given"
+        " data. The source data is assumed to be exactly 1024 bytes in length.\n\nr0:"
+        " raw data to copy to the values table\nreturn: whether the restored value for"
+        " VAR_VERSION is equal to its default value",
+    )
+
+    InitScenarioScriptVars = Symbol(
+        [0x4C7C0],
+        [0x204C7C0],
+        None,
+        "Initializes most of the SCENARIO_* script variables (except"
+        " SCENARIO_TALK_BIT_FLAG for some reason). Also initializes the PLAY_OLD_GAME"
+        " variable.\n\nNo params.",
+    )
+
+    SetScenarioScriptVar = Symbol(
+        [0x4C950],
+        [0x204C950],
+        None,
+        "Sets the given SCENARIO_* script variable with a given pair of values [val0,"
+        " val1].\n\nIn the special case when the ID is VAR_SCENARIO_MAIN, and the set"
+        " value is different from the old one, the REQUEST_CLEAR_COUNT script variable"
+        " will be set to 0.\n\nr0: script variable ID\nr1: val0\nr2: val1",
+    )
+
+    GetSpecialEpisodeType = Symbol(
+        [0x4CC24],
+        [0x204CC24],
+        None,
+        "Gets the special episode type from the SPECIAL_EPISODE_TYPE script"
+        " variable.\n\nreturn: special episode type",
+    )
+
+    ScenarioFlagBackup = Symbol(
+        [0x4CFF0],
+        [0x204CFF0],
+        None,
+        "Saves scenario flag script variables (SCENARIO_SELECT, SCENARIO_MAIN_BIT_FLAG)"
+        " to their respective BACKUP script variables, but only in certain game"
+        " modes.\n\nThis function prints the debug string 'ScenarioFlag BackupGameMode"
+        " %d' with the game mode.\n\nNo params.",
+    )
+
+    InitWorldMapScriptVars = Symbol(
+        [0x4D0C0],
+        [0x204D0C0],
+        None,
+        "Initializes the WORLD_MAP_* script variable values (IDs 0x55-0x57).\n\nNo"
+        " params.",
+    )
+
+    InitDungeonListScriptVars = Symbol(
+        [0x4D1C8],
+        [0x204D1C8],
+        None,
+        "Initializes the DUNGEON_*_LIST script variable values (IDs 0x4f-0x54).\n\nNo"
+        " params.",
+    )
+
+    SetDungeonTipShown = Symbol(
+        [0x4D588],
+        [0x204D588],
+        None,
+        "Marks a dungeon tip as already shown to the player\n\nr0: Dungeon tip ID",
+    )
+
+    GetDungeonTipShown = Symbol(
+        [0x4D5C8],
+        [0x204D5C8],
+        None,
+        "Checks if a dungeon tip has already been shown before or not.\n\nr0: Dungeon"
+        " tip ID\nreturn: True if the tip has been shown before, false otherwise.",
+    )
+
+    MonsterSpawnsEnabled = Symbol(
+        [0x4D698],
+        [0x204D698],
+        None,
+        "Always returns true.\n\nThis function seems to be a debug switch that the"
+        " developers may have used to disable the random enemy spawn. \nIf it returned"
+        " false, the call to SpawnMonster inside TrySpawnMonsterAndTickSpawnCounter"
+        " would not be executed.\n\nreturn: bool (always true)",
+    )
+
+    SetAdventureLogStructLocation = Symbol(
+        [0x4FD5C],
+        [0x204FD5C],
+        None,
+        "Sets the location of the adventure log struct in memory.\n\nSets it in a"
+        " static memory location (At 0x22AB69C [US], 0x22ABFDC [EU], 0x22ACE58"
+        " [JP])\n\nNo params.",
+    )
+
+    SetAdventureLogDungeonFloor = Symbol(
+        [0x4FD74],
+        [0x204FD74],
+        None,
+        "Sets the current dungeon floor pair.\n\nr0: struct dungeon_floor_pair",
+    )
+
+    GetAdventureLogDungeonFloor = Symbol(
+        [0x4FD94],
+        [0x204FD94],
+        None,
+        "Gets the current dungeon floor pair.\n\nreturn: struct dungeon_floor_pair",
+    )
+
+    ClearAdventureLogStruct = Symbol(
+        [0x4FDA8],
+        [0x204FDA8],
+        None,
+        "Clears the adventure log structure.\n\nNo params.",
+    )
+
+    SetAdventureLogCompleted = Symbol(
+        [0x4FED4],
+        [0x204FED4],
+        None,
+        "Marks one of the adventure log entry as completed.\n\nr0: entry ID",
+    )
+
+    IsAdventureLogNotEmpty = Symbol(
+        [0x4FEFC],
+        [0x204FEFC],
+        None,
+        "Checks if at least one of the adventure log entry is completed.\n\nreturn:"
+        " bool",
+    )
+
+    GetAdventureLogCompleted = Symbol(
+        [0x4FF34],
+        [0x204FF34],
+        None,
+        "Checks if one adventure log entry is completed.\n\nr0: entry ID\nreturn: bool",
+    )
+
+    IncrementNbDungeonsCleared = Symbol(
+        [0x4FF60],
+        [0x204FF60],
+        None,
+        "Increments by 1 the number of dungeons cleared.\n\nImplements"
+        " SPECIAL_PROC_0x3A (see ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    GetNbDungeonsCleared = Symbol(
+        [0x4FFA4],
+        [0x204FFA4],
+        None,
+        "Gets the number of dungeons cleared.\n\nreturn: the number of dungeons"
+        " cleared",
+    )
+
+    IncrementNbFriendRescues = Symbol(
+        [0x4FFB8],
+        [0x204FFB8],
+        None,
+        "Increments by 1 the number of successful friend rescues.\n\nNo params.",
+    )
+
+    GetNbFriendRescues = Symbol(
+        [0x50000],
+        [0x2050000],
+        None,
+        "Gets the number of successful friend rescues.\n\nreturn: the number of"
+        " successful friend rescues",
+    )
+
+    IncrementNbEvolutions = Symbol(
+        [0x50014],
+        [0x2050014],
+        None,
+        "Increments by 1 the number of evolutions.\n\nNo params.",
+    )
+
+    GetNbEvolutions = Symbol(
+        [0x5005C],
+        [0x205005C],
+        None,
+        "Gets the number of evolutions.\n\nreturn: the number of evolutions",
+    )
+
+    IncrementNbSteals = Symbol(
+        [0x50070],
+        [0x2050070],
+        None,
+        "Leftover from Time & Darkness. Does not do anything.\n\nCalls to this matches"
+        " the ones for incrementing the number of successful steals in Time &"
+        " Darkness.\n\nNo params.",
+    )
+
+    IncrementNbEggsHatched = Symbol(
+        [0x50074],
+        [0x2050074],
+        None,
+        "Increments by 1 the number of eggs hatched.\n\nNo params.",
+    )
+
+    GetNbEggsHatched = Symbol(
+        [0x500B0],
+        [0x20500B0],
+        None,
+        "Gets the number of eggs hatched.\n\nreturn: the number of eggs hatched",
+    )
+
+    GetNbPokemonJoined = Symbol(
+        [0x500C4],
+        [0x20500C4],
+        None,
+        "Gets the number of different pokémon that joined.\n\nreturn: the number of"
+        " different pokémon that joined",
+    )
+
+    GetNbMovesLearned = Symbol(
+        [0x500D8],
+        [0x20500D8],
+        None,
+        "Gets the number of different moves learned.\n\nreturn: the number of different"
+        " moves learned",
+    )
+
+    SetVictoriesOnOneFloor = Symbol(
+        [0x500EC],
+        [0x20500EC],
+        None,
+        "Sets the record of victories on one floor.\n\nr0: the new record of victories",
+    )
+
+    GetVictoriesOnOneFloor = Symbol(
+        [0x50120],
+        [0x2050120],
+        None,
+        "Gets the record of victories on one floor.\n\nreturn: the record of victories",
+    )
+
+    SetPokemonJoined = Symbol(
+        [0x50134], [0x2050134], None, "Marks one pokémon as joined.\n\nr0: monster ID"
+    )
+
+    SetPokemonBattled = Symbol(
+        [0x50190], [0x2050190], None, "Marks one pokémon as battled.\n\nr0: monster ID"
+    )
+
+    GetNbPokemonBattled = Symbol(
+        [0x501EC],
+        [0x20501EC],
+        None,
+        "Gets the number of different pokémon that battled against you.\n\nreturn: the"
+        " number of different pokémon that battled against you",
+    )
+
+    IncrementNbBigTreasureWins = Symbol(
+        [0x50200],
+        [0x2050200],
+        None,
+        "Increments by 1 the number of big treasure wins.\n\nImplements"
+        " SPECIAL_PROC_0x3B (see ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    SetNbBigTreasureWins = Symbol(
+        [0x50220],
+        [0x2050220],
+        None,
+        "Sets the number of big treasure wins.\n\nr0: the new number of big treasure"
+        " wins",
+    )
+
+    GetNbBigTreasureWins = Symbol(
+        [0x50258],
+        [0x2050258],
+        None,
+        "Gets the number of big treasure wins.\n\nreturn: the number of big treasure"
+        " wins",
+    )
+
+    SetNbRecycled = Symbol(
+        [0x5026C],
+        [0x205026C],
+        None,
+        "Sets the number of items recycled.\n\nr0: the new number of items recycled",
+    )
+
+    GetNbRecycled = Symbol(
+        [0x502A4],
+        [0x20502A4],
+        None,
+        "Gets the number of items recycled.\n\nreturn: the number of items recycled",
+    )
+
+    IncrementNbSkyGiftsSent = Symbol(
+        [0x502B8],
+        [0x20502B8],
+        None,
+        "Increments by 1 the number of sky gifts sent.\n\nImplements"
+        " SPECIAL_PROC_SEND_SKY_GIFT_TO_GUILDMASTER (see"
+        " ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    SetNbSkyGiftsSent = Symbol(
+        [0x502D8],
+        [0x20502D8],
+        None,
+        "Sets the number of Sky Gifts sent.\n\nreturn: the number of Sky Gifts sent",
+    )
+
+    GetNbSkyGiftsSent = Symbol(
+        [0x50310],
+        [0x2050310],
+        None,
+        "Gets the number of Sky Gifts sent.\n\nreturn: the number of Sky Gifts sent",
+    )
+
+    ComputeSpecialCounters = Symbol(
+        [0x50324],
+        [0x2050324],
+        None,
+        "Computes the counters from the bit fields in the adventure log, as they are"
+        " not updated automatically when bit fields are altered.\n\nAffects"
+        " GetNbPokemonJoined, GetNbMovesLearned, GetNbPokemonBattled and"
+        " GetNbItemAcquired.\n\nNo params.",
+    )
+
+    RecruitSpecialPokemonLog = Symbol(
+        [0x5057C],
+        [0x205057C],
+        None,
+        "Marks a specified special pokémon as recruited in the adventure log.\n\nr0:"
+        " monster ID",
+    )
+
+    IncrementNbFainted = Symbol(
+        [0x505E8],
+        [0x20505E8],
+        None,
+        "Increments by 1 the number of times you fainted.\n\nNo params.",
+    )
+
+    GetNbFainted = Symbol(
+        [0x50624],
+        [0x2050624],
+        None,
+        "Gets the number of times you fainted.\n\nreturn: the number of times you"
+        " fainted",
+    )
+
+    SetItemAcquired = Symbol(
+        [0x50638],
+        [0x2050638],
+        None,
+        "Marks one specific item as acquired.\n\nr0: item ID",
+    )
+
+    GetNbItemAcquired = Symbol(
+        [0x50704],
+        [0x2050704],
+        None,
+        "Gets the number of items acquired.\n\nreturn: the number of items acquired",
+    )
+
+    SetChallengeLetterCleared = Symbol(
+        [0x50758],
+        [0x2050758],
+        None,
+        "Sets a challenge letter as cleared.\n\nr0: challenge ID",
+    )
+
+    GetSentryDutyGamePoints = Symbol(
+        [0x507DC],
+        [0x20507DC],
+        None,
+        "Gets the points for the associated rank in the footprints minigame.\n\nr0: the"
+        " rank (range 0-4, 1st to 5th)\nreturn: points",
+    )
+
+    SetSentryDutyGamePoints = Symbol(
+        [0x507F4],
+        [0x20507F4],
+        None,
+        "Sets a new record in the footprints minigame.\n\nr0: points\nreturn: the rank"
+        " (range 0-4, 1st to 5th; -1 if out of ranking)",
+    )
+
+    SubFixedPoint = Symbol(
+        [0x51248],
+        [0x2051248],
+        None,
+        "Compute the subtraction of two decimal fixed-point numbers (16 fraction"
+        " bits).\n\nFloats are in the format {16-bit integer part, 16-bit thousandths},"
+        " where the integer part is the lower word. Probably used primarily for"
+        " belly.\n\nr0: float\nr1: decrement\nreturn: max(float - decrement, 0)",
+    )
+
+    BinToDecFixedPoint = Symbol(
+        [0x51358],
+        [0x2051358],
+        None,
+        "Convert a binary fixed-point number (16 fraction bits) to the decimal"
+        " fixed-point number (16 fraction bits) used for belly calculations."
+        " Thousandths are floored.\n\nIf <data> holds the raw binary data, a binary"
+        " fixed-point number (16 fraction bits) has the value ((unsigned)data) *"
+        " 2^-16), and the decimal fixed-point number (16 fraction bits) used for belly"
+        " has the value (data & 0xffff) + (data >> 16)/1000.\n\nr0: pointer p, where"
+        " ((const unsigned *)p)[1] is the fractional number in binary fixed-point"
+        " format to convert\nreturn: fractional number in decimal fixed-point format",
+    )
+
+    CeilFixedPoint = Symbol(
+        [0x5139C],
+        [0x205139C],
+        None,
+        "Compute the ceiling of a decimal fixed-point number (16 fraction"
+        " bits).\n\nFloats are in the format {16-bit integer part, 16-bit thousandths},"
+        " where the integer part is the lower word. Probably used primarily for"
+        " belly.\n\nr0: float\nreturn: ceil(float)",
+    )
+
+    DungeonGoesUp = Symbol(
+        [0x515C0],
+        [0x20515C0],
+        None,
+        "Returns whether the specified dungeon is considered as going upward or"
+        " not\n\nr0: dungeon id\nreturn: bool",
+    )
+
+    GetMaxRescueAttempts = Symbol(
+        [0x516B8],
+        [0x20516B8],
+        None,
+        "Returns the maximum rescue attempts allowed in the specified dungeon.\n\nr0:"
+        " dungeon id\nreturn: Max rescue attempts, or -1 if rescues are disabled.",
+    )
+
+    JoinedAtRangeCheck = Symbol(
+        [0x517C8],
+        [0x20517C8],
+        None,
+        "Returns whether a certain joined_at field value is between"
+        " dungeon_id::DUNGEON_JOINED_AT_BIDOOF and"
+        " dungeon_id::DUNGEON_DUMMY_0xE3.\n\nr0: joined_at id\nreturn: bool",
+    )
+
+    JoinedAtRangeCheck2 = Symbol(
+        [0x51A98],
+        [0x2051A98],
+        None,
+        "Returns whether a certain joined_at field value is equal to"
+        " dungeon_id::DUNGEON_BEACH or is between dungeon_id::DUNGEON_DUMMY_0xEC and"
+        " dungeon_id::DUNGEON_DUMMY_0xF0.\n\nr0: joined_at id\nreturn: bool",
+    )
+
+    GetMonsterGender = Symbol(
+        [0x52AE0],
+        [0x2052AE0],
+        None,
+        "Returns the gender field of a monster given its ID.\n\nr0: monster id\nreturn:"
+        " monster gender",
+    )
+
+    GetSpriteSize = Symbol(
+        [0x52B18],
+        [0x2052B18],
+        None,
+        "Returns the sprite size of the specified monster. If the size is between 1 and"
+        " 6, 6 will be returned.\n\nr0: monster id\nreturn: sprite size",
+    )
+
+    GetSpriteFileSize = Symbol(
+        [0x52B54],
+        [0x2052B54],
+        None,
+        "Returns the sprite file size of the specified monster.\n\nr0: monster"
+        " id\nreturn: sprite file size",
+    )
+
+    GetCanMoveFlag = Symbol(
+        [0x52BEC],
+        [0x2052BEC],
+        None,
+        "Returns the flag that determines if a monster can move in dungeons.\n\nr0:"
+        " Monster ID\nreturn: 'Can move' flag",
+    )
+
+    GetMonsterPreEvolution = Symbol(
+        [0x52CE0],
+        [0x2052CE0],
+        None,
+        "Returns the pre-evolution id of a monster given its ID.\n\nr0: monster"
+        " id\nreturn: ID of the monster that evolves into the one specified in r0",
+    )
+
+    GetEvolutions = Symbol(
+        [0x54204],
+        [0x2054204],
+        None,
+        "Returns a list of all the possible evolutions for a given monster id.\n\nr0:"
+        " Monster id\nr1: [Output] Array that will hold the list of monster ids the"
+        " specified monster can evolve into\nr2: True to skip the check that prevents"
+        " returning monsters with a different sprite size than the current one\nr3:"
+        " True to skip the check that prevents Shedinja from being counted as a"
+        " potential evolution\nreturn: Number of possible evolutions for the specified"
+        " monster id",
+    )
+
+    GetMonsterIdFromSpawnEntry = Symbol(
+        [0x547FC],
+        [0x20547FC],
+        None,
+        "Returns the monster ID of the specified monster spawn entry\n\nr0: Pointer to"
+        " the monster spawn entry\nreturn: monster_spawn_entry::id",
+    )
+
+    GetMonsterLevelFromSpawnEntry = Symbol(
+        [0x54834],
+        [0x2054834],
+        None,
+        "Returns the level of the specified monster spawn entry.\n\nr0: pointer to the"
+        " monster spawn entry\nreturn: uint8_t",
+    )
+
+    GetMonsterGenderVeneer = Symbol(
+        [0x54ADC],
+        [0x2054ADC],
+        None,
+        "Likely a linker-generated veneer for GetMonsterGender.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " monster id\nreturn: monster gender",
+    )
+
+    IsUnown = Symbol(
+        [0x54E04],
+        [0x2054E04],
+        None,
+        "Checks if a monster ID is an Unown.\n\nr0: monster ID\nreturn: bool",
+    )
+
+    IsShaymin = Symbol(
+        [0x54E20],
+        [0x2054E20],
+        None,
+        "Checks if a monster ID is a Shaymin form.\n\nr0: monster ID\nreturn: bool",
+    )
+
+    IsCastform = Symbol(
+        [0x54E50],
+        [0x2054E50],
+        None,
+        "Checks if a monster ID is a Castform form.\n\nr0: monster ID\nreturn: bool",
+    )
+
+    IsCherrim = Symbol(
+        [0x54EA8],
+        [0x2054EA8],
+        None,
+        "Checks if a monster ID is a Cherrim form.\n\nr0: monster ID\nreturn: bool",
+    )
+
+    IsDeoxys = Symbol(
+        [0x54EF0],
+        [0x2054EF0],
+        None,
+        "Checks if a monster ID is a Deoxys form.\n\nr0: monster ID\nreturn: bool",
+    )
+
+    IsMonsterOnTeam = Symbol(
+        [0x554C4],
+        [0x20554C4],
+        None,
+        "Checks if a given monster is on the exploration team (not necessarily the"
+        " active party)?\n\nr0: monster ID\nr1: ?\nreturn: bool",
+    )
+
+    CheckTeamMemberField8 = Symbol(
+        [0x565E0],
+        [0x20565E0],
+        None,
+        "Checks if a value obtained from team_member::field_0x8 is equal to certain"
+        " values.\n\nThis is known to return true for some or all of the guest"
+        " monsters.\n\nr0: Value read from team_member::field_0x8\nreturn: True if the"
+        " value is equal to 0x55AA or 0x5AA5",
+    )
+
+    GetTeamMemberData = Symbol(
+        [0x56708],
+        [0x2056708],
+        None,
+        "Returns a struct containing information about a team member.\n\nr0:"
+        " Index\nreturn: Pointer to struct containing team member information",
+    )
+
+    SetTeamSetupHeroAndPartnerOnly = Symbol(
+        [0x56D48],
+        [0x2056D48],
+        None,
+        "Implements SPECIAL_PROC_SET_TEAM_SETUP_HERO_AND_PARTNER_ONLY (see"
+        " ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    SetTeamSetupHeroOnly = Symbol(
+        [0x56E2C],
+        [0x2056E2C],
+        None,
+        "Implements SPECIAL_PROC_SET_TEAM_SETUP_HERO_ONLY (see"
+        " ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    GetPartyMembers = Symbol(
+        [0x56F9C],
+        [0x2056F9C],
+        None,
+        "Appears to get the team's active party members. Implements most of"
+        " SPECIAL_PROC_IS_TEAM_SETUP_SOLO (see ScriptSpecialProcessCall).\n\nr0:"
+        " [output] Array of 4 2-byte values (they seem to be indexes of some sort)"
+        " describing each party member, which will be filled in by the function. The"
+        " input can be a null pointer if the party members aren't needed\nreturn:"
+        " Number of party members",
+    )
+
+    IqSkillFlagTest = Symbol(
+        [0x59280],
+        [0x2059280],
+        None,
+        "Tests whether an IQ skill with a given ID is active.\n\nr0: IQ skill bitvector"
+        " to test\nr1: IQ skill ID\nreturn: bool",
+    )
+
+    GetExplorerMazeMonster = Symbol(
+        [0x59474],
+        [0x2059474],
+        None,
+        "Returns the data of a monster sent into the Explorer Dojo using the 'exchange"
+        " teams' option.\n\nr0: Entry number (0-3)\nreturn: Ground monster data of the"
+        " specified entry",
+    )
+
+    GetSosMailCount = Symbol(
+        [0x5BCF8],
+        [0x205BCF8],
+        None,
+        "Implements SPECIAL_PROC_GET_SOS_MAIL_COUNT (see"
+        " ScriptSpecialProcessCall).\n\nr0: ?\nr1: some flag?\nreturn: SOS mail count",
+    )
+
+    DungeonRequestsDone = Symbol(
+        [0x5F120],
+        [0x205F120],
+        None,
+        "Seems to return the number of missions completed.\n\nPart of the"
+        " implementation for SPECIAL_PROC_DUNGEON_HAD_REQUEST_DONE (see"
+        " ScriptSpecialProcessCall).\n\nr0: ?\nr1: some flag?\nreturn: number of"
+        " missions completed",
+    )
+
+    DungeonRequestsDoneWrapper = Symbol(
+        [0x5F18C],
+        [0x205F18C],
+        None,
+        "Calls DungeonRequestsDone with the second argument set to false.\n\nr0:"
+        " ?\nreturn: number of mission completed",
+    )
+
+    AnyDungeonRequestsDone = Symbol(
+        [0x5F19C],
+        [0x205F19C],
+        None,
+        "Calls DungeonRequestsDone with the second argument set to true, and converts"
+        " the integer output to a boolean.\n\nr0: ?\nreturn: bool: whether the number"
+        " of missions completed is greater than 0",
+    )
+
+    ScriptSpecialProcess0x3D = Symbol(
+        [0x65ECC],
+        [0x2065ECC],
+        None,
+        "Implements SPECIAL_PROC_0x3D (see ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    ScriptSpecialProcess0x3E = Symbol(
+        [0x65EDC],
+        [0x2065EDC],
+        None,
+        "Implements SPECIAL_PROC_0x3E (see ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    ScriptSpecialProcess0x17 = Symbol(
+        [0x65FC4],
+        [0x2065FC4],
+        None,
+        "Implements SPECIAL_PROC_0x17 (see ScriptSpecialProcessCall).\n\nNo params.",
+    )
+
+    ItemAtTableIdx = Symbol(
+        [0x66074],
+        [0x2066074],
+        None,
+        "Gets info about the item at a given item table (not sure what this table"
+        " is...) index.\n\nUsed by SPECIAL_PROC_COUNT_TABLE_ITEM_TYPE_IN_BAG and"
+        " friends (see ScriptSpecialProcessCall).\n\nr0: table index\nr1: [output]"
+        " pointer to an owned_item",
+    )
+
+    WaitForInterrupt = Symbol(
+        [0x7BFC8],
+        [0x207BFC8],
+        None,
+        "Presumably blocks until the program receives an interrupt.\n\nThis just calls"
+        " (in Ghidra terminology) coproc_moveto_Wait_for_interrupt(0). See"
+        " https://en.wikipedia.org/wiki/ARM_architecture_family#Coprocessors.\n\nNo"
+        " params.",
+    )
+
+    FileInit = Symbol(
+        [0x7F77C],
+        [0x207F77C],
+        None,
+        "Initializes a file_stream structure for file I/O.\n\nThis function must always"
+        " be called before opening a file.\n\nr0: file_stream pointer",
+    )
+
+    Abs = Symbol(
+        [0x868F4],
+        [0x20868F4],
+        None,
+        "Takes the absolute value of an integer.\n\nr0: x\nreturn: abs(x)",
+    )
+
+    Mbtowc = Symbol(
+        [0x87554],
+        [0x2087554],
+        None,
+        "The mbtowc(3) C library function.\n\nr0: pwc\nr1: s\nr2: n\nreturn: number of"
+        " consumed bytes, or -1 on failure",
+    )
+
+    TryAssignByte = Symbol(
+        [0x8758C],
+        [0x208758C],
+        None,
+        "Assign a byte to the target of a pointer if the pointer is non-null.\n\nr0:"
+        " pointer\nr1: value\nreturn: true on success, false on failure",
+    )
+
+    TryAssignByteWrapper = Symbol(
+        [0x875A0],
+        [0x20875A0],
+        None,
+        "Wrapper around TryAssignByte.\n\nAccesses the TryAssignByte function with a"
+        " weird chain of pointer dereferences.\n\nr0: pointer\nr1: value\nreturn: true"
+        " on success, false on failure",
+    )
+
+    Wcstombs = Symbol(
+        [0x875BC],
+        [0x20875BC],
+        None,
+        "The wcstombs(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn:"
+        " characters converted",
+    )
+
+    Memcpy = Symbol(
+        [0x87634],
+        [0x2087634],
+        None,
+        "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
+    )
+
+    Memmove = Symbol(
+        [0x87654],
+        [0x2087654],
+        None,
+        "The memmove(3) C library function.\n\nThe implementation is nearly the same as"
+        " Memcpy, but it copies bytes from back to front if src < dst.\n\nr0: dest\nr1:"
+        " src\nr2: n",
+    )
+
+    Memset = Symbol(
+        [0x876A0],
+        [0x20876A0],
+        None,
+        "The memset(3) C library function.\n\nThis is just a wrapper around"
+        " MemsetInternal that returns the pointer at the end.\n\nr0: s\nr1: c (int, but"
+        " must be a single-byte value)\nr2: n\nreturn: s",
+    )
+
+    Memchr = Symbol(
+        [0x876B4],
+        [0x20876B4],
+        None,
+        "The memchr(3) C library function.\n\nr0: s\nr1: c\nr2: n\nreturn: pointer to"
+        " first occurrence of c in s, or a null pointer if no match",
+    )
+
+    Memcmp = Symbol(
+        [0x876E0],
+        [0x20876E0],
+        None,
+        "The memcmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn: comparison"
+        " value",
+    )
+
+    MemsetInternal = Symbol(
+        [0x87720],
+        [0x2087720],
+        None,
+        "The actual memory-setting implementation for the memset(3) C library"
+        " function.\n\nThis function is optimized to set bytes in 4-byte chunks for n"
+        " >= 32, correctly handling any unaligned bytes at the front/back. In this"
+        " case, it also further optimizes by unrolling a for loop to set 8 4-byte"
+        " values at once (effectively a 32-byte chunk).\n\nr0: s\nr1: c (int, but must"
+        " be a single-byte value)\nr2: n",
+    )
+
+    VsprintfInternalSlice = Symbol(
+        [0x8900C],
+        [0x208900C],
+        None,
+        "This is what implements the bulk of VsprintfInternal.\n\nThe"
+        " __vsprintf_internal in the modern-day version of glibc relies on"
+        " __vfprintf_internal; this function has a slightly different interface, but it"
+        " serves a similar role.\n\nr0: function pointer to append to the string being"
+        " built (VsprintfInternal uses TryAppendToSlice)\nr1: string buffer slice\nr2:"
+        " format\nr3: ap\nreturn: number of characters printed, excluding the"
+        " null-terminator",
+    )
+
+    TryAppendToSlice = Symbol(
+        [0x89830],
+        [0x2089830],
+        None,
+        "Best-effort append the given data to a slice. If the slice's capacity is"
+        " reached, any remaining data will be truncated.\n\nr0: slice pointer\nr1:"
+        " buffer of data to append\nr2: number of bytes in the data buffer\nreturn:"
+        " true",
+    )
+
+    VsprintfInternal = Symbol(
+        [0x89874],
+        [0x2089874],
+        None,
+        "This is what implements Vsprintf. It's akin to __vsprintf_internal in the"
+        " modern-day version of glibc (in fact, it's probably an older version of"
+        " this).\n\nr0: str\nr1: maxlen (Vsprintf passes UINT32_MAX for this)\nr2:"
+        " format\nr3: ap\nreturn: number of characters printed, excluding the"
+        " null-terminator",
+    )
+
+    Vsprintf = Symbol(
+        [0x898DC],
+        [0x20898DC],
+        None,
+        "The vsprintf(3) C library function.\n\nr0: str\nr1: format\nr2: ap\nreturn:"
+        " number of characters printed, excluding the null-terminator",
+    )
+
+    Snprintf = Symbol(
+        [0x898F4],
+        [0x20898F4],
+        None,
+        "The snprintf(3) C library function.\n\nThis calls VsprintfInternal directly,"
+        " so it's presumably the real snprintf.\n\nr0: str\nr1: n\nr2: format\n...:"
+        " variadic\nreturn: number of characters printed, excluding the"
+        " null-terminator",
+    )
+
+    Sprintf = Symbol(
+        [0x8991C],
+        [0x208991C],
+        None,
+        "The sprintf(3) C library function.\n\nThis calls VsprintfInternal directly, so"
+        " it's presumably the real sprintf.\n\nr0: str\nr1: format\n...:"
+        " variadic\nreturn: number of characters printed, excluding the"
+        " null-terminator",
+    )
+
+    Strlen = Symbol(
+        [0x89A10],
+        [0x2089A10],
+        None,
+        "The strlen(3) C library function.\n\nr0: s\nreturn: length of s",
+    )
+
+    Strcpy = Symbol(
+        [0x89A2C],
+        [0x2089A2C],
+        None,
+        "The strcpy(3) C library function.\n\nThis function is optimized to copy"
+        " characters in aligned 4-byte chunks if possible, correctly handling any"
+        " unaligned bytes at the front/back.\n\nr0: dest\nr1: src",
+    )
+
+    Strncpy = Symbol(
+        [0x89AF4],
+        [0x2089AF4],
+        None,
+        "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
+    )
+
+    Strcat = Symbol(
+        [0x89B44],
+        [0x2089B44],
+        None,
+        "The strcat(3) C library function.\n\nr0: dest\nr1: src",
+    )
+
+    Strncat = Symbol(
+        [0x89B74],
+        [0x2089B74],
+        None,
+        "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
+    )
+
+    Strcmp = Symbol(
+        [0x89BC4],
+        [0x2089BC4],
+        None,
+        "The strcmp(3) C library function.\n\nSimilarly to Strcpy, this function is"
+        " optimized to compare characters in aligned 4-byte chunks if possible.\n\nr0:"
+        " s1\nr1: s2\nreturn: comparison value",
+    )
+
+    Strncmp = Symbol(
+        [0x89CD8],
+        [0x2089CD8],
+        None,
+        "The strncmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn:"
+        " comparison value",
+    )
+
+    Strchr = Symbol(
+        [0x89D0C],
+        [0x2089D0C],
+        None,
+        "The strchr(3) C library function.\n\nr0: string\nr1: c\nreturn: pointer to the"
+        " located byte c, or null pointer if no match",
+    )
+
+    Strcspn = Symbol(
+        [0x89D48],
+        [0x2089D48],
+        None,
+        "The strcspn(3) C library function.\n\nr0: string\nr1: stopset\nreturn: offset"
+        " of the first character in string within stopset",
+    )
+
+    Strstr = Symbol(
+        [0x89E08],
+        [0x2089E08],
+        None,
+        "The strstr(3) C library function.\n\nr0: haystack\nr1: needle\nreturn: pointer"
+        " into haystack where needle starts, or null pointer if no match",
+    )
+
+    Wcslen = Symbol(
+        [0x8B780],
+        [0x208B780],
+        None,
+        "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
+    )
+
+    AddFloat = Symbol(
+        [0x8F050],
+        [0x208F050],
+        None,
+        "This appears to be the libgcc implementation of __addsf3 (not sure which gcc"
+        " version), which implements the addition operator for IEEE 754 floating-point"
+        " numbers.\n\nr0: a\nr1: b\nreturn: a + b",
+    )
+
+    DivideFloat = Symbol(
+        [0x8F5CC],
+        [0x208F5CC],
+        None,
+        "This appears to be the libgcc implementation of __divsf3 (not sure which gcc"
+        " version), which implements the division operator for IEEE 754 floating-point"
+        " numbers.\n\nr0: dividend\nr1: divisor\nreturn: dividend / divisor",
+    )
+
+    FloatToDouble = Symbol(
+        [0x8F984],
+        [0x208F984],
+        None,
+        "This appears to be the libgcc implementation of __extendsfdf2 (not sure which"
+        " gcc version), which implements the float to double cast operation for IEEE"
+        " 754 floating-point numbers.\n\nr0: float\nreturn: (double)float",
+    )
+
+    FloatToInt = Symbol(
+        [0x8FA08],
+        [0x208FA08],
+        None,
+        "This appears to be the libgcc implementation of __fixsfsi (not sure which gcc"
+        " version), which implements the float to int cast operation for IEEE 754"
+        " floating-point numbers. The output saturates if the input is out of the"
+        " representable range for the int type.\n\nr0: float\nreturn: (int)float",
+    )
+
+    IntToFloat = Symbol(
+        [0x8FA3C],
+        [0x208FA3C],
+        None,
+        "This appears to be the libgcc implementation of __floatsisf (not sure which"
+        " gcc version), which implements the int to float cast operation for IEEE 754"
+        " floating-point numbers.\n\nr0: int\nreturn: (float)int",
+    )
+
+    UIntToFloat = Symbol(
+        [0x8FA84],
+        [0x208FA84],
+        None,
+        "This appears to be the libgcc implementation of __floatunsisf (not sure which"
+        " gcc version), which implements the unsigned int to float cast operation for"
+        " IEEE 754 floating-point numbers.\n\nr0: uint\nreturn: (float)uint",
+    )
+
+    MultiplyFloat = Symbol(
+        [0x8FACC],
+        [0x208FACC],
+        None,
+        "This appears to be the libgcc implementation of __mulsf3 (not sure which gcc"
+        " version), which implements the multiplication operator for IEEE 754"
+        " floating-point numbers.",
+    )
+
+    Sqrtf = Symbol(
+        [0x8FCAC],
+        [0x208FCAC],
+        None,
+        "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)",
+    )
+
+    SubtractFloat = Symbol(
+        [0x8FD9C],
+        [0x208FD9C],
+        None,
+        "This appears to be the libgcc implementation of __subsf3 (not sure which gcc"
+        " version), which implements the subtraction operator for IEEE 754"
+        " floating-point numbers.\n\nr0: a\nr1: b\nreturn: a - b",
+    )
+
+    DivideInt = Symbol(
+        [0x9023C],
+        [0x209023C],
+        None,
+        "This appears to be the libgcc implementation of __divsi3 (not sure which gcc"
+        " version), which implements the division operator for signed ints.\n\nThe"
+        " return value is a 64-bit integer, with the quotient (dividend / divisor) in"
+        " the lower 32 bits and the remainder (dividend % divisor) in the upper 32"
+        " bits. In accordance with the Procedure Call Standard for the Arm Architecture"
+        " (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
+        " this means that the quotient is returned in r0 and the remainder is returned"
+        " in r1.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+    DivideUInt = Symbol(
+        [0x90448],
+        [0x2090448],
+        None,
+        "This appears to be the libgcc implementation of __udivsi3 (not sure which gcc"
+        " version), which implements the division operator for unsigned ints.\n\nThe"
+        " return value is a 64-bit integer, with the quotient (dividend / divisor) in"
+        " the lower 32 bits and the remainder (dividend % divisor) in the upper 32"
+        " bits. In accordance with the Procedure Call Standard for the Arm Architecture"
+        " (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
+        " this means that the quotient is returned in r0 and the remainder is returned"
+        " in r1.\nNote: This function falls through to DivideUIntNoZeroCheck.\n\nr0:"
+        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+    DivideUIntNoZeroCheck = Symbol(
+        [0x90450],
+        [0x2090450],
+        None,
+        "Subsidiary function to DivideUInt. Skips the initial check for divisor =="
+        " 0.\n\nThe return value is a 64-bit integer, with the quotient (dividend /"
+        " divisor) in the lower 32 bits and the remainder (dividend % divisor) in the"
+        " upper 32 bits. In accordance with the Procedure Call Standard for the Arm"
+        " Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
+        " this means that the quotient is returned in r0 and the remainder is returned"
+        " in r1.\nThis function appears to only be called internally.\n\nr0:"
+        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+
+class EuArm9Data:
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol([0x20DF0], [0x2020DF0], None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(
+        [0x48B9C], [0x2048B9C], None, "Starting level of the hero."
+    )
+
+    PARTNER_START_LEVEL = Symbol(
+        [0x48C0C], [0x2048C0C], None, "Starting level of the partner."
+    )
+
+    DEFAULT_MEMORY_ARENA_SIZE = Symbol(
+        [0xE58],
+        [0x2000E58],
+        0x4,
+        "Length in bytes of the default memory allocation arena, 1991680.",
+    )
+
+    AURA_BOW_ID_LAST = Symbol(
+        [0xCCBC], [0x200CCBC], 0x4, "Highest item ID of the aura bows."
+    )
+
+    NUMBER_OF_ITEMS = Symbol([0xE930], [0x200E930], 0x4, "Number of items in the game.")
+
+    MAX_MONEY_CARRIED = Symbol(
+        [0xEDF8],
+        [0x200EDF8],
+        0x4,
+        "Maximum amount of money the player can carry, 99999.",
+    )
+
+    MAX_MONEY_STORED = Symbol(
+        [0x107F8],
+        [0x20107F8],
+        0x4,
+        "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
+    )
+
+    SCRIPT_VARS_VALUES_PTR = Symbol(
+        [0x4B630, 0x4B81C, 0x4C764, 0x4C7BC],
+        [0x204B630, 0x204B81C, 0x204C764, 0x204C7BC],
+        0x4,
+        "Hard-coded pointer to SCRIPT_VARS_VALUES.",
+    )
+
+    MONSTER_ID_LIMIT = Symbol(
+        [0x54818],
+        [0x2054818],
+        0x4,
+        "One more than the maximum valid monster ID (0x483).",
+    )
+
+    MAX_RECRUITABLE_TEAM_MEMBERS = Symbol(
+        [0x555B4, 0x559C8],
+        [0x20555B4, 0x20559C8],
+        None,
+        "555, appears to be the maximum number of members recruited to an exploration"
+        " team, at least for the purposes of some checks that need to iterate over all"
+        " team members.",
+    )
+
+    CART_REMOVED_IMG_DATA = Symbol([0x92EE4], [0x2092EE4], 0x2000, "")
+
+    EXCLUSIVE_ITEM_STAT_BOOST_DATA = Symbol(
+        [0x9852C],
+        [0x209852C],
+        0x3C,
+        "Contains stat boost effects for different exclusive item classes.\n\nEach"
+        " 4-byte entry contains the boost data for (attack, special attack, defense,"
+        " special defense), 1 byte each, for a specific exclusive item class, indexed"
+        " according to the stat boost data index list.",
+    )
+
+    EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
+        [0x9852C], [0x209852C], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
+    )
+
+    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
+        [0x9852D], [0x209852D], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
+    )
+
+    EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
+        [0x9852E], [0x209852E], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
+    )
+
+    EXCLUSIVE_ITEM_SPECIAL_DEFENSE_BOOSTS = Symbol(
+        [0x9852F], [0x209852F], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 3"
+    )
+
+    EXCLUSIVE_ITEM_EFFECT_DATA = Symbol(
+        [0x98568],
+        [0x2098568],
+        0x778,
+        "Contains special effects for each exclusive item.\n\nEach entry is 2 bytes,"
+        " with the first entry corresponding to the first exclusive item (Prism Ruff)."
+        " The first byte is the exclusive item effect ID, and the second byte is an"
+        " index into other data tables (related to the more generic stat boosting"
+        " effects for specific monsters).",
+    )
+
+    EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
+        [0x98569], [0x2098569], 0x777, "EXCLUSIVE_ITEM_EFFECT_DATA, offset by 1"
+    )
+
+    RECOIL_MOVE_LIST = Symbol(
+        [0x991B8],
+        [0x20991B8],
+        0x16,
+        "Null-terminated list of all the recoil moves, as 2-byte move IDs.\n\ntype:"
+        " struct move_id_16[11]",
+    )
+
+    PUNCH_MOVE_LIST = Symbol(
+        [0x991CE],
+        [0x20991CE],
+        0x20,
+        "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
+        " struct move_id_16[16]",
+    )
+
+    SCRIPT_VARS_LOCALS = Symbol(
+        [0x9D450],
+        [0x209D450],
+        0x40,
+        "List of special 'local' variables available to the script engine. There are 4"
+        " 16-byte entries.\n\nEach entry has the same structure as an entry in"
+        " SCRIPT_VARS.\n\ntype: struct script_local_var_table",
+    )
+
+    SCRIPT_VARS = Symbol(
+        [0x9DDF4],
+        [0x209DDF4],
+        0x730,
+        "List of predefined global variables that track game state, which are available"
+        " to the script engine. There are 115 16-byte entries.\n\nThese variables"
+        " underpin the various ExplorerScript global variables you can use in the"
+        " SkyTemple SSB debugger.\n\ntype: struct script_var_table",
+    )
+
+    DUNGEON_DATA_LIST = Symbol(
+        [0x9E924],
+        [0x209E924],
+        0x2D0,
+        "Data about every dungeon in the game.\n\nThis is an array of 180 dungeon data"
+        " list entry structs. Each entry is 4 bytes, and contains floor count"
+        " information along with an index into the bulk of the dungeon's data in"
+        " mappa_s.bin.\n\nSee the struct definitions and End45's dungeon data document"
+        " for more info.\n\ntype: struct dungeon_data_list_entry[180]",
+    )
+
+    DUNGEON_RESTRICTIONS = Symbol(
+        [0xA11E8],
+        [0x20A11E8],
+        0xC00,
+        "Data related to dungeon restrictions for every dungeon in the game.\n\nThis is"
+        " an array of 256 dungeon restriction structs. Each entry is 12 bytes, and"
+        " contains information about restrictions within the given dungeon.\n\nSee the"
+        " struct definitions and End45's dungeon data document for more info.\n\ntype:"
+        " struct dungeon_restriction[256]",
+    )
+
+    SPECIAL_BAND_STAT_BOOST = Symbol(
+        [0xA1DF0], [0x20A1DF0], 0x2, "Stat boost value for the Special Band."
+    )
+
+    MUNCH_BELT_STAT_BOOST = Symbol(
+        [0xA1E00], [0x20A1E00], 0x2, "Stat boost value for the Munch Belt."
+    )
+
+    GUMMI_STAT_BOOST = Symbol(
+        [0xA1E0C],
+        [0x20A1E0C],
+        0x2,
+        "Stat boost value if a stat boost occurs when eating normal Gummis.",
+    )
+
+    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol([0xA1E10], [0x20A1E10], 0x4, "")
+
+    WONDER_GUMMI_IQ_GAIN = Symbol(
+        [0xA1E14], [0x20A1E14], 0x2, "IQ gain when ingesting wonder gummis."
+    )
+
+    AURA_BOW_STAT_BOOST = Symbol(
+        [0xA1E1C], [0x20A1E1C], 0x2, "Stat boost value for the aura bows."
+    )
+
+    MIN_IQ_ITEM_MASTER = Symbol([0xA1E28], [0x20A1E28], 0x4, "")
+
+    DEF_SCARF_STAT_BOOST = Symbol(
+        [0xA1E2C], [0x20A1E2C], 0x2, "Stat boost value for the Defense Scarf."
+    )
+
+    POWER_BAND_STAT_BOOST = Symbol(
+        [0xA1E30], [0x20A1E30], 0x2, "Stat boost value for the Power Band."
+    )
+
+    WONDER_GUMMI_STAT_BOOST = Symbol(
+        [0xA1E34],
+        [0x20A1E34],
+        0x2,
+        "Stat boost value if a stat boost occurs when eating Wonder Gummis.",
+    )
+
+    ZINC_BAND_STAT_BOOST = Symbol(
+        [0xA1E38], [0x20A1E38], 0x2, "Stat boost value for the Zinc Band."
+    )
+
+    TACTICS_UNLOCK_LEVEL_TABLE = Symbol([0xA1EC4], [0x20A1EC4], 0x18, "")
+
+    OUTLAW_LEVEL_TABLE = Symbol(
+        [0xA1F1C],
+        [0x20A1F1C],
+        0x20,
+        "Table of 2-byte outlaw levels for outlaw missions, indexed by mission rank.",
+    )
+
+    OUTLAW_MINION_LEVEL_TABLE = Symbol(
+        [0xA1F3C],
+        [0x20A1F3C],
+        0x20,
+        "Table of 2-byte outlaw minion levels for outlaw hideout missions, indexed by"
+        " mission rank.",
+    )
+
+    IQ_SKILL_RESTRICTIONS = Symbol(
+        [0xA1FE0],
+        [0x20A1FE0],
+        0x8A,
+        "Table of 2-byte values for each IQ skill that represent a group. IQ skills in"
+        " the same group can not be enabled at the same time.",
+    )
+
+    SECONDARY_TERRAIN_TYPES = Symbol(
+        [0xA206C],
+        [0x20A206C],
+        0xC8,
+        "The type of secondary terrain for each dungeon in the game.\n\nThis is an"
+        " array of 200 bytes. Each byte is an enum corresponding to one"
+        " dungeon.\n\ntype: struct secondary_terrain_type_8[200]",
+    )
+
+    SENTRY_MINIGAME_DATA = Symbol([0xA2134], [0x20A2134], None, "")
+
+    IQ_SKILLS = Symbol(
+        [0xA2200],
+        [0x20A2200],
+        0x114,
+        "Table of 4-byte values for each IQ skill that represent the required IQ value"
+        " to unlock a skill.",
+    )
+
+    IQ_GROUP_SKILLS = Symbol([0xA2314], [0x20A2314], 0x190, "")
+
+    IQ_GUMMI_GAIN_TABLE = Symbol([0xA2834], [0x20A2834], 0x288, "")
+
+    GUMMI_BELLY_RESTORE_TABLE = Symbol([0xA2ABC], [0x20A2ABC], 0x288, "")
+
+    BAG_CAPACITY_TABLE = Symbol(
+        [0xA2D58],
+        [0x20A2D58],
+        None,
+        "Array of 4-byte integers containing the bag capacity for each bag level.",
+    )
+
+    SPECIAL_EPISODE_MAIN_CHARACTERS = Symbol([0xA2D78], [0x20A2D78], 0xC8, "")
+
+    GUEST_MONSTER_DATA = Symbol(
+        [0xA2E40],
+        [0x20A2E40],
+        0x288,
+        "Data for guest monsters that join you during certain story dungeons.\n\nArray"
+        " of 18 36-byte entries.\n\nSee the struct definitions and End45's dungeon data"
+        " document for more info.\n\ntype: struct guest_monster[18]",
+    )
+
+    RANK_UP_TABLE = Symbol([0xA30C8], [0x20A30C8], 0xD0, "")
+
+    MONSTER_SPRITE_DATA = Symbol([0xA332C], [0x20A332C], 0x4B0, "")
+
+    MISSION_DUNGEON_UNLOCK_TABLE = Symbol([0xA42AC], [0x20A42AC], None, "")
+
+    EVENTS = Symbol(
+        [0xA5BD8],
+        [0x20A5BD8],
+        0x1584,
+        "Table of levels for the script engine, in which scenes can take place. There"
+        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
+        " script_level[length / 12]",
+    )
+
+    ENTITIES = Symbol(
+        [0xA8890],
+        [0x20A8890],
+        0x1218,
+        "Table of entities for the script engine, which can move around and do things"
+        " within a scene. There are 386 12-byte entries.\n\ntype: struct"
+        " script_entity[386]",
+    )
+
+    MAP_MARKER_PLACEMENTS = Symbol(
+        [0xA9D70],
+        [0x20A9D70],
+        0x9B0,
+        "The map marker position of each dungeon on the Wonder Map.\n\nThis is an array"
+        " of 310 map marker structs. Each entry is 8 bytes, and contains positional"
+        " information about a dungeon on the map.\n\nSee the struct definitions and"
+        " End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
+    )
+
+    MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
+        [0xAF7A0],
+        [0x20AF7A0],
+        0x8,
+        "Functions to get the desired memory arena for allocating and freeing heap"
+        " memory.\n\ntype: struct mem_arena_getters",
+    )
+
+    PRNG_SEQUENCE_NUM = Symbol(
+        [0xAF7CC],
+        [0x20AF7CC],
+        0x2,
+        "[Runtime] The current PRNG sequence number for the general-purpose PRNG. See"
+        " Rand16Bit for more information on how the general-purpose PRNG works.",
+    )
+
+    LOADED_OVERLAY_GROUP_0 = Symbol(
+        [0xAFAD0],
+        [0x20AFAD0],
+        0x4,
+        "[Runtime] The overlay group ID of the overlay currently loaded in slot 0. A"
+        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
+        " slot 0:\n- 0x06 (overlay 3)\n- 0x07 (overlay 6)\n- 0x08 (overlay 4)\n- 0x09"
+        " (overlay 5)\n- 0x0A (overlay 7)\n- 0x0B (overlay 8)\n- 0x0C (overlay 9)\n-"
+        " 0x10 (overlay 12)\n- 0x11 (overlay 13)\n- 0x12 (overlay 14)\n- 0x13 (overlay"
+        " 15)\n- 0x14 (overlay 16)\n- 0x15 (overlay 17)\n- 0x16 (overlay 18)\n- 0x17"
+        " (overlay 19)\n- 0x18 (overlay 20)\n- 0x19 (overlay 21)\n- 0x1A (overlay"
+        " 22)\n- 0x1B (overlay 23)\n- 0x1C (overlay 24)\n- 0x1D (overlay 25)\n- 0x1E"
+        " (overlay 26)\n- 0x1F (overlay 27)\n- 0x20 (overlay 28)\n- 0x21 (overlay"
+        " 30)\n- 0x22 (overlay 31)\n- 0x23 (overlay 32)\n- 0x24 (overlay 33)\n\ntype:"
+        " enum overlay_group_id",
+    )
+
+    LOADED_OVERLAY_GROUP_1 = Symbol(
+        [0xAFAD4],
+        [0x20AFAD4],
+        0x4,
+        "[Runtime] The overlay group ID of the overlay currently loaded in slot 1. A"
+        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
+        " slot 1:\n- 0x4 (overlay 1)\n- 0x5 (overlay 2)\n- 0xD (overlay 11)\n- 0xE"
+        " (overlay 29)\n- 0xF (overlay 34)\n\ntype: enum overlay_group_id",
+    )
+
+    LOADED_OVERLAY_GROUP_2 = Symbol(
+        [0xAFAD8],
+        [0x20AFAD8],
+        0x4,
+        "[Runtime] The overlay group ID of the overlay currently loaded in slot 2. A"
+        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
+        " slot 2:\n- 0x1 (overlay 0)\n- 0x2 (overlay 10)\n- 0x3 (overlay 35)\n\ntype:"
+        " enum overlay_group_id",
+    )
+
+    PACK_FILE_OPENED = Symbol(
+        [0xAFF54],
+        [0x20AFF54],
+        0x4,
+        "[Runtime] A pointer to the 6 opened Pack files (listed at"
+        " PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
+    )
+
+    PACK_FILE_PATHS_TABLE = Symbol(
+        [0xAFF58],
+        [0x20AFF58],
+        0x18,
+        "List of pointers to path strings to all known pack files.\nThe game uses this"
+        " table to load its resources when launching dungeon mode.\n\ntype: char*[6]",
+    )
+
+    GAME_STATE_VALUES = Symbol([0xAFF70], [0x20AFF70], None, "[Runtime]")
+
+    DUNGEON_MOVE_TABLES = Symbol(
+        [0xAFFA8],
+        [0x20AFFA8],
+        None,
+        "[Runtime] Seems to be some sort of region (a table of tables?) that holds"
+        " pointers to various important tables related to moves.",
+    )
+
+    MOVE_DATA_TABLE_PTR = Symbol(
+        [0xAFFB0],
+        [0x20AFFB0],
+        0x4,
+        "[Runtime] Points to the contents of the move data table loaded from"
+        " waza_p.bin\n\ntype: struct move_data_table*",
+    )
+
+    LANGUAGE_INFO_DATA = Symbol([0xB05A8], [0x20B05A8], None, "[Runtime]")
+
+    NOTIFY_NOTE = Symbol(
+        [0xB0814],
+        [0x20B0814],
+        None,
+        "[Runtime] Flag related to saving and loading state?\n\ntype: bool",
+    )
+
+    DEFAULT_HERO_ID = Symbol(
+        [0xB0818],
+        [0x20B0818],
+        0x2,
+        "The default monster ID for the hero (0x4: Charmander)\n\ntype: struct"
+        " monster_id_16",
+    )
+
+    DEFAULT_PARTNER_ID = Symbol(
+        [0xB081A],
+        [0x20B081A],
+        0x2,
+        "The default monster ID for the partner (0x1: Bulbasaur)\n\ntype: struct"
+        " monster_id_16",
+    )
+
+    GAME_MODE = Symbol([0xB088C], [0x20B088C], None, "[Runtime]\n\ntype: uint8_t")
+
+    ADVENTURE_LOG_PTR = Symbol(
+        [0xB0894], [0x20B0894], 0x4, "[Runtime]\n\ntype: struct adventure_log*"
+    )
+
+    ITEM_TABLES_PTRS_1 = Symbol([0xB1264], [0x20B1264], 0x68, "")
+
+    SMD_EVENTS_FUN_TABLE = Symbol([0xB14D4], [0x20B14D4], 0x1FC, "")
+
+
+class EuArm9Section:
+    name = "arm9"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within the ARM 9"
+        " binary."
+    )
+    loadaddress = 0x2000000
+    length = 0xB7D38
+    functions = EuArm9Functions
+    data = EuArm9Data
 
 
 class EuOverlay2Functions:
@@ -7981,42 +7853,42 @@ class EuOverlay2Section:
     data = EuOverlay2Data
 
 
-class EuOverlay3Functions:
+class EuOverlay4Functions:
     pass
 
 
-class EuOverlay3Data:
+class EuOverlay4Data:
     pass
 
 
-class EuOverlay3Section:
-    name = "overlay3"
+class EuOverlay4Section:
+    name = "overlay4"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 3."
+        "Hard-coded immediate values (literals) in instructions within overlay 4."
     )
     loadaddress = 0x233D200
-    length = 0xA160
-    functions = EuOverlay3Functions
-    data = EuOverlay3Data
+    length = 0x2BE0
+    functions = EuOverlay4Functions
+    data = EuOverlay4Data
 
 
-class EuOverlay5Functions:
+class EuOverlay7Functions:
     pass
 
 
-class EuOverlay5Data:
+class EuOverlay7Data:
     pass
 
 
-class EuOverlay5Section:
-    name = "overlay5"
+class EuOverlay7Section:
+    name = "overlay7"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
+        "Hard-coded immediate values (literals) in instructions within overlay 7."
     )
     loadaddress = 0x233D200
-    length = 0x3240
-    functions = EuOverlay5Functions
-    data = EuOverlay5Data
+    length = 0x3300
+    functions = EuOverlay7Functions
+    data = EuOverlay7Data
 
 
 class EuOverlay31Functions:
@@ -8050,6 +7922,39 @@ class EuOverlay31Section:
     data = EuOverlay31Data
 
 
+class EuOverlay13Functions:
+    pass
+
+
+class EuOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(
+        [0x1F4C], [0x238CBCC], 0x2A, "type: struct monster_id_16[21]"
+    )
+
+    STARTERS_HERO_IDS = Symbol(
+        [0x1F78], [0x238CBF8], 0x40, "type: struct monster_id_16[32]"
+    )
+
+    STARTERS_STRINGS = Symbol([0x200C], [0x238CC8C], 0x60, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238CCEC], 0x84, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238CD70], 0x160, "")
+
+    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238DA0C], 0x48, "")
+
+
+class EuOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 13."
+    )
+    loadaddress = 0x238AC80
+    length = 0x2E80
+    functions = EuOverlay13Functions
+    data = EuOverlay13Data
+
+
 class EuOverlay15Functions:
     pass
 
@@ -8067,6 +7972,33 @@ class EuOverlay15Section:
     length = 0x1080
     functions = EuOverlay15Functions
     data = EuOverlay15Data
+
+
+class EuOverlay19Functions:
+    pass
+
+
+class EuOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol([0x40BC], [0x238ED3C], 0x18, "")
+
+    BAR_MENU_CONFIRM_2 = Symbol([0x40D4], [0x238ED54], 0x18, "")
+
+    BAR_MAIN_MENU = Symbol([0x4104], [0x238ED84], 0x20, "")
+
+    BAR_SUBMENU_1 = Symbol([0x4124], [0x238EDA4], 0x20, "")
+
+    BAR_SUBMENU_2 = Symbol([0x4144], [0x238EDC4], 0x30, "")
+
+
+class EuOverlay19Section:
+    name = "overlay19"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
+    )
+    loadaddress = 0x238AC80
+    length = 0x4220
+    functions = EuOverlay19Functions
+    data = EuOverlay19Data
 
 
 class EuOverlay20Functions:
@@ -8100,29 +8032,113 @@ class EuOverlay20Section:
     data = EuOverlay20Data
 
 
-class EuOverlay27Functions:
+class EuOverlay21Functions:
     pass
 
 
-class EuOverlay27Data:
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238D49C], 0x18, "")
+class EuOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238D578], 0x18, "")
 
-    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238D4B4], 0x20, "")
+    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238D590], 0x18, "")
 
-    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238D4D4], 0x20, "")
+    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238D5A8], 0x20, "")
 
-    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238D4F4], 0x28, "")
+    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238D5C8], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238D5E8], 0x28, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238D610], 0x30, "")
 
 
-class EuOverlay27Section:
-    name = "overlay27"
+class EuOverlay21Section:
+    name = "overlay21"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
+        "Hard-coded immediate values (literals) in instructions within overlay 21."
     )
     loadaddress = 0x238AC80
-    length = 0x2D60
-    functions = EuOverlay27Functions
-    data = EuOverlay27Data
+    length = 0x2E20
+    functions = EuOverlay21Functions
+    data = EuOverlay21Data
+
+
+class EuOverlay23Functions:
+    pass
+
+
+class EuOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238DE3C], 0x18, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238DE54], 0x20, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238DE74], 0x20, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238DE94], 0x20, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238DEB4], 0x28, "")
+
+
+class EuOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 23."
+    )
+    loadaddress = 0x238AC80
+    length = 0x3780
+    functions = EuOverlay23Functions
+    data = EuOverlay23Data
+
+
+class EuOverlay28Functions:
+    pass
+
+
+class EuOverlay28Data:
+    pass
+
+
+class EuOverlay28Section:
+    name = "overlay28"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 28."
+    )
+    loadaddress = 0x238AC80
+    length = 0xC60
+    functions = EuOverlay28Functions
+    data = EuOverlay28Data
+
+
+class EuOverlay33Functions:
+    pass
+
+
+class EuOverlay33Data:
+    pass
+
+
+class EuOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2383420
+    length = 0x20
+    functions = EuOverlay33Functions
+    data = EuOverlay33Data
+
+
+class EuOverlay35Functions:
+    pass
+
+
+class EuOverlay35Data:
+    pass
+
+
+class EuOverlay35Section:
+    name = "overlay35"
+    description = "Unused; all zeroes."
+    loadaddress = 0x22BD3C0
+    length = 0x20
+    functions = EuOverlay35Functions
+    data = EuOverlay35Data
 
 
 class EuOverlay12Functions:
@@ -8143,78 +8159,78 @@ class EuOverlay12Section:
 
 
 class EuSections:
-    overlay18 = EuOverlay18Section
-
-    arm9 = EuArm9Section
-
-    overlay13 = EuOverlay13Section
-
-    overlay25 = EuOverlay25Section
-
-    overlay16 = EuOverlay16Section
-
-    overlay26 = EuOverlay26Section
-
-    overlay30 = EuOverlay30Section
-
-    overlay21 = EuOverlay21Section
-
-    overlay32 = EuOverlay32Section
-
-    ram = EuRamSection
-
-    overlay17 = EuOverlay17Section
-
-    overlay19 = EuOverlay19Section
-
-    overlay33 = EuOverlay33Section
-
-    overlay22 = EuOverlay22Section
-
-    overlay28 = EuOverlay28Section
-
-    overlay4 = EuOverlay4Section
-
-    overlay14 = EuOverlay14Section
-
-    overlay7 = EuOverlay7Section
-
-    overlay6 = EuOverlay6Section
-
-    overlay35 = EuOverlay35Section
-
-    overlay23 = EuOverlay23Section
-
-    overlay8 = EuOverlay8Section
-
-    overlay9 = EuOverlay9Section
-
-    overlay24 = EuOverlay24Section
+    overlay29 = EuOverlay29Section
 
     overlay0 = EuOverlay0Section
 
-    overlay10 = EuOverlay10Section
-
-    overlay11 = EuOverlay11Section
-
-    overlay29 = EuOverlay29Section
-
-    overlay34 = EuOverlay34Section
+    overlay22 = EuOverlay22Section
 
     overlay1 = EuOverlay1Section
 
-    overlay2 = EuOverlay2Section
+    overlay24 = EuOverlay24Section
 
-    overlay3 = EuOverlay3Section
+    overlay34 = EuOverlay34Section
+
+    overlay9 = EuOverlay9Section
 
     overlay5 = EuOverlay5Section
 
+    overlay17 = EuOverlay17Section
+
+    overlay10 = EuOverlay10Section
+
+    overlay27 = EuOverlay27Section
+
+    overlay16 = EuOverlay16Section
+
+    overlay8 = EuOverlay8Section
+
+    ram = EuRamSection
+
+    overlay32 = EuOverlay32Section
+
+    overlay6 = EuOverlay6Section
+
+    overlay18 = EuOverlay18Section
+
+    overlay30 = EuOverlay30Section
+
+    overlay26 = EuOverlay26Section
+
+    overlay3 = EuOverlay3Section
+
+    overlay14 = EuOverlay14Section
+
+    overlay25 = EuOverlay25Section
+
+    overlay11 = EuOverlay11Section
+
+    arm9 = EuArm9Section
+
+    overlay2 = EuOverlay2Section
+
+    overlay4 = EuOverlay4Section
+
+    overlay7 = EuOverlay7Section
+
     overlay31 = EuOverlay31Section
+
+    overlay13 = EuOverlay13Section
 
     overlay15 = EuOverlay15Section
 
+    overlay19 = EuOverlay19Section
+
     overlay20 = EuOverlay20Section
 
-    overlay27 = EuOverlay27Section
+    overlay21 = EuOverlay21Section
+
+    overlay23 = EuOverlay23Section
+
+    overlay28 = EuOverlay28Section
+
+    overlay33 = EuOverlay33Section
+
+    overlay35 = EuOverlay35Section
 
     overlay12 = EuOverlay12Section
