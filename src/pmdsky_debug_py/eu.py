@@ -4882,8 +4882,8 @@ class EuArm9Functions:
     )
 
     DebugPrint0 = Symbol(
-        [0xC284],
-        [0x200C284],
+        [0xC250, 0xC284],
+        [0x200C250, 0x200C284],
         None,
         "Would log a printf format string in the debug binary.\n\nThis still constructs"
         " the string with Vsprintf, but doesn't actually do anything with it in the"

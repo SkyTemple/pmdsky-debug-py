@@ -1,6 +1,6 @@
 [project]
 name = "pmdsky-debug-py"
-version = "2.1.5"
+version = "2.1.6"
 description = "pmdsky-debug symbols for Python."
 readme = "./README.rst"
 requires-python = ">=3.8"
