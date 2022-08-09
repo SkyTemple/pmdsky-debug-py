@@ -3105,6 +3105,15 @@ class EuOverlay29Functions:
         " monster.\n\nSee FloorHasMissionMonster for details.\n\nreturn: bool",
     )
 
+    LoadMissionMonsterSprites = Symbol(
+        [0x6D478],
+        [0x2349FF8],
+        None,
+        "Loads the sprites of monsters that appear on the current floor because of a"
+        " mission, if applicable.\n\nThis includes monsters to be rescued, outlaws and"
+        " its minions.\n\nNo params.",
+    )
+
     MissionTargetEnemyIsDefeated = Symbol(
         [0x6D4F0],
         [0x234A070],
@@ -3195,6 +3204,22 @@ class EuOverlay29Functions:
         " mission, if it exists.\n\nNote that a single minion group can correspond to"
         " multiple actual minions of the same species. There can be up to 2 minion"
         " groups.\n\nr0: minion group index (0-indexed)\nreturn: monster ID",
+    )
+
+    SetTargetMonsterNotFoundFlag = Symbol(
+        [0x6D744],
+        [0x234A2C4],
+        None,
+        "Sets dungeon::target_monster_not_found_flag to the specified value.\n\nr0:"
+        " Value to set the flag to",
+    )
+
+    GetTargetMonsterNotFoundFlag = Symbol(
+        [0x6D758],
+        [0x234A2D8],
+        None,
+        "Gets the value of dungeon::target_monster_not_found_flag.\n\nreturn:"
+        " dungeon::target_monster_not_found_flag",
     )
 
     FloorHasMissionMonster = Symbol(

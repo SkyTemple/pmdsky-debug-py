@@ -1649,6 +1649,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    LoadMissionMonsterSprites: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     MissionTargetEnemyIsDefeated: Symbol[
         Optional[List[int]],
         None,
@@ -1700,6 +1705,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetMissionEnemyMinionGroup: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetTargetMonsterNotFoundFlag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetTargetMonsterNotFoundFlag: Symbol[
         Optional[List[int]],
         None,
     ]

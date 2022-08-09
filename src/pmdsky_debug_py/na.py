@@ -3107,6 +3107,15 @@ class NaOverlay29Functions:
         " monster.\n\nSee FloorHasMissionMonster for details.\n\nreturn: bool",
     )
 
+    LoadMissionMonsterSprites = Symbol(
+        [0x6D1B8],
+        [0x23493F8],
+        None,
+        "Loads the sprites of monsters that appear on the current floor because of a"
+        " mission, if applicable.\n\nThis includes monsters to be rescued, outlaws and"
+        " its minions.\n\nNo params.",
+    )
+
     MissionTargetEnemyIsDefeated = Symbol(
         [0x6D230],
         [0x2349470],
@@ -3197,6 +3206,22 @@ class NaOverlay29Functions:
         " mission, if it exists.\n\nNote that a single minion group can correspond to"
         " multiple actual minions of the same species. There can be up to 2 minion"
         " groups.\n\nr0: minion group index (0-indexed)\nreturn: monster ID",
+    )
+
+    SetTargetMonsterNotFoundFlag = Symbol(
+        [0x6D484],
+        [0x23496C4],
+        None,
+        "Sets dungeon::target_monster_not_found_flag to the specified value.\n\nr0:"
+        " Value to set the flag to",
+    )
+
+    GetTargetMonsterNotFoundFlag = Symbol(
+        [0x6D498],
+        [0x23496D8],
+        None,
+        "Gets the value of dungeon::target_monster_not_found_flag.\n\nreturn:"
+        " dungeon::target_monster_not_found_flag",
     )
 
     FloorHasMissionMonster = Symbol(
