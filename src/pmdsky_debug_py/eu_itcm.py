@@ -1,184 +1,317 @@
 from .protocol import Symbol
 
 
-class EuItcmOverlay20Functions:
+class EuItcmRamFunctions:
     pass
 
 
-class EuItcmOverlay20Data:
-    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+class EuItcmRamData:
+    DUNGEON_COLORMAP_PTR = Symbol(
+        None,
+        None,
+        None,
+        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
+        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
+        " indexes into when rendering colors. Some weather conditions modify the"
+        " colormap, which is how the color scheme changes when it's, e.g., raining.",
+    )
 
-    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+    DUNGEON_STRUCT = Symbol(
+        None,
+        None,
+        None,
+        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
+        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
+        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
+        " 29.\n\ntype: struct dungeon",
+    )
 
-    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
+    MOVE_DATA_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
+        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
+        " ARM 9 binary.\n\ntype: struct move_data_table",
+    )
 
-    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
+    FRAMES_SINCE_LAUNCH = Symbol(
+        None,
+        None,
+        None,
+        "Starts at 0 when the game is first launched, and continuously ticks up once"
+        " per frame while the game is running.",
+    )
 
-    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
+    BAG_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
+        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
+        " if filled.\n\ntype: struct item[50]",
+    )
 
-    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
+    BAG_ITEMS_PTR = Symbol(None, None, None, "Pointer to BAG_ITEMS.")
 
-    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
+    STORAGE_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
+        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
+        " item_id_16[1000]",
+    )
+
+    STORAGE_ITEM_QUANTITIES = Symbol(
+        None,
+        None,
+        None,
+        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
+        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
+        " entry in this array is unused, and will be 0.",
+    )
+
+    KECLEON_SHOP_ITEMS_PTR = Symbol(None, None, None, "Pointer to KECLEON_SHOP_ITEMS.")
+
+    KECLEON_SHOP_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
+        " to be used by the Kecleon Shop.",
+    )
+
+    KECLEON_WARES_ITEMS_PTR = Symbol(
+        None, None, None, "Pointer to KECLEON_WARES_ITEMS."
+    )
+
+    KECLEON_WARES_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_WARES_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
+        " to be used by Kecleon Wares.",
+    )
+
+    MONEY_CARRIED = Symbol(
+        None, None, None, "The amount of money the player is currently carrying."
+    )
+
+    MONEY_STORED = Symbol(
+        None,
+        None,
+        None,
+        "The amount of money the player currently has stored in the Duskull Bank.",
+    )
+
+    LAST_NEW_MOVE = Symbol(
+        None,
+        None,
+        None,
+        "Move struct of the last new move introduced when learning a new move. Persists"
+        " even after the move selection is made in the menu.\n\ntype: struct move",
+    )
+
+    SCRIPT_VARS_VALUES = Symbol(
+        None,
+        None,
+        None,
+        "The table of game variable values. Its structure is determined by"
+        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
+        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
+        " the real length of this table is 0x400 based on the game code.\n\ntype:"
+        " struct script_var_value_table",
+    )
+
+    BAG_LEVEL = Symbol(
+        None,
+        None,
+        None,
+        "The player's bag level, which determines the bag capacity. This indexes"
+        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
+    )
+
+    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
+        None,
+        None,
+        None,
+        "The number of the special episode currently being played.\n\n0: normal,"
+        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
+        " Comes Team Charm!\n4: In the Future of Darkness",
+    )
+
+    PENDING_DUNGEON_ID = Symbol(
+        None,
+        None,
+        None,
+        "The ID of the selected dungeon when setting off from the"
+        " overworld.\n\nControls the text and map location during the 'map cutscene'"
+        " just before entering a dungeon, as well as the actual dungeon loaded"
+        " afterwards.\n\ntype: struct dungeon_id_8",
+    )
+
+    PENDING_STARTING_FLOOR = Symbol(
+        None,
+        None,
+        None,
+        "The floor number to start from in the dungeon specified by"
+        " PENDING_DUNGEON_ID.",
+    )
+
+    PLAY_TIME_SECONDS = Symbol(
+        None, None, None, "The player's total play time in seconds."
+    )
+
+    PLAY_TIME_FRAME_COUNTER = Symbol(
+        None,
+        None,
+        None,
+        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
+        " with each rollover.",
+    )
+
+    TEAM_NAME = Symbol(
+        None,
+        None,
+        None,
+        "The team name.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    HERO_SPECIES_ID = Symbol(
+        None,
+        None,
+        None,
+        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
+        " with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    HERO_NICKNAME = Symbol(
+        None,
+        None,
+        None,
+        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    PARTNER_SPECIES_ID = Symbol(
+        None,
+        None,
+        None,
+        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
+        " together with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    LEADER_IQ_SKILLS = Symbol(
+        None,
+        None,
+        None,
+        "Unlocked IQ skills of the current leader, available for selection from the IQ"
+        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
+        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
+        " larger struct, together with other nearby data.",
+    )
+
+    LEADER_NICKNAME = Symbol(
+        None,
+        None,
+        None,
+        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
+        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
+        " typically uses.\n\nThis is presumably part of a larger struct, together with"
+        " other nearby data.",
+    )
+
+    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
+        None,
+        None,
+        None,
+        "Unlocked IQ skills of the second party member, available for selection from"
+        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
+        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
+        " a larger struct, together with other nearby data.",
+    )
+
+    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
+        None,
+        None,
+        None,
+        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
+        " the game is running.",
+    )
+
+    TURNING_ON_THE_SPOT_FLAG = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    FLOOR_GENERATION_STATUS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Status data related to generation of the current floor in a"
+        " dungeon.\n\nThis data is populated as the dungeon floor is"
+        " generated.\n\ntype: struct floor_generation_status",
+    )
 
 
-class EuItcmOverlay20Section:
-    name = "overlay20"
-    description = "Controls the Recycle Shop."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay20Functions
-    data = EuItcmOverlay20Data
-
-
-class EuItcmOverlay3Functions:
-    pass
-
-
-class EuItcmOverlay3Data:
-    pass
-
-
-class EuItcmOverlay3Section:
-    name = "overlay3"
-    description = "Controls the Friend Rescue submenu within the top menu."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay3Functions
-    data = EuItcmOverlay3Data
-
-
-class EuItcmOverlay8Functions:
-    pass
-
-
-class EuItcmOverlay8Data:
-    pass
-
-
-class EuItcmOverlay8Section:
-    name = "overlay8"
+class EuItcmRamSection:
+    name = "ram"
     description = (
-        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
+        "Main memory.\nData in this file aren't located in the ROM itself, and are"
+        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
+        " dumping ground for addresses that are useful to know about, but don't fall in"
+        " the address ranges of any of the other files. Dynamically loaded constructs"
+        " that do fall within the address range of a relevant binary should be listed"
+        " in the corresponding YAML file of that binary, since it still has direct"
+        " utility when reverse-engineering that particular binary."
     )
     loadaddress = None
     length = None
-    functions = EuItcmOverlay8Functions
-    data = EuItcmOverlay8Data
+    functions = EuItcmRamFunctions
+    data = EuItcmRamData
 
 
-class EuItcmOverlay5Functions:
+class EuItcmOverlay4Functions:
     pass
 
 
-class EuItcmOverlay5Data:
+class EuItcmOverlay4Data:
     pass
 
 
-class EuItcmOverlay5Section:
-    name = "overlay5"
-    description = "Controls the Trade Team submenu within the top menu."
+class EuItcmOverlay4Section:
+    name = "overlay4"
+    description = "Controls the Trade Items submenu within the top menu."
     loadaddress = None
     length = None
-    functions = EuItcmOverlay5Functions
-    data = EuItcmOverlay5Data
-
-
-class EuItcmOverlay17Functions:
-    pass
-
-
-class EuItcmOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay17Section:
-    name = "overlay17"
-    description = "Controls the Chimecho Assembly."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay17Functions
-    data = EuItcmOverlay17Data
-
-
-class EuItcmOverlay19Functions:
-    pass
-
-
-class EuItcmOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
-
-    BAR_MAIN_MENU = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_1 = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_2 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay19Functions
-    data = EuItcmOverlay19Data
-
-
-class EuItcmOverlay12Functions:
-    pass
-
-
-class EuItcmOverlay12Data:
-    pass
-
-
-class EuItcmOverlay12Section:
-    name = "overlay12"
-    description = "Unused; all zeroes."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay12Functions
-    data = EuItcmOverlay12Data
-
-
-class EuItcmOverlay2Functions:
-    pass
-
-
-class EuItcmOverlay2Data:
-    pass
-
-
-class EuItcmOverlay2Section:
-    name = "overlay2"
-    description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay2Functions
-    data = EuItcmOverlay2Data
+    functions = EuItcmOverlay4Functions
+    data = EuItcmOverlay4Data
 
 
 class EuItcmOverlay28Functions:
@@ -196,6 +329,29 @@ class EuItcmOverlay28Section:
     length = None
     functions = EuItcmOverlay28Functions
     data = EuItcmOverlay28Data
+
+
+class EuItcmOverlay22Functions:
+    pass
+
+
+class EuItcmOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay22Section:
+    name = "overlay22"
+    description = "Controls the Kecleon Shop in Treasure Town."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay22Functions
+    data = EuItcmOverlay22Data
 
 
 class EuItcmOverlay29Functions:
@@ -629,6 +785,30 @@ class EuItcmOverlay29Functions:
         " depending on the result of GetCanMoveFlag for the monster's ID.\n\nr0:"
         " Pointer to the monster's action_id field (this field is probably contained in"
         " a struct)\nr1: Monster ID",
+    )
+
+    GetItemAction = Symbol(
+        None,
+        None,
+        None,
+        "Returns the action ID that corresponds to an item given its ID.\n\nThe action"
+        " is based on the category of the item (see ITEM_CATEGORY_ACTIONS), unless the"
+        " specified ID is 0x16B, in which case ACTION_UNK_35 is returned.\nSome items"
+        " can have unexpected actions, such as thrown items, which have ACTION_NOTHING."
+        " This is done to prevent duplicate actions from being listed in the menu"
+        " (since items always have a 'throw' option), since a return value of"
+        " ACTION_NOTHING prevents the option from showing up in the menu.\n\nr0: Item"
+        " ID\nreturn: Action ID associated with the specified item",
+    )
+
+    AddDungeonSubMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Adds an option to the list of actions that can be taken on a pokémon, item or"
+        " move to the currently active sub-menu on dungeon mode (team, moves, items,"
+        " etc.).\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
     )
 
     SetActionRegularAttack = Symbol(
@@ -3175,6 +3355,17 @@ class EuItcmOverlay29Functions:
 
     DisplayMessage2 = Symbol(None, None, None, "Very similar to DisplayMessage")
 
+    YesNoMenu = Symbol(
+        None,
+        None,
+        None,
+        "Opens a menu where the user can choose 'Yes' or 'No' and waits for input"
+        " before returning.\n\nr0: ?\nr1: ID of the string to display in the"
+        " textbox\nr2: Option that the cursor will be on by default. 0 for 'Yes', 1 for"
+        " 'No'\nr3: ?\nreturn: True if the user chooses 'Yes', false if the user"
+        " chooses 'No'",
+    )
+
     DisplayMessageInternal = Symbol(
         None,
         None,
@@ -3186,6 +3377,25 @@ class EuItcmOverlay29Functions:
         " player input before closing the dialogue box, false to close it automatically"
         " once all the characters get printed.\nr2: ? (r0 in DisplayMessage)\nr3:"
         " ?\nstack[0]: ?\nstack[1]: ?",
+    )
+
+    OthersMenuLoop = Symbol(
+        None,
+        None,
+        None,
+        "Called on each frame while the in-dungeon 'others' menu is open.\n\nIt"
+        " contains a switch to determine whether an option has been chosen or not and a"
+        " second switch that determines what to do depending on which option was"
+        " chosen.\n\nreturn: int (Actually, this is probably some sort of enum shared"
+        " by all the MenuLoop functions)",
+    )
+
+    OthersMenu = Symbol(
+        None,
+        None,
+        None,
+        "Called when the in-dungeon 'others' menu is open. Does not return until the"
+        " menu is closed.\n\nreturn: Always 0",
     )
 
 
@@ -3585,6 +3795,14 @@ class EuItcmOverlay29Data:
         " direction (positive y means down).",
     )
 
+    ITEM_CATEGORY_ACTIONS = Symbol(
+        None,
+        None,
+        None,
+        "Action ID associated with each item category. Used by GetItemAction.\n\nEach"
+        " entry is 2 bytes long.",
+    )
+
     FRACTIONAL_TURN_SEQUENCE = Symbol(
         None,
         None,
@@ -3754,6 +3972,347 @@ class EuItcmOverlay29Section:
     length = None
     functions = EuItcmOverlay29Functions
     data = EuItcmOverlay29Data
+
+
+class EuItcmOverlay12Functions:
+    pass
+
+
+class EuItcmOverlay12Data:
+    pass
+
+
+class EuItcmOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay12Functions
+    data = EuItcmOverlay12Data
+
+
+class EuItcmOverlay32Functions:
+    pass
+
+
+class EuItcmOverlay32Data:
+    pass
+
+
+class EuItcmOverlay32Section:
+    name = "overlay32"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay32Functions
+    data = EuItcmOverlay32Data
+
+
+class EuItcmOverlay23Functions:
+    pass
+
+
+class EuItcmOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay23Functions
+    data = EuItcmOverlay23Data
+
+
+class EuItcmOverlay7Functions:
+    pass
+
+
+class EuItcmOverlay7Data:
+    pass
+
+
+class EuItcmOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay7Functions
+    data = EuItcmOverlay7Data
+
+
+class EuItcmOverlay35Functions:
+    pass
+
+
+class EuItcmOverlay35Data:
+    pass
+
+
+class EuItcmOverlay35Section:
+    name = "overlay35"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay35Functions
+    data = EuItcmOverlay35Data
+
+
+class EuItcmOverlay25Functions:
+    pass
+
+
+class EuItcmOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
+
+    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay25Section:
+    name = "overlay25"
+    description = "Controls Xatu Appraisal."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay25Functions
+    data = EuItcmOverlay25Data
+
+
+class EuItcmOverlay21Functions:
+    pass
+
+
+class EuItcmOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay21Section:
+    name = "overlay21"
+    description = "Controls the Croagunk Swap Shop."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay21Functions
+    data = EuItcmOverlay21Data
+
+
+class EuItcmOverlay9Functions:
+    pass
+
+
+class EuItcmOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        None,
+        None,
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class EuItcmOverlay9Section:
+    name = "overlay9"
+    description = "Controls the Sky Jukebox."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay9Functions
+    data = EuItcmOverlay9Data
+
+
+class EuItcmOverlay26Functions:
+    pass
+
+
+class EuItcmOverlay26Data:
+    pass
+
+
+class EuItcmOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Related to mission completion. It's loaded when the dungeon completion summary"
+        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
+        " mission rewards from clients."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay26Functions
+    data = EuItcmOverlay26Data
+
+
+class EuItcmOverlay33Functions:
+    pass
+
+
+class EuItcmOverlay33Data:
+    pass
+
+
+class EuItcmOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay33Functions
+    data = EuItcmOverlay33Data
+
+
+class EuItcmOverlay30Functions:
+    pass
+
+
+class EuItcmOverlay30Data:
+    pass
+
+
+class EuItcmOverlay30Section:
+    name = "overlay30"
+    description = "Controls quicksaving in dungeons."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay30Functions
+    data = EuItcmOverlay30Data
+
+
+class EuItcmOverlay0Functions:
+    pass
+
+
+class EuItcmOverlay0Data:
+    TOP_MENU_MUSIC_ID = Symbol(None, None, None, "Music ID to play in the top menu.")
+
+
+class EuItcmOverlay0Section:
+    name = "overlay0"
+    description = (
+        "Likely contains supporting data and code related to the top menu.\n\nThis is"
+        " loaded together with overlay 1 while in the top menu. Since it's in overlay"
+        " group 2 (together with overlay 10, which is another 'data' overlay), this"
+        " overlay probably plays a similar role. It mentions several files from the"
+        " BACK folder that are known backgrounds for the top menu."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay0Functions
+    data = EuItcmOverlay0Data
+
+
+class EuItcmOverlay24Functions:
+    pass
+
+
+class EuItcmOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay24Functions
+    data = EuItcmOverlay24Data
+
+
+class EuItcmOverlay15Functions:
+    pass
+
+
+class EuItcmOverlay15Data:
+    BANK_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay15Section:
+    name = "overlay15"
+    description = "Controls the Duskull Bank."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay15Functions
+    data = EuItcmOverlay15Data
+
+
+class EuItcmOverlay13Functions:
+    pass
+
+
+class EuItcmOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
+
+    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
+
+    STARTERS_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
+
+    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Controls the personality test, including the available partners and playable"
+        " Pokémon. The actual personality test questions are stored in the MESSAGE"
+        " folder."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay13Functions
+    data = EuItcmOverlay13Data
+
+
+class EuItcmOverlay20Functions:
+    pass
+
+
+class EuItcmOverlay20Data:
+    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay20Section:
+    name = "overlay20"
+    description = "Controls the Recycle Shop."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay20Functions
+    data = EuItcmOverlay20Data
 
 
 class EuItcmOverlay11Functions:
@@ -4026,25 +4585,25 @@ class EuItcmOverlay11Section:
     data = EuItcmOverlay11Data
 
 
-class EuItcmOverlay25Functions:
+class EuItcmOverlay2Functions:
     pass
 
 
-class EuItcmOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
-
-    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
+class EuItcmOverlay2Data:
+    pass
 
 
-class EuItcmOverlay25Section:
-    name = "overlay25"
-    description = "Controls Xatu Appraisal."
+class EuItcmOverlay2Section:
+    name = "overlay2"
+    description = (
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
+    )
     loadaddress = None
     length = None
-    functions = EuItcmOverlay25Functions
-    data = EuItcmOverlay25Data
+    functions = EuItcmOverlay2Functions
+    data = EuItcmOverlay2Data
 
 
 class EuItcmArm9Functions:
@@ -4670,6 +5229,15 @@ class EuItcmArm9Functions:
         " the Table of Content)",
     )
 
+    GetItemCategoryVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for GetItemCategory.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " Item ID\nreturn: Category ID",
+    )
+
     IsAuraBow = Symbol(
         None,
         None,
@@ -4688,6 +5256,14 @@ class EuItcmArm9Functions:
         " in a bunch of different places. See the actual Sprintf for the one in"
         " libc.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of characters"
         " printed, excluding the null-terminator",
+    )
+
+    GetItemCategory = Symbol(
+        None,
+        None,
+        None,
+        "Returns the category of the specified item\n\nr0: Item ID\nreturn: Item"
+        " category",
     )
 
     SetMoneyCarried = Symbol(
@@ -5618,6 +6194,15 @@ class EuItcmArm9Functions:
         None,
         "Returns the maximum rescue attempts allowed in the specified dungeon.\n\nr0:"
         " dungeon id\nreturn: Max rescue attempts, or -1 if rescues are disabled.",
+    )
+
+    GetLeaderChangeFlag = Symbol(
+        None,
+        None,
+        None,
+        "Returns true if the flag that allows changing leaders is set in the"
+        " restrictions of the specified dungeon\n\nr0: dungeon id\nreturn: True if the"
+        " restrictions of the current dungeon allow changing leaders, false otherwise.",
     )
 
     JoinedAtRangeCheck = Symbol(
@@ -6700,25 +7285,6 @@ class EuItcmArm9Section:
     data = EuItcmArm9Data
 
 
-class EuItcmOverlay0Functions:
-    pass
-
-
-class EuItcmOverlay0Data:
-    TOP_MENU_MUSIC_ID = Symbol(None, None, None, "Music ID to play in the top menu.")
-
-
-class EuItcmOverlay0Section:
-    name = "overlay0"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 0."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay0Functions
-    data = EuItcmOverlay0Data
-
-
 class EuItcmOverlay10Functions:
     SprintfStatic = Symbol(
         None,
@@ -7085,7 +7651,36 @@ class EuItcmOverlay34Section:
 
 
 class EuItcmOverlay1Functions:
-    pass
+    CreateMainMenus = Symbol(
+        None,
+        None,
+        None,
+        "Prepares the top menu and sub menu, adding the different options that compose"
+        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
+        " Some of them are conditionally executed depending on which options should be"
+        " unlocked.\n\nNo params.",
+    )
+
+    AddMainMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Adds an option to the top menu.\n\nThis function is called for each one of the"
+        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
+        " action ID does not exist there, the option won't be added.\n\nr0: Action"
+        " ID\nr1: True if the option should be enabled, false otherwise",
+    )
+
+    AddSubMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
+        " called for each one of the options in the submenu. It loops the SUBMENU data"
+        " field, if the specified action ID does not exist there, the option won't be"
+        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
+    )
 
 
 class EuItcmOverlay1Data:
@@ -7113,23 +7708,42 @@ class EuItcmOverlay1Section:
     data = EuItcmOverlay1Data
 
 
-class EuItcmOverlay4Functions:
+class EuItcmOverlay3Functions:
     pass
 
 
-class EuItcmOverlay4Data:
+class EuItcmOverlay3Data:
     pass
 
 
-class EuItcmOverlay4Section:
-    name = "overlay4"
+class EuItcmOverlay3Section:
+    name = "overlay3"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
+        "Hard-coded immediate values (literals) in instructions within overlay 3."
     )
     loadaddress = None
     length = None
-    functions = EuItcmOverlay4Functions
-    data = EuItcmOverlay4Data
+    functions = EuItcmOverlay3Functions
+    data = EuItcmOverlay3Data
+
+
+class EuItcmOverlay5Functions:
+    pass
+
+
+class EuItcmOverlay5Data:
+    pass
+
+
+class EuItcmOverlay5Section:
+    name = "overlay5"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 5."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay5Functions
+    data = EuItcmOverlay5Data
 
 
 class EuItcmOverlay6Functions:
@@ -7151,70 +7765,64 @@ class EuItcmOverlay6Section:
     data = EuItcmOverlay6Data
 
 
-class EuItcmOverlay7Functions:
+class EuItcmOverlay8Functions:
     pass
 
 
-class EuItcmOverlay7Data:
+class EuItcmOverlay8Data:
     pass
 
 
-class EuItcmOverlay7Section:
-    name = "overlay7"
+class EuItcmOverlay8Section:
+    name = "overlay8"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 7."
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
     )
     loadaddress = None
     length = None
-    functions = EuItcmOverlay7Functions
-    data = EuItcmOverlay7Data
-
-
-class EuItcmOverlay9Functions:
-    pass
-
-
-class EuItcmOverlay9Data:
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        None,
-        None,
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class EuItcmOverlay9Section:
-    name = "overlay9"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 9."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay9Functions
-    data = EuItcmOverlay9Data
-
-
-class EuItcmOverlay30Functions:
-    pass
-
-
-class EuItcmOverlay30Data:
-    pass
-
-
-class EuItcmOverlay30Section:
-    name = "overlay30"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 30."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay30Functions
-    data = EuItcmOverlay30Data
+    functions = EuItcmOverlay8Functions
+    data = EuItcmOverlay8Data
 
 
 class EuItcmOverlay31Functions:
-    pass
+    TeamMenu = Symbol(
+        None,
+        None,
+        None,
+        "Called when the in-dungeon 'team' menu is open. Does not return until the menu"
+        " is closed.\n\nNote that selecting certain options in this menu (such as"
+        " viewing the details or the moves of a pokémon) counts as switching to a"
+        " different menu, which causes the function to return.\n\nr0: Pointer to the"
+        " leader's entity struct\nreturn: ?",
+    )
+
+    RestMenu = Symbol(
+        None,
+        None,
+        None,
+        "Called when the in-dungeon 'rest' menu is open. Does not return until the menu"
+        " is closed.\n\nNo params.",
+    )
+
+    RecruitmentSearchMenuLoop = Symbol(
+        None,
+        None,
+        None,
+        "Called on each frame while the in-dungeon 'recruitment search' menu is"
+        " open.\n\nreturn: int (Actually, this is probably some sort of enum shared by"
+        " all the MenuLoop functions)",
+    )
+
+    HelpMenuLoop = Symbol(
+        None,
+        None,
+        None,
+        "Called on each frame while the in-dungeon 'help' menu is open.\n\nThe menu is"
+        " still considered open while one of the help pages is being viewed, so this"
+        " function keeps being called even after choosing an option.\n\nreturn: int"
+        " (Actually, this is probably some sort of enum shared by all the MenuLoop"
+        " functions)",
+    )
 
 
 class EuItcmOverlay31Data:
@@ -7244,35 +7852,6 @@ class EuItcmOverlay31Section:
     data = EuItcmOverlay31Data
 
 
-class EuItcmOverlay13Functions:
-    pass
-
-
-class EuItcmOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
-
-    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
-
-    STARTERS_STRINGS = Symbol(None, None, None, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
-
-    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay13Section:
-    name = "overlay13"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay13Functions
-    data = EuItcmOverlay13Data
-
-
 class EuItcmOverlay14Functions:
     pass
 
@@ -7290,25 +7869,6 @@ class EuItcmOverlay14Section:
     length = None
     functions = EuItcmOverlay14Functions
     data = EuItcmOverlay14Data
-
-
-class EuItcmOverlay15Functions:
-    pass
-
-
-class EuItcmOverlay15Data:
-    BANK_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay15Section:
-    name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay15Functions
-    data = EuItcmOverlay15Data
 
 
 class EuItcmOverlay16Functions:
@@ -7332,6 +7892,43 @@ class EuItcmOverlay16Section:
     length = None
     functions = EuItcmOverlay16Functions
     data = EuItcmOverlay16Data
+
+
+class EuItcmOverlay17Functions:
+    pass
+
+
+class EuItcmOverlay17Data:
+    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay17Section:
+    name = "overlay17"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 17."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay17Functions
+    data = EuItcmOverlay17Data
 
 
 class EuItcmOverlay18Functions:
@@ -7369,125 +7966,31 @@ class EuItcmOverlay18Section:
     data = EuItcmOverlay18Data
 
 
-class EuItcmOverlay21Functions:
+class EuItcmOverlay19Functions:
     pass
 
 
-class EuItcmOverlay21Data:
-    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+class EuItcmOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
 
-    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
+    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
 
-    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
+    BAR_MAIN_MENU = Symbol(None, None, None, "")
 
-    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+    BAR_SUBMENU_1 = Symbol(None, None, None, "")
 
-    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
+    BAR_SUBMENU_2 = Symbol(None, None, None, "")
 
 
-class EuItcmOverlay21Section:
-    name = "overlay21"
+class EuItcmOverlay19Section:
+    name = "overlay19"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
     )
     loadaddress = None
     length = None
-    functions = EuItcmOverlay21Functions
-    data = EuItcmOverlay21Data
-
-
-class EuItcmOverlay22Functions:
-    pass
-
-
-class EuItcmOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay22Section:
-    name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay22Functions
-    data = EuItcmOverlay22Data
-
-
-class EuItcmOverlay23Functions:
-    pass
-
-
-class EuItcmOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 23."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay23Functions
-    data = EuItcmOverlay23Data
-
-
-class EuItcmOverlay24Functions:
-    pass
-
-
-class EuItcmOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay24Section:
-    name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay24Functions
-    data = EuItcmOverlay24Data
-
-
-class EuItcmOverlay26Functions:
-    pass
-
-
-class EuItcmOverlay26Data:
-    pass
-
-
-class EuItcmOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay26Functions
-    data = EuItcmOverlay26Data
+    functions = EuItcmOverlay19Functions
+    data = EuItcmOverlay19Data
 
 
 class EuItcmOverlay27Functions:
@@ -7515,381 +8018,54 @@ class EuItcmOverlay27Section:
     data = EuItcmOverlay27Data
 
 
-class EuItcmOverlay32Functions:
-    pass
-
-
-class EuItcmOverlay32Data:
-    pass
-
-
-class EuItcmOverlay32Section:
-    name = "overlay32"
-    description = "Unused; all zeroes."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay32Functions
-    data = EuItcmOverlay32Data
-
-
-class EuItcmRamFunctions:
-    pass
-
-
-class EuItcmRamData:
-    DUNGEON_COLORMAP_PTR = Symbol(
-        None,
-        None,
-        None,
-        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
-        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
-        " indexes into when rendering colors. Some weather conditions modify the"
-        " colormap, which is how the color scheme changes when it's, e.g., raining.",
-    )
-
-    DUNGEON_STRUCT = Symbol(
-        None,
-        None,
-        None,
-        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
-        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
-        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
-        " 29.\n\ntype: struct dungeon",
-    )
-
-    MOVE_DATA_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
-        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
-        " ARM 9 binary.\n\ntype: struct move_data_table",
-    )
-
-    FRAMES_SINCE_LAUNCH = Symbol(
-        None,
-        None,
-        None,
-        "Starts at 0 when the game is first launched, and continuously ticks up once"
-        " per frame while the game is running.",
-    )
-
-    BAG_ITEMS = Symbol(
-        None,
-        None,
-        None,
-        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
-        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
-        " if filled.\n\ntype: struct item[50]",
-    )
-
-    BAG_ITEMS_PTR = Symbol(None, None, None, "Pointer to BAG_ITEMS.")
-
-    STORAGE_ITEMS = Symbol(
-        None,
-        None,
-        None,
-        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
-        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
-        " item_id_16[1000]",
-    )
-
-    STORAGE_ITEM_QUANTITIES = Symbol(
-        None,
-        None,
-        None,
-        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
-        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
-        " entry in this array is unused, and will be 0.",
-    )
-
-    KECLEON_SHOP_ITEMS_PTR = Symbol(None, None, None, "Pointer to KECLEON_SHOP_ITEMS.")
-
-    KECLEON_SHOP_ITEMS = Symbol(
-        None,
-        None,
-        None,
-        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
-        None,
-        None,
-        None,
-        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
-        " to be used by the Kecleon Shop.",
-    )
-
-    KECLEON_WARES_ITEMS_PTR = Symbol(
-        None, None, None, "Pointer to KECLEON_WARES_ITEMS."
-    )
-
-    KECLEON_WARES_ITEMS = Symbol(
-        None,
-        None,
-        None,
-        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_WARES_ITEMS = Symbol(
-        None,
-        None,
-        None,
-        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
-        " to be used by Kecleon Wares.",
-    )
-
-    MONEY_CARRIED = Symbol(
-        None, None, None, "The amount of money the player is currently carrying."
-    )
-
-    MONEY_STORED = Symbol(
-        None,
-        None,
-        None,
-        "The amount of money the player currently has stored in the Duskull Bank.",
-    )
-
-    LAST_NEW_MOVE = Symbol(
-        None,
-        None,
-        None,
-        "Move struct of the last new move introduced when learning a new move. Persists"
-        " even after the move selection is made in the menu.\n\ntype: struct move",
-    )
-
-    SCRIPT_VARS_VALUES = Symbol(
-        None,
-        None,
-        None,
-        "The table of game variable values. Its structure is determined by"
-        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
-        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
-        " the real length of this table is 0x400 based on the game code.\n\ntype:"
-        " struct script_var_value_table",
-    )
-
-    BAG_LEVEL = Symbol(
-        None,
-        None,
-        None,
-        "The player's bag level, which determines the bag capacity. This indexes"
-        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
-    )
-
-    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
-        None,
-        None,
-        None,
-        "The number of the special episode currently being played.\n\n0: normal,"
-        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
-        " Comes Team Charm!\n4: In the Future of Darkness",
-    )
-
-    PENDING_DUNGEON_ID = Symbol(
-        None,
-        None,
-        None,
-        "The ID of the selected dungeon when setting off from the"
-        " overworld.\n\nControls the text and map location during the 'map cutscene'"
-        " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
-    )
-
-    PENDING_STARTING_FLOOR = Symbol(
-        None,
-        None,
-        None,
-        "The floor number to start from in the dungeon specified by"
-        " PENDING_DUNGEON_ID.",
-    )
-
-    PLAY_TIME_SECONDS = Symbol(
-        None, None, None, "The player's total play time in seconds."
-    )
-
-    PLAY_TIME_FRAME_COUNTER = Symbol(
-        None,
-        None,
-        None,
-        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
-        " with each rollover.",
-    )
-
-    TEAM_NAME = Symbol(
-        None,
-        None,
-        None,
-        "The team name.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    HERO_SPECIES_ID = Symbol(
-        None,
-        None,
-        None,
-        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
-        " with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    HERO_NICKNAME = Symbol(
-        None,
-        None,
-        None,
-        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    PARTNER_SPECIES_ID = Symbol(
-        None,
-        None,
-        None,
-        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
-        " together with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    LEADER_IQ_SKILLS = Symbol(
-        None,
-        None,
-        None,
-        "Unlocked IQ skills of the current leader, available for selection from the IQ"
-        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
-        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
-        " larger struct, together with other nearby data.",
-    )
-
-    LEADER_NICKNAME = Symbol(
-        None,
-        None,
-        None,
-        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
-        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
-        " typically uses.\n\nThis is presumably part of a larger struct, together with"
-        " other nearby data.",
-    )
-
-    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
-        None,
-        None,
-        None,
-        "Unlocked IQ skills of the second party member, available for selection from"
-        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
-        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
-        " a larger struct, together with other nearby data.",
-    )
-
-    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
-        None,
-        None,
-        None,
-        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
-        " the game is running.",
-    )
-
-    TURNING_ON_THE_SPOT_FLAG = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
-    )
-
-    FLOOR_GENERATION_STATUS = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] Status data related to generation of the current floor in a"
-        " dungeon.\n\nThis data is populated as the dungeon floor is"
-        " generated.\n\ntype: struct floor_generation_status",
-    )
-
-
-class EuItcmRamSection:
-    name = "ram"
-    description = (
-        "Main memory.\nData in this file aren't located in the ROM itself, and are"
-        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
-        " dumping ground for addresses that are useful to know about, but don't fall in"
-        " the address ranges of any of the other files. Dynamically loaded constructs"
-        " that do fall within the address range of a relevant binary should be listed"
-        " in the corresponding YAML file of that binary, since it still has direct"
-        " utility when reverse-engineering that particular binary."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmRamFunctions
-    data = EuItcmRamData
-
-
-class EuItcmOverlay35Functions:
-    pass
-
-
-class EuItcmOverlay35Data:
-    pass
-
-
-class EuItcmOverlay35Section:
-    name = "overlay35"
-    description = "Unused; all zeroes."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay35Functions
-    data = EuItcmOverlay35Data
-
-
-class EuItcmOverlay33Functions:
-    pass
-
-
-class EuItcmOverlay33Data:
-    pass
-
-
-class EuItcmOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay33Functions
-    data = EuItcmOverlay33Data
-
-
 class EuItcmSections:
-    overlay20 = EuItcmOverlay20Section
+    ram = EuItcmRamSection
 
-    overlay3 = EuItcmOverlay3Section
-
-    overlay8 = EuItcmOverlay8Section
-
-    overlay5 = EuItcmOverlay5Section
-
-    overlay17 = EuItcmOverlay17Section
-
-    overlay19 = EuItcmOverlay19Section
-
-    overlay12 = EuItcmOverlay12Section
-
-    overlay2 = EuItcmOverlay2Section
+    overlay4 = EuItcmOverlay4Section
 
     overlay28 = EuItcmOverlay28Section
 
+    overlay22 = EuItcmOverlay22Section
+
     overlay29 = EuItcmOverlay29Section
 
-    overlay11 = EuItcmOverlay11Section
+    overlay12 = EuItcmOverlay12Section
+
+    overlay32 = EuItcmOverlay32Section
+
+    overlay23 = EuItcmOverlay23Section
+
+    overlay7 = EuItcmOverlay7Section
+
+    overlay35 = EuItcmOverlay35Section
 
     overlay25 = EuItcmOverlay25Section
 
-    arm9 = EuItcmArm9Section
+    overlay21 = EuItcmOverlay21Section
+
+    overlay9 = EuItcmOverlay9Section
+
+    overlay26 = EuItcmOverlay26Section
+
+    overlay33 = EuItcmOverlay33Section
+
+    overlay30 = EuItcmOverlay30Section
 
     overlay0 = EuItcmOverlay0Section
+
+    overlay24 = EuItcmOverlay24Section
+
+    overlay15 = EuItcmOverlay15Section
+
+    overlay13 = EuItcmOverlay13Section
+
+    overlay20 = EuItcmOverlay20Section
+
+    overlay11 = EuItcmOverlay11Section
+
+    overlay2 = EuItcmOverlay2Section
+
+    arm9 = EuItcmArm9Section
 
     overlay10 = EuItcmOverlay10Section
 
@@ -7897,44 +8073,24 @@ class EuItcmSections:
 
     overlay1 = EuItcmOverlay1Section
 
-    overlay4 = EuItcmOverlay4Section
+    overlay3 = EuItcmOverlay3Section
+
+    overlay5 = EuItcmOverlay5Section
 
     overlay6 = EuItcmOverlay6Section
 
-    overlay7 = EuItcmOverlay7Section
-
-    overlay9 = EuItcmOverlay9Section
-
-    overlay30 = EuItcmOverlay30Section
+    overlay8 = EuItcmOverlay8Section
 
     overlay31 = EuItcmOverlay31Section
 
-    overlay13 = EuItcmOverlay13Section
-
     overlay14 = EuItcmOverlay14Section
-
-    overlay15 = EuItcmOverlay15Section
 
     overlay16 = EuItcmOverlay16Section
 
+    overlay17 = EuItcmOverlay17Section
+
     overlay18 = EuItcmOverlay18Section
 
-    overlay21 = EuItcmOverlay21Section
-
-    overlay22 = EuItcmOverlay22Section
-
-    overlay23 = EuItcmOverlay23Section
-
-    overlay24 = EuItcmOverlay24Section
-
-    overlay26 = EuItcmOverlay26Section
+    overlay19 = EuItcmOverlay19Section
 
     overlay27 = EuItcmOverlay27Section
-
-    overlay32 = EuItcmOverlay32Section
-
-    ram = EuItcmRamSection
-
-    overlay35 = EuItcmOverlay35Section
-
-    overlay33 = EuItcmOverlay33Section

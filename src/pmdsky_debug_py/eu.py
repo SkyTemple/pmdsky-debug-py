@@ -1,184 +1,322 @@
 from .protocol import Symbol
 
 
-class EuOverlay20Functions:
+class EuRamFunctions:
     pass
 
 
-class EuOverlay20Data:
-    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238DAC4], 0x18, "")
-
-    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238DADC], 0x18, "")
-
-    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238DAF4], 0x18, "")
-
-    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238DB0C], 0x20, "")
-
-    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238DB2C], 0x28, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238DBC8], 0x20, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238DC38], 0x18, "")
-
-
-class EuOverlay20Section:
-    name = "overlay20"
-    description = "Controls the Recycle Shop."
-    loadaddress = 0x238AC80
-    length = 0x3000
-    functions = EuOverlay20Functions
-    data = EuOverlay20Data
-
-
-class EuOverlay3Functions:
-    pass
-
-
-class EuOverlay3Data:
-    pass
-
-
-class EuOverlay3Section:
-    name = "overlay3"
-    description = "Controls the Friend Rescue submenu within the top menu."
-    loadaddress = 0x233D200
-    length = 0xA160
-    functions = EuOverlay3Functions
-    data = EuOverlay3Data
-
-
-class EuOverlay8Functions:
-    pass
-
-
-class EuOverlay8Data:
-    pass
-
-
-class EuOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
+class EuRamData:
+    DUNGEON_COLORMAP_PTR = Symbol(
+        [0x1BA634],
+        [0x21BA634],
+        0x4,
+        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
+        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
+        " indexes into when rendering colors. Some weather conditions modify the"
+        " colormap, which is how the color scheme changes when it's, e.g., raining.",
     )
-    loadaddress = 0x233D200
-    length = 0x2620
-    functions = EuOverlay8Functions
-    data = EuOverlay8Data
 
-
-class EuOverlay5Functions:
-    pass
-
-
-class EuOverlay5Data:
-    pass
-
-
-class EuOverlay5Section:
-    name = "overlay5"
-    description = "Controls the Trade Team submenu within the top menu."
-    loadaddress = 0x233D200
-    length = 0x3240
-    functions = EuOverlay5Functions
-    data = EuOverlay5Data
-
-
-class EuOverlay17Functions:
-    pass
-
-
-class EuOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238C6C4], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238C6DC], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238C6F4], 0x20, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238C714], 0x28, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238C73C], 0x30, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238C76C], 0x30, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238C79C], 0x38, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238C7D4], 0x38, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238C80C], 0x38, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238C844], 0x40, "")
-
-
-class EuOverlay17Section:
-    name = "overlay17"
-    description = "Controls the Chimecho Assembly."
-    loadaddress = 0x238AC80
-    length = 0x1CE0
-    functions = EuOverlay17Functions
-    data = EuOverlay17Data
-
-
-class EuOverlay19Functions:
-    pass
-
-
-class EuOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol([0x40BC], [0x238ED3C], 0x18, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol([0x40D4], [0x238ED54], 0x18, "")
-
-    BAR_MAIN_MENU = Symbol([0x4104], [0x238ED84], 0x20, "")
-
-    BAR_SUBMENU_1 = Symbol([0x4124], [0x238EDA4], 0x20, "")
-
-    BAR_SUBMENU_2 = Symbol([0x4144], [0x238EDC4], 0x30, "")
-
-
-class EuOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
-    loadaddress = 0x238AC80
-    length = 0x4220
-    functions = EuOverlay19Functions
-    data = EuOverlay19Data
-
-
-class EuOverlay12Functions:
-    pass
-
-
-class EuOverlay12Data:
-    pass
-
-
-class EuOverlay12Section:
-    name = "overlay12"
-    description = "Unused; all zeroes."
-    loadaddress = 0x238AC80
-    length = 0x20
-    functions = EuOverlay12Functions
-    data = EuOverlay12Data
-
-
-class EuOverlay2Functions:
-    pass
-
-
-class EuOverlay2Data:
-    pass
-
-
-class EuOverlay2Section:
-    name = "overlay2"
-    description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
+    DUNGEON_STRUCT = Symbol(
+        [0x1BA674],
+        [0x21BA674],
+        0x2CB14,
+        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
+        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
+        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
+        " 29.\n\ntype: struct dungeon",
     )
-    loadaddress = 0x2329D40
-    length = 0x2AFC0
-    functions = EuOverlay2Functions
-    data = EuOverlay2Data
+
+    MOVE_DATA_TABLE = Symbol(
+        [0x211D0C],
+        [0x2211D0C],
+        0x38C6,
+        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
+        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
+        " ARM 9 binary.\n\ntype: struct move_data_table",
+    )
+
+    FRAMES_SINCE_LAUNCH = Symbol(
+        [0x2A3E8C, 0x2A3EDC],
+        [0x22A3E8C, 0x22A3EDC],
+        0x4,
+        "Starts at 0 when the game is first launched, and continuously ticks up once"
+        " per frame while the game is running.",
+    )
+
+    BAG_ITEMS = Symbol(
+        [0x2A4164],
+        [0x22A4164],
+        0x12C,
+        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
+        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
+        " if filled.\n\ntype: struct item[50]",
+    )
+
+    BAG_ITEMS_PTR = Symbol([0x2A44E8], [0x22A44E8], 0x4, "Pointer to BAG_ITEMS.")
+
+    STORAGE_ITEMS = Symbol(
+        [0x2A44EE],
+        [0x22A44EE],
+        0x7D0,
+        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
+        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
+        " item_id_16[1000]",
+    )
+
+    STORAGE_ITEM_QUANTITIES = Symbol(
+        [0x2A4CBE],
+        [0x22A4CBE],
+        0x7D0,
+        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
+        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
+        " entry in this array is unused, and will be 0.",
+    )
+
+    KECLEON_SHOP_ITEMS_PTR = Symbol(
+        [0x2A5490], [0x22A5490], 0x4, "Pointer to KECLEON_SHOP_ITEMS."
+    )
+
+    KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A5494],
+        [0x22A5494],
+        0x20,
+        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A54B4],
+        [0x22A54B4],
+        0x20,
+        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
+        " to be used by the Kecleon Shop.",
+    )
+
+    KECLEON_WARES_ITEMS_PTR = Symbol(
+        [0x2A54D4], [0x22A54D4], 0x4, "Pointer to KECLEON_WARES_ITEMS."
+    )
+
+    KECLEON_WARES_ITEMS = Symbol(
+        [0x2A54D8],
+        [0x22A54D8],
+        0x10,
+        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_WARES_ITEMS = Symbol(
+        [0x2A54E8],
+        [0x22A54E8],
+        0x10,
+        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
+        " to be used by Kecleon Wares.",
+    )
+
+    MONEY_CARRIED = Symbol(
+        [0x2A54F8],
+        [0x22A54F8],
+        0x4,
+        "The amount of money the player is currently carrying.",
+    )
+
+    MONEY_STORED = Symbol(
+        [0x2A5504],
+        [0x22A5504],
+        0x4,
+        "The amount of money the player currently has stored in the Duskull Bank.",
+    )
+
+    LAST_NEW_MOVE = Symbol(
+        [0x2AB78C],
+        [0x22AB78C],
+        0x8,
+        "Move struct of the last new move introduced when learning a new move. Persists"
+        " even after the move selection is made in the menu.\n\ntype: struct move",
+    )
+
+    SCRIPT_VARS_VALUES = Symbol(
+        [0x2AB9EC],
+        [0x22AB9EC],
+        0x400,
+        "The table of game variable values. Its structure is determined by"
+        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
+        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
+        " the real length of this table is 0x400 based on the game code.\n\ntype:"
+        " struct script_var_value_table",
+    )
+
+    BAG_LEVEL = Symbol(
+        [0x2ABA9C],
+        [0x22ABA9C],
+        0x1,
+        "The player's bag level, which determines the bag capacity. This indexes"
+        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
+    )
+
+    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
+        [0x2ABDEC],
+        [0x22ABDEC],
+        0x1,
+        "The number of the special episode currently being played.\n\n0: normal,"
+        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
+        " Comes Team Charm!\n4: In the Future of Darkness",
+    )
+
+    PENDING_DUNGEON_ID = Symbol(
+        [0x2ABE3C],
+        [0x22ABE3C],
+        0x1,
+        "The ID of the selected dungeon when setting off from the"
+        " overworld.\n\nControls the text and map location during the 'map cutscene'"
+        " just before entering a dungeon, as well as the actual dungeon loaded"
+        " afterwards.\n\ntype: struct dungeon_id_8",
+    )
+
+    PENDING_STARTING_FLOOR = Symbol(
+        [0x2ABE3D],
+        [0x22ABE3D],
+        0x1,
+        "The floor number to start from in the dungeon specified by"
+        " PENDING_DUNGEON_ID.",
+    )
+
+    PLAY_TIME_SECONDS = Symbol(
+        [0x2ABFD4], [0x22ABFD4], 0x4, "The player's total play time in seconds."
+    )
+
+    PLAY_TIME_FRAME_COUNTER = Symbol(
+        [0x2ABFD8],
+        [0x22ABFD8],
+        0x1,
+        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
+        " with each rollover.",
+    )
+
+    TEAM_NAME = Symbol(
+        [0x2AC258],
+        [0x22AC258],
+        0xC,
+        "The team name.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    HERO_SPECIES_ID = Symbol(
+        [0x2AC724],
+        [0x22AC724],
+        0x2,
+        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
+        " with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    HERO_NICKNAME = Symbol(
+        [0x2AC75A],
+        [0x22AC75A],
+        0xA,
+        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    PARTNER_SPECIES_ID = Symbol(
+        [0x2AC768],
+        [0x22AC768],
+        0x2,
+        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
+        " together with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    LEADER_IQ_SKILLS = Symbol(
+        [0x2B5AD8],
+        [0x22B5AD8],
+        0xC,
+        "Unlocked IQ skills of the current leader, available for selection from the IQ"
+        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
+        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
+        " larger struct, together with other nearby data.",
+    )
+
+    LEADER_NICKNAME = Symbol(
+        [0x2B5AEA],
+        [0x22B5AEA],
+        0xA,
+        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
+        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
+        " typically uses.\n\nThis is presumably part of a larger struct, together with"
+        " other nearby data.",
+    )
+
+    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
+        [0x2B5B40],
+        [0x22B5B40],
+        0xC,
+        "Unlocked IQ skills of the second party member, available for selection from"
+        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
+        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
+        " a larger struct, together with other nearby data.",
+    )
+
+    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
+        [0x2BA304],
+        [0x22BA304],
+        0x4,
+        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
+        " the game is running.",
+    )
+
+    TURNING_ON_THE_SPOT_FLAG = Symbol(
+        [0x37D5A6],
+        [0x237D5A6],
+        0x1,
+        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    FLOOR_GENERATION_STATUS = Symbol(
+        [0x37DBBC],
+        [0x237DBBC],
+        0x40,
+        "[Runtime] Status data related to generation of the current floor in a"
+        " dungeon.\n\nThis data is populated as the dungeon floor is"
+        " generated.\n\ntype: struct floor_generation_status",
+    )
+
+
+class EuRamSection:
+    name = "ram"
+    description = (
+        "Main memory.\nData in this file aren't located in the ROM itself, and are"
+        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
+        " dumping ground for addresses that are useful to know about, but don't fall in"
+        " the address ranges of any of the other files. Dynamically loaded constructs"
+        " that do fall within the address range of a relevant binary should be listed"
+        " in the corresponding YAML file of that binary, since it still has direct"
+        " utility when reverse-engineering that particular binary."
+    )
+    loadaddress = 0x2000000
+    length = 0x400000
+    functions = EuRamFunctions
+    data = EuRamData
+
+
+class EuOverlay4Functions:
+    pass
+
+
+class EuOverlay4Data:
+    pass
+
+
+class EuOverlay4Section:
+    name = "overlay4"
+    description = "Controls the Trade Items submenu within the top menu."
+    loadaddress = 0x233D200
+    length = 0x2BE0
+    functions = EuOverlay4Functions
+    data = EuOverlay4Data
 
 
 class EuOverlay28Functions:
@@ -196,6 +334,29 @@ class EuOverlay28Section:
     length = 0xC60
     functions = EuOverlay28Functions
     data = EuOverlay28Data
+
+
+class EuOverlay22Functions:
+    pass
+
+
+class EuOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238F3A8], 0x18, "")
+
+    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238F3C0], 0x20, "")
+
+    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238F3E0], 0x20, "")
+
+    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238F400], 0x30, "")
+
+
+class EuOverlay22Section:
+    name = "overlay22"
+    description = "Controls the Kecleon Shop in Treasure Town."
+    loadaddress = 0x238AC80
+    length = 0x4B40
+    functions = EuOverlay22Functions
+    data = EuOverlay22Data
 
 
 class EuOverlay29Functions:
@@ -765,6 +926,30 @@ class EuOverlay29Functions:
         " depending on the result of GetCanMoveFlag for the monster's ID.\n\nr0:"
         " Pointer to the monster's action_id field (this field is probably contained in"
         " a struct)\nr1: Monster ID",
+    )
+
+    GetItemAction = Symbol(
+        [0xF408],
+        [0x22EBF88],
+        None,
+        "Returns the action ID that corresponds to an item given its ID.\n\nThe action"
+        " is based on the category of the item (see ITEM_CATEGORY_ACTIONS), unless the"
+        " specified ID is 0x16B, in which case ACTION_UNK_35 is returned.\nSome items"
+        " can have unexpected actions, such as thrown items, which have ACTION_NOTHING."
+        " This is done to prevent duplicate actions from being listed in the menu"
+        " (since items always have a 'throw' option), since a return value of"
+        " ACTION_NOTHING prevents the option from showing up in the menu.\n\nr0: Item"
+        " ID\nreturn: Action ID associated with the specified item",
+    )
+
+    AddDungeonSubMenuOption = Symbol(
+        [0xF64C],
+        [0x22EC1CC],
+        None,
+        "Adds an option to the list of actions that can be taken on a pokémon, item or"
+        " move to the currently active sub-menu on dungeon mode (team, moves, items,"
+        " etc.).\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
     )
 
     SetActionRegularAttack = Symbol(
@@ -3384,6 +3569,17 @@ class EuOverlay29Functions:
         [0x7132C], [0x234DEAC], None, "Very similar to DisplayMessage"
     )
 
+    YesNoMenu = Symbol(
+        [0x71598],
+        [0x234E118],
+        None,
+        "Opens a menu where the user can choose 'Yes' or 'No' and waits for input"
+        " before returning.\n\nr0: ?\nr1: ID of the string to display in the"
+        " textbox\nr2: Option that the cursor will be on by default. 0 for 'Yes', 1 for"
+        " 'No'\nr3: ?\nreturn: True if the user chooses 'Yes', false if the user"
+        " chooses 'No'",
+    )
+
     DisplayMessageInternal = Symbol(
         [0x71610],
         [0x234E190],
@@ -3395,6 +3591,25 @@ class EuOverlay29Functions:
         " player input before closing the dialogue box, false to close it automatically"
         " once all the characters get printed.\nr2: ? (r0 in DisplayMessage)\nr3:"
         " ?\nstack[0]: ?\nstack[1]: ?",
+    )
+
+    OthersMenuLoop = Symbol(
+        [0x7384C],
+        [0x23503CC],
+        None,
+        "Called on each frame while the in-dungeon 'others' menu is open.\n\nIt"
+        " contains a switch to determine whether an option has been chosen or not and a"
+        " second switch that determines what to do depending on which option was"
+        " chosen.\n\nreturn: int (Actually, this is probably some sort of enum shared"
+        " by all the MenuLoop functions)",
+    )
+
+    OthersMenu = Symbol(
+        [0x73AB0],
+        [0x2350630],
+        None,
+        "Called when the in-dungeon 'others' menu is open. Does not return until the"
+        " menu is closed.\n\nreturn: Always 0",
     )
 
 
@@ -3907,6 +4122,14 @@ class EuOverlay29Data:
         " direction (positive y means down).",
     )
 
+    ITEM_CATEGORY_ACTIONS = Symbol(
+        [0x7609C],
+        [0x2352C1C],
+        0x20,
+        "Action ID associated with each item category. Used by GetItemAction.\n\nEach"
+        " entry is 2 bytes long.",
+    )
+
     FRACTIONAL_TURN_SEQUENCE = Symbol(
         [0x76342],
         [0x2352EC2],
@@ -4078,6 +4301,353 @@ class EuOverlay29Section:
     length = 0x77900
     functions = EuOverlay29Functions
     data = EuOverlay29Data
+
+
+class EuOverlay12Functions:
+    pass
+
+
+class EuOverlay12Data:
+    pass
+
+
+class EuOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = 0x238AC80
+    length = 0x20
+    functions = EuOverlay12Functions
+    data = EuOverlay12Data
+
+
+class EuOverlay32Functions:
+    pass
+
+
+class EuOverlay32Data:
+    pass
+
+
+class EuOverlay32Section:
+    name = "overlay32"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2383420
+    length = 0x20
+    functions = EuOverlay32Functions
+    data = EuOverlay32Data
+
+
+class EuOverlay23Functions:
+    pass
+
+
+class EuOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238DE3C], 0x18, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238DE54], 0x20, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238DE74], 0x20, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238DE94], 0x20, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238DEB4], 0x28, "")
+
+
+class EuOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
+    )
+    loadaddress = 0x238AC80
+    length = 0x3780
+    functions = EuOverlay23Functions
+    data = EuOverlay23Data
+
+
+class EuOverlay7Functions:
+    pass
+
+
+class EuOverlay7Data:
+    pass
+
+
+class EuOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
+    )
+    loadaddress = 0x233D200
+    length = 0x3300
+    functions = EuOverlay7Functions
+    data = EuOverlay7Data
+
+
+class EuOverlay35Functions:
+    pass
+
+
+class EuOverlay35Data:
+    pass
+
+
+class EuOverlay35Section:
+    name = "overlay35"
+    description = "Unused; all zeroes."
+    loadaddress = 0x22BD3C0
+    length = 0x20
+    functions = EuOverlay35Functions
+    data = EuOverlay35Data
+
+
+class EuOverlay25Functions:
+    pass
+
+
+class EuOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238BFF4], 0x18, "")
+
+    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238C00C], 0x20, "")
+
+    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238C02C], 0x20, "")
+
+
+class EuOverlay25Section:
+    name = "overlay25"
+    description = "Controls Xatu Appraisal."
+    loadaddress = 0x238AC80
+    length = 0x14C0
+    functions = EuOverlay25Functions
+    data = EuOverlay25Data
+
+
+class EuOverlay21Functions:
+    pass
+
+
+class EuOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238D578], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238D590], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238D5A8], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238D5C8], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238D5E8], 0x28, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238D610], 0x30, "")
+
+
+class EuOverlay21Section:
+    name = "overlay21"
+    description = "Controls the Croagunk Swap Shop."
+    loadaddress = 0x238AC80
+    length = 0x2E20
+    functions = EuOverlay21Functions
+    data = EuOverlay21Data
+
+
+class EuOverlay9Functions:
+    pass
+
+
+class EuOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        [0xE80],
+        [0x233E080],
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class EuOverlay9Section:
+    name = "overlay9"
+    description = "Controls the Sky Jukebox."
+    loadaddress = 0x233D200
+    length = 0x2D80
+    functions = EuOverlay9Functions
+    data = EuOverlay9Data
+
+
+class EuOverlay26Functions:
+    pass
+
+
+class EuOverlay26Data:
+    pass
+
+
+class EuOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Related to mission completion. It's loaded when the dungeon completion summary"
+        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
+        " mission rewards from clients."
+    )
+    loadaddress = 0x238AC80
+    length = 0xE40
+    functions = EuOverlay26Functions
+    data = EuOverlay26Data
+
+
+class EuOverlay33Functions:
+    pass
+
+
+class EuOverlay33Data:
+    pass
+
+
+class EuOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2383420
+    length = 0x20
+    functions = EuOverlay33Functions
+    data = EuOverlay33Data
+
+
+class EuOverlay30Functions:
+    pass
+
+
+class EuOverlay30Data:
+    pass
+
+
+class EuOverlay30Section:
+    name = "overlay30"
+    description = "Controls quicksaving in dungeons."
+    loadaddress = 0x2383420
+    length = 0x38A0
+    functions = EuOverlay30Functions
+    data = EuOverlay30Data
+
+
+class EuOverlay0Functions:
+    pass
+
+
+class EuOverlay0Data:
+    TOP_MENU_MUSIC_ID = Symbol(
+        [0x15F4], [0x22BE9B4], None, "Music ID to play in the top menu."
+    )
+
+
+class EuOverlay0Section:
+    name = "overlay0"
+    description = (
+        "Likely contains supporting data and code related to the top menu.\n\nThis is"
+        " loaded together with overlay 1 while in the top menu. Since it's in overlay"
+        " group 2 (together with overlay 10, which is another 'data' overlay), this"
+        " overlay probably plays a similar role. It mentions several files from the"
+        " BACK folder that are known backgrounds for the top menu."
+    )
+    loadaddress = 0x22BD3C0
+    length = 0x60880
+    functions = EuOverlay0Functions
+    data = EuOverlay0Data
+
+
+class EuOverlay24Functions:
+    pass
+
+
+class EuOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238D060], 0x18, "")
+
+    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238D078], 0x20, "")
+
+
+class EuOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = 0x238AC80
+    length = 0x24E0
+    functions = EuOverlay24Functions
+    data = EuOverlay24Data
+
+
+class EuOverlay15Functions:
+    pass
+
+
+class EuOverlay15Data:
+    BANK_MAIN_MENU = Symbol([0xF40], [0x238BBC0], 0x28, "")
+
+
+class EuOverlay15Section:
+    name = "overlay15"
+    description = "Controls the Duskull Bank."
+    loadaddress = 0x238AC80
+    length = 0x1080
+    functions = EuOverlay15Functions
+    data = EuOverlay15Data
+
+
+class EuOverlay13Functions:
+    pass
+
+
+class EuOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(
+        [0x1F4C], [0x238CBCC], 0x2A, "type: struct monster_id_16[21]"
+    )
+
+    STARTERS_HERO_IDS = Symbol(
+        [0x1F78], [0x238CBF8], 0x40, "type: struct monster_id_16[32]"
+    )
+
+    STARTERS_STRINGS = Symbol([0x200C], [0x238CC8C], 0x60, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238CCEC], 0x84, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238CD70], 0x160, "")
+
+    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238DA0C], 0x48, "")
+
+
+class EuOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Controls the personality test, including the available partners and playable"
+        " Pokémon. The actual personality test questions are stored in the MESSAGE"
+        " folder."
+    )
+    loadaddress = 0x238AC80
+    length = 0x2E80
+    functions = EuOverlay13Functions
+    data = EuOverlay13Data
+
+
+class EuOverlay20Functions:
+    pass
+
+
+class EuOverlay20Data:
+    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238DAC4], 0x18, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238DADC], 0x18, "")
+
+    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238DAF4], 0x18, "")
+
+    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238DB0C], 0x20, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238DB2C], 0x28, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238DBC8], 0x20, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238DC38], 0x18, "")
+
+
+class EuOverlay20Section:
+    name = "overlay20"
+    description = "Controls the Recycle Shop."
+    loadaddress = 0x238AC80
+    length = 0x3000
+    functions = EuOverlay20Functions
+    data = EuOverlay20Data
 
 
 class EuOverlay11Functions:
@@ -4350,25 +4920,25 @@ class EuOverlay11Section:
     data = EuOverlay11Data
 
 
-class EuOverlay25Functions:
+class EuOverlay2Functions:
     pass
 
 
-class EuOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238BFF4], 0x18, "")
-
-    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238C00C], 0x20, "")
-
-    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238C02C], 0x20, "")
+class EuOverlay2Data:
+    pass
 
 
-class EuOverlay25Section:
-    name = "overlay25"
-    description = "Controls Xatu Appraisal."
-    loadaddress = 0x238AC80
-    length = 0x14C0
-    functions = EuOverlay25Functions
-    data = EuOverlay25Data
+class EuOverlay2Section:
+    name = "overlay2"
+    description = (
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
+    )
+    loadaddress = 0x2329D40
+    length = 0x2AFC0
+    functions = EuOverlay2Functions
+    data = EuOverlay2Data
 
 
 class EuArm9Functions:
@@ -5005,6 +5575,15 @@ class EuArm9Functions:
         " the Table of Content)",
     )
 
+    GetItemCategoryVeneer = Symbol(
+        [0xCB78],
+        [0x200CB78],
+        None,
+        "Likely a linker-generated veneer for GetItemCategory.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " Item ID\nreturn: Category ID",
+    )
+
     IsAuraBow = Symbol(
         [0xCC9C],
         [0x200CC9C],
@@ -5057,6 +5636,14 @@ class EuArm9Functions:
         " in a bunch of different places. See the actual Sprintf for the one in"
         " libc.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of characters"
         " printed, excluding the null-terminator",
+    )
+
+    GetItemCategory = Symbol(
+        [0xE8D8],
+        [0x200E8D8],
+        None,
+        "Returns the category of the specified item\n\nr0: Item ID\nreturn: Item"
+        " category",
     )
 
     SetMoneyCarried = Symbol(
@@ -6008,6 +6595,15 @@ class EuArm9Functions:
         None,
         "Returns the maximum rescue attempts allowed in the specified dungeon.\n\nr0:"
         " dungeon id\nreturn: Max rescue attempts, or -1 if rescues are disabled.",
+    )
+
+    GetLeaderChangeFlag = Symbol(
+        [0x516F8],
+        [0x20516F8],
+        None,
+        "Returns true if the flag that allows changing leaders is set in the"
+        " restrictions of the specified dungeon\n\nr0: dungeon id\nreturn: True if the"
+        " restrictions of the current dungeon allow changing leaders, false otherwise.",
     )
 
     JoinedAtRangeCheck = Symbol(
@@ -7111,27 +7707,6 @@ class EuArm9Section:
     data = EuArm9Data
 
 
-class EuOverlay0Functions:
-    pass
-
-
-class EuOverlay0Data:
-    TOP_MENU_MUSIC_ID = Symbol(
-        [0x15F4], [0x22BE9B4], None, "Music ID to play in the top menu."
-    )
-
-
-class EuOverlay0Section:
-    name = "overlay0"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 0."
-    )
-    loadaddress = 0x22BD3C0
-    length = 0x60880
-    functions = EuOverlay0Functions
-    data = EuOverlay0Data
-
-
 class EuOverlay10Functions:
     SprintfStatic = Symbol(
         [0x9CC, 0x4DD4],
@@ -7532,7 +8107,36 @@ class EuOverlay34Section:
 
 
 class EuOverlay1Functions:
-    pass
+    CreateMainMenus = Symbol(
+        [0x7B88],
+        [0x23318C8],
+        None,
+        "Prepares the top menu and sub menu, adding the different options that compose"
+        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
+        " Some of them are conditionally executed depending on which options should be"
+        " unlocked.\n\nNo params.",
+    )
+
+    AddMainMenuOption = Symbol(
+        [0x7FFC],
+        [0x2331D3C],
+        None,
+        "Adds an option to the top menu.\n\nThis function is called for each one of the"
+        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
+        " action ID does not exist there, the option won't be added.\n\nr0: Action"
+        " ID\nr1: True if the option should be enabled, false otherwise",
+    )
+
+    AddSubMenuOption = Symbol(
+        [0x80D4],
+        [0x2331E14],
+        None,
+        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
+        " called for each one of the options in the submenu. It loops the SUBMENU data"
+        " field, if the specified action ID does not exist there, the option won't be"
+        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
+    )
 
 
 class EuOverlay1Data:
@@ -7560,23 +8164,42 @@ class EuOverlay1Section:
     data = EuOverlay1Data
 
 
-class EuOverlay4Functions:
+class EuOverlay3Functions:
     pass
 
 
-class EuOverlay4Data:
+class EuOverlay3Data:
     pass
 
 
-class EuOverlay4Section:
-    name = "overlay4"
+class EuOverlay3Section:
+    name = "overlay3"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
+        "Hard-coded immediate values (literals) in instructions within overlay 3."
     )
     loadaddress = 0x233D200
-    length = 0x2BE0
-    functions = EuOverlay4Functions
-    data = EuOverlay4Data
+    length = 0xA160
+    functions = EuOverlay3Functions
+    data = EuOverlay3Data
+
+
+class EuOverlay5Functions:
+    pass
+
+
+class EuOverlay5Data:
+    pass
+
+
+class EuOverlay5Section:
+    name = "overlay5"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 5."
+    )
+    loadaddress = 0x233D200
+    length = 0x3240
+    functions = EuOverlay5Functions
+    data = EuOverlay5Data
 
 
 class EuOverlay6Functions:
@@ -7598,70 +8221,64 @@ class EuOverlay6Section:
     data = EuOverlay6Data
 
 
-class EuOverlay7Functions:
+class EuOverlay8Functions:
     pass
 
 
-class EuOverlay7Data:
+class EuOverlay8Data:
     pass
 
 
-class EuOverlay7Section:
-    name = "overlay7"
+class EuOverlay8Section:
+    name = "overlay8"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 7."
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
     )
     loadaddress = 0x233D200
-    length = 0x3300
-    functions = EuOverlay7Functions
-    data = EuOverlay7Data
-
-
-class EuOverlay9Functions:
-    pass
-
-
-class EuOverlay9Data:
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        [0xE80],
-        [0x233E080],
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class EuOverlay9Section:
-    name = "overlay9"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 9."
-    )
-    loadaddress = 0x233D200
-    length = 0x2D80
-    functions = EuOverlay9Functions
-    data = EuOverlay9Data
-
-
-class EuOverlay30Functions:
-    pass
-
-
-class EuOverlay30Data:
-    pass
-
-
-class EuOverlay30Section:
-    name = "overlay30"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 30."
-    )
-    loadaddress = 0x2383420
-    length = 0x38A0
-    functions = EuOverlay30Functions
-    data = EuOverlay30Data
+    length = 0x2620
+    functions = EuOverlay8Functions
+    data = EuOverlay8Data
 
 
 class EuOverlay31Functions:
-    pass
+    TeamMenu = Symbol(
+        [0x4850],
+        [0x2387C70],
+        None,
+        "Called when the in-dungeon 'team' menu is open. Does not return until the menu"
+        " is closed.\n\nNote that selecting certain options in this menu (such as"
+        " viewing the details or the moves of a pokémon) counts as switching to a"
+        " different menu, which causes the function to return.\n\nr0: Pointer to the"
+        " leader's entity struct\nreturn: ?",
+    )
+
+    RestMenu = Symbol(
+        [0x5F90],
+        [0x23893B0],
+        None,
+        "Called when the in-dungeon 'rest' menu is open. Does not return until the menu"
+        " is closed.\n\nNo params.",
+    )
+
+    RecruitmentSearchMenuLoop = Symbol(
+        [0x6408],
+        [0x2389828],
+        None,
+        "Called on each frame while the in-dungeon 'recruitment search' menu is"
+        " open.\n\nreturn: int (Actually, this is probably some sort of enum shared by"
+        " all the MenuLoop functions)",
+    )
+
+    HelpMenuLoop = Symbol(
+        [0x6A00],
+        [0x2389E20],
+        None,
+        "Called on each frame while the in-dungeon 'help' menu is open.\n\nThe menu is"
+        " still considered open while one of the help pages is being viewed, so this"
+        " function keeps being called even after choosing an option.\n\nreturn: int"
+        " (Actually, this is probably some sort of enum shared by all the MenuLoop"
+        " functions)",
+    )
 
 
 class EuOverlay31Data:
@@ -7691,39 +8308,6 @@ class EuOverlay31Section:
     data = EuOverlay31Data
 
 
-class EuOverlay13Functions:
-    pass
-
-
-class EuOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(
-        [0x1F4C], [0x238CBCC], 0x2A, "type: struct monster_id_16[21]"
-    )
-
-    STARTERS_HERO_IDS = Symbol(
-        [0x1F78], [0x238CBF8], 0x40, "type: struct monster_id_16[32]"
-    )
-
-    STARTERS_STRINGS = Symbol([0x200C], [0x238CC8C], 0x60, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238CCEC], 0x84, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238CD70], 0x160, "")
-
-    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238DA0C], 0x48, "")
-
-
-class EuOverlay13Section:
-    name = "overlay13"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
-    )
-    loadaddress = 0x238AC80
-    length = 0x2E80
-    functions = EuOverlay13Functions
-    data = EuOverlay13Data
-
-
 class EuOverlay14Functions:
     pass
 
@@ -7741,25 +8325,6 @@ class EuOverlay14Section:
     length = 0x3B40
     functions = EuOverlay14Functions
     data = EuOverlay14Data
-
-
-class EuOverlay15Functions:
-    pass
-
-
-class EuOverlay15Data:
-    BANK_MAIN_MENU = Symbol([0xF40], [0x238BBC0], 0x28, "")
-
-
-class EuOverlay15Section:
-    name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
-    loadaddress = 0x238AC80
-    length = 0x1080
-    functions = EuOverlay15Functions
-    data = EuOverlay15Data
 
 
 class EuOverlay16Functions:
@@ -7783,6 +8348,43 @@ class EuOverlay16Section:
     length = 0x2D20
     functions = EuOverlay16Functions
     data = EuOverlay16Data
+
+
+class EuOverlay17Functions:
+    pass
+
+
+class EuOverlay17Data:
+    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238C6C4], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238C6DC], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238C6F4], 0x20, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238C714], 0x28, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238C73C], 0x30, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238C76C], 0x30, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238C79C], 0x38, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238C7D4], 0x38, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238C80C], 0x38, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238C844], 0x40, "")
+
+
+class EuOverlay17Section:
+    name = "overlay17"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 17."
+    )
+    loadaddress = 0x238AC80
+    length = 0x1CE0
+    functions = EuOverlay17Functions
+    data = EuOverlay17Data
 
 
 class EuOverlay18Functions:
@@ -7820,125 +8422,31 @@ class EuOverlay18Section:
     data = EuOverlay18Data
 
 
-class EuOverlay21Functions:
+class EuOverlay19Functions:
     pass
 
 
-class EuOverlay21Data:
-    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238D578], 0x18, "")
+class EuOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol([0x40BC], [0x238ED3C], 0x18, "")
 
-    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238D590], 0x18, "")
+    BAR_MENU_CONFIRM_2 = Symbol([0x40D4], [0x238ED54], 0x18, "")
 
-    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238D5A8], 0x20, "")
+    BAR_MAIN_MENU = Symbol([0x4104], [0x238ED84], 0x20, "")
 
-    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238D5C8], 0x20, "")
+    BAR_SUBMENU_1 = Symbol([0x4124], [0x238EDA4], 0x20, "")
 
-    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238D5E8], 0x28, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238D610], 0x30, "")
+    BAR_SUBMENU_2 = Symbol([0x4144], [0x238EDC4], 0x30, "")
 
 
-class EuOverlay21Section:
-    name = "overlay21"
+class EuOverlay19Section:
+    name = "overlay19"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
     )
     loadaddress = 0x238AC80
-    length = 0x2E20
-    functions = EuOverlay21Functions
-    data = EuOverlay21Data
-
-
-class EuOverlay22Functions:
-    pass
-
-
-class EuOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238F3A8], 0x18, "")
-
-    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238F3C0], 0x20, "")
-
-    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238F3E0], 0x20, "")
-
-    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238F400], 0x30, "")
-
-
-class EuOverlay22Section:
-    name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
-    loadaddress = 0x238AC80
-    length = 0x4B40
-    functions = EuOverlay22Functions
-    data = EuOverlay22Data
-
-
-class EuOverlay23Functions:
-    pass
-
-
-class EuOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238DE3C], 0x18, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238DE54], 0x20, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238DE74], 0x20, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238DE94], 0x20, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238DEB4], 0x28, "")
-
-
-class EuOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 23."
-    )
-    loadaddress = 0x238AC80
-    length = 0x3780
-    functions = EuOverlay23Functions
-    data = EuOverlay23Data
-
-
-class EuOverlay24Functions:
-    pass
-
-
-class EuOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238D060], 0x18, "")
-
-    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238D078], 0x20, "")
-
-
-class EuOverlay24Section:
-    name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
-    loadaddress = 0x238AC80
-    length = 0x24E0
-    functions = EuOverlay24Functions
-    data = EuOverlay24Data
-
-
-class EuOverlay26Functions:
-    pass
-
-
-class EuOverlay26Data:
-    pass
-
-
-class EuOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
-    )
-    loadaddress = 0x238AC80
-    length = 0xE40
-    functions = EuOverlay26Functions
-    data = EuOverlay26Data
+    length = 0x4220
+    functions = EuOverlay19Functions
+    data = EuOverlay19Data
 
 
 class EuOverlay27Functions:
@@ -7966,386 +8474,54 @@ class EuOverlay27Section:
     data = EuOverlay27Data
 
 
-class EuOverlay32Functions:
-    pass
-
-
-class EuOverlay32Data:
-    pass
-
-
-class EuOverlay32Section:
-    name = "overlay32"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383420
-    length = 0x20
-    functions = EuOverlay32Functions
-    data = EuOverlay32Data
-
-
-class EuRamFunctions:
-    pass
-
-
-class EuRamData:
-    DUNGEON_COLORMAP_PTR = Symbol(
-        [0x1BA634],
-        [0x21BA634],
-        0x4,
-        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
-        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
-        " indexes into when rendering colors. Some weather conditions modify the"
-        " colormap, which is how the color scheme changes when it's, e.g., raining.",
-    )
-
-    DUNGEON_STRUCT = Symbol(
-        [0x1BA674],
-        [0x21BA674],
-        0x2CB14,
-        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
-        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
-        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
-        " 29.\n\ntype: struct dungeon",
-    )
-
-    MOVE_DATA_TABLE = Symbol(
-        [0x211D0C],
-        [0x2211D0C],
-        0x38C6,
-        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
-        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
-        " ARM 9 binary.\n\ntype: struct move_data_table",
-    )
-
-    FRAMES_SINCE_LAUNCH = Symbol(
-        [0x2A3E8C, 0x2A3EDC],
-        [0x22A3E8C, 0x22A3EDC],
-        0x4,
-        "Starts at 0 when the game is first launched, and continuously ticks up once"
-        " per frame while the game is running.",
-    )
-
-    BAG_ITEMS = Symbol(
-        [0x2A4164],
-        [0x22A4164],
-        0x12C,
-        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
-        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
-        " if filled.\n\ntype: struct item[50]",
-    )
-
-    BAG_ITEMS_PTR = Symbol([0x2A44E8], [0x22A44E8], 0x4, "Pointer to BAG_ITEMS.")
-
-    STORAGE_ITEMS = Symbol(
-        [0x2A44EE],
-        [0x22A44EE],
-        0x7D0,
-        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
-        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
-        " item_id_16[1000]",
-    )
-
-    STORAGE_ITEM_QUANTITIES = Symbol(
-        [0x2A4CBE],
-        [0x22A4CBE],
-        0x7D0,
-        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
-        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
-        " entry in this array is unused, and will be 0.",
-    )
-
-    KECLEON_SHOP_ITEMS_PTR = Symbol(
-        [0x2A5490], [0x22A5490], 0x4, "Pointer to KECLEON_SHOP_ITEMS."
-    )
-
-    KECLEON_SHOP_ITEMS = Symbol(
-        [0x2A5494],
-        [0x22A5494],
-        0x20,
-        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
-        [0x2A54B4],
-        [0x22A54B4],
-        0x20,
-        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
-        " to be used by the Kecleon Shop.",
-    )
-
-    KECLEON_WARES_ITEMS_PTR = Symbol(
-        [0x2A54D4], [0x22A54D4], 0x4, "Pointer to KECLEON_WARES_ITEMS."
-    )
-
-    KECLEON_WARES_ITEMS = Symbol(
-        [0x2A54D8],
-        [0x22A54D8],
-        0x10,
-        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_WARES_ITEMS = Symbol(
-        [0x2A54E8],
-        [0x22A54E8],
-        0x10,
-        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
-        " to be used by Kecleon Wares.",
-    )
-
-    MONEY_CARRIED = Symbol(
-        [0x2A54F8],
-        [0x22A54F8],
-        0x4,
-        "The amount of money the player is currently carrying.",
-    )
-
-    MONEY_STORED = Symbol(
-        [0x2A5504],
-        [0x22A5504],
-        0x4,
-        "The amount of money the player currently has stored in the Duskull Bank.",
-    )
-
-    LAST_NEW_MOVE = Symbol(
-        [0x2AB78C],
-        [0x22AB78C],
-        0x8,
-        "Move struct of the last new move introduced when learning a new move. Persists"
-        " even after the move selection is made in the menu.\n\ntype: struct move",
-    )
-
-    SCRIPT_VARS_VALUES = Symbol(
-        [0x2AB9EC],
-        [0x22AB9EC],
-        0x400,
-        "The table of game variable values. Its structure is determined by"
-        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
-        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
-        " the real length of this table is 0x400 based on the game code.\n\ntype:"
-        " struct script_var_value_table",
-    )
-
-    BAG_LEVEL = Symbol(
-        [0x2ABA9C],
-        [0x22ABA9C],
-        0x1,
-        "The player's bag level, which determines the bag capacity. This indexes"
-        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
-    )
-
-    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
-        [0x2ABDEC],
-        [0x22ABDEC],
-        0x1,
-        "The number of the special episode currently being played.\n\n0: normal,"
-        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
-        " Comes Team Charm!\n4: In the Future of Darkness",
-    )
-
-    PENDING_DUNGEON_ID = Symbol(
-        [0x2ABE3C],
-        [0x22ABE3C],
-        0x1,
-        "The ID of the selected dungeon when setting off from the"
-        " overworld.\n\nControls the text and map location during the 'map cutscene'"
-        " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
-    )
-
-    PENDING_STARTING_FLOOR = Symbol(
-        [0x2ABE3D],
-        [0x22ABE3D],
-        0x1,
-        "The floor number to start from in the dungeon specified by"
-        " PENDING_DUNGEON_ID.",
-    )
-
-    PLAY_TIME_SECONDS = Symbol(
-        [0x2ABFD4], [0x22ABFD4], 0x4, "The player's total play time in seconds."
-    )
-
-    PLAY_TIME_FRAME_COUNTER = Symbol(
-        [0x2ABFD8],
-        [0x22ABFD8],
-        0x1,
-        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
-        " with each rollover.",
-    )
-
-    TEAM_NAME = Symbol(
-        [0x2AC258],
-        [0x22AC258],
-        0xC,
-        "The team name.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    HERO_SPECIES_ID = Symbol(
-        [0x2AC724],
-        [0x22AC724],
-        0x2,
-        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
-        " with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    HERO_NICKNAME = Symbol(
-        [0x2AC75A],
-        [0x22AC75A],
-        0xA,
-        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    PARTNER_SPECIES_ID = Symbol(
-        [0x2AC768],
-        [0x22AC768],
-        0x2,
-        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
-        " together with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    LEADER_IQ_SKILLS = Symbol(
-        [0x2B5AD8],
-        [0x22B5AD8],
-        0xC,
-        "Unlocked IQ skills of the current leader, available for selection from the IQ"
-        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
-        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
-        " larger struct, together with other nearby data.",
-    )
-
-    LEADER_NICKNAME = Symbol(
-        [0x2B5AEA],
-        [0x22B5AEA],
-        0xA,
-        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
-        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
-        " typically uses.\n\nThis is presumably part of a larger struct, together with"
-        " other nearby data.",
-    )
-
-    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
-        [0x2B5B40],
-        [0x22B5B40],
-        0xC,
-        "Unlocked IQ skills of the second party member, available for selection from"
-        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
-        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
-        " a larger struct, together with other nearby data.",
-    )
-
-    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
-        [0x2BA304],
-        [0x22BA304],
-        0x4,
-        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
-        " the game is running.",
-    )
-
-    TURNING_ON_THE_SPOT_FLAG = Symbol(
-        [0x37D5A6],
-        [0x237D5A6],
-        0x1,
-        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
-    )
-
-    FLOOR_GENERATION_STATUS = Symbol(
-        [0x37DBBC],
-        [0x237DBBC],
-        0x40,
-        "[Runtime] Status data related to generation of the current floor in a"
-        " dungeon.\n\nThis data is populated as the dungeon floor is"
-        " generated.\n\ntype: struct floor_generation_status",
-    )
-
-
-class EuRamSection:
-    name = "ram"
-    description = (
-        "Main memory.\nData in this file aren't located in the ROM itself, and are"
-        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
-        " dumping ground for addresses that are useful to know about, but don't fall in"
-        " the address ranges of any of the other files. Dynamically loaded constructs"
-        " that do fall within the address range of a relevant binary should be listed"
-        " in the corresponding YAML file of that binary, since it still has direct"
-        " utility when reverse-engineering that particular binary."
-    )
-    loadaddress = 0x2000000
-    length = 0x400000
-    functions = EuRamFunctions
-    data = EuRamData
-
-
-class EuOverlay35Functions:
-    pass
-
-
-class EuOverlay35Data:
-    pass
-
-
-class EuOverlay35Section:
-    name = "overlay35"
-    description = "Unused; all zeroes."
-    loadaddress = 0x22BD3C0
-    length = 0x20
-    functions = EuOverlay35Functions
-    data = EuOverlay35Data
-
-
-class EuOverlay33Functions:
-    pass
-
-
-class EuOverlay33Data:
-    pass
-
-
-class EuOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383420
-    length = 0x20
-    functions = EuOverlay33Functions
-    data = EuOverlay33Data
-
-
 class EuSections:
-    overlay20 = EuOverlay20Section
+    ram = EuRamSection
 
-    overlay3 = EuOverlay3Section
-
-    overlay8 = EuOverlay8Section
-
-    overlay5 = EuOverlay5Section
-
-    overlay17 = EuOverlay17Section
-
-    overlay19 = EuOverlay19Section
-
-    overlay12 = EuOverlay12Section
-
-    overlay2 = EuOverlay2Section
+    overlay4 = EuOverlay4Section
 
     overlay28 = EuOverlay28Section
 
+    overlay22 = EuOverlay22Section
+
     overlay29 = EuOverlay29Section
 
-    overlay11 = EuOverlay11Section
+    overlay12 = EuOverlay12Section
+
+    overlay32 = EuOverlay32Section
+
+    overlay23 = EuOverlay23Section
+
+    overlay7 = EuOverlay7Section
+
+    overlay35 = EuOverlay35Section
 
     overlay25 = EuOverlay25Section
 
-    arm9 = EuArm9Section
+    overlay21 = EuOverlay21Section
+
+    overlay9 = EuOverlay9Section
+
+    overlay26 = EuOverlay26Section
+
+    overlay33 = EuOverlay33Section
+
+    overlay30 = EuOverlay30Section
 
     overlay0 = EuOverlay0Section
+
+    overlay24 = EuOverlay24Section
+
+    overlay15 = EuOverlay15Section
+
+    overlay13 = EuOverlay13Section
+
+    overlay20 = EuOverlay20Section
+
+    overlay11 = EuOverlay11Section
+
+    overlay2 = EuOverlay2Section
+
+    arm9 = EuArm9Section
 
     overlay10 = EuOverlay10Section
 
@@ -8353,44 +8529,24 @@ class EuSections:
 
     overlay1 = EuOverlay1Section
 
-    overlay4 = EuOverlay4Section
+    overlay3 = EuOverlay3Section
+
+    overlay5 = EuOverlay5Section
 
     overlay6 = EuOverlay6Section
 
-    overlay7 = EuOverlay7Section
-
-    overlay9 = EuOverlay9Section
-
-    overlay30 = EuOverlay30Section
+    overlay8 = EuOverlay8Section
 
     overlay31 = EuOverlay31Section
 
-    overlay13 = EuOverlay13Section
-
     overlay14 = EuOverlay14Section
-
-    overlay15 = EuOverlay15Section
 
     overlay16 = EuOverlay16Section
 
+    overlay17 = EuOverlay17Section
+
     overlay18 = EuOverlay18Section
 
-    overlay21 = EuOverlay21Section
-
-    overlay22 = EuOverlay22Section
-
-    overlay23 = EuOverlay23Section
-
-    overlay24 = EuOverlay24Section
-
-    overlay26 = EuOverlay26Section
+    overlay19 = EuOverlay19Section
 
     overlay27 = EuOverlay27Section
-
-    overlay32 = EuOverlay32Section
-
-    ram = EuRamSection
-
-    overlay35 = EuOverlay35Section
-
-    overlay33 = EuOverlay33Section

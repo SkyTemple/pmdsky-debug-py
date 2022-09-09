@@ -1,184 +1,322 @@
 from .protocol import Symbol
 
 
-class NaOverlay20Functions:
+class NaRamFunctions:
     pass
 
 
-class NaOverlay20Data:
-    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238CF84], 0x18, "")
-
-    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238CF9C], 0x18, "")
-
-    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238CFB4], 0x18, "")
-
-    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238CFCC], 0x20, "")
-
-    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238CFEC], 0x28, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
-
-
-class NaOverlay20Section:
-    name = "overlay20"
-    description = "Controls the Recycle Shop."
-    loadaddress = 0x238A140
-    length = 0x3000
-    functions = NaOverlay20Functions
-    data = NaOverlay20Data
-
-
-class NaOverlay3Functions:
-    pass
-
-
-class NaOverlay3Data:
-    pass
-
-
-class NaOverlay3Section:
-    name = "overlay3"
-    description = "Controls the Friend Rescue submenu within the top menu."
-    loadaddress = 0x233CA80
-    length = 0xA160
-    functions = NaOverlay3Functions
-    data = NaOverlay3Data
-
-
-class NaOverlay8Functions:
-    pass
-
-
-class NaOverlay8Data:
-    pass
-
-
-class NaOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
+class NaRamData:
+    DUNGEON_COLORMAP_PTR = Symbol(
+        [0x1B9CF4],
+        [0x21B9CF4],
+        0x4,
+        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
+        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
+        " indexes into when rendering colors. Some weather conditions modify the"
+        " colormap, which is how the color scheme changes when it's, e.g., raining.",
     )
-    loadaddress = 0x233CA80
-    length = 0x2200
-    functions = NaOverlay8Functions
-    data = NaOverlay8Data
 
-
-class NaOverlay5Functions:
-    pass
-
-
-class NaOverlay5Data:
-    pass
-
-
-class NaOverlay5Section:
-    name = "overlay5"
-    description = "Controls the Trade Team submenu within the top menu."
-    loadaddress = 0x233CA80
-    length = 0x3240
-    functions = NaOverlay5Functions
-    data = NaOverlay5Data
-
-
-class NaOverlay17Functions:
-    pass
-
-
-class NaOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238BB84], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238BB9C], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238BBB4], 0x20, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238BBD4], 0x28, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238BBFC], 0x30, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238BC2C], 0x30, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238BC5C], 0x38, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238BC94], 0x38, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238BCCC], 0x38, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238BD04], 0x40, "")
-
-
-class NaOverlay17Section:
-    name = "overlay17"
-    description = "Controls the Chimecho Assembly."
-    loadaddress = 0x238A140
-    length = 0x1CE0
-    functions = NaOverlay17Functions
-    data = NaOverlay17Data
-
-
-class NaOverlay19Functions:
-    pass
-
-
-class NaOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
-
-    BAR_MAIN_MENU = Symbol([0x4110], [0x238E250], 0x20, "")
-
-    BAR_SUBMENU_1 = Symbol([0x4130], [0x238E270], 0x20, "")
-
-    BAR_SUBMENU_2 = Symbol([0x4150], [0x238E290], 0x30, "")
-
-
-class NaOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
-    loadaddress = 0x238A140
-    length = 0x4240
-    functions = NaOverlay19Functions
-    data = NaOverlay19Data
-
-
-class NaOverlay12Functions:
-    pass
-
-
-class NaOverlay12Data:
-    pass
-
-
-class NaOverlay12Section:
-    name = "overlay12"
-    description = "Unused; all zeroes."
-    loadaddress = 0x238A140
-    length = 0x20
-    functions = NaOverlay12Functions
-    data = NaOverlay12Data
-
-
-class NaOverlay2Functions:
-    pass
-
-
-class NaOverlay2Data:
-    pass
-
-
-class NaOverlay2Section:
-    name = "overlay2"
-    description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
+    DUNGEON_STRUCT = Symbol(
+        [0x1B9D34],
+        [0x21B9D34],
+        0x2CB14,
+        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
+        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
+        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
+        " 29.\n\ntype: struct dungeon",
     )
-    loadaddress = 0x2329520
-    length = 0x2AFA0
-    functions = NaOverlay2Functions
-    data = NaOverlay2Data
+
+    MOVE_DATA_TABLE = Symbol(
+        [0x2113CC],
+        [0x22113CC],
+        0x38C6,
+        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
+        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
+        " ARM 9 binary.\n\ntype: struct move_data_table",
+    )
+
+    FRAMES_SINCE_LAUNCH = Symbol(
+        [0x2A354C, 0x2A359C],
+        [0x22A354C, 0x22A359C],
+        0x4,
+        "Starts at 0 when the game is first launched, and continuously ticks up once"
+        " per frame while the game is running.",
+    )
+
+    BAG_ITEMS = Symbol(
+        [0x2A3824],
+        [0x22A3824],
+        0x12C,
+        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
+        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
+        " if filled.\n\ntype: struct item[50]",
+    )
+
+    BAG_ITEMS_PTR = Symbol([0x2A3BA8], [0x22A3BA8], 0x4, "Pointer to BAG_ITEMS.")
+
+    STORAGE_ITEMS = Symbol(
+        [0x2A3BAE],
+        [0x22A3BAE],
+        0x7D0,
+        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
+        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
+        " item_id_16[1000]",
+    )
+
+    STORAGE_ITEM_QUANTITIES = Symbol(
+        [0x2A437E],
+        [0x22A437E],
+        0x7D0,
+        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
+        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
+        " entry in this array is unused, and will be 0.",
+    )
+
+    KECLEON_SHOP_ITEMS_PTR = Symbol(
+        [0x2A4B50], [0x22A4B50], 0x4, "Pointer to KECLEON_SHOP_ITEMS."
+    )
+
+    KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A4B54],
+        [0x22A4B54],
+        0x20,
+        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
+        [0x2A4B74],
+        [0x22A4B74],
+        0x20,
+        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
+        " to be used by the Kecleon Shop.",
+    )
+
+    KECLEON_WARES_ITEMS_PTR = Symbol(
+        [0x2A4B94], [0x22A4B94], 0x4, "Pointer to KECLEON_WARES_ITEMS."
+    )
+
+    KECLEON_WARES_ITEMS = Symbol(
+        [0x2A4B98],
+        [0x22A4B98],
+        0x10,
+        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
+        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
+        " to be null-terminated.",
+    )
+
+    UNUSED_KECLEON_WARES_ITEMS = Symbol(
+        [0x2A4BA8],
+        [0x22A4BA8],
+        0x10,
+        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
+        " to be used by Kecleon Wares.",
+    )
+
+    MONEY_CARRIED = Symbol(
+        [0x2A4BB8],
+        [0x22A4BB8],
+        0x4,
+        "The amount of money the player is currently carrying.",
+    )
+
+    MONEY_STORED = Symbol(
+        [0x2A4BC4],
+        [0x22A4BC4],
+        0x4,
+        "The amount of money the player currently has stored in the Duskull Bank.",
+    )
+
+    LAST_NEW_MOVE = Symbol(
+        [0x2AAE4C],
+        [0x22AAE4C],
+        0x8,
+        "Move struct of the last new move introduced when learning a new move. Persists"
+        " even after the move selection is made in the menu.\n\ntype: struct move",
+    )
+
+    SCRIPT_VARS_VALUES = Symbol(
+        [0x2AB0AC],
+        [0x22AB0AC],
+        0x400,
+        "The table of game variable values. Its structure is determined by"
+        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
+        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
+        " the real length of this table is 0x400 based on the game code.\n\ntype:"
+        " struct script_var_value_table",
+    )
+
+    BAG_LEVEL = Symbol(
+        [0x2AB15C],
+        [0x22AB15C],
+        0x1,
+        "The player's bag level, which determines the bag capacity. This indexes"
+        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
+    )
+
+    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
+        [0x2AB4AC],
+        [0x22AB4AC],
+        0x1,
+        "The number of the special episode currently being played.\n\n0: normal,"
+        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
+        " Comes Team Charm!\n4: In the Future of Darkness",
+    )
+
+    PENDING_DUNGEON_ID = Symbol(
+        [0x2AB4FC],
+        [0x22AB4FC],
+        0x1,
+        "The ID of the selected dungeon when setting off from the"
+        " overworld.\n\nControls the text and map location during the 'map cutscene'"
+        " just before entering a dungeon, as well as the actual dungeon loaded"
+        " afterwards.\n\ntype: struct dungeon_id_8",
+    )
+
+    PENDING_STARTING_FLOOR = Symbol(
+        [0x2AB4FD],
+        [0x22AB4FD],
+        0x1,
+        "The floor number to start from in the dungeon specified by"
+        " PENDING_DUNGEON_ID.",
+    )
+
+    PLAY_TIME_SECONDS = Symbol(
+        [0x2AB694], [0x22AB694], 0x4, "The player's total play time in seconds."
+    )
+
+    PLAY_TIME_FRAME_COUNTER = Symbol(
+        [0x2AB698],
+        [0x22AB698],
+        0x1,
+        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
+        " with each rollover.",
+    )
+
+    TEAM_NAME = Symbol(
+        [0x2AB918],
+        [0x22AB918],
+        0xC,
+        "The team name.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    HERO_SPECIES_ID = Symbol(
+        [0x2ABDE4],
+        [0x22ABDE4],
+        0x2,
+        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
+        " with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    HERO_NICKNAME = Symbol(
+        [0x2ABE1A],
+        [0x22ABE1A],
+        0xA,
+        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
+        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
+        " uses.\n\nThis is presumably part of a larger struct, together with other"
+        " nearby data.",
+    )
+
+    PARTNER_SPECIES_ID = Symbol(
+        [0x2ABE28],
+        [0x22ABE28],
+        0x2,
+        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
+        " together with other nearby data.\n\ntype: struct monster_id_16",
+    )
+
+    LEADER_IQ_SKILLS = Symbol(
+        [0x2B5198],
+        [0x22B5198],
+        0xC,
+        "Unlocked IQ skills of the current leader, available for selection from the IQ"
+        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
+        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
+        " larger struct, together with other nearby data.",
+    )
+
+    LEADER_NICKNAME = Symbol(
+        [0x2B51AA],
+        [0x22B51AA],
+        0xA,
+        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
+        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
+        " typically uses.\n\nThis is presumably part of a larger struct, together with"
+        " other nearby data.",
+    )
+
+    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
+        [0x2B5200],
+        [0x22B5200],
+        0xC,
+        "Unlocked IQ skills of the second party member, available for selection from"
+        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
+        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
+        " a larger struct, together with other nearby data.",
+    )
+
+    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
+        [0x2B99C4],
+        [0x22B99C4],
+        0x4,
+        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
+        " the game is running.",
+    )
+
+    TURNING_ON_THE_SPOT_FLAG = Symbol(
+        [0x37C9A6],
+        [0x237C9A6],
+        0x1,
+        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    FLOOR_GENERATION_STATUS = Symbol(
+        [0x37CFBC],
+        [0x237CFBC],
+        0x40,
+        "[Runtime] Status data related to generation of the current floor in a"
+        " dungeon.\n\nThis data is populated as the dungeon floor is"
+        " generated.\n\ntype: struct floor_generation_status",
+    )
+
+
+class NaRamSection:
+    name = "ram"
+    description = (
+        "Main memory.\nData in this file aren't located in the ROM itself, and are"
+        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
+        " dumping ground for addresses that are useful to know about, but don't fall in"
+        " the address ranges of any of the other files. Dynamically loaded constructs"
+        " that do fall within the address range of a relevant binary should be listed"
+        " in the corresponding YAML file of that binary, since it still has direct"
+        " utility when reverse-engineering that particular binary."
+    )
+    loadaddress = 0x2000000
+    length = 0x400000
+    functions = NaRamFunctions
+    data = NaRamData
+
+
+class NaOverlay4Functions:
+    pass
+
+
+class NaOverlay4Data:
+    pass
+
+
+class NaOverlay4Section:
+    name = "overlay4"
+    description = "Controls the Trade Items submenu within the top menu."
+    loadaddress = 0x233CA80
+    length = 0x2BE0
+    functions = NaOverlay4Functions
+    data = NaOverlay4Data
 
 
 class NaOverlay28Functions:
@@ -196,6 +334,29 @@ class NaOverlay28Section:
     length = 0xC60
     functions = NaOverlay28Functions
     data = NaOverlay28Data
+
+
+class NaOverlay22Functions:
+    pass
+
+
+class NaOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
+
+    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238E880], 0x20, "")
+
+    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
+
+    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
+
+
+class NaOverlay22Section:
+    name = "overlay22"
+    description = "Controls the Kecleon Shop in Treasure Town."
+    loadaddress = 0x238A140
+    length = 0x4B40
+    functions = NaOverlay22Functions
+    data = NaOverlay22Data
 
 
 class NaOverlay29Functions:
@@ -767,6 +928,30 @@ class NaOverlay29Functions:
         " depending on the result of GetCanMoveFlag for the monster's ID.\n\nr0:"
         " Pointer to the monster's action_id field (this field is probably contained in"
         " a struct)\nr1: Monster ID",
+    )
+
+    GetItemAction = Symbol(
+        [0xF398],
+        [0x22EB5D8],
+        None,
+        "Returns the action ID that corresponds to an item given its ID.\n\nThe action"
+        " is based on the category of the item (see ITEM_CATEGORY_ACTIONS), unless the"
+        " specified ID is 0x16B, in which case ACTION_UNK_35 is returned.\nSome items"
+        " can have unexpected actions, such as thrown items, which have ACTION_NOTHING."
+        " This is done to prevent duplicate actions from being listed in the menu"
+        " (since items always have a 'throw' option), since a return value of"
+        " ACTION_NOTHING prevents the option from showing up in the menu.\n\nr0: Item"
+        " ID\nreturn: Action ID associated with the specified item",
+    )
+
+    AddDungeonSubMenuOption = Symbol(
+        [0xF5DC],
+        [0x22EB81C],
+        None,
+        "Adds an option to the list of actions that can be taken on a pokémon, item or"
+        " move to the currently active sub-menu on dungeon mode (team, moves, items,"
+        " etc.).\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
     )
 
     SetActionRegularAttack = Symbol(
@@ -3386,6 +3571,17 @@ class NaOverlay29Functions:
         [0x7106C], [0x234D2AC], None, "Very similar to DisplayMessage"
     )
 
+    YesNoMenu = Symbol(
+        [0x712D8],
+        [0x234D518],
+        None,
+        "Opens a menu where the user can choose 'Yes' or 'No' and waits for input"
+        " before returning.\n\nr0: ?\nr1: ID of the string to display in the"
+        " textbox\nr2: Option that the cursor will be on by default. 0 for 'Yes', 1 for"
+        " 'No'\nr3: ?\nreturn: True if the user chooses 'Yes', false if the user"
+        " chooses 'No'",
+    )
+
     DisplayMessageInternal = Symbol(
         [0x71350],
         [0x234D590],
@@ -3397,6 +3593,25 @@ class NaOverlay29Functions:
         " player input before closing the dialogue box, false to close it automatically"
         " once all the characters get printed.\nr2: ? (r0 in DisplayMessage)\nr3:"
         " ?\nstack[0]: ?\nstack[1]: ?",
+    )
+
+    OthersMenuLoop = Symbol(
+        [0x73580],
+        [0x234F7C0],
+        None,
+        "Called on each frame while the in-dungeon 'others' menu is open.\n\nIt"
+        " contains a switch to determine whether an option has been chosen or not and a"
+        " second switch that determines what to do depending on which option was"
+        " chosen.\n\nreturn: int (Actually, this is probably some sort of enum shared"
+        " by all the MenuLoop functions)",
+    )
+
+    OthersMenu = Symbol(
+        [0x737E4],
+        [0x234FA24],
+        None,
+        "Called when the in-dungeon 'others' menu is open. Does not return until the"
+        " menu is closed.\n\nreturn: Always 0",
     )
 
 
@@ -3909,6 +4124,14 @@ class NaOverlay29Data:
         " direction (positive y means down).",
     )
 
+    ITEM_CATEGORY_ACTIONS = Symbol(
+        [0x75DD0],
+        [0x2352010],
+        0x20,
+        "Action ID associated with each item category. Used by GetItemAction.\n\nEach"
+        " entry is 2 bytes long.",
+    )
+
     FRACTIONAL_TURN_SEQUENCE = Symbol(
         [0x76044],
         [0x2352284],
@@ -4080,6 +4303,353 @@ class NaOverlay29Section:
     length = 0x77620
     functions = NaOverlay29Functions
     data = NaOverlay29Data
+
+
+class NaOverlay12Functions:
+    pass
+
+
+class NaOverlay12Data:
+    pass
+
+
+class NaOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = 0x238A140
+    length = 0x20
+    functions = NaOverlay12Functions
+    data = NaOverlay12Data
+
+
+class NaOverlay32Functions:
+    pass
+
+
+class NaOverlay32Data:
+    pass
+
+
+class NaOverlay32Section:
+    name = "overlay32"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2382820
+    length = 0x20
+    functions = NaOverlay32Functions
+    data = NaOverlay32Data
+
+
+class NaOverlay23Functions:
+    pass
+
+
+class NaOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238D354], 0x20, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238D374], 0x28, "")
+
+
+class NaOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
+    )
+    loadaddress = 0x238A140
+    length = 0x3780
+    functions = NaOverlay23Functions
+    data = NaOverlay23Data
+
+
+class NaOverlay7Functions:
+    pass
+
+
+class NaOverlay7Data:
+    pass
+
+
+class NaOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
+    )
+    loadaddress = 0x233CA80
+    length = 0x5100
+    functions = NaOverlay7Functions
+    data = NaOverlay7Data
+
+
+class NaOverlay35Functions:
+    pass
+
+
+class NaOverlay35Data:
+    pass
+
+
+class NaOverlay35Section:
+    name = "overlay35"
+    description = "Unused; all zeroes."
+    loadaddress = 0x22BCA80
+    length = 0x20
+    functions = NaOverlay35Functions
+    data = NaOverlay35Data
+
+
+class NaOverlay25Functions:
+    pass
+
+
+class NaOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
+
+    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238B4CC], 0x20, "")
+
+    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238B4EC], 0x20, "")
+
+
+class NaOverlay25Section:
+    name = "overlay25"
+    description = "Controls Xatu Appraisal."
+    loadaddress = 0x238A140
+    length = 0x14C0
+    functions = NaOverlay25Functions
+    data = NaOverlay25Data
+
+
+class NaOverlay21Functions:
+    pass
+
+
+class NaOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238CA38], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238CA50], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238CA68], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238CA88], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238CAA8], 0x28, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238CAD0], 0x30, "")
+
+
+class NaOverlay21Section:
+    name = "overlay21"
+    description = "Controls the Croagunk Swap Shop."
+    loadaddress = 0x238A140
+    length = 0x2E20
+    functions = NaOverlay21Functions
+    data = NaOverlay21Data
+
+
+class NaOverlay9Functions:
+    pass
+
+
+class NaOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        [0xE80],
+        [0x233D900],
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class NaOverlay9Section:
+    name = "overlay9"
+    description = "Controls the Sky Jukebox."
+    loadaddress = 0x233CA80
+    length = 0x2D80
+    functions = NaOverlay9Functions
+    data = NaOverlay9Data
+
+
+class NaOverlay26Functions:
+    pass
+
+
+class NaOverlay26Data:
+    pass
+
+
+class NaOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Related to mission completion. It's loaded when the dungeon completion summary"
+        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
+        " mission rewards from clients."
+    )
+    loadaddress = 0x238A140
+    length = 0xE40
+    functions = NaOverlay26Functions
+    data = NaOverlay26Data
+
+
+class NaOverlay33Functions:
+    pass
+
+
+class NaOverlay33Data:
+    pass
+
+
+class NaOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2382820
+    length = 0x20
+    functions = NaOverlay33Functions
+    data = NaOverlay33Data
+
+
+class NaOverlay30Functions:
+    pass
+
+
+class NaOverlay30Data:
+    pass
+
+
+class NaOverlay30Section:
+    name = "overlay30"
+    description = "Controls quicksaving in dungeons."
+    loadaddress = 0x2382820
+    length = 0x38A0
+    functions = NaOverlay30Functions
+    data = NaOverlay30Data
+
+
+class NaOverlay0Functions:
+    pass
+
+
+class NaOverlay0Data:
+    TOP_MENU_MUSIC_ID = Symbol(
+        [0x1720], [0x22BE1A0], None, "Music ID to play in the top menu."
+    )
+
+
+class NaOverlay0Section:
+    name = "overlay0"
+    description = (
+        "Likely contains supporting data and code related to the top menu.\n\nThis is"
+        " loaded together with overlay 1 while in the top menu. Since it's in overlay"
+        " group 2 (together with overlay 10, which is another 'data' overlay), this"
+        " overlay probably plays a similar role. It mentions several files from the"
+        " BACK folder that are known backgrounds for the top menu."
+    )
+    loadaddress = 0x22BCA80
+    length = 0x609A0
+    functions = NaOverlay0Functions
+    data = NaOverlay0Data
+
+
+class NaOverlay24Functions:
+    pass
+
+
+class NaOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
+
+    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238C538], 0x20, "")
+
+
+class NaOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = 0x238A140
+    length = 0x24E0
+    functions = NaOverlay24Functions
+    data = NaOverlay24Data
+
+
+class NaOverlay15Functions:
+    pass
+
+
+class NaOverlay15Data:
+    BANK_MAIN_MENU = Symbol([0xF14], [0x238B054], 0x28, "")
+
+
+class NaOverlay15Section:
+    name = "overlay15"
+    description = "Controls the Duskull Bank."
+    loadaddress = 0x238A140
+    length = 0x1060
+    functions = NaOverlay15Functions
+    data = NaOverlay15Data
+
+
+class NaOverlay13Functions:
+    pass
+
+
+class NaOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(
+        [0x1F4C], [0x238C08C], 0x2A, "type: struct monster_id_16[21]"
+    )
+
+    STARTERS_HERO_IDS = Symbol(
+        [0x1F78], [0x238C0B8], 0x40, "type: struct monster_id_16[32]"
+    )
+
+    STARTERS_STRINGS = Symbol([0x200C], [0x238C14C], 0x60, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238C1AC], 0x84, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238C230], 0x160, "")
+
+    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238CECC], 0x48, "")
+
+
+class NaOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Controls the personality test, including the available partners and playable"
+        " Pokémon. The actual personality test questions are stored in the MESSAGE"
+        " folder."
+    )
+    loadaddress = 0x238A140
+    length = 0x2E80
+    functions = NaOverlay13Functions
+    data = NaOverlay13Data
+
+
+class NaOverlay20Functions:
+    pass
+
+
+class NaOverlay20Data:
+    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238CF84], 0x18, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238CF9C], 0x18, "")
+
+    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238CFB4], 0x18, "")
+
+    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238CFCC], 0x20, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238CFEC], 0x28, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
+
+
+class NaOverlay20Section:
+    name = "overlay20"
+    description = "Controls the Recycle Shop."
+    loadaddress = 0x238A140
+    length = 0x3000
+    functions = NaOverlay20Functions
+    data = NaOverlay20Data
 
 
 class NaOverlay11Functions:
@@ -4352,25 +4922,25 @@ class NaOverlay11Section:
     data = NaOverlay11Data
 
 
-class NaOverlay25Functions:
+class NaOverlay2Functions:
     pass
 
 
-class NaOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
-
-    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238B4CC], 0x20, "")
-
-    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238B4EC], 0x20, "")
+class NaOverlay2Data:
+    pass
 
 
-class NaOverlay25Section:
-    name = "overlay25"
-    description = "Controls Xatu Appraisal."
-    loadaddress = 0x238A140
-    length = 0x14C0
-    functions = NaOverlay25Functions
-    data = NaOverlay25Data
+class NaOverlay2Section:
+    name = "overlay2"
+    description = (
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
+    )
+    loadaddress = 0x2329520
+    length = 0x2AFA0
+    functions = NaOverlay2Functions
+    data = NaOverlay2Data
 
 
 class NaArm9Functions:
@@ -5007,6 +5577,15 @@ class NaArm9Functions:
         " the Table of Content)",
     )
 
+    GetItemCategoryVeneer = Symbol(
+        [0xCAF0],
+        [0x200CAF0],
+        None,
+        "Likely a linker-generated veneer for GetItemCategory.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " Item ID\nreturn: Category ID",
+    )
+
     IsAuraBow = Symbol(
         [0xCC14],
         [0x200CC14],
@@ -5055,6 +5634,14 @@ class NaArm9Functions:
         " in a bunch of different places. See the actual Sprintf for the one in"
         " libc.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of characters"
         " printed, excluding the null-terminator",
+    )
+
+    GetItemCategory = Symbol(
+        [0xE808],
+        [0x200E808],
+        None,
+        "Returns the category of the specified item\n\nr0: Item ID\nreturn: Item"
+        " category",
     )
 
     SetMoneyCarried = Symbol(
@@ -6006,6 +6593,15 @@ class NaArm9Functions:
         None,
         "Returns the maximum rescue attempts allowed in the specified dungeon.\n\nr0:"
         " dungeon id\nreturn: Max rescue attempts, or -1 if rescues are disabled.",
+    )
+
+    GetLeaderChangeFlag = Symbol(
+        [0x513C0],
+        [0x20513C0],
+        None,
+        "Returns true if the flag that allows changing leaders is set in the"
+        " restrictions of the specified dungeon\n\nr0: dungeon id\nreturn: True if the"
+        " restrictions of the current dungeon allow changing leaders, false otherwise.",
     )
 
     JoinedAtRangeCheck = Symbol(
@@ -7109,27 +7705,6 @@ class NaArm9Section:
     data = NaArm9Data
 
 
-class NaOverlay0Functions:
-    pass
-
-
-class NaOverlay0Data:
-    TOP_MENU_MUSIC_ID = Symbol(
-        [0x1720], [0x22BE1A0], None, "Music ID to play in the top menu."
-    )
-
-
-class NaOverlay0Section:
-    name = "overlay0"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 0."
-    )
-    loadaddress = 0x22BCA80
-    length = 0x609A0
-    functions = NaOverlay0Functions
-    data = NaOverlay0Data
-
-
 class NaOverlay10Functions:
     SprintfStatic = Symbol(
         [0x9CC, 0x4DBC],
@@ -7530,7 +8105,36 @@ class NaOverlay34Section:
 
 
 class NaOverlay1Functions:
-    pass
+    CreateMainMenus = Symbol(
+        [0x7BC4],
+        [0x23310E4],
+        None,
+        "Prepares the top menu and sub menu, adding the different options that compose"
+        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
+        " Some of them are conditionally executed depending on which options should be"
+        " unlocked.\n\nNo params.",
+    )
+
+    AddMainMenuOption = Symbol(
+        [0x8038],
+        [0x2331558],
+        None,
+        "Adds an option to the top menu.\n\nThis function is called for each one of the"
+        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
+        " action ID does not exist there, the option won't be added.\n\nr0: Action"
+        " ID\nr1: True if the option should be enabled, false otherwise",
+    )
+
+    AddSubMenuOption = Symbol(
+        [0x8110],
+        [0x2331630],
+        None,
+        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
+        " called for each one of the options in the submenu. It loops the SUBMENU data"
+        " field, if the specified action ID does not exist there, the option won't be"
+        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
+    )
 
 
 class NaOverlay1Data:
@@ -7558,23 +8162,42 @@ class NaOverlay1Section:
     data = NaOverlay1Data
 
 
-class NaOverlay4Functions:
+class NaOverlay3Functions:
     pass
 
 
-class NaOverlay4Data:
+class NaOverlay3Data:
     pass
 
 
-class NaOverlay4Section:
-    name = "overlay4"
+class NaOverlay3Section:
+    name = "overlay3"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
+        "Hard-coded immediate values (literals) in instructions within overlay 3."
     )
     loadaddress = 0x233CA80
-    length = 0x2BE0
-    functions = NaOverlay4Functions
-    data = NaOverlay4Data
+    length = 0xA160
+    functions = NaOverlay3Functions
+    data = NaOverlay3Data
+
+
+class NaOverlay5Functions:
+    pass
+
+
+class NaOverlay5Data:
+    pass
+
+
+class NaOverlay5Section:
+    name = "overlay5"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 5."
+    )
+    loadaddress = 0x233CA80
+    length = 0x3240
+    functions = NaOverlay5Functions
+    data = NaOverlay5Data
 
 
 class NaOverlay6Functions:
@@ -7596,70 +8219,64 @@ class NaOverlay6Section:
     data = NaOverlay6Data
 
 
-class NaOverlay7Functions:
+class NaOverlay8Functions:
     pass
 
 
-class NaOverlay7Data:
+class NaOverlay8Data:
     pass
 
 
-class NaOverlay7Section:
-    name = "overlay7"
+class NaOverlay8Section:
+    name = "overlay8"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 7."
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
     )
     loadaddress = 0x233CA80
-    length = 0x5100
-    functions = NaOverlay7Functions
-    data = NaOverlay7Data
-
-
-class NaOverlay9Functions:
-    pass
-
-
-class NaOverlay9Data:
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        [0xE80],
-        [0x233D900],
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class NaOverlay9Section:
-    name = "overlay9"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 9."
-    )
-    loadaddress = 0x233CA80
-    length = 0x2D80
-    functions = NaOverlay9Functions
-    data = NaOverlay9Data
-
-
-class NaOverlay30Functions:
-    pass
-
-
-class NaOverlay30Data:
-    pass
-
-
-class NaOverlay30Section:
-    name = "overlay30"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 30."
-    )
-    loadaddress = 0x2382820
-    length = 0x38A0
-    functions = NaOverlay30Functions
-    data = NaOverlay30Data
+    length = 0x2200
+    functions = NaOverlay8Functions
+    data = NaOverlay8Data
 
 
 class NaOverlay31Functions:
-    pass
+    TeamMenu = Symbol(
+        [0x482C],
+        [0x238704C],
+        None,
+        "Called when the in-dungeon 'team' menu is open. Does not return until the menu"
+        " is closed.\n\nNote that selecting certain options in this menu (such as"
+        " viewing the details or the moves of a pokémon) counts as switching to a"
+        " different menu, which causes the function to return.\n\nr0: Pointer to the"
+        " leader's entity struct\nreturn: ?",
+    )
+
+    RestMenu = Symbol(
+        [0x5F6C],
+        [0x238878C],
+        None,
+        "Called when the in-dungeon 'rest' menu is open. Does not return until the menu"
+        " is closed.\n\nNo params.",
+    )
+
+    RecruitmentSearchMenuLoop = Symbol(
+        [0x63E4],
+        [0x2388C04],
+        None,
+        "Called on each frame while the in-dungeon 'recruitment search' menu is"
+        " open.\n\nreturn: int (Actually, this is probably some sort of enum shared by"
+        " all the MenuLoop functions)",
+    )
+
+    HelpMenuLoop = Symbol(
+        [0x69DC],
+        [0x23891FC],
+        None,
+        "Called on each frame while the in-dungeon 'help' menu is open.\n\nThe menu is"
+        " still considered open while one of the help pages is being viewed, so this"
+        " function keeps being called even after choosing an option.\n\nreturn: int"
+        " (Actually, this is probably some sort of enum shared by all the MenuLoop"
+        " functions)",
+    )
 
 
 class NaOverlay31Data:
@@ -7689,39 +8306,6 @@ class NaOverlay31Section:
     data = NaOverlay31Data
 
 
-class NaOverlay13Functions:
-    pass
-
-
-class NaOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(
-        [0x1F4C], [0x238C08C], 0x2A, "type: struct monster_id_16[21]"
-    )
-
-    STARTERS_HERO_IDS = Symbol(
-        [0x1F78], [0x238C0B8], 0x40, "type: struct monster_id_16[32]"
-    )
-
-    STARTERS_STRINGS = Symbol([0x200C], [0x238C14C], 0x60, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238C1AC], 0x84, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238C230], 0x160, "")
-
-    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238CECC], 0x48, "")
-
-
-class NaOverlay13Section:
-    name = "overlay13"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
-    )
-    loadaddress = 0x238A140
-    length = 0x2E80
-    functions = NaOverlay13Functions
-    data = NaOverlay13Data
-
-
 class NaOverlay14Functions:
     pass
 
@@ -7739,25 +8323,6 @@ class NaOverlay14Section:
     length = 0x3AE0
     functions = NaOverlay14Functions
     data = NaOverlay14Data
-
-
-class NaOverlay15Functions:
-    pass
-
-
-class NaOverlay15Data:
-    BANK_MAIN_MENU = Symbol([0xF14], [0x238B054], 0x28, "")
-
-
-class NaOverlay15Section:
-    name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
-    loadaddress = 0x238A140
-    length = 0x1060
-    functions = NaOverlay15Functions
-    data = NaOverlay15Data
 
 
 class NaOverlay16Functions:
@@ -7781,6 +8346,43 @@ class NaOverlay16Section:
     length = 0x2D20
     functions = NaOverlay16Functions
     data = NaOverlay16Data
+
+
+class NaOverlay17Functions:
+    pass
+
+
+class NaOverlay17Data:
+    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238BB84], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238BB9C], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238BBB4], 0x20, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238BBD4], 0x28, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238BBFC], 0x30, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238BC2C], 0x30, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238BC5C], 0x38, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238BC94], 0x38, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238BCCC], 0x38, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238BD04], 0x40, "")
+
+
+class NaOverlay17Section:
+    name = "overlay17"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 17."
+    )
+    loadaddress = 0x238A140
+    length = 0x1CE0
+    functions = NaOverlay17Functions
+    data = NaOverlay17Data
 
 
 class NaOverlay18Functions:
@@ -7818,125 +8420,31 @@ class NaOverlay18Section:
     data = NaOverlay18Data
 
 
-class NaOverlay21Functions:
+class NaOverlay19Functions:
     pass
 
 
-class NaOverlay21Data:
-    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238CA38], 0x18, "")
+class NaOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
 
-    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238CA50], 0x18, "")
+    BAR_MENU_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
 
-    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238CA68], 0x20, "")
+    BAR_MAIN_MENU = Symbol([0x4110], [0x238E250], 0x20, "")
 
-    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238CA88], 0x20, "")
+    BAR_SUBMENU_1 = Symbol([0x4130], [0x238E270], 0x20, "")
 
-    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238CAA8], 0x28, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238CAD0], 0x30, "")
+    BAR_SUBMENU_2 = Symbol([0x4150], [0x238E290], 0x30, "")
 
 
-class NaOverlay21Section:
-    name = "overlay21"
+class NaOverlay19Section:
+    name = "overlay19"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
     )
     loadaddress = 0x238A140
-    length = 0x2E20
-    functions = NaOverlay21Functions
-    data = NaOverlay21Data
-
-
-class NaOverlay22Functions:
-    pass
-
-
-class NaOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
-
-    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238E880], 0x20, "")
-
-    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
-
-    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
-
-
-class NaOverlay22Section:
-    name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
-    loadaddress = 0x238A140
-    length = 0x4B40
-    functions = NaOverlay22Functions
-    data = NaOverlay22Data
-
-
-class NaOverlay23Functions:
-    pass
-
-
-class NaOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238D354], 0x20, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238D374], 0x28, "")
-
-
-class NaOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 23."
-    )
-    loadaddress = 0x238A140
-    length = 0x3780
-    functions = NaOverlay23Functions
-    data = NaOverlay23Data
-
-
-class NaOverlay24Functions:
-    pass
-
-
-class NaOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
-
-    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238C538], 0x20, "")
-
-
-class NaOverlay24Section:
-    name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
-    loadaddress = 0x238A140
-    length = 0x24E0
-    functions = NaOverlay24Functions
-    data = NaOverlay24Data
-
-
-class NaOverlay26Functions:
-    pass
-
-
-class NaOverlay26Data:
-    pass
-
-
-class NaOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
-    )
-    loadaddress = 0x238A140
-    length = 0xE40
-    functions = NaOverlay26Functions
-    data = NaOverlay26Data
+    length = 0x4240
+    functions = NaOverlay19Functions
+    data = NaOverlay19Data
 
 
 class NaOverlay27Functions:
@@ -7964,386 +8472,54 @@ class NaOverlay27Section:
     data = NaOverlay27Data
 
 
-class NaOverlay32Functions:
-    pass
-
-
-class NaOverlay32Data:
-    pass
-
-
-class NaOverlay32Section:
-    name = "overlay32"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2382820
-    length = 0x20
-    functions = NaOverlay32Functions
-    data = NaOverlay32Data
-
-
-class NaRamFunctions:
-    pass
-
-
-class NaRamData:
-    DUNGEON_COLORMAP_PTR = Symbol(
-        [0x1B9CF4],
-        [0x21B9CF4],
-        0x4,
-        "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a"
-        " list of 4-byte RGB colors of the form {R, G, B, padding}, which the game"
-        " indexes into when rendering colors. Some weather conditions modify the"
-        " colormap, which is how the color scheme changes when it's, e.g., raining.",
-    )
-
-    DUNGEON_STRUCT = Symbol(
-        [0x1B9D34],
-        [0x21B9D34],
-        0x2CB14,
-        "The dungeon context struct used for tons of stuff in dungeon mode. See struct"
-        " dungeon in the C headers.\n\nThis struct never seems to be referenced"
-        " directly, and is instead usually accessed via DUNGEON_PTR in overlay"
-        " 29.\n\ntype: struct dungeon",
-    )
-
-    MOVE_DATA_TABLE = Symbol(
-        [0x2113CC],
-        [0x22113CC],
-        0x38C6,
-        "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
-        " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
-        " ARM 9 binary.\n\ntype: struct move_data_table",
-    )
-
-    FRAMES_SINCE_LAUNCH = Symbol(
-        [0x2A354C, 0x2A359C],
-        [0x22A354C, 0x22A359C],
-        0x4,
-        "Starts at 0 when the game is first launched, and continuously ticks up once"
-        " per frame while the game is running.",
-    )
-
-    BAG_ITEMS = Symbol(
-        [0x2A3824],
-        [0x22A3824],
-        0x12C,
-        "Array of item structs within the player's bag.\n\nWhile the game only allows a"
-        " maximum of 48 items during normal play, it seems to read up to 50 item slots"
-        " if filled.\n\ntype: struct item[50]",
-    )
-
-    BAG_ITEMS_PTR = Symbol([0x2A3BA8], [0x22A3BA8], 0x4, "Pointer to BAG_ITEMS.")
-
-    STORAGE_ITEMS = Symbol(
-        [0x2A3BAE],
-        [0x22A3BAE],
-        0x7D0,
-        "Array of item IDs in the player's item storage.\n\nFor stackable items, the"
-        " quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct"
-        " item_id_16[1000]",
-    )
-
-    STORAGE_ITEM_QUANTITIES = Symbol(
-        [0x2A437E],
-        [0x22A437E],
-        0x7D0,
-        "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in"
-        " STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the"
-        " entry in this array is unused, and will be 0.",
-    )
-
-    KECLEON_SHOP_ITEMS_PTR = Symbol(
-        [0x2A4B50], [0x22A4B50], 0x4, "Pointer to KECLEON_SHOP_ITEMS."
-    )
-
-    KECLEON_SHOP_ITEMS = Symbol(
-        [0x2A4B54],
-        [0x22A4B54],
-        0x20,
-        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_SHOP_ITEMS = Symbol(
-        [0x2A4B74],
-        [0x22A4B74],
-        0x20,
-        "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear"
-        " to be used by the Kecleon Shop.",
-    )
-
-    KECLEON_WARES_ITEMS_PTR = Symbol(
-        [0x2A4B94], [0x22A4B94], 0x4, "Pointer to KECLEON_WARES_ITEMS."
-    )
-
-    KECLEON_WARES_ITEMS = Symbol(
-        [0x2A4B98],
-        [0x22A4B98],
-        0x10,
-        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
-        " to be null-terminated.",
-    )
-
-    UNUSED_KECLEON_WARES_ITEMS = Symbol(
-        [0x2A4BA8],
-        [0x22A4BA8],
-        0x10,
-        "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear"
-        " to be used by Kecleon Wares.",
-    )
-
-    MONEY_CARRIED = Symbol(
-        [0x2A4BB8],
-        [0x22A4BB8],
-        0x4,
-        "The amount of money the player is currently carrying.",
-    )
-
-    MONEY_STORED = Symbol(
-        [0x2A4BC4],
-        [0x22A4BC4],
-        0x4,
-        "The amount of money the player currently has stored in the Duskull Bank.",
-    )
-
-    LAST_NEW_MOVE = Symbol(
-        [0x2AAE4C],
-        [0x22AAE4C],
-        0x8,
-        "Move struct of the last new move introduced when learning a new move. Persists"
-        " even after the move selection is made in the menu.\n\ntype: struct move",
-    )
-
-    SCRIPT_VARS_VALUES = Symbol(
-        [0x2AB0AC],
-        [0x22AB0AC],
-        0x400,
-        "The table of game variable values. Its structure is determined by"
-        " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
-        " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
-        " the real length of this table is 0x400 based on the game code.\n\ntype:"
-        " struct script_var_value_table",
-    )
-
-    BAG_LEVEL = Symbol(
-        [0x2AB15C],
-        [0x22AB15C],
-        0x1,
-        "The player's bag level, which determines the bag capacity. This indexes"
-        " directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
-    )
-
-    DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
-        [0x2AB4AC],
-        [0x22AB4AC],
-        0x1,
-        "The number of the special episode currently being played.\n\n0: normal,"
-        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
-        " Comes Team Charm!\n4: In the Future of Darkness",
-    )
-
-    PENDING_DUNGEON_ID = Symbol(
-        [0x2AB4FC],
-        [0x22AB4FC],
-        0x1,
-        "The ID of the selected dungeon when setting off from the"
-        " overworld.\n\nControls the text and map location during the 'map cutscene'"
-        " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
-    )
-
-    PENDING_STARTING_FLOOR = Symbol(
-        [0x2AB4FD],
-        [0x22AB4FD],
-        0x1,
-        "The floor number to start from in the dungeon specified by"
-        " PENDING_DUNGEON_ID.",
-    )
-
-    PLAY_TIME_SECONDS = Symbol(
-        [0x2AB694], [0x22AB694], 0x4, "The player's total play time in seconds."
-    )
-
-    PLAY_TIME_FRAME_COUNTER = Symbol(
-        [0x2AB698],
-        [0x22AB698],
-        0x1,
-        "Counts from 0-59 in a loop, with the play time being incremented by 1 second"
-        " with each rollover.",
-    )
-
-    TEAM_NAME = Symbol(
-        [0x2AB918],
-        [0x22AB918],
-        0xC,
-        "The team name.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    HERO_SPECIES_ID = Symbol(
-        [0x2ABDE4],
-        [0x22ABDE4],
-        0x2,
-        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
-        " with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    HERO_NICKNAME = Symbol(
-        [0x2ABE1A],
-        [0x22ABE1A],
-        0xA,
-        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    PARTNER_SPECIES_ID = Symbol(
-        [0x2ABE28],
-        [0x22ABE28],
-        0x2,
-        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
-        " together with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    LEADER_IQ_SKILLS = Symbol(
-        [0x2B5198],
-        [0x22B5198],
-        0xC,
-        "Unlocked IQ skills of the current leader, available for selection from the IQ"
-        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
-        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
-        " larger struct, together with other nearby data.",
-    )
-
-    LEADER_NICKNAME = Symbol(
-        [0x2B51AA],
-        [0x22B51AA],
-        0xA,
-        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
-        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
-        " typically uses.\n\nThis is presumably part of a larger struct, together with"
-        " other nearby data.",
-    )
-
-    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
-        [0x2B5200],
-        [0x22B5200],
-        0xC,
-        "Unlocked IQ skills of the second party member, available for selection from"
-        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
-        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
-        " a larger struct, together with other nearby data.",
-    )
-
-    FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
-        [0x2B99C4],
-        [0x22B99C4],
-        0x4,
-        "Starts at 0 when the game is first launched, and ticks up by 3 per frame while"
-        " the game is running.",
-    )
-
-    TURNING_ON_THE_SPOT_FLAG = Symbol(
-        [0x37C9A6],
-        [0x237C9A6],
-        0x1,
-        "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
-    )
-
-    FLOOR_GENERATION_STATUS = Symbol(
-        [0x37CFBC],
-        [0x237CFBC],
-        0x40,
-        "[Runtime] Status data related to generation of the current floor in a"
-        " dungeon.\n\nThis data is populated as the dungeon floor is"
-        " generated.\n\ntype: struct floor_generation_status",
-    )
-
-
-class NaRamSection:
-    name = "ram"
-    description = (
-        "Main memory.\nData in this file aren't located in the ROM itself, and are"
-        " instead constructs loaded at runtime.\n\nMore specifically, this file is a"
-        " dumping ground for addresses that are useful to know about, but don't fall in"
-        " the address ranges of any of the other files. Dynamically loaded constructs"
-        " that do fall within the address range of a relevant binary should be listed"
-        " in the corresponding YAML file of that binary, since it still has direct"
-        " utility when reverse-engineering that particular binary."
-    )
-    loadaddress = 0x2000000
-    length = 0x400000
-    functions = NaRamFunctions
-    data = NaRamData
-
-
-class NaOverlay35Functions:
-    pass
-
-
-class NaOverlay35Data:
-    pass
-
-
-class NaOverlay35Section:
-    name = "overlay35"
-    description = "Unused; all zeroes."
-    loadaddress = 0x22BCA80
-    length = 0x20
-    functions = NaOverlay35Functions
-    data = NaOverlay35Data
-
-
-class NaOverlay33Functions:
-    pass
-
-
-class NaOverlay33Data:
-    pass
-
-
-class NaOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2382820
-    length = 0x20
-    functions = NaOverlay33Functions
-    data = NaOverlay33Data
-
-
 class NaSections:
-    overlay20 = NaOverlay20Section
+    ram = NaRamSection
 
-    overlay3 = NaOverlay3Section
-
-    overlay8 = NaOverlay8Section
-
-    overlay5 = NaOverlay5Section
-
-    overlay17 = NaOverlay17Section
-
-    overlay19 = NaOverlay19Section
-
-    overlay12 = NaOverlay12Section
-
-    overlay2 = NaOverlay2Section
+    overlay4 = NaOverlay4Section
 
     overlay28 = NaOverlay28Section
 
+    overlay22 = NaOverlay22Section
+
     overlay29 = NaOverlay29Section
 
-    overlay11 = NaOverlay11Section
+    overlay12 = NaOverlay12Section
+
+    overlay32 = NaOverlay32Section
+
+    overlay23 = NaOverlay23Section
+
+    overlay7 = NaOverlay7Section
+
+    overlay35 = NaOverlay35Section
 
     overlay25 = NaOverlay25Section
 
-    arm9 = NaArm9Section
+    overlay21 = NaOverlay21Section
+
+    overlay9 = NaOverlay9Section
+
+    overlay26 = NaOverlay26Section
+
+    overlay33 = NaOverlay33Section
+
+    overlay30 = NaOverlay30Section
 
     overlay0 = NaOverlay0Section
+
+    overlay24 = NaOverlay24Section
+
+    overlay15 = NaOverlay15Section
+
+    overlay13 = NaOverlay13Section
+
+    overlay20 = NaOverlay20Section
+
+    overlay11 = NaOverlay11Section
+
+    overlay2 = NaOverlay2Section
+
+    arm9 = NaArm9Section
 
     overlay10 = NaOverlay10Section
 
@@ -8351,44 +8527,24 @@ class NaSections:
 
     overlay1 = NaOverlay1Section
 
-    overlay4 = NaOverlay4Section
+    overlay3 = NaOverlay3Section
+
+    overlay5 = NaOverlay5Section
 
     overlay6 = NaOverlay6Section
 
-    overlay7 = NaOverlay7Section
-
-    overlay9 = NaOverlay9Section
-
-    overlay30 = NaOverlay30Section
+    overlay8 = NaOverlay8Section
 
     overlay31 = NaOverlay31Section
 
-    overlay13 = NaOverlay13Section
-
     overlay14 = NaOverlay14Section
-
-    overlay15 = NaOverlay15Section
 
     overlay16 = NaOverlay16Section
 
+    overlay17 = NaOverlay17Section
+
     overlay18 = NaOverlay18Section
 
-    overlay21 = NaOverlay21Section
-
-    overlay22 = NaOverlay22Section
-
-    overlay23 = NaOverlay23Section
-
-    overlay24 = NaOverlay24Section
-
-    overlay26 = NaOverlay26Section
+    overlay19 = NaOverlay19Section
 
     overlay27 = NaOverlay27Section
-
-    overlay32 = NaOverlay32Section
-
-    ram = NaRamSection
-
-    overlay35 = NaOverlay35Section
-
-    overlay33 = NaOverlay33Section
