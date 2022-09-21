@@ -2135,7 +2135,8 @@ class JpOverlay29Functions:
         " interactions.\n\nThis modifies the underlying random process depending on"
         " factors like Serene Grace, and whether or not either entity has"
         " fainted.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: base"
-        " success percentage (100*p). 0 is treated specially and guarantees success.",
+        " success percentage (100*p). 0 is treated specially and guarantees"
+        " success.\nreturns: True if the random check passed, false otherwise.",
     )
 
     DungeonRandOutcomeUserAction = Symbol(
@@ -2145,7 +2146,8 @@ class JpOverlay29Functions:
         "Like DungeonRandOutcome, but specifically for user actions.\n\nThis modifies"
         " the underlying random process to factor in Serene Grace (and checks whether"
         " the user is a valid entity).\n\nr0: entity pointer\nr1: base success"
-        " percentage (100*p). 0 is treated specially and guarantees success.",
+        " percentage (100*p). 0 is treated specially and guarantees success.\nreturns:"
+        " True if the random check passed, false otherwise.",
     )
 
     CanAiUseMove = Symbol(
