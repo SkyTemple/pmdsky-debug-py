@@ -80,9 +80,9 @@ class EuRamData:
         [0x2A5494],
         [0x22A5494],
         0x20,
-        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
-        " to be null-terminated.",
+        "Array of up to 8 items in the Kecleon Shop.\n\nIf there are fewer than 8"
+        " items, the array is expected to be null-terminated.\n\ntype: struct"
+        " bulk_item[8]",
     )
 
     UNUSED_KECLEON_SHOP_ITEMS = Symbol(
@@ -101,9 +101,8 @@ class EuRamData:
         [0x2A54D8],
         [0x22A54D8],
         0x10,
-        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
-        " to be null-terminated.",
+        "Array of up to 4 items in Kecleon Wares.\n\nIf there are fewer than 4 items,"
+        " the array is expected to be null-terminated.\n\ntype: struct bulk_item[4]",
     )
 
     UNUSED_KECLEON_WARES_ITEMS = Symbol(
@@ -159,9 +158,9 @@ class EuRamData:
         [0x2ABDEC],
         [0x22ABDEC],
         0x1,
-        "The number of the special episode currently being played.\n\n0: normal,"
-        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
-        " Comes Team Charm!\n4: In the Future of Darkness",
+        "The number of the special episode currently being played.\n\nThis backs the"
+        " EXECUTE_SPECIAL_EPISODE_TYPE script variable.\n\ntype: struct"
+        " special_episode_type_8",
     )
 
     PENDING_DUNGEON_ID = Symbol(
@@ -662,7 +661,7 @@ class EuOverlay29Functions:
         None,
         "Sets a monster's status_icon_flags bitfield according to its current status"
         " effects. Does not affect a Sudowoodo in the 'permanent sleep' state"
-        " (statuses::sleep == 0x7F).\n\nSome of the status effect in monster:statuses"
+        " (statuses::sleep == 0x7F).\n\nSome of the status effect in monster::statuses"
         " are used as an index to access an array, where every group of 8 bytes"
         " represents a bitmask. All masks are added in a bitwise OR and then stored in"
         " monster::status_icon.\n\nAlso sets icon flags for statuses::exposed,"
@@ -4867,7 +4866,7 @@ class EuOverlay11Data:
         [0x23213DC],
         0x2C,
         "Table of levels for recruited Pokémon, corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: int16_t[22]",
     )
 
     RECRUITMENT_TABLE_SPECIES = Symbol(
@@ -4881,17 +4880,20 @@ class EuOverlay11Data:
         " struct monster_id_16[22]",
     )
 
-    LEVEL_TILEMAP_LIST = Symbol([0x44CDC], [0x232185C], 0x288, "")
+    LEVEL_TILEMAP_LIST = Symbol(
+        [0x44CDC], [0x232185C], 0x288, "type: struct level_tilemap_list_entry[81]"
+    )
 
     OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
         [0x4701C],
         [0x2323B9C],
-        None,
+        0x150,
         "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16"
         " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
         " overlay_group_id in the C headers for a mapping between group ID and overlay"
         " number)\n- function pointer to entry point\n- function pointer to"
-        " destructor\n- possibly function pointer to frame-update function?",
+        " destructor\n- possibly function pointer to frame-update function?\n\ntype:"
+        " struct overlay_load_entry[21]",
     )
 
     UNIONALL_RAM_ADDRESS = Symbol([0x48C64], [0x23257E4], None, "[Runtime]")
@@ -6626,6 +6628,14 @@ class EuArm9Functions:
         " dungeon_id::DUNGEON_DUMMY_0xF0.\n\nr0: joined_at id\nreturn: bool",
     )
 
+    GetRankUpEntry = Symbol(
+        [0x51B2C],
+        [0x2051B2C],
+        None,
+        "Gets the rank up data for the specified rank.\n\nr0: rank index\nreturn:"
+        " struct rankup_table_entry*",
+    )
+
     GetMonsterGender = Symbol(
         [0x52AE0],
         [0x2052AE0],
@@ -7320,7 +7330,7 @@ class EuArm9Data:
     MAX_RECRUITABLE_TEAM_MEMBERS = Symbol(
         [0x555B4, 0x559C8],
         [0x20555B4, 0x20559C8],
-        None,
+        0x4,
         "555, appears to be the maximum number of members recruited to an exploration"
         " team, at least for the purposes of some checks that need to iterate over all"
         " team members.",
@@ -7335,7 +7345,8 @@ class EuArm9Data:
         "Contains stat boost effects for different exclusive item classes.\n\nEach"
         " 4-byte entry contains the boost data for (attack, special attack, defense,"
         " special defense), 1 byte each, for a specific exclusive item class, indexed"
-        " according to the stat boost data index list.",
+        " according to the stat boost data index list.\n\ntype: struct"
+        " exclusive_item_stat_boost_entry[15]",
     )
 
     EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
@@ -7362,7 +7373,8 @@ class EuArm9Data:
         " with the first entry corresponding to the first exclusive item (Prism Ruff)."
         " The first byte is the exclusive item effect ID, and the second byte is an"
         " index into other data tables (related to the more generic stat boosting"
-        " effects for specific monsters).",
+        " effects for specific monsters).\n\ntype: struct"
+        " exclusive_item_effect_entry[956]",
     )
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
@@ -7525,7 +7537,7 @@ class EuArm9Data:
     BAG_CAPACITY_TABLE = Symbol(
         [0xA2D58],
         [0x20A2D58],
-        None,
+        0x20,
         "Array of 4-byte integers containing the bag capacity for each bag level.",
     )
 
@@ -7666,7 +7678,7 @@ class EuArm9Data:
     NOTIFY_NOTE = Symbol(
         [0xB0814],
         [0x20B0814],
-        None,
+        0x1,
         "[Runtime] Flag related to saving and loading state?\n\ntype: bool",
     )
 
@@ -7746,7 +7758,7 @@ class EuOverlay10Data:
     SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
         [0x79C8],
         [0x22C4D88],
-        None,
+        0x2,
         "The maximum number of enemies that can spawn on a floor without a monster"
         " house (15).",
     )
@@ -7849,7 +7861,7 @@ class EuOverlay10Data:
     SPEED_BOOST_TURNS = Symbol(
         [0x7C04],
         [0x22C4FC4],
-        None,
+        0x2,
         "Number of turns (250) after which Speed Boost will trigger and increase speed"
         " by one stage.",
     )
@@ -7871,7 +7883,7 @@ class EuOverlay10Data:
     SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
         [0x7C3C],
         [0x22C4FFC],
-        None,
+        0x2,
         "The maximum number of enemies that can spawn on a floor with a monster house,"
         " not counting those in the monster house (4).",
     )
@@ -7959,7 +7971,7 @@ class EuOverlay10Data:
     AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
         [0x7DDC],
         [0x22C519C],
-        None,
+        0x4,
         "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
         " number (8 fraction bits)",
     )
@@ -8061,7 +8073,9 @@ class EuOverlay10Data:
         " fixed_room_monster_spawn_stats_entry[99]",
     )
 
-    TILESET_PROPERTIES = Symbol([0x98B4], [0x22C6C74], 0x954, "")
+    TILESET_PROPERTIES = Symbol(
+        [0x98B4], [0x22C6C74], 0x954, "type: struct tileset_property[199]"
+    )
 
     FIXED_ROOM_PROPERTIES_TABLE = Symbol(
         [0xA208],

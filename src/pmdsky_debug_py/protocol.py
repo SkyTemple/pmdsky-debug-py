@@ -2768,7 +2768,7 @@ class Overlay11DataProtocol(Protocol):
 
     OVERLAY11_OVERLAY_LOAD_TABLE: Symbol[
         Optional[List[int]],
-        None,
+        Optional[int],
     ]
 
     UNIONALL_RAM_ADDRESS: Symbol[
@@ -3765,6 +3765,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetRankUpEntry: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetMonsterGender: Symbol[
         Optional[List[int]],
         None,
@@ -4184,7 +4189,7 @@ class Arm9DataProtocol(Protocol):
 
     MAX_RECRUITABLE_TEAM_MEMBERS: Symbol[
         Optional[List[int]],
-        None,
+        Optional[int],
     ]
 
     CART_REMOVED_IMG_DATA: Symbol[
@@ -4464,7 +4469,7 @@ class Arm9DataProtocol(Protocol):
 
     NOTIFY_NOTE: Symbol[
         Optional[List[int]],
-        None,
+        Optional[int],
     ]
 
     DEFAULT_HERO_ID: Symbol[
@@ -4530,7 +4535,7 @@ class Overlay10DataProtocol(Protocol):
 
     SPAWN_CAP_NO_MONSTER_HOUSE: Symbol[
         Optional[List[int]],
-        None,
+        Optional[int],
     ]
 
     OREN_BERRY_DAMAGE: Symbol[
@@ -4615,7 +4620,7 @@ class Overlay10DataProtocol(Protocol):
 
     SPEED_BOOST_TURNS: Symbol[
         Optional[List[int]],
-        None,
+        Optional[int],
     ]
 
     MIRACLE_CHEST_EXP_BOOST: Symbol[
@@ -4630,7 +4635,7 @@ class Overlay10DataProtocol(Protocol):
 
     SPAWN_CAP_WITH_MONSTER_HOUSE: Symbol[
         Optional[List[int]],
-        None,
+        Optional[int],
     ]
 
     POISON_DAMAGE_COOLDOWN: Symbol[
@@ -4710,7 +4715,7 @@ class Overlay10DataProtocol(Protocol):
 
     AIR_BLADE_DAMAGE_MULTIPLIER: Symbol[
         Optional[List[int]],
-        None,
+        Optional[int],
     ]
 
     SPEED_BOOST_DURATION_RANGE: Symbol[

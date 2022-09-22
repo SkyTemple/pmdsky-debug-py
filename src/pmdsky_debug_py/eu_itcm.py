@@ -78,9 +78,9 @@ class EuItcmRamData:
         None,
         None,
         None,
-        "Array of up to 8 items in the Kecleon Shop of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 8 items, the array is expected"
-        " to be null-terminated.",
+        "Array of up to 8 items in the Kecleon Shop.\n\nIf there are fewer than 8"
+        " items, the array is expected to be null-terminated.\n\ntype: struct"
+        " bulk_item[8]",
     )
 
     UNUSED_KECLEON_SHOP_ITEMS = Symbol(
@@ -99,9 +99,8 @@ class EuItcmRamData:
         None,
         None,
         None,
-        "Array of up to 4 items in Kecleon Wares of the form {struct item_id_16 id,"
-        " uint16_t quantity}.\n\nIf there are fewer than 4 items, the array is expected"
-        " to be null-terminated.",
+        "Array of up to 4 items in Kecleon Wares.\n\nIf there are fewer than 4 items,"
+        " the array is expected to be null-terminated.\n\ntype: struct bulk_item[4]",
     )
 
     UNUSED_KECLEON_WARES_ITEMS = Symbol(
@@ -154,9 +153,9 @@ class EuItcmRamData:
         None,
         None,
         None,
-        "The number of the special episode currently being played.\n\n0: normal,"
-        " Bidoof's Wish\n1: Igglybuff the Prodigy\n2: Today's 'Oh My Gosh'\n3: Here"
-        " Comes Team Charm!\n4: In the Future of Darkness",
+        "The number of the special episode currently being played.\n\nThis backs the"
+        " EXECUTE_SPECIAL_EPISODE_TYPE script variable.\n\ntype: struct"
+        " special_episode_type_8",
     )
 
     PENDING_DUNGEON_ID = Symbol(
@@ -521,7 +520,7 @@ class EuItcmOverlay29Functions:
         None,
         "Sets a monster's status_icon_flags bitfield according to its current status"
         " effects. Does not affect a Sudowoodo in the 'permanent sleep' state"
-        " (statuses::sleep == 0x7F).\n\nSome of the status effect in monster:statuses"
+        " (statuses::sleep == 0x7F).\n\nSome of the status effect in monster::statuses"
         " are used as an index to access an array, where every group of 8 bytes"
         " represents a bitmask. All masks are added in a bitwise OR and then stored in"
         " monster::status_icon.\n\nAlso sets icon flags for statuses::exposed,"
@@ -4532,7 +4531,7 @@ class EuItcmOverlay11Data:
         None,
         None,
         "Table of levels for recruited Pokémon, corresponding to entries in"
-        " RECRUITMENT_TABLE_SPECIES.\n\ntype: uint16_t[22]",
+        " RECRUITMENT_TABLE_SPECIES.\n\ntype: int16_t[22]",
     )
 
     RECRUITMENT_TABLE_SPECIES = Symbol(
@@ -4546,7 +4545,9 @@ class EuItcmOverlay11Data:
         " struct monster_id_16[22]",
     )
 
-    LEVEL_TILEMAP_LIST = Symbol(None, None, None, "")
+    LEVEL_TILEMAP_LIST = Symbol(
+        None, None, None, "type: struct level_tilemap_list_entry[81]"
+    )
 
     OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
         None,
@@ -4556,7 +4557,8 @@ class EuItcmOverlay11Data:
         " bytes, consisting of:\n- overlay group ID (see arm9.yml or enum"
         " overlay_group_id in the C headers for a mapping between group ID and overlay"
         " number)\n- function pointer to entry point\n- function pointer to"
-        " destructor\n- possibly function pointer to frame-update function?",
+        " destructor\n- possibly function pointer to frame-update function?\n\ntype:"
+        " struct overlay_load_entry[21]",
     )
 
     UNIONALL_RAM_ADDRESS = Symbol(None, None, None, "[Runtime]")
@@ -6225,6 +6227,14 @@ class EuItcmArm9Functions:
         " dungeon_id::DUNGEON_DUMMY_0xF0.\n\nr0: joined_at id\nreturn: bool",
     )
 
+    GetRankUpEntry = Symbol(
+        None,
+        None,
+        None,
+        "Gets the rank up data for the specified rank.\n\nr0: rank index\nreturn:"
+        " struct rankup_table_entry*",
+    )
+
     GetMonsterGender = Symbol(
         None,
         None,
@@ -6913,7 +6923,8 @@ class EuItcmArm9Data:
         "Contains stat boost effects for different exclusive item classes.\n\nEach"
         " 4-byte entry contains the boost data for (attack, special attack, defense,"
         " special defense), 1 byte each, for a specific exclusive item class, indexed"
-        " according to the stat boost data index list.",
+        " according to the stat boost data index list.\n\ntype: struct"
+        " exclusive_item_stat_boost_entry[15]",
     )
 
     EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
@@ -6940,7 +6951,8 @@ class EuItcmArm9Data:
         " with the first entry corresponding to the first exclusive item (Prism Ruff)."
         " The first byte is the exclusive item effect ID, and the second byte is an"
         " index into other data tables (related to the more generic stat boosting"
-        " effects for specific monsters).",
+        " effects for specific monsters).\n\ntype: struct"
+        " exclusive_item_effect_entry[956]",
     )
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
@@ -7605,7 +7617,7 @@ class EuItcmOverlay10Data:
         " fixed_room_monster_spawn_stats_entry[99]",
     )
 
-    TILESET_PROPERTIES = Symbol(None, None, None, "")
+    TILESET_PROPERTIES = Symbol(None, None, None, "type: struct tileset_property[199]")
 
     FIXED_ROOM_PROPERTIES_TABLE = Symbol(
         None,
