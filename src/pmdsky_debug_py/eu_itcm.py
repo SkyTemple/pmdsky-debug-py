@@ -1,108 +1,6 @@
 from .protocol import Symbol
 
 
-class EuItcmOverlay12Functions:
-    pass
-
-
-class EuItcmOverlay12Data:
-    pass
-
-
-class EuItcmOverlay12Section:
-    name = "overlay12"
-    description = "Unused; all zeroes."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay12Functions
-    data = EuItcmOverlay12Data
-
-
-class EuItcmOverlay23Functions:
-    pass
-
-
-class EuItcmOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay23Functions
-    data = EuItcmOverlay23Data
-
-
-class EuItcmOverlay7Functions:
-    pass
-
-
-class EuItcmOverlay7Data:
-    pass
-
-
-class EuItcmOverlay7Section:
-    name = "overlay7"
-    description = (
-        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay7Functions
-    data = EuItcmOverlay7Data
-
-
-class EuItcmOverlay9Functions:
-    pass
-
-
-class EuItcmOverlay9Data:
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        None,
-        None,
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class EuItcmOverlay9Section:
-    name = "overlay9"
-    description = "Controls the Sky Jukebox."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay9Functions
-    data = EuItcmOverlay9Data
-
-
-class EuItcmOverlay28Functions:
-    pass
-
-
-class EuItcmOverlay28Data:
-    pass
-
-
-class EuItcmOverlay28Section:
-    name = "overlay28"
-    description = "Controls the staff credits sequence."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay28Functions
-    data = EuItcmOverlay28Data
-
-
 class EuItcmArm9Functions:
     InitMemAllocTable = Symbol(
         None,
@@ -2359,6 +2257,16 @@ class EuItcmArm9Functions:
 
 
 class EuItcmArm9Data:
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
+
+    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
+
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
         None,
         None,
@@ -2770,25 +2678,12 @@ class EuItcmArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol(None, None, None, "")
 
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
-
-    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
-
 
 class EuItcmArm9Section:
     name = "arm9"
     description = (
-        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
-        " launched, and contains the core code that runs the game, low level facilities"
-        " such as memory allocation, compression, other external dependencies (such as"
-        " linked functions from libc and libgcc), and the functions and tables"
-        " necessary to load overlays and dispatch execution to them."
+        "Hard-coded immediate values (literals) in instructions within the ARM 9"
+        " binary."
     )
     loadaddress = 0x1FF8000
     length = 0x4000
@@ -2796,84 +2691,102 @@ class EuItcmArm9Section:
     data = EuItcmArm9Data
 
 
-class EuItcmOverlay14Functions:
-    pass
-
-
-class EuItcmOverlay14Data:
-    FOOTPRINT_DEBUG_MENU = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay14Section:
-    name = "overlay14"
-    description = "Runs the sentry duty minigame."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay14Functions
-    data = EuItcmOverlay14Data
-
-
-class EuItcmOverlay33Functions:
-    pass
-
-
-class EuItcmOverlay33Data:
-    pass
-
-
-class EuItcmOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay33Functions
-    data = EuItcmOverlay33Data
-
-
-class EuItcmOverlay2Functions:
-    pass
-
-
-class EuItcmOverlay2Data:
-    pass
-
-
-class EuItcmOverlay2Section:
-    name = "overlay2"
-    description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
+class EuItcmItcmFunctions:
+    ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
+        [0x2390],
+        [0x1FFA390],
+        None,
+        "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
+        " Otherwise, returns true only if the monster's behavior field is equal to"
+        " monster_behavior::BEHAVIOR_FLEEING_OUTLAW.\n\nr0: Entity pointer\nr1:"
+        " ?\nreturn: True if ShouldMonsterRunAway returns true or the monster is a"
+        " fleeing outlaw",
     )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay2Functions
-    data = EuItcmOverlay2Data
+
+    AiMovement = Symbol(
+        [0x23C4],
+        [0x1FFA3C4],
+        None,
+        "Used by the AI to determine the direction in which a monster should"
+        " move\n\nr0: Entity pointer\nr1: ?",
+    )
+
+    CalculateAiTargetPos = Symbol(
+        [0x32C8],
+        [0x1FFB2C8],
+        None,
+        "Calculates the target position of an AI-controlled monster and stores it in"
+        " the monster's ai_target_pos field\n\nr0: Entity pointer",
+    )
+
+    ChooseAiMove = Symbol(
+        [0x3658],
+        [0x1FFB658],
+        None,
+        "Determines if an AI-controlled monster will use a move and which one it will"
+        " use\n\nr0: Entity pointer",
+    )
 
 
-class EuItcmOverlay19Functions:
-    pass
+class EuItcmItcmData:
+    MEMORY_ALLOCATION_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
+        " in the ARM9 binary uses region-based memory management (see"
+        " https://en.wikipedia.org/wiki/Region-based_memory_management). The heap is"
+        " broken up into smaller contiguous chunks called arenas (struct mem_arena),"
+        " which are in turn broken up into chunks referred to as blocks (struct"
+        " mem_block). Most of the time, an allocation results in a block being split"
+        " off from a free part of an existing memory arena.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_alloc_table",
+    )
+
+    DEFAULT_MEMORY_ARENA = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The default memory allocation arena. This is part of"
+        " MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various"
+        " functions.\n\nNote: This symbol isn't actually part of the ITCM, it gets"
+        " created at runtime on the spot in RAM that used to contain the code that was"
+        " moved to the ITCM.\n\ntype: struct mem_arena",
+    )
+
+    DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_block[256]",
+    )
 
 
-class EuItcmOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
-
-    BAR_MAIN_MENU = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_1 = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_2 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay19Functions
-    data = EuItcmOverlay19Data
+class EuItcmItcmSection:
+    name = "itcm"
+    description = (
+        "The instruction TCM (tightly-coupled memory) and the corresponding region in"
+        " the ARM9 binary.\n\nThe ITCM is a special area of low-latency memory meant"
+        " for performance-critical routines. It's similar to an instruction cache, but"
+        " more predictable. See the ARMv5 Architecture Reference Manual, Chapter B7"
+        " (https://developer.arm.com/documentation/ddi0100/i).\n\nThe Nintendo DS ITCM"
+        " region is located at 0x0-0x7FFF in memory, but the 32 KiB segment is mirrored"
+        " throughout the 16 MiB block from 0x0-0x1FFFFFF. The Explorers of Sky code"
+        " seems to reference only the mirror at 0x1FF8000, the closest one to main"
+        " memory.\n\nIn Explorers of Sky, a fixed region of the ARM9 binary appears to"
+        " be loaded in the ITCM at all times, and seems to contain functions related to"
+        " the dungeon AI, among other things. The ITCM has a max capacity of 0x8000,"
+        " although not all of it is used."
+    )
+    loadaddress = 0x1FF8000
+    length = 0x4000
+    functions = EuItcmItcmFunctions
+    data = EuItcmItcmData
 
 
 class EuItcmOverlay0Functions:
@@ -2893,6 +2806,64 @@ class EuItcmOverlay0Section:
     length = None
     functions = EuItcmOverlay0Functions
     data = EuItcmOverlay0Data
+
+
+class EuItcmOverlay1Functions:
+    CreateMainMenus = Symbol(
+        None,
+        None,
+        None,
+        "Prepares the top menu and sub menu, adding the different options that compose"
+        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
+        " Some of them are conditionally executed depending on which options should be"
+        " unlocked.\n\nNo params.",
+    )
+
+    AddMainMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Adds an option to the top menu.\n\nThis function is called for each one of the"
+        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
+        " action ID does not exist there, the option won't be added.\n\nr0: Action"
+        " ID\nr1: True if the option should be enabled, false otherwise",
+    )
+
+    AddSubMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
+        " called for each one of the options in the submenu. It loops the SUBMENU data"
+        " field, if the specified action ID does not exist there, the option won't be"
+        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
+    )
+
+
+class EuItcmOverlay1Data:
+    CONTINUE_CHOICE = Symbol(None, None, None, "")
+
+    SUBMENU = Symbol(None, None, None, "")
+
+    MAIN_MENU = Symbol(None, None, None, "")
+
+    MAIN_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
+
+    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay1Section:
+    name = "overlay1"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 1."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay1Functions
+    data = EuItcmOverlay1Data
 
 
 class EuItcmOverlay10Functions:
@@ -3506,6 +3477,444 @@ class EuItcmOverlay11Section:
     length = None
     functions = EuItcmOverlay11Functions
     data = EuItcmOverlay11Data
+
+
+class EuItcmOverlay12Functions:
+    pass
+
+
+class EuItcmOverlay12Data:
+    pass
+
+
+class EuItcmOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay12Functions
+    data = EuItcmOverlay12Data
+
+
+class EuItcmOverlay13Functions:
+    pass
+
+
+class EuItcmOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
+
+    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
+
+    STARTERS_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
+
+    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 13."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay13Functions
+    data = EuItcmOverlay13Data
+
+
+class EuItcmOverlay14Functions:
+    pass
+
+
+class EuItcmOverlay14Data:
+    FOOTPRINT_DEBUG_MENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay14Section:
+    name = "overlay14"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 14."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay14Functions
+    data = EuItcmOverlay14Data
+
+
+class EuItcmOverlay15Functions:
+    pass
+
+
+class EuItcmOverlay15Data:
+    BANK_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay15Section:
+    name = "overlay15"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 15."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay15Functions
+    data = EuItcmOverlay15Data
+
+
+class EuItcmOverlay16Functions:
+    pass
+
+
+class EuItcmOverlay16Data:
+    EVO_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    EVO_SUBMENU = Symbol(None, None, None, "")
+
+    EVO_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay16Section:
+    name = "overlay16"
+    description = "Controls Luminous Spring."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay16Functions
+    data = EuItcmOverlay16Data
+
+
+class EuItcmOverlay17Functions:
+    pass
+
+
+class EuItcmOverlay17Data:
+    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay17Section:
+    name = "overlay17"
+    description = "Controls the Chimecho Assembly."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay17Functions
+    data = EuItcmOverlay17Data
+
+
+class EuItcmOverlay18Functions:
+    pass
+
+
+class EuItcmOverlay18Data:
+    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
+
+    MOVES_MAIN_MENU = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay18Section:
+    name = "overlay18"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 18."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay18Functions
+    data = EuItcmOverlay18Data
+
+
+class EuItcmOverlay19Functions:
+    pass
+
+
+class EuItcmOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+
+    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+
+    BAR_MAIN_MENU = Symbol(None, None, None, "")
+
+    BAR_SUBMENU_1 = Symbol(None, None, None, "")
+
+    BAR_SUBMENU_2 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay19Section:
+    name = "overlay19"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay19Functions
+    data = EuItcmOverlay19Data
+
+
+class EuItcmOverlay2Functions:
+    pass
+
+
+class EuItcmOverlay2Data:
+    pass
+
+
+class EuItcmOverlay2Section:
+    name = "overlay2"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 2."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay2Functions
+    data = EuItcmOverlay2Data
+
+
+class EuItcmOverlay20Functions:
+    pass
+
+
+class EuItcmOverlay20Data:
+    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay20Section:
+    name = "overlay20"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 20."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay20Functions
+    data = EuItcmOverlay20Data
+
+
+class EuItcmOverlay21Functions:
+    pass
+
+
+class EuItcmOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay21Section:
+    name = "overlay21"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 21."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay21Functions
+    data = EuItcmOverlay21Data
+
+
+class EuItcmOverlay22Functions:
+    pass
+
+
+class EuItcmOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay22Section:
+    name = "overlay22"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 22."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay22Functions
+    data = EuItcmOverlay22Data
+
+
+class EuItcmOverlay23Functions:
+    pass
+
+
+class EuItcmOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 23."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay23Functions
+    data = EuItcmOverlay23Data
+
+
+class EuItcmOverlay24Functions:
+    pass
+
+
+class EuItcmOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay24Functions
+    data = EuItcmOverlay24Data
+
+
+class EuItcmOverlay25Functions:
+    pass
+
+
+class EuItcmOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
+
+    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay25Section:
+    name = "overlay25"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 25."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay25Functions
+    data = EuItcmOverlay25Data
+
+
+class EuItcmOverlay26Functions:
+    pass
+
+
+class EuItcmOverlay26Data:
+    pass
+
+
+class EuItcmOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 26."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay26Functions
+    data = EuItcmOverlay26Data
+
+
+class EuItcmOverlay27Functions:
+    pass
+
+
+class EuItcmOverlay27Data:
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay27Section:
+    name = "overlay27"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 27."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay27Functions
+    data = EuItcmOverlay27Data
+
+
+class EuItcmOverlay28Functions:
+    pass
+
+
+class EuItcmOverlay28Data:
+    pass
+
+
+class EuItcmOverlay28Section:
+    name = "overlay28"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 28."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay28Functions
+    data = EuItcmOverlay28Data
 
 
 class EuItcmOverlay29Functions:
@@ -7127,85 +7536,6 @@ class EuItcmOverlay29Section:
     data = EuItcmOverlay29Data
 
 
-class EuItcmOverlay34Functions:
-    pass
-
-
-class EuItcmOverlay34Data:
-    UNKNOWN_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay34Section:
-    name = "overlay34"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay34Functions
-    data = EuItcmOverlay34Data
-
-
-class EuItcmOverlay1Functions:
-    CreateMainMenus = Symbol(
-        None,
-        None,
-        None,
-        "Prepares the top menu and sub menu, adding the different options that compose"
-        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
-        " Some of them are conditionally executed depending on which options should be"
-        " unlocked.\n\nNo params.",
-    )
-
-    AddMainMenuOption = Symbol(
-        None,
-        None,
-        None,
-        "Adds an option to the top menu.\n\nThis function is called for each one of the"
-        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
-        " action ID does not exist there, the option won't be added.\n\nr0: Action"
-        " ID\nr1: True if the option should be enabled, false otherwise",
-    )
-
-    AddSubMenuOption = Symbol(
-        None,
-        None,
-        None,
-        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
-        " called for each one of the options in the submenu. It loops the SUBMENU data"
-        " field, if the specified action ID does not exist there, the option won't be"
-        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
-        " otherwise",
-    )
-
-
-class EuItcmOverlay1Data:
-    CONTINUE_CHOICE = Symbol(None, None, None, "")
-
-    SUBMENU = Symbol(None, None, None, "")
-
-    MAIN_MENU = Symbol(None, None, None, "")
-
-    MAIN_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
-
-    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay1Section:
-    name = "overlay1"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay1Functions
-    data = EuItcmOverlay1Data
-
-
 class EuItcmOverlay3Functions:
     pass
 
@@ -7216,89 +7546,11 @@ class EuItcmOverlay3Data:
 
 class EuItcmOverlay3Section:
     name = "overlay3"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 3."
-    )
+    description = "Controls the Friend Rescue submenu within the top menu."
     loadaddress = None
     length = None
     functions = EuItcmOverlay3Functions
     data = EuItcmOverlay3Data
-
-
-class EuItcmOverlay4Functions:
-    pass
-
-
-class EuItcmOverlay4Data:
-    pass
-
-
-class EuItcmOverlay4Section:
-    name = "overlay4"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay4Functions
-    data = EuItcmOverlay4Data
-
-
-class EuItcmOverlay5Functions:
-    pass
-
-
-class EuItcmOverlay5Data:
-    pass
-
-
-class EuItcmOverlay5Section:
-    name = "overlay5"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay5Functions
-    data = EuItcmOverlay5Data
-
-
-class EuItcmOverlay6Functions:
-    pass
-
-
-class EuItcmOverlay6Data:
-    pass
-
-
-class EuItcmOverlay6Section:
-    name = "overlay6"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 6."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay6Functions
-    data = EuItcmOverlay6Data
-
-
-class EuItcmOverlay8Functions:
-    pass
-
-
-class EuItcmOverlay8Data:
-    pass
-
-
-class EuItcmOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 8."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay8Functions
-    data = EuItcmOverlay8Data
 
 
 class EuItcmOverlay30Functions:
@@ -7388,320 +7640,59 @@ class EuItcmOverlay31Section:
     data = EuItcmOverlay31Data
 
 
-class EuItcmOverlay13Functions:
+class EuItcmOverlay32Functions:
     pass
 
 
-class EuItcmOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
-
-    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
-
-    STARTERS_STRINGS = Symbol(None, None, None, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
-
-    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
+class EuItcmOverlay32Data:
+    pass
 
 
-class EuItcmOverlay13Section:
-    name = "overlay13"
+class EuItcmOverlay32Section:
+    name = "overlay32"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay32Functions
+    data = EuItcmOverlay32Data
+
+
+class EuItcmOverlay33Functions:
+    pass
+
+
+class EuItcmOverlay33Data:
+    pass
+
+
+class EuItcmOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay33Functions
+    data = EuItcmOverlay33Data
+
+
+class EuItcmOverlay34Functions:
+    pass
+
+
+class EuItcmOverlay34Data:
+    UNKNOWN_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "")
+
+
+class EuItcmOverlay34Section:
+    name = "overlay34"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
+        "Hard-coded immediate values (literals) in instructions within overlay 34."
     )
     loadaddress = None
     length = None
-    functions = EuItcmOverlay13Functions
-    data = EuItcmOverlay13Data
-
-
-class EuItcmOverlay15Functions:
-    pass
-
-
-class EuItcmOverlay15Data:
-    BANK_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay15Section:
-    name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay15Functions
-    data = EuItcmOverlay15Data
-
-
-class EuItcmOverlay16Functions:
-    pass
-
-
-class EuItcmOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    EVO_SUBMENU = Symbol(None, None, None, "")
-
-    EVO_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay16Section:
-    name = "overlay16"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 16."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay16Functions
-    data = EuItcmOverlay16Data
-
-
-class EuItcmOverlay17Functions:
-    pass
-
-
-class EuItcmOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay17Section:
-    name = "overlay17"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 17."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay17Functions
-    data = EuItcmOverlay17Data
-
-
-class EuItcmOverlay18Functions:
-    pass
-
-
-class EuItcmOverlay18Data:
-    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
-
-    MOVES_MAIN_MENU = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay18Section:
-    name = "overlay18"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 18."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay18Functions
-    data = EuItcmOverlay18Data
-
-
-class EuItcmOverlay20Functions:
-    pass
-
-
-class EuItcmOverlay20Data:
-    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
-
-    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
-
-    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
-
-    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay20Section:
-    name = "overlay20"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 20."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay20Functions
-    data = EuItcmOverlay20Data
-
-
-class EuItcmOverlay21Functions:
-    pass
-
-
-class EuItcmOverlay21Data:
-    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay21Section:
-    name = "overlay21"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay21Functions
-    data = EuItcmOverlay21Data
-
-
-class EuItcmOverlay22Functions:
-    pass
-
-
-class EuItcmOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay22Section:
-    name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay22Functions
-    data = EuItcmOverlay22Data
-
-
-class EuItcmOverlay24Functions:
-    pass
-
-
-class EuItcmOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay24Section:
-    name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay24Functions
-    data = EuItcmOverlay24Data
-
-
-class EuItcmOverlay25Functions:
-    pass
-
-
-class EuItcmOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
-
-    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay25Section:
-    name = "overlay25"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 25."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay25Functions
-    data = EuItcmOverlay25Data
-
-
-class EuItcmOverlay26Functions:
-    pass
-
-
-class EuItcmOverlay26Data:
-    pass
-
-
-class EuItcmOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay26Functions
-    data = EuItcmOverlay26Data
-
-
-class EuItcmOverlay27Functions:
-    pass
-
-
-class EuItcmOverlay27Data:
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class EuItcmOverlay27Section:
-    name = "overlay27"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
-    )
-    loadaddress = None
-    length = None
-    functions = EuItcmOverlay27Functions
-    data = EuItcmOverlay27Data
+    functions = EuItcmOverlay34Functions
+    data = EuItcmOverlay34Data
 
 
 class EuItcmOverlay35Functions:
@@ -7721,21 +7712,119 @@ class EuItcmOverlay35Section:
     data = EuItcmOverlay35Data
 
 
-class EuItcmOverlay32Functions:
+class EuItcmOverlay4Functions:
     pass
 
 
-class EuItcmOverlay32Data:
+class EuItcmOverlay4Data:
     pass
 
 
-class EuItcmOverlay32Section:
-    name = "overlay32"
-    description = "Unused; all zeroes."
+class EuItcmOverlay4Section:
+    name = "overlay4"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 4."
+    )
     loadaddress = None
     length = None
-    functions = EuItcmOverlay32Functions
-    data = EuItcmOverlay32Data
+    functions = EuItcmOverlay4Functions
+    data = EuItcmOverlay4Data
+
+
+class EuItcmOverlay5Functions:
+    pass
+
+
+class EuItcmOverlay5Data:
+    pass
+
+
+class EuItcmOverlay5Section:
+    name = "overlay5"
+    description = "Controls the Trade Team submenu within the top menu."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay5Functions
+    data = EuItcmOverlay5Data
+
+
+class EuItcmOverlay6Functions:
+    pass
+
+
+class EuItcmOverlay6Data:
+    pass
+
+
+class EuItcmOverlay6Section:
+    name = "overlay6"
+    description = "Controls the Wonder Mail S submenu within the top menu."
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay6Functions
+    data = EuItcmOverlay6Data
+
+
+class EuItcmOverlay7Functions:
+    pass
+
+
+class EuItcmOverlay7Data:
+    pass
+
+
+class EuItcmOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 7."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay7Functions
+    data = EuItcmOverlay7Data
+
+
+class EuItcmOverlay8Functions:
+    pass
+
+
+class EuItcmOverlay8Data:
+    pass
+
+
+class EuItcmOverlay8Section:
+    name = "overlay8"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay8Functions
+    data = EuItcmOverlay8Data
+
+
+class EuItcmOverlay9Functions:
+    pass
+
+
+class EuItcmOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        None,
+        None,
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class EuItcmOverlay9Section:
+    name = "overlay9"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 9."
+    )
+    loadaddress = None
+    length = None
+    functions = EuItcmOverlay9Functions
+    data = EuItcmOverlay9Data
 
 
 class EuItcmRamFunctions:
@@ -8034,53 +8123,23 @@ class EuItcmRamSection:
 
 
 class EuItcmSections:
-    overlay12 = EuItcmOverlay12Section
-
-    overlay23 = EuItcmOverlay23Section
-
-    overlay7 = EuItcmOverlay7Section
-
-    overlay9 = EuItcmOverlay9Section
-
-    overlay28 = EuItcmOverlay28Section
-
     arm9 = EuItcmArm9Section
 
-    overlay14 = EuItcmOverlay14Section
-
-    overlay33 = EuItcmOverlay33Section
-
-    overlay2 = EuItcmOverlay2Section
-
-    overlay19 = EuItcmOverlay19Section
+    itcm = EuItcmItcmSection
 
     overlay0 = EuItcmOverlay0Section
+
+    overlay1 = EuItcmOverlay1Section
 
     overlay10 = EuItcmOverlay10Section
 
     overlay11 = EuItcmOverlay11Section
 
-    overlay29 = EuItcmOverlay29Section
-
-    overlay34 = EuItcmOverlay34Section
-
-    overlay1 = EuItcmOverlay1Section
-
-    overlay3 = EuItcmOverlay3Section
-
-    overlay4 = EuItcmOverlay4Section
-
-    overlay5 = EuItcmOverlay5Section
-
-    overlay6 = EuItcmOverlay6Section
-
-    overlay8 = EuItcmOverlay8Section
-
-    overlay30 = EuItcmOverlay30Section
-
-    overlay31 = EuItcmOverlay31Section
+    overlay12 = EuItcmOverlay12Section
 
     overlay13 = EuItcmOverlay13Section
+
+    overlay14 = EuItcmOverlay14Section
 
     overlay15 = EuItcmOverlay15Section
 
@@ -8090,11 +8149,17 @@ class EuItcmSections:
 
     overlay18 = EuItcmOverlay18Section
 
+    overlay19 = EuItcmOverlay19Section
+
+    overlay2 = EuItcmOverlay2Section
+
     overlay20 = EuItcmOverlay20Section
 
     overlay21 = EuItcmOverlay21Section
 
     overlay22 = EuItcmOverlay22Section
+
+    overlay23 = EuItcmOverlay23Section
 
     overlay24 = EuItcmOverlay24Section
 
@@ -8104,8 +8169,34 @@ class EuItcmSections:
 
     overlay27 = EuItcmOverlay27Section
 
-    overlay35 = EuItcmOverlay35Section
+    overlay28 = EuItcmOverlay28Section
+
+    overlay29 = EuItcmOverlay29Section
+
+    overlay3 = EuItcmOverlay3Section
+
+    overlay30 = EuItcmOverlay30Section
+
+    overlay31 = EuItcmOverlay31Section
 
     overlay32 = EuItcmOverlay32Section
+
+    overlay33 = EuItcmOverlay33Section
+
+    overlay34 = EuItcmOverlay34Section
+
+    overlay35 = EuItcmOverlay35Section
+
+    overlay4 = EuItcmOverlay4Section
+
+    overlay5 = EuItcmOverlay5Section
+
+    overlay6 = EuItcmOverlay6Section
+
+    overlay7 = EuItcmOverlay7Section
+
+    overlay8 = EuItcmOverlay8Section
+
+    overlay9 = EuItcmOverlay9Section
 
     ram = EuItcmRamSection

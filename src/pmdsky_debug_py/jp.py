@@ -1,108 +1,6 @@
 from .protocol import Symbol
 
 
-class JpOverlay12Functions:
-    pass
-
-
-class JpOverlay12Data:
-    pass
-
-
-class JpOverlay12Section:
-    name = "overlay12"
-    description = "Unused; all zeroes."
-    loadaddress = 0x238B6A0
-    length = 0x20
-    functions = JpOverlay12Functions
-    data = JpOverlay12Data
-
-
-class JpOverlay23Functions:
-    pass
-
-
-class JpOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
-
-
-class JpOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x37E0
-    functions = JpOverlay23Functions
-    data = JpOverlay23Data
-
-
-class JpOverlay7Functions:
-    pass
-
-
-class JpOverlay7Data:
-    pass
-
-
-class JpOverlay7Section:
-    name = "overlay7"
-    description = (
-        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233E300
-    length = 0x53E0
-    functions = JpOverlay7Functions
-    data = JpOverlay7Data
-
-
-class JpOverlay9Functions:
-    pass
-
-
-class JpOverlay9Data:
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        None,
-        None,
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class JpOverlay9Section:
-    name = "overlay9"
-    description = "Controls the Sky Jukebox."
-    loadaddress = 0x233E300
-    length = 0x2D20
-    functions = JpOverlay9Functions
-    data = JpOverlay9Data
-
-
-class JpOverlay28Functions:
-    pass
-
-
-class JpOverlay28Data:
-    pass
-
-
-class JpOverlay28Section:
-    name = "overlay28"
-    description = "Controls the staff credits sequence."
-    loadaddress = 0x238B6A0
-    length = 0xC60
-    functions = JpOverlay28Functions
-    data = JpOverlay28Data
-
-
 class JpArm9Functions:
     InitMemAllocTable = Symbol(
         [0xDE0],
@@ -2386,6 +2284,16 @@ class JpArm9Functions:
 
 
 class JpArm9Data:
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
+
+    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
+
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
         None,
         None,
@@ -2797,25 +2705,12 @@ class JpArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol(None, None, None, "")
 
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
-
-    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
-
 
 class JpArm9Section:
     name = "arm9"
     description = (
-        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
-        " launched, and contains the core code that runs the game, low level facilities"
-        " such as memory allocation, compression, other external dependencies (such as"
-        " linked functions from libc and libgcc), and the functions and tables"
-        " necessary to load overlays and dispatch execution to them."
+        "Hard-coded immediate values (literals) in instructions within the ARM 9"
+        " binary."
     )
     loadaddress = 0x2000000
     length = 0xB8CB8
@@ -2823,84 +2718,102 @@ class JpArm9Section:
     data = JpArm9Data
 
 
-class JpOverlay14Functions:
-    pass
-
-
-class JpOverlay14Data:
-    FOOTPRINT_DEBUG_MENU = Symbol(None, None, None, "")
-
-
-class JpOverlay14Section:
-    name = "overlay14"
-    description = "Runs the sentry duty minigame."
-    loadaddress = 0x238B6A0
-    length = 0x3AE0
-    functions = JpOverlay14Functions
-    data = JpOverlay14Data
-
-
-class JpOverlay33Functions:
-    pass
-
-
-class JpOverlay33Data:
-    pass
-
-
-class JpOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383AA0
-    length = 0x20
-    functions = JpOverlay33Functions
-    data = JpOverlay33Data
-
-
-class JpOverlay2Functions:
-    pass
-
-
-class JpOverlay2Data:
-    pass
-
-
-class JpOverlay2Section:
-    name = "overlay2"
-    description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
+class JpItcmFunctions:
+    ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
+        None,
+        None,
+        None,
+        "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
+        " Otherwise, returns true only if the monster's behavior field is equal to"
+        " monster_behavior::BEHAVIOR_FLEEING_OUTLAW.\n\nr0: Entity pointer\nr1:"
+        " ?\nreturn: True if ShouldMonsterRunAway returns true or the monster is a"
+        " fleeing outlaw",
     )
-    loadaddress = 0x232ACC0
-    length = 0x2AFA0
-    functions = JpOverlay2Functions
-    data = JpOverlay2Data
+
+    AiMovement = Symbol(
+        None,
+        None,
+        None,
+        "Used by the AI to determine the direction in which a monster should"
+        " move\n\nr0: Entity pointer\nr1: ?",
+    )
+
+    CalculateAiTargetPos = Symbol(
+        None,
+        None,
+        None,
+        "Calculates the target position of an AI-controlled monster and stores it in"
+        " the monster's ai_target_pos field\n\nr0: Entity pointer",
+    )
+
+    ChooseAiMove = Symbol(
+        None,
+        None,
+        None,
+        "Determines if an AI-controlled monster will use a move and which one it will"
+        " use\n\nr0: Entity pointer",
+    )
 
 
-class JpOverlay19Functions:
-    pass
+class JpItcmData:
+    MEMORY_ALLOCATION_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
+        " in the ARM9 binary uses region-based memory management (see"
+        " https://en.wikipedia.org/wiki/Region-based_memory_management). The heap is"
+        " broken up into smaller contiguous chunks called arenas (struct mem_arena),"
+        " which are in turn broken up into chunks referred to as blocks (struct"
+        " mem_block). Most of the time, an allocation results in a block being split"
+        " off from a free part of an existing memory arena.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_alloc_table",
+    )
+
+    DEFAULT_MEMORY_ARENA = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The default memory allocation arena. This is part of"
+        " MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various"
+        " functions.\n\nNote: This symbol isn't actually part of the ITCM, it gets"
+        " created at runtime on the spot in RAM that used to contain the code that was"
+        " moved to the ITCM.\n\ntype: struct mem_arena",
+    )
+
+    DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_block[256]",
+    )
 
 
-class JpOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
-
-    BAR_MAIN_MENU = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_1 = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_2 = Symbol(None, None, None, "")
-
-
-class JpOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
-    loadaddress = 0x238B6A0
-    length = 0x4220
-    functions = JpOverlay19Functions
-    data = JpOverlay19Data
+class JpItcmSection:
+    name = "itcm"
+    description = (
+        "The instruction TCM (tightly-coupled memory) and the corresponding region in"
+        " the ARM9 binary.\n\nThe ITCM is a special area of low-latency memory meant"
+        " for performance-critical routines. It's similar to an instruction cache, but"
+        " more predictable. See the ARMv5 Architecture Reference Manual, Chapter B7"
+        " (https://developer.arm.com/documentation/ddi0100/i).\n\nThe Nintendo DS ITCM"
+        " region is located at 0x0-0x7FFF in memory, but the 32 KiB segment is mirrored"
+        " throughout the 16 MiB block from 0x0-0x1FFFFFF. The Explorers of Sky code"
+        " seems to reference only the mirror at 0x1FF8000, the closest one to main"
+        " memory.\n\nIn Explorers of Sky, a fixed region of the ARM9 binary appears to"
+        " be loaded in the ITCM at all times, and seems to contain functions related to"
+        " the dungeon AI, among other things. The ITCM has a max capacity of 0x8000,"
+        " although not all of it is used."
+    )
+    loadaddress = None
+    length = None
+    functions = JpItcmFunctions
+    data = JpItcmData
 
 
 class JpOverlay0Functions:
@@ -2920,6 +2833,64 @@ class JpOverlay0Section:
     length = 0x609A0
     functions = JpOverlay0Functions
     data = JpOverlay0Data
+
+
+class JpOverlay1Functions:
+    CreateMainMenus = Symbol(
+        None,
+        None,
+        None,
+        "Prepares the top menu and sub menu, adding the different options that compose"
+        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
+        " Some of them are conditionally executed depending on which options should be"
+        " unlocked.\n\nNo params.",
+    )
+
+    AddMainMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Adds an option to the top menu.\n\nThis function is called for each one of the"
+        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
+        " action ID does not exist there, the option won't be added.\n\nr0: Action"
+        " ID\nr1: True if the option should be enabled, false otherwise",
+    )
+
+    AddSubMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
+        " called for each one of the options in the submenu. It loops the SUBMENU data"
+        " field, if the specified action ID does not exist there, the option won't be"
+        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
+    )
+
+
+class JpOverlay1Data:
+    CONTINUE_CHOICE = Symbol(None, None, None, "")
+
+    SUBMENU = Symbol(None, None, None, "")
+
+    MAIN_MENU = Symbol(None, None, None, "")
+
+    MAIN_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
+
+    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
+
+
+class JpOverlay1Section:
+    name = "overlay1"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 1."
+    )
+    loadaddress = 0x232ACC0
+    length = 0x12E00
+    functions = JpOverlay1Functions
+    data = JpOverlay1Data
 
 
 class JpOverlay10Functions:
@@ -3533,6 +3504,444 @@ class JpOverlay11Section:
     length = 0x48B00
     functions = JpOverlay11Functions
     data = JpOverlay11Data
+
+
+class JpOverlay12Functions:
+    pass
+
+
+class JpOverlay12Data:
+    pass
+
+
+class JpOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = 0x238B6A0
+    length = 0x20
+    functions = JpOverlay12Functions
+    data = JpOverlay12Data
+
+
+class JpOverlay13Functions:
+    pass
+
+
+class JpOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
+
+    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
+
+    STARTERS_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
+
+    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
+
+
+class JpOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 13."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x2E80
+    functions = JpOverlay13Functions
+    data = JpOverlay13Data
+
+
+class JpOverlay14Functions:
+    pass
+
+
+class JpOverlay14Data:
+    FOOTPRINT_DEBUG_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay14Section:
+    name = "overlay14"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 14."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x3AE0
+    functions = JpOverlay14Functions
+    data = JpOverlay14Data
+
+
+class JpOverlay15Functions:
+    pass
+
+
+class JpOverlay15Data:
+    BANK_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay15Section:
+    name = "overlay15"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 15."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x1060
+    functions = JpOverlay15Functions
+    data = JpOverlay15Data
+
+
+class JpOverlay16Functions:
+    pass
+
+
+class JpOverlay16Data:
+    EVO_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    EVO_SUBMENU = Symbol(None, None, None, "")
+
+    EVO_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay16Section:
+    name = "overlay16"
+    description = "Controls Luminous Spring."
+    loadaddress = 0x238B6A0
+    length = 0x2D40
+    functions = JpOverlay16Functions
+    data = JpOverlay16Data
+
+
+class JpOverlay17Functions:
+    pass
+
+
+class JpOverlay17Data:
+    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
+
+
+class JpOverlay17Section:
+    name = "overlay17"
+    description = "Controls the Chimecho Assembly."
+    loadaddress = 0x238B6A0
+    length = 0x1CE0
+    functions = JpOverlay17Functions
+    data = JpOverlay17Data
+
+
+class JpOverlay18Functions:
+    pass
+
+
+class JpOverlay18Data:
+    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
+
+    MOVES_MAIN_MENU = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
+
+
+class JpOverlay18Section:
+    name = "overlay18"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 18."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x3520
+    functions = JpOverlay18Functions
+    data = JpOverlay18Data
+
+
+class JpOverlay19Functions:
+    pass
+
+
+class JpOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+
+    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+
+    BAR_MAIN_MENU = Symbol(None, None, None, "")
+
+    BAR_SUBMENU_1 = Symbol(None, None, None, "")
+
+    BAR_SUBMENU_2 = Symbol(None, None, None, "")
+
+
+class JpOverlay19Section:
+    name = "overlay19"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x4220
+    functions = JpOverlay19Functions
+    data = JpOverlay19Data
+
+
+class JpOverlay2Functions:
+    pass
+
+
+class JpOverlay2Data:
+    pass
+
+
+class JpOverlay2Section:
+    name = "overlay2"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 2."
+    )
+    loadaddress = 0x232ACC0
+    length = 0x2AFA0
+    functions = JpOverlay2Functions
+    data = JpOverlay2Data
+
+
+class JpOverlay20Functions:
+    pass
+
+
+class JpOverlay20Data:
+    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class JpOverlay20Section:
+    name = "overlay20"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 20."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x3000
+    functions = JpOverlay20Functions
+    data = JpOverlay20Data
+
+
+class JpOverlay21Functions:
+    pass
+
+
+class JpOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
+
+
+class JpOverlay21Section:
+    name = "overlay21"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 21."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x2E40
+    functions = JpOverlay21Functions
+    data = JpOverlay21Data
+
+
+class JpOverlay22Functions:
+    pass
+
+
+class JpOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class JpOverlay22Section:
+    name = "overlay22"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 22."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x4B40
+    functions = JpOverlay22Functions
+    data = JpOverlay22Data
+
+
+class JpOverlay23Functions:
+    pass
+
+
+class JpOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
+
+
+class JpOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 23."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x37E0
+    functions = JpOverlay23Functions
+    data = JpOverlay23Data
+
+
+class JpOverlay24Functions:
+    pass
+
+
+class JpOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = 0x238B6A0
+    length = 0x24E0
+    functions = JpOverlay24Functions
+    data = JpOverlay24Data
+
+
+class JpOverlay25Functions:
+    pass
+
+
+class JpOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
+
+    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
+
+
+class JpOverlay25Section:
+    name = "overlay25"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 25."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x14C0
+    functions = JpOverlay25Functions
+    data = JpOverlay25Data
+
+
+class JpOverlay26Functions:
+    pass
+
+
+class JpOverlay26Data:
+    pass
+
+
+class JpOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 26."
+    )
+    loadaddress = 0x238B6A0
+    length = 0xE40
+    functions = JpOverlay26Functions
+    data = JpOverlay26Data
+
+
+class JpOverlay27Functions:
+    pass
+
+
+class JpOverlay27Data:
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay27Section:
+    name = "overlay27"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 27."
+    )
+    loadaddress = 0x238B6A0
+    length = 0x2DA0
+    functions = JpOverlay27Functions
+    data = JpOverlay27Data
+
+
+class JpOverlay28Functions:
+    pass
+
+
+class JpOverlay28Data:
+    pass
+
+
+class JpOverlay28Section:
+    name = "overlay28"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 28."
+    )
+    loadaddress = 0x238B6A0
+    length = 0xC60
+    functions = JpOverlay28Functions
+    data = JpOverlay28Data
 
 
 class JpOverlay29Functions:
@@ -7154,85 +7563,6 @@ class JpOverlay29Section:
     data = JpOverlay29Data
 
 
-class JpOverlay34Functions:
-    pass
-
-
-class JpOverlay34Data:
-    UNKNOWN_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "")
-
-
-class JpOverlay34Section:
-    name = "overlay34"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
-    )
-    loadaddress = 0x22DD8E0
-    length = 0xDC0
-    functions = JpOverlay34Functions
-    data = JpOverlay34Data
-
-
-class JpOverlay1Functions:
-    CreateMainMenus = Symbol(
-        None,
-        None,
-        None,
-        "Prepares the top menu and sub menu, adding the different options that compose"
-        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
-        " Some of them are conditionally executed depending on which options should be"
-        " unlocked.\n\nNo params.",
-    )
-
-    AddMainMenuOption = Symbol(
-        None,
-        None,
-        None,
-        "Adds an option to the top menu.\n\nThis function is called for each one of the"
-        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
-        " action ID does not exist there, the option won't be added.\n\nr0: Action"
-        " ID\nr1: True if the option should be enabled, false otherwise",
-    )
-
-    AddSubMenuOption = Symbol(
-        None,
-        None,
-        None,
-        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
-        " called for each one of the options in the submenu. It loops the SUBMENU data"
-        " field, if the specified action ID does not exist there, the option won't be"
-        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
-        " otherwise",
-    )
-
-
-class JpOverlay1Data:
-    CONTINUE_CHOICE = Symbol(None, None, None, "")
-
-    SUBMENU = Symbol(None, None, None, "")
-
-    MAIN_MENU = Symbol(None, None, None, "")
-
-    MAIN_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
-
-    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
-
-
-class JpOverlay1Section:
-    name = "overlay1"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
-    )
-    loadaddress = 0x232ACC0
-    length = 0x12E00
-    functions = JpOverlay1Functions
-    data = JpOverlay1Data
-
-
 class JpOverlay3Functions:
     pass
 
@@ -7243,89 +7573,11 @@ class JpOverlay3Data:
 
 class JpOverlay3Section:
     name = "overlay3"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 3."
-    )
+    description = "Controls the Friend Rescue submenu within the top menu."
     loadaddress = 0x233E300
     length = 0xA160
     functions = JpOverlay3Functions
     data = JpOverlay3Data
-
-
-class JpOverlay4Functions:
-    pass
-
-
-class JpOverlay4Data:
-    pass
-
-
-class JpOverlay4Section:
-    name = "overlay4"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
-    )
-    loadaddress = 0x233E300
-    length = 0x2BE0
-    functions = JpOverlay4Functions
-    data = JpOverlay4Data
-
-
-class JpOverlay5Functions:
-    pass
-
-
-class JpOverlay5Data:
-    pass
-
-
-class JpOverlay5Section:
-    name = "overlay5"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
-    )
-    loadaddress = 0x233E300
-    length = 0x3260
-    functions = JpOverlay5Functions
-    data = JpOverlay5Data
-
-
-class JpOverlay6Functions:
-    pass
-
-
-class JpOverlay6Data:
-    pass
-
-
-class JpOverlay6Section:
-    name = "overlay6"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 6."
-    )
-    loadaddress = 0x233E300
-    length = 0x2460
-    functions = JpOverlay6Functions
-    data = JpOverlay6Data
-
-
-class JpOverlay8Functions:
-    pass
-
-
-class JpOverlay8Data:
-    pass
-
-
-class JpOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 8."
-    )
-    loadaddress = 0x233E300
-    length = 0x2200
-    functions = JpOverlay8Functions
-    data = JpOverlay8Data
 
 
 class JpOverlay30Functions:
@@ -7415,320 +7667,59 @@ class JpOverlay31Section:
     data = JpOverlay31Data
 
 
-class JpOverlay13Functions:
+class JpOverlay32Functions:
     pass
 
 
-class JpOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
-
-    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
-
-    STARTERS_STRINGS = Symbol(None, None, None, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
-
-    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
+class JpOverlay32Data:
+    pass
 
 
-class JpOverlay13Section:
-    name = "overlay13"
+class JpOverlay32Section:
+    name = "overlay32"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2383AA0
+    length = 0x20
+    functions = JpOverlay32Functions
+    data = JpOverlay32Data
+
+
+class JpOverlay33Functions:
+    pass
+
+
+class JpOverlay33Data:
+    pass
+
+
+class JpOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2383AA0
+    length = 0x20
+    functions = JpOverlay33Functions
+    data = JpOverlay33Data
+
+
+class JpOverlay34Functions:
+    pass
+
+
+class JpOverlay34Data:
+    UNKNOWN_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "")
+
+
+class JpOverlay34Section:
+    name = "overlay34"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
+        "Hard-coded immediate values (literals) in instructions within overlay 34."
     )
-    loadaddress = 0x238B6A0
-    length = 0x2E80
-    functions = JpOverlay13Functions
-    data = JpOverlay13Data
-
-
-class JpOverlay15Functions:
-    pass
-
-
-class JpOverlay15Data:
-    BANK_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class JpOverlay15Section:
-    name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x1060
-    functions = JpOverlay15Functions
-    data = JpOverlay15Data
-
-
-class JpOverlay16Functions:
-    pass
-
-
-class JpOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    EVO_SUBMENU = Symbol(None, None, None, "")
-
-    EVO_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class JpOverlay16Section:
-    name = "overlay16"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 16."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x2D40
-    functions = JpOverlay16Functions
-    data = JpOverlay16Data
-
-
-class JpOverlay17Functions:
-    pass
-
-
-class JpOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
-
-
-class JpOverlay17Section:
-    name = "overlay17"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 17."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x1CE0
-    functions = JpOverlay17Functions
-    data = JpOverlay17Data
-
-
-class JpOverlay18Functions:
-    pass
-
-
-class JpOverlay18Data:
-    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
-
-    MOVES_MAIN_MENU = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
-
-
-class JpOverlay18Section:
-    name = "overlay18"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 18."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x3520
-    functions = JpOverlay18Functions
-    data = JpOverlay18Data
-
-
-class JpOverlay20Functions:
-    pass
-
-
-class JpOverlay20Data:
-    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
-
-    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
-
-    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
-
-    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-
-class JpOverlay20Section:
-    name = "overlay20"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 20."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x3000
-    functions = JpOverlay20Functions
-    data = JpOverlay20Data
-
-
-class JpOverlay21Functions:
-    pass
-
-
-class JpOverlay21Data:
-    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
-
-
-class JpOverlay21Section:
-    name = "overlay21"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x2E40
-    functions = JpOverlay21Functions
-    data = JpOverlay21Data
-
-
-class JpOverlay22Functions:
-    pass
-
-
-class JpOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-
-class JpOverlay22Section:
-    name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x4B40
-    functions = JpOverlay22Functions
-    data = JpOverlay22Data
-
-
-class JpOverlay24Functions:
-    pass
-
-
-class JpOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class JpOverlay24Section:
-    name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x24E0
-    functions = JpOverlay24Functions
-    data = JpOverlay24Data
-
-
-class JpOverlay25Functions:
-    pass
-
-
-class JpOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
-
-    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
-
-
-class JpOverlay25Section:
-    name = "overlay25"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 25."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x14C0
-    functions = JpOverlay25Functions
-    data = JpOverlay25Data
-
-
-class JpOverlay26Functions:
-    pass
-
-
-class JpOverlay26Data:
-    pass
-
-
-class JpOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
-    )
-    loadaddress = 0x238B6A0
-    length = 0xE40
-    functions = JpOverlay26Functions
-    data = JpOverlay26Data
-
-
-class JpOverlay27Functions:
-    pass
-
-
-class JpOverlay27Data:
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class JpOverlay27Section:
-    name = "overlay27"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
-    )
-    loadaddress = 0x238B6A0
-    length = 0x2DA0
-    functions = JpOverlay27Functions
-    data = JpOverlay27Data
+    loadaddress = 0x22DD8E0
+    length = 0xDC0
+    functions = JpOverlay34Functions
+    data = JpOverlay34Data
 
 
 class JpOverlay35Functions:
@@ -7748,21 +7739,119 @@ class JpOverlay35Section:
     data = JpOverlay35Data
 
 
-class JpOverlay32Functions:
+class JpOverlay4Functions:
     pass
 
 
-class JpOverlay32Data:
+class JpOverlay4Data:
     pass
 
 
-class JpOverlay32Section:
-    name = "overlay32"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383AA0
-    length = 0x20
-    functions = JpOverlay32Functions
-    data = JpOverlay32Data
+class JpOverlay4Section:
+    name = "overlay4"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 4."
+    )
+    loadaddress = 0x233E300
+    length = 0x2BE0
+    functions = JpOverlay4Functions
+    data = JpOverlay4Data
+
+
+class JpOverlay5Functions:
+    pass
+
+
+class JpOverlay5Data:
+    pass
+
+
+class JpOverlay5Section:
+    name = "overlay5"
+    description = "Controls the Trade Team submenu within the top menu."
+    loadaddress = 0x233E300
+    length = 0x3260
+    functions = JpOverlay5Functions
+    data = JpOverlay5Data
+
+
+class JpOverlay6Functions:
+    pass
+
+
+class JpOverlay6Data:
+    pass
+
+
+class JpOverlay6Section:
+    name = "overlay6"
+    description = "Controls the Wonder Mail S submenu within the top menu."
+    loadaddress = 0x233E300
+    length = 0x2460
+    functions = JpOverlay6Functions
+    data = JpOverlay6Data
+
+
+class JpOverlay7Functions:
+    pass
+
+
+class JpOverlay7Data:
+    pass
+
+
+class JpOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 7."
+    )
+    loadaddress = 0x233E300
+    length = 0x53E0
+    functions = JpOverlay7Functions
+    data = JpOverlay7Data
+
+
+class JpOverlay8Functions:
+    pass
+
+
+class JpOverlay8Data:
+    pass
+
+
+class JpOverlay8Section:
+    name = "overlay8"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
+    )
+    loadaddress = 0x233E300
+    length = 0x2200
+    functions = JpOverlay8Functions
+    data = JpOverlay8Data
+
+
+class JpOverlay9Functions:
+    pass
+
+
+class JpOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        None,
+        None,
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class JpOverlay9Section:
+    name = "overlay9"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 9."
+    )
+    loadaddress = 0x233E300
+    length = 0x2D20
+    functions = JpOverlay9Functions
+    data = JpOverlay9Data
 
 
 class JpRamFunctions:
@@ -8061,53 +8150,23 @@ class JpRamSection:
 
 
 class JpSections:
-    overlay12 = JpOverlay12Section
-
-    overlay23 = JpOverlay23Section
-
-    overlay7 = JpOverlay7Section
-
-    overlay9 = JpOverlay9Section
-
-    overlay28 = JpOverlay28Section
-
     arm9 = JpArm9Section
 
-    overlay14 = JpOverlay14Section
-
-    overlay33 = JpOverlay33Section
-
-    overlay2 = JpOverlay2Section
-
-    overlay19 = JpOverlay19Section
+    itcm = JpItcmSection
 
     overlay0 = JpOverlay0Section
+
+    overlay1 = JpOverlay1Section
 
     overlay10 = JpOverlay10Section
 
     overlay11 = JpOverlay11Section
 
-    overlay29 = JpOverlay29Section
-
-    overlay34 = JpOverlay34Section
-
-    overlay1 = JpOverlay1Section
-
-    overlay3 = JpOverlay3Section
-
-    overlay4 = JpOverlay4Section
-
-    overlay5 = JpOverlay5Section
-
-    overlay6 = JpOverlay6Section
-
-    overlay8 = JpOverlay8Section
-
-    overlay30 = JpOverlay30Section
-
-    overlay31 = JpOverlay31Section
+    overlay12 = JpOverlay12Section
 
     overlay13 = JpOverlay13Section
+
+    overlay14 = JpOverlay14Section
 
     overlay15 = JpOverlay15Section
 
@@ -8117,11 +8176,17 @@ class JpSections:
 
     overlay18 = JpOverlay18Section
 
+    overlay19 = JpOverlay19Section
+
+    overlay2 = JpOverlay2Section
+
     overlay20 = JpOverlay20Section
 
     overlay21 = JpOverlay21Section
 
     overlay22 = JpOverlay22Section
+
+    overlay23 = JpOverlay23Section
 
     overlay24 = JpOverlay24Section
 
@@ -8131,8 +8196,34 @@ class JpSections:
 
     overlay27 = JpOverlay27Section
 
-    overlay35 = JpOverlay35Section
+    overlay28 = JpOverlay28Section
+
+    overlay29 = JpOverlay29Section
+
+    overlay3 = JpOverlay3Section
+
+    overlay30 = JpOverlay30Section
+
+    overlay31 = JpOverlay31Section
 
     overlay32 = JpOverlay32Section
+
+    overlay33 = JpOverlay33Section
+
+    overlay34 = JpOverlay34Section
+
+    overlay35 = JpOverlay35Section
+
+    overlay4 = JpOverlay4Section
+
+    overlay5 = JpOverlay5Section
+
+    overlay6 = JpOverlay6Section
+
+    overlay7 = JpOverlay7Section
+
+    overlay8 = JpOverlay8Section
+
+    overlay9 = JpOverlay9Section
 
     ram = JpRamSection

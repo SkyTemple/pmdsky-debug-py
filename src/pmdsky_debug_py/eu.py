@@ -1,108 +1,6 @@
 from .protocol import Symbol
 
 
-class EuOverlay12Functions:
-    pass
-
-
-class EuOverlay12Data:
-    pass
-
-
-class EuOverlay12Section:
-    name = "overlay12"
-    description = "Unused; all zeroes."
-    loadaddress = 0x238AC80
-    length = 0x20
-    functions = EuOverlay12Functions
-    data = EuOverlay12Data
-
-
-class EuOverlay23Functions:
-    pass
-
-
-class EuOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238DE3C], 0x18, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238DE54], 0x20, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238DE74], 0x20, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238DE94], 0x20, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238DEB4], 0x28, "")
-
-
-class EuOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
-    )
-    loadaddress = 0x238AC80
-    length = 0x3780
-    functions = EuOverlay23Functions
-    data = EuOverlay23Data
-
-
-class EuOverlay7Functions:
-    pass
-
-
-class EuOverlay7Data:
-    pass
-
-
-class EuOverlay7Section:
-    name = "overlay7"
-    description = (
-        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233D200
-    length = 0x3300
-    functions = EuOverlay7Functions
-    data = EuOverlay7Data
-
-
-class EuOverlay9Functions:
-    pass
-
-
-class EuOverlay9Data:
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        [0xE80],
-        [0x233E080],
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class EuOverlay9Section:
-    name = "overlay9"
-    description = "Controls the Sky Jukebox."
-    loadaddress = 0x233D200
-    length = 0x2D80
-    functions = EuOverlay9Functions
-    data = EuOverlay9Data
-
-
-class EuOverlay28Functions:
-    pass
-
-
-class EuOverlay28Data:
-    pass
-
-
-class EuOverlay28Section:
-    name = "overlay28"
-    description = "Controls the staff credits sequence."
-    loadaddress = 0x238AC80
-    length = 0xC60
-    functions = EuOverlay28Functions
-    data = EuOverlay28Data
-
-
 class EuArm9Functions:
     InitMemAllocTable = Symbol(
         [0xDE0],
@@ -2431,6 +2329,20 @@ class EuArm9Functions:
 
 
 class EuArm9Data:
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol([0x20DF0], [0x2020DF0], None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(
+        [0x48B9C], [0x2048B9C], None, "Starting level of the hero."
+    )
+
+    PARTNER_START_LEVEL = Symbol(
+        [0x48C0C], [0x2048C0C], None, "Starting level of the partner."
+    )
+
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
         [0xE58],
         [0x2000E58],
@@ -2853,29 +2765,12 @@ class EuArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol([0xB14D4], [0x20B14D4], 0x1FC, "")
 
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol([0x20DF0], [0x2020DF0], None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(
-        [0x48B9C], [0x2048B9C], None, "Starting level of the hero."
-    )
-
-    PARTNER_START_LEVEL = Symbol(
-        [0x48C0C], [0x2048C0C], None, "Starting level of the partner."
-    )
-
 
 class EuArm9Section:
     name = "arm9"
     description = (
-        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
-        " launched, and contains the core code that runs the game, low level facilities"
-        " such as memory allocation, compression, other external dependencies (such as"
-        " linked functions from libc and libgcc), and the functions and tables"
-        " necessary to load overlays and dispatch execution to them."
+        "Hard-coded immediate values (literals) in instructions within the ARM 9"
+        " binary."
     )
     loadaddress = 0x2000000
     length = 0xB7D38
@@ -2883,84 +2778,102 @@ class EuArm9Section:
     data = EuArm9Data
 
 
-class EuOverlay14Functions:
-    pass
-
-
-class EuOverlay14Data:
-    FOOTPRINT_DEBUG_MENU = Symbol([0x39C0], [0x238E640], 0x48, "")
-
-
-class EuOverlay14Section:
-    name = "overlay14"
-    description = "Runs the sentry duty minigame."
-    loadaddress = 0x238AC80
-    length = 0x3B40
-    functions = EuOverlay14Functions
-    data = EuOverlay14Data
-
-
-class EuOverlay33Functions:
-    pass
-
-
-class EuOverlay33Data:
-    pass
-
-
-class EuOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383420
-    length = 0x20
-    functions = EuOverlay33Functions
-    data = EuOverlay33Data
-
-
-class EuOverlay2Functions:
-    pass
-
-
-class EuOverlay2Data:
-    pass
-
-
-class EuOverlay2Section:
-    name = "overlay2"
-    description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
+class EuItcmFunctions:
+    ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
+        [0x2390],
+        [0x20B6050],
+        None,
+        "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
+        " Otherwise, returns true only if the monster's behavior field is equal to"
+        " monster_behavior::BEHAVIOR_FLEEING_OUTLAW.\n\nr0: Entity pointer\nr1:"
+        " ?\nreturn: True if ShouldMonsterRunAway returns true or the monster is a"
+        " fleeing outlaw",
     )
-    loadaddress = 0x2329D40
-    length = 0x2AFC0
-    functions = EuOverlay2Functions
-    data = EuOverlay2Data
+
+    AiMovement = Symbol(
+        [0x23C4],
+        [0x20B6084],
+        None,
+        "Used by the AI to determine the direction in which a monster should"
+        " move\n\nr0: Entity pointer\nr1: ?",
+    )
+
+    CalculateAiTargetPos = Symbol(
+        [0x32C8],
+        [0x20B6F88],
+        None,
+        "Calculates the target position of an AI-controlled monster and stores it in"
+        " the monster's ai_target_pos field\n\nr0: Entity pointer",
+    )
+
+    ChooseAiMove = Symbol(
+        [0x3658],
+        [0x20B7318],
+        None,
+        "Determines if an AI-controlled monster will use a move and which one it will"
+        " use\n\nr0: Entity pointer",
+    )
 
 
-class EuOverlay19Functions:
-    pass
+class EuItcmData:
+    MEMORY_ALLOCATION_TABLE = Symbol(
+        [0x0],
+        [0x20B3CC0],
+        0x40,
+        "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
+        " in the ARM9 binary uses region-based memory management (see"
+        " https://en.wikipedia.org/wiki/Region-based_memory_management). The heap is"
+        " broken up into smaller contiguous chunks called arenas (struct mem_arena),"
+        " which are in turn broken up into chunks referred to as blocks (struct"
+        " mem_block). Most of the time, an allocation results in a block being split"
+        " off from a free part of an existing memory arena.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_alloc_table",
+    )
+
+    DEFAULT_MEMORY_ARENA = Symbol(
+        [0x4],
+        [0x20B3CC4],
+        0x1C,
+        "[Runtime] The default memory allocation arena. This is part of"
+        " MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various"
+        " functions.\n\nNote: This symbol isn't actually part of the ITCM, it gets"
+        " created at runtime on the spot in RAM that used to contain the code that was"
+        " moved to the ITCM.\n\ntype: struct mem_arena",
+    )
+
+    DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
+        [0x40],
+        [0x20B3D00],
+        0x1800,
+        "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_block[256]",
+    )
 
 
-class EuOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol([0x40BC], [0x238ED3C], 0x18, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol([0x40D4], [0x238ED54], 0x18, "")
-
-    BAR_MAIN_MENU = Symbol([0x4104], [0x238ED84], 0x20, "")
-
-    BAR_SUBMENU_1 = Symbol([0x4124], [0x238EDA4], 0x20, "")
-
-    BAR_SUBMENU_2 = Symbol([0x4144], [0x238EDC4], 0x30, "")
-
-
-class EuOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
-    loadaddress = 0x238AC80
-    length = 0x4220
-    functions = EuOverlay19Functions
-    data = EuOverlay19Data
+class EuItcmSection:
+    name = "itcm"
+    description = (
+        "The instruction TCM (tightly-coupled memory) and the corresponding region in"
+        " the ARM9 binary.\n\nThe ITCM is a special area of low-latency memory meant"
+        " for performance-critical routines. It's similar to an instruction cache, but"
+        " more predictable. See the ARMv5 Architecture Reference Manual, Chapter B7"
+        " (https://developer.arm.com/documentation/ddi0100/i).\n\nThe Nintendo DS ITCM"
+        " region is located at 0x0-0x7FFF in memory, but the 32 KiB segment is mirrored"
+        " throughout the 16 MiB block from 0x0-0x1FFFFFF. The Explorers of Sky code"
+        " seems to reference only the mirror at 0x1FF8000, the closest one to main"
+        " memory.\n\nIn Explorers of Sky, a fixed region of the ARM9 binary appears to"
+        " be loaded in the ITCM at all times, and seems to contain functions related to"
+        " the dungeon AI, among other things. The ITCM has a max capacity of 0x8000,"
+        " although not all of it is used."
+    )
+    loadaddress = 0x20B3CC0
+    length = 0x4000
+    functions = EuItcmFunctions
+    data = EuItcmData
 
 
 class EuOverlay0Functions:
@@ -2982,6 +2895,64 @@ class EuOverlay0Section:
     length = 0x60880
     functions = EuOverlay0Functions
     data = EuOverlay0Data
+
+
+class EuOverlay1Functions:
+    CreateMainMenus = Symbol(
+        [0x7B88],
+        [0x23318C8],
+        None,
+        "Prepares the top menu and sub menu, adding the different options that compose"
+        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
+        " Some of them are conditionally executed depending on which options should be"
+        " unlocked.\n\nNo params.",
+    )
+
+    AddMainMenuOption = Symbol(
+        [0x7FFC],
+        [0x2331D3C],
+        None,
+        "Adds an option to the top menu.\n\nThis function is called for each one of the"
+        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
+        " action ID does not exist there, the option won't be added.\n\nr0: Action"
+        " ID\nr1: True if the option should be enabled, false otherwise",
+    )
+
+    AddSubMenuOption = Symbol(
+        [0x80D4],
+        [0x2331E14],
+        None,
+        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
+        " called for each one of the options in the submenu. It loops the SUBMENU data"
+        " field, if the specified action ID does not exist there, the option won't be"
+        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
+    )
+
+
+class EuOverlay1Data:
+    CONTINUE_CHOICE = Symbol([0x11F74], [0x233BCB4], 0x20, "")
+
+    SUBMENU = Symbol([0x11F94], [0x233BCD4], 0x48, "")
+
+    MAIN_MENU = Symbol([0x11FDC], [0x233BD1C], 0xA0, "")
+
+    MAIN_MENU_CONFIRM = Symbol([0x12158], [0x233BE98], 0x18, "")
+
+    MAIN_DEBUG_MENU_1 = Symbol([0x1221C], [0x233BF5C], 0x60, "")
+
+    MAIN_DEBUG_MENU_2 = Symbol([0x1229C], [0x233BFDC], 0x38, "")
+
+
+class EuOverlay1Section:
+    name = "overlay1"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 1."
+    )
+    loadaddress = 0x2329D40
+    length = 0x12C80
+    functions = EuOverlay1Functions
+    data = EuOverlay1Data
 
 
 class EuOverlay10Functions:
@@ -3631,6 +3602,448 @@ class EuOverlay11Section:
     length = 0x48E40
     functions = EuOverlay11Functions
     data = EuOverlay11Data
+
+
+class EuOverlay12Functions:
+    pass
+
+
+class EuOverlay12Data:
+    pass
+
+
+class EuOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = 0x238AC80
+    length = 0x20
+    functions = EuOverlay12Functions
+    data = EuOverlay12Data
+
+
+class EuOverlay13Functions:
+    pass
+
+
+class EuOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(
+        [0x1F4C], [0x238CBCC], 0x2A, "type: struct monster_id_16[21]"
+    )
+
+    STARTERS_HERO_IDS = Symbol(
+        [0x1F78], [0x238CBF8], 0x40, "type: struct monster_id_16[32]"
+    )
+
+    STARTERS_STRINGS = Symbol([0x200C], [0x238CC8C], 0x60, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238CCEC], 0x84, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238CD70], 0x160, "")
+
+    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238DA0C], 0x48, "")
+
+
+class EuOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 13."
+    )
+    loadaddress = 0x238AC80
+    length = 0x2E80
+    functions = EuOverlay13Functions
+    data = EuOverlay13Data
+
+
+class EuOverlay14Functions:
+    pass
+
+
+class EuOverlay14Data:
+    FOOTPRINT_DEBUG_MENU = Symbol([0x39C0], [0x238E640], 0x48, "")
+
+
+class EuOverlay14Section:
+    name = "overlay14"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 14."
+    )
+    loadaddress = 0x238AC80
+    length = 0x3B40
+    functions = EuOverlay14Functions
+    data = EuOverlay14Data
+
+
+class EuOverlay15Functions:
+    pass
+
+
+class EuOverlay15Data:
+    BANK_MAIN_MENU = Symbol([0xF40], [0x238BBC0], 0x28, "")
+
+
+class EuOverlay15Section:
+    name = "overlay15"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 15."
+    )
+    loadaddress = 0x238AC80
+    length = 0x1080
+    functions = EuOverlay15Functions
+    data = EuOverlay15Data
+
+
+class EuOverlay16Functions:
+    pass
+
+
+class EuOverlay16Data:
+    EVO_MENU_CONFIRM = Symbol([0x2BCC], [0x238D84C], 0x18, "")
+
+    EVO_SUBMENU = Symbol([0x2BE4], [0x238D864], 0x20, "")
+
+    EVO_MAIN_MENU = Symbol([0x2C04], [0x238D884], 0x20, "")
+
+
+class EuOverlay16Section:
+    name = "overlay16"
+    description = "Controls Luminous Spring."
+    loadaddress = 0x238AC80
+    length = 0x2D20
+    functions = EuOverlay16Functions
+    data = EuOverlay16Data
+
+
+class EuOverlay17Functions:
+    pass
+
+
+class EuOverlay17Data:
+    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238C6C4], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238C6DC], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238C6F4], 0x20, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238C714], 0x28, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238C73C], 0x30, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238C76C], 0x30, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238C79C], 0x38, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238C7D4], 0x38, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238C80C], 0x38, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238C844], 0x40, "")
+
+
+class EuOverlay17Section:
+    name = "overlay17"
+    description = "Controls the Chimecho Assembly."
+    loadaddress = 0x238AC80
+    length = 0x1CE0
+    functions = EuOverlay17Functions
+    data = EuOverlay17Data
+
+
+class EuOverlay18Functions:
+    pass
+
+
+class EuOverlay18Data:
+    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238DE60], 0x18, "")
+
+    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238DE78], 0x20, "")
+
+    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238DE98], 0x20, "")
+
+    MOVES_MAIN_MENU = Symbol([0x3238], [0x238DEB8], 0x20, "")
+
+    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238DED8], 0x28, "")
+
+    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238DF00], 0x30, "")
+
+    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238DF30], 0x48, "")
+
+    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238DF78], 0x48, "")
+
+    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238DFC0], 0x48, "")
+
+
+class EuOverlay18Section:
+    name = "overlay18"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 18."
+    )
+    loadaddress = 0x238AC80
+    length = 0x3500
+    functions = EuOverlay18Functions
+    data = EuOverlay18Data
+
+
+class EuOverlay19Functions:
+    pass
+
+
+class EuOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol([0x40BC], [0x238ED3C], 0x18, "")
+
+    BAR_MENU_CONFIRM_2 = Symbol([0x40D4], [0x238ED54], 0x18, "")
+
+    BAR_MAIN_MENU = Symbol([0x4104], [0x238ED84], 0x20, "")
+
+    BAR_SUBMENU_1 = Symbol([0x4124], [0x238EDA4], 0x20, "")
+
+    BAR_SUBMENU_2 = Symbol([0x4144], [0x238EDC4], 0x30, "")
+
+
+class EuOverlay19Section:
+    name = "overlay19"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
+    )
+    loadaddress = 0x238AC80
+    length = 0x4220
+    functions = EuOverlay19Functions
+    data = EuOverlay19Data
+
+
+class EuOverlay2Functions:
+    pass
+
+
+class EuOverlay2Data:
+    pass
+
+
+class EuOverlay2Section:
+    name = "overlay2"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 2."
+    )
+    loadaddress = 0x2329D40
+    length = 0x2AFC0
+    functions = EuOverlay2Functions
+    data = EuOverlay2Data
+
+
+class EuOverlay20Functions:
+    pass
+
+
+class EuOverlay20Data:
+    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238DAC4], 0x18, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238DADC], 0x18, "")
+
+    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238DAF4], 0x18, "")
+
+    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238DB0C], 0x20, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238DB2C], 0x28, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238DBC8], 0x20, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238DC38], 0x18, "")
+
+
+class EuOverlay20Section:
+    name = "overlay20"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 20."
+    )
+    loadaddress = 0x238AC80
+    length = 0x3000
+    functions = EuOverlay20Functions
+    data = EuOverlay20Data
+
+
+class EuOverlay21Functions:
+    pass
+
+
+class EuOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238D578], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238D590], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238D5A8], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238D5C8], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238D5E8], 0x28, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238D610], 0x30, "")
+
+
+class EuOverlay21Section:
+    name = "overlay21"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 21."
+    )
+    loadaddress = 0x238AC80
+    length = 0x2E20
+    functions = EuOverlay21Functions
+    data = EuOverlay21Data
+
+
+class EuOverlay22Functions:
+    pass
+
+
+class EuOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238F3A8], 0x18, "")
+
+    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238F3C0], 0x20, "")
+
+    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238F3E0], 0x20, "")
+
+    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238F400], 0x30, "")
+
+
+class EuOverlay22Section:
+    name = "overlay22"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 22."
+    )
+    loadaddress = 0x238AC80
+    length = 0x4B40
+    functions = EuOverlay22Functions
+    data = EuOverlay22Data
+
+
+class EuOverlay23Functions:
+    pass
+
+
+class EuOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238DE3C], 0x18, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238DE54], 0x20, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238DE74], 0x20, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238DE94], 0x20, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238DEB4], 0x28, "")
+
+
+class EuOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 23."
+    )
+    loadaddress = 0x238AC80
+    length = 0x3780
+    functions = EuOverlay23Functions
+    data = EuOverlay23Data
+
+
+class EuOverlay24Functions:
+    pass
+
+
+class EuOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238D060], 0x18, "")
+
+    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238D078], 0x20, "")
+
+
+class EuOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = 0x238AC80
+    length = 0x24E0
+    functions = EuOverlay24Functions
+    data = EuOverlay24Data
+
+
+class EuOverlay25Functions:
+    pass
+
+
+class EuOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238BFF4], 0x18, "")
+
+    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238C00C], 0x20, "")
+
+    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238C02C], 0x20, "")
+
+
+class EuOverlay25Section:
+    name = "overlay25"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 25."
+    )
+    loadaddress = 0x238AC80
+    length = 0x14C0
+    functions = EuOverlay25Functions
+    data = EuOverlay25Data
+
+
+class EuOverlay26Functions:
+    pass
+
+
+class EuOverlay26Data:
+    pass
+
+
+class EuOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 26."
+    )
+    loadaddress = 0x238AC80
+    length = 0xE40
+    functions = EuOverlay26Functions
+    data = EuOverlay26Data
+
+
+class EuOverlay27Functions:
+    pass
+
+
+class EuOverlay27Data:
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238D49C], 0x18, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238D4B4], 0x20, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238D4D4], 0x20, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238D4F4], 0x28, "")
+
+
+class EuOverlay27Section:
+    name = "overlay27"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 27."
+    )
+    loadaddress = 0x238AC80
+    length = 0x2D60
+    functions = EuOverlay27Functions
+    data = EuOverlay27Data
+
+
+class EuOverlay28Functions:
+    pass
+
+
+class EuOverlay28Data:
+    pass
+
+
+class EuOverlay28Section:
+    name = "overlay28"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 28."
+    )
+    loadaddress = 0x238AC80
+    length = 0xC60
+    functions = EuOverlay28Functions
+    data = EuOverlay28Data
 
 
 class EuOverlay29Functions:
@@ -7576,85 +7989,6 @@ class EuOverlay29Section:
     data = EuOverlay29Data
 
 
-class EuOverlay34Functions:
-    pass
-
-
-class EuOverlay34Data:
-    UNKNOWN_MENU_CONFIRM = Symbol([0xD4C], [0x22DD8CC], 0x18, "")
-
-    DUNGEON_DEBUG_MENU = Symbol([0xD74], [0x22DD8F4], 0x28, "")
-
-
-class EuOverlay34Section:
-    name = "overlay34"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
-    )
-    loadaddress = 0x22DCB80
-    length = 0xDC0
-    functions = EuOverlay34Functions
-    data = EuOverlay34Data
-
-
-class EuOverlay1Functions:
-    CreateMainMenus = Symbol(
-        [0x7B88],
-        [0x23318C8],
-        None,
-        "Prepares the top menu and sub menu, adding the different options that compose"
-        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
-        " Some of them are conditionally executed depending on which options should be"
-        " unlocked.\n\nNo params.",
-    )
-
-    AddMainMenuOption = Symbol(
-        [0x7FFC],
-        [0x2331D3C],
-        None,
-        "Adds an option to the top menu.\n\nThis function is called for each one of the"
-        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
-        " action ID does not exist there, the option won't be added.\n\nr0: Action"
-        " ID\nr1: True if the option should be enabled, false otherwise",
-    )
-
-    AddSubMenuOption = Symbol(
-        [0x80D4],
-        [0x2331E14],
-        None,
-        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
-        " called for each one of the options in the submenu. It loops the SUBMENU data"
-        " field, if the specified action ID does not exist there, the option won't be"
-        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
-        " otherwise",
-    )
-
-
-class EuOverlay1Data:
-    CONTINUE_CHOICE = Symbol([0x11F74], [0x233BCB4], 0x20, "")
-
-    SUBMENU = Symbol([0x11F94], [0x233BCD4], 0x48, "")
-
-    MAIN_MENU = Symbol([0x11FDC], [0x233BD1C], 0xA0, "")
-
-    MAIN_MENU_CONFIRM = Symbol([0x12158], [0x233BE98], 0x18, "")
-
-    MAIN_DEBUG_MENU_1 = Symbol([0x1221C], [0x233BF5C], 0x60, "")
-
-    MAIN_DEBUG_MENU_2 = Symbol([0x1229C], [0x233BFDC], 0x38, "")
-
-
-class EuOverlay1Section:
-    name = "overlay1"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
-    )
-    loadaddress = 0x2329D40
-    length = 0x12C80
-    functions = EuOverlay1Functions
-    data = EuOverlay1Data
-
-
 class EuOverlay3Functions:
     pass
 
@@ -7665,89 +7999,11 @@ class EuOverlay3Data:
 
 class EuOverlay3Section:
     name = "overlay3"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 3."
-    )
+    description = "Controls the Friend Rescue submenu within the top menu."
     loadaddress = 0x233D200
     length = 0xA160
     functions = EuOverlay3Functions
     data = EuOverlay3Data
-
-
-class EuOverlay4Functions:
-    pass
-
-
-class EuOverlay4Data:
-    pass
-
-
-class EuOverlay4Section:
-    name = "overlay4"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
-    )
-    loadaddress = 0x233D200
-    length = 0x2BE0
-    functions = EuOverlay4Functions
-    data = EuOverlay4Data
-
-
-class EuOverlay5Functions:
-    pass
-
-
-class EuOverlay5Data:
-    pass
-
-
-class EuOverlay5Section:
-    name = "overlay5"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
-    )
-    loadaddress = 0x233D200
-    length = 0x3240
-    functions = EuOverlay5Functions
-    data = EuOverlay5Data
-
-
-class EuOverlay6Functions:
-    pass
-
-
-class EuOverlay6Data:
-    pass
-
-
-class EuOverlay6Section:
-    name = "overlay6"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 6."
-    )
-    loadaddress = 0x233D200
-    length = 0x2460
-    functions = EuOverlay6Functions
-    data = EuOverlay6Data
-
-
-class EuOverlay8Functions:
-    pass
-
-
-class EuOverlay8Data:
-    pass
-
-
-class EuOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 8."
-    )
-    loadaddress = 0x233D200
-    length = 0x2620
-    functions = EuOverlay8Functions
-    data = EuOverlay8Data
 
 
 class EuOverlay30Functions:
@@ -7837,324 +8093,59 @@ class EuOverlay31Section:
     data = EuOverlay31Data
 
 
-class EuOverlay13Functions:
+class EuOverlay32Functions:
     pass
 
 
-class EuOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(
-        [0x1F4C], [0x238CBCC], 0x2A, "type: struct monster_id_16[21]"
-    )
-
-    STARTERS_HERO_IDS = Symbol(
-        [0x1F78], [0x238CBF8], 0x40, "type: struct monster_id_16[32]"
-    )
-
-    STARTERS_STRINGS = Symbol([0x200C], [0x238CC8C], 0x60, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238CCEC], 0x84, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238CD70], 0x160, "")
-
-    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238DA0C], 0x48, "")
+class EuOverlay32Data:
+    pass
 
 
-class EuOverlay13Section:
-    name = "overlay13"
+class EuOverlay32Section:
+    name = "overlay32"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2383420
+    length = 0x20
+    functions = EuOverlay32Functions
+    data = EuOverlay32Data
+
+
+class EuOverlay33Functions:
+    pass
+
+
+class EuOverlay33Data:
+    pass
+
+
+class EuOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2383420
+    length = 0x20
+    functions = EuOverlay33Functions
+    data = EuOverlay33Data
+
+
+class EuOverlay34Functions:
+    pass
+
+
+class EuOverlay34Data:
+    UNKNOWN_MENU_CONFIRM = Symbol([0xD4C], [0x22DD8CC], 0x18, "")
+
+    DUNGEON_DEBUG_MENU = Symbol([0xD74], [0x22DD8F4], 0x28, "")
+
+
+class EuOverlay34Section:
+    name = "overlay34"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
+        "Hard-coded immediate values (literals) in instructions within overlay 34."
     )
-    loadaddress = 0x238AC80
-    length = 0x2E80
-    functions = EuOverlay13Functions
-    data = EuOverlay13Data
-
-
-class EuOverlay15Functions:
-    pass
-
-
-class EuOverlay15Data:
-    BANK_MAIN_MENU = Symbol([0xF40], [0x238BBC0], 0x28, "")
-
-
-class EuOverlay15Section:
-    name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
-    loadaddress = 0x238AC80
-    length = 0x1080
-    functions = EuOverlay15Functions
-    data = EuOverlay15Data
-
-
-class EuOverlay16Functions:
-    pass
-
-
-class EuOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol([0x2BCC], [0x238D84C], 0x18, "")
-
-    EVO_SUBMENU = Symbol([0x2BE4], [0x238D864], 0x20, "")
-
-    EVO_MAIN_MENU = Symbol([0x2C04], [0x238D884], 0x20, "")
-
-
-class EuOverlay16Section:
-    name = "overlay16"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 16."
-    )
-    loadaddress = 0x238AC80
-    length = 0x2D20
-    functions = EuOverlay16Functions
-    data = EuOverlay16Data
-
-
-class EuOverlay17Functions:
-    pass
-
-
-class EuOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238C6C4], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238C6DC], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238C6F4], 0x20, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238C714], 0x28, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238C73C], 0x30, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238C76C], 0x30, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238C79C], 0x38, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238C7D4], 0x38, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238C80C], 0x38, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238C844], 0x40, "")
-
-
-class EuOverlay17Section:
-    name = "overlay17"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 17."
-    )
-    loadaddress = 0x238AC80
-    length = 0x1CE0
-    functions = EuOverlay17Functions
-    data = EuOverlay17Data
-
-
-class EuOverlay18Functions:
-    pass
-
-
-class EuOverlay18Data:
-    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238DE60], 0x18, "")
-
-    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238DE78], 0x20, "")
-
-    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238DE98], 0x20, "")
-
-    MOVES_MAIN_MENU = Symbol([0x3238], [0x238DEB8], 0x20, "")
-
-    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238DED8], 0x28, "")
-
-    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238DF00], 0x30, "")
-
-    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238DF30], 0x48, "")
-
-    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238DF78], 0x48, "")
-
-    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238DFC0], 0x48, "")
-
-
-class EuOverlay18Section:
-    name = "overlay18"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 18."
-    )
-    loadaddress = 0x238AC80
-    length = 0x3500
-    functions = EuOverlay18Functions
-    data = EuOverlay18Data
-
-
-class EuOverlay20Functions:
-    pass
-
-
-class EuOverlay20Data:
-    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238DAC4], 0x18, "")
-
-    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238DADC], 0x18, "")
-
-    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238DAF4], 0x18, "")
-
-    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238DB0C], 0x20, "")
-
-    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238DB2C], 0x28, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238DBC8], 0x20, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238DC38], 0x18, "")
-
-
-class EuOverlay20Section:
-    name = "overlay20"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 20."
-    )
-    loadaddress = 0x238AC80
-    length = 0x3000
-    functions = EuOverlay20Functions
-    data = EuOverlay20Data
-
-
-class EuOverlay21Functions:
-    pass
-
-
-class EuOverlay21Data:
-    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238D578], 0x18, "")
-
-    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238D590], 0x18, "")
-
-    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238D5A8], 0x20, "")
-
-    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238D5C8], 0x20, "")
-
-    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238D5E8], 0x28, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238D610], 0x30, "")
-
-
-class EuOverlay21Section:
-    name = "overlay21"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
-    )
-    loadaddress = 0x238AC80
-    length = 0x2E20
-    functions = EuOverlay21Functions
-    data = EuOverlay21Data
-
-
-class EuOverlay22Functions:
-    pass
-
-
-class EuOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238F3A8], 0x18, "")
-
-    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238F3C0], 0x20, "")
-
-    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238F3E0], 0x20, "")
-
-    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238F400], 0x30, "")
-
-
-class EuOverlay22Section:
-    name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
-    loadaddress = 0x238AC80
-    length = 0x4B40
-    functions = EuOverlay22Functions
-    data = EuOverlay22Data
-
-
-class EuOverlay24Functions:
-    pass
-
-
-class EuOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238D060], 0x18, "")
-
-    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238D078], 0x20, "")
-
-
-class EuOverlay24Section:
-    name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
-    loadaddress = 0x238AC80
-    length = 0x24E0
-    functions = EuOverlay24Functions
-    data = EuOverlay24Data
-
-
-class EuOverlay25Functions:
-    pass
-
-
-class EuOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238BFF4], 0x18, "")
-
-    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238C00C], 0x20, "")
-
-    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238C02C], 0x20, "")
-
-
-class EuOverlay25Section:
-    name = "overlay25"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 25."
-    )
-    loadaddress = 0x238AC80
-    length = 0x14C0
-    functions = EuOverlay25Functions
-    data = EuOverlay25Data
-
-
-class EuOverlay26Functions:
-    pass
-
-
-class EuOverlay26Data:
-    pass
-
-
-class EuOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
-    )
-    loadaddress = 0x238AC80
-    length = 0xE40
-    functions = EuOverlay26Functions
-    data = EuOverlay26Data
-
-
-class EuOverlay27Functions:
-    pass
-
-
-class EuOverlay27Data:
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238D49C], 0x18, "")
-
-    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238D4B4], 0x20, "")
-
-    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238D4D4], 0x20, "")
-
-    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238D4F4], 0x28, "")
-
-
-class EuOverlay27Section:
-    name = "overlay27"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
-    )
-    loadaddress = 0x238AC80
-    length = 0x2D60
-    functions = EuOverlay27Functions
-    data = EuOverlay27Data
+    loadaddress = 0x22DCB80
+    length = 0xDC0
+    functions = EuOverlay34Functions
+    data = EuOverlay34Data
 
 
 class EuOverlay35Functions:
@@ -8174,21 +8165,119 @@ class EuOverlay35Section:
     data = EuOverlay35Data
 
 
-class EuOverlay32Functions:
+class EuOverlay4Functions:
     pass
 
 
-class EuOverlay32Data:
+class EuOverlay4Data:
     pass
 
 
-class EuOverlay32Section:
-    name = "overlay32"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2383420
-    length = 0x20
-    functions = EuOverlay32Functions
-    data = EuOverlay32Data
+class EuOverlay4Section:
+    name = "overlay4"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 4."
+    )
+    loadaddress = 0x233D200
+    length = 0x2BE0
+    functions = EuOverlay4Functions
+    data = EuOverlay4Data
+
+
+class EuOverlay5Functions:
+    pass
+
+
+class EuOverlay5Data:
+    pass
+
+
+class EuOverlay5Section:
+    name = "overlay5"
+    description = "Controls the Trade Team submenu within the top menu."
+    loadaddress = 0x233D200
+    length = 0x3240
+    functions = EuOverlay5Functions
+    data = EuOverlay5Data
+
+
+class EuOverlay6Functions:
+    pass
+
+
+class EuOverlay6Data:
+    pass
+
+
+class EuOverlay6Section:
+    name = "overlay6"
+    description = "Controls the Wonder Mail S submenu within the top menu."
+    loadaddress = 0x233D200
+    length = 0x2460
+    functions = EuOverlay6Functions
+    data = EuOverlay6Data
+
+
+class EuOverlay7Functions:
+    pass
+
+
+class EuOverlay7Data:
+    pass
+
+
+class EuOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 7."
+    )
+    loadaddress = 0x233D200
+    length = 0x3300
+    functions = EuOverlay7Functions
+    data = EuOverlay7Data
+
+
+class EuOverlay8Functions:
+    pass
+
+
+class EuOverlay8Data:
+    pass
+
+
+class EuOverlay8Section:
+    name = "overlay8"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
+    )
+    loadaddress = 0x233D200
+    length = 0x2620
+    functions = EuOverlay8Functions
+    data = EuOverlay8Data
+
+
+class EuOverlay9Functions:
+    pass
+
+
+class EuOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        [0xE80],
+        [0x233E080],
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class EuOverlay9Section:
+    name = "overlay9"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 9."
+    )
+    loadaddress = 0x233D200
+    length = 0x2D80
+    functions = EuOverlay9Functions
+    data = EuOverlay9Data
 
 
 class EuRamFunctions:
@@ -8492,53 +8581,23 @@ class EuRamSection:
 
 
 class EuSections:
-    overlay12 = EuOverlay12Section
-
-    overlay23 = EuOverlay23Section
-
-    overlay7 = EuOverlay7Section
-
-    overlay9 = EuOverlay9Section
-
-    overlay28 = EuOverlay28Section
-
     arm9 = EuArm9Section
 
-    overlay14 = EuOverlay14Section
-
-    overlay33 = EuOverlay33Section
-
-    overlay2 = EuOverlay2Section
-
-    overlay19 = EuOverlay19Section
+    itcm = EuItcmSection
 
     overlay0 = EuOverlay0Section
+
+    overlay1 = EuOverlay1Section
 
     overlay10 = EuOverlay10Section
 
     overlay11 = EuOverlay11Section
 
-    overlay29 = EuOverlay29Section
-
-    overlay34 = EuOverlay34Section
-
-    overlay1 = EuOverlay1Section
-
-    overlay3 = EuOverlay3Section
-
-    overlay4 = EuOverlay4Section
-
-    overlay5 = EuOverlay5Section
-
-    overlay6 = EuOverlay6Section
-
-    overlay8 = EuOverlay8Section
-
-    overlay30 = EuOverlay30Section
-
-    overlay31 = EuOverlay31Section
+    overlay12 = EuOverlay12Section
 
     overlay13 = EuOverlay13Section
+
+    overlay14 = EuOverlay14Section
 
     overlay15 = EuOverlay15Section
 
@@ -8548,11 +8607,17 @@ class EuSections:
 
     overlay18 = EuOverlay18Section
 
+    overlay19 = EuOverlay19Section
+
+    overlay2 = EuOverlay2Section
+
     overlay20 = EuOverlay20Section
 
     overlay21 = EuOverlay21Section
 
     overlay22 = EuOverlay22Section
+
+    overlay23 = EuOverlay23Section
 
     overlay24 = EuOverlay24Section
 
@@ -8562,8 +8627,34 @@ class EuSections:
 
     overlay27 = EuOverlay27Section
 
-    overlay35 = EuOverlay35Section
+    overlay28 = EuOverlay28Section
+
+    overlay29 = EuOverlay29Section
+
+    overlay3 = EuOverlay3Section
+
+    overlay30 = EuOverlay30Section
+
+    overlay31 = EuOverlay31Section
 
     overlay32 = EuOverlay32Section
+
+    overlay33 = EuOverlay33Section
+
+    overlay34 = EuOverlay34Section
+
+    overlay35 = EuOverlay35Section
+
+    overlay4 = EuOverlay4Section
+
+    overlay5 = EuOverlay5Section
+
+    overlay6 = EuOverlay6Section
+
+    overlay7 = EuOverlay7Section
+
+    overlay8 = EuOverlay8Section
+
+    overlay9 = EuOverlay9Section
 
     ram = EuRamSection

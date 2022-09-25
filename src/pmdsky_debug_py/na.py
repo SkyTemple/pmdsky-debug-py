@@ -1,108 +1,6 @@
 from .protocol import Symbol
 
 
-class NaOverlay12Functions:
-    pass
-
-
-class NaOverlay12Data:
-    pass
-
-
-class NaOverlay12Section:
-    name = "overlay12"
-    description = "Unused; all zeroes."
-    loadaddress = 0x238A140
-    length = 0x20
-    functions = NaOverlay12Functions
-    data = NaOverlay12Data
-
-
-class NaOverlay23Functions:
-    pass
-
-
-class NaOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238D354], 0x20, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238D374], 0x28, "")
-
-
-class NaOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
-    )
-    loadaddress = 0x238A140
-    length = 0x3780
-    functions = NaOverlay23Functions
-    data = NaOverlay23Data
-
-
-class NaOverlay7Functions:
-    pass
-
-
-class NaOverlay7Data:
-    pass
-
-
-class NaOverlay7Section:
-    name = "overlay7"
-    description = (
-        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
-    )
-    loadaddress = 0x233CA80
-    length = 0x5100
-    functions = NaOverlay7Functions
-    data = NaOverlay7Data
-
-
-class NaOverlay9Functions:
-    pass
-
-
-class NaOverlay9Data:
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        [0xE80],
-        [0x233D900],
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class NaOverlay9Section:
-    name = "overlay9"
-    description = "Controls the Sky Jukebox."
-    loadaddress = 0x233CA80
-    length = 0x2D80
-    functions = NaOverlay9Functions
-    data = NaOverlay9Data
-
-
-class NaOverlay28Functions:
-    pass
-
-
-class NaOverlay28Data:
-    pass
-
-
-class NaOverlay28Section:
-    name = "overlay28"
-    description = "Controls the staff credits sequence."
-    loadaddress = 0x238A140
-    length = 0xC60
-    functions = NaOverlay28Functions
-    data = NaOverlay28Data
-
-
 class NaArm9Functions:
     InitMemAllocTable = Symbol(
         [0xDE0],
@@ -2427,6 +2325,20 @@ class NaArm9Functions:
 
 
 class NaArm9Data:
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        [0x11810], [0x2011810], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol([0x20C98], [0x2020C98], None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(
+        [0x48880], [0x2048880], None, "Starting level of the hero."
+    )
+
+    PARTNER_START_LEVEL = Symbol(
+        [0x488F0], [0x20488F0], None, "Starting level of the partner."
+    )
+
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
         [0xE58],
         [0x2000E58],
@@ -2849,29 +2761,12 @@ class NaArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol([0xB0B90], [0x20B0B90], 0x1FC, "")
 
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        [0x11810], [0x2011810], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol([0x20C98], [0x2020C98], None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(
-        [0x48880], [0x2048880], None, "Starting level of the hero."
-    )
-
-    PARTNER_START_LEVEL = Symbol(
-        [0x488F0], [0x20488F0], None, "Starting level of the partner."
-    )
-
 
 class NaArm9Section:
     name = "arm9"
     description = (
-        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
-        " launched, and contains the core code that runs the game, low level facilities"
-        " such as memory allocation, compression, other external dependencies (such as"
-        " linked functions from libc and libgcc), and the functions and tables"
-        " necessary to load overlays and dispatch execution to them."
+        "Hard-coded immediate values (literals) in instructions within the ARM 9"
+        " binary."
     )
     loadaddress = 0x2000000
     length = 0xB73F8
@@ -2879,84 +2774,102 @@ class NaArm9Section:
     data = NaArm9Data
 
 
-class NaOverlay14Functions:
-    pass
-
-
-class NaOverlay14Data:
-    FOOTPRINT_DEBUG_MENU = Symbol([0x3960], [0x238DAA0], 0x48, "")
-
-
-class NaOverlay14Section:
-    name = "overlay14"
-    description = "Runs the sentry duty minigame."
-    loadaddress = 0x238A140
-    length = 0x3AE0
-    functions = NaOverlay14Functions
-    data = NaOverlay14Data
-
-
-class NaOverlay33Functions:
-    pass
-
-
-class NaOverlay33Data:
-    pass
-
-
-class NaOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2382820
-    length = 0x20
-    functions = NaOverlay33Functions
-    data = NaOverlay33Data
-
-
-class NaOverlay2Functions:
-    pass
-
-
-class NaOverlay2Data:
-    pass
-
-
-class NaOverlay2Section:
-    name = "overlay2"
-    description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
+class NaItcmFunctions:
+    ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
+        [0x2390],
+        [0x20B5710],
+        None,
+        "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
+        " Otherwise, returns true only if the monster's behavior field is equal to"
+        " monster_behavior::BEHAVIOR_FLEEING_OUTLAW.\n\nr0: Entity pointer\nr1:"
+        " ?\nreturn: True if ShouldMonsterRunAway returns true or the monster is a"
+        " fleeing outlaw",
     )
-    loadaddress = 0x2329520
-    length = 0x2AFA0
-    functions = NaOverlay2Functions
-    data = NaOverlay2Data
+
+    AiMovement = Symbol(
+        [0x23C4],
+        [0x20B5744],
+        None,
+        "Used by the AI to determine the direction in which a monster should"
+        " move\n\nr0: Entity pointer\nr1: ?",
+    )
+
+    CalculateAiTargetPos = Symbol(
+        [0x32C8],
+        [0x20B6648],
+        None,
+        "Calculates the target position of an AI-controlled monster and stores it in"
+        " the monster's ai_target_pos field\n\nr0: Entity pointer",
+    )
+
+    ChooseAiMove = Symbol(
+        [0x3658],
+        [0x20B69D8],
+        None,
+        "Determines if an AI-controlled monster will use a move and which one it will"
+        " use\n\nr0: Entity pointer",
+    )
 
 
-class NaOverlay19Functions:
-    pass
+class NaItcmData:
+    MEMORY_ALLOCATION_TABLE = Symbol(
+        [0x0],
+        [0x20B3380],
+        0x40,
+        "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
+        " in the ARM9 binary uses region-based memory management (see"
+        " https://en.wikipedia.org/wiki/Region-based_memory_management). The heap is"
+        " broken up into smaller contiguous chunks called arenas (struct mem_arena),"
+        " which are in turn broken up into chunks referred to as blocks (struct"
+        " mem_block). Most of the time, an allocation results in a block being split"
+        " off from a free part of an existing memory arena.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_alloc_table",
+    )
+
+    DEFAULT_MEMORY_ARENA = Symbol(
+        [0x4],
+        [0x20B3384],
+        0x1C,
+        "[Runtime] The default memory allocation arena. This is part of"
+        " MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various"
+        " functions.\n\nNote: This symbol isn't actually part of the ITCM, it gets"
+        " created at runtime on the spot in RAM that used to contain the code that was"
+        " moved to the ITCM.\n\ntype: struct mem_arena",
+    )
+
+    DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
+        [0x40],
+        [0x20B33C0],
+        0x1800,
+        "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_block[256]",
+    )
 
 
-class NaOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
-
-    BAR_MAIN_MENU = Symbol([0x4110], [0x238E250], 0x20, "")
-
-    BAR_SUBMENU_1 = Symbol([0x4130], [0x238E270], 0x20, "")
-
-    BAR_SUBMENU_2 = Symbol([0x4150], [0x238E290], 0x30, "")
-
-
-class NaOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
-    loadaddress = 0x238A140
-    length = 0x4240
-    functions = NaOverlay19Functions
-    data = NaOverlay19Data
+class NaItcmSection:
+    name = "itcm"
+    description = (
+        "The instruction TCM (tightly-coupled memory) and the corresponding region in"
+        " the ARM9 binary.\n\nThe ITCM is a special area of low-latency memory meant"
+        " for performance-critical routines. It's similar to an instruction cache, but"
+        " more predictable. See the ARMv5 Architecture Reference Manual, Chapter B7"
+        " (https://developer.arm.com/documentation/ddi0100/i).\n\nThe Nintendo DS ITCM"
+        " region is located at 0x0-0x7FFF in memory, but the 32 KiB segment is mirrored"
+        " throughout the 16 MiB block from 0x0-0x1FFFFFF. The Explorers of Sky code"
+        " seems to reference only the mirror at 0x1FF8000, the closest one to main"
+        " memory.\n\nIn Explorers of Sky, a fixed region of the ARM9 binary appears to"
+        " be loaded in the ITCM at all times, and seems to contain functions related to"
+        " the dungeon AI, among other things. The ITCM has a max capacity of 0x8000,"
+        " although not all of it is used."
+    )
+    loadaddress = 0x20B3380
+    length = 0x4000
+    functions = NaItcmFunctions
+    data = NaItcmData
 
 
 class NaOverlay0Functions:
@@ -2978,6 +2891,64 @@ class NaOverlay0Section:
     length = 0x609A0
     functions = NaOverlay0Functions
     data = NaOverlay0Data
+
+
+class NaOverlay1Functions:
+    CreateMainMenus = Symbol(
+        [0x7BC4],
+        [0x23310E4],
+        None,
+        "Prepares the top menu and sub menu, adding the different options that compose"
+        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
+        " Some of them are conditionally executed depending on which options should be"
+        " unlocked.\n\nNo params.",
+    )
+
+    AddMainMenuOption = Symbol(
+        [0x8038],
+        [0x2331558],
+        None,
+        "Adds an option to the top menu.\n\nThis function is called for each one of the"
+        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
+        " action ID does not exist there, the option won't be added.\n\nr0: Action"
+        " ID\nr1: True if the option should be enabled, false otherwise",
+    )
+
+    AddSubMenuOption = Symbol(
+        [0x8110],
+        [0x2331630],
+        None,
+        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
+        " called for each one of the options in the submenu. It loops the SUBMENU data"
+        " field, if the specified action ID does not exist there, the option won't be"
+        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
+    )
+
+
+class NaOverlay1Data:
+    CONTINUE_CHOICE = Symbol([0x12048], [0x233B568], 0x20, "")
+
+    SUBMENU = Symbol([0x12068], [0x233B588], 0x48, "")
+
+    MAIN_MENU = Symbol([0x120B0], [0x233B5D0], 0xA0, "")
+
+    MAIN_MENU_CONFIRM = Symbol([0x1222C], [0x233B74C], 0x18, "")
+
+    MAIN_DEBUG_MENU_1 = Symbol([0x122F0], [0x233B810], 0x60, "")
+
+    MAIN_DEBUG_MENU_2 = Symbol([0x12370], [0x233B890], 0x38, "")
+
+
+class NaOverlay1Section:
+    name = "overlay1"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 1."
+    )
+    loadaddress = 0x2329520
+    length = 0x12D20
+    functions = NaOverlay1Functions
+    data = NaOverlay1Data
 
 
 class NaOverlay10Functions:
@@ -3627,6 +3598,448 @@ class NaOverlay11Section:
     length = 0x48C40
     functions = NaOverlay11Functions
     data = NaOverlay11Data
+
+
+class NaOverlay12Functions:
+    pass
+
+
+class NaOverlay12Data:
+    pass
+
+
+class NaOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = 0x238A140
+    length = 0x20
+    functions = NaOverlay12Functions
+    data = NaOverlay12Data
+
+
+class NaOverlay13Functions:
+    pass
+
+
+class NaOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(
+        [0x1F4C], [0x238C08C], 0x2A, "type: struct monster_id_16[21]"
+    )
+
+    STARTERS_HERO_IDS = Symbol(
+        [0x1F78], [0x238C0B8], 0x40, "type: struct monster_id_16[32]"
+    )
+
+    STARTERS_STRINGS = Symbol([0x200C], [0x238C14C], 0x60, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238C1AC], 0x84, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238C230], 0x160, "")
+
+    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238CECC], 0x48, "")
+
+
+class NaOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 13."
+    )
+    loadaddress = 0x238A140
+    length = 0x2E80
+    functions = NaOverlay13Functions
+    data = NaOverlay13Data
+
+
+class NaOverlay14Functions:
+    pass
+
+
+class NaOverlay14Data:
+    FOOTPRINT_DEBUG_MENU = Symbol([0x3960], [0x238DAA0], 0x48, "")
+
+
+class NaOverlay14Section:
+    name = "overlay14"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 14."
+    )
+    loadaddress = 0x238A140
+    length = 0x3AE0
+    functions = NaOverlay14Functions
+    data = NaOverlay14Data
+
+
+class NaOverlay15Functions:
+    pass
+
+
+class NaOverlay15Data:
+    BANK_MAIN_MENU = Symbol([0xF14], [0x238B054], 0x28, "")
+
+
+class NaOverlay15Section:
+    name = "overlay15"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 15."
+    )
+    loadaddress = 0x238A140
+    length = 0x1060
+    functions = NaOverlay15Functions
+    data = NaOverlay15Data
+
+
+class NaOverlay16Functions:
+    pass
+
+
+class NaOverlay16Data:
+    EVO_MENU_CONFIRM = Symbol([0x2BC8], [0x238CD08], 0x18, "")
+
+    EVO_SUBMENU = Symbol([0x2BE0], [0x238CD20], 0x20, "")
+
+    EVO_MAIN_MENU = Symbol([0x2C00], [0x238CD40], 0x20, "")
+
+
+class NaOverlay16Section:
+    name = "overlay16"
+    description = "Controls Luminous Spring."
+    loadaddress = 0x238A140
+    length = 0x2D20
+    functions = NaOverlay16Functions
+    data = NaOverlay16Data
+
+
+class NaOverlay17Functions:
+    pass
+
+
+class NaOverlay17Data:
+    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238BB84], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238BB9C], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238BBB4], 0x20, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238BBD4], 0x28, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238BBFC], 0x30, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238BC2C], 0x30, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238BC5C], 0x38, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238BC94], 0x38, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238BCCC], 0x38, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238BD04], 0x40, "")
+
+
+class NaOverlay17Section:
+    name = "overlay17"
+    description = "Controls the Chimecho Assembly."
+    loadaddress = 0x238A140
+    length = 0x1CE0
+    functions = NaOverlay17Functions
+    data = NaOverlay17Data
+
+
+class NaOverlay18Functions:
+    pass
+
+
+class NaOverlay18Data:
+    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238D320], 0x18, "")
+
+    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238D338], 0x20, "")
+
+    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238D358], 0x20, "")
+
+    MOVES_MAIN_MENU = Symbol([0x3238], [0x238D378], 0x20, "")
+
+    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238D398], 0x28, "")
+
+    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238D3C0], 0x30, "")
+
+    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238D3F0], 0x48, "")
+
+    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238D438], 0x48, "")
+
+    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238D480], 0x48, "")
+
+
+class NaOverlay18Section:
+    name = "overlay18"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 18."
+    )
+    loadaddress = 0x238A140
+    length = 0x3500
+    functions = NaOverlay18Functions
+    data = NaOverlay18Data
+
+
+class NaOverlay19Functions:
+    pass
+
+
+class NaOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
+
+    BAR_MENU_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
+
+    BAR_MAIN_MENU = Symbol([0x4110], [0x238E250], 0x20, "")
+
+    BAR_SUBMENU_1 = Symbol([0x4130], [0x238E270], 0x20, "")
+
+    BAR_SUBMENU_2 = Symbol([0x4150], [0x238E290], 0x30, "")
+
+
+class NaOverlay19Section:
+    name = "overlay19"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
+    )
+    loadaddress = 0x238A140
+    length = 0x4240
+    functions = NaOverlay19Functions
+    data = NaOverlay19Data
+
+
+class NaOverlay2Functions:
+    pass
+
+
+class NaOverlay2Data:
+    pass
+
+
+class NaOverlay2Section:
+    name = "overlay2"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 2."
+    )
+    loadaddress = 0x2329520
+    length = 0x2AFA0
+    functions = NaOverlay2Functions
+    data = NaOverlay2Data
+
+
+class NaOverlay20Functions:
+    pass
+
+
+class NaOverlay20Data:
+    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238CF84], 0x18, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238CF9C], 0x18, "")
+
+    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238CFB4], 0x18, "")
+
+    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238CFCC], 0x20, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238CFEC], 0x28, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
+
+
+class NaOverlay20Section:
+    name = "overlay20"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 20."
+    )
+    loadaddress = 0x238A140
+    length = 0x3000
+    functions = NaOverlay20Functions
+    data = NaOverlay20Data
+
+
+class NaOverlay21Functions:
+    pass
+
+
+class NaOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238CA38], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238CA50], 0x18, "")
+
+    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238CA68], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238CA88], 0x20, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238CAA8], 0x28, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238CAD0], 0x30, "")
+
+
+class NaOverlay21Section:
+    name = "overlay21"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 21."
+    )
+    loadaddress = 0x238A140
+    length = 0x2E20
+    functions = NaOverlay21Functions
+    data = NaOverlay21Data
+
+
+class NaOverlay22Functions:
+    pass
+
+
+class NaOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
+
+    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238E880], 0x20, "")
+
+    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
+
+    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
+
+
+class NaOverlay22Section:
+    name = "overlay22"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 22."
+    )
+    loadaddress = 0x238A140
+    length = 0x4B40
+    functions = NaOverlay22Functions
+    data = NaOverlay22Data
+
+
+class NaOverlay23Functions:
+    pass
+
+
+class NaOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238D354], 0x20, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238D374], 0x28, "")
+
+
+class NaOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 23."
+    )
+    loadaddress = 0x238A140
+    length = 0x3780
+    functions = NaOverlay23Functions
+    data = NaOverlay23Data
+
+
+class NaOverlay24Functions:
+    pass
+
+
+class NaOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
+
+    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238C538], 0x20, "")
+
+
+class NaOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = 0x238A140
+    length = 0x24E0
+    functions = NaOverlay24Functions
+    data = NaOverlay24Data
+
+
+class NaOverlay25Functions:
+    pass
+
+
+class NaOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
+
+    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238B4CC], 0x20, "")
+
+    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238B4EC], 0x20, "")
+
+
+class NaOverlay25Section:
+    name = "overlay25"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 25."
+    )
+    loadaddress = 0x238A140
+    length = 0x14C0
+    functions = NaOverlay25Functions
+    data = NaOverlay25Data
+
+
+class NaOverlay26Functions:
+    pass
+
+
+class NaOverlay26Data:
+    pass
+
+
+class NaOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 26."
+    )
+    loadaddress = 0x238A140
+    length = 0xE40
+    functions = NaOverlay26Functions
+    data = NaOverlay26Data
+
+
+class NaOverlay27Functions:
+    pass
+
+
+class NaOverlay27Data:
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238C95C], 0x18, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238C974], 0x20, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238C994], 0x20, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238C9B4], 0x28, "")
+
+
+class NaOverlay27Section:
+    name = "overlay27"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 27."
+    )
+    loadaddress = 0x238A140
+    length = 0x2D60
+    functions = NaOverlay27Functions
+    data = NaOverlay27Data
+
+
+class NaOverlay28Functions:
+    pass
+
+
+class NaOverlay28Data:
+    pass
+
+
+class NaOverlay28Section:
+    name = "overlay28"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 28."
+    )
+    loadaddress = 0x238A140
+    length = 0xC60
+    functions = NaOverlay28Functions
+    data = NaOverlay28Data
 
 
 class NaOverlay29Functions:
@@ -7574,85 +7987,6 @@ class NaOverlay29Section:
     data = NaOverlay29Data
 
 
-class NaOverlay34Functions:
-    pass
-
-
-class NaOverlay34Data:
-    UNKNOWN_MENU_CONFIRM = Symbol([0xDE4], [0x22DD024], 0x18, "")
-
-    DUNGEON_DEBUG_MENU = Symbol([0xE0C], [0x22DD04C], 0x28, "")
-
-
-class NaOverlay34Section:
-    name = "overlay34"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
-    )
-    loadaddress = 0x22DC240
-    length = 0xE60
-    functions = NaOverlay34Functions
-    data = NaOverlay34Data
-
-
-class NaOverlay1Functions:
-    CreateMainMenus = Symbol(
-        [0x7BC4],
-        [0x23310E4],
-        None,
-        "Prepares the top menu and sub menu, adding the different options that compose"
-        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
-        " Some of them are conditionally executed depending on which options should be"
-        " unlocked.\n\nNo params.",
-    )
-
-    AddMainMenuOption = Symbol(
-        [0x8038],
-        [0x2331558],
-        None,
-        "Adds an option to the top menu.\n\nThis function is called for each one of the"
-        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
-        " action ID does not exist there, the option won't be added.\n\nr0: Action"
-        " ID\nr1: True if the option should be enabled, false otherwise",
-    )
-
-    AddSubMenuOption = Symbol(
-        [0x8110],
-        [0x2331630],
-        None,
-        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
-        " called for each one of the options in the submenu. It loops the SUBMENU data"
-        " field, if the specified action ID does not exist there, the option won't be"
-        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
-        " otherwise",
-    )
-
-
-class NaOverlay1Data:
-    CONTINUE_CHOICE = Symbol([0x12048], [0x233B568], 0x20, "")
-
-    SUBMENU = Symbol([0x12068], [0x233B588], 0x48, "")
-
-    MAIN_MENU = Symbol([0x120B0], [0x233B5D0], 0xA0, "")
-
-    MAIN_MENU_CONFIRM = Symbol([0x1222C], [0x233B74C], 0x18, "")
-
-    MAIN_DEBUG_MENU_1 = Symbol([0x122F0], [0x233B810], 0x60, "")
-
-    MAIN_DEBUG_MENU_2 = Symbol([0x12370], [0x233B890], 0x38, "")
-
-
-class NaOverlay1Section:
-    name = "overlay1"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
-    )
-    loadaddress = 0x2329520
-    length = 0x12D20
-    functions = NaOverlay1Functions
-    data = NaOverlay1Data
-
-
 class NaOverlay3Functions:
     pass
 
@@ -7663,89 +7997,11 @@ class NaOverlay3Data:
 
 class NaOverlay3Section:
     name = "overlay3"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 3."
-    )
+    description = "Controls the Friend Rescue submenu within the top menu."
     loadaddress = 0x233CA80
     length = 0xA160
     functions = NaOverlay3Functions
     data = NaOverlay3Data
-
-
-class NaOverlay4Functions:
-    pass
-
-
-class NaOverlay4Data:
-    pass
-
-
-class NaOverlay4Section:
-    name = "overlay4"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
-    )
-    loadaddress = 0x233CA80
-    length = 0x2BE0
-    functions = NaOverlay4Functions
-    data = NaOverlay4Data
-
-
-class NaOverlay5Functions:
-    pass
-
-
-class NaOverlay5Data:
-    pass
-
-
-class NaOverlay5Section:
-    name = "overlay5"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
-    )
-    loadaddress = 0x233CA80
-    length = 0x3240
-    functions = NaOverlay5Functions
-    data = NaOverlay5Data
-
-
-class NaOverlay6Functions:
-    pass
-
-
-class NaOverlay6Data:
-    pass
-
-
-class NaOverlay6Section:
-    name = "overlay6"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 6."
-    )
-    loadaddress = 0x233CA80
-    length = 0x2460
-    functions = NaOverlay6Functions
-    data = NaOverlay6Data
-
-
-class NaOverlay8Functions:
-    pass
-
-
-class NaOverlay8Data:
-    pass
-
-
-class NaOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 8."
-    )
-    loadaddress = 0x233CA80
-    length = 0x2200
-    functions = NaOverlay8Functions
-    data = NaOverlay8Data
 
 
 class NaOverlay30Functions:
@@ -7835,324 +8091,59 @@ class NaOverlay31Section:
     data = NaOverlay31Data
 
 
-class NaOverlay13Functions:
+class NaOverlay32Functions:
     pass
 
 
-class NaOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(
-        [0x1F4C], [0x238C08C], 0x2A, "type: struct monster_id_16[21]"
-    )
-
-    STARTERS_HERO_IDS = Symbol(
-        [0x1F78], [0x238C0B8], 0x40, "type: struct monster_id_16[32]"
-    )
-
-    STARTERS_STRINGS = Symbol([0x200C], [0x238C14C], 0x60, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238C1AC], 0x84, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238C230], 0x160, "")
-
-    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238CECC], 0x48, "")
+class NaOverlay32Data:
+    pass
 
 
-class NaOverlay13Section:
-    name = "overlay13"
+class NaOverlay32Section:
+    name = "overlay32"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2382820
+    length = 0x20
+    functions = NaOverlay32Functions
+    data = NaOverlay32Data
+
+
+class NaOverlay33Functions:
+    pass
+
+
+class NaOverlay33Data:
+    pass
+
+
+class NaOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = 0x2382820
+    length = 0x20
+    functions = NaOverlay33Functions
+    data = NaOverlay33Data
+
+
+class NaOverlay34Functions:
+    pass
+
+
+class NaOverlay34Data:
+    UNKNOWN_MENU_CONFIRM = Symbol([0xDE4], [0x22DD024], 0x18, "")
+
+    DUNGEON_DEBUG_MENU = Symbol([0xE0C], [0x22DD04C], 0x28, "")
+
+
+class NaOverlay34Section:
+    name = "overlay34"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
+        "Hard-coded immediate values (literals) in instructions within overlay 34."
     )
-    loadaddress = 0x238A140
-    length = 0x2E80
-    functions = NaOverlay13Functions
-    data = NaOverlay13Data
-
-
-class NaOverlay15Functions:
-    pass
-
-
-class NaOverlay15Data:
-    BANK_MAIN_MENU = Symbol([0xF14], [0x238B054], 0x28, "")
-
-
-class NaOverlay15Section:
-    name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
-    loadaddress = 0x238A140
-    length = 0x1060
-    functions = NaOverlay15Functions
-    data = NaOverlay15Data
-
-
-class NaOverlay16Functions:
-    pass
-
-
-class NaOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol([0x2BC8], [0x238CD08], 0x18, "")
-
-    EVO_SUBMENU = Symbol([0x2BE0], [0x238CD20], 0x20, "")
-
-    EVO_MAIN_MENU = Symbol([0x2C00], [0x238CD40], 0x20, "")
-
-
-class NaOverlay16Section:
-    name = "overlay16"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 16."
-    )
-    loadaddress = 0x238A140
-    length = 0x2D20
-    functions = NaOverlay16Functions
-    data = NaOverlay16Data
-
-
-class NaOverlay17Functions:
-    pass
-
-
-class NaOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238BB84], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238BB9C], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238BBB4], 0x20, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238BBD4], 0x28, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238BBFC], 0x30, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238BC2C], 0x30, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238BC5C], 0x38, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238BC94], 0x38, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238BCCC], 0x38, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238BD04], 0x40, "")
-
-
-class NaOverlay17Section:
-    name = "overlay17"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 17."
-    )
-    loadaddress = 0x238A140
-    length = 0x1CE0
-    functions = NaOverlay17Functions
-    data = NaOverlay17Data
-
-
-class NaOverlay18Functions:
-    pass
-
-
-class NaOverlay18Data:
-    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238D320], 0x18, "")
-
-    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238D338], 0x20, "")
-
-    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238D358], 0x20, "")
-
-    MOVES_MAIN_MENU = Symbol([0x3238], [0x238D378], 0x20, "")
-
-    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238D398], 0x28, "")
-
-    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238D3C0], 0x30, "")
-
-    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238D3F0], 0x48, "")
-
-    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238D438], 0x48, "")
-
-    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238D480], 0x48, "")
-
-
-class NaOverlay18Section:
-    name = "overlay18"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 18."
-    )
-    loadaddress = 0x238A140
-    length = 0x3500
-    functions = NaOverlay18Functions
-    data = NaOverlay18Data
-
-
-class NaOverlay20Functions:
-    pass
-
-
-class NaOverlay20Data:
-    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238CF84], 0x18, "")
-
-    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238CF9C], 0x18, "")
-
-    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238CFB4], 0x18, "")
-
-    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238CFCC], 0x20, "")
-
-    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238CFEC], 0x28, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
-
-
-class NaOverlay20Section:
-    name = "overlay20"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 20."
-    )
-    loadaddress = 0x238A140
-    length = 0x3000
-    functions = NaOverlay20Functions
-    data = NaOverlay20Data
-
-
-class NaOverlay21Functions:
-    pass
-
-
-class NaOverlay21Data:
-    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238CA38], 0x18, "")
-
-    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238CA50], 0x18, "")
-
-    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238CA68], 0x20, "")
-
-    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238CA88], 0x20, "")
-
-    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238CAA8], 0x28, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238CAD0], 0x30, "")
-
-
-class NaOverlay21Section:
-    name = "overlay21"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
-    )
-    loadaddress = 0x238A140
-    length = 0x2E20
-    functions = NaOverlay21Functions
-    data = NaOverlay21Data
-
-
-class NaOverlay22Functions:
-    pass
-
-
-class NaOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
-
-    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238E880], 0x20, "")
-
-    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
-
-    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
-
-
-class NaOverlay22Section:
-    name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
-    loadaddress = 0x238A140
-    length = 0x4B40
-    functions = NaOverlay22Functions
-    data = NaOverlay22Data
-
-
-class NaOverlay24Functions:
-    pass
-
-
-class NaOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
-
-    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238C538], 0x20, "")
-
-
-class NaOverlay24Section:
-    name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
-    loadaddress = 0x238A140
-    length = 0x24E0
-    functions = NaOverlay24Functions
-    data = NaOverlay24Data
-
-
-class NaOverlay25Functions:
-    pass
-
-
-class NaOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
-
-    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238B4CC], 0x20, "")
-
-    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238B4EC], 0x20, "")
-
-
-class NaOverlay25Section:
-    name = "overlay25"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 25."
-    )
-    loadaddress = 0x238A140
-    length = 0x14C0
-    functions = NaOverlay25Functions
-    data = NaOverlay25Data
-
-
-class NaOverlay26Functions:
-    pass
-
-
-class NaOverlay26Data:
-    pass
-
-
-class NaOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
-    )
-    loadaddress = 0x238A140
-    length = 0xE40
-    functions = NaOverlay26Functions
-    data = NaOverlay26Data
-
-
-class NaOverlay27Functions:
-    pass
-
-
-class NaOverlay27Data:
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238C95C], 0x18, "")
-
-    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238C974], 0x20, "")
-
-    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238C994], 0x20, "")
-
-    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238C9B4], 0x28, "")
-
-
-class NaOverlay27Section:
-    name = "overlay27"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
-    )
-    loadaddress = 0x238A140
-    length = 0x2D60
-    functions = NaOverlay27Functions
-    data = NaOverlay27Data
+    loadaddress = 0x22DC240
+    length = 0xE60
+    functions = NaOverlay34Functions
+    data = NaOverlay34Data
 
 
 class NaOverlay35Functions:
@@ -8172,21 +8163,119 @@ class NaOverlay35Section:
     data = NaOverlay35Data
 
 
-class NaOverlay32Functions:
+class NaOverlay4Functions:
     pass
 
 
-class NaOverlay32Data:
+class NaOverlay4Data:
     pass
 
 
-class NaOverlay32Section:
-    name = "overlay32"
-    description = "Unused; all zeroes."
-    loadaddress = 0x2382820
-    length = 0x20
-    functions = NaOverlay32Functions
-    data = NaOverlay32Data
+class NaOverlay4Section:
+    name = "overlay4"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 4."
+    )
+    loadaddress = 0x233CA80
+    length = 0x2BE0
+    functions = NaOverlay4Functions
+    data = NaOverlay4Data
+
+
+class NaOverlay5Functions:
+    pass
+
+
+class NaOverlay5Data:
+    pass
+
+
+class NaOverlay5Section:
+    name = "overlay5"
+    description = "Controls the Trade Team submenu within the top menu."
+    loadaddress = 0x233CA80
+    length = 0x3240
+    functions = NaOverlay5Functions
+    data = NaOverlay5Data
+
+
+class NaOverlay6Functions:
+    pass
+
+
+class NaOverlay6Data:
+    pass
+
+
+class NaOverlay6Section:
+    name = "overlay6"
+    description = "Controls the Wonder Mail S submenu within the top menu."
+    loadaddress = 0x233CA80
+    length = 0x2460
+    functions = NaOverlay6Functions
+    data = NaOverlay6Data
+
+
+class NaOverlay7Functions:
+    pass
+
+
+class NaOverlay7Data:
+    pass
+
+
+class NaOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 7."
+    )
+    loadaddress = 0x233CA80
+    length = 0x5100
+    functions = NaOverlay7Functions
+    data = NaOverlay7Data
+
+
+class NaOverlay8Functions:
+    pass
+
+
+class NaOverlay8Data:
+    pass
+
+
+class NaOverlay8Section:
+    name = "overlay8"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
+    )
+    loadaddress = 0x233CA80
+    length = 0x2200
+    functions = NaOverlay8Functions
+    data = NaOverlay8Data
+
+
+class NaOverlay9Functions:
+    pass
+
+
+class NaOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        [0xE80],
+        [0x233D900],
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class NaOverlay9Section:
+    name = "overlay9"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 9."
+    )
+    loadaddress = 0x233CA80
+    length = 0x2D80
+    functions = NaOverlay9Functions
+    data = NaOverlay9Data
 
 
 class NaRamFunctions:
@@ -8490,53 +8579,23 @@ class NaRamSection:
 
 
 class NaSections:
-    overlay12 = NaOverlay12Section
-
-    overlay23 = NaOverlay23Section
-
-    overlay7 = NaOverlay7Section
-
-    overlay9 = NaOverlay9Section
-
-    overlay28 = NaOverlay28Section
-
     arm9 = NaArm9Section
 
-    overlay14 = NaOverlay14Section
-
-    overlay33 = NaOverlay33Section
-
-    overlay2 = NaOverlay2Section
-
-    overlay19 = NaOverlay19Section
+    itcm = NaItcmSection
 
     overlay0 = NaOverlay0Section
+
+    overlay1 = NaOverlay1Section
 
     overlay10 = NaOverlay10Section
 
     overlay11 = NaOverlay11Section
 
-    overlay29 = NaOverlay29Section
-
-    overlay34 = NaOverlay34Section
-
-    overlay1 = NaOverlay1Section
-
-    overlay3 = NaOverlay3Section
-
-    overlay4 = NaOverlay4Section
-
-    overlay5 = NaOverlay5Section
-
-    overlay6 = NaOverlay6Section
-
-    overlay8 = NaOverlay8Section
-
-    overlay30 = NaOverlay30Section
-
-    overlay31 = NaOverlay31Section
+    overlay12 = NaOverlay12Section
 
     overlay13 = NaOverlay13Section
+
+    overlay14 = NaOverlay14Section
 
     overlay15 = NaOverlay15Section
 
@@ -8546,11 +8605,17 @@ class NaSections:
 
     overlay18 = NaOverlay18Section
 
+    overlay19 = NaOverlay19Section
+
+    overlay2 = NaOverlay2Section
+
     overlay20 = NaOverlay20Section
 
     overlay21 = NaOverlay21Section
 
     overlay22 = NaOverlay22Section
+
+    overlay23 = NaOverlay23Section
 
     overlay24 = NaOverlay24Section
 
@@ -8560,8 +8625,34 @@ class NaSections:
 
     overlay27 = NaOverlay27Section
 
-    overlay35 = NaOverlay35Section
+    overlay28 = NaOverlay28Section
+
+    overlay29 = NaOverlay29Section
+
+    overlay3 = NaOverlay3Section
+
+    overlay30 = NaOverlay30Section
+
+    overlay31 = NaOverlay31Section
 
     overlay32 = NaOverlay32Section
+
+    overlay33 = NaOverlay33Section
+
+    overlay34 = NaOverlay34Section
+
+    overlay35 = NaOverlay35Section
+
+    overlay4 = NaOverlay4Section
+
+    overlay5 = NaOverlay5Section
+
+    overlay6 = NaOverlay6Section
+
+    overlay7 = NaOverlay7Section
+
+    overlay8 = NaOverlay8Section
+
+    overlay9 = NaOverlay9Section
 
     ram = NaRamSection

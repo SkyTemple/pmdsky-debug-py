@@ -1,108 +1,6 @@
 from .protocol import Symbol
 
 
-class NaItcmOverlay12Functions:
-    pass
-
-
-class NaItcmOverlay12Data:
-    pass
-
-
-class NaItcmOverlay12Section:
-    name = "overlay12"
-    description = "Unused; all zeroes."
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay12Functions
-    data = NaItcmOverlay12Data
-
-
-class NaItcmOverlay23Functions:
-    pass
-
-
-class NaItcmOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay23Section:
-    name = "overlay23"
-    description = (
-        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay23Functions
-    data = NaItcmOverlay23Data
-
-
-class NaItcmOverlay7Functions:
-    pass
-
-
-class NaItcmOverlay7Data:
-    pass
-
-
-class NaItcmOverlay7Section:
-    name = "overlay7"
-    description = (
-        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay7Functions
-    data = NaItcmOverlay7Data
-
-
-class NaItcmOverlay9Functions:
-    pass
-
-
-class NaItcmOverlay9Data:
-    TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        None,
-        None,
-        None,
-        "Song playing in the main menu when returning from the Sky Jukebox.",
-    )
-
-
-class NaItcmOverlay9Section:
-    name = "overlay9"
-    description = "Controls the Sky Jukebox."
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay9Functions
-    data = NaItcmOverlay9Data
-
-
-class NaItcmOverlay28Functions:
-    pass
-
-
-class NaItcmOverlay28Data:
-    pass
-
-
-class NaItcmOverlay28Section:
-    name = "overlay28"
-    description = "Controls the staff credits sequence."
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay28Functions
-    data = NaItcmOverlay28Data
-
-
 class NaItcmArm9Functions:
     InitMemAllocTable = Symbol(
         None,
@@ -2359,6 +2257,16 @@ class NaItcmArm9Functions:
 
 
 class NaItcmArm9Data:
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
+
+    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
+
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
         None,
         None,
@@ -2770,25 +2678,12 @@ class NaItcmArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol(None, None, None, "")
 
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
-
-    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
-
 
 class NaItcmArm9Section:
     name = "arm9"
     description = (
-        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
-        " launched, and contains the core code that runs the game, low level facilities"
-        " such as memory allocation, compression, other external dependencies (such as"
-        " linked functions from libc and libgcc), and the functions and tables"
-        " necessary to load overlays and dispatch execution to them."
+        "Hard-coded immediate values (literals) in instructions within the ARM 9"
+        " binary."
     )
     loadaddress = 0x1FF8000
     length = 0x4000
@@ -2796,84 +2691,102 @@ class NaItcmArm9Section:
     data = NaItcmArm9Data
 
 
-class NaItcmOverlay14Functions:
-    pass
-
-
-class NaItcmOverlay14Data:
-    FOOTPRINT_DEBUG_MENU = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay14Section:
-    name = "overlay14"
-    description = "Runs the sentry duty minigame."
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay14Functions
-    data = NaItcmOverlay14Data
-
-
-class NaItcmOverlay33Functions:
-    pass
-
-
-class NaItcmOverlay33Data:
-    pass
-
-
-class NaItcmOverlay33Section:
-    name = "overlay33"
-    description = "Unused; all zeroes."
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay33Functions
-    data = NaItcmOverlay33Data
-
-
-class NaItcmOverlay2Functions:
-    pass
-
-
-class NaItcmOverlay2Data:
-    pass
-
-
-class NaItcmOverlay2Section:
-    name = "overlay2"
-    description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
+class NaItcmItcmFunctions:
+    ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
+        [0x2390],
+        [0x1FFA390],
+        None,
+        "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
+        " Otherwise, returns true only if the monster's behavior field is equal to"
+        " monster_behavior::BEHAVIOR_FLEEING_OUTLAW.\n\nr0: Entity pointer\nr1:"
+        " ?\nreturn: True if ShouldMonsterRunAway returns true or the monster is a"
+        " fleeing outlaw",
     )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay2Functions
-    data = NaItcmOverlay2Data
+
+    AiMovement = Symbol(
+        [0x23C4],
+        [0x1FFA3C4],
+        None,
+        "Used by the AI to determine the direction in which a monster should"
+        " move\n\nr0: Entity pointer\nr1: ?",
+    )
+
+    CalculateAiTargetPos = Symbol(
+        [0x32C8],
+        [0x1FFB2C8],
+        None,
+        "Calculates the target position of an AI-controlled monster and stores it in"
+        " the monster's ai_target_pos field\n\nr0: Entity pointer",
+    )
+
+    ChooseAiMove = Symbol(
+        [0x3658],
+        [0x1FFB658],
+        None,
+        "Determines if an AI-controlled monster will use a move and which one it will"
+        " use\n\nr0: Entity pointer",
+    )
 
 
-class NaItcmOverlay19Functions:
-    pass
+class NaItcmItcmData:
+    MEMORY_ALLOCATION_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
+        " in the ARM9 binary uses region-based memory management (see"
+        " https://en.wikipedia.org/wiki/Region-based_memory_management). The heap is"
+        " broken up into smaller contiguous chunks called arenas (struct mem_arena),"
+        " which are in turn broken up into chunks referred to as blocks (struct"
+        " mem_block). Most of the time, an allocation results in a block being split"
+        " off from a free part of an existing memory arena.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_alloc_table",
+    )
+
+    DEFAULT_MEMORY_ARENA = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The default memory allocation arena. This is part of"
+        " MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various"
+        " functions.\n\nNote: This symbol isn't actually part of the ITCM, it gets"
+        " created at runtime on the spot in RAM that used to contain the code that was"
+        " moved to the ITCM.\n\ntype: struct mem_arena",
+    )
+
+    DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_block[256]",
+    )
 
 
-class NaItcmOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
-
-    BAR_MAIN_MENU = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_1 = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_2 = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay19Section:
-    name = "overlay19"
-    description = "Controls Spinda's Juice Bar."
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay19Functions
-    data = NaItcmOverlay19Data
+class NaItcmItcmSection:
+    name = "itcm"
+    description = (
+        "The instruction TCM (tightly-coupled memory) and the corresponding region in"
+        " the ARM9 binary.\n\nThe ITCM is a special area of low-latency memory meant"
+        " for performance-critical routines. It's similar to an instruction cache, but"
+        " more predictable. See the ARMv5 Architecture Reference Manual, Chapter B7"
+        " (https://developer.arm.com/documentation/ddi0100/i).\n\nThe Nintendo DS ITCM"
+        " region is located at 0x0-0x7FFF in memory, but the 32 KiB segment is mirrored"
+        " throughout the 16 MiB block from 0x0-0x1FFFFFF. The Explorers of Sky code"
+        " seems to reference only the mirror at 0x1FF8000, the closest one to main"
+        " memory.\n\nIn Explorers of Sky, a fixed region of the ARM9 binary appears to"
+        " be loaded in the ITCM at all times, and seems to contain functions related to"
+        " the dungeon AI, among other things. The ITCM has a max capacity of 0x8000,"
+        " although not all of it is used."
+    )
+    loadaddress = 0x1FF8000
+    length = 0x4000
+    functions = NaItcmItcmFunctions
+    data = NaItcmItcmData
 
 
 class NaItcmOverlay0Functions:
@@ -2893,6 +2806,64 @@ class NaItcmOverlay0Section:
     length = None
     functions = NaItcmOverlay0Functions
     data = NaItcmOverlay0Data
+
+
+class NaItcmOverlay1Functions:
+    CreateMainMenus = Symbol(
+        None,
+        None,
+        None,
+        "Prepares the top menu and sub menu, adding the different options that compose"
+        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
+        " Some of them are conditionally executed depending on which options should be"
+        " unlocked.\n\nNo params.",
+    )
+
+    AddMainMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Adds an option to the top menu.\n\nThis function is called for each one of the"
+        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
+        " action ID does not exist there, the option won't be added.\n\nr0: Action"
+        " ID\nr1: True if the option should be enabled, false otherwise",
+    )
+
+    AddSubMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
+        " called for each one of the options in the submenu. It loops the SUBMENU data"
+        " field, if the specified action ID does not exist there, the option won't be"
+        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
+        " otherwise",
+    )
+
+
+class NaItcmOverlay1Data:
+    CONTINUE_CHOICE = Symbol(None, None, None, "")
+
+    SUBMENU = Symbol(None, None, None, "")
+
+    MAIN_MENU = Symbol(None, None, None, "")
+
+    MAIN_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
+
+    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay1Section:
+    name = "overlay1"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 1."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay1Functions
+    data = NaItcmOverlay1Data
 
 
 class NaItcmOverlay10Functions:
@@ -3506,6 +3477,444 @@ class NaItcmOverlay11Section:
     length = None
     functions = NaItcmOverlay11Functions
     data = NaItcmOverlay11Data
+
+
+class NaItcmOverlay12Functions:
+    pass
+
+
+class NaItcmOverlay12Data:
+    pass
+
+
+class NaItcmOverlay12Section:
+    name = "overlay12"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay12Functions
+    data = NaItcmOverlay12Data
+
+
+class NaItcmOverlay13Functions:
+    pass
+
+
+class NaItcmOverlay13Data:
+    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
+
+    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
+
+    STARTERS_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
+
+    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
+
+    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay13Section:
+    name = "overlay13"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 13."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay13Functions
+    data = NaItcmOverlay13Data
+
+
+class NaItcmOverlay14Functions:
+    pass
+
+
+class NaItcmOverlay14Data:
+    FOOTPRINT_DEBUG_MENU = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay14Section:
+    name = "overlay14"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 14."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay14Functions
+    data = NaItcmOverlay14Data
+
+
+class NaItcmOverlay15Functions:
+    pass
+
+
+class NaItcmOverlay15Data:
+    BANK_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay15Section:
+    name = "overlay15"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 15."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay15Functions
+    data = NaItcmOverlay15Data
+
+
+class NaItcmOverlay16Functions:
+    pass
+
+
+class NaItcmOverlay16Data:
+    EVO_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    EVO_SUBMENU = Symbol(None, None, None, "")
+
+    EVO_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay16Section:
+    name = "overlay16"
+    description = "Controls Luminous Spring."
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay16Functions
+    data = NaItcmOverlay16Data
+
+
+class NaItcmOverlay17Functions:
+    pass
+
+
+class NaItcmOverlay17Data:
+    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay17Section:
+    name = "overlay17"
+    description = "Controls the Chimecho Assembly."
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay17Functions
+    data = NaItcmOverlay17Data
+
+
+class NaItcmOverlay18Functions:
+    pass
+
+
+class NaItcmOverlay18Data:
+    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
+
+    MOVES_MAIN_MENU = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay18Section:
+    name = "overlay18"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 18."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay18Functions
+    data = NaItcmOverlay18Data
+
+
+class NaItcmOverlay19Functions:
+    pass
+
+
+class NaItcmOverlay19Data:
+    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+
+    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+
+    BAR_MAIN_MENU = Symbol(None, None, None, "")
+
+    BAR_SUBMENU_1 = Symbol(None, None, None, "")
+
+    BAR_SUBMENU_2 = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay19Section:
+    name = "overlay19"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 19."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay19Functions
+    data = NaItcmOverlay19Data
+
+
+class NaItcmOverlay2Functions:
+    pass
+
+
+class NaItcmOverlay2Data:
+    pass
+
+
+class NaItcmOverlay2Section:
+    name = "overlay2"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 2."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay2Functions
+    data = NaItcmOverlay2Data
+
+
+class NaItcmOverlay20Functions:
+    pass
+
+
+class NaItcmOverlay20Data:
+    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay20Section:
+    name = "overlay20"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 20."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay20Functions
+    data = NaItcmOverlay20Data
+
+
+class NaItcmOverlay21Functions:
+    pass
+
+
+class NaItcmOverlay21Data:
+    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay21Section:
+    name = "overlay21"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 21."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay21Functions
+    data = NaItcmOverlay21Data
+
+
+class NaItcmOverlay22Functions:
+    pass
+
+
+class NaItcmOverlay22Data:
+    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay22Section:
+    name = "overlay22"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 22."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay22Functions
+    data = NaItcmOverlay22Data
+
+
+class NaItcmOverlay23Functions:
+    pass
+
+
+class NaItcmOverlay23Data:
+    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay23Section:
+    name = "overlay23"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 23."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay23Functions
+    data = NaItcmOverlay23Data
+
+
+class NaItcmOverlay24Functions:
+    pass
+
+
+class NaItcmOverlay24Data:
+    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay24Section:
+    name = "overlay24"
+    description = "Controls the Chansey Day Care."
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay24Functions
+    data = NaItcmOverlay24Data
+
+
+class NaItcmOverlay25Functions:
+    pass
+
+
+class NaItcmOverlay25Data:
+    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
+
+    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay25Section:
+    name = "overlay25"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 25."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay25Functions
+    data = NaItcmOverlay25Data
+
+
+class NaItcmOverlay26Functions:
+    pass
+
+
+class NaItcmOverlay26Data:
+    pass
+
+
+class NaItcmOverlay26Section:
+    name = "overlay26"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 26."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay26Functions
+    data = NaItcmOverlay26Data
+
+
+class NaItcmOverlay27Functions:
+    pass
+
+
+class NaItcmOverlay27Data:
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay27Section:
+    name = "overlay27"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 27."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay27Functions
+    data = NaItcmOverlay27Data
+
+
+class NaItcmOverlay28Functions:
+    pass
+
+
+class NaItcmOverlay28Data:
+    pass
+
+
+class NaItcmOverlay28Section:
+    name = "overlay28"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 28."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay28Functions
+    data = NaItcmOverlay28Data
 
 
 class NaItcmOverlay29Functions:
@@ -7127,85 +7536,6 @@ class NaItcmOverlay29Section:
     data = NaItcmOverlay29Data
 
 
-class NaItcmOverlay34Functions:
-    pass
-
-
-class NaItcmOverlay34Data:
-    UNKNOWN_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay34Section:
-    name = "overlay34"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay34Functions
-    data = NaItcmOverlay34Data
-
-
-class NaItcmOverlay1Functions:
-    CreateMainMenus = Symbol(
-        None,
-        None,
-        None,
-        "Prepares the top menu and sub menu, adding the different options that compose"
-        " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
-        " Some of them are conditionally executed depending on which options should be"
-        " unlocked.\n\nNo params.",
-    )
-
-    AddMainMenuOption = Symbol(
-        None,
-        None,
-        None,
-        "Adds an option to the top menu.\n\nThis function is called for each one of the"
-        " options in the top menu. It loops the MAIN_MENU data field, if the specified"
-        " action ID does not exist there, the option won't be added.\n\nr0: Action"
-        " ID\nr1: True if the option should be enabled, false otherwise",
-    )
-
-    AddSubMenuOption = Symbol(
-        None,
-        None,
-        None,
-        "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
-        " called for each one of the options in the submenu. It loops the SUBMENU data"
-        " field, if the specified action ID does not exist there, the option won't be"
-        " added.\n\nr0: Action ID\nr1: True if the option should be enabled, false"
-        " otherwise",
-    )
-
-
-class NaItcmOverlay1Data:
-    CONTINUE_CHOICE = Symbol(None, None, None, "")
-
-    SUBMENU = Symbol(None, None, None, "")
-
-    MAIN_MENU = Symbol(None, None, None, "")
-
-    MAIN_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
-
-    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay1Section:
-    name = "overlay1"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay1Functions
-    data = NaItcmOverlay1Data
-
-
 class NaItcmOverlay3Functions:
     pass
 
@@ -7216,89 +7546,11 @@ class NaItcmOverlay3Data:
 
 class NaItcmOverlay3Section:
     name = "overlay3"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 3."
-    )
+    description = "Controls the Friend Rescue submenu within the top menu."
     loadaddress = None
     length = None
     functions = NaItcmOverlay3Functions
     data = NaItcmOverlay3Data
-
-
-class NaItcmOverlay4Functions:
-    pass
-
-
-class NaItcmOverlay4Data:
-    pass
-
-
-class NaItcmOverlay4Section:
-    name = "overlay4"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay4Functions
-    data = NaItcmOverlay4Data
-
-
-class NaItcmOverlay5Functions:
-    pass
-
-
-class NaItcmOverlay5Data:
-    pass
-
-
-class NaItcmOverlay5Section:
-    name = "overlay5"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay5Functions
-    data = NaItcmOverlay5Data
-
-
-class NaItcmOverlay6Functions:
-    pass
-
-
-class NaItcmOverlay6Data:
-    pass
-
-
-class NaItcmOverlay6Section:
-    name = "overlay6"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 6."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay6Functions
-    data = NaItcmOverlay6Data
-
-
-class NaItcmOverlay8Functions:
-    pass
-
-
-class NaItcmOverlay8Data:
-    pass
-
-
-class NaItcmOverlay8Section:
-    name = "overlay8"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 8."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay8Functions
-    data = NaItcmOverlay8Data
 
 
 class NaItcmOverlay30Functions:
@@ -7388,320 +7640,59 @@ class NaItcmOverlay31Section:
     data = NaItcmOverlay31Data
 
 
-class NaItcmOverlay13Functions:
+class NaItcmOverlay32Functions:
     pass
 
 
-class NaItcmOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
-
-    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
-
-    STARTERS_STRINGS = Symbol(None, None, None, "")
-
-    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
-
-    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
-
-    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
+class NaItcmOverlay32Data:
+    pass
 
 
-class NaItcmOverlay13Section:
-    name = "overlay13"
+class NaItcmOverlay32Section:
+    name = "overlay32"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay32Functions
+    data = NaItcmOverlay32Data
+
+
+class NaItcmOverlay33Functions:
+    pass
+
+
+class NaItcmOverlay33Data:
+    pass
+
+
+class NaItcmOverlay33Section:
+    name = "overlay33"
+    description = "Unused; all zeroes."
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay33Functions
+    data = NaItcmOverlay33Data
+
+
+class NaItcmOverlay34Functions:
+    pass
+
+
+class NaItcmOverlay34Data:
+    UNKNOWN_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "")
+
+
+class NaItcmOverlay34Section:
+    name = "overlay34"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
+        "Hard-coded immediate values (literals) in instructions within overlay 34."
     )
     loadaddress = None
     length = None
-    functions = NaItcmOverlay13Functions
-    data = NaItcmOverlay13Data
-
-
-class NaItcmOverlay15Functions:
-    pass
-
-
-class NaItcmOverlay15Data:
-    BANK_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay15Section:
-    name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay15Functions
-    data = NaItcmOverlay15Data
-
-
-class NaItcmOverlay16Functions:
-    pass
-
-
-class NaItcmOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    EVO_SUBMENU = Symbol(None, None, None, "")
-
-    EVO_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay16Section:
-    name = "overlay16"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 16."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay16Functions
-    data = NaItcmOverlay16Data
-
-
-class NaItcmOverlay17Functions:
-    pass
-
-
-class NaItcmOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay17Section:
-    name = "overlay17"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 17."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay17Functions
-    data = NaItcmOverlay17Data
-
-
-class NaItcmOverlay18Functions:
-    pass
-
-
-class NaItcmOverlay18Data:
-    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
-
-    MOVES_MAIN_MENU = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay18Section:
-    name = "overlay18"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 18."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay18Functions
-    data = NaItcmOverlay18Data
-
-
-class NaItcmOverlay20Functions:
-    pass
-
-
-class NaItcmOverlay20Data:
-    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
-
-    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
-
-    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
-
-    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay20Section:
-    name = "overlay20"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 20."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay20Functions
-    data = NaItcmOverlay20Data
-
-
-class NaItcmOverlay21Functions:
-    pass
-
-
-class NaItcmOverlay21Data:
-    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay21Section:
-    name = "overlay21"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay21Functions
-    data = NaItcmOverlay21Data
-
-
-class NaItcmOverlay22Functions:
-    pass
-
-
-class NaItcmOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay22Section:
-    name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay22Functions
-    data = NaItcmOverlay22Data
-
-
-class NaItcmOverlay24Functions:
-    pass
-
-
-class NaItcmOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay24Section:
-    name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay24Functions
-    data = NaItcmOverlay24Data
-
-
-class NaItcmOverlay25Functions:
-    pass
-
-
-class NaItcmOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
-
-    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay25Section:
-    name = "overlay25"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 25."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay25Functions
-    data = NaItcmOverlay25Data
-
-
-class NaItcmOverlay26Functions:
-    pass
-
-
-class NaItcmOverlay26Data:
-    pass
-
-
-class NaItcmOverlay26Section:
-    name = "overlay26"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay26Functions
-    data = NaItcmOverlay26Data
-
-
-class NaItcmOverlay27Functions:
-    pass
-
-
-class NaItcmOverlay27Data:
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
-
-
-class NaItcmOverlay27Section:
-    name = "overlay27"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
-    )
-    loadaddress = None
-    length = None
-    functions = NaItcmOverlay27Functions
-    data = NaItcmOverlay27Data
+    functions = NaItcmOverlay34Functions
+    data = NaItcmOverlay34Data
 
 
 class NaItcmOverlay35Functions:
@@ -7721,21 +7712,119 @@ class NaItcmOverlay35Section:
     data = NaItcmOverlay35Data
 
 
-class NaItcmOverlay32Functions:
+class NaItcmOverlay4Functions:
     pass
 
 
-class NaItcmOverlay32Data:
+class NaItcmOverlay4Data:
     pass
 
 
-class NaItcmOverlay32Section:
-    name = "overlay32"
-    description = "Unused; all zeroes."
+class NaItcmOverlay4Section:
+    name = "overlay4"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 4."
+    )
     loadaddress = None
     length = None
-    functions = NaItcmOverlay32Functions
-    data = NaItcmOverlay32Data
+    functions = NaItcmOverlay4Functions
+    data = NaItcmOverlay4Data
+
+
+class NaItcmOverlay5Functions:
+    pass
+
+
+class NaItcmOverlay5Data:
+    pass
+
+
+class NaItcmOverlay5Section:
+    name = "overlay5"
+    description = "Controls the Trade Team submenu within the top menu."
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay5Functions
+    data = NaItcmOverlay5Data
+
+
+class NaItcmOverlay6Functions:
+    pass
+
+
+class NaItcmOverlay6Data:
+    pass
+
+
+class NaItcmOverlay6Section:
+    name = "overlay6"
+    description = "Controls the Wonder Mail S submenu within the top menu."
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay6Functions
+    data = NaItcmOverlay6Data
+
+
+class NaItcmOverlay7Functions:
+    pass
+
+
+class NaItcmOverlay7Data:
+    pass
+
+
+class NaItcmOverlay7Section:
+    name = "overlay7"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 7."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay7Functions
+    data = NaItcmOverlay7Data
+
+
+class NaItcmOverlay8Functions:
+    pass
+
+
+class NaItcmOverlay8Data:
+    pass
+
+
+class NaItcmOverlay8Section:
+    name = "overlay8"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 8."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay8Functions
+    data = NaItcmOverlay8Data
+
+
+class NaItcmOverlay9Functions:
+    pass
+
+
+class NaItcmOverlay9Data:
+    TOP_MENU_RETURN_MUSIC_ID = Symbol(
+        None,
+        None,
+        None,
+        "Song playing in the main menu when returning from the Sky Jukebox.",
+    )
+
+
+class NaItcmOverlay9Section:
+    name = "overlay9"
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 9."
+    )
+    loadaddress = None
+    length = None
+    functions = NaItcmOverlay9Functions
+    data = NaItcmOverlay9Data
 
 
 class NaItcmRamFunctions:
@@ -8034,53 +8123,23 @@ class NaItcmRamSection:
 
 
 class NaItcmSections:
-    overlay12 = NaItcmOverlay12Section
-
-    overlay23 = NaItcmOverlay23Section
-
-    overlay7 = NaItcmOverlay7Section
-
-    overlay9 = NaItcmOverlay9Section
-
-    overlay28 = NaItcmOverlay28Section
-
     arm9 = NaItcmArm9Section
 
-    overlay14 = NaItcmOverlay14Section
-
-    overlay33 = NaItcmOverlay33Section
-
-    overlay2 = NaItcmOverlay2Section
-
-    overlay19 = NaItcmOverlay19Section
+    itcm = NaItcmItcmSection
 
     overlay0 = NaItcmOverlay0Section
+
+    overlay1 = NaItcmOverlay1Section
 
     overlay10 = NaItcmOverlay10Section
 
     overlay11 = NaItcmOverlay11Section
 
-    overlay29 = NaItcmOverlay29Section
-
-    overlay34 = NaItcmOverlay34Section
-
-    overlay1 = NaItcmOverlay1Section
-
-    overlay3 = NaItcmOverlay3Section
-
-    overlay4 = NaItcmOverlay4Section
-
-    overlay5 = NaItcmOverlay5Section
-
-    overlay6 = NaItcmOverlay6Section
-
-    overlay8 = NaItcmOverlay8Section
-
-    overlay30 = NaItcmOverlay30Section
-
-    overlay31 = NaItcmOverlay31Section
+    overlay12 = NaItcmOverlay12Section
 
     overlay13 = NaItcmOverlay13Section
+
+    overlay14 = NaItcmOverlay14Section
 
     overlay15 = NaItcmOverlay15Section
 
@@ -8090,11 +8149,17 @@ class NaItcmSections:
 
     overlay18 = NaItcmOverlay18Section
 
+    overlay19 = NaItcmOverlay19Section
+
+    overlay2 = NaItcmOverlay2Section
+
     overlay20 = NaItcmOverlay20Section
 
     overlay21 = NaItcmOverlay21Section
 
     overlay22 = NaItcmOverlay22Section
+
+    overlay23 = NaItcmOverlay23Section
 
     overlay24 = NaItcmOverlay24Section
 
@@ -8104,8 +8169,34 @@ class NaItcmSections:
 
     overlay27 = NaItcmOverlay27Section
 
-    overlay35 = NaItcmOverlay35Section
+    overlay28 = NaItcmOverlay28Section
+
+    overlay29 = NaItcmOverlay29Section
+
+    overlay3 = NaItcmOverlay3Section
+
+    overlay30 = NaItcmOverlay30Section
+
+    overlay31 = NaItcmOverlay31Section
 
     overlay32 = NaItcmOverlay32Section
+
+    overlay33 = NaItcmOverlay33Section
+
+    overlay34 = NaItcmOverlay34Section
+
+    overlay35 = NaItcmOverlay35Section
+
+    overlay4 = NaItcmOverlay4Section
+
+    overlay5 = NaItcmOverlay5Section
+
+    overlay6 = NaItcmOverlay6Section
+
+    overlay7 = NaItcmOverlay7Section
+
+    overlay8 = NaItcmOverlay8Section
+
+    overlay9 = NaItcmOverlay9Section
 
     ram = NaItcmRamSection

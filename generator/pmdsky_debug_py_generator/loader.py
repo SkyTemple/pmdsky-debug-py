@@ -199,6 +199,7 @@ def load_binaries(symbols_dir: str) -> List[Binary]:
         with open(yml_path, "r") as f:
             _read(binaries, yaml.safe_load(f))
 
+    binaries.sort(key=lambda b: b.name)
     return binaries
 
 
