@@ -2325,20 +2325,6 @@ class NaArm9Functions:
 
 
 class NaArm9Data:
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        [0x11810], [0x2011810], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol([0x20C98], [0x2020C98], None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(
-        [0x48880], [0x2048880], None, "Starting level of the hero."
-    )
-
-    PARTNER_START_LEVEL = Symbol(
-        [0x488F0], [0x20488F0], None, "Starting level of the partner."
-    )
-
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
         [0xE58],
         [0x2000E58],
@@ -2761,12 +2747,29 @@ class NaArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol([0xB0B90], [0x20B0B90], 0x1FC, "")
 
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        [0x11810], [0x2011810], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol([0x20C98], [0x2020C98], None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(
+        [0x48880], [0x2048880], None, "Starting level of the hero."
+    )
+
+    PARTNER_START_LEVEL = Symbol(
+        [0x488F0], [0x20488F0], None, "Starting level of the partner."
+    )
+
 
 class NaArm9Section:
     name = "arm9"
     description = (
-        "Hard-coded immediate values (literals) in instructions within the ARM 9"
-        " binary."
+        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
+        " launched, and contains the core code that runs the game, low level facilities"
+        " such as memory allocation, compression, other external dependencies (such as"
+        " linked functions from libc and libgcc), and the functions and tables"
+        " necessary to load overlays and dispatch execution to them."
     )
     loadaddress = 0x2000000
     length = 0xB73F8
@@ -3660,9 +3663,7 @@ class NaOverlay14Data:
 
 class NaOverlay14Section:
     name = "overlay14"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 14."
-    )
+    description = "Runs the sentry duty minigame."
     loadaddress = 0x238A140
     length = 0x3AE0
     functions = NaOverlay14Functions
@@ -3702,7 +3703,9 @@ class NaOverlay16Data:
 
 class NaOverlay16Section:
     name = "overlay16"
-    description = "Controls Luminous Spring."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 16."
+    )
     loadaddress = 0x238A140
     length = 0x2D20
     functions = NaOverlay16Functions
@@ -3737,7 +3740,9 @@ class NaOverlay17Data:
 
 class NaOverlay17Section:
     name = "overlay17"
-    description = "Controls the Chimecho Assembly."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 17."
+    )
     loadaddress = 0x238A140
     length = 0x1CE0
     functions = NaOverlay17Functions
@@ -3797,9 +3802,7 @@ class NaOverlay19Data:
 
 class NaOverlay19Section:
     name = "overlay19"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 19."
-    )
+    description = "Controls Spinda's Juice Bar."
     loadaddress = 0x238A140
     length = 0x4240
     functions = NaOverlay19Functions
@@ -3817,7 +3820,9 @@ class NaOverlay2Data:
 class NaOverlay2Section:
     name = "overlay2"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 2."
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
     )
     loadaddress = 0x2329520
     length = 0x2AFA0
@@ -3929,7 +3934,7 @@ class NaOverlay23Data:
 class NaOverlay23Section:
     name = "overlay23"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 23."
+        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
     )
     loadaddress = 0x238A140
     length = 0x3780
@@ -3949,7 +3954,9 @@ class NaOverlay24Data:
 
 class NaOverlay24Section:
     name = "overlay24"
-    description = "Controls the Chansey Day Care."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 24."
+    )
     loadaddress = 0x238A140
     length = 0x24E0
     functions = NaOverlay24Functions
@@ -4033,9 +4040,7 @@ class NaOverlay28Data:
 
 class NaOverlay28Section:
     name = "overlay28"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 28."
-    )
+    description = "Controls the staff credits sequence."
     loadaddress = 0x238A140
     length = 0xC60
     functions = NaOverlay28Functions
@@ -5126,10 +5131,10 @@ class NaOverlay29Functions:
         " direction.\nAccounts for walls, other monsters on the target position and IQ"
         " skills that might prevent a monster from moving into a specific location,"
         " such as House Avoider, Trap Avoider or Lava Evader.\n\nr0: Entity"
-        " pointer\nr1: Direction\nr2: (output) If movement was not possible because"
-        " there was another monster on the target tile, its entity pointer is returned"
-        " here\nreturn: True if the monster can move in the specified direction, false"
-        " otherwise.",
+        " pointer\nr1: Direction\nr2: (output) True if movement was not possible"
+        " because there was another monster on the target tile, false"
+        " otherwise.\nreturn: True if the monster can move in the specified direction,"
+        " false otherwise.",
     )
 
     ShouldMonsterRunAway = Symbol(
@@ -7997,7 +8002,9 @@ class NaOverlay3Data:
 
 class NaOverlay3Section:
     name = "overlay3"
-    description = "Controls the Friend Rescue submenu within the top menu."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 3."
+    )
     loadaddress = 0x233CA80
     length = 0xA160
     functions = NaOverlay3Functions
@@ -8192,7 +8199,9 @@ class NaOverlay5Data:
 
 class NaOverlay5Section:
     name = "overlay5"
-    description = "Controls the Trade Team submenu within the top menu."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 5."
+    )
     loadaddress = 0x233CA80
     length = 0x3240
     functions = NaOverlay5Functions
@@ -8209,7 +8218,9 @@ class NaOverlay6Data:
 
 class NaOverlay6Section:
     name = "overlay6"
-    description = "Controls the Wonder Mail S submenu within the top menu."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 6."
+    )
     loadaddress = 0x233CA80
     length = 0x2460
     functions = NaOverlay6Functions
@@ -8227,7 +8238,7 @@ class NaOverlay7Data:
 class NaOverlay7Section:
     name = "overlay7"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 7."
+        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
     )
     loadaddress = 0x233CA80
     length = 0x5100
@@ -8269,9 +8280,7 @@ class NaOverlay9Data:
 
 class NaOverlay9Section:
     name = "overlay9"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 9."
-    )
+    description = "Controls the Sky Jukebox."
     loadaddress = 0x233CA80
     length = 0x2D80
     functions = NaOverlay9Functions

@@ -2329,20 +2329,6 @@ class EuArm9Functions:
 
 
 class EuArm9Data:
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol([0x20DF0], [0x2020DF0], None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(
-        [0x48B9C], [0x2048B9C], None, "Starting level of the hero."
-    )
-
-    PARTNER_START_LEVEL = Symbol(
-        [0x48C0C], [0x2048C0C], None, "Starting level of the partner."
-    )
-
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
         [0xE58],
         [0x2000E58],
@@ -2765,12 +2751,29 @@ class EuArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol([0xB14D4], [0x20B14D4], 0x1FC, "")
 
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol([0x20DF0], [0x2020DF0], None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(
+        [0x48B9C], [0x2048B9C], None, "Starting level of the hero."
+    )
+
+    PARTNER_START_LEVEL = Symbol(
+        [0x48C0C], [0x2048C0C], None, "Starting level of the partner."
+    )
+
 
 class EuArm9Section:
     name = "arm9"
     description = (
-        "Hard-coded immediate values (literals) in instructions within the ARM 9"
-        " binary."
+        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
+        " launched, and contains the core code that runs the game, low level facilities"
+        " such as memory allocation, compression, other external dependencies (such as"
+        " linked functions from libc and libgcc), and the functions and tables"
+        " necessary to load overlays and dispatch execution to them."
     )
     loadaddress = 0x2000000
     length = 0xB7D38
@@ -3664,9 +3667,7 @@ class EuOverlay14Data:
 
 class EuOverlay14Section:
     name = "overlay14"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 14."
-    )
+    description = "Runs the sentry duty minigame."
     loadaddress = 0x238AC80
     length = 0x3B40
     functions = EuOverlay14Functions
@@ -3706,7 +3707,9 @@ class EuOverlay16Data:
 
 class EuOverlay16Section:
     name = "overlay16"
-    description = "Controls Luminous Spring."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 16."
+    )
     loadaddress = 0x238AC80
     length = 0x2D20
     functions = EuOverlay16Functions
@@ -3741,7 +3744,9 @@ class EuOverlay17Data:
 
 class EuOverlay17Section:
     name = "overlay17"
-    description = "Controls the Chimecho Assembly."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 17."
+    )
     loadaddress = 0x238AC80
     length = 0x1CE0
     functions = EuOverlay17Functions
@@ -3801,9 +3806,7 @@ class EuOverlay19Data:
 
 class EuOverlay19Section:
     name = "overlay19"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 19."
-    )
+    description = "Controls Spinda's Juice Bar."
     loadaddress = 0x238AC80
     length = 0x4220
     functions = EuOverlay19Functions
@@ -3821,7 +3824,9 @@ class EuOverlay2Data:
 class EuOverlay2Section:
     name = "overlay2"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 2."
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
     )
     loadaddress = 0x2329D40
     length = 0x2AFC0
@@ -3933,7 +3938,7 @@ class EuOverlay23Data:
 class EuOverlay23Section:
     name = "overlay23"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 23."
+        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
     )
     loadaddress = 0x238AC80
     length = 0x3780
@@ -3953,7 +3958,9 @@ class EuOverlay24Data:
 
 class EuOverlay24Section:
     name = "overlay24"
-    description = "Controls the Chansey Day Care."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 24."
+    )
     loadaddress = 0x238AC80
     length = 0x24E0
     functions = EuOverlay24Functions
@@ -4037,9 +4044,7 @@ class EuOverlay28Data:
 
 class EuOverlay28Section:
     name = "overlay28"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 28."
-    )
+    description = "Controls the staff credits sequence."
     loadaddress = 0x238AC80
     length = 0xC60
     functions = EuOverlay28Functions
@@ -5128,10 +5133,10 @@ class EuOverlay29Functions:
         " direction.\nAccounts for walls, other monsters on the target position and IQ"
         " skills that might prevent a monster from moving into a specific location,"
         " such as House Avoider, Trap Avoider or Lava Evader.\n\nr0: Entity"
-        " pointer\nr1: Direction\nr2: (output) If movement was not possible because"
-        " there was another monster on the target tile, its entity pointer is returned"
-        " here\nreturn: True if the monster can move in the specified direction, false"
-        " otherwise.",
+        " pointer\nr1: Direction\nr2: (output) True if movement was not possible"
+        " because there was another monster on the target tile, false"
+        " otherwise.\nreturn: True if the monster can move in the specified direction,"
+        " false otherwise.",
     )
 
     ShouldMonsterRunAway = Symbol(
@@ -7999,7 +8004,9 @@ class EuOverlay3Data:
 
 class EuOverlay3Section:
     name = "overlay3"
-    description = "Controls the Friend Rescue submenu within the top menu."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 3."
+    )
     loadaddress = 0x233D200
     length = 0xA160
     functions = EuOverlay3Functions
@@ -8194,7 +8201,9 @@ class EuOverlay5Data:
 
 class EuOverlay5Section:
     name = "overlay5"
-    description = "Controls the Trade Team submenu within the top menu."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 5."
+    )
     loadaddress = 0x233D200
     length = 0x3240
     functions = EuOverlay5Functions
@@ -8211,7 +8220,9 @@ class EuOverlay6Data:
 
 class EuOverlay6Section:
     name = "overlay6"
-    description = "Controls the Wonder Mail S submenu within the top menu."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 6."
+    )
     loadaddress = 0x233D200
     length = 0x2460
     functions = EuOverlay6Functions
@@ -8229,7 +8240,7 @@ class EuOverlay7Data:
 class EuOverlay7Section:
     name = "overlay7"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 7."
+        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
     )
     loadaddress = 0x233D200
     length = 0x3300
@@ -8271,9 +8282,7 @@ class EuOverlay9Data:
 
 class EuOverlay9Section:
     name = "overlay9"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 9."
-    )
+    description = "Controls the Sky Jukebox."
     loadaddress = 0x233D200
     length = 0x2D80
     functions = EuOverlay9Functions

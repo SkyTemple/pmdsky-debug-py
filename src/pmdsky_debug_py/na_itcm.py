@@ -2257,16 +2257,6 @@ class NaItcmArm9Functions:
 
 
 class NaItcmArm9Data:
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
-
-    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
-
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
         None,
         None,
@@ -2678,12 +2668,25 @@ class NaItcmArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol(None, None, None, "")
 
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
+
+    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
+
 
 class NaItcmArm9Section:
     name = "arm9"
     description = (
-        "Hard-coded immediate values (literals) in instructions within the ARM 9"
-        " binary."
+        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
+        " launched, and contains the core code that runs the game, low level facilities"
+        " such as memory allocation, compression, other external dependencies (such as"
+        " linked functions from libc and libgcc), and the functions and tables"
+        " necessary to load overlays and dispatch execution to them."
     )
     loadaddress = 0x1FF8000
     length = 0x4000
@@ -3535,9 +3538,7 @@ class NaItcmOverlay14Data:
 
 class NaItcmOverlay14Section:
     name = "overlay14"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 14."
-    )
+    description = "Runs the sentry duty minigame."
     loadaddress = None
     length = None
     functions = NaItcmOverlay14Functions
@@ -3577,7 +3578,9 @@ class NaItcmOverlay16Data:
 
 class NaItcmOverlay16Section:
     name = "overlay16"
-    description = "Controls Luminous Spring."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 16."
+    )
     loadaddress = None
     length = None
     functions = NaItcmOverlay16Functions
@@ -3612,7 +3615,9 @@ class NaItcmOverlay17Data:
 
 class NaItcmOverlay17Section:
     name = "overlay17"
-    description = "Controls the Chimecho Assembly."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 17."
+    )
     loadaddress = None
     length = None
     functions = NaItcmOverlay17Functions
@@ -3672,9 +3677,7 @@ class NaItcmOverlay19Data:
 
 class NaItcmOverlay19Section:
     name = "overlay19"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 19."
-    )
+    description = "Controls Spinda's Juice Bar."
     loadaddress = None
     length = None
     functions = NaItcmOverlay19Functions
@@ -3692,7 +3695,9 @@ class NaItcmOverlay2Data:
 class NaItcmOverlay2Section:
     name = "overlay2"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 2."
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
     )
     loadaddress = None
     length = None
@@ -3804,7 +3809,7 @@ class NaItcmOverlay23Data:
 class NaItcmOverlay23Section:
     name = "overlay23"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 23."
+        "Controls Kangaskhan Storage (both in Treasure Town and via Kangaskhan Rocks)."
     )
     loadaddress = None
     length = None
@@ -3824,7 +3829,9 @@ class NaItcmOverlay24Data:
 
 class NaItcmOverlay24Section:
     name = "overlay24"
-    description = "Controls the Chansey Day Care."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 24."
+    )
     loadaddress = None
     length = None
     functions = NaItcmOverlay24Functions
@@ -3908,9 +3915,7 @@ class NaItcmOverlay28Data:
 
 class NaItcmOverlay28Section:
     name = "overlay28"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 28."
-    )
+    description = "Controls the staff credits sequence."
     loadaddress = None
     length = None
     functions = NaItcmOverlay28Functions
@@ -4795,10 +4800,10 @@ class NaItcmOverlay29Functions:
         " direction.\nAccounts for walls, other monsters on the target position and IQ"
         " skills that might prevent a monster from moving into a specific location,"
         " such as House Avoider, Trap Avoider or Lava Evader.\n\nr0: Entity"
-        " pointer\nr1: Direction\nr2: (output) If movement was not possible because"
-        " there was another monster on the target tile, its entity pointer is returned"
-        " here\nreturn: True if the monster can move in the specified direction, false"
-        " otherwise.",
+        " pointer\nr1: Direction\nr2: (output) True if movement was not possible"
+        " because there was another monster on the target tile, false"
+        " otherwise.\nreturn: True if the monster can move in the specified direction,"
+        " false otherwise.",
     )
 
     ShouldMonsterRunAway = Symbol(
@@ -7546,7 +7551,9 @@ class NaItcmOverlay3Data:
 
 class NaItcmOverlay3Section:
     name = "overlay3"
-    description = "Controls the Friend Rescue submenu within the top menu."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 3."
+    )
     loadaddress = None
     length = None
     functions = NaItcmOverlay3Functions
@@ -7741,7 +7748,9 @@ class NaItcmOverlay5Data:
 
 class NaItcmOverlay5Section:
     name = "overlay5"
-    description = "Controls the Trade Team submenu within the top menu."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 5."
+    )
     loadaddress = None
     length = None
     functions = NaItcmOverlay5Functions
@@ -7758,7 +7767,9 @@ class NaItcmOverlay6Data:
 
 class NaItcmOverlay6Section:
     name = "overlay6"
-    description = "Controls the Wonder Mail S submenu within the top menu."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 6."
+    )
     loadaddress = None
     length = None
     functions = NaItcmOverlay6Functions
@@ -7776,7 +7787,7 @@ class NaItcmOverlay7Data:
 class NaItcmOverlay7Section:
     name = "overlay7"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 7."
+        "Controls the Nintendo WFC submenu within the top menu (under 'Other')."
     )
     loadaddress = None
     length = None
@@ -7818,9 +7829,7 @@ class NaItcmOverlay9Data:
 
 class NaItcmOverlay9Section:
     name = "overlay9"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 9."
-    )
+    description = "Controls the Sky Jukebox."
     loadaddress = None
     length = None
     functions = NaItcmOverlay9Functions

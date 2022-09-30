@@ -1367,26 +1367,6 @@ class Arm9FunctionsProtocol(Protocol):
 
 
 class Arm9DataProtocol(Protocol):
-    JUICE_BAR_NECTAR_IQ_GAIN: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TEXT_SPEED: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    HERO_START_LEVEL: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    PARTNER_START_LEVEL: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
     DEFAULT_MEMORY_ARENA_SIZE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -1735,6 +1715,26 @@ class Arm9DataProtocol(Protocol):
     SMD_EVENTS_FUN_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
+    ]
+
+    JUICE_BAR_NECTAR_IQ_GAIN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TEXT_SPEED: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    HERO_START_LEVEL: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PARTNER_START_LEVEL: Symbol[
+        Optional[List[int]],
+        None,
     ]
 
 
