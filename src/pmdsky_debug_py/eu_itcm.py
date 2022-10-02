@@ -1234,6 +1234,17 @@ class EuItcmArm9Functions:
         " params.",
     )
 
+    HasMonsterBeenAttackedInDungeons = Symbol(
+        None,
+        None,
+        None,
+        "Checks whether the specified monster has been attacked by the player at some"
+        " point in their adventure during an exploration.\n\nThe check is performed"
+        " using the result of passing the ID to FemaleToMaleForm.\n\nr0: Monster"
+        " ID\nreturn: True if the specified mosnter (after converting its ID through"
+        " FemaleToMaleForm) has been attacked by the player before, false otherwise.",
+    )
+
     SetDungeonTipShown = Symbol(
         None,
         None,
@@ -1257,6 +1268,65 @@ class EuItcmArm9Functions:
         " developers may have used to disable the random enemy spawn. \nIf it returned"
         " false, the call to SpawnMonster inside TrySpawnMonsterAndTickSpawnCounter"
         " would not be executed.\n\nreturn: bool (always true)",
+    )
+
+    GetNbFloors = Symbol(
+        None,
+        None,
+        None,
+        "Returns the number of floors of the given dungeon.\n\nThe result is hardcoded"
+        " for certain dungeons, such as dojo mazes.\n\nr0: Dungeon ID\nreturn: Number"
+        " of floors",
+    )
+
+    GetNbFloorsPlusOne = Symbol(
+        None,
+        None,
+        None,
+        "Returns the number of floors of the given dungeon + 1.\n\nr0: Dungeon"
+        " ID\nreturn: Number of floors + 1",
+    )
+
+    GetDungeonGroup = Symbol(
+        None,
+        None,
+        None,
+        "Returns the dungeon group associated to the given dungeon.\n\nFor IDs greater"
+        " or equal to dungeon_id::DUNGEON_NORMAL_FLY_MAZE, returns"
+        " dungeon_group_id::DGROUP_MAROWAK_DOJO.\n\nr0: Dungeon ID\nreturn: Group ID",
+    )
+
+    GetNbPrecedingFloors = Symbol(
+        None,
+        None,
+        None,
+        "Given a dungeon ID, returns the total amount of floors summed by all the"
+        " previous dungeons in its group.\n\nThe value is normally pulled from"
+        " dungeon_data_list_entry::n_preceding_floors_group, except for dungeons with"
+        " an ID >= dungeon_id::DUNGEON_NORMAL_FLY_MAZE, for which this function always"
+        " returns 0.\n\nr0: Dungeon ID\nreturn: Number of preceding floors of the"
+        " dungeon",
+    )
+
+    GetNbFloorsDungeonGroup = Symbol(
+        None,
+        None,
+        None,
+        "Returns the total amount of floors among all the dungeons in the dungeon group"
+        " of the specified dungeon.\n\nr0: Dungeon ID\nreturn: Total number of floors"
+        " in the group of the specified dungeon",
+    )
+
+    DungeonFloorToGroupFloor = Symbol(
+        None,
+        None,
+        None,
+        "Given a dungeon ID and a floor number, returns a struct with the corresponding"
+        " dungeon group and floor number in that group.\n\nThe function normally uses"
+        " the data in mappa_s.bin to calculate the result, but there's some dungeons"
+        " (such as dojo mazes) that have hardcoded return values.\n\nr0: (output)"
+        " Struct containing the dungeon group and floor group\nr1: Struct containing"
+        " the dungeon ID and floor number",
     )
 
     SetAdventureLogStructLocation = Symbol(
@@ -1680,6 +1750,18 @@ class EuItcmArm9Functions:
         " monster id",
     )
 
+    GetBaseForm = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the specified monster ID corresponds to any of the pokémon that have"
+        " multiple forms and returns the ID of the base form if so. If it doesn't, the"
+        " same ID is returned.\n\nSome of the pokémon included in the check are Unown,"
+        " Cherrim and Deoxys.\n\nr0: Monster ID\nreturn: ID of the base form of the"
+        " specified monster, or the same if the specified monster doesn't have a base"
+        " form.",
+    )
+
     GetMonsterIdFromSpawnEntry = Symbol(
         None,
         None,
@@ -1740,12 +1822,39 @@ class EuItcmArm9Functions:
         "Checks if a monster ID is a Deoxys form.\n\nr0: monster ID\nreturn: bool",
     )
 
+    FemaleToMaleForm = Symbol(
+        None,
+        None,
+        None,
+        "Returns the ID of the first form of the specified monster if the specified ID"
+        " corresponds to a secondary form with female gender and the first form has"
+        " male gender. If those conditions don't meet, returns the same ID"
+        " unchanged.\n\nr0: Monster ID\nreturn: ID of the male form of the monster if"
+        " the requirements meet, same ID otherwise.",
+    )
+
     IsMonsterOnTeam = Symbol(
         None,
         None,
         None,
         "Checks if a given monster is on the exploration team (not necessarily the"
         " active party)?\n\nr0: monster ID\nr1: ?\nreturn: bool",
+    )
+
+    GetHeroData = Symbol(
+        None,
+        None,
+        None,
+        "Returns the ground monster data of the hero (first slot in Chimecho"
+        " Assembly)\n\nreturn: Monster data",
+    )
+
+    GetPartnerData = Symbol(
+        None,
+        None,
+        None,
+        "Returns the ground monster data of the partner (second slot in Chimecho"
+        " Assembly)\n\nreturn: Monster data",
     )
 
     CheckTeamMemberField8 = Symbol(
@@ -1819,6 +1928,26 @@ class EuItcmArm9Functions:
         " ScriptSpecialProcessCall).\n\nr0: ?\nr1: some flag?\nreturn: SOS mail count",
     )
 
+    GenerateMission = Symbol(
+        None,
+        None,
+        None,
+        "Attempts to generate a random mission.\n\nr0: Pointer to something\nr1:"
+        " Pointer to the struct where the data of the generated mission will be written"
+        " to\nreturn: MISSION_GENERATION_SUCCESS if the mission was successfully"
+        " generated, MISSION_GENERATION_FAILURE if it failed and"
+        " MISSION_GENERATION_GLOBAL_FAILURE if it failed and the game shouldn't try to"
+        " generate more.",
+    )
+
+    GenerateDailyMissions = Symbol(
+        None,
+        None,
+        None,
+        "Generates the missions displayed on the Job Bulletin Board and the Outlaw"
+        " Notice Board.\n\nNo params.",
+    )
+
     DungeonRequestsDone = Symbol(
         None,
         None,
@@ -1844,6 +1973,95 @@ class EuItcmArm9Functions:
         "Calls DungeonRequestsDone with the second argument set to true, and converts"
         " the integer output to a boolean.\n\nr0: ?\nreturn: bool: whether the number"
         " of missions completed is greater than 0",
+    )
+
+    GetMissionByTypeAndDungeon = Symbol(
+        None,
+        None,
+        None,
+        "Returns the position on the mission list of the first mission of the specified"
+        " type that takes place in the specified dungeon.\n\nIf the type of the mission"
+        " has a subtype, the subtype of the checked mission must match the one in [r2]"
+        " too for it to be returned.\n\nr0: Position on the mission list where the"
+        " search should start. Missions before this position on the list will be"
+        " ignored.\nr1: Mission type\nr2: Pointer to some struct that contains the"
+        " subtype of the mission to check on its first byte\nr3: Dungeon ID\nreturn:"
+        " Index of the first mission that meets the specified requirements, or -1 if"
+        " there aren't any missions that do so.",
+    )
+
+    CheckAcceptedMissionByTypeAndDungeon = Symbol(
+        None,
+        None,
+        None,
+        "Returns true if there are any accepted missions on the mission list that are"
+        " of the specified type and take place in the specified dungeon.\n\nIf the type"
+        " of the mission has a subtype, the subtype of the checked mission must match"
+        " the one in [r2] too for it to be returned.\n\nr0: Mission type\nr1: Pointer"
+        " to some struct that contains the subtype of the mission to check on its first"
+        " byte\nr2: Dungeon ID\nreturn: True if at least one mission meets the"
+        " specified requirements, false otherwise.",
+    )
+
+    ClearMissionData = Symbol(
+        None,
+        None,
+        None,
+        "Given a mission struct, clears some of it fields.\n\nIn particular,"
+        " mission::status is set to mission_status::MISSION_STATUS_INVALID,"
+        " mission::dungeon_id is set to -1, mission::floor is set to 0 and"
+        " mission::reward_type is set to"
+        " mission_reward_type::MISSION_REWARD_MONEY.\n\nr0: Pointer to the mission to"
+        " clear",
+    )
+
+    IsMonsterMissionAllowed = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the specified monster is contained in the MISSION_BANNED_MONSTERS"
+        " array.\n\nThe function converts the ID by calling GetBaseForm and"
+        " FemaleToMaleForm first.\n\nr0: Monster ID\nreturn: False if the monster ID"
+        " (after converting it) is contained in MISSION_BANNED_MONSTERS, true if it"
+        " isn't.",
+    )
+
+    CanMonsterBeUsedForMissionWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Calls CanMonsterBeUsedForMission with r1 = 1.\n\nr0: Monster ID\nreturn:"
+        " Result of CanMonsterBeUsedForMission",
+    )
+
+    CanMonsterBeUsedForMission = Symbol(
+        None,
+        None,
+        None,
+        "Returns whether a certain monster can be used (probably as the client or as"
+        " the target) when generating a mission.\n\nExcluded monsters include those"
+        " that haven't been fought in dungeons yet, the second form of certain monsters"
+        " and, if PERFOMANCE_PROGRESS_FLAG[9] is 0, monsters in"
+        " MISSION_BANNED_STORY_MONSTERS, the species of the player and the species of"
+        " the partner.\n\nr0: Monster ID\nr1: True to exclude monsters in the"
+        " MISSION_BANNED_MONSTERS array, false to allow them\nreturn: True if the"
+        " specified monster can be part of a mission",
+    )
+
+    IsMonsterMissionAllowedStory = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the specified monster should be allowed to be part of a mission"
+        " (probably as the client or the target), accounting for the progress on the"
+        " story.\n\nIf PERFOMANCE_PROGRESS_FLAG[9] is true, the function returns"
+        " true.\nIf it isn't, the function checks if the specified monster is contained"
+        " in the MISSION_BANNED_STORY_MONSTERS array, or if it corresponds to the ID of"
+        " the player or the partner.\n\nThe function converts the ID by calling"
+        " GetBaseForm and FemaleToMaleForm first.\n\nr0: Monster ID\nreturn: True if"
+        " PERFOMANCE_PROGRESS_FLAG[9] is true, false if it isn't and the monster ID"
+        " (after converting it) is contained in MISSION_BANNED_STORY_MONSTERS or if"
+        " it's the ID of the player or the partner, true otherwise.",
     )
 
     ScriptSpecialProcess0x3D = Symbol(
@@ -2517,6 +2735,24 @@ class EuItcmArm9Data:
     MONSTER_SPRITE_DATA = Symbol(None, None, None, "")
 
     MISSION_DUNGEON_UNLOCK_TABLE = Symbol(None, None, None, "")
+
+    MISSION_BANNED_STORY_MONSTERS = Symbol(
+        None,
+        None,
+        None,
+        "Null-terminated list of monster IDs that can't be used (probably as clients or"
+        " targets) when generating missions before a certain point in the story.\n\nTo"
+        " be precise, PERFOMANCE_PROGRESS_FLAG[9] must be enabled so these monsters can"
+        " appear as mission clients.\n\ntype: struct monster_id_16[length / 2]",
+    )
+
+    MISSION_BANNED_MONSTERS = Symbol(
+        None,
+        None,
+        None,
+        "Null-terminated list of monster IDs that can't be used (probably as clients or"
+        " targets) when generating missions.\n\ntype: struct monster_id_16[length / 2]",
+    )
 
     EVENTS = Symbol(
         None,
@@ -3500,7 +3736,15 @@ class EuItcmOverlay12Section:
 
 
 class EuItcmOverlay13Functions:
-    pass
+    GetPersonality = Symbol(
+        None,
+        None,
+        None,
+        "Returns the personality obtained after answering all the questions.\n\nThe"
+        " value to return is determined by checking the points obtained for each the"
+        " personalities and returning the one with the highest amount of"
+        " points.\n\nreturn: Personality (0-15)",
+    )
 
 
 class EuItcmOverlay13Data:
@@ -4467,6 +4711,17 @@ class EuItcmOverlay29Functions:
         "Returns dungeon::forced_loss_reason\n\nreturn: forced_loss_reason",
     )
 
+    ChangeLeader = Symbol(
+        None,
+        None,
+        None,
+        "Tries to change the current leader to the monster specified by"
+        " dungeon::new_leader.\n\nAccounts for situations that can prevent changing"
+        " leaders, such as having stolen from a Kecleon shop. If one of those"
+        " situations prevents changing leaders, prints the corresponding message to the"
+        " message log.\n\nNo params.",
+    )
+
     ResetDamageDesc = Symbol(
         None,
         None,
@@ -4706,7 +4961,7 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "Initializes a team member. Run at the start of each floor in a dungeon.\n\nr0:"
-        " Monster ID\nr1: First type\nr2: Second type\nr3: Pointer to the struct"
+        " Monster ID\nr1: X position\nr2: Y position\nr3: Pointer to the struct"
         " containing the data of the team member to initialize\nstack[0]: ?\nstack[1]:"
         " ?\nstack[2]: ?\nstack[3]: ?\nstack[4]: ?",
     )
@@ -6582,6 +6837,25 @@ class EuItcmOverlay29Functions:
         None,
         "Checks if a monster has a certain held item.\n\nr0: entity pointer\nr1: item"
         " ID\nreturn: bool",
+    )
+
+    CheckTeamItemsFlags = Symbol(
+        None,
+        None,
+        None,
+        "Checks whether any of the items in the bag or any of the items carried by team"
+        " members has any of the specified flags set in its flags field.\n\nr0: Flag(s)"
+        " to check (0 = f_exists, 1 = f_in_shop, 2 = f_unpaid, etc.)\nreturn: True if"
+        " any of the items of the team has the specified flags set, false otherwise.",
+    )
+
+    CheckActiveChallengeRequest = Symbol(
+        None,
+        None,
+        None,
+        "Checks if there's an active challenge request on the current"
+        " dungeon.\n\nreturn: True if there's an active challenge request on the"
+        " current dungeon in the list of missions.",
     )
 
     IsOutlawOrChallengeRequestFloor = Symbol(

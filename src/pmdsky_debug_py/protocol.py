@@ -745,6 +745,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    HasMonsterBeenAttackedInDungeons: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SetDungeonTipShown: Symbol[
         Optional[List[int]],
         None,
@@ -756,6 +761,36 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     MonsterSpawnsEnabled: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetNbFloors: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetNbFloorsPlusOne: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetDungeonGroup: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetNbPrecedingFloors: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetNbFloorsDungeonGroup: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DungeonFloorToGroupFloor: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1035,6 +1070,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetBaseForm: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetMonsterIdFromSpawnEntry: Symbol[
         Optional[List[int]],
         None,
@@ -1075,7 +1115,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    FemaleToMaleForm: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsMonsterOnTeam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetHeroData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetPartnerData: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1120,6 +1175,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GenerateMission: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GenerateDailyMissions: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DungeonRequestsDone: Symbol[
         Optional[List[int]],
         None,
@@ -1131,6 +1196,41 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     AnyDungeonRequestsDone: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMissionByTypeAndDungeon: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CheckAcceptedMissionByTypeAndDungeon: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ClearMissionData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsMonsterMissionAllowed: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CanMonsterBeUsedForMissionWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CanMonsterBeUsedForMission: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsMonsterMissionAllowedStory: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1610,6 +1710,16 @@ class Arm9DataProtocol(Protocol):
     MISSION_DUNGEON_UNLOCK_TABLE: Symbol[
         Optional[List[int]],
         None,
+    ]
+
+    MISSION_BANNED_STORY_MONSTERS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MISSION_BANNED_MONSTERS: Symbol[
+        Optional[List[int]],
+        Optional[int],
     ]
 
     EVENTS: Symbol[
@@ -2353,7 +2463,10 @@ Overlay12Protocol = SectionProtocol[
 
 
 class Overlay13FunctionsProtocol(Protocol):
-    pass
+    GetPersonality: Symbol[
+        Optional[List[int]],
+        None,
+    ]
 
 
 class Overlay13DataProtocol(Protocol):
@@ -3176,6 +3289,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetForcedLossReason: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ChangeLeader: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4241,6 +4359,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     HasHeldItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CheckTeamItemsFlags: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CheckActiveChallengeRequest: Symbol[
         Optional[List[int]],
         None,
     ]
