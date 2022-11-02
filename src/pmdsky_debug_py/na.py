@@ -572,16 +572,16 @@ class NaArm9Functions:
     )
 
     OpenAllPackFiles = Symbol(
-        None,
-        None,
+        [0xC2DC],
+        [0x200C2DC],
         None,
         "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILE_OPENED. Called during"
         " game initialisation.\n\nNo params.",
     )
 
     GetFileLengthInPackWithPackNb = Symbol(
-        None,
-        None,
+        [0xC33C],
+        [0x200C33C],
         None,
         "Call GetFileLengthInPack after looking up the global Pack archive by its"
         " number\n\nr0: pack file number\nr1: file number\nreturn: size of the file in"
@@ -589,8 +589,8 @@ class NaArm9Functions:
     )
 
     LoadFileInPackWithPackId = Symbol(
-        None,
-        None,
+        [0xC35C],
+        [0x200C35C],
         None,
         "Call LoadFileInPack after looking up the global Pack archive by its"
         " identifier\n\nr0: pack file identifier\nr1: [output] target buffer\nr2: file"
@@ -599,8 +599,8 @@ class NaArm9Functions:
     )
 
     AllocAndLoadFileInPack = Symbol(
-        None,
-        None,
+        [0xC388],
+        [0x200C388],
         None,
         "Allocate a file and load a file from the pack archive inside.\nThe data"
         " pointed by the pointer in the output need to be freed once is not needed"
@@ -609,16 +609,16 @@ class NaArm9Functions:
     )
 
     OpenPackFile = Symbol(
-        None,
-        None,
+        [0xC3E0],
+        [0x200C3E0],
         None,
         "Open a Pack file, to be read later. Initialise the output structure.\n\nr0:"
         " [output] pack file struct\nr1: file name",
     )
 
     GetFileLengthInPack = Symbol(
-        None,
-        None,
+        [0xC474],
+        [0x200C474],
         None,
         "Get the length of a file entry from a Pack archive\n\nr0: pack file"
         " struct\nr1: file index\nreturn: size of the file in bytes from the Pack Table"
@@ -626,8 +626,8 @@ class NaArm9Functions:
     )
 
     LoadFileInPack = Symbol(
-        None,
-        None,
+        [0xC484],
+        [0x200C484],
         None,
         "Load the indexed file from the Pack archive, itself loaded from the"
         " ROM.\n\nr0: pack file struct\nr1: [output] target buffer\nr2: file"
@@ -3182,7 +3182,11 @@ class NaOverlay1Data:
 class NaOverlay1Section:
     name = "overlay1"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
+        "Likely controls the top menu.\n\nThis is loaded together with overlay 0 while"
+        " in the top menu. Since it's in overlay group 1 (together with other 'main'"
+        " overlays like overlay 11 and overlay 29), this is probably the"
+        " controller.\n\nSeems to contain code related to Wi-Fi rescue. It mentions"
+        " several files from the GROUND and BACK folders."
     )
     loadaddress = 0x2329520
     length = 0x12D20
@@ -3924,9 +3928,7 @@ class NaOverlay15Data:
 
 class NaOverlay15Section:
     name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
+    description = "Controls the Duskull Bank."
     loadaddress = 0x238A140
     length = 0x1060
     functions = NaOverlay15Functions
@@ -3947,9 +3949,7 @@ class NaOverlay16Data:
 
 class NaOverlay16Section:
     name = "overlay16"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 16."
-    )
+    description = "Controls Luminous Spring."
     loadaddress = 0x238A140
     length = 0x2D20
     functions = NaOverlay16Functions
@@ -4064,9 +4064,7 @@ class NaOverlay2Data:
 class NaOverlay2Section:
     name = "overlay2"
     description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
+        "Hard-coded immediate values (literals) in instructions within overlay 2."
     )
     loadaddress = 0x2329520
     length = 0x2AFA0
@@ -4125,9 +4123,7 @@ class NaOverlay21Data:
 
 class NaOverlay21Section:
     name = "overlay21"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
-    )
+    description = "Controls the Croagunk Swap Shop."
     loadaddress = 0x238A140
     length = 0x2E20
     functions = NaOverlay21Functions
@@ -4221,9 +4217,7 @@ class NaOverlay25Data:
 
 class NaOverlay25Section:
     name = "overlay25"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 25."
-    )
+    description = "Controls Xatu Appraisal."
     loadaddress = 0x238A140
     length = 0x14C0
     functions = NaOverlay25Functions
@@ -4265,9 +4259,7 @@ class NaOverlay27Data:
 
 class NaOverlay27Section:
     name = "overlay27"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
-    )
+    description = "Controls the special episode item discard menu."
     loadaddress = 0x238A140
     length = 0x2D60
     functions = NaOverlay27Functions
@@ -4284,7 +4276,9 @@ class NaOverlay28Data:
 
 class NaOverlay28Section:
     name = "overlay28"
-    description = "Controls the staff credits sequence."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 28."
+    )
     loadaddress = 0x238A140
     length = 0xC60
     functions = NaOverlay28Functions
@@ -8419,7 +8413,9 @@ class NaOverlay34Data:
 class NaOverlay34Section:
     name = "overlay34"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
+        "Related to launching the game.\n\nThere are mention in the strings of logos"
+        " like the ESRB logo. This only seems to be loaded during the ESRB rating"
+        " splash screen, so this is likely the sole purpose of this overlay."
     )
     loadaddress = 0x22DC240
     length = 0xE60
@@ -8763,60 +8759,29 @@ class NaRamData:
         " nearby data.",
     )
 
-    HERO_SPECIES_ID = Symbol(
-        [0x2ABDE4],
-        [0x22ABDE4],
-        0x2,
-        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
-        " with other nearby data.\n\ntype: struct monster_id_16",
+    TEAM_MEMBER_LIST = Symbol(
+        [0x2ABDE0],
+        [0x22ABDE0],
+        0x936C,
+        "List of all team members and persistent information about them.\n\nAppears to"
+        " be ordered in chronological order of recruitment. The first five entries"
+        " appear to be fixed:\n  1. Hero\n  2. Partner\n  3. Grovyle\n  4. Dusknoir\n "
+        " 5. Celebi\nSubsequent entries are normal recruits.\n\nIf a member is"
+        " released, all subsequent members will be shifted up (so there should be no"
+        " gaps in the list).\n\ntype: struct ground_monster[555]",
     )
 
-    HERO_NICKNAME = Symbol(
-        [0x2ABE1A],
-        [0x22ABE1A],
-        0xA,
-        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    PARTNER_SPECIES_ID = Symbol(
-        [0x2ABE28],
-        [0x22ABE28],
-        0x2,
-        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
-        " together with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    LEADER_IQ_SKILLS = Symbol(
-        [0x2B5198],
-        [0x22B5198],
-        0xC,
-        "Unlocked IQ skills of the current leader, available for selection from the IQ"
-        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
-        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
-        " larger struct, together with other nearby data.",
-    )
-
-    LEADER_NICKNAME = Symbol(
-        [0x2B51AA],
-        [0x22B51AA],
-        0xA,
-        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
-        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
-        " typically uses.\n\nThis is presumably part of a larger struct, together with"
-        " other nearby data.",
-    )
-
-    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
-        [0x2B5200],
-        [0x22B5200],
-        0xC,
-        "Unlocked IQ skills of the second party member, available for selection from"
-        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
-        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
-        " a larger struct, together with other nearby data.",
+    TEAM_ACTIVE_ROSTER = Symbol(
+        [0x2B514C],
+        [0x22B514C],
+        0x2D8,
+        "List of all currently active team members and relevant information about"
+        " them.\n\nListed in team order. The first four entries correspond to the team"
+        " in normal modes of play. The last three entries are always for Grovyle,"
+        " Dusknoir, and Celebi (in that order).\n\nThis struct is updated relatively"
+        " infrequently. For example, in dungeon mode, it's typically only updated at"
+        " the start of the floor; refer to DUNGEON_STRUCT instead for live"
+        " data.\n\ntype: struct team_member[7]",
     )
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(

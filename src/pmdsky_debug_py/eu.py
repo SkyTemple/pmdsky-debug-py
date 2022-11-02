@@ -3186,7 +3186,11 @@ class EuOverlay1Data:
 class EuOverlay1Section:
     name = "overlay1"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 1."
+        "Likely controls the top menu.\n\nThis is loaded together with overlay 0 while"
+        " in the top menu. Since it's in overlay group 1 (together with other 'main'"
+        " overlays like overlay 11 and overlay 29), this is probably the"
+        " controller.\n\nSeems to contain code related to Wi-Fi rescue. It mentions"
+        " several files from the GROUND and BACK folders."
     )
     loadaddress = 0x2329D40
     length = 0x12C80
@@ -3928,9 +3932,7 @@ class EuOverlay15Data:
 
 class EuOverlay15Section:
     name = "overlay15"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 15."
-    )
+    description = "Controls the Duskull Bank."
     loadaddress = 0x238AC80
     length = 0x1080
     functions = EuOverlay15Functions
@@ -3951,9 +3953,7 @@ class EuOverlay16Data:
 
 class EuOverlay16Section:
     name = "overlay16"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 16."
-    )
+    description = "Controls Luminous Spring."
     loadaddress = 0x238AC80
     length = 0x2D20
     functions = EuOverlay16Functions
@@ -4068,9 +4068,7 @@ class EuOverlay2Data:
 class EuOverlay2Section:
     name = "overlay2"
     description = (
-        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
-        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
-        " Nintendo Wi-Fi setup."
+        "Hard-coded immediate values (literals) in instructions within overlay 2."
     )
     loadaddress = 0x2329D40
     length = 0x2AFC0
@@ -4129,9 +4127,7 @@ class EuOverlay21Data:
 
 class EuOverlay21Section:
     name = "overlay21"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 21."
-    )
+    description = "Controls the Croagunk Swap Shop."
     loadaddress = 0x238AC80
     length = 0x2E20
     functions = EuOverlay21Functions
@@ -4225,9 +4221,7 @@ class EuOverlay25Data:
 
 class EuOverlay25Section:
     name = "overlay25"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 25."
-    )
+    description = "Controls Xatu Appraisal."
     loadaddress = 0x238AC80
     length = 0x14C0
     functions = EuOverlay25Functions
@@ -4269,9 +4263,7 @@ class EuOverlay27Data:
 
 class EuOverlay27Section:
     name = "overlay27"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 27."
-    )
+    description = "Controls the special episode item discard menu."
     loadaddress = 0x238AC80
     length = 0x2D60
     functions = EuOverlay27Functions
@@ -4288,7 +4280,9 @@ class EuOverlay28Data:
 
 class EuOverlay28Section:
     name = "overlay28"
-    description = "Controls the staff credits sequence."
+    description = (
+        "Hard-coded immediate values (literals) in instructions within overlay 28."
+    )
     loadaddress = 0x238AC80
     length = 0xC60
     functions = EuOverlay28Functions
@@ -8421,7 +8415,9 @@ class EuOverlay34Data:
 class EuOverlay34Section:
     name = "overlay34"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 34."
+        "Related to launching the game.\n\nThere are mention in the strings of logos"
+        " like the ESRB logo. This only seems to be loaded during the ESRB rating"
+        " splash screen, so this is likely the sole purpose of this overlay."
     )
     loadaddress = 0x22DCB80
     length = 0xDC0
@@ -8765,60 +8761,29 @@ class EuRamData:
         " nearby data.",
     )
 
-    HERO_SPECIES_ID = Symbol(
-        [0x2AC724],
-        [0x22AC724],
-        0x2,
-        "The hero's species ID.\n\nThis is presumably part of a larger struct, together"
-        " with other nearby data.\n\ntype: struct monster_id_16",
+    TEAM_MEMBER_LIST = Symbol(
+        [0x2AC720],
+        [0x22AC720],
+        0x936C,
+        "List of all team members and persistent information about them.\n\nAppears to"
+        " be ordered in chronological order of recruitment. The first five entries"
+        " appear to be fixed:\n  1. Hero\n  2. Partner\n  3. Grovyle\n  4. Dusknoir\n "
+        " 5. Celebi\nSubsequent entries are normal recruits.\n\nIf a member is"
+        " released, all subsequent members will be shifted up (so there should be no"
+        " gaps in the list).\n\ntype: struct ground_monster[555]",
     )
 
-    HERO_NICKNAME = Symbol(
-        [0x2AC75A],
-        [0x22AC75A],
-        0xA,
-        "The hero's nickname.\n\nA null-terminated string, with a maximum length of 10."
-        " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
-        " uses.\n\nThis is presumably part of a larger struct, together with other"
-        " nearby data.",
-    )
-
-    PARTNER_SPECIES_ID = Symbol(
-        [0x2AC768],
-        [0x22AC768],
-        0x2,
-        "The partner's species ID.\n\nThis is presumably part of a larger struct,"
-        " together with other nearby data.\n\ntype: struct monster_id_16",
-    )
-
-    LEADER_IQ_SKILLS = Symbol(
-        [0x2B5AD8],
-        [0x22B5AD8],
-        0xC,
-        "Unlocked IQ skills of the current leader, available for selection from the IQ"
-        " skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the IQ"
-        " skills bitvector on the monster info struct.\n\nThis is presumably part of a"
-        " larger struct, together with other nearby data.",
-    )
-
-    LEADER_NICKNAME = Symbol(
-        [0x2B5AEA],
-        [0x22B5AEA],
-        0xA,
-        "The current leader's nickname.\n\nA null-terminated string, with a maximum"
-        " length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game"
-        " typically uses.\n\nThis is presumably part of a larger struct, together with"
-        " other nearby data.",
-    )
-
-    PARTY_MEMBER_2_IQ_SKILLS = Symbol(
-        [0x2B5B40],
-        [0x22B5B40],
-        0xC,
-        "Unlocked IQ skills of the second party member, available for selection from"
-        " the IQ skills menu.\n\nOne bit per skill (1 if unlocked). Same format as the"
-        " IQ skills bitvector on the monster info struct.\n\nThis is presumably part of"
-        " a larger struct, together with other nearby data.",
+    TEAM_ACTIVE_ROSTER = Symbol(
+        [0x2B5A8C],
+        [0x22B5A8C],
+        0x2D8,
+        "List of all currently active team members and relevant information about"
+        " them.\n\nListed in team order. The first four entries correspond to the team"
+        " in normal modes of play. The last three entries are always for Grovyle,"
+        " Dusknoir, and Celebi (in that order).\n\nThis struct is updated relatively"
+        " infrequently. For example, in dungeon mode, it's typically only updated at"
+        " the start of the floor; refer to DUNGEON_STRUCT instead for live"
+        " data.\n\ntype: struct team_member[7]",
     )
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(

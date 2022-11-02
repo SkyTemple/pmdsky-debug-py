@@ -5360,32 +5360,12 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
-    HERO_SPECIES_ID: Symbol[
+    TEAM_MEMBER_LIST: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    HERO_NICKNAME: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    PARTNER_SPECIES_ID: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LEADER_IQ_SKILLS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LEADER_NICKNAME: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    PARTY_MEMBER_2_IQ_SKILLS: Symbol[
+    TEAM_ACTIVE_ROSTER: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
