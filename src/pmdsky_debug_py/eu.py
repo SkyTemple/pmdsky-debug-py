@@ -644,12 +644,48 @@ class EuArm9Functions:
         " Item ID\nreturn: Category ID",
     )
 
+    IsThrownItem = Symbol(
+        [0xCB98],
+        [0x200CB98],
+        None,
+        "Checks if a given item ID is a thrown item (CATEGORY_THROWN_LINE or"
+        " CATEGORY_THROWN_ARC).\n\nr0: item ID\nreturn: bool",
+    )
+
+    IsNotMoney = Symbol(
+        [0xCBB4],
+        [0x200CBB4],
+        None,
+        "Checks if an item ID is not ITEM_POKE.\n\nr0: item ID\nreturn: bool",
+    )
+
     IsAuraBow = Symbol(
         [0xCC9C],
         [0x200CC9C],
         None,
         "Checks if an item is one of the aura bows received at the start of the"
         " game.\n\nr0: item ID\nreturn: bool",
+    )
+
+    InitItem = Symbol(
+        [0xCF24],
+        [0x200CF24],
+        None,
+        "Initialize an item struct with the given information.\n\nThis will resolve the"
+        " quantity based on the item type. For Poké, the quantity code will always be"
+        " set to 1. For thrown items, the quantity code will be randomly generated on"
+        " the range of valid quantities for that item type. For non-stackable items,"
+        " the quantity code will always be set to 0. Otherwise, the quantity will be"
+        " assigned from the quantity argument.\n\nr0: pointer to item to"
+        " initialize\nr1: item ID\nr2: quantity\nr3: sticky flag",
+    )
+
+    InitStandardItem = Symbol(
+        [0xCFE0],
+        [0x200CFE0],
+        None,
+        "Wrapper around InitItem with quantity set to 0.\n\nr0: pointer to item to"
+        " initialize\nr1: item ID\nr2: sticky flag",
     )
 
     SprintfStatic = Symbol(
@@ -698,12 +734,48 @@ class EuArm9Functions:
         " printed, excluding the null-terminator",
     )
 
+    GetExclusiveItemOffsetEnsureValid = Symbol(
+        [0xE84C],
+        [0x200E84C],
+        None,
+        "Gets the exclusive item offset, which is the item ID relative to that of the"
+        " first exclusive item, the Prism Ruff.\n\nIf the given item ID is not a valid"
+        " item ID, ITEM_PLAIN_SEED (0x55) is returned. This is a bug, since 0x55 is the"
+        " valid exclusive item offset for the Icy Globe.\n\nr0: item ID\nreturn:"
+        " offset",
+    )
+
+    IsItemValid = Symbol(
+        [0xE890],
+        [0x200E890],
+        None,
+        "Checks if an item ID is valid(?).\n\nr0: item ID\nreturn: bool",
+    )
+
     GetItemCategory = Symbol(
         [0xE8D8],
         [0x200E8D8],
         None,
         "Returns the category of the specified item\n\nr0: Item ID\nreturn: Item"
         " category",
+    )
+
+    EnsureValidItem = Symbol(
+        [0xE8F8],
+        [0x200E8F8],
+        None,
+        "Checks if the given item ID is valid (using IsItemValid). If so, return the"
+        " given item ID. Otherwise, return ITEM_PLAIN_SEED.\n\nr0: item ID\nreturn:"
+        " valid item ID",
+    )
+
+    GetThrownItemQuantityLimit = Symbol(
+        [0xEB00],
+        [0x200EB00],
+        None,
+        "Get the minimum or maximum quantity for a given thrown item ID.\n\nr0: item"
+        " ID\nr1: 0 for minimum, 1 for maximum\nreturn: minimum/maximum quantity for"
+        " the given item ID",
     )
 
     SetMoneyCarried = Symbol(
@@ -729,6 +801,13 @@ class EuArm9Functions:
         "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_BAG (see"
         " ScriptSpecialProcessCall).\n\nr0: item ID\nreturn: number of items of the"
         " specified ID in the bag",
+    )
+
+    IsItemInBag = Symbol(
+        [0xEF88],
+        [0x200EF88],
+        None,
+        "Checks if an item is in the player's bag.\n\nr0: item ID\nreturn: bool",
     )
 
     AddItemToBag = Symbol(
@@ -1283,6 +1362,22 @@ class EuArm9Functions:
         None,
         "Initializes the DUNGEON_*_LIST script variable values (IDs 0x4f-0x54).\n\nNo"
         " params.",
+    )
+
+    GlobalProgressAlloc = Symbol(
+        [0x4D440],
+        [0x204D440],
+        None,
+        "Allocates a new global progress struct.\n\nThis updates the global pointer and"
+        " returns a copy of that pointer.\n\nreturn: pointer to a newly allocated"
+        " global progress struct",
+    )
+
+    ResetGlobalProgress = Symbol(
+        [0x4D468],
+        [0x204D468],
+        None,
+        "Zero-initializes the global progress struct.\n\nNo params.",
     )
 
     HasMonsterBeenAttackedInDungeons = Symbol(
@@ -2558,7 +2653,9 @@ class EuArm9Data:
         [0xCCBC], [0x200CCBC], 0x4, "Highest item ID of the aura bows."
     )
 
-    NUMBER_OF_ITEMS = Symbol([0xE930], [0x200E930], 0x4, "Number of items in the game.")
+    NUMBER_OF_ITEMS = Symbol(
+        [0xE88C, 0xE930], [0x200E88C, 0x200E930], 0x4, "Number of items in the game."
+    )
 
     MAX_MONEY_CARRIED = Symbol(
         [0xEDF8],
@@ -2656,6 +2753,14 @@ class EuArm9Data:
         0x20,
         "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
         " struct move_id_16[16]",
+    )
+
+    PARTNER_TALK_KIND_TABLE = Symbol(
+        [0x9D268],
+        [0x209D268],
+        0x58,
+        "Table of values for the PARTNER_TALK_KIND script variable.\n\ntype: struct"
+        " partner_talk_kind_table_entry[11]",
     )
 
     SCRIPT_VARS_LOCALS = Symbol(
@@ -2790,6 +2895,14 @@ class EuArm9Data:
     )
 
     IQ_GROUP_SKILLS = Symbol([0xA2314], [0x20A2314], 0x190, "")
+
+    MONEY_QUANTITY_TABLE = Symbol(
+        [0xA24A4],
+        [0x20A24A4],
+        0x190,
+        "Table that maps money quantity codes (as recorded in, e.g., struct item) to"
+        " actual amounts.\n\ntype: int[100]",
+    )
 
     IQ_GUMMI_GAIN_TABLE = Symbol([0xA2834], [0x20A2834], 0x288, "")
 
@@ -2936,6 +3049,15 @@ class EuArm9Data:
 
     GAME_STATE_VALUES = Symbol([0xAFF70], [0x20AFF70], None, "[Runtime]")
 
+    ITEM_DATA_TABLE_PTRS = Symbol(
+        [0xAFF78],
+        [0x20AFF78],
+        0xC,
+        "[Runtime] List of pointers to various item data tables.\n\nThe first two"
+        " pointers are definitely item-related (although the order appears to be"
+        " flipped between EU/NA?). Not sure about the third pointer.",
+    )
+
     DUNGEON_MOVE_TABLES = Symbol(
         [0xAFFA8],
         [0x20AFFA8],
@@ -2978,6 +3100,10 @@ class EuArm9Data:
     )
 
     GAME_MODE = Symbol([0xB088C], [0x20B088C], None, "[Runtime]\n\ntype: uint8_t")
+
+    GLOBAL_PROGRESS_PTR = Symbol(
+        [0xB0890], [0x20B0890], 0x4, "[Runtime]\n\ntype: struct global_progress*"
+    )
 
     ADVENTURE_LOG_PTR = Symbol(
         [0xB0894], [0x20B0894], 0x4, "[Runtime]\n\ntype: struct adventure_log*"
@@ -3451,6 +3577,15 @@ class EuOverlay10Data:
         0x4,
         "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
         " number (8 fraction bits)",
+    )
+
+    HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER = Symbol(
+        [0x7DE8],
+        [0x22C51A8],
+        0x4,
+        "The hidden stairs spawn chance multiplier (~1.2) as a binary fixed-point"
+        " number (8 fraction bits), if applicable. See"
+        " ShouldBoostHiddenStairsSpawnChance in overlay 29.",
     )
 
     SPEED_BOOST_DURATION_RANGE = Symbol(
@@ -4503,6 +4638,29 @@ class EuOverlay29Functions:
         " entity\nreturns: pointer to tile",
     )
 
+    SpawnTrap = Symbol(
+        [0x6020],
+        [0x22E2BA0],
+        None,
+        "Spawns a trap on the floor. Fails if there are more than 64 traps already on"
+        " the floor.\n\nThis modifies the appropriate fields on the dungeon struct,"
+        " initializing new entries in the entity table and the trap info list.\n\nr0:"
+        " trap ID\nr1: position\nr2: team (see struct trap::team)\nr3: flags (see"
+        " struct trap::team)\nreturn: entity pointer for the newly added trap, or null"
+        " on failure",
+    )
+
+    SpawnItemEntity = Symbol(
+        [0x60D4],
+        [0x22E2C54],
+        None,
+        "Spawns a blank item entity on the floor. Fails if there are more than 64 items"
+        " already on the floor.\n\nThis initializes a new entry in the entity table and"
+        " points it to the corresponding slot in the item info list.\n\nr0:"
+        " position\nreturn: entity pointer for the newly added item, or null on"
+        " failure",
+    )
+
     CanTargetEntity = Symbol(
         [0x65D0],
         [0x22E3150],
@@ -4968,6 +5126,24 @@ class EuOverlay29Functions:
         [0x22ED9CC],
         None,
         "Returns dungeon::forced_loss_reason\n\nreturn: forced_loss_reason",
+    )
+
+    BindTrapToTile = Symbol(
+        [0x11688],
+        [0x22EE208],
+        None,
+        "Sets the given tile's associated object to be the given trap, and sets the"
+        " visibility of the trap.\n\nr0: tile pointer\nr1: entity pointer\nr2:"
+        " visibility flag",
+    )
+
+    SpawnEnemyTrapAtPos = Symbol(
+        [0x117A0],
+        [0x22EE320],
+        None,
+        "A convenience wrapper around SpawnTrap and BindTrapToTile. Always passes 0 for"
+        " the team parameter (making it an enemy trap).\n\nr0: trap ID\nr1: x"
+        " position\nr2: y position\nr3: flags\nstack[0]: visibility flag",
     )
 
     ChangeLeader = Symbol(
@@ -6486,6 +6662,22 @@ class EuOverlay29Functions:
         "Checks if the current floor is the Secret Bazaar.\n\nreturn: bool",
     )
 
+    ShouldBoostHiddenStairsSpawnChance = Symbol(
+        [0x5C63C],
+        [0x23391BC],
+        None,
+        "Gets the boost_hidden_stairs_spawn_chance field on the dungeon"
+        " struct.\n\nreturn: bool",
+    )
+
+    SetShouldBoostHiddenStairsSpawnChance = Symbol(
+        [0x5C654],
+        [0x23391D4],
+        None,
+        "Sets the boost_hidden_stairs_spawn_chance field on the dungeon struct to the"
+        " given value.\n\nr0: bool to set the flag to",
+    )
+
     IsSecretRoom = Symbol(
         [0x5C6AC],
         [0x233922C],
@@ -6587,6 +6779,14 @@ class EuOverlay29Functions:
         None,
         "Compute a pseudorandom integer on the interval [0, 100) using the dungeon"
         " PRNG.\n\nreturn: pseudorandom integer",
+    )
+
+    ClearHiddenStairs = Symbol(
+        [0x5EEF8],
+        [0x233BA78],
+        None,
+        "Clears the tile (terrain and spawns) on which Hidden Stairs are spawned, if"
+        " applicable.\n\nNo params.",
     )
 
     FlagHallwayJunctions = Symbol(
@@ -7137,12 +7337,37 @@ class EuOverlay29Functions:
         [0x66CF0],
         [0x2343870],
         None,
-        "Spawn stairs at the given location.\n\nIf the hidden stairs flag is set,"
-        " hidden stairs will be spawned instead of normal stairs.\n\nIf spawning normal"
-        " stairs and the current floor is a rescue floor, the room containing the"
-        " stairs will be converted into a Monster House.\n\nr0: position (two-byte"
-        " array for {x, y})\nr1: dungeon generation info pointer (a field on the"
-        " dungeon struct)\nr2: hidden stairs flag",
+        "Spawn stairs at the given location.\n\nIf the hidden stairs type is something"
+        " other than HIDDEN_STAIRS_NONE, hidden stairs of the specified type will be"
+        " spawned instead of normal stairs.\n\nIf spawning normal stairs and the"
+        " current floor is a rescue floor, the room containing the stairs will be"
+        " converted into a Monster House.\n\nIf attempting to spawn hidden stairs but"
+        " the spawn is blocked, the floor generation status's hidden stairs spawn"
+        " position will be updated, but it won't be transferred to the dungeon"
+        " generation info struct.\n\nr0: position (two-byte array for {x, y})\nr1:"
+        " dungeon generation info pointer (a field on the dungeon struct)\nr2: hidden"
+        " stairs type",
+    )
+
+    GetHiddenStairsType = Symbol(
+        [0x66E00],
+        [0x2343980],
+        None,
+        "Gets the hidden stairs type for a given floor.\n\nThis function reads the"
+        " floor properties and resolves any randomness (such as"
+        " HIDDEN_STAIRS_RANDOM_SECRET_BAZAAR_OR_SECRET_ROOM and the"
+        " floor_properties::hidden_stairs_spawn_chance) into a concrete hidden stairs"
+        " type.\n\nr0: dungeon generation info pointer\nr1: floor properties"
+        " pointer\nreturn: enum hidden_stairs_type",
+    )
+
+    ResetHiddenStairsSpawn = Symbol(
+        [0x66F6C],
+        [0x2343AEC],
+        None,
+        "Resets hidden stairs spawn information for the floor. This includes the"
+        " position on the floor generation status as well as the flag indicating"
+        " whether the spawn was blocked.\n\nNo params.",
     )
 
     LoadFixedRoomData = Symbol(
@@ -7153,12 +7378,55 @@ class EuOverlay29Functions:
         " FIXED_ROOM_DATA_PTR.\n\nNo params.",
     )
 
+    GenerateItemExplicit = Symbol(
+        [0x68418],
+        [0x2344F98],
+        None,
+        "Initializes an item struct with the given information.\n\nThis calls"
+        " InitStandardItem, then explicitly sets the quantity and stickiness. If"
+        " quantity == 0 for Poké, GenerateCleanItem is used instead.\n\nr0: pointer to"
+        " item to initialize\nr1: item ID\nr2: quantity\nr3: sticky flag",
+    )
+
+    GenerateAndSpawnItem = Symbol(
+        [0x68494],
+        [0x2345014],
+        None,
+        "A convenience function that generates an item with GenerateItemExplicit, then"
+        " spawns it with SpawnItem.\n\nIf the check-in-bag flag is set and the player's"
+        " bag already contains an item with the given ID, a Reviver Seed will be"
+        " spawned instead.\n\nIt seems like this function is only ever called in one"
+        " place, with an item ID of 0x49 (Reviver Seed).\n\nr0: item ID\nr1: x"
+        " position\nr2: y position\nr3: quantity\nstack[0]: sticky flag\nstack[1]:"
+        " check-in-bag flag",
+    )
+
     IsHiddenStairsFloor = Symbol(
         [0x68570],
         [0x23450F0],
         None,
         "Checks if the current floor is either the Secret Bazaar or a Secret"
         " Room.\n\nreturn: bool",
+    )
+
+    GenerateCleanItem = Symbol(
+        [0x68C48],
+        [0x23457C8],
+        None,
+        "Wrapper around GenerateItem with quantity set to 0 and stickiness type set to"
+        " SPAWN_STICKY_NEVER.\n\nr0: pointer to item to initialize\nr1: item ID",
+    )
+
+    SpawnItem = Symbol(
+        [0x695A0],
+        [0x2346120],
+        None,
+        "Spawns an item on the floor. Fails if there are more than 64 items already on"
+        " the floor.\n\nThis calls SpawnItemEntity, fills in the item info struct, sets"
+        " the entity to be visible, binds the entity to the tile it occupies, updates"
+        " the n_items counter on the dungeon struct, and various other bits of"
+        " bookkeeping.\n\nr0: position\nr1: item pointer\nr2: some flag?\nreturn:"
+        " success flag",
     )
 
     HasHeldItem = Symbol(
@@ -7169,6 +7437,15 @@ class EuOverlay29Functions:
         " ID\nreturn: bool",
     )
 
+    GenerateMoneyQuantity = Symbol(
+        [0x6A8A0],
+        [0x2347420],
+        None,
+        "Set the quantity code on an item (assuming it's Poké), given some maximum"
+        " acceptable money amount.\n\nr0: item pointer\nr1: max money amount"
+        " (inclusive)",
+    )
+
     CheckTeamItemsFlags = Symbol(
         [0x6AC4C],
         [0x23477CC],
@@ -7177,6 +7454,16 @@ class EuOverlay29Functions:
         " members has any of the specified flags set in its flags field.\n\nr0: Flag(s)"
         " to check (0 = f_exists, 1 = f_in_shop, 2 = f_unpaid, etc.)\nreturn: True if"
         " any of the items of the team has the specified flags set, false otherwise.",
+    )
+
+    GenerateItem = Symbol(
+        [0x6B344],
+        [0x2347EC4],
+        None,
+        "Initializes an item struct with the given information.\n\nThis wraps InitItem,"
+        " but with extra logic to resolve the item's stickiness. It also calls"
+        " GenerateMoneyQuantity for Poké.\n\nr0: pointer to item to initialize\nr1:"
+        " item ID\nr2: quantity\nr3: stickiness type (enum gen_item_stickiness)",
     )
 
     CheckActiveChallengeRequest = Symbol(
@@ -7195,6 +7482,13 @@ class EuOverlay29Functions:
         "Checks if the current floor is an active mission destination of type"
         " MISSION_TAKE_ITEM_FROM_OUTLAW, MISSION_ARREST_OUTLAW or"
         " MISSION_CHALLENGE_REQUEST.\n\nreturn: bool",
+    )
+
+    IsDestinationFloor = Symbol(
+        [0x6D288],
+        [0x2349E08],
+        None,
+        "Checks if the current floor is a mission destination floor.\n\nreturn: bool",
     )
 
     IsCurrentMissionType = Symbol(
@@ -8240,6 +8534,18 @@ class EuOverlay29Data:
         "The default tile struct.\n\nThis is just a struct full of zeroes, but is used"
         " as a fallback in various places where a 'default' tile is needed, such as"
         " when a grid index is out of range.\n\ntype: struct tile",
+    )
+
+    HIDDEN_STAIRS_SPAWN_BLOCKED = Symbol(
+        [0x77824],
+        [0x23543A4],
+        0x1,
+        "[Runtime] A flag for when Hidden Stairs could normally have spawned on the"
+        " floor but didn't.\n\nThis is set either when the Hidden Stairs just happen"
+        " not to spawn by chance, or when the current floor is a rescue or mission"
+        " destination floor.\n\nThis appears to be part of a larger (8-byte?) struct."
+        " It seems like this value is at least followed by 3 bytes of padding and a"
+        " 4-byte integer field.",
     )
 
     FIXED_ROOM_DATA_PTR = Symbol(

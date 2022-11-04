@@ -633,12 +633,48 @@ class JpItcmArm9Functions:
         " Item ID\nreturn: Category ID",
     )
 
+    IsThrownItem = Symbol(
+        None,
+        None,
+        None,
+        "Checks if a given item ID is a thrown item (CATEGORY_THROWN_LINE or"
+        " CATEGORY_THROWN_ARC).\n\nr0: item ID\nreturn: bool",
+    )
+
+    IsNotMoney = Symbol(
+        None,
+        None,
+        None,
+        "Checks if an item ID is not ITEM_POKE.\n\nr0: item ID\nreturn: bool",
+    )
+
     IsAuraBow = Symbol(
         None,
         None,
         None,
         "Checks if an item is one of the aura bows received at the start of the"
         " game.\n\nr0: item ID\nreturn: bool",
+    )
+
+    InitItem = Symbol(
+        None,
+        None,
+        None,
+        "Initialize an item struct with the given information.\n\nThis will resolve the"
+        " quantity based on the item type. For Poké, the quantity code will always be"
+        " set to 1. For thrown items, the quantity code will be randomly generated on"
+        " the range of valid quantities for that item type. For non-stackable items,"
+        " the quantity code will always be set to 0. Otherwise, the quantity will be"
+        " assigned from the quantity argument.\n\nr0: pointer to item to"
+        " initialize\nr1: item ID\nr2: quantity\nr3: sticky flag",
+    )
+
+    InitStandardItem = Symbol(
+        None,
+        None,
+        None,
+        "Wrapper around InitItem with quantity set to 0.\n\nr0: pointer to item to"
+        " initialize\nr1: item ID\nr2: sticky flag",
     )
 
     SprintfStatic = Symbol(
@@ -653,12 +689,48 @@ class JpItcmArm9Functions:
         " printed, excluding the null-terminator",
     )
 
+    GetExclusiveItemOffsetEnsureValid = Symbol(
+        None,
+        None,
+        None,
+        "Gets the exclusive item offset, which is the item ID relative to that of the"
+        " first exclusive item, the Prism Ruff.\n\nIf the given item ID is not a valid"
+        " item ID, ITEM_PLAIN_SEED (0x55) is returned. This is a bug, since 0x55 is the"
+        " valid exclusive item offset for the Icy Globe.\n\nr0: item ID\nreturn:"
+        " offset",
+    )
+
+    IsItemValid = Symbol(
+        None,
+        None,
+        None,
+        "Checks if an item ID is valid(?).\n\nr0: item ID\nreturn: bool",
+    )
+
     GetItemCategory = Symbol(
         None,
         None,
         None,
         "Returns the category of the specified item\n\nr0: Item ID\nreturn: Item"
         " category",
+    )
+
+    EnsureValidItem = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the given item ID is valid (using IsItemValid). If so, return the"
+        " given item ID. Otherwise, return ITEM_PLAIN_SEED.\n\nr0: item ID\nreturn:"
+        " valid item ID",
+    )
+
+    GetThrownItemQuantityLimit = Symbol(
+        None,
+        None,
+        None,
+        "Get the minimum or maximum quantity for a given thrown item ID.\n\nr0: item"
+        " ID\nr1: 0 for minimum, 1 for maximum\nreturn: minimum/maximum quantity for"
+        " the given item ID",
     )
 
     SetMoneyCarried = Symbol(
@@ -684,6 +756,13 @@ class JpItcmArm9Functions:
         "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_BAG (see"
         " ScriptSpecialProcessCall).\n\nr0: item ID\nreturn: number of items of the"
         " specified ID in the bag",
+    )
+
+    IsItemInBag = Symbol(
+        None,
+        None,
+        None,
+        "Checks if an item is in the player's bag.\n\nr0: item ID\nreturn: bool",
     )
 
     AddItemToBag = Symbol(
@@ -1232,6 +1311,19 @@ class JpItcmArm9Functions:
         None,
         "Initializes the DUNGEON_*_LIST script variable values (IDs 0x4f-0x54).\n\nNo"
         " params.",
+    )
+
+    GlobalProgressAlloc = Symbol(
+        None,
+        None,
+        None,
+        "Allocates a new global progress struct.\n\nThis updates the global pointer and"
+        " returns a copy of that pointer.\n\nreturn: pointer to a newly allocated"
+        " global progress struct",
+    )
+
+    ResetGlobalProgress = Symbol(
+        None, None, None, "Zero-initializes the global progress struct.\n\nNo params."
     )
 
     HasMonsterBeenAttackedInDungeons = Symbol(
@@ -2575,6 +2667,14 @@ class JpItcmArm9Data:
         " struct move_id_16[16]",
     )
 
+    PARTNER_TALK_KIND_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of values for the PARTNER_TALK_KIND script variable.\n\ntype: struct"
+        " partner_talk_kind_table_entry[11]",
+    )
+
     SCRIPT_VARS_LOCALS = Symbol(
         None,
         None,
@@ -2707,6 +2807,14 @@ class JpItcmArm9Data:
     )
 
     IQ_GROUP_SKILLS = Symbol(None, None, None, "")
+
+    MONEY_QUANTITY_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table that maps money quantity codes (as recorded in, e.g., struct item) to"
+        " actual amounts.\n\ntype: int[100]",
+    )
 
     IQ_GUMMI_GAIN_TABLE = Symbol(None, None, None, "")
 
@@ -2853,6 +2961,15 @@ class JpItcmArm9Data:
 
     GAME_STATE_VALUES = Symbol(None, None, None, "[Runtime]")
 
+    ITEM_DATA_TABLE_PTRS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] List of pointers to various item data tables.\n\nThe first two"
+        " pointers are definitely item-related (although the order appears to be"
+        " flipped between EU/NA?). Not sure about the third pointer.",
+    )
+
     DUNGEON_MOVE_TABLES = Symbol(
         None,
         None,
@@ -2895,6 +3012,10 @@ class JpItcmArm9Data:
     )
 
     GAME_MODE = Symbol(None, None, None, "[Runtime]\n\ntype: uint8_t")
+
+    GLOBAL_PROGRESS_PTR = Symbol(
+        None, None, None, "[Runtime]\n\ntype: struct global_progress*"
+    )
 
     ADVENTURE_LOG_PTR = Symbol(
         None, None, None, "[Runtime]\n\ntype: struct adventure_log*"
@@ -3328,6 +3449,15 @@ class JpItcmOverlay10Data:
         None,
         "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
         " number (8 fraction bits)",
+    )
+
+    HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        "The hidden stairs spawn chance multiplier (~1.2) as a binary fixed-point"
+        " number (8 fraction bits), if applicable. See"
+        " ShouldBoostHiddenStairsSpawnChance in overlay 29.",
     )
 
     SPEED_BOOST_DURATION_RANGE = Symbol(
@@ -4266,6 +4396,29 @@ class JpItcmOverlay29Functions:
         " entity\nreturns: pointer to tile",
     )
 
+    SpawnTrap = Symbol(
+        None,
+        None,
+        None,
+        "Spawns a trap on the floor. Fails if there are more than 64 traps already on"
+        " the floor.\n\nThis modifies the appropriate fields on the dungeon struct,"
+        " initializing new entries in the entity table and the trap info list.\n\nr0:"
+        " trap ID\nr1: position\nr2: team (see struct trap::team)\nr3: flags (see"
+        " struct trap::team)\nreturn: entity pointer for the newly added trap, or null"
+        " on failure",
+    )
+
+    SpawnItemEntity = Symbol(
+        None,
+        None,
+        None,
+        "Spawns a blank item entity on the floor. Fails if there are more than 64 items"
+        " already on the floor.\n\nThis initializes a new entry in the entity table and"
+        " points it to the corresponding slot in the item info list.\n\nr0:"
+        " position\nreturn: entity pointer for the newly added item, or null on"
+        " failure",
+    )
+
     CanTargetEntity = Symbol(
         None,
         None,
@@ -4703,6 +4856,24 @@ class JpItcmOverlay29Functions:
         None,
         None,
         "Returns dungeon::forced_loss_reason\n\nreturn: forced_loss_reason",
+    )
+
+    BindTrapToTile = Symbol(
+        None,
+        None,
+        None,
+        "Sets the given tile's associated object to be the given trap, and sets the"
+        " visibility of the trap.\n\nr0: tile pointer\nr1: entity pointer\nr2:"
+        " visibility flag",
+    )
+
+    SpawnEnemyTrapAtPos = Symbol(
+        None,
+        None,
+        None,
+        "A convenience wrapper around SpawnTrap and BindTrapToTile. Always passes 0 for"
+        " the team parameter (making it an enemy trap).\n\nr0: trap ID\nr1: x"
+        " position\nr2: y position\nr3: flags\nstack[0]: visibility flag",
     )
 
     ChangeLeader = Symbol(
@@ -6150,6 +6321,22 @@ class JpItcmOverlay29Functions:
         "Checks if the current floor is the Secret Bazaar.\n\nreturn: bool",
     )
 
+    ShouldBoostHiddenStairsSpawnChance = Symbol(
+        None,
+        None,
+        None,
+        "Gets the boost_hidden_stairs_spawn_chance field on the dungeon"
+        " struct.\n\nreturn: bool",
+    )
+
+    SetShouldBoostHiddenStairsSpawnChance = Symbol(
+        None,
+        None,
+        None,
+        "Sets the boost_hidden_stairs_spawn_chance field on the dungeon struct to the"
+        " given value.\n\nr0: bool to set the flag to",
+    )
+
     IsSecretRoom = Symbol(
         None,
         None,
@@ -6251,6 +6438,14 @@ class JpItcmOverlay29Functions:
         None,
         "Compute a pseudorandom integer on the interval [0, 100) using the dungeon"
         " PRNG.\n\nreturn: pseudorandom integer",
+    )
+
+    ClearHiddenStairs = Symbol(
+        None,
+        None,
+        None,
+        "Clears the tile (terrain and spawns) on which Hidden Stairs are spawned, if"
+        " applicable.\n\nNo params.",
     )
 
     FlagHallwayJunctions = Symbol(
@@ -6801,12 +6996,37 @@ class JpItcmOverlay29Functions:
         None,
         None,
         None,
-        "Spawn stairs at the given location.\n\nIf the hidden stairs flag is set,"
-        " hidden stairs will be spawned instead of normal stairs.\n\nIf spawning normal"
-        " stairs and the current floor is a rescue floor, the room containing the"
-        " stairs will be converted into a Monster House.\n\nr0: position (two-byte"
-        " array for {x, y})\nr1: dungeon generation info pointer (a field on the"
-        " dungeon struct)\nr2: hidden stairs flag",
+        "Spawn stairs at the given location.\n\nIf the hidden stairs type is something"
+        " other than HIDDEN_STAIRS_NONE, hidden stairs of the specified type will be"
+        " spawned instead of normal stairs.\n\nIf spawning normal stairs and the"
+        " current floor is a rescue floor, the room containing the stairs will be"
+        " converted into a Monster House.\n\nIf attempting to spawn hidden stairs but"
+        " the spawn is blocked, the floor generation status's hidden stairs spawn"
+        " position will be updated, but it won't be transferred to the dungeon"
+        " generation info struct.\n\nr0: position (two-byte array for {x, y})\nr1:"
+        " dungeon generation info pointer (a field on the dungeon struct)\nr2: hidden"
+        " stairs type",
+    )
+
+    GetHiddenStairsType = Symbol(
+        None,
+        None,
+        None,
+        "Gets the hidden stairs type for a given floor.\n\nThis function reads the"
+        " floor properties and resolves any randomness (such as"
+        " HIDDEN_STAIRS_RANDOM_SECRET_BAZAAR_OR_SECRET_ROOM and the"
+        " floor_properties::hidden_stairs_spawn_chance) into a concrete hidden stairs"
+        " type.\n\nr0: dungeon generation info pointer\nr1: floor properties"
+        " pointer\nreturn: enum hidden_stairs_type",
+    )
+
+    ResetHiddenStairsSpawn = Symbol(
+        None,
+        None,
+        None,
+        "Resets hidden stairs spawn information for the floor. This includes the"
+        " position on the floor generation status as well as the flag indicating"
+        " whether the spawn was blocked.\n\nNo params.",
     )
 
     LoadFixedRoomData = Symbol(
@@ -6817,12 +7037,55 @@ class JpItcmOverlay29Functions:
         " FIXED_ROOM_DATA_PTR.\n\nNo params.",
     )
 
+    GenerateItemExplicit = Symbol(
+        None,
+        None,
+        None,
+        "Initializes an item struct with the given information.\n\nThis calls"
+        " InitStandardItem, then explicitly sets the quantity and stickiness. If"
+        " quantity == 0 for Poké, GenerateCleanItem is used instead.\n\nr0: pointer to"
+        " item to initialize\nr1: item ID\nr2: quantity\nr3: sticky flag",
+    )
+
+    GenerateAndSpawnItem = Symbol(
+        None,
+        None,
+        None,
+        "A convenience function that generates an item with GenerateItemExplicit, then"
+        " spawns it with SpawnItem.\n\nIf the check-in-bag flag is set and the player's"
+        " bag already contains an item with the given ID, a Reviver Seed will be"
+        " spawned instead.\n\nIt seems like this function is only ever called in one"
+        " place, with an item ID of 0x49 (Reviver Seed).\n\nr0: item ID\nr1: x"
+        " position\nr2: y position\nr3: quantity\nstack[0]: sticky flag\nstack[1]:"
+        " check-in-bag flag",
+    )
+
     IsHiddenStairsFloor = Symbol(
         None,
         None,
         None,
         "Checks if the current floor is either the Secret Bazaar or a Secret"
         " Room.\n\nreturn: bool",
+    )
+
+    GenerateCleanItem = Symbol(
+        None,
+        None,
+        None,
+        "Wrapper around GenerateItem with quantity set to 0 and stickiness type set to"
+        " SPAWN_STICKY_NEVER.\n\nr0: pointer to item to initialize\nr1: item ID",
+    )
+
+    SpawnItem = Symbol(
+        None,
+        None,
+        None,
+        "Spawns an item on the floor. Fails if there are more than 64 items already on"
+        " the floor.\n\nThis calls SpawnItemEntity, fills in the item info struct, sets"
+        " the entity to be visible, binds the entity to the tile it occupies, updates"
+        " the n_items counter on the dungeon struct, and various other bits of"
+        " bookkeeping.\n\nr0: position\nr1: item pointer\nr2: some flag?\nreturn:"
+        " success flag",
     )
 
     HasHeldItem = Symbol(
@@ -6833,6 +7096,15 @@ class JpItcmOverlay29Functions:
         " ID\nreturn: bool",
     )
 
+    GenerateMoneyQuantity = Symbol(
+        None,
+        None,
+        None,
+        "Set the quantity code on an item (assuming it's Poké), given some maximum"
+        " acceptable money amount.\n\nr0: item pointer\nr1: max money amount"
+        " (inclusive)",
+    )
+
     CheckTeamItemsFlags = Symbol(
         None,
         None,
@@ -6841,6 +7113,16 @@ class JpItcmOverlay29Functions:
         " members has any of the specified flags set in its flags field.\n\nr0: Flag(s)"
         " to check (0 = f_exists, 1 = f_in_shop, 2 = f_unpaid, etc.)\nreturn: True if"
         " any of the items of the team has the specified flags set, false otherwise.",
+    )
+
+    GenerateItem = Symbol(
+        None,
+        None,
+        None,
+        "Initializes an item struct with the given information.\n\nThis wraps InitItem,"
+        " but with extra logic to resolve the item's stickiness. It also calls"
+        " GenerateMoneyQuantity for Poké.\n\nr0: pointer to item to initialize\nr1:"
+        " item ID\nr2: quantity\nr3: stickiness type (enum gen_item_stickiness)",
     )
 
     CheckActiveChallengeRequest = Symbol(
@@ -6859,6 +7141,13 @@ class JpItcmOverlay29Functions:
         "Checks if the current floor is an active mission destination of type"
         " MISSION_TAKE_ITEM_FROM_OUTLAW, MISSION_ARREST_OUTLAW or"
         " MISSION_CHALLENGE_REQUEST.\n\nreturn: bool",
+    )
+
+    IsDestinationFloor = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the current floor is a mission destination floor.\n\nreturn: bool",
     )
 
     IsCurrentMissionType = Symbol(
@@ -7787,6 +8076,18 @@ class JpItcmOverlay29Data:
         "The default tile struct.\n\nThis is just a struct full of zeroes, but is used"
         " as a fallback in various places where a 'default' tile is needed, such as"
         " when a grid index is out of range.\n\ntype: struct tile",
+    )
+
+    HIDDEN_STAIRS_SPAWN_BLOCKED = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] A flag for when Hidden Stairs could normally have spawned on the"
+        " floor but didn't.\n\nThis is set either when the Hidden Stairs just happen"
+        " not to spawn by chance, or when the current floor is a rescue or mission"
+        " destination floor.\n\nThis appears to be part of a larger (8-byte?) struct."
+        " It seems like this value is at least followed by 3 bytes of padding and a"
+        " 4-byte integer field.",
     )
 
     FIXED_ROOM_DATA_PTR = Symbol(

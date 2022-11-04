@@ -395,7 +395,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsThrownItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsNotMoney: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsAuraBow: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitStandardItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -405,7 +425,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetExclusiveItemOffsetEnsureValid: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsItemValid: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetItemCategory: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EnsureValidItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetThrownItemQuantityLimit: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -421,6 +461,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     CountItemTypeInBag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsItemInBag: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -741,6 +786,16 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     InitDungeonListScriptVars: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GlobalProgressAlloc: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ResetGlobalProgress: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1557,6 +1612,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    PARTNER_TALK_KIND_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SCRIPT_VARS_LOCALS: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -1672,6 +1732,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MONEY_QUANTITY_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     IQ_GUMMI_GAIN_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -1777,6 +1842,11 @@ class Arm9DataProtocol(Protocol):
         None,
     ]
 
+    ITEM_DATA_TABLE_PTRS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     DUNGEON_MOVE_TABLES: Symbol[
         Optional[List[int]],
         None,
@@ -1810,6 +1880,11 @@ class Arm9DataProtocol(Protocol):
     GAME_MODE: Symbol[
         Optional[List[int]],
         None,
+    ]
+
+    GLOBAL_PROGRESS_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
     ]
 
     ADVENTURE_LOG_PTR: Symbol[
@@ -2179,6 +2254,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     AIR_BLADE_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -3083,6 +3163,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SpawnTrap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SpawnItemEntity: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     CanTargetEntity: Symbol[
         Optional[List[int]],
         None,
@@ -3289,6 +3379,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetForcedLossReason: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    BindTrapToTile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SpawnEnemyTrapAtPos: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4048,6 +4148,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ShouldBoostHiddenStairsSpawnChance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetShouldBoostHiddenStairsSpawnChance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsSecretRoom: Symbol[
         Optional[List[int]],
         None,
@@ -4104,6 +4214,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DungeonRand100: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ClearHiddenStairs: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4348,7 +4463,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetHiddenStairsType: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ResetHiddenStairsSpawn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     LoadFixedRoomData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GenerateItemExplicit: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GenerateAndSpawnItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4358,12 +4493,32 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GenerateCleanItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SpawnItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     HasHeldItem: Symbol[
         Optional[List[int]],
         None,
     ]
 
+    GenerateMoneyQuantity: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     CheckTeamItemsFlags: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GenerateItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4374,6 +4529,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsOutlawOrChallengeRequestFloor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsDestinationFloor: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4956,6 +5116,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     DEFAULT_TILE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    HIDDEN_STAIRS_SPAWN_BLOCKED: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
