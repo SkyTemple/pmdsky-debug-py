@@ -19,12 +19,14 @@ def has_all_else_optional(value: Dict[Region, Optional[Any]], typ: str):
     return f"Optional[{typ}]"
 
 
-def make_relative(value: Union[None, int, List[int]], based_on: int) -> Union[None, int, List[int]]:
-    if value is None:
+def make_relative(value: Union[None, int, List[int]], based_on: Optional[int]) -> Union[None, int, List[int]]:
+    if value is None or based_on is None:
         return None
     if isinstance(value, int):
         return value - based_on
-    return [ x - based_on for x in value]
+    if any(x is None for x in value):
+        return None
+    return [x - based_on for x in value]
 
 
 def as_hex(value: Union[None, int, List[int]]) -> str:
