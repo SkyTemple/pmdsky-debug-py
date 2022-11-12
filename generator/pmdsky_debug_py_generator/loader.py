@@ -184,19 +184,20 @@ def _read(binaries: List[Binary], yml: dict):
 def load_binaries(symbols_dir: str) -> List[Binary]:
     binaries: List[Binary] = []
 
-    files = [str(x) for x in Path(symbols_dir).rglob("*.yml")]
+    files = list(Path(symbols_dir).rglob("*.yml"))
 
     # Make sure the arm and overlay files are read this: These are the main files.
     # They will contain the address, length and description.
     # Make sure sub-files are read last.
     files.sort(
-        key=lambda key: 9999 if ("/" in key or "\\" in key) else (
-            -1 if key.startswith("arm") or key.startswith("overlay") else 1
+        key=lambda key: (
+            len(key.parts),
+            -1 if key.name.startswith("arm") or key.name.startswith("overlay") else 1,
         )
     )
 
     for yml_path in files:
-        with open(yml_path, "r") as f:
+        with yml_path.open("r") as f:
             _read(binaries, yaml.safe_load(f))
 
     binaries.sort(key=lambda b: b.name)
