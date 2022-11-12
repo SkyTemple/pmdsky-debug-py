@@ -1,7 +1,43 @@
 from .protocol import Symbol
 
 
+class JpArm7Functions:
+    EntryArm7 = Symbol(
+        [0x0],
+        [0x2380000],
+        None,
+        "The entrypoint for the ARM7 CPU. This is like the 'main' function for the ARM7"
+        " subsystem.\n\nNo params.",
+    )
+
+
+class JpArm7Data:
+    pass
+
+
+class JpArm7Section:
+    name = "arm7"
+    description = (
+        "The ARM7 binary.\n\nThis is the secondary binary that gets loaded when the"
+        " game is launched.\n\nSpeaking generally, this is the program run by the"
+        " Nintendo DS's secondary ARM7TDMI CPU, which handles the audio engine, the"
+        " touch screen, Wi-Fi functions, cryptography, and more."
+    )
+    loadaddress = 0x2380000
+    length = 0x27080
+    functions = JpArm7Functions
+    data = JpArm7Data
+
+
 class JpArm9Functions:
+    EntryArm9 = Symbol(
+        [0x800],
+        [0x2000800],
+        None,
+        "The entrypoint for the ARM9 CPU. This is like the 'main' function for the ARM9"
+        " subsystem.\n\nNo params.",
+    )
+
     InitMemAllocTable = Symbol(
         [0xDE0],
         [0x2000DE0],
@@ -567,16 +603,16 @@ class JpArm9Functions:
     )
 
     OpenAllPackFiles = Symbol(
-        None,
-        None,
+        [0xC2DC],
+        [0x200C2DC],
         None,
         "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILE_OPENED. Called during"
         " game initialisation.\n\nNo params.",
     )
 
     GetFileLengthInPackWithPackNb = Symbol(
-        None,
-        None,
+        [0xC33C],
+        [0x200C33C],
         None,
         "Call GetFileLengthInPack after looking up the global Pack archive by its"
         " number\n\nr0: pack file number\nr1: file number\nreturn: size of the file in"
@@ -584,8 +620,8 @@ class JpArm9Functions:
     )
 
     LoadFileInPackWithPackId = Symbol(
-        None,
-        None,
+        [0xC35C],
+        [0x200C35C],
         None,
         "Call LoadFileInPack after looking up the global Pack archive by its"
         " identifier\n\nr0: pack file identifier\nr1: [output] target buffer\nr2: file"
@@ -594,8 +630,8 @@ class JpArm9Functions:
     )
 
     AllocAndLoadFileInPack = Symbol(
-        None,
-        None,
+        [0xC388],
+        [0x200C388],
         None,
         "Allocate a file and load a file from the pack archive inside.\nThe data"
         " pointed by the pointer in the output need to be freed once is not needed"
@@ -604,16 +640,16 @@ class JpArm9Functions:
     )
 
     OpenPackFile = Symbol(
-        None,
-        None,
+        [0xC3E0],
+        [0x200C3E0],
         None,
         "Open a Pack file, to be read later. Initialise the output structure.\n\nr0:"
         " [output] pack file struct\nr1: file name",
     )
 
     GetFileLengthInPack = Symbol(
-        None,
-        None,
+        [0xC474],
+        [0x200C474],
         None,
         "Get the length of a file entry from a Pack archive\n\nr0: pack file"
         " struct\nr1: file index\nreturn: size of the file in bytes from the Pack Table"
@@ -621,8 +657,8 @@ class JpArm9Functions:
     )
 
     LoadFileInPack = Symbol(
-        None,
-        None,
+        [0xC484],
+        [0x200C484],
         None,
         "Load the indexed file from the Pack archive, itself loaded from the"
         " ROM.\n\nr0: pack file struct\nr1: [output] target buffer\nr2: file"
@@ -640,16 +676,16 @@ class JpArm9Functions:
     )
 
     IsThrownItem = Symbol(
-        None,
-        None,
+        [0xCB10],
+        [0x200CB10],
         None,
         "Checks if a given item ID is a thrown item (CATEGORY_THROWN_LINE or"
         " CATEGORY_THROWN_ARC).\n\nr0: item ID\nreturn: bool",
     )
 
     IsNotMoney = Symbol(
-        None,
-        None,
+        [0xCB2C],
+        [0x200CB2C],
         None,
         "Checks if an item ID is not ITEM_POKE.\n\nr0: item ID\nreturn: bool",
     )
@@ -663,8 +699,8 @@ class JpArm9Functions:
     )
 
     InitItem = Symbol(
-        None,
-        None,
+        [0xCE9C],
+        [0x200CE9C],
         None,
         "Initialize an item struct with the given information.\n\nThis will resolve the"
         " quantity based on the item type. For Poké, the quantity code will always be"
@@ -676,8 +712,8 @@ class JpArm9Functions:
     )
 
     InitStandardItem = Symbol(
-        None,
-        None,
+        [0xCF58],
+        [0x200CF58],
         None,
         "Wrapper around InitItem with quantity set to 0.\n\nr0: pointer to item to"
         " initialize\nr1: item ID\nr2: sticky flag",
@@ -696,8 +732,8 @@ class JpArm9Functions:
     )
 
     GetExclusiveItemOffsetEnsureValid = Symbol(
-        None,
-        None,
+        [0xE7AC],
+        [0x200E7AC],
         None,
         "Gets the exclusive item offset, which is the item ID relative to that of the"
         " first exclusive item, the Prism Ruff.\n\nIf the given item ID is not a valid"
@@ -707,23 +743,23 @@ class JpArm9Functions:
     )
 
     IsItemValid = Symbol(
-        None,
-        None,
+        [0xE7F0],
+        [0x200E7F0],
         None,
         "Checks if an item ID is valid(?).\n\nr0: item ID\nreturn: bool",
     )
 
     GetItemCategory = Symbol(
-        None,
-        None,
+        [0xE838],
+        [0x200E838],
         None,
         "Returns the category of the specified item\n\nr0: Item ID\nreturn: Item"
         " category",
     )
 
     EnsureValidItem = Symbol(
-        None,
-        None,
+        [0xE858],
+        [0x200E858],
         None,
         "Checks if the given item ID is valid (using IsItemValid). If so, return the"
         " given item ID. Otherwise, return ITEM_PLAIN_SEED.\n\nr0: item ID\nreturn:"
@@ -731,8 +767,8 @@ class JpArm9Functions:
     )
 
     GetThrownItemQuantityLimit = Symbol(
-        None,
-        None,
+        [0xEA88],
+        [0x200EA88],
         None,
         "Get the minimum or maximum quantity for a given thrown item ID.\n\nr0: item"
         " ID\nr1: 0 for minimum, 1 for maximum\nreturn: minimum/maximum quantity for"
@@ -765,8 +801,8 @@ class JpArm9Functions:
     )
 
     IsItemInBag = Symbol(
-        None,
-        None,
+        [0xEF10],
+        [0x200EF10],
         None,
         "Checks if an item is in the player's bag.\n\nr0: item ID\nreturn: bool",
     )
@@ -855,8 +891,8 @@ class JpArm9Functions:
     )
 
     ApplyGummiBoostsGroundMode = Symbol(
-        None,
-        None,
+        [0x1186C],
+        [0x201186C],
         None,
         "Applies the IQ boosts from eating a Gummi to the target monster.\n\nr0:"
         " Pointer to something\nr1: Pointer to something\nr2: Pointer to something\nr3:"
@@ -875,15 +911,15 @@ class JpArm9Functions:
     )
 
     GetMoveType = Symbol(
-        None,
-        None,
+        [0x13834],
+        [0x2013834],
         None,
         "Gets the type of a move\n\nr0: Pointer to move data\nreturn: Type of the move",
     )
 
     GetMoveAiWeight = Symbol(
-        None,
-        None,
+        [0x1395C],
+        [0x201395C],
         None,
         "Gets the AI weight of a move\n\nr0: Pointer to move data\nreturn: AI weight of"
         " the move",
@@ -898,8 +934,8 @@ class JpArm9Functions:
     )
 
     GetMoveAccuracyOrAiChance = Symbol(
-        None,
-        None,
+        [0x139DC],
+        [0x20139DC],
         None,
         "Gets one of the two accuracy values of a move or its"
         " ai_condition_random_chance field.\n\nr0: Move pointer\nr1: 0 to get the"
@@ -925,8 +961,8 @@ class JpArm9Functions:
     )
 
     IsMoveRangeString19 = Symbol(
-        None,
-        None,
+        [0x13BD4],
+        [0x2013BD4],
         None,
         "Returns whether a move's range string is 19 ('User').\n\nr0: Move"
         " pointer\nreturn: True if the move's range string field has a value of 19.",
@@ -1320,8 +1356,8 @@ class JpArm9Functions:
     )
 
     GlobalProgressAlloc = Symbol(
-        None,
-        None,
+        [0x4D468],
+        [0x204D468],
         None,
         "Allocates a new global progress struct.\n\nThis updates the global pointer and"
         " returns a copy of that pointer.\n\nreturn: pointer to a newly allocated"
@@ -1329,12 +1365,15 @@ class JpArm9Functions:
     )
 
     ResetGlobalProgress = Symbol(
-        None, None, None, "Zero-initializes the global progress struct.\n\nNo params."
+        [0x4D490],
+        [0x204D490],
+        None,
+        "Zero-initializes the global progress struct.\n\nNo params.",
     )
 
     HasMonsterBeenAttackedInDungeons = Symbol(
-        None,
-        None,
+        [0x4D568],
+        [0x204D568],
         None,
         "Checks whether the specified monster has been attacked by the player at some"
         " point in their adventure during an exploration.\n\nThe check is performed"
@@ -1344,15 +1383,15 @@ class JpArm9Functions:
     )
 
     SetDungeonTipShown = Symbol(
-        None,
-        None,
+        [0x4D5B0],
+        [0x204D5B0],
         None,
         "Marks a dungeon tip as already shown to the player\n\nr0: Dungeon tip ID",
     )
 
     GetDungeonTipShown = Symbol(
-        None,
-        None,
+        [0x4D5F0],
+        [0x204D5F0],
         None,
         "Checks if a dungeon tip has already been shown before or not.\n\nr0: Dungeon"
         " tip ID\nreturn: True if the tip has been shown before, false otherwise.",
@@ -1369,8 +1408,8 @@ class JpArm9Functions:
     )
 
     GetNbFloors = Symbol(
-        None,
-        None,
+        [0x4F8D4],
+        [0x204F8D4],
         None,
         "Returns the number of floors of the given dungeon.\n\nThe result is hardcoded"
         " for certain dungeons, such as dojo mazes.\n\nr0: Dungeon ID\nreturn: Number"
@@ -1378,16 +1417,16 @@ class JpArm9Functions:
     )
 
     GetNbFloorsPlusOne = Symbol(
-        None,
-        None,
+        [0x4F90C],
+        [0x204F90C],
         None,
         "Returns the number of floors of the given dungeon + 1.\n\nr0: Dungeon"
         " ID\nreturn: Number of floors + 1",
     )
 
     GetDungeonGroup = Symbol(
-        None,
-        None,
+        [0x4F920],
+        [0x204F920],
         None,
         "Returns the dungeon group associated to the given dungeon.\n\nFor IDs greater"
         " or equal to dungeon_id::DUNGEON_NORMAL_FLY_MAZE, returns"
@@ -1416,8 +1455,8 @@ class JpArm9Functions:
     )
 
     DungeonFloorToGroupFloor = Symbol(
-        None,
-        None,
+        [0x4F9A4],
+        [0x204F9A4],
         None,
         "Given a dungeon ID and a floor number, returns a struct with the corresponding"
         " dungeon group and floor number in that group.\n\nThe function normally uses"
@@ -1768,16 +1807,16 @@ class JpArm9Functions:
     )
 
     GetMaxRescueAttempts = Symbol(
-        None,
-        None,
+        [0x516D0],
+        [0x20516D0],
         None,
         "Returns the maximum rescue attempts allowed in the specified dungeon.\n\nr0:"
         " dungeon id\nreturn: Max rescue attempts, or -1 if rescues are disabled.",
     )
 
     GetLeaderChangeFlag = Symbol(
-        None,
-        None,
+        [0x51710],
+        [0x2051710],
         None,
         "Returns true if the flag that allows changing leaders is set in the"
         " restrictions of the specified dungeon\n\nr0: dungeon id\nreturn: True if the"
@@ -1785,8 +1824,8 @@ class JpArm9Functions:
     )
 
     JoinedAtRangeCheck = Symbol(
-        None,
-        None,
+        [0x517E0],
+        [0x20517E0],
         None,
         "Returns whether a certain joined_at field value is between"
         " dungeon_id::DUNGEON_JOINED_AT_BIDOOF and"
@@ -1794,8 +1833,8 @@ class JpArm9Functions:
     )
 
     JoinedAtRangeCheck2 = Symbol(
-        None,
-        None,
+        [0x51AB0],
+        [0x2051AB0],
         None,
         "Returns whether a certain joined_at field value is equal to"
         " dungeon_id::DUNGEON_BEACH or is between dungeon_id::DUNGEON_DUMMY_0xEC and"
@@ -1811,48 +1850,48 @@ class JpArm9Functions:
     )
 
     GetMonsterGender = Symbol(
-        None,
-        None,
+        [0x52AE0],
+        [0x2052AE0],
         None,
         "Returns the gender field of a monster given its ID.\n\nr0: monster id\nreturn:"
         " monster gender",
     )
 
     GetSpriteSize = Symbol(
-        None,
-        None,
+        [0x52B18],
+        [0x2052B18],
         None,
         "Returns the sprite size of the specified monster. If the size is between 1 and"
         " 6, 6 will be returned.\n\nr0: monster id\nreturn: sprite size",
     )
 
     GetSpriteFileSize = Symbol(
-        None,
-        None,
+        [0x52B54],
+        [0x2052B54],
         None,
         "Returns the sprite file size of the specified monster.\n\nr0: monster"
         " id\nreturn: sprite file size",
     )
 
     GetCanMoveFlag = Symbol(
-        None,
-        None,
+        [0x52BEC],
+        [0x2052BEC],
         None,
         "Returns the flag that determines if a monster can move in dungeons.\n\nr0:"
         " Monster ID\nreturn: 'Can move' flag",
     )
 
     GetMonsterPreEvolution = Symbol(
-        None,
-        None,
+        [0x52CE0],
+        [0x2052CE0],
         None,
         "Returns the pre-evolution id of a monster given its ID.\n\nr0: monster"
         " id\nreturn: ID of the monster that evolves into the one specified in r0",
     )
 
     GetEvolutions = Symbol(
-        None,
-        None,
+        [0x541C0],
+        [0x20541C0],
         None,
         "Returns a list of all the possible evolutions for a given monster id.\n\nr0:"
         " Monster id\nr1: [Output] Array that will hold the list of monster ids the"
@@ -1864,8 +1903,8 @@ class JpArm9Functions:
     )
 
     GetBaseForm = Symbol(
-        None,
-        None,
+        [0x5435C],
+        [0x205435C],
         None,
         "Checks if the specified monster ID corresponds to any of the pokémon that have"
         " multiple forms and returns the ID of the base form if so. If it doesn't, the"
@@ -1876,8 +1915,8 @@ class JpArm9Functions:
     )
 
     GetMonsterIdFromSpawnEntry = Symbol(
-        None,
-        None,
+        [0x547B8],
+        [0x20547B8],
         None,
         "Returns the monster ID of the specified monster spawn entry\n\nr0: Pointer to"
         " the monster spawn entry\nreturn: monster_spawn_entry::id",
@@ -1936,8 +1975,8 @@ class JpArm9Functions:
     )
 
     FemaleToMaleForm = Symbol(
-        None,
-        None,
+        [0x54F18],
+        [0x2054F18],
         None,
         "Returns the ID of the first form of the specified monster if the specified ID"
         " corresponds to a secondary form with female gender and the first form has"
@@ -1955,24 +1994,24 @@ class JpArm9Functions:
     )
 
     GetHeroData = Symbol(
-        None,
-        None,
+        [0x55B0C],
+        [0x2055B0C],
         None,
         "Returns the ground monster data of the hero (first slot in Chimecho"
         " Assembly)\n\nreturn: Monster data",
     )
 
     GetPartnerData = Symbol(
-        None,
-        None,
+        [0x55B34],
+        [0x2055B34],
         None,
         "Returns the ground monster data of the partner (second slot in Chimecho"
         " Assembly)\n\nreturn: Monster data",
     )
 
     CheckTeamMemberField8 = Symbol(
-        None,
-        None,
+        [0x565C4],
+        [0x20565C4],
         None,
         "Checks if a value obtained from team_member::field_0x8 is equal to certain"
         " values.\n\nThis is known to return true for some or all of the guest"
@@ -1981,8 +2020,8 @@ class JpArm9Functions:
     )
 
     GetTeamMemberData = Symbol(
-        None,
-        None,
+        [0x56728],
+        [0x2056728],
         None,
         "Returns a struct containing information about a team member.\n\nr0:"
         " Index\nreturn: Pointer to struct containing team member information",
@@ -2025,8 +2064,8 @@ class JpArm9Functions:
     )
 
     GetExplorerMazeMonster = Symbol(
-        None,
-        None,
+        [0x593F4],
+        [0x20593F4],
         None,
         "Returns the data of a monster sent into the Explorer Dojo using the 'exchange"
         " teams' option.\n\nr0: Entry number (0-3)\nreturn: Ground monster data of the"
@@ -2042,8 +2081,8 @@ class JpArm9Functions:
     )
 
     GenerateMission = Symbol(
-        None,
-        None,
+        [0x5D524],
+        [0x205D524],
         None,
         "Attempts to generate a random mission.\n\nr0: Pointer to something\nr1:"
         " Pointer to the struct where the data of the generated mission will be written"
@@ -2054,8 +2093,8 @@ class JpArm9Functions:
     )
 
     GenerateDailyMissions = Symbol(
-        None,
-        None,
+        [0x5E8D0],
+        [0x205E8D0],
         None,
         "Generates the missions displayed on the Job Bulletin Board and the Outlaw"
         " Notice Board.\n\nNo params.",
@@ -2089,8 +2128,8 @@ class JpArm9Functions:
     )
 
     GetMissionByTypeAndDungeon = Symbol(
-        None,
-        None,
+        [0x5F69C],
+        [0x205F69C],
         None,
         "Returns the position on the mission list of the first mission of the specified"
         " type that takes place in the specified dungeon.\n\nIf the type of the mission"
@@ -2104,8 +2143,8 @@ class JpArm9Functions:
     )
 
     CheckAcceptedMissionByTypeAndDungeon = Symbol(
-        None,
-        None,
+        [0x5F794],
+        [0x205F794],
         None,
         "Returns true if there are any accepted missions on the mission list that are"
         " of the specified type and take place in the specified dungeon.\n\nIf the type"
@@ -2117,8 +2156,8 @@ class JpArm9Functions:
     )
 
     ClearMissionData = Symbol(
-        None,
-        None,
+        [0x5FCA8],
+        [0x205FCA8],
         None,
         "Given a mission struct, clears some of it fields.\n\nIn particular,"
         " mission::status is set to mission_status::MISSION_STATUS_INVALID,"
@@ -2129,8 +2168,8 @@ class JpArm9Functions:
     )
 
     IsMonsterMissionAllowed = Symbol(
-        None,
-        None,
+        [0x62CFC],
+        [0x2062CFC],
         None,
         "Checks if the specified monster is contained in the MISSION_BANNED_MONSTERS"
         " array.\n\nThe function converts the ID by calling GetBaseForm and"
@@ -2148,8 +2187,8 @@ class JpArm9Functions:
     )
 
     CanMonsterBeUsedForMission = Symbol(
-        None,
-        None,
+        [0x62D50],
+        [0x2062D50],
         None,
         "Returns whether a certain monster can be used (probably as the client or as"
         " the target) when generating a mission.\n\nExcluded monsters include those"
@@ -2162,8 +2201,8 @@ class JpArm9Functions:
     )
 
     IsMonsterMissionAllowedStory = Symbol(
-        None,
-        None,
+        [0x62DCC],
+        [0x2062DCC],
         None,
         "Checks if the specified monster should be allowed to be part of a mission"
         " (probably as the client or the target), accounting for the progress on the"
@@ -2590,6 +2629,42 @@ class JpArm9Functions:
         " this means that the quotient is returned in r0 and the remainder is returned"
         " in r1.\nThis function appears to only be called internally.\n\nr0:"
         " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+    GetFaintReason = Symbol(
+        None,
+        None,
+        None,
+        "Gets the faint reason code (see HandleFaint) for a given move-item"
+        " combination.\n\nIf there's no item, the reason code is the move ID. If the"
+        " item is an orb, return FAINT_REASON_ORB_ITEM. Otherwise, return"
+        " FAINT_REASON_NON_ORB_ITEM.\n\nr0: move ID\nr1: item ID\nreturn: faint reason",
+    )
+
+    InitMove = Symbol(
+        None,
+        None,
+        None,
+        "Initializes a move info struct.\n\nThis sets f_exists and f_enabled_for_ai on"
+        " the flags, the ID to the given ID, the PP to the max PP for the move ID, and"
+        " the ginseng boost to 0.\n\nr0: pointer to move to initialize\nr1: move ID",
+    )
+
+    TreasureBoxDropsEnabled = Symbol(
+        None,
+        None,
+        None,
+        "Checks if enemy Treasure Box drops are enabled in the dungeon.\n\nr0: dungeon"
+        " ID\nreturn: bool",
+    )
+
+    GetLowKickMultiplier = Symbol(
+        None,
+        None,
+        None,
+        "Gets the Low Kick (and Grass Knot) damage multiplier for the given"
+        " species.\n\nr0: monster ID\nreturn: multiplier as a binary fixed-point number"
+        " with 8 fraction bits.",
     )
 
 
@@ -3052,6 +3127,17 @@ class JpArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol(None, None, None, "")
 
+    FAINT_REASON_CODE_ORB_ITEM = Symbol(
+        None, None, None, "The faint reason code for any item in CATEGORY_ORBS, 0x262."
+    )
+
+    FAINT_REASON_CODE_NON_ORB_ITEM = Symbol(
+        None,
+        None,
+        None,
+        "The faint reason code for any item not in CATEGORY_ORBS, 0x263.",
+    )
+
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
     )
@@ -3066,11 +3152,14 @@ class JpArm9Data:
 class JpArm9Section:
     name = "arm9"
     description = (
-        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
-        " launched, and contains the core code that runs the game, low level facilities"
-        " such as memory allocation, compression, other external dependencies (such as"
-        " linked functions from libc and libgcc), and the functions and tables"
-        " necessary to load overlays and dispatch execution to them."
+        "The main ARM9 binary.\n\nThis is the main binary that gets loaded when the"
+        " game is launched, and contains the core code that runs the game, low level"
+        " facilities such as memory allocation, compression, other external"
+        " dependencies (such as linked functions from libc and libgcc), and the"
+        " functions and tables necessary to load overlays and dispatch execution to"
+        " them.\n\nSpeaking generally, this is the program run by the Nintendo DS's"
+        " main ARM946E-S CPU, which handles all gameplay mechanisms and graphics"
+        " rendering."
     )
     loadaddress = 0x2000000
     length = 0xB8CB8
@@ -3081,7 +3170,7 @@ class JpArm9Section:
 class JpItcmFunctions:
     ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
         None,
-        None,
+        [0x20B6FD8],
         None,
         "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
         " Otherwise, returns true only if the monster's behavior field is equal to"
@@ -3092,7 +3181,7 @@ class JpItcmFunctions:
 
     AiMovement = Symbol(
         None,
-        None,
+        [0x20B700C],
         None,
         "Used by the AI to determine the direction in which a monster should"
         " move\n\nr0: Entity pointer\nr1: ?",
@@ -3100,7 +3189,7 @@ class JpItcmFunctions:
 
     CalculateAiTargetPos = Symbol(
         None,
-        None,
+        [0x20B7F10],
         None,
         "Calculates the target position of an AI-controlled monster and stores it in"
         " the monster's ai_target_pos field\n\nr0: Entity pointer",
@@ -3108,7 +3197,7 @@ class JpItcmFunctions:
 
     ChooseAiMove = Symbol(
         None,
-        None,
+        [0x20B82A0],
         None,
         "Determines if an AI-controlled monster will use a move and which one it will"
         " use\n\nr0: Entity pointer",
@@ -3187,7 +3276,11 @@ class JpOverlay0Data:
 class JpOverlay0Section:
     name = "overlay0"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 0."
+        "Likely contains supporting data and code related to the top menu.\n\nThis is"
+        " loaded together with overlay 1 while in the top menu. Since it's in overlay"
+        " group 2 (together with overlay 10, which is another 'data' overlay), this"
+        " overlay probably plays a similar role. It mentions several files from the"
+        " BACK folder that are known backgrounds for the top menu."
     )
     loadaddress = 0x22BE220
     length = 0x609A0
@@ -3197,8 +3290,8 @@ class JpOverlay0Section:
 
 class JpOverlay1Functions:
     CreateMainMenus = Symbol(
-        None,
-        None,
+        [0x7BC8],
+        [0x2332888],
         None,
         "Prepares the top menu and sub menu, adding the different options that compose"
         " them.\n\nContains multiple calls to AddMainMenuOption and AddSubMenuOption."
@@ -3207,8 +3300,8 @@ class JpOverlay1Functions:
     )
 
     AddMainMenuOption = Symbol(
-        None,
-        None,
+        [0x8038],
+        [0x2332CF8],
         None,
         "Adds an option to the top menu.\n\nThis function is called for each one of the"
         " options in the top menu. It loops the MAIN_MENU data field, if the specified"
@@ -3217,8 +3310,8 @@ class JpOverlay1Functions:
     )
 
     AddSubMenuOption = Symbol(
-        None,
-        None,
+        [0x8110],
+        [0x2332DD0],
         None,
         "Adds an option to the 'Other' submenu on the top menu.\n\nThis function is"
         " called for each one of the options in the submenu. It loops the SUBMENU data"
@@ -3229,6 +3322,30 @@ class JpOverlay1Functions:
 
 
 class JpOverlay1Data:
+    PRINTS_STRINGS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    PRINTS_STRUCT = Symbol(
+        None, None, None, "62*0x8\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
     CONTINUE_CHOICE = Symbol(None, None, None, "")
 
     SUBMENU = Symbol(None, None, None, "")
@@ -3240,6 +3357,30 @@ class JpOverlay1Data:
     MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
 
     MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
+
+    OVERLAY1_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_10 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class JpOverlay1Section:
@@ -3265,6 +3406,72 @@ class JpOverlay10Functions:
         "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
         " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
         " characters printed, excluding the null-terminator",
+    )
+
+    GetEffectAnimation = Symbol(
+        [0x3424],
+        [0x22C1644],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: anim_id\nreturn: effect"
+        " animation pointer",
+    )
+
+    GetMoveAnimation = Symbol(
+        [0x3438],
+        [0x22C1658],
+        None,
+        "Get the move animation corresponding to the given move ID.\n\nr0:"
+        " move_id\nreturn: move animation pointer",
+    )
+
+    GetSpecialMonsterMoveAnimation = Symbol(
+        [0x344C],
+        [0x22C166C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: ent_id\nreturn: special"
+        " monster move animation pointer",
+    )
+
+    GetTrapAnimation = Symbol(
+        [0x3460],
+        [0x22C1680],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: trap_id\nreturn: trap"
+        " animation",
+    )
+
+    GetItemAnimation1 = Symbol(
+        [0x3474],
+        [0x22C1694],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: item_id\nreturn: first"
+        " field of the item animation info",
+    )
+
+    GetItemAnimation2 = Symbol(
+        [0x3484],
+        [0x22C16A4],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: item_id\nreturn: second"
+        " field of the item animation info",
+    )
+
+    GetMoveAnimationSpeed = Symbol(
+        [0x349C],
+        [0x22C16BC],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: move_id\nreturn:"
+        " anim_ent_ptr (This might be a mistake? It seems to be an integer, not a"
+        " pointer)",
+    )
+
+    CheckEndDungeon = Symbol(
+        [0x5D54],
+        [0x22C3F74],
+        None,
+        "Do the stuff when you lose in a dungeon.\n\nNote: unverified, ported from"
+        " Irdkwia's notes\n\nr0: End condition code? Seems to control what tasks get"
+        " run and what transition happens when the dungeon ends\nreturn: return code?",
     )
 
 
@@ -3298,6 +3505,13 @@ class JpOverlay10Data:
 
     OREN_BERRY_DAMAGE = Symbol(
         None, None, None, "Damage dealt by eating an Oren Berry."
+    )
+
+    UNOWN_STONE_DROP_CHANCE = Symbol(
+        [0x793C],
+        [0x22C5B5C],
+        0x2,
+        "The chance of an Unown dropping an Unown stone, as a percentage (21%).",
     )
 
     SITRUS_BERRY_HP_RESTORATION = Symbol(
@@ -3496,6 +3710,14 @@ class JpOverlay10Data:
         " the high value.",
     )
 
+    WEATHER_ATTRIBUTE_TABLE = Symbol(
+        [0x8134],
+        [0x22C6354],
+        0x30,
+        "Maps each weather type (by index, see enum weather_id) to the corresponding"
+        " Weather Ball type and Castform form.\n\ntype: struct weather_attributes[8]",
+    )
+
     OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
         None,
         None,
@@ -3512,52 +3734,92 @@ class JpOverlay10Data:
         " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
     )
 
+    NATURE_POWER_TABLE = Symbol(
+        [0x8308],
+        [0x22C6528],
+        0x78,
+        "Maps enum nature_power_variant to the associated move ID and effect"
+        " handler.\n\ntype: struct wildcard_move_desc[15]",
+    )
+
+    APPLES_AND_BERRIES_ITEM_IDS = Symbol(
+        [0x8380],
+        [0x22C65A0],
+        0x84,
+        "Table of item IDs for Apples and Berries, which trigger the exclusive item"
+        " effect EXCLUSIVE_EFF_RECOVER_HP_FROM_APPLES_AND_BERRIES.\n\ntype: struct"
+        " item_id_16[66]",
+    )
+
+    RECRUITMENT_LEVEL_BOOST_TABLE = Symbol(
+        [0x852C],
+        [0x22C674C],
+        0xCC,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[102]",
+    )
+
+    NATURAL_GIFT_ITEM_TABLE = Symbol(
+        [0x85F8],
+        [0x22C6818],
+        0xCC,
+        "Maps items to their type and base power if used with Natural Gift.\n\nAny item"
+        " not listed in this table explicitly will be Normal type with a base power of"
+        " 1 when used with Natural Gift.\n\ntype: struct natural_gift_item_info[34]",
+    )
+
     RANDOM_MUSIC_ID_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x86C4],
+        [0x22C68E4],
+        0xF0,
         "Table of music IDs for dungeons with a random assortment of music"
         " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
         " row contains the possible music IDs for a given group, from which the music"
         " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
     )
 
+    SHOP_ITEM_CHANCES = Symbol(
+        [0x87B4],
+        [0x22C69D4],
+        0x120,
+        "8 * 6 * 3 * 0x2\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
     MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        None,
+        [0x88D4],
+        [0x22C6AF4],
+        0x54,
         "Table of multipliers for the accuracy stat for males for each stage 0-20, as"
         " binary fixed-point numbers (8 fraction bits)",
     )
 
     MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        None,
+        [0x8928],
+        [0x22C6B48],
+        0x54,
         "Table of multipliers for the evasion stat for males for each stage 0-20, as"
         " binary fixed-point numbers (8 fraction bits)",
     )
 
     FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        None,
+        [0x897C],
+        [0x22C6B9C],
+        0x54,
         "Table of multipliers for the accuracy stat for females for each stage 0-20, as"
         " binary fixed-point numbers (8 fraction bits)",
     )
 
     FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        None,
+        [0x89D0],
+        [0x22C6BF0],
+        0x54,
         "Table of multipliers for the evasion stat for females for each stage 0-20, as"
         " binary fixed-point numbers (8 fraction bits)",
     )
 
     MUSIC_ID_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x8A24],
+        [0x22C6C44],
+        0x154,
         "List of music IDs used in dungeons with a single music track.\n\nThis is an"
         " array of 170 2-byte music IDs, and is indexed into by the music value in the"
         " floor properties struct for a given floor. Music IDs with the highest bit set"
@@ -3566,43 +3828,379 @@ class JpOverlay10Data:
     )
 
     TYPE_MATCHUP_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x8B78],
+        [0x22C6D98],
+        0x288,
         "Table of type matchups.\n\nEach row corresponds to the type matchups of a"
         " specific attack type, with each entry within the row specifying the type's"
         " effectiveness against a target type.\n\ntype: struct type_matchup_table",
     )
 
     FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x8E00],
+        [0x22C7020],
+        0x4A4,
         "Table of stats for monsters that can spawn in fixed rooms, pointed into by the"
         " FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries"
         " containing stat spreads for one monster entry each.\n\ntype: struct"
         " fixed_room_monster_spawn_stats_entry[99]",
     )
 
-    TILESET_PROPERTIES = Symbol(None, None, None, "type: struct tileset_property[199]")
+    METRONOME_TABLE = Symbol(
+        [0x92A4],
+        [0x22C74C4],
+        0x540,
+        "Something to do with the moves that Metronome can turn into.\n\ntype: struct"
+        " wildcard_move_desc[168]",
+    )
+
+    TILESET_PROPERTIES = Symbol(
+        [0x97E4], [0x22C7A04], 0x954, "type: struct tileset_property[199]"
+    )
 
     FIXED_ROOM_PROPERTIES_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0xA138],
+        [0x22C8358],
+        0xC00,
         "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte"
         " entries containing properties for a given fixed room ID.\n\nSee the struct"
         " definitions and End45's dungeon data document for more info.\n\ntype: struct"
         " fixed_room_properties_entry[256]",
     )
 
-    MOVE_ANIMATION_INFO = Symbol(None, None, None, "")
+    TRAP_ANIMATION_INFO = Symbol(
+        [0xAF18],
+        [0x22C9138],
+        0x34,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " trap_animation[26]",
+    )
+
+    ITEM_ANIMATION_INFO = Symbol(
+        [0xAF4C],
+        [0x22C916C],
+        0x15E0,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " item_animation[1400]",
+    )
+
+    MOVE_ANIMATION_INFO = Symbol(
+        [0xC52C], [0x22CA74C], 0x34C8, "type: struct move_animation[563]"
+    )
+
+    EFFECT_ANIMATION_INFO = Symbol(
+        [0xF9F4],
+        [0x22CDC14],
+        0x4C90,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " effect_animation[700]",
+    )
+
+    SPECIAL_MONSTER_MOVE_ANIMATION_INFO = Symbol(
+        [0x14684],
+        [0x22D28A4],
+        0xADF4,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " special_monster_move_animation[7422]",
+    )
+
+    IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Iron Tail lowering defense, as a percentage (30%).",
+    )
+
+    TWINEEDLE_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Twineedle poisoning, as a percentage (20%)."
+    )
+
+    EXTRASENSORY_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Extrasensory inflicting the cringe status, as a percentage"
+        " (10%).",
+    )
+
+    ROCK_SLIDE_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the"
+        " cringe status, as a percentage (30%)",
+    )
+
+    CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering"
+        " defense, as a percentage (20%).",
+    )
+
+    MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40)"
+        " lowering accuracy, as a percentage (40%).",
+    )
+
+    ANCIENTPOWER_BOOST_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of AncientPower boosting all stats, as a percentage (20%).",
+    )
+
+    POISON_TAIL_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Poison Tail poisoning, as a percentage (10%)."
+    )
+
+    THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thundershock paralyzing, as a percentage (10%).",
+    )
+
+    HEADBUTT_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
+    )
+
+    FIRE_FANG_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
+    )
+
+    SACRED_FIRE_BURN_CHANCE = Symbol(
+        None, None, None, "The chance of Sacred Fire burning, as a percentage (50%)."
+    )
+
+    WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Whirlpool inflicting the constriction status, as a percentage"
+        " (10%).",
+    )
+
+    MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Mist Ball lowering special attack, as a percentage (50%).",
+    )
+
+    CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Charge Beam boosting special attack, as a percentage (40%).",
+    )
+
+    LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50)"
+        " lowering special defense, as a percentage (50%).",
+    )
+
+    CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering"
+        " speed, as a percentage (20%).",
+    )
+
+    ICE_FANG_FREEZE_CHANCE = Symbol(
+        None, None, None, "The chance of Ice Fang freezing, as a percentage (15%)."
+    )
+
+    SMOG_POISON_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a"
+        " percentage (40%).",
+    )
+
+    LICK_PARALYZE_CHANCE = Symbol(
+        None, None, None, "The chance of Lick paralyzing, as a percentage (10%)."
+    )
+
+    THUNDER_FANG_PARALYZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thunder Fang paralyzing, as a percentage (10%).",
+    )
+
+    BITE_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Bite inflicting the cringe status, as a percentage (20%)",
+    )
+
+    ICE_FANG_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
+    )
+
+    BLAZE_KICK_BURN_CHANCE = Symbol(
+        None, None, None, "The chance of Blaze Kick burning, as a percentage (10%)."
+    )
+
+    DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
+        None, None, None, "The chance of Dizzy Punch confusing, as a percentage (30%)."
+    )
+
+    SECRET_POWER_EFFECT_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Secret Power inflicting an effect, as a percentage (30%).",
+    )
+
+    CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Crush Claw lowering defense, as a percentage (50%).",
+    )
+
+    BLIZZARD_FREEZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Blizzard (and others, see DoMoveDamageFreeze15) freezing, as a"
+        " percentage (15%).",
+    )
+
+    POISON_STING_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Poison Sting poisoning, as a percentage (18%)."
+    )
+
+    POISON_FANG_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Poison Fang poisoning, as a percentage (30%)."
+    )
+
+    THUNDER_PARALYZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as"
+        " a percentage (20%)",
+    )
+
+    TWISTER_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Twister inflicting the cringe status, as a percentage (10%).",
+    )
+
+    FAKE_OUT_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
+    )
+
+    THUNDER_FANG_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thunder Fang inflicting the cringe status, as a percentage"
+        " (25%).",
+    )
+
+    FLARE_BLITZ_BURN_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Flare Blitz burning, as a percentage (25%). This value is also"
+        " used for the Fire Fang burn chance.",
+    )
+
+    FLAME_WHEEL_BURN_CHANCE = Symbol(
+        None, None, None, "The chance of Flame Wheel burning, as a percentage (10%)."
+    )
+
+    ROCK_CLIMB_CONFUSE_CHANCE = Symbol(
+        None, None, None, "The chance of Rock Climb confusing, as a percentage (10%)."
+    )
+
+    TRI_ATTACK_STATUS_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Tri Attack inflicting any status condition, as a percentage"
+        " (20%).",
+    )
+
+    DRAGON_RAGE_FIXED_DAMAGE = Symbol(
+        None, None, None, "The amount of fixed damage dealt by Dragon Rage (30)."
+    )
+
+    FACADE_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        "The Facade damage multiplier for users with a status condition, as a binary"
+        " fixed-point number with 8 fraction bits (0x200 -> 2x).",
+    )
+
+    IMPRISON_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype:"
+        " int16_t[2]",
+    )
+
+    NIGHTMARE_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Nightmare status inflicted by Nightmare, [4,"
+        " 8).\n\ntype: int16_t[2]",
+    )
+
+    SMOKESCREEN_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Whiffer status inflicted by Smokescreen, [1,"
+        " 4).\n\ntype: int16_t[2]",
+    )
+
+    YAWN_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype:"
+        " int16_t[2]",
+    )
 
 
 class JpOverlay10Section:
     name = "overlay10"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 10."
+        "Appears to be used both during ground mode and dungeon mode. With dungeon"
+        " mode, whereas overlay 29 contains the main dungeon engine, this overlay seems"
+        " to contain routines and data for dungeon mechanics."
     )
     loadaddress = 0x22BE220
     length = 0x1F6A0
@@ -3765,6 +4363,38 @@ class JpOverlay11Functions:
         "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
     )
 
+    LoadBackgroundAttributes = Symbol(
+        [0xF894],
+        [0x22ED174],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] bg_attr_str\nr1:"
+        " bg_id",
+    )
+
+    LoadMapType10 = Symbol(
+        [0x10A78],
+        [0x22EE358],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] buffer_ptr\nr1:"
+        " map_id\nr2: dungeon_info_str\nr3: additional_info",
+    )
+
+    LoadMapType11 = Symbol(
+        [0x10F98],
+        [0x22EE878],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] buffer_ptr\nr1:"
+        " map_id\nr2: dungeon_info_str\nr3: additional_info",
+    )
+
+    GetSpecialLayoutBackground = Symbol(
+        [0x152C8],
+        [0x22F2BA8],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: bg_id\nr1:"
+        " dungeon_info_str\nr2: additional_info\nr3: copy_fixed_room_layout",
+    )
+
     SprintfStatic = Symbol(
         [0x2CB98],
         [0x230A478],
@@ -3801,6 +4431,13 @@ class JpOverlay11Data:
         " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
         " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
         " common_routine_table",
+    )
+
+    GROUND_WAN_FILES_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: char[343][12]",
     )
 
     OBJECTS = Symbol(
@@ -3840,7 +4477,11 @@ class JpOverlay11Data:
     )
 
     LEVEL_TILEMAP_LIST = Symbol(
-        None, None, None, "type: struct level_tilemap_list_entry[81]"
+        None,
+        None,
+        None,
+        "Irdkwia's notes: FIXED_FLOOR_GROUND_ASSOCIATION\n\ntype: struct"
+        " level_tilemap_list_entry[81]",
     )
 
     OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
@@ -3867,11 +4508,58 @@ class JpOverlay11Data:
         " scene\n\ntype: struct main_ground_data",
     )
 
+    OVERLAY11_UNKNOWN_TABLE__NA_2316A38 = Symbol(
+        None,
+        None,
+        None,
+        "Multiple entries are pointers to the string 'script.c'\n\nNote: unverified,"
+        " ported from Irdkwia's notes\n\ntype: undefined4[40]",
+    )
+
+    SCRIPT_COMMAND_PARSING_DATA = Symbol(
+        None, None, None, "Used by ScriptCommandParsing somehow"
+    )
+
+    SCRIPT_OP_CODE_NAMES = Symbol(
+        None,
+        None,
+        None,
+        "Opcode name strings pointed to by entries in SCRIPT_OP_CODES"
+        " (script_opcode::name)",
+    )
+
+    OVERLAY11_DEBUG_STRINGS = Symbol(
+        None,
+        None,
+        None,
+        "Strings used with various debug printing functions throughout the overlay",
+    )
+
+    C_ROUTINE_NAMES = Symbol(
+        None,
+        None,
+        None,
+        "Common routine name strings pointed to by entries in C_ROUTINES"
+        " (common_routine::name)",
+    )
+
+    GROUND_WEATHER_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " ground_weather_entry[12]",
+    )
+
 
 class JpOverlay11Section:
     name = "overlay11"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 11."
+        "The script engine.\n\nThis is the 'main' overlay of ground mode. The script"
+        " engine is what runs the ground mode scripts contained in the SCRIPT folder,"
+        " which are written in a custom scripting language. These scripts encode things"
+        " like cutscenes, screen transitions, ground mode events, and tons of other"
+        " things related to ground mode."
     )
     loadaddress = 0x22DD8E0
     length = 0x48B00
@@ -3897,9 +4585,38 @@ class JpOverlay12Section:
 
 
 class JpOverlay13Functions:
+    EntryOverlay13 = Symbol(
+        [0x0],
+        [0x238B6A0],
+        None,
+        "Main function of this overlay.\n\nNote: unverified, ported from Irdkwia's"
+        " notes\n\nNo params.",
+    )
+
+    ExitOverlay13 = Symbol(
+        [0x50],
+        [0x238B6F0],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    Overlay13SwitchFunctionNa238A1C8 = Symbol(
+        [0x88],
+        [0x238B728],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+    )
+
+    Overlay13SwitchFunctionNa238A574 = Symbol(
+        [0x434],
+        [0x238BAD4],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
     GetPersonality = Symbol(
-        None,
-        None,
+        [0x1C6C],
+        [0x238D30C],
         None,
         "Returns the personality obtained after answering all the questions.\n\nThe"
         " value to return is determined by checking the points obtained for each the"
@@ -3907,25 +4624,137 @@ class JpOverlay13Functions:
         " points.\n\nreturn: Personality (0-15)",
     )
 
+    GetOptionStringFromID = Symbol(
+        [0x1CB4],
+        [0x238D354],
+        None,
+        "Note: unverified, ported from Irdkwia's notes. The first parameter and the"
+        " return value point to the same string (which is passed directly into"
+        " PreprocessString as the first argument), so I'm not sure why they're named"
+        " differently... Seems like a mistake?\n\nr0: menu_id\nr1: option_id\nreturn:"
+        " process",
+    )
+
+    WaitForNextStep = Symbol(
+        [0x1D10],
+        [0x238D3B0],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: switch_case",
+    )
+
 
 class JpOverlay13Data:
-    STARTERS_PARTNER_IDS = Symbol(None, None, None, "type: struct monster_id_16[21]")
+    QUIZ_BORDER_COLOR_TABLE = Symbol(
+        [0x1ED8], [0x238D578], 0x4, "Note: unverified, ported from Irdkwia's notes"
+    )
 
-    STARTERS_HERO_IDS = Symbol(None, None, None, "type: struct monster_id_16[32]")
+    PORTRAIT_ATTRIBUTES = Symbol(
+        [0x1EDC], [0x238D57C], 0x8, "Note: unverified, ported from Irdkwia's notes"
+    )
 
-    STARTERS_STRINGS = Symbol(None, None, None, "")
+    QUIZ_MALE_FEMALE_BOOST_TABLE = Symbol(
+        [0x1EE4], [0x238D584], 0x8, "Note: unverified, ported from Irdkwia's notes"
+    )
 
-    QUIZ_QUESTION_STRINGS = Symbol(None, None, None, "")
+    OVERLAY13_UNKNOWN_STRUCT__NA_238C024 = Symbol(
+        [0x1EEC], [0x238D58C], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
 
-    QUIZ_ANSWER_STRINGS = Symbol(None, None, None, "")
+    QUIZ_D_BOX_LAYOUT_1 = Symbol(
+        [0x1EFC], [0x238D59C], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
 
-    UNKNOWN_MENU_1 = Symbol(None, None, None, "")
+    QUIZ_D_BOX_LAYOUT_2 = Symbol(
+        [0x1F0C], [0x238D5AC], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_3 = Symbol(
+        [0x1F1C], [0x238D5BC], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_4 = Symbol(
+        [0x1F2C], [0x238D5CC], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_MENU_1 = Symbol(
+        [0x1F3C], [0x238D5DC], 0x18, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STARTERS_PARTNER_IDS = Symbol(
+        [0x1F54], [0x238D5F4], 0x2A, "type: struct monster_id_16[21]"
+    )
+
+    STARTERS_HERO_IDS = Symbol(
+        [0x1F80], [0x238D620], 0x40, "type: struct monster_id_16[32]"
+    )
+
+    STARTERS_TYPE_INCOMPATIBILITY_TABLE = Symbol(
+        [0x1FC0], [0x238D660], 0x54, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STARTERS_STRINGS = Symbol(
+        [0x2014], [0x238D6B4], 0x60, "Irdkwia's notes: InsightsStringIDs"
+    )
+
+    QUIZ_QUESTION_STRINGS = Symbol([0x2074], [0x238D714], 0x84, "0x2 * (66 questions)")
+
+    QUIZ_ANSWER_STRINGS = Symbol(
+        [0x20F8], [0x238D798], 0x160, "0x2 * (175 answers + null-terminator)"
+    )
+
+    QUIZ_ANSWER_POINTS = Symbol(
+        [0x2258],
+        [0x238D8F8],
+        0xAE0,
+        "0x10 * (174 answers?)\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    OVERLAY13_RESERVED_SPACE = Symbol(
+        [0x2D58], [0x238E3F8], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY13_UNKNOWN_POINTER__NA_238CEA0 = Symbol(
+        [0x2D68], [0x238E408], 0x4, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY13_UNKNOWN_POINTER__NA_238CEA4 = Symbol(
+        [0x2D6C], [0x238E40C], 0x4, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY13_UNKNOWN_POINTER__NA_238CEA8 = Symbol(
+        [0x2D70], [0x238E410], 0x4, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_5 = Symbol(
+        [0x2D74], [0x238E414], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_6 = Symbol(
+        [0x2D84], [0x238E424], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_DEBUG_MENU = Symbol(
+        [0x2D94], [0x238E434], 0x48, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY13_UNKNOWN_STRUCT__NA_238CF14 = Symbol(
+        [0x2DDC], [0x238E47C], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_QUESTION_ANSWER_ASSOCIATIONS = Symbol(
+        [0x2DEC],
+        [0x238E48C],
+        0x84,
+        "0x2 * (66 questions)\n\nNote: unverified, ported from Irdkwia's notes",
+    )
 
 
 class JpOverlay13Section:
     name = "overlay13"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
+        "Controls the personality test, including the available partners and playable"
+        " Pokémon. The actual personality test questions are stored in the MESSAGE"
+        " folder."
     )
     loadaddress = 0x238B6A0
     length = 0x2E80
@@ -3957,6 +4786,34 @@ class JpOverlay15Functions:
 class JpOverlay15Data:
     BANK_MAIN_MENU = Symbol(None, None, None, "")
 
+    BANK_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BANK_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BANK_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BANK_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BANK_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY15_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY15_UNKNOWN_POINTER__NA_238B180 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class JpOverlay15Section:
     name = "overlay15"
@@ -3972,11 +4829,55 @@ class JpOverlay16Functions:
 
 
 class JpOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol(None, None, None, "")
+    EVO_MENU_CONFIRM = Symbol(None, None, None, "Irdkwia's notes: 3*0x8")
 
-    EVO_SUBMENU = Symbol(None, None, None, "")
+    EVO_SUBMENU = Symbol(None, None, None, "Irdkwia's notes: 4*0x8")
 
-    EVO_MAIN_MENU = Symbol(None, None, None, "")
+    EVO_MAIN_MENU = Symbol(None, None, None, "Irdkwia's notes: 4*0x8")
+
+    EVO_MENU_STRING_IDS = Symbol(
+        None, None, None, "26*0x2\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY16_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY16_UNKNOWN_POINTER__NA_238CE40 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY16_UNKNOWN_POINTER__NA_238CE58 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class JpOverlay16Section:
@@ -4013,12 +4914,50 @@ class JpOverlay17Data:
 
     ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
 
+    ASSEMBLY_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ASSEMBLY_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ASSEMBLY_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ASSEMBLY_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ASSEMBLY_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_FUNCTION_POINTER_TABLE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_UNKNOWN_POINTER__NA_238BE00 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_UNKNOWN_POINTER__NA_238BE04 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_UNKNOWN_POINTER__NA_238BE08 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class JpOverlay17Section:
     name = "overlay17"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 17."
-    )
+    description = "Controls the Chimecho Assembly."
     loadaddress = 0x238B6A0
     length = 0x1CE0
     functions = JpOverlay17Functions
@@ -4048,12 +4987,74 @@ class JpOverlay18Data:
 
     MOVES_SUBMENU_7 = Symbol(None, None, None, "")
 
+    OVERLAY18_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_10 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_11 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_FUNCTION_POINTER_TABLE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_UNKNOWN_POINTER__NA_238D620 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_UNKNOWN_POINTER__NA_238D624 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_UNKNOWN_POINTER__NA_238D628 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class JpOverlay18Section:
     name = "overlay18"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 18."
-    )
+    description = "Controls the Electivire Link Shop."
     loadaddress = 0x238B6A0
     length = 0x3520
     functions = JpOverlay18Functions
@@ -4061,7 +5062,34 @@ class JpOverlay18Section:
 
 
 class JpOverlay19Functions:
-    pass
+    GetBarItem = Symbol(
+        None,
+        None,
+        None,
+        "Gets the struct bar_item from BAR_AVAILABLE_ITEMS with the specified item"
+        " ID.\n\nr0: item ID\nreturn: struct bar_item*",
+    )
+
+    GetRecruitableMonsterAll = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+    )
+
+    GetRecruitableMonsterList = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+    )
+
+    GetRecruitableMonsterListRestricted = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+    )
 
 
 class JpOverlay19Data:
@@ -4074,6 +5102,73 @@ class JpOverlay19Data:
     BAR_SUBMENU_1 = Symbol(None, None, None, "")
 
     BAR_SUBMENU_2 = Symbol(None, None, None, "")
+
+    OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
+        None, None, None, "4*0x2\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    BAR_UNLOCKABLE_DUNGEONS_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " dungeon_id_16[6]",
+    )
+
+    BAR_RECRUITABLE_MONSTER_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " monster_id_16[108]",
+    )
+
+    BAR_AVAILABLE_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct bar_item[66]",
+    )
+
+    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4 = Symbol(
+        None, None, None, "5*0x8\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BAR_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BAR_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BAR_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_POINTER__NA_238E360 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_POINTER__NA_238E364 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class JpOverlay19Section:
@@ -4096,7 +5191,9 @@ class JpOverlay2Data:
 class JpOverlay2Section:
     name = "overlay2"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 2."
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
     )
     loadaddress = 0x232ACC0
     length = 0x2AFA0
@@ -4123,12 +5220,82 @@ class JpOverlay20Data:
 
     RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
 
+    OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT1_0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT1_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D120 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D124 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D128 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D12C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class JpOverlay20Section:
     name = "overlay20"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 20."
-    )
+    description = "Controls the Recycle Shop."
     loadaddress = 0x238B6A0
     length = 0x3000
     functions = JpOverlay20Functions
@@ -4151,6 +5318,60 @@ class JpOverlay21Data:
     SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
 
     SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
+
+    SWAP_SHOP_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY21_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY21_JP_STRING = Symbol(None, None, None, "合成：")
+
+    OVERLAY21_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY21_UNKNOWN_POINTER__NA_238CF40 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY21_UNKNOWN_POINTER__NA_238CF44 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class JpOverlay21Section:
@@ -4175,12 +5396,82 @@ class JpOverlay22Data:
 
     SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
 
+    SHOP_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_STRUCT__NA_238E85C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_10 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC60 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC64 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC68 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC6C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC70 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class JpOverlay22Section:
     name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
+    description = "Controls the Kecleon Shop in Treasure Town."
     loadaddress = 0x238B6A0
     length = 0x4B40
     functions = JpOverlay22Functions
@@ -4201,6 +5492,62 @@ class JpOverlay23Data:
     STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
 
     STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
+
+    OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_UNKNOWN_VALUE__NA_238D2EC = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_UNKNOWN_POINTER__NA_238D8A0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class JpOverlay23Section:
@@ -4223,12 +5570,50 @@ class JpOverlay24Data:
 
     DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
 
+    OVERLAY24_UNKNOWN_STRUCT__NA_238C508 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY24_UNKNOWN_STRUCT__NA_238C514 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY24_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY24_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY24_UNKNOWN_POINTER__NA_238C600 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class JpOverlay24Section:
     name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
+    description = "Controls the Chansey Day Care."
     loadaddress = 0x238B6A0
     length = 0x24E0
     functions = JpOverlay24Functions
@@ -4246,6 +5631,54 @@ class JpOverlay25Data:
 
     APPRAISAL_SUBMENU = Symbol(None, None, None, "")
 
+    OVERLAY25_UNKNOWN_STRUCT__NA_238B498 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY25_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY25_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY25_UNKNOWN_POINTER__NA_238B5E0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class JpOverlay25Section:
     name = "overlay25"
@@ -4261,13 +5694,44 @@ class JpOverlay26Functions:
 
 
 class JpOverlay26Data:
-    pass
+    OVERLAY26_UNKNOWN_TABLE__NA_238AE20 = Symbol(
+        None,
+        None,
+        None,
+        "0x6 + 11*0xC + 0x2\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    OVERLAY26_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF60 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF64 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF68 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF6C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER5__NA_238AF70 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class JpOverlay26Section:
     name = "overlay26"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
+        "Related to mission completion. It's loaded when the dungeon completion summary"
+        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
+        " mission rewards from clients."
     )
     loadaddress = 0x238B6A0
     length = 0xE40
@@ -4287,6 +5751,66 @@ class JpOverlay27Data:
     DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
 
     DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
+
+    OVERLAY27_UNKNOWN_VALUE__NA_238C948 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_VALUE__NA_238C94C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_STRUCT__NA_238C950 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_POINTER__NA_238CE80 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_POINTER__NA_238CE84 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class JpOverlay27Section:
@@ -4308,9 +5832,7 @@ class JpOverlay28Data:
 
 class JpOverlay28Section:
     name = "overlay28"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 28."
-    )
+    description = "Controls the staff credits sequence."
     loadaddress = 0x238B6A0
     length = 0xC60
     functions = JpOverlay28Functions
@@ -4364,8 +5886,8 @@ class JpOverlay29Functions:
     )
 
     EntityIsValid = Symbol(
-        None,
-        None,
+        [0x34C58, 0x354EC, 0x38D10, 0x58BE4],
+        [0x2312538, 0x2312DCC, 0x23165F0, 0x23364C4],
         None,
         "Checks if an entity pointer points to a valid entity (not entity type 0, which"
         " represents no entity).\n\nr0: entity pointer\nreturn: bool",
@@ -4390,6 +5912,21 @@ class JpOverlay29Functions:
         " of forced loss.\nreturn: true if the forced loss happens, false otherwise",
     )
 
+    IsBossFight = Symbol(
+        [0x4614],
+        [0x22E1EF4],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: fixed_room_id\nreturn:"
+        " bool",
+    )
+
+    IsCurrentFixedRoomBossFight = Symbol(
+        [0x4630],
+        [0x22E1F10],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: bool",
+    )
+
     FixedRoomIsSubstituteRoom = Symbol(
         None,
         None,
@@ -4399,8 +5936,8 @@ class JpOverlay29Functions:
     )
 
     StoryRestrictionsEnabled = Symbol(
-        None,
-        None,
+        [0x46D8],
+        [0x22E1FB8],
         None,
         "Returns true if certain special restrictions are enabled.\n\nIf true, you will"
         " get kicked out of the dungeon if a team member that passes the"
@@ -4409,8 +5946,8 @@ class JpOverlay29Functions:
     )
 
     FadeToBlack = Symbol(
-        None,
-        None,
+        [0x4718],
+        [0x22E1FF8],
         None,
         "Fades the screen to black across several frames.\n\nNo params.",
     )
@@ -4424,8 +5961,8 @@ class JpOverlay29Functions:
     )
 
     SpawnTrap = Symbol(
-        None,
-        None,
+        [0x6010],
+        [0x22E38F0],
         None,
         "Spawns a trap on the floor. Fails if there are more than 64 traps already on"
         " the floor.\n\nThis modifies the appropriate fields on the dungeon struct,"
@@ -4447,8 +5984,8 @@ class JpOverlay29Functions:
     )
 
     CanTargetEntity = Symbol(
-        None,
-        None,
+        [0x6500],
+        [0x22E3DE0],
         None,
         "Checks if a monster can target another entity when controlled by the AI.\nMore"
         " specifically, it checks if the target is invisible, if the user can see"
@@ -4460,8 +5997,8 @@ class JpOverlay29Functions:
     )
 
     CanTargetPosition = Symbol(
-        None,
-        None,
+        [0x6708],
+        [0x22E3FE8],
         None,
         "Checks if a monster can target a position. This function just calls"
         " IsPositionInSight using the position of the user as the origin.\n\nr0: Entity"
@@ -4494,16 +6031,16 @@ class JpOverlay29Functions:
     )
 
     ItemIsActive = Symbol(
-        None,
-        None,
+        [0x233C8, 0x38D34],
+        [0x2300CA8, 0x2316614],
         None,
         "Checks if a monster is holding a certain item that isn't disabled by"
         " Klutz.\n\nr0: entity pointer\nr1: item ID\nreturn: bool",
     )
 
     UpdateStatusIconFlags = Symbol(
-        None,
-        None,
+        [0x7844],
+        [0x22E5124],
         None,
         "Sets a monster's status_icon_flags bitfield according to its current status"
         " effects. Does not affect a Sudowoodo in the 'permanent sleep' state"
@@ -4516,9 +6053,17 @@ class JpOverlay29Functions:
         " dungeon::identify_orb_flag).\n\nr0: entity pointer",
     )
 
+    LoadMappaFileAttributes = Symbol(
+        [0xAD4C],
+        [0x22E862C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: quick_saved\nr1: ???\nr2:"
+        " special_process",
+    )
+
     IsOnMonsterSpawnList = Symbol(
-        None,
-        None,
+        [0xBAD4],
+        [0x22E93B4],
         None,
         "Returns true if the specified monster is included in the floor's monster spawn"
         " list (the modified list after a maximum of 14 different species were chosen,"
@@ -4543,8 +6088,8 @@ class JpOverlay29Functions:
     )
 
     GetDirectionTowardsPosition = Symbol(
-        None,
-        None,
+        [0xCDA8],
+        [0x22EA688],
         None,
         "Gets the direction in which a monster should move to go from the origin"
         " position to the target position\n\nr0: Origin position\nr1: Target"
@@ -4553,8 +6098,8 @@ class JpOverlay29Functions:
     )
 
     GetChebyshevDistance = Symbol(
-        None,
-        None,
+        [0xCE14],
+        [0x22EA6F4],
         None,
         "Returns the Chebyshev distance between two positions. Calculated as"
         " max(abs(x0-x1), abs(y0-y1)).\n\nr0: Position A\nr1: Position B\nreturn:"
@@ -4562,8 +6107,8 @@ class JpOverlay29Functions:
     )
 
     IsPositionInSight = Symbol(
-        None,
-        None,
+        [0xCF2C],
+        [0x22EA80C],
         None,
         "Checks if a given target position is in sight from a given origin"
         " position.\nThere's multiple factors that affect this check, but generally,"
@@ -4574,8 +6119,8 @@ class JpOverlay29Functions:
     )
 
     GetLeader = Symbol(
-        None,
-        None,
+        [0xD308],
+        [0x22EABE8],
         None,
         "Gets the pointer to the entity that is currently leading the team, or null if"
         " none of the first 4 entities is a valid monster with its is_team_leader flag"
@@ -4594,8 +6139,8 @@ class JpOverlay29Functions:
     )
 
     AdvanceFrame = Symbol(
-        None,
-        None,
+        [0xDD68],
+        [0x22EB648],
         None,
         "Advances one frame. Does not return until the next frame starts.\n\nr0: ? -"
         " Unused by the function",
@@ -4686,8 +6231,8 @@ class JpOverlay29Functions:
     )
 
     DungeonRandOutcome = Symbol(
-        None,
-        None,
+        [0xE8A8, 0xE8D8],
+        [0x22EC188, 0x22EC1B8],
         None,
         "Returns the result of a possibly biased coin flip (a Bernoulli random"
         " variable) with some success probability p, using the dungeon PRNG.\n\nr0:"
@@ -4732,6 +6277,13 @@ class JpOverlay29Functions:
         " generation.\n\nNo params.",
     )
 
+    ChangeDungeonMusic = Symbol(
+        [0xEB9C],
+        [0x22EC47C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: music ID",
+    )
+
     TrySwitchPlace = Symbol(
         [0xEF00],
         [0x22EC7E0],
@@ -4743,8 +6295,8 @@ class JpOverlay29Functions:
     )
 
     ClearMonsterActionFields = Symbol(
-        None,
-        None,
+        [0xF17C],
+        [0x22ECA5C],
         None,
         "Clears the fields related to AI in the monster's data struct, setting them all"
         " to 0.\nSpecifically, monster::action_id, monster::action_use_idx and"
@@ -4753,8 +6305,8 @@ class JpOverlay29Functions:
     )
 
     SetMonsterActionFields = Symbol(
-        None,
-        None,
+        [0xF190],
+        [0x22ECA70],
         None,
         "Sets some the fields related to AI in the monster's data"
         " struct.\nSpecifically, monster::action_id, monster::action_use_idx and"
@@ -4764,8 +6316,8 @@ class JpOverlay29Functions:
     )
 
     SetActionPassTurnOrWalk = Symbol(
-        None,
-        None,
+        [0xF1A4],
+        [0x22ECA84],
         None,
         "Sets a monster's action to action::ACTION_PASS_TURN or action::ACTION_WALK,"
         " depending on the result of GetCanMoveFlag for the monster's ID.\n\nr0:"
@@ -4774,8 +6326,8 @@ class JpOverlay29Functions:
     )
 
     GetItemAction = Symbol(
-        None,
-        None,
+        [0xF360],
+        [0x22ECC40],
         None,
         "Returns the action ID that corresponds to an item given its ID.\n\nThe action"
         " is based on the category of the item (see ITEM_CATEGORY_ACTIONS), unless the"
@@ -4788,8 +6340,8 @@ class JpOverlay29Functions:
     )
 
     AddDungeonSubMenuOption = Symbol(
-        None,
-        None,
+        [0xF5A4],
+        [0x22ECE84],
         None,
         "Adds an option to the list of actions that can be taken on a pokémon, item or"
         " move to the currently active sub-menu on dungeon mode (team, moves, items,"
@@ -4798,8 +6350,8 @@ class JpOverlay29Functions:
     )
 
     SetActionRegularAttack = Symbol(
-        None,
-        None,
+        [0xF9D8],
+        [0x22ED2B8],
         None,
         "Sets a monster's action to action::ACTION_REGULAR_ATTACK, with a specified"
         " direction.\n\nr0: Pointer to the monster's action_id field (this field is"
@@ -4808,8 +6360,8 @@ class JpOverlay29Functions:
     )
 
     SetActionUseMoveAi = Symbol(
-        None,
-        None,
+        [0xFA44],
+        [0x22ED324],
         None,
         "Sets a monster's action to action::ACTION_USE_MOVE_AI, with a specified"
         " direction and move index.\n\nr0: Pointer to the monster's action_id field"
@@ -4828,8 +6380,8 @@ class JpOverlay29Functions:
     )
 
     RunLeaderTurn = Symbol(
-        None,
-        None,
+        [0x10090],
+        [0x22ED970],
         None,
         "Handles the leader's turn. Includes a movement speed check that might cause it"
         " to return early if the leader isn't fast enough to act in this fractional"
@@ -4863,31 +6415,31 @@ class JpOverlay29Functions:
     )
 
     DecrementWindCounter = Symbol(
-        None,
-        None,
+        [0x108CC],
+        [0x22EE1AC],
         None,
         "Decrements dungeon::wind_turns and displays a wind warning message if"
         " required.\n\nNo params.",
     )
 
     SetForcedLossReason = Symbol(
-        None,
-        None,
+        [0x10D8C],
+        [0x22EE66C],
         None,
         "Sets dungeon::forced_loss_reason to the specified value\n\nr0: Forced loss"
         " reason",
     )
 
     GetForcedLossReason = Symbol(
-        None,
-        None,
+        [0x10DA0],
+        [0x22EE680],
         None,
         "Returns dungeon::forced_loss_reason\n\nreturn: forced_loss_reason",
     )
 
     BindTrapToTile = Symbol(
-        None,
-        None,
+        [0x115DC],
+        [0x22EEEBC],
         None,
         "Sets the given tile's associated object to be the given trap, and sets the"
         " visibility of the trap.\n\nr0: tile pointer\nr1: entity pointer\nr2:"
@@ -4895,17 +6447,26 @@ class JpOverlay29Functions:
     )
 
     SpawnEnemyTrapAtPos = Symbol(
-        None,
-        None,
+        [0x116F4],
+        [0x22EEFD4],
         None,
         "A convenience wrapper around SpawnTrap and BindTrapToTile. Always passes 0 for"
         " the team parameter (making it an enemy trap).\n\nr0: trap ID\nr1: x"
         " position\nr2: y position\nr3: flags\nstack[0]: visibility flag",
     )
 
+    PerformLeaderAction = Symbol(
+        [0x14BFC],
+        [0x22F24DC],
+        None,
+        "This appears to be the function that actually performs the leader's action"
+        " within RunLeaderTurn.\n\nNote: unverified, ported from Irdkwia's notes\n\nNo"
+        " params.",
+    )
+
     ChangeLeader = Symbol(
-        None,
-        None,
+        [0x1764C],
+        [0x22F4F2C],
         None,
         "Tries to change the current leader to the monster specified by"
         " dungeon::new_leader.\n\nAccounts for situations that can prevent changing"
@@ -4914,12 +6475,20 @@ class JpOverlay29Functions:
         " message log.\n\nNo params.",
     )
 
-    ResetDamageDesc = Symbol(
+    ResetDamageData = Symbol(
         [0x1AB1C],
         [0x22F83FC],
         None,
-        "Seems to zero some damage description struct, which is output by the damage"
-        " calculation function.\n\nr0: damage description pointer",
+        "Zeroes the damage data struct, which is output by the damage calculation"
+        " function.\n\nr0: damage data pointer",
+    )
+
+    GetTotalSpriteFileSize = Symbol(
+        [0x1AD54],
+        [0x22F8634],
+        None,
+        "Checks Castform and Cherrim\n\nNote: unverified, ported from Irdkwia's"
+        " notes\n\nr0: monster ID\nreturn: sprite file size",
     )
 
     GetSpriteIndex = Symbol(
@@ -4943,9 +6512,9 @@ class JpOverlay29Functions:
         [0x1B09C],
         [0x22F897C],
         None,
-        "Checks if the current dungeon floor number is even.\n\nHas a special check to"
-        " return false for Labyrinth Cave B10F (the Gabite boss fight).\n\nreturn:"
-        " bool",
+        "Checks if the current dungeon floor number is even (probably to determine"
+        " whether an enemy spawn should be female).\n\nHas a special check to return"
+        " false for Labyrinth Cave B10F (the Gabite boss fight).\n\nreturn: bool",
     )
 
     GetKecleonIdToSpawnByFloor = Symbol(
@@ -4956,12 +6525,47 @@ class JpOverlay29Functions:
         " otherwise returns male Kecleon's id (0x17F).\n\nreturn: monster ID",
     )
 
+    StoreSpriteFileIndexBothGenders = Symbol(
+        [0x1B0F4],
+        [0x22F89D4],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nr1: file ID",
+    )
+
+    LoadMonsterSpriteInner = Symbol(
+        [0x1B1BC],
+        [0x22F8A9C],
+        None,
+        "This is called by LoadMonsterSprite a bunch of times.\n\nr0: monster ID",
+    )
+
+    SwapMonsterWanFileIndex = Symbol(
+        [0x1B2B8],
+        [0x22F8B98],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: src_id\nr1: dst_id",
+    )
+
     LoadMonsterSprite = Symbol(
+        [0x1B338],
+        [0x22F8C18],
         None,
+        "Loads the sprite of the specified monster to use it in a dungeon.\n\nIrdkwia's"
+        " notes: Handles Castform/Cherrim/Deoxys\n\nr0: monster ID\nr1: ?",
+    )
+
+    DeleteMonsterSpriteFile = Symbol(
+        [0x1B44C],
+        [0x22F8D2C],
         None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID",
+    )
+
+    DeleteAllMonsterSpriteFiles = Symbol(
+        [0x1B4E4],
+        [0x22F8DC4],
         None,
-        "Loads the sprite of the specified monster to use it in a dungeon.\n\nr0:"
-        " Monster id\nr1: ?",
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
     )
 
     EuFaintCheck = Symbol(
@@ -4980,8 +6584,8 @@ class JpOverlay29Functions:
     )
 
     HandleFaint = Symbol(
-        None,
-        None,
+        [0x1BC10],
+        [0x22F94F0],
         None,
         "Handles a fainted pokémon (reviving does not count as fainting).\n\nr0:"
         " Fainted entity\nr1: Faint reason (move ID or greater than the max move id for"
@@ -4989,11 +6593,19 @@ class JpOverlay29Functions:
     )
 
     UpdateAiTargetPos = Symbol(
-        None,
-        None,
+        [0x1CE28],
+        [0x22FA708],
         None,
         "Given a monster, updates its target_pos field based on its current position"
         " and the direction in which it plans to attack.\n\nr0: Entity pointer",
+    )
+
+    SetMonsterTypeAndAbility = Symbol(
+        [0x1CE78],
+        [0x22FA758],
+        None,
+        "Checks Forecast ability\n\nNote: unverified, ported from Irdkwia's"
+        " notes\n\nr0: target entity pointer",
     )
 
     TryActivateSlowStart = Symbol(
@@ -5012,9 +6624,17 @@ class JpOverlay29Functions:
         " weather and changes the floor's weather accordingly.\n\nNo params",
     )
 
+    GetMonsterApparentId = Symbol(
+        [0x1D0EC],
+        [0x22FA9CC],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: target entity"
+        " pointer\nr1: current_id\nreturn: ?",
+    )
+
     DefenderAbilityIsActive = Symbol(
-        None,
-        None,
+        [0x25694],
+        [0x2302F74],
         None,
         "Checks if a defender has an active ability that isn't disabled by an"
         " attacker's Mold Breaker.\n\nThere are two versions of this function, which"
@@ -5052,8 +6672,8 @@ class JpOverlay29Functions:
     )
 
     ShouldMonsterHeadToStairs = Symbol(
-        None,
-        None,
+        [0x1E0F8],
+        [0x22FB9D8],
         None,
         "Checks if a given monster should try to reach the stairs when controlled by"
         " the AI\n\nr0: Entity pointer\nreturn: True if the monster should try to reach"
@@ -5072,8 +6692,8 @@ class JpOverlay29Functions:
     )
 
     ExclusiveItemEffectIsActive = Symbol(
-        None,
-        None,
+        [0x383E0, 0x6BD58],
+        [0x2315CC0, 0x2349638],
         None,
         "Checks if a monster is a team member under the effects of a certain exclusive"
         " item effect.\n\nr0: entity pointer\nr1: exclusive item effect ID\nreturn:"
@@ -5102,6 +6722,13 @@ class JpOverlay29Functions:
         None,
         "Returns true the leader has the specified iq skill.\n\nr0: iq skill"
         " id\nreturn: bool",
+    )
+
+    IsSatisfyingScenarioConditionToSpawn = Symbol(
+        [0x1F1E0],
+        [0x22FCAC0],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: bool",
     )
 
     HasLowHealth = Symbol(
@@ -5133,8 +6760,8 @@ class JpOverlay29Functions:
     )
 
     InitTeam = Symbol(
-        None,
-        None,
+        [0x2001C],
+        [0x22FD8FC],
         None,
         "Seems to initialize the team when entering a dungeon.\n\nr0: ?",
     )
@@ -5149,8 +6776,8 @@ class JpOverlay29Functions:
     )
 
     InitTeamMember = Symbol(
-        None,
-        None,
+        [0x20EC8],
+        [0x22FE7A8],
         None,
         "Initializes a team member. Run at the start of each floor in a dungeon.\n\nr0:"
         " Monster ID\nr1: X position\nr2: Y position\nr3: Pointer to the struct"
@@ -5158,9 +6785,17 @@ class JpOverlay29Functions:
         " ?\nstack[2]: ?\nstack[3]: ?\nstack[4]: ?",
     )
 
+    InitMonster = Symbol(
+        [0x218D0],
+        [0x22FF1B0],
+        None,
+        "Initializes a monster struct.\n\nr0: pointer to monster to initialize\nr1:"
+        " some flag",
+    )
+
     ExecuteMonsterAction = Symbol(
-        None,
-        None,
+        [0x21FC4],
+        [0x22FF8A4],
         None,
         "Executes the set action for the specified monster. Used for both AI actions"
         " and player-inputted actions. If the action is not ACTION_NOTHING,"
@@ -5171,8 +6806,8 @@ class JpOverlay29Functions:
     )
 
     HasStatusThatPreventsActing = Symbol(
-        None,
-        None,
+        [0x22CD8],
+        [0x23005B8],
         None,
         "Returns true if the monster has any status problem that prevents it from"
         " acting\n\nr0: Entity pointer\nreturn: True if the specified monster can't act"
@@ -5209,6 +6844,13 @@ class JpOverlay29Functions:
         " exclusive items.\n\nr0: pointer to entity\nreturns: int",
     )
 
+    GetMonsterName = Symbol(
+        [0x23C58],
+        [0x2301538],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer\nr1: TargetInfo",
+    )
+
     SprintfStatic = Symbol(
         [0x23DF0],
         [0x23016D0],
@@ -5219,8 +6861,8 @@ class JpOverlay29Functions:
     )
 
     IsMonsterCornered = Symbol(
-        None,
-        None,
+        [0x24C3C],
+        [0x230251C],
         None,
         "True if the given monster is cornered (it can't move in any direction)\n\nr0:"
         " Entity pointer\nreturn: True if the monster can't move in any direction,"
@@ -5228,8 +6870,8 @@ class JpOverlay29Functions:
     )
 
     CanAttackInDirection = Symbol(
-        None,
-        None,
+        [0x24DB4],
+        [0x2302694],
         None,
         "Returns whether a monster can attack in a given direction.\nThe check fails if"
         " the destination tile is impassable, contains a monster that isn't of type"
@@ -5240,8 +6882,8 @@ class JpOverlay29Functions:
     )
 
     CanAiMonsterMoveInDirection = Symbol(
-        None,
-        None,
+        [0x24ED8],
+        [0x23027B8],
         None,
         "Checks whether an AI-controlled monster can move in the specified"
         " direction.\nAccounts for walls, other monsters on the target position and IQ"
@@ -5254,16 +6896,16 @@ class JpOverlay29Functions:
     )
 
     ShouldMonsterRunAway = Symbol(
-        None,
-        None,
+        [0x25248],
+        [0x2302B28],
         None,
         "Checks if a monster should run away from other monsters\n\nr0: Entity"
         " pointer\nreturn: True if the monster should run away, false otherwise",
     )
 
     ShouldMonsterRunAwayVariation = Symbol(
-        None,
-        None,
+        [0x25338],
+        [0x2302C18],
         None,
         "Calls ShouldMonsterRunAway and returns its result. It also calls another"
         " function if the result was true.\n\nr0: Entity pointer\nr1: ?\nreturn: Result"
@@ -5286,6 +6928,23 @@ class JpOverlay29Functions:
         " Acid.\n\nr0: entity pointer\nr1: ability ID\nreturn: bool",
     )
 
+    AbilityIsActiveVeneer = Symbol(
+        [0x259F0],
+        [0x23032D0],
+        None,
+        "Likely a linker-generated veneer for AbilityIsActive.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " entity pointer\nr1: ability ID\nreturn: bool",
+    )
+
+    AbilityIsActiveAnyEntity = Symbol(
+        [0x259FC],
+        [0x23032DC],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " ability ID\nreturn: bool",
+    )
+
     LevitateIsActive = Symbol(
         [0x25A88],
         [0x2303368],
@@ -5302,9 +6961,25 @@ class JpOverlay29Functions:
         " ID\nreturn: bool",
     )
 
+    IsTypeAffectedByGravity = Symbol(
+        [0x25AF8],
+        [0x23033D8],
+        None,
+        "Checks if Gravity is active and that the given type is affected (i.e., Flying"
+        " type).\n\nr0: target entity pointer (unused)\nr1: type ID\nreturn: bool",
+    )
+
+    HasTypeAffectedByGravity = Symbol(
+        [0x25B1C],
+        [0x23033FC],
+        None,
+        "Checks if Gravity is active and that the given monster is of an affected type"
+        " (i.e., Flying type).\n\nr0: target entity pointer\nr1: type ID\nreturn: bool",
+    )
+
     CanSeeInvisibleMonsters = Symbol(
-        None,
-        None,
+        [0x25B5C],
+        [0x230343C],
         None,
         "Returns whether a certain monster can see other invisible monsters.\nTo be"
         " precise, this function returns true if the monster is holding Goggle Specs or"
@@ -5313,8 +6988,8 @@ class JpOverlay29Functions:
     )
 
     HasDropeyeStatus = Symbol(
-        None,
-        None,
+        [0x25BC0],
+        [0x23034A0],
         None,
         "Returns whether a certain monster is under the effect of"
         " status::STATUS_DROPEYE.\n\nr0: Entity pointer\nreturn: True if the monster"
@@ -5330,8 +7005,8 @@ class JpOverlay29Functions:
     )
 
     GetMoveTypeForMonster = Symbol(
-        None,
-        None,
+        [0x25EEC],
+        [0x23037CC],
         None,
         "Check the type of a move when used by a certain monster. Accounts for special"
         " cases such as Hidden Power, Weather Ball, the regular attack...\n\nr0: Entity"
@@ -5361,16 +7036,33 @@ class JpOverlay29Functions:
     )
 
     EnemyEvolution = Symbol(
-        None,
-        None,
+        [0x2636C],
+        [0x2303C4C],
         None,
         "Checks if the specified enemy should evolve because it just defeated an ally,"
         " and if so, attempts to evolve it.\n\nr0: Pointer to the enemy to check",
     )
 
+    TryDecreaseLevel = Symbol(
+        [0x26BF4],
+        [0x23044D4],
+        None,
+        "Decrease the target monster's level if possible.\n\nr0: user entity"
+        " pointer\nr1: target entity pointer\nr2: number of levels to decrease\nreturn:"
+        " success flag",
+    )
+
+    LevelUp = Symbol(
+        [0x26CA8],
+        [0x2304588],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer\nr2: message flag?\nr3: ?\nreturn: success flag?",
+    )
+
     EvolveMonster = Symbol(
-        None,
-        None,
+        [0x278EC],
+        [0x23051CC],
         None,
         "Makes the specified monster evolve into the specified species.\n\nr0: Pointer"
         " to the entity to evolve\nr1: ?\nr2: Species to evolve into",
@@ -5387,8 +7079,8 @@ class JpOverlay29Functions:
     )
 
     DisplayActions = Symbol(
-        None,
-        None,
+        [0x28C50],
+        [0x2306530],
         None,
         "Graphically displays any pending actions that have happened but haven't been"
         " shown on screen yet. All actions are displayed at the same time. For example,"
@@ -5426,17 +7118,16 @@ class JpOverlay29Functions:
     )
 
     ApplyDamage = Symbol(
-        None,
-        None,
+        [0x2CCB8],
+        [0x230A598],
         None,
         "Applies damage to a monster. Displays the damage animation, lowers its health"
         " and handles reviving if applicable.\nThe EU version has some additional"
         " checks related to printing fainting messages under specific"
         " circumstances.\n\nr0: Attacker pointer\nr1: Defender pointer\nr2: Pointer to"
         " the damage_data struct that contains info about the damage to deal\nr3:"
-        " ?\nstack[0]: ?\nstack[1]: Pointer to some struct. The first byte contains the"
-        " ID of the move used.\nreturn: True if the target fainted (reviving does not"
-        " count as fainting)",
+        " ?\nstack[0]: ?\nstack[1]: Faint reason (see HandleFaint)\nreturn: True if the"
+        " target fainted (reviving does not count as fainting)",
     )
 
     GetTypeMatchup = Symbol(
@@ -5455,8 +7146,8 @@ class JpOverlay29Functions:
     )
 
     CalcDamage = Symbol(
-        None,
-        None,
+        [0x2F820],
+        [0x230D100],
         None,
         "Probably the damage calculation function.\n\nr0: attacker pointer\nr1:"
         " defender pointer\nr2: attack type\nr3: attack power\nstack[0]: crit"
@@ -5516,6 +7207,14 @@ class JpOverlay29Functions:
         None,
         "CalcDamage seems to use scratch space of some kind, which this function"
         " zeroes.\n\nNo params.",
+    )
+
+    IsRecruited = Symbol(
+        [0x31830],
+        [0x230F110],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer\nreturn: bool",
     )
 
     TrySpawnMonsterAndTickSpawnCounter = Symbol(
@@ -5665,8 +7364,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictPoisonedStatus = Symbol(
-        None,
-        None,
+        [0x36280],
+        [0x2313B60],
         None,
         "Inflicts the Poisoned status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to log a message on"
@@ -5675,8 +7374,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictBadlyPoisonedStatus = Symbol(
-        None,
-        None,
+        [0x36554],
+        [0x2313E34],
         None,
         "Inflicts the Badly Poisoned status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -5746,8 +7445,8 @@ class JpOverlay29Functions:
     )
 
     LowerOffensiveStat = Symbol(
-        None,
-        None,
+        [0x37208],
+        [0x2314AE8],
         None,
         "Lowers the specified offensive stat on the target monster.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: stat index\nr3: number of"
@@ -5780,8 +7479,8 @@ class JpOverlay29Functions:
     )
 
     ApplyOffensiveStatMultiplier = Symbol(
-        None,
-        None,
+        [0x37944],
+        [0x2315224],
         None,
         "Applies a multiplier to the specified offensive stat on the target"
         " monster.\n\nThis affects struct"
@@ -5816,7 +7515,8 @@ class JpOverlay29Functions:
         None,
         "Lowers the specified hit chance stat (accuracy or evasion) on the target"
         " monster.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: stat"
-        " index\nr3: ?",
+        " index\nr3: ? (Irdkwia's notes say this is the number of stages, but I'm"
+        " pretty sure that's incorrect)",
     )
 
     TryInflictCringeStatus = Symbol(
@@ -5914,13 +7614,21 @@ class JpOverlay29Functions:
     )
 
     TryInflictCoweringStatus = Symbol(
-        [0x38E64],
-        [0x2316744],
+        [0x38D64],
+        [0x2316644],
         None,
         "Inflicts the Cowering status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to log a message on"
         " failure\nr3: flag to only perform the check for inflicting without actually"
         " inflicting\nreturn: Whether or not the status could be inflicted",
+    )
+
+    TryRestoreHp = Symbol(
+        [0x38E64],
+        [0x2316744],
+        None,
+        "Restore HP of the target monster if possible.\n\nr0: user entity pointer\nr1:"
+        " target entity pointer\nr2: HP to restore\nreturn: success flag",
     )
 
     TryIncreaseHp = Symbol(
@@ -5930,6 +7638,30 @@ class JpOverlay29Functions:
         "Restore HP and possibly boost max HP of the target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: HP to restore\nr3: max HP"
         " boost\nstack[0]: flag to log a message on failure\nreturn: Success flag",
+    )
+
+    RevealItems = Symbol(
+        [0x39208],
+        [0x2316AE8],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer",
+    )
+
+    RevealStairs = Symbol(
+        [0x39298],
+        [0x2316B78],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer",
+    )
+
+    RevealEnemies = Symbol(
+        [0x39354],
+        [0x2316C34],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer",
     )
 
     TryInflictLeechSeedStatus = Symbol(
@@ -5996,8 +7728,8 @@ class JpOverlay29Functions:
     )
 
     AiConsiderMove = Symbol(
-        None,
-        None,
+        [0x3D470],
+        [0x231AD50],
         None,
         "The AI uses this function to check if a move has any potential targets, to"
         " calculate the list of potential targets and to calculate the move's special"
@@ -6012,8 +7744,8 @@ class JpOverlay29Functions:
     )
 
     TryAddTargetToAiTargetList = Symbol(
-        None,
-        None,
+        [0x3DBA0],
+        [0x231B480],
         None,
         "Checks if the specified target is eligible to be targeted by the AI and if so"
         " adds it to the list of targets. This function also fills an array that seems"
@@ -6026,8 +7758,8 @@ class JpOverlay29Functions:
     )
 
     IsAiTargetEligible = Symbol(
-        None,
-        None,
+        [0x3DC94],
+        [0x231B574],
         None,
         "Checks if a given target is eligible to be targeted by the AI with a certain"
         " move\n\nr0: Move's AI range field\nr1: User entity pointer\nr2: Target entity"
@@ -6059,6 +7791,24 @@ class JpOverlay29Functions:
         " move_target_and_range in the C headers.\n\nr0: entity pointer\nr1: move"
         " pointer\nr2: AI flag (same as GetMoveTargetAndRange)\nreturn: move target and"
         " range",
+    )
+
+    IsInSpawnList = Symbol(
+        [0x3EFE8],
+        [0x231C8C8],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: spawn_list_ptr\nr1:"
+        " monster ID\nreturn: bool",
+    )
+
+    ChangeShayminForme = Symbol(
+        [0x3F0D8],
+        [0x231C9B8],
+        None,
+        "forme:\n  1: change from Land to Sky\n  2: change from Sky to Land\nresult:\n "
+        " 0: not Shaymin\n  1: not correct Forme\n  2: frozen\n  3: ok\n\nNote:"
+        " unverified, ported from Irdkwia's notes\n\nr0: Target\nr1: forme\nreturn:"
+        " result",
     )
 
     ApplyItemEffect = Symbol(
@@ -6131,8 +7881,8 @@ class JpOverlay29Functions:
     )
 
     MoveHitCheck = Symbol(
-        None,
-        None,
+        [0x47808],
+        [0x23250E8],
         None,
         "Determines if a move used hits or misses the target. It gets called twice per"
         " target, once with r3 = false and a second time with r3 = true.\n\nr0:"
@@ -6140,6 +7890,15 @@ class JpOverlay29Functions:
         " first accuracy (accuracy1) should be used, false if its second accuracy"
         " (accuracy2) should be used instead.\nreturns: True if the move hits, false if"
         " it misses.",
+    )
+
+    IsHyperBeamVariant = Symbol(
+        [0x480E4],
+        [0x23259C4],
+        None,
+        "Checks if a move is a Hyper Beam variant that requires a a turn to"
+        " recharge.\n\nInclude moves: Frenzy Plant, Hydro Cannon, Hyper Beam, Blast"
+        " Burn, Rock Wrecker, Giga Impact, Roar of Time\n\nr0: move\nreturn: bool",
     )
 
     DungeonRandOutcomeUserTargetInteraction = Symbol(
@@ -6166,8 +7925,8 @@ class JpOverlay29Functions:
     )
 
     CanAiUseMove = Symbol(
-        None,
-        None,
+        [0x48620],
+        [0x2325F00],
         None,
         "Checks if an AI-controlled monster can use a move.\nWill return false if the"
         " any of the flags move::f_exists, move::f_subsequent_in_link_chain or"
@@ -6182,8 +7941,8 @@ class JpOverlay29Functions:
     )
 
     CanMonsterUseMove = Symbol(
-        None,
-        None,
+        [0x486D0],
+        [0x2325FB0],
         None,
         "Checks if a monster can use the given move.\nWill always return true for the"
         " regular attack. Will return false if the move if the flag move::f_disabled is"
@@ -6212,8 +7971,8 @@ class JpOverlay29Functions:
     )
 
     GetMoveAnimationId = Symbol(
-        None,
-        None,
+        [0x496BC],
+        [0x2326F9C],
         None,
         "Returns the move animation ID that should be played for a move.\nIt contains a"
         " check for weather ball. After that, if the parameter"
@@ -6225,8 +7984,8 @@ class JpOverlay29Functions:
     )
 
     ShouldMovePlayAlternativeAnimation = Symbol(
-        None,
-        None,
+        [0x49824],
+        [0x2327104],
         None,
         "Checks whether a moved used by a monster should play its alternative"
         " animation. Includes checks for Curse, Snore, Sleep Talk, Solar Beam and"
@@ -6234,19 +7993,19 @@ class JpOverlay29Functions:
         " pointer\nreturn: True if the move should play its alternative animation",
     )
 
-    DealDamageWithRecoil = Symbol(
+    DoMoveDamageWithRecoil = Symbol(
         [0x4BADC],
         [0x23293BC],
         None,
-        "Deals damage from a move or item used by an attacking monster on a defending"
-        " monster, and also deals recoil damage to the attacker.\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: bool, whether"
-        " or not damage was dealt",
+        "Move effect: Deals damage, inflicting recoil damage on the attacker.\nRelevant"
+        " moves: Submission, Wood Hammer, Brave Bird\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: bool, whether or not damage"
+        " was dealt",
     )
 
     ExecuteMoveEffect = Symbol(
-        None,
-        None,
+        [0x52380],
+        [0x232FC60],
         None,
         "Handles the effects that happen after a move is used. Includes a loop that is"
         " run for each target, mutiple ability checks and the giant switch statement"
@@ -6271,22 +8030,25 @@ class JpOverlay29Functions:
         None,
         "Appears to calculate damage from a variable-damage projectile.\n\nr0: entity"
         " pointer 1?\nr1: entity pointer 2?\nr2: move pointer\nr3: move"
-        " power\nothers: ?",
+        " power\nstack[0]: damage multiplier (as a binary fixed-point number with 8"
+        " fraction bits)\nstack[1]: item ID of the projectile\nreturn: Calculated"
+        " damage",
     )
 
     CalcDamageFinal = Symbol(
-        None,
-        None,
+        [0x5687C],
+        [0x233415C],
         None,
         "Last function called by DealDamage to determine the final damage dealt by the"
         " move. The result of this call is the return value of DealDamage. \n\nr0:"
-        " Attacker pointer\nr1: Defender pointer\nr2: Move pointer\nr3: ?\nstack[0]:"
-        " Pointer to some struct. The first byte contains the ID of the move used.",
+        " Attacker pointer\nr1: Defender pointer\nr2: Move pointer\nr3: [output] struct"
+        " containing info about the damage calculation\nstack[0]: Faint reason (see"
+        " HandleFaint)\nreturn: Calculated damage",
     )
 
     StatusCheckerCheck = Symbol(
-        None,
-        None,
+        [0x56B80],
+        [0x2334460],
         None,
         "Determines if using a given move against its intended targets would be"
         " redundant because all of them already have the effect caused by said"
@@ -6313,6 +8075,45 @@ class JpOverlay29Functions:
         " abilities.\n\nr0: pointer to entity",
     )
 
+    DigitCount = Symbol(
+        [0x5917C],
+        [0x2336A5C],
+        None,
+        "Counts the number of digits in a nonnegative integer.\n\nIf the number is"
+        " negative, it is cast to a uint16_t before counting digits.\n\nr0:"
+        " int\nreturn: number of digits in int",
+    )
+
+    LoadTextureUi = Symbol(
+        [0x591CC],
+        [0x2336AAC],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    DisplayNumberTextureUi = Symbol(
+        [0x59370],
+        [0x2336C50],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: x position\nr1: y"
+        " position\nr2: number\nr3: ally_mode\nreturn: xsize",
+    )
+
+    DisplayCharTextureUi = Symbol(
+        [0x59478],
+        [0x2336D58],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: call_back_str\nr1: x"
+        " position\nr2: y position\nr3: char_id\nstack[0]: ?\nreturn: ?",
+    )
+
+    DisplayUi = Symbol(
+        [0x59500],
+        [0x2336DE0],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
     GetTile = Symbol(
         [0x59BEC],
         [0x23374CC],
@@ -6330,11 +8131,27 @@ class JpOverlay29Functions:
         " position\nreturn: tile pointer",
     )
 
+    IsFullFloorFixedRoom = Symbol(
+        [0x59CC4],
+        [0x23375A4],
+        None,
+        "Checks if the current fixed room on the dungeon generation info corresponds to"
+        " a fixed, full-floor layout.\n\nThe first non-full-floor fixed room is 0xA5,"
+        " which is for Sealed Chambers.\n\nreturn: bool",
+    )
+
     GetStairsRoom = Symbol(
-        None,
-        None,
+        [0x59F18],
+        [0x23377F8],
         None,
         "Returns the index of the room that contains the stairs\n\nreturn: Room index",
+    )
+
+    GetRandomSpawnMonsterID = Symbol(
+        [0x5BA7C],
+        [0x233935C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: monster ID?",
     )
 
     GravityIsActive = Symbol(
@@ -6393,8 +8210,8 @@ class JpOverlay29Functions:
     )
 
     SetMinimapDataE447 = Symbol(
-        None,
-        None,
+        [0x5DCFC],
+        [0x233B5DC],
         None,
         "Sets minimap_display_data::field_0xE447 to the specified value\n\nr0: Value to"
         " set the field to",
@@ -6410,8 +8227,8 @@ class JpOverlay29Functions:
     )
 
     SetMinimapDataE448 = Symbol(
-        None,
-        None,
+        [0x5DD14],
+        [0x233B5F4],
         None,
         "Sets minimap_display_data::field_0xE448 to the specified value\n\nr0: Value to"
         " set the field to",
@@ -6468,8 +8285,8 @@ class JpOverlay29Functions:
     )
 
     ClearHiddenStairs = Symbol(
-        None,
-        None,
+        [0x5E978],
+        [0x233C258],
         None,
         "Clears the tile (terrain and spawns) on which Hidden Stairs are spawned, if"
         " applicable.\n\nNo params.",
@@ -7048,8 +8865,8 @@ class JpOverlay29Functions:
     )
 
     ResetHiddenStairsSpawn = Symbol(
-        None,
-        None,
+        [0x669EC],
+        [0x23442CC],
         None,
         "Resets hidden stairs spawn information for the floor. This includes the"
         " position on the floor generation status as well as the flag indicating"
@@ -7064,9 +8881,95 @@ class JpOverlay29Functions:
         " FIXED_ROOM_DATA_PTR.\n\nNo params.",
     )
 
+    LoadFixedRoom = Symbol(
+        [0x67904], [0x23451E4], None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OpenFixedBin = Symbol(
+        [0x67B38],
+        [0x2345418],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    CloseFixedBin = Symbol(
+        [0x67B6C],
+        [0x234544C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    AreOrbsAllowed = Symbol(
+        [0x67B90],
+        [0x2345470],
+        None,
+        "Checks if orbs are usable in the given fixed room.\n\nAlways true if not a"
+        " full-floor fixed room.\n\nr0: fixed room ID\nreturn: bool",
+    )
+
+    AreTileJumpsAllowed = Symbol(
+        [0x67BC0],
+        [0x23454A0],
+        None,
+        "Checks if tile jumps (warping, being blown away, and leaping) are allowed in"
+        " the given fixed room.\n\nAlways true if not a full-floor fixed room.\n\nr0:"
+        " fixed room ID\nreturn: bool",
+    )
+
+    AreTrawlOrbsAllowed = Symbol(
+        [0x67BF0],
+        [0x23454D0],
+        None,
+        "Checks if Trawl Orbs work in the given fixed room.\n\nAlways true if not a"
+        " full-floor fixed room.\n\nr0: fixed room ID\nreturn: bool",
+    )
+
+    AreOrbsAllowedVeneer = Symbol(
+        [0x67C20],
+        [0x2345500],
+        None,
+        "Likely a linker-generated veneer for InitMemAllocTable.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " fixed room ID\nreturn: bool",
+    )
+
+    AreLateGameTrapsEnabled = Symbol(
+        [0x67C2C],
+        [0x234550C],
+        None,
+        "Check if late-game traps (Summon, Pitfall, and Pokémon traps) work in the"
+        " given fixed room.\n\nOr disabled? This function, which Irdkwia's notes label"
+        " as a disable check, check the struct field labeled in End's notes as an"
+        " enable flag.\n\nr0: fixed room ID\nreturn: bool",
+    )
+
+    AreMovesEnabled = Symbol(
+        [0x67C44],
+        [0x2345524],
+        None,
+        "Checks if moves (excluding the regular attack) are usable in the given fixed"
+        " room.\n\nr0: fixed room ID\nreturn: bool",
+    )
+
+    IsRoomIlluminated = Symbol(
+        [0x67C5C],
+        [0x234553C],
+        None,
+        "Checks if the given fixed room is fully illuminated.\n\nr0: fixed room"
+        " ID\nreturn: bool",
+    )
+
+    GetMatchingMonsterId = Symbol(
+        [0x67C74],
+        [0x2345554],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nr1: ?\nr2:"
+        " ?\nreturn: monster ID",
+    )
+
     GenerateItemExplicit = Symbol(
-        None,
-        None,
+        [0x67E98],
+        [0x2345778],
         None,
         "Initializes an item struct with the given information.\n\nThis calls"
         " InitStandardItem, then explicitly sets the quantity and stickiness. If"
@@ -7075,8 +8978,8 @@ class JpOverlay29Functions:
     )
 
     GenerateAndSpawnItem = Symbol(
-        None,
-        None,
+        [0x67F14],
+        [0x23457F4],
         None,
         "A convenience function that generates an item with GenerateItemExplicit, then"
         " spawns it with SpawnItem.\n\nIf the check-in-bag flag is set and the player's"
@@ -7096,16 +8999,16 @@ class JpOverlay29Functions:
     )
 
     GenerateCleanItem = Symbol(
-        None,
-        None,
+        [0x686C8],
+        [0x2345FA8],
         None,
         "Wrapper around GenerateItem with quantity set to 0 and stickiness type set to"
         " SPAWN_STICKY_NEVER.\n\nr0: pointer to item to initialize\nr1: item ID",
     )
 
     SpawnItem = Symbol(
-        None,
-        None,
+        [0x6901C],
+        [0x23468FC],
         None,
         "Spawns an item on the floor. Fails if there are more than 64 items already on"
         " the floor.\n\nThis calls SpawnItemEntity, fills in the item info struct, sets"
@@ -7124,8 +9027,8 @@ class JpOverlay29Functions:
     )
 
     GenerateMoneyQuantity = Symbol(
-        None,
-        None,
+        [0x6A304],
+        [0x2347BE4],
         None,
         "Set the quantity code on an item (assuming it's Poké), given some maximum"
         " acceptable money amount.\n\nr0: item pointer\nr1: max money amount"
@@ -7133,8 +9036,8 @@ class JpOverlay29Functions:
     )
 
     CheckTeamItemsFlags = Symbol(
-        None,
-        None,
+        [0x6A6AC],
+        [0x2347F8C],
         None,
         "Checks whether any of the items in the bag or any of the items carried by team"
         " members has any of the specified flags set in its flags field.\n\nr0: Flag(s)"
@@ -7143,8 +9046,8 @@ class JpOverlay29Functions:
     )
 
     GenerateItem = Symbol(
-        None,
-        None,
+        [0x6ADA4],
+        [0x2348684],
         None,
         "Initializes an item struct with the given information.\n\nThis wraps InitItem,"
         " but with extra logic to resolve the item's stickiness. It also calls"
@@ -7153,8 +9056,8 @@ class JpOverlay29Functions:
     )
 
     CheckActiveChallengeRequest = Symbol(
-        None,
-        None,
+        [0x6CB94],
+        [0x234A474],
         None,
         "Checks if there's an active challenge request on the current"
         " dungeon.\n\nreturn: True if there's an active challenge request on the"
@@ -7162,8 +9065,8 @@ class JpOverlay29Functions:
     )
 
     IsOutlawOrChallengeRequestFloor = Symbol(
-        None,
-        None,
+        [0x6CC0C],
+        [0x234A4EC],
         None,
         "Checks if the current floor is an active mission destination of type"
         " MISSION_TAKE_ITEM_FROM_OUTLAW, MISSION_ARREST_OUTLAW or"
@@ -7171,8 +9074,8 @@ class JpOverlay29Functions:
     )
 
     IsDestinationFloor = Symbol(
-        None,
-        None,
+        [0x6CC50],
+        [0x234A530],
         None,
         "Checks if the current floor is a mission destination floor.\n\nreturn: bool",
     )
@@ -7233,8 +9136,8 @@ class JpOverlay29Functions:
     )
 
     LoadMissionMonsterSprites = Symbol(
-        None,
-        None,
+        [0x6CE40],
+        [0x234A720],
         None,
         "Loads the sprites of monsters that appear on the current floor because of a"
         " mission, if applicable.\n\nThis includes monsters to be rescued, outlaws and"
@@ -7334,16 +9237,16 @@ class JpOverlay29Functions:
     )
 
     SetTargetMonsterNotFoundFlag = Symbol(
-        None,
-        None,
+        [0x6D10C],
+        [0x234A9EC],
         None,
         "Sets dungeon::target_monster_not_found_flag to the specified value.\n\nr0:"
         " Value to set the flag to",
     )
 
     GetTargetMonsterNotFoundFlag = Symbol(
-        None,
-        None,
+        [0x6D120],
+        [0x234AA00],
         None,
         "Gets the value of dungeon::target_monster_not_found_flag.\n\nreturn:"
         " dungeon::target_monster_not_found_flag",
@@ -7359,6 +9262,15 @@ class JpOverlay29Functions:
         " to target\n- Deliver item\n- Search for target\n- Take item from outlaw\n-"
         " Arrest outlaw\n- Challenge Request\n\nr0: mission destination info"
         " pointer\nreturn: bool",
+    )
+
+    GenerateMissionEggMonster = Symbol(
+        [0x6D2B0],
+        [0x234AB90],
+        None,
+        "Generates the monster ID in the egg from the given mission. Uses the base form"
+        " of the monster.\n\nNote: unverified, ported from Irdkwia's notes\n\nr0:"
+        " mission struct",
     )
 
     LogMessageByIdWithPopupCheckUser = Symbol(
@@ -7438,8 +9350,8 @@ class JpOverlay29Functions:
     )
 
     LogMessageWithPopup = Symbol(
-        None,
-        None,
+        [0x6EE4C],
+        [0x234C72C],
         None,
         "Logs a message in the message log alongside a message popup.\n\nr0: user"
         " entity pointer\nr1: message string",
@@ -7462,7 +9374,7 @@ class JpOverlay29Functions:
     )
 
     OpenMessageLog = Symbol(
-        None, None, None, "Opens the message log window.\n\nr0: ?\nr1: ?"
+        [0x6F4E0], [0x234CDC0], None, "Opens the message log window.\n\nr0: ?\nr1: ?"
     )
 
     RunDungeonMode = Symbol(
@@ -7477,8 +9389,8 @@ class JpOverlay29Functions:
     )
 
     DisplayDungeonTip = Symbol(
-        None,
-        None,
+        [0x70874],
+        [0x234E154],
         None,
         "Checks if a given dungeon tip should be displayed at the start of a floor and"
         " if so, displays it. Called up to 4 times at the start of each new floor, with"
@@ -7497,9 +9409,17 @@ class JpOverlay29Functions:
         " params",
     )
 
+    GetPersonalityIndex = Symbol(
+        [0x70970],
+        [0x234E250],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster"
+        " pointer\nreturn: ?",
+    )
+
     DisplayMessage = Symbol(
-        None,
-        None,
+        [0x70C04],
+        [0x234E4E4],
         None,
         "Displays a message in a dialogue box that optionally waits for player input"
         " before closing.\n\nr0: ?\nr1: ID of the string to display\nr2: True to wait"
@@ -7507,11 +9427,13 @@ class JpOverlay29Functions:
         " automatically once all the characters get printed.",
     )
 
-    DisplayMessage2 = Symbol(None, None, None, "Very similar to DisplayMessage")
+    DisplayMessage2 = Symbol(
+        [0x70C58], [0x234E538], None, "Very similar to DisplayMessage"
+    )
 
     YesNoMenu = Symbol(
-        None,
-        None,
+        [0x70EC4],
+        [0x234E7A4],
         None,
         "Opens a menu where the user can choose 'Yes' or 'No' and waits for input"
         " before returning.\n\nr0: ?\nr1: ID of the string to display in the"
@@ -7521,8 +9443,8 @@ class JpOverlay29Functions:
     )
 
     DisplayMessageInternal = Symbol(
-        None,
-        None,
+        [0x70F3C],
+        [0x234E81C],
         None,
         "Called by DisplayMessage. Seems to be the function that handles the display of"
         " the dialogue box. It won't return until all the characters have been written"
@@ -7533,9 +9455,13 @@ class JpOverlay29Functions:
         " ?\nstack[0]: ?\nstack[1]: ?",
     )
 
+    OpenMenu = Symbol(
+        [0x717A0], [0x234F080], None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
     OthersMenuLoop = Symbol(
-        None,
-        None,
+        [0x73160],
+        [0x2350A40],
         None,
         "Called on each frame while the in-dungeon 'others' menu is open.\n\nIt"
         " contains a switch to determine whether an option has been chosen or not and a"
@@ -7545,17 +9471,1204 @@ class JpOverlay29Functions:
     )
 
     OthersMenu = Symbol(
-        None,
-        None,
+        [0x733C4],
+        [0x2350CA4],
         None,
         "Called when the in-dungeon 'others' menu is open. Does not return until the"
         " menu is closed.\n\nreturn: Always 0",
     )
 
+    IsMarowakTrainingMaze = Symbol(
+        None,
+        None,
+        None,
+        "Check if the current dungeon is one of the training mazes in Marowak Dojo"
+        " (this excludes Final Maze).\n\nreturn: bool",
+    )
+
+    TrySpawnEnemyItemDrop = Symbol(
+        None,
+        None,
+        None,
+        "Determine what item a defeated enemy should drop, if any, then (probably?)"
+        " spawn that item underneath them.\n\nThis function is called at the time when"
+        " an enemy is defeated from ApplyDamage.\n\nr0: attacker entity (who defeated"
+        " the enemy)\nr1: defender entity (who was defeated)",
+    )
+
+    GetFaintReasonWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Wraps GetFaintReason (in arm9) for a move info struct rather than a move"
+        " ID.\n\nr0: move info pointer\nr1: item ID\nreturn: faint reason",
+    )
+
+    DoMoveDamage = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage"
+        " with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveIronTail = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveYawn = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Yawn\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveNightmare = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Nightmare\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCharm = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Charm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEncore = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Encore\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSuperFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Super Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePainSplit = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Pain Split\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTorment = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Torment\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSwagger = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Swagger\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageCringe30 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of"
+        " inflicting the cringe status on the defender.\nRelevant moves: Rock Slide,"
+        " Iron Head, Air Slash, Zen Headbutt, Dragon Rush\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
+        " dealt",
+    )
+
+    DoMoveWhirlpool = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Whirlpool\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeTears = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSpite = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Spite\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSmokescreen = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Smokescreen\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFlatter = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Flatter\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWillOWisp = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Will-O-Wisp\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveReturn = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Return\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFlameWheel = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Flame Wheel\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGust = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Gust\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveParalyze = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun"
+        " Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerDef20 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 20% chance (CRUNCH_LOWER_DEFENSE_CHANCE) of"
+        " lowering the defender's defense.\nRelevant moves: Crunch, Shadow Ball\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
+    )
+
+    DoMoveBite = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Bite\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageParalyze20 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 20% chance (THUNDER_PARALYZE_CHANCE) of"
+        " paralyzing the defender.\nRelevant moves: Thunder, Force Palm\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveEndeavor = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Endeavor\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFacade = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Facade\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerSpeed20 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of"
+        " lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
+    )
+
+    DoMoveBrickBreak = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Brick Break\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRockTomb = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Rock Tomb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageDrain = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal draining damage, healing the attacker by a proportion of the"
+        " damage dealt.\nRelevant moves: Giga Drain, Drain Punch\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveReversal = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Reversal\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSmellingSalt = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: SmellingSalt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMetalSound = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Metal Sound\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTickle = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Tickle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveOutrage = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Outrage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageWeightDependent = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage, multiplied by a weight-dependent factor.\nRelevant"
+        " moves: Low Kick, Grass Knot\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveAncientPower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: AncientPower\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRapidSpin = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Rapid Spin\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageFreeze15 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 15% chance (BLIZZARD_FREEZE_CHANCE) of"
+        " freezing the defender.\nRelevant moves: Blizzard, Ice Beam\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveScaryFace = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Scary Face\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRockClimb = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Rock Climb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEarthquake = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Earthquake\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    GetNaturePowerVariant = Symbol(
+        None,
+        None,
+        None,
+        "Gets the nature power variant for the current dungeon, based on the tileset"
+        " ID.\n\nreturn: nature power variant",
+    )
+
+    DoMoveNaturePower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Nature Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move (unused)\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLick = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Lick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFissure = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fissure\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveExtrasensory = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Extrasensory\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAbsorb = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Absorb\n\nThis is essentially identical to DoMoveDamageDrain,"
+        " except the ordering of the instructions is slightly different enough to"
+        " introduce subtle variations in functionality.\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
+        " dealt",
+    )
+
+    DoMoveSkillSwap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Skill Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHeadbutt = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDoubleEdge = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Double-Edge\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSandAttack = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Sand-Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamagePoison40 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning"
+        " the defender.\nRelevant moves: Smog, Poison Jab, Cross Poison\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveSacredFire = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSheerCold = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Sheer Cold\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerAccuracy40 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE)"
+        " of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb,"
+        " Mirror Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveTwister = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Twister\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTwineedle = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Twineedle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSeismicToss = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Seismic Toss\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSupersonic = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Supersonic\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTaunt = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Taunt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHornDrill = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Horn Drill\n\nThis is exactly the same as DoMoveSheerCold, except"
+        " there's a call to SubstitutePlaceholderStringTags at the end.\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveThundershock = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thundershock\n\nThis is identical to DoMoveLick, except it uses a"
+        " different data symbol for the paralysis chance (but it's still 10%).\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether the move was successfully used",
+    )
+
+    DoMoveThunderWave = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thunder Wave\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlock = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Block\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonGas = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Gas\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveToxic = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Toxic\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonSting = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Sting\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTriAttack = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Tri Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSwapItems = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Swaps the held items of the attacker and defender.\nRelevant"
+        " moves: Trick, Switcheroo\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTripleKick = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Triple Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMudSlap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Mud-Slap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveThief = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thief\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRolePlay = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Role Play\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLeer = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeOut = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePayDay = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Pay Day\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCurse = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Curse\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSuperpower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Superpower\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDynamicPunch = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: DynamicPunch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveKnockOff = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Knock Off\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSecretPower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Secret Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDizzyPunch = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Dizzy Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveImprison = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Imprison\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFeatherDance = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBeatUp = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Beat Up\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlastBurn = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Blast Burn\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCrushClaw = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlazeKick = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePresent = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Present\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEruption = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Eruption\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonTail = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRoar = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Roar\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageConstrict10 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 10% (WHIRLPOOL_CONSTRICT_CHANCE) chance to"
+        " constrict, and with a damage multiplier dependent on the move used.\nRelevant"
+        " moves: Clamp, Bind, Fire Spin, Magma Storm\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
+        " dealt",
+    )
+
+    DoMoveWrap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Wrap\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMagnitude = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Magnitude\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMistBall = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDestinyBond = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Destiny Bond\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHiddenPower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Hidden Power\n\nThis is exactly the same as DoMoveDamage (both"
+        " are wrappers around DealDamage), except this function always returns"
+        " true.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAttract = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Attract\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCopycat = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: The attacker uses the move last used by enemy it's"
+        " facing.\nRelevant moves: Mimic, Copycat\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveFrustration = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Frustration\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLeechSeed = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Leech Seed\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDreamEater = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Dream Eater\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDragonRage = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Dragon Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerSpecialDefense50 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 50%"
+        " (LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE) chance to lower special"
+        " defense.\nRelevant moves: Luster Purge, Energy Ball\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveFling = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fling\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoHammerArm = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Hammer Arm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGastroAcid = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Gastro Acid\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCloseCombat = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Close Combat\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGuardSwap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Guard Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveThunderFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thunder Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDefog = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Defog\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTrumpCard = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Trump Card\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveIceFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Ice Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePsychoShift = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Psycho Shift\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEmbargo = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Embargo\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBrine = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage, with a 2x multiplier if the defender is at or below"
+        " half HP.\nRelevant moves: Brine, Assurance\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveNaturalGift = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Natural Gift\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGyroBall = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Gyro Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveChargeBeam = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Charge Beam\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageEatItem = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deals damage, and eats any beneficial items the defender is"
+        " holding.\nRelevant moves: Pluck, Bug Bite\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveLastResort = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Last Resort\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageHpDependent = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage, with a multiplier dependent on the defender's"
+        " current HP.\nRelevant moves: Wring Out, Crush Grip\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveHeartSwap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Heart Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePowerSwap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Power Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFeint = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Feint\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFlareBlitz = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Flare Blitz\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFireFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fire Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMiracleEye = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Miracle Eye\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWakeUpSlap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Wake-Up Slap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHeadSmash = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Head Smash\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCaptivate = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Captivate\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageInlined = Symbol(
+        None,
+        None,
+        None,
+        "Exactly the same as DoMoveDamage, except it appears DealDamage was"
+        " inlined.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
+    )
+
+    GenerateStandardItem = Symbol(
+        None,
+        None,
+        None,
+        "Wrapper around GenerateItem with quantity set to 0\n\nr0: pointer to item to"
+        " initialize\nr1: item ID\nr2: stickiness type",
+    )
+
+    SpawnEnemyItemDropWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Wraps SpawnEnemyItemDrop in a more convenient interface.\n\nr0: entity\nr1:"
+        " position\nr2: item\nr3: ?",
+    )
+
+    SpawnEnemyItemDrop = Symbol(
+        None,
+        None,
+        None,
+        "Appears to spawn an enemy item drop at a specified location, with a log"
+        " message.\n\nr0: entity\nr1: item entity\nr2: item info\nr3: ?\nstack[0]:"
+        " pointer to int16_t[2] for x/y direction (corresponding to"
+        " DIRECTIONS_XY)\nstack[1]: ?",
+    )
+
+    TryGenerateUnownStoneDrop = Symbol(
+        None,
+        None,
+        None,
+        "Determine if a defeated monster should drop a Unown Stone, and generate the"
+        " item if so.\n\nChecks that the current dungeon isn't a Marowak Dojo training"
+        " maze, and that the monster is an Unown. If so, there's a 21% chance that an"
+        " Unown Stone will be generated.\n\nr0: [output] item\nr1: monster ID\nreturn:"
+        " whether or not an Unown Stone was generated",
+    )
+
 
 class JpOverlay29Data:
-    NECTAR_IQ_BOOST = Symbol(None, None, None, "IQ boost from ingesting Nectar.")
-
     DUNGEON_STRUCT_SIZE = Symbol(
         None, None, None, "Size of the dungeon struct (0x2CB14)"
     )
@@ -7767,19 +10880,27 @@ class JpOverlay29Data:
     )
 
     FIXED_ROOM_TILE_SPAWN_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x73770],
+        [0x2351050],
+        0x2C,
         "Table of tiles that can spawn in fixed rooms, pointed into by the"
         " FIXED_ROOM_TILE_SPAWN_TABLE.\n\nThis is an array of 11 4-byte entries"
         " containing info about one tile each. Info includes the trap ID if a trap,"
         " room ID, and flags.\n\ntype: struct fixed_room_tile_spawn_entry[11]",
     )
 
+    TREASURE_BOX_1_ITEM_IDS = Symbol(
+        [0x7379C],
+        [0x235107C],
+        0x18,
+        "Item IDs for variant 1 of each of the treasure box items"
+        " (ITEM_*_BOX_1).\n\ntype: struct item_id_16[12]",
+    )
+
     FIXED_ROOM_REVISIT_OVERRIDES = Symbol(
-        None,
-        None,
-        None,
+        [0x737B4],
+        [0x2351094],
+        0x100,
         "Table of fixed room IDs, which if nonzero, overrides the normal fixed room ID"
         " for a floor (which is used to index the table) if the dungeon has already"
         " been cleared previously.\n\nOverrides are used to substitute different fixed"
@@ -7788,9 +10909,9 @@ class JpOverlay29Data:
     )
 
     FIXED_ROOM_MONSTER_SPAWN_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x738B4],
+        [0x2351194],
+        0x1E0,
         "Table of monsters that can spawn in fixed rooms, pointed into by the"
         " FIXED_ROOM_ENTITY_SPAWN_TABLE.\n\nThis is an array of 120 4-byte entries"
         " containing info about one monster each. Info includes the monster ID, stats,"
@@ -7798,18 +10919,18 @@ class JpOverlay29Data:
     )
 
     FIXED_ROOM_ITEM_SPAWN_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x73A94],
+        [0x2351374],
+        0x1F8,
         "Table of items that can spawn in fixed rooms, pointed into by the"
         " FIXED_ROOM_ENTITY_SPAWN_TABLE.\n\nThis is an array of 63 8-byte entries"
         " containing one item ID each.\n\ntype: struct fixed_room_item_spawn_entry[63]",
     )
 
     FIXED_ROOM_ENTITY_SPAWN_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x73A94],
+        [0x2351374],
+        0xC9C,
         "Table of entities (items, monsters, tiles) that can spawn in fixed rooms,"
         " which is indexed into by the main data structure for each fixed room.\n\nThis"
         " is an array of 269 entries. Each entry contains 3 pointers (one into"
@@ -8125,11 +11246,33 @@ class JpOverlay29Data:
         " file.",
     )
 
+    MONSTER_HEAL_HP_MAX = Symbol(
+        None, None, None, "The maximum amount of HP a monster can have (999)."
+    )
+
+    ROCK_WRECKER_MOVE_ID = Symbol(
+        None, None, None, "The move ID for Rock Wrecker (453)."
+    )
+
+    MAP_COLOR_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "In order: white, black, red, green, blue, magenta, dark pink, chartreuse,"
+        " light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " rgb[9]",
+    )
+
+    NECTAR_IQ_BOOST = Symbol(None, None, None, "IQ boost from ingesting Nectar.")
+
 
 class JpOverlay29Section:
     name = "overlay29"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 29."
+        "The dungeon engine.\n\nThis is the 'main' overlay of dungeon mode. It controls"
+        " most things that happen in a Mystery Dungeon, such as dungeon layout"
+        " generation, dungeon menus, enemy AI, and generally just running each turn"
+        " while within a dungeon."
     )
     loadaddress = 0x22DD8E0
     length = 0x77200
@@ -8147,9 +11290,7 @@ class JpOverlay3Data:
 
 class JpOverlay3Section:
     name = "overlay3"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 3."
-    )
+    description = "Controls the Friend Rescue submenu within the top menu."
     loadaddress = 0x233E300
     length = 0xA160
     functions = JpOverlay3Functions
@@ -8161,14 +11302,14 @@ class JpOverlay30Functions:
 
 
 class JpOverlay30Data:
-    pass
+    OVERLAY30_JP_STRING_1 = Symbol([0x3840], [0x23872E0], 0xC, "みさき様")
+
+    OVERLAY30_JP_STRING_2 = Symbol([0x384C], [0x23872EC], 0xC, "やよい様")
 
 
 class JpOverlay30Section:
     name = "overlay30"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 30."
-    )
+    description = "Controls quicksaving in dungeons."
     loadaddress = 0x2383AA0
     length = 0x3880
     functions = JpOverlay30Functions
@@ -8177,8 +11318,8 @@ class JpOverlay30Section:
 
 class JpOverlay31Functions:
     TeamMenu = Symbol(
-        None,
-        None,
+        [0x4828],
+        [0x23882C8],
         None,
         "Called when the in-dungeon 'team' menu is open. Does not return until the menu"
         " is closed.\n\nNote that selecting certain options in this menu (such as"
@@ -8188,16 +11329,16 @@ class JpOverlay31Functions:
     )
 
     RestMenu = Symbol(
-        None,
-        None,
+        [0x5F4C],
+        [0x23899EC],
         None,
         "Called when the in-dungeon 'rest' menu is open. Does not return until the menu"
         " is closed.\n\nNo params.",
     )
 
     RecruitmentSearchMenuLoop = Symbol(
-        None,
-        None,
+        [0x63DC],
+        [0x2389E7C],
         None,
         "Called on each frame while the in-dungeon 'recruitment search' menu is"
         " open.\n\nreturn: int (Actually, this is probably some sort of enum shared by"
@@ -8205,14 +11346,26 @@ class JpOverlay31Functions:
     )
 
     HelpMenuLoop = Symbol(
-        None,
-        None,
+        [0x6A20],
+        [0x238A4C0],
         None,
         "Called on each frame while the in-dungeon 'help' menu is open.\n\nThe menu is"
         " still considered open while one of the help pages is being viewed, so this"
         " function keeps being called even after choosing an option.\n\nreturn: int"
         " (Actually, this is probably some sort of enum shared by all the MenuLoop"
         " functions)",
+    )
+
+    EntryOverlay31 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nNo params."
+    )
+
+    DungeonMenuSwitch = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: appears to be an index of"
+        " some sort, probably the menu index based on the function name?",
     )
 
 
@@ -8231,12 +11384,216 @@ class JpOverlay31Data:
 
     DUNGEON_SUBMENU_6 = Symbol(None, None, None, "")
 
+    DUNGEON_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_2389E30 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_10 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_11 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_12 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_13 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_JP_STRING = Symbol(None, None, None, "\n\n----　 初期ポジション=%d　----- \n")
+
+    DUNGEON_D_BOX_LAYOUT_14 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_15 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_16 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_17 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_18 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_19 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_2389FE8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_20 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_21 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_22 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_23 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_24 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_25 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_26 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_238A144 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_27 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_28 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_238A190 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_29 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_30 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_31 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_32 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A260 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_VALUE__NA_238A264 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A268 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A26C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A270 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A274 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A278 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A27C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A280 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A284 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A288 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A28C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class JpOverlay31Section:
     name = "overlay31"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 31."
-    )
+    description = "Controls the dungeon menu (during dungeon mode)."
     loadaddress = 0x2383AA0
     length = 0x7AC0
     functions = JpOverlay31Functions
@@ -8278,13 +11635,58 @@ class JpOverlay33Section:
 
 
 class JpOverlay34Functions:
-    pass
+    ExplorersOfSkyMain = Symbol(
+        None,
+        None,
+        None,
+        "The main function for Explorers of Sky.\n\nNote: unverified, ported from"
+        " Irdkwia's notes\n\nr0: probably a game mode ID?\nreturn: probably a return"
+        " code?",
+    )
 
 
 class JpOverlay34Data:
-    UNKNOWN_MENU_CONFIRM = Symbol(None, None, None, "")
+    START_MENU_CONFIRM = Symbol(None, None, None, "Irdkwia's notes: 3*0x8")
 
-    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "")
+    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "Irdkwia's notes: 5*0x8")
+
+    OVERLAY34_UNKNOWN_STRUCT__NA_22DD014 = Symbol(
+        None,
+        None,
+        None,
+        "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C = Symbol(
+        None,
+        None,
+        None,
+        "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    OVERLAY34_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD080 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD084 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD088 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD08C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD090 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class JpOverlay34Section:
@@ -8327,9 +11729,7 @@ class JpOverlay4Data:
 
 class JpOverlay4Section:
     name = "overlay4"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
-    )
+    description = "Controls the Trade Items submenu within the top menu."
     loadaddress = 0x233E300
     length = 0x2BE0
     functions = JpOverlay4Functions
@@ -8346,9 +11746,7 @@ class JpOverlay5Data:
 
 class JpOverlay5Section:
     name = "overlay5"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
-    )
+    description = "Controls the Trade Team submenu within the top menu."
     loadaddress = 0x233E300
     length = 0x3260
     functions = JpOverlay5Functions
@@ -8365,9 +11763,7 @@ class JpOverlay6Data:
 
 class JpOverlay6Section:
     name = "overlay6"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 6."
-    )
+    description = "Controls the Wonder Mail S submenu within the top menu."
     loadaddress = 0x233E300
     length = 0x2460
     functions = JpOverlay6Functions
@@ -8404,7 +11800,7 @@ class JpOverlay8Data:
 class JpOverlay8Section:
     name = "overlay8"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 8."
+        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
     )
     loadaddress = 0x233E300
     length = 0x2200
@@ -8699,6 +12095,8 @@ class JpRamSection:
 
 
 class JpSections:
+    arm7 = JpArm7Section
+
     arm9 = JpArm9Section
 
     itcm = JpItcmSection

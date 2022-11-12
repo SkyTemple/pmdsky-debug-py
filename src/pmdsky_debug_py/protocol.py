@@ -44,7 +44,30 @@ class SectionProtocol(Protocol[T, U, L]):
     data: U
 
 
+class Arm7FunctionsProtocol(Protocol):
+    EntryArm7: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+
+class Arm7DataProtocol(Protocol):
+    pass
+
+
+Arm7Protocol = SectionProtocol[
+    Arm7FunctionsProtocol,
+    Arm7DataProtocol,
+    Optional[int],
+]
+
+
 class Arm9FunctionsProtocol(Protocol):
+    EntryArm9: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     InitMemAllocTable: Symbol[
         Optional[List[int]],
         None,
@@ -1520,6 +1543,26 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetFaintReason: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitMove: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TreasureBoxDropsEnabled: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetLowKickMultiplier: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
 
 class Arm9DataProtocol(Protocol):
     DEFAULT_MEMORY_ARENA_SIZE: Symbol[
@@ -1902,6 +1945,16 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    FAINT_REASON_CODE_ORB_ITEM: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FAINT_REASON_CODE_NON_ORB_ITEM: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     JUICE_BAR_NECTAR_IQ_GAIN: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -2012,6 +2065,36 @@ class Overlay1FunctionsProtocol(Protocol):
 
 
 class Overlay1DataProtocol(Protocol):
+    PRINTS_STRINGS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    PRINTS_STRUCT: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY1_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY1_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY1_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY1_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     CONTINUE_CHOICE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -2042,6 +2125,36 @@ class Overlay1DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OVERLAY1_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY1_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY1_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY1_D_BOX_LAYOUT_8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY1_D_BOX_LAYOUT_9: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY1_D_BOX_LAYOUT_10: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
 
 Overlay1Protocol = SectionProtocol[
     Overlay1FunctionsProtocol,
@@ -2052,6 +2165,46 @@ Overlay1Protocol = SectionProtocol[
 
 class Overlay10FunctionsProtocol(Protocol):
     SprintfStatic: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetEffectAnimation: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMoveAnimation: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetSpecialMonsterMoveAnimation: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetTrapAnimation: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetItemAnimation1: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetItemAnimation2: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMoveAnimationSpeed: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CheckEndDungeon: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -2079,6 +2232,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     OREN_BERRY_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    UNOWN_STONE_DROP_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -2268,6 +2426,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    WEATHER_ATTRIBUTE_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     OFFENSIVE_STAT_STAGE_MULTIPLIERS: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -2278,7 +2441,32 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    NATURE_POWER_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPLES_AND_BERRIES_ITEM_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECRUITMENT_LEVEL_BOOST_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    NATURAL_GIFT_ITEM_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     RANDOM_MUSIC_ID_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_ITEM_CHANCES: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -2318,6 +2506,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    METRONOME_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     TILESET_PROPERTIES: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -2328,9 +2521,249 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    TRAP_ANIMATION_INFO: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ITEM_ANIMATION_INFO: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     MOVE_ANIMATION_INFO: Symbol[
         Optional[List[int]],
-        None,
+        Optional[int],
+    ]
+
+    EFFECT_ANIMATION_INFO: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SPECIAL_MONSTER_MOVE_ANIMATION_INFO: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    IRON_TAIL_LOWER_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TWINEEDLE_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EXTRASENSORY_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROCK_SLIDE_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CRUNCH_LOWER_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MUDDY_WATER_LOWER_ACCURACY_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ANCIENTPOWER_BOOST_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    POISON_TAIL_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    THUNDERSHOCK_PARALYZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    HEADBUTT_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FIRE_FANG_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SACRED_FIRE_BURN_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WHIRLPOOL_CONSTRICTION_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CONSTRICT_LOWER_SPEED_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ICE_FANG_FREEZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SMOG_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LICK_PARALYZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    THUNDER_FANG_PARALYZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BITE_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ICE_FANG_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BLAZE_KICK_BURN_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DIZZY_PUNCH_CONFUSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SECRET_POWER_EFFECT_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CRUSH_CLAW_LOWER_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BLIZZARD_FREEZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    POISON_STING_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    POISON_FANG_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    THUNDER_PARALYZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TWISTER_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FAKE_OUT_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    THUNDER_FANG_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FLARE_BLITZ_BURN_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FLAME_WHEEL_BURN_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROCK_CLIMB_CONFUSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TRI_ATTACK_STATUS_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DRAGON_RAGE_FIXED_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FACADE_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    IMPRISON_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    NIGHTMARE_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SMOKESCREEN_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    YAWN_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
     ]
 
 
@@ -2452,6 +2885,26 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    LoadBackgroundAttributes: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadMapType10: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadMapType11: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetSpecialLayoutBackground: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SprintfStatic: Symbol[
         Optional[List[int]],
         None,
@@ -2470,6 +2923,11 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     C_ROUTINES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_WAN_FILES_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -2519,6 +2977,36 @@ class Overlay11DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OVERLAY11_UNKNOWN_TABLE__NA_2316A38: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SCRIPT_COMMAND_PARSING_DATA: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SCRIPT_OP_CODE_NAMES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY11_DEBUG_STRINGS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    C_ROUTINE_NAMES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_WEATHER_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
 
 Overlay11Protocol = SectionProtocol[
     Overlay11FunctionsProtocol,
@@ -2543,19 +3031,99 @@ Overlay12Protocol = SectionProtocol[
 
 
 class Overlay13FunctionsProtocol(Protocol):
+    EntryOverlay13: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ExitOverlay13: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Overlay13SwitchFunctionNa238A1C8: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Overlay13SwitchFunctionNa238A574: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetPersonality: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetOptionStringFromID: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    WaitForNextStep: Symbol[
         Optional[List[int]],
         None,
     ]
 
 
 class Overlay13DataProtocol(Protocol):
+    QUIZ_BORDER_COLOR_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    PORTRAIT_ATTRIBUTES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_MALE_FEMALE_BOOST_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY13_UNKNOWN_STRUCT__NA_238C024: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_MENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     STARTERS_PARTNER_IDS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
     STARTERS_HERO_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STARTERS_TYPE_INCOMPATIBILITY_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -2575,7 +3143,52 @@ class Overlay13DataProtocol(Protocol):
         Optional[int],
     ]
 
-    UNKNOWN_MENU_1: Symbol[
+    QUIZ_ANSWER_POINTS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY13_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY13_UNKNOWN_POINTER__NA_238CEA0: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY13_UNKNOWN_POINTER__NA_238CEA4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY13_UNKNOWN_POINTER__NA_238CEA8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_DEBUG_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY13_UNKNOWN_STRUCT__NA_238CF14: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUIZ_QUESTION_ANSWER_ASSOCIATIONS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -2616,6 +3229,41 @@ class Overlay15DataProtocol(Protocol):
         Optional[int],
     ]
 
+    BANK_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BANK_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BANK_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BANK_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BANK_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY15_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY15_UNKNOWN_POINTER__NA_238B180: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
 
 Overlay15Protocol = SectionProtocol[
     Overlay15FunctionsProtocol,
@@ -2640,6 +3288,61 @@ class Overlay16DataProtocol(Protocol):
     ]
 
     EVO_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_MENU_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EVO_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY16_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY16_UNKNOWN_POINTER__NA_238CE40: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY16_UNKNOWN_POINTER__NA_238CE58: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -2707,6 +3410,56 @@ class Overlay17DataProtocol(Protocol):
         Optional[int],
     ]
 
+    ASSEMBLY_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ASSEMBLY_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ASSEMBLY_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ASSEMBLY_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ASSEMBLY_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY17_FUNCTION_POINTER_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY17_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY17_UNKNOWN_POINTER__NA_238BE00: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY17_UNKNOWN_POINTER__NA_238BE04: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY17_UNKNOWN_POINTER__NA_238BE08: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
 
 Overlay17Protocol = SectionProtocol[
     Overlay17FunctionsProtocol,
@@ -2765,6 +3518,86 @@ class Overlay18DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OVERLAY18_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_9: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_10: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_D_BOX_LAYOUT_11: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_FUNCTION_POINTER_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_UNKNOWN_POINTER__NA_238D620: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_UNKNOWN_POINTER__NA_238D624: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY18_UNKNOWN_POINTER__NA_238D628: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
 
 Overlay18Protocol = SectionProtocol[
     Overlay18FunctionsProtocol,
@@ -2774,7 +3607,25 @@ Overlay18Protocol = SectionProtocol[
 
 
 class Overlay19FunctionsProtocol(Protocol):
-    pass
+    GetBarItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetRecruitableMonsterAll: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetRecruitableMonsterList: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetRecruitableMonsterListRestricted: Symbol[
+        Optional[List[int]],
+        None,
+    ]
 
 
 class Overlay19DataProtocol(Protocol):
@@ -2799,6 +3650,76 @@ class Overlay19DataProtocol(Protocol):
     ]
 
     BAR_SUBMENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY19_UNKNOWN_TABLE__NA_238DAE0: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_UNLOCKABLE_DUNGEONS_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_RECRUITABLE_MONSTER_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_AVAILABLE_ITEMS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY19_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY19_UNKNOWN_POINTER__NA_238E360: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY19_UNKNOWN_POINTER__NA_238E364: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -2866,6 +3787,96 @@ class Overlay20DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OVERLAY20_UNKNOWN_POINTER__NA_238CF7C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY20_UNKNOWN_TABLE__NA_238D014: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT_8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT_9: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT1_0: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_D_BOX_LAYOUT1_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY20_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D120: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D124: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D128: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D12C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
 
 Overlay20Protocol = SectionProtocol[
     Overlay20FunctionsProtocol,
@@ -2909,6 +3920,76 @@ class Overlay21DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SWAP_SHOP_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY21_UNKNOWN_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_D_BOX_LAYOUT_8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_D_BOX_LAYOUT_9: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY21_JP_STRING: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY21_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY21_UNKNOWN_POINTER__NA_238CF40: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY21_UNKNOWN_POINTER__NA_238CF44: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
 
 Overlay21Protocol = SectionProtocol[
     Overlay21FunctionsProtocol,
@@ -2938,6 +4019,96 @@ class Overlay22DataProtocol(Protocol):
     ]
 
     SHOP_MAIN_MENU_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY22_UNKNOWN_STRUCT__NA_238E85C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY22_UNKNOWN_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_9: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_10: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY22_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC60: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC64: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC68: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC6C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC70: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -2980,6 +4151,76 @@ class Overlay23DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OVERLAY23_UNKNOWN_VALUE__NA_238D2E8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY23_UNKNOWN_VALUE__NA_238D2EC: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY23_UNKNOWN_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STORAGE_D_BOX_LAYOUT_8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY23_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY23_UNKNOWN_POINTER__NA_238D8A0: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
 
 Overlay23Protocol = SectionProtocol[
     Overlay23FunctionsProtocol,
@@ -2999,6 +4240,56 @@ class Overlay24DataProtocol(Protocol):
     ]
 
     DAYCARE_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY24_UNKNOWN_STRUCT__NA_238C508: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY24_UNKNOWN_STRUCT__NA_238C514: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY24_UNKNOWN_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAYCARE_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAYCARE_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAYCARE_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAYCARE_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAYCARE_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY24_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY24_UNKNOWN_POINTER__NA_238C600: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -3031,6 +4322,66 @@ class Overlay25DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OVERLAY25_UNKNOWN_STRUCT__NA_238B498: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY25_UNKNOWN_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_D_BOX_LAYOUT_8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY25_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY25_UNKNOWN_POINTER__NA_238B5E0: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
 
 Overlay25Protocol = SectionProtocol[
     Overlay25FunctionsProtocol,
@@ -3044,7 +4395,40 @@ class Overlay26FunctionsProtocol(Protocol):
 
 
 class Overlay26DataProtocol(Protocol):
-    pass
+    OVERLAY26_UNKNOWN_TABLE__NA_238AE20: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY26_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF60: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF64: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF68: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF6C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY26_UNKNOWN_POINTER5__NA_238AF70: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
 
 
 Overlay26Protocol = SectionProtocol[
@@ -3075,6 +4459,81 @@ class Overlay27DataProtocol(Protocol):
     ]
 
     DISCARD_ITEMS_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY27_UNKNOWN_VALUE__NA_238C948: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY27_UNKNOWN_VALUE__NA_238C94C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY27_UNKNOWN_STRUCT__NA_238C950: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY27_UNKNOWN_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISCARD_D_BOX_LAYOUT_8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY27_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY27_UNKNOWN_POINTER__NA_238CE80: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY27_UNKNOWN_POINTER__NA_238CE84: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -3143,6 +4602,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsBossFight: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsCurrentFixedRoomBossFight: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     FixedRoomIsSubstituteRoom: Symbol[
         Optional[List[int]],
         None,
@@ -3199,6 +4668,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     UpdateStatusIconFlags: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadMappaFileAttributes: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3308,6 +4782,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ChangeDungeonMusic: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TrySwitchPlace: Symbol[
         Optional[List[int]],
         None,
@@ -3393,12 +4872,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PerformLeaderAction: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ChangeLeader: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    ResetDamageDesc: Symbol[
+    ResetDamageData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetTotalSpriteFileSize: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3423,7 +4912,32 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    StoreSpriteFileIndexBothGenders: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadMonsterSpriteInner: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SwapMonsterWanFileIndex: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     LoadMonsterSprite: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DeleteMonsterSpriteFile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DeleteAllMonsterSpriteFiles: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3443,12 +4957,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetMonsterTypeAndAbility: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TryActivateSlowStart: Symbol[
         Optional[List[int]],
         None,
     ]
 
     TryActivateArtificialWeatherAbilities: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMonsterApparentId: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3503,6 +5027,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsSatisfyingScenarioConditionToSpawn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     HasLowHealth: Symbol[
         Optional[List[int]],
         None,
@@ -3533,6 +5062,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitMonster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ExecuteMonsterAction: Symbol[
         Optional[List[int]],
         None,
@@ -3554,6 +5088,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetNumberOfAttacks: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMonsterName: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3598,12 +5137,32 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    AbilityIsActiveVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AbilityIsActiveAnyEntity: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     LevitateIsActive: Symbol[
         Optional[List[int]],
         None,
     ]
 
     MonsterIsType: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsTypeAffectedByGravity: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    HasTypeAffectedByGravity: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3639,6 +5198,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     EnemyEvolution: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryDecreaseLevel: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LevelUp: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3709,6 +5278,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ResetDamageCalcScratchSpace: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsRecruited: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3933,7 +5507,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryRestoreHp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TryIncreaseHp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    RevealItems: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    RevealStairs: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    RevealEnemies: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3998,6 +5592,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsInSpawnList: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ChangeShayminForme: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ApplyItemEffect: Symbol[
         Optional[List[int]],
         None,
@@ -4043,6 +5647,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsHyperBeamVariant: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DungeonRandOutcomeUserTargetInteraction: Symbol[
         Optional[List[int]],
         None,
@@ -4083,7 +5692,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    DealDamageWithRecoil: Symbol[
+    DoMoveDamageWithRecoil: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4123,6 +5732,31 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DigitCount: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadTextureUi: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DisplayNumberTextureUi: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DisplayCharTextureUi: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DisplayUi: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetTile: Symbol[
         Optional[List[int]],
         None,
@@ -4133,7 +5767,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsFullFloorFixedRoom: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetStairsRoom: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetRandomSpawnMonsterID: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4478,6 +6122,61 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    LoadFixedRoom: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    OpenFixedBin: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CloseFixedBin: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AreOrbsAllowed: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AreTileJumpsAllowed: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AreTrawlOrbsAllowed: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AreOrbsAllowedVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AreLateGameTrapsEnabled: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AreMovesEnabled: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsRoomIlluminated: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMatchingMonsterId: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GenerateItemExplicit: Symbol[
         Optional[List[int]],
         None,
@@ -4648,6 +6347,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GenerateMissionEggMonster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     LogMessageByIdWithPopupCheckUser: Symbol[
         Optional[List[int]],
         None,
@@ -4728,6 +6432,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetPersonalityIndex: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DisplayMessage: Symbol[
         Optional[List[int]],
         None,
@@ -4748,6 +6457,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    OpenMenu: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     OthersMenuLoop: Symbol[
         Optional[List[int]],
         None,
@@ -4758,13 +6472,718 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-
-class Overlay29DataProtocol(Protocol):
-    NECTAR_IQ_BOOST: Symbol[
+    IsMarowakTrainingMaze: Symbol[
         Optional[List[int]],
         None,
     ]
 
+    TrySpawnEnemyItemDrop: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetFaintReasonWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveIronTail: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveYawn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveNightmare: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCharm: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEncore: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSuperFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePainSplit: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTorment: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSwagger: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageCringe30: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWhirlpool: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFakeTears: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSpite: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSmokescreen: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFlatter: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWillOWisp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveReturn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFlameWheel: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGust: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveParalyze: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerDef20: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBite: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageParalyze20: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEndeavor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFacade: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerSpeed20: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBrickBreak: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRockTomb: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageDrain: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveReversal: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSmellingSalt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMetalSound: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTickle: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveOutrage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageWeightDependent: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAncientPower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRapidSpin: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageFreeze15: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveScaryFace: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRockClimb: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEarthquake: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetNaturePowerVariant: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveNaturePower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFissure: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveExtrasensory: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAbsorb: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSkillSwap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHeadbutt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDoubleEdge: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSandAttack: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamagePoison40: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSacredFire: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSheerCold: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerAccuracy40: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTwister: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTwineedle: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSeismicToss: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSupersonic: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTaunt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHornDrill: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveThundershock: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveThunderWave: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBlock: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoisonGas: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveToxic: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoisonFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoisonSting: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTriAttack: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSwapItems: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTripleKick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMudSlap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveThief: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRolePlay: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLeer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFakeOut: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePayDay: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCurse: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSuperpower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDynamicPunch: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveKnockOff: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSecretPower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDizzyPunch: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveImprison: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFeatherDance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBeatUp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBlastBurn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCrushClaw: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBlazeKick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePresent: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEruption: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoisonTail: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRoar: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageConstrict10: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWrap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMagnitude: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMistBall: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDestinyBond: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHiddenPower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAttract: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCopycat: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFrustration: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLeechSeed: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDreamEater: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDragonRage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerSpecialDefense50: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFling: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoHammerArm: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGastroAcid: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCloseCombat: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGuardSwap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveThunderFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDefog: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTrumpCard: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveIceFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePsychoShift: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEmbargo: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBrine: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveNaturalGift: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGyroBall: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveChargeBeam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageEatItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLastResort: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageHpDependent: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHeartSwap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePowerSwap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFeint: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFlareBlitz: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFireFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMiracleEye: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWakeUpSlap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHeadSmash: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCaptivate: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageInlined: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GenerateStandardItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SpawnEnemyItemDropWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SpawnEnemyItemDrop: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryGenerateUnownStoneDrop: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+
+class Overlay29DataProtocol(Protocol):
     DUNGEON_STRUCT_SIZE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4931,6 +7350,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     FIXED_ROOM_TILE_SPAWN_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TREASURE_BOX_1_ITEM_IDS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -5130,6 +7554,26 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MONSTER_HEAL_HP_MAX: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROCK_WRECKER_MOVE_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MAP_COLOR_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    NECTAR_IQ_BOOST: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
 
 Overlay29Protocol = SectionProtocol[
     Overlay29FunctionsProtocol,
@@ -5158,7 +7602,15 @@ class Overlay30FunctionsProtocol(Protocol):
 
 
 class Overlay30DataProtocol(Protocol):
-    pass
+    OVERLAY30_JP_STRING_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY30_JP_STRING_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
 
 
 Overlay30Protocol = SectionProtocol[
@@ -5185,6 +7637,16 @@ class Overlay31FunctionsProtocol(Protocol):
     ]
 
     HelpMenuLoop: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EntryOverlay31: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DungeonMenuSwitch: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -5222,6 +7684,266 @@ class Overlay31DataProtocol(Protocol):
     ]
 
     DUNGEON_SUBMENU_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_2389E30: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_9: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_10: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_11: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_12: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_13: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_JP_STRING: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_14: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_15: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_16: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_17: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_18: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_19: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_2389FE8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_20: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_21: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_22: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_23: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_24: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_25: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_26: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_238A144: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_27: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_28: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_238A190: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_29: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_30: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_31: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_D_BOX_LAYOUT_32: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A260: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_VALUE__NA_238A264: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A268: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A26C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A270: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A274: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A278: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A27C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A280: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A284: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A288: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A28C: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -5265,16 +7987,59 @@ Overlay33Protocol = SectionProtocol[
 
 
 class Overlay34FunctionsProtocol(Protocol):
-    pass
+    ExplorersOfSkyMain: Symbol[
+        Optional[List[int]],
+        None,
+    ]
 
 
 class Overlay34DataProtocol(Protocol):
-    UNKNOWN_MENU_CONFIRM: Symbol[
+    START_MENU_CONFIRM: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
     DUNGEON_DEBUG_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY34_UNKNOWN_STRUCT__NA_22DD014: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY34_RESERVED_SPACE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD080: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD084: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD088: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD08C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD090: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -5559,6 +8324,8 @@ RamProtocol = SectionProtocol[
 
 
 class AllSymbolsProtocol(Protocol):
+    arm7: Arm7Protocol
+
     arm9: Arm9Protocol
 
     itcm: ItcmProtocol

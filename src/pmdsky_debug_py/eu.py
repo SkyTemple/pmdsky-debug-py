@@ -1,7 +1,43 @@
 from .protocol import Symbol
 
 
+class EuArm7Functions:
+    EntryArm7 = Symbol(
+        [0x0],
+        [0x2380000],
+        None,
+        "The entrypoint for the ARM7 CPU. This is like the 'main' function for the ARM7"
+        " subsystem.\n\nNo params.",
+    )
+
+
+class EuArm7Data:
+    pass
+
+
+class EuArm7Section:
+    name = "arm7"
+    description = (
+        "The ARM7 binary.\n\nThis is the secondary binary that gets loaded when the"
+        " game is launched.\n\nSpeaking generally, this is the program run by the"
+        " Nintendo DS's secondary ARM7TDMI CPU, which handles the audio engine, the"
+        " touch screen, Wi-Fi functions, cryptography, and more."
+    )
+    loadaddress = 0x2380000
+    length = 0x27080
+    functions = EuArm7Functions
+    data = EuArm7Data
+
+
 class EuArm9Functions:
+    EntryArm9 = Symbol(
+        [0x800],
+        [0x2000800],
+        None,
+        "The entrypoint for the ARM9 CPU. This is like the 'main' function for the ARM9"
+        " subsystem.\n\nNo params.",
+    )
+
     InitMemAllocTable = Symbol(
         [0xDE0],
         [0x2000DE0],
@@ -2640,6 +2676,42 @@ class EuArm9Functions:
         " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
     )
 
+    GetFaintReason = Symbol(
+        None,
+        None,
+        None,
+        "Gets the faint reason code (see HandleFaint) for a given move-item"
+        " combination.\n\nIf there's no item, the reason code is the move ID. If the"
+        " item is an orb, return FAINT_REASON_ORB_ITEM. Otherwise, return"
+        " FAINT_REASON_NON_ORB_ITEM.\n\nr0: move ID\nr1: item ID\nreturn: faint reason",
+    )
+
+    InitMove = Symbol(
+        None,
+        None,
+        None,
+        "Initializes a move info struct.\n\nThis sets f_exists and f_enabled_for_ai on"
+        " the flags, the ID to the given ID, the PP to the max PP for the move ID, and"
+        " the ginseng boost to 0.\n\nr0: pointer to move to initialize\nr1: move ID",
+    )
+
+    TreasureBoxDropsEnabled = Symbol(
+        None,
+        None,
+        None,
+        "Checks if enemy Treasure Box drops are enabled in the dungeon.\n\nr0: dungeon"
+        " ID\nreturn: bool",
+    )
+
+    GetLowKickMultiplier = Symbol(
+        None,
+        None,
+        None,
+        "Gets the Low Kick (and Grass Knot) damage multiplier for the given"
+        " species.\n\nr0: monster ID\nreturn: multiplier as a binary fixed-point number"
+        " with 8 fraction bits.",
+    )
+
 
 class EuArm9Data:
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
@@ -3113,6 +3185,17 @@ class EuArm9Data:
 
     SMD_EVENTS_FUN_TABLE = Symbol([0xB14D4], [0x20B14D4], 0x1FC, "")
 
+    FAINT_REASON_CODE_ORB_ITEM = Symbol(
+        None, None, None, "The faint reason code for any item in CATEGORY_ORBS, 0x262."
+    )
+
+    FAINT_REASON_CODE_NON_ORB_ITEM = Symbol(
+        None,
+        None,
+        None,
+        "The faint reason code for any item not in CATEGORY_ORBS, 0x263.",
+    )
+
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
     )
@@ -3131,11 +3214,14 @@ class EuArm9Data:
 class EuArm9Section:
     name = "arm9"
     description = (
-        "The main ARM9 binary.\n\nThis is the binary that gets loaded when the game is"
-        " launched, and contains the core code that runs the game, low level facilities"
-        " such as memory allocation, compression, other external dependencies (such as"
-        " linked functions from libc and libgcc), and the functions and tables"
-        " necessary to load overlays and dispatch execution to them."
+        "The main ARM9 binary.\n\nThis is the main binary that gets loaded when the"
+        " game is launched, and contains the core code that runs the game, low level"
+        " facilities such as memory allocation, compression, other external"
+        " dependencies (such as linked functions from libc and libgcc), and the"
+        " functions and tables necessary to load overlays and dispatch execution to"
+        " them.\n\nSpeaking generally, this is the program run by the Nintendo DS's"
+        " main ARM946E-S CPU, which handles all gameplay mechanisms and graphics"
+        " rendering."
     )
     loadaddress = 0x2000000
     length = 0xB7D38
@@ -3254,7 +3340,11 @@ class EuOverlay0Data:
 class EuOverlay0Section:
     name = "overlay0"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 0."
+        "Likely contains supporting data and code related to the top menu.\n\nThis is"
+        " loaded together with overlay 1 while in the top menu. Since it's in overlay"
+        " group 2 (together with overlay 10, which is another 'data' overlay), this"
+        " overlay probably plays a similar role. It mentions several files from the"
+        " BACK folder that are known backgrounds for the top menu."
     )
     loadaddress = 0x22BD3C0
     length = 0x60880
@@ -3296,6 +3386,33 @@ class EuOverlay1Functions:
 
 
 class EuOverlay1Data:
+    PRINTS_STRINGS = Symbol(
+        [0x11B38], [0x233B878], 0x1E8, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    PRINTS_STRUCT = Symbol(
+        [0x11D20],
+        [0x233BA60],
+        0x1F0,
+        "62*0x8\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_1 = Symbol(
+        [0x11F24], [0x233BC64], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_2 = Symbol(
+        [0x11F34], [0x233BC74], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_3 = Symbol(
+        [0x11F44], [0x233BC84], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_4 = Symbol(
+        [0x11F54], [0x233BC94], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
     CONTINUE_CHOICE = Symbol([0x11F74], [0x233BCB4], 0x20, "")
 
     SUBMENU = Symbol([0x11F94], [0x233BCD4], 0x48, "")
@@ -3307,6 +3424,30 @@ class EuOverlay1Data:
     MAIN_DEBUG_MENU_1 = Symbol([0x1221C], [0x233BF5C], 0x60, "")
 
     MAIN_DEBUG_MENU_2 = Symbol([0x1229C], [0x233BFDC], 0x38, "")
+
+    OVERLAY1_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY1_D_BOX_LAYOUT_10 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class EuOverlay1Section:
@@ -3332,6 +3473,72 @@ class EuOverlay10Functions:
         "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
         " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
         " characters printed, excluding the null-terminator",
+    )
+
+    GetEffectAnimation = Symbol(
+        [0x3420],
+        [0x22C07E0],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: anim_id\nreturn: effect"
+        " animation pointer",
+    )
+
+    GetMoveAnimation = Symbol(
+        [0x3434],
+        [0x22C07F4],
+        None,
+        "Get the move animation corresponding to the given move ID.\n\nr0:"
+        " move_id\nreturn: move animation pointer",
+    )
+
+    GetSpecialMonsterMoveAnimation = Symbol(
+        [0x3448],
+        [0x22C0808],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: ent_id\nreturn: special"
+        " monster move animation pointer",
+    )
+
+    GetTrapAnimation = Symbol(
+        [0x345C],
+        [0x22C081C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: trap_id\nreturn: trap"
+        " animation",
+    )
+
+    GetItemAnimation1 = Symbol(
+        [0x3470],
+        [0x22C0830],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: item_id\nreturn: first"
+        " field of the item animation info",
+    )
+
+    GetItemAnimation2 = Symbol(
+        [0x3484],
+        [0x22C0844],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: item_id\nreturn: second"
+        " field of the item animation info",
+    )
+
+    GetMoveAnimationSpeed = Symbol(
+        [0x3498],
+        [0x22C0858],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: move_id\nreturn:"
+        " anim_ent_ptr (This might be a mistake? It seems to be an integer, not a"
+        " pointer)",
+    )
+
+    CheckEndDungeon = Symbol(
+        [0x5E24],
+        [0x22C31E4],
+        None,
+        "Do the stuff when you lose in a dungeon.\n\nNote: unverified, ported from"
+        " Irdkwia's notes\n\nr0: End condition code? Seems to control what tasks get"
+        " run and what transition happens when the dungeon ends\nreturn: return code?",
     )
 
 
@@ -3368,6 +3575,13 @@ class EuOverlay10Data:
 
     OREN_BERRY_DAMAGE = Symbol(
         [0x79D0], [0x22C4D90], 0x2, "Damage dealt by eating an Oren Berry."
+    )
+
+    UNOWN_STONE_DROP_CHANCE = Symbol(
+        [0x7A0C],
+        [0x22C4DCC],
+        0x2,
+        "The chance of an Unown dropping an Unown stone, as a percentage (21%).",
     )
 
     SITRUS_BERRY_HP_RESTORATION = Symbol(
@@ -3597,6 +3811,14 @@ class EuOverlay10Data:
         " the high value.",
     )
 
+    WEATHER_ATTRIBUTE_TABLE = Symbol(
+        [0x8204],
+        [0x22C55C4],
+        0x30,
+        "Maps each weather type (by index, see enum weather_id) to the corresponding"
+        " Weather Ball type and Castform form.\n\ntype: struct weather_attributes[8]",
+    )
+
     OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
         [0x8330],
         [0x22C56F0],
@@ -3613,6 +3835,39 @@ class EuOverlay10Data:
         " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
     )
 
+    NATURE_POWER_TABLE = Symbol(
+        [0x83D8],
+        [0x22C5798],
+        0x78,
+        "Maps enum nature_power_variant to the associated move ID and effect"
+        " handler.\n\ntype: struct wildcard_move_desc[15]",
+    )
+
+    APPLES_AND_BERRIES_ITEM_IDS = Symbol(
+        [0x8450],
+        [0x22C5810],
+        0x84,
+        "Table of item IDs for Apples and Berries, which trigger the exclusive item"
+        " effect EXCLUSIVE_EFF_RECOVER_HP_FROM_APPLES_AND_BERRIES.\n\ntype: struct"
+        " item_id_16[66]",
+    )
+
+    RECRUITMENT_LEVEL_BOOST_TABLE = Symbol(
+        [0x85FC],
+        [0x22C59BC],
+        0xCC,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[102]",
+    )
+
+    NATURAL_GIFT_ITEM_TABLE = Symbol(
+        [0x86C8],
+        [0x22C5A88],
+        0xCC,
+        "Maps items to their type and base power if used with Natural Gift.\n\nAny item"
+        " not listed in this table explicitly will be Normal type with a base power of"
+        " 1 when used with Natural Gift.\n\ntype: struct natural_gift_item_info[34]",
+    )
+
     RANDOM_MUSIC_ID_TABLE = Symbol(
         [0x8794],
         [0x22C5B54],
@@ -3621,6 +3876,13 @@ class EuOverlay10Data:
         " tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each"
         " row contains the possible music IDs for a given group, from which the music"
         " track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
+    )
+
+    SHOP_ITEM_CHANCES = Symbol(
+        [0x8884],
+        [0x22C5C44],
+        0x120,
+        "8 * 6 * 3 * 0x2\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
     MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
@@ -3685,6 +3947,14 @@ class EuOverlay10Data:
         " fixed_room_monster_spawn_stats_entry[99]",
     )
 
+    METRONOME_TABLE = Symbol(
+        [0x9374],
+        [0x22C6734],
+        0x540,
+        "Something to do with the moves that Metronome can turn into.\n\ntype: struct"
+        " wildcard_move_desc[168]",
+    )
+
     TILESET_PROPERTIES = Symbol(
         [0x98B4], [0x22C6C74], 0x954, "type: struct tileset_property[199]"
     )
@@ -3699,13 +3969,339 @@ class EuOverlay10Data:
         " fixed_room_properties_entry[256]",
     )
 
-    MOVE_ANIMATION_INFO = Symbol([0xC5FC], [0x22C99BC], None, "")
+    TRAP_ANIMATION_INFO = Symbol(
+        [0xAFE8],
+        [0x22C83A8],
+        0x34,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " trap_animation[26]",
+    )
+
+    ITEM_ANIMATION_INFO = Symbol(
+        [0xB01C],
+        [0x22C83DC],
+        0x15E0,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " item_animation[1400]",
+    )
+
+    MOVE_ANIMATION_INFO = Symbol(
+        [0xC5FC], [0x22C99BC], 0x34C8, "type: struct move_animation[563]"
+    )
+
+    EFFECT_ANIMATION_INFO = Symbol(
+        [0xFAC4],
+        [0x22CCE84],
+        0x4C90,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " effect_animation[700]",
+    )
+
+    SPECIAL_MONSTER_MOVE_ANIMATION_INFO = Symbol(
+        [0x14754],
+        [0x22D1B14],
+        0xADF4,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " special_monster_move_animation[7422]",
+    )
+
+    IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Iron Tail lowering defense, as a percentage (30%).",
+    )
+
+    TWINEEDLE_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Twineedle poisoning, as a percentage (20%)."
+    )
+
+    EXTRASENSORY_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Extrasensory inflicting the cringe status, as a percentage"
+        " (10%).",
+    )
+
+    ROCK_SLIDE_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the"
+        " cringe status, as a percentage (30%)",
+    )
+
+    CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering"
+        " defense, as a percentage (20%).",
+    )
+
+    MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40)"
+        " lowering accuracy, as a percentage (40%).",
+    )
+
+    ANCIENTPOWER_BOOST_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of AncientPower boosting all stats, as a percentage (20%).",
+    )
+
+    POISON_TAIL_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Poison Tail poisoning, as a percentage (10%)."
+    )
+
+    THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thundershock paralyzing, as a percentage (10%).",
+    )
+
+    HEADBUTT_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
+    )
+
+    FIRE_FANG_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
+    )
+
+    SACRED_FIRE_BURN_CHANCE = Symbol(
+        None, None, None, "The chance of Sacred Fire burning, as a percentage (50%)."
+    )
+
+    WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Whirlpool inflicting the constriction status, as a percentage"
+        " (10%).",
+    )
+
+    MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Mist Ball lowering special attack, as a percentage (50%).",
+    )
+
+    CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Charge Beam boosting special attack, as a percentage (40%).",
+    )
+
+    LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50)"
+        " lowering special defense, as a percentage (50%).",
+    )
+
+    CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering"
+        " speed, as a percentage (20%).",
+    )
+
+    ICE_FANG_FREEZE_CHANCE = Symbol(
+        None, None, None, "The chance of Ice Fang freezing, as a percentage (15%)."
+    )
+
+    SMOG_POISON_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a"
+        " percentage (40%).",
+    )
+
+    LICK_PARALYZE_CHANCE = Symbol(
+        None, None, None, "The chance of Lick paralyzing, as a percentage (10%)."
+    )
+
+    THUNDER_FANG_PARALYZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thunder Fang paralyzing, as a percentage (10%).",
+    )
+
+    BITE_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Bite inflicting the cringe status, as a percentage (20%)",
+    )
+
+    ICE_FANG_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
+    )
+
+    BLAZE_KICK_BURN_CHANCE = Symbol(
+        None, None, None, "The chance of Blaze Kick burning, as a percentage (10%)."
+    )
+
+    DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
+        None, None, None, "The chance of Dizzy Punch confusing, as a percentage (30%)."
+    )
+
+    SECRET_POWER_EFFECT_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Secret Power inflicting an effect, as a percentage (30%).",
+    )
+
+    CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Crush Claw lowering defense, as a percentage (50%).",
+    )
+
+    BLIZZARD_FREEZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Blizzard (and others, see DoMoveDamageFreeze15) freezing, as a"
+        " percentage (15%).",
+    )
+
+    POISON_STING_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Poison Sting poisoning, as a percentage (18%)."
+    )
+
+    POISON_FANG_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Poison Fang poisoning, as a percentage (30%)."
+    )
+
+    THUNDER_PARALYZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as"
+        " a percentage (20%)",
+    )
+
+    TWISTER_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Twister inflicting the cringe status, as a percentage (10%).",
+    )
+
+    FAKE_OUT_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
+    )
+
+    THUNDER_FANG_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thunder Fang inflicting the cringe status, as a percentage"
+        " (25%).",
+    )
+
+    FLARE_BLITZ_BURN_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Flare Blitz burning, as a percentage (25%). This value is also"
+        " used for the Fire Fang burn chance.",
+    )
+
+    FLAME_WHEEL_BURN_CHANCE = Symbol(
+        None, None, None, "The chance of Flame Wheel burning, as a percentage (10%)."
+    )
+
+    ROCK_CLIMB_CONFUSE_CHANCE = Symbol(
+        None, None, None, "The chance of Rock Climb confusing, as a percentage (10%)."
+    )
+
+    TRI_ATTACK_STATUS_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Tri Attack inflicting any status condition, as a percentage"
+        " (20%).",
+    )
+
+    DRAGON_RAGE_FIXED_DAMAGE = Symbol(
+        None, None, None, "The amount of fixed damage dealt by Dragon Rage (30)."
+    )
+
+    FACADE_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        "The Facade damage multiplier for users with a status condition, as a binary"
+        " fixed-point number with 8 fraction bits (0x200 -> 2x).",
+    )
+
+    IMPRISON_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype:"
+        " int16_t[2]",
+    )
+
+    NIGHTMARE_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Nightmare status inflicted by Nightmare, [4,"
+        " 8).\n\ntype: int16_t[2]",
+    )
+
+    SMOKESCREEN_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Whiffer status inflicted by Smokescreen, [1,"
+        " 4).\n\ntype: int16_t[2]",
+    )
+
+    YAWN_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype:"
+        " int16_t[2]",
+    )
 
 
 class EuOverlay10Section:
     name = "overlay10"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 10."
+        "Appears to be used both during ground mode and dungeon mode. With dungeon"
+        " mode, whereas overlay 29 contains the main dungeon engine, this overlay seems"
+        " to contain routines and data for dungeon mechanics."
     )
     loadaddress = 0x22BD3C0
     length = 0x1F7A0
@@ -3868,6 +4464,38 @@ class EuOverlay11Functions:
         "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
     )
 
+    LoadBackgroundAttributes = Symbol(
+        [0xF900],
+        [0x22EC480],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] bg_attr_str\nr1:"
+        " bg_id",
+    )
+
+    LoadMapType10 = Symbol(
+        [0x10AE4],
+        [0x22ED664],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] buffer_ptr\nr1:"
+        " map_id\nr2: dungeon_info_str\nr3: additional_info",
+    )
+
+    LoadMapType11 = Symbol(
+        [0x11004],
+        [0x22EDB84],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] buffer_ptr\nr1:"
+        " map_id\nr2: dungeon_info_str\nr3: additional_info",
+    )
+
+    GetSpecialLayoutBackground = Symbol(
+        [0x15380],
+        [0x22F1F00],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: bg_id\nr1:"
+        " dungeon_info_str\nr2: additional_info\nr3: copy_fixed_room_layout",
+    )
+
     SprintfStatic = Symbol(
         [0x2CCE8],
         [0x2309868],
@@ -3904,6 +4532,13 @@ class EuOverlay11Data:
         " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
         " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
         " common_routine_table",
+    )
+
+    GROUND_WAN_FILES_TABLE = Symbol(
+        [0x41CA0],
+        [0x231E820],
+        0x10BC,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: char[343][12]",
     )
 
     OBJECTS = Symbol(
@@ -3943,7 +4578,11 @@ class EuOverlay11Data:
     )
 
     LEVEL_TILEMAP_LIST = Symbol(
-        [0x44CDC], [0x232185C], 0x288, "type: struct level_tilemap_list_entry[81]"
+        [0x44CDC],
+        [0x232185C],
+        0x288,
+        "Irdkwia's notes: FIXED_FLOOR_GROUND_ASSOCIATION\n\ntype: struct"
+        " level_tilemap_list_entry[81]",
     )
 
     OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
@@ -3970,11 +4609,58 @@ class EuOverlay11Data:
         " scene\n\ntype: struct main_ground_data",
     )
 
+    OVERLAY11_UNKNOWN_TABLE__NA_2316A38 = Symbol(
+        None,
+        None,
+        None,
+        "Multiple entries are pointers to the string 'script.c'\n\nNote: unverified,"
+        " ported from Irdkwia's notes\n\ntype: undefined4[40]",
+    )
+
+    SCRIPT_COMMAND_PARSING_DATA = Symbol(
+        None, None, None, "Used by ScriptCommandParsing somehow"
+    )
+
+    SCRIPT_OP_CODE_NAMES = Symbol(
+        None,
+        None,
+        None,
+        "Opcode name strings pointed to by entries in SCRIPT_OP_CODES"
+        " (script_opcode::name)",
+    )
+
+    OVERLAY11_DEBUG_STRINGS = Symbol(
+        None,
+        None,
+        None,
+        "Strings used with various debug printing functions throughout the overlay",
+    )
+
+    C_ROUTINE_NAMES = Symbol(
+        None,
+        None,
+        None,
+        "Common routine name strings pointed to by entries in C_ROUTINES"
+        " (common_routine::name)",
+    )
+
+    GROUND_WEATHER_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " ground_weather_entry[12]",
+    )
+
 
 class EuOverlay11Section:
     name = "overlay11"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 11."
+        "The script engine.\n\nThis is the 'main' overlay of ground mode. The script"
+        " engine is what runs the ground mode scripts contained in the SCRIPT folder,"
+        " which are written in a custom scripting language. These scripts encode things"
+        " like cutscenes, screen transitions, ground mode events, and tons of other"
+        " things related to ground mode."
     )
     loadaddress = 0x22DCB80
     length = 0x48E40
@@ -4000,6 +4686,35 @@ class EuOverlay12Section:
 
 
 class EuOverlay13Functions:
+    EntryOverlay13 = Symbol(
+        [0x0],
+        [0x238AC80],
+        None,
+        "Main function of this overlay.\n\nNote: unverified, ported from Irdkwia's"
+        " notes\n\nNo params.",
+    )
+
+    ExitOverlay13 = Symbol(
+        [0x50],
+        [0x238ACD0],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    Overlay13SwitchFunctionNa238A1C8 = Symbol(
+        [0x88],
+        [0x238AD08],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+    )
+
+    Overlay13SwitchFunctionNa238A574 = Symbol(
+        [0x434],
+        [0x238B0B4],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
     GetPersonality = Symbol(
         [0x1C68],
         [0x238C8E8],
@@ -4010,8 +4725,62 @@ class EuOverlay13Functions:
         " points.\n\nreturn: Personality (0-15)",
     )
 
+    GetOptionStringFromID = Symbol(
+        [0x1CB0],
+        [0x238C930],
+        None,
+        "Note: unverified, ported from Irdkwia's notes. The first parameter and the"
+        " return value point to the same string (which is passed directly into"
+        " PreprocessString as the first argument), so I'm not sure why they're named"
+        " differently... Seems like a mistake?\n\nr0: menu_id\nr1: option_id\nreturn:"
+        " process",
+    )
+
+    WaitForNextStep = Symbol(
+        [0x1D0C],
+        [0x238C98C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: switch_case",
+    )
+
 
 class EuOverlay13Data:
+    QUIZ_BORDER_COLOR_TABLE = Symbol(
+        [0x1ED0], [0x238CB50], 0x4, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    PORTRAIT_ATTRIBUTES = Symbol(
+        [0x1ED4], [0x238CB54], 0x8, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_MALE_FEMALE_BOOST_TABLE = Symbol(
+        [0x1EDC], [0x238CB5C], 0x8, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY13_UNKNOWN_STRUCT__NA_238C024 = Symbol(
+        [0x1EE4], [0x238CB64], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_1 = Symbol(
+        [0x1EF4], [0x238CB74], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_2 = Symbol(
+        [0x1F04], [0x238CB84], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_3 = Symbol(
+        [0x1F14], [0x238CB94], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_4 = Symbol(
+        [0x1F24], [0x238CBA4], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_MENU_1 = Symbol(
+        [0x1F34], [0x238CBB4], 0x18, "Note: unverified, ported from Irdkwia's notes"
+    )
+
     STARTERS_PARTNER_IDS = Symbol(
         [0x1F4C], [0x238CBCC], 0x2A, "type: struct monster_id_16[21]"
     )
@@ -4020,19 +4789,73 @@ class EuOverlay13Data:
         [0x1F78], [0x238CBF8], 0x40, "type: struct monster_id_16[32]"
     )
 
-    STARTERS_STRINGS = Symbol([0x200C], [0x238CC8C], 0x60, "")
+    STARTERS_TYPE_INCOMPATIBILITY_TABLE = Symbol(
+        [0x1FB8], [0x238CC38], 0x54, "Note: unverified, ported from Irdkwia's notes"
+    )
 
-    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238CCEC], 0x84, "")
+    STARTERS_STRINGS = Symbol(
+        [0x200C], [0x238CC8C], 0x60, "Irdkwia's notes: InsightsStringIDs"
+    )
 
-    QUIZ_ANSWER_STRINGS = Symbol([0x20F0], [0x238CD70], 0x160, "")
+    QUIZ_QUESTION_STRINGS = Symbol([0x206C], [0x238CCEC], 0x84, "0x2 * (66 questions)")
 
-    UNKNOWN_MENU_1 = Symbol([0x2D8C], [0x238DA0C], 0x48, "")
+    QUIZ_ANSWER_STRINGS = Symbol(
+        [0x20F0], [0x238CD70], 0x160, "0x2 * (175 answers + null-terminator)"
+    )
+
+    QUIZ_ANSWER_POINTS = Symbol(
+        [0x2250],
+        [0x238CED0],
+        0xAE0,
+        "0x10 * (174 answers?)\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    OVERLAY13_RESERVED_SPACE = Symbol(
+        [0x2D50], [0x238D9D0], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY13_UNKNOWN_POINTER__NA_238CEA0 = Symbol(
+        [0x2D60], [0x238D9E0], 0x4, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY13_UNKNOWN_POINTER__NA_238CEA4 = Symbol(
+        [0x2D64], [0x238D9E4], 0x4, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY13_UNKNOWN_POINTER__NA_238CEA8 = Symbol(
+        [0x2D68], [0x238D9E8], 0x4, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_5 = Symbol(
+        [0x2D6C], [0x238D9EC], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_D_BOX_LAYOUT_6 = Symbol(
+        [0x2D7C], [0x238D9FC], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_DEBUG_MENU = Symbol(
+        [0x2D8C], [0x238DA0C], 0x48, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY13_UNKNOWN_STRUCT__NA_238CF14 = Symbol(
+        [0x2DD4], [0x238DA54], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    QUIZ_QUESTION_ANSWER_ASSOCIATIONS = Symbol(
+        [0x2DE4],
+        [0x238DA64],
+        0x84,
+        "0x2 * (66 questions)\n\nNote: unverified, ported from Irdkwia's notes",
+    )
 
 
 class EuOverlay13Section:
     name = "overlay13"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 13."
+        "Controls the personality test, including the available partners and playable"
+        " Pokémon. The actual personality test questions are stored in the MESSAGE"
+        " folder."
     )
     loadaddress = 0x238AC80
     length = 0x2E80
@@ -4064,6 +4887,34 @@ class EuOverlay15Functions:
 class EuOverlay15Data:
     BANK_MAIN_MENU = Symbol([0xF40], [0x238BBC0], 0x28, "")
 
+    BANK_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BANK_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BANK_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BANK_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BANK_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY15_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY15_UNKNOWN_POINTER__NA_238B180 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class EuOverlay15Section:
     name = "overlay15"
@@ -4079,11 +4930,55 @@ class EuOverlay16Functions:
 
 
 class EuOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol([0x2BCC], [0x238D84C], 0x18, "")
+    EVO_MENU_CONFIRM = Symbol([0x2BCC], [0x238D84C], 0x18, "Irdkwia's notes: 3*0x8")
 
-    EVO_SUBMENU = Symbol([0x2BE4], [0x238D864], 0x20, "")
+    EVO_SUBMENU = Symbol([0x2BE4], [0x238D864], 0x20, "Irdkwia's notes: 4*0x8")
 
-    EVO_MAIN_MENU = Symbol([0x2C04], [0x238D884], 0x20, "")
+    EVO_MAIN_MENU = Symbol([0x2C04], [0x238D884], 0x20, "Irdkwia's notes: 4*0x8")
+
+    EVO_MENU_STRING_IDS = Symbol(
+        None, None, None, "26*0x2\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVO_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY16_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY16_UNKNOWN_POINTER__NA_238CE40 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY16_UNKNOWN_POINTER__NA_238CE58 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class EuOverlay16Section:
@@ -4120,12 +5015,50 @@ class EuOverlay17Data:
 
     ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238C844], 0x40, "")
 
+    ASSEMBLY_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ASSEMBLY_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ASSEMBLY_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ASSEMBLY_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ASSEMBLY_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_FUNCTION_POINTER_TABLE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_UNKNOWN_POINTER__NA_238BE00 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_UNKNOWN_POINTER__NA_238BE04 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY17_UNKNOWN_POINTER__NA_238BE08 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class EuOverlay17Section:
     name = "overlay17"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 17."
-    )
+    description = "Controls the Chimecho Assembly."
     loadaddress = 0x238AC80
     length = 0x1CE0
     functions = EuOverlay17Functions
@@ -4155,12 +5088,74 @@ class EuOverlay18Data:
 
     MOVES_SUBMENU_7 = Symbol([0x3340], [0x238DFC0], 0x48, "")
 
+    OVERLAY18_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_10 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_D_BOX_LAYOUT_11 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_FUNCTION_POINTER_TABLE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_UNKNOWN_POINTER__NA_238D620 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_UNKNOWN_POINTER__NA_238D624 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY18_UNKNOWN_POINTER__NA_238D628 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class EuOverlay18Section:
     name = "overlay18"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 18."
-    )
+    description = "Controls the Electivire Link Shop."
     loadaddress = 0x238AC80
     length = 0x3500
     functions = EuOverlay18Functions
@@ -4168,7 +5163,34 @@ class EuOverlay18Section:
 
 
 class EuOverlay19Functions:
-    pass
+    GetBarItem = Symbol(
+        None,
+        None,
+        None,
+        "Gets the struct bar_item from BAR_AVAILABLE_ITEMS with the specified item"
+        " ID.\n\nr0: item ID\nreturn: struct bar_item*",
+    )
+
+    GetRecruitableMonsterAll = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+    )
+
+    GetRecruitableMonsterList = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+    )
+
+    GetRecruitableMonsterListRestricted = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+    )
 
 
 class EuOverlay19Data:
@@ -4181,6 +5203,73 @@ class EuOverlay19Data:
     BAR_SUBMENU_1 = Symbol([0x4124], [0x238EDA4], 0x20, "")
 
     BAR_SUBMENU_2 = Symbol([0x4144], [0x238EDC4], 0x30, "")
+
+    OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
+        None, None, None, "4*0x2\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    BAR_UNLOCKABLE_DUNGEONS_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " dungeon_id_16[6]",
+    )
+
+    BAR_RECRUITABLE_MONSTER_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " monster_id_16[108]",
+    )
+
+    BAR_AVAILABLE_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct bar_item[66]",
+    )
+
+    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4 = Symbol(
+        None, None, None, "5*0x8\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BAR_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BAR_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    BAR_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_POINTER__NA_238E360 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY19_UNKNOWN_POINTER__NA_238E364 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class EuOverlay19Section:
@@ -4203,7 +5292,9 @@ class EuOverlay2Data:
 class EuOverlay2Section:
     name = "overlay2"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 2."
+        "Controls the Nintendo WFC Settings interface, accessed from the top menu"
+        " (Other > Nintendo WFC > Nintendo WFC Settings). Presumably contains code for"
+        " Nintendo Wi-Fi setup."
     )
     loadaddress = 0x2329D40
     length = 0x2AFC0
@@ -4230,12 +5321,82 @@ class EuOverlay20Data:
 
     RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238DC38], 0x18, "")
 
+    OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT1_0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RECYCLE_D_BOX_LAYOUT1_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D120 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D124 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D128 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY20_UNKNOWN_POINTER__NA_238D12C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class EuOverlay20Section:
     name = "overlay20"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 20."
-    )
+    description = "Controls the Recycle Shop."
     loadaddress = 0x238AC80
     length = 0x3000
     functions = EuOverlay20Functions
@@ -4258,6 +5419,60 @@ class EuOverlay21Data:
     SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238D5E8], 0x28, "")
 
     SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238D610], 0x30, "")
+
+    SWAP_SHOP_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY21_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SWAP_SHOP_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY21_JP_STRING = Symbol(None, None, None, "合成：")
+
+    OVERLAY21_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY21_UNKNOWN_POINTER__NA_238CF40 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY21_UNKNOWN_POINTER__NA_238CF44 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class EuOverlay21Section:
@@ -4282,12 +5497,82 @@ class EuOverlay22Data:
 
     SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238F400], 0x30, "")
 
+    SHOP_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_STRUCT__NA_238E85C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    SHOP_D_BOX_LAYOUT_10 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC60 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC64 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC68 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC6C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY22_UNKNOWN_POINTER__NA_238EC70 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class EuOverlay22Section:
     name = "overlay22"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 22."
-    )
+    description = "Controls the Kecleon Shop in Treasure Town."
     loadaddress = 0x238AC80
     length = 0x4B40
     functions = EuOverlay22Functions
@@ -4308,6 +5593,62 @@ class EuOverlay23Data:
     STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238DE94], 0x20, "")
 
     STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238DEB4], 0x28, "")
+
+    OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_UNKNOWN_VALUE__NA_238D2EC = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    STORAGE_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY23_UNKNOWN_POINTER__NA_238D8A0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class EuOverlay23Section:
@@ -4330,12 +5671,50 @@ class EuOverlay24Data:
 
     DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238D078], 0x20, "")
 
+    OVERLAY24_UNKNOWN_STRUCT__NA_238C508 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY24_UNKNOWN_STRUCT__NA_238C514 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY24_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAYCARE_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY24_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY24_UNKNOWN_POINTER__NA_238C600 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class EuOverlay24Section:
     name = "overlay24"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 24."
-    )
+    description = "Controls the Chansey Day Care."
     loadaddress = 0x238AC80
     length = 0x24E0
     functions = EuOverlay24Functions
@@ -4353,6 +5732,54 @@ class EuOverlay25Data:
 
     APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238C02C], 0x20, "")
 
+    OVERLAY25_UNKNOWN_STRUCT__NA_238B498 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY25_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    APPRAISAL_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY25_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY25_UNKNOWN_POINTER__NA_238B5E0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class EuOverlay25Section:
     name = "overlay25"
@@ -4368,13 +5795,44 @@ class EuOverlay26Functions:
 
 
 class EuOverlay26Data:
-    pass
+    OVERLAY26_UNKNOWN_TABLE__NA_238AE20 = Symbol(
+        None,
+        None,
+        None,
+        "0x6 + 11*0xC + 0x2\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    OVERLAY26_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF60 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF64 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF68 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER__NA_238AF6C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY26_UNKNOWN_POINTER5__NA_238AF70 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class EuOverlay26Section:
     name = "overlay26"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 26."
+        "Related to mission completion. It's loaded when the dungeon completion summary"
+        " is shown upon exiting a dungeon, and during the cutscenes where you collect"
+        " mission rewards from clients."
     )
     loadaddress = 0x238AC80
     length = 0xE40
@@ -4394,6 +5852,66 @@ class EuOverlay27Data:
     DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238D4D4], 0x20, "")
 
     DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238D4F4], 0x28, "")
+
+    OVERLAY27_UNKNOWN_VALUE__NA_238C948 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_VALUE__NA_238C94C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_STRUCT__NA_238C950 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DISCARD_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_POINTER__NA_238CE80 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY27_UNKNOWN_POINTER__NA_238CE84 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class EuOverlay27Section:
@@ -4415,9 +5933,7 @@ class EuOverlay28Data:
 
 class EuOverlay28Section:
     name = "overlay28"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 28."
-    )
+    description = "Controls the staff credits sequence."
     loadaddress = 0x238AC80
     length = 0xC60
     functions = EuOverlay28Functions
@@ -4605,6 +6121,21 @@ class EuOverlay29Functions:
         " of forced loss.\nreturn: true if the forced loss happens, false otherwise",
     )
 
+    IsBossFight = Symbol(
+        [0x4624],
+        [0x22E11A4],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: fixed_room_id\nreturn:"
+        " bool",
+    )
+
+    IsCurrentFixedRoomBossFight = Symbol(
+        [0x4640],
+        [0x22E11C0],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: bool",
+    )
+
     FixedRoomIsSubstituteRoom = Symbol(
         [0x468C],
         [0x22E120C],
@@ -4757,6 +6288,14 @@ class EuOverlay29Functions:
         " statuses::grudge, critical HP and lowered stats with explicit checks, and"
         " applies the effect of the Identifier Orb (see"
         " dungeon::identify_orb_flag).\n\nr0: entity pointer",
+    )
+
+    LoadMappaFileAttributes = Symbol(
+        [0xADEC],
+        [0x22E796C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: quick_saved\nr1: ???\nr2:"
+        " special_process",
     )
 
     IsOnMonsterSpawnList = Symbol(
@@ -4975,6 +6514,13 @@ class EuOverlay29Functions:
         " generation.\n\nNo params.",
     )
 
+    ChangeDungeonMusic = Symbol(
+        [0xEC44],
+        [0x22EB7C4],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: music ID",
+    )
+
     TrySwitchPlace = Symbol(
         [0xEFA8],
         [0x22EBB28],
@@ -5146,6 +6692,15 @@ class EuOverlay29Functions:
         " position\nr2: y position\nr3: flags\nstack[0]: visibility flag",
     )
 
+    PerformLeaderAction = Symbol(
+        [0x14D10],
+        [0x22F1890],
+        None,
+        "This appears to be the function that actually performs the leader's action"
+        " within RunLeaderTurn.\n\nNote: unverified, ported from Irdkwia's notes\n\nNo"
+        " params.",
+    )
+
     ChangeLeader = Symbol(
         [0x17770],
         [0x22F42F0],
@@ -5157,12 +6712,20 @@ class EuOverlay29Functions:
         " message log.\n\nNo params.",
     )
 
-    ResetDamageDesc = Symbol(
+    ResetDamageData = Symbol(
         [0x1AC50],
         [0x22F77D0],
         None,
-        "Seems to zero some damage description struct, which is output by the damage"
-        " calculation function.\n\nr0: damage description pointer",
+        "Zeroes the damage data struct, which is output by the damage calculation"
+        " function.\n\nr0: damage data pointer",
+    )
+
+    GetTotalSpriteFileSize = Symbol(
+        [0x1AEA0],
+        [0x22F7A20],
+        None,
+        "Checks Castform and Cherrim\n\nNote: unverified, ported from Irdkwia's"
+        " notes\n\nr0: monster ID\nreturn: sprite file size",
     )
 
     GetSpriteIndex = Symbol(
@@ -5186,9 +6749,9 @@ class EuOverlay29Functions:
         [0x1B1EC],
         [0x22F7D6C],
         None,
-        "Checks if the current dungeon floor number is even.\n\nHas a special check to"
-        " return false for Labyrinth Cave B10F (the Gabite boss fight).\n\nreturn:"
-        " bool",
+        "Checks if the current dungeon floor number is even (probably to determine"
+        " whether an enemy spawn should be female).\n\nHas a special check to return"
+        " false for Labyrinth Cave B10F (the Gabite boss fight).\n\nreturn: bool",
     )
 
     GetKecleonIdToSpawnByFloor = Symbol(
@@ -5199,12 +6762,47 @@ class EuOverlay29Functions:
         " otherwise returns male Kecleon's id (0x17F).\n\nreturn: monster ID",
     )
 
+    StoreSpriteFileIndexBothGenders = Symbol(
+        [0x1B244],
+        [0x22F7DC4],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nr1: file ID",
+    )
+
+    LoadMonsterSpriteInner = Symbol(
+        [0x1B30C],
+        [0x22F7E8C],
+        None,
+        "This is called by LoadMonsterSprite a bunch of times.\n\nr0: monster ID",
+    )
+
+    SwapMonsterWanFileIndex = Symbol(
+        [0x1B40C],
+        [0x22F7F8C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: src_id\nr1: dst_id",
+    )
+
     LoadMonsterSprite = Symbol(
         [0x1B48C],
         [0x22F800C],
         None,
-        "Loads the sprite of the specified monster to use it in a dungeon.\n\nr0:"
-        " Monster id\nr1: ?",
+        "Loads the sprite of the specified monster to use it in a dungeon.\n\nIrdkwia's"
+        " notes: Handles Castform/Cherrim/Deoxys\n\nr0: monster ID\nr1: ?",
+    )
+
+    DeleteMonsterSpriteFile = Symbol(
+        [0x1B5A0],
+        [0x22F8120],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID",
+    )
+
+    DeleteAllMonsterSpriteFiles = Symbol(
+        [0x1B63C],
+        [0x22F81BC],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
     )
 
     EuFaintCheck = Symbol(
@@ -5239,6 +6837,14 @@ class EuOverlay29Functions:
         " and the direction in which it plans to attack.\n\nr0: Entity pointer",
     )
 
+    SetMonsterTypeAndAbility = Symbol(
+        [0x1D020],
+        [0x22F9BA0],
+        None,
+        "Checks Forecast ability\n\nNote: unverified, ported from Irdkwia's"
+        " notes\n\nr0: target entity pointer",
+    )
+
     TryActivateSlowStart = Symbol(
         [0x1D0C8],
         [0x22F9C48],
@@ -5253,6 +6859,14 @@ class EuOverlay29Functions:
         None,
         "Runs a check over all monsters on the field for abilities that affect the"
         " weather and changes the floor's weather accordingly.\n\nNo params",
+    )
+
+    GetMonsterApparentId = Symbol(
+        [0x1D294],
+        [0x22F9E14],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: target entity"
+        " pointer\nr1: current_id\nreturn: ?",
     )
 
     DefenderAbilityIsActive = Symbol(
@@ -5415,6 +7029,13 @@ class EuOverlay29Functions:
         " id\nreturn: bool",
     )
 
+    IsSatisfyingScenarioConditionToSpawn = Symbol(
+        [0x1F478],
+        [0x22FBFF8],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: bool",
+    )
+
     HasLowHealth = Symbol(
         [0x1F49C],
         [0x22FC01C],
@@ -5469,6 +7090,14 @@ class EuOverlay29Functions:
         " ?\nstack[2]: ?\nstack[3]: ?\nstack[4]: ?",
     )
 
+    InitMonster = Symbol(
+        [0x21C3C],
+        [0x22FE7BC],
+        None,
+        "Initializes a monster struct.\n\nr0: pointer to monster to initialize\nr1:"
+        " some flag",
+    )
+
     ExecuteMonsterAction = Symbol(
         [0x2235C],
         [0x22FEEDC],
@@ -5518,6 +7147,13 @@ class EuOverlay29Functions:
         "Returns the number of attacks that a monster can do in one turn (1 or"
         " 2).\n\nChecks for the abilities Swift Swim, Chlorophyll, Unburden, and for"
         " exclusive items.\n\nr0: pointer to entity\nreturns: int",
+    )
+
+    GetMonsterName = Symbol(
+        [0x24010],
+        [0x2300B90],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer\nr1: TargetInfo",
     )
 
     SprintfStatic = Symbol(
@@ -5597,6 +7233,23 @@ class EuOverlay29Functions:
         " Acid.\n\nr0: entity pointer\nr1: ability ID\nreturn: bool",
     )
 
+    AbilityIsActiveVeneer = Symbol(
+        [0x25C24],
+        [0x23027A4],
+        None,
+        "Likely a linker-generated veneer for AbilityIsActive.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " entity pointer\nr1: ability ID\nreturn: bool",
+    )
+
+    AbilityIsActiveAnyEntity = Symbol(
+        [0x25C30],
+        [0x23027B0],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " ability ID\nreturn: bool",
+    )
+
     LevitateIsActive = Symbol(
         [0x25CC4],
         [0x2302844],
@@ -5611,6 +7264,22 @@ class EuOverlay29Functions:
         None,
         "Checks if a monster is a given type.\n\nr0: entity pointer\nr1: type"
         " ID\nreturn: bool",
+    )
+
+    IsTypeAffectedByGravity = Symbol(
+        [0x25D34],
+        [0x23028B4],
+        None,
+        "Checks if Gravity is active and that the given type is affected (i.e., Flying"
+        " type).\n\nr0: target entity pointer (unused)\nr1: type ID\nreturn: bool",
+    )
+
+    HasTypeAffectedByGravity = Symbol(
+        [0x25D58],
+        [0x23028D8],
+        None,
+        "Checks if Gravity is active and that the given monster is of an affected type"
+        " (i.e., Flying type).\n\nr0: target entity pointer\nr1: type ID\nreturn: bool",
     )
 
     CanSeeInvisibleMonsters = Symbol(
@@ -5679,6 +7348,23 @@ class EuOverlay29Functions:
         " and if so, attempts to evolve it.\n\nr0: Pointer to the enemy to check",
     )
 
+    TryDecreaseLevel = Symbol(
+        [0x26E34],
+        [0x23039B4],
+        None,
+        "Decrease the target monster's level if possible.\n\nr0: user entity"
+        " pointer\nr1: target entity pointer\nr2: number of levels to decrease\nreturn:"
+        " success flag",
+    )
+
+    LevelUp = Symbol(
+        [0x26EE8],
+        [0x2303A68],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer\nr2: message flag?\nr3: ?\nreturn: success flag?",
+    )
+
     EvolveMonster = Symbol(
         [0x27B28],
         [0x23046A8],
@@ -5745,9 +7431,8 @@ class EuOverlay29Functions:
         " checks related to printing fainting messages under specific"
         " circumstances.\n\nr0: Attacker pointer\nr1: Defender pointer\nr2: Pointer to"
         " the damage_data struct that contains info about the damage to deal\nr3:"
-        " ?\nstack[0]: ?\nstack[1]: Pointer to some struct. The first byte contains the"
-        " ID of the move used.\nreturn: True if the target fainted (reviving does not"
-        " count as fainting)",
+        " ?\nstack[0]: ?\nstack[1]: Faint reason (see HandleFaint)\nreturn: True if the"
+        " target fainted (reviving does not count as fainting)",
     )
 
     GetTypeMatchup = Symbol(
@@ -5827,6 +7512,14 @@ class EuOverlay29Functions:
         None,
         "CalcDamage seems to use scratch space of some kind, which this function"
         " zeroes.\n\nNo params.",
+    )
+
+    IsRecruited = Symbol(
+        [0x31AC4],
+        [0x230E644],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer\nreturn: bool",
     )
 
     TrySpawnMonsterAndTickSpawnCounter = Symbol(
@@ -6127,7 +7820,8 @@ class EuOverlay29Functions:
         None,
         "Lowers the specified hit chance stat (accuracy or evasion) on the target"
         " monster.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: stat"
-        " index\nr3: ?",
+        " index\nr3: ? (Irdkwia's notes say this is the number of stages, but I'm"
+        " pretty sure that's incorrect)",
     )
 
     TryInflictCringeStatus = Symbol(
@@ -6225,13 +7919,21 @@ class EuOverlay29Functions:
     )
 
     TryInflictCoweringStatus = Symbol(
-        [0x3914C],
-        [0x2315CCC],
+        [0x3904C],
+        [0x2315BCC],
         None,
         "Inflicts the Cowering status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to log a message on"
         " failure\nr3: flag to only perform the check for inflicting without actually"
         " inflicting\nreturn: Whether or not the status could be inflicted",
+    )
+
+    TryRestoreHp = Symbol(
+        [0x3914C],
+        [0x2315CCC],
+        None,
+        "Restore HP of the target monster if possible.\n\nr0: user entity pointer\nr1:"
+        " target entity pointer\nr2: HP to restore\nreturn: success flag",
     )
 
     TryIncreaseHp = Symbol(
@@ -6241,6 +7943,30 @@ class EuOverlay29Functions:
         "Restore HP and possibly boost max HP of the target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: HP to restore\nr3: max HP"
         " boost\nstack[0]: flag to log a message on failure\nreturn: Success flag",
+    )
+
+    RevealItems = Symbol(
+        [0x394F0],
+        [0x2316070],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer",
+    )
+
+    RevealStairs = Symbol(
+        [0x39580],
+        [0x2316100],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer",
+    )
+
+    RevealEnemies = Symbol(
+        [0x3963C],
+        [0x23161BC],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity pointer\nr1:"
+        " target entity pointer",
     )
 
     TryInflictLeechSeedStatus = Symbol(
@@ -6372,6 +8098,24 @@ class EuOverlay29Functions:
         " range",
     )
 
+    IsInSpawnList = Symbol(
+        [0x3F2DC],
+        [0x231BE5C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: spawn_list_ptr\nr1:"
+        " monster ID\nreturn: bool",
+    )
+
+    ChangeShayminForme = Symbol(
+        [0x3F3CC],
+        [0x231BF4C],
+        None,
+        "forme:\n  1: change from Land to Sky\n  2: change from Sky to Land\nresult:\n "
+        " 0: not Shaymin\n  1: not correct Forme\n  2: frozen\n  3: ok\n\nNote:"
+        " unverified, ported from Irdkwia's notes\n\nr0: Target\nr1: forme\nreturn:"
+        " result",
+    )
+
     ApplyItemEffect = Symbol(
         [0x3F56C],
         [0x231C0EC],
@@ -6451,6 +8195,15 @@ class EuOverlay29Functions:
         " first accuracy (accuracy1) should be used, false if its second accuracy"
         " (accuracy2) should be used instead.\nreturns: True if the move hits, false if"
         " it misses.",
+    )
+
+    IsHyperBeamVariant = Symbol(
+        [0x4841C],
+        [0x2324F9C],
+        None,
+        "Checks if a move is a Hyper Beam variant that requires a a turn to"
+        " recharge.\n\nInclude moves: Frenzy Plant, Hydro Cannon, Hyper Beam, Blast"
+        " Burn, Rock Wrecker, Giga Impact, Roar of Time\n\nr0: move\nreturn: bool",
     )
 
     DungeonRandOutcomeUserTargetInteraction = Symbol(
@@ -6545,14 +8298,14 @@ class EuOverlay29Functions:
         " pointer\nreturn: True if the move should play its alternative animation",
     )
 
-    DealDamageWithRecoil = Symbol(
+    DoMoveDamageWithRecoil = Symbol(
         [0x4BE20],
         [0x23289A0],
         None,
-        "Deals damage from a move or item used by an attacking monster on a defending"
-        " monster, and also deals recoil damage to the attacker.\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: bool, whether"
-        " or not damage was dealt",
+        "Move effect: Deals damage, inflicting recoil damage on the attacker.\nRelevant"
+        " moves: Submission, Wood Hammer, Brave Bird\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: bool, whether or not damage"
+        " was dealt",
     )
 
     ExecuteMoveEffect = Symbol(
@@ -6582,7 +8335,9 @@ class EuOverlay29Functions:
         None,
         "Appears to calculate damage from a variable-damage projectile.\n\nr0: entity"
         " pointer 1?\nr1: entity pointer 2?\nr2: move pointer\nr3: move"
-        " power\nothers: ?",
+        " power\nstack[0]: damage multiplier (as a binary fixed-point number with 8"
+        " fraction bits)\nstack[1]: item ID of the projectile\nreturn: Calculated"
+        " damage",
     )
 
     CalcDamageFinal = Symbol(
@@ -6591,8 +8346,9 @@ class EuOverlay29Functions:
         None,
         "Last function called by DealDamage to determine the final damage dealt by the"
         " move. The result of this call is the return value of DealDamage. \n\nr0:"
-        " Attacker pointer\nr1: Defender pointer\nr2: Move pointer\nr3: ?\nstack[0]:"
-        " Pointer to some struct. The first byte contains the ID of the move used.",
+        " Attacker pointer\nr1: Defender pointer\nr2: Move pointer\nr3: [output] struct"
+        " containing info about the damage calculation\nstack[0]: Faint reason (see"
+        " HandleFaint)\nreturn: Calculated damage",
     )
 
     StatusCheckerCheck = Symbol(
@@ -6624,6 +8380,45 @@ class EuOverlay29Functions:
         " abilities.\n\nr0: pointer to entity",
     )
 
+    DigitCount = Symbol(
+        [0x59530],
+        [0x23360B0],
+        None,
+        "Counts the number of digits in a nonnegative integer.\n\nIf the number is"
+        " negative, it is cast to a uint16_t before counting digits.\n\nr0:"
+        " int\nreturn: number of digits in int",
+    )
+
+    LoadTextureUi = Symbol(
+        [0x59580],
+        [0x2336100],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    DisplayNumberTextureUi = Symbol(
+        [0x5974C],
+        [0x23362CC],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: x position\nr1: y"
+        " position\nr2: number\nr3: ally_mode\nreturn: xsize",
+    )
+
+    DisplayCharTextureUi = Symbol(
+        [0x59854],
+        [0x23363D4],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: call_back_str\nr1: x"
+        " position\nr2: y position\nr3: char_id\nstack[0]: ?\nreturn: ?",
+    )
+
+    DisplayUi = Symbol(
+        [0x598DC],
+        [0x233645C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
     GetTile = Symbol(
         [0x5A14C],
         [0x2336CCC],
@@ -6641,11 +8436,27 @@ class EuOverlay29Functions:
         " position\nreturn: tile pointer",
     )
 
+    IsFullFloorFixedRoom = Symbol(
+        [0x5A224],
+        [0x2336DA4],
+        None,
+        "Checks if the current fixed room on the dungeon generation info corresponds to"
+        " a fixed, full-floor layout.\n\nThe first non-full-floor fixed room is 0xA5,"
+        " which is for Sealed Chambers.\n\nreturn: bool",
+    )
+
     GetStairsRoom = Symbol(
         [0x5A478],
         [0x2336FF8],
         None,
         "Returns the index of the room that contains the stairs\n\nreturn: Room index",
+    )
+
+    GetRandomSpawnMonsterID = Symbol(
+        [0x5BFE8],
+        [0x2338B68],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nreturn: monster ID?",
     )
 
     GravityIsActive = Symbol(
@@ -7378,6 +9189,92 @@ class EuOverlay29Functions:
         " FIXED_ROOM_DATA_PTR.\n\nNo params.",
     )
 
+    LoadFixedRoom = Symbol(
+        [0x67E84], [0x2344A04], None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OpenFixedBin = Symbol(
+        [0x680B8],
+        [0x2344C38],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    CloseFixedBin = Symbol(
+        [0x680EC],
+        [0x2344C6C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    AreOrbsAllowed = Symbol(
+        [0x68110],
+        [0x2344C90],
+        None,
+        "Checks if orbs are usable in the given fixed room.\n\nAlways true if not a"
+        " full-floor fixed room.\n\nr0: fixed room ID\nreturn: bool",
+    )
+
+    AreTileJumpsAllowed = Symbol(
+        [0x68140],
+        [0x2344CC0],
+        None,
+        "Checks if tile jumps (warping, being blown away, and leaping) are allowed in"
+        " the given fixed room.\n\nAlways true if not a full-floor fixed room.\n\nr0:"
+        " fixed room ID\nreturn: bool",
+    )
+
+    AreTrawlOrbsAllowed = Symbol(
+        [0x68170],
+        [0x2344CF0],
+        None,
+        "Checks if Trawl Orbs work in the given fixed room.\n\nAlways true if not a"
+        " full-floor fixed room.\n\nr0: fixed room ID\nreturn: bool",
+    )
+
+    AreOrbsAllowedVeneer = Symbol(
+        [0x681A0],
+        [0x2344D20],
+        None,
+        "Likely a linker-generated veneer for InitMemAllocTable.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " fixed room ID\nreturn: bool",
+    )
+
+    AreLateGameTrapsEnabled = Symbol(
+        [0x681AC],
+        [0x2344D2C],
+        None,
+        "Check if late-game traps (Summon, Pitfall, and Pokémon traps) work in the"
+        " given fixed room.\n\nOr disabled? This function, which Irdkwia's notes label"
+        " as a disable check, check the struct field labeled in End's notes as an"
+        " enable flag.\n\nr0: fixed room ID\nreturn: bool",
+    )
+
+    AreMovesEnabled = Symbol(
+        [0x681C4],
+        [0x2344D44],
+        None,
+        "Checks if moves (excluding the regular attack) are usable in the given fixed"
+        " room.\n\nr0: fixed room ID\nreturn: bool",
+    )
+
+    IsRoomIlluminated = Symbol(
+        [0x681DC],
+        [0x2344D5C],
+        None,
+        "Checks if the given fixed room is fully illuminated.\n\nr0: fixed room"
+        " ID\nreturn: bool",
+    )
+
+    GetMatchingMonsterId = Symbol(
+        [0x681F4],
+        [0x2344D74],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nr1: ?\nr2:"
+        " ?\nreturn: monster ID",
+    )
+
     GenerateItemExplicit = Symbol(
         [0x68418],
         [0x2344F98],
@@ -7675,6 +9572,15 @@ class EuOverlay29Functions:
         " pointer\nreturn: bool",
     )
 
+    GenerateMissionEggMonster = Symbol(
+        [0x6D920],
+        [0x234A4A0],
+        None,
+        "Generates the monster ID in the egg from the given mission. Uses the base form"
+        " of the monster.\n\nNote: unverified, ported from Irdkwia's notes\n\nr0:"
+        " mission struct",
+    )
+
     LogMessageByIdWithPopupCheckUser = Symbol(
         [0x6F324],
         [0x234BEA4],
@@ -7811,6 +9717,14 @@ class EuOverlay29Functions:
         " params",
     )
 
+    GetPersonalityIndex = Symbol(
+        [0x7106C],
+        [0x234DBEC],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster"
+        " pointer\nreturn: ?",
+    )
+
     DisplayMessage = Symbol(
         [0x712D8],
         [0x234DE58],
@@ -7849,6 +9763,10 @@ class EuOverlay29Functions:
         " ?\nstack[0]: ?\nstack[1]: ?",
     )
 
+    OpenMenu = Symbol(
+        [0x71E74], [0x234E9F4], None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
     OthersMenuLoop = Symbol(
         [0x7384C],
         [0x23503CC],
@@ -7868,12 +9786,1197 @@ class EuOverlay29Functions:
         " menu is closed.\n\nreturn: Always 0",
     )
 
-
-class EuOverlay29Data:
-    NECTAR_IQ_BOOST = Symbol(
-        [0x40264], [0x231CDE4], None, "IQ boost from ingesting Nectar."
+    IsMarowakTrainingMaze = Symbol(
+        None,
+        None,
+        None,
+        "Check if the current dungeon is one of the training mazes in Marowak Dojo"
+        " (this excludes Final Maze).\n\nreturn: bool",
     )
 
+    TrySpawnEnemyItemDrop = Symbol(
+        None,
+        None,
+        None,
+        "Determine what item a defeated enemy should drop, if any, then (probably?)"
+        " spawn that item underneath them.\n\nThis function is called at the time when"
+        " an enemy is defeated from ApplyDamage.\n\nr0: attacker entity (who defeated"
+        " the enemy)\nr1: defender entity (who was defeated)",
+    )
+
+    GetFaintReasonWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Wraps GetFaintReason (in arm9) for a move info struct rather than a move"
+        " ID.\n\nr0: move info pointer\nr1: item ID\nreturn: faint reason",
+    )
+
+    DoMoveDamage = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage"
+        " with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveIronTail = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveYawn = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Yawn\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveNightmare = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Nightmare\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCharm = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Charm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEncore = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Encore\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSuperFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Super Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePainSplit = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Pain Split\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTorment = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Torment\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSwagger = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Swagger\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageCringe30 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of"
+        " inflicting the cringe status on the defender.\nRelevant moves: Rock Slide,"
+        " Iron Head, Air Slash, Zen Headbutt, Dragon Rush\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
+        " dealt",
+    )
+
+    DoMoveWhirlpool = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Whirlpool\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeTears = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSpite = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Spite\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSmokescreen = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Smokescreen\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFlatter = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Flatter\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWillOWisp = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Will-O-Wisp\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveReturn = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Return\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFlameWheel = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Flame Wheel\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGust = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Gust\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveParalyze = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun"
+        " Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerDef20 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 20% chance (CRUNCH_LOWER_DEFENSE_CHANCE) of"
+        " lowering the defender's defense.\nRelevant moves: Crunch, Shadow Ball\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
+    )
+
+    DoMoveBite = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Bite\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageParalyze20 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 20% chance (THUNDER_PARALYZE_CHANCE) of"
+        " paralyzing the defender.\nRelevant moves: Thunder, Force Palm\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveEndeavor = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Endeavor\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFacade = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Facade\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerSpeed20 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of"
+        " lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
+    )
+
+    DoMoveBrickBreak = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Brick Break\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRockTomb = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Rock Tomb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageDrain = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal draining damage, healing the attacker by a proportion of the"
+        " damage dealt.\nRelevant moves: Giga Drain, Drain Punch\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveReversal = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Reversal\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSmellingSalt = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: SmellingSalt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMetalSound = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Metal Sound\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTickle = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Tickle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveOutrage = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Outrage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageWeightDependent = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage, multiplied by a weight-dependent factor.\nRelevant"
+        " moves: Low Kick, Grass Knot\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveAncientPower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: AncientPower\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRapidSpin = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Rapid Spin\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageFreeze15 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 15% chance (BLIZZARD_FREEZE_CHANCE) of"
+        " freezing the defender.\nRelevant moves: Blizzard, Ice Beam\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveScaryFace = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Scary Face\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRockClimb = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Rock Climb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEarthquake = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Earthquake\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    GetNaturePowerVariant = Symbol(
+        None,
+        None,
+        None,
+        "Gets the nature power variant for the current dungeon, based on the tileset"
+        " ID.\n\nreturn: nature power variant",
+    )
+
+    DoMoveNaturePower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Nature Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move (unused)\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLick = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Lick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFissure = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fissure\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveExtrasensory = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Extrasensory\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAbsorb = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Absorb\n\nThis is essentially identical to DoMoveDamageDrain,"
+        " except the ordering of the instructions is slightly different enough to"
+        " introduce subtle variations in functionality.\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
+        " dealt",
+    )
+
+    DoMoveSkillSwap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Skill Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHeadbutt = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDoubleEdge = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Double-Edge\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSandAttack = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Sand-Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamagePoison40 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning"
+        " the defender.\nRelevant moves: Smog, Poison Jab, Cross Poison\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveSacredFire = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSheerCold = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Sheer Cold\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerAccuracy40 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE)"
+        " of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb,"
+        " Mirror Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveTwister = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Twister\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTwineedle = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Twineedle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSeismicToss = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Seismic Toss\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSupersonic = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Supersonic\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTaunt = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Taunt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHornDrill = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Horn Drill\n\nThis is exactly the same as DoMoveSheerCold, except"
+        " there's a call to SubstitutePlaceholderStringTags at the end.\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveThundershock = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thundershock\n\nThis is identical to DoMoveLick, except it uses a"
+        " different data symbol for the paralysis chance (but it's still 10%).\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether the move was successfully used",
+    )
+
+    DoMoveThunderWave = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thunder Wave\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlock = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Block\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonGas = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Gas\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveToxic = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Toxic\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonSting = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Sting\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTriAttack = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Tri Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSwapItems = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Swaps the held items of the attacker and defender.\nRelevant"
+        " moves: Trick, Switcheroo\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTripleKick = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Triple Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMudSlap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Mud-Slap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveThief = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thief\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRolePlay = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Role Play\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLeer = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeOut = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePayDay = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Pay Day\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCurse = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Curse\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSuperpower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Superpower\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDynamicPunch = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: DynamicPunch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveKnockOff = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Knock Off\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSecretPower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Secret Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDizzyPunch = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Dizzy Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveImprison = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Imprison\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFeatherDance = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBeatUp = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Beat Up\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlastBurn = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Blast Burn\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCrushClaw = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlazeKick = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePresent = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Present\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEruption = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Eruption\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonTail = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRoar = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Roar\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageConstrict10 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 10% (WHIRLPOOL_CONSTRICT_CHANCE) chance to"
+        " constrict, and with a damage multiplier dependent on the move used.\nRelevant"
+        " moves: Clamp, Bind, Fire Spin, Magma Storm\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
+        " dealt",
+    )
+
+    DoMoveWrap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Wrap\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMagnitude = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Magnitude\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMistBall = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDestinyBond = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Destiny Bond\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHiddenPower = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Hidden Power\n\nThis is exactly the same as DoMoveDamage (both"
+        " are wrappers around DealDamage), except this function always returns"
+        " true.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAttract = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Attract\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCopycat = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: The attacker uses the move last used by enemy it's"
+        " facing.\nRelevant moves: Mimic, Copycat\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveFrustration = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Frustration\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLeechSeed = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Leech Seed\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDreamEater = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Dream Eater\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDragonRage = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Dragon Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerSpecialDefense50 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 50%"
+        " (LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE) chance to lower special"
+        " defense.\nRelevant moves: Luster Purge, Energy Ball\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveFling = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fling\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoHammerArm = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Hammer Arm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGastroAcid = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Gastro Acid\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCloseCombat = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Close Combat\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGuardSwap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Guard Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveThunderFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thunder Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDefog = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Defog\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTrumpCard = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Trump Card\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveIceFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Ice Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePsychoShift = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Psycho Shift\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEmbargo = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Embargo\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBrine = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage, with a 2x multiplier if the defender is at or below"
+        " half HP.\nRelevant moves: Brine, Assurance\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveNaturalGift = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Natural Gift\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGyroBall = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Gyro Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveChargeBeam = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Charge Beam\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageEatItem = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deals damage, and eats any beneficial items the defender is"
+        " holding.\nRelevant moves: Pluck, Bug Bite\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveLastResort = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Last Resort\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageHpDependent = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage, with a multiplier dependent on the defender's"
+        " current HP.\nRelevant moves: Wring Out, Crush Grip\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveHeartSwap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Heart Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePowerSwap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Power Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFeint = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Feint\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFlareBlitz = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Flare Blitz\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFireFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fire Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMiracleEye = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Miracle Eye\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWakeUpSlap = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Wake-Up Slap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHeadSmash = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Head Smash\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCaptivate = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Captivate\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageInlined = Symbol(
+        None,
+        None,
+        None,
+        "Exactly the same as DoMoveDamage, except it appears DealDamage was"
+        " inlined.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
+    )
+
+    GenerateStandardItem = Symbol(
+        None,
+        None,
+        None,
+        "Wrapper around GenerateItem with quantity set to 0\n\nr0: pointer to item to"
+        " initialize\nr1: item ID\nr2: stickiness type",
+    )
+
+    SpawnEnemyItemDropWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Wraps SpawnEnemyItemDrop in a more convenient interface.\n\nr0: entity\nr1:"
+        " position\nr2: item\nr3: ?",
+    )
+
+    SpawnEnemyItemDrop = Symbol(
+        None,
+        None,
+        None,
+        "Appears to spawn an enemy item drop at a specified location, with a log"
+        " message.\n\nr0: entity\nr1: item entity\nr2: item info\nr3: ?\nstack[0]:"
+        " pointer to int16_t[2] for x/y direction (corresponding to"
+        " DIRECTIONS_XY)\nstack[1]: ?",
+    )
+
+    TryGenerateUnownStoneDrop = Symbol(
+        None,
+        None,
+        None,
+        "Determine if a defeated monster should drop a Unown Stone, and generate the"
+        " item if so.\n\nChecks that the current dungeon isn't a Marowak Dojo training"
+        " maze, and that the monster is an Unown. If so, there's a 21% chance that an"
+        " Unown Stone will be generated.\n\nr0: [output] item\nr1: monster ID\nreturn:"
+        " whether or not an Unown Stone was generated",
+    )
+
+
+class EuOverlay29Data:
     DUNGEON_STRUCT_SIZE = Symbol(
         [0x2838, 0x286C],
         [0x22DF3B8, 0x22DF3EC],
@@ -8205,6 +11308,14 @@ class EuOverlay29Data:
         " FIXED_ROOM_TILE_SPAWN_TABLE.\n\nThis is an array of 11 4-byte entries"
         " containing info about one tile each. Info includes the trap ID if a trap,"
         " room ID, and flags.\n\ntype: struct fixed_room_tile_spawn_entry[11]",
+    )
+
+    TREASURE_BOX_1_ITEM_IDS = Symbol(
+        [0x73E88],
+        [0x2350A08],
+        0x18,
+        "Item IDs for variant 1 of each of the treasure box items"
+        " (ITEM_*_BOX_1).\n\ntype: struct item_id_16[12]",
     )
 
     FIXED_ROOM_REVISIT_OVERRIDES = Symbol(
@@ -8556,11 +11667,35 @@ class EuOverlay29Data:
         " file.",
     )
 
+    MONSTER_HEAL_HP_MAX = Symbol(
+        None, None, None, "The maximum amount of HP a monster can have (999)."
+    )
+
+    ROCK_WRECKER_MOVE_ID = Symbol(
+        None, None, None, "The move ID for Rock Wrecker (453)."
+    )
+
+    MAP_COLOR_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "In order: white, black, red, green, blue, magenta, dark pink, chartreuse,"
+        " light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " rgb[9]",
+    )
+
+    NECTAR_IQ_BOOST = Symbol(
+        [0x40264], [0x231CDE4], None, "IQ boost from ingesting Nectar."
+    )
+
 
 class EuOverlay29Section:
     name = "overlay29"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 29."
+        "The dungeon engine.\n\nThis is the 'main' overlay of dungeon mode. It controls"
+        " most things that happen in a Mystery Dungeon, such as dungeon layout"
+        " generation, dungeon menus, enemy AI, and generally just running each turn"
+        " while within a dungeon."
     )
     loadaddress = 0x22DCB80
     length = 0x77900
@@ -8578,9 +11713,7 @@ class EuOverlay3Data:
 
 class EuOverlay3Section:
     name = "overlay3"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 3."
-    )
+    description = "Controls the Friend Rescue submenu within the top menu."
     loadaddress = 0x233D200
     length = 0xA160
     functions = EuOverlay3Functions
@@ -8592,14 +11725,14 @@ class EuOverlay30Functions:
 
 
 class EuOverlay30Data:
-    pass
+    OVERLAY30_JP_STRING_1 = Symbol([0x3864], [0x2386C84], 0xC, "みさき様")
+
+    OVERLAY30_JP_STRING_2 = Symbol([0x3870], [0x2386C90], 0xC, "やよい様")
 
 
 class EuOverlay30Section:
     name = "overlay30"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 30."
-    )
+    description = "Controls quicksaving in dungeons."
     loadaddress = 0x2383420
     length = 0x38A0
     functions = EuOverlay30Functions
@@ -8646,6 +11779,18 @@ class EuOverlay31Functions:
         " functions)",
     )
 
+    EntryOverlay31 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nNo params."
+    )
+
+    DungeonMenuSwitch = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: appears to be an index of"
+        " some sort, probably the menu index based on the function name?",
+    )
+
 
 class EuOverlay31Data:
     DUNGEON_MAIN_MENU = Symbol([0x75D8], [0x238A9F8], 0x40, "")
@@ -8662,12 +11807,216 @@ class EuOverlay31Data:
 
     DUNGEON_SUBMENU_6 = Symbol([0x79A4], [0x238ADC4], 0x48, "")
 
+    DUNGEON_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_2389E30 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_10 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_11 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_12 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_13 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_JP_STRING = Symbol(None, None, None, "\n\n----　 初期ポジション=%d　----- \n")
+
+    DUNGEON_D_BOX_LAYOUT_14 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_15 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_16 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_17 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_18 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_19 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_2389FE8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_20 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_21 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_22 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_23 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_24 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_25 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_26 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_238A144 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_27 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_28 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_STRUCT__NA_238A190 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_29 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_30 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_31 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_D_BOX_LAYOUT_32 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A260 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_VALUE__NA_238A264 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A268 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A26C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A270 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A274 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A278 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A27C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A280 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A284 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A288 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY31_UNKNOWN_POINTER__NA_238A28C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
 
 class EuOverlay31Section:
     name = "overlay31"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 31."
-    )
+    description = "Controls the dungeon menu (during dungeon mode)."
     loadaddress = 0x2383420
     length = 0x7AA0
     functions = EuOverlay31Functions
@@ -8709,13 +12058,58 @@ class EuOverlay33Section:
 
 
 class EuOverlay34Functions:
-    pass
+    ExplorersOfSkyMain = Symbol(
+        None,
+        None,
+        None,
+        "The main function for Explorers of Sky.\n\nNote: unverified, ported from"
+        " Irdkwia's notes\n\nr0: probably a game mode ID?\nreturn: probably a return"
+        " code?",
+    )
 
 
 class EuOverlay34Data:
-    UNKNOWN_MENU_CONFIRM = Symbol([0xD4C], [0x22DD8CC], 0x18, "")
+    START_MENU_CONFIRM = Symbol([0xD4C], [0x22DD8CC], 0x18, "Irdkwia's notes: 3*0x8")
 
-    DUNGEON_DEBUG_MENU = Symbol([0xD74], [0x22DD8F4], 0x28, "")
+    DUNGEON_DEBUG_MENU = Symbol([0xD74], [0x22DD8F4], 0x28, "Irdkwia's notes: 5*0x8")
+
+    OVERLAY34_UNKNOWN_STRUCT__NA_22DD014 = Symbol(
+        None,
+        None,
+        None,
+        "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C = Symbol(
+        None,
+        None,
+        None,
+        "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    OVERLAY34_RESERVED_SPACE = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD080 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD084 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD088 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD08C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    OVERLAY34_UNKNOWN_POINTER__NA_22DD090 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
 
 
 class EuOverlay34Section:
@@ -8758,9 +12152,7 @@ class EuOverlay4Data:
 
 class EuOverlay4Section:
     name = "overlay4"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 4."
-    )
+    description = "Controls the Trade Items submenu within the top menu."
     loadaddress = 0x233D200
     length = 0x2BE0
     functions = EuOverlay4Functions
@@ -8777,9 +12169,7 @@ class EuOverlay5Data:
 
 class EuOverlay5Section:
     name = "overlay5"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 5."
-    )
+    description = "Controls the Trade Team submenu within the top menu."
     loadaddress = 0x233D200
     length = 0x3240
     functions = EuOverlay5Functions
@@ -8796,9 +12186,7 @@ class EuOverlay6Data:
 
 class EuOverlay6Section:
     name = "overlay6"
-    description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 6."
-    )
+    description = "Controls the Wonder Mail S submenu within the top menu."
     loadaddress = 0x233D200
     length = 0x2460
     functions = EuOverlay6Functions
@@ -8835,7 +12223,7 @@ class EuOverlay8Data:
 class EuOverlay8Section:
     name = "overlay8"
     description = (
-        "Hard-coded immediate values (literals) in instructions within overlay 8."
+        "Controls the Send Demo Dungeon submenu within the top menu (under 'Other')."
     )
     loadaddress = 0x233D200
     length = 0x2620
@@ -9135,6 +12523,8 @@ class EuRamSection:
 
 
 class EuSections:
+    arm7 = EuArm7Section
+
     arm9 = EuArm9Section
 
     itcm = EuItcmSection
