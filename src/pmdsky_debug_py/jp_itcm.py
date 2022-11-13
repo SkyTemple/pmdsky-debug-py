@@ -3131,16 +3131,16 @@ class JpItcmArm9Section:
         " main ARM946E-S CPU, which handles all gameplay mechanisms and graphics"
         " rendering."
     )
-    loadaddress = None
-    length = None
+    loadaddress = 0x1FF8000
+    length = 0x4060
     functions = JpItcmArm9Functions
     data = JpItcmArm9Data
 
 
 class JpItcmItcmFunctions:
     ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
-        None,
-        None,
+        [0x23F8],
+        [0x1FFA3F8],
         None,
         "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
         " Otherwise, returns true only if the monster's behavior field is equal to"
@@ -3150,24 +3150,24 @@ class JpItcmItcmFunctions:
     )
 
     AiMovement = Symbol(
-        None,
-        None,
+        [0x242C],
+        [0x1FFA42C],
         None,
         "Used by the AI to determine the direction in which a monster should"
         " move\n\nr0: Entity pointer\nr1: ?",
     )
 
     CalculateAiTargetPos = Symbol(
-        None,
-        None,
+        [0x3330],
+        [0x1FFB330],
         None,
         "Calculates the target position of an AI-controlled monster and stores it in"
         " the monster's ai_target_pos field\n\nr0: Entity pointer",
     )
 
     ChooseAiMove = Symbol(
-        None,
-        None,
+        [0x36C0],
+        [0x1FFB6C0],
         None,
         "Determines if an AI-controlled monster will use a move and which one it will"
         " use\n\nr0: Entity pointer",
@@ -3229,8 +3229,8 @@ class JpItcmItcmSection:
         " the dungeon AI, among other things. The ITCM has a max capacity of 0x8000,"
         " although not all of it is used."
     )
-    loadaddress = None
-    length = None
+    loadaddress = 0x1FF8000
+    length = 0x4060
     functions = JpItcmItcmFunctions
     data = JpItcmItcmData
 

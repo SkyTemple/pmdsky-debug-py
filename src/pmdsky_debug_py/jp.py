@@ -3169,7 +3169,7 @@ class JpArm9Section:
 
 class JpItcmFunctions:
     ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
-        None,
+        [0x23F8],
         [0x20B6FD8],
         None,
         "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
@@ -3180,7 +3180,7 @@ class JpItcmFunctions:
     )
 
     AiMovement = Symbol(
-        None,
+        [0x242C],
         [0x20B700C],
         None,
         "Used by the AI to determine the direction in which a monster should"
@@ -3188,7 +3188,7 @@ class JpItcmFunctions:
     )
 
     CalculateAiTargetPos = Symbol(
-        None,
+        [0x3330],
         [0x20B7F10],
         None,
         "Calculates the target position of an AI-controlled monster and stores it in"
@@ -3196,7 +3196,7 @@ class JpItcmFunctions:
     )
 
     ChooseAiMove = Symbol(
-        None,
+        [0x36C0],
         [0x20B82A0],
         None,
         "Determines if an AI-controlled monster will use a move and which one it will"
@@ -3206,8 +3206,8 @@ class JpItcmFunctions:
 
 class JpItcmData:
     MEMORY_ALLOCATION_TABLE = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x20B4BE0],
         None,
         "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
         " in the ARM9 binary uses region-based memory management (see"
@@ -3259,8 +3259,8 @@ class JpItcmSection:
         " the dungeon AI, among other things. The ITCM has a max capacity of 0x8000,"
         " although not all of it is used."
     )
-    loadaddress = None
-    length = None
+    loadaddress = 0x20B4BE0
+    length = 0x4060
     functions = JpItcmFunctions
     data = JpItcmData
 

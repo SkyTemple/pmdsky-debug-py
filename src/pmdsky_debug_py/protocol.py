@@ -1979,28 +1979,28 @@ class Arm9DataProtocol(Protocol):
 Arm9Protocol = SectionProtocol[
     Arm9FunctionsProtocol,
     Arm9DataProtocol,
-    Optional[int],
+    int,
 ]
 
 
 class ItcmFunctionsProtocol(Protocol):
     ShouldMonsterRunAwayVariationOutlawCheck: Symbol[
-        Optional[List[int]],
+        List[int],
         None,
     ]
 
     AiMovement: Symbol[
-        Optional[List[int]],
+        List[int],
         None,
     ]
 
     CalculateAiTargetPos: Symbol[
-        Optional[List[int]],
+        List[int],
         None,
     ]
 
     ChooseAiMove: Symbol[
-        Optional[List[int]],
+        List[int],
         None,
     ]
 
@@ -2025,7 +2025,7 @@ class ItcmDataProtocol(Protocol):
 ItcmProtocol = SectionProtocol[
     ItcmFunctionsProtocol,
     ItcmDataProtocol,
-    Optional[int],
+    int,
 ]
 
 
