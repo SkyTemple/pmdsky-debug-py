@@ -4872,7 +4872,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    PerformLeaderAction: Symbol[
+    SetLeaderAction: Symbol[
         Optional[List[int]],
         None,
     ]

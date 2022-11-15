@@ -6692,13 +6692,15 @@ class EuOverlay29Functions:
         " position\nr2: y position\nr3: flags\nstack[0]: visibility flag",
     )
 
-    PerformLeaderAction = Symbol(
+    SetLeaderAction = Symbol(
         [0x14D10],
         [0x22F1890],
         None,
-        "This appears to be the function that actually performs the leader's action"
-        " within RunLeaderTurn.\n\nNote: unverified, ported from Irdkwia's notes\n\nNo"
-        " params.",
+        "Sets the leader's action field depending on the inputs given by the"
+        " player.\n\nThis function also accounts for other special situations that can"
+        " force a certain action, such as when the leader is running. The function also"
+        " takes care of opening the main menu when X is pressed.\nThe function"
+        " generally doesn't return until the player has an action set.\n\nNo params.",
     )
 
     ChangeLeader = Symbol(
