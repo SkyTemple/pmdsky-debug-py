@@ -1728,6 +1728,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsMenuOptionActive: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ShowKeyboard: Symbol[
         Optional[List[int]],
         None,
@@ -2713,7 +2718,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetScenarioSpawn: Symbol[
+    GetSpawnThreshold: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -6952,6 +6957,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetScenarioBalanceVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     FadeToBlack: Symbol[
         Optional[List[int]],
         None,
@@ -6982,12 +6992,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetTeamMemberIndex: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SubstitutePlaceholderStringTags: Symbol[
         Optional[List[int]],
         None,
     ]
 
     UpdateMapSurveyorFlag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PointCameraToMonster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UpdateCamera: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -7038,6 +7063,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetLeader: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetLeaderMonster: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -7147,6 +7177,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DisableDungeonSubMenuOption: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SetActionRegularAttack: Symbol[
         Optional[List[int]],
         None,
@@ -7198,6 +7233,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SpawnEnemyTrapAtPos: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetLeaderAction: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -7322,6 +7362,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryPointCameraToMonster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     RestorePpAllMovesSetFlags: Symbol[
         Optional[List[int]],
         None,
@@ -7357,7 +7402,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    IsSatisfyingScenarioConditionToSpawn: Symbol[
+    CheckSpawnThreshold: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9952,6 +9997,16 @@ class Overlay31FunctionsProtocol(Protocol):
     ]
 
     DungeonMenuSwitch: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MovesMenu: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    HandleMovesMenu: Symbol[
         Optional[List[int]],
         None,
     ]

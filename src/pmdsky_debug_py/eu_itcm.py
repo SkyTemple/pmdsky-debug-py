@@ -2557,6 +2557,15 @@ class EuItcmArm9Functions:
         None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id"
     )
 
+    IsMenuOptionActive = Symbol(
+        None,
+        None,
+        None,
+        "Called whenever a menu option is selected. Returns whether the option is"
+        " active or not.\n\nr0: ?\nReturn: True if the menu option is enabled, false"
+        " otherwise.",
+    )
+
     ShowKeyboard = Symbol(
         None,
         None,
@@ -2878,8 +2887,12 @@ class EuItcmArm9Functions:
         None,
         None,
         None,
-        "Includes special cases such as special episodes\n\nNote: unverified, ported"
-        " from Irdkwia's notes\n\nreturn: ?",
+        "Returns the current SCENARIO_BALANCE value.\n\nThe exact value returned"
+        " depends on multiple factors:\n- If the first special episode is active,"
+        " returns 1\n- If a different special episode is active, returns 3\n- If the"
+        " SCENARIO_BALANCE_DEBUG variable is >= 0, returns its value\n- In all other"
+        " cases, the value of the SCENARIO_BALANCE_FLAG variable is returned\n\nreturn:"
+        " Current SCENARIO_BALANCE value.",
     )
 
     ScenarioFlagBackup = Symbol(
@@ -4055,12 +4068,13 @@ class EuItcmArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nr0: id\nreturn: IQ group",
     )
 
-    GetScenarioSpawn = Symbol(
+    GetSpawnThreshold = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: id\nreturn: scenario"
-        " spawn",
+        "Returns the spawn threshold of the given monster ID\n\nThe spawn threshold"
+        " determines the minimum SCENARIO_BALANCE_FLAG value required by a monster to"
+        " spawn in dungeons.\n\nr0: monster id\nreturn: Spawn threshold",
     )
 
     NeedsItemToSpawn = Symbol(
@@ -9057,6 +9071,14 @@ class EuItcmOverlay29Functions:
         " dungeon::hidden_land_flag",
     )
 
+    GetScenarioBalanceVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for GetScenarioBalance.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-",
+    )
+
     FadeToBlack = Symbol(
         None,
         None,
@@ -9118,6 +9140,16 @@ class EuItcmOverlay29Functions:
         " target the target position, false otherwise.",
     )
 
+    GetTeamMemberIndex = Symbol(
+        None,
+        None,
+        None,
+        "Given a pointer to an entity, returns its index on the entity list, or null if"
+        " the entity can't be found on the first 4 slots of the list.\n\nr0: Pointer to"
+        " the entity to find\nreturn: Index of the specified entity on the entity list,"
+        " or null if it's not on the first 4 slots.",
+    )
+
     SubstitutePlaceholderStringTags = Symbol(
         None,
         None,
@@ -9140,6 +9172,23 @@ class EuItcmOverlay29Functions:
         " Map Surveyor, sets it to false otherwise.\n\nThis function has two variants:"
         " in the EU ROM, it will return true if the flag was changed. The NA version"
         " will return the new value of the flag instead.\n\nreturn: bool",
+    )
+
+    PointCameraToMonster = Symbol(
+        None,
+        None,
+        None,
+        "Points the camera to the specified monster.\n\nr0: Entity pointer\nr1: ?",
+    )
+
+    UpdateCamera = Symbol(
+        None,
+        None,
+        None,
+        "Called every frame. Sets the camera to the right coordinates depending on the"
+        " monster it points to.\n\nIt also takes care of updating the minimap, checking"
+        " which elements should be shown on it, as well as whether the screen should be"
+        " black due to the blinker status.\n\nr0: ?",
     )
 
     ItemIsActive = Symbol(
@@ -9169,8 +9218,13 @@ class EuItcmOverlay29Functions:
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: quick_saved\nr1: ???\nr2:"
-        " special_process",
+        "Note: unverified, ported from Irdkwia's notes\n\nThis function processes the"
+        " spawn list of the current floor, checking which species can spawn, capping"
+        " the amount of spawnable species on the floor to 14, randomly choosing which"
+        " 14 species will spawn and ensuring that the sprite size of all the species"
+        " combined does not exceed the maximum of 0x58000 bytes (352 KB). Kecleon and"
+        " the Decoy are always included in the random selection.\n\nr0:"
+        " quick_saved\nr1: ???\nr2: special_process",
     )
 
     IsOnMonsterSpawnList = Symbol(
@@ -9239,6 +9293,13 @@ class EuItcmOverlay29Functions:
         " set. It also sets LEADER_PTR to the result before returning it.\n\nreturn:"
         " Pointer to the current leader of the team or null if there's no valid"
         " leader.",
+    )
+
+    GetLeaderMonster = Symbol(
+        None,
+        None,
+        None,
+        "Returns a pointer to the monster data of the current leader.\n\nNo params.",
     )
 
     TickStatusTurnCounter = Symbol(
@@ -9411,9 +9472,9 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "Clears the fields related to AI in the monster's data struct, setting them all"
-        " to 0.\nSpecifically, monster::action_id, monster::action_use_idx and"
-        " monster::field_0x54 are cleared.\n\nr0: Pointer to the monster's action_id"
-        " field (this field is probably contained in a struct)",
+        " to 0.\nSpecifically, monster::action::action_id,"
+        " monster::action::action_use_idx and monster::action::field_0xA are"
+        " cleared.\n\nr0: Pointer to the monster's action field",
     )
 
     SetMonsterActionFields = Symbol(
@@ -9421,10 +9482,10 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "Sets some the fields related to AI in the monster's data"
-        " struct.\nSpecifically, monster::action_id, monster::action_use_idx and"
-        " monster::field_0x54. The last 2 are always set to 0.\n\nr0: Pointer to the"
-        " monster's action_id field (this field is probably contained in a struct)\nr1:"
-        " Value to set monster::action_id to.",
+        " struct.\nSpecifically, monster::action::action_id,"
+        " monster::action::action_use_idx and monster::action::field_0xA. The last 2"
+        " are always set to 0.\n\nr0: Pointer to the monster's action field\nr1: Value"
+        " to set monster::action::action_id to.",
     )
 
     SetActionPassTurnOrWalk = Symbol(
@@ -9433,8 +9494,7 @@ class EuItcmOverlay29Functions:
         None,
         "Sets a monster's action to action::ACTION_PASS_TURN or action::ACTION_WALK,"
         " depending on the result of GetCanMoveFlag for the monster's ID.\n\nr0:"
-        " Pointer to the monster's action_id field (this field is probably contained in"
-        " a struct)\nr1: Monster ID",
+        " Pointer to the monster's action field\nr1: Monster ID",
     )
 
     GetItemAction = Symbol(
@@ -9461,14 +9521,21 @@ class EuItcmOverlay29Functions:
         " otherwise",
     )
 
+    DisableDungeonSubMenuOption = Symbol(
+        None,
+        None,
+        None,
+        "Disables an option that was addeed to a dungeon sub-menu.\n\nr0: Action ID of"
+        " the option that should be disabled",
+    )
+
     SetActionRegularAttack = Symbol(
         None,
         None,
         None,
         "Sets a monster's action to action::ACTION_REGULAR_ATTACK, with a specified"
-        " direction.\n\nr0: Pointer to the monster's action_id field (this field is"
-        " probably contained in a struct)\nr1: Direction in which to use the move. Gets"
-        " stored in monster::direction.",
+        " direction.\n\nr0: Pointer to the monster's action field\nr1: Direction in"
+        " which to use the move. Gets stored in monster::action::direction.",
     )
 
     SetActionUseMoveAi = Symbol(
@@ -9476,10 +9543,10 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "Sets a monster's action to action::ACTION_USE_MOVE_AI, with a specified"
-        " direction and move index.\n\nr0: Pointer to the monster's action_id field"
-        " (this field is probably contained in a struct)\nr1: Index of the move to use"
-        " (0-3). Gets stored in monster::action_use_idx.\nr2: Direction in which to use"
-        " the move. Gets stored in monster::direction.",
+        " direction and move index.\n\nr0: Pointer to the monster's action field\nr1:"
+        " Index of the move to use (0-3). Gets stored in"
+        " monster::action::action_use_idx.\nr2: Direction in which to use the move."
+        " Gets stored in monster::action::direction.",
     )
 
     RunFractionalTurn = Symbol(
@@ -9565,6 +9632,14 @@ class EuItcmOverlay29Functions:
         "A convenience wrapper around SpawnTrap and BindTrapToTile. Always passes 0 for"
         " the team parameter (making it an enemy trap).\n\nr0: trap ID\nr1: x"
         " position\nr2: y position\nr3: flags\nstack[0]: visibility flag",
+    )
+
+    GetLeaderAction = Symbol(
+        None,
+        None,
+        None,
+        "Returns a pointer to the action data of the current leader (field 0x4A on its"
+        " monster struct).\n\nNo params.",
     )
 
     SetLeaderAction = Symbol(
@@ -9772,6 +9847,16 @@ class EuItcmOverlay29Functions:
         " status to it.\n\nr0: pointer to entity",
     )
 
+    TryPointCameraToMonster = Symbol(
+        None,
+        None,
+        None,
+        "Attempts to place the camera on top of the specified monster.\n\nIf the camera"
+        " is already on top of the specified entity, the function does nothing.\n\nr0:"
+        " Entity pointer. Must be a monster, otherwise the function does nothing.\nr1:"
+        " ?\nr2: ?",
+    )
+
     RestorePpAllMovesSetFlags = Symbol(
         None,
         None,
@@ -9835,11 +9920,14 @@ class EuItcmOverlay29Functions:
         " id\nreturn: bool",
     )
 
-    IsSatisfyingScenarioConditionToSpawn = Symbol(
+    CheckSpawnThreshold = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: bool",
+        "Checks if a given monster ID can spawn in dungeons.\n\nThe function returns"
+        " true if the monster's spawn threshold value is <="
+        " SCENARIO_BALANCE_FLAG\n\nr0: monster ID\nreturn: True if the monster can"
+        " spawn, false otherwise",
     )
 
     HasLowHealth = Symbol(
@@ -14414,6 +14502,29 @@ class EuItcmOverlay31Functions:
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nr0: appears to be an index of"
         " some sort, probably the menu index based on the function name?",
+    )
+
+    MovesMenu = Symbol(
+        None,
+        None,
+        None,
+        "Displays a menu showing the moves of a monster. Does not return until the menu"
+        " is closed.\n\nThis function does not get called when opening the leader's"
+        " move menu.\n\nr0: Pointer to an action struct containing the index of the"
+        " monster whose moves will be checked in the action_use_idx field.",
+    )
+
+    HandleMovesMenu = Symbol(
+        None,
+        None,
+        None,
+        "Handles the different options on the moves menu. Does not return until the"
+        " menu is closed.\n\nThis function also takes care of updating the fields in"
+        " the action_data struct it receives when a menu option is chosen.\n\nr0:"
+        " Pointer to pointer to the entity that opened the menu. The chosen action will"
+        " be written on its action field.\nr1: ?\nr2: ?\nr3: Index of the monster whose"
+        " moves are going to be displayed on the menu. Unused.\nreturn: True if the"
+        " menu was closed without selecting anything, false if an option was chosen.",
     )
 
     TeamMenu = Symbol(
