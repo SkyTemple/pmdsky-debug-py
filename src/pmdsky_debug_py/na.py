@@ -5456,6 +5456,20 @@ class NaArm9Data:
         "Length in bytes of the default memory allocation arena, 1991680.",
     )
 
+    FAINT_REASON_CODE_ORB_ITEM = Symbol(
+        [0xCA84],
+        [0x200CA84],
+        None,
+        "The faint reason code for any item in CATEGORY_ORBS, 0x262.",
+    )
+
+    FAINT_REASON_CODE_NON_ORB_ITEM = Symbol(
+        [0xCA88],
+        [0x200CA88],
+        None,
+        "The faint reason code for any item not in CATEGORY_ORBS, 0x263.",
+    )
+
     AURA_BOW_ID_LAST = Symbol(
         [0xCC34], [0x200CC34], 0x4, "Highest item ID of the aura bows."
     )
@@ -5601,6 +5615,20 @@ class NaArm9Data:
         0x20,
         "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
         " struct move_id_16[16]",
+    )
+
+    MOVE_POWER_STARS_TABLE = Symbol(
+        [0x99CD4],
+        [0x2099CD4],
+        0x18,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[6]",
+    )
+
+    MOVE_ACCURACY_STARS_TABLE = Symbol(
+        [0x99CEC],
+        [0x2099CEC],
+        0x20,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
     )
 
     PARTNER_TALK_KIND_TABLE = Symbol(
@@ -6351,7 +6379,21 @@ class NaArm9Data:
         " waza_p.bin\n\ntype: struct move_data_table*",
     )
 
+    LOADED_WAN_TABLE_PTR = Symbol(
+        [0xAFC68],
+        [0x20AFC68],
+        0x4,
+        "pointer to a wan table\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
     LANGUAGE_INFO_DATA = Symbol([0xAFCE8], [0x20AFCE8], None, "[Runtime]")
+
+    TBL_TALK_GROUP_STRING_ID_START = Symbol(
+        [0xAFCF8],
+        [0x20AFCF8],
+        0xC,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
+    )
 
     KEYBOARD_STRING_IDS = Symbol(
         [0xAFDFC],
@@ -6450,48 +6492,6 @@ class NaArm9Data:
         [0x20B1050],
         0x200,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int32_t[128]",
-    )
-
-    FAINT_REASON_CODE_ORB_ITEM = Symbol(
-        [0xCA84],
-        [0x200CA84],
-        None,
-        "The faint reason code for any item in CATEGORY_ORBS, 0x262.",
-    )
-
-    FAINT_REASON_CODE_NON_ORB_ITEM = Symbol(
-        [0xCA88],
-        [0x200CA88],
-        None,
-        "The faint reason code for any item not in CATEGORY_ORBS, 0x263.",
-    )
-
-    MOVE_POWER_STARS_TABLE = Symbol(
-        [0x99CD4],
-        [0x2099CD4],
-        0x18,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[6]",
-    )
-
-    MOVE_ACCURACY_STARS_TABLE = Symbol(
-        [0x99CEC],
-        [0x2099CEC],
-        0x20,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
-    )
-
-    LOADED_WAN_TABLE_PTR = Symbol(
-        [0xAFC68],
-        [0x20AFC68],
-        0x4,
-        "pointer to a wan table\n\nNote: unverified, ported from Irdkwia's notes",
-    )
-
-    TBL_TALK_GROUP_STRING_ID_START = Symbol(
-        [0xAFCF8],
-        [0x20AFCF8],
-        0xC,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
     )
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
@@ -6759,12 +6759,6 @@ class NaOverlay1Data:
 
     MAIN_MENU = Symbol([0x120B0], [0x233B5D0], 0xA0, "")
 
-    MAIN_MENU_CONFIRM = Symbol([0x1222C], [0x233B74C], 0x18, "")
-
-    MAIN_DEBUG_MENU_1 = Symbol([0x122F0], [0x233B810], 0x60, "")
-
-    MAIN_DEBUG_MENU_2 = Symbol([0x12370], [0x233B890], 0x38, "")
-
     OVERLAY1_D_BOX_LAYOUT_5 = Symbol(
         [0x121FC], [0x233B71C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -6777,6 +6771,8 @@ class NaOverlay1Data:
         [0x1221C], [0x233B73C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    MAIN_MENU_CONFIRM = Symbol([0x1222C], [0x233B74C], 0x18, "")
+
     OVERLAY1_D_BOX_LAYOUT_8 = Symbol(
         [0x122B0], [0x233B7D0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -6785,9 +6781,13 @@ class NaOverlay1Data:
         [0x122D0], [0x233B7F0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    MAIN_DEBUG_MENU_1 = Symbol([0x122F0], [0x233B810], 0x60, "")
+
     OVERLAY1_D_BOX_LAYOUT_10 = Symbol(
         [0x12350], [0x233B870], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    MAIN_DEBUG_MENU_2 = Symbol([0x12370], [0x233B890], 0x38, "")
 
 
 class NaOverlay1Section:
@@ -6917,6 +6917,44 @@ class NaOverlay10Data:
         [0x79B8], [0x22C4438], 0x2, "Damage dealt by eating an Oren Berry."
     )
 
+    IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
+        [0x79C0],
+        [0x22C4440],
+        0x2,
+        "The chance of Iron Tail lowering defense, as a percentage (30%).",
+    )
+
+    TWINEEDLE_POISON_CHANCE = Symbol(
+        [0x79C4],
+        [0x22C4444],
+        0x2,
+        "The chance of Twineedle poisoning, as a percentage (20%).",
+    )
+
+    EXTRASENSORY_CRINGE_CHANCE = Symbol(
+        [0x79C8],
+        [0x22C4448],
+        0x2,
+        "The chance of Extrasensory inflicting the cringe status, as a percentage"
+        " (10%).",
+    )
+
+    ROCK_SLIDE_CRINGE_CHANCE = Symbol(
+        [0x79CC],
+        [0x22C444C],
+        0x2,
+        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the"
+        " cringe status, as a percentage (30%)",
+    )
+
+    CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
+        [0x79D0],
+        [0x22C4450],
+        0x2,
+        "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering"
+        " defense, as a percentage (20%).",
+    )
+
     UNOWN_STONE_DROP_CHANCE = Symbol(
         [0x79F4],
         [0x22C4474],
@@ -6929,6 +6967,64 @@ class NaOverlay10Data:
         [0x22C4478],
         0x2,
         "The amount of HP restored by eating a Sitrus Berry.",
+    )
+
+    MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
+        [0x7A04],
+        [0x22C4484],
+        0x2,
+        "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40)"
+        " lowering accuracy, as a percentage (40%).",
+    )
+
+    ANCIENTPOWER_BOOST_CHANCE = Symbol(
+        [0x7A08],
+        [0x22C4488],
+        0x2,
+        "The chance of AncientPower boosting all stats, as a percentage (20%).",
+    )
+
+    POISON_TAIL_POISON_CHANCE = Symbol(
+        [0x7A0C],
+        [0x22C448C],
+        0x2,
+        "The chance of Poison Tail poisoning, as a percentage (10%).",
+    )
+
+    THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
+        [0x7A10],
+        [0x22C4490],
+        0x2,
+        "The chance of Thundershock paralyzing, as a percentage (10%).",
+    )
+
+    HEADBUTT_CRINGE_CHANCE = Symbol(
+        [0x7A18],
+        [0x22C4498],
+        0x2,
+        "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
+    )
+
+    FIRE_FANG_CRINGE_CHANCE = Symbol(
+        [0x7A1C],
+        [0x22C449C],
+        0x2,
+        "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
+    )
+
+    SACRED_FIRE_BURN_CHANCE = Symbol(
+        [0x7A20],
+        [0x22C44A0],
+        0x2,
+        "The chance of Sacred Fire burning, as a percentage (50%).",
+    )
+
+    WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
+        [0x7A24],
+        [0x22C44A4],
+        0x2,
+        "The chance of Whirlpool inflicting the constriction status, as a percentage"
+        " (10%).",
     )
 
     EXP_ELITE_EXP_BOOST = Symbol(
@@ -6957,6 +7053,20 @@ class NaOverlay10Data:
         "The number of turns between enemy spawns under normal conditions.",
     )
 
+    MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
+        [0x7A60],
+        [0x22C44E0],
+        0x2,
+        "The chance of Mist Ball lowering special attack, as a percentage (50%).",
+    )
+
+    CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
+        [0x7A70],
+        [0x22C44F0],
+        0x2,
+        "The chance of Charge Beam boosting special attack, as a percentage (40%).",
+    )
+
     ORAN_BERRY_FULL_HP_BOOST = Symbol(
         [0x7A74],
         [0x22C44F4],
@@ -6966,6 +7076,86 @@ class NaOverlay10Data:
 
     LIFE_SEED_HP_BOOST = Symbol(
         [0x7A78], [0x22C44F8], 0x2, "The permanent HP boost from eating a Life Seed."
+    )
+
+    LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
+        [0x7A8C],
+        [0x22C450C],
+        0x2,
+        "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50)"
+        " lowering special defense, as a percentage (50%).",
+    )
+
+    CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
+        [0x7A94],
+        [0x22C4514],
+        0x2,
+        "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering"
+        " speed, as a percentage (20%).",
+    )
+
+    ICE_FANG_FREEZE_CHANCE = Symbol(
+        [0x7A98],
+        [0x22C4518],
+        0x2,
+        "The chance of Ice Fang freezing, as a percentage (15%).",
+    )
+
+    SMOG_POISON_CHANCE = Symbol(
+        [0x7A9C],
+        [0x22C451C],
+        0x2,
+        "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a"
+        " percentage (40%).",
+    )
+
+    LICK_PARALYZE_CHANCE = Symbol(
+        [0x7AA8],
+        [0x22C4528],
+        0x2,
+        "The chance of Lick paralyzing, as a percentage (10%).",
+    )
+
+    THUNDER_FANG_PARALYZE_CHANCE = Symbol(
+        [0x7AAC],
+        [0x22C452C],
+        0x2,
+        "The chance of Thunder Fang paralyzing, as a percentage (10%).",
+    )
+
+    BITE_CRINGE_CHANCE = Symbol(
+        [0x7AB4],
+        [0x22C4534],
+        0x2,
+        "The chance of Bite inflicting the cringe status, as a percentage (20%)",
+    )
+
+    ICE_FANG_CRINGE_CHANCE = Symbol(
+        [0x7ABC],
+        [0x22C453C],
+        0x2,
+        "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
+    )
+
+    BLAZE_KICK_BURN_CHANCE = Symbol(
+        [0x7AC0],
+        [0x22C4540],
+        0x2,
+        "The chance of Blaze Kick burning, as a percentage (10%).",
+    )
+
+    DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
+        [0x7AC8],
+        [0x22C4548],
+        0x2,
+        "The chance of Dizzy Punch confusing, as a percentage (30%).",
+    )
+
+    SECRET_POWER_EFFECT_CHANCE = Symbol(
+        [0x7ACC],
+        [0x22C454C],
+        0x2,
+        "The chance of Secret Power inflicting an effect, as a percentage (30%).",
     )
 
     EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
@@ -6993,11 +7183,33 @@ class NaOverlay10Data:
         "The permanent HP boost from eating a Sitrus Berry at full HP.",
     )
 
+    CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
+        [0x7B88],
+        [0x22C4608],
+        0x2,
+        "The chance of Crush Claw lowering defense, as a percentage (50%).",
+    )
+
     BURN_DAMAGE_COOLDOWN = Symbol(
         [0x7B90], [0x22C4610], 0x2, "The number of turns between passive burn damage."
     )
 
     STICK_POWER = Symbol([0x7BA4], [0x22C4624], 0x2, "Attack power for Sticks.")
+
+    BLIZZARD_FREEZE_CHANCE = Symbol(
+        [0x7BB4],
+        [0x22C4634],
+        0x2,
+        "The chance of Blizzard (and others, see DoMoveDamageFreeze15) freezing, as a"
+        " percentage (15%).",
+    )
+
+    POISON_STING_POISON_CHANCE = Symbol(
+        [0x7BBC],
+        [0x22C463C],
+        0x2,
+        "The chance of Poison Sting poisoning, as a percentage (18%).",
+    )
 
     SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
         [0x7BC0],
@@ -7005,6 +7217,21 @@ class NaOverlay10Data:
         0x2,
         "The number of turns between enemy spawns when the Thief Alert condition is"
         " active.",
+    )
+
+    POISON_FANG_POISON_CHANCE = Symbol(
+        [0x7BC4],
+        [0x22C4644],
+        0x2,
+        "The chance of Poison Fang poisoning, as a percentage (30%).",
+    )
+
+    THUNDER_PARALYZE_CHANCE = Symbol(
+        [0x7BD8],
+        [0x22C4658],
+        0x2,
+        "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as"
+        " a percentage (20%)",
     )
 
     MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
@@ -7015,12 +7242,64 @@ class NaOverlay10Data:
         " 2/3 for some reason (so the actual maximum is 45)",
     )
 
+    TWISTER_CRINGE_CHANCE = Symbol(
+        [0x7BE8],
+        [0x22C4668],
+        0x2,
+        "The chance of Twister inflicting the cringe status, as a percentage (10%).",
+    )
+
     SPEED_BOOST_TURNS = Symbol(
         [0x7BEC],
         [0x22C466C],
         0x2,
         "Number of turns (250) after which Speed Boost will trigger and increase speed"
         " by one stage.",
+    )
+
+    FAKE_OUT_CRINGE_CHANCE = Symbol(
+        [0x7BF0],
+        [0x22C4670],
+        0x2,
+        "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
+    )
+
+    THUNDER_FANG_CRINGE_CHANCE = Symbol(
+        [0x7BF8],
+        [0x22C4678],
+        0x2,
+        "The chance of Thunder Fang inflicting the cringe status, as a percentage"
+        " (25%).",
+    )
+
+    FLARE_BLITZ_BURN_CHANCE = Symbol(
+        [0x7C04],
+        [0x22C4684],
+        0x2,
+        "The chance of Flare Blitz burning, as a percentage (25%). This value is also"
+        " used for the Fire Fang burn chance.",
+    )
+
+    FLAME_WHEEL_BURN_CHANCE = Symbol(
+        [0x7C08],
+        [0x22C4688],
+        0x2,
+        "The chance of Flame Wheel burning, as a percentage (10%).",
+    )
+
+    ROCK_CLIMB_CONFUSE_CHANCE = Symbol(
+        [0x7C10],
+        [0x22C4690],
+        0x2,
+        "The chance of Rock Climb confusing, as a percentage (10%).",
+    )
+
+    TRI_ATTACK_STATUS_CHANCE = Symbol(
+        [0x7C14],
+        [0x22C4694],
+        0x2,
+        "The chance of Tri Attack inflicting any status condition, as a percentage"
+        " (20%).",
     )
 
     MIRACLE_CHEST_EXP_BOOST = Symbol(
@@ -7090,6 +7369,13 @@ class NaOverlay10Data:
         "The permanent special attack boost from ingesting a Calcium.",
     )
 
+    DRAGON_RAGE_FIXED_DAMAGE = Symbol(
+        [0x7C54],
+        [0x22C46D4],
+        0x2,
+        "The amount of fixed damage dealt by Dragon Rage (30).",
+    )
+
     CORSOLA_TWIG_POWER = Symbol(
         [0x7C58], [0x22C46D8], 0x2, "Attack power for Corsola Twigs."
     )
@@ -7108,6 +7394,22 @@ class NaOverlay10Data:
         [0x7C68], [0x22C46E8], 0x2, "Attack power for Iron Thorns."
     )
 
+    FACADE_DAMAGE_MULTIPLIER = Symbol(
+        [0x7C98],
+        [0x22C4718],
+        0x4,
+        "The Facade damage multiplier for users with a status condition, as a binary"
+        " fixed-point number with 8 fraction bits (0x200 -> 2x).",
+    )
+
+    IMPRISON_TURN_RANGE = Symbol(
+        [0x7C9C],
+        [0x22C471C],
+        0x4,
+        "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype:"
+        " int16_t[2]",
+    )
+
     SLEEP_DURATION_RANGE = Symbol(
         [0x7CA0],
         [0x22C4720],
@@ -7115,6 +7417,22 @@ class NaOverlay10Data:
         "Appears to control the range of turns for which the sleep condition can"
         " last.\n\nThe first two bytes are the low value of the range, and the later"
         " two bytes are the high value.",
+    )
+
+    NIGHTMARE_TURN_RANGE = Symbol(
+        [0x7CA4],
+        [0x22C4724],
+        0x4,
+        "The turn range for the Nightmare status inflicted by Nightmare, [4,"
+        " 8).\n\ntype: int16_t[2]",
+    )
+
+    SMOKESCREEN_TURN_RANGE = Symbol(
+        [0x7D44],
+        [0x22C47C4],
+        0x4,
+        "The turn range for the Whiffer status inflicted by Smokescreen, [1,"
+        " 4).\n\ntype: int16_t[2]",
     )
 
     POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
@@ -7140,6 +7458,14 @@ class NaOverlay10Data:
         "The hidden stairs spawn chance multiplier (~1.2) as a binary fixed-point"
         " number (8 fraction bits), if applicable. See"
         " ShouldBoostHiddenStairsSpawnChance in overlay 29.",
+    )
+
+    YAWN_TURN_RANGE = Symbol(
+        [0x7DE0],
+        [0x22C4860],
+        0x4,
+        "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype:"
+        " int16_t[2]",
     )
 
     SPEED_BOOST_DURATION_RANGE = Symbol(
@@ -7343,332 +7669,6 @@ class NaOverlay10Data:
         0xADF4,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
         " special_monster_move_animation[7422]",
-    )
-
-    IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
-        [0x79C0],
-        [0x22C4440],
-        0x2,
-        "The chance of Iron Tail lowering defense, as a percentage (30%).",
-    )
-
-    TWINEEDLE_POISON_CHANCE = Symbol(
-        [0x79C4],
-        [0x22C4444],
-        0x2,
-        "The chance of Twineedle poisoning, as a percentage (20%).",
-    )
-
-    EXTRASENSORY_CRINGE_CHANCE = Symbol(
-        [0x79C8],
-        [0x22C4448],
-        0x2,
-        "The chance of Extrasensory inflicting the cringe status, as a percentage"
-        " (10%).",
-    )
-
-    ROCK_SLIDE_CRINGE_CHANCE = Symbol(
-        [0x79CC],
-        [0x22C444C],
-        0x2,
-        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the"
-        " cringe status, as a percentage (30%)",
-    )
-
-    CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
-        [0x79D0],
-        [0x22C4450],
-        0x2,
-        "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering"
-        " defense, as a percentage (20%).",
-    )
-
-    MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
-        [0x7A04],
-        [0x22C4484],
-        0x2,
-        "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40)"
-        " lowering accuracy, as a percentage (40%).",
-    )
-
-    ANCIENTPOWER_BOOST_CHANCE = Symbol(
-        [0x7A08],
-        [0x22C4488],
-        0x2,
-        "The chance of AncientPower boosting all stats, as a percentage (20%).",
-    )
-
-    POISON_TAIL_POISON_CHANCE = Symbol(
-        [0x7A0C],
-        [0x22C448C],
-        0x2,
-        "The chance of Poison Tail poisoning, as a percentage (10%).",
-    )
-
-    THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
-        [0x7A10],
-        [0x22C4490],
-        0x2,
-        "The chance of Thundershock paralyzing, as a percentage (10%).",
-    )
-
-    HEADBUTT_CRINGE_CHANCE = Symbol(
-        [0x7A18],
-        [0x22C4498],
-        0x2,
-        "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
-    )
-
-    FIRE_FANG_CRINGE_CHANCE = Symbol(
-        [0x7A1C],
-        [0x22C449C],
-        0x2,
-        "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
-    )
-
-    SACRED_FIRE_BURN_CHANCE = Symbol(
-        [0x7A20],
-        [0x22C44A0],
-        0x2,
-        "The chance of Sacred Fire burning, as a percentage (50%).",
-    )
-
-    WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
-        [0x7A24],
-        [0x22C44A4],
-        0x2,
-        "The chance of Whirlpool inflicting the constriction status, as a percentage"
-        " (10%).",
-    )
-
-    MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
-        [0x7A60],
-        [0x22C44E0],
-        0x2,
-        "The chance of Mist Ball lowering special attack, as a percentage (50%).",
-    )
-
-    CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
-        [0x7A70],
-        [0x22C44F0],
-        0x2,
-        "The chance of Charge Beam boosting special attack, as a percentage (40%).",
-    )
-
-    LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
-        [0x7A8C],
-        [0x22C450C],
-        0x2,
-        "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50)"
-        " lowering special defense, as a percentage (50%).",
-    )
-
-    CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
-        [0x7A94],
-        [0x22C4514],
-        0x2,
-        "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering"
-        " speed, as a percentage (20%).",
-    )
-
-    ICE_FANG_FREEZE_CHANCE = Symbol(
-        [0x7A98],
-        [0x22C4518],
-        0x2,
-        "The chance of Ice Fang freezing, as a percentage (15%).",
-    )
-
-    SMOG_POISON_CHANCE = Symbol(
-        [0x7A9C],
-        [0x22C451C],
-        0x2,
-        "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a"
-        " percentage (40%).",
-    )
-
-    LICK_PARALYZE_CHANCE = Symbol(
-        [0x7AA8],
-        [0x22C4528],
-        0x2,
-        "The chance of Lick paralyzing, as a percentage (10%).",
-    )
-
-    THUNDER_FANG_PARALYZE_CHANCE = Symbol(
-        [0x7AAC],
-        [0x22C452C],
-        0x2,
-        "The chance of Thunder Fang paralyzing, as a percentage (10%).",
-    )
-
-    BITE_CRINGE_CHANCE = Symbol(
-        [0x7AB4],
-        [0x22C4534],
-        0x2,
-        "The chance of Bite inflicting the cringe status, as a percentage (20%)",
-    )
-
-    ICE_FANG_CRINGE_CHANCE = Symbol(
-        [0x7ABC],
-        [0x22C453C],
-        0x2,
-        "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
-    )
-
-    BLAZE_KICK_BURN_CHANCE = Symbol(
-        [0x7AC0],
-        [0x22C4540],
-        0x2,
-        "The chance of Blaze Kick burning, as a percentage (10%).",
-    )
-
-    DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
-        [0x7AC8],
-        [0x22C4548],
-        0x2,
-        "The chance of Dizzy Punch confusing, as a percentage (30%).",
-    )
-
-    SECRET_POWER_EFFECT_CHANCE = Symbol(
-        [0x7ACC],
-        [0x22C454C],
-        0x2,
-        "The chance of Secret Power inflicting an effect, as a percentage (30%).",
-    )
-
-    CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
-        [0x7B88],
-        [0x22C4608],
-        0x2,
-        "The chance of Crush Claw lowering defense, as a percentage (50%).",
-    )
-
-    BLIZZARD_FREEZE_CHANCE = Symbol(
-        [0x7BB4],
-        [0x22C4634],
-        0x2,
-        "The chance of Blizzard (and others, see DoMoveDamageFreeze15) freezing, as a"
-        " percentage (15%).",
-    )
-
-    POISON_STING_POISON_CHANCE = Symbol(
-        [0x7BBC],
-        [0x22C463C],
-        0x2,
-        "The chance of Poison Sting poisoning, as a percentage (18%).",
-    )
-
-    POISON_FANG_POISON_CHANCE = Symbol(
-        [0x7BC4],
-        [0x22C4644],
-        0x2,
-        "The chance of Poison Fang poisoning, as a percentage (30%).",
-    )
-
-    THUNDER_PARALYZE_CHANCE = Symbol(
-        [0x7BD8],
-        [0x22C4658],
-        0x2,
-        "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as"
-        " a percentage (20%)",
-    )
-
-    TWISTER_CRINGE_CHANCE = Symbol(
-        [0x7BE8],
-        [0x22C4668],
-        0x2,
-        "The chance of Twister inflicting the cringe status, as a percentage (10%).",
-    )
-
-    FAKE_OUT_CRINGE_CHANCE = Symbol(
-        [0x7BF0],
-        [0x22C4670],
-        0x2,
-        "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
-    )
-
-    THUNDER_FANG_CRINGE_CHANCE = Symbol(
-        [0x7BF8],
-        [0x22C4678],
-        0x2,
-        "The chance of Thunder Fang inflicting the cringe status, as a percentage"
-        " (25%).",
-    )
-
-    FLARE_BLITZ_BURN_CHANCE = Symbol(
-        [0x7C04],
-        [0x22C4684],
-        0x2,
-        "The chance of Flare Blitz burning, as a percentage (25%). This value is also"
-        " used for the Fire Fang burn chance.",
-    )
-
-    FLAME_WHEEL_BURN_CHANCE = Symbol(
-        [0x7C08],
-        [0x22C4688],
-        0x2,
-        "The chance of Flame Wheel burning, as a percentage (10%).",
-    )
-
-    ROCK_CLIMB_CONFUSE_CHANCE = Symbol(
-        [0x7C10],
-        [0x22C4690],
-        0x2,
-        "The chance of Rock Climb confusing, as a percentage (10%).",
-    )
-
-    TRI_ATTACK_STATUS_CHANCE = Symbol(
-        [0x7C14],
-        [0x22C4694],
-        0x2,
-        "The chance of Tri Attack inflicting any status condition, as a percentage"
-        " (20%).",
-    )
-
-    DRAGON_RAGE_FIXED_DAMAGE = Symbol(
-        [0x7C54],
-        [0x22C46D4],
-        0x2,
-        "The amount of fixed damage dealt by Dragon Rage (30).",
-    )
-
-    FACADE_DAMAGE_MULTIPLIER = Symbol(
-        [0x7C98],
-        [0x22C4718],
-        0x4,
-        "The Facade damage multiplier for users with a status condition, as a binary"
-        " fixed-point number with 8 fraction bits (0x200 -> 2x).",
-    )
-
-    IMPRISON_TURN_RANGE = Symbol(
-        [0x7C9C],
-        [0x22C471C],
-        0x4,
-        "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype:"
-        " int16_t[2]",
-    )
-
-    NIGHTMARE_TURN_RANGE = Symbol(
-        [0x7CA4],
-        [0x22C4724],
-        0x4,
-        "The turn range for the Nightmare status inflicted by Nightmare, [4,"
-        " 8).\n\ntype: int16_t[2]",
-    )
-
-    SMOKESCREEN_TURN_RANGE = Symbol(
-        [0x7D44],
-        [0x22C47C4],
-        0x4,
-        "The turn range for the Whiffer status inflicted by Smokescreen, [1,"
-        " 4).\n\ntype: int16_t[2]",
-    )
-
-    YAWN_TURN_RANGE = Symbol(
-        [0x7DE0],
-        [0x22C4860],
-        0x4,
-        "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype:"
-        " int16_t[2]",
     )
 
 
@@ -7891,6 +7891,26 @@ class NaOverlay11Functions:
 
 
 class NaOverlay11Data:
+    OVERLAY11_UNKNOWN_TABLE__NA_2316A38 = Symbol(
+        [0x3A7F8],
+        [0x2316A38],
+        0xA0,
+        "Multiple entries are pointers to the string 'script.c'\n\nNote: unverified,"
+        " ported from Irdkwia's notes\n\ntype: undefined4[40]",
+    )
+
+    SCRIPT_COMMAND_PARSING_DATA = Symbol(
+        [0x3A898], [0x2316AD8], 0x20, "Used by ScriptCommandParsing somehow"
+    )
+
+    SCRIPT_OP_CODE_NAMES = Symbol(
+        [0x3A8B8],
+        [0x2316AF8],
+        0x1B18,
+        "Opcode name strings pointed to by entries in SCRIPT_OP_CODES"
+        " (script_opcode::name)",
+    )
+
     SCRIPT_OP_CODES = Symbol(
         [0x3C3D0],
         [0x2318610],
@@ -7898,6 +7918,21 @@ class NaOverlay11Data:
         "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
         " opcodes underpin the various ExplorerScript functions you can call in the"
         " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
+    )
+
+    OVERLAY11_DEBUG_STRINGS = Symbol(
+        [0x3CFC8],
+        [0x2319208],
+        0x8E4,
+        "Strings used with various debug printing functions throughout the overlay",
+    )
+
+    C_ROUTINE_NAMES = Symbol(
+        [0x3D8AC],
+        [0x2319AEC],
+        0x2D3C,
+        "Common routine name strings pointed to by entries in C_ROUTINES"
+        " (common_routine::name)",
     )
 
     C_ROUTINES = Symbol(
@@ -7908,6 +7943,14 @@ class NaOverlay11Data:
         " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
         " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
         " common_routine_table",
+    )
+
+    GROUND_WEATHER_TABLE = Symbol(
+        [0x41BD0],
+        [0x231DE10],
+        0x30,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " ground_weather_entry[12]",
     )
 
     GROUND_WAN_FILES_TABLE = Symbol(
@@ -7983,49 +8026,6 @@ class NaOverlay11Data:
         0x18,
         "Host pointers to multiple structure used for performing an overworld"
         " scene\n\ntype: struct main_ground_data",
-    )
-
-    OVERLAY11_UNKNOWN_TABLE__NA_2316A38 = Symbol(
-        [0x3A7F8],
-        [0x2316A38],
-        0xA0,
-        "Multiple entries are pointers to the string 'script.c'\n\nNote: unverified,"
-        " ported from Irdkwia's notes\n\ntype: undefined4[40]",
-    )
-
-    SCRIPT_COMMAND_PARSING_DATA = Symbol(
-        [0x3A898], [0x2316AD8], 0x20, "Used by ScriptCommandParsing somehow"
-    )
-
-    SCRIPT_OP_CODE_NAMES = Symbol(
-        [0x3A8B8],
-        [0x2316AF8],
-        0x1B18,
-        "Opcode name strings pointed to by entries in SCRIPT_OP_CODES"
-        " (script_opcode::name)",
-    )
-
-    OVERLAY11_DEBUG_STRINGS = Symbol(
-        [0x3CFC8],
-        [0x2319208],
-        0x8E4,
-        "Strings used with various debug printing functions throughout the overlay",
-    )
-
-    C_ROUTINE_NAMES = Symbol(
-        [0x3D8AC],
-        [0x2319AEC],
-        0x2D3C,
-        "Common routine name strings pointed to by entries in C_ROUTINES"
-        " (common_routine::name)",
-    )
-
-    GROUND_WEATHER_TABLE = Symbol(
-        [0x41BD0],
-        [0x231DE10],
-        0x30,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " ground_weather_entry[12]",
     )
 
 
@@ -8374,26 +8374,6 @@ class NaOverlay17Functions:
 
 
 class NaOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238BB84], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238BB9C], 0x18, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238BBB4], 0x20, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238BBD4], 0x28, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238BBFC], 0x30, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238BC2C], 0x30, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238BC5C], 0x38, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238BC94], 0x38, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238BCCC], 0x38, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238BD04], 0x40, "")
-
     ASSEMBLY_D_BOX_LAYOUT_1 = Symbol(
         [0x19F4], [0x238BB34], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8413,6 +8393,26 @@ class NaOverlay17Data:
     ASSEMBLY_D_BOX_LAYOUT_5 = Symbol(
         [0x1A34], [0x238BB74], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238BB84], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238BB9C], 0x18, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238BBB4], 0x20, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238BBD4], 0x28, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238BBFC], 0x30, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238BC2C], 0x30, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238BC5C], 0x38, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238BC94], 0x38, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238BCCC], 0x38, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238BD04], 0x40, "")
 
     OVERLAY17_FUNCTION_POINTER_TABLE = Symbol(
         [0x1C04], [0x238BD44], 0xA8, "Note: unverified, ported from Irdkwia's notes"
@@ -8449,24 +8449,6 @@ class NaOverlay18Functions:
 
 
 class NaOverlay18Data:
-    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238D320], 0x18, "")
-
-    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238D338], 0x20, "")
-
-    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238D358], 0x20, "")
-
-    MOVES_MAIN_MENU = Symbol([0x3238], [0x238D378], 0x20, "")
-
-    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238D398], 0x28, "")
-
-    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238D3C0], 0x30, "")
-
-    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238D3F0], 0x48, "")
-
-    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238D438], 0x48, "")
-
-    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238D480], 0x48, "")
-
     OVERLAY18_D_BOX_LAYOUT_1 = Symbol(
         [0x3130], [0x238D270], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8510,6 +8492,24 @@ class NaOverlay18Data:
     OVERLAY18_D_BOX_LAYOUT_11 = Symbol(
         [0x31D0], [0x238D310], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238D320], 0x18, "")
+
+    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238D338], 0x20, "")
+
+    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238D358], 0x20, "")
+
+    MOVES_MAIN_MENU = Symbol([0x3238], [0x238D378], 0x20, "")
+
+    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238D398], 0x28, "")
+
+    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238D3C0], 0x30, "")
+
+    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238D3F0], 0x48, "")
+
+    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238D438], 0x48, "")
+
+    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238D480], 0x48, "")
 
     OVERLAY18_FUNCTION_POINTER_TABLE = Symbol(
         [0x3388], [0x238D4C8], 0x130, "Note: unverified, ported from Irdkwia's notes"
@@ -8573,16 +8573,6 @@ class NaOverlay19Functions:
 
 
 class NaOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
-
-    BAR_MAIN_MENU = Symbol([0x4110], [0x238E250], 0x20, "")
-
-    BAR_SUBMENU_1 = Symbol([0x4130], [0x238E270], 0x20, "")
-
-    BAR_SUBMENU_2 = Symbol([0x4150], [0x238E290], 0x30, "")
-
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
         [0x39A0],
         [0x238DAE0],
@@ -8640,9 +8630,19 @@ class NaOverlay19Data:
         [0x40B8], [0x238E1F8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    BAR_MENU_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
+
+    BAR_MENU_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
+
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
         [0x40F8], [0x238E238], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    BAR_MAIN_MENU = Symbol([0x4110], [0x238E250], 0x20, "")
+
+    BAR_SUBMENU_1 = Symbol([0x4130], [0x238E270], 0x20, "")
+
+    BAR_SUBMENU_2 = Symbol([0x4150], [0x238E290], 0x30, "")
 
     OVERLAY19_RESERVED_SPACE = Symbol(
         [0x4204], [0x238E344], 0x1C, "Note: unverified, ported from Irdkwia's notes"
@@ -8692,6 +8692,10 @@ class NaOverlay20Functions:
 
 
 class NaOverlay20Data:
+    OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
+        [0x2E3C], [0x238CF7C], 0x8, "Note: unverified, ported from Irdkwia's notes"
+    )
+
     RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238CF84], 0x18, "")
 
     RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238CF9C], 0x18, "")
@@ -8701,14 +8705,6 @@ class NaOverlay20Data:
     RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238CFCC], 0x20, "")
 
     RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238CFEC], 0x28, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
-
-    OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
-        [0x2E3C], [0x238CF7C], 0x8, "Note: unverified, ported from Irdkwia's notes"
-    )
 
     OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
         [0x2ED4], [0x238D014], 0x14, "Note: unverified, ported from Irdkwia's notes"
@@ -8738,6 +8734,8 @@ class NaOverlay20Data:
         [0x2F38], [0x238D078], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
+
     RECYCLE_D_BOX_LAYOUT_7 = Symbol(
         [0x2F68], [0x238D0A8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8757,6 +8755,8 @@ class NaOverlay20Data:
     RECYCLE_D_BOX_LAYOUT1_1 = Symbol(
         [0x2FA8], [0x238D0E8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
 
     OVERLAY20_RESERVED_SPACE = Symbol(
         [0x2FD0], [0x238D110], 0x10, "Note: unverified, ported from Irdkwia's notes"
@@ -8793,6 +8793,10 @@ class NaOverlay21Functions:
 
 
 class NaOverlay21Data:
+    SWAP_SHOP_D_BOX_LAYOUT_1 = Symbol(
+        [0x28E8], [0x238CA28], 0x10, "Note: unverified, ported from Irdkwia's notes"
+    )
+
     SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238CA38], 0x18, "")
 
     SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238CA50], 0x18, "")
@@ -8804,10 +8808,6 @@ class NaOverlay21Data:
     SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238CAA8], 0x28, "")
 
     SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238CAD0], 0x30, "")
-
-    SWAP_SHOP_D_BOX_LAYOUT_1 = Symbol(
-        [0x28E8], [0x238CA28], 0x10, "Note: unverified, ported from Irdkwia's notes"
-    )
 
     OVERLAY21_UNKNOWN_STRING_IDS = Symbol(
         [0x29C0], [0x238CB00], 0x38, "Note: unverified, ported from Irdkwia's notes"
@@ -8874,14 +8874,6 @@ class NaOverlay22Functions:
 
 
 class NaOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
-
-    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238E880], 0x20, "")
-
-    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
-
-    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
-
     SHOP_D_BOX_LAYOUT_1 = Symbol(
         [0x46DC], [0x238E81C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8893,6 +8885,14 @@ class NaOverlay22Data:
     OVERLAY22_UNKNOWN_STRUCT__NA_238E85C = Symbol(
         [0x471C], [0x238E85C], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
+
+    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238E880], 0x20, "")
+
+    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
+
+    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
 
     OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
         [0x47B0], [0x238E8F0], 0x60, "Note: unverified, ported from Irdkwia's notes"
@@ -8969,16 +8969,6 @@ class NaOverlay23Functions:
 
 
 class NaOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238D354], 0x20, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238D374], 0x28, "")
-
     OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
         [0x31A8], [0x238D2E8], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8990,6 +8980,16 @@ class NaOverlay23Data:
     OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0 = Symbol(
         [0x31B0], [0x238D2F0], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238D354], 0x20, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238D374], 0x28, "")
 
     OVERLAY23_UNKNOWN_STRING_IDS = Symbol(
         [0x325C], [0x238D39C], 0x2C, "Note: unverified, ported from Irdkwia's notes"
@@ -9052,10 +9052,6 @@ class NaOverlay24Functions:
 
 
 class NaOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
-
-    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238C538], 0x20, "")
-
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508 = Symbol(
         [0x23C8], [0x238C508], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -9063,6 +9059,10 @@ class NaOverlay24Data:
     OVERLAY24_UNKNOWN_STRUCT__NA_238C514 = Symbol(
         [0x23D4], [0x238C514], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
+
+    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238C538], 0x20, "")
 
     OVERLAY24_UNKNOWN_STRING_IDS = Symbol(
         [0x2418], [0x238C558], 0x38, "Note: unverified, ported from Irdkwia's notes"
@@ -9111,12 +9111,6 @@ class NaOverlay25Functions:
 
 
 class NaOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
-
-    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238B4CC], 0x20, "")
-
-    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238B4EC], 0x20, "")
-
     OVERLAY25_UNKNOWN_STRUCT__NA_238B498 = Symbol(
         [0x1358], [0x238B498], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -9124,6 +9118,12 @@ class NaOverlay25Data:
     APPRAISAL_D_BOX_LAYOUT_1 = Symbol(
         [0x1364], [0x238B4A4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
+
+    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238B4CC], 0x20, "")
+
+    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238B4EC], 0x20, "")
 
     OVERLAY25_UNKNOWN_STRING_IDS = Symbol(
         [0x13CC], [0x238B50C], 0x28, "Note: unverified, ported from Irdkwia's notes"
@@ -9230,14 +9230,6 @@ class NaOverlay27Functions:
 
 
 class NaOverlay27Data:
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238C95C], 0x18, "")
-
-    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238C974], 0x20, "")
-
-    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238C994], 0x20, "")
-
-    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238C9B4], 0x28, "")
-
     OVERLAY27_UNKNOWN_VALUE__NA_238C948 = Symbol(
         [0x2808], [0x238C948], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -9249,6 +9241,14 @@ class NaOverlay27Data:
     OVERLAY27_UNKNOWN_STRUCT__NA_238C950 = Symbol(
         [0x2810], [0x238C950], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238C95C], 0x18, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238C974], 0x20, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238C994], 0x20, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238C9B4], 0x28, "")
 
     OVERLAY27_UNKNOWN_STRING_IDS = Symbol(
         [0x289C], [0x238C9DC], 0x30, "Note: unverified, ported from Irdkwia's notes"
@@ -11787,6 +11787,24 @@ class NaOverlay29Functions:
         " pointer\nreturn: True if the move should play its alternative animation",
     )
 
+    DoMoveDamage = Symbol(
+        [0x49B80, 0x4E2C0, 0x4F670, 0x51B48],
+        [0x2325DC0, 0x232A500, 0x232B8B0, 0x232DD88],
+        None,
+        "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage"
+        " with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveIronTail = Symbol(
+        [0x49BA4],
+        [0x2325DE4],
+        None,
+        "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveYawn = Symbol(
         [0x49C84],
         [0x2325EC4],
@@ -11851,11 +11869,30 @@ class NaOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveDamageCringe30 = Symbol(
+        [0x4A430],
+        [0x2326670],
+        None,
+        "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of"
+        " inflicting the cringe status on the defender.\nRelevant moves: Rock Slide,"
+        " Iron Head, Air Slash, Zen Headbutt, Dragon Rush\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
+        " dealt",
+    )
+
     DoMoveWhirlpool = Symbol(
         [0x4A510],
         [0x2326750],
         None,
         "Move effect: Whirlpool\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeTears = Symbol(
+        [0x4A598],
+        [0x23267D8],
+        None,
+        "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11899,12 +11936,57 @@ class NaOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveFlameWheel = Symbol(
+        [0x4AA88],
+        [0x2326CC8],
+        None,
+        "Move effect: Flame Wheel\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveGust = Symbol(
         [0x4ABE0],
         [0x2326E20],
         None,
         "Move effect: Gust\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
         " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveParalyze = Symbol(
+        [0x4AC40, 0x4BFF0, 0x4F1F4],
+        [0x2326E80, 0x2328230, 0x232B434],
+        None,
+        "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun"
+        " Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerDef20 = Symbol(
+        [0x4ADF4],
+        [0x2327034],
+        None,
+        "Move effect: Deal damage with a 20% chance (CRUNCH_LOWER_DEFENSE_CHANCE) of"
+        " lowering the defender's defense.\nRelevant moves: Crunch, Shadow Ball\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
+    )
+
+    DoMoveBite = Symbol(
+        [0x4AE74],
+        [0x23270B4],
+        None,
+        "Move effect: Bite\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageParalyze20 = Symbol(
+        [0x4AEE0],
+        [0x2327120],
+        None,
+        "Move effect: Deal damage with a 20% chance (THUNDER_PARALYZE_CHANCE) of"
+        " paralyzing the defender.\nRelevant moves: Thunder, Force Palm\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
     )
 
     DoMoveEndeavor = Symbol(
@@ -11921,6 +12003,16 @@ class NaOverlay29Functions:
         None,
         "Move effect: Facade\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerSpeed20 = Symbol(
+        [0x4B04C],
+        [0x232728C],
+        None,
+        "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of"
+        " lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
     )
 
     DoMoveBrickBreak = Symbol(
@@ -11947,6 +12039,14 @@ class NaOverlay29Functions:
         " damage dealt.\nRelevant moves: Giga Drain, Drain Punch\n\nr0: attacker"
         " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
         " damage was dealt",
+    )
+
+    DoMoveReversal = Symbol(
+        [0x4B358],
+        [0x2327598],
+        None,
+        "Move effect: Reversal\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
     DoMoveSmellingSalt = Symbol(
@@ -12024,6 +12124,14 @@ class NaOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveRockClimb = Symbol(
+        [0x4B9C8],
+        [0x2327C08],
+        None,
+        "Move effect: Rock Climb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveDamageWithRecoil = Symbol(
         [0x4BCF4],
         [0x2327F34],
@@ -12058,11 +12166,27 @@ class NaOverlay29Functions:
         " move (unused)\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveLick = Symbol(
+        [0x4BF2C],
+        [0x232816C],
+        None,
+        "Move effect: Lick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveFissure = Symbol(
         [0x4C164],
         [0x23283A4],
         None,
         "Move effect: Fissure\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveExtrasensory = Symbol(
+        [0x4C27C],
+        [0x23284BC],
+        None,
+        "Move effect: Extrasensory\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -12085,11 +12209,45 @@ class NaOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveHeadbutt = Symbol(
+        [0x4C684],
+        [0x23288C4],
+        None,
+        "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveDoubleEdge = Symbol(
         [0x4C6F0],
         [0x2328930],
         None,
         "Move effect: Double-Edge\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSandAttack = Symbol(
+        [0x4C814],
+        [0x2328A54],
+        None,
+        "Move effect: Sand-Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamagePoison40 = Symbol(
+        [0x4C834],
+        [0x2328A74],
+        None,
+        "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning"
+        " the defender.\nRelevant moves: Smog, Poison Jab, Cross Poison\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveSacredFire = Symbol(
+        [0x4C8C0],
+        [0x2328B00],
+        None,
+        "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -12099,6 +12257,16 @@ class NaOverlay29Functions:
         None,
         "Move effect: Sheer Cold\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerAccuracy40 = Symbol(
+        [0x4CDC0],
+        [0x2329000],
+        None,
+        "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE)"
+        " of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb,"
+        " Mirror Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
     )
 
     DoMoveTwister = Symbol(
@@ -12151,6 +12319,16 @@ class NaOverlay29Functions:
         " move was successfully used",
     )
 
+    DoMoveThundershock = Symbol(
+        [0x4D4D0],
+        [0x2329710],
+        None,
+        "Move effect: Thundershock\n\nThis is identical to DoMoveLick, except it uses a"
+        " different data symbol for the paralysis chance (but it's still 10%).\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether the move was successfully used",
+    )
+
     DoMoveThunderWave = Symbol(
         [0x4D53C],
         [0x232977C],
@@ -12180,6 +12358,22 @@ class NaOverlay29Functions:
         [0x2329880],
         None,
         "Move effect: Toxic\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonFang = Symbol(
+        [0x4D658],
+        [0x2329898],
+        None,
+        "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonSting = Symbol(
+        [0x4D6C4],
+        [0x2329904],
+        None,
+        "Move effect: Poison Sting\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -12216,11 +12410,35 @@ class NaOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveThief = Symbol(
+        [0x4DE0C],
+        [0x232A04C],
+        None,
+        "Move effect: Thief\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveRolePlay = Symbol(
         [0x4DF48],
         [0x232A188],
         None,
         "Move effect: Role Play\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLeer = Symbol(
+        [0x4E03C],
+        [0x232A27C],
+        None,
+        "Move effect: Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeOut = Symbol(
+        [0x4E07C],
+        [0x232A2BC],
+        None,
+        "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -12272,11 +12490,27 @@ class NaOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveDizzyPunch = Symbol(
+        [0x4ECB0],
+        [0x232AEF0],
+        None,
+        "Move effect: Dizzy Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveImprison = Symbol(
         [0x4ED60],
         [0x232AFA0],
         None,
         "Move effect: Imprison\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFeatherDance = Symbol(
+        [0x4EDB0],
+        [0x232AFF0],
+        None,
+        "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -12296,6 +12530,22 @@ class NaOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveCrushClaw = Symbol(
+        [0x4EF24],
+        [0x232B164],
+        None,
+        "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlazeKick = Symbol(
+        [0x4EFA4],
+        [0x232B1E4],
+        None,
+        "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMovePresent = Symbol(
         [0x4F02C],
         [0x232B26C],
@@ -12309,6 +12559,14 @@ class NaOverlay29Functions:
         [0x232B368],
         None,
         "Move effect: Eruption\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonTail = Symbol(
+        [0x4F254],
+        [0x232B494],
+        None,
+        "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -12344,6 +12602,14 @@ class NaOverlay29Functions:
         [0x232B738],
         None,
         "Move effect: Magnitude\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMistBall = Symbol(
+        [0x4F5E0],
+        [0x232B820],
+        None,
+        "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -12404,6 +12670,14 @@ class NaOverlay29Functions:
         [0x232BCC4],
         None,
         "Move effect: Dream Eater\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDragonRage = Symbol(
+        [0x4FD48],
+        [0x232BF88],
+        None,
+        "Move effect: Dragon Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -12538,6 +12812,16 @@ class NaOverlay29Functions:
         None,
         "Move effect: Charge Beam\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageEatItem = Symbol(
+        [0x517A4],
+        [0x232D9E4],
+        None,
+        "Move effect: Deals damage, and eats any beneficial items the defender is"
+        " holding.\nRelevant moves: Pluck, Bug Bite\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
     )
 
     DoMoveLastResort = Symbol(
@@ -14154,290 +14438,6 @@ class NaOverlay29Functions:
         " menu is closed.\n\nreturn: Always 0",
     )
 
-    DoMoveDamage = Symbol(
-        [0x49B80, 0x4E2C0, 0x4F670, 0x51B48],
-        [0x2325DC0, 0x232A500, 0x232B8B0, 0x232DD88],
-        None,
-        "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage"
-        " with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveIronTail = Symbol(
-        [0x49BA4],
-        [0x2325DE4],
-        None,
-        "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageCringe30 = Symbol(
-        [0x4A430],
-        [0x2326670],
-        None,
-        "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of"
-        " inflicting the cringe status on the defender.\nRelevant moves: Rock Slide,"
-        " Iron Head, Air Slash, Zen Headbutt, Dragon Rush\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
-        " dealt",
-    )
-
-    DoMoveFakeTears = Symbol(
-        [0x4A598],
-        [0x23267D8],
-        None,
-        "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFlameWheel = Symbol(
-        [0x4AA88],
-        [0x2326CC8],
-        None,
-        "Move effect: Flame Wheel\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveParalyze = Symbol(
-        [0x4AC40, 0x4BFF0, 0x4F1F4],
-        [0x2326E80, 0x2328230, 0x232B434],
-        None,
-        "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun"
-        " Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageLowerDef20 = Symbol(
-        [0x4ADF4],
-        [0x2327034],
-        None,
-        "Move effect: Deal damage with a 20% chance (CRUNCH_LOWER_DEFENSE_CHANCE) of"
-        " lowering the defender's defense.\nRelevant moves: Crunch, Shadow Ball\n\nr0:"
-        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
-        " whether or not damage was dealt",
-    )
-
-    DoMoveBite = Symbol(
-        [0x4AE74],
-        [0x23270B4],
-        None,
-        "Move effect: Bite\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageParalyze20 = Symbol(
-        [0x4AEE0],
-        [0x2327120],
-        None,
-        "Move effect: Deal damage with a 20% chance (THUNDER_PARALYZE_CHANCE) of"
-        " paralyzing the defender.\nRelevant moves: Thunder, Force Palm\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveDamageLowerSpeed20 = Symbol(
-        [0x4B04C],
-        [0x232728C],
-        None,
-        "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of"
-        " lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0:"
-        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
-        " whether or not damage was dealt",
-    )
-
-    DoMoveReversal = Symbol(
-        [0x4B358],
-        [0x2327598],
-        None,
-        "Move effect: Reversal\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveRockClimb = Symbol(
-        [0x4B9C8],
-        [0x2327C08],
-        None,
-        "Move effect: Rock Climb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveLick = Symbol(
-        [0x4BF2C],
-        [0x232816C],
-        None,
-        "Move effect: Lick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveExtrasensory = Symbol(
-        [0x4C27C],
-        [0x23284BC],
-        None,
-        "Move effect: Extrasensory\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveHeadbutt = Symbol(
-        [0x4C684],
-        [0x23288C4],
-        None,
-        "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSandAttack = Symbol(
-        [0x4C814],
-        [0x2328A54],
-        None,
-        "Move effect: Sand-Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamagePoison40 = Symbol(
-        [0x4C834],
-        [0x2328A74],
-        None,
-        "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning"
-        " the defender.\nRelevant moves: Smog, Poison Jab, Cross Poison\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveSacredFire = Symbol(
-        [0x4C8C0],
-        [0x2328B00],
-        None,
-        "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageLowerAccuracy40 = Symbol(
-        [0x4CDC0],
-        [0x2329000],
-        None,
-        "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE)"
-        " of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb,"
-        " Mirror Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
-        " ID\nreturn: whether or not damage was dealt",
-    )
-
-    DoMoveThundershock = Symbol(
-        [0x4D4D0],
-        [0x2329710],
-        None,
-        "Move effect: Thundershock\n\nThis is identical to DoMoveLick, except it uses a"
-        " different data symbol for the paralysis chance (but it's still 10%).\n\nr0:"
-        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
-        " whether the move was successfully used",
-    )
-
-    DoMovePoisonFang = Symbol(
-        [0x4D658],
-        [0x2329898],
-        None,
-        "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePoisonSting = Symbol(
-        [0x4D6C4],
-        [0x2329904],
-        None,
-        "Move effect: Poison Sting\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveThief = Symbol(
-        [0x4DE0C],
-        [0x232A04C],
-        None,
-        "Move effect: Thief\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveLeer = Symbol(
-        [0x4E03C],
-        [0x232A27C],
-        None,
-        "Move effect: Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFakeOut = Symbol(
-        [0x4E07C],
-        [0x232A2BC],
-        None,
-        "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDizzyPunch = Symbol(
-        [0x4ECB0],
-        [0x232AEF0],
-        None,
-        "Move effect: Dizzy Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFeatherDance = Symbol(
-        [0x4EDB0],
-        [0x232AFF0],
-        None,
-        "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveCrushClaw = Symbol(
-        [0x4EF24],
-        [0x232B164],
-        None,
-        "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveBlazeKick = Symbol(
-        [0x4EFA4],
-        [0x232B1E4],
-        None,
-        "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePoisonTail = Symbol(
-        [0x4F254],
-        [0x232B494],
-        None,
-        "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveMistBall = Symbol(
-        [0x4F5E0],
-        [0x232B820],
-        None,
-        "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDragonRage = Symbol(
-        [0x4FD48],
-        [0x232BF88],
-        None,
-        "Move effect: Dragon Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageEatItem = Symbol(
-        [0x517A4],
-        [0x232D9E4],
-        None,
-        "Move effect: Deals damage, and eats any beneficial items the defender is"
-        " holding.\nRelevant moves: Pluck, Bug Bite\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
-        " successfully used",
-    )
-
 
 class NaOverlay29Data:
     DUNGEON_STRUCT_SIZE = Symbol(
@@ -14583,6 +14583,13 @@ class NaOverlay29Data:
         " in this number format.",
     )
 
+    MONSTER_HEAL_HP_MAX = Symbol(
+        [0x390A0],
+        [0x23152E0],
+        0x4,
+        "The maximum amount of HP a monster can have (999).",
+    )
+
     MOVE_TARGET_AND_RANGE_SPECIAL_USER_HEALING = Symbol(
         [0x3EAF4],
         [0x231AD34],
@@ -14604,6 +14611,10 @@ class NaOverlay29Data:
 
     SLIP_SEED_VALUE = Symbol(
         [0x4096C], [0x231CBAC], 0x4, "Some value related to the Slip Seed (0xC75)."
+    )
+
+    ROCK_WRECKER_MOVE_ID = Symbol(
+        [0x48360], [0x23245A0], 0x4, "The move ID for Rock Wrecker (453)."
     )
 
     CASTFORM_NORMAL_FORM_MALE_ID = Symbol(
@@ -15006,6 +15017,15 @@ class NaOverlay29Data:
         " modifier array for a monster.",
     )
 
+    MAP_COLOR_TABLE = Symbol(
+        [0x76D90],
+        [0x2352FD0],
+        0x24,
+        "In order: white, black, red, green, blue, magenta, dark pink, chartreuse,"
+        " light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " rgb[9]",
+    )
+
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN = Symbol(
         [0x76DD0],
         [0x2353010],
@@ -15128,26 +15148,6 @@ class NaOverlay29Data:
         0x4,
         "[Runtime] Pointer to decoded fixed room data loaded from the BALANCE/fixed.bin"
         " file.",
-    )
-
-    MONSTER_HEAL_HP_MAX = Symbol(
-        [0x390A0],
-        [0x23152E0],
-        0x4,
-        "The maximum amount of HP a monster can have (999).",
-    )
-
-    ROCK_WRECKER_MOVE_ID = Symbol(
-        [0x48360], [0x23245A0], 0x4, "The move ID for Rock Wrecker (453)."
-    )
-
-    MAP_COLOR_TABLE = Symbol(
-        [0x76D90],
-        [0x2352FD0],
-        0x24,
-        "In order: white, black, red, green, blue, magenta, dark pink, chartreuse,"
-        " light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " rgb[9]",
     )
 
     NECTAR_IQ_BOOST = Symbol(
@@ -15285,20 +15285,6 @@ class NaOverlay31Functions:
 
 
 class NaOverlay31Data:
-    DUNGEON_MAIN_MENU = Symbol([0x75B4], [0x2389DD4], 0x40, "")
-
-    DUNGEON_SUBMENU_1 = Symbol([0x7650], [0x2389E70], 0x20, "")
-
-    DUNGEON_SUBMENU_2 = Symbol([0x7670], [0x2389E90], 0x20, "")
-
-    DUNGEON_SUBMENU_3 = Symbol([0x7690], [0x2389EB0], 0x20, "")
-
-    DUNGEON_SUBMENU_4 = Symbol([0x76B0], [0x2389ED0], 0x20, "")
-
-    DUNGEON_SUBMENU_5 = Symbol([0x78FC], [0x238A11C], 0x18, "")
-
-    DUNGEON_SUBMENU_6 = Symbol([0x7980], [0x238A1A0], 0x48, "")
-
     DUNGEON_D_BOX_LAYOUT_1 = Symbol(
         [0x7574], [0x2389D94], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -15314,6 +15300,8 @@ class NaOverlay31Data:
     DUNGEON_D_BOX_LAYOUT_4 = Symbol(
         [0x75A4], [0x2389DC4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DUNGEON_MAIN_MENU = Symbol([0x75B4], [0x2389DD4], 0x40, "")
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
         [0x7600], [0x2389E20], 0x10, "Note: unverified, ported from Irdkwia's notes"
@@ -15334,6 +15322,14 @@ class NaOverlay31Data:
     DUNGEON_D_BOX_LAYOUT_7 = Symbol(
         [0x7640], [0x2389E60], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DUNGEON_SUBMENU_1 = Symbol([0x7650], [0x2389E70], 0x20, "")
+
+    DUNGEON_SUBMENU_2 = Symbol([0x7670], [0x2389E90], 0x20, "")
+
+    DUNGEON_SUBMENU_3 = Symbol([0x7690], [0x2389EB0], 0x20, "")
+
+    DUNGEON_SUBMENU_4 = Symbol([0x76B0], [0x2389ED0], 0x20, "")
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
         [0x76D0], [0x2389EF0], 0xC, "Note: unverified, ported from Irdkwia's notes"
@@ -15419,6 +15415,8 @@ class NaOverlay31Data:
         [0x78EC], [0x238A10C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    DUNGEON_SUBMENU_5 = Symbol([0x78FC], [0x238A11C], 0x18, "")
+
     DUNGEON_D_BOX_LAYOUT_26 = Symbol(
         [0x7914], [0x238A134], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -15438,6 +15436,8 @@ class NaOverlay31Data:
     OVERLAY31_UNKNOWN_STRUCT__NA_238A190 = Symbol(
         [0x7970], [0x238A190], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DUNGEON_SUBMENU_6 = Symbol([0x7980], [0x238A1A0], 0x48, "")
 
     DUNGEON_D_BOX_LAYOUT_29 = Symbol(
         [0x79C8], [0x238A1E8], 0x10, "Note: unverified, ported from Irdkwia's notes"
@@ -15563,10 +15563,6 @@ class NaOverlay34Functions:
 
 
 class NaOverlay34Data:
-    START_MENU_CONFIRM = Symbol([0xDE4], [0x22DD024], 0x18, "Irdkwia's notes: 3*0x8")
-
-    DUNGEON_DEBUG_MENU = Symbol([0xE0C], [0x22DD04C], 0x28, "Irdkwia's notes: 5*0x8")
-
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014 = Symbol(
         [0xDD4],
         [0x22DD014],
@@ -15574,12 +15570,16 @@ class NaOverlay34Data:
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
+    START_MENU_CONFIRM = Symbol([0xDE4], [0x22DD024], 0x18, "Irdkwia's notes: 3*0x8")
+
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C = Symbol(
         [0xDFC],
         [0x22DD03C],
         0x10,
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
+
+    DUNGEON_DEBUG_MENU = Symbol([0xE0C], [0x22DD04C], 0x28, "Irdkwia's notes: 5*0x8")
 
     OVERLAY34_RESERVED_SPACE = Symbol(
         [0xE34], [0x22DD074], 0xC, "Note: unverified, ported from Irdkwia's notes"

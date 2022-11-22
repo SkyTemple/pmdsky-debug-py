@@ -5237,6 +5237,17 @@ class NaItcmArm9Data:
         "Length in bytes of the default memory allocation arena, 1991680.",
     )
 
+    FAINT_REASON_CODE_ORB_ITEM = Symbol(
+        None, None, None, "The faint reason code for any item in CATEGORY_ORBS, 0x262."
+    )
+
+    FAINT_REASON_CODE_NON_ORB_ITEM = Symbol(
+        None,
+        None,
+        None,
+        "The faint reason code for any item not in CATEGORY_ORBS, 0x263.",
+    )
+
     AURA_BOW_ID_LAST = Symbol(None, None, None, "Highest item ID of the aura bows.")
 
     NUMBER_OF_ITEMS = Symbol(None, None, None, "Number of items in the game.")
@@ -5369,6 +5380,20 @@ class NaItcmArm9Data:
         None,
         "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
         " struct move_id_16[16]",
+    )
+
+    MOVE_POWER_STARS_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[6]",
+    )
+
+    MOVE_ACCURACY_STARS_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
     )
 
     PARTNER_TALK_KIND_TABLE = Symbol(
@@ -6090,7 +6115,21 @@ class NaItcmArm9Data:
         " waza_p.bin\n\ntype: struct move_data_table*",
     )
 
+    LOADED_WAN_TABLE_PTR = Symbol(
+        None,
+        None,
+        None,
+        "pointer to a wan table\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
     LANGUAGE_INFO_DATA = Symbol(None, None, None, "[Runtime]")
+
+    TBL_TALK_GROUP_STRING_ID_START = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
+    )
 
     KEYBOARD_STRING_IDS = Symbol(
         None,
@@ -6189,45 +6228,6 @@ class NaItcmArm9Data:
         None,
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int32_t[128]",
-    )
-
-    FAINT_REASON_CODE_ORB_ITEM = Symbol(
-        None, None, None, "The faint reason code for any item in CATEGORY_ORBS, 0x262."
-    )
-
-    FAINT_REASON_CODE_NON_ORB_ITEM = Symbol(
-        None,
-        None,
-        None,
-        "The faint reason code for any item not in CATEGORY_ORBS, 0x263.",
-    )
-
-    MOVE_POWER_STARS_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[6]",
-    )
-
-    MOVE_ACCURACY_STARS_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
-    )
-
-    LOADED_WAN_TABLE_PTR = Symbol(
-        None,
-        None,
-        None,
-        "pointer to a wan table\n\nNote: unverified, ported from Irdkwia's notes",
-    )
-
-    TBL_TALK_GROUP_STRING_ID_START = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
     )
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
@@ -6486,12 +6486,6 @@ class NaItcmOverlay1Data:
 
     MAIN_MENU = Symbol(None, None, None, "")
 
-    MAIN_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
-
-    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
-
     OVERLAY1_D_BOX_LAYOUT_5 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -6504,6 +6498,8 @@ class NaItcmOverlay1Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    MAIN_MENU_CONFIRM = Symbol(None, None, None, "")
+
     OVERLAY1_D_BOX_LAYOUT_8 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -6512,9 +6508,13 @@ class NaItcmOverlay1Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
+
     OVERLAY1_D_BOX_LAYOUT_10 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
 
 
 class NaItcmOverlay1Section:
@@ -6641,6 +6641,41 @@ class NaItcmOverlay10Data:
         None, None, None, "Damage dealt by eating an Oren Berry."
     )
 
+    IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Iron Tail lowering defense, as a percentage (30%).",
+    )
+
+    TWINEEDLE_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Twineedle poisoning, as a percentage (20%)."
+    )
+
+    EXTRASENSORY_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Extrasensory inflicting the cringe status, as a percentage"
+        " (10%).",
+    )
+
+    ROCK_SLIDE_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the"
+        " cringe status, as a percentage (30%)",
+    )
+
+    CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering"
+        " defense, as a percentage (20%).",
+    )
+
     UNOWN_STONE_DROP_CHANCE = Symbol(
         None,
         None,
@@ -6650,6 +6685,58 @@ class NaItcmOverlay10Data:
 
     SITRUS_BERRY_HP_RESTORATION = Symbol(
         None, None, None, "The amount of HP restored by eating a Sitrus Berry."
+    )
+
+    MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40)"
+        " lowering accuracy, as a percentage (40%).",
+    )
+
+    ANCIENTPOWER_BOOST_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of AncientPower boosting all stats, as a percentage (20%).",
+    )
+
+    POISON_TAIL_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Poison Tail poisoning, as a percentage (10%)."
+    )
+
+    THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thundershock paralyzing, as a percentage (10%).",
+    )
+
+    HEADBUTT_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
+    )
+
+    FIRE_FANG_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
+    )
+
+    SACRED_FIRE_BURN_CHANCE = Symbol(
+        None, None, None, "The chance of Sacred Fire burning, as a percentage (50%)."
+    )
+
+    WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Whirlpool inflicting the constriction status, as a percentage"
+        " (10%).",
     )
 
     EXP_ELITE_EXP_BOOST = Symbol(
@@ -6676,6 +6763,20 @@ class NaItcmOverlay10Data:
         "The number of turns between enemy spawns under normal conditions.",
     )
 
+    MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Mist Ball lowering special attack, as a percentage (50%).",
+    )
+
+    CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Charge Beam boosting special attack, as a percentage (40%).",
+    )
+
     ORAN_BERRY_FULL_HP_BOOST = Symbol(
         None,
         None,
@@ -6685,6 +6786,74 @@ class NaItcmOverlay10Data:
 
     LIFE_SEED_HP_BOOST = Symbol(
         None, None, None, "The permanent HP boost from eating a Life Seed."
+    )
+
+    LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50)"
+        " lowering special defense, as a percentage (50%).",
+    )
+
+    CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering"
+        " speed, as a percentage (20%).",
+    )
+
+    ICE_FANG_FREEZE_CHANCE = Symbol(
+        None, None, None, "The chance of Ice Fang freezing, as a percentage (15%)."
+    )
+
+    SMOG_POISON_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a"
+        " percentage (40%).",
+    )
+
+    LICK_PARALYZE_CHANCE = Symbol(
+        None, None, None, "The chance of Lick paralyzing, as a percentage (10%)."
+    )
+
+    THUNDER_FANG_PARALYZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thunder Fang paralyzing, as a percentage (10%).",
+    )
+
+    BITE_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Bite inflicting the cringe status, as a percentage (20%)",
+    )
+
+    ICE_FANG_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
+    )
+
+    BLAZE_KICK_BURN_CHANCE = Symbol(
+        None, None, None, "The chance of Blaze Kick burning, as a percentage (10%)."
+    )
+
+    DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
+        None, None, None, "The chance of Dizzy Punch confusing, as a percentage (30%)."
+    )
+
+    SECRET_POWER_EFFECT_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Secret Power inflicting an effect, as a percentage (30%).",
     )
 
     EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
@@ -6709,11 +6878,30 @@ class NaItcmOverlay10Data:
         "The permanent HP boost from eating a Sitrus Berry at full HP.",
     )
 
+    CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Crush Claw lowering defense, as a percentage (50%).",
+    )
+
     BURN_DAMAGE_COOLDOWN = Symbol(
         None, None, None, "The number of turns between passive burn damage."
     )
 
     STICK_POWER = Symbol(None, None, None, "Attack power for Sticks.")
+
+    BLIZZARD_FREEZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Blizzard (and others, see DoMoveDamageFreeze15) freezing, as a"
+        " percentage (15%).",
+    )
+
+    POISON_STING_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Poison Sting poisoning, as a percentage (18%)."
+    )
 
     SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
         None,
@@ -6721,6 +6909,18 @@ class NaItcmOverlay10Data:
         None,
         "The number of turns between enemy spawns when the Thief Alert condition is"
         " active.",
+    )
+
+    POISON_FANG_POISON_CHANCE = Symbol(
+        None, None, None, "The chance of Poison Fang poisoning, as a percentage (30%)."
+    )
+
+    THUNDER_PARALYZE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as"
+        " a percentage (20%)",
     )
 
     MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
@@ -6731,12 +6931,58 @@ class NaItcmOverlay10Data:
         " 2/3 for some reason (so the actual maximum is 45)",
     )
 
+    TWISTER_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Twister inflicting the cringe status, as a percentage (10%).",
+    )
+
     SPEED_BOOST_TURNS = Symbol(
         None,
         None,
         None,
         "Number of turns (250) after which Speed Boost will trigger and increase speed"
         " by one stage.",
+    )
+
+    FAKE_OUT_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
+    )
+
+    THUNDER_FANG_CRINGE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Thunder Fang inflicting the cringe status, as a percentage"
+        " (25%).",
+    )
+
+    FLARE_BLITZ_BURN_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Flare Blitz burning, as a percentage (25%). This value is also"
+        " used for the Fire Fang burn chance.",
+    )
+
+    FLAME_WHEEL_BURN_CHANCE = Symbol(
+        None, None, None, "The chance of Flame Wheel burning, as a percentage (10%)."
+    )
+
+    ROCK_CLIMB_CONFUSE_CHANCE = Symbol(
+        None, None, None, "The chance of Rock Climb confusing, as a percentage (10%)."
+    )
+
+    TRI_ATTACK_STATUS_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Tri Attack inflicting any status condition, as a percentage"
+        " (20%).",
     )
 
     MIRACLE_CHEST_EXP_BOOST = Symbol(
@@ -6791,6 +7037,10 @@ class NaItcmOverlay10Data:
         None, None, None, "The permanent special attack boost from ingesting a Calcium."
     )
 
+    DRAGON_RAGE_FIXED_DAMAGE = Symbol(
+        None, None, None, "The amount of fixed damage dealt by Dragon Rage (30)."
+    )
+
     CORSOLA_TWIG_POWER = Symbol(None, None, None, "Attack power for Corsola Twigs.")
 
     CACNEA_SPIKE_POWER = Symbol(None, None, None, "Attack power for Cacnea Spikes.")
@@ -6801,6 +7051,22 @@ class NaItcmOverlay10Data:
 
     IRON_THORN_POWER = Symbol(None, None, None, "Attack power for Iron Thorns.")
 
+    FACADE_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        "The Facade damage multiplier for users with a status condition, as a binary"
+        " fixed-point number with 8 fraction bits (0x200 -> 2x).",
+    )
+
+    IMPRISON_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype:"
+        " int16_t[2]",
+    )
+
     SLEEP_DURATION_RANGE = Symbol(
         None,
         None,
@@ -6808,6 +7074,22 @@ class NaItcmOverlay10Data:
         "Appears to control the range of turns for which the sleep condition can"
         " last.\n\nThe first two bytes are the low value of the range, and the later"
         " two bytes are the high value.",
+    )
+
+    NIGHTMARE_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Nightmare status inflicted by Nightmare, [4,"
+        " 8).\n\ntype: int16_t[2]",
+    )
+
+    SMOKESCREEN_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Whiffer status inflicted by Smokescreen, [1,"
+        " 4).\n\ntype: int16_t[2]",
     )
 
     POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
@@ -6833,6 +7115,14 @@ class NaItcmOverlay10Data:
         "The hidden stairs spawn chance multiplier (~1.2) as a binary fixed-point"
         " number (8 fraction bits), if applicable. See"
         " ShouldBoostHiddenStairsSpawnChance in overlay 29.",
+    )
+
+    YAWN_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype:"
+        " int16_t[2]",
     )
 
     SPEED_BOOST_DURATION_RANGE = Symbol(
@@ -7032,296 +7322,6 @@ class NaItcmOverlay10Data:
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
         " special_monster_move_animation[7422]",
-    )
-
-    IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Iron Tail lowering defense, as a percentage (30%).",
-    )
-
-    TWINEEDLE_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Twineedle poisoning, as a percentage (20%)."
-    )
-
-    EXTRASENSORY_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Extrasensory inflicting the cringe status, as a percentage"
-        " (10%).",
-    )
-
-    ROCK_SLIDE_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the"
-        " cringe status, as a percentage (30%)",
-    )
-
-    CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering"
-        " defense, as a percentage (20%).",
-    )
-
-    MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40)"
-        " lowering accuracy, as a percentage (40%).",
-    )
-
-    ANCIENTPOWER_BOOST_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of AncientPower boosting all stats, as a percentage (20%).",
-    )
-
-    POISON_TAIL_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Poison Tail poisoning, as a percentage (10%)."
-    )
-
-    THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Thundershock paralyzing, as a percentage (10%).",
-    )
-
-    HEADBUTT_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
-    )
-
-    FIRE_FANG_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
-    )
-
-    SACRED_FIRE_BURN_CHANCE = Symbol(
-        None, None, None, "The chance of Sacred Fire burning, as a percentage (50%)."
-    )
-
-    WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Whirlpool inflicting the constriction status, as a percentage"
-        " (10%).",
-    )
-
-    MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Mist Ball lowering special attack, as a percentage (50%).",
-    )
-
-    CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Charge Beam boosting special attack, as a percentage (40%).",
-    )
-
-    LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50)"
-        " lowering special defense, as a percentage (50%).",
-    )
-
-    CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering"
-        " speed, as a percentage (20%).",
-    )
-
-    ICE_FANG_FREEZE_CHANCE = Symbol(
-        None, None, None, "The chance of Ice Fang freezing, as a percentage (15%)."
-    )
-
-    SMOG_POISON_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a"
-        " percentage (40%).",
-    )
-
-    LICK_PARALYZE_CHANCE = Symbol(
-        None, None, None, "The chance of Lick paralyzing, as a percentage (10%)."
-    )
-
-    THUNDER_FANG_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Thunder Fang paralyzing, as a percentage (10%).",
-    )
-
-    BITE_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Bite inflicting the cringe status, as a percentage (20%)",
-    )
-
-    ICE_FANG_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
-    )
-
-    BLAZE_KICK_BURN_CHANCE = Symbol(
-        None, None, None, "The chance of Blaze Kick burning, as a percentage (10%)."
-    )
-
-    DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
-        None, None, None, "The chance of Dizzy Punch confusing, as a percentage (30%)."
-    )
-
-    SECRET_POWER_EFFECT_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Secret Power inflicting an effect, as a percentage (30%).",
-    )
-
-    CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Crush Claw lowering defense, as a percentage (50%).",
-    )
-
-    BLIZZARD_FREEZE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Blizzard (and others, see DoMoveDamageFreeze15) freezing, as a"
-        " percentage (15%).",
-    )
-
-    POISON_STING_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Poison Sting poisoning, as a percentage (18%)."
-    )
-
-    POISON_FANG_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Poison Fang poisoning, as a percentage (30%)."
-    )
-
-    THUNDER_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as"
-        " a percentage (20%)",
-    )
-
-    TWISTER_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Twister inflicting the cringe status, as a percentage (10%).",
-    )
-
-    FAKE_OUT_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
-    )
-
-    THUNDER_FANG_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Thunder Fang inflicting the cringe status, as a percentage"
-        " (25%).",
-    )
-
-    FLARE_BLITZ_BURN_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Flare Blitz burning, as a percentage (25%). This value is also"
-        " used for the Fire Fang burn chance.",
-    )
-
-    FLAME_WHEEL_BURN_CHANCE = Symbol(
-        None, None, None, "The chance of Flame Wheel burning, as a percentage (10%)."
-    )
-
-    ROCK_CLIMB_CONFUSE_CHANCE = Symbol(
-        None, None, None, "The chance of Rock Climb confusing, as a percentage (10%)."
-    )
-
-    TRI_ATTACK_STATUS_CHANCE = Symbol(
-        None,
-        None,
-        None,
-        "The chance of Tri Attack inflicting any status condition, as a percentage"
-        " (20%).",
-    )
-
-    DRAGON_RAGE_FIXED_DAMAGE = Symbol(
-        None, None, None, "The amount of fixed damage dealt by Dragon Rage (30)."
-    )
-
-    FACADE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
-        "The Facade damage multiplier for users with a status condition, as a binary"
-        " fixed-point number with 8 fraction bits (0x200 -> 2x).",
-    )
-
-    IMPRISON_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
-        "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype:"
-        " int16_t[2]",
-    )
-
-    NIGHTMARE_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
-        "The turn range for the Nightmare status inflicted by Nightmare, [4,"
-        " 8).\n\ntype: int16_t[2]",
-    )
-
-    SMOKESCREEN_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
-        "The turn range for the Whiffer status inflicted by Smokescreen, [1,"
-        " 4).\n\ntype: int16_t[2]",
-    )
-
-    YAWN_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
-        "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype:"
-        " int16_t[2]",
     )
 
 
@@ -7544,6 +7544,26 @@ class NaItcmOverlay11Functions:
 
 
 class NaItcmOverlay11Data:
+    OVERLAY11_UNKNOWN_TABLE__NA_2316A38 = Symbol(
+        None,
+        None,
+        None,
+        "Multiple entries are pointers to the string 'script.c'\n\nNote: unverified,"
+        " ported from Irdkwia's notes\n\ntype: undefined4[40]",
+    )
+
+    SCRIPT_COMMAND_PARSING_DATA = Symbol(
+        None, None, None, "Used by ScriptCommandParsing somehow"
+    )
+
+    SCRIPT_OP_CODE_NAMES = Symbol(
+        None,
+        None,
+        None,
+        "Opcode name strings pointed to by entries in SCRIPT_OP_CODES"
+        " (script_opcode::name)",
+    )
+
     SCRIPT_OP_CODES = Symbol(
         None,
         None,
@@ -7551,6 +7571,21 @@ class NaItcmOverlay11Data:
         "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese"
         " opcodes underpin the various ExplorerScript functions you can call in the"
         " SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
+    )
+
+    OVERLAY11_DEBUG_STRINGS = Symbol(
+        None,
+        None,
+        None,
+        "Strings used with various debug printing functions throughout the overlay",
+    )
+
+    C_ROUTINE_NAMES = Symbol(
+        None,
+        None,
+        None,
+        "Common routine name strings pointed to by entries in C_ROUTINES"
+        " (common_routine::name)",
     )
 
     C_ROUTINES = Symbol(
@@ -7561,6 +7596,14 @@ class NaItcmOverlay11Data:
         " are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript"
         " coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct"
         " common_routine_table",
+    )
+
+    GROUND_WEATHER_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " ground_weather_entry[12]",
     )
 
     GROUND_WAN_FILES_TABLE = Symbol(
@@ -7636,49 +7679,6 @@ class NaItcmOverlay11Data:
         None,
         "Host pointers to multiple structure used for performing an overworld"
         " scene\n\ntype: struct main_ground_data",
-    )
-
-    OVERLAY11_UNKNOWN_TABLE__NA_2316A38 = Symbol(
-        None,
-        None,
-        None,
-        "Multiple entries are pointers to the string 'script.c'\n\nNote: unverified,"
-        " ported from Irdkwia's notes\n\ntype: undefined4[40]",
-    )
-
-    SCRIPT_COMMAND_PARSING_DATA = Symbol(
-        None, None, None, "Used by ScriptCommandParsing somehow"
-    )
-
-    SCRIPT_OP_CODE_NAMES = Symbol(
-        None,
-        None,
-        None,
-        "Opcode name strings pointed to by entries in SCRIPT_OP_CODES"
-        " (script_opcode::name)",
-    )
-
-    OVERLAY11_DEBUG_STRINGS = Symbol(
-        None,
-        None,
-        None,
-        "Strings used with various debug printing functions throughout the overlay",
-    )
-
-    C_ROUTINE_NAMES = Symbol(
-        None,
-        None,
-        None,
-        "Common routine name strings pointed to by entries in C_ROUTINES"
-        " (common_routine::name)",
-    )
-
-    GROUND_WEATHER_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " ground_weather_entry[12]",
     )
 
 
@@ -8012,26 +8012,6 @@ class NaItcmOverlay17Functions:
 
 
 class NaItcmOverlay17Data:
-    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
-
-    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
-
     ASSEMBLY_D_BOX_LAYOUT_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8051,6 +8031,26 @@ class NaItcmOverlay17Data:
     ASSEMBLY_D_BOX_LAYOUT_5 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
+
+    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
 
     OVERLAY17_FUNCTION_POINTER_TABLE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8087,24 +8087,6 @@ class NaItcmOverlay18Functions:
 
 
 class NaItcmOverlay18Data:
-    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
-
-    MOVES_MAIN_MENU = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
-
-    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
-
     OVERLAY18_D_BOX_LAYOUT_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8148,6 +8130,24 @@ class NaItcmOverlay18Data:
     OVERLAY18_D_BOX_LAYOUT_11 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
+
+    MOVES_MAIN_MENU = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
+
+    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
 
     OVERLAY18_FUNCTION_POINTER_TABLE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8211,16 +8211,6 @@ class NaItcmOverlay19Functions:
 
 
 class NaItcmOverlay19Data:
-    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
-
-    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
-
-    BAR_MAIN_MENU = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_1 = Symbol(None, None, None, "")
-
-    BAR_SUBMENU_2 = Symbol(None, None, None, "")
-
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
         None, None, None, "4*0x2\n\nNote: unverified, ported from Irdkwia's notes"
     )
@@ -8272,9 +8262,19 @@ class NaItcmOverlay19Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+
+    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    BAR_MAIN_MENU = Symbol(None, None, None, "")
+
+    BAR_SUBMENU_1 = Symbol(None, None, None, "")
+
+    BAR_SUBMENU_2 = Symbol(None, None, None, "")
 
     OVERLAY19_RESERVED_SPACE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8324,6 +8324,10 @@ class NaItcmOverlay20Functions:
 
 
 class NaItcmOverlay20Data:
+    OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
     RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
 
     RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
@@ -8333,14 +8337,6 @@ class NaItcmOverlay20Data:
     RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
 
     RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-    OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
 
     OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8370,6 +8366,8 @@ class NaItcmOverlay20Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
     RECYCLE_D_BOX_LAYOUT_7 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8389,6 +8387,8 @@ class NaItcmOverlay20Data:
     RECYCLE_D_BOX_LAYOUT1_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
 
     OVERLAY20_RESERVED_SPACE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8425,6 +8425,10 @@ class NaItcmOverlay21Functions:
 
 
 class NaItcmOverlay21Data:
+    SWAP_SHOP_D_BOX_LAYOUT_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
     SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
 
     SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
@@ -8436,10 +8440,6 @@ class NaItcmOverlay21Data:
     SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
 
     SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
-
-    SWAP_SHOP_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
 
     OVERLAY21_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8506,14 +8506,6 @@ class NaItcmOverlay22Functions:
 
 
 class NaItcmOverlay22Data:
-    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
-
     SHOP_D_BOX_LAYOUT_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8525,6 +8517,14 @@ class NaItcmOverlay22Data:
     OVERLAY22_UNKNOWN_STRUCT__NA_238E85C = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
 
     OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8601,16 +8601,6 @@ class NaItcmOverlay23Functions:
 
 
 class NaItcmOverlay23Data:
-    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
-
-    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
-
     OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8622,6 +8612,16 @@ class NaItcmOverlay23Data:
     OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
+
+    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
 
     OVERLAY23_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8684,10 +8684,6 @@ class NaItcmOverlay24Functions:
 
 
 class NaItcmOverlay24Data:
-    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
-
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8695,6 +8691,10 @@ class NaItcmOverlay24Data:
     OVERLAY24_UNKNOWN_STRUCT__NA_238C514 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
 
     OVERLAY24_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8743,12 +8743,6 @@ class NaItcmOverlay25Functions:
 
 
 class NaItcmOverlay25Data:
-    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
-
-    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
-
     OVERLAY25_UNKNOWN_STRUCT__NA_238B498 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8756,6 +8750,12 @@ class NaItcmOverlay25Data:
     APPRAISAL_D_BOX_LAYOUT_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
+
+    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
 
     OVERLAY25_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -8862,14 +8862,6 @@ class NaItcmOverlay27Functions:
 
 
 class NaItcmOverlay27Data:
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
-
-    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
-
     OVERLAY27_UNKNOWN_VALUE__NA_238C948 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -8881,6 +8873,14 @@ class NaItcmOverlay27Data:
     OVERLAY27_UNKNOWN_STRUCT__NA_238C950 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
+
+    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
 
     OVERLAY27_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -11210,6 +11210,24 @@ class NaItcmOverlay29Functions:
         " pointer\nreturn: True if the move should play its alternative animation",
     )
 
+    DoMoveDamage = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage"
+        " with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveIronTail = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveYawn = Symbol(
         None,
         None,
@@ -11274,11 +11292,30 @@ class NaItcmOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveDamageCringe30 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of"
+        " inflicting the cringe status on the defender.\nRelevant moves: Rock Slide,"
+        " Iron Head, Air Slash, Zen Headbutt, Dragon Rush\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
+        " dealt",
+    )
+
     DoMoveWhirlpool = Symbol(
         None,
         None,
         None,
         "Move effect: Whirlpool\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeTears = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11322,12 +11359,57 @@ class NaItcmOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveFlameWheel = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Flame Wheel\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveGust = Symbol(
         None,
         None,
         None,
         "Move effect: Gust\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
         " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveParalyze = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun"
+        " Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerDef20 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 20% chance (CRUNCH_LOWER_DEFENSE_CHANCE) of"
+        " lowering the defender's defense.\nRelevant moves: Crunch, Shadow Ball\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
+    )
+
+    DoMoveBite = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Bite\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageParalyze20 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 20% chance (THUNDER_PARALYZE_CHANCE) of"
+        " paralyzing the defender.\nRelevant moves: Thunder, Force Palm\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
     )
 
     DoMoveEndeavor = Symbol(
@@ -11344,6 +11426,16 @@ class NaItcmOverlay29Functions:
         None,
         "Move effect: Facade\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerSpeed20 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of"
+        " lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
     )
 
     DoMoveBrickBreak = Symbol(
@@ -11370,6 +11462,14 @@ class NaItcmOverlay29Functions:
         " damage dealt.\nRelevant moves: Giga Drain, Drain Punch\n\nr0: attacker"
         " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
         " damage was dealt",
+    )
+
+    DoMoveReversal = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Reversal\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
     DoMoveSmellingSalt = Symbol(
@@ -11447,6 +11547,14 @@ class NaItcmOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveRockClimb = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Rock Climb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveDamageWithRecoil = Symbol(
         None,
         None,
@@ -11481,11 +11589,27 @@ class NaItcmOverlay29Functions:
         " move (unused)\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveLick = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Lick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveFissure = Symbol(
         None,
         None,
         None,
         "Move effect: Fissure\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveExtrasensory = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Extrasensory\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11508,11 +11632,45 @@ class NaItcmOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveHeadbutt = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveDoubleEdge = Symbol(
         None,
         None,
         None,
         "Move effect: Double-Edge\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSandAttack = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Sand-Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamagePoison40 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning"
+        " the defender.\nRelevant moves: Smog, Poison Jab, Cross Poison\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveSacredFire = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11522,6 +11680,16 @@ class NaItcmOverlay29Functions:
         None,
         "Move effect: Sheer Cold\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerAccuracy40 = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE)"
+        " of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb,"
+        " Mirror Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
     )
 
     DoMoveTwister = Symbol(
@@ -11574,6 +11742,16 @@ class NaItcmOverlay29Functions:
         " move was successfully used",
     )
 
+    DoMoveThundershock = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thundershock\n\nThis is identical to DoMoveLick, except it uses a"
+        " different data symbol for the paralysis chance (but it's still 10%).\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether the move was successfully used",
+    )
+
     DoMoveThunderWave = Symbol(
         None,
         None,
@@ -11603,6 +11781,22 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "Move effect: Toxic\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonFang = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonSting = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Sting\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11639,11 +11833,35 @@ class NaItcmOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveThief = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Thief\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveRolePlay = Symbol(
         None,
         None,
         None,
         "Move effect: Role Play\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLeer = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeOut = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11695,11 +11913,27 @@ class NaItcmOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveDizzyPunch = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Dizzy Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMoveImprison = Symbol(
         None,
         None,
         None,
         "Move effect: Imprison\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFeatherDance = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11719,6 +11953,22 @@ class NaItcmOverlay29Functions:
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
+    DoMoveCrushClaw = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlazeKick = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
     DoMovePresent = Symbol(
         None,
         None,
@@ -11732,6 +11982,14 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "Move effect: Eruption\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonTail = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11767,6 +12025,14 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "Move effect: Magnitude\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMistBall = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11827,6 +12093,14 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "Move effect: Dream Eater\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDragonRage = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Dragon Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
@@ -11961,6 +12235,16 @@ class NaItcmOverlay29Functions:
         None,
         "Move effect: Charge Beam\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageEatItem = Symbol(
+        None,
+        None,
+        None,
+        "Move effect: Deals damage, and eats any beneficial items the defender is"
+        " holding.\nRelevant moves: Pluck, Bug Bite\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
     )
 
     DoMoveLastResort = Symbol(
@@ -13558,290 +13842,6 @@ class NaItcmOverlay29Functions:
         " menu is closed.\n\nreturn: Always 0",
     )
 
-    DoMoveDamage = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage"
-        " with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveIronTail = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageCringe30 = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of"
-        " inflicting the cringe status on the defender.\nRelevant moves: Rock Slide,"
-        " Iron Head, Air Slash, Zen Headbutt, Dragon Rush\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
-        " dealt",
-    )
-
-    DoMoveFakeTears = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFlameWheel = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Flame Wheel\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveParalyze = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun"
-        " Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageLowerDef20 = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Deal damage with a 20% chance (CRUNCH_LOWER_DEFENSE_CHANCE) of"
-        " lowering the defender's defense.\nRelevant moves: Crunch, Shadow Ball\n\nr0:"
-        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
-        " whether or not damage was dealt",
-    )
-
-    DoMoveBite = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Bite\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageParalyze20 = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Deal damage with a 20% chance (THUNDER_PARALYZE_CHANCE) of"
-        " paralyzing the defender.\nRelevant moves: Thunder, Force Palm\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveDamageLowerSpeed20 = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of"
-        " lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0:"
-        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
-        " whether or not damage was dealt",
-    )
-
-    DoMoveReversal = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Reversal\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveRockClimb = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Rock Climb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveLick = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Lick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveExtrasensory = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Extrasensory\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveHeadbutt = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSandAttack = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Sand-Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamagePoison40 = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning"
-        " the defender.\nRelevant moves: Smog, Poison Jab, Cross Poison\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveSacredFire = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageLowerAccuracy40 = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE)"
-        " of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb,"
-        " Mirror Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
-        " ID\nreturn: whether or not damage was dealt",
-    )
-
-    DoMoveThundershock = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Thundershock\n\nThis is identical to DoMoveLick, except it uses a"
-        " different data symbol for the paralysis chance (but it's still 10%).\n\nr0:"
-        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
-        " whether the move was successfully used",
-    )
-
-    DoMovePoisonFang = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePoisonSting = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Poison Sting\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveThief = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Thief\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveLeer = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFakeOut = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDizzyPunch = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Dizzy Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFeatherDance = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveCrushClaw = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveBlazeKick = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePoisonTail = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveMistBall = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDragonRage = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Dragon Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageEatItem = Symbol(
-        None,
-        None,
-        None,
-        "Move effect: Deals damage, and eats any beneficial items the defender is"
-        " holding.\nRelevant moves: Pluck, Bug Bite\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
-        " successfully used",
-    )
-
 
 class NaItcmOverlay29Data:
     DUNGEON_STRUCT_SIZE = Symbol(
@@ -13972,6 +13972,10 @@ class NaItcmOverlay29Data:
         " in this number format.",
     )
 
+    MONSTER_HEAL_HP_MAX = Symbol(
+        None, None, None, "The maximum amount of HP a monster can have (999)."
+    )
+
     MOVE_TARGET_AND_RANGE_SPECIAL_USER_HEALING = Symbol(
         None,
         None,
@@ -13993,6 +13997,10 @@ class NaItcmOverlay29Data:
 
     SLIP_SEED_VALUE = Symbol(
         None, None, None, "Some value related to the Slip Seed (0xC75)."
+    )
+
+    ROCK_WRECKER_MOVE_ID = Symbol(
+        None, None, None, "The move ID for Rock Wrecker (453)."
     )
 
     CASTFORM_NORMAL_FORM_MALE_ID = Symbol(
@@ -14297,6 +14305,15 @@ class NaItcmOverlay29Data:
         " modifier array for a monster.",
     )
 
+    MAP_COLOR_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "In order: white, black, red, green, blue, magenta, dark pink, chartreuse,"
+        " light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " rgb[9]",
+    )
+
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN = Symbol(
         None,
         None,
@@ -14419,23 +14436,6 @@ class NaItcmOverlay29Data:
         None,
         "[Runtime] Pointer to decoded fixed room data loaded from the BALANCE/fixed.bin"
         " file.",
-    )
-
-    MONSTER_HEAL_HP_MAX = Symbol(
-        None, None, None, "The maximum amount of HP a monster can have (999)."
-    )
-
-    ROCK_WRECKER_MOVE_ID = Symbol(
-        None, None, None, "The move ID for Rock Wrecker (453)."
-    )
-
-    MAP_COLOR_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "In order: white, black, red, green, blue, magenta, dark pink, chartreuse,"
-        " light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " rgb[9]",
     )
 
     NECTAR_IQ_BOOST = Symbol(None, None, None, "IQ boost from ingesting Nectar.")
@@ -14568,20 +14568,6 @@ class NaItcmOverlay31Functions:
 
 
 class NaItcmOverlay31Data:
-    DUNGEON_MAIN_MENU = Symbol(None, None, None, "")
-
-    DUNGEON_SUBMENU_1 = Symbol(None, None, None, "")
-
-    DUNGEON_SUBMENU_2 = Symbol(None, None, None, "")
-
-    DUNGEON_SUBMENU_3 = Symbol(None, None, None, "")
-
-    DUNGEON_SUBMENU_4 = Symbol(None, None, None, "")
-
-    DUNGEON_SUBMENU_5 = Symbol(None, None, None, "")
-
-    DUNGEON_SUBMENU_6 = Symbol(None, None, None, "")
-
     DUNGEON_D_BOX_LAYOUT_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -14597,6 +14583,8 @@ class NaItcmOverlay31Data:
     DUNGEON_D_BOX_LAYOUT_4 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DUNGEON_MAIN_MENU = Symbol(None, None, None, "")
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -14617,6 +14605,14 @@ class NaItcmOverlay31Data:
     DUNGEON_D_BOX_LAYOUT_7 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DUNGEON_SUBMENU_1 = Symbol(None, None, None, "")
+
+    DUNGEON_SUBMENU_2 = Symbol(None, None, None, "")
+
+    DUNGEON_SUBMENU_3 = Symbol(None, None, None, "")
+
+    DUNGEON_SUBMENU_4 = Symbol(None, None, None, "")
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -14700,6 +14696,8 @@ class NaItcmOverlay31Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    DUNGEON_SUBMENU_5 = Symbol(None, None, None, "")
+
     DUNGEON_D_BOX_LAYOUT_26 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -14719,6 +14717,8 @@ class NaItcmOverlay31Data:
     OVERLAY31_UNKNOWN_STRUCT__NA_238A190 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
+
+    DUNGEON_SUBMENU_6 = Symbol(None, None, None, "")
 
     DUNGEON_D_BOX_LAYOUT_29 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -14844,10 +14844,6 @@ class NaItcmOverlay34Functions:
 
 
 class NaItcmOverlay34Data:
-    START_MENU_CONFIRM = Symbol(None, None, None, "Irdkwia's notes: 3*0x8")
-
-    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "Irdkwia's notes: 5*0x8")
-
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014 = Symbol(
         None,
         None,
@@ -14855,12 +14851,16 @@ class NaItcmOverlay34Data:
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
+    START_MENU_CONFIRM = Symbol(None, None, None, "Irdkwia's notes: 3*0x8")
+
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C = Symbol(
         None,
         None,
         None,
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
+
+    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "Irdkwia's notes: 5*0x8")
 
     OVERLAY34_RESERVED_SPACE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"

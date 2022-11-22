@@ -3440,6 +3440,16 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    FAINT_REASON_CODE_ORB_ITEM: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FAINT_REASON_CODE_NON_ORB_ITEM: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     AURA_BOW_ID_LAST: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -3551,6 +3561,16 @@ class Arm9DataProtocol(Protocol):
     ]
 
     PUNCH_MOVE_LIST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVE_POWER_STARS_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVE_ACCURACY_STARS_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4140,9 +4160,19 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    LOADED_WAN_TABLE_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     LANGUAGE_INFO_DATA: Symbol[
         Optional[List[int]],
         None,
+    ]
+
+    TBL_TALK_GROUP_STRING_ID_START: Symbol[
+        Optional[List[int]],
+        Optional[int],
     ]
 
     KEYBOARD_STRING_IDS: Symbol[
@@ -4221,36 +4251,6 @@ class Arm9DataProtocol(Protocol):
     ]
 
     MUSIC_DURATION_LOOKUP_TABLE_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FAINT_REASON_CODE_ORB_ITEM: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    FAINT_REASON_CODE_NON_ORB_ITEM: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    MOVE_POWER_STARS_TABLE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVE_ACCURACY_STARS_TABLE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LOADED_WAN_TABLE_PTR: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TBL_TALK_GROUP_STRING_ID_START: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4440,21 +4440,6 @@ class Overlay1DataProtocol(Protocol):
         Optional[int],
     ]
 
-    MAIN_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MAIN_DEBUG_MENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MAIN_DEBUG_MENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
     OVERLAY1_D_BOX_LAYOUT_5: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4470,6 +4455,11 @@ class Overlay1DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MAIN_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     OVERLAY1_D_BOX_LAYOUT_8: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4480,7 +4470,17 @@ class Overlay1DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MAIN_DEBUG_MENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     OVERLAY1_D_BOX_LAYOUT_10: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MAIN_DEBUG_MENU_2: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4566,12 +4566,77 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    IRON_TAIL_LOWER_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TWINEEDLE_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    EXTRASENSORY_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROCK_SLIDE_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CRUNCH_LOWER_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     UNOWN_STONE_DROP_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
     SITRUS_BERRY_HP_RESTORATION: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MUDDY_WATER_LOWER_ACCURACY_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ANCIENTPOWER_BOOST_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    POISON_TAIL_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    THUNDERSHOCK_PARALYZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    HEADBUTT_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FIRE_FANG_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SACRED_FIRE_BURN_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WHIRLPOOL_CONSTRICTION_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4596,12 +4661,77 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     ORAN_BERRY_FULL_HP_BOOST: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
     LIFE_SEED_HP_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CONSTRICT_LOWER_SPEED_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ICE_FANG_FREEZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SMOG_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LICK_PARALYZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    THUNDER_FANG_PARALYZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BITE_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ICE_FANG_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BLAZE_KICK_BURN_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DIZZY_PUNCH_CONFUSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SECRET_POWER_EFFECT_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4626,6 +4756,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    CRUSH_CLAW_LOWER_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     BURN_DAMAGE_COOLDOWN: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4636,7 +4771,27 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    BLIZZARD_FREEZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    POISON_STING_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SPAWN_COOLDOWN_THIEF_ALERT: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    POISON_FANG_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    THUNDER_PARALYZE_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4646,7 +4801,42 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    TWISTER_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SPEED_BOOST_TURNS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FAKE_OUT_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    THUNDER_FANG_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FLARE_BLITZ_BURN_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FLAME_WHEEL_BURN_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROCK_CLIMB_CONFUSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TRI_ATTACK_STATUS_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4706,6 +4896,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DRAGON_RAGE_FIXED_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     CORSOLA_TWIG_POWER: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4731,7 +4926,27 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    FACADE_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    IMPRISON_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SLEEP_DURATION_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    NIGHTMARE_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SMOKESCREEN_TURN_RANGE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4747,6 +4962,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    YAWN_TURN_RANGE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4872,226 +5092,6 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     SPECIAL_MONSTER_MOVE_ANIMATION_INFO: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    IRON_TAIL_LOWER_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TWINEEDLE_POISON_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    EXTRASENSORY_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ROCK_SLIDE_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    CRUNCH_LOWER_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MUDDY_WATER_LOWER_ACCURACY_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ANCIENTPOWER_BOOST_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    POISON_TAIL_POISON_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    THUNDERSHOCK_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    HEADBUTT_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FIRE_FANG_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SACRED_FIRE_BURN_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    WHIRLPOOL_CONSTRICTION_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    CONSTRICT_LOWER_SPEED_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ICE_FANG_FREEZE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SMOG_POISON_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    LICK_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    THUNDER_FANG_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BITE_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ICE_FANG_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BLAZE_KICK_BURN_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DIZZY_PUNCH_CONFUSE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SECRET_POWER_EFFECT_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    CRUSH_CLAW_LOWER_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BLIZZARD_FREEZE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    POISON_STING_POISON_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    POISON_FANG_POISON_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    THUNDER_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TWISTER_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FAKE_OUT_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    THUNDER_FANG_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FLARE_BLITZ_BURN_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FLAME_WHEEL_BURN_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ROCK_CLIMB_CONFUSE_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TRI_ATTACK_STATUS_CHANCE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DRAGON_RAGE_FIXED_DAMAGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    FACADE_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    IMPRISON_TURN_RANGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    NIGHTMARE_TURN_RANGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SMOKESCREEN_TURN_RANGE: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    YAWN_TURN_RANGE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -5247,12 +5247,42 @@ class Overlay11FunctionsProtocol(Protocol):
 
 
 class Overlay11DataProtocol(Protocol):
+    OVERLAY11_UNKNOWN_TABLE__NA_2316A38: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SCRIPT_COMMAND_PARSING_DATA: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SCRIPT_OP_CODE_NAMES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SCRIPT_OP_CODES: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
+    OVERLAY11_DEBUG_STRINGS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    C_ROUTINE_NAMES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     C_ROUTINES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_WEATHER_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -5303,36 +5333,6 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     GROUND_STATE_PTRS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY11_UNKNOWN_TABLE__NA_2316A38: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SCRIPT_COMMAND_PARSING_DATA: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SCRIPT_OP_CODE_NAMES: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY11_DEBUG_STRINGS: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    C_ROUTINE_NAMES: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    GROUND_WEATHER_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -5690,6 +5690,31 @@ class Overlay17FunctionsProtocol(Protocol):
 
 
 class Overlay17DataProtocol(Protocol):
+    ASSEMBLY_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ASSEMBLY_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ASSEMBLY_D_BOX_LAYOUT_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ASSEMBLY_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ASSEMBLY_D_BOX_LAYOUT_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     ASSEMBLY_MENU_CONFIRM: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -5740,31 +5765,6 @@ class Overlay17DataProtocol(Protocol):
         Optional[int],
     ]
 
-    ASSEMBLY_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ASSEMBLY_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ASSEMBLY_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ASSEMBLY_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ASSEMBLY_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
     OVERLAY17_FUNCTION_POINTER_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -5803,51 +5803,6 @@ class Overlay18FunctionsProtocol(Protocol):
 
 
 class Overlay18DataProtocol(Protocol):
-    MOVES_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_4: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_5: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_6: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MOVES_SUBMENU_7: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
     OVERLAY18_D_BOX_LAYOUT_1: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -5899,6 +5854,51 @@ class Overlay18DataProtocol(Protocol):
     ]
 
     OVERLAY18_D_BOX_LAYOUT_11: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_6: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOVES_SUBMENU_7: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -5959,31 +5959,6 @@ class Overlay19FunctionsProtocol(Protocol):
 
 
 class Overlay19DataProtocol(Protocol):
-    BAR_MENU_CONFIRM_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BAR_MENU_CONFIRM_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BAR_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BAR_SUBMENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    BAR_SUBMENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6034,7 +6009,32 @@ class Overlay19DataProtocol(Protocol):
         Optional[int],
     ]
 
+    BAR_MENU_CONFIRM_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_MENU_CONFIRM_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_MAIN_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_SUBMENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAR_SUBMENU_2: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6082,6 +6082,11 @@ class Overlay20FunctionsProtocol(Protocol):
 
 
 class Overlay20DataProtocol(Protocol):
+    OVERLAY20_UNKNOWN_POINTER__NA_238CF7C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     RECYCLE_MENU_CONFIRM_1: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6103,21 +6108,6 @@ class Overlay20DataProtocol(Protocol):
     ]
 
     RECYCLE_MAIN_MENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    RECYCLE_MAIN_MENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    RECYCLE_MAIN_MENU_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY20_UNKNOWN_POINTER__NA_238CF7C: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6157,6 +6147,11 @@ class Overlay20DataProtocol(Protocol):
         Optional[int],
     ]
 
+    RECYCLE_MAIN_MENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     RECYCLE_D_BOX_LAYOUT_7: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6178,6 +6173,11 @@ class Overlay20DataProtocol(Protocol):
     ]
 
     RECYCLE_D_BOX_LAYOUT1_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_MAIN_MENU_3: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6220,6 +6220,11 @@ class Overlay21FunctionsProtocol(Protocol):
 
 
 class Overlay21DataProtocol(Protocol):
+    SWAP_SHOP_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SWAP_SHOP_MENU_CONFIRM: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6246,11 +6251,6 @@ class Overlay21DataProtocol(Protocol):
     ]
 
     SWAP_SHOP_SUBMENU_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SWAP_SHOP_D_BOX_LAYOUT_1: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6333,6 +6333,21 @@ class Overlay22FunctionsProtocol(Protocol):
 
 
 class Overlay22DataProtocol(Protocol):
+    SHOP_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SHOP_D_BOX_LAYOUT_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY22_UNKNOWN_STRUCT__NA_238E85C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SHOP_MENU_CONFIRM: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6349,21 +6364,6 @@ class Overlay22DataProtocol(Protocol):
     ]
 
     SHOP_MAIN_MENU_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SHOP_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    SHOP_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY22_UNKNOWN_STRUCT__NA_238E85C: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6456,6 +6456,21 @@ class Overlay23FunctionsProtocol(Protocol):
 
 
 class Overlay23DataProtocol(Protocol):
+    OVERLAY23_UNKNOWN_VALUE__NA_238D2E8: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY23_UNKNOWN_VALUE__NA_238D2EC: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     STORAGE_MENU_CONFIRM: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6477,21 +6492,6 @@ class Overlay23DataProtocol(Protocol):
     ]
 
     STORAGE_MAIN_MENU_4: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY23_UNKNOWN_VALUE__NA_238D2E8: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY23_UNKNOWN_VALUE__NA_238D2EC: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6564,22 +6564,22 @@ class Overlay24FunctionsProtocol(Protocol):
 
 
 class Overlay24DataProtocol(Protocol):
-    DAYCARE_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DAYCARE_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
     OVERLAY24_UNKNOWN_STRUCT__NA_238C514: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAYCARE_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAYCARE_MAIN_MENU: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6637,6 +6637,16 @@ class Overlay25FunctionsProtocol(Protocol):
 
 
 class Overlay25DataProtocol(Protocol):
+    OVERLAY25_UNKNOWN_STRUCT__NA_238B498: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    APPRAISAL_D_BOX_LAYOUT_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     APPRAISAL_MENU_CONFIRM: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6648,16 +6658,6 @@ class Overlay25DataProtocol(Protocol):
     ]
 
     APPRAISAL_SUBMENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY25_UNKNOWN_STRUCT__NA_238B498: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    APPRAISAL_D_BOX_LAYOUT_1: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6773,6 +6773,21 @@ class Overlay27FunctionsProtocol(Protocol):
 
 
 class Overlay27DataProtocol(Protocol):
+    OVERLAY27_UNKNOWN_VALUE__NA_238C948: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY27_UNKNOWN_VALUE__NA_238C94C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OVERLAY27_UNKNOWN_STRUCT__NA_238C950: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     DISCARD_ITEMS_MENU_CONFIRM: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6789,21 +6804,6 @@ class Overlay27DataProtocol(Protocol):
     ]
 
     DISCARD_ITEMS_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY27_UNKNOWN_VALUE__NA_238C948: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY27_UNKNOWN_VALUE__NA_238C94C: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    OVERLAY27_UNKNOWN_STRUCT__NA_238C950: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -8077,6 +8077,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveDamage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveIronTail: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveYawn: Symbol[
         Optional[List[int]],
         None,
@@ -8117,7 +8127,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveDamageCringe30: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveWhirlpool: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFakeTears: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8147,7 +8167,32 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveFlameWheel: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveGust: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveParalyze: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerDef20: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBite: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageParalyze20: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8158,6 +8203,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DoMoveFacade: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerSpeed20: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8173,6 +8223,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DoMoveDamageDrain: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveReversal: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8222,6 +8277,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveRockClimb: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveDamageWithRecoil: Symbol[
         Optional[List[int]],
         None,
@@ -8242,7 +8302,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveLick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveFissure: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveExtrasensory: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8257,12 +8327,37 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveHeadbutt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveDoubleEdge: Symbol[
         Optional[List[int]],
         None,
     ]
 
+    DoMoveSandAttack: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamagePoison40: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSacredFire: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveSheerCold: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerAccuracy40: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8297,6 +8392,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveThundershock: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveThunderWave: Symbol[
         Optional[List[int]],
         None,
@@ -8313,6 +8413,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DoMoveToxic: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoisonFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoisonSting: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8337,7 +8447,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveThief: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveRolePlay: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLeer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFakeOut: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8372,7 +8497,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveDizzyPunch: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMoveImprison: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFeatherDance: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8387,12 +8522,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoMoveCrushClaw: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBlazeKick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DoMovePresent: Symbol[
         Optional[List[int]],
         None,
     ]
 
     DoMoveEruption: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoisonTail: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8413,6 +8563,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DoMoveMagnitude: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMistBall: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8448,6 +8603,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DoMoveDreamEater: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDragonRage: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -8528,6 +8688,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DoMoveChargeBeam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageEatItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9387,171 +9552,6 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    DoMoveDamage: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveIronTail: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageCringe30: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFakeTears: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFlameWheel: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveParalyze: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageLowerDef20: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveBite: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageParalyze20: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageLowerSpeed20: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveReversal: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveRockClimb: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveLick: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveExtrasensory: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveHeadbutt: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSandAttack: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamagePoison40: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSacredFire: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageLowerAccuracy40: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveThundershock: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePoisonFang: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePoisonSting: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveThief: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveLeer: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFakeOut: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDizzyPunch: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFeatherDance: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveCrushClaw: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveBlazeKick: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePoisonTail: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveMistBall: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDragonRage: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageEatItem: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
 
 class Overlay29DataProtocol(Protocol):
     DUNGEON_STRUCT_SIZE: Symbol[
@@ -9649,6 +9649,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MONSTER_HEAL_HP_MAX: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     MOVE_TARGET_AND_RANGE_SPECIAL_USER_HEALING: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -9665,6 +9670,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     SLIP_SEED_VALUE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROCK_WRECKER_MOVE_ID: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -9859,6 +9869,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MAP_COLOR_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -9920,21 +9935,6 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     FIXED_ROOM_DATA_PTR: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MONSTER_HEAL_HP_MAX: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    ROCK_WRECKER_MOVE_ID: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    MAP_COLOR_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -10033,41 +10033,6 @@ class Overlay31FunctionsProtocol(Protocol):
 
 
 class Overlay31DataProtocol(Protocol):
-    DUNGEON_MAIN_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_1: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_2: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_3: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_4: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_5: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SUBMENU_6: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
     DUNGEON_D_BOX_LAYOUT_1: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -10084,6 +10049,11 @@ class Overlay31DataProtocol(Protocol):
     ]
 
     DUNGEON_D_BOX_LAYOUT_4: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_MAIN_MENU: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -10109,6 +10079,26 @@ class Overlay31DataProtocol(Protocol):
     ]
 
     DUNGEON_D_BOX_LAYOUT_7: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_4: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -10218,6 +10208,11 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DUNGEON_SUBMENU_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     DUNGEON_D_BOX_LAYOUT_26: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -10239,6 +10234,11 @@ class Overlay31DataProtocol(Protocol):
     ]
 
     OVERLAY31_UNKNOWN_STRUCT__NA_238A190: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SUBMENU_6: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -10374,22 +10374,22 @@ class Overlay34FunctionsProtocol(Protocol):
 
 
 class Overlay34DataProtocol(Protocol):
-    START_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_DEBUG_MENU: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
+    START_MENU_CONFIRM: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_DEBUG_MENU: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
