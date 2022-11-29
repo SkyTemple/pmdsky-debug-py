@@ -4359,6 +4359,1597 @@ ItcmProtocol = SectionProtocol[
 ]
 
 
+class Move_effectsFunctionsProtocol(Protocol):
+    DoMoveDamage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveIronTail: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageMultihitUntilMiss: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveYawn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSleep: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveNightmare: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMorningSun: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveVitalThrow: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDig: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSweetScent: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCharm: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRainDance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHail: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHealStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBubble: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEncore: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSuperFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePainSplit: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTorment: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveStringShot: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSwagger: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSnore: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveScreech: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageCringe30: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWeatherBall: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWhirlpool: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFakeTears: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSpite: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFocusEnergy: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSmokescreen: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMirrorMove: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveOverheat: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAuroraBeam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMemento: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveOctazooka: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFlatter: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWillOWisp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveReturn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGrudge: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCounter: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageBurn10FlameWheel: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageBurn10: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveExpose: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDoubleTeam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGust: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBoostDefense1: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveParalyze: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBoostAttack1: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRazorWind: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBide: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBideUnleash: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCrunch: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageCringe20: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageParalyze20: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEndeavor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFacade: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerSpeed20: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBrickBreak: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerSpeed100: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFocusPunch: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageDrain: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveReversal: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSmellingSalt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMetalSound: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTickle: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveShadowHold: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHaze: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageMultihitFatigue: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageWeightDependent: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageBoostAllStats: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSynthesis: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBoostSpeed1: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRapidSpin: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSureShot: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCosmicPower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSkyAttack: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageFreeze15: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMeteorMash: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEndure: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLowerSpeed1: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageConfuse10: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePsywave: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerDefensiveStatVariable: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePsychoBoost: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveUproar: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWaterSpout: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePsychUp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageWithRecoil: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EntityIsValidMoveEffects: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRecoverHp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEarthquake: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetNaturePowerVariant: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveNaturePower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageParalyze10: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSelfdestruct: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveShadowBall: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCharge: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveThunderbolt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMist: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFissure: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageCringe10: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSafeguard: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAbsorb: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DefenderAbilityIsActiveMoveEffects: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSkillSwap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSketch: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHeadbutt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDoubleEdge: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSandstorm: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLowerAccuracy1: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamagePoison40: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGrowth: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSacredFire: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveOhko: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSolarBeam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSonicBoom: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFly: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveExplosion: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDive: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWaterfall: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerAccuracy40: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveStockpile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTwister: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTwineedle: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRecoverHpTeam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMinimize: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSeismicToss: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveConfuse: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTaunt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMoonlight: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHornDrill: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSwordsDance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveConversion: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveConversion2: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHelpingHand: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBoostDefense2: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWarp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveThundershock: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveThunderWave: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveZapCannon: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBlock: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoison: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveToxic: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoisonFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamagePoison18: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveJumpKick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBounce: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHiJumpKick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTriAttack: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSwapItems: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTripleKick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSport: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMudSlap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageStealItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAmnesia: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveNightShade: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGrowl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSurf: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRolePlay: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSunnyDay: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLowerDefense1: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWish: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFakeOut: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSleepTalk: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePayDay: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAssist: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRest: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveIngrain: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSwallow: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCurse: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSuperpower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSteelWing: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSpitUp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDynamicPunch: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveKnockOff: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSplash: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSetDamage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBellyDrum: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLightScreen: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSecretPower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageConfuse30: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBulkUp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePause: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFeatherDance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBeatUp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBlastBurn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCrushClaw: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBlazeKick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePresent: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEruption: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTransform: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePoisonTail: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBlowback: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCamouflage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTailGlow: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageConstrict10: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePerishSong: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWrap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSpikes: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMagnitude: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMagicCoat: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveProtect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDefenseCurl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDecoy: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMistBall: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDestinyBond: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMirrorCoat: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCalmMind: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHiddenPower: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMetalClaw: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAttract: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCopycat: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFrustration: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLeechSeed: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMetronome: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDreamEater: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSnatch: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRecycle: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveReflect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDragonRage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDragonDance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSkullBash: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageLowerSpecialDefense50: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveStruggle: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRockSmash: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSeeTrap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTakeaway: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRebound: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSwitchPositions: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveStayAway: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCleanse: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSiesta: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTwoEdge: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveNoMove: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveScan: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePowerEars: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTransfer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSlowDown: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSearchlight: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePetrify: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePounce: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTrawl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEscape: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDrought: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTrapBuster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWildCall: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveInvisify: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveOneShot: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHpGauge: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveVacuumCut: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveReviver: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveShocker: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEcho: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFamish: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveOneRoom: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFillIn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveItemize: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHurl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMobile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveSeeStairs: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLongToss: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePierce: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoHammerArm: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAquaRing: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGastroAcid: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHealingWish: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCloseCombat: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLuckyChant: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGuardSwap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHealOrder: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHealBlock: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveThunderFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDefog: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTrumpCard: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveIceFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePsychoShift: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveEmbargo: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveBrine: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveNaturalGift: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGyroBall: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveShadowForce: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveGravity: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveStealthRock: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveChargeBeam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageEatItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveAcupressure: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMagnetRise: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveToxicSpikes: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLastResort: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTrickRoom: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWorrySeed: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDamageHpDependent: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHeartSwap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRoost: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePowerSwap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMovePowerTrick: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFeint: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFlareBlitz: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDefendOrder: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveFireFang: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLunarDance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMiracleEye: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveWakeUpSlap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveMetalBurst: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveHeadSmash: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveCaptivate: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveLeafStorm: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveDracoMeteor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveRockPolish: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveNastyPlot: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTag0x1AB: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTag0x1A6: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DoMoveTag0x1A7: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+
+class Move_effectsDataProtocol(Protocol):
+    LUNAR_DANCE_PP_RESTORATION: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+
+Move_effectsProtocol = SectionProtocol[
+    Move_effectsFunctionsProtocol,
+    Move_effectsDataProtocol,
+    Optional[int],
+]
+
+
 class Overlay0FunctionsProtocol(Protocol):
     pass
 
@@ -4556,6 +6147,16 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    WATERFALL_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    AURORA_BEAM_LOWER_ATTACK_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SPAWN_CAP_NO_MONSTER_HOUSE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4606,7 +6207,7 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
-    ANCIENTPOWER_BOOST_CHANCE: Symbol[
+    SILVER_WIND_BOOST_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4617,6 +6218,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     THUNDERSHOCK_PARALYZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BOUNCE_PARALYZE_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4651,6 +6257,16 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    HEAL_ORDER_HP_RESTORATION: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STEEL_WING_BOOST_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     GOLD_THORN_POWER: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4677,6 +6293,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     LIFE_SEED_HP_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    OCTAZOOKA_LOWER_ACCURACY_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4716,6 +6337,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SKY_ATTACK_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     ICE_FANG_CRINGE_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4726,12 +6352,27 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    FLAMETHROWER_BURN_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     DIZZY_PUNCH_CONFUSE_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
     SECRET_POWER_EFFECT_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    METAL_CLAW_BOOST_ATTACK_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SONICBOOM_FIXED_DAMAGE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4756,6 +6397,16 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SNORE_CRINGE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    METEOR_MASH_BOOST_ATTACK_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     CRUSH_CLAW_LOWER_DEFENSE_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4766,12 +6417,22 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     STICK_POWER: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    BLIZZARD_FREEZE_CHANCE: Symbol[
+    BUBBLE_LOWER_SPEED_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    POWDER_SNOW_FREEZE_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4792,6 +6453,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     THUNDER_PARALYZE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    THUNDERBOLT_PARALYZE_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4831,7 +6497,7 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
-    ROCK_CLIMB_CONFUSE_CHANCE: Symbol[
+    PSYBEAM_CONFUSE_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4926,6 +6592,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    HEALING_WISH_HP_RESTORATION: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     FACADE_DAMAGE_MULTIPLIER: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -4936,12 +6607,27 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
-    SLEEP_DURATION_RANGE: Symbol[
+    SLEEP_TURN_RANGE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
     NIGHTMARE_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    REST_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SPORT_CONDITION_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SURE_SHOT_TURN_RANGE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4971,7 +6657,27 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
-    SPEED_BOOST_DURATION_RANGE: Symbol[
+    SPEED_BOOST_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SYNTHESIS_HP_RESTORATION_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROOST_HP_RESTORATION_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MOONLIGHT_HP_RESTORATION_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MORNING_SUN_HP_RESTORATION_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -8077,681 +9783,6 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    DoMoveDamage: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveIronTail: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveYawn: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveNightmare: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveCharm: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveEncore: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSuperFang: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePainSplit: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveTorment: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSwagger: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageCringe30: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveWhirlpool: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFakeTears: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSpite: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSmokescreen: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFlatter: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveWillOWisp: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveReturn: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFlameWheel: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveGust: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveParalyze: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageLowerDef20: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveBite: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageParalyze20: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveEndeavor: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFacade: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageLowerSpeed20: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveBrickBreak: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveRockTomb: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageDrain: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveReversal: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSmellingSalt: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveMetalSound: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveTickle: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveOutrage: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageWeightDependent: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveAncientPower: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveRapidSpin: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageFreeze15: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveScaryFace: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveRockClimb: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageWithRecoil: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveEarthquake: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    GetNaturePowerVariant: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveNaturePower: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveLick: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFissure: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveExtrasensory: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveAbsorb: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSkillSwap: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveHeadbutt: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDoubleEdge: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSandAttack: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamagePoison40: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSacredFire: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSheerCold: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageLowerAccuracy40: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveTwister: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveTwineedle: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSeismicToss: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSupersonic: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveTaunt: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveHornDrill: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveThundershock: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveThunderWave: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveBlock: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePoisonGas: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveToxic: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePoisonFang: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePoisonSting: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveTriAttack: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSwapItems: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveTripleKick: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveMudSlap: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveThief: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveRolePlay: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveLeer: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFakeOut: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePayDay: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveCurse: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSuperpower: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDynamicPunch: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveKnockOff: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveSecretPower: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDizzyPunch: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveImprison: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFeatherDance: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveBeatUp: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveBlastBurn: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveCrushClaw: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveBlazeKick: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePresent: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveEruption: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePoisonTail: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveRoar: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageConstrict10: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveWrap: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveMagnitude: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveMistBall: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDestinyBond: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveHiddenPower: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveAttract: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveCopycat: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFrustration: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveLeechSeed: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDreamEater: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDragonRage: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageLowerSpecialDefense50: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFling: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoHammerArm: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveGastroAcid: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveCloseCombat: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveGuardSwap: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveThunderFang: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDefog: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveTrumpCard: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveIceFang: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePsychoShift: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveEmbargo: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveBrine: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveNaturalGift: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveGyroBall: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveChargeBeam: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageEatItem: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveLastResort: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveDamageHpDependent: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveHeartSwap: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMovePowerSwap: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFeint: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFlareBlitz: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveFireFang: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveMiracleEye: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveWakeUpSlap: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveHeadSmash: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
-    DoMoveCaptivate: Symbol[
-        Optional[List[int]],
-        None,
-    ]
-
     ExecuteMoveEffect: Symbol[
         Optional[List[int]],
         None,
@@ -8788,6 +9819,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TryWeatherFormChange: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ActivateSportCondition: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10690,6 +11726,11 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
+    METRONOME_NEXT_INDEX: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     FLOOR_GENERATION_STATUS: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -10709,6 +11750,8 @@ class AllSymbolsProtocol(Protocol):
     arm9: Arm9Protocol
 
     itcm: ItcmProtocol
+
+    move_effects: Move_effectsProtocol
 
     overlay0: Overlay0Protocol
 

@@ -6667,6 +6667,2710 @@ class NaItcmSection:
     data = NaItcmData
 
 
+class NaMove_effectsFunctions:
+    DoMoveDamage = Symbol(
+        [0x0, 0x4740, 0x5AF0, 0x7FC8],
+        [0x2325DC0, 0x232A500, 0x232B8B0, 0x232DD88],
+        None,
+        "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage"
+        " with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMoveIronTail = Symbol(
+        [0x24],
+        [0x2325DE4],
+        None,
+        "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageMultihitUntilMiss = Symbol(
+        [0xA4],
+        [0x2325E64],
+        None,
+        "Move effect: Deal multihit damage until a strike misses\nRelevant moves: Ice"
+        " Ball, Rollout\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveYawn = Symbol(
+        [0x104],
+        [0x2325EC4],
+        None,
+        "Move effect: Yawn\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSleep = Symbol(
+        [0x140],
+        [0x2325F00],
+        None,
+        "Move effect: Put target enemies to sleep\nRelevant moves: Lovely Kiss, Sing,"
+        " Spore, Grasswhistle, Hypnosis, Sleep Powder, Dark Void\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveNightmare = Symbol(
+        [0x17C],
+        [0x2325F3C],
+        None,
+        "Move effect: Nightmare\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMorningSun = Symbol(
+        [0x1B4],
+        [0x2325F74],
+        None,
+        "Move effect: Morning Sun\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveVitalThrow = Symbol(
+        [0x1F4],
+        [0x2325FB4],
+        None,
+        "Move effect: Vital Throw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDig = Symbol(
+        [0x204],
+        [0x2325FC4],
+        None,
+        "Move effect: Dig\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSweetScent = Symbol(
+        [0x2C8],
+        [0x2326088],
+        None,
+        "Move effect: Sweet Scent\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCharm = Symbol(
+        [0x2E8],
+        [0x23260A8],
+        None,
+        "Move effect: Charm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRainDance = Symbol(
+        [0x310],
+        [0x23260D0],
+        None,
+        "Move effect: Rain Dance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHail = Symbol(
+        [0x36C],
+        [0x232612C],
+        None,
+        "Move effect: Hail\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHealStatus = Symbol(
+        [0x3C8],
+        [0x2326188],
+        None,
+        "Move effect: Heal the team's status conditions\nRelevant moves: Aromatherapy,"
+        " Heal Bell, Refresh\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBubble = Symbol(
+        [0x3E0],
+        [0x23261A0],
+        None,
+        "Move effect: Bubble\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEncore = Symbol(
+        [0x44C],
+        [0x232620C],
+        None,
+        "Move effect: Encore\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRage = Symbol(
+        [0x460],
+        [0x2326220],
+        None,
+        "Move effect: Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSuperFang = Symbol(
+        [0x4A4],
+        [0x2326264],
+        None,
+        "Move effect: Super Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePainSplit = Symbol(
+        [0x55C],
+        [0x232631C],
+        None,
+        "Move effect: Pain Split\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTorment = Symbol(
+        [0x648],
+        [0x2326408],
+        None,
+        "Move effect: Torment\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveStringShot = Symbol(
+        [0x790],
+        [0x2326550],
+        None,
+        "Move effect: String Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSwagger = Symbol(
+        [0x7A8],
+        [0x2326568],
+        None,
+        "Move effect: Swagger\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSnore = Symbol(
+        [0x7E4],
+        [0x23265A4],
+        None,
+        "Move effect: Snore\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveScreech = Symbol(
+        [0x888],
+        [0x2326648],
+        None,
+        "Move effect: Screech\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageCringe30 = Symbol(
+        [0x8B0],
+        [0x2326670],
+        None,
+        "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of"
+        " inflicting the cringe status on the defender.\nRelevant moves: Rock Slide,"
+        " Astonish, Iron Head, Dark Pulse, Air Slash, Zen Headbutt, Dragon Rush\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
+    )
+
+    DoMoveWeatherBall = Symbol(
+        [0x91C],
+        [0x23266DC],
+        None,
+        "Move effect: Weather Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWhirlpool = Symbol(
+        [0x990],
+        [0x2326750],
+        None,
+        "Move effect: Whirlpool\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeTears = Symbol(
+        [0xA18],
+        [0x23267D8],
+        None,
+        "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSpite = Symbol(
+        [0xA4C],
+        [0x232680C],
+        None,
+        "Move effect: Spite\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFocusEnergy = Symbol(
+        [0xAFC],
+        [0x23268BC],
+        None,
+        "Move effect: Focus Energy\nRelevant moves: Focus Energy, MOVE_TAG_0x1AC\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether the move was successfully used",
+    )
+
+    DoMoveSmokescreen = Symbol(
+        [0xB0C],
+        [0x23268CC],
+        None,
+        "Move effect: Smokescreen\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMirrorMove = Symbol(
+        [0xB48],
+        [0x2326908],
+        None,
+        "Move effect: Mirror Move\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveOverheat = Symbol(
+        [0xB6C],
+        [0x232692C],
+        None,
+        "Move effect: Overheat\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAuroraBeam = Symbol(
+        [0xBD0],
+        [0x2326990],
+        None,
+        "Move effect: Aurora Beam\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMemento = Symbol(
+        [0xC4C],
+        [0x2326A0C],
+        None,
+        "Move effect: Memento\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveOctazooka = Symbol(
+        [0xCB4],
+        [0x2326A74],
+        None,
+        "Move effect: Octazooka\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFlatter = Symbol(
+        [0xD28],
+        [0x2326AE8],
+        None,
+        "Move effect: Flatter\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWillOWisp = Symbol(
+        [0xD64],
+        [0x2326B24],
+        None,
+        "Move effect: Will-O-Wisp\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveReturn = Symbol(
+        [0xE00],
+        [0x2326BC0],
+        None,
+        "Move effect: Return\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGrudge = Symbol(
+        [0xEE4],
+        [0x2326CA4],
+        None,
+        "Move effect: Grudge\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCounter = Symbol(
+        [0xEF4],
+        [0x2326CB4],
+        None,
+        "Move effect: Give the user the Counter status\nRelevant moves: Pursuit,"
+        " Counter, Payback\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageBurn10FlameWheel = Symbol(
+        [0xF08],
+        [0x2326CC8],
+        None,
+        "Move effect: Deal damage with a 10% chance (FLAME_WHEEL_BURN_CHANCE) of"
+        " burning the defender.\nRelevant moves: Flame Wheel, Lava Plume\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether the move was successfully used",
+    )
+
+    DoMoveDamageBurn10 = Symbol(
+        [0xF90],
+        [0x2326D50],
+        None,
+        "Move effect: Deal damage with a 10% chance (FLAMETHROWER_BURN_CHANCE) of"
+        " burning the defender.\nRelevant moves: Flamethrower, Fire Blast, Heat Wave,"
+        " Ember, Fire Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveExpose = Symbol(
+        [0x1018],
+        [0x2326DD8],
+        None,
+        "Move effect: Expose all Ghost-type enemies, and reset evasion boosts\nRelevant"
+        " moves: Odor Sleuth, Foresight\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveDoubleTeam = Symbol(
+        [0x1044],
+        [0x2326E04],
+        None,
+        "Move effect: Double Team\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGust = Symbol(
+        [0x1060],
+        [0x2326E20],
+        None,
+        "Move effect: Gust\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBoostDefense1 = Symbol(
+        [0x10A0],
+        [0x2326E60],
+        None,
+        "Move effect: Boost the user's defense by one stage\nRelevant moves: Harden,"
+        " Withdraw\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveParalyze = Symbol(
+        [0x10C0, 0x2470, 0x5674],
+        [0x2326E80, 0x2328230, 0x232B434],
+        None,
+        "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun"
+        " Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBoostAttack1 = Symbol(
+        [0x10D8],
+        [0x2326E98],
+        None,
+        "Move effect: Boost the user's attack by one stage\nRelevant moves: Sharpen,"
+        " Howl, Meditate\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRazorWind = Symbol(
+        [0x10F8],
+        [0x2326EB8],
+        None,
+        "Move effect: Razor Wind\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBide = Symbol(
+        [0x1188],
+        [0x2326F48],
+        None,
+        "Move effect: Give the user the Bide status\nRelevant moves: Bide, Revenge,"
+        " Avalanche\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBideUnleash = Symbol(
+        [0x11CC],
+        [0x2326F8C],
+        None,
+        "Move effect: Unleashes the Bide status\nRelevant moves: Bide (unleashing),"
+        " Revenge (unleashing), Avalanche (unleashing)\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveCrunch = Symbol(
+        [0x1274],
+        [0x2327034],
+        None,
+        "Move effect: Deal damage with a 20% chance (CRUNCH_LOWER_DEFENSE_CHANCE) of"
+        " lowering the defender's defense.\nRelevant moves: Crunch, Shadow Ball via"
+        " Nature Power\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveDamageCringe20 = Symbol(
+        [0x12F4],
+        [0x23270B4],
+        None,
+        "Move effect: Deal damage with a 20% chance (BITE_CRINGE_CHANCE) of inflicting"
+        " the cringe status on the defender.\nRelevant moves: Bite, Needle Arm, Stomp,"
+        " Rolling Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageParalyze20 = Symbol(
+        [0x1360],
+        [0x2327120],
+        None,
+        "Move effect: Deal damage with a 20% chance (THUNDER_PARALYZE_CHANCE) of"
+        " paralyzing the defender.\nRelevant moves: Thunder, ThunderPunch, Force Palm,"
+        " Discharge\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveEndeavor = Symbol(
+        [0x13CC],
+        [0x232718C],
+        None,
+        "Move effect: Endeavor\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFacade = Symbol(
+        [0x148C],
+        [0x232724C],
+        None,
+        "Move effect: Facade\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerSpeed20 = Symbol(
+        [0x14CC],
+        [0x232728C],
+        None,
+        "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of"
+        " lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether or not damage was dealt",
+    )
+
+    DoMoveBrickBreak = Symbol(
+        [0x1538],
+        [0x23272F8],
+        None,
+        "Move effect: Brick Break\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerSpeed100 = Symbol(
+        [0x15A8],
+        [0x2327368],
+        None,
+        "Move effect: Deal damage and lower the defender's speed.\nRelevant moves: Rock"
+        " Tomb, Icy Wind, Mud Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFocusPunch = Symbol(
+        [0x160C],
+        [0x23273CC],
+        None,
+        "Move effect: Focus Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageDrain = Symbol(
+        [0x1698],
+        [0x2327458],
+        None,
+        "Move effect: Deal draining damage, healing the attacker by a proportion of the"
+        " damage dealt.\nRelevant moves: Giga Drain, Leech Life, Mega Drain, Drain"
+        " Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveReversal = Symbol(
+        [0x17D8],
+        [0x2327598],
+        None,
+        "Move effect: Deal damage with a higher multiplier the lower the attacker's HP"
+        " is.\nRelevant moves: Reversal, Flail\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveSmellingSalt = Symbol(
+        [0x188C],
+        [0x232764C],
+        None,
+        "Move effect: SmellingSalt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMetalSound = Symbol(
+        [0x18F4],
+        [0x23276B4],
+        None,
+        "Move effect: Metal Sound\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTickle = Symbol(
+        [0x1928],
+        [0x23276E8],
+        None,
+        "Move effect: Tickle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveShadowHold = Symbol(
+        [0x1984],
+        [0x2327744],
+        None,
+        "Move effect: Inflict the Shadow Hold status on the defender\nRelevant moves:"
+        " Spider Web, Mean Look\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHaze = Symbol(
+        [0x1998],
+        [0x2327758],
+        None,
+        "Move effect: Haze\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageMultihitFatigue = Symbol(
+        [0x19AC],
+        [0x232776C],
+        None,
+        "Move effect: Deal multihit damage, then confuse the attacker\nRelevant moves:"
+        " Outrage, Petal Dance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageWeightDependent = Symbol(
+        [0x19F8],
+        [0x23277B8],
+        None,
+        "Move effect: Deal damage, multiplied by a weight-dependent factor.\nRelevant"
+        " moves: Low Kick, Grass Knot\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveDamageBoostAllStats = Symbol(
+        [0x1A44],
+        [0x2327804],
+        None,
+        "Move effect: Deal damage, with a 20% (SILVER_WIND_BOOST_CHANCE) to boost the"
+        " user's attack, special attack, defense, special defense, and speed.\nRelevant"
+        " moves: Silver Wind, AncientPower, Ominous Wind\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveSynthesis = Symbol(
+        [0x1B28],
+        [0x23278E8],
+        None,
+        "Move effect: Synthesis\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBoostSpeed1 = Symbol(
+        [0x1B68],
+        [0x2327928],
+        None,
+        "Move effect: Boost the team's movement speed by one stage\nRelevant moves:"
+        " Agility, Speed Boost (item effect), MOVE_TAG_0x1AA, Tailwind\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveRapidSpin = Symbol(
+        [0x1B80],
+        [0x2327940],
+        None,
+        "Move effect: Rapid Spin\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSureShot = Symbol(
+        [0x1BEC],
+        [0x23279AC],
+        None,
+        "Move effect: Give the user the Sure-Shot status\nRelevant moves: Mind Reader,"
+        " Lock-On\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCosmicPower = Symbol(
+        [0x1C24],
+        [0x23279E4],
+        None,
+        "Move effect: Cosmic Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSkyAttack = Symbol(
+        [0x1C68],
+        [0x2327A28],
+        None,
+        "Move effect: Sky Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageFreeze15 = Symbol(
+        [0x1D34],
+        [0x2327AF4],
+        None,
+        "Move effect: Deal damage with a 15% chance (POWDER_SNOW_FREEZE_CHANCE) of"
+        " freezing the defender.\nRelevant moves: Powder Snow, Blizzard, Ice Punch, Ice"
+        " Beam\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveMeteorMash = Symbol(
+        [0x1D9C],
+        [0x2327B5C],
+        None,
+        "Move effect: Meteor Mash\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEndure = Symbol(
+        [0x1E20],
+        [0x2327BE0],
+        None,
+        "Move effect: Endure\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLowerSpeed1 = Symbol(
+        [0x1E30],
+        [0x2327BF0],
+        None,
+        "Move effect: Lower the defender's defense by one stage\nRelevant moves: Scary"
+        " Face, Cotton Spore\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageConfuse10 = Symbol(
+        [0x1E48],
+        [0x2327C08],
+        None,
+        "Move effect: Deal damage with a 10% chance (PSYBEAM_CONFUSE_CHANCE) of"
+        " confusing the defender.\nRelevant moves: Psybeam, Signal Beam, Confusion,"
+        " Chatter, Rock Climb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePsywave = Symbol(
+        [0x1EB4],
+        [0x2327C74],
+        None,
+        "Move effect: Psywave\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerDefensiveStatVariable = Symbol(
+        [0x1F18],
+        [0x2327CD8],
+        None,
+        "Move effect: Deal damage with some chance of lowering one of the defender's"
+        " defensive stats.\nRelevant moves: Psychic, Acid, Seed Flare, Earth Power, Bug"
+        " Buzz, Flash Cannon\n\nNote that this move effect handler has a slightly"
+        " different parameter list than all the others. Which defensive stat is"
+        " lowered, the chance of lowering, and the number of stages to lower are all"
+        " specified as arguments by the caller.\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: stat index for the defensive stat to lower\nstack[0]:"
+        " number of defensive stat stages to lower\nstack[1]: percentage chance of"
+        " lowering the defensive stat\nstack[2]: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMovePsychoBoost = Symbol(
+        [0x1FA0],
+        [0x2327D60],
+        None,
+        "Move effect: Psycho Boost\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveUproar = Symbol(
+        [0x2010],
+        [0x2327DD0],
+        None,
+        "Move effect: Uproar\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWaterSpout = Symbol(
+        [0x2020],
+        [0x2327DE0],
+        None,
+        "Move effect: Water Spout\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePsychUp = Symbol(
+        [0x20D4],
+        [0x2327E94],
+        None,
+        "Move effect: Psych Up\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageWithRecoil = Symbol(
+        [0x2174],
+        [0x2327F34],
+        None,
+        "Move effect: Deals damage, inflicting recoil damage on the attacker.\nRelevant"
+        " moves: Submission, Take Down, Volt Tackle, Wood Hammer, Brave Bird\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: bool,"
+        " whether or not damage was dealt",
+    )
+
+    EntityIsValidMoveEffects = Symbol(
+        [0x224C, 0x4618, 0x6740, 0x8490],
+        [0x232800C, 0x232A3D8, 0x232C500, 0x232E250],
+        None,
+        "See overlay29.yml::EntityIsValid",
+    )
+
+    DoMoveRecoverHp = Symbol(
+        [0x2270],
+        [0x2328030],
+        None,
+        "Move effect: Recover 50% of the user's max HP\nRelevant moves: Recover, Slack"
+        " Off\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEarthquake = Symbol(
+        [0x22B4],
+        [0x2328074],
+        None,
+        "Move effect: Earthquake\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    GetNaturePowerVariant = Symbol(
+        [0x2314],
+        [0x23280D4],
+        None,
+        "Gets the nature power variant for the current dungeon, based on the tileset"
+        " ID.\n\nreturn: nature power variant",
+    )
+
+    DoMoveNaturePower = Symbol(
+        [0x2350],
+        [0x2328110],
+        None,
+        "Move effect: Nature Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move (unused)\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageParalyze10 = Symbol(
+        [0x23AC],
+        [0x232816C],
+        None,
+        "Move effect: Deal damage with a 10% chance (LICK_PARALZYE_CHANCE) of"
+        " paralyzing the defender.\nRelevant moves: Lick, Spark, Body Slam,"
+        " DragonBreath\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSelfdestruct = Symbol(
+        [0x2418],
+        [0x23281D8],
+        None,
+        "Move effect: Selfdestruct\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveShadowBall = Symbol(
+        [0x2488],
+        [0x2328248],
+        None,
+        "Move effect: Shadow Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCharge = Symbol(
+        [0x2508],
+        [0x23282C8],
+        None,
+        "Move effect: Charge\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveThunderbolt = Symbol(
+        [0x2568],
+        [0x2328328],
+        None,
+        "Move effect: Thunderbolt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMist = Symbol(
+        [0x25D4],
+        [0x2328394],
+        None,
+        "Move effect: Mist\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFissure = Symbol(
+        [0x25E4],
+        [0x23283A4],
+        None,
+        "Move effect: Fissure\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageCringe10 = Symbol(
+        [0x26FC],
+        [0x23284BC],
+        None,
+        "Move effect: Deal damage with a 10% chance (EXTRASENSORY_CRINGE_CHANCE) to"
+        " inflict the cringe status on the defender.\nRelevant moves: Extrasensory,"
+        " Hyper Fang, Bone Club\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSafeguard = Symbol(
+        [0x2768],
+        [0x2328528],
+        None,
+        "Move effect: Safeguard\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAbsorb = Symbol(
+        [0x2778],
+        [0x2328538],
+        None,
+        "Move effect: Absorb\n\nThis is essentially identical to DoMoveDamageDrain,"
+        " except the ordering of the instructions is slightly different enough to"
+        " introduce subtle variations in functionality.\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
+        " dealt",
+    )
+
+    DefenderAbilityIsActiveMoveEffects = Symbol(
+        [0x2874, 0x4154, 0x6010, 0x8060],
+        [0x2328634, 0x2329F14, 0x232BDD0, 0x232DE20],
+        None,
+        "See overlay29.yml::DefenderAbilityIsActive",
+    )
+
+    DoMoveSkillSwap = Symbol(
+        [0x28D8],
+        [0x2328698],
+        None,
+        "Move effect: Skill Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSketch = Symbol(
+        [0x29D4],
+        [0x2328794],
+        None,
+        "Move effect: Sketch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHeadbutt = Symbol(
+        [0x2B04],
+        [0x23288C4],
+        None,
+        "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDoubleEdge = Symbol(
+        [0x2B70],
+        [0x2328930],
+        None,
+        "Move effect: Double-Edge\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSandstorm = Symbol(
+        [0x2C38],
+        [0x23289F8],
+        None,
+        "Move effect: Sandstorm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLowerAccuracy1 = Symbol(
+        [0x2C94],
+        [0x2328A54],
+        None,
+        "Move effect: Lower the defender's accuracy by one stage\nRelevant moves:"
+        " Sand-Attack, Kinesis, Flash\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveDamagePoison40 = Symbol(
+        [0x2CB4],
+        [0x2328A74],
+        None,
+        "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning"
+        " the defender.\nRelevant moves: Smog, Cross Poison, Gunk Shot, Poison"
+        " Jab\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveGrowth = Symbol(
+        [0x2D20],
+        [0x2328AE0],
+        None,
+        "Move effect: Growth\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSacredFire = Symbol(
+        [0x2D40],
+        [0x2328B00],
+        None,
+        "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveOhko = Symbol(
+        [0x2DC8],
+        [0x2328B88],
+        None,
+        "Move effect: Possibly one-hit KO the defender\nRelevant moves: Sheer Cold,"
+        " Guillotine\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSolarBeam = Symbol(
+        [0x2EB4],
+        [0x2328C74],
+        None,
+        "Move effect: SolarBeam\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSonicBoom = Symbol(
+        [0x2F84],
+        [0x2328D44],
+        None,
+        "Move effect: SonicBoom\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFly = Symbol(
+        [0x3024],
+        [0x2328DE4],
+        None,
+        "Move effect: Fly\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveExplosion = Symbol(
+        [0x30B4],
+        [0x2328E74],
+        None,
+        "Move effect: Explosion\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDive = Symbol(
+        [0x310C],
+        [0x2328ECC],
+        None,
+        "Move effect: Dive\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWaterfall = Symbol(
+        [0x31D4],
+        [0x2328F94],
+        None,
+        "Move effect: Waterfall\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerAccuracy40 = Symbol(
+        [0x3240],
+        [0x2329000],
+        None,
+        "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE)"
+        " of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb,"
+        " Mirror Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether or not damage was dealt",
+    )
+
+    DoMoveStockpile = Symbol(
+        [0x32B4],
+        [0x2329074],
+        None,
+        "Move effect: Stockpile\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTwister = Symbol(
+        [0x330C],
+        [0x23290CC],
+        None,
+        "Move effect: Twister\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTwineedle = Symbol(
+        [0x339C],
+        [0x232915C],
+        None,
+        "Move effect: Twineedle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRecoverHpTeam = Symbol(
+        [0x3434],
+        [0x23291F4],
+        None,
+        "Move effect: Recover 25% HP for all team members\nRelevant moves: Softboiled,"
+        " Milk Drink\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMinimize = Symbol(
+        [0x347C],
+        [0x232923C],
+        None,
+        "Move effect: Minimize\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSeismicToss = Symbol(
+        [0x3498],
+        [0x2329258],
+        None,
+        "Move effect: Seismic Toss\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveConfuse = Symbol(
+        [0x360C],
+        [0x23293CC],
+        None,
+        "Move effect: Confuse target enemies if possible.\nRelevant moves: Confuse Ray,"
+        " Supersonic, Sweet Kiss, Teeter Dance, Totter (item effect)\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveTaunt = Symbol(
+        [0x3624],
+        [0x23293E4],
+        None,
+        "Move effect: Taunt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMoonlight = Symbol(
+        [0x3638],
+        [0x23293F8],
+        None,
+        "Move effect: Moonlight\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHornDrill = Symbol(
+        [0x3678],
+        [0x2329438],
+        None,
+        "Move effect: Horn Drill\n\nThis is exactly the same as DoMoveOhko, except"
+        " there's a call to SubstitutePlaceholderStringTags at the end.\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveSwordsDance = Symbol(
+        [0x3774],
+        [0x2329534],
+        None,
+        "Move effect: Swords Dance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveConversion = Symbol(
+        [0x3794],
+        [0x2329554],
+        None,
+        "Move effect: Conversion\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveConversion2 = Symbol(
+        [0x38A4],
+        [0x2329664],
+        None,
+        "Move effect: Conversion 2\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHelpingHand = Symbol(
+        [0x38B4],
+        [0x2329674],
+        None,
+        "Move effect: Helping Hand\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBoostDefense2 = Symbol(
+        [0x3918],
+        [0x23296D8],
+        None,
+        "Move effect: Boost the defender's defense stat by two stages\nRelevant moves:"
+        " Iron Defense, Acid Armor, Barrier\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveWarp = Symbol(
+        [0x3938],
+        [0x23296F8],
+        None,
+        "Move effect: Warp the target to another tile on the floor\nRelevant moves:"
+        " Teleport, Warp (item effect), MOVE_TAG_0x1A8\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveThundershock = Symbol(
+        [0x3950],
+        [0x2329710],
+        None,
+        "Move effect: Thundershock\n\nThis is identical to DoMoveDamageParalyze10,"
+        " except it uses a different data symbol for the paralysis chance (but it's"
+        " still 10%).\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveThunderWave = Symbol(
+        [0x39BC],
+        [0x232977C],
+        None,
+        "Move effect: Thunder Wave\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveZapCannon = Symbol(
+        [0x3A30],
+        [0x23297F0],
+        None,
+        "Move effect: Zap Cannon\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlock = Symbol(
+        [0x3A94],
+        [0x2329854],
+        None,
+        "Move effect: Block\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoison = Symbol(
+        [0x3AA8],
+        [0x2329868],
+        None,
+        "Move effect: Poison the defender if possible\nRelevant moves: Poison Gas,"
+        " PoisonPowder\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveToxic = Symbol(
+        [0x3AC0],
+        [0x2329880],
+        None,
+        "Move effect: Toxic\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonFang = Symbol(
+        [0x3AD8],
+        [0x2329898],
+        None,
+        "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamagePoison18 = Symbol(
+        [0x3B44],
+        [0x2329904],
+        None,
+        "Move effect: Deal damage with an 18% chance (POISON_STING_POISON_CHANCE) to"
+        " poison the defender.\nRelevant moves: Poison Sting, Sludge, Sludge"
+        " Bomb\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveJumpKick = Symbol(
+        [0x3BB0],
+        [0x2329970],
+        None,
+        "Move effect: Jump Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBounce = Symbol(
+        [0x3CDC],
+        [0x2329A9C],
+        None,
+        "Move effect: Bounce\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHiJumpKick = Symbol(
+        [0x3DA8],
+        [0x2329B68],
+        None,
+        "Move effect: Hi Jump Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTriAttack = Symbol(
+        [0x3ED4],
+        [0x2329C94],
+        None,
+        "Move effect: Tri Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSwapItems = Symbol(
+        [0x3F90],
+        [0x2329D50],
+        None,
+        "Move effect: Swaps the held items of the attacker and defender.\nRelevant"
+        " moves: Trick, Switcheroo\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTripleKick = Symbol(
+        [0x41B8],
+        [0x2329F78],
+        None,
+        "Move effect: Triple Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSport = Symbol(
+        [0x41F4],
+        [0x2329FB4],
+        None,
+        "Move effect: Activate the relevant sport condition (Mud Sport, Water Sport) on"
+        " the floor\nRelevant moves: Mud Sport, Water Sport\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveMudSlap = Symbol(
+        [0x4220],
+        [0x2329FE0],
+        None,
+        "Move effect: Mud-Slap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageStealItem = Symbol(
+        [0x428C],
+        [0x232A04C],
+        None,
+        "Move effect: Deal damage and steal the defender's item if possible.\nRelevant"
+        " moves: Thief, Covet\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAmnesia = Symbol(
+        [0x4298],
+        [0x232A058],
+        None,
+        "Move effect: Amnesia\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveNightShade = Symbol(
+        [0x42B8],
+        [0x232A078],
+        None,
+        "Move effect: Night Shade\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGrowl = Symbol(
+        [0x4358],
+        [0x232A118],
+        None,
+        "Move effect: Growl\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSurf = Symbol(
+        [0x4388],
+        [0x232A148],
+        None,
+        "Move effect: Surf\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRolePlay = Symbol(
+        [0x43C8],
+        [0x232A188],
+        None,
+        "Move effect: Role Play\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSunnyDay = Symbol(
+        [0x4460],
+        [0x232A220],
+        None,
+        "Move effect: Sunny Day\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLowerDefense1 = Symbol(
+        [0x44BC],
+        [0x232A27C],
+        None,
+        "Move effect: Lower the defender's defense by one stage\nRelevant moves: Tail"
+        " Whip, Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWish = Symbol(
+        [0x44EC],
+        [0x232A2AC],
+        None,
+        "Move effect: Wish\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFakeOut = Symbol(
+        [0x44FC],
+        [0x232A2BC],
+        None,
+        "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSleepTalk = Symbol(
+        [0x4568],
+        [0x232A328],
+        None,
+        "Move effect: Sleep Talk\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePayDay = Symbol(
+        [0x4580],
+        [0x232A340],
+        None,
+        "Move effect: Pay Day\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAssist = Symbol(
+        [0x463C],
+        [0x232A3FC],
+        None,
+        "Move effect: Assist\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRest = Symbol(
+        [0x4654],
+        [0x232A414],
+        None,
+        "Move effect: Rest\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveIngrain = Symbol(
+        [0x46C0],
+        [0x232A480],
+        None,
+        "Move effect: Ingrain\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSwallow = Symbol(
+        [0x46D0],
+        [0x232A490],
+        None,
+        "Move effect: Swallow\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCurse = Symbol(
+        [0x4728],
+        [0x232A4E8],
+        None,
+        "Move effect: Curse\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSuperpower = Symbol(
+        [0x4764],
+        [0x232A524],
+        None,
+        "Move effect: Superpower\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSteelWing = Symbol(
+        [0x47EC],
+        [0x232A5AC],
+        None,
+        "Move effect: Steel Wing\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSpitUp = Symbol(
+        [0x4880],
+        [0x232A640],
+        None,
+        "Move effect: Spit Up\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDynamicPunch = Symbol(
+        [0x48C8],
+        [0x232A688],
+        None,
+        "Move effect: DynamicPunch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveKnockOff = Symbol(
+        [0x492C],
+        [0x232A6EC],
+        None,
+        "Move effect: Knock Off\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSplash = Symbol(
+        [0x4B2C],
+        [0x232A8EC],
+        None,
+        "Move effect: Splash\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSetDamage = Symbol(
+        [0x4E84],
+        [0x232AC44],
+        None,
+        "Move effect: Give the user the Set Damage status\nRelevant moves: Doom Desire,"
+        " Future Sight\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBellyDrum = Symbol(
+        [0x4E94],
+        [0x232AC54],
+        None,
+        "Move effect: Belly Drum\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLightScreen = Symbol(
+        [0x4F48],
+        [0x232AD08],
+        None,
+        "Move effect: Light Screen\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSecretPower = Symbol(
+        [0x4F58],
+        [0x232AD18],
+        None,
+        "Move effect: Secret Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageConfuse30 = Symbol(
+        [0x5130],
+        [0x232AEF0],
+        None,
+        "Move effect: Deal damage with a 30% chance (DIZZY_PUNCH_CONFUSE_CHANCE) to"
+        " confuse the defender.\nRelevant moves: Dizzy Punch, Water Pulse\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether the move was successfully used",
+    )
+
+    DoMoveBulkUp = Symbol(
+        [0x519C],
+        [0x232AF5C],
+        None,
+        "Move effect: Bulk Up\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePause = Symbol(
+        [0x51E0],
+        [0x232AFA0],
+        None,
+        "Move effect: Inflicts the Paused status on the defender\nRelevant moves:"
+        " Imprison, Observer (item effect), MOVE_TAG_0x1AD\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveFeatherDance = Symbol(
+        [0x5230],
+        [0x232AFF0],
+        None,
+        "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBeatUp = Symbol(
+        [0x5264],
+        [0x232B024],
+        None,
+        "Move effect: Beat Up\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlastBurn = Symbol(
+        [0x5358],
+        [0x232B118],
+        None,
+        "Move effect: Blast Burn\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCrushClaw = Symbol(
+        [0x53A4],
+        [0x232B164],
+        None,
+        "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlazeKick = Symbol(
+        [0x5424],
+        [0x232B1E4],
+        None,
+        "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePresent = Symbol(
+        [0x54AC],
+        [0x232B26C],
+        None,
+        "Move effect: Present\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEruption = Symbol(
+        [0x55A8],
+        [0x232B368],
+        None,
+        "Move effect: Eruption\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTransform = Symbol(
+        [0x568C],
+        [0x232B44C],
+        None,
+        "Move effect: Transform\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePoisonTail = Symbol(
+        [0x56D4],
+        [0x232B494],
+        None,
+        "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBlowback = Symbol(
+        [0x5740],
+        [0x232B500],
+        None,
+        "Move effect: Blows the defender back\nRelevant moves: Whirlwind, Roar,"
+        " Blowback (item effect)\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCamouflage = Symbol(
+        [0x5758],
+        [0x232B518],
+        None,
+        "Move effect: Camouflage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTailGlow = Symbol(
+        [0x5808],
+        [0x232B5C8],
+        None,
+        "Move effect: Tail Glow\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageConstrict10 = Symbol(
+        [0x5828],
+        [0x232B5E8],
+        None,
+        "Move effect: Deal damage with a 10% (WHIRLPOOL_CONSTRICT_CHANCE) chance to"
+        " constrict, and with a damage multiplier dependent on the move used.\nRelevant"
+        " moves: Clamp, Bind, Sand Tomb, Fire Spin, Magma Storm\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
+        " damage was dealt",
+    )
+
+    DoMovePerishSong = Symbol(
+        [0x58E4],
+        [0x232B6A4],
+        None,
+        "Move effect: Perish Song\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWrap = Symbol(
+        [0x58F8],
+        [0x232B6B8],
+        None,
+        "Move effect: Wrap\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSpikes = Symbol(
+        [0x5908],
+        [0x232B6C8],
+        None,
+        "Move effect: Spikes\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMagnitude = Symbol(
+        [0x5978],
+        [0x232B738],
+        None,
+        "Move effect: Magnitude\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMagicCoat = Symbol(
+        [0x5A00],
+        [0x232B7C0],
+        None,
+        "Move effect: Magic Coat\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveProtect = Symbol(
+        [0x5A10],
+        [0x232B7D0],
+        None,
+        "Move effect: Try to give the user the Protect status\nRelevant moves: Protect,"
+        " Detect\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDefenseCurl = Symbol(
+        [0x5A20],
+        [0x232B7E0],
+        None,
+        "Move effect: Defense Curl\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDecoy = Symbol(
+        [0x5A40],
+        [0x232B800],
+        None,
+        "Move effect: Inflict the Decoy status on the target\nRelevant moves: Follow"
+        " Me, Substitute, Decoy Maker (item effect)\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveMistBall = Symbol(
+        [0x5A60],
+        [0x232B820],
+        None,
+        "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDestinyBond = Symbol(
+        [0x5AE0],
+        [0x232B8A0],
+        None,
+        "Move effect: Destiny Bond\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMirrorCoat = Symbol(
+        [0x5B14],
+        [0x232B8D4],
+        None,
+        "Move effect: Mirror Coat\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCalmMind = Symbol(
+        [0x5B24],
+        [0x232B8E4],
+        None,
+        "Move effect: Calm Mind\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHiddenPower = Symbol(
+        [0x5B68],
+        [0x232B928],
+        None,
+        "Move effect: Hidden Power\n\nThis is exactly the same as DoMoveDamage (both"
+        " are wrappers around DealDamage), except this function always returns"
+        " true.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMetalClaw = Symbol(
+        [0x5B80],
+        [0x232B940],
+        None,
+        "Move effect: Metal Claw\n\n Note that this move effect handler has a slightly"
+        " different parameter list than all the others. Which offensive stat is boosted"
+        " is specified by the caller.\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: stat index for the offensive stat to boost\nstack[0]:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAttract = Symbol(
+        [0x5C10],
+        [0x232B9D0],
+        None,
+        "Move effect: Attract\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCopycat = Symbol(
+        [0x5C84],
+        [0x232BA44],
+        None,
+        "Move effect: The attacker uses the move last used by enemy it's"
+        " facing.\nRelevant moves: Mimic, Copycat\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveFrustration = Symbol(
+        [0x5D8C],
+        [0x232BB4C],
+        None,
+        "Move effect: Frustration\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLeechSeed = Symbol(
+        [0x5E74],
+        [0x232BC34],
+        None,
+        "Move effect: Leech Seed\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMetronome = Symbol(
+        [0x5EA4],
+        [0x232BC64],
+        None,
+        "Move effect: Metronome\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDreamEater = Symbol(
+        [0x5F04],
+        [0x232BCC4],
+        None,
+        "Move effect: Dream Eater\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSnatch = Symbol(
+        [0x6074],
+        [0x232BE34],
+        None,
+        "Move effect: Snatch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRecycle = Symbol(
+        [0x6084],
+        [0x232BE44],
+        None,
+        "Move effect: Recycle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveReflect = Symbol(
+        [0x61B8],
+        [0x232BF78],
+        None,
+        "Move effect: Reflect\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDragonRage = Symbol(
+        [0x61C8],
+        [0x232BF88],
+        None,
+        "Move effect: Dragon Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDragonDance = Symbol(
+        [0x6268],
+        [0x232C028],
+        None,
+        "Move effect: Dragon Dance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveSkullBash = Symbol(
+        [0x62A4],
+        [0x232C064],
+        None,
+        "Move effect: Skull Bash\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageLowerSpecialDefense50 = Symbol(
+        [0x6334],
+        [0x232C0F4],
+        None,
+        "Move effect: Deal damage with a 50%"
+        " (LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE) chance to lower special"
+        " defense.\nRelevant moves: Luster Purge, Energy Ball, Focus Blast\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether the move was successfully used",
+    )
+
+    DoMoveStruggle = Symbol(
+        [0x63E4],
+        [0x232C1A4],
+        None,
+        "Move effect: Struggle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRockSmash = Symbol(
+        [0x64BC],
+        [0x232C27C],
+        None,
+        "Move effect: Rock Smash\nRelevant moves: Rock Smash, MOVE_UNNAMED_0x169\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
+        " whether the move was successfully used",
+    )
+
+    DoMoveSeeTrap = Symbol(
+        [0x6540],
+        [0x232C300],
+        None,
+        "Move effect: See-Trap (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveTakeaway = Symbol(
+        [0x6550],
+        [0x232C310],
+        None,
+        "Move effect: Takeaway (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveRebound = Symbol(
+        [0x6764],
+        [0x232C524],
+        None,
+        "Move effect: Rebound (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveSwitchPositions = Symbol(
+        [0x6778],
+        [0x232C538],
+        None,
+        "Move effect: Switches the user's position with positions of other monsters in"
+        " the room.\nRelevant moves: Baton Pass, Switcher (item effect)\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveStayAway = Symbol(
+        [0x67A0],
+        [0x232C560],
+        None,
+        "Move effect: Stay Away (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveCleanse = Symbol(
+        [0x67B8],
+        [0x232C578],
+        None,
+        "Move effect: Cleanse (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveSiesta = Symbol(
+        [0x68F4],
+        [0x232C6B4],
+        None,
+        "Move effect: Siesta (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveTwoEdge = Symbol(
+        [0x6930],
+        [0x232C6F0],
+        None,
+        "Move effect: Two-Edge (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveNoMove = Symbol(
+        [0x6A58],
+        [0x232C818],
+        None,
+        "Move effect: No-Move (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveScan = Symbol(
+        [0x6A6C],
+        [0x232C82C],
+        None,
+        "Move effect: Scan (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMovePowerEars = Symbol(
+        [0x6A7C],
+        [0x232C83C],
+        None,
+        "Move effect: Power-Ears (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveTransfer = Symbol(
+        [0x6A8C],
+        [0x232C84C],
+        None,
+        "Move effect: Transfer (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveSlowDown = Symbol(
+        [0x6C54],
+        [0x232CA14],
+        None,
+        "Move effect: Slow Down (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveSearchlight = Symbol(
+        [0x6C6C],
+        [0x232CA2C],
+        None,
+        "Move effect: Searchlight (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMovePetrify = Symbol(
+        [0x6C7C],
+        [0x232CA3C],
+        None,
+        "Move effect: Petrifies the target\nRelevant moves: Petrify (item effect),"
+        " MOVE_TAG_0x1A9\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+        " item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePounce = Symbol(
+        [0x6C8C],
+        [0x232CA4C],
+        None,
+        "Move effect: Pounce (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveTrawl = Symbol(
+        [0x6CA0],
+        [0x232CA60],
+        None,
+        "Move effect: Trawl (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveEscape = Symbol(
+        [0x6CB0],
+        [0x232CA70],
+        None,
+        "Move effect: Escape (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveDrought = Symbol(
+        [0x6D48],
+        [0x232CB08],
+        None,
+        "Move effect: Drought (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveTrapBuster = Symbol(
+        [0x6D58],
+        [0x232CB18],
+        None,
+        "Move effect: Trap Buster (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveWildCall = Symbol(
+        [0x6F04],
+        [0x232CCC4],
+        None,
+        "Move effect: Wild Call (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveInvisify = Symbol(
+        [0x6FD0],
+        [0x232CD90],
+        None,
+        "Move effect: Invisify (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveOneShot = Symbol(
+        [0x6FE4],
+        [0x232CDA4],
+        None,
+        "Move effect: One-Shot (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveHpGauge = Symbol(
+        [0x7080],
+        [0x232CE40],
+        None,
+        "Move effect: HP Gauge (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveVacuumCut = Symbol(
+        [0x7090],
+        [0x232CE50],
+        None,
+        "Move effect: Vacuum Cut\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveReviver = Symbol(
+        [0x70BC],
+        [0x232CE7C],
+        None,
+        "Move effect: Reviver (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveShocker = Symbol(
+        [0x70D4],
+        [0x232CE94],
+        None,
+        "Move effect: Shocker (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveEcho = Symbol(
+        [0x70EC],
+        [0x232CEAC],
+        None,
+        "Move effect: Echo (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveFamish = Symbol(
+        [0x7194],
+        [0x232CF54],
+        None,
+        "Move effect: Famish (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveOneRoom = Symbol(
+        [0x71B4],
+        [0x232CF74],
+        None,
+        "Move effect: One-Room (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveFillIn = Symbol(
+        [0x71C4],
+        [0x232CF84],
+        None,
+        "Move effect: Fill-In (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveTrapper = Symbol(
+        [0x7330],
+        [0x232D0F0],
+        None,
+        "Move effect: Trapper (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveItemize = Symbol(
+        [0x7388],
+        [0x232D148],
+        None,
+        "Move effect: Itemize (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveHurl = Symbol(
+        [0x741C],
+        [0x232D1DC],
+        None,
+        "Move effect: Hurls the target\nRelevant moves: Strength, Hurl (item effect),"
+        " Fling\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
+        " ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMobile = Symbol(
+        [0x742C],
+        [0x232D1EC],
+        None,
+        "Move effect: Mobile (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveSeeStairs = Symbol(
+        [0x743C],
+        [0x232D1FC],
+        None,
+        "Move effect: See Stairs (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMoveLongToss = Symbol(
+        [0x744C],
+        [0x232D20C],
+        None,
+        "Move effect: Long Toss (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoMovePierce = Symbol(
+        [0x745C],
+        [0x232D21C],
+        None,
+        "Move effect: Pierce (item effect)\n\nr0: attacker pointer\nr1: defender"
+        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
+        " used",
+    )
+
+    DoHammerArm = Symbol(
+        [0x746C],
+        [0x232D22C],
+        None,
+        "Move effect: Hammer Arm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveAquaRing = Symbol(
+        [0x74B0],
+        [0x232D270],
+        None,
+        "Move effect: Aqua Ring\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGastroAcid = Symbol(
+        [0x74C0],
+        [0x232D280],
+        None,
+        "Move effect: Gastro Acid\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHealingWish = Symbol(
+        [0x74D8],
+        [0x232D298],
+        None,
+        "Move effect: Healing Wish\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCloseCombat = Symbol(
+        [0x7528],
+        [0x232D2E8],
+        None,
+        "Move effect: Close Combat\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLuckyChant = Symbol(
+        [0x75A8],
+        [0x232D368],
+        None,
+        "Move effect: Lucky Chant\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGuardSwap = Symbol(
+        [0x75B8],
+        [0x232D378],
+        None,
+        "Move effect: Guard Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHealOrder = Symbol(
+        [0x7618],
+        [0x232D3D8],
+        None,
+        "Move effect: Heal Order\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHealBlock = Symbol(
+        [0x7640],
+        [0x232D400],
+        None,
+        "Move effect: Heal Block\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveThunderFang = Symbol(
+        [0x7658],
+        [0x232D418],
+        None,
+        "Move effect: Thunder Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDefog = Symbol(
+        [0x76EC],
+        [0x232D4AC],
+        None,
+        "Move effect: Defog\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTrumpCard = Symbol(
+        [0x77A0],
+        [0x232D560],
+        None,
+        "Move effect: Trump Card\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveIceFang = Symbol(
+        [0x7860],
+        [0x232D620],
+        None,
+        "Move effect: Ice Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePsychoShift = Symbol(
+        [0x78F0],
+        [0x232D6B0],
+        None,
+        "Move effect: Psycho Shift\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveEmbargo = Symbol(
+        [0x7910],
+        [0x232D6D0],
+        None,
+        "Move effect: Embargo\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveBrine = Symbol(
+        [0x7928],
+        [0x232D6E8],
+        None,
+        "Move effect: Deal damage, with a 2x multiplier if the defender is at or below"
+        " half HP.\nRelevant moves: Brine, Assurance\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveNaturalGift = Symbol(
+        [0x7978],
+        [0x232D738],
+        None,
+        "Move effect: Natural Gift\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGyroBall = Symbol(
+        [0x7A38],
+        [0x232D7F8],
+        None,
+        "Move effect: Gyro Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveShadowForce = Symbol(
+        [0x7AA0],
+        [0x232D860],
+        None,
+        "Move effect: Shadow Force\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveGravity = Symbol(
+        [0x7B3C],
+        [0x232D8FC],
+        None,
+        "Move effect: Gravity\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveStealthRock = Symbol(
+        [0x7B4C],
+        [0x232D90C],
+        None,
+        "Move effect: Stealth Rock\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveChargeBeam = Symbol(
+        [0x7BBC],
+        [0x232D97C],
+        None,
+        "Move effect: Charge Beam\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageEatItem = Symbol(
+        [0x7C24],
+        [0x232D9E4],
+        None,
+        "Move effect: Deals damage, and eats any beneficial items the defender is"
+        " holding.\nRelevant moves: Pluck, Bug Bite\n\nr0: attacker pointer\nr1:"
+        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
+        " successfully used",
+    )
+
+    DoMoveAcupressure = Symbol(
+        [0x7D10],
+        [0x232DAD0],
+        None,
+        "Move effect: Acupressure\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMagnetRise = Symbol(
+        [0x7E94],
+        [0x232DC54],
+        None,
+        "Move effect: Magnet Rise\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveToxicSpikes = Symbol(
+        [0x7EA4],
+        [0x232DC64],
+        None,
+        "Move effect: Toxic Spikes\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLastResort = Symbol(
+        [0x7F14],
+        [0x232DCD4],
+        None,
+        "Move effect: Last Resort\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTrickRoom = Symbol(
+        [0x7FB8],
+        [0x232DD78],
+        None,
+        "Move effect: Trick Room\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWorrySeed = Symbol(
+        [0x7FEC],
+        [0x232DDAC],
+        None,
+        "Move effect: Worry Seed\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDamageHpDependent = Symbol(
+        [0x80C4],
+        [0x232DE84],
+        None,
+        "Move effect: Deal damage, with a multiplier dependent on the defender's"
+        " current HP.\nRelevant moves: Wring Out, Crush Grip\n\nr0: attacker"
+        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
+        " move was successfully used",
+    )
+
+    DoMoveHeartSwap = Symbol(
+        [0x8178],
+        [0x232DF38],
+        None,
+        "Move effect: Heart Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRoost = Symbol(
+        [0x8208],
+        [0x232DFC8],
+        None,
+        "Move effect: Roost\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePowerSwap = Symbol(
+        [0x82C4],
+        [0x232E084],
+        None,
+        "Move effect: Power Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMovePowerTrick = Symbol(
+        [0x8324],
+        [0x232E0E4],
+        None,
+        "Move effect: Power Trick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFeint = Symbol(
+        [0x8338],
+        [0x232E0F8],
+        None,
+        "Move effect: Feint\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFlareBlitz = Symbol(
+        [0x8370],
+        [0x232E130],
+        None,
+        "Move effect: Flare Blitz\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDefendOrder = Symbol(
+        [0x84B4],
+        [0x232E274],
+        None,
+        "Move effect: Defend Order\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveFireFang = Symbol(
+        [0x84F8],
+        [0x232E2B8],
+        None,
+        "Move effect: Fire Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLunarDance = Symbol(
+        [0x85A8],
+        [0x232E368],
+        None,
+        "Move effect: Lunar Dance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMiracleEye = Symbol(
+        [0x8610],
+        [0x232E3D0],
+        None,
+        "Move effect: Miracle Eye\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveWakeUpSlap = Symbol(
+        [0x8640],
+        [0x232E400],
+        None,
+        "Move effect: Wake-Up Slap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveMetalBurst = Symbol(
+        [0x86CC],
+        [0x232E48C],
+        None,
+        "Move effect: Metal Burst\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveHeadSmash = Symbol(
+        [0x86E0],
+        [0x232E4A0],
+        None,
+        "Move effect: Head Smash\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveCaptivate = Symbol(
+        [0x87A0],
+        [0x232E560],
+        None,
+        "Move effect: Captivate\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveLeafStorm = Symbol(
+        [0x8864],
+        [0x232E624],
+        None,
+        "Move effect: Leaf Storm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveDracoMeteor = Symbol(
+        [0x88BC],
+        [0x232E67C],
+        None,
+        "Move effect: Draco Meteor\n\nNote that this move effect handler has an extra"
+        " parameter that can be used to disable the special attack drop.\n\nr0:"
+        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nr4: disable"
+        " special attack drop\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveRockPolish = Symbol(
+        [0x8920],
+        [0x232E6E0],
+        None,
+        "Move effect: Rock Polish\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveNastyPlot = Symbol(
+        [0x8954],
+        [0x232E714],
+        None,
+        "Move effect: Nasty Plot\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTag0x1AB = Symbol(
+        [0x8974],
+        [0x232E734],
+        None,
+        "Move effect: MOVE_TAG_0x1AB\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTag0x1A6 = Symbol(
+        [0x8990],
+        [0x232E750],
+        None,
+        "Move effect: MOVE_TAG_0x1A6\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+    DoMoveTag0x1A7 = Symbol(
+        [0x89D4],
+        [0x232E794],
+        None,
+        "Move effect: MOVE_TAG_0x1A7\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+        " move\nr3: item ID\nreturn: whether the move was successfully used",
+    )
+
+
+class NaMove_effectsData:
+    LUNAR_DANCE_PP_RESTORATION = Symbol(
+        [0x860C], [0x232E3CC], 0x4, "The amount of PP restored by Lunar Dance (999)."
+    )
+
+
+class NaMove_effectsSection:
+    name = "move_effects"
+    description = (
+        "Move effect handlers for individual moves, called by ExecuteMoveEffect (and"
+        " also the Metronome and Nature Power tables).\n\nThis subregion contains only"
+        " the move effect handlers themselves, and not necessarily all the utility"
+        " functions used by the move effect handlers (such as the damage calculation"
+        " functions). These supporting utilities are in the main overlay29 block."
+    )
+    loadaddress = 0x2325DC0
+    length = 0x8A4C
+    functions = NaMove_effectsFunctions
+    data = NaMove_effectsData
+
+
 class NaOverlay0Functions:
     pass
 
@@ -6905,6 +9609,20 @@ class NaOverlay10Data:
         "The permanent attack boost from ingesting a Protein.",
     )
 
+    WATERFALL_CRINGE_CHANCE = Symbol(
+        [0x79A4],
+        [0x22C4424],
+        0x2,
+        "The chance of Waterfall inflicting the cringe status, as a percentage (30%).",
+    )
+
+    AURORA_BEAM_LOWER_ATTACK_CHANCE = Symbol(
+        [0x79A8],
+        [0x22C4428],
+        0x2,
+        "The chance of Aurora Beam halving attack, as a percentage (60%).",
+    )
+
     SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
         [0x79B0],
         [0x22C4430],
@@ -6935,8 +9653,8 @@ class NaOverlay10Data:
         [0x79C8],
         [0x22C4448],
         0x2,
-        "The chance of Extrasensory inflicting the cringe status, as a percentage"
-        " (10%).",
+        "The chance of Extrasensory (and others, see DoMoveDamageCringe10) inflicting"
+        " the cringe status, as a percentage (10%).",
     )
 
     ROCK_SLIDE_CRINGE_CHANCE = Symbol(
@@ -6977,11 +9695,12 @@ class NaOverlay10Data:
         " lowering accuracy, as a percentage (40%).",
     )
 
-    ANCIENTPOWER_BOOST_CHANCE = Symbol(
+    SILVER_WIND_BOOST_CHANCE = Symbol(
         [0x7A08],
         [0x22C4488],
         0x2,
-        "The chance of AncientPower boosting all stats, as a percentage (20%).",
+        "The chance of Silver Wind (and others, see DoMoveDamageBoostAllStats) boosting"
+        " all stats, as a percentage (20%).",
     )
 
     POISON_TAIL_POISON_CHANCE = Symbol(
@@ -6996,6 +9715,13 @@ class NaOverlay10Data:
         [0x22C4490],
         0x2,
         "The chance of Thundershock paralyzing, as a percentage (10%).",
+    )
+
+    BOUNCE_PARALYZE_CHANCE = Symbol(
+        [0x7A14],
+        [0x22C4494],
+        0x2,
+        "The chance of Bounce paralyzing, as a percentage (30%)",
     )
 
     HEADBUTT_CRINGE_CHANCE = Symbol(
@@ -7042,6 +9768,17 @@ class NaOverlay10Data:
         " House, 7",
     )
 
+    HEAL_ORDER_HP_RESTORATION = Symbol(
+        [0x7A38], [0x22C44B8], 0x2, "The amount of HP restored by Heal Order (40)."
+    )
+
+    STEEL_WING_BOOST_DEFENSE_CHANCE = Symbol(
+        [0x7A44],
+        [0x22C44C4],
+        0x2,
+        "The chance of Steel Wing boosting defense, as a percentage (20%).",
+    )
+
     GOLD_THORN_POWER = Symbol(
         [0x7A50], [0x22C44D0], 0x2, "Attack power for Golden Thorns."
     )
@@ -7076,6 +9813,13 @@ class NaOverlay10Data:
 
     LIFE_SEED_HP_BOOST = Symbol(
         [0x7A78], [0x22C44F8], 0x2, "The permanent HP boost from eating a Life Seed."
+    )
+
+    OCTAZOOKA_LOWER_ACCURACY_CHANCE = Symbol(
+        [0x7A80],
+        [0x22C4500],
+        0x2,
+        "The chance of Octazooka lowering accuracy, as a percentage (60%).",
     )
 
     LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
@@ -7113,7 +9857,8 @@ class NaOverlay10Data:
         [0x7AA8],
         [0x22C4528],
         0x2,
-        "The chance of Lick paralyzing, as a percentage (10%).",
+        "The chance of Lick (and others, see DoMoveDamageParalyze10) paralyzing, as a"
+        " percentage (10%).",
     )
 
     THUNDER_FANG_PARALYZE_CHANCE = Symbol(
@@ -7127,7 +9872,15 @@ class NaOverlay10Data:
         [0x7AB4],
         [0x22C4534],
         0x2,
-        "The chance of Bite inflicting the cringe status, as a percentage (20%)",
+        "The chance of Bite (and others, see DoMoveDamageCringe20) inflicting the"
+        " cringe status, as a percentage (20%)",
+    )
+
+    SKY_ATTACK_CRINGE_CHANCE = Symbol(
+        [0x7AB8],
+        [0x22C4538],
+        0x2,
+        "The chance of Sky Attack inflicting the cringe status, as a percentage (25%).",
     )
 
     ICE_FANG_CRINGE_CHANCE = Symbol(
@@ -7144,11 +9897,20 @@ class NaOverlay10Data:
         "The chance of Blaze Kick burning, as a percentage (10%).",
     )
 
+    FLAMETHROWER_BURN_CHANCE = Symbol(
+        [0x7AC4],
+        [0x22C4544],
+        0x2,
+        "The chance of Flamethrower (and others, see DoMoveDamageBurn10) burning, as a"
+        " percentage (10%).",
+    )
+
     DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
         [0x7AC8],
         [0x22C4548],
         0x2,
-        "The chance of Dizzy Punch confusing, as a percentage (30%).",
+        "The chance of Dizzy Punch (and others, see DoMoveDamageConfuse30) confusing,"
+        " as a percentage (30%).",
     )
 
     SECRET_POWER_EFFECT_CHANCE = Symbol(
@@ -7156,6 +9918,20 @@ class NaOverlay10Data:
         [0x22C454C],
         0x2,
         "The chance of Secret Power inflicting an effect, as a percentage (30%).",
+    )
+
+    METAL_CLAW_BOOST_ATTACK_CHANCE = Symbol(
+        [0x7AD4],
+        [0x22C4554],
+        0x2,
+        "The chance of Metal Claw boosting attack, as a percentage (20%).",
+    )
+
+    SONICBOOM_FIXED_DAMAGE = Symbol(
+        [0x7AE8],
+        [0x22C4568],
+        0x2,
+        "The amount of fixed damage dealt by SonicBoom (20).",
     )
 
     EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
@@ -7183,6 +9959,20 @@ class NaOverlay10Data:
         "The permanent HP boost from eating a Sitrus Berry at full HP.",
     )
 
+    SNORE_CRINGE_CHANCE = Symbol(
+        [0x7B80],
+        [0x22C4600],
+        0x2,
+        "The chance of Snore inflicting the cringe status, as a percentage (30%).",
+    )
+
+    METEOR_MASH_BOOST_ATTACK_CHANCE = Symbol(
+        [0x7B84],
+        [0x22C4604],
+        0x2,
+        "The chance of Meteor Mash boosting attack, as a percentage (20%).",
+    )
+
     CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
         [0x7B88],
         [0x22C4608],
@@ -7194,21 +9984,36 @@ class NaOverlay10Data:
         [0x7B90], [0x22C4610], 0x2, "The number of turns between passive burn damage."
     )
 
+    SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
+        [0x7B9C],
+        [0x22C461C],
+        0x2,
+        "The chance of Shadow Ball lowering special defense, as a percentage (20%).",
+    )
+
     STICK_POWER = Symbol([0x7BA4], [0x22C4624], 0x2, "Attack power for Sticks.")
 
-    BLIZZARD_FREEZE_CHANCE = Symbol(
+    BUBBLE_LOWER_SPEED_CHANCE = Symbol(
+        [0x7BAC],
+        [0x22C462C],
+        0x2,
+        "The chance of Bubble lowering speed, as a percentage (10%).",
+    )
+
+    POWDER_SNOW_FREEZE_CHANCE = Symbol(
         [0x7BB4],
         [0x22C4634],
         0x2,
-        "The chance of Blizzard (and others, see DoMoveDamageFreeze15) freezing, as a"
-        " percentage (15%).",
+        "The chance of Powder Snow (and others, see DoMoveDamageFreeze15) freezing, as"
+        " a percentage (15%).",
     )
 
     POISON_STING_POISON_CHANCE = Symbol(
         [0x7BBC],
         [0x22C463C],
         0x2,
-        "The chance of Poison Sting poisoning, as a percentage (18%).",
+        "The chance of Poison Sting (and others, see DoMoveDamagePoison18) poisoning,"
+        " as a percentage (18%).",
     )
 
     SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
@@ -7232,6 +10037,13 @@ class NaOverlay10Data:
         0x2,
         "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as"
         " a percentage (20%)",
+    )
+
+    THUNDERBOLT_PARALYZE_CHANCE = Symbol(
+        [0x7BDC],
+        [0x22C465C],
+        0x2,
+        "The chance of Thunderbolt paralyzing, as a percentage (15%).",
     )
 
     MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
@@ -7284,14 +10096,16 @@ class NaOverlay10Data:
         [0x7C08],
         [0x22C4688],
         0x2,
-        "The chance of Flame Wheel burning, as a percentage (10%).",
+        "The chance of Flame Wheel (and others, see DoMoveDamageBurn10FlameWheel)"
+        " burning, as a percentage (10%).",
     )
 
-    ROCK_CLIMB_CONFUSE_CHANCE = Symbol(
+    PSYBEAM_CONFUSE_CHANCE = Symbol(
         [0x7C10],
         [0x22C4690],
         0x2,
-        "The chance of Rock Climb confusing, as a percentage (10%).",
+        "The chance of Psybeam (and others, see DoMoveDamageConfuse10) confusing, as a"
+        " percentage (10%).",
     )
 
     TRI_ATTACK_STATUS_CHANCE = Symbol(
@@ -7394,6 +10208,14 @@ class NaOverlay10Data:
         [0x7C68], [0x22C46E8], 0x2, "Attack power for Iron Thorns."
     )
 
+    HEALING_WISH_HP_RESTORATION = Symbol(
+        [0x7C74],
+        [0x22C46F4],
+        0x2,
+        "The amount of HP restored by Healing Wish (999). This also applies to Lunar"
+        " Dance.",
+    )
+
     FACADE_DAMAGE_MULTIPLIER = Symbol(
         [0x7C98],
         [0x22C4718],
@@ -7410,7 +10232,7 @@ class NaOverlay10Data:
         " int16_t[2]",
     )
 
-    SLEEP_DURATION_RANGE = Symbol(
+    SLEEP_TURN_RANGE = Symbol(
         [0x7CA0],
         [0x22C4720],
         0x4,
@@ -7425,6 +10247,30 @@ class NaOverlay10Data:
         0x4,
         "The turn range for the Nightmare status inflicted by Nightmare, [4,"
         " 8).\n\ntype: int16_t[2]",
+    )
+
+    REST_TURN_RANGE = Symbol(
+        [0x7CC8],
+        [0x22C4748],
+        0x4,
+        "The turn range for the Napping status inflicted by Rest, [1, 4).\n\ntype:"
+        " int16_t[2]",
+    )
+
+    SPORT_CONDITION_TURN_RANGE = Symbol(
+        [0x7D0C],
+        [0x22C478C],
+        0x4,
+        "The turn range for the sport conditions activated by Mud Sport and Water"
+        " Sport, [10, 12).\n\ntype: int16_t[2]",
+    )
+
+    SURE_SHOT_TURN_RANGE = Symbol(
+        [0x7D18],
+        [0x22C4798],
+        0x4,
+        "The turn range for the Sure Shot status inflicted by Mind Reader and Lock-On,"
+        " [10, 12).\n\ntype: int16_t[2]",
     )
 
     SMOKESCREEN_TURN_RANGE = Symbol(
@@ -7468,13 +10314,46 @@ class NaOverlay10Data:
         " int16_t[2]",
     )
 
-    SPEED_BOOST_DURATION_RANGE = Symbol(
+    SPEED_BOOST_TURN_RANGE = Symbol(
         [0x7E08],
         [0x22C4888],
         0x4,
         "Appears to control the range of turns for which a speed boost can last.\n\nThe"
         " first two bytes are the low value of the range, and the later two bytes are"
         " the high value.",
+    )
+
+    SYNTHESIS_HP_RESTORATION_TABLE = Symbol(
+        [0x7ED4],
+        [0x22C4954],
+        0x10,
+        "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
+        " restoration value for Synthesis.\n\ntype: int16_t[8]",
+    )
+
+    ROOST_HP_RESTORATION_TABLE = Symbol(
+        [0x7EE4],
+        [0x22C4964],
+        0x10,
+        "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
+        " restoration value for Roost.\n\nEvery entry in this table is 40.\n\ntype:"
+        " int16_t[8]",
+    )
+
+    MOONLIGHT_HP_RESTORATION_TABLE = Symbol(
+        [0x7EF4],
+        [0x22C4974],
+        0x10,
+        "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
+        " restoration value for Moonlight.\n\ntype: int16_t[8]",
+    )
+
+    MORNING_SUN_HP_RESTORATION_TABLE = Symbol(
+        [0x7F04],
+        [0x22C4984],
+        0x10,
+        "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
+        " restoration value for Morning Sun.\n\ntype: int16_t[8]",
     )
 
     WEATHER_ATTRIBUTE_TABLE = Symbol(
@@ -9413,10 +12292,6 @@ class NaOverlay29Functions:
             0x44524,
             0x451F8,
             0x493E0,
-            0x4BDCC,
-            0x4E198,
-            0x502C0,
-            0x52010,
             0x52600,
             0x57D6C,
             0x58E98,
@@ -9469,10 +12344,6 @@ class NaOverlay29Functions:
             0x2320764,
             0x2321438,
             0x2325620,
-            0x232800C,
-            0x232A3D8,
-            0x232C500,
-            0x232E250,
             0x232E840,
             0x2333FAC,
             0x23350D8,
@@ -10328,30 +13199,8 @@ class NaOverlay29Functions:
     )
 
     DefenderAbilityIsActive = Symbol(
-        [
-            0x1D48C,
-            0x257CC,
-            0x2E700,
-            0x35954,
-            0x46B24,
-            0x4C3F4,
-            0x4DCD4,
-            0x4FB90,
-            0x51BE0,
-            0x567CC,
-        ],
-        [
-            0x22F96CC,
-            0x2301A0C,
-            0x230A940,
-            0x2311B94,
-            0x2322D64,
-            0x2328634,
-            0x2329F14,
-            0x232BDD0,
-            0x232DE20,
-            0x2332A0C,
-        ],
+        [0x1D48C, 0x257CC, 0x2E700, 0x35954, 0x46B24, 0x567CC],
+        [0x22F96CC, 0x2301A0C, 0x230A940, 0x2311B94, 0x2322D64, 0x2332A0C],
         None,
         "Checks if a defender has an active ability that isn't disabled by an"
         " attacker's Mold Breaker.\n\nThere are two versions of this function, which"
@@ -11332,7 +14181,7 @@ class NaOverlay29Functions:
         None,
         "Boosts the speed of the target monster.\n\nIf the number of turns specified is"
         " 0, a random turn count will be selected using the default"
-        " SPEED_BOOST_DURATION_RANGE.\n\nr0: user entity pointer\nr1: target entity"
+        " SPEED_BOOST_TURN_RANGE.\n\nr0: user entity pointer\nr1: target entity"
         " pointer\nr2: number of stages\nr3: number of turns\nstack[0]: flag to log a"
         " message on failure",
     )
@@ -11787,1133 +14636,6 @@ class NaOverlay29Functions:
         " pointer\nreturn: True if the move should play its alternative animation",
     )
 
-    DoMoveDamage = Symbol(
-        [0x49B80, 0x4E2C0, 0x4F670, 0x51B48],
-        [0x2325DC0, 0x232A500, 0x232B8B0, 0x232DD88],
-        None,
-        "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage"
-        " with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveIronTail = Symbol(
-        [0x49BA4],
-        [0x2325DE4],
-        None,
-        "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveYawn = Symbol(
-        [0x49C84],
-        [0x2325EC4],
-        None,
-        "Move effect: Yawn\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveNightmare = Symbol(
-        [0x49CFC],
-        [0x2325F3C],
-        None,
-        "Move effect: Nightmare\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveCharm = Symbol(
-        [0x49E68],
-        [0x23260A8],
-        None,
-        "Move effect: Charm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveEncore = Symbol(
-        [0x49FCC],
-        [0x232620C],
-        None,
-        "Move effect: Encore\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSuperFang = Symbol(
-        [0x4A024],
-        [0x2326264],
-        None,
-        "Move effect: Super Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePainSplit = Symbol(
-        [0x4A0DC],
-        [0x232631C],
-        None,
-        "Move effect: Pain Split\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveTorment = Symbol(
-        [0x4A1C8],
-        [0x2326408],
-        None,
-        "Move effect: Torment\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSwagger = Symbol(
-        [0x4A328],
-        [0x2326568],
-        None,
-        "Move effect: Swagger\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageCringe30 = Symbol(
-        [0x4A430],
-        [0x2326670],
-        None,
-        "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of"
-        " inflicting the cringe status on the defender.\nRelevant moves: Rock Slide,"
-        " Iron Head, Air Slash, Zen Headbutt, Dragon Rush\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
-        " dealt",
-    )
-
-    DoMoveWhirlpool = Symbol(
-        [0x4A510],
-        [0x2326750],
-        None,
-        "Move effect: Whirlpool\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFakeTears = Symbol(
-        [0x4A598],
-        [0x23267D8],
-        None,
-        "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSpite = Symbol(
-        [0x4A5CC],
-        [0x232680C],
-        None,
-        "Move effect: Spite\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSmokescreen = Symbol(
-        [0x4A68C],
-        [0x23268CC],
-        None,
-        "Move effect: Smokescreen\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFlatter = Symbol(
-        [0x4A8A8],
-        [0x2326AE8],
-        None,
-        "Move effect: Flatter\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveWillOWisp = Symbol(
-        [0x4A8E4],
-        [0x2326B24],
-        None,
-        "Move effect: Will-O-Wisp\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveReturn = Symbol(
-        [0x4A980],
-        [0x2326BC0],
-        None,
-        "Move effect: Return\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFlameWheel = Symbol(
-        [0x4AA88],
-        [0x2326CC8],
-        None,
-        "Move effect: Flame Wheel\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveGust = Symbol(
-        [0x4ABE0],
-        [0x2326E20],
-        None,
-        "Move effect: Gust\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveParalyze = Symbol(
-        [0x4AC40, 0x4BFF0, 0x4F1F4],
-        [0x2326E80, 0x2328230, 0x232B434],
-        None,
-        "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun"
-        " Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageLowerDef20 = Symbol(
-        [0x4ADF4],
-        [0x2327034],
-        None,
-        "Move effect: Deal damage with a 20% chance (CRUNCH_LOWER_DEFENSE_CHANCE) of"
-        " lowering the defender's defense.\nRelevant moves: Crunch, Shadow Ball\n\nr0:"
-        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
-        " whether or not damage was dealt",
-    )
-
-    DoMoveBite = Symbol(
-        [0x4AE74],
-        [0x23270B4],
-        None,
-        "Move effect: Bite\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageParalyze20 = Symbol(
-        [0x4AEE0],
-        [0x2327120],
-        None,
-        "Move effect: Deal damage with a 20% chance (THUNDER_PARALYZE_CHANCE) of"
-        " paralyzing the defender.\nRelevant moves: Thunder, Force Palm\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveEndeavor = Symbol(
-        [0x4AF4C],
-        [0x232718C],
-        None,
-        "Move effect: Endeavor\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFacade = Symbol(
-        [0x4B00C],
-        [0x232724C],
-        None,
-        "Move effect: Facade\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageLowerSpeed20 = Symbol(
-        [0x4B04C],
-        [0x232728C],
-        None,
-        "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of"
-        " lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0:"
-        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
-        " whether or not damage was dealt",
-    )
-
-    DoMoveBrickBreak = Symbol(
-        [0x4B0B8],
-        [0x23272F8],
-        None,
-        "Move effect: Brick Break\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveRockTomb = Symbol(
-        [0x4B128],
-        [0x2327368],
-        None,
-        "Move effect: Rock Tomb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageDrain = Symbol(
-        [0x4B218],
-        [0x2327458],
-        None,
-        "Move effect: Deal draining damage, healing the attacker by a proportion of the"
-        " damage dealt.\nRelevant moves: Giga Drain, Drain Punch\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveReversal = Symbol(
-        [0x4B358],
-        [0x2327598],
-        None,
-        "Move effect: Reversal\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSmellingSalt = Symbol(
-        [0x4B40C],
-        [0x232764C],
-        None,
-        "Move effect: SmellingSalt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveMetalSound = Symbol(
-        [0x4B474],
-        [0x23276B4],
-        None,
-        "Move effect: Metal Sound\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveTickle = Symbol(
-        [0x4B4A8],
-        [0x23276E8],
-        None,
-        "Move effect: Tickle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveOutrage = Symbol(
-        [0x4B52C],
-        [0x232776C],
-        None,
-        "Move effect: Outrage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageWeightDependent = Symbol(
-        [0x4B578],
-        [0x23277B8],
-        None,
-        "Move effect: Deal damage, multiplied by a weight-dependent factor.\nRelevant"
-        " moves: Low Kick, Grass Knot\n\nr0: attacker pointer\nr1: defender"
-        " pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
-    )
-
-    DoMoveAncientPower = Symbol(
-        [0x4B5C4],
-        [0x2327804],
-        None,
-        "Move effect: AncientPower\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveRapidSpin = Symbol(
-        [0x4B700],
-        [0x2327940],
-        None,
-        "Move effect: Rapid Spin\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageFreeze15 = Symbol(
-        [0x4B8B4],
-        [0x2327AF4],
-        None,
-        "Move effect: Deal damage with a 15% chance (BLIZZARD_FREEZE_CHANCE) of"
-        " freezing the defender.\nRelevant moves: Blizzard, Ice Beam\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveScaryFace = Symbol(
-        [0x4B9B0],
-        [0x2327BF0],
-        None,
-        "Move effect: Scary Face\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveRockClimb = Symbol(
-        [0x4B9C8],
-        [0x2327C08],
-        None,
-        "Move effect: Rock Climb\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageWithRecoil = Symbol(
-        [0x4BCF4],
-        [0x2327F34],
-        None,
-        "Move effect: Deals damage, inflicting recoil damage on the attacker.\nRelevant"
-        " moves: Submission, Wood Hammer, Brave Bird\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: bool, whether or not damage"
-        " was dealt",
-    )
-
-    DoMoveEarthquake = Symbol(
-        [0x4BE34],
-        [0x2328074],
-        None,
-        "Move effect: Earthquake\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    GetNaturePowerVariant = Symbol(
-        [0x4BE94],
-        [0x23280D4],
-        None,
-        "Gets the nature power variant for the current dungeon, based on the tileset"
-        " ID.\n\nreturn: nature power variant",
-    )
-
-    DoMoveNaturePower = Symbol(
-        [0x4BED0],
-        [0x2328110],
-        None,
-        "Move effect: Nature Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move (unused)\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveLick = Symbol(
-        [0x4BF2C],
-        [0x232816C],
-        None,
-        "Move effect: Lick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFissure = Symbol(
-        [0x4C164],
-        [0x23283A4],
-        None,
-        "Move effect: Fissure\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveExtrasensory = Symbol(
-        [0x4C27C],
-        [0x23284BC],
-        None,
-        "Move effect: Extrasensory\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveAbsorb = Symbol(
-        [0x4C2F8],
-        [0x2328538],
-        None,
-        "Move effect: Absorb\n\nThis is essentially identical to DoMoveDamageDrain,"
-        " except the ordering of the instructions is slightly different enough to"
-        " introduce subtle variations in functionality.\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
-        " dealt",
-    )
-
-    DoMoveSkillSwap = Symbol(
-        [0x4C458],
-        [0x2328698],
-        None,
-        "Move effect: Skill Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveHeadbutt = Symbol(
-        [0x4C684],
-        [0x23288C4],
-        None,
-        "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDoubleEdge = Symbol(
-        [0x4C6F0],
-        [0x2328930],
-        None,
-        "Move effect: Double-Edge\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSandAttack = Symbol(
-        [0x4C814],
-        [0x2328A54],
-        None,
-        "Move effect: Sand-Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamagePoison40 = Symbol(
-        [0x4C834],
-        [0x2328A74],
-        None,
-        "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning"
-        " the defender.\nRelevant moves: Smog, Poison Jab, Cross Poison\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not"
-        " damage was dealt",
-    )
-
-    DoMoveSacredFire = Symbol(
-        [0x4C8C0],
-        [0x2328B00],
-        None,
-        "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSheerCold = Symbol(
-        [0x4C948],
-        [0x2328B88],
-        None,
-        "Move effect: Sheer Cold\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageLowerAccuracy40 = Symbol(
-        [0x4CDC0],
-        [0x2329000],
-        None,
-        "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE)"
-        " of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb,"
-        " Mirror Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
-        " ID\nreturn: whether or not damage was dealt",
-    )
-
-    DoMoveTwister = Symbol(
-        [0x4CE8C],
-        [0x23290CC],
-        None,
-        "Move effect: Twister\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveTwineedle = Symbol(
-        [0x4CF1C],
-        [0x232915C],
-        None,
-        "Move effect: Twineedle\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSeismicToss = Symbol(
-        [0x4D018],
-        [0x2329258],
-        None,
-        "Move effect: Seismic Toss\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSupersonic = Symbol(
-        [0x4D18C],
-        [0x23293CC],
-        None,
-        "Move effect: Supersonic\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveTaunt = Symbol(
-        [0x4D1A4],
-        [0x23293E4],
-        None,
-        "Move effect: Taunt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveHornDrill = Symbol(
-        [0x4D1F8],
-        [0x2329438],
-        None,
-        "Move effect: Horn Drill\n\nThis is exactly the same as DoMoveSheerCold, except"
-        " there's a call to SubstitutePlaceholderStringTags at the end.\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
-        " move was successfully used",
-    )
-
-    DoMoveThundershock = Symbol(
-        [0x4D4D0],
-        [0x2329710],
-        None,
-        "Move effect: Thundershock\n\nThis is identical to DoMoveLick, except it uses a"
-        " different data symbol for the paralysis chance (but it's still 10%).\n\nr0:"
-        " attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn:"
-        " whether the move was successfully used",
-    )
-
-    DoMoveThunderWave = Symbol(
-        [0x4D53C],
-        [0x232977C],
-        None,
-        "Move effect: Thunder Wave\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveBlock = Symbol(
-        [0x4D614],
-        [0x2329854],
-        None,
-        "Move effect: Block\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePoisonGas = Symbol(
-        [0x4D628],
-        [0x2329868],
-        None,
-        "Move effect: Poison Gas\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveToxic = Symbol(
-        [0x4D640],
-        [0x2329880],
-        None,
-        "Move effect: Toxic\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePoisonFang = Symbol(
-        [0x4D658],
-        [0x2329898],
-        None,
-        "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePoisonSting = Symbol(
-        [0x4D6C4],
-        [0x2329904],
-        None,
-        "Move effect: Poison Sting\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveTriAttack = Symbol(
-        [0x4DA54],
-        [0x2329C94],
-        None,
-        "Move effect: Tri Attack\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSwapItems = Symbol(
-        [0x4DB10],
-        [0x2329D50],
-        None,
-        "Move effect: Swaps the held items of the attacker and defender.\nRelevant"
-        " moves: Trick, Switcheroo\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveTripleKick = Symbol(
-        [0x4DD38],
-        [0x2329F78],
-        None,
-        "Move effect: Triple Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveMudSlap = Symbol(
-        [0x4DDA0],
-        [0x2329FE0],
-        None,
-        "Move effect: Mud-Slap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveThief = Symbol(
-        [0x4DE0C],
-        [0x232A04C],
-        None,
-        "Move effect: Thief\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveRolePlay = Symbol(
-        [0x4DF48],
-        [0x232A188],
-        None,
-        "Move effect: Role Play\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveLeer = Symbol(
-        [0x4E03C],
-        [0x232A27C],
-        None,
-        "Move effect: Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFakeOut = Symbol(
-        [0x4E07C],
-        [0x232A2BC],
-        None,
-        "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePayDay = Symbol(
-        [0x4E100],
-        [0x232A340],
-        None,
-        "Move effect: Pay Day\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveCurse = Symbol(
-        [0x4E2A8],
-        [0x232A4E8],
-        None,
-        "Move effect: Curse\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSuperpower = Symbol(
-        [0x4E2E4],
-        [0x232A524],
-        None,
-        "Move effect: Superpower\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDynamicPunch = Symbol(
-        [0x4E448],
-        [0x232A688],
-        None,
-        "Move effect: DynamicPunch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveKnockOff = Symbol(
-        [0x4E4AC],
-        [0x232A6EC],
-        None,
-        "Move effect: Knock Off\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveSecretPower = Symbol(
-        [0x4EAD8],
-        [0x232AD18],
-        None,
-        "Move effect: Secret Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDizzyPunch = Symbol(
-        [0x4ECB0],
-        [0x232AEF0],
-        None,
-        "Move effect: Dizzy Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveImprison = Symbol(
-        [0x4ED60],
-        [0x232AFA0],
-        None,
-        "Move effect: Imprison\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFeatherDance = Symbol(
-        [0x4EDB0],
-        [0x232AFF0],
-        None,
-        "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveBeatUp = Symbol(
-        [0x4EDE4],
-        [0x232B024],
-        None,
-        "Move effect: Beat Up\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveBlastBurn = Symbol(
-        [0x4EED8],
-        [0x232B118],
-        None,
-        "Move effect: Blast Burn\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveCrushClaw = Symbol(
-        [0x4EF24],
-        [0x232B164],
-        None,
-        "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveBlazeKick = Symbol(
-        [0x4EFA4],
-        [0x232B1E4],
-        None,
-        "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePresent = Symbol(
-        [0x4F02C],
-        [0x232B26C],
-        None,
-        "Move effect: Present\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveEruption = Symbol(
-        [0x4F128],
-        [0x232B368],
-        None,
-        "Move effect: Eruption\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePoisonTail = Symbol(
-        [0x4F254],
-        [0x232B494],
-        None,
-        "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveRoar = Symbol(
-        [0x4F2C0],
-        [0x232B500],
-        None,
-        "Move effect: Roar\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageConstrict10 = Symbol(
-        [0x4F3A8],
-        [0x232B5E8],
-        None,
-        "Move effect: Deal damage with a 10% (WHIRLPOOL_CONSTRICT_CHANCE) chance to"
-        " constrict, and with a damage multiplier dependent on the move used.\nRelevant"
-        " moves: Clamp, Bind, Fire Spin, Magma Storm\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was"
-        " dealt",
-    )
-
-    DoMoveWrap = Symbol(
-        [0x4F478],
-        [0x232B6B8],
-        None,
-        "Move effect: Wrap\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
-        " item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveMagnitude = Symbol(
-        [0x4F4F8],
-        [0x232B738],
-        None,
-        "Move effect: Magnitude\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveMistBall = Symbol(
-        [0x4F5E0],
-        [0x232B820],
-        None,
-        "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDestinyBond = Symbol(
-        [0x4F660],
-        [0x232B8A0],
-        None,
-        "Move effect: Destiny Bond\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveHiddenPower = Symbol(
-        [0x4F6E8],
-        [0x232B928],
-        None,
-        "Move effect: Hidden Power\n\nThis is exactly the same as DoMoveDamage (both"
-        " are wrappers around DealDamage), except this function always returns"
-        " true.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
-        " ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveAttract = Symbol(
-        [0x4F790],
-        [0x232B9D0],
-        None,
-        "Move effect: Attract\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveCopycat = Symbol(
-        [0x4F804],
-        [0x232BA44],
-        None,
-        "Move effect: The attacker uses the move last used by enemy it's"
-        " facing.\nRelevant moves: Mimic, Copycat\n\nr0: attacker pointer\nr1: defender"
-        " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
-        " used",
-    )
-
-    DoMoveFrustration = Symbol(
-        [0x4F90C],
-        [0x232BB4C],
-        None,
-        "Move effect: Frustration\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveLeechSeed = Symbol(
-        [0x4F9F4],
-        [0x232BC34],
-        None,
-        "Move effect: Leech Seed\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDreamEater = Symbol(
-        [0x4FA84],
-        [0x232BCC4],
-        None,
-        "Move effect: Dream Eater\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDragonRage = Symbol(
-        [0x4FD48],
-        [0x232BF88],
-        None,
-        "Move effect: Dragon Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageLowerSpecialDefense50 = Symbol(
-        [0x4FEB4],
-        [0x232C0F4],
-        None,
-        "Move effect: Deal damage with a 50%"
-        " (LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE) chance to lower special"
-        " defense.\nRelevant moves: Luster Purge, Energy Ball\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
-        " move was successfully used",
-    )
-
-    DoMoveFling = Symbol(
-        [0x50F9C],
-        [0x232D1DC],
-        None,
-        "Move effect: Fling\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoHammerArm = Symbol(
-        [0x50FEC],
-        [0x232D22C],
-        None,
-        "Move effect: Hammer Arm\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveGastroAcid = Symbol(
-        [0x51040],
-        [0x232D280],
-        None,
-        "Move effect: Gastro Acid\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveCloseCombat = Symbol(
-        [0x510A8],
-        [0x232D2E8],
-        None,
-        "Move effect: Close Combat\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveGuardSwap = Symbol(
-        [0x51138],
-        [0x232D378],
-        None,
-        "Move effect: Guard Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveThunderFang = Symbol(
-        [0x511D8],
-        [0x232D418],
-        None,
-        "Move effect: Thunder Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDefog = Symbol(
-        [0x5126C],
-        [0x232D4AC],
-        None,
-        "Move effect: Defog\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveTrumpCard = Symbol(
-        [0x51320],
-        [0x232D560],
-        None,
-        "Move effect: Trump Card\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveIceFang = Symbol(
-        [0x513E0],
-        [0x232D620],
-        None,
-        "Move effect: Ice Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePsychoShift = Symbol(
-        [0x51470],
-        [0x232D6B0],
-        None,
-        "Move effect: Psycho Shift\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveEmbargo = Symbol(
-        [0x51490],
-        [0x232D6D0],
-        None,
-        "Move effect: Embargo\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveBrine = Symbol(
-        [0x514A8],
-        [0x232D6E8],
-        None,
-        "Move effect: Deal damage, with a 2x multiplier if the defender is at or below"
-        " half HP.\nRelevant moves: Brine, Assurance\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
-        " successfully used",
-    )
-
-    DoMoveNaturalGift = Symbol(
-        [0x514F8],
-        [0x232D738],
-        None,
-        "Move effect: Natural Gift\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveGyroBall = Symbol(
-        [0x515B8],
-        [0x232D7F8],
-        None,
-        "Move effect: Gyro Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveChargeBeam = Symbol(
-        [0x5173C],
-        [0x232D97C],
-        None,
-        "Move effect: Charge Beam\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageEatItem = Symbol(
-        [0x517A4],
-        [0x232D9E4],
-        None,
-        "Move effect: Deals damage, and eats any beneficial items the defender is"
-        " holding.\nRelevant moves: Pluck, Bug Bite\n\nr0: attacker pointer\nr1:"
-        " defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was"
-        " successfully used",
-    )
-
-    DoMoveLastResort = Symbol(
-        [0x51A94],
-        [0x232DCD4],
-        None,
-        "Move effect: Last Resort\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveDamageHpDependent = Symbol(
-        [0x51C44],
-        [0x232DE84],
-        None,
-        "Move effect: Deal damage, with a multiplier dependent on the defender's"
-        " current HP.\nRelevant moves: Wring Out, Crush Grip\n\nr0: attacker"
-        " pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the"
-        " move was successfully used",
-    )
-
-    DoMoveHeartSwap = Symbol(
-        [0x51CF8],
-        [0x232DF38],
-        None,
-        "Move effect: Heart Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMovePowerSwap = Symbol(
-        [0x51E44],
-        [0x232E084],
-        None,
-        "Move effect: Power Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFeint = Symbol(
-        [0x51EB8],
-        [0x232E0F8],
-        None,
-        "Move effect: Feint\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFlareBlitz = Symbol(
-        [0x51EF0],
-        [0x232E130],
-        None,
-        "Move effect: Flare Blitz\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveFireFang = Symbol(
-        [0x52078],
-        [0x232E2B8],
-        None,
-        "Move effect: Fire Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveMiracleEye = Symbol(
-        [0x52190],
-        [0x232E3D0],
-        None,
-        "Move effect: Miracle Eye\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveWakeUpSlap = Symbol(
-        [0x521C0],
-        [0x232E400],
-        None,
-        "Move effect: Wake-Up Slap\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveHeadSmash = Symbol(
-        [0x52260],
-        [0x232E4A0],
-        None,
-        "Move effect: Head Smash\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
-    DoMoveCaptivate = Symbol(
-        [0x52320],
-        [0x232E560],
-        None,
-        "Move effect: Captivate\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
-        " move\nr3: item ID\nreturn: whether the move was successfully used",
-    )
-
     ExecuteMoveEffect = Symbol(
         [0x52624],
         [0x232E864],
@@ -12993,6 +14715,15 @@ class NaOverlay29Functions:
         "Tries to change a monster into one of its weather-related alternative forms."
         " Applies to Castform and Cherrim, and checks for their unique"
         " abilities.\n\nr0: pointer to entity",
+    )
+
+    ActivateSportCondition = Symbol(
+        [0x5920C],
+        [0x233544C],
+        None,
+        "Activates the Mud Sport or Water Sport condition on the dungeon floor for some"
+        " number of turns.\n\nr0: water sport flag (false for Mud Sport, true for Water"
+        " Sport)",
     )
 
     DigitCount = Symbol(
@@ -15989,6 +17720,13 @@ class NaRamData:
         "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
     )
 
+    METRONOME_NEXT_INDEX = Symbol(
+        [0x37CA88],
+        [0x237CA88],
+        0x4,
+        "[Runtime] The index into METRONOME_TABLE for the next usage of Metronome.",
+    )
+
     FLOOR_GENERATION_STATUS = Symbol(
         [0x37CFBC],
         [0x237CFBC],
@@ -16022,6 +17760,8 @@ class NaSections:
     arm9 = NaArm9Section
 
     itcm = NaItcmSection
+
+    move_effects = NaMove_effectsSection
 
     overlay0 = NaOverlay0Section
 
