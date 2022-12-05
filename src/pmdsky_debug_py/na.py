@@ -13878,6 +13878,14 @@ class NaOverlay29Functions:
         " special)\nreturn: boost",
     )
 
+    TeamMemberHasExclusiveItemEffectActive = Symbol(
+        [0x33600],
+        [0x230F840],
+        None,
+        "Checks if any team member is under the effects of a certain exclusive item"
+        " effect.\n\nr0: exclusive item effect ID\nreturn: bool",
+    )
+
     TrySpawnEnemyItemDrop = Symbol(
         [0x33798],
         [0x230F9D8],
@@ -14812,6 +14820,31 @@ class NaOverlay29Functions:
         "Checks if gravity is active on the floor.\n\nreturn: bool",
     )
 
+    ShouldBoostKecleonShopSpawnChance = Symbol(
+        [0x5C280],
+        [0x23384C0],
+        None,
+        "Gets the boost_kecleon_shop_spawn_chance field on the dungeon"
+        " struct.\n\nreturn: bool",
+    )
+
+    SetShouldBoostKecleonShopSpawnChance = Symbol(
+        [0x5C298],
+        [0x23384D8],
+        None,
+        "Sets the boost_kecleon_shop_spawn_chance field on the dungeon struct to the"
+        " given value.\n\nr0: bool to set the flag to",
+    )
+
+    UpdateShouldBoostKecleonShopSpawnChance = Symbol(
+        [0x5C2B0],
+        [0x23384F0],
+        None,
+        "Sets the boost_kecleon_shop_spawn_chance field on the dungeon struct depending"
+        " on if a team member has the exclusive item effect for more kecleon"
+        " shops.\n\nNo params.",
+    )
+
     IsSecretBazaar = Symbol(
         [0x5C384],
         [0x23385C4],
@@ -14833,6 +14866,15 @@ class NaOverlay29Functions:
         None,
         "Sets the boost_hidden_stairs_spawn_chance field on the dungeon struct to the"
         " given value.\n\nr0: bool to set the flag to",
+    )
+
+    UpdateShouldBoostHiddenStairsSpawnChance = Symbol(
+        [0x5C3DC],
+        [0x233861C],
+        None,
+        "Sets the boost_hidden_stairs_spawn_chance field on the dungeon struct"
+        " depending on if a team member has the exclusive item effect for more hidden"
+        " stairs.\n\nNo params.",
     )
 
     IsSecretRoom = Symbol(
@@ -15488,6 +15530,15 @@ class NaOverlay29Functions:
         "Reset the inner boundary tile rows (y == 1 and y == 30) to their initial state"
         " of all wall tiles, with impassable walls at the edges (x == 0 and x =="
         " 55).\n\nNo params.",
+    )
+
+    ResetImportantSpawnPositions = Symbol(
+        [0x66A28],
+        [0x2342C68],
+        None,
+        "Resets important spawn positions (the player, stairs, and hidden stairs) back"
+        " to their default values.\n\nr0: dungeon generation info pointer (a field on"
+        " the dungeon struct)",
     )
 
     SpawnStairs = Symbol(

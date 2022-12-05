@@ -13593,6 +13593,14 @@ class JpOverlay29Functions:
         " special)\nreturn: boost",
     )
 
+    TeamMemberHasExclusiveItemEffectActive = Symbol(
+        None,
+        None,
+        None,
+        "Checks if any team member is under the effects of a certain exclusive item"
+        " effect.\n\nr0: exclusive item effect ID\nreturn: bool",
+    )
+
     TrySpawnEnemyItemDrop = Symbol(
         [0x33634],
         [0x2310F14],
@@ -14524,6 +14532,31 @@ class JpOverlay29Functions:
         None, None, None, "Checks if gravity is active on the floor.\n\nreturn: bool"
     )
 
+    ShouldBoostKecleonShopSpawnChance = Symbol(
+        None,
+        None,
+        None,
+        "Gets the boost_kecleon_shop_spawn_chance field on the dungeon"
+        " struct.\n\nreturn: bool",
+    )
+
+    SetShouldBoostKecleonShopSpawnChance = Symbol(
+        None,
+        None,
+        None,
+        "Sets the boost_kecleon_shop_spawn_chance field on the dungeon struct to the"
+        " given value.\n\nr0: bool to set the flag to",
+    )
+
+    UpdateShouldBoostKecleonShopSpawnChance = Symbol(
+        None,
+        None,
+        None,
+        "Sets the boost_kecleon_shop_spawn_chance field on the dungeon struct depending"
+        " on if a team member has the exclusive item effect for more kecleon"
+        " shops.\n\nNo params.",
+    )
+
     IsSecretBazaar = Symbol(
         None,
         None,
@@ -14545,6 +14578,15 @@ class JpOverlay29Functions:
         None,
         "Sets the boost_hidden_stairs_spawn_chance field on the dungeon struct to the"
         " given value.\n\nr0: bool to set the flag to",
+    )
+
+    UpdateShouldBoostHiddenStairsSpawnChance = Symbol(
+        None,
+        None,
+        None,
+        "Sets the boost_hidden_stairs_spawn_chance field on the dungeon struct"
+        " depending on if a team member has the exclusive item effect for more hidden"
+        " stairs.\n\nNo params.",
     )
 
     IsSecretRoom = Symbol(
@@ -15200,6 +15242,15 @@ class JpOverlay29Functions:
         "Reset the inner boundary tile rows (y == 1 and y == 30) to their initial state"
         " of all wall tiles, with impassable walls at the edges (x == 0 and x =="
         " 55).\n\nNo params.",
+    )
+
+    ResetImportantSpawnPositions = Symbol(
+        None,
+        None,
+        None,
+        "Resets important spawn positions (the player, stairs, and hidden stairs) back"
+        " to their default values.\n\nr0: dungeon generation info pointer (a field on"
+        " the dungeon struct)",
     )
 
     SpawnStairs = Symbol(

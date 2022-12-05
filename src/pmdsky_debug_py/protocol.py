@@ -9388,6 +9388,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TeamMemberHasExclusiveItemEffectActive: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TrySpawnEnemyItemDrop: Symbol[
         Optional[List[int]],
         None,
@@ -9883,6 +9888,21 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ShouldBoostKecleonShopSpawnChance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetShouldBoostKecleonShopSpawnChance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UpdateShouldBoostKecleonShopSpawnChance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsSecretBazaar: Symbol[
         Optional[List[int]],
         None,
@@ -9894,6 +9914,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SetShouldBoostHiddenStairsSpawnChance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UpdateShouldBoostHiddenStairsSpawnChance: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10194,6 +10219,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ResetInnerBoundaryTileRows: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ResetImportantSpawnPositions: Symbol[
         Optional[List[int]],
         None,
     ]
