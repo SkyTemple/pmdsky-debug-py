@@ -9108,6 +9108,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    HasSuperEffectiveMoveAgainstUser: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     CheckSpawnThreshold: Symbol[
         Optional[List[int]],
         None,
@@ -9324,6 +9329,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ApplyDamage: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetTypeMatchupBothTypes: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9739,6 +9749,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsHyperBeamVariant: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    HasMaxGinsengBoost99: Symbol[
         Optional[List[int]],
         None,
     ]
