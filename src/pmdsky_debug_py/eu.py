@@ -2533,6 +2533,18 @@ class EuArm9Functions:
         ),
     )
 
+    FindWanTableEntry = Symbol(
+        [0x1D370],
+        [0x201D370],
+        None,
+        (
+            "Appears to search in the given table (in practice always seems to be"
+            " LOADED_WAN_TABLE_PTR) for an entry with the given file name.\n\nr0: table"
+            " pointer\nr1: file name\nreturn: index of the found file, if found, or -1"
+            " if not found"
+        ),
+    )
+
     GetLoadedWanTableEntry = Symbol(
         [0x1D3D0],
         [0x201D3D0],
@@ -2540,6 +2552,18 @@ class EuArm9Functions:
         (
             "wan_id = -1 if it is not loaded\n\nNote: unverified, ported from Irdkwia's"
             " notes\n\nr0: wan_table_ptr\nr1: bin_file_id\nr2: file_id\nreturn: wan_id"
+        ),
+    )
+
+    LoadWanTableEntry = Symbol(
+        [0x1D478],
+        [0x201D478],
+        None,
+        (
+            "Appears to load data from the given file (in practice always seems to be"
+            " animation data), using previously loaded data in the given table (see"
+            " FindWanTableEntry) if possible.\n\nr0: table pointer\nr1: file name\nr2:"
+            " flags\nreturn: table index of the loaded data"
         ),
     )
 
@@ -2782,6 +2806,25 @@ class EuArm9Functions:
         ),
     )
 
+    PreprocessStringFromMessageId = Symbol(
+        [0x237B4],
+        [0x20237B4],
+        None,
+        (
+            "Calls PreprocessString after resolving the given message ID to a"
+            " string.\n\nr0: [output] formatted string\nr1: maximum capacity of the"
+            " output buffer\nr2: message ID\nr3: preprocessor flags\nstack[0]: pointer"
+            " to preprocessor args"
+        ),
+    )
+
+    InitPreprocessorArgs = Symbol(
+        [0x238B4],
+        [0x20238B4],
+        None,
+        "Initializes a struct preprocess_args.\n\nr0: preprocessor args pointer",
+    )
+
     SetStringAccuracy = Symbol(
         [0x245C0], [0x20245C0], None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -2934,6 +2977,16 @@ class EuArm9Functions:
         ),
     )
 
+    GetDialogBoxField0xC = Symbol(
+        [0x28630],
+        [0x2028630],
+        None,
+        (
+            "Gets field_0xc from the dialog box of the given ID.\n\nr0:"
+            " dbox_id\nreturn: field_0xc"
+        ),
+    )
+
     Arm9LoadUnkFieldNa0x2029EC8 = Symbol(
         [0x2A1BC],
         [0x202A1BC],
@@ -3049,8 +3102,9 @@ class EuArm9Functions:
         [0x202F4A8],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id\nr1: ???\nr2:"
-            " string_id\nr3: ???"
+            "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id\nr1:"
+            " preprocessor flags (see PreprocessString)\nr2: string_id\nr3: pointer to"
+            " preprocessor args (see PreprocessString)"
         ),
     )
 
@@ -6349,6 +6403,10 @@ class EuArm9Data:
         "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
     )
 
+    DIALOG_BOX_LIST_PTR = Symbol(
+        None, None, None, "Hard-coded pointer to DIALOG_BOX_LIST."
+    )
+
     SCRIPT_VARS_VALUES_PTR = Symbol(
         [0x4B630, 0x4B81C, 0x4C764, 0x4C7BC],
         [0x204B630, 0x204B81C, 0x204C764, 0x204C7BC],
@@ -6860,8 +6918,14 @@ class EuArm9Data:
         ),
     )
 
-    SENTRY_MINIGAME_DATA = Symbol(
-        [0xA2134], [0x20A2134], 0xCC, "Irdkwia's notes: FOOTPRINTS_MAP"
+    SENTRY_DUTY_MONSTER_IDS = Symbol(
+        [0xA2134],
+        [0x20A2134],
+        0xCC,
+        (
+            "Table of monster IDs usable in the sentry duty minigame.\n\ntype: struct"
+            " monster_id_16[102]"
+        ),
     )
 
     IQ_SKILLS = Symbol(
@@ -12627,6 +12691,72 @@ class EuOverlay11Functions:
         ),
     )
 
+    SetAnimDataFields = Symbol(
+        [0x1863C],
+        [0x22F51BC],
+        None,
+        "Sets some fields on the animation struct?\n\nr0: animation pointer\nr1: ?",
+    )
+
+    SetAnimDataFieldsWrapper = Symbol(
+        [0x1877C],
+        [0x22F52FC],
+        None,
+        "Calls SetAnimDataFields with the second argument right-shifted by 16.",
+    )
+
+    InitAnimDataFromOtherAnimData = Symbol(
+        [0x18A84],
+        [0x22F5604],
+        None,
+        (
+            "Appears to partially copy some animation data into another animation"
+            " struct, plus doing extra initialization on the destination struct.\n\nr0:"
+            " dst\nr1: src"
+        ),
+    )
+
+    SetAnimDataFields2 = Symbol(
+        [0x19108],
+        [0x22F5C88],
+        None,
+        (
+            "Sets some fields on the animation struct, based on the params?\n\nr0:"
+            " animation pointer\nr1: flags\nr2: ?"
+        ),
+    )
+
+    LoadObjectAnimData = Symbol(
+        [0x1AC80],
+        [0x22F7800],
+        None,
+        (
+            "Loads the animation (WAN) data for a given object index?\n\nr0: animation"
+            " pointer\nr1: object index\nr2: flags"
+        ),
+    )
+
+    InitAnimDataFromOtherAnimDataVeneer = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Likely a linker-generated veneer for InitAnimDataFromOtherAnimData.\n\nSee"
+            " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+            " dst\nr1: src"
+        ),
+    )
+
+    AnimRelatedFunction = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Does more stuff related to animations...probably?\n\nr0: animation"
+            " pointer?\nothers: ?"
+        ),
+    )
+
     SprintfStatic = Symbol(
         [0x2CCE8],
         [0x2309868],
@@ -13032,11 +13162,406 @@ class EuOverlay13Section:
 
 
 class EuOverlay14Functions:
-    pass
+    SentrySetupState = Symbol(
+        [0x0],
+        [0x238AC80],
+        None,
+        (
+            "Allocates and initializes the sentry duty struct.\n\nPossibly the"
+            " entrypoint of this overlay?\n\nr0: controls initial game state? If 2, the"
+            " minigame starts in state 4 rather than state 6.\nreturn: always 1"
+        ),
+    )
+
+    SentryUpdateDisplay = Symbol(
+        [0xCBC],
+        [0x238B93C],
+        None,
+        (
+            "Seems to update various parts of the display, such as the round"
+            " number.\n\nNo params."
+        ),
+    )
+
+    SentrySetExitingState = Symbol(
+        [0x1598],
+        [0x238C218],
+        None,
+        (
+            "Sets the completion state to exiting, triggering the minigame to run its"
+            " exit sequence.\n\nNo params."
+        ),
+    )
+
+    SentryRunState = Symbol(
+        [0x16BC],
+        [0x238C33C],
+        None,
+        (
+            "Run the minigame according to the current game state, or handle the"
+            " transition to a new state if one has been set.\n\nThe game is implemented"
+            " using the state machine programming pattern. This function appears to"
+            " contain the top-level code for running a single 'turn' of the state"
+            " machine, although presumably there's a higher level game engine that's"
+            " calling this function in a loop somewhere.\n\nreturn: return code for the"
+            " engine driving the minigame? Seems like 1 to keep going and 4 to stop"
+        ),
+    )
+
+    SentrySetStateIntermediate = Symbol(
+        [0x2088],
+        [0x238CD08],
+        None,
+        (
+            "Queues up a new intermediate game state to transition to, where the"
+            " transition handler will be called immediately by SentryRunState after the"
+            " current state handler has returned.\n\nr0: new state"
+        ),
+    )
+
+    SentryState0 = Symbol([0x20A8], [0x238CD28], None, "No params.")
+
+    SentryState1 = Symbol([0x20CC], [0x238CD4C], None, "No params.")
+
+    SentryState2 = Symbol([0x2124], [0x238CDA4], None, "No params.")
+
+    SentryState3 = Symbol([0x2148], [0x238CDC8], None, "No params.")
+
+    SentryState4 = Symbol([0x2270], [0x238CEF0], None, "No params.")
+
+    SentryStateExit = Symbol(
+        None, None, None, "State 0x5: Exit (wraps SentrySetExitingState).\n\nNo params."
+    )
+
+    SentryState6 = Symbol([0x22A0], [0x238CF20], None, "No params.")
+
+    SentryState7 = Symbol(
+        [0x22C4],
+        [0x238CF44],
+        None,
+        (
+            "This state corresponds to when Loudred tells you the instructions for the"
+            " minigame (STRING_ID_SENTRY_INSTRUCTIONS).\n\nNo params."
+        ),
+    )
+
+    SentryState8 = Symbol([0x22DC], [0x238CF5C], None, "No params.")
+
+    SentryState9 = Symbol([0x2300], [0x238CF80], None, "No params.")
+
+    SentryStateA = Symbol(
+        [0x2324],
+        [0x238CFA4],
+        None,
+        (
+            "This state corresponds to when Loudred alerts you that someone is coming"
+            " (STRING_ID_SENTRY_HERE_COMES).\n\nNo params."
+        ),
+    )
+
+    SentryStateB = Symbol([0x233C], [0x238CFBC], None, "No params.")
+
+    SentryStateGenerateChoices = Symbol(
+        [0x2354],
+        [0x238CFD4],
+        None,
+        "State 0xC: Generate the four choices for a round.\n\nNo params.",
+    )
+
+    SentryStateGetUserChoice = Symbol(
+        [0x2954],
+        [0x238D5D4],
+        None,
+        "State 0xD: Wait for the player to select an answer.\n\nNo params.",
+    )
+
+    SentryStateFinalizeRound = Symbol(
+        [0x2E84],
+        [0x238DB04],
+        None,
+        (
+            "State 0xE: Deal with the bookkeeping after the player has made a final"
+            " choice for the round.\n\nThis includes things like incrementing the round"
+            " counter. It also appears to check the final point count on the last round"
+            " to determine the player's overall performance.\n\nNo params."
+        ),
+    )
+
+    SentryStateF = Symbol([0x31C8], [0x238DE48], None, "No params.")
+
+    SentryState10 = Symbol([0x31E0], [0x238DE60], None, "No params.")
+
+    SentryState11 = Symbol(
+        [0x3258],
+        [0x238DED8],
+        None,
+        (
+            "This state corresponds to when the partner tells you to try again after"
+            " the player makes a wrong selection for the first time"
+            " (STRING_ID_SENTRY_TRY_AGAIN).\n\nNo params."
+        ),
+    )
+
+    SentryState12 = Symbol([0x3270], [0x238DEF0], None, "No params.")
+
+    SentryState13 = Symbol(
+        [0x32A8],
+        [0x238DF28],
+        None,
+        (
+            "This state corresponds to when Loudred tells you that you're out of time"
+            " (STRING_ID_SENTRY_OUT_OF_TIME).\n\nNo params."
+        ),
+    )
+
+    SentryState14 = Symbol(
+        [0x32D0],
+        [0x238DF50],
+        None,
+        (
+            "This state corresponds to when the player is shouting their guess"
+            " (STRING_ID_SENTRY_FOOTPRINT_IS_6EE), and when Loudred tells the visitor"
+            " to come in (STRING_ID_SENTRY_COME_IN_6EF).\n\nNo params."
+        ),
+    )
+
+    SentryState15 = Symbol([0x32E8], [0x238DF68], None, "No params.")
+
+    SentryState16 = Symbol([0x3328], [0x238DFA8], None, "No params.")
+
+    SentryState17 = Symbol(
+        [0x3380],
+        [0x238E000],
+        None,
+        (
+            "This state corresponds to when Loudred tells the player that they chose"
+            " the wrong answer (STRING_ID_SENTRY_WRONG,"
+            " STRING_ID_SENTRY_BUCK_UP).\n\nNo params."
+        ),
+    )
+
+    SentryState18 = Symbol([0x33F8], [0x238E078], None, "No params.")
+
+    SentryState19 = Symbol(
+        [0x3430],
+        [0x238E0B0],
+        None,
+        (
+            "This state seems to be similar to state 0x14, when the player is shouting"
+            " their guess (STRING_ID_SENTRY_FOOTPRINT_IS_6EC), and when Loudred tells"
+            " the visitor to come in (STRING_ID_SENTRY_COME_IN_6ED), but used in a"
+            " different context (different state transitions to and from this"
+            " state).\n\nNo params."
+        ),
+    )
+
+    SentryState1A = Symbol([0x3448], [0x238E0C8], None, "No params.")
+
+    SentryStateFinalizePoints = Symbol(
+        [0x3488],
+        [0x238E108],
+        None,
+        (
+            "State 0x1B: Apply any modifiers to the player's point total, such as"
+            " granting 2000 bonus points for 100% correctness.\n\nNo params."
+        ),
+    )
+
+    SentryState1C = Symbol(
+        [0x3518],
+        [0x238E198],
+        None,
+        (
+            "This state corresponds to when Loudred tells the player that they chose"
+            " the correct answer ('Yep! Looks like you're right!').\n\nNo params."
+        ),
+    )
+
+    SentryState1D = Symbol([0x355C], [0x238E1DC], None, "No params.")
+
+    SentryState1E = Symbol(
+        [0x35C0],
+        [0x238E240],
+        None,
+        (
+            "This state corresponds to one of the possible dialogue options when you've"
+            " finished all the rounds (STRING_ID_SENTRY_KEEP_YOU_WAITING,"
+            " STRING_ID_SENTRY_THATLL_DO_IT).\n\nNo params."
+        ),
+    )
+
+    SentryState1F = Symbol([0x35D8], [0x238E258], None, "No params.")
+
+    SentryState20 = Symbol(
+        [0x3654],
+        [0x238E2D4],
+        None,
+        (
+            "This state corresponds to one of the possible dialogue options when you've"
+            " finished all the rounds (STRING_ID_SENTRY_NO_MORE_VISITORS,"
+            " STRING_ID_SENTRY_THATS_ALL).\n\nNo params."
+        ),
+    )
+
+    SentryState21 = Symbol([0x366C], [0x238E2EC], None, "No params.")
 
 
 class EuOverlay14Data:
+    SENTRY_DUTY_STRUCT_SIZE = Symbol(
+        None, None, None, "Number of bytes in the sentry duty struct (14548)."
+    )
+
+    SENTRY_LOUDRED_MONSTER_ID = Symbol(
+        None, None, None, "Monster ID for Loudred, used as the speaker ID for dialog."
+    )
+
+    STRING_ID_SENTRY_TOP_SESSIONS = Symbol(
+        None,
+        None,
+        None,
+        "String ID 0x6D9:\n Here are the rankings for the\ntop sentry sessions.",
+    )
+
+    STRING_ID_SENTRY_INSTRUCTIONS = Symbol(
+        None,
+        None,
+        None,
+        (
+            "String ID 0x6D8:\n Look at the footprint on the top\nscreen, OK? Then"
+            " identify the Pokémon![C]\n You can get only [CS:V]two wrong[CR],"
+            " OK?\n[partner] will keep an eye on things!"
+        ),
+    )
+
+    STRING_ID_SENTRY_HERE_COMES = Symbol(
+        None,
+        None,
+        None,
+        (
+            "String ID 0x6DA:\n Here comes a Pokémon! Check\nits footprint and tell me"
+            " what it is!"
+        ),
+    )
+
+    STRING_ID_SENTRY_WHOSE_FOOTPRINT = Symbol(
+        None, None, None, "String ID 0x6DB:\n Whose footprint is this?[W:60]"
+    )
+
+    STRING_ID_SENTRY_TRY_AGAIN = Symbol(
+        None, None, None, "String ID 0x6EB:\n Huh? I don't think so. Try again!"
+    )
+
+    STRING_ID_SENTRY_OUT_OF_TIME = Symbol(
+        None,
+        None,
+        None,
+        "String ID 0x6DC:\n [se_play:0][W:30]Out of time! Pick up the pace![W:75]",
+    )
+
+    STRING_ID_SENTRY_FOOTPRINT_IS_6EE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "String ID 0x6EE:\n The footprint is [kind:]'s!\nThe footprint is"
+            " [kind:]'s![W:60]"
+        ),
+    )
+
+    STRING_ID_SENTRY_COME_IN_6EF = Symbol(
+        None, None, None, "String ID 0x6EF:\n Heard ya! Come in, visitor![W:30]"
+    )
+
+    STRING_ID_SENTRY_WRONG = Symbol(
+        None,
+        None,
+        None,
+        "String ID 0x6F1:\n ......[se_play:0][W:30]Huh?! Looks wrong to me![W:50]",
+    )
+
+    STRING_ID_SENTRY_BUCK_UP = Symbol(
+        None,
+        None,
+        None,
+        (
+            "String ID 0x6F2 (and also used as Loudred's speaker ID after subtracting"
+            " 0x5B0):\n The correct answer is\n[kind:]! Buck up! And snap to"
+            " it![se_play:0][W:120]"
+        ),
+    )
+
+    STRING_ID_SENTRY_FOOTPRINT_IS_6EC = Symbol(
+        None,
+        None,
+        None,
+        (
+            "String ID 0x6EC:\n The footprint is [kind:]'s!\nThe footprint is"
+            " [kind:]'s![W:60]"
+        ),
+    )
+
+    STRING_ID_SENTRY_COME_IN_6ED = Symbol(
+        None, None, None, "String ID 0x6ED:\n Heard ya! Come in, visitor![W:30]"
+    )
+
+    STRING_ID_SENTRY_KEEP_YOU_WAITING = Symbol(
+        None, None, None, "String ID 0x6F3:\n [se_play:0]Sorry to keep you waiting."
+    )
+
+    STRING_ID_SENTRY_THATLL_DO_IT = Symbol(
+        None,
+        None,
+        None,
+        (
+            "String ID 0x6F4:\n [partner] and [hero]![C]\n That'll do it! Now get back"
+            " here!"
+        ),
+    )
+
+    SENTRY_CHATOT_MONSTER_ID = Symbol(
+        None, None, None, "Monster ID for Chatot, used as the speaker ID for dialog."
+    )
+
+    STRING_ID_SENTRY_NO_MORE_VISITORS = Symbol(
+        None,
+        None,
+        None,
+        "String ID 0x6F5:\n [se_play:0]No more visitors! No more\nvisitors! ♪",
+    )
+
+    STRING_ID_SENTRY_THATS_ALL = Symbol(
+        None,
+        None,
+        None,
+        (
+            "String ID 0x6F6:\n OK, got that![C]\n Hey, [partner] and\n[hero]![C]\n"
+            " That's all for today! Now get\nback here!"
+        ),
+    )
+
+    SENTRY_GROVYLE_MONSTER_ID = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Monster ID for Grovyle, which appears to be explicitly excluded when"
+            " generating species choices."
+        ),
+    )
+
     FOOTPRINT_DEBUG_MENU = Symbol([0x39C0], [0x238E640], 0x48, "")
+
+    SENTRY_DUTY_PTR = Symbol(None, None, None, "Pointer to the SENTRY_DUTY_STRUCT.")
+
+    SENTRY_DUTY_STATE_HANDLER_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Null-terminated table of handler functions for the different states in the"
+            " state machine. See SentryRunState.\n\ntype: state_handler_fn_t[35]"
+        ),
+    )
 
 
 class EuOverlay14Section:
@@ -16126,8 +16651,8 @@ class EuOverlay29Functions:
     )
 
     TeamMemberHasExclusiveItemEffectActive = Symbol(
-        None,
-        None,
+        [0x33734],
+        [0x23102B4],
         None,
         (
             "Checks if any team member is under the effects of a certain exclusive item"
@@ -17282,8 +17807,8 @@ class EuOverlay29Functions:
     )
 
     ShouldBoostKecleonShopSpawnChance = Symbol(
-        None,
-        None,
+        [0x5C510],
+        [0x2339090],
         None,
         (
             "Gets the boost_kecleon_shop_spawn_chance field on the dungeon"
@@ -17292,8 +17817,8 @@ class EuOverlay29Functions:
     )
 
     SetShouldBoostKecleonShopSpawnChance = Symbol(
-        None,
-        None,
+        [0x5C528],
+        [0x23390A8],
         None,
         (
             "Sets the boost_kecleon_shop_spawn_chance field on the dungeon struct to"
@@ -17302,8 +17827,8 @@ class EuOverlay29Functions:
     )
 
     UpdateShouldBoostKecleonShopSpawnChance = Symbol(
-        None,
-        None,
+        [0x5C540],
+        [0x23390C0],
         None,
         (
             "Sets the boost_kecleon_shop_spawn_chance field on the dungeon struct"
@@ -17340,8 +17865,8 @@ class EuOverlay29Functions:
     )
 
     UpdateShouldBoostHiddenStairsSpawnChance = Symbol(
-        None,
-        None,
+        [0x5C66C],
+        [0x23391EC],
         None,
         (
             "Sets the boost_hidden_stairs_spawn_chance field on the dungeon struct"
@@ -18127,8 +18652,8 @@ class EuOverlay29Functions:
     )
 
     ResetImportantSpawnPositions = Symbol(
-        None,
-        None,
+        [0x66CCC],
+        [0x234384C],
         None,
         (
             "Resets important spawn positions (the player, stairs, and hidden stairs)"
@@ -20544,6 +21069,8 @@ class EuRamData:
         "The amount of money the player currently has stored in the Duskull Bank.",
     )
 
+    DIALOG_BOX_LIST = Symbol(None, None, None, "Array of allocated dialog box structs.")
+
     LAST_NEW_MOVE = Symbol(
         [0x2AB78C],
         [0x22AB78C],
@@ -20675,6 +21202,8 @@ class EuRamData:
             " while the game is running."
         ),
     )
+
+    SENTRY_DUTY_STRUCT = Symbol(None, None, None, "")
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(
         [0x37D5A6],

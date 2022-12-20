@@ -1423,7 +1423,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    FindWanTableEntry: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetLoadedWanTableEntry: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadWanTableEntry: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1543,6 +1553,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    PreprocessStringFromMessageId: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitPreprocessorArgs: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SetStringAccuracy: Symbol[
         Optional[List[int]],
         None,
@@ -1624,6 +1644,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     SetBothScreensWindowsColor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetDialogBoxField0xC: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3470,6 +3495,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DIALOG_BOX_LIST_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SCRIPT_VARS_VALUES_PTR: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -3815,7 +3845,7 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    SENTRY_MINIGAME_DATA: Symbol[
+    SENTRY_DUTY_MONSTER_IDS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6941,6 +6971,41 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetAnimDataFields: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetAnimDataFieldsWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitAnimDataFromOtherAnimData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetAnimDataFields2: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadObjectAnimData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitAnimDataFromOtherAnimDataVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AnimRelatedFunction: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SprintfStatic: Symbol[
         Optional[List[int]],
         None,
@@ -7238,11 +7303,314 @@ Overlay13Protocol = SectionProtocol[
 
 
 class Overlay14FunctionsProtocol(Protocol):
-    pass
+    SentrySetupState: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryUpdateDisplay: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentrySetExitingState: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryRunState: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentrySetStateIntermediate: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState0: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState1: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState2: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState3: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState4: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryStateExit: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState6: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState7: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState8: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState9: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryStateA: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryStateB: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryStateGenerateChoices: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryStateGetUserChoice: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryStateFinalizeRound: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryStateF: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState10: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState11: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState12: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState13: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState14: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState15: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState16: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState17: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState18: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState19: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState1A: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryStateFinalizePoints: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState1C: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState1D: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState1E: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState1F: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState20: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SentryState21: Symbol[
+        Optional[List[int]],
+        None,
+    ]
 
 
 class Overlay14DataProtocol(Protocol):
+    SENTRY_DUTY_STRUCT_SIZE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SENTRY_LOUDRED_MONSTER_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_TOP_SESSIONS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_INSTRUCTIONS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_HERE_COMES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_WHOSE_FOOTPRINT: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_TRY_AGAIN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_OUT_OF_TIME: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_FOOTPRINT_IS_6EE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_COME_IN_6EF: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_WRONG: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_BUCK_UP: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_FOOTPRINT_IS_6EC: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_COME_IN_6ED: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_KEEP_YOU_WAITING: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_THATLL_DO_IT: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SENTRY_CHATOT_MONSTER_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_NO_MORE_VISITORS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_ID_SENTRY_THATS_ALL: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SENTRY_GROVYLE_MONSTER_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     FOOTPRINT_DEBUG_MENU: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SENTRY_DUTY_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SENTRY_DUTY_STATE_HANDLER_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -11706,6 +12074,11 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
+    DIALOG_BOX_LIST: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     LAST_NEW_MOVE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -11762,6 +12135,11 @@ class RamDataProtocol(Protocol):
     ]
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SENTRY_DUTY_STRUCT: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
