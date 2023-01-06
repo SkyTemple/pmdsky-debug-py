@@ -937,16 +937,16 @@ class NaArm9Functions:
         ),
     )
 
-    GetFaintReason = Symbol(
+    GetDamageSource = Symbol(
         [0xCA54],
         [0x200CA54],
         None,
         (
-            "Gets the faint reason code (see HandleFaint) for a given move-item"
-            " combination.\n\nIf there's no item, the reason code is the move ID. If"
-            " the item is an orb, return FAINT_REASON_ORB_ITEM. Otherwise, return"
-            " FAINT_REASON_NON_ORB_ITEM.\n\nr0: move ID\nr1: item ID\nreturn: faint"
-            " reason"
+            "Gets the damage source for a given move-item combination.\n\nIf there's no"
+            " item, the source is the move ID. If the item is an orb, return"
+            " DAMAGE_SOURCE_ORB_ITEM. Otherwise, return"
+            " DAMAGE_SOURCE_NON_ORB_ITEM.\n\nr0: move ID\nr1: item ID\nreturn: damage"
+            " source"
         ),
     )
 
@@ -2940,6 +2940,17 @@ class NaArm9Functions:
         ),
     )
 
+    CopyStringFromMessageId = Symbol(
+        [0x2590C],
+        [0x202590C],
+        None,
+        (
+            "Gets the string corresponding to a given message ID and copies it to the"
+            " buffer specified in r0.\n\nThis function won't write more than <buffer"
+            " length> bytes.\n\nr0: Buffer\nr1: String ID\nr2: Buffer length"
+        ),
+    )
+
     LoadTblTalk = Symbol(
         [0x2593C],
         [0x202593C],
@@ -3189,6 +3200,18 @@ class NaArm9Functions:
         [0x20402C0],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    PrintIqSkillsMenu = Symbol(
+        [0x41A40],
+        [0x2041A40],
+        None,
+        (
+            "Draws the IQ skills menu for a certain monster.\n\nr0: Monster"
+            " species\nr1: Pointer to bitarray where the enabled skills will be written"
+            " when enabling or disabling them in the menu\nr2: Monster IQ\nr3: True if"
+            " the monster is blinded"
+        ),
     )
 
     GetNotifyNote = Symbol(
@@ -5472,6 +5495,64 @@ class NaArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nr0: dungeon ID",
     )
 
+    CanLearnIqSkill = Symbol(
+        [0x58CD8],
+        [0x2058CD8],
+        None,
+        (
+            "Returns whether an IQ skill can be learned with a given IQ amount or"
+            " not.\n\nIf the specified amount is 0, it always returns false.\n\nr0: IQ"
+            " amount\nr1: IQ skill\nreturn: True if the specified skill can be learned"
+            " with the specified IQ amount."
+        ),
+    )
+
+    GetLearnableIqSkills = Symbol(
+        [0x58D04],
+        [0x2058D04],
+        None,
+        (
+            "Determines the list of IQ skills that a given monster can learn given its"
+            " IQ value.\n\nThe list of skills is written in the array specified in r0."
+            " The array has 69 slots in total. Unused slots are set to 0.\n\nr0:"
+            " (output) Array where the list of skills will be written\nr1: Monster"
+            " species\nr2: Monster IQ\nreturn: Amount of skills written to the output"
+            " array"
+        ),
+    )
+
+    DisableIqSkill = Symbol(
+        [0x58DA4],
+        [0x2058DA4],
+        None,
+        (
+            "Disables an IQ skill.\n\nr0: Pointer to the bitarray containing the list"
+            " of enabled IQ skills\nr1: ID of the skill to disable"
+        ),
+    )
+
+    EnableIqSkill = Symbol(
+        [0x58DF4],
+        [0x2058DF4],
+        None,
+        (
+            "Enables an IQ skill and disables any other skills that are incompatible"
+            " with it.\n\nr0: Pointer to the bitarray containing the list of enabled IQ"
+            " skills\nr1: ID of the skill to enable"
+        ),
+    )
+
+    GetSpeciesIqSkill = Symbol(
+        [0x58E68],
+        [0x2058E68],
+        None,
+        (
+            "Gets the <index>th skill on the list of IQ skills that a given monster"
+            " species can learn.\n\nr0: Species ID\nr1: Index (starting at 0)\nreturn:"
+            " IQ skill ID"
+        ),
+    )
+
     IqSkillFlagTest = Symbol(
         [0x58F04],
         [0x2058F04],
@@ -5479,6 +5560,19 @@ class NaArm9Functions:
         (
             "Tests whether an IQ skill with a given ID is active.\n\nr0: IQ skill"
             " bitvector to test\nr1: IQ skill ID\nreturn: bool"
+        ),
+    )
+
+    GetNextIqSkill = Symbol(
+        [0x58F24],
+        [0x2058F24],
+        None,
+        (
+            "Returns the next IQ skill that a given monster will learn given its"
+            " current IQ value, or IQ_NONE if the monster won't learn any more"
+            " skills.\n\nr0: Monster ID\nr1: Monster IQ\nreturn: ID of the next skill"
+            " learned by the monster, or IQ_NONE if the monster won't learn any more"
+            " skills."
         ),
     )
 
@@ -6370,18 +6464,18 @@ class NaArm9Data:
         "Length in bytes of the default memory allocation arena, 1991680.",
     )
 
-    FAINT_REASON_CODE_ORB_ITEM = Symbol(
+    DAMAGE_SOURCE_CODE_ORB_ITEM = Symbol(
         [0xCA84],
         [0x200CA84],
         None,
-        "The faint reason code for any item in CATEGORY_ORBS, 0x262.",
+        "The damage source value for any item in CATEGORY_ORBS, 0x262.",
     )
 
-    FAINT_REASON_CODE_NON_ORB_ITEM = Symbol(
+    DAMAGE_SOURCE_CODE_NON_ORB_ITEM = Symbol(
         [0xCA88],
         [0x200CA88],
         None,
-        "The faint reason code for any item not in CATEGORY_ORBS, 0x263.",
+        "The damage source value for any item not in CATEGORY_ORBS, 0x263.",
     )
 
     AURA_BOW_ID_LAST = Symbol(
@@ -11768,7 +11862,14 @@ class NaOverlay10Data:
         [0x7B0C],
         [0x22C458C],
         0x2,
-        "The percentage increase in experience from exp-boosting exclusive items",
+        "The percentage increase in experience from exp-boosting exclusive items.",
+    )
+
+    AFTERMATH_CHANCE = Symbol(
+        [0x7B14],
+        [0x22C4594],
+        0x2,
+        "The chance of the Aftermath ability activating, as a percentage (50%).",
     )
 
     INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
@@ -15004,6 +15105,20 @@ class NaOverlay29Functions:
         ),
     )
 
+    CanSeeTarget = Symbol(
+        [0x650C],
+        [0x22E274C],
+        None,
+        (
+            "Checks if a given monster can see another monster.\n\nCalls"
+            " IsPositionActuallyInSight. Also checks if the user is blinded, if the"
+            " target is invisible, etc.\nThis function is almost the same as"
+            " CanTargetEntity, the only difference is that the latter calls"
+            " IsPositionInSight instead.\n\nr0: User entity pointer\nr1: Target entity"
+            " pointer\nreturn: True if the user can see the target, false otherwise"
+        ),
+    )
+
     CanTargetEntity = Symbol(
         [0x65D0],
         [0x22E2810],
@@ -15014,8 +15129,10 @@ class NaOverlay29Functions:
             " can see invisible monsters, if the user is blinded and if the target"
             " position is in sight from the position of the user (this last check is"
             " done by calling IsPositionInSight with the user's and the target's"
-            " position).\n\nr0: User entity pointer\nr1: Target entity pointer\nreturn:"
-            " True if the user can target the target"
+            " position).\nThis function is almost the same as CanSeeTarget, the only"
+            " difference is that the latter calls IsPositionActuallyInSight"
+            " instead.\n\nr0: User entity pointer\nr1: Target entity pointer\nreturn:"
+            " True if the user can target the target, false otherwise"
         ),
     )
 
@@ -15129,6 +15246,17 @@ class NaOverlay29Functions:
         ),
     )
 
+    GetVisibilityRange = Symbol(
+        [0x70FC],
+        [0x22E333C],
+        None,
+        (
+            "Returns dungeon::display_data::visibility_range. If the visibility range"
+            " is 0, returns 2 instead.\n\nreturn: Visibility range of the current"
+            " floor, or 2 if the visibility is 0."
+        ),
+    )
+
     UpdateStatusIconFlags = Symbol(
         [0x7874],
         [0x22E3AB4],
@@ -15143,6 +15271,16 @@ class NaOverlay29Functions:
             " statuses::exposed, statuses::grudge, critical HP and lowered stats with"
             " explicit checks, and applies the effect of the Identifier Orb (see"
             " dungeon::identify_orb_flag).\n\nr0: entity pointer"
+        ),
+    )
+
+    ShowPpRestoreEffect = Symbol(
+        [0x8724],
+        [0x22E4964],
+        None,
+        (
+            "Displays the graphical effect on a monster that just recovered PP.\n\nr0:"
+            " entity pointer"
         ),
     )
 
@@ -15217,6 +15355,22 @@ class NaOverlay29Functions:
         ),
     )
 
+    IsPositionActuallyInSight = Symbol(
+        [0xCE8C],
+        [0x22E90CC],
+        None,
+        (
+            "Checks if a given target position is in sight from a given origin"
+            " position.\nIf the origin position is on a hallway or r2 is true, checks"
+            " if both positions are within <dungeon::display_data::visibility_range>"
+            " tiles of each other.\nIf the origin position is on a room, checks that"
+            " the target position is within the boundaries of said room.\n\nr0: Origin"
+            " position\nr1: Target position\nr2: True to assume the entity standing on"
+            " the origin position has the dropeye status\nreturn: True if the target"
+            " position is in sight from the origin position"
+        ),
+    )
+
     IsPositionInSight = Symbol(
         [0xCF64],
         [0x22E91A4],
@@ -15224,11 +15378,12 @@ class NaOverlay29Functions:
         (
             "Checks if a given target position is in sight from a given origin"
             " position.\nThere's multiple factors that affect this check, but"
-            " generally, it's true if both positions are in the same room or within 2"
-            " tiles of each other.\n\nr0: Origin position\nr1: Target position\nr2:"
-            " True to assume the entity standing on the origin position has the dropeye"
-            " status\nreturn: True if the target position is in sight from the origin"
-            " position"
+            " generally, it's true if both positions are in the same room (by checking"
+            " if the target position is within the boundaries of the room where the"
+            " origin position is) or within 2 tiles of each other.\n\nr0: Origin"
+            " position\nr1: Target position\nr2: True to assume the entity standing on"
+            " the origin position has the dropeye status\nreturn: True if the target"
+            " position is in sight from the origin position"
         ),
     )
 
@@ -15651,6 +15806,17 @@ class NaOverlay29Functions:
         ),
     )
 
+    DebugRecruitingEnabled = Symbol(
+        [0x1382C],
+        [0x22EFA6C],
+        None,
+        (
+            "Always returns true. Called by SpecificRecruitCheck.\n\nSeems to be a"
+            " function used during development to disable recruiting. If it returns"
+            " false, SpecificRecruitCheck will also return false.\n\nreturn: true"
+        ),
+    )
+
     GetLeaderAction = Symbol(
         [0x1494C],
         [0x22F0B8C],
@@ -15820,8 +15986,8 @@ class NaOverlay29Functions:
         None,
         (
             "Handles a fainted pokémon (reviving does not count as fainting).\n\nr0:"
-            " Fainted entity\nr1: Faint reason (move ID or greater than the max move id"
-            " for other causes)\nr2: Entity responsible of the fainting"
+            " Fainted entity\nr1: Damage source (move ID or greater than the max move"
+            " id for other causes)\nr2: Entity responsible of the fainting"
         ),
     )
 
@@ -16404,6 +16570,21 @@ class NaOverlay29Functions:
         ),
     )
 
+    UpdateIqSkills = Symbol(
+        [0x25D7C],
+        [0x2301FBC],
+        None,
+        (
+            "Updates the IQ skill flags of a monster.\n\nIf the monster is a team"
+            " member, copies monster::iq_skill_menu_flags to monster::iq_skill_flags."
+            " If the monster is an enemy, enables all the IQ skills it can learn"
+            " (except a few that are only enabled in enemies that have a certain amount"
+            " of IQ).\nIf the monster is an enemy, it also sets its tactic to"
+            " TACTIC_GO_AFTER_FOES.\nCalled after exiting the IQ skills menu or after"
+            " an enemy spawns.\n\nr0: monster pointer"
+        ),
+    )
+
     GetMoveTypeForMonster = Symbol(
         [0x2603C],
         [0x230227C],
@@ -16554,9 +16735,21 @@ class NaOverlay29Functions:
             " additional checks related to printing fainting messages under specific"
             " circumstances.\n\nr0: Attacker pointer\nr1: Defender pointer\nr2: Pointer"
             " to the damage_data struct that contains info about the damage to"
-            " deal\nr3: ?\nstack[0]: ?\nstack[1]: Faint reason (see"
-            " HandleFaint)\nreturn: True if the target fainted (reviving does not count"
-            " as fainting)"
+            " deal\nr3: ?\nstack[0]: ?\nstack[1]: Damage source\nreturn: True if the"
+            " target fainted (reviving does not count as fainting)"
+        ),
+    )
+
+    AftermathCheck = Symbol(
+        [0x2E7CC],
+        [0x230AA0C],
+        None,
+        (
+            "Checks if the defender has the Aftermath ability and tries to activate it"
+            " if so (50% chance).\n\nThe ability won't trigger if the damage source is"
+            " DAMAGE_SOURCE_EXPLOSION.\n\nr0: Attacker pointer\nr1: Defender"
+            " pointer\nr2: Damage source\nreturn: True if Aftermath was activated,"
+            " false if it wasn't"
         ),
     )
 
@@ -16614,7 +16807,7 @@ class NaOverlay29Functions:
             " entity pointer\nr1: fixed damage\nr2: ?\nr3: [output] struct containing"
             " info about the damage calculation\nstack[0]: move ID (interestingly, this"
             " doesn't seem to be used by the function)\nstack[1]: attack"
-            " type\nstack[2]: ?\nstack[3]: message type\nothers: ?"
+            " type\nstack[2]: damage source\nstack[3]: damage message\nothers: ?"
         ),
     )
 
@@ -16626,8 +16819,8 @@ class NaOverlay29Functions:
             "Appears to calculate damage from a fixed-damage effect.\n\nr0: attacker"
             " pointer\nr1: defender pointer\nr2: fixed damage\nr3: ?\nstack[0]:"
             " [output] struct containing info about the damage calculation\nstack[1]:"
-            " attack type\nstack[2]: move category\nstack[3]: ?\nstack[4]: message"
-            " type\nothers: ?"
+            " attack type\nstack[2]: move category\nstack[3]: damage source\nstack[4]:"
+            " damage message\nothers: ?"
         ),
     )
 
@@ -16639,7 +16832,8 @@ class NaOverlay29Functions:
             "A wrapper around CalcDamageFixed with the move category set to"
             " none.\n\nr0: attacker pointer\nr1: defender pointer\nr2: fixed"
             " damage\nstack[0]: [output] struct containing info about the damage"
-            " calculation\nstack[1]: attack type\nothers: ?"
+            " calculation\nstack[1]: attack type\nstack[2]: damage source\nstack[3]:"
+            " damage message\nothers: ?"
         ),
     )
 
@@ -16651,7 +16845,7 @@ class NaOverlay29Functions:
             "A wrapper around CalcDamageFixed.\n\nr0: attacker pointer\nr1: defender"
             " pointer\nr2: fixed damage\nstack[0]: [output] struct containing info"
             " about the damage calculation\nstack[1]: attack type\nstack[2]: move"
-            " category\nothers: ?"
+            " category\nstack[3]: damage source\nstack[4]: damage message\nothers: ?"
         ),
     )
 
@@ -16665,13 +16859,41 @@ class NaOverlay29Functions:
         ),
     )
 
-    IsRecruited = Symbol(
+    SpecificRecruitCheck = Symbol(
+        [0x318D4],
+        [0x230DB14],
+        None,
+        (
+            "Checks if a specific monster can be recruited. Called by"
+            " RecruitCheck.\n\nWill return false if dungeon::recruiting_enabled is"
+            " false, if the monster is Mew and dungeon::dungeon_objective is"
+            " OBJECTIVE_RESCUE or if the monster is any of the special Deoxys forms or"
+            " any of the 3 regis.\nIf this function returns false, RecruitCheck will"
+            " return false as well.\n\nr0: Monster ID\nreturn: True if the monster can"
+            " be recruited"
+        ),
+    )
+
+    RecruitCheck = Symbol(
         [0x31990],
         [0x230DBD0],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity"
-            " pointer\nr1: target entity pointer\nreturn: bool"
+            "Determines if a defeated enemy will attempt to join the team\n\nr0: user"
+            " entity pointer\nr1: target entity pointer\nreturn: True if the target"
+            " will attempt to join the team"
+        ),
+    )
+
+    TryRecruit = Symbol(
+        [0x31E24],
+        [0x230E064],
+        None,
+        (
+            "Asks the player if they would like to recruit the enemy that was just"
+            " defeated and handles the recruitment if they accept.\n\nr0: user entity"
+            " pointer\nr1: monster to recruit entity pointer\nreturn: True if the"
+            " monster was recruited, false if it wasn't"
         ),
     )
 
@@ -17397,6 +17619,18 @@ class NaOverlay29Functions:
         ),
     )
 
+    ShouldUsePp = Symbol(
+        [0x3E560],
+        [0x231A7A0],
+        None,
+        (
+            "Checks if a monster should use PP when using a move. It also displays the"
+            " corresponding animation if PP Saver triggers and prints the required"
+            " messages to the message log.\n\nr0: entity pointer\nreturn: True if the"
+            " monster should not use PP, false if it should."
+        ),
+    )
+
     GetEntityMoveTargetAndRange = Symbol(
         [0x3EA6C],
         [0x231ACAC],
@@ -17500,6 +17734,19 @@ class NaOverlay29Functions:
         (
             "Blows away the target monster in a given direction if possible.\n\nr0:"
             " user entity pointer\nr1: target entity pointer\nr2: direction ID"
+        ),
+    )
+
+    TryExplosion = Symbol(
+        [0x44548],
+        [0x2320788],
+        None,
+        (
+            "Creates an explosion if possible.\n\nThe target monster is considered the"
+            " source of the explosion.\n\nr0: user entity pointer\nr1: target entity"
+            " pointer\nr2: coordinates where the explosion should take place"
+            " (unverified)\nr3: ?\nstack[0]: ?\nstack[1]: damage source (normally"
+            " DAMAGE_SOURCE_EXPLOSION)"
         ),
     )
 
@@ -17622,13 +17869,13 @@ class NaOverlay29Functions:
         ),
     )
 
-    GetFaintReasonWrapper = Symbol(
+    GetDamageSourceWrapper = Symbol(
         [0x48C04],
         [0x2324E44],
         None,
         (
-            "Wraps GetFaintReason (in arm9) for a move info struct rather than a move"
-            " ID.\n\nr0: move info pointer\nr1: item ID\nreturn: faint reason"
+            "Wraps GetDamageSource (in arm9) for a move info struct rather than a move"
+            " ID.\n\nr0: move info pointer\nr1: item ID\nreturn: damage source"
         ),
     )
 
@@ -17727,7 +17974,7 @@ class NaOverlay29Functions:
             " the move. The result of this call is the return value of DealDamage."
             " \n\nr0: Attacker pointer\nr1: Defender pointer\nr2: Move pointer\nr3:"
             " [output] struct containing info about the damage calculation\nstack[0]:"
-            " Faint reason (see HandleFaint)\nreturn: Calculated damage"
+            " Damage source\nreturn: Calculated damage"
         ),
     )
 

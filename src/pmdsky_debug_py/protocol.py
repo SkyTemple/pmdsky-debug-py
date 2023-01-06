@@ -483,7 +483,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetFaintReason: Symbol[
+    GetDamageSource: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1628,6 +1628,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CopyStringFromMessageId: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     LoadTblTalk: Symbol[
         Optional[List[int]],
         None,
@@ -1774,6 +1779,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     PrintMoveOptionMenu: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PrintIqSkillsMenu: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3028,7 +3038,37 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CanLearnIqSkill: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetLearnableIqSkills: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DisableIqSkill: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EnableIqSkill: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetSpeciesIqSkill: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IqSkillFlagTest: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetNextIqSkill: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3465,12 +3505,12 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    FAINT_REASON_CODE_ORB_ITEM: Symbol[
+    DAMAGE_SOURCE_CODE_ORB_ITEM: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    FAINT_REASON_CODE_NON_ORB_ITEM: Symbol[
+    DAMAGE_SOURCE_CODE_NON_ORB_ITEM: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -6412,6 +6452,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    AFTERMATH_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     INTIMIDATOR_ACTIVATION_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -9056,6 +9101,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CanSeeTarget: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     CanTargetEntity: Symbol[
         Optional[List[int]],
         None,
@@ -9096,7 +9146,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetVisibilityRange: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     UpdateStatusIconFlags: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ShowPpRestoreEffect: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9127,6 +9187,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetChebyshevDistance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsPositionActuallyInSight: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9307,6 +9372,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SpawnEnemyTrapAtPos: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DebugRecruitingEnabled: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9636,6 +9706,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    UpdateIqSkills: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetMoveTypeForMonster: Symbol[
         Optional[List[int]],
         None,
@@ -9701,6 +9776,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    AftermathCheck: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetTypeMatchupBothTypes: Symbol[
         Optional[List[int]],
         None,
@@ -9741,7 +9821,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    IsRecruited: Symbol[
+    SpecificRecruitCheck: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    RecruitCheck: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryRecruit: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10056,6 +10146,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ShouldUsePp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetEntityMoveTargetAndRange: Symbol[
         Optional[List[int]],
         None,
@@ -10106,6 +10201,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryExplosion: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TryWarp: Symbol[
         Optional[List[int]],
         None,
@@ -10151,7 +10251,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetFaintReasonWrapper: Symbol[
+    GetDamageSourceWrapper: Symbol[
         Optional[List[int]],
         None,
     ]
