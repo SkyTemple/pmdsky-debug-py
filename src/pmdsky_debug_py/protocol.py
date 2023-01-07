@@ -9561,6 +9561,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    AreEntitiesAdjacent: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsSpecialStoryAlly: Symbol[
         Optional[List[int]],
         None,

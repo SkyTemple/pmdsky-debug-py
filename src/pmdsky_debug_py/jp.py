@@ -15941,6 +15941,17 @@ class JpOverlay29Functions:
         ),
     )
 
+    AreEntitiesAdjacent = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks whether two entities are adjacent or not.\n\nThe function checks"
+            " all 8 possible directions.\n\nr0: First entity\nr1: Second"
+            " entity\nreturn: True if both entities are adjacent, false otherwise."
+        ),
+    )
+
     IsSpecialStoryAlly = Symbol(
         [0x1F6C4],
         [0x22FCFA4],

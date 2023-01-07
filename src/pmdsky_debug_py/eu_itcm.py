@@ -15678,6 +15678,17 @@ class EuItcmOverlay29Functions:
         ),
     )
 
+    AreEntitiesAdjacent = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks whether two entities are adjacent or not.\n\nThe function checks"
+            " all 8 possible directions.\n\nr0: First entity\nr1: Second"
+            " entity\nreturn: True if both entities are adjacent, false otherwise."
+        ),
+    )
+
     IsSpecialStoryAlly = Symbol(
         None,
         None,
