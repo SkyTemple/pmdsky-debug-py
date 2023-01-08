@@ -237,6 +237,17 @@ class JpArm9Functions:
         ),
     )
 
+    UFixedPoint64CmpLt = Symbol(
+        [0x1A30],
+        [0x2001A30],
+        None,
+        (
+            "Compares two unsigned 64-bit fixed-point numbers (16 fraction bits) x and"
+            " y.\n\nr0: upper 32 bits of x\nr1: lower 32 bits of x\nr2: upper 32 bits"
+            " of y\nr3: lower 32 bits of y\nreturn: x < y"
+        ),
+    )
+
     MultiplyByFixedPoint = Symbol(
         [0x1A54],
         [0x2001A54],
@@ -255,6 +266,146 @@ class JpArm9Functions:
             "Multiplies an unsigned integer x by an unsigned binary fixed-point"
             " multiplier (8 fraction bits).\n\nr0: x\nr1: multiplier\nreturn: x *"
             " multiplier"
+        ),
+    )
+
+    IntToFixedPoint64 = Symbol(
+        [0x1C80],
+        [0x2001C80],
+        None,
+        (
+            "Converts a signed integer to a 64-bit fixed-point number (16 fraction"
+            " bits).\n\nNote that this function appears to be bugged: it appears to try"
+            " to sign-extend if the input is negative, but in a nonsensical way,"
+            " checking the sign bit for a 16-bit signed integer, but then doing the"
+            " sign extension as if the input were a 32-bit signed integer.\n\nr0:"
+            " [output] 64-bit fixed-point number\nr1: 32-bit signed int"
+        ),
+    )
+
+    FixedPoint64ToInt = Symbol(
+        [0x1CB0],
+        [0x2001CB0],
+        None,
+        (
+            "Converts a 64-bit fixed-point number (16 fraction bits) to a signed"
+            " integer.\n\nr0: 64-bit fixed-point number\nreturn: 32-bit signed"
+        ),
+    )
+
+    FixedPoint32To64 = Symbol(
+        [0x1CD4],
+        [0x2001CD4],
+        None,
+        (
+            "Converts a 32-bit fixed-point number (8 fraction bits) to a 64-bit fixed"
+            " point number (16 fraction bits). Sign-extends as necessary.\n\nr0:"
+            " [output] 64-bit fixed-point number\nr1: 32-bit signed fixed-point number"
+        ),
+    )
+
+    NegateFixedPoint64 = Symbol(
+        [0x1CF8],
+        [0x2001CF8],
+        None,
+        (
+            "Negates a 64-bit fixed-point number (16 fraction bits) in-place.\n\nr0:"
+            " 64-bit fixed-point number to negate"
+        ),
+    )
+
+    FixedPoint64IsZero = Symbol(
+        [0x1D28],
+        [0x2001D28],
+        None,
+        (
+            "Checks whether a 64-bit fixed-point number (16 fraction bits) is"
+            " zero.\n\nr0: 64-bit fixed-point number\nreturn: bool"
+        ),
+    )
+
+    FixedPoint64IsNegative = Symbol(
+        [0x1D50],
+        [0x2001D50],
+        None,
+        (
+            "Checks whether a 64-bit fixed-point number (16 fraction bits) is"
+            " negative.\n\nr0: 64-bit fixed-point number\nreturn: bool"
+        ),
+    )
+
+    FixedPoint64CmpLt = Symbol(
+        [0x1D68],
+        [0x2001D68],
+        None,
+        (
+            "Compares two signed 64-bit fixed-point numbers (16 fraction bits) x and"
+            " y.\n\nr0: x\nr1: y\nreturn: x < y"
+        ),
+    )
+
+    MultiplyFixedPoint64 = Symbol(
+        [0x1DF4],
+        [0x2001DF4],
+        None,
+        (
+            "Multiplies two signed 64-bit fixed-point numbers (16 fraction bits) x and"
+            " y.\n\nr0: [output] product (x * y)\nr1: x\nr2: y"
+        ),
+    )
+
+    DivideFixedPoint64 = Symbol(
+        [0x1EC8],
+        [0x2001EC8],
+        None,
+        (
+            "Divides two signed 64-bit fixed-point numbers (16 fraction"
+            " bits).\n\nReturns the maximum positive value ((INT64_MAX >> 16) +"
+            " (UINT16_MAX * 2^-16)) if the divisor is zero.\n\nr0: [output] quotient"
+            " (dividend / divisor)\nr1: dividend\nr2: divisor"
+        ),
+    )
+
+    UMultiplyFixedPoint64 = Symbol(
+        [0x1FA0],
+        [0x2001FA0],
+        None,
+        (
+            "Multiplies two unsigned 64-bit fixed-point numbers (16 fraction bits) x"
+            " and y.\n\nr0: [output] product (x * y)\nr1: x\nr2: y"
+        ),
+    )
+
+    UDivideFixedPoint64 = Symbol(
+        [0x2084],
+        [0x2002084],
+        None,
+        (
+            "Divides two unsigned 64-bit fixed-point numbers (16 fraction"
+            " bits).\n\nReturns the maximum positive value for a signed fixed-point"
+            " number ((INT64_MAX >> 16) + (UINT16_MAX * 2^-16)) if the divisor is"
+            " zero.\n\nr0: [output] quotient (dividend / divisor)\nr1: dividend\nr2:"
+            " divisor"
+        ),
+    )
+
+    AddFixedPoint64 = Symbol(
+        [0x21C8],
+        [0x20021C8],
+        None,
+        (
+            "Adds two 64-bit fixed-point numbers (16 fraction bits) x and y.\n\nr0:"
+            " [output] sum (x + y)\nr1: x\nr2: y"
+        ),
+    )
+
+    ClampedLn = Symbol(
+        [0x21F4],
+        [0x20021F4],
+        None,
+        (
+            "The natural log function over the domain of [1, 2047]. The input is"
+            " clamped to this domain.\n\nr0: [output] ln(x)\nr1: x"
         ),
     )
 
@@ -2939,8 +3090,8 @@ class JpArm9Functions:
     )
 
     CopyStringFromMessageId = Symbol(
-        None,
-        None,
+        [0x258EC],
+        [0x20258EC],
         None,
         (
             "Gets the string corresponding to a given message ID and copies it to the"
@@ -3201,8 +3352,8 @@ class JpArm9Functions:
     )
 
     PrintIqSkillsMenu = Symbol(
-        None,
-        None,
+        [0x41DA8],
+        [0x2041DA8],
         None,
         (
             "Draws the IQ skills menu for a certain monster.\n\nr0: Monster"
@@ -4793,13 +4944,13 @@ class JpArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nr0: id\nreturn: speed status",
     )
 
-    GetMovementType = Symbol(
+    GetMobilityType = Symbol(
         [0x52BAC],
         [0x2052BAC],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: id\nreturn: movement"
-            " type"
+            "Gets the mobility type for a given monster.\n\nr0: monster ID\nreturn:"
+            " mobility type"
         ),
     )
 
@@ -5494,8 +5645,8 @@ class JpArm9Functions:
     )
 
     CanLearnIqSkill = Symbol(
-        None,
-        None,
+        [0x58FD4],
+        [0x2058FD4],
         None,
         (
             "Returns whether an IQ skill can be learned with a given IQ amount or"
@@ -5506,8 +5657,8 @@ class JpArm9Functions:
     )
 
     GetLearnableIqSkills = Symbol(
-        None,
-        None,
+        [0x59000],
+        [0x2059000],
         None,
         (
             "Determines the list of IQ skills that a given monster can learn given its"
@@ -5520,8 +5671,8 @@ class JpArm9Functions:
     )
 
     DisableIqSkill = Symbol(
-        None,
-        None,
+        [0x590A0],
+        [0x20590A0],
         None,
         (
             "Disables an IQ skill.\n\nr0: Pointer to the bitarray containing the list"
@@ -5530,8 +5681,8 @@ class JpArm9Functions:
     )
 
     EnableIqSkill = Symbol(
-        None,
-        None,
+        [0x590F0],
+        [0x20590F0],
         None,
         (
             "Enables an IQ skill and disables any other skills that are incompatible"
@@ -5541,8 +5692,8 @@ class JpArm9Functions:
     )
 
     GetSpeciesIqSkill = Symbol(
-        None,
-        None,
+        [0x59164],
+        [0x2059164],
         None,
         (
             "Gets the <index>th skill on the list of IQ skills that a given monster"
@@ -5562,8 +5713,8 @@ class JpArm9Functions:
     )
 
     GetNextIqSkill = Symbol(
-        None,
-        None,
+        [0x59220],
+        [0x2059220],
         None,
         (
             "Returns the next IQ skill that a given monster will learn given its"
@@ -6462,6 +6613,10 @@ class JpArm9Data:
         "Length in bytes of the default memory allocation arena, 1991680.",
     )
 
+    LOG_MAX_ARG = Symbol(
+        None, None, None, "The maximum argument value for the Log function, 2047."
+    )
+
     DAMAGE_SOURCE_CODE_ORB_ITEM = Symbol(
         None,
         None,
@@ -6511,6 +6666,21 @@ class JpArm9Data:
             "555, appears to be the maximum number of members recruited to an"
             " exploration team, at least for the purposes of some checks that need to"
             " iterate over all team members."
+        ),
+    )
+
+    NATURAL_LOG_VALUE_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "A table of values for the natural log function corresponding to integer"
+            " arguments in the range [0, 2047].\n\nEach value is stored as a 16-bit"
+            " fixed-point number with 12 fractional bits. I.e., to get the actual"
+            " natural log value, take the table entry and divide it by 2^12.\n\nThe"
+            " value at an input of 0 is just listed as 0; the Log function makes sure"
+            " the input is always at least 1 before reading the table.\n\ntype:"
+            " int16_t[2048]"
         ),
     )
 
@@ -6890,11 +7060,47 @@ class JpArm9Data:
         [0xA2C98], [0x20A2C98], 0x2, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    DAMAGE_FORMULA_FLV_SHIFT = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The constant shift added to the 'FLV' intermediate quantity in the damage"
+            " formula (see dungeon::last_move_damage_calc_flv), as a binary fixed-point"
+            " number with 8 fraction bits (50)."
+        ),
+    )
+
     EVOLUTION_PHYSICAL_STAT_BONUSES = Symbol(
         [0xA2CA4],
         [0x20A2CA4],
         0x4,
         "0x2: Atk + 0x2: Def\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    DAMAGE_FORMULA_CONSTANT_SHIFT = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The constant shift applied to the overall output of the 'unshifted base'"
+            " damage formula (the sum of the scaled AT, DEF, and ClampedLn terms), as a"
+            " binary fixed-point number with 8 fraction bits (-311).\n\nThe value of"
+            " -311 is notably equal to -round[DAMAGE_FORMULA_LN_PREFACTOR *"
+            " ln(DAMAGE_FORMULA_LN_ARG_PREFACTOR * DAMAGE_FORMULA_FLV_SHIFT)]. This is"
+            " probably not a coincidence."
+        ),
+    )
+
+    DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The divisor of the (AT - DEF) term within the 'FLV' intermediate quantity"
+            " in the damage formula (see dungeon::last_move_damage_calc_flv), as a"
+            " binary fixed-point number with 8 fraction bits (8)."
+        ),
     )
 
     EGG_STAT_BONUSES = Symbol(
@@ -6912,6 +7118,62 @@ class JpArm9Data:
         [0x20A2CB8],
         0x4,
         "0x2: SpAtk + 0x2: SpDef\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The divisor applied to the overall output of the 'shifted base' damage"
+            " formula (the sum of the scaled AT, Def, ClampedLn, and"
+            " DAMAGE_FORMULA_CONSTANT_SHIFT terms) if the attacker is not a team member"
+            " (and the current fixed room is not the substitute room...for some"
+            " reason), as a binary fixed-point number with 8 fraction bits (85/64)."
+        ),
+    )
+
+    DAMAGE_FORMULA_LN_PREFACTOR = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The prefactor to the output of the ClampedLn in the damage formula, as a"
+            " binary fixed-point number with 8 fraction bits (50)."
+        ),
+    )
+
+    DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The prefactor to the 'AT' (attack) intermediate quantity in the damage"
+            " formula (see dungeon::last_move_damage_calc_at), as a binary fixed-point"
+            " number with 8 fraction bits (153/256, which is close to 0.6)."
+        ),
+    )
+
+    DAMAGE_FORMULA_DEF_PREFACTOR = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The prefactor to the 'DEF' (defense) intermediate quantity in the damage"
+            " formula (see dungeon::last_move_damage_calc_def), as a binary fixed-point"
+            " number with 8 fraction bits (-0.5)."
+        ),
+    )
+
+    DAMAGE_FORMULA_LN_ARG_PREFACTOR = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The prefactor to the argument of ClampedLn in the damage formula (FLV +"
+            " DAMAGE_FORMULA_FLV_SHIFT), as a binary fixed-point number with 8 fraction"
+            " bits (10)."
+        ),
     )
 
     FORBIDDEN_FORGOT_MOVE_LIST = Symbol(
@@ -7732,6 +7994,18 @@ class JpItcmFunctions:
         (
             "Determines if an AI-controlled monster will use a move and which one it"
             " will use\n\nr0: Entity pointer"
+        ),
+    )
+
+    LightningRodStormDrainCheck = Symbol(
+        [0x3EC4],
+        [0x20B8AA4],
+        None,
+        (
+            "Appears to check whether LightningRod or Storm Drain should draw in a"
+            " move.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move"
+            " pointer\nr3: true if checking for Storm Drain, false if checking for"
+            " LightningRod\nreturn: whether the move should be drawn in"
         ),
     )
 
@@ -10645,7 +10919,7 @@ class JpMove_effectsFunctions:
         ),
     )
 
-    DoHammerArm = Symbol(
+    DoMoveHammerArm = Symbol(
         [0x7424],
         [0x232E670],
         None,
@@ -11191,6 +11465,8 @@ class JpMove_effectsFunctions:
 
 
 class JpMove_effectsData:
+    MAX_HP_CAP_MOVE_EFFECTS = Symbol(None, None, None, "See overlay29.yml::MAX_HP_CAP")
+
     LUNAR_DANCE_PP_RESTORATION = Symbol(
         None, None, None, "The amount of PP restored by Lunar Dance (999)."
     )
@@ -11360,6 +11636,28 @@ class JpOverlay10Functions:
             "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more"
             " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
             " characters printed, excluding the null-terminator"
+        ),
+    )
+
+    GetEffectAnimationField0x19 = Symbol(
+        [0x1438],
+        [0x22BF658],
+        None,
+        (
+            "Calls GetEffectAnimation and returns field 0x19.\n\nr0: anim_id\nreturn:"
+            " GetEffectAnimation(anim_id)->field_0x19."
+        ),
+    )
+
+    AnimationHasMoreFrames = Symbol(
+        [0x2E88],
+        [0x22C10A8],
+        None,
+        (
+            "Just a guess. This is called in a loop in PlayEffectAnimation, and the"
+            " output controls whether or not AdvanceFrame continues to be"
+            " called.\n\nr0: ?\nreturn: whether or not the animation still has more"
+            " frames left?"
         ),
     )
 
@@ -11538,6 +11836,13 @@ class JpOverlay10Data:
         ),
     )
 
+    FOREWARN_FORCED_MISS_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "The chance of Forewarn forcing a move to miss, as a percentage (20%).",
+    )
+
     UNOWN_STONE_DROP_CHANCE = Symbol(
         [0x793C],
         [0x22C5B5C],
@@ -11692,6 +11997,10 @@ class JpOverlay10Data:
         ),
     )
 
+    SUPER_LUCK_CRIT_RATE_BOOST = Symbol(
+        None, None, None, "The critical hit rate (additive) boost from Super Luck, 10%."
+    )
+
     CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
         None,
         None,
@@ -11795,6 +12104,16 @@ class JpOverlay10Data:
         "The chance of Metal Claw boosting attack, as a percentage (20%).",
     )
 
+    TECHNICIAN_MOVE_POWER_THRESHOLD = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The move power threshold for Technician (4). Moves whose base power"
+            " doesn't exceed this value will receive a 50% damage boost."
+        ),
+    )
+
     SONICBOOM_FIXED_DAMAGE = Symbol(
         None, None, None, "The amount of fixed damage dealt by SonicBoom (20)."
     )
@@ -11813,8 +12132,22 @@ class JpOverlay10Data:
         "The chance of the Aftermath ability activating, as a percentage (50%).",
     )
 
+    SET_DAMAGE_STATUS_DAMAGE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The fixed amount of damage dealt when the Set Damage status condition is"
+            " active (30)."
+        ),
+    )
+
     INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
         None, None, None, "The percentage chance that Intimidator will activate."
+    )
+
+    TYPE_ADVANTAGE_MASTER_CRIT_RATE = Symbol(
+        None, None, None, "The flat critical hit rate with Type-Advantage Master, 40%."
     )
 
     ORAN_BERRY_HP_RESTORATION = Symbol(
@@ -12068,6 +12401,16 @@ class JpOverlay10Data:
 
     IRON_THORN_POWER = Symbol(None, None, None, "Attack power for Iron Thorns.")
 
+    SCOPE_LENS_CRIT_RATE_BOOST = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The critical hit rate (additive) boost from the Scope Lens/Patsy Band"
+            " items and the Sharpshooter IQ skill, 15%."
+        ),
+    )
+
     HEALING_WISH_HP_RESTORATION = Symbol(
         None,
         None,
@@ -12075,6 +12418,17 @@ class JpOverlay10Data:
         (
             "The amount of HP restored by Healing Wish (999). This also applies to"
             " Lunar Dance."
+        ),
+    )
+
+    MONSTER_BOOSTED_ATTACKS_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The blanket damage multiplier applied to attacks by a monster with"
+            " monster::boosted_attacks set, as a fixed-point number with 8 fraction"
+            " bits (1.5)."
         ),
     )
 
@@ -12119,6 +12473,18 @@ class JpOverlay10Data:
         ),
     )
 
+    BURN_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The extra damage multiplier for moves when the attacker is burned, as a"
+            " fixed-point number with 8 fraction bits (the raw value is 0xCC, which is"
+            " close to 0.8).\n\nUnlike in the main series, this multiplier is applied"
+            " regardless of whether the move being used is physical or special."
+        ),
+    )
+
     REST_TURN_RANGE = Symbol(
         None,
         None,
@@ -12126,6 +12492,27 @@ class JpOverlay10Data:
         (
             "The turn range for the Napping status inflicted by Rest, [1, 4).\n\ntype:"
             " int16_t[2]"
+        ),
+    )
+
+    MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE when"
+            " Erratic Player is active, as a fixed-point number with 8 fraction bits"
+            " (the raw value is 0x1B3, the closest possible representation of 1.7)."
+        ),
+    )
+
+    MATCHUP_IMMUNE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier corresponding to MATCHUP_IMMUNE, as a fixed-point"
+            " number with 8 fraction bits (0.5)."
         ),
     )
 
@@ -12149,6 +12536,27 @@ class JpOverlay10Data:
         ),
     )
 
+    DETECT_BAND_MOVE_ACCURACY_DROP = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The (subtractive) move accuracy drop induced on an attacker if the"
+            " defender is wearing a Detect Band (30)."
+        ),
+    )
+
+    TINTED_LENS_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The extra damage multiplier for not-very-effective moves when Tinted Lens"
+            " is active, as a fixed-point number with 8 fraction bits (the raw value is"
+            " 0x133, the closest possible representation of 1.2)."
+        ),
+    )
+
     SMOKESCREEN_TURN_RANGE = Symbol(
         None,
         None,
@@ -12159,6 +12567,46 @@ class JpOverlay10Data:
         ),
     )
 
+    SHADOW_FORCE_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for Shadow Force, as a fixed-point number with 8"
+            " fraction bits (2)."
+        ),
+    )
+
+    DIG_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for Dig, as a fixed-point number with 8 fraction"
+            " bits (2)."
+        ),
+    )
+
+    DIVE_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for Dive, as a fixed-point number with 8 fraction"
+            " bits (2)."
+        ),
+    )
+
+    BOUNCE_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for Bounce, as a fixed-point number with 8 fraction"
+            " bits (2)."
+        ),
+    )
+
     POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
         None,
         None,
@@ -12166,6 +12614,79 @@ class JpOverlay10Data:
         (
             "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
             " fixed-point number (8 fraction bits)"
+        ),
+    )
+
+    QUICK_DODGER_MOVE_ACCURACY_DROP = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The (subtractive) move accuracy drop induced on an attacker if the"
+            " defender has the Quick Dodger IQ skill (10)."
+        ),
+    )
+
+    MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE, as a"
+            " fixed-point number with 8 fraction bits (the raw value is 0x1B4, the"
+            " closest possible representation of 1/√2)."
+        ),
+    )
+
+    MATCHUP_SUPER_EFFECTIVE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE, as a"
+            " fixed-point number with 8 fraction bits (the raw value is 0x166, the"
+            " closest possible representation of 1.4)."
+        ),
+    )
+
+    MATCHUP_NEUTRAL_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier corresponding to MATCHUP_NEUTRAL, as a fixed-point"
+            " number with 8 fraction bits (1)."
+        ),
+    )
+
+    MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier corresponding to MATCHUP_IMMUNE when Erratic Player"
+            " is active, as a fixed-point number with 8 fraction bits (0.25)."
+        ),
+    )
+
+    MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE when"
+            " Erratic Player is active, as a fixed-point number with 8 fraction bits"
+            " (0.5)."
+        ),
+    )
+
+    MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier corresponding to MATCHUP_NEUTRAL when Erratic Player"
+            " is active, as a fixed-point number with 8 fraction bits (1)."
         ),
     )
 
@@ -12211,6 +12732,88 @@ class JpOverlay10Data:
         ),
     )
 
+    SOLARBEAM_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The default damage multiplier for SolarBeam, as a fixed-point number with"
+            " 8 fraction bits (2)."
+        ),
+    )
+
+    SKY_ATTACK_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for Sky Attack, as a fixed-point number with 8"
+            " fraction bits (2)."
+        ),
+    )
+
+    RAZOR_WIND_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for Razor Wind, as a fixed-point number with 8"
+            " fraction bits (2)."
+        ),
+    )
+
+    FOCUS_PUNCH_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for Focus Punch, as a fixed-point number with 8"
+            " fraction bits (2)."
+        ),
+    )
+
+    SKULL_BASH_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for Skull Bash, as a fixed-point number with 8"
+            " fraction bits (2)."
+        ),
+    )
+
+    FLY_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for Fly, as a fixed-point number with 8 fraction"
+            " bits (2)."
+        ),
+    )
+
+    WEATHER_BALL_TYPE_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Maps each weather type (by index, see enum weather_id) to the"
+            " corresponding Weather Ball type.\n\ntype: struct type_id_8[8]"
+        ),
+    )
+
+    LAST_RESORT_DAMAGE_MULT_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Table of damage multipliers for Last Resort for different numbers of moves"
+            " out of PP, where each entry is a binary fixed-point number with 8"
+            " fraction bits.\n\nIf n is the number of moves out of PP not counting Last"
+            " Resort itself, the table is indexed by (n - 1).\n\ntype: int[4]"
+        ),
+    )
+
     SYNTHESIS_HP_RESTORATION_TABLE = Symbol(
         None,
         None,
@@ -12252,14 +12855,82 @@ class JpOverlay10Data:
         ),
     )
 
-    WEATHER_ATTRIBUTE_TABLE = Symbol(
+    REVERSAL_DAMAGE_MULT_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Table of damage multipliers for Reversal/Flail at different HP ranges,"
+            " where each entry is a binary fixed-point number with 8 fraction"
+            " bits.\n\ntype: int[4]"
+        ),
+    )
+
+    WATER_SPOUT_DAMAGE_MULT_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Table of damage multipliers for Water Spout at different HP ranges, where"
+            " each entry is a binary fixed-point number with 8 fraction bits.\n\ntype:"
+            " int[4]"
+        ),
+    )
+
+    WRING_OUT_DAMAGE_MULT_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Table of damage multipliers for Wring Out/Crush Grip at different HP"
+            " ranges, where each entry is a binary fixed-point number with 8 fraction"
+            " bits.\n\ntype: int[4]"
+        ),
+    )
+
+    ERUPTION_DAMAGE_MULT_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Table of damage multipliers for Eruption at different HP ranges, where"
+            " each entry is a binary fixed-point number with 8 fraction bits.\n\ntype:"
+            " int[4]"
+        ),
+    )
+
+    WEATHER_BALL_DAMAGE_MULT_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Maps each weather type (by index, see enum weather_id) to the"
+            " corresponding Weather Ball damage multiplier, where each entry is a"
+            " binary fixed-point number with 8 fraction bits.\n\ntype: int[8]"
+        ),
+    )
+
+    CASTFORM_WEATHER_ATTRIBUTE_TABLE = Symbol(
         [0x8134],
         [0x22C6354],
         0x30,
         (
             "Maps each weather type (by index, see enum weather_id) to the"
-            " corresponding Weather Ball type and Castform form.\n\ntype: struct"
-            " weather_attributes[8]"
+            " corresponding Castform type and form.\n\ntype: struct"
+            " castform_weather_attributes[8]"
+        ),
+    )
+
+    TYPE_MATCHUP_COMBINATOR_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Table of type matchup combinations.\n\nEach row corresponds to a single"
+            " type matchup that results from combining two individual type matchups"
+            " together. For example, combining MATCHUP_NOT_VERY_EFFECTIVE with"
+            " MATCHUP_SUPER_EFFECTIVE results in MATCHUP_NEUTRAL.\n\ntype: struct"
+            " type_matchup_combinator_table"
         ),
     )
 
@@ -14875,8 +15546,8 @@ class JpOverlay29Functions:
     )
 
     CanSeeTarget = Symbol(
-        None,
-        None,
+        [0x6500],
+        [0x22E3DE0],
         None,
         (
             "Checks if a given monster can see another monster.\n\nCalls"
@@ -14889,8 +15560,8 @@ class JpOverlay29Functions:
     )
 
     CanTargetEntity = Symbol(
-        [0x6500],
-        [0x22E3DE0],
+        [0x65C4],
+        [0x22E3EA4],
         None,
         (
             "Checks if a monster can target another entity when controlled by the"
@@ -14998,6 +15669,23 @@ class JpOverlay29Functions:
         ),
     )
 
+    PlayEffectAnimation = Symbol(
+        [0x7374],
+        [0x22E4C54],
+        None,
+        (
+            "Just a guess. This appears to be paired often with"
+            " GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in"
+            " a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the"
+            " loop entirely. It seems like in this case the function might just preload"
+            " some animation frames for later use??\n\nr0: entity pointer\nr1: ?\nr2:"
+            " appears to be a flag for actually running the animation now? If this is"
+            " 0, the AdvanceFrame loop is skipped entirely.\nothers: ?\nreturn: status"
+            " code, or maybe the number of frames or something? Either way, -1 seems to"
+            " indicate the animation being finished or something?"
+        ),
+    )
+
     UpdateStatusIconFlags = Symbol(
         [0x7844],
         [0x22E5124],
@@ -15015,13 +15703,54 @@ class JpOverlay29Functions:
         ),
     )
 
+    PlayEffectAnimation0x171Full = Symbol(
+        [0x7DA8],
+        [0x22E5688],
+        None,
+        (
+            "Just a guess. Calls PlayEffectAnimation with data from animation ID 0x171,"
+            " with the third parameter of PlayEffectAnimation set to true.\n\nr0:"
+            " entity pointer"
+        ),
+    )
+
+    PlayEffectAnimation0x171 = Symbol(
+        [0x7DFC],
+        [0x22E56DC],
+        None,
+        (
+            "Just a guess. Calls PlayEffectAnimation with data from animation ID"
+            " 0x171.\n\nr0: entity pointer"
+        ),
+    )
+
     ShowPpRestoreEffect = Symbol(
-        None,
-        None,
+        [0x86F4],
+        [0x22E5FD4],
         None,
         (
             "Displays the graphical effect on a monster that just recovered PP.\n\nr0:"
             " entity pointer"
+        ),
+    )
+
+    PlayEffectAnimation0x1A9 = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Just a guess. Calls PlayEffectAnimation with data from animation ID"
+            " 0x1A9.\n\nr0: entity pointer"
+        ),
+    )
+
+    PlayEffectAnimation0x18E = Symbol(
+        [0xA168],
+        [0x22E7A48],
+        None,
+        (
+            "Just a guess. Calls PlayEffectAnimation with data from animation ID"
+            " 0x18E.\n\nr0: entity pointer"
         ),
     )
 
@@ -15097,8 +15826,8 @@ class JpOverlay29Functions:
     )
 
     IsPositionActuallyInSight = Symbol(
-        None,
-        None,
+        [0xCE54],
+        [0x22EA734],
         None,
         (
             "Checks if a given target position is in sight from a given origin"
@@ -15148,6 +15877,63 @@ class JpOverlay29Functions:
         "Returns a pointer to the monster data of the current leader.\n\nNo params.",
     )
 
+    FindNearbyUnoccupiedTile = Symbol(
+        [0xD5CC],
+        [0x22EAEAC],
+        None,
+        (
+            "Searches for an unoccupied tile near some origin.\n\nA tile is considered"
+            " 'unoccupied' if it's not a key door, and has no object or monster on it."
+            " In 'random room' mode, the tile must also not be in a hallway, and must"
+            " not have the stairs.\n\nThe first unoccupied tile found is returned. The"
+            " search order is randomized in 'random room' mode, otherwise the search"
+            " order is fixed based on the input displacement array.\n\nr0: [output]"
+            " position\nr1: origin position\nr2: array of displacements from the origin"
+            " position to consider\nr3: number of elements in displacements"
+            " array\nstack[0]: random room mode flag\nreturn: whether a tile was"
+            " successfully found"
+        ),
+    )
+
+    FindClosestUnoccupiedTileWithin2 = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Searches for the closest unoccupied tile within 2 steps of the given"
+            " origin.\n\nCalls FindNearbyUnoccupiedTile with"
+            " DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST.\n\nr0: [output] position\nr1:"
+            " origin position\nr2: random room mode flag\nreturn: whether a tile was"
+            " successfully found"
+        ),
+    )
+
+    FindFarthestUnoccupiedTileWithin2 = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Searches for the farthest unoccupied tile within 2 steps of the given"
+            " origin.\n\nCalls FindNearbyUnoccupiedTile with"
+            " DISPLACEMENTS_WITHIN_2_LARGEST_FIRST.\n\nr0: [output] position\nr1:"
+            " origin position\nr2: random room mode flag\nreturn: whether a tile was"
+            " successfully found"
+        ),
+    )
+
+    FindUnoccupiedTileWithin3 = Symbol(
+        [0xD7B0],
+        [0x22EB090],
+        None,
+        (
+            "Searches for an unoccupied tile within 3 steps of the given"
+            " origin.\n\nCalls FindNearbyUnoccupiedTile with"
+            " DISPLACEMENTS_WITHIN_3.\n\nr0: [output] position\nr1: origin"
+            " position\nr2: random room mode flag\nreturn: whether a tile was"
+            " successfully found"
+        ),
+    )
+
     TickStatusTurnCounter = Symbol(
         [0xD7CC],
         [0x22EB0AC],
@@ -15166,6 +15952,18 @@ class JpOverlay29Functions:
         (
             "Advances one frame. Does not return until the next frame starts.\n\nr0: ?"
             " - Unused by the function"
+        ),
+    )
+
+    SetDungeonRngPreseed23Bit = Symbol(
+        [0xE6F0],
+        [0x22EBFD0],
+        None,
+        (
+            "Sets the preseed in the global dungeon PRNG state, using 23 bits from the"
+            " input. See GenerateDungeonRngSeed for more information.\n\nGiven the"
+            " input preseed23, the actual global preseed is set to (preseed23 &"
+            " 0xFFFFFF | 1), so only bits 1-23 of the input are used.\n\nr0: preseed23"
         ),
     )
 
@@ -15548,13 +16346,23 @@ class JpOverlay29Functions:
     )
 
     DebugRecruitingEnabled = Symbol(
-        None,
-        None,
+        [0x13790],
+        [0x22F1070],
         None,
         (
             "Always returns true. Called by SpecificRecruitCheck.\n\nSeems to be a"
             " function used during development to disable recruiting. If it returns"
             " false, SpecificRecruitCheck will also return false.\n\nreturn: true"
+        ),
+    )
+
+    IsSecretBazaarNpcBehavior = Symbol(
+        [0x13828],
+        [0x22F1108],
+        None,
+        (
+            "Checks if a behavior ID corresponds to one of the Secret Bazaar"
+            " NPCs.\n\nr0: monster behavior ID\nreturn: bool"
         ),
     )
 
@@ -15907,9 +16715,19 @@ class JpOverlay29Functions:
         ),
     )
 
+    CountMovesOutOfPp = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Returns how many of a monster's move are out of PP.\n\nr0: entity"
+            " pointer\nreturn: number of moves out of PP"
+        ),
+    )
+
     HasSuperEffectiveMoveAgainstUser = Symbol(
-        None,
-        None,
+        [0x1EDB4],
+        [0x22FC694],
         None,
         (
             "Checks if the target has at least one super effective move against the"
@@ -15942,8 +16760,8 @@ class JpOverlay29Functions:
     )
 
     AreEntitiesAdjacent = Symbol(
-        None,
-        None,
+        [0x1F26C],
+        [0x22FCB4C],
         None,
         (
             "Checks whether two entities are adjacent or not.\n\nThe function checks"
@@ -15976,11 +16794,26 @@ class JpOverlay29Functions:
         ),
     )
 
-    InitTeam = Symbol(
+    SpawnTeam = Symbol(
         [0x2001C],
         [0x22FD8FC],
         None,
-        "Seems to initialize the team when entering a dungeon.\n\nr0: ?",
+        "Seems to initialize and spawn the team when entering a dungeon.\n\nr0: ?",
+    )
+
+    SpawnInitialMonsters = Symbol(
+        [0x2088C],
+        [0x22FE16C],
+        None,
+        (
+            "Tries to spawn monsters on all the tiles marked for monster spawns. This"
+            " includes normal enemies and mission targets (rescue targets, outlaws,"
+            " etc.).\n\nA random initial position is selected as a starting point."
+            " Tiles are then swept over left-to-right, top-to-bottom, wrapping around"
+            " when the map boundary is reached, until all tiles have been checked. The"
+            " first marked tile encountered in the sweep is reserved for the mission"
+            " target, but the actual spawning of the target is done last.\n\nNo params."
+        ),
     )
 
     SpawnMonster = Symbol(
@@ -16017,6 +16850,40 @@ class JpOverlay29Functions:
         ),
     )
 
+    MarkShopkeeperSpawn = Symbol(
+        [0x21CA0],
+        [0x22FF580],
+        None,
+        (
+            "Add a shopkeeper spawn to the list on the dungeon struct. Actual spawning"
+            " is done later by SpawnShopkeepers.\n\nIf an existing entry in"
+            " dungeon::shopkeeper_spawns exists with the same position, that entry is"
+            " reused for the new spawn data. Otherwise, a new entry is appended to the"
+            " array.\n\nr0: x position\nr1: y position\nr2: monster ID\nr3: monster"
+            " behavior"
+        ),
+    )
+
+    SpawnShopkeepers = Symbol(
+        [0x21D54],
+        [0x22FF634],
+        None,
+        (
+            "Spawns all the shopkeepers in the dungeon struct's shopkeeper_spawns"
+            " array.\n\nNo params."
+        ),
+    )
+
+    GetOutlawSpawnData = Symbol(
+        [0x21F28],
+        [0x22FF808],
+        None,
+        (
+            "Gets outlaw spawn data for the current floor.\n\nr0: [output] Outlaw spawn"
+            " data"
+        ),
+    )
+
     ExecuteMonsterAction = Symbol(
         [0x21FC4],
         [0x22FF8A4],
@@ -16039,6 +16906,19 @@ class JpOverlay29Functions:
             "Returns true if the monster has any status problem that prevents it from"
             " acting\n\nr0: Entity pointer\nreturn: True if the specified monster can't"
             " act because of a status problem, false otherwise."
+        ),
+    )
+
+    IsInvalidSpawnTile = Symbol(
+        [0x231D4],
+        [0x2300AB4],
+        None,
+        (
+            "Checks if a monster cannot spawn on the given tile for some"
+            " reason.\n\nReasons include:\n- There's another monster on the tile\n- The"
+            " tile is an impassable wall\n- The monster does not have the required"
+            " mobility to stand on the tile\n\nr0: monster ID\nr1: tile"
+            " pointer\nreturn: true means the monster CANNOT spawn on this tile"
         ),
     )
 
@@ -16094,6 +16974,146 @@ class JpOverlay29Functions:
             "Statically defined copy of sprintf(3) in overlay 29. See arm9.yml for more"
             " information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of"
             " characters printed, excluding the null-terminator"
+        ),
+    )
+
+    IsMonsterDrowsy = Symbol(
+        [0x23FB4],
+        [0x2301894],
+        None,
+        (
+            "Checks if a monster has the sleep, nightmare, or yawning status. Note that"
+            " this excludes the napping status.\n\nr0: entity pointer\nreturn: bool"
+        ),
+    )
+
+    MonsterHasNonvolatileNonsleepStatus = Symbol(
+        [0x23FE8],
+        [0x23018C8],
+        None,
+        (
+            "Checks if a monster has one of the statuses in the 'burn' group, which"
+            " includes the traditionally non-volatile status conditions (except sleep)"
+            " in the main series: STATUS_BURN, STATUS_POISONED, STATUS_BADLY_POISONED,"
+            " STATUS_PARALYSIS, and STATUS_IDENTIFYING.\n\nSTATUS_IDENTIFYING is"
+            " probably included based on enum status_id? Unless it's handled"
+            " differently somehow.\n\nr0: entity pointer\nreturn: bool"
+        ),
+    )
+
+    MonsterHasImmobilizingStatus = Symbol(
+        [0x24004],
+        [0x23018E4],
+        None,
+        (
+            "Checks if a monster has one of the non-self-inflicted statuses in the"
+            " 'freeze' group, which includes status conditions that immobilize the"
+            " monster: STATUS_FROZEN, STATUS_SHADOW_HOLD, STATUS_WRAPPED,"
+            " STATUS_PETRIFIED, STATUS_CONSTRICTION, and STATUS_FAMISHED.\n\nr0: entity"
+            " pointer\nreturn: bool"
+        ),
+    )
+
+    MonsterHasAttackInterferingStatus = Symbol(
+        [0x24024],
+        [0x2301904],
+        None,
+        (
+            "Checks if a monster has one of the statuses in the 'cringe' group, which"
+            " includes status conditions that interfere with the monster's ability to"
+            " attack: STATUS_CRINGE, STATUS_CONFUSED, STATUS_PAUSED, STATUS_COWERING,"
+            " STATUS_TAUNTED, STATUS_ENCORE, STATUS_INFATUATED, and"
+            " STATUS_DOUBLE_SPEED.\n\nSTATUS_DOUBLE_SPEED is probably included based on"
+            " enum status_id? Unless it's handled differently somehow.\n\nr0: entity"
+            " pointer\nreturn: bool"
+        ),
+    )
+
+    MonsterHasSkillInterferingStatus = Symbol(
+        [0x24040],
+        [0x2301920],
+        None,
+        (
+            "Checks if a monster has one of the non-self-inflicted statuses in the"
+            " 'curse' group, which loosely includes status conditions that interfere"
+            " with the monster's skills or ability to do things: STATUS_CURSED,"
+            " STATUS_DECOY, STATUS_GASTRO_ACID, STATUS_HEAL_BLOCK,"
+            " STATUS_EMBARGO.\n\nr0: entity pointer\nreturn: bool"
+        ),
+    )
+
+    MonsterHasLeechSeedStatus = Symbol(
+        [0x2408C],
+        [0x230196C],
+        None,
+        (
+            "Checks if a monster is afflicted with Leech Seed.\n\nr0: entity"
+            " pointer\nreturn: bool"
+        ),
+    )
+
+    MonsterHasWhifferStatus = Symbol(
+        [0x240A8],
+        [0x2301988],
+        None,
+        (
+            "Checks if a monster has the whiffer status.\n\nr0: entity pointer\nreturn:"
+            " bool"
+        ),
+    )
+
+    IsMonsterVisuallyImpaired = Symbol(
+        [0x240C4],
+        [0x23019A4],
+        None,
+        (
+            "Checks if a monster's vision is impaired somehow. This includes the checks"
+            " in IsBlinded, as well as STATUS_CROSS_EYED and STATUS_DROPEYE.\n\nr0:"
+            " entity pointer\nr1: flag for whether to check for the held item\nreturn:"
+            " bool"
+        ),
+    )
+
+    IsMonsterMuzzled = Symbol(
+        [0x24100],
+        [0x23019E0],
+        None,
+        (
+            "Checks if a monster has the muzzled status.\n\nr0: entity pointer\nreturn:"
+            " bool"
+        ),
+    )
+
+    MonsterHasMiracleEyeStatus = Symbol(
+        [0x2411C],
+        [0x23019FC],
+        None,
+        (
+            "Checks if a monster has the Miracle Eye status.\n\nr0: entity"
+            " pointer\nreturn: bool"
+        ),
+    )
+
+    MonsterHasNegativeStatus = Symbol(
+        [0x24138],
+        [0x2301A18],
+        None,
+        (
+            "Checks if a monster has any 'negative' status conditions. This includes a"
+            " wide variety of non-self-inflicted statuses that could traditionally be"
+            " viewed as actual 'status conditions', as well as speed being lowered and"
+            " moves being sealed.\n\nr0: entity pointer\nr1: flag for whether to check"
+            " for the held item (see IsMonsterVisuallyImpaired)\nreturn: bool"
+        ),
+    )
+
+    IsMonsterSleeping = Symbol(
+        [0x242AC],
+        [0x2301B8C],
+        None,
+        (
+            "Checks if a monster has the sleep, nightmare, or napping status.\n\nr0:"
+            " entity pointer\nreturn: bool"
         ),
     )
 
@@ -16191,13 +17211,16 @@ class JpOverlay29Functions:
         ),
     )
 
-    AbilityIsActiveAnyEntity = Symbol(
+    OtherMonsterAbilityIsActive = Symbol(
         [0x259FC],
         [0x23032DC],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity"
-            " pointer\nr1: ability ID\nreturn: bool"
+            "Checks if there are any other monsters on the floor besides the user that"
+            " have the specified ability active, subject to the user being on the"
+            " floor.\n\nIt also seems like there might be some other range or validity"
+            " check, so this might not actually check ALL other monsters?\n\nr0: user"
+            " entity pointer\nr1: ability ID\nreturn: bool"
         ),
     )
 
@@ -16277,8 +17300,8 @@ class JpOverlay29Functions:
     )
 
     UpdateIqSkills = Symbol(
-        None,
-        None,
+        [0x25C2C],
+        [0x230350C],
         None,
         (
             "Updates the IQ skill flags of a monster.\n\nIf the monster is a team"
@@ -16310,6 +17333,18 @@ class JpOverlay29Functions:
         (
             "Gets the power of a move, factoring in Ginseng/Space Globe boosts.\n\nr0:"
             " user pointer\nr1: move pointer\nreturn: move power"
+        ),
+    )
+
+    UpdateStateFlags = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Updates monster::state_flags and monster::prev_state_flags with new"
+            " values.\n\nr0: monster pointer\nr1: bitmask for bits to update\nr2:"
+            " whether to set the bits indicated by the mask to 1 or 0\nreturn: whether"
+            " or not any of the masked bits changed from the previous state"
         ),
     )
 
@@ -16421,6 +17456,26 @@ class JpOverlay29Functions:
         ),
     )
 
+    TryTriggerMonsterHouse = Symbol(
+        [0x2BBA0],
+        [0x2309480],
+        None,
+        (
+            "Triggers a Monster House for an entity, if the right conditions are"
+            " met.\n\nConditions: entity is valid and on the team, the tile is a"
+            " Monster House tile, and the Monster House hasn't already been"
+            " triggered.\n\nThis function sets the monster_house_triggered flag on the"
+            " dungeon struct, spawns a bunch of enemies around the triggering entity"
+            " (within a 4 tile radius), and handles the 'dropping down' animation for"
+            " these enemies. If the allow outside enemies flag is set, the enemy spawns"
+            " can be on any free tile (no monster) with open terrain, including in"
+            " hallways. Otherwise, spawns are confined within the room"
+            " boundaries.\n\nr0: entity for which the Monster House should be"
+            " triggered\nr1: allow outside enemies flag (in practice this is always set"
+            " to dungeon_generation_info::force_create_monster_house)"
+        ),
+    )
+
     RunMonsterAi = Symbol(
         None,
         None,
@@ -16428,6 +17483,24 @@ class JpOverlay29Functions:
         (
             "Runs the AI for a single monster to determine whether the monster can act"
             " and which action it should perform if so\n\nr0: Pointer to monster\nr1: ?"
+        ),
+    )
+
+    ApplyDamageAndEffects = Symbol(
+        [0x2C33C],
+        [0x2309C1C],
+        None,
+        (
+            "Calls ApplyDamage, then performs various 'post-damage' effects such as"
+            " counter damage, statuses from abilities that activate on contact, and"
+            " probably some other stuff.\n\nNote that this doesn't include the effect"
+            " of Illuminate, which is specifically handled elsewhere.\n\nr0: attacker"
+            " pointer\nr1: defender pointer\nr2: damage_data pointer\nr3: False Swipe"
+            " flag (see ApplyDamage)\nstack[0]: experience flag (see"
+            " ApplyDamage)\nstack[1]: Damage source (see HandleFaint)\nstack[2]:"
+            " defender response flag. If true, the defender can respond to the attack"
+            " with various effects. If false, the only post-damage effect that can"
+            " happen is the Rage attack boost."
         ),
     )
 
@@ -16441,14 +17514,18 @@ class JpOverlay29Functions:
             " additional checks related to printing fainting messages under specific"
             " circumstances.\n\nr0: Attacker pointer\nr1: Defender pointer\nr2: Pointer"
             " to the damage_data struct that contains info about the damage to"
-            " deal\nr3: ?\nstack[0]: ?\nstack[1]: Damage source\nreturn: True if the"
-            " target fainted (reviving does not count as fainting)"
+            " deal\nr3: False Swipe flag, causes the defender's HP to be set to 1 if it"
+            " would otherwise have been 0\nstack[0]: experience flag, controls whether"
+            " or not experience will be granted upon a monster fainting, and whether"
+            " enemy evolution might be triggered\nstack[1]: Damage source (see"
+            " HandleFaint)\nreturn: True if the target fainted (reviving does not count"
+            " as fainting)"
         ),
     )
 
     AftermathCheck = Symbol(
-        None,
-        None,
+        [0x2E6A8],
+        [0x230BF88],
         None,
         (
             "Checks if the defender has the Aftermath ability and tries to activate it"
@@ -16460,14 +17537,51 @@ class JpOverlay29Functions:
     )
 
     GetTypeMatchupBothTypes = Symbol(
-        None,
-        None,
+        [0x2E724],
+        [0x230C004],
         None,
         (
             "Gets the type matchup for a given combat interaction, accounting for both"
             " of the user's types.\n\nCalls GetTypeMatchup twice and combines the"
             " result.\n\nr0: attacker pointer\nr1: defender pointer\nr2: attack"
             " type\nreturn: enum type_matchup"
+        ),
+    )
+
+    ScrappyShouldActivate = Symbol(
+        [0x2E7F0],
+        [0x230C0D0],
+        None,
+        (
+            "Checks whether Scrappy should activate.\n\nScrappy activates when the"
+            " ability is active on the attacker, the move type is Normal or Fighting,"
+            " and the defender is a Ghost type.\n\nr0: attacker pointer\nr1: defender"
+            " pointer\nr2: move type ID\nreturn: bool"
+        ),
+    )
+
+    IsTypeIneffectiveAgainstGhost = Symbol(
+        [0x2E888],
+        [0x230C168],
+        None,
+        (
+            "Checks whether a type is normally ineffective against Ghost, i.e., it's"
+            " Normal or Fighting.\n\nr0: type ID\nreturn: bool"
+        ),
+    )
+
+    GhostImmunityIsActive = Symbol(
+        [0x2E89C],
+        [0x230C17C],
+        None,
+        (
+            "Checks whether the defender's typing would give it Ghost"
+            " immunities.\n\nThis only checks one of the defender's types at a time. It"
+            " checks whether the defender has the exposed status and whether the"
+            " attacker has the Scrappy-like exclusive item effect, but does NOT check"
+            " whether the attacker has the Scrappy ability.\n\nr0: attacker"
+            " pointer\nr1: defender pointer\nr2: defender type index (0 the defender's"
+            " first type, 1 for the defender's second type)\nreturn: bool"
         ),
     )
 
@@ -16488,16 +17602,55 @@ class JpOverlay29Functions:
         ),
     )
 
+    CalcTypeBasedDamageEffects = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Calculates type-based effects on damage.\n\nLoosely, this includes type"
+            " matchup effects (including modifications due to abilities, IQ skills, and"
+            " exclusive items), STAB, pinch abilities like Overgrow, weather/floor"
+            " condition effects on certain types, and miscellaneous effects like"
+            " Charge.\n\nr0: [output] damage multiplier due to type effects.\nr1:"
+            " attacker pointer\nr2: defender pointer\nr3: attack power\nstack[0]:"
+            " attack type\nstack[1]: [output] struct containing info about the damage"
+            " calculation (only the critical_hit, type_matchup, and field_0xF fields"
+            " are modified)\nstack[2]: flag for whether Erratic Player and Technician"
+            " effects should be excluded. CalcDamage only passes in true if the move is"
+            " the regular attack or a projectile.\nreturn: whether or not the"
+            " Type-Advantage Master IQ skill should activate if the attacker has it. In"
+            " practice, this corresponds to when the attack is super-effective, but"
+            " technically true is also returned when the defender is an invalid entity."
+        ),
+    )
+
     CalcDamage = Symbol(
         [0x2F820],
         [0x230D100],
         None,
         (
-            "Probably the damage calculation function.\n\nr0: attacker pointer\nr1:"
-            " defender pointer\nr2: attack type\nr3: attack power\nstack[0]: crit"
-            " chance\nstack[1]: [output] struct containing info about the damage"
-            " calculation\nstack[2]: damage multiplier (as a binary fixed-point number"
-            " with 8 fraction bits)\nstack[3]: move ID\nstack[4]: ?"
+            "The damage calculation function.\n\nAt a high level, the damage formula"
+            " is:\n  M * [(153/256)*(A + P) - 0.5*D + 50*ln(10*[L + (A - D)/8 + 50]) -"
+            " 311]\nwhere:\n  - A is the offensive stat (attack or special attack) with"
+            " relevant modifiers applied (stat stages, certain items, certain"
+            " abilities, etc.)\n  - D is the defensive stat (defense or special"
+            " defense) with relevant modifiers applied (stat stages, certain items,"
+            " certain abilities, etc.)\n  - L is the attacker's level\n  - P is the"
+            " move power with relevant modifiers applied\n  - M is an aggregate damage"
+            " multiplier from a variety of things, such as type-effectiveness, STAB,"
+            " critical hits (which are also rolled in this function), certain items,"
+            " certain abilities, certain statuses, etc.\n\nThe calculations are done"
+            " primarily with 64-bit fixed point arithmetic, and a bit of 32-bit fixed"
+            " point arithmetic. There's also rounding/truncation/clamping at various"
+            " steps in the process.\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
+            " attack type\nr3: attack power\nstack[0]: crit chance\nstack[1]: [output]"
+            " struct containing info about the damage calculation\nstack[2]: damage"
+            " multiplier (as a binary fixed-point number with 8 fraction"
+            " bits)\nstack[3]: move ID\nstack[4]: flag to account for certain effects"
+            " (Flash Fire, Reflect, Light Screen, aura bows, Def. Scarf, Zinc Band)."
+            " Only ever set to false when computing recoil damage for Jump Kick/Hi Jump"
+            " Kick missing, which is based on the damage that would have been done if"
+            " the move didn't miss."
         ),
     )
 
@@ -16523,10 +17676,10 @@ class JpOverlay29Functions:
         None,
         (
             "Appears to calculate damage from a fixed-damage effect.\n\nr0: attacker"
-            " pointer\nr1: defender pointer\nr2: fixed damage\nr3: ?\nstack[0]:"
-            " [output] struct containing info about the damage calculation\nstack[1]:"
-            " attack type\nstack[2]: move category\nstack[3]: damage source\nstack[4]:"
-            " damage message\nothers: ?"
+            " pointer\nr1: defender pointer\nr2: fixed damage\nr3: experience flag (see"
+            " ApplyDamage)\nstack[0]: [output] struct containing info about the damage"
+            " calculation\nstack[1]: attack type\nstack[2]: move category\nstack[3]:"
+            " damage source\nstack[4]: damage message\nothers: ?"
         ),
     )
 
@@ -16537,9 +17690,9 @@ class JpOverlay29Functions:
         (
             "A wrapper around CalcDamageFixed with the move category set to"
             " none.\n\nr0: attacker pointer\nr1: defender pointer\nr2: fixed"
-            " damage\nstack[0]: [output] struct containing info about the damage"
-            " calculation\nstack[1]: attack type\nstack[2]: damage source\nstack[3]:"
-            " damage message\nothers: ?"
+            " damage\nr3: experience flag (see ApplyDamage)\nstack[0]: [output] struct"
+            " containing info about the damage calculation\nstack[1]: attack"
+            " type\nstack[2]: damage source\nstack[3]: damage message\nothers: ?"
         ),
     )
 
@@ -16549,25 +17702,40 @@ class JpOverlay29Functions:
         None,
         (
             "A wrapper around CalcDamageFixed.\n\nr0: attacker pointer\nr1: defender"
-            " pointer\nr2: fixed damage\nstack[0]: [output] struct containing info"
-            " about the damage calculation\nstack[1]: attack type\nstack[2]: move"
-            " category\nstack[3]: damage source\nstack[4]: damage message\nothers: ?"
+            " pointer\nr2: fixed damage\nr3: experience flag (see"
+            " ApplyDamage)\nstack[0]: [output] struct containing info about the damage"
+            " calculation\nstack[1]: attack type\nstack[2]: move category\nstack[3]:"
+            " damage source\nstack[4]: damage message\nothers: ?"
         ),
     )
 
-    ResetDamageCalcScratchSpace = Symbol(
+    UpdateShopkeeperModeAfterAttack = Symbol(
+        [0x3109C],
+        [0x230E97C],
+        None,
+        (
+            "Updates the shopkeeper mode of a monster in response to being struck by an"
+            " attack.\n\nIf the defender is in normal shopkeeper mode (not aggressive),"
+            " nothing happens. Otherwise, the mode is set to"
+            " SHOPKEEPER_MODE_ATTACK_TEAM if the attacker is a team member, or"
+            " SHOPKEEPER_MODE_ATTACK_ENEMIES otherwise.\n\nr0: attacker pointer\nr1:"
+            " defender pointer"
+        ),
+    )
+
+    ResetDamageCalcDiagnostics = Symbol(
         [0x31184],
         [0x230EA64],
         None,
         (
-            "CalcDamage seems to use scratch space of some kind, which this function"
-            " zeroes.\n\nNo params."
+            "Resets the damage calculation diagnostic info stored on the dungeon"
+            " struct. Called unconditionally at the start of CalcDamage.\n\nNo params."
         ),
     )
 
     SpecificRecruitCheck = Symbol(
-        None,
-        None,
+        [0x31774],
+        [0x230F054],
         None,
         (
             "Checks if a specific monster can be recruited. Called by"
@@ -16949,6 +18117,21 @@ class JpOverlay29Functions:
         ),
     )
 
+    FlashFireShouldActivate = Symbol(
+        [0x3787C],
+        [0x231515C],
+        None,
+        (
+            "Checks whether Flash Fire should activate, assuming the defender is being"
+            " hit by a Fire-type move.\n\nThis checks that the defender is valid and"
+            " Flash Fire is active, and that Normalize isn't active on the"
+            " attacker.\n\nr0: attacker pointer\nr1: defender pointer\nreturn: 2 if"
+            " Flash Fire should activate and raise the defender's boost level, 1 if"
+            " Flash Fire should activate but the defender's boost level is maxed out, 0"
+            " otherwise."
+        ),
+    )
+
     ApplyOffensiveStatMultiplier = Symbol(
         [0x37944],
         [0x2315224],
@@ -17089,6 +18272,19 @@ class JpOverlay29Functions:
             "Resets the specified hit chance stat (accuracy or evasion) back to normal"
             " on the target monster.\n\nr0: user entity pointer\nr1: target entity"
             " pointer\nr2: stat index\nr3: ?"
+        ),
+    )
+
+    ExclusiveItemEffectIsActiveWithLogging = Symbol(
+        [0x38934],
+        [0x2316214],
+        None,
+        (
+            "Calls ExclusiveItemEffectIsActive, then logs the specified message if"
+            " indicated.\n\nr0: user entity pointer\nr1: target entity pointer\nr2:"
+            " whether a message should be logged if the effect is active\nr3: message"
+            " ID to be logged if the effect is active\nstack[0]: exclusive item effect"
+            " ID\nreturn: bool, same as ExclusiveItemEffectIsActive"
         ),
     )
 
@@ -17326,8 +18522,8 @@ class JpOverlay29Functions:
     )
 
     ShouldUsePp = Symbol(
-        None,
-        None,
+        [0x3E390],
+        [0x231BC70],
         None,
         (
             "Checks if a monster should use PP when using a move. It also displays the"
@@ -17346,6 +18542,27 @@ class JpOverlay29Functions:
             " struct move_target_and_range in the C headers.\n\nr0: entity pointer\nr1:"
             " move pointer\nr2: AI flag (same as GetMoveTargetAndRange)\nreturn: move"
             " target and range"
+        ),
+    )
+
+    GetEntityNaturalGiftInfo = Symbol(
+        [0x3EA80],
+        [0x231C360],
+        None,
+        (
+            "Gets the relevant entry in NATURAL_GIFT_ITEM_TABLE based on the entity's"
+            " held item, if possible.\n\nr0: entity pointer\nreturn: pointer to a"
+            " struct natural_gift_item_info, or null if none was found"
+        ),
+    )
+
+    GetEntityWeatherBallType = Symbol(
+        [0x3EAFC],
+        [0x231C3DC],
+        None,
+        (
+            "Gets the current Weather Ball type for the given entity, based on the"
+            " apparent weather.\n\nr0: entity pointer\nreturn: type ID"
         ),
     )
 
@@ -17421,6 +18638,16 @@ class JpOverlay29Functions:
         "Checks if a move isn't a physical move.\n\nr0: move ID\nreturn: bool",
     )
 
+    CategoryIsNotPhysical = Symbol(
+        [0x425FC],
+        [0x231FEDC],
+        None,
+        (
+            "Checks that a move category is not CATEGORY_PHYSICAL.\n\nr0: move category"
+            " ID\nreturn: bool"
+        ),
+    )
+
     TryPounce = Symbol(
         [0x437EC],
         [0x23210CC],
@@ -17474,9 +18701,11 @@ class JpOverlay29Functions:
         (
             "Determines if a move used hits or misses the target. It gets called twice"
             " per target, once with r3 = false and a second time with r3 = true.\n\nr0:"
-            " Attacker\nr1: Defender\nr2: Pointer to move data\nr3: True if the move's"
-            " first accuracy (accuracy1) should be used, false if its second accuracy"
-            " (accuracy2) should be used instead.\nreturns: True if the move hits,"
+            " Attacker\nr1: Defender\nr2: Pointer to move data\nr3: False if the move's"
+            " first accuracy (accuracy1) should be used, true if its second accuracy"
+            " (accuracy2) should be used instead.\nstack[0]: If true, always hit if the"
+            " attacker and defender are the same. Otherwise, moves can miss no matter"
+            " what the attacker and defender are.\nreturns: True if the move hits,"
             " false if it misses."
         ),
     )
@@ -17493,12 +18722,24 @@ class JpOverlay29Functions:
     )
 
     HasMaxGinsengBoost99 = Symbol(
-        None,
-        None,
+        [0x48348],
+        [0x2325C28],
         None,
         (
             "Checks if a move has a max Ginseng boost value of 99\n\nr0: Move\nreturn:"
             " True if the move's max Ginseng boost is 99, false otherwise."
+        ),
+    )
+
+    TwoTurnMoveForcedMiss = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if a move should miss a monster due to the monster being in the"
+            " middle of Fly, Bounce, Dive, Dig, Shadow Force, or some other two-turn"
+            " move that grants pseudo-invincibility.\n\nr0: entity pointer\nr1:"
+            " move\nreturn: true if the move should miss"
         ),
     )
 
@@ -17658,29 +18899,57 @@ class JpOverlay29Functions:
         ),
     )
 
-    CalcDamageProjectile = Symbol(
+    DealDamageWithTypeAndPowerBoost = Symbol(
+        [0x566C8],
+        [0x2333FA8],
+        None,
+        (
+            "Same as DealDamage, except with an explicit move type and a base power"
+            " boost.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
+            " damage multiplier (as a binary fixed-point number with 8 fraction"
+            " bits)\nstack[0]: item ID\nstack[1]: move type\nstack[2]: base power"
+            " boost\nreturn: amount of damage dealt"
+        ),
+    )
+
+    DealDamageProjectile = Symbol(
         [0x5675C],
         [0x233403C],
         None,
         (
-            "Appears to calculate damage from a variable-damage projectile.\n\nr0:"
-            " entity pointer 1?\nr1: entity pointer 2?\nr2: move pointer\nr3: move"
-            " power\nstack[0]: damage multiplier (as a binary fixed-point number with 8"
-            " fraction bits)\nstack[1]: item ID of the projectile\nreturn: Calculated"
-            " damage"
+            "Deals damage from a variable-damage projectile.\n\nr0: entity pointer"
+            " 1?\nr1: entity pointer 2?\nr2: move pointer\nr3: move power\nstack[0]:"
+            " damage multiplier (as a binary fixed-point number with 8 fraction"
+            " bits)\nstack[1]: item ID of the projectile\nreturn: Calculated damage"
         ),
     )
 
-    CalcDamageFinal = Symbol(
+    DealDamageWithType = Symbol(
+        [0x567EC],
+        [0x23340CC],
+        None,
+        (
+            "Same as DealDamage, except with an explicit move type.\n\nr0: attacker"
+            " pointer\nr1: defender pointer\nr2: move type\nr3: move\nstack[0]: damage"
+            " multiplier (as a binary fixed-point number with 8 fraction"
+            " bits)\nstack[1]: item ID\nreturn: amount of damage dealt"
+        ),
+    )
+
+    PerformDamageSequence = Symbol(
         [0x5687C],
         [0x233415C],
         None,
         (
-            "Last function called by DealDamage to determine the final damage dealt by"
-            " the move. The result of this call is the return value of DealDamage."
-            " \n\nr0: Attacker pointer\nr1: Defender pointer\nr2: Move pointer\nr3:"
-            " [output] struct containing info about the damage calculation\nstack[0]:"
-            " Damage source\nreturn: Calculated damage"
+            "Performs the 'damage sequence' given the results of the damage"
+            " calculation. This includes running the accuracy roll with MoveHitCheck,"
+            " calling ApplyDamageAndEffects, and some other miscellaneous bits of state"
+            " bookkeeping (including handling the effects of Illuminate).\n\nThis is"
+            " the last function called by DealDamage. The result of this call is the"
+            " return value of DealDamage and its relatives.\n\nr0: Attacker"
+            " pointer\nr1: Defender pointer\nr2: Move pointer\nr3: [output] struct"
+            " containing info about the damage calculation\nstack[0]: Damage"
+            " source\nreturn: Calculated damage"
         ),
     )
 
@@ -17820,6 +19089,27 @@ class JpOverlay29Functions:
         [0x233935C],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nreturn: monster ID?",
+    )
+
+    NearbyAllyIqSkillIsEnabled = Symbol(
+        [0x5BD6C],
+        [0x233964C],
+        None,
+        (
+            "Appears to check whether or not the given monster has any allies nearby"
+            " (within 1 tile) that have the given IQ skill active.\n\nr0: entity"
+            " pointer\nr1: IQ skill ID\nreturn: bool"
+        ),
+    )
+
+    ResetGravity = Symbol(
+        [0x5BE50],
+        [0x2339730],
+        None,
+        (
+            "Resets gravity (and the byte after it?) in the dungeon struct back to"
+            " 0.\n\nNo params."
+        ),
     )
 
     GravityIsActive = Symbol(
@@ -18564,51 +19854,54 @@ class JpOverlay29Functions:
         ),
     )
 
-    SpawnNonEnemies = Symbol(
+    MarkNonEnemySpawns = Symbol(
         [0x6482C],
         [0x234210C],
         None,
         (
-            "Spawn all non-enemy entities, which includes stairs, items, traps, and the"
-            " player.\n\nMost entities are spawned randomly on a subset of permissible"
-            " tiles.\n\nStairs are spawned if they don't already exist on the floor,"
-            " and hidden stairs of the specified type are also spawned if configured as"
-            " long as there are at least 2 floors left in the dungeon. Stairs can spawn"
-            " on any tile that has open terrain, is in a room, isn't in a Kecleon shop,"
-            " doesn't already have an enemy spawn, isn't a hallway junction, and isn't"
-            " a special tile like a Key door.\n\nItems are spawned both normally in"
-            " rooms, as well as in walls and Monster Houses. Normal items can spawn on"
-            " any tile that has open terrain, is in a room, isn't in a Kecleon shop or"
-            " Monster House, isn't a hallway junction, and isn't a special tile like a"
-            " Key door. Buried items can spawn on any wall tile. Monster House items"
-            " can spawn on any Monster House tile that isn't in a Kecleon shop and"
-            " isn't a hallway junction.\n\nTraps are similarly spawned both normally in"
-            " rooms, as well as in Monster Houses. Normal traps can spawn on any tile"
-            " that has open terrain, is in a room, isn't in a Kecleon shop, doesn't"
-            " already have an item or enemy spawn, and isn't a special tile like a Key"
-            " door. Monster House traps follow the same conditions as Monster House"
-            " items.\n\nThe player can spawn on any tile that has open terrain, is in a"
-            " room, isn't in a Kecleon shop, isn't a hallway junction, doesn't already"
-            " have an item, enemy, or trap spawn, and isn't a special tile like a Key"
-            " door.\n\nr0: floor properties\nr1: empty Monster House flag. An empty"
-            " Monster House is one with no items or traps, and only a small number of"
-            " enemies."
+            "Mark tiles for all non-enemy entities, which includes stairs, items,"
+            " traps, and the player. Note that this only marks tiles; actual spawning"
+            " is handled later.\n\nMost entities are spawned randomly on a subset of"
+            " permissible tiles.\n\nStairs are spawned if they don't already exist on"
+            " the floor, and hidden stairs of the specified type are also spawned if"
+            " configured as long as there are at least 2 floors left in the dungeon."
+            " Stairs can spawn on any tile that has open terrain, is in a room, isn't"
+            " in a Kecleon shop, doesn't already have an enemy spawn, isn't a hallway"
+            " junction, and isn't a special tile like a Key door.\n\nItems are spawned"
+            " both normally in rooms, as well as in walls and Monster Houses. Normal"
+            " items can spawn on any tile that has open terrain, is in a room, isn't in"
+            " a Kecleon shop or Monster House, isn't a hallway junction, and isn't a"
+            " special tile like a Key door. Buried items can spawn on any wall tile."
+            " Monster House items can spawn on any Monster House tile that isn't in a"
+            " Kecleon shop and isn't a hallway junction.\n\nTraps are similarly spawned"
+            " both normally in rooms, as well as in Monster Houses. Normal traps can"
+            " spawn on any tile that has open terrain, is in a room, isn't in a Kecleon"
+            " shop, doesn't already have an item or enemy spawn, and isn't a special"
+            " tile like a Key door. Monster House traps follow the same conditions as"
+            " Monster House items.\n\nThe player can spawn on any tile that has open"
+            " terrain, is in a room, isn't in a Kecleon shop, isn't a hallway junction,"
+            " doesn't already have an item, enemy, or trap spawn, and isn't a special"
+            " tile like a Key door.\n\nr0: floor properties\nr1: empty Monster House"
+            " flag. An empty Monster House is one with no items or traps, and only a"
+            " small number of enemies."
         ),
     )
 
-    SpawnEnemies = Symbol(
+    MarkEnemySpawns = Symbol(
         [0x64F50],
         [0x2342830],
         None,
         (
-            "Spawn all enemies, which includes normal enemies and those in Monster"
-            " Houses.\n\nNormal enemies can spawn on any tile that has open terrain,"
-            " isn't in a Kecleon shop, doesn't already have another entity spawn, and"
-            " isn't a special tile like a Key door.\n\nMonster House enemies can spawn"
-            " on any Monster House tile that isn't in a Kecleon shop, isn't where the"
-            " player spawns, and isn't a special tile like a Key door.\n\nr0: floor"
-            " properties\nr1: empty Monster House flag. An empty Monster House is one"
-            " with no items or traps, and only a small number of enemies."
+            "Mark tiles for all enemies, which includes normal enemies and those in"
+            " Monster Houses. Note that this only marks tiles; actual spawning is"
+            " handled later in SpawnInitialMonsters.\n\nNormal enemies can spawn on any"
+            " tile that has open terrain, isn't in a Kecleon shop, doesn't already have"
+            " another entity spawn, and isn't a special tile like a Key"
+            " door.\n\nMonster House enemies can spawn on any Monster House tile that"
+            " isn't in a Kecleon shop, isn't where the player spawns, and isn't a"
+            " special tile like a Key door.\n\nr0: floor properties\nr1: empty Monster"
+            " House flag. An empty Monster House is one with no items or traps, and"
+            " only a small number of enemies."
         ),
     )
 
@@ -19001,6 +20294,16 @@ class JpOverlay29Functions:
         ),
     )
 
+    GetMissionDestination = Symbol(
+        [0x6CBEC],
+        [0x234A4CC],
+        None,
+        (
+            "Returns the current mission destination on the dungeon struct.\n\nreturn:"
+            " &dungeon::mission_destination"
+        ),
+    )
+
     IsOutlawOrChallengeRequestFloor = Symbol(
         [0x6CC0C],
         [0x234A4EC],
@@ -19254,6 +20557,22 @@ class JpOverlay29Functions:
             "Generates the monster ID in the egg from the given mission. Uses the base"
             " form of the monster.\n\nNote: unverified, ported from Irdkwia's"
             " notes\n\nr0: mission struct"
+        ),
+    )
+
+    LogMessageByIdWithPopupCheckParticipants = Symbol(
+        [0x6EBE0],
+        [0x234C4C0],
+        None,
+        (
+            "Logs the appropriate message based on the participating entites; this"
+            " function calls LogMessageByIdWithPopupCheckUserTarget is both the user"
+            " and target pointers are non-null, otherwise it calls"
+            " LogMessageByIdWithPopupCheckUser if the user pointer is non-null,"
+            " otherwise doesn't log anything.\n\nThis function also seems to set some"
+            " global table entry to some value?\n\nr0: user entity pointer\nr1: target"
+            " entity pointer\nr2: message ID\nr3: index into some table?\nstack[0]:"
+            " value to set at the table index specified by r3?"
         ),
     )
 
@@ -19990,6 +21309,39 @@ class JpOverlay29Data:
         ),
     )
 
+    DISPLACEMENTS_WITHIN_2_LARGEST_FIRST = Symbol(
+        None,
+        None,
+        None,
+        (
+            "An array of displacement vectors with max norm <= 2, ordered in descending"
+            " order by norm.\n\nThe last element, (99, 99), is invalid and used as an"
+            " end marker.\n\ntype: position[26]"
+        ),
+    )
+
+    DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST = Symbol(
+        None,
+        None,
+        None,
+        (
+            "An array of displacement vectors with max norm <= 2, ordered in ascending"
+            " order by norm.\n\nThe last element, (99, 99), is invalid and used as an"
+            " end marker.\n\ntype: position[26]"
+        ),
+    )
+
+    DISPLACEMENTS_WITHIN_3 = Symbol(
+        None,
+        None,
+        None,
+        (
+            "An array of displacement vectors with max norm <= 3. The elements are"
+            " vaguely in ascending order by norm, but not exactly.\n\nThe last element,"
+            " (99, 99), is invalid and used as an end marker.\n\ntype: position[50]"
+        ),
+    )
+
     ITEM_CATEGORY_ACTIONS = Symbol(
         None,
         None,
@@ -20032,6 +21384,100 @@ class JpOverlay29Data:
         ),
     )
 
+    DAMAGE_MULTIPLIER_0_5 = Symbol(
+        None,
+        None,
+        None,
+        (
+            "A generic damage multiplier of 0.5 used in various places, as a 64-bit"
+            " fixed-point number with 16 fraction bits."
+        ),
+    )
+
+    DAMAGE_MULTIPLIER_1_5 = Symbol(
+        None,
+        None,
+        None,
+        (
+            "A generic damage multiplier of 1.5 used in various places, as a 64-bit"
+            " fixed-point number with 16 fraction bits."
+        ),
+    )
+
+    DAMAGE_MULTIPLIER_2 = Symbol(
+        None,
+        None,
+        None,
+        (
+            "A generic damage multiplier of 2 used in various places, as a 64-bit"
+            " fixed-point number with 16 fraction bits."
+        ),
+    )
+
+    CLOUDY_DAMAGE_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The extra damage multiplier for non-Normal-type moves when the weather is"
+            " Cloudy, as a 64-bit fixed-point number with 16 fraction bits (0.75)."
+        ),
+    )
+
+    SOLID_ROCK_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The extra damage multiplier for super-effective moves when Solid Rock or"
+            " Filter is active, as a 64-bit fixed-point number with 16 fraction bits"
+            " (0.75)."
+        ),
+    )
+
+    DAMAGE_FORMULA_MAX_BASE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The maximum value of the base damage formula (after"
+            " DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a"
+            " 64-bit binary fixed-point number with 16 fraction bits (999)."
+        ),
+    )
+
+    WONDER_GUARD_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The damage multiplier for moves affected by Wonder Guard, as a 64-bit"
+            " fixed-point number with 16 fraction bits (0)."
+        ),
+    )
+
+    DAMAGE_FORMULA_MIN_BASE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The minimum value of the base damage formula (after"
+            " DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a"
+            " 64-bit binary fixed-point number with 16 fraction bits (1)."
+        ),
+    )
+
+    TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS = Symbol(
+        None,
+        None,
+        None,
+        (
+            "List of exclusive item effects that negate damage of a certain type,"
+            " terminated by a TYPE_NEUTRAL entry.\n\ntype: struct"
+            " damage_negating_exclusive_eff_entry[28]"
+        ),
+    )
+
     SPATK_STAT_IDX = Symbol(
         None,
         None,
@@ -20049,6 +21495,17 @@ class JpOverlay29Data:
         (
             "The index (0) of the attack entry in internal stat structs, such as the"
             " stat modifier array for a monster."
+        ),
+    )
+
+    ROLLOUT_DAMAGE_MULT_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "A table of damage multipliers for each successive hit of Rollout/Ice Ball."
+            " Each entry is a binary fixed-point number with 8 fraction bits.\n\ntype:"
+            " int32_t[10]"
         ),
     )
 
@@ -21110,6 +22567,33 @@ class JpRamData:
         None,
         None,
         "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    ROLLOUT_ICE_BALL_MISSED = Symbol(
+        None,
+        None,
+        None,
+        (
+            "[Runtime] Appears to be set to true whenever a hit from Rollout or Ice"
+            " Ball fails to deal damage."
+        ),
+    )
+
+    ROLLOUT_ICE_BALL_SUCCESSIVE_HITS = Symbol(
+        None,
+        None,
+        None,
+        (
+            "[Runtime] Seems to count the number of successive hits by Rollout or Ice"
+            " Ball."
+        ),
+    )
+
+    TRIPLE_KICK_SUCCESSIVE_HITS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Seems to count the number of successive hits by Triple Kick.",
     )
 
     METRONOME_NEXT_INDEX = Symbol(

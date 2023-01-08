@@ -143,12 +143,82 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    UFixedPoint64CmpLt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     MultiplyByFixedPoint: Symbol[
         Optional[List[int]],
         None,
     ]
 
     UMultiplyByFixedPoint: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IntToFixedPoint64: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FixedPoint64ToInt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FixedPoint32To64: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    NegateFixedPoint64: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FixedPoint64IsZero: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FixedPoint64IsNegative: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FixedPoint64CmpLt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MultiplyFixedPoint64: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DivideFixedPoint64: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UMultiplyFixedPoint64: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UDivideFixedPoint64: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AddFixedPoint64: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ClampedLn: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -2653,7 +2723,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetMovementType: Symbol[
+    GetMobilityType: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3505,6 +3575,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    LOG_MAX_ARG: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     DAMAGE_SOURCE_CODE_ORB_ITEM: Symbol[
         Optional[List[int]],
         None,
@@ -3551,6 +3626,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     MAX_RECRUITABLE_TEAM_MEMBERS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    NATURAL_LOG_VALUE_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -3825,7 +3905,22 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DAMAGE_FORMULA_FLV_SHIFT: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     EVOLUTION_PHYSICAL_STAT_BONUSES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_CONSTANT_SHIFT: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -3836,6 +3931,31 @@ class Arm9DataProtocol(Protocol):
     ]
 
     EVOLUTION_SPECIAL_STAT_BONUSES: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_LN_PREFACTOR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_AT_PREFACTOR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_DEF_PREFACTOR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_LN_ARG_PREFACTOR: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4401,6 +4521,11 @@ class ItcmFunctionsProtocol(Protocol):
 
     ChooseAiMove: Symbol[
         List[int],
+        None,
+    ]
+
+    LightningRodStormDrainCheck: Symbol[
+        Optional[List[int]],
         None,
     ]
 
@@ -5750,7 +5875,7 @@ class Move_effectsFunctionsProtocol(Protocol):
         None,
     ]
 
-    DoHammerArm: Symbol[
+    DoMoveHammerArm: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -6007,6 +6132,11 @@ class Move_effectsFunctionsProtocol(Protocol):
 
 
 class Move_effectsDataProtocol(Protocol):
+    MAX_HP_CAP_MOVE_EFFECTS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     LUNAR_DANCE_PP_RESTORATION: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6160,6 +6290,16 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetEffectAnimationField0x19: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AnimationHasMoreFrames: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetEffectAnimation: Symbol[
         Optional[List[int]],
         None,
@@ -6258,6 +6398,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     CRUNCH_LOWER_DEFENSE_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FOREWARN_FORCED_MISS_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6377,6 +6522,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SUPER_LUCK_CRIT_RATE_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     CONSTRICT_LOWER_SPEED_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6442,6 +6592,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    TECHNICIAN_MOVE_POWER_THRESHOLD: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SONICBOOM_FIXED_DAMAGE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6457,7 +6612,17 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SET_DAMAGE_STATUS_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     INTIMIDATOR_ACTIVATION_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TYPE_ADVANTAGE_MASTER_CRIT_RATE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6667,7 +6832,17 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SCOPE_LENS_CRIT_RATE_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     HEALING_WISH_HP_RESTORATION: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MONSTER_BOOSTED_ATTACKS_MULTIPLIER: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6692,7 +6867,22 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    BURN_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     REST_TURN_RANGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MATCHUP_IMMUNE_MULTIPLIER: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6707,12 +6897,77 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DETECT_BAND_MOVE_ACCURACY_DROP: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TINTED_LENS_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SMOKESCREEN_TURN_RANGE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
+    SHADOW_FORCE_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DIG_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DIVE_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BOUNCE_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     POWER_PITCHER_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    QUICK_DODGER_MOVE_ACCURACY_DROP: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MATCHUP_SUPER_EFFECTIVE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MATCHUP_NEUTRAL_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6737,6 +6992,46 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SOLARBEAM_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SKY_ATTACK_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    RAZOR_WIND_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FOCUS_PUNCH_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SKULL_BASH_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    FLY_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WEATHER_BALL_TYPE_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LAST_RESORT_DAMAGE_MULT_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SYNTHESIS_HP_RESTORATION_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6757,7 +7052,37 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
-    WEATHER_ATTRIBUTE_TABLE: Symbol[
+    REVERSAL_DAMAGE_MULT_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WATER_SPOUT_DAMAGE_MULT_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WRING_OUT_DAMAGE_MULT_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ERUPTION_DAMAGE_MULT_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WEATHER_BALL_DAMAGE_MULT_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CASTFORM_WEATHER_ATTRIBUTE_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TYPE_MATCHUP_COMBINATOR_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -9151,12 +9476,37 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayEffectAnimation: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     UpdateStatusIconFlags: Symbol[
         Optional[List[int]],
         None,
     ]
 
+    PlayEffectAnimation0x171Full: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PlayEffectAnimation0x171: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ShowPpRestoreEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PlayEffectAnimation0x1A9: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PlayEffectAnimation0x18E: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9211,12 +9561,37 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    FindNearbyUnoccupiedTile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FindClosestUnoccupiedTileWithin2: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FindFarthestUnoccupiedTileWithin2: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FindUnoccupiedTileWithin3: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TickStatusTurnCounter: Symbol[
         Optional[List[int]],
         None,
     ]
 
     AdvanceFrame: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetDungeonRngPreseed23Bit: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9377,6 +9752,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DebugRecruitingEnabled: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsSecretBazaarNpcBehavior: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9546,6 +9926,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CountMovesOutOfPp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     HasSuperEffectiveMoveAgainstUser: Symbol[
         Optional[List[int]],
         None,
@@ -9576,7 +9961,12 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    InitTeam: Symbol[
+    SpawnTeam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SpawnInitialMonsters: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9596,12 +9986,32 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    MarkShopkeeperSpawn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SpawnShopkeepers: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetOutlawSpawnData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ExecuteMonsterAction: Symbol[
         Optional[List[int]],
         None,
     ]
 
     HasStatusThatPreventsActing: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsInvalidSpawnTile: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9627,6 +10037,66 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SprintfStatic: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsMonsterDrowsy: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterHasNonvolatileNonsleepStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterHasImmobilizingStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterHasAttackInterferingStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterHasSkillInterferingStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterHasLeechSeedStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterHasWhifferStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsMonsterVisuallyImpaired: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsMonsterMuzzled: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterHasMiracleEyeStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterHasNegativeStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsMonsterSleeping: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9671,7 +10141,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    AbilityIsActiveAnyEntity: Symbol[
+    OtherMonsterAbilityIsActive: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9726,6 +10196,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    UpdateStateFlags: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     AddExpSpecial: Symbol[
         Optional[List[int]],
         None,
@@ -9771,7 +10246,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryTriggerMonsterHouse: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     RunMonsterAi: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyDamageAndEffects: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9791,7 +10276,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ScrappyShouldActivate: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsTypeIneffectiveAgainstGhost: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GhostImmunityIsActive: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetTypeMatchup: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CalcTypeBasedDamageEffects: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9821,7 +10326,12 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    ResetDamageCalcScratchSpace: Symbol[
+    UpdateShopkeeperModeAfterAttack: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ResetDamageCalcDiagnostics: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9996,6 +10506,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    FlashFireShouldActivate: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ApplyOffensiveStatMultiplier: Symbol[
         Optional[List[int]],
         None,
@@ -10052,6 +10567,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ResetHitChanceStat: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ExclusiveItemEffectIsActiveWithLogging: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10161,6 +10681,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetEntityNaturalGiftInfo: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetEntityWeatherBallType: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsInSpawnList: Symbol[
         Optional[List[int]],
         None,
@@ -10196,6 +10726,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CategoryIsNotPhysical: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TryPounce: Symbol[
         Optional[List[int]],
         None,
@@ -10227,6 +10762,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     HasMaxGinsengBoost99: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TwoTurnMoveForcedMiss: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10291,12 +10831,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    CalcDamageProjectile: Symbol[
+    DealDamageWithTypeAndPowerBoost: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    CalcDamageFinal: Symbol[
+    DealDamageProjectile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DealDamageWithType: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PerformDamageSequence: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10367,6 +10917,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetRandomSpawnMonsterID: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    NearbyAllyIqSkillIsEnabled: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ResetGravity: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10676,12 +11236,12 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    SpawnNonEnemies: Symbol[
+    MarkNonEnemySpawns: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    SpawnEnemies: Symbol[
+    MarkEnemySpawns: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10861,6 +11421,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetMissionDestination: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsOutlawOrChallengeRequestFloor: Symbol[
         Optional[List[int]],
         None,
@@ -10982,6 +11547,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GenerateMissionEggMonster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LogMessageByIdWithPopupCheckParticipants: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11393,6 +11963,21 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DISPLACEMENTS_WITHIN_2_LARGEST_FIRST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DISPLACEMENTS_WITHIN_3: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     ITEM_CATEGORY_ACTIONS: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -11413,12 +11998,62 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DAMAGE_MULTIPLIER_0_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_MULTIPLIER_1_5: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_MULTIPLIER_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CLOUDY_DAMAGE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SOLID_ROCK_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_MAX_BASE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WONDER_GUARD_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_MIN_BASE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SPATK_STAT_IDX: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
     ATK_STAT_IDX: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROLLOUT_DAMAGE_MULT_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -12250,6 +12885,21 @@ class RamDataProtocol(Protocol):
     ]
 
     TURNING_ON_THE_SPOT_FLAG: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROLLOUT_ICE_BALL_MISSED: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ROLLOUT_ICE_BALL_SUCCESSIVE_HITS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TRIPLE_KICK_SUCCESSIVE_HITS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
