@@ -10738,7 +10738,9 @@ class JpMove_effectsFunctions:
         [0x232E1D8],
         None,
         (
-            "Move effect: Invisify (item effect)\n\nr0: attacker pointer\nr1: defender"
+            "Move effect: Invisify (item effect)\n\nThis function sets r1 = r0 before"
+            " calling TryInvisify, so the effect will always be applied to the user"
+            " regardless of the move settings.\n\nr0: attacker pointer\nr1: defender"
             " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
             " used"
         ),
@@ -12907,6 +12909,16 @@ class JpOverlay10Data:
             "Maps each weather type (by index, see enum weather_id) to the"
             " corresponding Weather Ball damage multiplier, where each entry is a"
             " binary fixed-point number with 8 fraction bits.\n\ntype: int[8]"
+        ),
+    )
+
+    EAT_ITEM_EFFECT_IGNORE_LIST = Symbol(
+        None,
+        None,
+        None,
+        (
+            "List of item IDs that should be ignored by the ShouldTryEatItem function."
+            " The last entry is null."
         ),
     )
 
@@ -15545,6 +15557,30 @@ class JpOverlay29Functions:
         ),
     )
 
+    ShouldDisplayEntityMessages = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if messages that involve a certain entity should be displayed or"
+            " suppressed.\n\nFor example, it returns false if the entity is an"
+            " invisible enemy.\n\nr0: Entity pointer\nr1: ?\nreturn: True if messages"
+            " involving the entity should be displayed, false if they should be"
+            " suppressed."
+        ),
+    )
+
+    ShouldDisplayEntityMessagesWrapper = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Calls ShouldDisplayEntityMessages with r1 = 0\n\nr0: Entity"
+            " pointer\nreturn: True if messages involving the entity should be"
+            " displayed, false if they should be suppressed."
+        ),
+    )
+
     CanSeeTarget = Symbol(
         [0x6500],
         [0x22E3DE0],
@@ -15766,6 +15802,21 @@ class JpOverlay29Functions:
             " all the species combined does not exceed the maximum of 0x58000 bytes"
             " (352 KB). Kecleon and the Decoy are always included in the random"
             " selection.\n\nr0: quick_saved\nr1: ???\nr2: special_process"
+        ),
+    )
+
+    MonsterSpawnListPartialCopy = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Copies all entries in the floor's monster spawn list that have a sprite"
+            " size >= 6 to the specified buffer.\n\nThe parameter in r1 can be used to"
+            " specify how many entries are already present in the buffer. Entries added"
+            " by this function will be placed after those, and the total returned in r1"
+            " will account for existing entries as well.\n\nr0: (output) Buffer where"
+            " the result will be stored\nr1: Current amount of entries in the"
+            " buffer\nreturn: New amount of entries in the buffer"
         ),
     )
 
@@ -16734,6 +16785,23 @@ class JpOverlay29Functions:
             " user.\n\nr0: User\nr1: Target\nr2: If true, moves with a max Ginseng"
             " boost != 99 will be ignored\nreturn: True if the target has at least one"
             " super effective move against the user, false otherwise."
+        ),
+    )
+
+    TryEatItem = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The user attempts to eat an item from the target.\n\nThe function tries to"
+            " eat the target's held item first. If that's not possible and the target"
+            " is part of the team, it attempts to eat a random edible item from the bag"
+            " instead.\nFun fact: The code used to select the random bag item that will"
+            " be eaten is poorly coded. As a result, there's a small chance of the"
+            " first edible item in the bag being picked instead of a random one. The"
+            " exact chance of this happening is (N/B)^B, where N is the amount of"
+            " non-edible items in the bag and B is the total amount of items in the"
+            " bag.\n\nr0: User\nr1: Target\nreturn: True if the attempt was successful"
         ),
     )
 
@@ -18401,6 +18469,29 @@ class JpOverlay29Functions:
         ),
     )
 
+    TryInvisify = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Attempts to turn the target invisible.\n\nThe user pointer is only used"
+            " when calling LogMessage functions.\n\nr0: user entity pointer\nr1: target"
+            " entity pointer"
+        ),
+    )
+
+    TryTransform = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Attempts to transform the target into the species of a random monster"
+            " contained in the list returned by MonsterSpawnListPartialCopy.\n\nThe"
+            " user pointer is only used when calling LogMessage functions.\n\nr0: user"
+            " entity pointer\nr1: target entity pointer"
+        ),
+    )
+
     IsBlinded = Symbol(
         [0x3B3D4],
         [0x2318CB4],
@@ -18620,6 +18711,31 @@ class JpOverlay29Functions:
         ),
     )
 
+    CanMonsterUseItem = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks whether a monster can use a certain item.\n\nReturns false if the"
+            " item is sticky, or if the monster is under the STATUS_MUZZLED status and"
+            " the item is edible.\nAlso prints failure messages if required.\n\nr0:"
+            " Monster entity pointer\nr1: Item pointer\nreturn: True if the monster can"
+            " use the item, false otherwise"
+        ),
+    )
+
+    ShouldTryEatItem = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if a given item should be eaten by the TryEatItem"
+            " effect.\n\nReturns false if the ID is lower than 0x45, greater than 0x8A"
+            " or if it's listed in the EAT_ITEM_EFFECT_IGNORE_LIST array.\n\nr0: Item"
+            " ID\nreturn: True if the item should be eaten by TryEatItem."
+        ),
+    )
+
     GetMaxPpWrapper = Symbol(
         [0x425BC],
         [0x231FE9C],
@@ -18694,6 +18810,21 @@ class JpOverlay29Functions:
         ),
     )
 
+    GetMoveRangeDistance = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Returns the maximum reach distance of a move, based on its AI range"
+            " value.\n\nIf the move doesn't have an AI range value of RANGE_FRONT_10,"
+            " RANGE_FRONT_WITH_CORNER_CUTTING or RANGE_FRONT_2_WITH_CORNER_CUTTING,"
+            " returns 0.\nIf r2 is true, the move is a two-turn move and the user isn't"
+            " charging said move, returns 0.\n\nr0: User entity pointer\nr1: Move"
+            " pointer\nr2: True to perform the two-turn move check\nreturn: Maximum"
+            " reach distance of the move, in tiles."
+        ),
+    )
+
     MoveHitCheck = Symbol(
         [0x47808],
         [0x23250E8],
@@ -18718,6 +18849,17 @@ class JpOverlay29Functions:
             "Checks if a move is a Hyper Beam variant that requires a a turn to"
             " recharge.\n\nInclude moves: Frenzy Plant, Hydro Cannon, Hyper Beam, Blast"
             " Burn, Rock Wrecker, Giga Impact, Roar of Time\n\nr0: move\nreturn: bool"
+        ),
+    )
+
+    IsChargingTwoTurnMove = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if a monster is currently charging the specified two-turn"
+            " move.\n\nr0: User entity pointer\nr1: Move pointer\nreturn: True if the"
+            " user is charging the specified two-turn move, false otherwise."
         ),
     )
 
@@ -21475,6 +21617,16 @@ class JpOverlay29Data:
             "List of exclusive item effects that negate damage of a certain type,"
             " terminated by a TYPE_NEUTRAL entry.\n\ntype: struct"
             " damage_negating_exclusive_eff_entry[28]"
+        ),
+    )
+
+    TWO_TURN_MOVES_AND_STATUSES = Symbol(
+        None,
+        None,
+        None,
+        (
+            "List that matches two-turn move IDs to their corresponding status ID. The"
+            " last entry is null."
         ),
     )
 

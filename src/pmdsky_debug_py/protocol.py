@@ -18,15 +18,13 @@ class Symbol(Generic[A, B]):
     @property
     @no_type_check
     def address(self) -> int:
-        """First / main address. Raises an IndexError/TypeError if no address is defined.
-        """
+        """First / main address. Raises an IndexError/TypeError if no address is defined."""
         return self.addresses[0]
 
     @property
     @no_type_check
     def absolute_address(self) -> int:
-        """First / main address (absolute). Raises an IndexError/TypeError if no address is defined.
-        """
+        """First / main address (absolute). Raises an IndexError/TypeError if no address is defined."""
         return self.absolute_addresses[0]
 
 
@@ -7077,6 +7075,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    EAT_ITEM_EFFECT_IGNORE_LIST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     CASTFORM_WEATHER_ATTRIBUTE_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -9426,6 +9429,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ShouldDisplayEntityMessages: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ShouldDisplayEntityMessagesWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     CanSeeTarget: Symbol[
         Optional[List[int]],
         None,
@@ -9512,6 +9525,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     LoadMappaFileAttributes: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterSpawnListPartialCopy: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9932,6 +9950,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     HasSuperEffectiveMoveAgainstUser: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryEatItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10626,6 +10649,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryInvisify: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryTransform: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsBlinded: Symbol[
         Optional[List[int]],
         None,
@@ -10716,6 +10749,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CanMonsterUseItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ShouldTryEatItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetMaxPpWrapper: Symbol[
         Optional[List[int]],
         None,
@@ -10751,12 +10794,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetMoveRangeDistance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     MoveHitCheck: Symbol[
         Optional[List[int]],
         None,
     ]
 
     IsHyperBeamVariant: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsChargingTwoTurnMove: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -12039,6 +12092,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    TWO_TURN_MOVES_AND_STATUSES: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
