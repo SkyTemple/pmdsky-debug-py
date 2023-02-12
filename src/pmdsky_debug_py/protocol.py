@@ -6840,7 +6840,7 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
-    MONSTER_BOOSTED_ATTACKS_MULTIPLIER: Symbol[
+    ME_FIRST_MULTIPLIER: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

@@ -12534,14 +12534,13 @@ class NaOverlay10Data:
         ),
     )
 
-    MONSTER_BOOSTED_ATTACKS_MULTIPLIER = Symbol(
+    ME_FIRST_MULTIPLIER = Symbol(
         [0x7C90],
         [0x22C4710],
         0x4,
         (
-            "The blanket damage multiplier applied to attacks by a monster with"
-            " monster::boosted_attacks set, as a fixed-point number with 8 fraction"
-            " bits (1.5)."
+            "The damage multiplier applied to attacks copied by Me First, as a"
+            " fixed-point number with 8 fraction bits (1.5)."
         ),
     )
 
