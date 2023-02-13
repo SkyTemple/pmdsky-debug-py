@@ -4626,11 +4626,14 @@ class EuArm9Functions:
         ),
     )
 
-    GetUnknownDungeonOption = Symbol(
+    GetRandomMovementChance = Symbol(
         [0x51720],
         [0x2051720],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: dungeon ID\nreturn: ?",
+        (
+            "Returns dungeon_restriction::random_movement_chance for the specified"
+            " dungeon ID.\n\nr0: dungeon ID\nreturn: Random movement chance"
+        ),
     )
 
     CanEnemyEvolve = Symbol(

@@ -4624,11 +4624,14 @@ class JpArm9Functions:
         ),
     )
 
-    GetUnknownDungeonOption = Symbol(
+    GetRandomMovementChance = Symbol(
         [0x51738],
         [0x2051738],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: dungeon ID\nreturn: ?",
+        (
+            "Returns dungeon_restriction::random_movement_chance for the specified"
+            " dungeon ID.\n\nr0: dungeon ID\nreturn: Random movement chance"
+        ),
     )
 
     CanEnemyEvolve = Symbol(

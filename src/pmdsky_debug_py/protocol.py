@@ -2541,7 +2541,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetUnknownDungeonOption: Symbol[
+    GetRandomMovementChance: Symbol[
         Optional[List[int]],
         None,
     ]
