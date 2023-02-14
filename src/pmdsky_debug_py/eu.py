@@ -19006,6 +19006,17 @@ class EuOverlay29Functions:
         ),
     )
 
+    TryDrought = Symbol(
+        [0x4347C],
+        [0x231FFFC],
+        None,
+        (
+            "Attempts to drain all water from the current floor.\n\nFails if orbs are"
+            " disabled on the floor or if the current tileset has the is_water_tileset"
+            " flag set.\n\nr0: user pointer"
+        ),
+    )
+
     TryPounce = Symbol(
         [0x43B08],
         [0x2320688],
@@ -19466,6 +19477,16 @@ class EuOverlay29Functions:
         [0x2336FF8],
         None,
         "Returns the index of the room that contains the stairs\n\nreturn: Room index",
+    )
+
+    IsWaterTileset = Symbol(
+        [0x5BEE4],
+        [0x2338A64],
+        None,
+        (
+            "Returns flag tileset_property::is_water_tileset for the current"
+            " tileset\n\nreturn: True if the current tileset is a water tileset"
+        ),
     )
 
     GetRandomSpawnMonsterID = Symbol(

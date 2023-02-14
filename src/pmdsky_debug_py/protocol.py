@@ -10774,6 +10774,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryDrought: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TryPounce: Symbol[
         Optional[List[int]],
         None,
@@ -10965,6 +10970,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetStairsRoom: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsWaterTileset: Symbol[
         Optional[List[int]],
         None,
     ]

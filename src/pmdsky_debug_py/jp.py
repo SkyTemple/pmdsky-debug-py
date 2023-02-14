@@ -18766,6 +18766,17 @@ class JpOverlay29Functions:
         ),
     )
 
+    TryDrought = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Attempts to drain all water from the current floor.\n\nFails if orbs are"
+            " disabled on the floor or if the current tileset has the is_water_tileset"
+            " flag set.\n\nr0: user pointer"
+        ),
+    )
+
     TryPounce = Symbol(
         [0x437EC],
         [0x23210CC],
@@ -19226,6 +19237,16 @@ class JpOverlay29Functions:
         [0x23377F8],
         None,
         "Returns the index of the room that contains the stairs\n\nreturn: Room index",
+    )
+
+    IsWaterTileset = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Returns flag tileset_property::is_water_tileset for the current"
+            " tileset\n\nreturn: True if the current tileset is a water tileset"
+        ),
     )
 
     GetRandomSpawnMonsterID = Symbol(
