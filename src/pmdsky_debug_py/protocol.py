@@ -3668,12 +3668,12 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS: Symbol[
+    EXCLUSIVE_ITEM_DEFENSE_BOOSTS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    EXCLUSIVE_ITEM_DEFENSE_BOOSTS: Symbol[
+    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

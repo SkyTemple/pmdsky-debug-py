@@ -6744,8 +6744,8 @@ class NaArm9Data:
         0x3C,
         (
             "Contains stat boost effects for different exclusive item classes.\n\nEach"
-            " 4-byte entry contains the boost data for (attack, special attack,"
-            " defense, special defense), 1 byte each, for a specific exclusive item"
+            " 4-byte entry contains the boost data for (attack, defense, special"
+            " attack, special defense), 1 byte each, for a specific exclusive item"
             " class, indexed according to the stat boost data index list.\n\ntype:"
             " struct exclusive_item_stat_boost_entry[15]"
         ),
@@ -6755,11 +6755,11 @@ class NaArm9Data:
         [0x980E8], [0x20980E8], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
     )
 
-    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
+    EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
         [0x980E9], [0x20980E9], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
     )
 
-    EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
+    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
         [0x980EA], [0x20980EA], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
     )
 

@@ -6726,8 +6726,8 @@ class JpArm9Data:
         0x3C,
         (
             "Contains stat boost effects for different exclusive item classes.\n\nEach"
-            " 4-byte entry contains the boost data for (attack, special attack,"
-            " defense, special defense), 1 byte each, for a specific exclusive item"
+            " 4-byte entry contains the boost data for (attack, defense, special"
+            " attack, special defense), 1 byte each, for a specific exclusive item"
             " class, indexed according to the stat boost data index list.\n\ntype:"
             " struct exclusive_item_stat_boost_entry[15]"
         ),
@@ -6737,11 +6737,11 @@ class JpArm9Data:
         [0x983DC], [0x20983DC], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
     )
 
-    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
+    EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
         [0x983DD], [0x20983DD], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
     )
 
-    EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
+    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
         [0x983DE], [0x20983DE], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
     )
 
