@@ -3297,8 +3297,8 @@ class JpArm9Functions:
         [0x202F9D4],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id\nr1:"
-            " portrait_ptr"
+            "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id\nr1: portrait"
+            " box pointer"
         ),
     )
 
@@ -3946,13 +3946,20 @@ class JpArm9Functions:
         ),
     )
 
-    SetPortraitMonsterId = Symbol(
+    InitPortraitBox = Symbol(
+        None,
+        None,
+        None,
+        "Initializes a struct portrait_box.\n\nr0: portrait box pointer",
+    )
+
+    InitPortraitBoxWithMonsterId = Symbol(
         [0x4DB34],
         [0x204DB34],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait_ptr\nr1:"
-            " monster ID"
+            "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait box"
+            " pointer\nr1: monster ID"
         ),
     )
 
@@ -3961,8 +3968,8 @@ class JpArm9Functions:
         [0x204DB54],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait_ptr\nr1:"
-            " expression_id"
+            "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait box"
+            " pointer\nr1: expression_id"
         ),
     )
 
@@ -3970,7 +3977,10 @@ class JpArm9Functions:
         [0x4DB64],
         [0x204DB64],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait_ptr\nr1: attr",
+        (
+            "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait box"
+            " pointer\nr1: attr"
+        ),
     )
 
     SetPortraitAttrStruct = Symbol(
@@ -3978,8 +3988,8 @@ class JpArm9Functions:
         [0x204DBA8],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait_ptr\nr1:"
-            " attr_ptr"
+            "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait box"
+            " pointer\nr1: attr_ptr"
         ),
     )
 
@@ -3989,7 +3999,7 @@ class JpArm9Functions:
         None,
         (
             "If buffer_portrait is null, it only checks if it exists\n\nNote:"
-            " unverified, ported from Irdkwia's notes\n\nr0: portrait_ptr\nr1:"
+            " unverified, ported from Irdkwia's notes\n\nr0: portrait box pointer\nr1:"
             " buffer_portrait\nreturn: exists"
         ),
     )
@@ -5173,7 +5183,7 @@ class JpArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
     )
 
-    IsNotNickname = Symbol(
+    StrcmpMonsterName = Symbol(
         [0x532E8],
         [0x20532E8],
         None,
@@ -5454,108 +5464,186 @@ class JpArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nr0: recruit_str",
     )
 
-    GetMember = Symbol(
+    IsValidTeamMember = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Returns whether or not the team member at the given index is valid for the"
+            " current game mode.\n\nDuring normal play, this will only be false for the"
+            " special-episode-reserved indexes (2, 3, 4). During special episodes, this"
+            " will be false for the hero and partner (0, 1).\n\nr0: team member"
+            " index\nreturn: bool"
+        ),
+    )
+
+    IsMainCharacter = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Returns whether or not the team member at the given index is a 'main"
+            " character'.\n\nDuring normal play, this will only be true for the hero"
+            " and partner (0, 1). During special episodes, this will be true for the"
+            " special-episode-reserved indexes (2, 3, 4).\n\nr0: team member"
+            " index\nreturn: bool"
+        ),
+    )
+
+    GetTeamMember = Symbol(
         [0x55944],
         [0x2055944],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: member_idx\nreturn: ?",
+        (
+            "Gets the team member at the given index.\n\nr0: team member index\nreturn:"
+            " ground monster pointer"
+        ),
     )
 
-    GetHeroStrIdIfExists = Symbol(
+    GetHeroMemberIdx = Symbol(
         [0x559EC],
         [0x20559EC],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: ?",
+        (
+            "Returns the team member index of the hero (0) if the hero is valid,"
+            " otherwise return -1.\n\nreturn: team member index"
+        ),
     )
 
-    GetPartnerStrIdIfExists = Symbol(
+    GetPartnerMemberIdx = Symbol(
         [0x55A18],
         [0x2055A18],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: ?",
+        (
+            "Returns the team member index of the partner (1) if the partner is valid,"
+            " otherwise return -1.\n\nreturn: team member index"
+        ),
     )
 
-    GetFirstTeamMemberStrIdIfExists = Symbol(
+    GetMainCharacter1MemberIdx = Symbol(
         [0x55A44],
         [0x2055A44],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: ?",
+        (
+            "Returns the team member index of the first main character for the given"
+            " game mode, if valid, otherwise return -1.\n\nIn normal play, this will be"
+            " the hero (0). During special episodes, this will be 2.\n\nreturn: team"
+            " member index"
+        ),
     )
 
-    GetSecondTeamMemberStrIdIfExists = Symbol(
+    GetMainCharacter2MemberIdx = Symbol(
         [0x55A88],
         [0x2055A88],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: ?",
+        (
+            "Returns the team member index of the second main character for the given"
+            " game mode, if valid, otherwise return -1.\n\nIn normal play, this will be"
+            " the partner (1). During special episodes, this will be 3 if there's a"
+            " second main character.\n\nreturn: team member index"
+        ),
     )
 
-    GetThirdTeamMemberStrIdIfExists = Symbol(
+    GetMainCharacter3MemberIdx = Symbol(
         [0x55ACC],
         [0x2055ACC],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: ?",
+        (
+            "Returns the team member index of the third main character for the given"
+            " game mode, if valid, otherwise return -1.\n\nIn normal play, this will be"
+            " invalid (-1). During special episodes, this will be 4 if there's a third"
+            " main character.\n\nreturn: team member index"
+        ),
     )
 
-    GetHeroData = Symbol(
+    GetHero = Symbol(
         [0x55B0C],
         [0x2055B0C],
         None,
         (
-            "Returns the ground monster data of the hero (first slot in Chimecho"
-            " Assembly)\n\nreturn: Monster data"
+            "Returns the ground monster data of the hero.\n\nreturn: ground monster"
+            " pointer"
         ),
     )
 
-    GetPartnerData = Symbol(
+    GetPartner = Symbol(
         [0x55B34],
         [0x2055B34],
         None,
         (
-            "Returns the ground monster data of the partner (second slot in Chimecho"
-            " Assembly)\n\nreturn: Monster data"
+            "Returns the ground monster data of the partner.\n\nreturn: ground monster"
+            " pointer"
         ),
     )
 
-    GetFirstTeamMemberData = Symbol(
+    GetMainCharacter1 = Symbol(
         [0x55B60],
         [0x2055B60],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: Monster data",
+        (
+            "Returns the ground monster data of the first main character for the given"
+            " game mode.\n\nIn normal play, this will be the hero. During special"
+            " episodes, this will be the first special episode main character (index"
+            " 2).\n\nreturn: ground monster pointer"
+        ),
     )
 
-    GetSecondTeamMemberData = Symbol(
+    GetMainCharacter2 = Symbol(
         [0x55BA8],
         [0x2055BA8],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: Monster data",
+        (
+            "Returns the ground monster data of the second main character for the given"
+            " game mode, or null if invalid.\n\nIn normal play, this will be the"
+            " partner. During special episodes, this will be the second special episode"
+            " main character (index 3) if one is present.\n\nreturn: ground monster"
+            " pointer"
+        ),
     )
 
-    GetThirdTeamMemberData = Symbol(
+    GetMainCharacter3 = Symbol(
         [0x55BF0],
         [0x2055BF0],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: Monster data",
+        (
+            "Returns the ground monster data of the third main character for the given"
+            " game mode, or null if invalid.\n\nIn normal play, this will be null."
+            " During special episodes, this will be the third special episode main"
+            " character (index 4) if one is present.\n\nreturn: ground monster pointer"
+        ),
     )
 
-    GetFirstEmptyRecruitSlot = Symbol(
+    GetFirstEmptyMemberIdx = Symbol(
         [0x55D00],
         [0x2055D00],
         None,
         (
-            "Returns -1 if there is none\n\nNote: unverified, ported from Irdkwia's"
-            " notes\n\nr0: ?\nreturn: ?"
+            "Gets the first unoccupied team member index (in the Chimecho Assembly), or"
+            " -1 if there is none.\n\nIf valid, this will always be at least 5, since"
+            " indexes 0-4 are reserved for main characters.\n\nr0: ?\nreturn: team"
+            " member index of the first available slot"
         ),
     )
 
-    CheckTeamMemberField8 = Symbol(
+    IsMonsterNotNicknamed = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if the string_buffer matches the name of the species\n\nr0: ground"
+            " monster pointer\nreturn: bool"
+        ),
+    )
+
+    CheckTeamMemberIdx = Symbol(
         [0x565C4],
         [0x20565C4],
         None,
         (
-            "Checks if a value obtained from team_member::field_0x8 is equal to certain"
-            " values.\n\nThis is known to return true for some or all of the guest"
-            " monsters.\n\nr0: Value read from team_member::field_0x8\nreturn: True if"
-            " the value is equal to 0x55AA or 0x5AA5"
+            "Checks if a team member's member index (team_member::member_idx) is equal"
+            " to certain values.\n\nThis is known to return true for some or all of the"
+            " guest monsters.\n\nr0: member index\nreturn: True if the value is equal"
+            " to 0x55AA or 0x5AA5"
         ),
     )
 
@@ -5570,25 +5658,32 @@ class JpArm9Functions:
         ),
     )
 
-    GetTeamMemberData = Symbol(
+    SetActiveTeam = Symbol(
+        None,
+        None,
+        None,
+        "Sets the specified team to active in TEAM_MEMBER_TABLE.\n\nr0: team ID",
+    )
+
+    GetActiveTeamMember = Symbol(
         [0x56728],
         [0x2056728],
         None,
         (
-            "Returns a struct containing information about a team member.\n\nIrdkwia's"
-            " notes (note the discrepancy): GetEquivalentTeamID\n  r0: str_id\n "
-            " return: team_id, -1 if not in team\n\nr0: Index\nreturn: Pointer to"
-            " struct containing team member information"
+            "Returns a struct containing information about the active team member in"
+            " the given slot index.\n\nr0: roster index\nreturn: team member pointer,"
+            " or null if index is -1"
         ),
     )
 
-    GetTeamMember = Symbol(
+    GetActiveRosterIndex = Symbol(
         [0x56758],
         [0x2056758],
         None,
         (
-            "Null pointer if -1\n\nNote: unverified, ported from Irdkwia's notes\n\nr0:"
-            " team_id\nreturn: team member"
+            "Searches for the roster index for the given team member within the current"
+            " active roster.\n\nr0: team member index\nreturn: roster index if the team"
+            " member is active, -1 otherwise"
         ),
     )
 
@@ -7812,7 +7907,12 @@ class JpArm9Data:
         ),
     )
 
-    GAME_MODE = Symbol([0xB17E4], [0x20B17E4], 0x1, "[Runtime]\n\ntype: uint8_t")
+    GAME_MODE = Symbol(
+        [0xB17E4],
+        [0x20B17E4],
+        0x1,
+        "[Runtime] Game mode, see enum game_mode for possible values.\n\ntype: uint8_t",
+    )
 
     GLOBAL_PROGRESS_PTR = Symbol(
         None, None, None, "[Runtime]\n\ntype: struct global_progress*"
@@ -7839,8 +7939,8 @@ class JpArm9Data:
         ),
     )
 
-    PARTY_MONSTERS_PTR = Symbol(
-        [0xB22BC], [0x20B22BC], 0x4, "Note: unverified, ported from Irdkwia's notes"
+    TEAM_MEMBER_TABLE_PTR = Symbol(
+        [0xB22BC], [0x20B22BC], 0x4, "Pointer to TEAM_MEMBER_TABLE"
     )
 
     MISSION_LIST_PTR = Symbol(
@@ -22696,32 +22796,15 @@ class JpRamData:
         ),
     )
 
-    TEAM_MEMBER_LIST = Symbol(
+    TEAM_MEMBER_TABLE = Symbol(
         None,
         None,
         None,
         (
-            "List of all team members and persistent information about them.\n\nAppears"
-            " to be ordered in chronological order of recruitment. The first five"
-            " entries appear to be fixed:\n  1. Hero\n  2. Partner\n  3. Grovyle\n  4."
-            " Dusknoir\n  5. Celebi\nSubsequent entries are normal recruits.\n\nIf a"
-            " member is released, all subsequent members will be shifted up (so there"
-            " should be no gaps in the list).\n\ntype: struct ground_monster[555]"
-        ),
-    )
-
-    TEAM_ACTIVE_ROSTER = Symbol(
-        None,
-        None,
-        None,
-        (
-            "List of all currently active team members and relevant information about"
-            " them.\n\nListed in team order. The first four entries correspond to the"
-            " team in normal modes of play. The last three entries are always for"
-            " Grovyle, Dusknoir, and Celebi (in that order).\n\nThis struct is updated"
-            " relatively infrequently. For example, in dungeon mode, it's typically"
-            " only updated at the start of the floor; refer to DUNGEON_STRUCT instead"
-            " for live data.\n\ntype: struct team_member[7]"
+            "Table with all team members, persistent information about them, and"
+            " information about which ones are currently active.\n\nSee the comments on"
+            " struct team_member_table for more information.\n\ntype: struct"
+            " team_member_table"
         ),
     )
 

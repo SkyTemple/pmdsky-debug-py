@@ -2161,7 +2161,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    SetPortraitMonsterId: Symbol[
+    InitPortraitBox: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitPortraitBoxWithMonsterId: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -2846,7 +2851,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    IsNotNickname: Symbol[
+    StrcmpMonsterName: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -2996,67 +3001,82 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetMember: Symbol[
+    IsValidTeamMember: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetHeroStrIdIfExists: Symbol[
+    IsMainCharacter: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetPartnerStrIdIfExists: Symbol[
+    GetTeamMember: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetFirstTeamMemberStrIdIfExists: Symbol[
+    GetHeroMemberIdx: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetSecondTeamMemberStrIdIfExists: Symbol[
+    GetPartnerMemberIdx: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetThirdTeamMemberStrIdIfExists: Symbol[
+    GetMainCharacter1MemberIdx: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetHeroData: Symbol[
+    GetMainCharacter2MemberIdx: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetPartnerData: Symbol[
+    GetMainCharacter3MemberIdx: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetFirstTeamMemberData: Symbol[
+    GetHero: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetSecondTeamMemberData: Symbol[
+    GetPartner: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetThirdTeamMemberData: Symbol[
+    GetMainCharacter1: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetFirstEmptyRecruitSlot: Symbol[
+    GetMainCharacter2: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    CheckTeamMemberField8: Symbol[
+    GetMainCharacter3: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetFirstEmptyMemberIdx: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsMonsterNotNicknamed: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CheckTeamMemberIdx: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3066,12 +3086,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetTeamMemberData: Symbol[
+    SetActiveTeam: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    GetTeamMember: Symbol[
+    GetActiveTeamMember: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetActiveRosterIndex: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4408,7 +4433,7 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    PARTY_MONSTERS_PTR: Symbol[
+    TEAM_MEMBER_TABLE_PTR: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -12932,12 +12957,7 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
-    TEAM_MEMBER_LIST: Symbol[
-        Optional[List[int]],
-        Optional[int],
-    ]
-
-    TEAM_ACTIVE_ROSTER: Symbol[
+    TEAM_MEMBER_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
