@@ -17922,6 +17922,28 @@ class NaOverlay29Functions:
         ),
     )
 
+    EndSleepClassStatus = Symbol(
+        [0x29D9C],
+        [0x2305FDC],
+        None,
+        (
+            "Cures the target's sleep, sleepless, nightmare, yawn or napping status due"
+            " to the action of the user, and prints the event to the log.\n\nr0:"
+            " pointer to user\nr1: pointer to target"
+        ),
+    )
+
+    EndBurnClassStatus = Symbol(
+        [0x29F68],
+        [0x23061A8],
+        None,
+        (
+            "Cures the target's burned, poisoned, badly poisoned or paralysis status"
+            " due to the action of the user, and prints the event to the log.\n\nr0:"
+            " pointer to user\nr1: pointer to target"
+        ),
+    )
+
     EndFrozenClassStatus = Symbol(
         [0x2A018],
         [0x2306258],
@@ -17942,6 +17964,74 @@ class NaOverlay29Functions:
             "Cures the target's cringe, confusion, cowering, pause, taunt, encore or"
             " infatuated status due to the action of the user, and prints the event to"
             " the log.\n\nr0: pointer to user\nr1: pointer to target"
+        ),
+    )
+
+    EndReflectClassStatus = Symbol(
+        [0x2A2B4],
+        [0x23064F4],
+        None,
+        (
+            "Removes the target's reflect, safeguard, light screen, counter, magic"
+            " coat, wish, protect, mirror coat, endure, mini counter?, mirror move,"
+            " conversion 2, vital throw, mist, metal burst, aqua ring or lucky chant"
+            " status due to the action of the user, and prints the event to the"
+            " log.\n\nr0: pointer to user\nr1: pointer to target"
+        ),
+    )
+
+    EndLeechSeedClassStatus = Symbol(
+        [0x2A684],
+        [0x23068C4],
+        None,
+        (
+            "Cures the target's leech seed or destiny bond status due to the action of"
+            " the user, and prints the event to the log.\n\nr0: pointer to user\nr1:"
+            " pointer to target"
+        ),
+    )
+
+    EndSureShotClassStatus = Symbol(
+        [0x2A710],
+        [0x2306950],
+        None,
+        (
+            "Removes the target's sure shot, whiffer, set damage or focus energy status"
+            " due to the action of the user, and prints the event to the log.\n\nr0:"
+            " pointer to user\nr1: pointer to target"
+        ),
+    )
+
+    EndMuzzledStatus = Symbol(
+        [0x2A9B8],
+        [0x2306BF8],
+        None,
+        (
+            "Removes the target's muzzled status due to the action of the user, and"
+            " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to"
+            " target"
+        ),
+    )
+
+    EndMiracleEyeStatus = Symbol(
+        [0x2AA24],
+        [0x2306C64],
+        None,
+        (
+            "Removes the target's miracle eye status due to the action of the user, and"
+            " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to"
+            " target"
+        ),
+    )
+
+    EndMagnetRiseStatus = Symbol(
+        [0x2AA90],
+        [0x2306CD0],
+        None,
+        (
+            "Removes the target's magnet rise status due to the action of the user, and"
+            " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to"
+            " target"
         ),
     )
 

@@ -17843,6 +17843,28 @@ class EuOverlay29Functions:
         ),
     )
 
+    EndSleepClassStatus = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Cures the target's sleep, sleepless, nightmare, yawn or napping status due"
+            " to the action of the user, and prints the event to the log.\n\nr0:"
+            " pointer to user\nr1: pointer to target"
+        ),
+    )
+
+    EndBurnClassStatus = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Cures the target's burned, poisoned, badly poisoned or paralysis status"
+            " due to the action of the user, and prints the event to the log.\n\nr0:"
+            " pointer to user\nr1: pointer to target"
+        ),
+    )
+
     EndFrozenClassStatus = Symbol(
         [0x2A104],
         [0x2306C84],
@@ -17863,6 +17885,74 @@ class EuOverlay29Functions:
             "Cures the target's cringe, confusion, cowering, pause, taunt, encore or"
             " infatuated status due to the action of the user, and prints the event to"
             " the log.\n\nr0: pointer to user\nr1: pointer to target"
+        ),
+    )
+
+    EndReflectClassStatus = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Removes the target's reflect, safeguard, light screen, counter, magic"
+            " coat, wish, protect, mirror coat, endure, mini counter?, mirror move,"
+            " conversion 2, vital throw, mist, metal burst, aqua ring or lucky chant"
+            " status due to the action of the user, and prints the event to the"
+            " log.\n\nr0: pointer to user\nr1: pointer to target"
+        ),
+    )
+
+    EndLeechSeedClassStatus = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Cures the target's leech seed or destiny bond status due to the action of"
+            " the user, and prints the event to the log.\n\nr0: pointer to user\nr1:"
+            " pointer to target"
+        ),
+    )
+
+    EndSureShotClassStatus = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Removes the target's sure shot, whiffer, set damage or focus energy status"
+            " due to the action of the user, and prints the event to the log.\n\nr0:"
+            " pointer to user\nr1: pointer to target"
+        ),
+    )
+
+    EndMuzzledStatus = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Removes the target's muzzled status due to the action of the user, and"
+            " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to"
+            " target"
+        ),
+    )
+
+    EndMiracleEyeStatus = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Removes the target's miracle eye status due to the action of the user, and"
+            " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to"
+            " target"
+        ),
+    )
+
+    EndMagnetRiseStatus = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Removes the target's magnet rise status due to the action of the user, and"
+            " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to"
+            " target"
         ),
     )
 
@@ -22526,7 +22616,9 @@ class EuOverlay31Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY31_JP_STRING = Symbol(None, None, None, "\n\n----　 初期ポジション=%d　----- \n")
+    OVERLAY31_JP_STRING = Symbol(
+        None, None, None, "\n\n----　 初期ポジション=%d　----- \n"
+    )
 
     DUNGEON_D_BOX_LAYOUT_14 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"

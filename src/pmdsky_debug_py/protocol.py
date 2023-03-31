@@ -10284,12 +10284,52 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    EndSleepClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndBurnClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     EndFrozenClassStatus: Symbol[
         Optional[List[int]],
         None,
     ]
 
     EndCringeClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndReflectClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndLeechSeedClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndSureShotClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndMuzzledStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndMiracleEyeStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndMagnetRiseStatus: Symbol[
         Optional[List[int]],
         None,
     ]
