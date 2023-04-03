@@ -6510,6 +6510,16 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    BURN_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    POISON_DAMAGE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     SPAWN_COOLDOWN: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6625,6 +6635,16 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    RAIN_ABILITY_BONUS_REGEN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LEECH_SEED_HP_DRAIN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     EXCLUSIVE_ITEM_EXP_BOOST: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6695,6 +6715,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    ICE_BODY_BONUS_REGEN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     POWDER_SNOW_FREEZE_CHANCE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6711,6 +6736,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     POISON_FANG_POISON_CHANCE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WEATHER_MOVE_TURN_COUNT: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -6790,6 +6820,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    LEECH_SEED_DAMAGE_COOLDOWN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     GEO_PEBBLE_DAMAGE: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -6821,6 +6856,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     CALCIUM_STAT_BOOST: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WISH_BONUS_REGEN: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -7106,6 +7146,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     CASTFORM_WEATHER_ATTRIBUTE_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    BAD_POISON_DAMAGE_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -9794,6 +9839,21 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PrepareTrapperTrap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TrySpawnTrap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TrySpawnTrapperTrap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DebugRecruitingEnabled: Symbol[
         Optional[List[int]],
         None,
@@ -9914,12 +9974,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryActivateTraceAndColorChange: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DefenderAbilityIsActive: Symbol[
         Optional[List[int]],
         None,
     ]
 
     IsMonster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryActivateConversion2: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10444,6 +10514,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryNonLeaderItemPickUp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     AuraBowIsActive: Symbol[
         Optional[List[int]],
         None,
@@ -10744,6 +10819,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    MirrorMoveIsActive: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     Conversion2IsActive: Symbol[
         Optional[List[int]],
         None,
@@ -10819,6 +10899,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ApplyGrimyFoodEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyMixElixirEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ShouldTryEatItem: Symbol[
         Optional[List[int]],
         None,
@@ -10860,6 +10950,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TryWarp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryActivateNondamagingDefenderAbility: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryActivateNondamagingDefenderExclusiveItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10929,6 +11029,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayMoveAnimation: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetMoveAnimationId: Symbol[
         Optional[List[int]],
         None,
@@ -10990,6 +11095,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ActivateSportCondition: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryActivateWeather: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11500,6 +11610,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GenerateCleanItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryLeaderItemPickUp: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -12197,6 +12312,21 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GUMMI_LIKE_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GUMMI_IQ_STRING_IDS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_STRING_IDS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

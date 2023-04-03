@@ -12110,6 +12110,14 @@ class NaOverlay10Data:
         [0x7A50], [0x22C44D0], 0x2, "Attack power for Golden Thorns."
     )
 
+    BURN_DAMAGE = Symbol(
+        [0x7A54], [0x22C44D4], 0x2, "Damage dealt by the burn status condition."
+    )
+
+    POISON_DAMAGE = Symbol(
+        [0x7A58], [0x22C44D8], 0x2, "Damage dealt by the poison status condition."
+    )
+
     SPAWN_COOLDOWN = Symbol(
         [0x7A5C],
         [0x22C44DC],
@@ -12293,6 +12301,20 @@ class NaOverlay10Data:
         "The amount of fixed damage dealt by SonicBoom (20).",
     )
 
+    RAIN_ABILITY_BONUS_REGEN = Symbol(
+        [0x7AF8],
+        [0x22C4578],
+        0x2,
+        (
+            "The passive bonus health regen given when the weather is rain for the"
+            " abilities rain dish and dry skin."
+        ),
+    )
+
+    LEECH_SEED_HP_DRAIN = Symbol(
+        [0x7B08], [0x22C4588], 0x2, "The amount of health drained by leech seed status."
+    )
+
     EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
         [0x7B0C],
         [0x22C458C],
@@ -12383,6 +12405,16 @@ class NaOverlay10Data:
         "The chance of Bubble lowering speed, as a percentage (10%).",
     )
 
+    ICE_BODY_BONUS_REGEN = Symbol(
+        [0x7BB0],
+        [0x22C4630],
+        None,
+        (
+            "The passive bonus health regen given when the weather is hail for the"
+            " ability ice body."
+        ),
+    )
+
     POWDER_SNOW_FREEZE_CHANCE = Symbol(
         [0x7BB4],
         [0x22C4634],
@@ -12418,6 +12450,16 @@ class NaOverlay10Data:
         [0x22C4644],
         0x2,
         "The chance of Poison Fang poisoning, as a percentage (30%).",
+    )
+
+    WEATHER_MOVE_TURN_COUNT = Symbol(
+        [0x7BD4],
+        [0x22C4654],
+        0x2,
+        (
+            "The number of turns the moves rain dance, hail, sandstorm, sunny day and"
+            " defog change the weather for. (3000)"
+        ),
     )
 
     THUNDER_PARALYZE_CHANCE = Symbol(
@@ -12549,6 +12591,13 @@ class NaOverlay10Data:
         [0x7C28], [0x22C46A8], 0x2, "The number of turns between passive poison damage."
     )
 
+    LEECH_SEED_DAMAGE_COOLDOWN = Symbol(
+        [0x7C2C],
+        [0x22C46AC],
+        0x2,
+        "The number of turns between leech seed health drain.",
+    )
+
     GEO_PEBBLE_DAMAGE = Symbol(
         [0x7C34], [0x22C46B4], 0x2, "Damage dealt by Geo Pebbles."
     )
@@ -12590,6 +12639,13 @@ class NaOverlay10Data:
         [0x22C46CC],
         0x2,
         "The permanent special attack boost from ingesting a Calcium.",
+    )
+
+    WISH_BONUS_REGEN = Symbol(
+        [0x7C50],
+        [0x22C46D0],
+        0x2,
+        "The passive bonus regen given by the wish status condition.",
     )
 
     DRAGON_RAGE_FIXED_DAMAGE = Symbol(
@@ -13143,6 +13199,17 @@ class NaOverlay10Data:
             "Maps each weather type (by index, see enum weather_id) to the"
             " corresponding Castform type and form.\n\ntype: struct"
             " castform_weather_attributes[8]"
+        ),
+    )
+
+    BAD_POISON_DAMAGE_TABLE = Symbol(
+        [0x821C],
+        [0x22C4C9C],
+        0x3C,
+        (
+            "Table for how much damage each tick of badly poisoned should deal. The"
+            " table is filled with 0x0006, but could use different values for each"
+            " entry."
         ),
     )
 
@@ -16771,6 +16838,45 @@ class NaOverlay29Functions:
         ),
     )
 
+    PrepareTrapperTrap = Symbol(
+        [0x11994],
+        [0x22EDBD4],
+        None,
+        (
+            "Saves the relevant information in the dungeon struct to later place a trap"
+            " at the\nlocation of the entity. (Only called with trap ID 0x19"
+            " (TRAP_NONE), but could be used \nwith others).\n\nr0: entity pointer\nr1:"
+            " trap ID\nr2: team (see struct trap::team)"
+        ),
+    )
+
+    TrySpawnTrap = Symbol(
+        [0x11A7C],
+        [0x22EDCBC],
+        None,
+        (
+            "Checks if the a trap can be placed on the tile. If the trap ID is >="
+            " TRAP_NONE (the\nlast value for a trap), randomly select another trap"
+            " (except for wonder tile). After\n30 failed attempts to select a"
+            " non-wonder tile trap ID, default to chestnut trap.\nIf the checks pass,"
+            " spawn the trap.\n\nr0: position\nr1: trap ID\nr2: team (see struct"
+            " trap::team)\nr3: visibility flag\nreturn: true if a trap was spawned"
+            " succesfully"
+        ),
+    )
+
+    TrySpawnTrapperTrap = Symbol(
+        [0x11B94],
+        [0x22EDDD4],
+        None,
+        (
+            "If the flag for a trapper trap is set, handles spawning a trap based upon"
+            " the\ninformation inside the dungeon struct. Uses the entity for logging a"
+            " message\ndepending on success or failure.\n\nr0: entity pointer\nreturn:"
+            " true if a trap was spawned succesfully"
+        ),
+    )
+
     DebugRecruitingEnabled = Symbol(
         [0x1382C],
         [0x22EFA6C],
@@ -17017,6 +17123,17 @@ class NaOverlay29Functions:
         ),
     )
 
+    TryActivateTraceAndColorChange = Symbol(
+        [0x1D2B0],
+        [0x22F94F0],
+        None,
+        (
+            "Tries to activate the abilities trace and color change if possible. Called"
+            " after using\na move.\n\nr0: attacker entity pointer\nr1: defender entity"
+            " pointer\nr2: move pointer"
+        ),
+    )
+
     DefenderAbilityIsActive = Symbol(
         [0x1D48C, 0x257CC, 0x2E700, 0x35954, 0x46B24, 0x567CC],
         [0x22F96CC, 0x2301A0C, 0x230A940, 0x2311B94, 0x2322D64, 0x2332A0C],
@@ -17059,6 +17176,17 @@ class NaOverlay29Functions:
         (
             "Checks if an entity is a monster (entity type 1).\n\nr0: entity"
             " pointer\nreturn: bool"
+        ),
+    )
+
+    TryActivateConversion2 = Symbol(
+        [0x1D504],
+        [0x22F9744],
+        None,
+        (
+            "Checks for the conversion2 status and applies the type change if"
+            " applicable. Called\nafter using a move.\n\nr0: attacker entity"
+            " pointer\nr1: defender entity pointer\nr2: move pointer"
         ),
     )
 
@@ -18363,6 +18491,16 @@ class NaOverlay29Functions:
         ),
     )
 
+    TryNonLeaderItemPickUp = Symbol(
+        [0x32F24],
+        [0x230F164],
+        None,
+        (
+            "Similar to TryLeaderItemPickUp, but for other monsters.\n\nUsed both for"
+            " enemies and team members.\n\nr0: entity pointer"
+        ),
+    )
+
     AuraBowIsActive = Symbol(
         [0x33488],
         [0x230F6C8],
@@ -19047,6 +19185,17 @@ class NaOverlay29Functions:
         ),
     )
 
+    MirrorMoveIsActive = Symbol(
+        [0x3D508],
+        [0x2319748],
+        None,
+        (
+            "Checks if the monster is under the effect of Mirror Move.\n\nReturns 1 if"
+            " the effects is a status, 2 if it comes from an exclusive item, 0"
+            " otherwise.\n\nr0: pointer to entity\nreturn: int"
+        ),
+    )
+
     Conversion2IsActive = Symbol(
         [0x3D5D4],
         [0x2319814],
@@ -19235,6 +19384,28 @@ class NaOverlay29Functions:
         ),
     )
 
+    ApplyGrimyFoodEffect = Symbol(
+        [0x412F4],
+        [0x231D534],
+        None,
+        (
+            "Randomly inflicts poison, shadow hold, burn, paralysis, or an offensive"
+            " stat debuff\nto the target. If the survivalist iq skill or gluttony"
+            " ability is active, the target\nhas a 50% chance not to be"
+            " affected.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyMixElixirEffect = Symbol(
+        [0x41440],
+        [0x231D680],
+        None,
+        (
+            "If the target monster is a Linoone, restores all the PP of all the"
+            " target's moves.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
     ShouldTryEatItem = Symbol(
         [0x42750],
         [0x231E990],
@@ -19329,6 +19500,31 @@ class NaOverlay29Functions:
             "Makes the target monster warp if possible.\n\nr0: user entity pointer\nr1:"
             " target entity pointer\nr2: warp type\nr3: position (if warp type is"
             " position-based)"
+        ),
+    )
+
+    TryActivateNondamagingDefenderAbility = Symbol(
+        [0x45838],
+        [0x2321A78],
+        None,
+        (
+            "Applies the effects of a defender's ability on an attacker. After a move"
+            " is used,\nthis function is called to see if any of the bitflags for an"
+            " ability were set and\napplies the corresponding effect. (The way leech"
+            " seed removes certain statuses is\nalso handled here.)\n\nr0: entity"
+            " pointer"
+        ),
+    )
+
+    TryActivateNondamagingDefenderExclusiveItem = Symbol(
+        [0x45AB0],
+        [0x2321CF0],
+        None,
+        (
+            "Applies the effects of a defender's item on an attacker. After a move is"
+            " used,\nthis function is called to see if any of the bitflags for an item"
+            " were set and\napplies the corresponding effect.\n\nr0: attacker entity"
+            " pointer\nr1: defender entity pointer"
         ),
     )
 
@@ -19500,6 +19696,18 @@ class NaOverlay29Functions:
         ),
     )
 
+    PlayMoveAnimation = Symbol(
+        [0x49474],
+        [0x23256B4],
+        None,
+        (
+            "Handles the process of getting and playing all the animations for a move."
+            " Waits\nuntil the animation has no more frames before returning.\n\nr0:"
+            " Pointer to the entity that used the move\nr1: Pointer to the entity that"
+            " is the target\nr2: Move pointer\nr3: position"
+        ),
+    )
+
     GetMoveAnimationId = Symbol(
         [0x498D0],
         [0x2325B10],
@@ -19660,6 +19868,19 @@ class NaOverlay29Functions:
             "Activates the Mud Sport or Water Sport condition on the dungeon floor for"
             " some number of turns.\n\nr0: water sport flag (false for Mud Sport, true"
             " for Water Sport)"
+        ),
+    )
+
+    TryActivateWeather = Symbol(
+        [0x59284],
+        [0x23354C4],
+        None,
+        (
+            "Tries to change the weather based upon the information for each weather"
+            " type in the\ndungeon struct. Returns whether the weather was succesfully"
+            " changed or not.\n\nr0: bool to not play the weather change"
+            " animation?\nr1: bool to force weather change? Like play the animation and"
+            " text for the weather?\nreturn: True if the weather changed"
         ),
     )
 
@@ -20861,6 +21082,17 @@ class NaOverlay29Functions:
         (
             "Wrapper around GenerateItem with quantity set to 0 and stickiness type set"
             " to SPAWN_STICKY_NEVER.\n\nr0: pointer to item to initialize\nr1: item ID"
+        ),
+    )
+
+    TryLeaderItemPickUp = Symbol(
+        [0x68E18],
+        [0x2345058],
+        None,
+        (
+            "Checks the tile at the specified position and determines if the leader"
+            " should pick up an item.\n\nr0: position\nr1: flag for whether or not a"
+            " message should be logged upon the leader failing to obtain the item"
         ),
     )
 
@@ -22339,6 +22571,37 @@ class NaOverlay29Data:
             " unused and unconditionally set to 0.\n\nThis array is used by the dungeon"
             " generation algorithm when generating room imperfections. See"
             " GenerateRoomImperfections."
+        ),
+    )
+
+    GUMMI_LIKE_STRING_IDS = Symbol(
+        [0x77090],
+        [0x23532D0],
+        0x8,
+        (
+            "List that holds the message IDs for how much a monster liked a gummi in"
+            " decreasing order."
+        ),
+    )
+
+    GUMMI_IQ_STRING_IDS = Symbol(
+        [0x77090],
+        [0x23532D0],
+        0xA,
+        (
+            "List that holds the message IDs for how much a monster's IQ was raised by"
+            " in decreasing order."
+        ),
+    )
+
+    DAMAGE_STRING_IDS = Symbol(
+        [0x770F0],
+        [0x2353330],
+        0x36,
+        (
+            "List that matches the damage_message ID to their corresponding message ID."
+            " The null entry at 0xE in the middle is for hunger. The last entry is"
+            " null."
         ),
     )
 

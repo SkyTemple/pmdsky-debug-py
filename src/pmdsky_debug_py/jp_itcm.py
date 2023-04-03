@@ -11821,6 +11821,12 @@ class JpItcmOverlay10Data:
 
     GOLD_THORN_POWER = Symbol(None, None, None, "Attack power for Golden Thorns.")
 
+    BURN_DAMAGE = Symbol(None, None, None, "Damage dealt by the burn status condition.")
+
+    POISON_DAMAGE = Symbol(
+        None, None, None, "Damage dealt by the poison status condition."
+    )
+
     SPAWN_COOLDOWN = Symbol(
         None,
         None,
@@ -11992,6 +11998,20 @@ class JpItcmOverlay10Data:
         None, None, None, "The amount of fixed damage dealt by SonicBoom (20)."
     )
 
+    RAIN_ABILITY_BONUS_REGEN = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The passive bonus health regen given when the weather is rain for the"
+            " abilities rain dish and dry skin."
+        ),
+    )
+
+    LEECH_SEED_HP_DRAIN = Symbol(
+        None, None, None, "The amount of health drained by leech seed status."
+    )
+
     EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
         None,
         None,
@@ -12073,6 +12093,16 @@ class JpItcmOverlay10Data:
         None, None, None, "The chance of Bubble lowering speed, as a percentage (10%)."
     )
 
+    ICE_BODY_BONUS_REGEN = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The passive bonus health regen given when the weather is hail for the"
+            " ability ice body."
+        ),
+    )
+
     POWDER_SNOW_FREEZE_CHANCE = Symbol(
         None,
         None,
@@ -12105,6 +12135,16 @@ class JpItcmOverlay10Data:
 
     POISON_FANG_POISON_CHANCE = Symbol(
         None, None, None, "The chance of Poison Fang poisoning, as a percentage (30%)."
+    )
+
+    WEATHER_MOVE_TURN_COUNT = Symbol(
+        None,
+        None,
+        None,
+        (
+            "The number of turns the moves rain dance, hail, sandstorm, sunny day and"
+            " defog change the weather for. (3000)"
+        ),
     )
 
     THUNDER_PARALYZE_CHANCE = Symbol(
@@ -12233,6 +12273,10 @@ class JpItcmOverlay10Data:
         None, None, None, "The number of turns between passive poison damage."
     )
 
+    LEECH_SEED_DAMAGE_COOLDOWN = Symbol(
+        None, None, None, "The number of turns between leech seed health drain."
+    )
+
     GEO_PEBBLE_DAMAGE = Symbol(None, None, None, "Damage dealt by Geo Pebbles.")
 
     GRAVELEROCK_DAMAGE = Symbol(None, None, None, "Damage dealt by Gravelerocks.")
@@ -12259,6 +12303,10 @@ class JpItcmOverlay10Data:
 
     CALCIUM_STAT_BOOST = Symbol(
         None, None, None, "The permanent special attack boost from ingesting a Calcium."
+    )
+
+    WISH_BONUS_REGEN = Symbol(
+        None, None, None, "The passive bonus regen given by the wish status condition."
     )
 
     DRAGON_RAGE_FIXED_DAMAGE = Symbol(
@@ -12801,6 +12849,17 @@ class JpItcmOverlay10Data:
             "Maps each weather type (by index, see enum weather_id) to the"
             " corresponding Castform type and form.\n\ntype: struct"
             " castform_weather_attributes[8]"
+        ),
+    )
+
+    BAD_POISON_DAMAGE_TABLE = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Table for how much damage each tick of badly poisoned should deal. The"
+            " table is filled with 0x0006, but could use different values for each"
+            " entry."
         ),
     )
 
@@ -16251,6 +16310,45 @@ class JpItcmOverlay29Functions:
         ),
     )
 
+    PrepareTrapperTrap = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Saves the relevant information in the dungeon struct to later place a trap"
+            " at the\nlocation of the entity. (Only called with trap ID 0x19"
+            " (TRAP_NONE), but could be used \nwith others).\n\nr0: entity pointer\nr1:"
+            " trap ID\nr2: team (see struct trap::team)"
+        ),
+    )
+
+    TrySpawnTrap = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if the a trap can be placed on the tile. If the trap ID is >="
+            " TRAP_NONE (the\nlast value for a trap), randomly select another trap"
+            " (except for wonder tile). After\n30 failed attempts to select a"
+            " non-wonder tile trap ID, default to chestnut trap.\nIf the checks pass,"
+            " spawn the trap.\n\nr0: position\nr1: trap ID\nr2: team (see struct"
+            " trap::team)\nr3: visibility flag\nreturn: true if a trap was spawned"
+            " succesfully"
+        ),
+    )
+
+    TrySpawnTrapperTrap = Symbol(
+        None,
+        None,
+        None,
+        (
+            "If the flag for a trapper trap is set, handles spawning a trap based upon"
+            " the\ninformation inside the dungeon struct. Uses the entity for logging a"
+            " message\ndepending on success or failure.\n\nr0: entity pointer\nreturn:"
+            " true if a trap was spawned succesfully"
+        ),
+    )
+
     DebugRecruitingEnabled = Symbol(
         None,
         None,
@@ -16494,6 +16592,17 @@ class JpItcmOverlay29Functions:
         ),
     )
 
+    TryActivateTraceAndColorChange = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Tries to activate the abilities trace and color change if possible. Called"
+            " after using\na move.\n\nr0: attacker entity pointer\nr1: defender entity"
+            " pointer\nr2: move pointer"
+        ),
+    )
+
     DefenderAbilityIsActive = Symbol(
         None,
         None,
@@ -16516,6 +16625,17 @@ class JpItcmOverlay29Functions:
         (
             "Checks if an entity is a monster (entity type 1).\n\nr0: entity"
             " pointer\nreturn: bool"
+        ),
+    )
+
+    TryActivateConversion2 = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks for the conversion2 status and applies the type change if"
+            " applicable. Called\nafter using a move.\n\nr0: attacker entity"
+            " pointer\nr1: defender entity pointer\nr2: move pointer"
         ),
     )
 
@@ -17794,6 +17914,16 @@ class JpItcmOverlay29Functions:
         ),
     )
 
+    TryNonLeaderItemPickUp = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Similar to TryLeaderItemPickUp, but for other monsters.\n\nUsed both for"
+            " enemies and team members.\n\nr0: entity pointer"
+        ),
+    )
+
     AuraBowIsActive = Symbol(
         None,
         None,
@@ -18478,6 +18608,17 @@ class JpItcmOverlay29Functions:
         ),
     )
 
+    MirrorMoveIsActive = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if the monster is under the effect of Mirror Move.\n\nReturns 1 if"
+            " the effects is a status, 2 if it comes from an exclusive item, 0"
+            " otherwise.\n\nr0: pointer to entity\nreturn: int"
+        ),
+    )
+
     Conversion2IsActive = Symbol(
         None,
         None,
@@ -18666,6 +18807,28 @@ class JpItcmOverlay29Functions:
         ),
     )
 
+    ApplyGrimyFoodEffect = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Randomly inflicts poison, shadow hold, burn, paralysis, or an offensive"
+            " stat debuff\nto the target. If the survivalist iq skill or gluttony"
+            " ability is active, the target\nhas a 50% chance not to be"
+            " affected.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyMixElixirEffect = Symbol(
+        None,
+        None,
+        None,
+        (
+            "If the target monster is a Linoone, restores all the PP of all the"
+            " target's moves.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
     ShouldTryEatItem = Symbol(
         None,
         None,
@@ -18760,6 +18923,31 @@ class JpItcmOverlay29Functions:
             "Makes the target monster warp if possible.\n\nr0: user entity pointer\nr1:"
             " target entity pointer\nr2: warp type\nr3: position (if warp type is"
             " position-based)"
+        ),
+    )
+
+    TryActivateNondamagingDefenderAbility = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Applies the effects of a defender's ability on an attacker. After a move"
+            " is used,\nthis function is called to see if any of the bitflags for an"
+            " ability were set and\napplies the corresponding effect. (The way leech"
+            " seed removes certain statuses is\nalso handled here.)\n\nr0: entity"
+            " pointer"
+        ),
+    )
+
+    TryActivateNondamagingDefenderExclusiveItem = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Applies the effects of a defender's item on an attacker. After a move is"
+            " used,\nthis function is called to see if any of the bitflags for an item"
+            " were set and\napplies the corresponding effect.\n\nr0: attacker entity"
+            " pointer\nr1: defender entity pointer"
         ),
     )
 
@@ -18931,6 +19119,18 @@ class JpItcmOverlay29Functions:
         ),
     )
 
+    PlayMoveAnimation = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Handles the process of getting and playing all the animations for a move."
+            " Waits\nuntil the animation has no more frames before returning.\n\nr0:"
+            " Pointer to the entity that used the move\nr1: Pointer to the entity that"
+            " is the target\nr2: Move pointer\nr3: position"
+        ),
+    )
+
     GetMoveAnimationId = Symbol(
         None,
         None,
@@ -19091,6 +19291,19 @@ class JpItcmOverlay29Functions:
             "Activates the Mud Sport or Water Sport condition on the dungeon floor for"
             " some number of turns.\n\nr0: water sport flag (false for Mud Sport, true"
             " for Water Sport)"
+        ),
+    )
+
+    TryActivateWeather = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Tries to change the weather based upon the information for each weather"
+            " type in the\ndungeon struct. Returns whether the weather was succesfully"
+            " changed or not.\n\nr0: bool to not play the weather change"
+            " animation?\nr1: bool to force weather change? Like play the animation and"
+            " text for the weather?\nreturn: True if the weather changed"
         ),
     )
 
@@ -20277,6 +20490,17 @@ class JpItcmOverlay29Functions:
         (
             "Wrapper around GenerateItem with quantity set to 0 and stickiness type set"
             " to SPAWN_STICKY_NEVER.\n\nr0: pointer to item to initialize\nr1: item ID"
+        ),
+    )
+
+    TryLeaderItemPickUp = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks the tile at the specified position and determines if the leader"
+            " should pick up an item.\n\nr0: position\nr1: flag for whether or not a"
+            " message should be logged upon the leader failing to obtain the item"
         ),
     )
 
@@ -21635,6 +21859,37 @@ class JpItcmOverlay29Data:
             " unused and unconditionally set to 0.\n\nThis array is used by the dungeon"
             " generation algorithm when generating room imperfections. See"
             " GenerateRoomImperfections."
+        ),
+    )
+
+    GUMMI_LIKE_STRING_IDS = Symbol(
+        None,
+        None,
+        None,
+        (
+            "List that holds the message IDs for how much a monster liked a gummi in"
+            " decreasing order."
+        ),
+    )
+
+    GUMMI_IQ_STRING_IDS = Symbol(
+        None,
+        None,
+        None,
+        (
+            "List that holds the message IDs for how much a monster's IQ was raised by"
+            " in decreasing order."
+        ),
+    )
+
+    DAMAGE_STRING_IDS = Symbol(
+        None,
+        None,
+        None,
+        (
+            "List that matches the damage_message ID to their corresponding message ID."
+            " The null entry at 0xE in the middle is for hunger. The last entry is"
+            " null."
         ),
     )
 
