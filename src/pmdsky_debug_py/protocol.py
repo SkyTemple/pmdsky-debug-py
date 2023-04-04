@@ -9484,6 +9484,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetTrapInfo: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetItemInfo: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetTileAtEntity: Symbol[
         Optional[List[int]],
         None,
@@ -9495,6 +9505,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SpawnItemEntity: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ShouldMinimapDisplayEntity: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9559,7 +9574,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    PlayEffectAnimation: Symbol[
+    PlayEffectAnimationEntity: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PlayEffectAnimationPos: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PlayEffectAnimationPixelPos: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9854,6 +9879,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryTriggerTrap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DebugRecruitingEnabled: Symbol[
         Optional[List[int]],
         None,
@@ -9870,6 +9905,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SetLeaderAction: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CheckLeaderTile: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10350,6 +10390,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DisplayActions: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CheckNonLeaderTile: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11149,6 +11194,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    UpdateTrapsVisibility: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DiscoverMinimap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsWaterTileset: Symbol[
         Optional[List[int]],
         None,
@@ -11219,12 +11274,32 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    HiddenStairsPresent: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    HiddenStairsTrigger: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetDungeonGenInfoUnk0C: Symbol[
         Optional[List[int]],
         None,
     ]
 
     GetMinimapData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DrawMinimapTile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UpdateMinimap: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11240,6 +11315,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SetMinimapDataE448: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitWeirdMinimapMatrix: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitMinimapDisplayTile: Symbol[
         Optional[List[int]],
         None,
     ]

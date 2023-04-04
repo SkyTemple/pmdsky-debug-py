@@ -15681,6 +15681,26 @@ class JpOverlay29Functions:
         "Fades the screen to black across several frames.\n\nNo params.",
     )
 
+    GetTrapInfo = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Given a trap entity, returns the pointer to the trap info struct it"
+            " contains.\n\nr0: Entity pointer\nreturn: Trap data pointer"
+        ),
+    )
+
+    GetItemInfo = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Given an item entity, returns the pointer to the item info struct it"
+            " contains.\n\nr0: Entity pointer\nreturn: Item data pointer"
+        ),
+    )
+
     GetTileAtEntity = Symbol(
         [0x53D8],
         [0x22E2CB8],
@@ -15715,6 +15735,16 @@ class JpOverlay29Functions:
             " table and points it to the corresponding slot in the item info"
             " list.\n\nr0: position\nreturn: entity pointer for the newly added item,"
             " or null on failure"
+        ),
+    )
+
+    ShouldMinimapDisplayEntity = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if a given entity should be displayed on the minimap\n\nr0: Entity"
+            " pointer\nreturn: True if the entity should be displayed on the minimap"
         ),
     )
 
@@ -15866,7 +15896,7 @@ class JpOverlay29Functions:
         ),
     )
 
-    PlayEffectAnimation = Symbol(
+    PlayEffectAnimationEntity = Symbol(
         [0x7374],
         [0x22E4C54],
         None,
@@ -15875,11 +15905,37 @@ class JpOverlay29Functions:
             " GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in"
             " a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the"
             " loop entirely. It seems like in this case the function might just preload"
-            " some animation frames for later use??\n\nr0: entity pointer\nr1: ?\nr2:"
-            " appears to be a flag for actually running the animation now? If this is"
-            " 0, the AdvanceFrame loop is skipped entirely.\nothers: ?\nreturn: status"
-            " code, or maybe the number of frames or something? Either way, -1 seems to"
-            " indicate the animation being finished or something?"
+            " some animation frames for later use??\n\nr0: entity pointer\nr1: Effect"
+            " ID\nr2: appears to be a flag for actually running the animation now? If"
+            " this is 0, the AdvanceFrame loop is skipped entirely.\nothers: ?\nreturn:"
+            " status code, or maybe the number of frames or something? Either way, -1"
+            " seems to indicate the animation being finished or something?"
+        ),
+    )
+
+    PlayEffectAnimationPos = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Takes a position struct in r0 and converts it to a pixel position struct"
+            " before calling PlayEffectAnimationPixelPos\n\nr0: Position where the"
+            " effect should be played\nr1: Effect ID\nr2: Unknown flag (same as the one"
+            " in PlayEffectAnimationEntity)\nreturn: Result of call to"
+            " PlayEffectAnimationPixelPos"
+        ),
+    )
+
+    PlayEffectAnimationPixelPos = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Seems like a variant of PlayEffectAnimationEntity that uses pixel"
+            " coordinates as its first parameter instead of an entity pointer.\n\nr0:"
+            " Pixel position where the effect should be played\nr1: Effect ID\nr2:"
+            " Unknown flag (same as the one in PlayEffectAnimationEntity)\nreturn: Same"
+            " as PlayEffectAnimationEntity"
         ),
     )
 
@@ -16596,6 +16652,31 @@ class JpOverlay29Functions:
         ),
     )
 
+    TryTriggerTrap = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Called whenever a monster steps on a trap.\n\nThe function will try to"
+            " trigger it. Nothing will happen if the pokémon has the same team as the"
+            " trap. The attempt to trigger the trap can also fail due to IQ skills, due"
+            " to the trap failing to work (random chance), etc.\n\nr0: Entity who"
+            " stepped on the trap\nr1: Trap position\nr2: ?\nr3: ?"
+        ),
+    )
+
+    ApplyTrapEffect = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Performs the effect of a triggered trap.\n\nThe trap's animation happens"
+            " before this function is called.\n\nr0: Triggered trap\nr1: User\nr2:"
+            " Target, normally same as user\nr3: Tile that contains the trap\nreturn:"
+            " True if the trap should be destroyed after the effect is applied"
+        ),
+    )
+
     DebugRecruitingEnabled = Symbol(
         [0x13790],
         [0x22F1070],
@@ -16638,6 +16719,18 @@ class JpOverlay29Functions:
             " function also takes care of opening the main menu when X is pressed.\nThe"
             " function generally doesn't return until the player has an action"
             " set.\n\nNo params."
+        ),
+    )
+
+    CheckLeaderTile = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks the tile the leader just stepped on and performs any required"
+            " actions, such as picking up items, triggering traps, etc.\n\nContains a"
+            " switch that checks the type of the tile the leader just stepped on.\n\nNo"
+            " params."
         ),
     )
 
@@ -17720,6 +17813,16 @@ class JpOverlay29Functions:
             " moving at once even though they take turns sequentially.\n\nr0: Pointer"
             " to an entity. Can be null.\nreturns: Seems to be true if there were any"
             " pending actions to display."
+        ),
+    )
+
+    CheckNonLeaderTile = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Similar to CheckLeaderTile, but for other monsters.\n\nUsed both for"
+            " enemies and team members.\n\nr0: Entity pointer"
         ),
     )
 
@@ -19642,6 +19745,28 @@ class JpOverlay29Functions:
         "Returns the index of the room that contains the stairs\n\nreturn: Room index",
     )
 
+    UpdateTrapsVisibility = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Exact purpose unknown. Gets called whenever a trap tile is shown or"
+            " hidden.\n\nNo params."
+        ),
+    )
+
+    DiscoverMinimap = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Discovers the tiles around the specified position on the minimap.\n\nThe"
+            " discovery radius depends on the visibility range of the floor. If"
+            " display_data::blinded is true, the function returns early without doing"
+            " anything.\n\nr0: Position around which the map should be discovered"
+        ),
+    )
+
     IsWaterTileset = Symbol(
         None,
         None,
@@ -19773,6 +19898,29 @@ class JpOverlay29Functions:
         ),
     )
 
+    HiddenStairsPresent = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if the hidden stairs are present on this floor.\n\nThe function"
+            " checks that dungeon_generation_info::hidden_stairs_pos isn't (-1,"
+            " -1)\n\nreturn: True if the hidden stairs are present on this floor, false"
+            " otherwise."
+        ),
+    )
+
+    HiddenStairsTrigger = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Called whenever the leader steps on the hidden stairs.\n\nIf the stairs"
+            " hadn't been revealed yet, plays the corresponding animation.\n\nr0: True"
+            " to display a message if the stairs are revealed, false to omit it."
+        ),
+    )
+
     GetDungeonGenInfoUnk0C = Symbol(
         None, None, None, "return: dungeon_generation_info::field_0xc"
     )
@@ -19785,6 +19933,17 @@ class JpOverlay29Functions:
             "Returns a pointer to the minimap_display_data struct in the dungeon"
             " struct.\n\nreturn: minimap_display_data*"
         ),
+    )
+
+    DrawMinimapTile = Symbol(
+        None,
+        None,
+        None,
+        "Draws a single tile on the minimap.\n\nr0: X position\nr1: Y position",
+    )
+
+    UpdateMinimap = Symbol(
+        None, None, None, "Graphically updates the minimap\n\nNo params."
     )
 
     SetMinimapDataE447 = Symbol(
@@ -19815,6 +19974,27 @@ class JpOverlay29Functions:
         (
             "Sets minimap_display_data::field_0xE448 to the specified value\n\nr0:"
             " Value to set the field to"
+        ),
+    )
+
+    InitWeirdMinimapMatrix = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Initializes the matrix at minimap_display_data+0xE000. Seems to overflow"
+            " said matrix when doing so.\n\nNo params."
+        ),
+    )
+
+    InitMinimapDisplayTile = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Used to initialize an instance of struct minimap_display_tile\n\nr0:"
+            " Pointer to struct to init\nr1: Seems to be a pointer to the file that"
+            " stores minimap icons or something like that"
         ),
     )
 

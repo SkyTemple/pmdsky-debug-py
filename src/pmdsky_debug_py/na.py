@@ -15934,6 +15934,26 @@ class NaOverlay29Functions:
         "Fades the screen to black across several frames.\n\nNo params.",
     )
 
+    GetTrapInfo = Symbol(
+        [0x53C8],
+        [0x22E1608],
+        None,
+        (
+            "Given a trap entity, returns the pointer to the trap info struct it"
+            " contains.\n\nr0: Entity pointer\nreturn: Trap data pointer"
+        ),
+    )
+
+    GetItemInfo = Symbol(
+        [0x53D0],
+        [0x22E1610],
+        None,
+        (
+            "Given an item entity, returns the pointer to the item info struct it"
+            " contains.\n\nr0: Entity pointer\nreturn: Item data pointer"
+        ),
+    )
+
     GetTileAtEntity = Symbol(
         [0x53E8],
         [0x22E1628],
@@ -15968,6 +15988,16 @@ class NaOverlay29Functions:
             " table and points it to the corresponding slot in the item info"
             " list.\n\nr0: position\nreturn: entity pointer for the newly added item,"
             " or null on failure"
+        ),
+    )
+
+    ShouldMinimapDisplayEntity = Symbol(
+        [0x6258],
+        [0x22E2498],
+        None,
+        (
+            "Checks if a given entity should be displayed on the minimap\n\nr0: Entity"
+            " pointer\nreturn: True if the entity should be displayed on the minimap"
         ),
     )
 
@@ -16147,7 +16177,7 @@ class NaOverlay29Functions:
         ),
     )
 
-    PlayEffectAnimation = Symbol(
+    PlayEffectAnimationEntity = Symbol(
         [0x73A4],
         [0x22E35E4],
         None,
@@ -16156,11 +16186,37 @@ class NaOverlay29Functions:
             " GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in"
             " a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the"
             " loop entirely. It seems like in this case the function might just preload"
-            " some animation frames for later use??\n\nr0: entity pointer\nr1: ?\nr2:"
-            " appears to be a flag for actually running the animation now? If this is"
-            " 0, the AdvanceFrame loop is skipped entirely.\nothers: ?\nreturn: status"
-            " code, or maybe the number of frames or something? Either way, -1 seems to"
-            " indicate the animation being finished or something?"
+            " some animation frames for later use??\n\nr0: entity pointer\nr1: Effect"
+            " ID\nr2: appears to be a flag for actually running the animation now? If"
+            " this is 0, the AdvanceFrame loop is skipped entirely.\nothers: ?\nreturn:"
+            " status code, or maybe the number of frames or something? Either way, -1"
+            " seems to indicate the animation being finished or something?"
+        ),
+    )
+
+    PlayEffectAnimationPos = Symbol(
+        [0x759C],
+        [0x22E37DC],
+        None,
+        (
+            "Takes a position struct in r0 and converts it to a pixel position struct"
+            " before calling PlayEffectAnimationPixelPos\n\nr0: Position where the"
+            " effect should be played\nr1: Effect ID\nr2: Unknown flag (same as the one"
+            " in PlayEffectAnimationEntity)\nreturn: Result of call to"
+            " PlayEffectAnimationPixelPos"
+        ),
+    )
+
+    PlayEffectAnimationPixelPos = Symbol(
+        [0x75E0],
+        [0x22E3820],
+        None,
+        (
+            "Seems like a variant of PlayEffectAnimationEntity that uses pixel"
+            " coordinates as its first parameter instead of an entity pointer.\n\nr0:"
+            " Pixel position where the effect should be played\nr1: Effect ID\nr2:"
+            " Unknown flag (same as the one in PlayEffectAnimationEntity)\nreturn: Same"
+            " as PlayEffectAnimationEntity"
         ),
     )
 
@@ -16877,6 +16933,31 @@ class NaOverlay29Functions:
         ),
     )
 
+    TryTriggerTrap = Symbol(
+        [0x11D60],
+        [0x22EDFA0],
+        None,
+        (
+            "Called whenever a monster steps on a trap.\n\nThe function will try to"
+            " trigger it. Nothing will happen if the pokémon has the same team as the"
+            " trap. The attempt to trigger the trap can also fail due to IQ skills, due"
+            " to the trap failing to work (random chance), etc.\n\nr0: Entity who"
+            " stepped on the trap\nr1: Trap position\nr2: ?\nr3: ?"
+        ),
+    )
+
+    ApplyTrapEffect = Symbol(
+        [0x12F14],
+        [0x22EF154],
+        None,
+        (
+            "Performs the effect of a triggered trap.\n\nThe trap's animation happens"
+            " before this function is called.\n\nr0: Triggered trap\nr1: User\nr2:"
+            " Target, normally same as user\nr3: Tile that contains the trap\nreturn:"
+            " True if the trap should be destroyed after the effect is applied"
+        ),
+    )
+
     DebugRecruitingEnabled = Symbol(
         [0x1382C],
         [0x22EFA6C],
@@ -16919,6 +17000,18 @@ class NaOverlay29Functions:
             " function also takes care of opening the main menu when X is pressed.\nThe"
             " function generally doesn't return until the player has an action"
             " set.\n\nNo params."
+        ),
+    )
+
+    CheckLeaderTile = Symbol(
+        [0x173F4],
+        [0x22F3634],
+        None,
+        (
+            "Checks the tile the leader just stepped on and performs any required"
+            " actions, such as picking up items, triggering traps, etc.\n\nContains a"
+            " switch that checks the type of the tile the leader just stepped on.\n\nNo"
+            " params."
         ),
     )
 
@@ -18047,6 +18140,16 @@ class NaOverlay29Functions:
             " moving at once even though they take turns sequentially.\n\nr0: Pointer"
             " to an entity. Can be null.\nreturns: Seems to be true if there were any"
             " pending actions to display."
+        ),
+    )
+
+    CheckNonLeaderTile = Symbol(
+        [0x29454],
+        [0x2305694],
+        None,
+        (
+            "Similar to CheckLeaderTile, but for other monsters.\n\nUsed both for"
+            " enemies and team members.\n\nr0: Entity pointer"
         ),
     )
 
@@ -19969,6 +20072,28 @@ class NaOverlay29Functions:
         "Returns the index of the room that contains the stairs\n\nreturn: Room index",
     )
 
+    UpdateTrapsVisibility = Symbol(
+        [0x5AD0C],
+        [0x2336F4C],
+        None,
+        (
+            "Exact purpose unknown. Gets called whenever a trap tile is shown or"
+            " hidden.\n\nNo params."
+        ),
+    )
+
+    DiscoverMinimap = Symbol(
+        [0x5B7FC],
+        [0x2337A3C],
+        None,
+        (
+            "Discovers the tiles around the specified position on the minimap.\n\nThe"
+            " discovery radius depends on the visibility range of the floor. If"
+            " display_data::blinded is true, the function returns early without doing"
+            " anything.\n\nr0: Position around which the map should be discovered"
+        ),
+    )
+
     IsWaterTileset = Symbol(
         [0x5BC54],
         [0x2337E94],
@@ -20103,6 +20228,29 @@ class NaOverlay29Functions:
         ),
     )
 
+    HiddenStairsPresent = Symbol(
+        [0x5C498],
+        [0x23386D8],
+        None,
+        (
+            "Checks if the hidden stairs are present on this floor.\n\nThe function"
+            " checks that dungeon_generation_info::hidden_stairs_pos isn't (-1,"
+            " -1)\n\nreturn: True if the hidden stairs are present on this floor, false"
+            " otherwise."
+        ),
+    )
+
+    HiddenStairsTrigger = Symbol(
+        [0x5C554],
+        [0x2338794],
+        None,
+        (
+            "Called whenever the leader steps on the hidden stairs.\n\nIf the stairs"
+            " hadn't been revealed yet, plays the corresponding animation.\n\nr0: True"
+            " to display a message if the stairs are revealed, false to omit it."
+        ),
+    )
+
     GetDungeonGenInfoUnk0C = Symbol(
         [0x5C640], [0x2338880], None, "return: dungeon_generation_info::field_0xc"
     )
@@ -20115,6 +20263,17 @@ class NaOverlay29Functions:
             "Returns a pointer to the minimap_display_data struct in the dungeon"
             " struct.\n\nreturn: minimap_display_data*"
         ),
+    )
+
+    DrawMinimapTile = Symbol(
+        [0x5CFAC],
+        [0x23391EC],
+        None,
+        "Draws a single tile on the minimap.\n\nr0: X position\nr1: Y position",
+    )
+
+    UpdateMinimap = Symbol(
+        [0x5DAA8], [0x2339CE8], None, "Graphically updates the minimap\n\nNo params."
     )
 
     SetMinimapDataE447 = Symbol(
@@ -20145,6 +20304,27 @@ class NaOverlay29Functions:
         (
             "Sets minimap_display_data::field_0xE448 to the specified value\n\nr0:"
             " Value to set the field to"
+        ),
+    )
+
+    InitWeirdMinimapMatrix = Symbol(
+        [0x5E050],
+        [0x233A290],
+        None,
+        (
+            "Initializes the matrix at minimap_display_data+0xE000. Seems to overflow"
+            " said matrix when doing so.\n\nNo params."
+        ),
+    )
+
+    InitMinimapDisplayTile = Symbol(
+        [0x5E0B0],
+        [0x233A2F0],
+        None,
+        (
+            "Used to initialize an instance of struct minimap_display_tile\n\nr0:"
+            " Pointer to struct to init\nr1: Seems to be a pointer to the file that"
+            " stores minimap icons or something like that"
         ),
     )
 
