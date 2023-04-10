@@ -16411,6 +16411,18 @@ class JpOverlay29Functions:
         ),
     )
 
+    SetLeaderActionFields = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Sets the leader's monster::action::action_id to the specified"
+            " value.\n\nAlso sets monster::action::action_use_idx and"
+            " monster::action::field_0xA to 0, as well as monster::action::field_0x10"
+            " and monster::action::field_0x12 to -1.\n\nr0: ID of the action to set"
+        ),
+    )
+
     ClearMonsterActionFields = Symbol(
         [0xF17C],
         [0x22ECA5C],

@@ -9779,6 +9779,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetLeaderActionFields: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ClearMonsterActionFields: Symbol[
         Optional[List[int]],
         None,
