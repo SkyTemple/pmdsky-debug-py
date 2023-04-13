@@ -7040,6 +7040,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -9889,7 +9894,67 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ApplyMudTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyStickyTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyGrimyTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyPitfallTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplySummonTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyPpZeroTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyPokemonTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyTripTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyToxicSpikesTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyRandomTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyGrudgeTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ApplyTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    RevealTrapsNearby: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10060,6 +10125,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     MewSpawnCheck: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryEndStatusWithAbility: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10869,6 +10939,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryResetStatChanges: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     MirrorMoveIsActive: Symbol[
         Optional[List[int]],
         None,
@@ -10995,6 +11070,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TryExplosion: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryAftermathExplosion: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11610,6 +11690,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetHiddenStairsType: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetFinalKecleonShopSpawnChance: Symbol[
         Optional[List[int]],
         None,
     ]

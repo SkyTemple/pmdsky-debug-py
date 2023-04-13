@@ -12971,6 +12971,16 @@ class NaOverlay10Data:
         ),
     )
 
+    KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER = Symbol(
+        [0x7DCC],
+        [0x22C484C],
+        0x4,
+        (
+            "The boosted kecleon shop spawn chance multiplier (~1.2) as a binary"
+            " fixed-point number (8 fraction bits)."
+        ),
+    )
+
     HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER = Symbol(
         [0x7DD0],
         [0x22C4850],
@@ -16958,6 +16968,127 @@ class NaOverlay29Functions:
         ),
     )
 
+    ApplyMudTrapEffect = Symbol(
+        [0x1212C],
+        [0x22EE36C],
+        None,
+        (
+            "Randomly lowers attack, special attack, defense, or special defense of the"
+            " defender by 3 stages.\n\nr0: attacker entity pointer\nr1: defender entity"
+            " pointer"
+        ),
+    )
+
+    ApplyStickyTrapEffect = Symbol(
+        [0x121F4],
+        [0x22EE434],
+        None,
+        (
+            "If the defender is the leader, randomly try to make something in the bag"
+            " sticky. Otherwise, try to make the item the monster is holding"
+            " sticky.\n\nr0: attacker entity pointer\nr1: defender entity pointer"
+        ),
+    )
+
+    ApplyGrimyTrapEffect = Symbol(
+        [0x123EC],
+        [0x22EE62C],
+        None,
+        (
+            "If the defender is the leader, randomly try to turn food items in the"
+            " toolbox into\ngrimy food. Otherwise, try to make the food item the"
+            " monster is holding grimy food.\n\nr0: attacker entity pointer\nr1:"
+            " defender entity pointer"
+        ),
+    )
+
+    ApplyPitfallTrapEffect = Symbol(
+        [0x125E0],
+        [0x22EE820],
+        None,
+        (
+            "If the defender is the leader, end the current floor unless it has a"
+            " rescue point.\nOtherwise, make the entity faint and ignore reviver seeds."
+            " If not called by a random\ntrap, break the grate on the pitfall"
+            " trap.\n\nr0: attacker entity pointer\nr1: defender entity pointer\nr2:"
+            " tile pointer\nr3: bool caused by random trap"
+        ),
+    )
+
+    ApplySummonTrapEffect = Symbol(
+        [0x12754],
+        [0x22EE994],
+        None,
+        (
+            "Randomly spawns 2-4 enemy monsters around the position. The entity is only"
+            " used for\nlogging messages.\n\nr0: entity pointer\nr1: position"
+        ),
+    )
+
+    ApplyPpZeroTrapEffect = Symbol(
+        [0x127F0],
+        [0x22EEA30],
+        None,
+        (
+            "Tries to reduce the PP of one of the defender's moves to 0.\n\nr0:"
+            " attacker entity pointer\nr1: defender entity pointer"
+        ),
+    )
+
+    ApplyPokemonTrapEffect = Symbol(
+        [0x128D8],
+        [0x22EEB18],
+        None,
+        (
+            "Turns item in the same room as the tile at the position (usually just the"
+            " entities's\nposition) into monsters. If the position is in a hallway,"
+            " convert items in a 3x3 area\ncentered on the position into"
+            " monsters.\n\nr0: entity pointer\nr1: position"
+        ),
+    )
+
+    ApplyTripTrapEffect = Symbol(
+        [0x12AEC],
+        [0x22EED2C],
+        None,
+        (
+            "Tries to drop the defender's item and places it on the floor.\n\nr0:"
+            " attacker entity pointer\nr1: defender entity pointer"
+        ),
+    )
+
+    ApplyToxicSpikesTrapEffect = Symbol(
+        [0x12CAC],
+        [0x22EEEEC],
+        None,
+        (
+            "Tries to inflict 10 damage on the defender and then tries to poison"
+            " them.\n\nr0: attacker entity pointer\nr1: defender entity pointer"
+        ),
+    )
+
+    ApplyRandomTrapEffect = Symbol(
+        [0x12D00],
+        [0x22EEF40],
+        None,
+        (
+            "Selects a random trap that isn't a wonder tile and isn't a random trap and"
+            " calls\nApplyTrapEffect on all monsters that is different from the trap's"
+            " team.\n\nr0: Triggered trap\nr1: User\nr2: Target, normally same as"
+            " user\nr3: Tile that contains the trap\nstack[0]: position"
+        ),
+    )
+
+    ApplyGrudgeTrapEffect = Symbol(
+        [0x12E34],
+        [0x22EF074],
+        None,
+        (
+            "Spawns several monsters around the position and gives all monsters on the"
+            " floor the\ngrudge status condition.\n\nr0: entity pointer\nr1: position"
+        ),
+    )
+
     ApplyTrapEffect = Symbol(
         [0x12F14],
         [0x22EF154],
@@ -16965,9 +17096,18 @@ class NaOverlay29Functions:
         (
             "Performs the effect of a triggered trap.\n\nThe trap's animation happens"
             " before this function is called.\n\nr0: Triggered trap\nr1: User\nr2:"
-            " Target, normally same as user\nr3: Tile that contains the trap\nreturn:"
-            " True if the trap should be destroyed after the effect is applied"
+            " Target, normally same as user\nr3: Tile that contains the trap\nstack[0]:"
+            " position\nstack[1]: trap ID\nstack[2]: bool caused by random"
+            " trap\nreturn: True if the trap should be destroyed after the effect is"
+            " applied"
         ),
+    )
+
+    RevealTrapsNearby = Symbol(
+        [0x13398],
+        [0x22EF5D8],
+        None,
+        "Reveals traps within the monster's viewing range.\n\nr0: entity pointer",
     )
 
     DebugRecruitingEnabled = Symbol(
@@ -17350,6 +17490,20 @@ class NaOverlay29Functions:
             " before spawning an enemy, appears to be checking if Mew can spawn on the"
             " current floor.\n\nr0: monster id\nr1: return false if the monster id is"
             " Mew\nreturn: bool"
+        ),
+    )
+
+    TryEndStatusWithAbility = Symbol(
+        [0x1E59C],
+        [0x22FA7DC],
+        None,
+        (
+            "Checks if any of the defender's active abilities would end one of their"
+            " current status\nconditions. For example, if the ability Own Tempo will"
+            " stop confusion.\n\nCalled after changing a monster's ability with skill"
+            " swap, role play, or trace to\nremove statuses the monster should no"
+            " longer be affected by.\n\nr0: attacker entity pointer\nr1: defender"
+            " entity pointer"
         ),
     )
 
@@ -19300,6 +19454,16 @@ class NaOverlay29Functions:
         ),
     )
 
+    TryResetStatChanges = Symbol(
+        [0x3D3E4],
+        [0x2319624],
+        None,
+        (
+            "Tries to reset the stat changes of the defender.\n\nr0: attacker entity"
+            " pointer\nr1: defender entity pointer\nr3: bool to force animation"
+        ),
+    )
+
     MirrorMoveIsActive = Symbol(
         [0x3D508],
         [0x2319748],
@@ -19595,14 +19759,28 @@ class NaOverlay29Functions:
     )
 
     TryExplosion = Symbol(
-        [0x44548],
-        [0x2320788],
+        [0x44208],
+        [0x2320448],
         None,
         (
             "Creates an explosion if possible.\n\nThe target monster is considered the"
             " source of the explosion.\n\nr0: user entity pointer\nr1: target entity"
             " pointer\nr2: coordinates where the explosion should take place"
-            " (unverified)\nr3: ?\nstack[0]: ?\nstack[1]: damage source (normally"
+            " (center)\nr3: explosion radius (only works correctly with 1 and"
+            " 2)\nstack[0]: damage type\nstack[1]: damage source"
+        ),
+    )
+
+    TryAftermathExplosion = Symbol(
+        [0x44548],
+        [0x2320788],
+        None,
+        (
+            "Creates the explosion for the ability aftermath if possible.\n\nThe target"
+            " monster is considered the source of the explosion.\n\nr0: user entity"
+            " pointer\nr1: target entity pointer\nr2: coordinates where the explosion"
+            " should take place (center)\nr3: explosion radius (only works correctly"
+            " with 1 and 2)\nstack[0]: damage type\nstack[1]: damage source (normally"
             " DAMAGE_SOURCE_EXPLOSION)"
         ),
     )
@@ -21094,6 +21272,19 @@ class NaOverlay29Functions:
             " floor_properties::hidden_stairs_spawn_chance) into a concrete hidden"
             " stairs type.\n\nr0: dungeon generation info pointer\nr1: floor properties"
             " pointer\nreturn: enum hidden_stairs_type"
+        ),
+    )
+
+    GetFinalKecleonShopSpawnChance = Symbol(
+        [0x66C7C],
+        [0x2342EBC],
+        None,
+        (
+            "Gets the kecleon shop spawn chance for the floor.\n\nWhen"
+            " dungeon::boost_kecleon_shop_spawn_chance is false, returns the same value"
+            " as the input. When it's true, returns the input (chance * 1.2).\n\nr0:"
+            " base kecleon shop spawn chance,"
+            " floor_properties::kecleon_shop_spawn_chance\nreturn: int"
         ),
     )
 
