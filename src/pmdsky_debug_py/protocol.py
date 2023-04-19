@@ -1491,6 +1491,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    AllocateWanTableEntry: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     FindWanTableEntry: Symbol[
         Optional[List[int]],
         None,
@@ -1501,7 +1506,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitWanTable: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     LoadWanTableEntry: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadWanTableEntryFromPack: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadWanTableEntryFromPackUseProvidedMemory: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -7547,6 +7567,11 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     GROUND_STATE_MAP: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GROUND_STATE_WEATHER: Symbol[
         Optional[List[int]],
         None,
     ]

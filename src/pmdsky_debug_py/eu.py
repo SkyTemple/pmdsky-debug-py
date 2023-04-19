@@ -1037,9 +1037,9 @@ class EuArm9Functions:
         None,
         (
             "Call LoadFileInPack after looking up the global Pack archive by its"
-            " identifier\n\nr0: pack file identifier\nr1: [output] target buffer\nr2:"
-            " file index\nreturn: number of read bytes (identical to the length of the"
-            " pack from the Table of Content)"
+            " identifier\n\nr0: pack file identifier\nr1: file index\nr2: [output]"
+            " target buffer\nreturn: number of read bytes (identical to the length of"
+            " the pack from the Table of Content)"
         ),
     )
 
@@ -2679,8 +2679,21 @@ class EuArm9Functions:
         [0x201D278],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: wan_table_ptr\nr1:"
+            "Always delete an entry if the file is allocated externally"
+            " (file_externally_allocated is set), otherwise, decrease the reference"
+            " counter. If it reach 0, delete the sprite.\n\nr0: wan_table_ptr\nr1:"
             " wan_id"
+        ),
+    )
+
+    AllocateWanTableEntry = Symbol(
+        [0x1D2E0],
+        [0x201D2E0],
+        None,
+        (
+            "Return the identifier to a free wan table entry (-1 if none are"
+            " avalaible). The entry is zeroed.\n\nr0: wan_table_ptr\nreturn: the entry"
+            " id in wan_table"
         ),
     )
 
@@ -2689,7 +2702,7 @@ class EuArm9Functions:
         [0x201D370],
         None,
         (
-            "Appears to search in the given table (in practice always seems to be"
+            "Search in the given table (in practice always seems to be"
             " LOADED_WAN_TABLE_PTR) for an entry with the given file name.\n\nr0: table"
             " pointer\nr1: file name\nreturn: index of the found file, if found, or -1"
             " if not found"
@@ -2701,8 +2714,19 @@ class EuArm9Functions:
         [0x201D3D0],
         None,
         (
-            "wan_id = -1 if it is not loaded\n\nNote: unverified, ported from Irdkwia's"
-            " notes\n\nr0: wan_table_ptr\nr1: bin_file_id\nr2: file_id\nreturn: wan_id"
+            "Look up a sprite with the provided pack_id and file_index in the wan"
+            " table.\n\nr0: wan_table_ptr\nr1: pack_id\nr2: file_index\nreturn: sprite"
+            " id in the wan table, -1 if not found"
+        ),
+    )
+
+    InitWanTable = Symbol(
+        [0x1D458],
+        [0x201D458],
+        None,
+        (
+            "Initialize the input WAN table with 0x60 free entries (it needs a length"
+            " of 0x1510 bytes)\n\nr0: wan_table_ptr"
         ),
     )
 
@@ -2715,6 +2739,32 @@ class EuArm9Functions:
             " animation data), using previously loaded data in the given table (see"
             " FindWanTableEntry) if possible.\n\nr0: table pointer\nr1: file name\nr2:"
             " flags\nreturn: table index of the loaded data"
+        ),
+    )
+
+    LoadWanTableEntryFromPack = Symbol(
+        [0x1D520],
+        [0x201D520],
+        None,
+        (
+            "Return an already allocated entry for this sprite if it exists, otherwise"
+            " allocate a new one and load the optionally compressed sprite.\n\nr0:"
+            " wan_table_ptr\nr1: pack_id\nr2: file_index\nr3: allocation"
+            " flags\nstack[0]: compressed\nreturn: the entry id in wan_table"
+        ),
+    )
+
+    LoadWanTableEntryFromPackUseProvidedMemory = Symbol(
+        [0x1D62C],
+        [0x201D62C],
+        None,
+        (
+            "Return an already allocated entry for this sprite if it exists, otherwise"
+            " allocate a new one and load the optionally compressed sprite into the"
+            " provided memory area. Mark the sprite as externally allocated.\n\nr0:"
+            " wan_table_ptr\nr1: pack_id\nr2: file_index\nr3:"
+            " sprite_storage_ptr\nstack[0]: compressed\nreturn: the entry id in"
+            " wan_table"
         ),
     )
 
@@ -13614,8 +13664,10 @@ class EuOverlay11Functions:
         [0x22EC480],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: [output]"
-            " bg_attr_str\nr1: bg_id"
+            "Open and read an entry from the MAP_BG/bg_list.dat\n\nDocumentation on"
+            " this format can be found"
+            " here:\nhttps://github.com/SkyTemple/skytemple-files/tree/55b3017631a8a1b0f106111ef91a901dc394c6df/skytemple_files/graphics/bg_list_dat\n\nr0:"
+            " [output] The entry\nr1: background ID"
         ),
     )
 
@@ -13891,6 +13943,13 @@ class EuOverlay11Data:
     UNIONALL_RAM_ADDRESS = Symbol([0x48C64], [0x23257E4], None, "[Runtime]")
 
     GROUND_STATE_MAP = Symbol([0x48C80], [0x2325800], None, "[Runtime]")
+
+    GROUND_STATE_WEATHER = Symbol(
+        [0x48C8C],
+        [0x232580C],
+        None,
+        "[Runtime] Same structure format as GROUND_STATE_MAP",
+    )
 
     GROUND_STATE_PTRS = Symbol(
         [0x48CB4],
