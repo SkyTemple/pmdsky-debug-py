@@ -10144,6 +10144,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    BoostIQ: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ShouldMonsterHeadToStairs: Symbol[
         Optional[List[int]],
         None,
@@ -10469,6 +10474,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    LevelUpItemEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TryDecreaseLevel: Symbol[
         Optional[List[int]],
         None,
@@ -10495,6 +10505,21 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     CheckNonLeaderTile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndNegativeStatusCondition: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndNegativeStatusConditionWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TransferNegativeStatusCondition: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10545,6 +10570,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     EndMagnetRiseStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictDropeyeStatus: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10939,7 +10969,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryIncreaseBelly: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TryTransform: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictBlinkerStatus: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10949,7 +10989,42 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryInflictCrossEyedStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictEyedropStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictSlipStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     RestoreMovePP: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyProteinEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyCalciumEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyIronEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyZincEffect: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11034,7 +11109,42 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    ViolentSeedBoost: Symbol[
+    ApplyCheriBerryEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyPechaBerryEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyRawstBerryEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyHungerSeedEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyVileSeedEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyViolentSeedEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyGinsengEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyBlastSeedEffect: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11055,6 +11165,31 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ApplyMixElixirEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyDoughSeedEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyViaSeedEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyGravelyrockEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyGonePebbleEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyGracideaEffect: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11350,6 +11485,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     UpdateShouldBoostKecleonShopSpawnChance: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetDoughSeedFlag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TrySpawnDoughSeedPoke: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11725,6 +11870,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ResetHiddenStairsSpawn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyKeyEffect: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -12226,7 +12376,7 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
-    PLAIN_SEED_VALUE: Symbol[
+    PLAIN_SEED_STRING_ID: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -12236,7 +12386,7 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
-    SLIP_SEED_VALUE: Symbol[
+    SLIP_SEED_FAIL_STRING_ID: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

@@ -17525,6 +17525,16 @@ class NaOverlay29Functions:
         ),
     )
 
+    BoostIQ = Symbol(
+        [0x1DF04],
+        [0x22FA144],
+        None,
+        (
+            "Tries to boost the target's IQ.\n\nr0: monster entity pointer\nr1: iq"
+            " boost\nr2: bool suppress logs"
+        ),
+    )
+
     ShouldMonsterHeadToStairs = Symbol(
         [0x1E1F0],
         [0x22FA430],
@@ -18301,9 +18311,23 @@ class NaOverlay29Functions:
         [0x23026FC],
         None,
         (
-            "Checks if the specified enemy should evolve because it just defeated an"
-            " ally, and if so, attempts to evolve it.\n\nr0: Pointer to the enemy to"
-            " check"
+            "Checks if any enemies on the floor should evolve and attempts to evolve"
+            " it. The\nentity pointer passed seems to get replaced by a generic"
+            " placeholder entity if the\nentity pointer passed is invalid.\n\nr0:"
+            " entity pointer"
+        ),
+    )
+
+    LevelUpItemEffect = Symbol(
+        [0x2681C],
+        [0x2302A5C],
+        None,
+        (
+            "Attempts to level up the the target. Calls LevelUp with a few extra checks"
+            " and messages\nfor using as an item. Used for the Joy Seed and Golden"
+            " Seed.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: number"
+            " of levels\nr3: bool message flag?\nstack[0]: bool show level up dialog"
+            " (for example 'Hey, I leveled up!' with a portrait)?"
         ),
     )
 
@@ -18323,9 +18347,11 @@ class NaOverlay29Functions:
         [0x230303C],
         None,
         (
-            "Note: unverified, ported from Irdkwia's notes\n\nr0: user entity"
-            " pointer\nr1: target entity pointer\nr2: message flag?\nr3: ?\nreturn:"
-            " success flag?"
+            "Attempts to level up the the target. Fails if the target's level can't be"
+            " raised. The show show level up dialog bool does nothing for monsters not"
+            " on the team.\n\nr0: user entity pointer\nr1: target entity pointer\nr2:"
+            " bool message flag?\nr3: bool show level up dialog (for example 'Hey, I"
+            " leveled up!' with a portrait)?\nreturn: success flag"
         ),
     )
 
@@ -18334,8 +18360,10 @@ class NaOverlay29Functions:
         [0x2303C7C],
         None,
         (
-            "Makes the specified monster evolve into the specified species.\n\nr0:"
-            " Pointer to the entity to evolve\nr1: ?\nr2: Species to evolve into"
+            "Makes the specified monster evolve into the specified species. Has a"
+            " special case when\na monster evolves into Ninjask and tries to spawn a"
+            " Shedinja as well.\n\nr0: user entity pointer?\nr1: target pointer to the"
+            " entity to evolve\nr2: Species to evolve into"
         ),
     )
 
@@ -18372,6 +18400,40 @@ class NaOverlay29Functions:
         (
             "Similar to CheckLeaderTile, but for other monsters.\n\nUsed both for"
             " enemies and team members.\n\nr0: Entity pointer"
+        ),
+    )
+
+    EndNegativeStatusCondition = Symbol(
+        [0x29684],
+        [0x23058C4],
+        None,
+        (
+            "Cures the target's negative status conditions. The game rarely (if not"
+            " never) calls\nthis function with the bool to remove the wrapping status"
+            " false.\n\nr0: pointer to user\nr1: pointer to target\nr2: bool play"
+            " animation\nr3: bool log failure message\nstack[0]: bool remove wrapping"
+            " status\nreturn: bool succesfully removed negative status"
+        ),
+    )
+
+    EndNegativeStatusConditionWrapper = Symbol(
+        [0x299E8],
+        [0x2305C28],
+        None,
+        (
+            "Calls EndNegativeStatusCondition with remove wrapping status false.\n\nr0:"
+            " pointer to user\nr1: pointer to target\nr2: bool play animation\nr3: bool"
+            " log failure message\nreturn: bool succesfully removed negative status"
+        ),
+    )
+
+    TransferNegativeStatusCondition = Symbol(
+        [0x299FC],
+        [0x2305C3C],
+        None,
+        (
+            "Transfers all negative status conditions the user has and gives then to"
+            " the target.\n\nr0: user entity pointer\nr1: target entity pointer"
         ),
     )
 
@@ -18485,6 +18547,17 @@ class NaOverlay29Functions:
             "Removes the target's magnet rise status due to the action of the user, and"
             " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to"
             " target"
+        ),
+    )
+
+    TryInflictDropeyeStatus = Symbol(
+        [0x2B6AC],
+        [0x23078EC],
+        None,
+        (
+            "Inflicts the Dropeye status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nreturn:"
+            " Whether or not the status could be inflicted"
         ),
     )
 
@@ -19454,6 +19527,18 @@ class NaOverlay29Functions:
         ),
     )
 
+    TryIncreaseBelly = Symbol(
+        [0x3A970],
+        [0x2316BB0],
+        None,
+        (
+            "Restore belly and possibly boost max belly of the target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2:"
+            " belly to restore\nr3: max belly boost (if belly is full)\nstack[0]: flag"
+            " to log a message"
+        ),
+    )
+
     TryTransform = Symbol(
         [0x3AFDC],
         [0x231721C],
@@ -19463,6 +19548,19 @@ class NaOverlay29Functions:
             " contained in the list returned by MonsterSpawnListPartialCopy.\n\nThe"
             " user pointer is only used when calling LogMessage functions.\n\nr0: user"
             " entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictBlinkerStatus = Symbol(
+        [0x3B48C],
+        [0x23176CC],
+        None,
+        (
+            "Inflicts the Blinker status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag"
+            " to only perform the check for inflicting without actually inflicting\nr3:"
+            " flag to log a message on failure\nreturn: Whether or not the status could"
+            " be inflicted"
         ),
     )
 
@@ -19478,6 +19576,39 @@ class NaOverlay29Functions:
         ),
     )
 
+    TryInflictCrossEyedStatus = Symbol(
+        [0x3B604],
+        [0x2317844],
+        None,
+        (
+            "Inflicts the Cross-Eyed status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag"
+            " to only perform the check for inflicting without actually"
+            " inflicting\nreturn: Whether or not the status could be inflicted"
+        ),
+    )
+
+    TryInflictEyedropStatus = Symbol(
+        [0x3B71C],
+        [0x231795C],
+        None,
+        (
+            "Inflicts the Eyedrop status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictSlipStatus = Symbol(
+        [0x3B7CC],
+        [0x2317A0C],
+        None,
+        (
+            "Inflicts the Slip status condition on a target monster if possible.\n\nr0:"
+            " user entity pointer\nr1: target entity pointer\nreturn: Whether or not"
+            " the status could be inflicted"
+        ),
+    )
+
     RestoreMovePP = Symbol(
         [0x3B9E0],
         [0x2317C20],
@@ -19486,6 +19617,46 @@ class NaOverlay29Functions:
             "Restores the PP of all the target's moves by the specified amount.\n\nr0:"
             " user entity pointer\nr1: target entity pointer\nr2: PP to restore\nr3:"
             " flag to suppress message logging"
+        ),
+    )
+
+    ApplyProteinEffect = Symbol(
+        [0x3BD10],
+        [0x2317F50],
+        None,
+        (
+            "Tries to boost the target's attack stat.\n\nr0: user entity pointer\nr1:"
+            " target entity pointer\nr2: attack boost"
+        ),
+    )
+
+    ApplyCalciumEffect = Symbol(
+        [0x3BDA4],
+        [0x2317FE4],
+        None,
+        (
+            "Tries to boost the target's special attack stat.\n\nr0: user entity"
+            " pointer\nr1: target entity pointer\nr2: special attack boost"
+        ),
+    )
+
+    ApplyIronEffect = Symbol(
+        [0x3BE38],
+        [0x2318078],
+        None,
+        (
+            "Tries to boost the target's defense stat.\n\nr0: user entity pointer\nr1:"
+            " target entity pointer\nr2: defense boost"
+        ),
+    )
+
+    ApplyZincEffect = Symbol(
+        [0x3BECC],
+        [0x231810C],
+        None,
+        (
+            "Tries to boost the target's special defense stat.\n\nr0: user entity"
+            " pointer\nr1: target entity pointer\nr2: special defense boost"
         ),
     )
 
@@ -19685,13 +19856,93 @@ class NaOverlay29Functions:
         ),
     )
 
-    ViolentSeedBoost = Symbol(
+    ApplyCheriBerryEffect = Symbol(
+        [0x409AC],
+        [0x231CBEC],
+        None,
+        (
+            "Tries to heal the paralysis status condition. Prints a message on"
+            " failure.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyPechaBerryEffect = Symbol(
+        [0x409D8],
+        [0x231CC18],
+        None,
+        (
+            "Tries to heal the poisoned and badly poisoned status condition. Prints a"
+            " message on\nfailure.\n\nr0: user entity pointer\nr1: target entity"
+            " pointer"
+        ),
+    )
+
+    ApplyRawstBerryEffect = Symbol(
+        [0x40A0C],
+        [0x231CC4C],
+        None,
+        (
+            "Tries to heal the burn status condition. Prints a message on"
+            " failure.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyHungerSeedEffect = Symbol(
+        [0x40A54],
+        [0x231CC94],
+        None,
+        (
+            "Empties the targets belly to cause Hungry Pal status in non-leader"
+            " monsters and\nFamished in the leader monster.\n\nr0: user entity"
+            " pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyVileSeedEffect = Symbol(
+        [0x40B40],
+        [0x231CD80],
+        None,
+        (
+            "Reduces the targets defense and special defense stages to the lowest"
+            " level.\n\nr0: attacker pointer\nr1: defender pointer"
+        ),
+    )
+
+    ApplyViolentSeedEffect = Symbol(
         [0x40BDC],
         [0x231CE1C],
         None,
         (
-            "Applies the Violent Seed boost to an entity.\n\nr0: attacker pointer\nr1:"
-            " defender pointer"
+            "Boosts the target's offensive stats stages to the max.\n\nr0: user entity"
+            " pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyGinsengEffect = Symbol(
+        [0x40C28],
+        [0x231CE68],
+        None,
+        (
+            "Boosts the power of the move at the top of the target's Move List. Appears"
+            " to have a\nleftover check to boost the power of a move by 3 instead of 1"
+            " that always fails because\nthe chance is 0.\n\nr0: user entity"
+            " pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyBlastSeedEffect = Symbol(
+        [0x40D44],
+        [0x231CF84],
+        None,
+        (
+            "If thrown, unfreeze and deal fixed damage to the defender. If not thrown,"
+            " try to find \na monster in front of the attacker. If a monster is found"
+            " unfreeze and dedal fixed \ndamage to the defender. Appears to have a"
+            " leftover check for if the current fixed room is a boss fight and loads a"
+            " different pointer for the damage when used in a boss room.\nHowever, this"
+            " isn't noticeable because both the normal and boss damage is the"
+            " same.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: bool"
+            " thrown"
         ),
     )
 
@@ -19738,6 +19989,60 @@ class NaOverlay29Functions:
         (
             "If the target monster is a Linoone, restores all the PP of all the"
             " target's moves.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyDoughSeedEffect = Symbol(
+        [0x414A0],
+        [0x231D6E0],
+        None,
+        (
+            "If the target monster is a team member, set dough_seed_extra_poke_flag to"
+            " true to \nmake extra poke spawn on the next floor. Otherwise, do"
+            " nothing.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyViaSeedEffect = Symbol(
+        [0x4150C],
+        [0x231D74C],
+        None,
+        (
+            "Tries to randomly teleport the target with a message for eating the"
+            " seed.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyGravelyrockEffect = Symbol(
+        [0x41580],
+        [0x231D7C0],
+        None,
+        (
+            "Restores 10 hunger to the target and will raise the target's IQ if they"
+            " are a bonsly\nor sudowoodo.\n\nr0: user entity pointer\nr1: target entity"
+            " pointer"
+        ),
+    )
+
+    ApplyGonePebbleEffect = Symbol(
+        [0x415F8],
+        [0x231D838],
+        None,
+        (
+            "Causes a few visual effects, temporarily changes the dungeon music to the"
+            " Goodnight\ntrack, and gives the target the enduring status.\n\nr0: user"
+            " entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    ApplyGracideaEffect = Symbol(
+        [0x41780],
+        [0x231D9C0],
+        None,
+        (
+            "If the target is Shaymin, attempt to change the target's form to Shaymin"
+            " Sky Forme. Otherwise, do nothing.\n\nr0: user entity pointer\nr1: target"
+            " entity pointer"
         ),
     )
 
@@ -20413,6 +20718,26 @@ class NaOverlay29Functions:
             "Sets the boost_kecleon_shop_spawn_chance field on the dungeon struct"
             " depending on if a team member has the exclusive item effect for more"
             " kecleon shops.\n\nNo params."
+        ),
+    )
+
+    SetDoughSeedFlag = Symbol(
+        [0x5C308],
+        [0x2338548],
+        None,
+        (
+            "Sets the dough_seed_extra_money_flag field on the dungeon struct to the"
+            " given value.\n\nr0: bool to set the flag to"
+        ),
+    )
+
+    TrySpawnDoughSeedPoke = Symbol(
+        [0x5C320],
+        [0x2338560],
+        None,
+        (
+            "Checks the dough_seed_extra_money_flag field on the dungeon struct and"
+            " tries to spawn\nextra poke if it is set.\n\nNo params."
         ),
     )
 
@@ -21352,6 +21677,17 @@ class NaOverlay29Functions:
             "Resets hidden stairs spawn information for the floor. This includes the"
             " position on the floor generation status as well as the flag indicating"
             " whether the spawn was blocked.\n\nNo params."
+        ),
+    )
+
+    ApplyKeyEffect = Symbol(
+        [0x67A98],
+        [0x2343CD8],
+        None,
+        (
+            "Attempts to open a locked door in front of the target if a locked door has"
+            " not already\nbeen open on the floor.\n\nr0: user entity pointer\nr1:"
+            " target entity pointer"
         ),
     )
 
@@ -22347,8 +22683,8 @@ class NaOverlay29Data:
         ),
     )
 
-    PLAIN_SEED_VALUE = Symbol(
-        [0x40508], [0x231C748], 0x4, "Some value related to the Plain Seed (0xBE9)."
+    PLAIN_SEED_STRING_ID = Symbol(
+        [0x40508], [0x231C748], 0x4, "The string ID for eating a Plain Seed (0xBE9)."
     )
 
     MAX_ELIXIR_PP_RESTORATION = Symbol(
@@ -22358,8 +22694,11 @@ class NaOverlay29Data:
         "The amount of PP restored per move by ingesting a Max Elixir (0x3E7).",
     )
 
-    SLIP_SEED_VALUE = Symbol(
-        [0x4096C], [0x231CBAC], 0x4, "Some value related to the Slip Seed (0xC75)."
+    SLIP_SEED_FAIL_STRING_ID = Symbol(
+        [0x4096C],
+        [0x231CBAC],
+        0x4,
+        "The string ID for when eating the Slip Seed fails (0xC75).",
     )
 
     ROCK_WRECKER_MOVE_ID = Symbol(
