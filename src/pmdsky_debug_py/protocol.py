@@ -3391,6 +3391,41 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ClearIrqFlag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EnableIrqFlag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetIrqFlag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EnableIrqFiqFlags: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetIrqFiqFlags: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetIrqFlag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    WaitForever2: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     WaitForInterrupt: Symbol[
         Optional[List[int]],
         None,

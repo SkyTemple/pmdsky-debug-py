@@ -6287,6 +6287,86 @@ class NaArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
     )
 
+    ClearIrqFlag = Symbol(
+        [0x7B7D0],
+        [0x207B7D0],
+        None,
+        (
+            "Enables processor interrupts by clearing the i flag in the program status"
+            " register (cpsr).\n\nReturn: Old value of cpsr & 0x80 (0x80 if interrupts"
+            " were disabled, 0x0 if they were already enabled)"
+        ),
+    )
+
+    EnableIrqFlag = Symbol(
+        [0x7B7E4],
+        [0x207B7E4],
+        None,
+        (
+            "Disables processor interrupts by setting the i flag in the program status"
+            " register (cpsr).\n\nReturn: Old value of cpsr & 0x80 (0x80 if interrupts"
+            " were already disabled, 0x0 if they were enabled)"
+        ),
+    )
+
+    SetIrqFlag = Symbol(
+        [0x7B7F8],
+        [0x207B7F8],
+        None,
+        (
+            "Sets the value of the processor's interrupt flag according to the"
+            " specified parameter.\n\nr0: Value to set the flag to (0x80 to set it,"
+            " which disables interrupts; 0x0 to unset it, which enables"
+            " interrupts)\nReturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+            " disabled, 0x0 if they were enabled)"
+        ),
+    )
+
+    EnableIrqFiqFlags = Symbol(
+        [0x7B810],
+        [0x207B810],
+        None,
+        (
+            "Disables processor all interrupts (both standard and fast) by setting the"
+            " i and f flags in the program status register (cpsr).\n\nReturn: Old value"
+            " of cpsr & 0xC0 (contains the previous values of the i and f flags)"
+        ),
+    )
+
+    SetIrqFiqFlags = Symbol(
+        [0x7B824],
+        [0x207B824],
+        None,
+        (
+            "Sets the value of the processor's interrupt flags (i and f) according to"
+            " the specified parameter.\n\nr0: Value to set the flags to (0xC0 to set"
+            " both flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the"
+            " f flag and clear the i flag and 0x0 to clear both flags)\nReturn: Old"
+            " value of cpsr & 0xC0 (contains the previous values of the i and f flags)"
+        ),
+    )
+
+    GetIrqFlag = Symbol(
+        [0x7B83C],
+        [0x207B83C],
+        None,
+        (
+            "Gets the current value of the processor's interrupt request (i)"
+            " flag\n\nReturn: cpsr & 0x80 (0x80 if interrupts are disabled, 0x0 if they"
+            " are enabled)"
+        ),
+    )
+
+    WaitForever2 = Symbol(
+        [0x7BC20],
+        [0x207BC20],
+        None,
+        (
+            "Calls EnableIrqFlag and WaitForInterrupt in an infinite loop.\n\nThis is"
+            " called on fatal errors to hang the program indefinitely.\n\nNo params."
+        ),
+    )
+
     WaitForInterrupt = Symbol(
         [0x7BC30],
         [0x207BC30],
