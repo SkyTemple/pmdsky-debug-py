@@ -1500,14 +1500,13 @@ class NaArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nr0: item ID\nreturn: move ID",
     )
 
-    TestItemFlag0xE = Symbol(
+    TestItemAiFlag = Symbol(
         [0xEAA0],
         [0x200EAA0],
         None,
         (
-            "Tests bit 7 if r1 is 0, bit 6 if r1 is 1, bit 5 otherwise\n\nNote:"
-            " unverified, ported from Irdkwia's notes\n\nr0: item ID\nr1:"
-            " bit_id\nreturn: bool"
+            "Used to check the AI flags for an item. Tests bit 7 if r1 is 0, bit 6 if"
+            " r1 is 1, bit\n5 otherwise.\n\nr0: item ID\nr1: bit_id\nreturn: bool"
         ),
     )
 
@@ -1550,6 +1549,17 @@ class NaArm9Functions:
         (
             "Sets the amount of money the player is carrying, clamping the value to the"
             " range [0, MAX_MONEY_CARRIED].\n\nr0: new value"
+        ),
+    )
+
+    AddMoneyCarried = Symbol(
+        [0xED58],
+        [0x200ED58],
+        None,
+        (
+            "Adds the amount of money to the player's current amount of money. Just"
+            " calls\nSetMoneyCarried with the current money + money gained.\n\nr0:"
+            " money gained (can be negative)"
         ),
     )
 

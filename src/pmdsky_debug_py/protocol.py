@@ -751,7 +751,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    TestItemFlag0xE: Symbol[
+    TestItemAiFlag: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -777,6 +777,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     SetMoneyCarried: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AddMoneyCarried: Symbol[
         Optional[List[int]],
         None,
     ]
