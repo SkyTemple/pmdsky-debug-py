@@ -18212,6 +18212,39 @@ class NaOverlay29Functions:
         ),
     )
 
+    SafeguardIsActive = Symbol(
+        [0x25700],
+        [0x2301940],
+        None,
+        (
+            "Checks if the monster is under the effect of Safeguard.\n\nr0: user entity"
+            " pointer\nr1: target entity pointer\nr2: flag to log a message\nreturn:"
+            " bool"
+        ),
+    )
+
+    LeafGuardIsActive = Symbol(
+        [0x25754],
+        [0x2301994],
+        None,
+        (
+            "Checks if the monster is protected by the ability Leaf Guard.\n\nr0: user"
+            " entity pointer\nr1: target entity pointer\nr2: flag to log a"
+            " message\nreturn: bool"
+        ),
+    )
+
+    IsProtectedFromStatDrops = Symbol(
+        [0x258EC],
+        [0x2301B2C],
+        None,
+        (
+            "Checks if the target monster is protected from getting their stats dropped"
+            " by the user.\n\nr0: user entity pointer\nr1: target entity pointer\nr2:"
+            " flag to log a message\nreturn: bool"
+        ),
+    )
+
     NoGastroAcidStatus = Symbol(
         [0x25A9C],
         [0x2301CDC],
@@ -18377,6 +18410,17 @@ class NaOverlay29Functions:
             " values.\n\nr0: monster pointer\nr1: bitmask for bits to update\nr2:"
             " whether to set the bits indicated by the mask to 1 or 0\nreturn: whether"
             " or not any of the masked bits changed from the previous state"
+        ),
+    )
+
+    IsProtectedFromNegativeStatus = Symbol(
+        [0x261F0],
+        [0x2302430],
+        None,
+        (
+            "Checks if the target monster is protected from getting a negative status"
+            " condition.\n\nr0: user entity pointer\nr1: target entity pointer\nr2:"
+            " flag to log a message\nreturn: bool"
         ),
     )
 
@@ -18640,14 +18684,14 @@ class NaOverlay29Functions:
         ),
     )
 
-    TryInflictDropeyeStatus = Symbol(
+    TransferNegativeBlinkerClassStatus = Symbol(
         [0x2B6AC],
         [0x23078EC],
         None,
         (
-            "Inflicts the Dropeye status condition on a target monster if"
-            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nreturn:"
-            " Whether or not the status could be inflicted"
+            "Tries to transfer the the negative blinker class status conditions from"
+            " the user to\nthe target.\n\nr0: user entity pointer\nr1: target entity"
+            " pointer\nreturn: Whether or not the status could be transferred"
         ),
     )
 
@@ -19083,6 +19127,18 @@ class NaOverlay29Functions:
             "Inflicts the Sleep status condition on a target monster if"
             " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2:"
             " number of turns\nr3: flag to log a message on failure"
+        ),
+    )
+
+    IsProtectedFromSleepClassStatus = Symbol(
+        [0x357A4],
+        [0x23119E4],
+        None,
+        (
+            "Checks if the monster is immune to sleep class status conditions.\n\nr0:"
+            " user entity pointer\nr1: target entity pointer\nr2: ignore safeguard\nr3:"
+            " ignore other protections (exclusive items + leaf guard)\nstack[0]: flag"
+            " to log a message on failure\nreturn: bool"
         ),
     )
 
@@ -19596,7 +19652,7 @@ class NaOverlay29Functions:
         ),
     )
 
-    TryInflictDestinyBond = Symbol(
+    TryInflictDestinyBondStatus = Symbol(
         [0x39810],
         [0x2315A50],
         None,
@@ -19606,7 +19662,103 @@ class NaOverlay29Functions:
         ),
     )
 
-    TryInvisify = Symbol(
+    TryInflictSureShotStatus = Symbol(
+        [0x39930],
+        [0x2315B70],
+        None,
+        (
+            "Inflicts the Sure Shot status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictWhifferStatus = Symbol(
+        [0x399C0],
+        [0x2315C00],
+        None,
+        (
+            "Inflicts the Whiffer status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictSetDamageStatus = Symbol(
+        [0x39AA8],
+        [0x2315CE8],
+        None,
+        (
+            "Inflicts the Set Damage status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictFocusEnergyStatus = Symbol(
+        [0x39B44],
+        [0x2315D84],
+        None,
+        (
+            "Inflicts the Focus Energy status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictDecoyStatus = Symbol(
+        [0x39BE4],
+        [0x2315E24],
+        None,
+        (
+            "Inflicts the Decoy status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nreturn:"
+            " Whether or not the status could be inflicted"
+        ),
+    )
+
+    TryInflictCurseStatus = Symbol(
+        [0x39E9C],
+        [0x23160DC],
+        None,
+        (
+            "Inflicts the Curse status condition on a target monster if possible and if"
+            " the user is\na ghost type. Otherwise, just boost the user's defense and"
+            " attack then lower the user's\nspeed.\n\nr0: user entity pointer\nr1:"
+            " target entity pointer"
+        ),
+    )
+
+    TryInflictSnatchStatus = Symbol(
+        [0x3A040],
+        [0x2316280],
+        None,
+        (
+            "Inflicts the Snatch status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictTauntStatus = Symbol(
+        [0x3A168],
+        [0x23163A8],
+        None,
+        (
+            "Inflicts the Taunt status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nreturn:"
+            " Whether or not the status could be inflicted"
+        ),
+    )
+
+    TryInflictStockpileStatus = Symbol(
+        [0x3A298],
+        [0x23164D8],
+        None,
+        (
+            "Inflicts the Stockpile condition on a target monster if possible. Won't"
+            " boost the level\nof stockpiling above 3.\n\nr0: user entity pointer\nr1:"
+            " target entity pointer\nreturn: Whether or not the status could be"
+            " inflicted or boosted"
+        ),
+    )
+
+    TryInflictInvisibleStatus = Symbol(
         [0x3A33C],
         [0x231657C],
         None,
@@ -19614,6 +19766,43 @@ class NaOverlay29Functions:
             "Attempts to turn the target invisible.\n\nThe user pointer is only used"
             " when calling LogMessage functions.\n\nr0: user entity pointer\nr1: target"
             " entity pointer"
+        ),
+    )
+
+    TryInflictPerishSongStatus = Symbol(
+        [0x3A3EC],
+        [0x231662C],
+        None,
+        (
+            "Inflicts the Perish Song status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag"
+            " to only perform the check for inflicting without actually"
+            " inflicting\nreturn: Whether or not the status could be inflicted"
+        ),
+    )
+
+    TryInflictEncoreStatus = Symbol(
+        [0x3A4E0],
+        [0x2316720],
+        None,
+        (
+            "Inflicts the Encore status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag"
+            " to only perform the check for inflicting without actually"
+            " inflicting\nreturn: Whether or not the status could be inflicted"
+        ),
+    )
+
+    TryDecreaseBelly = Symbol(
+        [0x3A698],
+        [0x23168D8],
+        None,
+        (
+            "Tries to reduce the belly size of the target. Only when max belly shrink"
+            " is 0, the\ncurrent belly is reduced by belly to lose. If both are"
+            " non-zero, only the max belly\nshrink is applied.\n\nr0: user entity"
+            " pointer\nr1: target entity pointer\nr2: belly to lose\nr3: max belly"
+            " shrink"
         ),
     )
 
@@ -19629,6 +19818,18 @@ class NaOverlay29Functions:
         ),
     )
 
+    TryInflictMuzzledStatus = Symbol(
+        [0x3AEE4],
+        [0x2317124],
+        None,
+        (
+            "Inflicts the Muzzled status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag"
+            " to only perform the check for inflicting without actually"
+            " inflicting\nreturn: Whether or not the status could be inflicted"
+        ),
+    )
+
     TryTransform = Symbol(
         [0x3AFDC],
         [0x231721C],
@@ -19638,6 +19839,42 @@ class NaOverlay29Functions:
             " contained in the list returned by MonsterSpawnListPartialCopy.\n\nThe"
             " user pointer is only used when calling LogMessage functions.\n\nr0: user"
             " entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictMobileStatus = Symbol(
+        [0x3B1CC],
+        [0x231740C],
+        None,
+        (
+            "Inflicts the Mobile status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictExposedStatus = Symbol(
+        [0x3B288],
+        [0x23174C8],
+        None,
+        (
+            "Inflicts the Exposed status condition on a target monster if possible."
+            " Only applies to\nGhost types and monsters with raised evasion. If the"
+            " animation effect ID is 0,\ndefaults to animation ID 0xE (this fallback"
+            " animation likely can't be seen in normal\nplay).\n\nr0: user entity"
+            " pointer\nr1: target entity pointer\nr2: animation effect ID\nr3: flag to"
+            " only perform the check for inflicting without actually"
+            " inflicting\nreturn: Whether or not the status could be inflicted"
+        ),
+    )
+
+    TryActivateIdentifyCondition = Symbol(
+        [0x3B408],
+        [0x2317648],
+        None,
+        (
+            "Sets the flag for the identify orb which causes monsters holding items to"
+            " be shown with\na blue exclamation mark status icon.\n\nr0: user entity"
+            " pointer\nr1: target entity pointer"
         ),
     )
 
@@ -19699,6 +19936,17 @@ class NaOverlay29Functions:
         ),
     )
 
+    TryInflictDropeyeStatus = Symbol(
+        [0x3B8B4],
+        [0x2317AF4],
+        None,
+        (
+            "Inflicts the Dropeye status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nreturn:"
+            " Whether or not the status could be inflicted"
+        ),
+    )
+
     RestoreMovePP = Symbol(
         [0x3B9E0],
         [0x2317C20],
@@ -19750,13 +19998,140 @@ class NaOverlay29Functions:
         ),
     )
 
-    SetReflectDamageCountdownTo4 = Symbol(
+    TryInflictLongTossStatus = Symbol(
+        [0x3BF60],
+        [0x23181A0],
+        None,
+        (
+            "Inflicts the Long Toss status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictPierceStatus = Symbol(
+        [0x3BFD0],
+        [0x2318210],
+        None,
+        (
+            "Inflicts the Pierce status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictGastroAcidStatus = Symbol(
+        [0x3C03C],
+        [0x231827C],
+        None,
+        (
+            "Inflicts the Gastro Acid status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag"
+            " to log message\nr3: flag to only perform the check for inflicting without"
+            " actually inflicting\nreturn: Whether or not the status could be inflicted"
+        ),
+    )
+
+    SetAquaRingHealingCountdownTo4 = Symbol(
         [0x3C180],
         [0x23183C0],
         None,
         (
-            "Sets the monster's reflect damage countdown to a global value"
+            "Sets the countdown for Aqua Ring healing countdown to a global value"
             " (0x4).\n\nr0: pointer to entity"
+        ),
+    )
+
+    ApplyAquaRingHealing = Symbol(
+        [0x3C1A8],
+        [0x23183E8],
+        None,
+        (
+            "Applies the passive healing gained from the Aqua Ring status.\n\nr0:"
+            " pointer to entity"
+        ),
+    )
+
+    TryInflictAquaRingStatus = Symbol(
+        [0x3C21C],
+        [0x231845C],
+        None,
+        (
+            "Inflicts the Aqua Ring status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictLuckyChantStatus = Symbol(
+        [0x3C2C8],
+        [0x2318508],
+        None,
+        (
+            "Inflicts the Lucky Chant status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictHealBlockStatus = Symbol(
+        [0x3C368],
+        [0x23185A8],
+        None,
+        (
+            "Inflicts the Heal Block status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag"
+            " to log message\nr3: flag to only perform the check for inflicting without"
+            " actually inflicting\nreturn: Whether or not the status could be inflicted"
+        ),
+    )
+
+    MonsterHasEmbargoStatus = Symbol(
+        [0x3C48C],
+        [0x23186CC],
+        None,
+        (
+            "Returns true if the monster has the Embargo status condition.\n\nr0:"
+            " pointer to entity\nreturn: bool"
+        ),
+    )
+
+    LogItemBlockedByEmbargo = Symbol(
+        [0x3C4C0],
+        [0x2318700],
+        None,
+        (
+            "Logs the error message when the usage of an item is blocked by"
+            " Embargo.\n\nr0: pointer to entity"
+        ),
+    )
+
+    TryInflictEmbargoStatus = Symbol(
+        [0x3C4EC],
+        [0x231872C],
+        None,
+        (
+            "Inflicts the Embargo status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag"
+            " to log message\nr3: flag to only perform the check for inflicting without"
+            " actually inflicting\nreturn: Whether or not the status could be inflicted"
+        ),
+    )
+
+    TryInflictMiracleEyeStatus = Symbol(
+        [0x3C610],
+        [0x2318850],
+        None,
+        (
+            "Inflicts the Miracle Eye status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag"
+            " to only perform the check for inflicting without actually inflicting"
+        ),
+    )
+
+    TryInflictMagnetRiseStatus = Symbol(
+        [0x3C744],
+        [0x2318984],
+        None,
+        (
+            "Inflicts the Magnet Rise status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
         ),
     )
 
@@ -19768,6 +20143,126 @@ class NaOverlay29Functions:
             "Checks if a monster is currently immune to Ground-type moves for reasons"
             " other than typing and ability.\n\nThis includes checks for Gravity and"
             " Magnet Rise.\n\nr0: entity pointer\nreturn: bool"
+        ),
+    )
+
+    TryInflictSafeguardStatus = Symbol(
+        [0x3CC30],
+        [0x2318E70],
+        None,
+        (
+            "Inflicts the Safeguard status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictMistStatus = Symbol(
+        [0x3CCD0],
+        [0x2318F10],
+        None,
+        (
+            "Inflicts the Mist status condition on a target monster if possible.\n\nr0:"
+            " user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictWishStatus = Symbol(
+        [0x3CD6C],
+        [0x2318FAC],
+        None,
+        (
+            "Inflicts the Wish status condition on a target monster if possible.\n\nr0:"
+            " user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictMagicCoatStatus = Symbol(
+        [0x3CE0C],
+        [0x231904C],
+        None,
+        (
+            "Inflicts the Magic Coat status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictLightScreenStatus = Symbol(
+        [0x3CEAC],
+        [0x23190EC],
+        None,
+        (
+            "Inflicts the Light Screen status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictReflectStatus = Symbol(
+        [0x3CF4C],
+        [0x231918C],
+        None,
+        (
+            "Inflicts the Reflect status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictProtectStatus = Symbol(
+        [0x3CFEC],
+        [0x231922C],
+        None,
+        (
+            "Inflicts the Protect status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictMirrorCoatStatus = Symbol(
+        [0x3D09C],
+        [0x23192DC],
+        None,
+        (
+            "Inflicts the Mirror Coat status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictEndureStatus = Symbol(
+        [0x3D138],
+        [0x2319378],
+        None,
+        (
+            "Inflicts the Endure status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictMirrorMoveStatus = Symbol(
+        [0x3D1D8],
+        [0x2319418],
+        None,
+        (
+            "Inflicts the Mirror Move status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictConversion2Status = Symbol(
+        [0x3D278],
+        [0x23194B8],
+        None,
+        (
+            "Inflicts the Conversion2 status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
+        ),
+    )
+
+    TryInflictVitalThrowStatus = Symbol(
+        [0x3D344],
+        [0x2319584],
+        None,
+        (
+            "Inflicts the Vital Throw status condition on a target monster if"
+            " possible.\n\nr0: user entity pointer\nr1: target entity pointer"
         ),
     )
 

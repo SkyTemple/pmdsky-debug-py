@@ -10429,6 +10429,21 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SafeguardIsActive: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LeafGuardIsActive: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsProtectedFromStatDrops: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     NoGastroAcidStatus: Symbol[
         Optional[List[int]],
         None,
@@ -10500,6 +10515,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     UpdateStateFlags: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsProtectedFromNegativeStatus: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10614,7 +10634,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    TryInflictDropeyeStatus: Symbol[
+    TransferNegativeBlinkerClassStatus: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10775,6 +10795,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TryInflictSleepStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsProtectedFromSleepClassStatus: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10999,12 +11024,72 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    TryInflictDestinyBond: Symbol[
+    TryInflictDestinyBondStatus: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    TryInvisify: Symbol[
+    TryInflictSureShotStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictWhifferStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictSetDamageStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictFocusEnergyStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictDecoyStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictCurseStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictSnatchStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictTauntStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictStockpileStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictInvisibleStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictPerishSongStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictEncoreStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryDecreaseBelly: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11014,7 +11099,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryInflictMuzzledStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TryTransform: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictMobileStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictExposedStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryActivateIdentifyCondition: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11044,6 +11149,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryInflictDropeyeStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     RestoreMovePP: Symbol[
         Optional[List[int]],
         None,
@@ -11069,12 +11179,132 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    SetReflectDamageCountdownTo4: Symbol[
+    TryInflictLongTossStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictPierceStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictGastroAcidStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetAquaRingHealingCountdownTo4: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ApplyAquaRingHealing: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictAquaRingStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictLuckyChantStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictHealBlockStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MonsterHasEmbargoStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LogItemBlockedByEmbargo: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictEmbargoStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictMiracleEyeStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictMagnetRiseStatus: Symbol[
         Optional[List[int]],
         None,
     ]
 
     HasConditionalGroundImmunity: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictSafeguardStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictMistStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictWishStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictMagicCoatStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictLightScreenStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictReflectStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictProtectStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictMirrorCoatStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictEndureStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictMirrorMoveStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictConversion2Status: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictVitalThrowStatus: Symbol[
         Optional[List[int]],
         None,
     ]
