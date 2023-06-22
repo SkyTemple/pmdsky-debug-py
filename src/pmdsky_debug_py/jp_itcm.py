@@ -3994,7 +3994,7 @@ class JpItcmArm9Functions:
             " but there's some dungeons (such as dojo mazes) that have hardcoded return"
             " values.\n\nIrdkwia's notes:\n  [r1]: dungeon_id\n  [r1+1]:"
             " dungeon_floor_id\n  [r0]: group_id\n  [r0+1]: group_floor_id\n\nr0:"
-            " (output) Struct containing the dungeon group and floor group\nr1: Struct"
+            " [output] Struct containing the dungeon group and floor group\nr1: Struct"
             " containing the dungeon ID and floor number"
         ),
     )
@@ -5650,7 +5650,7 @@ class JpItcmArm9Functions:
             "Determines the list of IQ skills that a given monster can learn given its"
             " IQ value.\n\nThe list of skills is written in the array specified in r0."
             " The array has 69 slots in total. Unused slots are set to 0.\n\nr0:"
-            " (output) Array where the list of skills will be written\nr1: Monster"
+            " [output] Array where the list of skills will be written\nr1: Monster"
             " species\nr2: Monster IQ\nreturn: Amount of skills written to the output"
             " array"
         ),
@@ -15590,6 +15590,19 @@ class JpItcmOverlay29Functions:
         "Fades the screen to black across several frames.\n\nNo params.",
     )
 
+    CheckTouchscreenArea = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Checks if the currently pressed touchscreen position is within the"
+            " specified area.\n\nr0: Area lower X coordinate\nr1: Area lower Y"
+            " coordinate\nr2: Area upper X coordinate\nr3: Area upper Y"
+            " coordinate\nreturn: True if the specified area contains the currently"
+            " pressed touchscreen position, false otherwise."
+        ),
+    )
+
     GetTrapInfo = Symbol(
         None,
         None,
@@ -15657,27 +15670,28 @@ class JpItcmOverlay29Functions:
         ),
     )
 
-    ShouldDisplayEntityMessages = Symbol(
+    ShouldDisplayEntity = Symbol(
         None,
         None,
         None,
         (
-            "Checks if messages that involve a certain entity should be displayed or"
-            " suppressed.\n\nFor example, it returns false if the entity is an"
-            " invisible enemy.\n\nr0: Entity pointer\nr1: ?\nreturn: True if messages"
-            " involving the entity should be displayed, false if they should be"
-            " suppressed."
+            "Checks if an entity should be displayed or not.\n\nFor example, it returns"
+            " false if the entity is an invisible enemy.\nAlso used to determine if"
+            " messages that involve a certain entity should be displayed or"
+            " suppressed.\n\nr0: Entity pointer\nr1: (?) Seems to be 1 for monsters and"
+            " 0 for items.\nreturn: True if the entity and its associated messages"
+            " should be displayed, false if they shouldn't."
         ),
     )
 
-    ShouldDisplayEntityMessagesWrapper = Symbol(
+    ShouldDisplayEntityWrapper = Symbol(
         None,
         None,
         None,
         (
-            "Calls ShouldDisplayEntityMessages with r1 = 0\n\nr0: Entity"
-            " pointer\nreturn: True if messages involving the entity should be"
-            " displayed, false if they should be suppressed."
+            "Calls ShouldDisplayEntity with r1 = 0\n\nr0: Entity pointer\nreturn: True"
+            " if the entity and its associated messages should be displayed, false if"
+            " they shouldn't."
         ),
     )
 
@@ -15940,7 +15954,7 @@ class JpItcmOverlay29Functions:
             " size >= 6 to the specified buffer.\n\nThe parameter in r1 can be used to"
             " specify how many entries are already present in the buffer. Entries added"
             " by this function will be placed after those, and the total returned in r1"
-            " will account for existing entries as well.\n\nr0: (output) Buffer where"
+            " will account for existing entries as well.\n\nr0: [output] Buffer where"
             " the result will be stored\nr1: Current amount of entries in the"
             " buffer\nreturn: New amount of entries in the buffer"
         ),
@@ -16419,6 +16433,19 @@ class JpItcmOverlay29Functions:
         ),
     )
 
+    SetActionUseMovePlayer = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Sets a monster's action to action::ACTION_USE_MOVE_PLAYER, with a"
+            " specified monster and move index.\n\nr0: Pointer to the monster's action"
+            " field\nr1: Index of the monster that is using the move on the entity"
+            " list. Gets stored in monster::action::action_use_idx.\nr2: Index of the"
+            " move to use (0-3). Gets stored in monster::action::field_0xA."
+        ),
+    )
+
     SetActionUseMoveAi = Symbol(
         None,
         None,
@@ -16759,6 +16786,17 @@ class JpItcmOverlay29Functions:
         ),
     )
 
+    GetEntityTouchscreenArea = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Returns the area on the touchscreen that contains the sprite of the"
+            " specified entity\n\nr0: Entity pointer\nr1: [output] struct where the"
+            " result should be written"
+        ),
+    )
+
     SetLeaderAction = Symbol(
         None,
         None,
@@ -16770,6 +16808,18 @@ class JpItcmOverlay29Functions:
             " function also takes care of opening the main menu when X is pressed.\nThe"
             " function generally doesn't return until the player has an action"
             " set.\n\nNo params."
+        ),
+    )
+
+    ShouldLeaderKeepRunning = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Determines if the leader should keep running. Returns false if the leader"
+            " bumps into something, or if an action that should stop the leader takes"
+            " place.\n\nreturn: True if the leader should keep running, false if it"
+            " should stop."
         ),
     )
 
@@ -17414,6 +17464,16 @@ class JpItcmOverlay29Functions:
         ),
     )
 
+    GetMonsterDisplayNameType = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Determines how the name of a monster should be displayed.\n\nr0: Entity"
+            " pointer\nreturn: Display name type"
+        ),
+    )
+
     GetMonsterName = Symbol(
         None,
         None,
@@ -17607,7 +17667,7 @@ class JpItcmOverlay29Functions:
             " direction.\nAccounts for walls, other monsters on the target position and"
             " IQ skills that might prevent a monster from moving into a specific"
             " location, such as House Avoider, Trap Avoider or Lava Evader.\n\nr0:"
-            " Entity pointer\nr1: Direction\nr2: (output) True if movement was not"
+            " Entity pointer\nr1: Direction\nr2: [output] True if movement was not"
             " possible because there was another monster on the target tile, false"
             " otherwise.\nreturn: True if the monster can move in the specified"
             " direction, false otherwise."
@@ -22471,7 +22531,19 @@ class JpItcmOverlay29Functions:
         ),
     )
 
-    OpenMenu = Symbol(None, None, None, "Note: unverified, ported from Irdkwia's notes")
+    OpenMenu = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Opens a menu. The menu to open depends on the specified parameter.\n\nIt"
+            " looks like the function takes a parameter in r0, but doesn't use it. r1"
+            " doesn't even get set when this function is called.\n\nr0: (?) Unused by"
+            " the function. Seems to be 1 byte long.\nr1: (?) Unused by the function."
+            " Seems to be 1 byte long.\nr2: True to open the bag menu, false to open"
+            " the main dungeon menu"
+        ),
+    )
 
     OthersMenuLoop = Symbol(
         None,

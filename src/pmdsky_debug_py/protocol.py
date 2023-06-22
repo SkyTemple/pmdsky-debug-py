@@ -9554,6 +9554,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CheckTouchscreenArea: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetTrapInfo: Symbol[
         Optional[List[int]],
         None,
@@ -9584,12 +9589,12 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    ShouldDisplayEntityMessages: Symbol[
+    ShouldDisplayEntity: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    ShouldDisplayEntityMessagesWrapper: Symbol[
+    ShouldDisplayEntityWrapper: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -9889,6 +9894,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetActionUseMovePlayer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SetActionUseMoveAi: Symbol[
         Optional[List[int]],
         None,
@@ -10039,7 +10049,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetEntityTouchscreenArea: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SetLeaderAction: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ShouldLeaderKeepRunning: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10330,6 +10350,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetNumberOfAttacks: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMonsterDisplayNameType: Symbol[
         Optional[List[int]],
         None,
     ]
