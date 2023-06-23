@@ -3634,6 +3634,16 @@ class JpItcmArm9Functions:
         ),
     )
 
+    GetExecuteSpecialEpisodeType = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Gets the special episode type from the EXECUTE_SPECIAL_EPISODE_TYPE script"
+            " variable.\n\nreturn: special episode type"
+        ),
+    )
+
     HasPlayedOldGame = Symbol(
         None,
         None,
@@ -3704,13 +3714,13 @@ class JpItcmArm9Functions:
         ),
     )
 
-    CheckDungeonOpen = Symbol(
+    GetDungeonMode = Symbol(
         None,
         None,
         None,
         (
-            "Related to dungeon open list\n\nNote: unverified, ported from Irdkwia's"
-            " notes\n\nr0: dungeon ID\nreturn: status code?"
+            "Returns the mode of the specified dungeon\n\nr0: Dungeon ID\nreturn:"
+            " Dungeon mode"
         ),
     )
 
@@ -3925,6 +3935,51 @@ class JpItcmArm9Functions:
         ),
     )
 
+    SetEnterDungeon = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Used to set the dungeon that will be accessed when switching from ground"
+            " to dungeon mode.\n\nr0: Dungeon ID"
+        ),
+    )
+
+    InitDungeonInit = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Initializes the dungeon_init struct before entering a dungeon.\n\nr0:"
+            " [output] Pointer to the struct to init\nr1: Dungeon ID"
+        ),
+    )
+
+    IsNoLossPenaltyDungeon = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Returns true if the specified dungeon shouldn't have a loss penalty.\n\nIf"
+            " true you won't lose your money and items upon fainting. Also used to"
+            " initialize dungeon_init::skip_faint_animation_flag.\n\nReturns: True for"
+            " DUNGEON_CRYSTAL_LAKE and DUNGEON_5TH_STATION_CLEARING, as well as for"
+            " DUNGEON_DEEP_STAR_CAVE_TEAM_ROGUE if the ground variable SIDE01_BOSS2ND"
+            " is 0; false otherwise."
+        ),
+    )
+
+    CheckMissionRestrictions = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Seems to be used to check if you have any missions that have unmet"
+            " restrictions when trying to access a dungeon.\n\nr0: ?\nReturn: (?) Seems"
+            " to be composed of multiple bitflags."
+        ),
+    )
+
     GetNbFloors = Symbol(
         None,
         None,
@@ -3996,6 +4051,19 @@ class JpItcmArm9Functions:
             " dungeon_floor_id\n  [r0]: group_id\n  [r0+1]: group_floor_id\n\nr0:"
             " [output] Struct containing the dungeon group and floor group\nr1: Struct"
             " containing the dungeon ID and floor number"
+        ),
+    )
+
+    AddGuestMonster = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Adds a guest monster to the active team\n\nr0: dungeon_init struct for the"
+            " dungeon that is about to be entered\nr1: Number of the guest monster to"
+            " add. Used when more than one monster is added.\nr2: Pointer to the guest"
+            " monster entry to add to the team (usually located within"
+            " GUEST_MONSTER_DATA)"
         ),
     )
 
@@ -5074,6 +5142,16 @@ class JpItcmArm9Functions:
         None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nNo params."
     )
 
+    GuestMonsterToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Inits a ground_monster entry with the given guest_monster struct.\n\nr0:"
+            " [output] ground_monster struct to init\nr1: guest_monster struct to use"
+        ),
+    )
+
     StrcmpMonsterName = Symbol(
         None,
         None,
@@ -6084,6 +6162,21 @@ class JpItcmArm9Functions:
             "Converts an index in DUNGEON_SWAP_ID_TABLE to the corresponding dungeon"
             " ID, or DUNGEON_DUMMY_0xFF if the index is -1.\n\nr0: index\nreturn:"
             " dungeon ID"
+        ),
+    )
+
+    GetDungeonModeSpecial = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Returns the status of the given dungeon, with some modifications.\n\nIf"
+            " the dungeon ID is DUNGEON_BEACH, returns DMODE_REQUEST.\nIf it's"
+            " DUNGEON_JOINED_AT_UNKNOWN, returns DMODE_OPEN_AND_REQUEST.\nIf it's >="
+            " DUNGEON_NORMAL_FLY_MAZE and <= DUNGEON_DOJO_0xD3, returns"
+            " DMODE_OPEN_AND_REQUEST.\nElse, calls GetDungeonMode and returns"
+            " DMODE_REQUEST if the dungeon has been cleared, or DMODE_OPEN if it's"
+            " not.\n\nr0: Dungeon ID\nreturn: Dungeon mode"
         ),
     )
 

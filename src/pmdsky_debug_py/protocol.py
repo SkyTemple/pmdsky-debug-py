@@ -2056,6 +2056,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetExecuteSpecialEpisodeType: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     HasPlayedOldGame: Symbol[
         Optional[List[int]],
         None,
@@ -2091,7 +2096,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CheckDungeonOpen: Symbol[
+    GetDungeonMode: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -2216,6 +2221,26 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetEnterDungeon: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitDungeonInit: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsNoLossPenaltyDungeon: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CheckMissionRestrictions: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetNbFloors: Symbol[
         Optional[List[int]],
         None,
@@ -2242,6 +2267,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     DungeonFloorToGroupFloor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AddGuestMonster: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -2876,6 +2906,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GuestMonsterToGroundMonster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     StrcmpMonsterName: Symbol[
         Optional[List[int]],
         None,
@@ -3377,6 +3412,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     DungeonSwapIdxToId: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetDungeonModeSpecial: Symbol[
         Optional[List[int]],
         None,
     ]
