@@ -1088,6 +1088,19 @@ class NaArm9Functions:
         ),
     )
 
+    GetDungeonResultMsg = Symbol(
+        [0xC4FC],
+        [0x200C4FC],
+        None,
+        (
+            "Gets the message that is shown on the dungeon results ('The Last Outing')"
+            " screen, right after the leader's name.\n\nr0: Damage source value to use"
+            " when displaying the cause of fainting or the result of the"
+            " expedition\nr1: [output] Buffer where the resulting message will be"
+            " stored\nr2: Buffer size\nr3: (?) Seems to point to a buffer"
+        ),
+    )
+
     GetDamageSource = Symbol(
         [0xCA54],
         [0x200CA54],
@@ -1170,6 +1183,18 @@ class NaArm9Functions:
         (
             "Checks if an item is one of the aura bows received at the start of the"
             " game.\n\nr0: item ID\nreturn: bool"
+        ),
+    )
+
+    IsTreasureBox = Symbol(
+        [0xCC84],
+        [0x200CC84],
+        None,
+        (
+            "Checks if the given item ID is a treasure box\n\nIn particular, it checks"
+            " if the category of the item is CATEGORY_TREASURE_BOXES_1,"
+            " CATEGORY_TREASURE_BOXES_2 or CATEGORY_TREASURE_BOXES_3.\n\nr0: item"
+            " ID\nreturn: True if the item is a treasure box, false otherwise"
         ),
     )
 
@@ -1591,7 +1616,10 @@ class NaArm9Functions:
         [0xEE4C],
         [0x200EE4C],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: item ID\nreturn: count",
+        (
+            "Returns the number of items of the given kind in the bag\n\nr0: item"
+            " ID\nreturn: count"
+        ),
     )
 
     CountItemTypeInBag = Symbol(
@@ -1818,6 +1846,16 @@ class NaArm9Functions:
         [0x200FD54],
         None,
         "Implements SPECIAL_PROC_0x39 (see ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    CountNbItemsOfTypeInStorage = Symbol(
+        [0xFEA8],
+        [0x200FEA8],
+        None,
+        (
+            "Returns the number of items of the given kind in the storage\n\nr0: item"
+            " ID\nreturn: count"
+        ),
     )
 
     CountItemTypeInStorage = Symbol(
@@ -3044,6 +3082,22 @@ class NaArm9Functions:
         [0x24428], [0x2024428], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    GetDungeonResultString = Symbol(
+        [0x24FD8],
+        [0x2024FD8],
+        None,
+        (
+            "Returns a string containing some information to be used when displaying"
+            " the dungeon results screen.\n\nThe exact string returned depends on the"
+            " value of r0:\n0: Name of the move that fainted the leader. Empty string"
+            " if the leader didn't faint.\n1-3: Seems to always result in an empty"
+            " string.\n4: Name of the pokémon that fainted the leader, or name of the"
+            " leader if the leader didn't faint.\n5: Name of the fainted leader. Empty"
+            " string if the leader didn't faint.\n\nr0: String to return\nreturn:"
+            " Pointer to resulting string"
+        ),
+    )
+
     SetQuestionMarks = Symbol(
         [0x250E4],
         [0x20250E4],
@@ -3377,7 +3431,7 @@ class NaArm9Functions:
         None,
         (
             "Called whenever a menu option is selected. Returns whether the option is"
-            " active or not.\n\nr0: ?\nReturn: True if the menu option is enabled,"
+            " active or not.\n\nr0: ?\nreturn: True if the menu option is enabled,"
             " false otherwise."
         ),
     )
@@ -4116,7 +4170,7 @@ class NaArm9Functions:
         None,
         (
             "Seems to be used to check if you have any missions that have unmet"
-            " restrictions when trying to access a dungeon.\n\nr0: ?\nReturn: (?) Seems"
+            " restrictions when trying to access a dungeon.\n\nr0: ?\nreturn: (?) Seems"
             " to be composed of multiple bitflags."
         ),
     )
@@ -4192,6 +4246,49 @@ class NaArm9Functions:
             " dungeon_floor_id\n  [r0]: group_id\n  [r0+1]: group_floor_id\n\nr0:"
             " [output] Struct containing the dungeon group and floor group\nr1: Struct"
             " containing the dungeon ID and floor number"
+        ),
+    )
+
+    GetMissionRank = Symbol(
+        [0x4F814],
+        [0x204F814],
+        None,
+        (
+            "Gets the mission rank for the given dungeon and floor.\n\nIf the dungeon"
+            " ID is >= DUNGEON_NORMAL_FLY_MAZE or the group of the dungeon is >"
+            " DGROUP_DUMMY_0x63, returns MISSION_RANK_E.\n\nr0: Dungeon and"
+            " floor\nreturn: Mission rank"
+        ),
+    )
+
+    GetOutlawLevel = Symbol(
+        [0x4F88C],
+        [0x204F88C],
+        None,
+        (
+            "Gets the level that should be used for outlaws for the given dungeon and"
+            " floor\n\nr0: Dungeon and floor\nreturn: Outlaw level"
+        ),
+    )
+
+    GetOutlawLeaderLevel = Symbol(
+        [0x4F8A8],
+        [0x204F8A8],
+        None,
+        (
+            "Gets the level that should be used for team leader outlaws for the given"
+            " dungeon and floor. Identical to GetOutlawLevel.\n\nr0: Dungeon and"
+            " floor\nreturn: Outlaw leader level"
+        ),
+    )
+
+    GetOutlawMinionLevel = Symbol(
+        [0x4F8C4],
+        [0x204F8C4],
+        None,
+        (
+            "Gets the level that should be used for minion outlaws for the given"
+            " dungeon and floor.\n\nr0: Dungeon and floor\nreturn: Outlaw minion level"
         ),
     )
 
@@ -6396,7 +6493,7 @@ class NaArm9Functions:
         None,
         (
             "Enables processor interrupts by clearing the i flag in the program status"
-            " register (cpsr).\n\nReturn: Old value of cpsr & 0x80 (0x80 if interrupts"
+            " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts"
             " were disabled, 0x0 if they were already enabled)"
         ),
     )
@@ -6407,7 +6504,7 @@ class NaArm9Functions:
         None,
         (
             "Disables processor interrupts by setting the i flag in the program status"
-            " register (cpsr).\n\nReturn: Old value of cpsr & 0x80 (0x80 if interrupts"
+            " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts"
             " were already disabled, 0x0 if they were enabled)"
         ),
     )
@@ -6420,7 +6517,7 @@ class NaArm9Functions:
             "Sets the value of the processor's interrupt flag according to the"
             " specified parameter.\n\nr0: Value to set the flag to (0x80 to set it,"
             " which disables interrupts; 0x0 to unset it, which enables"
-            " interrupts)\nReturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+            " interrupts)\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
             " disabled, 0x0 if they were enabled)"
         ),
     )
@@ -6431,7 +6528,7 @@ class NaArm9Functions:
         None,
         (
             "Disables processor all interrupts (both standard and fast) by setting the"
-            " i and f flags in the program status register (cpsr).\n\nReturn: Old value"
+            " i and f flags in the program status register (cpsr).\n\nreturn: Old value"
             " of cpsr & 0xC0 (contains the previous values of the i and f flags)"
         ),
     )
@@ -6444,7 +6541,7 @@ class NaArm9Functions:
             "Sets the value of the processor's interrupt flags (i and f) according to"
             " the specified parameter.\n\nr0: Value to set the flags to (0xC0 to set"
             " both flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the"
-            " f flag and clear the i flag and 0x0 to clear both flags)\nReturn: Old"
+            " f flag and clear the i flag and 0x0 to clear both flags)\nreturn: Old"
             " value of cpsr & 0xC0 (contains the previous values of the i and f flags)"
         ),
     )
@@ -6455,7 +6552,7 @@ class NaArm9Functions:
         None,
         (
             "Gets the current value of the processor's interrupt request (i)"
-            " flag\n\nReturn: cpsr & 0x80 (0x80 if interrupts are disabled, 0x0 if they"
+            " flag\n\nreturn: cpsr & 0x80 (0x80 if interrupts are disabled, 0x0 if they"
             " are enabled)"
         ),
     )
@@ -14016,6 +14113,16 @@ class NaOverlay11Functions:
         ),
     )
 
+    GetExclusiveItemRequirements = Symbol(
+        [0x2ECF8],
+        [0x230AF38],
+        None,
+        (
+            "Used to calculate the items required to get a certain exclusive item in"
+            " the swap shop.\n\nr0: ?\nr1: ?"
+        ),
+    )
+
     StatusUpdate = Symbol(
         [0x37858],
         [0x2313A98],
@@ -16226,6 +16333,30 @@ class NaOverlay29Functions:
         ),
     )
 
+    UpdateEntityPixelPos = Symbol(
+        [0x5800],
+        [0x22E1A40],
+        None,
+        (
+            "Updates an entity's pixel_pos field using the specified pixel_position"
+            " struct, or its own pos field if it's null.\n\nr0: Entity pointer\nr1:"
+            " Pixel position to use, or null to use the entity's own position"
+        ),
+    )
+
+    CreateEnemyEntity = Symbol(
+        [0x5E80],
+        [0x22E20C0],
+        None,
+        (
+            "Creates and initializes the entity struct of a newly spawned enemy"
+            " monster. Fails if there's 16 enemies on the floor already.\n\nIt could"
+            " also be used to spawn fixed room allies, since those share their slots on"
+            " the entity list.\n\nr0: Monster ID\nreturn: Pointer to the newly"
+            " initialized entity, or null if the entity couldn't be initialized"
+        ),
+    )
+
     SpawnTrap = Symbol(
         [0x6020],
         [0x22E2260],
@@ -17606,6 +17737,17 @@ class NaOverlay29Functions:
         ),
     )
 
+    MoveMonsterToPos = Symbol(
+        [0x1C3B0],
+        [0x22F85F0],
+        None,
+        (
+            "Moves a monster to the target position. Used both for regular movement and"
+            " special movement (like teleportation).\n\nr0: Entity pointer\nr1: X"
+            " target position\nr2: Y target position\nr3: ?"
+        ),
+    )
+
     UpdateAiTargetPos = Symbol(
         [0x1CF04],
         [0x22F9144],
@@ -17969,6 +18111,19 @@ class NaOverlay29Functions:
         ),
     )
 
+    InitOtherMonsterData = Symbol(
+        [0x1FC18],
+        [0x22FBE58],
+        None,
+        (
+            "Initializes stats, IQ skills and moves for a given monster\n\nMight only"
+            " be used when spawning fixed room monsters.\n\nr0: Entity pointer\nr1:"
+            " Fixed room monster stats index\nr2: Spawn direction? (when calling this"
+            " function while spawning a fixed room monster, this is the parameter value"
+            " associated to the spawn action, after converting it to a direction.)"
+        ),
+    )
+
     SpawnTeam = Symbol(
         [0x202CC],
         [0x22FC50C],
@@ -18016,12 +18171,24 @@ class NaOverlay29Functions:
     )
 
     InitMonster = Symbol(
+        [0x21794],
+        [0x22FD9D4],
+        None,
+        (
+            "Initializes the monster struct within the provided entity struct.\n\nr0:"
+            " ?\nr1: Pointer to the entity whose monster struct should be"
+            " initialized\nr2: pointer to the entity's spawned_monster_data struct\nr3:"
+            " (?) Pointer to something"
+        ),
+    )
+
+    SubInitMonster = Symbol(
         [0x21B80],
         [0x22FDDC0],
         None,
         (
-            "Initializes a monster struct.\n\nr0: pointer to monster to initialize\nr1:"
-            " some flag"
+            "Called by InitMonster. Initializes some fields on the monster"
+            " struct.\n\nr0: pointer to monster to initialize\nr1: some flag"
         ),
     )
 
@@ -18299,6 +18466,31 @@ class NaOverlay29Functions:
         (
             "Checks if a monster has the sleep, nightmare, or napping status.\n\nr0:"
             " entity pointer\nreturn: bool"
+        ),
+    )
+
+    CanMonsterMoveInDirection = Symbol(
+        [0x24E1C],
+        [0x230105C],
+        None,
+        (
+            "Checks if the given monster can move in the specified direction\n\nReturns"
+            " false if any monster is standing on the target tile\n\nr0: Monster entity"
+            " pointer\nr1: Direction to check\nreturn: bool"
+        ),
+    )
+
+    GetFinalMobilityType = Symbol(
+        [0x24CF0],
+        [0x2300F30],
+        None,
+        (
+            "Returns the mobility type of a monster, after accounting for things that"
+            " could affect it (like items or IQ skills)\n\nIf the specified direction"
+            " is DIR_NONE, direction checks are skipped. If it's not,"
+            " MOBILITY_INTANGIBLE is only returned if the direction is not"
+            " diagonal.\n\nr0: Monster entity pointer\nr1: Base mobility type\nr2:"
+            " Direction of mobility\nreturn: Final mobility type"
         ),
     )
 
@@ -21371,6 +21563,27 @@ class NaOverlay29Functions:
         ),
     )
 
+    DrawTileGrid = Symbol(
+        [0x5B1E8],
+        [0x2337428],
+        None,
+        (
+            "Draws a grid on the nearby walkable tiles. Triggered by pressing Y.\n\nr0:"
+            " Coordinates of the entity around which the grid will be drawn\nr1: ?\nr2:"
+            " ?\nr3: ?"
+        ),
+    )
+
+    HideTileGrid = Symbol(
+        [0x5B55C],
+        [0x233779C],
+        None,
+        (
+            "Hides the grid on the nearby walkable tiles. Triggered by releasing"
+            " Y.\n\nNo params."
+        ),
+    )
+
     DiscoverMinimap = Symbol(
         [0x5B7FC],
         [0x2337A3C],
@@ -22336,6 +22549,16 @@ class NaOverlay29Functions:
         ),
     )
 
+    GetNextFixedRoomAction = Symbol(
+        [0x66290],
+        [0x23424D0],
+        None,
+        (
+            "Returns the next action that needs to be performed when spawning a fixed"
+            " room tile.\n\nreturn: Next action ID"
+        ),
+    )
+
     ConvertWallsToChasms = Symbol(
         [0x66308], [0x2342548], None, "Converts all wall tiles to chasms.\n\nNo params."
     )
@@ -22415,6 +22638,32 @@ class NaOverlay29Functions:
             "Resets hidden stairs spawn information for the floor. This includes the"
             " position on the floor generation status as well as the flag indicating"
             " whether the spawn was blocked.\n\nNo params."
+        ),
+    )
+
+    PlaceFixedRoomTile = Symbol(
+        [0x66CF0],
+        [0x2342F30],
+        None,
+        (
+            "Used to spawn a single tile when generating a fixed room. The tile might"
+            " contain an item or a monster.\n\nr0: Pointer to the tile to spawn\nr1:"
+            " Fixed room action to perform. Controls what exactly will be spawned. The"
+            " action is actually 12 bits long, the highest 4 bits are used as a"
+            " parameter that represents a direction (for example, when spawning a"
+            " monster).\nr2: Tile X position\nr3: Tile Y position"
+        ),
+    )
+
+    FixedRoomActionParamToDirection = Symbol(
+        [0x6772C],
+        [0x234396C],
+        None,
+        (
+            "Converts the parameter stored in a fixed room action value to a direction"
+            " ID.\n\nThe conversion is performed by subtracting 1 to the value. If the"
+            " parameter had a value of 0, DIR_NONE is returned.\n\nr0: Parameter"
+            " value\nreturn: Direction"
         ),
     )
 
@@ -24299,7 +24548,20 @@ class NaOverlay3Section:
 
 
 class NaOverlay30Functions:
-    pass
+    WriteQuicksaveData = Symbol(
+        [0x44C],
+        [0x2382C6C],
+        None,
+        (
+            "Function responsible for writing dungeon data when quicksaving.\n\nAmong"
+            " other things, it contains a loop that goes through all the monsters in"
+            " the current dungeon, copying their data to the buffer. The data is not"
+            " copied as-is though, the game uses a reduced version of the monster"
+            " struct containing only the minimum required data to resume the game"
+            " later.\n\nr0: Pointer to buffer where data should be written\nr1: Buffer"
+            " size. Seems to be 0x5800 (22 KB) when the function is called."
+        ),
+    )
 
 
 class NaOverlay30Data:

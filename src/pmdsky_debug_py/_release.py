@@ -1,1 +1,1 @@
-RELEASE = "v0.5.1+b1e1fabc1c"
+RELEASE = "v0.5.1+24290ea95f"

@@ -551,6 +551,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetDungeonResultMsg: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetDamageSource: Symbol[
         Optional[List[int]],
         None,
@@ -592,6 +597,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     IsAuraBow: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsTreasureBox: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -947,6 +957,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     ScriptSpecialProcess0x39: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CountNbItemsOfTypeInStorage: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1666,6 +1681,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetDungeonResultString: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SetQuestionMarks: Symbol[
         Optional[List[int]],
         None,
@@ -2267,6 +2287,26 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     DungeonFloorToGroupFloor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMissionRank: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetOutlawLevel: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetOutlawLeaderLevel: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetOutlawMinionLevel: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -7559,6 +7599,11 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetExclusiveItemRequirements: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     StatusUpdate: Symbol[
         Optional[List[int]],
         None,
@@ -9614,6 +9659,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    UpdateEntityPixelPos: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CreateEnemyEntity: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SpawnTrap: Symbol[
         Optional[List[int]],
         None,
@@ -10184,6 +10239,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    MoveMonsterToPos: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     UpdateAiTargetPos: Symbol[
         Optional[List[int]],
         None,
@@ -10324,6 +10384,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitOtherMonsterData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SpawnTeam: Symbol[
         Optional[List[int]],
         None,
@@ -10345,6 +10410,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     InitMonster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SubInitMonster: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10465,6 +10535,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsMonsterSleeping: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CanMonsterMoveInDirection: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetFinalMobilityType: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11779,6 +11859,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DrawTileGrid: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    HideTileGrid: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DiscoverMinimap: Symbol[
         Optional[List[int]],
         None,
@@ -12174,6 +12264,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetNextFixedRoomAction: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ConvertWallsToChasms: Symbol[
         Optional[List[int]],
         None,
@@ -12205,6 +12300,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ResetHiddenStairsSpawn: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PlaceFixedRoomTile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FixedRoomActionParamToDirection: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -13105,7 +13210,10 @@ Overlay3Protocol = SectionProtocol[
 
 
 class Overlay30FunctionsProtocol(Protocol):
-    pass
+    WriteQuicksaveData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
 
 
 class Overlay30DataProtocol(Protocol):
