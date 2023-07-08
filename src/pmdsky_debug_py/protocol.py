@@ -3521,12 +3521,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    Abs: Symbol[
+    abs: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Mbtowc: Symbol[
+    mbtowc: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3541,42 +3541,42 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    Wcstombs: Symbol[
+    wcstombs: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Memcpy: Symbol[
+    memcpy: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Memmove: Symbol[
+    memmove: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Memset: Symbol[
+    memset: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Memchr: Symbol[
+    memchr: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Memcmp: Symbol[
+    memcmp: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    MemsetInternal: Symbol[
+    memset_internal: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    VsprintfInternalSlice: Symbol[
+    __vsprintf_internal_slice: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3586,137 +3586,137 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    VsprintfInternal: Symbol[
+    __vsprintf_internal: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Vsprintf: Symbol[
+    vsprintf: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Snprintf: Symbol[
+    snprintf: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Sprintf: Symbol[
+    sprintf: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strlen: Symbol[
+    strlen: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strcpy: Symbol[
+    strcpy: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strncpy: Symbol[
+    strncpy: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strcat: Symbol[
+    strcat: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strncat: Symbol[
+    strncat: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strcmp: Symbol[
+    strcmp: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strncmp: Symbol[
+    strncmp: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strchr: Symbol[
+    strchr: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strcspn: Symbol[
+    strcspn: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Strstr: Symbol[
+    strstr: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Wcslen: Symbol[
+    wcslen: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    AddFloat: Symbol[
+    __addsf3: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    DivideFloat: Symbol[
+    __divsf3: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    FloatToDouble: Symbol[
+    __extendsfdf2: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    FloatToInt: Symbol[
+    __fixsfsi: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    IntToFloat: Symbol[
+    __floatsisf: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    UIntToFloat: Symbol[
+    __floatunsisf: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    MultiplyFloat: Symbol[
+    __mulsf3: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Sqrtf: Symbol[
+    sqrtf: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    SubtractFloat: Symbol[
+    __subsf3: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    DivideInt: Symbol[
+    __divsi3: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    DivideUInt: Symbol[
+    __udivsi3: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    DivideUIntNoZeroCheck: Symbol[
+    __udivsi3_no_zero_check: Symbol[
         Optional[List[int]],
         None,
     ]

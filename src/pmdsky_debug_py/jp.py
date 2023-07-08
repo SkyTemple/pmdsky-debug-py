@@ -567,7 +567,7 @@ class JpArm9Functions:
         None,
         (
             "A simple implementation of the memset(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Memset"
+            " function was probably manually implemented by the developers. See memset"
             " for what's probably the real libc function.\n\nr0: ptr\nr1: value\nr2:"
             " len (# bytes)"
         ),
@@ -589,7 +589,7 @@ class JpArm9Functions:
         None,
         (
             "A simple implementation of the memcpy(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Memcpy"
+            " function was probably manually implemented by the developers. See memcpy"
             " for what's probably the real libc function.\n\nThis function copies from"
             " src to dst in backwards byte order, so this is safe to call for"
             " overlapping src and dst if src <= dst.\n\nr0: dest\nr1: src\nr2: n"
@@ -967,7 +967,7 @@ class JpArm9Functions:
         None,
         (
             "Would log a printf format string in the debug binary.\n\nThis still"
-            " constructs the string with Vsprintf, but doesn't actually do anything"
+            " constructs the string with vsprintf, but doesn't actually do anything"
             " with it in the final binary.\n\nr0: format\n...: variadic"
         ),
     )
@@ -1301,11 +1301,11 @@ class JpArm9Functions:
         ],
         None,
         (
-            "Functionally the same as Sprintf, just defined statically in many"
+            "Functionally the same as sprintf, just defined statically in many"
             " different places.\n\nSince this is essentially just a wrapper around"
             " vsprintf(3), this function was probably statically defined in a header"
             " somewhere and included in a bunch of different places. See the actual"
-            " Sprintf for the one in libc.\n\nr0: str\nr1: format\n...:"
+            " sprintf for the one in libc.\n\nr0: str\nr1: format\n...:"
             " variadic\nreturn: number of characters printed, excluding the"
             " null-terminator"
         ),
@@ -3112,7 +3112,7 @@ class JpArm9Functions:
         None,
         (
             "A simple implementation of the strcpy(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Strcpy"
+            " function was probably manually implemented by the developers. See strcpy"
             " for what's probably the real libc function.\n\nr0: dest\nr1: src"
         ),
     )
@@ -3123,7 +3123,7 @@ class JpArm9Functions:
         None,
         (
             "A simple implementation of the strncpy(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Strncpy"
+            " function was probably manually implemented by the developers. See strncpy"
             " for what's probably the real libc function.\n\nr0: dest\nr1: src\nr2: n"
         ),
     )
@@ -3144,7 +3144,7 @@ class JpArm9Functions:
         None,
         (
             "A simple implementation of the strncmp(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Strncmp"
+            " function was probably manually implemented by the developers. See strncmp"
             " for what's probably the real libc function.\n\nr0: s1\nr1: s2\nr2:"
             " n\nreturn: comparison value"
         ),
@@ -6587,14 +6587,14 @@ class JpArm9Functions:
         ),
     )
 
-    Abs = Symbol(
+    abs = Symbol(
         [0x86844],
         [0x2086844],
         None,
         "Takes the absolute value of an integer.\n\nr0: x\nreturn: abs(x)",
     )
 
-    Mbtowc = Symbol(
+    mbtowc = Symbol(
         [0x874A4],
         [0x20874A4],
         None,
@@ -6626,7 +6626,7 @@ class JpArm9Functions:
         ),
     )
 
-    Wcstombs = Symbol(
+    wcstombs = Symbol(
         [0x8750C],
         [0x208750C],
         None,
@@ -6636,36 +6636,36 @@ class JpArm9Functions:
         ),
     )
 
-    Memcpy = Symbol(
+    memcpy = Symbol(
         [0x87584],
         [0x2087584],
         None,
-        "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
+        "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
     )
 
-    Memmove = Symbol(
+    memmove = Symbol(
         [0x875A4],
         [0x20875A4],
         None,
         (
             "The memmove(3) C library function.\n\nThe implementation is nearly the"
-            " same as Memcpy, but it copies bytes from back to front if src <"
-            " dst.\n\nr0: dest\nr1: src\nr2: n"
+            " same as memcpy, but it copies bytes from back to front if src <"
+            " dst.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest"
         ),
     )
 
-    Memset = Symbol(
+    memset = Symbol(
         [0x875F0],
         [0x20875F0],
         None,
         (
             "The memset(3) C library function.\n\nThis is just a wrapper around"
-            " MemsetInternal that returns the pointer at the end.\n\nr0: s\nr1: c (int,"
-            " but must be a single-byte value)\nr2: n\nreturn: s"
+            " memset_internal that returns the pointer at the end.\n\nr0: s\nr1: c"
+            " (int, but must be a single-byte value)\nr2: n\nreturn: s"
         ),
     )
 
-    Memchr = Symbol(
+    memchr = Symbol(
         [0x87604],
         [0x2087604],
         None,
@@ -6675,7 +6675,7 @@ class JpArm9Functions:
         ),
     )
 
-    Memcmp = Symbol(
+    memcmp = Symbol(
         [0x87630],
         [0x2087630],
         None,
@@ -6685,7 +6685,7 @@ class JpArm9Functions:
         ),
     )
 
-    MemsetInternal = Symbol(
+    memset_internal = Symbol(
         [0x87670],
         [0x2087670],
         None,
@@ -6699,18 +6699,18 @@ class JpArm9Functions:
         ),
     )
 
-    VsprintfInternalSlice = Symbol(
+    __vsprintf_internal_slice = Symbol(
         [0x88F5C],
         [0x2088F5C],
         None,
         (
-            "This is what implements the bulk of VsprintfInternal.\n\nThe"
+            "This is what implements the bulk of __vsprintf_internal.\n\nThe"
             " __vsprintf_internal in the modern-day version of glibc relies on"
             " __vfprintf_internal; this function has a slightly different interface,"
             " but it serves a similar role.\n\nr0: function pointer to append to the"
-            " string being built (VsprintfInternal uses TryAppendToSlice)\nr1: string"
-            " buffer slice\nr2: format\nr3: ap\nreturn: number of characters printed,"
-            " excluding the null-terminator"
+            " string being built (__vsprintf_internal uses TryAppendToSlice)\nr1:"
+            " string buffer slice\nr2: format\nr3: ap\nreturn: number of characters"
+            " printed, excluding the null-terminator"
         ),
     )
 
@@ -6726,20 +6726,20 @@ class JpArm9Functions:
         ),
     )
 
-    VsprintfInternal = Symbol(
+    __vsprintf_internal = Symbol(
         [0x897C4],
         [0x20897C4],
         None,
         (
-            "This is what implements Vsprintf. It's akin to __vsprintf_internal in the"
+            "This is what implements vsprintf. It's akin to __vsprintf_internal in the"
             " modern-day version of glibc (in fact, it's probably an older version of"
-            " this).\n\nr0: str\nr1: maxlen (Vsprintf passes UINT32_MAX for this)\nr2:"
+            " this).\n\nr0: str\nr1: maxlen (vsprintf passes UINT32_MAX for this)\nr2:"
             " format\nr3: ap\nreturn: number of characters printed, excluding the"
             " null-terminator"
         ),
     )
 
-    Vsprintf = Symbol(
+    vsprintf = Symbol(
         [0x8982C],
         [0x208982C],
         None,
@@ -6749,81 +6749,81 @@ class JpArm9Functions:
         ),
     )
 
-    Snprintf = Symbol(
+    snprintf = Symbol(
         [0x89844],
         [0x2089844],
         None,
         (
-            "The snprintf(3) C library function.\n\nThis calls VsprintfInternal"
+            "The snprintf(3) C library function.\n\nThis calls __vsprintf_internal"
             " directly, so it's presumably the real snprintf.\n\nr0: str\nr1: n\nr2:"
             " format\n...: variadic\nreturn: number of characters printed, excluding"
             " the null-terminator"
         ),
     )
 
-    Sprintf = Symbol(
+    sprintf = Symbol(
         [0x8986C],
         [0x208986C],
         None,
         (
-            "The sprintf(3) C library function.\n\nThis calls VsprintfInternal"
+            "The sprintf(3) C library function.\n\nThis calls __vsprintf_internal"
             " directly, so it's presumably the real sprintf.\n\nr0: str\nr1:"
             " format\n...: variadic\nreturn: number of characters printed, excluding"
             " the null-terminator"
         ),
     )
 
-    Strlen = Symbol(
+    strlen = Symbol(
         [0x89960],
         [0x2089960],
         None,
         "The strlen(3) C library function.\n\nr0: s\nreturn: length of s",
     )
 
-    Strcpy = Symbol(
+    strcpy = Symbol(
         [0x8997C],
         [0x208997C],
         None,
         (
             "The strcpy(3) C library function.\n\nThis function is optimized to copy"
             " characters in aligned 4-byte chunks if possible, correctly handling any"
-            " unaligned bytes at the front/back.\n\nr0: dest\nr1: src"
+            " unaligned bytes at the front/back.\n\nr0: dest\nr1: src\nreturn: dest"
         ),
     )
 
-    Strncpy = Symbol(
+    strncpy = Symbol(
         [0x89A44],
         [0x2089A44],
         None,
-        "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
+        "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
     )
 
-    Strcat = Symbol(
+    strcat = Symbol(
         [0x89A94],
         [0x2089A94],
         None,
-        "The strcat(3) C library function.\n\nr0: dest\nr1: src",
+        "The strcat(3) C library function.\n\nr0: dest\nr1: src\nreturn: dest",
     )
 
-    Strncat = Symbol(
+    strncat = Symbol(
         [0x89AC4],
         [0x2089AC4],
         None,
-        "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
+        "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
     )
 
-    Strcmp = Symbol(
+    strcmp = Symbol(
         [0x89B14],
         [0x2089B14],
         None,
         (
-            "The strcmp(3) C library function.\n\nSimilarly to Strcpy, this function is"
+            "The strcmp(3) C library function.\n\nSimilarly to strcpy, this function is"
             " optimized to compare characters in aligned 4-byte chunks if"
             " possible.\n\nr0: s1\nr1: s2\nreturn: comparison value"
         ),
     )
 
-    Strncmp = Symbol(
+    strncmp = Symbol(
         [0x89C28],
         [0x2089C28],
         None,
@@ -6833,7 +6833,7 @@ class JpArm9Functions:
         ),
     )
 
-    Strchr = Symbol(
+    strchr = Symbol(
         [0x89C5C],
         [0x2089C5C],
         None,
@@ -6843,7 +6843,7 @@ class JpArm9Functions:
         ),
     )
 
-    Strcspn = Symbol(
+    strcspn = Symbol(
         [0x89C98],
         [0x2089C98],
         None,
@@ -6853,7 +6853,7 @@ class JpArm9Functions:
         ),
     )
 
-    Strstr = Symbol(
+    strstr = Symbol(
         [0x89D58],
         [0x2089D58],
         None,
@@ -6863,14 +6863,14 @@ class JpArm9Functions:
         ),
     )
 
-    Wcslen = Symbol(
+    wcslen = Symbol(
         [0x8B6D0],
         [0x208B6D0],
         None,
         "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
     )
 
-    AddFloat = Symbol(
+    __addsf3 = Symbol(
         [0x8EFA0],
         [0x208EFA0],
         None,
@@ -6881,7 +6881,7 @@ class JpArm9Functions:
         ),
     )
 
-    DivideFloat = Symbol(
+    __divsf3 = Symbol(
         [0x8F51C],
         [0x208F51C],
         None,
@@ -6893,7 +6893,7 @@ class JpArm9Functions:
         ),
     )
 
-    FloatToDouble = Symbol(
+    __extendsfdf2 = Symbol(
         [0x8F8D4],
         [0x208F8D4],
         None,
@@ -6904,7 +6904,7 @@ class JpArm9Functions:
         ),
     )
 
-    FloatToInt = Symbol(
+    __fixsfsi = Symbol(
         [0x8F958],
         [0x208F958],
         None,
@@ -6917,7 +6917,7 @@ class JpArm9Functions:
         ),
     )
 
-    IntToFloat = Symbol(
+    __floatsisf = Symbol(
         [0x8F98C],
         [0x208F98C],
         None,
@@ -6928,7 +6928,7 @@ class JpArm9Functions:
         ),
     )
 
-    UIntToFloat = Symbol(
+    __floatunsisf = Symbol(
         [0x8F9D4],
         [0x208F9D4],
         None,
@@ -6940,7 +6940,7 @@ class JpArm9Functions:
         ),
     )
 
-    MultiplyFloat = Symbol(
+    __mulsf3 = Symbol(
         [0x8FA1C],
         [0x208FA1C],
         None,
@@ -6951,14 +6951,14 @@ class JpArm9Functions:
         ),
     )
 
-    Sqrtf = Symbol(
+    sqrtf = Symbol(
         [0x8FBFC],
         [0x208FBFC],
         None,
         "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)",
     )
 
-    SubtractFloat = Symbol(
+    __subsf3 = Symbol(
         [0x8FCEC],
         [0x208FCEC],
         None,
@@ -6969,7 +6969,7 @@ class JpArm9Functions:
         ),
     )
 
-    DivideInt = Symbol(
+    __divsi3 = Symbol(
         [0x9018C],
         [0x209018C],
         None,
@@ -6987,7 +6987,7 @@ class JpArm9Functions:
         ),
     )
 
-    DivideUInt = Symbol(
+    __udivsi3 = Symbol(
         [0x90398],
         [0x2090398],
         None,
@@ -7001,17 +7001,17 @@ class JpArm9Functions:
             " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
             " this means that the quotient is returned in r0 and the remainder is"
             " returned in r1.\nNote: This function falls through to"
-            " DivideUIntNoZeroCheck.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) |"
-            " (remainder << 32)"
+            " __udivsi3_no_zero_check.\n\nr0: dividend\nr1: divisor\nreturn: (quotient)"
+            " | (remainder << 32)"
         ),
     )
 
-    DivideUIntNoZeroCheck = Symbol(
+    __udivsi3_no_zero_check = Symbol(
         [0x903A0],
         [0x20903A0],
         None,
         (
-            "Subsidiary function to DivideUInt. Skips the initial check for divisor =="
+            "Subsidiary function to __udivsi3. Skips the initial check for divisor =="
             " 0.\n\nThe return value is a 64-bit integer, with the quotient (dividend /"
             " divisor) in the lower 32 bits and the remainder (dividend % divisor) in"
             " the upper 32 bits. In accordance with the Procedure Call Standard for the"

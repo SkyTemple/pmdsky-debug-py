@@ -560,7 +560,7 @@ class JpItcmArm9Functions:
         None,
         (
             "A simple implementation of the memset(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Memset"
+            " function was probably manually implemented by the developers. See memset"
             " for what's probably the real libc function.\n\nr0: ptr\nr1: value\nr2:"
             " len (# bytes)"
         ),
@@ -582,7 +582,7 @@ class JpItcmArm9Functions:
         None,
         (
             "A simple implementation of the memcpy(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Memcpy"
+            " function was probably manually implemented by the developers. See memcpy"
             " for what's probably the real libc function.\n\nThis function copies from"
             " src to dst in backwards byte order, so this is safe to call for"
             " overlapping src and dst if src <= dst.\n\nr0: dest\nr1: src\nr2: n"
@@ -957,7 +957,7 @@ class JpItcmArm9Functions:
         None,
         (
             "Would log a printf format string in the debug binary.\n\nThis still"
-            " constructs the string with Vsprintf, but doesn't actually do anything"
+            " constructs the string with vsprintf, but doesn't actually do anything"
             " with it in the final binary.\n\nr0: format\n...: variadic"
         ),
     )
@@ -1253,11 +1253,11 @@ class JpItcmArm9Functions:
         None,
         None,
         (
-            "Functionally the same as Sprintf, just defined statically in many"
+            "Functionally the same as sprintf, just defined statically in many"
             " different places.\n\nSince this is essentially just a wrapper around"
             " vsprintf(3), this function was probably statically defined in a header"
             " somewhere and included in a bunch of different places. See the actual"
-            " Sprintf for the one in libc.\n\nr0: str\nr1: format\n...:"
+            " sprintf for the one in libc.\n\nr0: str\nr1: format\n...:"
             " variadic\nreturn: number of characters printed, excluding the"
             " null-terminator"
         ),
@@ -3024,7 +3024,7 @@ class JpItcmArm9Functions:
         None,
         (
             "A simple implementation of the strcpy(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Strcpy"
+            " function was probably manually implemented by the developers. See strcpy"
             " for what's probably the real libc function.\n\nr0: dest\nr1: src"
         ),
     )
@@ -3035,7 +3035,7 @@ class JpItcmArm9Functions:
         None,
         (
             "A simple implementation of the strncpy(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Strncpy"
+            " function was probably manually implemented by the developers. See strncpy"
             " for what's probably the real libc function.\n\nr0: dest\nr1: src\nr2: n"
         ),
     )
@@ -3056,7 +3056,7 @@ class JpItcmArm9Functions:
         None,
         (
             "A simple implementation of the strncmp(3) C library function.\n\nThis"
-            " function was probably manually implemented by the developers. See Strncmp"
+            " function was probably manually implemented by the developers. See strncmp"
             " for what's probably the real libc function.\n\nr0: s1\nr1: s2\nr2:"
             " n\nreturn: comparison value"
         ),
@@ -6391,14 +6391,14 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Abs = Symbol(
+    abs = Symbol(
         None,
         None,
         None,
         "Takes the absolute value of an integer.\n\nr0: x\nreturn: abs(x)",
     )
 
-    Mbtowc = Symbol(
+    mbtowc = Symbol(
         None,
         None,
         None,
@@ -6430,7 +6430,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Wcstombs = Symbol(
+    wcstombs = Symbol(
         None,
         None,
         None,
@@ -6440,36 +6440,36 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Memcpy = Symbol(
+    memcpy = Symbol(
         None,
         None,
         None,
-        "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
+        "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
     )
 
-    Memmove = Symbol(
+    memmove = Symbol(
         None,
         None,
         None,
         (
             "The memmove(3) C library function.\n\nThe implementation is nearly the"
-            " same as Memcpy, but it copies bytes from back to front if src <"
-            " dst.\n\nr0: dest\nr1: src\nr2: n"
+            " same as memcpy, but it copies bytes from back to front if src <"
+            " dst.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest"
         ),
     )
 
-    Memset = Symbol(
+    memset = Symbol(
         None,
         None,
         None,
         (
             "The memset(3) C library function.\n\nThis is just a wrapper around"
-            " MemsetInternal that returns the pointer at the end.\n\nr0: s\nr1: c (int,"
-            " but must be a single-byte value)\nr2: n\nreturn: s"
+            " memset_internal that returns the pointer at the end.\n\nr0: s\nr1: c"
+            " (int, but must be a single-byte value)\nr2: n\nreturn: s"
         ),
     )
 
-    Memchr = Symbol(
+    memchr = Symbol(
         None,
         None,
         None,
@@ -6479,7 +6479,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Memcmp = Symbol(
+    memcmp = Symbol(
         None,
         None,
         None,
@@ -6489,7 +6489,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    MemsetInternal = Symbol(
+    memset_internal = Symbol(
         None,
         None,
         None,
@@ -6503,18 +6503,18 @@ class JpItcmArm9Functions:
         ),
     )
 
-    VsprintfInternalSlice = Symbol(
+    __vsprintf_internal_slice = Symbol(
         None,
         None,
         None,
         (
-            "This is what implements the bulk of VsprintfInternal.\n\nThe"
+            "This is what implements the bulk of __vsprintf_internal.\n\nThe"
             " __vsprintf_internal in the modern-day version of glibc relies on"
             " __vfprintf_internal; this function has a slightly different interface,"
             " but it serves a similar role.\n\nr0: function pointer to append to the"
-            " string being built (VsprintfInternal uses TryAppendToSlice)\nr1: string"
-            " buffer slice\nr2: format\nr3: ap\nreturn: number of characters printed,"
-            " excluding the null-terminator"
+            " string being built (__vsprintf_internal uses TryAppendToSlice)\nr1:"
+            " string buffer slice\nr2: format\nr3: ap\nreturn: number of characters"
+            " printed, excluding the null-terminator"
         ),
     )
 
@@ -6530,20 +6530,20 @@ class JpItcmArm9Functions:
         ),
     )
 
-    VsprintfInternal = Symbol(
+    __vsprintf_internal = Symbol(
         None,
         None,
         None,
         (
-            "This is what implements Vsprintf. It's akin to __vsprintf_internal in the"
+            "This is what implements vsprintf. It's akin to __vsprintf_internal in the"
             " modern-day version of glibc (in fact, it's probably an older version of"
-            " this).\n\nr0: str\nr1: maxlen (Vsprintf passes UINT32_MAX for this)\nr2:"
+            " this).\n\nr0: str\nr1: maxlen (vsprintf passes UINT32_MAX for this)\nr2:"
             " format\nr3: ap\nreturn: number of characters printed, excluding the"
             " null-terminator"
         ),
     )
 
-    Vsprintf = Symbol(
+    vsprintf = Symbol(
         None,
         None,
         None,
@@ -6553,78 +6553,81 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Snprintf = Symbol(
+    snprintf = Symbol(
         None,
         None,
         None,
         (
-            "The snprintf(3) C library function.\n\nThis calls VsprintfInternal"
+            "The snprintf(3) C library function.\n\nThis calls __vsprintf_internal"
             " directly, so it's presumably the real snprintf.\n\nr0: str\nr1: n\nr2:"
             " format\n...: variadic\nreturn: number of characters printed, excluding"
             " the null-terminator"
         ),
     )
 
-    Sprintf = Symbol(
+    sprintf = Symbol(
         None,
         None,
         None,
         (
-            "The sprintf(3) C library function.\n\nThis calls VsprintfInternal"
+            "The sprintf(3) C library function.\n\nThis calls __vsprintf_internal"
             " directly, so it's presumably the real sprintf.\n\nr0: str\nr1:"
             " format\n...: variadic\nreturn: number of characters printed, excluding"
             " the null-terminator"
         ),
     )
 
-    Strlen = Symbol(
+    strlen = Symbol(
         None,
         None,
         None,
         "The strlen(3) C library function.\n\nr0: s\nreturn: length of s",
     )
 
-    Strcpy = Symbol(
+    strcpy = Symbol(
         None,
         None,
         None,
         (
             "The strcpy(3) C library function.\n\nThis function is optimized to copy"
             " characters in aligned 4-byte chunks if possible, correctly handling any"
-            " unaligned bytes at the front/back.\n\nr0: dest\nr1: src"
+            " unaligned bytes at the front/back.\n\nr0: dest\nr1: src\nreturn: dest"
         ),
     )
 
-    Strncpy = Symbol(
+    strncpy = Symbol(
         None,
         None,
         None,
-        "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
+        "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
     )
 
-    Strcat = Symbol(
-        None, None, None, "The strcat(3) C library function.\n\nr0: dest\nr1: src"
+    strcat = Symbol(
+        None,
+        None,
+        None,
+        "The strcat(3) C library function.\n\nr0: dest\nr1: src\nreturn: dest",
     )
 
-    Strncat = Symbol(
+    strncat = Symbol(
         None,
         None,
         None,
-        "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n",
+        "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
     )
 
-    Strcmp = Symbol(
+    strcmp = Symbol(
         None,
         None,
         None,
         (
-            "The strcmp(3) C library function.\n\nSimilarly to Strcpy, this function is"
+            "The strcmp(3) C library function.\n\nSimilarly to strcpy, this function is"
             " optimized to compare characters in aligned 4-byte chunks if"
             " possible.\n\nr0: s1\nr1: s2\nreturn: comparison value"
         ),
     )
 
-    Strncmp = Symbol(
+    strncmp = Symbol(
         None,
         None,
         None,
@@ -6634,7 +6637,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Strchr = Symbol(
+    strchr = Symbol(
         None,
         None,
         None,
@@ -6644,7 +6647,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Strcspn = Symbol(
+    strcspn = Symbol(
         None,
         None,
         None,
@@ -6654,7 +6657,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Strstr = Symbol(
+    strstr = Symbol(
         None,
         None,
         None,
@@ -6664,14 +6667,14 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Wcslen = Symbol(
+    wcslen = Symbol(
         None,
         None,
         None,
         "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
     )
 
-    AddFloat = Symbol(
+    __addsf3 = Symbol(
         None,
         None,
         None,
@@ -6682,7 +6685,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    DivideFloat = Symbol(
+    __divsf3 = Symbol(
         None,
         None,
         None,
@@ -6694,7 +6697,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    FloatToDouble = Symbol(
+    __extendsfdf2 = Symbol(
         None,
         None,
         None,
@@ -6705,7 +6708,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    FloatToInt = Symbol(
+    __fixsfsi = Symbol(
         None,
         None,
         None,
@@ -6718,7 +6721,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    IntToFloat = Symbol(
+    __floatsisf = Symbol(
         None,
         None,
         None,
@@ -6729,7 +6732,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    UIntToFloat = Symbol(
+    __floatunsisf = Symbol(
         None,
         None,
         None,
@@ -6741,7 +6744,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    MultiplyFloat = Symbol(
+    __mulsf3 = Symbol(
         None,
         None,
         None,
@@ -6752,11 +6755,11 @@ class JpItcmArm9Functions:
         ),
     )
 
-    Sqrtf = Symbol(
+    sqrtf = Symbol(
         None, None, None, "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)"
     )
 
-    SubtractFloat = Symbol(
+    __subsf3 = Symbol(
         None,
         None,
         None,
@@ -6767,7 +6770,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    DivideInt = Symbol(
+    __divsi3 = Symbol(
         None,
         None,
         None,
@@ -6785,7 +6788,7 @@ class JpItcmArm9Functions:
         ),
     )
 
-    DivideUInt = Symbol(
+    __udivsi3 = Symbol(
         None,
         None,
         None,
@@ -6799,17 +6802,17 @@ class JpItcmArm9Functions:
             " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
             " this means that the quotient is returned in r0 and the remainder is"
             " returned in r1.\nNote: This function falls through to"
-            " DivideUIntNoZeroCheck.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) |"
-            " (remainder << 32)"
+            " __udivsi3_no_zero_check.\n\nr0: dividend\nr1: divisor\nreturn: (quotient)"
+            " | (remainder << 32)"
         ),
     )
 
-    DivideUIntNoZeroCheck = Symbol(
+    __udivsi3_no_zero_check = Symbol(
         None,
         None,
         None,
         (
-            "Subsidiary function to DivideUInt. Skips the initial check for divisor =="
+            "Subsidiary function to __udivsi3. Skips the initial check for divisor =="
             " 0.\n\nThe return value is a 64-bit integer, with the quotient (dividend /"
             " divisor) in the lower 32 bits and the remainder (dividend % divisor) in"
             " the upper 32 bits. In accordance with the Procedure Call Standard for the"
