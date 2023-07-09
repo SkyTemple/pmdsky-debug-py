@@ -2750,10 +2750,9 @@ class EuArm9Functions:
         [0x201D370],
         None,
         (
-            "Search in the given table (in practice always seems to be"
-            " LOADED_WAN_TABLE_PTR) for an entry with the given file name.\n\nr0: table"
-            " pointer\nr1: file name\nreturn: index of the found file, if found, or -1"
-            " if not found"
+            "Search in the given table (in practice always seems to be WAN_TABLE) for"
+            " an entry with the given file name.\n\nr0: table pointer\nr1: file"
+            " name\nreturn: index of the found file, if found, or -1 if not found"
         ),
     )
 
@@ -2834,6 +2833,41 @@ class EuArm9Functions:
             "Likely a linker-generated veneer for DeleteWanTableEntry.\n\nSee"
             " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
             " wan_table_ptr\nr1: wan_id"
+        ),
+    )
+
+    WanHasAnimationGroup = Symbol(
+        [0x1DAE0],
+        [0x201DAE0],
+        None,
+        (
+            "Check if the input WAN file loaded in memory has an animation group with"
+            " this ID\nValid means that the animation group is in the range of existing"
+            " animation, and that it has at least one animation.\n\nr0: pointer to the"
+            " header of the WAN\nr1: id of the animation group\nreturn: whether the WAN"
+            " file has the given animation group"
+        ),
+    )
+
+    WanTableSpriteHasAnimationGroup = Symbol(
+        [0x1DB1C],
+        [0x201DB1C],
+        None,
+        (
+            "Check if the sprite in the global WAN table has the given animation"
+            " group\nsee WanHasAnimationGroup for more detail\n\nr0: sprite id in the"
+            " WAN table\nr1: animation group id\nreturn: whether the associated sprite"
+            " has the given animation group"
+        ),
+    )
+
+    SpriteTypeInWanTable = Symbol(
+        [0x1DD0C],
+        [0x201DD0C],
+        None,
+        (
+            "Look up the sprite in the WAN table, and return its type\n\nr0: sprite id"
+            " in the WAN table\nreturn: sprite type"
         ),
     )
 
@@ -5116,7 +5150,11 @@ class EuArm9Functions:
         [0x52A24, 0x52A40, 0x52A5C],
         [0x2052A24, 0x2052A40, 0x2052A5C],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: id\nreturn: sprite index",
+        (
+            "Return the sprite index for this monster (inside m_attack.bin,"
+            " m_ground.bin and monster.bin)\nAll three sprites have the same"
+            " index\n\nr0: monster id\nreturn: sprite index"
+        ),
     )
 
     GetDexNumber = Symbol(
@@ -8202,11 +8240,11 @@ class EuArm9Data:
         ),
     )
 
-    LOADED_WAN_TABLE_PTR = Symbol(
+    WAN_TABLE = Symbol(
+        [0xB0524],
+        [0x20B0524],
         None,
-        None,
-        None,
-        "pointer to a wan table\n\nNote: unverified, ported from Irdkwia's notes",
+        "pointer to the list of wan sprite loaded in RAM\n\nstruct wan_table*",
     )
 
     LANGUAGE_INFO_DATA = Symbol([0xB05A8], [0x20B05A8], None, "[Runtime]")
@@ -14027,8 +14065,8 @@ class EuOverlay11Functions:
     )
 
     InitAnimDataFromOtherAnimDataVeneer = Symbol(
-        None,
-        None,
+        [0x1AD28],
+        [0x22F78A8],
         None,
         (
             "Likely a linker-generated veneer for InitAnimDataFromOtherAnimData.\n\nSee"
@@ -14038,12 +14076,53 @@ class EuOverlay11Functions:
     )
 
     AnimRelatedFunction = Symbol(
-        None,
-        None,
+        [0x1AD34, 0x1AE84],
+        [0x22F78B4, 0x22F7A04],
         None,
         (
             "Does more stuff related to animations...probably?\n\nr0: animation"
             " pointer?\nothers: ?"
+        ),
+    )
+
+    AllocAndInitPartnerFollowDataAndLiveActorList = Symbol(
+        [0x1BADC],
+        [0x22F865C],
+        None,
+        (
+            "Allocate and initialize the partner follow data and the live actor list"
+            " (in GROUND_STATE_PTRS)\n\nNo params."
+        ),
+    )
+
+    InitPartnerFollowDataAndLiveActorList = Symbol(
+        [0x1BB38],
+        [0x22F86B8],
+        None,
+        (
+            "Initialize the partner follow data and the live actor list (in"
+            " GROUND_STATE_PTRS, doesn’t perform the allocation of the"
+            " structures)\n\nNo params."
+        ),
+    )
+
+    DeleteLiveActor = Symbol(
+        [0x1C398],
+        [0x22F8F18],
+        None,
+        (
+            "Remove the actor from the overworld actor list (in"
+            " GROUND_STATE_PTRS)\n\nr0: the index of the actor in the live actor list"
+        ),
+    )
+
+    InitPartnerFollowData = Symbol(
+        [0x1F848],
+        [0x22FC3C8],
+        None,
+        (
+            "Initialize the partner follow data structure, without allocating it (in"
+            " GROUND_STATE_PTRS)\n\nNo params."
         ),
     )
 
@@ -17523,6 +17602,47 @@ class EuOverlay29Functions:
         (
             "Zeroes the damage data struct, which is output by the damage calculation"
             " function.\n\nr0: damage data pointer"
+        ),
+    )
+
+    FreeLoadedAttackSpriteAndMore = Symbol(
+        [0x1AD48],
+        [0x22F78C8],
+        None,
+        (
+            "Among other things, free another data structure in the attack sprite"
+            " storage area/data\n\nNo params."
+        ),
+    )
+
+    SetAndLoadCurrentAttackAnimation = Symbol(
+        [0x1ADA0],
+        [0x22F7920],
+        None,
+        (
+            "Load given sprite into the currently loaded attack sprite structure,"
+            " replacing the previous one if already loaded.\n\nr0: pack id\nr1: file"
+            " index\nreturn: sprite id in the loaded wan list"
+        ),
+    )
+
+    ClearLoadedAttackSprite = Symbol(
+        [0x1AE40],
+        [0x22F79C0],
+        None,
+        (
+            "Delete the data of the currently loaded attack sprite, if any.\nDoesn’t"
+            " free the structure, which can continue to be used.\n\nNo params."
+        ),
+    )
+
+    GetLoadedAttackSpriteId = Symbol(
+        [0x1AE88],
+        [0x22F7A08],
+        None,
+        (
+            "Get the sprite ID (in the loaded WAN list) of the currently loaded attack"
+            " sprite, or 0 if none.\n\nreturn: sprite ID"
         ),
     )
 
@@ -24239,7 +24359,7 @@ class EuOverlay29Data:
         (
             "In order: white, black, red, green, blue, magenta, dark pink, chartreuse,"
             " light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype:"
-            " struct rgb[9]"
+            " struct rgba[9]"
         ),
     )
 
@@ -24346,6 +24466,26 @@ class EuOverlay29Data:
             "[Runtime] An array of 5 integers corresponding to the last value generated"
             " for each secondary LCG sequence.\n\nBased on the assembly, this appears"
             " to be its own global array, separate from DUNGEON_PRNG_STATE."
+        ),
+    )
+
+    LOADED_ATTACK_SPRITE_FILE_INDEX = Symbol(
+        [0x7762C],
+        [0x23541AC],
+        0x2,
+        (
+            "[Runtime] The file index of the currently loaded attack sprite.\n\ntype:"
+            " uint16_t"
+        ),
+    )
+
+    LOADED_ATTACK_SPRITE_PACK_ID = Symbol(
+        [0x7762E],
+        [0x23541AE],
+        0x2,
+        (
+            "[Runtime] The pack id of the currently loaded attack sprite. Should"
+            " correspond to the id of m_attack.bin\n\ntype: enum pack_file_id"
         ),
     )
 
@@ -25326,6 +25466,17 @@ class EuRamData:
         [0x237D5A6],
         0x1,
         "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    LOADED_ATTACK_SPRITE_DATA = Symbol(
+        [0x37D5AC],
+        [0x237D5AC],
+        0x4,
+        (
+            "[Runtime] Pointer to the dynamically allocated structure relating to the"
+            " currently loaded attack sprite, in dungeon mode.\n\ntype: struct"
+            " loaded_attack_sprite_data*"
+        ),
     )
 
     ROLLOUT_ICE_BALL_MISSED = Symbol(

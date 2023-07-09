@@ -1556,6 +1556,21 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    WanHasAnimationGroup: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    WanTableSpriteHasAnimationGroup: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SpriteTypeInWanTable: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     LoadWteFromRom: Symbol[
         Optional[List[int]],
         None,
@@ -4513,7 +4528,7 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    LOADED_WAN_TABLE_PTR: Symbol[
+    WAN_TABLE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -7594,6 +7609,26 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    AllocAndInitPartnerFollowDataAndLiveActorList: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitPartnerFollowDataAndLiveActorList: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DeleteLiveActor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitPartnerFollowData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SprintfStatic: Symbol[
         Optional[List[int]],
         None,
@@ -10170,6 +10205,26 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ResetDamageData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    FreeLoadedAttackSpriteAndMore: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetAndLoadCurrentAttackAnimation: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ClearLoadedAttackSprite: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetLoadedAttackSpriteId: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -13146,6 +13201,16 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    LOADED_ATTACK_SPRITE_FILE_INDEX: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LOADED_ATTACK_SPRITE_PACK_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     EXCL_ITEM_EFFECTS_WEATHER_ATK_SPEED_BOOST: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -13936,6 +14001,11 @@ class RamDataProtocol(Protocol):
     ]
 
     TURNING_ON_THE_SPOT_FLAG: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LOADED_ATTACK_SPRITE_DATA: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

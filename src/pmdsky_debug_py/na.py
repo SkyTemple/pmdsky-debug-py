@@ -2750,10 +2750,9 @@ class NaArm9Functions:
         [0x201D2D4],
         None,
         (
-            "Search in the given table (in practice always seems to be"
-            " LOADED_WAN_TABLE_PTR) for an entry with the given file name.\n\nr0: table"
-            " pointer\nr1: file name\nreturn: index of the found file, if found, or -1"
-            " if not found"
+            "Search in the given table (in practice always seems to be WAN_TABLE) for"
+            " an entry with the given file name.\n\nr0: table pointer\nr1: file"
+            " name\nreturn: index of the found file, if found, or -1 if not found"
         ),
     )
 
@@ -2834,6 +2833,41 @@ class NaArm9Functions:
             "Likely a linker-generated veneer for DeleteWanTableEntry.\n\nSee"
             " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
             " wan_table_ptr\nr1: wan_id"
+        ),
+    )
+
+    WanHasAnimationGroup = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Check if the input WAN file loaded in memory has an animation group with"
+            " this ID\nValid means that the animation group is in the range of existing"
+            " animation, and that it has at least one animation.\n\nr0: pointer to the"
+            " header of the WAN\nr1: id of the animation group\nreturn: whether the WAN"
+            " file has the given animation group"
+        ),
+    )
+
+    WanTableSpriteHasAnimationGroup = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Check if the sprite in the global WAN table has the given animation"
+            " group\nsee WanHasAnimationGroup for more detail\n\nr0: sprite id in the"
+            " WAN table\nr1: animation group id\nreturn: whether the associated sprite"
+            " has the given animation group"
+        ),
+    )
+
+    SpriteTypeInWanTable = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Look up the sprite in the WAN table, and return its type\n\nr0: sprite id"
+            " in the WAN table\nreturn: sprite type"
         ),
     )
 
@@ -5116,7 +5150,11 @@ class NaArm9Functions:
         [0x526EC, 0x52708, 0x52724],
         [0x20526EC, 0x2052708, 0x2052724],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: id\nreturn: sprite index",
+        (
+            "Return the sprite index for this monster (inside m_attack.bin,"
+            " m_ground.bin and monster.bin)\nAll three sprites have the same"
+            " index\n\nr0: monster id\nreturn: sprite index"
+        ),
     )
 
     GetDexNumber = Symbol(
@@ -8205,11 +8243,11 @@ class NaArm9Data:
         ),
     )
 
-    LOADED_WAN_TABLE_PTR = Symbol(
+    WAN_TABLE = Symbol(
         [0xAFC68],
         [0x20AFC68],
         0x4,
-        "pointer to a wan table\n\nNote: unverified, ported from Irdkwia's notes",
+        "pointer to the list of wan sprite loaded in RAM\n\nstruct wan_table*",
     )
 
     LANGUAGE_INFO_DATA = Symbol([0xAFCE8], [0x20AFCE8], None, "[Runtime]")
@@ -14102,6 +14140,47 @@ class NaOverlay11Functions:
         ),
     )
 
+    AllocAndInitPartnerFollowDataAndLiveActorList = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Allocate and initialize the partner follow data and the live actor list"
+            " (in GROUND_STATE_PTRS)\n\nNo params."
+        ),
+    )
+
+    InitPartnerFollowDataAndLiveActorList = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Initialize the partner follow data and the live actor list (in"
+            " GROUND_STATE_PTRS, doesn’t perform the allocation of the"
+            " structures)\n\nNo params."
+        ),
+    )
+
+    DeleteLiveActor = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Remove the actor from the overworld actor list (in"
+            " GROUND_STATE_PTRS)\n\nr0: the index of the actor in the live actor list"
+        ),
+    )
+
+    InitPartnerFollowData = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Initialize the partner follow data structure, without allocating it (in"
+            " GROUND_STATE_PTRS)\n\nNo params."
+        ),
+    )
+
     SprintfStatic = Symbol(
         [0x2CC8C],
         [0x2308ECC],
@@ -17607,6 +17686,47 @@ class NaOverlay29Functions:
         (
             "Zeroes the damage data struct, which is output by the damage calculation"
             " function.\n\nr0: damage data pointer"
+        ),
+    )
+
+    FreeLoadedAttackSpriteAndMore = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Among other things, free another data structure in the attack sprite"
+            " storage area/data\n\nNo params."
+        ),
+    )
+
+    SetAndLoadCurrentAttackAnimation = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Load given sprite into the currently loaded attack sprite structure,"
+            " replacing the previous one if already loaded.\n\nr0: pack id\nr1: file"
+            " index\nreturn: sprite id in the loaded wan list"
+        ),
+    )
+
+    ClearLoadedAttackSprite = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Delete the data of the currently loaded attack sprite, if any.\nDoesn’t"
+            " free the structure, which can continue to be used.\n\nNo params."
+        ),
+    )
+
+    GetLoadedAttackSpriteId = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Get the sprite ID (in the loaded WAN list) of the currently loaded attack"
+            " sprite, or 0 if none.\n\nreturn: sprite ID"
         ),
     )
 
@@ -24326,7 +24446,7 @@ class NaOverlay29Data:
         (
             "In order: white, black, red, green, blue, magenta, dark pink, chartreuse,"
             " light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype:"
-            " struct rgb[9]"
+            " struct rgba[9]"
         ),
     )
 
@@ -24433,6 +24553,26 @@ class NaOverlay29Data:
             "[Runtime] An array of 5 integers corresponding to the last value generated"
             " for each secondary LCG sequence.\n\nBased on the assembly, this appears"
             " to be its own global array, separate from DUNGEON_PRNG_STATE."
+        ),
+    )
+
+    LOADED_ATTACK_SPRITE_FILE_INDEX = Symbol(
+        None,
+        None,
+        None,
+        (
+            "[Runtime] The file index of the currently loaded attack sprite.\n\ntype:"
+            " uint16_t"
+        ),
+    )
+
+    LOADED_ATTACK_SPRITE_PACK_ID = Symbol(
+        None,
+        None,
+        None,
+        (
+            "[Runtime] The pack id of the currently loaded attack sprite. Should"
+            " correspond to the id of m_attack.bin\n\ntype: enum pack_file_id"
         ),
     )
 
@@ -25415,6 +25555,17 @@ class NaRamData:
         [0x237C9A6],
         0x1,
         "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
+    )
+
+    LOADED_ATTACK_SPRITE_DATA = Symbol(
+        None,
+        None,
+        None,
+        (
+            "[Runtime] Pointer to the dynamically allocated structure relating to the"
+            " currently loaded attack sprite, in dungeon mode.\n\ntype: struct"
+            " loaded_attack_sprite_data*"
+        ),
     )
 
     ROLLOUT_ICE_BALL_MISSED = Symbol(
