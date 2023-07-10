@@ -2722,6 +2722,23 @@ class NaArm9Functions:
         [0x1A9E4], [0x201A9E4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    InitAnimationControl = Symbol(
+        None,
+        None,
+        None,
+        "Initialize the animation_control structure\n\nr0: animation_control",
+    )
+
+    InitAnimationControlWithSet = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Initialize the animation_control structure, and set a certain value in a"
+            " bitflag to 1\n\nr0: animation_control"
+        ),
+    )
+
     DeleteWanTableEntry = Symbol(
         [0x1D1DC],
         [0x201D1DC],
@@ -3297,6 +3314,16 @@ class NaArm9Functions:
         ),
     )
 
+    LoadCursors = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Load and initialise the cursor and cursor16 sprites, storing the result in"
+            " CURSOR_ANIMATION_CONTROL and CURSOR_16_ANIMATION_CONTROL\n\nNo params."
+        ),
+    )
+
     Arm9LoadUnkFieldNa0x2029EC8 = Symbol(
         [0x29EC8],
         [0x2029EC8],
@@ -3309,6 +3336,16 @@ class NaArm9Functions:
         [0x2029ED8],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nr0: id\nr1: value",
+    )
+
+    LoadAlert = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Load and initialise the alert sprite, storing the result in"
+            " ALERT_ANIMATION_CONTROL\n\nNo params."
+        ),
     )
 
     CreateNormalMenu = Symbol(
@@ -6523,6 +6560,26 @@ class NaArm9Functions:
         [0x207448C],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    EnableVramBanksInSetDontSave = Symbol(
+        [0x763AC],
+        [0x20763AC],
+        None,
+        (
+            "Enable the VRAM bank marked in the input set, but don’t mark them as"
+            " enabled in ENABLED_VRAM_BANKS\n\nr0: vram_banks_set"
+        ),
+    )
+
+    EnableVramBanksInSet = Symbol(
+        [0x770C8],
+        [0x20770C8],
+        None,
+        (
+            "Enable the VRAM banks in the input set. Will reset the pointed set to 0,"
+            " and update ENABLED_VRAM_BANKS\n\nr0: vram_banks_set *"
+        ),
     )
 
     ClearIrqFlag = Symbol(
@@ -14181,6 +14238,26 @@ class NaOverlay11Functions:
         ),
     )
 
+    GetDirectionLiveActor = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Put the direction of the actor in the destination\n\nr0: live actor\nr1:"
+            " destination address (1 byte)"
+        ),
+    )
+
+    SetDirectionLiveActor = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Store the direction in the actor structure\n-1 input is ignored\nUnsure if"
+            " this change the animation\n\nr0: live actor\nr1: direction"
+        ),
+    )
+
     SprintfStatic = Symbol(
         [0x2CC8C],
         [0x2308ECC],
@@ -17149,7 +17226,7 @@ class NaOverlay29Functions:
         [0xEBD4],
         [0x22EAE14],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: music ID",
+        "Replace the currently playing music with the provided music\n\nr0: music ID",
     )
 
     TrySwitchPlace = Symbol(
@@ -23491,6 +23568,17 @@ class NaOverlay29Functions:
         ),
     )
 
+    InitPortraitDungeon = Symbol(
+        None,
+        None,
+        None,
+        (
+            "Initialize the portrait box structure for the given monster and"
+            " expression\n\nr0: pointer the portrait box data structure to"
+            " initialize\nr1: monster id\nr2: emotion id"
+        ),
+    )
+
     OpenMessageLog = Symbol(
         [0x6F91C], [0x234BB5C], None, "Opens the message log window.\n\nr0: ?\nr1: ?"
     )
@@ -23549,7 +23637,8 @@ class NaOverlay29Functions:
         None,
         (
             "Displays a message in a dialogue box that optionally waits for player"
-            " input before closing.\n\nr0: ?\nr1: ID of the string to display\nr2: True"
+            " input before closing.\n\nr0: pointer to the structure representing the"
+            " desired state of the portrait\nr1: ID of the string to display\nr2: True"
             " to wait for player input before closing the dialogue box, false to close"
             " it automatically once all the characters get printed."
         ),
@@ -23583,7 +23672,8 @@ class NaOverlay29Functions:
             " (if the corresponding parameter was set).\n\nr0: ID of the string to"
             " display\nr1: True to wait for player input before closing the dialogue"
             " box, false to close it automatically once all the characters get"
-            " printed.\nr2: ? (r0 in DisplayMessage)\nr3: ?\nstack[0]: ?\nstack[1]: ?"
+            " printed.\nr2: pointer to the structure representing the desired state of"
+            " the portrait\nr3: ?\nstack[0]: ?\nstack[1]: ?"
         ),
     )
 
@@ -25429,6 +25519,30 @@ class NaRamData:
         "The amount of money the player currently has stored in the Duskull Bank.",
     )
 
+    CURSOR_16_SPRITE_ID = Symbol(
+        None, None, None, "Id of the 'FONT/cursor_16.wan' sprite loaded in WAN_TABLE"
+    )
+
+    CURSOR_SPRITE_ID = Symbol(
+        None, None, None, "Id of the 'FONT/cursor.wan' sprite loaded in WAN_TABLE"
+    )
+
+    CURSOR_ANIMATION_CONTROL = Symbol(
+        None, None, None, "animation_control of 'FONT/cursor.wan'"
+    )
+
+    CURSOR_16_ANIMATION_CONTROL = Symbol(
+        None, None, None, "animation_control of 'FONT/cursor_16.wan'"
+    )
+
+    ALERT_SPRITE_ID = Symbol(
+        None, None, None, "Id of the 'FONT/alert.wan' sprite loaded in WAN_TABLE"
+    )
+
+    ALERT_ANIMATION_CONTROL = Symbol(
+        None, None, None, "animation_control of 'FONT/alter.wan'"
+    )
+
     DIALOG_BOX_LIST = Symbol(
         [0x2A88DC], [0x22A88DC], None, "Array of allocated dialog box structs."
     )
@@ -25536,6 +25650,13 @@ class NaRamData:
             " struct team_member_table for more information.\n\ntype: struct"
             " team_member_table"
         ),
+    )
+
+    ENABLED_VRAM_BANKS = Symbol(
+        [0x2B958C],
+        [0x22B958C],
+        0x2,
+        "Bitset of enabled VRAM banks\n\ntype: vram_banks_set",
     )
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(

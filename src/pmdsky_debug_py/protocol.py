@@ -1506,6 +1506,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitAnimationControl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitAnimationControlWithSet: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DeleteWanTableEntry: Symbol[
         Optional[List[int]],
         None,
@@ -1786,12 +1796,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    LoadCursors: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     Arm9LoadUnkFieldNa0x2029EC8: Symbol[
         Optional[List[int]],
         None,
     ]
 
     Arm9StoreUnkFieldNa0x2029ED8: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadAlert: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3487,6 +3507,16 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     UpdateChannels: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EnableVramBanksInSetDontSave: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EnableVramBanksInSet: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -7625,6 +7655,16 @@ class Overlay11FunctionsProtocol(Protocol):
     ]
 
     InitPartnerFollowData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetDirectionLiveActor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetDirectionLiveActor: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -12704,6 +12744,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitPortraitDungeon: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     OpenMessageLog: Symbol[
         Optional[List[int]],
         None,
@@ -13935,6 +13980,36 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
+    CURSOR_16_SPRITE_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CURSOR_SPRITE_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CURSOR_ANIMATION_CONTROL: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    CURSOR_16_ANIMATION_CONTROL: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ALERT_SPRITE_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ALERT_ANIMATION_CONTROL: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     DIALOG_BOX_LIST: Symbol[
         Optional[List[int]],
         None,
@@ -13986,6 +14061,11 @@ class RamDataProtocol(Protocol):
     ]
 
     TEAM_MEMBER_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ENABLED_VRAM_BANKS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
