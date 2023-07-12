@@ -391,6 +391,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    Rgb8ToBgr5: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     EuclideanNorm: Symbol[
         Optional[List[int]],
         None,
@@ -1512,6 +1517,31 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     InitAnimationControlWithSet: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetSpriteIdForAnimationControl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetWanForAnimationControl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SwitchAnimationControlToNextFrame: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    LoadAnimationFrameAndIncrementInAnimationControl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AnimationControlGetAllocForMaxFrame: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -7675,6 +7705,16 @@ class Overlay11FunctionsProtocol(Protocol):
     ]
 
     GetExclusiveItemRequirements: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    WorldMapSetMode: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    WorldMapSetCamera: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -14071,6 +14111,11 @@ class RamDataProtocol(Protocol):
     ]
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WORLD_MAP_MODE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
