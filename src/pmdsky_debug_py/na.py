@@ -1001,6 +1001,15 @@ class NaArm9Functions:
         " game.\n\nr0: item ID\nreturn: bool",
     )
 
+    IsLosableItem = Symbol(
+        [0xCC38],
+        [0x200CC38],
+        None,
+        "Checks if an item can be lost after fainting in a dungeon. Specifically calls"
+        " IsAuraBow and checks item::f_in_shop\nso that the player can't keep an aura"
+        " bow they haven't paid for yet.\n\nr0: item pointer\nreturn: bool",
+    )
+
     IsTreasureBox = Symbol(
         [0xCC84],
         [0x200CC84],
@@ -1009,6 +1018,55 @@ class NaArm9Functions:
         " the category of the item is CATEGORY_TREASURE_BOXES_1,"
         " CATEGORY_TREASURE_BOXES_2 or CATEGORY_TREASURE_BOXES_3.\n\nr0: item"
         " ID\nreturn: True if the item is a treasure box, false otherwise",
+    )
+
+    IsStorableItem = Symbol(
+        [0xCCA8],
+        [0x200CCA8],
+        None,
+        "Checks if an item can be put into storage. Specifically checks for the Wonder"
+        " Egg, Poke, and Used TMs. Used TMs\nlikely can't be stored because the move"
+        " the TM teaches would be lost when sent to storage.\n\nr0: item_id\nreturn:"
+        " bool",
+    )
+
+    IsShoppableItem = Symbol(
+        [0xCCE0],
+        [0x200CCE0],
+        None,
+        "Checks if an item can be bought and sold from a Kecleon shop. Includes items"
+        " like the Gold Thorn, Poke, Golden\nMask, Amber Tear, etc. Also has a special"
+        " check to make sure an item's buy and sell price is more than 0.\n\nr0:"
+        " item_id\nreturn: bool",
+    )
+
+    IsValidTargetItem = Symbol(
+        [0xCDAC],
+        [0x200CDAC],
+        None,
+        "Checks if an item is a valid target item for missions. Returns true for any"
+        " item less than ITEM_UNNAMED_0x16B.\nAppears to check a list for valid items"
+        " above ITEM_UNNAMED_0x16B, but the list is empty?\n\nr0: item_id\nreturn:"
+        " bool",
+    )
+
+    IsItemUsableNow = Symbol(
+        [0xCDF8],
+        [0x200CDF8],
+        None,
+        "Checks if an item can be used right now. Returns true for all items that are"
+        " not in a shop. If the item is in a\nshop, specifically checks for TMs/HMs and"
+        " items that provide permanent buffs (Gummis, Sitrus Berry, Ginseng,"
+        " etc).\n\nr0: item pointer\nreturn: bool",
+    )
+
+    IsTicketItem = Symbol(
+        [0xCE74],
+        [0x200CE74],
+        None,
+        "Checks if an item is a ticket that can be used in the recycle shop"
+        " (ITEM_PRIZE_TICKET, ITEM_SILVER_TICKET,\nITEM_GOLD_TICKET, and"
+        " ITEM_PRISM_TICKET).\n\nr0: item_id\nreturn: bool",
     )
 
     InitItem = Symbol(
@@ -15155,6 +15213,15 @@ class NaOverlay29Functions:
         " entity pointer\nr1: defender entity pointer",
     )
 
+    ApplyStealthRockTrapEffect = Symbol(
+        [0x12C10],
+        [0x22EEE50],
+        None,
+        "Tries to apply the damage from the stealth rock trap but does nothing if the"
+        " defender is a rock type.\n\nr0: attacker entity pointer\nr1: defender entity"
+        " pointer",
+    )
+
     ApplyToxicSpikesTrapEffect = Symbol(
         [0x12CAC],
         [0x22EEEEC],
@@ -15199,6 +15266,19 @@ class NaOverlay29Functions:
         "Reveals traps within the monster's viewing range.\n\nr0: entity pointer",
     )
 
+    ShouldRunMonsterAi = Symbol(
+        [0x137AC],
+        [0x22EF9EC],
+        None,
+        "Checks a monster's monster_behavior to see whether or not the monster should"
+        " use AI. Only called on monsters with\na monster_behavior greater than or"
+        " equal to BEHAVIOR_FIXED_ENEMY. Returns false for BEHAVIOR_FIXED_ENEMY,"
+        " \nBEHAVIOR_WANDERING_ENEMY_0x8, BEHAVIOR_SECRET_BAZAAR_KIRLIA,"
+        " BEHAVIOR_SECRET_BAZAAR_MIME_JR,\nBEHAVIOR_SECRET_BAZAAR_SWALOT,"
+        " BEHAVIOR_SECRET_BAZAAR_LICKILICKY, and"
+        " BEHAVIOR_SECRET_BAZAAR_SHEDINJA.\n\nr0: monster entity pointer\nreturn: bool",
+    )
+
     DebugRecruitingEnabled = Symbol(
         [0x1382C],
         [0x22EFA6C],
@@ -15206,6 +15286,15 @@ class NaOverlay29Functions:
         "Always returns true. Called by SpecificRecruitCheck.\n\nSeems to be a function"
         " used during development to disable recruiting. If it returns false,"
         " SpecificRecruitCheck will also return false.\n\nreturn: true",
+    )
+
+    TryActivateIqBooster = Symbol(
+        [0x13834],
+        [0x22EFA74],
+        None,
+        "Increases the IQ of all team members holding the IQ Booster by"
+        " floor_properties::iq_booster_value amount unless the\nvalue is 0.\n\nNo"
+        " params.",
     )
 
     IsSecretBazaarNpcBehavior = Symbol(
@@ -15846,6 +15935,15 @@ class NaOverlay29Functions:
         " Pointer to monster entity",
     )
 
+    TryActivateFlashFireOnAllMonsters = Symbol(
+        [0x22F28],
+        [0x22FF168],
+        None,
+        "Checks every monster for apply_flash_fire_boost. If it's true, activates Flash"
+        " Fire for the monster and sets\napply_flash_fire_boost back to false.\n\nNo"
+        " params.",
+    )
+
     HasStatusThatPreventsActing = Symbol(
         [0x22F88],
         [0x22FF1C8],
@@ -16448,6 +16546,29 @@ class NaOverlay29Functions:
         " user\nr1: pointer to target",
     )
 
+    TryRemoveSnatchedMonsterFromDungeonStruct = Symbol(
+        [0x2A498],
+        [0x23066D8],
+        None,
+        "If the target is afflicted with snatch, change dungeon::snatch_monster and"
+        " dungeon::snatch_status_unique_id back\nto NULL and 0 respectively. This"
+        " function does not actually remove the status and visual flags for snatch"
+        " from\nthe monster, it simply removes it from the dungeon struct. After"
+        " calling, the user should ensure the monster\ndoes not still have the snatch"
+        " status.\n\nr0: pointer to user\nr1: pointer to target",
+    )
+
+    EndCurseClassStatus = Symbol(
+        [0x2A4E8],
+        [0x2306728],
+        None,
+        "Removes the target's curse (1), decoy (2), snatch (3), gastro acid (4), heal"
+        " block (5), or embargo (6) status\ndue to the action of the user, and prints"
+        " the event to the log.\n\nr0: pointer to user\nr1: pointer to target\nr2:"
+        " curse class status being afflicted after (0 is the status is only being"
+        " removed)\nr3: flag to log a message",
+    )
+
     EndLeechSeedClassStatus = Symbol(
         [0x2A684],
         [0x23068C4],
@@ -16463,6 +16584,25 @@ class NaOverlay29Functions:
         None,
         "Removes the target's sure shot, whiffer, set damage or focus energy status due"
         " to the action of the user, and prints the event to the log.\n\nr0: pointer to"
+        " user\nr1: pointer to target",
+    )
+
+    EndInvisibleClassStatus = Symbol(
+        [0x2A7C0],
+        [0x2306A00],
+        None,
+        "Removes the target's invisible, transformed, mobile, or slip status due to the"
+        " action of the user, and prints\nthe event to the log.\n\nr0: pointer to"
+        " user\nr1: pointer to target\nr2: flag to not log a message when removing slip"
+        " status",
+    )
+
+    EndBlinkerClassStatus = Symbol(
+        [0x2A8E8],
+        [0x2306B28],
+        None,
+        "Removes the target's blinker, cross-eyed, eyedrops, or dropeye status due to"
+        " the action of the user, and\nprints the event to the log.\n\nr0: pointer to"
         " user\nr1: pointer to target",
     )
 
@@ -16497,6 +16637,31 @@ class NaOverlay29Functions:
         "Tries to transfer the the negative blinker class status conditions from the"
         " user to\nthe target.\n\nr0: user entity pointer\nr1: target entity"
         " pointer\nreturn: Whether or not the status could be transferred",
+    )
+
+    EndFrozenStatus = Symbol(
+        [0x2BA38],
+        [0x2307C78],
+        None,
+        "Cures the target's freeze status due to the action of the user.\n\nr0: user"
+        " entity pointer\nr1: target entity pointer",
+    )
+
+    EndProtectStatus = Symbol(
+        [0x2BAD8],
+        [0x2307D18],
+        None,
+        "Ends the target's protect status due to the action of the user.\n\nr0: user"
+        " entity pointer\nr1: target entity pointer",
+    )
+
+    TryRestoreRoostTyping = Symbol(
+        [0x2BB14],
+        [0x2307D54],
+        None,
+        "Tries to restore the target's original typings before the Roost effect took"
+        " place. Does nothing if the target\nis not affected by Roost.\n\nr0: user"
+        " entity pointer\nr1: target entity pointer",
     )
 
     TryTriggerMonsterHouse = Symbol(
@@ -16668,6 +16833,15 @@ class NaOverlay29Functions:
         " the move didn't miss.",
     )
 
+    ApplyDamageAndEffectsWrapper = Symbol(
+        [0x30EDC],
+        [0x230D11C],
+        None,
+        "A wrapper for ApplyDamageAndEffects used for applying damage from sources such"
+        " as statuses, traps, liquid ooze,\nhunger, and possibly more.\n\nr0: monster"
+        " entity pointer\nr1: damage amount\nr2: damage message\nr3: damage source",
+    )
+
     CalcRecoilDamageFixed = Symbol(
         [0x30F4C],
         [0x230D18C],
@@ -16724,6 +16898,17 @@ class NaOverlay29Functions:
         " nothing happens. Otherwise, the mode is set to SHOPKEEPER_MODE_ATTACK_TEAM if"
         " the attacker is a team member, or SHOPKEEPER_MODE_ATTACK_ENEMIES"
         " otherwise.\n\nr0: attacker pointer\nr1: defender pointer",
+    )
+
+    UpdateShopkeeperModeAfterTrap = Symbol(
+        [0x3123C],
+        [0x230D47C],
+        None,
+        "Updates the shopkeeper mode of a monster in response to stepping on a"
+        " trap.\n\nIf in the normal shopkeeper mode (not aggressive), nothing happens."
+        " Otherwise, the mode is set to SHOPKEEPER_MODE_ATTACK_TEAM if the trap is from"
+        " a team member or SHOPKEEPER_MODE_ATTACK_ENEMIES otherwise.\n\nr0: shopkeeper"
+        " pointer\nr1: bool non team member trap",
     )
 
     ResetDamageCalcDiagnostics = Symbol(
@@ -16807,6 +16992,16 @@ class NaOverlay29Functions:
         "Gets the exclusive item boost for defense/special defense for a monster\n\nr0:"
         " entity pointer\nr1: move category index (0 for physical, 1 for"
         " special)\nreturn: boost",
+    )
+
+    TeamMemberHasItemActive = Symbol(
+        [0x33558],
+        [0x230F798],
+        None,
+        "Checks if any team member is holding a certain item and puts them into the"
+        " array given.\n\nr0: [output] pointer to array of monsters (expected to have"
+        " space for at least 4 pointers)\nr1: item ID\nreturn: number of team members"
+        " with the item active",
     )
 
     TeamMemberHasExclusiveItemEffectActive = Symbol(
@@ -16992,7 +17187,8 @@ class NaOverlay29Functions:
         None,
         "Inflicts the Shadow Hold (AKA Immobilized) status condition on a target"
         " monster if possible.\n\nr0: user entity pointer\nr1: target entity"
-        " pointer\nr2: flag to log a message on failure",
+        " pointer\nr2: flag to only perform the check for inflicting without actually"
+        " inflicting",
     )
 
     TryInflictIngrainStatus = Symbol(
@@ -17034,7 +17230,9 @@ class NaOverlay29Functions:
         None,
         "Lowers the specified offensive stat on the target monster.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: stat index\nr3: number of"
-        " stages\nstack[0]: ?\nstack[1]: ?",
+        " stages\nstack[0]: flag to check for being protected from stat"
+        " drops\nstack[1]: flag to log a message on failure for"
+        " IsProtectedFromStatDrops",
     )
 
     LowerDefensiveStat = Symbol(
@@ -17043,7 +17241,9 @@ class NaOverlay29Functions:
         None,
         "Lowers the specified defensive stat on the target monster.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: stat index\nr3: number of"
-        " stages\nstack[0]: ?\nstack[1]: ?",
+        " stages\nstack[0]: flag to check for being protected from stat"
+        " drops\nstack[1]: flag to log a message on failure for"
+        " IsProtectedFromStatDrops",
     )
 
     BoostOffensiveStat = Symbol(
@@ -17072,6 +17272,15 @@ class NaOverlay29Functions:
         " pointer\nr1: defender pointer\nreturn: 2 if Flash Fire should activate and"
         " raise the defender's boost level, 1 if Flash Fire should activate but the"
         " defender's boost level is maxed out, 0 otherwise.",
+    )
+
+    ActivateFlashFire = Symbol(
+        [0x37AA4],
+        [0x2313CE4],
+        None,
+        "Actually applies the Flash Fire boost with a message log and animation. Passes"
+        " the same monster for attacker and\ndefender, but the attacker goes"
+        " unused.\n\nr0: attacker pointer?\nr1: defender pointer",
     )
 
     ApplyOffensiveStatMultiplier = Symbol(
@@ -17208,6 +17417,23 @@ class NaOverlay29Functions:
         "Activate the Quick Feet ability on the defender, if the monster has it and"
         " it's active.\n\nr0: attacker pointer\nr1: defender pointer\nreturn: bool,"
         " whether or not the ability was activated",
+    )
+
+    TryInflictTerrifiedStatus = Symbol(
+        [0x38C20],
+        [0x2314E60],
+        None,
+        "Inflicts the Terrified status condition on a target monster if"
+        " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
+    )
+
+    TryInflictGrudgeStatus = Symbol(
+        [0x38C78],
+        [0x2314EB8],
+        None,
+        "Inflicts the Grudge status condition on a target monster if possible.\n\nr0:"
+        " user entity pointer\nr1: target entity pointer\nr2: flag to log a"
+        " message\nreturn: Whether or not the status could be inflicted",
     )
 
     TryInflictConfusedStatus = Symbol(
@@ -17522,13 +17748,31 @@ class NaOverlay29Functions:
         " status could be inflicted",
     )
 
-    RestoreMovePP = Symbol(
+    RestoreAllMovePP = Symbol(
         [0x3B9E0],
         [0x2317C20],
         None,
         "Restores the PP of all the target's moves by the specified amount.\n\nr0: user"
         " entity pointer\nr1: target entity pointer\nr2: PP to restore\nr3: flag to"
         " suppress message logging",
+    )
+
+    RestoreOneMovePP = Symbol(
+        [0x3BB18],
+        [0x2317D58],
+        None,
+        "Restores the PP the target's move in the specified move slot by the specified"
+        " amount.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: move"
+        " index\nr3: PP to restore\nstack[0]: flag to suppress message logging",
+    )
+
+    RestoreRandomMovePP = Symbol(
+        [0x3BC48],
+        [0x2317E88],
+        None,
+        "Restores the PP of a random one of the target's moves by the specified"
+        " amount.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: PP to"
+        " restore\nr3: flag to suppress message logging",
     )
 
     ApplyProteinEffect = Symbol(
@@ -17796,6 +18040,15 @@ class NaOverlay29Functions:
         " otherwise.\n\nr0: pointer to entity\nreturn: int",
     )
 
+    MistIsActive = Symbol(
+        [0x3D58C],
+        [0x23197CC],
+        None,
+        "Checks if the monster is under the effect of Mist.\n\nReturns 1 if the effects"
+        " is a status, 2 if it comes from an exclusive item, 0 otherwise.\n\nr0:"
+        " pointer to entity\nreturn: int",
+    )
+
     Conversion2IsActive = Symbol(
         [0x3D5D4],
         [0x2319814],
@@ -17896,6 +18149,46 @@ class NaOverlay29Functions:
         None,
         "Gets the current Weather Ball type for the given entity, based on the apparent"
         " weather.\n\nr0: entity pointer\nreturn: type ID",
+    )
+
+    ActivateMotorDrive = Symbol(
+        [0x3EE20],
+        [0x231B060],
+        None,
+        "Displays the message and applies the speed boost for the ability Motor"
+        " Drive.\n\nr0: monster pointer",
+    )
+
+    TryActivateFrisk = Symbol(
+        [0x3EE64],
+        [0x231B0A4],
+        None,
+        "Tries to activate the Frisk ability on the defender. The attacker has to be on"
+        " the team and the defender has to be\nholding an item or be able to drop a"
+        " treasure box.\n\nr0: attacker pointer\nr1: defender pointer",
+    )
+
+    TryActivateBadDreams = Symbol(
+        [0x3EF78],
+        [0x231B1B8],
+        None,
+        "Tries to apply the damage from Bad Dreams to all sleeping monsters in the"
+        " room.\n\nr0: monster pointer",
+    )
+
+    ActivateStench = Symbol(
+        [0x3F0FC],
+        [0x231B33C],
+        None,
+        "Activate the Stench ability on the monster.\n\nr0: monster pointer",
+    )
+
+    TryActivateSteadfast = Symbol(
+        [0x3F124],
+        [0x231B364],
+        None,
+        "Activate the Steadfast ability on the defender, if the monster has it and it's"
+        " active.\n\nr0: attacker pointer\nr1: defender pointer",
     )
 
     IsInSpawnList = Symbol(
@@ -18483,9 +18776,8 @@ class NaOverlay29Functions:
         None,
         "Tries to change the weather based upon the information for each weather type"
         " in the\ndungeon struct. Returns whether the weather was succesfully changed"
-        " or not.\n\nr0: bool to not play the weather change animation?\nr1: bool to"
-        " force weather change? Like play the animation and text for the"
-        " weather?\nreturn: True if the weather changed",
+        " or not.\n\nr0: bool to log message and play animation?\nr1: bool to force"
+        " weather change and animation?\nreturn: True if the weather changed",
     )
 
     DigitCount = Symbol(
@@ -18553,11 +18845,67 @@ class NaOverlay29Functions:
         " which is for Sealed Chambers.\n\nreturn: bool",
     )
 
+    TrySpawnGoldenChamber = Symbol(
+        [0x59FE4],
+        [0x2336224],
+        None,
+        "Changes the tileset and fixed room id of the floor for the Golden Chamber if"
+        " the floor should be a\nGolden Chamber.\n\nNo params.",
+    )
+
+    CountItemsOnFloorForAcuteSniffer = Symbol(
+        [0x5A020],
+        [0x2336260],
+        None,
+        "Counts the number of items on the floor by checking every tile for an item and"
+        " stores it into\ndungeon::item_sniffer_item_count\n\nNo params.",
+    )
+
+    GetStairsSpawnPosition = Symbol(
+        [0x5A180],
+        [0x23363C0],
+        None,
+        "Gets the spawn position for the stairs and stores it at the passed"
+        " pointers.\n\nr0: [output] pointer to x coordinate\nr1: [output] pointer to y"
+        " coordinate",
+    )
+
+    PositionIsOnStairs = Symbol(
+        [0x5A1AC],
+        [0x23363EC],
+        None,
+        "Checks if this location is on top of the staircase. In the game it is only"
+        " used to check if an outlaw has reached\nthe staircase.\n\nr0: x"
+        " coordinate\nr1: y coordinate\nreturn: bool",
+    )
+
     GetStairsRoom = Symbol(
         [0x5A1E8],
         [0x2336428],
         None,
         "Returns the index of the room that contains the stairs\n\nreturn: Room index",
+    )
+
+    GetDefaultTileTextureId = Symbol(
+        [0x5A210],
+        [0x2336450],
+        None,
+        "Returns the texture_id of the default tile?\n\nreturn: texture_id",
+    )
+
+    DetermineAllTilesWalkableNeighbors = Symbol(
+        [0x5A80C],
+        [0x2336A4C],
+        None,
+        "Evaluates the walkable_neighbor_flags for all tiles.\n\nNo params.",
+    )
+
+    DetermineTileWalkableNeighbors = Symbol(
+        [0x5A844],
+        [0x2336A84],
+        None,
+        "Evaluates the walkable_neighbor_flags for the this tile by checking the 8"
+        " adjacent tiles.\n\nr0: x coordinate\nr1: y coordinate",
     )
 
     UpdateTrapsVisibility = Symbol(
@@ -18593,6 +18941,30 @@ class NaOverlay29Functions:
         " discovery radius depends on the visibility range of the floor. If"
         " display_data::blinded is true, the function returns early without doing"
         " anything.\n\nr0: Position around which the map should be discovered",
+    )
+
+    PositionHasItem = Symbol(
+        [0x5B8EC],
+        [0x2337B2C],
+        None,
+        "Checks if the tile at the position has an item on it.\n\nr0: Position to"
+        " check\nreturn: bool",
+    )
+
+    PositionHasMonster = Symbol(
+        [0x5B928],
+        [0x2337B68],
+        None,
+        "Checks if the tile at the position has a monster on it.\n\nr0: Position to"
+        " check\nreturn: bool",
+    )
+
+    TrySmashWall = Symbol(
+        [0x5B95C],
+        [0x2337B9C],
+        None,
+        "Checks if the tile at the position is a wall. If so, smash it (turn it into a"
+        " floor tile), play an animation\n\nr0: Wall position to smash\nreturn: bool",
     )
 
     IsWaterTileset = Symbol(
@@ -19722,6 +20094,15 @@ class NaOverlay29Functions:
         " members has any of the specified flags set in its flags field.\n\nr0: Flag(s)"
         " to check (0 = f_exists, 1 = f_in_shop, 2 = f_unpaid, etc.)\nreturn: True if"
         " any of the items of the team has the specified flags set, false otherwise.",
+    )
+
+    AddHeldItemToBag = Symbol(
+        [0x6ACD4],
+        [0x2346F14],
+        None,
+        "Adds the monster's held item to the bag. This is only called on monsters on"
+        " the exploration team.\nmonster::is_not_team_member should be checked to be"
+        " false before calling.\n\nr0: monster pointer",
     )
 
     GenerateItem = Symbol(

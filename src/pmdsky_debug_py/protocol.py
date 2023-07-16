@@ -606,7 +606,37 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsLosableItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsTreasureBox: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsStorableItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsShoppableItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsValidTargetItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsItemUsableNow: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsTicketItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10219,6 +10249,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ApplyStealthRockTrapEffect: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ApplyToxicSpikesTrapEffect: Symbol[
         Optional[List[int]],
         None,
@@ -10244,7 +10279,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ShouldRunMonsterAi: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DebugRecruitingEnabled: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryActivateIqBooster: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10574,6 +10619,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryActivateFlashFireOnAllMonsters: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     HasStatusThatPreventsActing: Symbol[
         Optional[List[int]],
         None,
@@ -10889,12 +10939,32 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryRemoveSnatchedMonsterFromDungeonStruct: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndCurseClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     EndLeechSeedClassStatus: Symbol[
         Optional[List[int]],
         None,
     ]
 
     EndSureShotClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndInvisibleClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndBlinkerClassStatus: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10915,6 +10985,21 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TransferNegativeBlinkerClassStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndFrozenStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EndProtectStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryRestoreRoostTyping: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10979,6 +11064,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ApplyDamageAndEffectsWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     CalcRecoilDamageFixed: Symbol[
         Optional[List[int]],
         None,
@@ -11000,6 +11090,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     UpdateShopkeeperModeAfterAttack: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UpdateShopkeeperModeAfterTrap: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11045,6 +11140,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ExclusiveItemDefenseBoost: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TeamMemberHasItemActive: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11194,6 +11294,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ActivateFlashFire: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ApplyOffensiveStatMultiplier: Symbol[
         Optional[List[int]],
         None,
@@ -11260,6 +11365,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TryActivateQuickFeet: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictTerrifiedStatus: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryInflictGrudgeStatus: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11434,7 +11549,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    RestoreMovePP: Symbol[
+    RestoreAllMovePP: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    RestoreOneMovePP: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    RestoreRandomMovePP: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11599,6 +11724,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    MistIsActive: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     Conversion2IsActive: Symbol[
         Optional[List[int]],
         None,
@@ -11640,6 +11770,31 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetEntityWeatherBallType: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ActivateMotorDrive: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryActivateFrisk: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryActivateBadDreams: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ActivateStench: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TryActivateSteadfast: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11984,7 +12139,42 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TrySpawnGoldenChamber: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CountItemsOnFloorForAcuteSniffer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetStairsSpawnPosition: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PositionIsOnStairs: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetStairsRoom: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetDefaultTileTextureId: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DetermineAllTilesWalkableNeighbors: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    DetermineTileWalkableNeighbors: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -12005,6 +12195,21 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DiscoverMinimap: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PositionHasItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PositionHasMonster: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    TrySmashWall: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -12575,6 +12780,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     CheckTeamItemsFlags: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AddHeldItemToBag: Symbol[
         Optional[List[int]],
         None,
     ]
