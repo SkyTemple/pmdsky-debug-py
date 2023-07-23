@@ -1126,7 +1126,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetInfoMoveCheckId: Symbol[
+    InitMoveCheckId: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1766,6 +1766,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetBagNameString: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetDungeonResultString: Symbol[
         Optional[List[int]],
         None,
@@ -1872,6 +1877,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     LoadAlert: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    PrintClearMark: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -2046,7 +2056,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CheckChecksum: Symbol[
+    CheckChecksumInvalid: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -2671,6 +2681,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetRankupPoints: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetRank: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SubFixedPoint: Symbol[
         Optional[List[int]],
         None,
@@ -3051,7 +3071,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetLvlStats: Symbol[
+    GetLvlUpEntry: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetEncodedHalfword: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -7739,6 +7764,11 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetDungeonMapPos: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     WorldMapSetMode: Symbol[
         Optional[List[int]],
         None,
@@ -9709,6 +9739,11 @@ Overlay28Protocol = SectionProtocol[
 
 
 class Overlay29FunctionsProtocol(Protocol):
+    GetWeatherColorTable: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DungeonAlloc: Symbol[
         Optional[List[int]],
         None,
@@ -9904,6 +9939,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    AnimationDelayOrSomething: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     UpdateStatusIconFlags: Symbol[
         Optional[List[int]],
         None,
@@ -9935,6 +9975,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     LoadMappaFileAttributes: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetItemIdToSpawn: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10114,7 +10159,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetItemToUseByIndex: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetItemToUse: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetItemAction: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    RemoveUsedItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10325,6 +10385,21 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ChangeLeader: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UseSingleUseItemWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UseSingleUseItem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UseThrowableItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10569,6 +10644,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitEnemySpawnStats: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitEnemyStatsAndMoves: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SpawnTeam: Symbol[
         Optional[List[int]],
         None,
@@ -10605,6 +10690,21 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SpawnShopkeepers: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMaxHpAtLevel: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetOffensiveStatAtLevel: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetDefensiveStatAtLevel: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10875,6 +10975,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     LevelUp: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMonsterMoves: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -12754,12 +12859,17 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    SpawnEnemyItemDropWrapper: Symbol[
+    RemoveGroundItem: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    SpawnEnemyItemDrop: Symbol[
+    SpawnDroppedItemWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SpawnDroppedItem: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -12785,6 +12895,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     AddHeldItemToBag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    RemoveEmptyItemsInBagWrapper: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -14306,6 +14421,16 @@ class RamDataProtocol(Protocol):
     ]
 
     TEAM_NAME: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LEVEL_UP_DATA_MONSTER_ID: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    LEVEL_UP_DATA_DECOMPRESS_BUFFER: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

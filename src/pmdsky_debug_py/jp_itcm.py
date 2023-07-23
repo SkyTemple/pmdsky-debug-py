@@ -1769,11 +1769,13 @@ class JpItcmArm9Functions:
         " the ginseng boost to 0.\n\nr0: pointer to move to initialize\nr1: move ID",
     )
 
-    GetInfoMoveCheckId = Symbol(
+    InitMoveCheckId = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: move\nr1: move ID",
+        "Same as InitMove, but the function ensures that the specified ID is not 0. If"
+        " it is, the move is initialized as invalid and nothing else happens.\n\nr0:"
+        " move\nr1: move ID",
     )
 
     GetInfoMoveGround = Symbol(
@@ -1804,7 +1806,12 @@ class JpItcmArm9Functions:
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: ?",
+        "Given the ID of a monster in the current dungeon, returns a pointer to the"
+        " list of moves it learns by leveling up and the level in which each move is"
+        " learnt.\n\nThe list contains pairs of <encoded move ID, level>. The move ID"
+        " is encoded and can be 1 or 2 bytes long. GetEncodedHalfword must be used to"
+        " decode it. The end of the list is marked by a null byte.\n\nr0: monster"
+        " ID\nreturn: Pointer to encoded level-up move list",
     )
 
     IsInvalidMoveset = Symbol(
@@ -2706,6 +2713,16 @@ class JpItcmArm9Functions:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    GetBagNameString = Symbol(
+        None,
+        None,
+        None,
+        "Returns 'One-Item Inventory' or 'Treasure Bag' depending on the size of the"
+        " bag.\n\nr0: [output] Pointer to the buffer where the string will be"
+        " written\nreturn: Pointer to the buffer where the string was written (in other"
+        " words, the same value passed in r0)",
+    )
+
     GetDungeonResultString = Symbol(
         None,
         None,
@@ -2877,6 +2894,17 @@ class JpItcmArm9Functions:
         None,
         "Load and initialise the alert sprite, storing the result in"
         " ALERT_ANIMATION_CONTROL\n\nNo params.",
+    )
+
+    PrintClearMark = Symbol(
+        None,
+        None,
+        None,
+        "Prints the specified clear mark on the screen.\n\nClear marks are shown on the"
+        " save file load screen. They are used to show which plot milestones have"
+        " already been completed.\n\nr0: Clear mark ID\nr1: X pos (unknown units,"
+        " usually ranges between 3 and 27)\nr2: Y pos (unknown units, normally"
+        " 14)\nr3: ?",
     )
 
     CreateNormalMenu = Symbol(
@@ -3096,15 +3124,18 @@ class JpItcmArm9Functions:
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer\nr1: size",
+        "Calculates the checksum of the save file and stores it at the start of the"
+        " data.\n\nr0: Pointer to a buffer containing the save data\nr1: Size in bytes",
     )
 
-    CheckChecksum = Symbol(
+    CheckChecksumInvalid = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer\nr1: size\nreturn:"
-        " check_ok",
+        "Calculates the checksum of the save file and compares it with the one stored"
+        " in it.\n\nr0: Pointer to a buffer containing the save data\nr1: Size in"
+        " bytes\nreturn: True if the calculated and stored checksums don't match, false"
+        " if they do.",
     )
 
     NoteSaveBase = Symbol(
@@ -4073,6 +4104,24 @@ class JpItcmArm9Functions:
         None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer"
     )
 
+    GetRankupPoints = Symbol(
+        None,
+        None,
+        None,
+        "Returns the number of points required to reach the next rank.\n\nIf"
+        " PERFORMANCE_PROGRESS_LIST[8] is 0 and the current rank is RANK_MASTER, or if"
+        " the current rank is RANK_GUILDMASTER, returns 0.\n\nreturn: Points required"
+        " to reach the next rank",
+    )
+
+    GetRank = Symbol(
+        None,
+        None,
+        None,
+        "Returns the team's rank\n\nIf PERFORMANCE_PROGRESS_LIST[8] is 0, the maximum"
+        " rank that can be returned is RANK_MASTER.\n\nreturn: Rank",
+    )
+
     SubFixedPoint = Symbol(
         None,
         None,
@@ -4670,12 +4719,29 @@ class JpItcmArm9Functions:
         " ID\nreturn: bool",
     )
 
-    GetLvlStats = Symbol(
+    GetLvlUpEntry = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] level stats\nr1:"
-        " monster ID\nr2: level",
+        "Gets the level-up entry of the given monster ID at the specified level.\n\nThe"
+        " monster's entire level up data is also decompressed to"
+        " LEVEL_UP_DATA_DECOMPRESS_BUFFER, and its ID is stored in"
+        " LEVEL_UP_DATA_MONSTER_ID.\n\nr0: [output] Level-up entry\nr1: monster ID\nr2:"
+        " level",
+    )
+
+    GetEncodedHalfword = Symbol(
+        None,
+        None,
+        None,
+        "Decodes a 2-byte value that may be encoded using 1 or 2 bytes and writes it to"
+        " the specified buffer.\n\nThe encoding system uses the most significant bit of"
+        " the first byte to signal if the value is encoded as a single byte or as a"
+        " halfword. If the bit is unset, the value is read as (encoded byte) & 0x7F. If"
+        " it's set, the value is read as ((first encoded byte) & 0x7F << 7) | (second"
+        " encoded byte) & 0x7F.\n\nr0: Pointer to encoded value\nr1: [output] Buffer"
+        " where the resulting 2-byte value will be stored.\nreturn: Pointer to the next"
+        " byte to decode",
     )
 
     GetEvoFamily = Symbol(
@@ -11823,6 +11889,18 @@ class JpItcmOverlay11Functions:
         " swap shop.\n\nr0: ?\nr1: ?",
     )
 
+    GetDungeonMapPos = Symbol(
+        None,
+        None,
+        None,
+        "Checks if a dungeon should be displayed on the map and the position where it"
+        " should be displayed if so.\n\nr0: [Output] Buffer where the coordinates of"
+        " the map marker will be stored. The coordinates are shifted 8 bits to the"
+        " left, so they are probably fixed-point numbers instead of integers.\nr1:"
+        " Dungeon ID\nreturn: True if the dungeon should be displayed on the map, false"
+        " otherwise.",
+    )
+
     WorldMapSetMode = Symbol(
         None,
         None,
@@ -13613,6 +13691,15 @@ class JpItcmOverlay28Section:
 
 
 class JpItcmOverlay29Functions:
+    GetWeatherColorTable = Symbol(
+        None,
+        None,
+        None,
+        "Gets a pointer to the floor's color table given the current weather.\n\nThe"
+        " returned table contains 1024 color entries.\n\nr0: Weather ID\nreturn: color"
+        " table pointer",
+    )
+
     DungeonAlloc = Symbol(
         None,
         None,
@@ -13990,6 +14077,15 @@ class JpItcmOverlay29Functions:
         " PlayEffectAnimationEntity",
     )
 
+    AnimationDelayOrSomething = Symbol(
+        None,
+        None,
+        None,
+        "Called whenever most (all?) animations are played. Does not return until the"
+        " animation is over.\n\nMight wait until the animation is done? Contains"
+        " several loops that call AdvanceFrame.\n\nr0: ?",
+    )
+
     UpdateStatusIconFlags = Symbol(
         None,
         None,
@@ -14051,12 +14147,23 @@ class JpItcmOverlay29Functions:
         None,
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nThis function processes the"
-        " spawn list of the current floor, checking which species can spawn, capping"
-        " the amount of spawnable species on the floor to 14, randomly choosing which"
-        " 14 species will spawn and ensuring that the sprite size of all the species"
-        " combined does not exceed the maximum of 0x58000 bytes (352 KB). Kecleon and"
-        " the Decoy are always included in the random selection.\n\nr0:"
-        " quick_saved\nr1: ???\nr2: special_process",
+        " monster spawn list of the current floor, checking which species can spawn,"
+        " capping the amount of spawnable species on the floor to 14, randomly choosing"
+        " which 14 species will spawn and ensuring that the sprite size of all the"
+        " species combined does not exceed the maximum of 0x58000 bytes (352 KB)."
+        " Kecleon and the Decoy are always included in the random selection.\nThe"
+        " function also processes the floor's item spawn lists.\n\nr0: quick_saved\nr1:"
+        " ???\nr2: special_process",
+    )
+
+    GetItemIdToSpawn = Symbol(
+        None,
+        None,
+        None,
+        "Randomly picks an item to spawn using one of the floor's item spawn lists and"
+        " returns its ID.\n\nIf the function fails to properly choose an item (due to,"
+        " for example, a corrupted item list), ITEM_POKE is returned.\n\nr0: Which item"
+        " list to use\nreturn: Item ID",
     )
 
     MonsterSpawnListPartialCopy = Symbol(
@@ -14085,8 +14192,9 @@ class JpItcmOverlay29Functions:
         None,
         None,
         None,
-        "Get the id of the monster to be randomly spawned.\n\nr0: the spawn weight to"
-        " use (0 for normal, 1 for monster house)\nreturn: monster ID",
+        "Randomly picks a monster to spawn using the floor's monster spawn list and"
+        " returns its ID.\n\nr0: the spawn weight to use (0 for normal, 1 for monster"
+        " house)\nreturn: monster ID",
     )
 
     GetMonsterLevelToSpawn = Symbol(
@@ -14425,6 +14533,24 @@ class JpItcmOverlay29Functions:
         " Pointer to the monster's action field\nr1: Monster ID",
     )
 
+    GetItemToUseByIndex = Symbol(
+        None,
+        None,
+        None,
+        "Returns a pointer to the item that is about to be used by a monster given its"
+        " index.\n\nr0: Entity pointer\nr1: Item index\nreturn: Pointer to the item",
+    )
+
+    GetItemToUse = Symbol(
+        None,
+        None,
+        None,
+        "Returns a pointer to the item that is about to be used by a monster.\n\nr0:"
+        " Entity pointer\nr1: Parameter index in"
+        " monster::action_data::action_parameters. Will be used to use to determine the"
+        " index of the used item.\nr2: Unused\nreturn: Pointer to the item",
+    )
+
     GetItemAction = Symbol(
         None,
         None,
@@ -14437,6 +14563,16 @@ class JpItcmOverlay29Functions:
         " (since items always have a 'throw' option), since a return value of"
         " ACTION_NOTHING prevents the option from showing up in the menu.\n\nr0: Item"
         " ID\nreturn: Action ID associated with the specified item",
+    )
+
+    RemoveUsedItem = Symbol(
+        None,
+        None,
+        None,
+        "Removes an item from the bag or from the floor after using it\n\nr0: Pointer"
+        " to the entity that used the item\nr1: Parameter index in"
+        " monster::action_data::action_parameters. Will be used to use to determine the"
+        " index of the used item.",
     )
 
     AddDungeonSubMenuOption = Symbol(
@@ -14836,6 +14972,35 @@ class JpItcmOverlay29Functions:
         " leaders, such as having stolen from a Kecleon shop. If one of those"
         " situations prevents changing leaders, prints the corresponding message to the"
         " message log.\n\nNo params.",
+    )
+
+    UseSingleUseItemWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Same as UseSingleUseItem, but the second parameter is determined automatically"
+        " from monster::action_data::action_parameter[1]::action_use_idx.\n\nr0: User",
+    )
+
+    UseSingleUseItem = Symbol(
+        None,
+        None,
+        None,
+        "Makes a monster use a single-use item. The item is deleted afterwards.\n\nThe"
+        " item to use is determined by the user's"
+        " monster::action_data::action_parameter[0].\n\nr0: User (monster who used the"
+        " item)\nr1: Target (monster that consumes the item)",
+    )
+
+    UseThrowableItem = Symbol(
+        None,
+        None,
+        None,
+        "Makes a monster use a throwable item.\n\nThe item to use is determined by"
+        " monster::action_data::action_parameter[0].\nIf the item's category is"
+        " CATEGORY_THROWN_LINE or CATEGORY_THROWN_ARC, the game will attempt to"
+        " decrement the count of the used item by 1. If it's not or there's only 1 item"
+        " left, it is destroyed instead.\n\nr0: User (monster who used the item)",
     )
 
     ResetDamageData = Symbol(
@@ -15264,6 +15429,24 @@ class JpItcmOverlay29Functions:
         " spawn action, after converting it to a direction.)",
     )
 
+    InitEnemySpawnStats = Symbol(
+        None,
+        None,
+        None,
+        "Initializes dungeon::enemy_spawn_stats. Might do something else too.\n\nNo"
+        " params.",
+    )
+
+    InitEnemyStatsAndMoves = Symbol(
+        None,
+        None,
+        None,
+        "Initializes the HP, Atk, Sp. Atk, Def, Sp. Def and moveset of a newly spawned"
+        " enemy. Might do something else too.\n\nr0: Pointer to the monster's move"
+        " list\nr1: Pointer to the monster's current HP\nr2: Pointer to the monster's"
+        " offensive stats\nr3: Pointer to the monster's defensive stats",
+    )
+
     SpawnTeam = Symbol(
         None,
         None,
@@ -15339,6 +15522,32 @@ class JpItcmOverlay29Functions:
         None,
         "Spawns all the shopkeepers in the dungeon struct's shopkeeper_spawns"
         " array.\n\nNo params.",
+    )
+
+    GetMaxHpAtLevel = Symbol(
+        None,
+        None,
+        None,
+        "Returns the max HP of a monster given its level.\n\nr0: Monster ID\nr1:"
+        " Monster level\nreturn: Max HP at the given level",
+    )
+
+    GetOffensiveStatAtLevel = Symbol(
+        None,
+        None,
+        None,
+        "Returns the Atk / Sp. Atk of a monster given its level, capped to 255.\n\nr0:"
+        " Monster ID\nr1: Monster level\nr2: Stat index (0: Atk, 1: Sp. Atk)\nreturn:"
+        " Atk / Sp. Atk at the given level",
+    )
+
+    GetDefensiveStatAtLevel = Symbol(
+        None,
+        None,
+        None,
+        "Returns the Def / Sp. Def of a monster given its level, capped to 255.\n\nr0:"
+        " Monster ID\nr1: Monster level\nr2: Stat index (0: Def, 1: Sp. Def)\nreturn:"
+        " Def / Sp. Def at the given level",
     )
 
     GetOutlawSpawnData = Symbol(
@@ -15854,6 +16063,19 @@ class JpItcmOverlay29Functions:
         " the team.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: bool"
         " message flag?\nr3: bool show level up dialog (for example 'Hey, I leveled"
         " up!' with a portrait)?\nreturn: success flag",
+    )
+
+    GetMonsterMoves = Symbol(
+        None,
+        None,
+        None,
+        "Determines the moveset of a newly spawned monster given its species and"
+        " level.\n\nThe function loops the monster's learnset, adding moves to the list"
+        " in level-up order. Once all four slots are filled up, a random existing move"
+        " gets replaced to make room for the new one. This means that the monster will"
+        " always have the latest move it can learn given its level.\n\nr0: [output]"
+        " Pointer to move ID list (4 entries, 2 bytes each)\nr1: Monster ID\nr2:"
+        " Monster level",
     )
 
     EvolveMonster = Symbol(
@@ -19451,22 +19673,35 @@ class JpItcmOverlay29Functions:
         " success flag",
     )
 
-    SpawnEnemyItemDropWrapper = Symbol(
+    RemoveGroundItem = Symbol(
         None,
         None,
         None,
-        "Wraps SpawnEnemyItemDrop in a more convenient interface.\n\nr0: entity\nr1:"
+        "Removes an item lying on the ground.\n\nAlso updates dungeon::n_items.\n\nr0:"
+        " Position where the item is located\nr1: If true, update"
+        " dungeon::poke_buy_kecleon_shop and dungeon::poke_sold_kecleon_shop",
+    )
+
+    SpawnDroppedItemWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Wraps SpawnDroppedItem in a more convenient interface.\n\nr0: entity\nr1:"
         " position\nr2: item\nr3: ?",
     )
 
-    SpawnEnemyItemDrop = Symbol(
+    SpawnDroppedItem = Symbol(
         None,
         None,
         None,
-        "Appears to spawn an enemy item drop at a specified location, with a log"
-        " message.\n\nr0: entity\nr1: item entity\nr2: item info\nr3: ?\nstack[0]:"
-        " pointer to int16_t[2] for x/y direction (corresponding to"
-        " DIRECTIONS_XY)\nstack[1]: ?",
+        "Used to spawn an item that was thrown or dropped, with a log"
+        " message.\n\nDetermines where exactly the item will land, if it bounces on a"
+        " trap, etc.\nUsed for thrown items that hit a wall, for certain enemy drops"
+        " (such as Unown stones or Treasure Boxes), for certain moves (like Pay Day and"
+        " Knock Off), and possibly other things.\n\nr0: entity that dropped or threw"
+        " the item\nr1: item entity. Contains the coordinates where the item should try"
+        " to land first.\nr2: item info\nr3: ?\nstack[0]: pointer to int16_t[2] for x/y"
+        " direction (corresponding to DIRECTIONS_XY)\nstack[1]: ?",
     )
 
     TryGenerateUnownStoneDrop = Symbol(
@@ -19514,6 +19749,14 @@ class JpItcmOverlay29Functions:
         "Adds the monster's held item to the bag. This is only called on monsters on"
         " the exploration team.\nmonster::is_not_team_member should be checked to be"
         " false before calling.\n\nr0: monster pointer",
+    )
+
+    RemoveEmptyItemsInBagWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Calls RemoveEmptyItemsInBag, then some other function that seems to update the"
+        " minimap, the map surveyor flag, and other stuff.\n\nNo params.",
     )
 
     GenerateItem = Symbol(
@@ -21566,6 +21809,23 @@ class JpItcmRamData:
         " Presumably encoded with the ANSI/Shift JIS encoding the game typically"
         " uses.\n\nThis is presumably part of a larger struct, together with other"
         " nearby data.",
+    )
+
+    LEVEL_UP_DATA_MONSTER_ID = Symbol(
+        None,
+        None,
+        None,
+        "ID of the monster whose level-up data is currently stored in"
+        " LEVEL_UP_DATA_DECOMPRESS_BUFFER.",
+    )
+
+    LEVEL_UP_DATA_DECOMPRESS_BUFFER = Symbol(
+        None,
+        None,
+        None,
+        "Buffer used to stored a monster's decompressed level up data. Used by"
+        " GetLvlUpEntry.\n\nExact size is a guess (100 levels * 12 bytes per entry ="
+        " 1200 = 0x4B0).",
     )
 
     TEAM_MEMBER_TABLE = Symbol(
