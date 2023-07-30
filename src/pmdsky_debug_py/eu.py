@@ -4683,7 +4683,7 @@ class EuArm9Functions:
         [0x52BAC],
         [0x2052BAC],
         None,
-        "Gets the mobility type for a given monster.\n\nr0: monster ID\nreturn:"
+        "Gets the mobility type for a given monster species.\n\nr0: species ID\nreturn:"
         " mobility type",
     )
 
@@ -10545,6 +10545,16 @@ class EuOverlay10Functions:
         " pointer)",
     )
 
+    IsBackgroundTileset = Symbol(
+        [0x5B0C],
+        [0x22C2ECC],
+        None,
+        "Given a tileset ID, returns whether it's a background or a regular"
+        " tileset\n\nIn particular, returns r0 >= 0xAA\n\nr0: Tileset ID\nreturn: True"
+        " if the tileset ID corresponds to a background, false if it corresponds to a"
+        " regular tileset",
+    )
+
     CheckEndDungeon = Symbol(
         [0x5E24],
         [0x22C31E4],
@@ -16078,6 +16088,25 @@ class EuOverlay29Functions:
         " because of a status problem, false otherwise.",
     )
 
+    GetMobilityTypeCheckSlip = Symbol(
+        [0x234D8],
+        [0x2300058],
+        None,
+        "Returns the mobility type of a monster species, accounting for"
+        " STATUS_SLIP.\n\nThe function also converts MOBILITY_LAVA and MOBILITY_WATER"
+        " to other values if required.\n\nr0: Monster species\nr1: True if the monster"
+        " can walk on water\nreturn: Mobility type",
+    )
+
+    GetMobilityTypeCheckSlipAndFloating = Symbol(
+        [0x23520],
+        [0x23000A0],
+        None,
+        "Returns the mobility type of a monster, accounting for STATUS_SLIP and the"
+        " result of a call to IsFloating.\n\nr0: Entity pointer\nr1: Monster"
+        " species\nreturn: Mobility type",
+    )
+
     IsInvalidSpawnTile = Symbol(
         [0x23570],
         [0x23000F0],
@@ -16087,6 +16116,27 @@ class EuOverlay29Functions:
         " wall\n- The monster does not have the required mobility to stand on the"
         " tile\n\nr0: monster ID\nr1: tile pointer\nreturn: true means the monster"
         " CANNOT spawn on this tile",
+    )
+
+    GetMobilityTypeAfterIqSkills = Symbol(
+        [0x23774],
+        [0x23002F4],
+        None,
+        "Modifies the given mobility type to account for All-Terrain Hiker and Absolute"
+        " Mover, if the user has them.\n\nr0: Entity pointer\nr1: Mobility"
+        " type\nreturn: New mobility type, after accounting for the IQ skills mentioned"
+        " above",
+    )
+
+    CannotStandOnTile = Symbol(
+        [0x23B48],
+        [0x23006C8],
+        None,
+        "Checks if a given monster cannot stand on a given tile.\n\nReasons include:\n-"
+        " The coordinates of the tile are out of bounds\n- There's another monster on"
+        " the tile\n- The monster does not have the required mobility to stand on the"
+        " tile\n\nr0: Entity pointer\nr1: Tile pointer\nreturn: True if the monster"
+        " cannot stand on the specified tile, false if it can",
     )
 
     CalcSpeedStage = Symbol(
@@ -16267,16 +16317,16 @@ class EuOverlay29Functions:
         " pointer\nr1: Direction to check\nreturn: bool",
     )
 
-    GetFinalMobilityType = Symbol(
+    GetDirectionalMobilityType = Symbol(
         [0x24DDC],
         [0x230195C],
         None,
         "Returns the mobility type of a monster, after accounting for things that could"
-        " affect it (like items or IQ skills)\n\nIf the specified direction is"
-        " DIR_NONE, direction checks are skipped. If it's not, MOBILITY_INTANGIBLE is"
-        " only returned if the direction is not diagonal.\n\nr0: Monster entity"
-        " pointer\nr1: Base mobility type\nr2: Direction of mobility\nreturn: Final"
-        " mobility type",
+        " affect it.\n\nList of checks: Mobile status, Mobile Scarf, All-Terrain Hiker"
+        " and Absolute Mover.\n\nIf the specified direction is DIR_NONE, direction"
+        " checks are skipped. If it's not, MOBILITY_INTANGIBLE is only returned if the"
+        " direction is not diagonal.\n\nr0: Monster entity pointer\nr1: Base mobility"
+        " type\nr2: Direction of mobility\nreturn: Final mobility type",
     )
 
     IsMonsterCornered = Symbol(
@@ -18056,13 +18106,13 @@ class EuOverlay29Functions:
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
-    HasConditionalGroundImmunity = Symbol(
+    IsFloating = Symbol(
         [0x3C92C],
         [0x23194AC],
         None,
-        "Checks if a monster is currently immune to Ground-type moves for reasons other"
-        " than typing and ability.\n\nThis includes checks for Gravity and Magnet"
-        " Rise.\n\nr0: entity pointer\nreturn: bool",
+        "Checks if a monster is currently floating for reasons other than its typing or"
+        " ability.\n\nIn particular, this checks for Gravity and Magnet Rise.\n\nr0:"
+        " entity pointer\nreturn: bool",
     )
 
     TryInflictSafeguardStatus = Symbol(
@@ -18602,6 +18652,15 @@ class EuOverlay29Functions:
         " position-based)",
     )
 
+    EnsureCanStandCurrentTile = Symbol(
+        [0x44FEC],
+        [0x2321B6C],
+        None,
+        "Checks that the given monster is standing on a tile it can stand on given its"
+        " movement type, and warps it to a random location if it's not.\n\nr0: Entity"
+        " pointer",
+    )
+
     TryActivateNondamagingDefenderAbility = Symbol(
         None,
         None,
@@ -18981,6 +19040,14 @@ class EuOverlay29Functions:
         "Checks if the current fixed room on the dungeon generation info corresponds to"
         " a fixed, full-floor layout.\n\nThe first non-full-floor fixed room is 0xA5,"
         " which is for Sealed Chambers.\n\nreturn: bool",
+    )
+
+    IsCurrentTilesetBackground = Symbol(
+        [0x5A254],
+        [0x2336DD4],
+        None,
+        "Calls IsBackgroundTileset with the current tileset ID\n\nreturn: True if the"
+        " current dungeon tileset is a background, false if it's a regular tileset.",
     )
 
     TrySpawnGoldenChamber = Symbol(

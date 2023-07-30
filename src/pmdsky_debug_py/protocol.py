@@ -6628,6 +6628,11 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsBackgroundTileset: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     CheckEndDungeon: Symbol[
         Optional[List[int]],
         None,
@@ -10729,7 +10734,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetMobilityTypeCheckSlip: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMobilityTypeCheckSlipAndFloating: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     IsInvalidSpawnTile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GetMobilityTypeAfterIqSkills: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    CannotStandOnTile: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10829,7 +10854,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetFinalMobilityType: Symbol[
+    GetDirectionalMobilityType: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -11754,7 +11779,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    HasConditionalGroundImmunity: Symbol[
+    IsFloating: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -12054,6 +12079,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    EnsureCanStandCurrentTile: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     TryActivateNondamagingDefenderAbility: Symbol[
         Optional[List[int]],
         None,
@@ -12240,6 +12270,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsFullFloorFixedRoom: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsCurrentTilesetBackground: Symbol[
         Optional[List[int]],
         None,
     ]
