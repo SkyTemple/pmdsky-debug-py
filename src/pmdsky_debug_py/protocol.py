@@ -3566,6 +3566,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    MainLoop: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DungeonSwapIdToIdx: Symbol[
         Optional[List[int]],
         None,
@@ -6633,7 +6638,7 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
-    CheckEndDungeon: Symbol[
+    MainGame: Symbol[
         Optional[List[int]],
         None,
     ]

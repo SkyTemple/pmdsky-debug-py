@@ -5758,6 +5758,14 @@ class JpArm9Functions:
         " pointer to an owned_item",
     )
 
+    MainLoop = Symbol(
+        None,
+        None,
+        None,
+        "This function gets called shortly after the game is started. Contains a single"
+        " infinite loop and has no return statement.\n\nNo params.",
+    )
+
     DungeonSwapIdToIdx = Symbol(
         [0x6AA08],
         [0x206AA08],
@@ -10525,13 +10533,16 @@ class JpOverlay10Functions:
         " regular tileset",
     )
 
-    CheckEndDungeon = Symbol(
+    MainGame = Symbol(
         [0x5D54],
         [0x22C3F74],
         None,
-        "Do the stuff when you lose in a dungeon.\n\nNote: unverified, ported from"
-        " Irdkwia's notes\n\nr0: End condition code? Seems to control what tasks get"
-        " run and what transition happens when the dungeon ends\nreturn: return code?",
+        "Contains several functions that handle switching between ground and dungeon"
+        " mode. It also handles other situations, like what happens right after exiting"
+        " a dungeon.\n\nThe function doesn't get called until the player selects the"
+        " option to resume a saved game and doesn't return until the player returns to"
+        " the main menu.\n\nr0: End condition code? Seems to control what tasks get run"
+        " and what transition happens when the dungeon ends\nreturn: return code?",
     )
 
 
@@ -20452,10 +20463,10 @@ class JpOverlay29Functions:
         [0x234D18C],
         None,
         "This appears to be the top-level function for running dungeon mode.\n\nIt gets"
-        " called by some code in overlay 10 right after doing the dungeon fade"
-        " transition, and once it exits, the dungeon results are processed.\n\nThis"
-        " function is presumably in charge of allocating the dungeon struct, setting it"
-        " up, launching the dungeon engine, etc.",
+        " called by MainGame right after doing the dungeon fade transition, and once it"
+        " exits, the dungeon results are processed.\n\nThis function is presumably in"
+        " charge of allocating the dungeon struct, setting it up, launching the dungeon"
+        " engine, etc.",
     )
 
     DisplayDungeonTip = Symbol(
