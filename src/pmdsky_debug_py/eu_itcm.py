@@ -768,15 +768,20 @@ class EuItcmArm9Functions:
         " pointer\nr2: flags",
     )
 
-    GetDebugFlag1 = Symbol(
+    GetDebugFlag = Symbol(
         None,
         None,
         None,
-        "Just returns 0 in the final binary.\n\nr0: flag ID\nreturn: flag value",
+        "Should return the value of the specified debug flag. Just returns 0 in the"
+        " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    SetDebugFlag1 = Symbol(
-        None, None, None, "A no-op in the final binary.\n\nr0: flag ID\nr1: flag value"
+    SetDebugFlag = Symbol(
+        None,
+        None,
+        None,
+        "Should set the value of a debug flag. A no-op in the final binary.\n\nr0: flag"
+        " ID\nr1: flag value",
     )
 
     AppendProgPos = Symbol(
@@ -810,15 +815,20 @@ class EuItcmArm9Functions:
         " final binary.\n\nr0: format\n...: variadic",
     )
 
-    GetDebugFlag2 = Symbol(
+    GetDebugLogFlag = Symbol(
         None,
         None,
         None,
-        "Just returns 0 in the final binary.\n\nr0: flag ID\nreturn: flag value",
+        "Should return the value of the specified debug log flag. Just returns 0 in the"
+        " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    SetDebugFlag2 = Symbol(
-        None, None, None, "A no-op in the final binary.\n\nr0: flag ID\nr1: flag value"
+    SetDebugLogFlag = Symbol(
+        None,
+        None,
+        None,
+        "Should set the value of a debug log flag. A no-op in the final binary.\n\nr0:"
+        " flag ID\nr1: flag value",
     )
 
     DebugPrint = Symbol(
@@ -2259,6 +2269,48 @@ class EuItcmArm9Functions:
 
     SelectWaza = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: waza_id"
+    )
+
+    SendAudioCommandWrapperVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for SendAudioCommandWrapper.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " Music ID\nr1: (?) Stored on byte 8 on the struct passed to"
+        " SendAudioCommand\nr2: Volume (0-255)",
+    )
+
+    SendAudioCommandWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Initializes some values and then calls SendAudioCommand.\n\nChecks for"
+        " DEBUG_FLAG_BGM_OFF. If 1, sets the volume to 0 before calling"
+        " SendAudioCommand.\n\nr0: Music ID\nr1: (?) Stored on byte 8 on the struct"
+        " passed to SendAudioCommand\nr2: Volume (0-255)",
+    )
+
+    AllocAudioCommand = Symbol(
+        None,
+        None,
+        None,
+        "Searches for an entry in AUDIO_COMMANDS_BUFFER that's not currently in use"
+        " (audio_command::status == 0). Returns the first entry not in use, or null if"
+        " none was found.\n\nAlso sets the status of the found entry to the value"
+        " specified in r0.\n\nThe game doesn't bother checking if the result of the"
+        " function is null, so the buffer is not supposed to ever get filled.\n\nr0:"
+        " Status to set the found entry to\nreturn: The first unused entry, or null if"
+        " none was found",
+    )
+
+    SendAudioCommand = Symbol(
+        None,
+        None,
+        None,
+        "Used to send commands to the audio engine (seems to be used mainly to play and"
+        " stop music)\n\nThis function calls a stubbed-out one with the string 'audio"
+        " command list'\n\nr0: Command to send",
     )
 
     ManipBgmPlayback = Symbol(
@@ -14497,6 +14549,14 @@ class EuItcmOverlay29Functions:
         " generation.\n\nNo params.",
     )
 
+    MusicTableIdxToMusicId = Symbol(
+        None,
+        None,
+        None,
+        "Used to convert an index that refers to a MUSIC_ID_TABLE entry to a regular"
+        " music ID.\n\nr0: Music table index\nreturn: Music ID",
+    )
+
     ChangeDungeonMusic = Symbol(
         None,
         None,
@@ -21785,6 +21845,15 @@ class EuItcmRamData:
         None,
         None,
         "The amount of money the player currently has stored in the Duskull Bank.",
+    )
+
+    AUDIO_COMMANDS_BUFFER = Symbol(
+        None,
+        None,
+        None,
+        "Buffer used to store audio commands. 16 entries in total. Seems like entries"
+        " are removed at some point (maybe after the commands are read or after they"
+        " finish executing).",
     )
 
     CURSOR_16_SPRITE_ID = Symbol(

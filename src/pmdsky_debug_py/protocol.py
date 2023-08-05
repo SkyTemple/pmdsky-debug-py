@@ -476,12 +476,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetDebugFlag1: Symbol[
+    GetDebugFlag: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    SetDebugFlag1: Symbol[
+    SetDebugFlag: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -501,12 +501,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetDebugFlag2: Symbol[
+    GetDebugLogFlag: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    SetDebugFlag2: Symbol[
+    SetDebugLogFlag: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1452,6 +1452,26 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     SelectWaza: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SendAudioCommandWrapperVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SendAudioCommandWrapper: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AllocAudioCommand: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SendAudioCommand: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -10139,6 +10159,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    MusicTableIdxToMusicId: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ChangeDungeonMusic: Symbol[
         Optional[List[int]],
         None,
@@ -14381,6 +14406,11 @@ class RamDataProtocol(Protocol):
     ]
 
     MONEY_STORED: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    AUDIO_COMMANDS_BUFFER: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

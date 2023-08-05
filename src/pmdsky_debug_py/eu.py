@@ -775,18 +775,20 @@ class EuArm9Functions:
         " pointer\nr2: flags",
     )
 
-    GetDebugFlag1 = Symbol(
+    GetDebugFlag = Symbol(
         [0xC198],
         [0x200C198],
         None,
-        "Just returns 0 in the final binary.\n\nr0: flag ID\nreturn: flag value",
+        "Should return the value of the specified debug flag. Just returns 0 in the"
+        " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    SetDebugFlag1 = Symbol(
+    SetDebugFlag = Symbol(
         [0xC1A0],
         [0x200C1A0],
         None,
-        "A no-op in the final binary.\n\nr0: flag ID\nr1: flag value",
+        "Should set the value of a debug flag. A no-op in the final binary.\n\nr0: flag"
+        " ID\nr1: flag value",
     )
 
     AppendProgPos = Symbol(
@@ -820,18 +822,20 @@ class EuArm9Functions:
         " final binary.\n\nr0: format\n...: variadic",
     )
 
-    GetDebugFlag2 = Symbol(
+    GetDebugLogFlag = Symbol(
         [0xC2BC],
         [0x200C2BC],
         None,
-        "Just returns 0 in the final binary.\n\nr0: flag ID\nreturn: flag value",
+        "Should return the value of the specified debug log flag. Just returns 0 in the"
+        " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    SetDebugFlag2 = Symbol(
+    SetDebugLogFlag = Symbol(
         [0xC2C4],
         [0x200C2C4],
         None,
-        "A no-op in the final binary.\n\nr0: flag ID\nr1: flag value",
+        "Should set the value of a debug log flag. A no-op in the final binary.\n\nr0:"
+        " flag ID\nr1: flag value",
     )
 
     DebugPrint = Symbol(
@@ -2329,6 +2333,48 @@ class EuArm9Functions:
         [0x20153A4],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nr0: waza_id",
+    )
+
+    SendAudioCommandWrapperVeneer = Symbol(
+        [0x17C00],
+        [0x2017C00],
+        None,
+        "Likely a linker-generated veneer for SendAudioCommandWrapper.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " Music ID\nr1: (?) Stored on byte 8 on the struct passed to"
+        " SendAudioCommand\nr2: Volume (0-255)",
+    )
+
+    SendAudioCommandWrapper = Symbol(
+        [0x17F0C],
+        [0x2017F0C],
+        None,
+        "Initializes some values and then calls SendAudioCommand.\n\nChecks for"
+        " DEBUG_FLAG_BGM_OFF. If 1, sets the volume to 0 before calling"
+        " SendAudioCommand.\n\nr0: Music ID\nr1: (?) Stored on byte 8 on the struct"
+        " passed to SendAudioCommand\nr2: Volume (0-255)",
+    )
+
+    AllocAudioCommand = Symbol(
+        [0x18C08],
+        [0x2018C08],
+        None,
+        "Searches for an entry in AUDIO_COMMANDS_BUFFER that's not currently in use"
+        " (audio_command::status == 0). Returns the first entry not in use, or null if"
+        " none was found.\n\nAlso sets the status of the found entry to the value"
+        " specified in r0.\n\nThe game doesn't bother checking if the result of the"
+        " function is null, so the buffer is not supposed to ever get filled.\n\nr0:"
+        " Status to set the found entry to\nreturn: The first unused entry, or null if"
+        " none was found",
+    )
+
+    SendAudioCommand = Symbol(
+        [0x18C44],
+        [0x2018C44],
+        None,
+        "Used to send commands to the audio engine (seems to be used mainly to play and"
+        " stop music)\n\nThis function calls a stubbed-out one with the string 'audio"
+        " command list'\n\nr0: Command to send",
     )
 
     ManipBgmPlayback = Symbol(
@@ -14938,6 +14984,14 @@ class EuOverlay29Functions:
         " generation.\n\nNo params.",
     )
 
+    MusicTableIdxToMusicId = Symbol(
+        [0xEB30],
+        [0x22EB6B0],
+        None,
+        "Used to convert an index that refers to a MUSIC_ID_TABLE entry to a regular"
+        " music ID.\n\nr0: Music table index\nreturn: Music ID",
+    )
+
     ChangeDungeonMusic = Symbol(
         [0xEC44],
         [0x22EB7C4],
@@ -22418,6 +22472,15 @@ class EuRamData:
         [0x22A5504],
         0x4,
         "The amount of money the player currently has stored in the Duskull Bank.",
+    )
+
+    AUDIO_COMMANDS_BUFFER = Symbol(
+        [0x2A5599],
+        [0x22A5599],
+        0x200,
+        "Buffer used to store audio commands. 16 entries in total. Seems like entries"
+        " are removed at some point (maybe after the commands are read or after they"
+        " finish executing).",
     )
 
     CURSOR_16_SPRITE_ID = Symbol(
