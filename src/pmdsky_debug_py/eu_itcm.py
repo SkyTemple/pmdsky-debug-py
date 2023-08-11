@@ -3420,7 +3420,13 @@ class EuItcmArm9Functions:
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: flag_id\nreturn: ?",
+        "Returns the value of one of the flags in VAR_PERFORMANCE_PROGRESS_LIST, with"
+        " some edge cases.\n\nList of cases where the function behaves differently:\n-"
+        " If the requested flag is 0, returns true if and only if SCENARIO_MAIN =="
+        " 0x35\n- If the requested flag is 1 or 2 and GAME_MODE =="
+        " GAME_MODE_SPECIAL_EPISODE, returns true\n- If the requested flag is between 3"
+        " and 7 (both included) and GAME_MODE == GAME_MODE_SPECIAL_EPISODE, returns"
+        " false\n\nr0: ID of the flag to get\nreturn: Value of the flag",
     )
 
     GetScenarioBalance = Symbol(
