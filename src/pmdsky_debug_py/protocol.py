@@ -1476,6 +1476,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitSoundSystem: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ManipBgmPlayback: Symbol[
         Optional[List[int]],
         None,
@@ -1576,7 +1581,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetAnimationForAnimationControlInternal: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetAnimationForAnimationControl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetWanForAnimationControl: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SetAndPlayAnimationForAnimationControl: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1682,6 +1702,36 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     ProcessWte: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GeomSetTexImageParam: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GeomSetVertexCoord16: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitRender3dData: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GeomSwapBuffers: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitRender3dElement: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Generate3dCanvasBorder: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3616,7 +3666,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ParseDseEvents: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UpdateSequencerTracks: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     UpdateChannels: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    UpdateTrackVolumeEnvelopes: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4673,6 +4738,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    RENDER_3D: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     LANGUAGE_INFO_DATA: Symbol[
         Optional[List[int]],
         None,
@@ -4792,6 +4862,16 @@ Arm9Protocol = SectionProtocol[
 
 
 class ItcmFunctionsProtocol(Protocol):
+    AllocateRender3dElement: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dStack: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetKeyN2MSwitch: Symbol[
         List[int],
         None,
@@ -4862,6 +4942,11 @@ class ItcmDataProtocol(Protocol):
     DEFAULT_MEMORY_ARENA_BLOCKS: Symbol[
         Optional[List[int]],
         Optional[int],
+    ]
+
+    RENDER_3D_FUNCTIONS: Symbol[
+        Optional[List[int]],
+        None,
     ]
 
 
@@ -7907,6 +7992,11 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     GROUND_STATE_PTRS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    WORLD_MAP_MODE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -14330,6 +14420,26 @@ class RamFunctionsProtocol(Protocol):
 
 
 class RamDataProtocol(Protocol):
+    DEFAULT_MEMORY_ARENA_MEMORY: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_MEMORY_ARENA_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_MEMORY_ARENA_2_BLOCKS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_MEMORY_ARENA_2_MEMORY: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     DUNGEON_COLORMAP_PTR: Symbol[
         Optional[List[int]],
         Optional[int],
@@ -14341,6 +14451,21 @@ class RamDataProtocol(Protocol):
     ]
 
     MOVE_DATA_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SOUND_MEMORY_ARENA: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SOUND_MEMORY_ARENA_BLOCKS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    SOUND_MEMORY_ARENA_MEMORY: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -14445,6 +14570,11 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
+    SOUND_MEMORY_ARENA_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
     DIALOG_BOX_LIST: Symbol[
         Optional[List[int]],
         None,
@@ -14520,7 +14650,27 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
-    WORLD_MAP_MODE: Symbol[
+    GROUND_MEMORY_ARENA_1_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_MEMORY_ARENA_2_PTR: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_MEMORY_ARENA_1: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_MEMORY_ARENA_1_BLOCKS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    GROUND_MEMORY_ARENA_1_MEMORY: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

@@ -53,11 +53,13 @@ class JpArm9Functions:
         None,
         "Sets global parameters for the memory allocator.\n\nThis includes"
         " MEMORY_ALLOCATION_ARENA_GETTERS and some other stuff.\n\nDungeon mode uses"
-        " the default arena getters. Ground mode uses its own arena getters, which are"
-        " defined in overlay 11 and set (by calling this function) at the start of"
-        " GroundMainLoop.\n\nr0: GetAllocArena function pointer (GetAllocArenaDefault"
-        " is used if null)\nr1: GetFreeArena function pointer (GetFreeArenaDefault is"
-        " used if null)",
+        " the default arena getters. Ground mode uses its own arena getters that return"
+        " custom arenas for some flag values, which are defined in overlay 11 and set"
+        " (by calling this function) at the start of GroundMainLoop. Note that the"
+        " sound memory arena is provided explicitly to MemLocateSet in the sound code,"
+        " so doesn't go through this path.\n\nr0: GetAllocArena function pointer"
+        " (GetAllocArenaDefault is used if null)\nr1: GetFreeArena function pointer"
+        " (GetFreeArenaDefault is used if null)",
     )
 
     GetAllocArenaDefault = Symbol(
@@ -2375,6 +2377,21 @@ class JpArm9Functions:
         " command list'\n\nr0: Command to send",
     )
 
+    InitSoundSystem = Symbol(
+        None,
+        None,
+        None,
+        "Initialize the DSE sound engine?\n\nThis function is called somewhere in the"
+        " hierarchy under TaskProcBoot and appears to allocate a bunch of memory"
+        " (including a dedicated memory arena, see SOUND_MEMORY_ARENA) for sound data,"
+        " and reads a bunch of core sound files.\n\nFile paths referenced:\n-"
+        " SOUND/SYSTEM/se_sys.swd\n- SOUND/SYSTEM/se_sys.sed\n- SOUND/SE/motion.swd\n-"
+        " SOUND/SE/motion.sed\n- SOUND/BGM/bgm.swd (this is the main sample bank, see"
+        " https://projectpokemon.org/home/docs/mystery-dungeon-nds/pok%C3%A9mon-mystery-dungeon-explorers-r78/)\n\nDebug"
+        " strings:\n- entry system se swd %04x\n\n- entry system se sed %04x\n\n- entry"
+        " motion se swd %04x\n\n- entry motion se sed %04x\n",
+    )
+
     ManipBgmPlayback = Symbol(
         [0x18EFC],
         [0x2018EFC],
@@ -2481,6 +2498,32 @@ class JpArm9Functions:
         " field 0x43 to 0xFF\n\nr0: animation control\nr1: sprite id in WAN_TABLE",
     )
 
+    SetAnimationForAnimationControlInternal = Symbol(
+        None,
+        None,
+        None,
+        "Set the wan animation (and other related settings) of an"
+        " animation_control\nUsed by SetAnimationForAnimationControl\n\nr0:"
+        " animation_control\nr1: wan_header\nr2: animation group id\nr3: animation"
+        " id\nstack[0]: ?\nstack[1] (0x4): palette pos low (see the field on"
+        " animation_control)\nstack[2] (0x8): ?\nstack[3] (0xC): ?\nstack[4] (0x10):"
+        " palette_bank (directly set to the animation_control field with said name)",
+    )
+
+    SetAnimationForAnimationControl = Symbol(
+        None,
+        None,
+        None,
+        "Set the animation to play with this animation control, but do not start"
+        " it.\n\n(args same as SetAndPlayAnimationForAnimationControl)\nr0:"
+        " animation_control\nr1: animation key (either an animation or animation group"
+        " depending on the type of sprite and if it does have animation group with this"
+        " animation key as index)\nr2: direction_id (unsure) (the key to the"
+        " wan_animation in itself, only used when animation key represent a"
+        " wan_animation_group)\nr3: ?\nstack[0]: low_palette_pos\nstack[1] (0x4):"
+        " ?\nstack[2] (0x8): ?\nstack[3] (0xC): ?",
+    )
+
     GetWanForAnimationControl = Symbol(
         None,
         None,
@@ -2488,6 +2531,19 @@ class JpArm9Functions:
         "Return the WAN to use for the given animation control\nReturn the override if"
         " it exists, otherwise look up the sprite id in WAN_TABLE\n\nr0:"
         " animation_control\nreturn: wan_header",
+    )
+
+    SetAndPlayAnimationForAnimationControl = Symbol(
+        None,
+        None,
+        None,
+        "Set the animation to play with the animation control, and start it.\n\nr0:"
+        " animation_control\nr1: animation key (either an animation or animation group"
+        " depending on the type of sprite and if it does have animation group with this"
+        " animation key as index)\nr2: direction_id (unsure) (the key to the"
+        " wan_animation in itself, only used when animation key represent a"
+        " wan_animation_group)\nr3: ?\nstack[0]: low_palette_pos\nstack[1] (0x4):"
+        " ?\nstack[2] (0x8): ?\nstack[3] (0xC): ?",
     )
 
     SwitchAnimationControlToNextFrame = Symbol(
@@ -2677,6 +2733,60 @@ class JpArm9Functions:
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nr0: header_ptr\nr1:"
         " unk_pal\nr2: unk_tex\nr3: unk_tex_param",
+    )
+
+    GeomSetTexImageParam = Symbol(
+        None,
+        None,
+        None,
+        "Send the 'TEXIMAGE_PARAM' geometry engine command, that defines some"
+        " parameters for the texture\nSee"
+        " http://problemkaputt.de/gbatek.htm#ds3dtextureattributes for more information"
+        " on the parameters\n\nr0: texture format\nr1: texture coordinates"
+        " transformation modes\nr2: texture S-Size\nr3: texture T-Size\nstack[0] (0x0):"
+        " repeat in S Direction\nstack[1] (0x4): flip in S direction\nstack[2] (0x8):"
+        " What to make of color 0 (bit 29)\nstack[3] (0xC): Texture VRAM offset (Will"
+        " be divided by 8)",
+    )
+
+    GeomSetVertexCoord16 = Symbol(
+        None,
+        None,
+        None,
+        "Send the 'VTX_16' geometry engine command, that defines the coordinate of a"
+        " point of a polygon, using 16 bits.\nInputs are clamped over their 16 lower"
+        " bits\n\nr0: x coordinate\nr1: y coordinate\nr2: z coordinate",
+    )
+
+    InitRender3dData = Symbol(
+        None, None, None, "Initialize the global 'RENDER_3D' structure.\n\nNo params."
+    )
+
+    GeomSwapBuffers = Symbol(
+        None,
+        None,
+        None,
+        "Call the 'SWAP_BUFFERS' command. This will swap the geometry buffer. The"
+        " parameter of 1 is provided, which enables manual Y-sorting of translucent"
+        " polygons.\n\nNo params.",
+    )
+
+    InitRender3dElement = Symbol(
+        None,
+        None,
+        None,
+        "Initialize the render_3d_element structure (without performing any drawing or"
+        " external data access)\n\nr0: render_3d_element",
+    )
+
+    Generate3dCanvasBorder = Symbol(
+        None,
+        None,
+        None,
+        "Draw the border for dialogue box and other menus, using the 3D engine.\nThe"
+        " render_3d_element contains certain value that needs to be set to a correct"
+        " value for it to work.\nThe element is not immediately sent to the geometry"
+        " engine, but is queued up in RENDER_3D\n\nr0: render_3d_element",
     )
 
     HandleSir0Translation = Symbol(
@@ -4001,7 +4111,8 @@ class JpArm9Functions:
         [0x204FF74],
         None,
         "Increments by 1 the number of dungeons cleared.\n\nImplements"
-        " SPECIAL_PROC_0x3A (see ScriptSpecialProcessCall).\n\nNo params.",
+        " SPECIAL_PROC_INCREMENT_DUNGEONS_CLEARED (see ScriptSpecialProcessCall).\n\nNo"
+        " params.",
     )
 
     GetNbDungeonsCleared = Symbol(
@@ -4115,7 +4226,8 @@ class JpArm9Functions:
         [0x2050214],
         None,
         "Increments by 1 the number of big treasure wins.\n\nImplements"
-        " SPECIAL_PROC_0x3B (see ScriptSpecialProcessCall).\n\nNo params.",
+        " SPECIAL_PROC_INCREMENT_BIG_TREASURE_WINS (see"
+        " ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     SetNbBigTreasureWins = Symbol(
@@ -5858,11 +5970,33 @@ class JpArm9Functions:
         [0x7095C], [0x207095C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    ParseDseEvents = Symbol(
+        None,
+        None,
+        None,
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
+    )
+
+    UpdateSequencerTracks = Symbol(
+        None,
+        None,
+        None,
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
+    )
+
     UpdateChannels = Symbol(
         [0x74774],
         [0x2074774],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/"
+        " and Irdkwia's notes.\n\nNo params.",
+    )
+
+    UpdateTrackVolumeEnvelopes = Symbol(
+        None,
+        None,
+        None,
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
     )
 
     EnableVramBanksInSetDontSave = Symbol(
@@ -7364,6 +7498,14 @@ class JpArm9Data:
         "pointer to the list of wan sprite loaded in RAM\n\nstruct wan_table*",
     )
 
+    RENDER_3D = Symbol(
+        None,
+        None,
+        None,
+        "The (seemingly) unique instance render_3d_global in the game\n\ntype: struct"
+        " render_3d_global",
+    )
+
     LANGUAGE_INFO_DATA = Symbol(None, None, None, "[Runtime]")
 
     TBL_TALK_GROUP_STRING_ID_START = Symbol(
@@ -7459,7 +7601,9 @@ class JpArm9Data:
         None,
         None,
         None,
-        "Irdkwia's notes: named DSEEventFunctionPtrTable with length 0x3C0 (note the"
+        "Table of all DSE events, see"
+        " https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nIrdkwia's"
+        " notes: named DSEEventFunctionPtrTable with length 0x3C0 (note the"
         " disagreement), 240*0x4.",
     )
 
@@ -7507,6 +7651,24 @@ class JpArm9Section:
 
 
 class JpItcmFunctions:
+    AllocateRender3dElement = Symbol(
+        None,
+        None,
+        None,
+        "Return a new render_3d_element from RENDER_3D, to be to draw a new element"
+        " using the 3d render engine later in the frame.\n\nreturn: render_3d_element"
+        " or NULL if there is no more available space in the stack",
+    )
+
+    Render3dStack = Symbol(
+        None,
+        None,
+        None,
+        "Perform rendering of the render_stack of RENDER_3D structure. Does nothing if"
+        " there are no elements, otherwise, sort them based on a value, and render them"
+        " all consecutively.\n\nNo params.",
+    )
+
     GetKeyN2MSwitch = Symbol(
         [0x149C],
         [0x20B607C],
@@ -7631,6 +7793,14 @@ class JpItcmData:
         " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
         " used to contain the code that was moved to the ITCM.\n\ntype: struct"
         " mem_block[256]",
+    )
+
+    RENDER_3D_FUNCTIONS = Symbol(
+        None,
+        None,
+        None,
+        "Pointers to the 4 functions available from render_3d_element (in"
+        " ITCM)\n\ntype: render_3d_element_concrete[4]",
     )
 
 
@@ -11983,8 +12153,10 @@ class JpOverlay11Functions:
         [0x22EA990],
         None,
         "The GetAllocArena function used for ground mode. See SetMemAllocatorParams for"
-        " more information.\n\nr0: initial memory arena pointer, or null\nr1: flags"
-        " (see MemAlloc)\nreturn: memory arena pointer, or null",
+        " more information.\n\nFor (flags & 0xFF):\n  8, 15, 16:"
+        " GROUND_MEMORY_ARENA_1\n  14: GROUND_MEMORY_ARENA_2\n  other: null (default"
+        " arena)\n\nr0: initial memory arena pointer, or null\nr1: flags (see"
+        " MemAlloc)\nreturn: memory arena pointer, or null",
     )
 
     GetFreeArenaGround = Symbol(
@@ -12376,6 +12548,8 @@ class JpOverlay11Data:
         "Host pointers to multiple structure used for performing an overworld"
         " scene\n\ntype: struct main_ground_data",
     )
+
+    WORLD_MAP_MODE = Symbol(None, None, None, "The current world map")
 
 
 class JpOverlay11Section:
@@ -18833,7 +19007,7 @@ class JpOverlay29Functions:
         [0x59478],
         [0x2336D58],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: call_back_str\nr1: x"
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: render_3d_element\nr1: x"
         " position\nr2: y position\nr3: char_id\nstack[0]: ?\nreturn: ?",
     )
 
@@ -21995,6 +22169,36 @@ class JpRamFunctions:
 
 
 class JpRamData:
+    DEFAULT_MEMORY_ARENA_MEMORY = Symbol(
+        None,
+        None,
+        None,
+        "The memory region for the default memory arena.\n\nThe length is defined by"
+        " DEFAULT_MEMORY_ARENA_SIZE.\n\nOne mode that uses this region for heap"
+        " allocations is dungeon mode.",
+    )
+
+    GROUND_MEMORY_ARENA_2 = Symbol(
+        None,
+        None,
+        None,
+        "This is a memory subarena under DEFAULT_MEMORY_ARENA used for some things in"
+        " ground mode.\n\nIt's used for user_flags 14.\n\nIncluding the allocator"
+        " metadata, this arena occupies 0xB0000 bytes of space.\n\ntype: struct"
+        " mem_arena",
+    )
+
+    GROUND_MEMORY_ARENA_2_BLOCKS = Symbol(
+        None,
+        None,
+        None,
+        "The block array for GROUND_MEMORY_ARENA_2.\n\ntype: struct mem_block[32]",
+    )
+
+    GROUND_MEMORY_ARENA_2_MEMORY = Symbol(
+        None, None, None, "The memory region for GROUND_MEMORY_ARENA_2."
+    )
+
     DUNGEON_COLORMAP_PTR = Symbol(
         None,
         None,
@@ -22022,6 +22226,33 @@ class JpRamData:
         "The move data table loaded directly from /BALANCE/waza_p.bin. See struct"
         " move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the"
         " ARM 9 binary.\n\ntype: struct move_data_table",
+    )
+
+    SOUND_MEMORY_ARENA = Symbol(
+        None,
+        None,
+        None,
+        "This is a memory subarena under DEFAULT_MEMORY_ARENA that seems to be used"
+        " exclusively for sound data.\n\nIncluding allocator metadata, this subarena"
+        " occupies 0x3C000 bytes of space within the default arena.\n\nIt's referenced"
+        " by various sound functions like LoadDseFile, PlaySeLoad, and PlayBgm when"
+        " allocating memory.\n\ntype: struct mem_arena",
+    )
+
+    SOUND_MEMORY_ARENA_BLOCKS = Symbol(
+        None,
+        None,
+        None,
+        "The block array for SOUND_MEMORY_ARENA.\n\ntype: struct mem_block[20]",
+    )
+
+    SOUND_MEMORY_ARENA_MEMORY = Symbol(
+        None,
+        None,
+        None,
+        "The memory region for SOUND_MEMORY_ARENA.\n\nThis region appears to be used"
+        " for sound-related heap allocations, like when loading sound files into"
+        " memory.",
     )
 
     FRAMES_SINCE_LAUNCH = Symbol(
@@ -22144,6 +22375,8 @@ class JpRamData:
         None, None, None, "animation_control of 'FONT/alter.wan'"
     )
 
+    SOUND_MEMORY_ARENA_PTR = Symbol(None, None, None, "Pointer to SOUND_MEMORY_ARENA.")
+
     DIALOG_BOX_LIST = Symbol(None, None, None, "Array of allocated dialog box structs.")
 
     LAST_NEW_MOVE = Symbol(
@@ -22261,7 +22494,33 @@ class JpRamData:
         " the game is running.",
     )
 
-    WORLD_MAP_MODE = Symbol(None, None, None, "The current world map")
+    GROUND_MEMORY_ARENA_1_PTR = Symbol(
+        None, None, None, "Pointer to GROUND_MEMORY_ARENA_1."
+    )
+
+    GROUND_MEMORY_ARENA_2_PTR = Symbol(
+        None, None, None, "Pointer to GROUND_MEMORY_ARENA_2."
+    )
+
+    GROUND_MEMORY_ARENA_1 = Symbol(
+        None,
+        None,
+        None,
+        "This is a top-level memory arena used for some things in ground mode.\n\nIt's"
+        " used for user_flags 8, 15, and 16.\n\nIncluding the allocator metadata, this"
+        " arena occupies 0x64000 bytes of space.\n\ntype: struct mem_arena",
+    )
+
+    GROUND_MEMORY_ARENA_1_BLOCKS = Symbol(
+        None,
+        None,
+        None,
+        "The block array for GROUND_MEMORY_ARENA_1.\n\ntype: struct mem_block[52]",
+    )
+
+    GROUND_MEMORY_ARENA_1_MEMORY = Symbol(
+        None, None, None, "The memory region for GROUND_MEMORY_ARENA_1."
+    )
 
     SENTRY_DUTY_STRUCT = Symbol(None, None, None, "")
 
