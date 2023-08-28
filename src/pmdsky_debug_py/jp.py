@@ -3860,52 +3860,86 @@ class JpArm9Functions:
         " total_length",
     )
 
+    InitKaomadoStream = Symbol(
+        None,
+        None,
+        None,
+        "Initializes the stream used to load all Kaomado portraits, called once on game"
+        " start!\n\nNo params.",
+    )
+
     InitPortraitBox = Symbol(
         None,
         None,
         None,
-        "Initializes a struct portrait_box.\n\nr0: portrait box pointer",
+        "Initializes a struct portrait_box.\n\nThe emote is set to PORTRAIT_NONE and"
+        " the layout to the default. Everything else is initialized to 0.\n\nr0:"
+        " portrait box pointer",
     )
 
     InitPortraitBoxWithMonsterId = Symbol(
         [0x4DB34],
         [0x204DB34],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait box pointer\nr1:"
+        "Calls InitPortraitBox, and also initializes emote to PORTRAIT_NORMAL and"
+        " monster ID to the passed argument.\n\nr0: portrait box pointer\nr1:"
         " monster ID",
     )
 
-    SetPortraitExpressionId = Symbol(
+    SetPortraitEmotion = Symbol(
         [0x4DB54],
         [0x204DB54],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait box pointer\nr1:"
-        " expression_id",
+        "Sets the emote in the passed portrait box, only if the monster ID isn't"
+        " MONSTER_NONE.\n\nr0: portrait box pointer\nr1: emotion ID",
     )
 
-    SetPortraitUnknownAttr = Symbol(
+    SetPortraitLayout = Symbol(
         [0x4DB64],
         [0x204DB64],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait box pointer\nr1:"
-        " attr",
+        "Sets the layout in the passed portrait from the array of possible"
+        " layouts.\n\nIf the layout is 32 or if the monster ID is MONSTER_NONE, then it"
+        " does nothing.\n\nr0: portrait box pointer\nr1: layout index",
     )
 
-    SetPortraitAttrStruct = Symbol(
+    SetPortraitOffset = Symbol(
         [0x4DBA8],
         [0x204DBA8],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: portrait box pointer\nr1:"
-        " attr_ptr",
+        "Offsets the portrait from the original offset determined by the layout, by the"
+        " vector passed as argument.\n\nIf the monster ID is MONSTER_NONE, then it does"
+        " nothing.\n\nr0: portrait box pointer\nr1: (x, y) offset in tiles from the"
+        " original offset, derived from the layout",
+    )
+
+    AllowPortraitDefault = Symbol(
+        None,
+        None,
+        None,
+        "Allows the portrait to try and load the default emote (PORTRAIT_NORMAL) if it"
+        " can't find the specified emote.\n\nr0: portrait box pointer\nr1: allow"
+        " default",
+    )
+
+    IsValidPortrait = Symbol(
+        None,
+        None,
+        None,
+        "Returns whether this portrait box represents a valid portrait.\n\nr0: portrait"
+        " box pointer\nreturn: bool",
     )
 
     LoadPortrait = Symbol(
         [0x4DC1C],
         [0x204DC1C],
         None,
-        "If buffer_portrait is null, it only checks if it exists\n\nNote: unverified,"
-        " ported from Irdkwia's notes\n\nr0: portrait box pointer\nr1:"
-        " buffer_portrait\nreturn: exists",
+        "Tries to load the portrait data associated with the passed portrait"
+        " box.\n\nReturns whether the operation was successful (the portrait could be"
+        " found). If the passed buffer is null, the check if performed without loading"
+        " any data.\n\nThis function also modifies the flip fields in the passed"
+        " portrait box.\n\nr0: portrait box pointer\nr1: kaomado_buffer"
+        " pointer\nreturn: portrait exists",
     )
 
     SetEnterDungeon = Symbol(
@@ -6690,12 +6724,20 @@ class JpArm9Data:
         " SkyTemple SSB debugger.\n\ntype: struct script_var_table",
     )
 
-    HARDCODED_PORTRAIT_DATA_TABLE = Symbol(
+    PORTRAIT_LAYOUTS = Symbol(
         [0x9F3E8],
         [0x209F3E8],
         0xC0,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " portrait_data_entry[32]",
+        "All the possible layouts a portrait can be placed in by default.\n\ntype:"
+        " struct portrait_layout[32]",
+    )
+
+    KAOMADO_FILEPATH = Symbol(
+        None,
+        None,
+        None,
+        "'Path of the file where all the portraits are stored. 'FONT/kaomado.kao',"
+        " padded with null to a multiple of 4'\n\ntype: char[20]",
     )
 
     WONDER_MAIL_BITS_MAP = Symbol(
@@ -22413,6 +22455,14 @@ class JpRamData:
         "The number of the special episode currently being played.\n\nThis backs the"
         " EXECUTE_SPECIAL_EPISODE_TYPE script variable.\n\ntype: struct"
         " special_episode_type_8",
+    )
+
+    KAOMADO_STREAM = Symbol(
+        None,
+        None,
+        None,
+        "The file stream utilized for all Kaomado portrait loads.\n\ntype: struct"
+        " file_stream",
     )
 
     PENDING_DUNGEON_ID = Symbol(

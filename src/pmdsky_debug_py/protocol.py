@@ -2386,6 +2386,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitKaomadoStream: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     InitPortraitBox: Symbol[
         Optional[List[int]],
         None,
@@ -2396,17 +2401,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    SetPortraitExpressionId: Symbol[
+    SetPortraitEmotion: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    SetPortraitUnknownAttr: Symbol[
+    SetPortraitLayout: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    SetPortraitAttrStruct: Symbol[
+    SetPortraitOffset: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AllowPortraitDefault: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsValidPortrait: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4123,7 +4138,12 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    HARDCODED_PORTRAIT_DATA_TABLE: Symbol[
+    PORTRAIT_LAYOUTS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    KAOMADO_FILEPATH: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -14596,6 +14616,11 @@ class RamDataProtocol(Protocol):
     ]
 
     DEBUG_SPECIAL_EPISODE_NUMBER: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    KAOMADO_STREAM: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
