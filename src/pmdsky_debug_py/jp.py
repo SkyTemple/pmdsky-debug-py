@@ -6509,41 +6509,49 @@ class JpArm9Data:
     )
 
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
-        None,
-        None,
-        None,
+        [0xE58],
+        [0x2000E58],
+        0x4,
         "Length in bytes of the default memory allocation arena, 1991680.",
     )
 
     LOG_MAX_ARG = Symbol(
-        None, None, None, "The maximum argument value for the Log function, 2047."
+        [0x2220],
+        [0x2002220],
+        0x4,
+        "The maximum argument value for the Log function, 2047.",
     )
 
     DAMAGE_SOURCE_CODE_ORB_ITEM = Symbol(
-        None,
-        None,
+        [0xCA84],
+        [0x200CA84],
         None,
         "The damage source value for any item in CATEGORY_ORBS, 0x262.",
     )
 
     DAMAGE_SOURCE_CODE_NON_ORB_ITEM = Symbol(
-        None,
-        None,
+        [0xCA88],
+        [0x200CA88],
         None,
         "The damage source value for any item not in CATEGORY_ORBS, 0x263.",
     )
 
-    AURA_BOW_ID_LAST = Symbol(None, None, None, "Highest item ID of the aura bows.")
+    AURA_BOW_ID_LAST = Symbol(
+        [0xCC34], [0x200CC34], None, "Highest item ID of the aura bows."
+    )
 
     NUMBER_OF_ITEMS = Symbol(None, None, None, "Number of items in the game.")
 
     MAX_MONEY_CARRIED = Symbol(
-        None, None, None, "Maximum amount of money the player can carry, 99999."
+        [0xED80],
+        [0x200ED80],
+        0x4,
+        "Maximum amount of money the player can carry, 99999.",
     )
 
     MAX_MONEY_STORED = Symbol(
-        None,
-        None,
+        [0x10720],
+        [0x2010720],
         None,
         "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
     )
@@ -6668,32 +6676,32 @@ class JpArm9Data:
     )
 
     RECOIL_MOVE_LIST = Symbol(
-        None,
-        None,
-        None,
+        [0x99068],
+        [0x2099068],
+        0x16,
         "Null-terminated list of all the recoil moves, as 2-byte move IDs.\n\ntype:"
         " struct move_id_16[11]",
     )
 
     PUNCH_MOVE_LIST = Symbol(
-        None,
-        None,
-        None,
+        [0x9907E],
+        [0x209907E],
+        0x20,
         "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
         " struct move_id_16[16]",
     )
 
     MOVE_POWER_STARS_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x99FC8],
+        [0x2099FC8],
+        0x18,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int[6]",
     )
 
     MOVE_ACCURACY_STARS_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x99FE0],
+        [0x2099FE0],
+        0x20,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
     )
 
@@ -6876,49 +6884,49 @@ class JpArm9Data:
     )
 
     SPECIAL_BAND_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Special Band."
+        [0xA2C40], [0x20A2C40], 0x2, "Stat boost value for the Special Band."
     )
 
     MUNCH_BELT_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Munch Belt."
+        [0xA2C50], [0x20A2C50], 0x2, "Stat boost value for the Munch Belt."
     )
 
     GUMMI_STAT_BOOST = Symbol(
-        None,
-        None,
-        None,
+        [0xA2C5C],
+        [0x20A2C5C],
+        0x2,
         "Stat boost value if a stat boost occurs when eating normal Gummis.",
     )
 
-    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol(None, None, None, "")
+    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol([0xA2C60], [0x20A2C60], 0x4, "")
 
     WONDER_GUMMI_IQ_GAIN = Symbol(
-        None, None, None, "IQ gain when ingesting wonder gummis."
+        [0xA2C64], [0x20A2C64], 0x2, "IQ gain when ingesting wonder gummis."
     )
 
     AURA_BOW_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the aura bows."
+        [0xA2C6C], [0x20A2C6C], 0x2, "Stat boost value for the aura bows."
     )
 
-    MIN_IQ_ITEM_MASTER = Symbol(None, None, None, "")
+    MIN_IQ_ITEM_MASTER = Symbol([0xA2C60], [0x20A2C60], 0x4, "")
 
     DEF_SCARF_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Defense Scarf."
+        [0xA2C7C], [0x20A2C7C], 0x2, "Stat boost value for the Defense Scarf."
     )
 
     POWER_BAND_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Power Band."
+        [0xA2C80], [0x20A2C80], 0x2, "Stat boost value for the Power Band."
     )
 
     WONDER_GUMMI_STAT_BOOST = Symbol(
-        None,
-        None,
-        None,
+        [0xA2C84],
+        [0x20A2C84],
+        0x2,
         "Stat boost value if a stat boost occurs when eating Wonder Gummis.",
     )
 
     ZINC_BAND_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Zinc Band."
+        [0xA2C88], [0x20A2C88], 0x2, "Stat boost value for the Zinc Band."
     )
 
     EGG_HP_BONUS = Symbol(
@@ -6930,9 +6938,9 @@ class JpArm9Data:
     )
 
     DAMAGE_FORMULA_FLV_SHIFT = Symbol(
-        None,
-        None,
-        None,
+        [0xA2CA0],
+        [0x20A2CA0],
+        0x4,
         "The constant shift added to the 'FLV' intermediate quantity in the damage"
         " formula (see dungeon::last_move_damage_calc_flv), as a binary fixed-point"
         " number with 8 fraction bits (50).",
@@ -6946,9 +6954,9 @@ class JpArm9Data:
     )
 
     DAMAGE_FORMULA_CONSTANT_SHIFT = Symbol(
-        None,
-        None,
-        None,
+        [0xA2CA8],
+        [0x20A2CA8],
+        0x4,
         "The constant shift applied to the overall output of the 'unshifted base'"
         " damage formula (the sum of the scaled AT, DEF, and ClampedLn terms), as a"
         " binary fixed-point number with 8 fraction bits (-311).\n\nThe value of -311"
@@ -6958,9 +6966,9 @@ class JpArm9Data:
     )
 
     DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR = Symbol(
-        None,
-        None,
-        None,
+        [0xA2CAC],
+        [0x20A2CAC],
+        0x4,
         "The divisor of the (AT - DEF) term within the 'FLV' intermediate quantity in"
         " the damage formula (see dungeon::last_move_damage_calc_flv), as a binary"
         " fixed-point number with 8 fraction bits (8).",
@@ -6982,9 +6990,9 @@ class JpArm9Data:
     )
 
     DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER = Symbol(
-        None,
-        None,
-        None,
+        [0xA2CBC],
+        [0x20A2CBC],
+        0x4,
         "The divisor applied to the overall output of the 'shifted base' damage formula"
         " (the sum of the scaled AT, Def, ClampedLn, and DAMAGE_FORMULA_CONSTANT_SHIFT"
         " terms) if the attacker is not a team member (and the current fixed room is"
@@ -6993,35 +7001,35 @@ class JpArm9Data:
     )
 
     DAMAGE_FORMULA_LN_PREFACTOR = Symbol(
-        None,
-        None,
-        None,
+        [0xA2CC0],
+        [0x20A2CC0],
+        0x4,
         "The prefactor to the output of the ClampedLn in the damage formula, as a"
         " binary fixed-point number with 8 fraction bits (50).",
     )
 
-    DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
-        None,
-        None,
-        None,
-        "The prefactor to the 'AT' (attack) intermediate quantity in the damage formula"
-        " (see dungeon::last_move_damage_calc_at), as a binary fixed-point number with"
-        " 8 fraction bits (153/256, which is close to 0.6).",
-    )
-
     DAMAGE_FORMULA_DEF_PREFACTOR = Symbol(
-        None,
-        None,
-        None,
+        [0xA2CC4],
+        [0x20A2CC4],
+        0x4,
         "The prefactor to the 'DEF' (defense) intermediate quantity in the damage"
         " formula (see dungeon::last_move_damage_calc_def), as a binary fixed-point"
         " number with 8 fraction bits (-0.5).",
     )
 
+    DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
+        [0xA2CC8],
+        [0x20A2CC8],
+        0x4,
+        "The prefactor to the 'AT' (attack) intermediate quantity in the damage formula"
+        " (see dungeon::last_move_damage_calc_at), as a binary fixed-point number with"
+        " 8 fraction bits (153/256, which is close to 0.6).",
+    )
+
     DAMAGE_FORMULA_LN_ARG_PREFACTOR = Symbol(
-        None,
-        None,
-        None,
+        [0xA2CCC],
+        [0x20A2CCC],
+        0x4,
         "The prefactor to the argument of ClampedLn in the damage formula (FLV +"
         " DAMAGE_FORMULA_FLV_SHIFT), as a binary fixed-point number with 8 fraction"
         " bits (10).",
@@ -7551,8 +7559,8 @@ class JpArm9Data:
     LANGUAGE_INFO_DATA = Symbol(None, None, None, "[Runtime]")
 
     TBL_TALK_GROUP_STRING_ID_START = Symbol(
-        None,
-        None,
+        [0xB1140],
+        [0x20B1140],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
     )
@@ -7572,17 +7580,17 @@ class JpArm9Data:
     )
 
     DEFAULT_HERO_ID = Symbol(
-        None,
-        None,
-        None,
+        [0xB1770],
+        [0x20B1770],
+        0x2,
         "The default monster ID for the hero (0x4: Charmander)\n\ntype: struct"
         " monster_id_16",
     )
 
     DEFAULT_PARTNER_ID = Symbol(
-        None,
-        None,
-        None,
+        [0xB1772],
+        [0x20B1772],
+        0x2,
         "The default monster ID for the partner (0x1: Bulbasaur)\n\ntype: struct"
         " monster_id_16",
     )
@@ -10812,89 +10820,95 @@ class JpOverlay10Functions:
 
 class JpOverlay10Data:
     FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
-        None,
-        None,
-        None,
+        [0x78D4],
+        [0x22C5AF4],
+        0x1,
         "The first dungeon that can have extra traps spawn in Monster Houses, Dark"
         " Hill\n\ntype: struct dungeon_id_8",
     )
 
     BAD_POISON_DAMAGE_COOLDOWN = Symbol(
-        None,
-        None,
-        None,
+        [0x78DC],
+        [0x22C5AFC],
+        0x2,
         "The number of turns between passive bad poison (toxic) damage.",
     )
 
     PROTEIN_STAT_BOOST = Symbol(
-        None, None, None, "The permanent attack boost from ingesting a Protein."
+        [0x78E8],
+        [0x22C5B08],
+        0x2,
+        "The permanent attack boost from ingesting a Protein.",
     )
 
     WATERFALL_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x78EC],
+        [0x22C5B0C],
+        0x2,
         "The chance of Waterfall inflicting the cringe status, as a percentage (30%).",
     )
 
     AURORA_BEAM_LOWER_ATTACK_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x78F0],
+        [0x22C5B10],
+        0x2,
         "The chance of Aurora Beam halving attack, as a percentage (60%).",
     )
 
     SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
-        None,
-        None,
-        None,
+        [0x78F8],
+        [0x22C5B18],
+        0x2,
         "The maximum number of enemies that can spawn on a floor without a monster"
         " house (15).",
     )
 
     OREN_BERRY_DAMAGE = Symbol(
-        None, None, None, "Damage dealt by eating an Oren Berry."
+        [0x7900], [0x22C5B20], 0x2, "Damage dealt by eating an Oren Berry."
     )
 
     IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7908],
+        [0x22C5B28],
+        0x2,
         "The chance of Iron Tail lowering defense, as a percentage (30%).",
     )
 
     TWINEEDLE_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Twineedle poisoning, as a percentage (20%)."
+        [0x790C],
+        [0x22C5B2C],
+        0x2,
+        "The chance of Twineedle poisoning, as a percentage (20%).",
     )
 
     EXTRASENSORY_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7910],
+        [0x22C5B30],
+        0x2,
         "The chance of Extrasensory (and others, see DoMoveDamageCringe10) inflicting"
         " the cringe status, as a percentage (10%).",
     )
 
     ROCK_SLIDE_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7914],
+        [0x22C5B34],
+        0x2,
         "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the"
         " cringe status, as a percentage (30%)",
     )
 
     CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7918],
+        [0x22C5B38],
+        0x2,
         "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering"
         " defense, as a percentage (20%).",
     )
 
     FOREWARN_FORCED_MISS_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7930],
+        [0x22C5B50],
+        0x2,
         "The chance of Forewarn forcing a move to miss, as a percentage (20%).",
     )
 
@@ -10902,97 +10916,111 @@ class JpOverlay10Data:
         [0x793C],
         [0x22C5B5C],
         0x2,
-        "The chance of an Unown dropping an Unown stone, as a percentage (21%).",
+        "The chance of an Unown dropping an Unown stone, as a percentage (33%).",
     )
 
     SITRUS_BERRY_HP_RESTORATION = Symbol(
-        None, None, None, "The amount of HP restored by eating a Sitrus Berry."
+        [0x7940],
+        [0x22C5B60],
+        0x2,
+        "The amount of HP restored by eating a Sitrus Berry.",
     )
 
     MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
-        None,
-        None,
+        [0x794C],
+        [0x22C5B6C],
         None,
         "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40)"
         " lowering accuracy, as a percentage (40%).",
     )
 
     SILVER_WIND_BOOST_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7950],
+        [0x22C5B70],
+        0x2,
         "The chance of Silver Wind (and others, see DoMoveDamageBoostAllStats) boosting"
         " all stats, as a percentage (20%).",
     )
 
     POISON_TAIL_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Poison Tail poisoning, as a percentage (10%)."
+        [0x7954],
+        [0x22C5B74],
+        0x2,
+        "The chance of Poison Tail poisoning, as a percentage (10%).",
     )
 
     THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7958],
+        [0x22C5B78],
+        0x2,
         "The chance of Thundershock paralyzing, as a percentage (10%).",
     )
 
     BOUNCE_PARALYZE_CHANCE = Symbol(
-        None, None, None, "The chance of Bounce paralyzing, as a percentage (30%)"
+        [0x795C],
+        [0x22C5B7C],
+        0x2,
+        "The chance of Bounce paralyzing, as a percentage (30%)",
     )
 
     HEADBUTT_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7960],
+        [0x22C5B80],
+        0x2,
         "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
     )
 
     FIRE_FANG_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7964],
+        [0x22C5B84],
+        0x2,
         "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
     )
 
     SACRED_FIRE_BURN_CHANCE = Symbol(
-        None, None, None, "The chance of Sacred Fire burning, as a percentage (50%)."
+        [0x7968],
+        [0x22C5B88],
+        0x2,
+        "The chance of Sacred Fire burning, as a percentage (50%).",
     )
 
     WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x796C],
+        [0x22C5B8C],
+        0x2,
         "The chance of Whirlpool inflicting the constriction status, as a percentage"
         " (10%).",
     )
 
     EXP_ELITE_EXP_BOOST = Symbol(
-        None,
-        None,
-        None,
+        [0x7970],
+        [0x22C5B90],
+        0x2,
         "The percentage increase in experience from the Exp. Elite IQ skill",
     )
 
     MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
-        None,
-        None,
-        None,
+        [0x7974],
+        [0x22C5B94],
+        0x2,
         "The maximum number of extra non-monster spawns (items/traps) in a Monster"
         " House, 7",
     )
 
     HEAL_ORDER_HP_RESTORATION = Symbol(
-        None, None, None, "The amount of HP restored by Heal Order (40)."
+        [0x7980], [0x22C5BA0], 0x2, "The amount of HP restored by Heal Order (40)."
     )
 
     STEEL_WING_BOOST_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x798C],
+        [0x22C5BAC],
+        0x2,
         "The chance of Steel Wing boosting defense, as a percentage (20%).",
     )
 
-    GOLD_THORN_POWER = Symbol(None, None, None, "Attack power for Golden Thorns.")
+    GOLD_THORN_POWER = Symbol(
+        [0x7998], [0x22C5BB8], 0x2, "Attack power for Golden Thorns."
+    )
 
     BURN_DAMAGE = Symbol(None, None, None, "Damage dealt by the burn status condition.")
 
@@ -11001,157 +11029,169 @@ class JpOverlay10Data:
     )
 
     SPAWN_COOLDOWN = Symbol(
-        None,
-        None,
-        None,
+        [0x79A4],
+        [0x22C5BC4],
+        0x2,
         "The number of turns between enemy spawns under normal conditions.",
     )
 
     MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x79A8],
+        [0x22C5BC8],
+        0x2,
         "The chance of Mist Ball lowering special attack, as a percentage (50%).",
     )
 
     CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x79B8],
+        [0x22C5BD8],
+        0x2,
         "The chance of Charge Beam boosting special attack, as a percentage (40%).",
     )
 
     ORAN_BERRY_FULL_HP_BOOST = Symbol(
-        None,
-        None,
-        None,
+        [0x79BC],
+        [0x22C5BDC],
+        0x2,
         "The permanent HP boost from eating an Oran Berry at full HP (0).",
     )
 
     LIFE_SEED_HP_BOOST = Symbol(
-        None, None, None, "The permanent HP boost from eating a Life Seed."
+        [0x79C0], [0x22C5BE0], 0x2, "The permanent HP boost from eating a Life Seed."
     )
 
     OCTAZOOKA_LOWER_ACCURACY_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x79C8],
+        [0x22C5BE8],
+        0x2,
         "The chance of Octazooka lowering accuracy, as a percentage (60%).",
     )
 
     LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x79D4],
+        [0x22C5BF4],
+        0x2,
         "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50)"
         " lowering special defense, as a percentage (50%).",
     )
 
     SUPER_LUCK_CRIT_RATE_BOOST = Symbol(
-        None, None, None, "The critical hit rate (additive) boost from Super Luck, 10%."
+        [0x79D8],
+        [0x22C5BF8],
+        0x2,
+        "The critical hit rate (additive) boost from Super Luck, 10%.",
     )
 
     CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x79DC],
+        [0x22C5BFC],
+        0x2,
         "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering"
         " speed, as a percentage (20%).",
     )
 
     ICE_FANG_FREEZE_CHANCE = Symbol(
-        None, None, None, "The chance of Ice Fang freezing, as a percentage (15%)."
+        [0x79E0],
+        [0x22C5C00],
+        0x2,
+        "The chance of Ice Fang freezing, as a percentage (15%).",
     )
 
     SMOG_POISON_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x79E4],
+        [0x22C5C04],
+        0x2,
         "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a"
         " percentage (40%).",
     )
 
     LICK_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x79F0],
+        [0x22C5C10],
+        0x2,
         "The chance of Lick (and others, see DoMoveDamageParalyze10) paralyzing, as a"
         " percentage (10%).",
     )
 
     THUNDER_FANG_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x79F4],
+        [0x22C5C14],
+        0x2,
         "The chance of Thunder Fang paralyzing, as a percentage (10%).",
     )
 
     BITE_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x79FC],
+        [0x22C5C1C],
+        0x2,
         "The chance of Bite (and others, see DoMoveDamageCringe20) inflicting the"
         " cringe status, as a percentage (20%)",
     )
 
     SKY_ATTACK_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7A00],
+        [0x22C5C20],
+        0x2,
         "The chance of Sky Attack inflicting the cringe status, as a percentage (25%).",
     )
 
     ICE_FANG_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7A04],
+        [0x22C5C24],
+        0x2,
         "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
     )
 
     BLAZE_KICK_BURN_CHANCE = Symbol(
-        None, None, None, "The chance of Blaze Kick burning, as a percentage (10%)."
+        [0x7A08],
+        [0x22C5C28],
+        0x2,
+        "The chance of Blaze Kick burning, as a percentage (10%).",
     )
 
     FLAMETHROWER_BURN_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7A0C],
+        [0x22C5C2C],
+        0x2,
         "The chance of Flamethrower (and others, see DoMoveDamageBurn10) burning, as a"
         " percentage (10%).",
     )
 
     DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7A10],
+        [0x22C5C30],
+        0x2,
         "The chance of Dizzy Punch (and others, see DoMoveDamageConfuse30) confusing,"
         " as a percentage (30%).",
     )
 
     SECRET_POWER_EFFECT_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7A14],
+        [0x22C5C34],
+        0x2,
         "The chance of Secret Power inflicting an effect, as a percentage (30%).",
     )
 
     METAL_CLAW_BOOST_ATTACK_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7A1C],
+        [0x22C5C3C],
+        0x2,
         "The chance of Metal Claw boosting attack, as a percentage (20%).",
     )
 
     TECHNICIAN_MOVE_POWER_THRESHOLD = Symbol(
-        None,
-        None,
-        None,
+        [0x7A24],
+        [0x22C5C44],
+        0x2,
         "The move power threshold for Technician (4). Moves whose base power doesn't"
         " exceed this value will receive a 50% damage boost.",
     )
 
     SONICBOOM_FIXED_DAMAGE = Symbol(
-        None, None, None, "The amount of fixed damage dealt by SonicBoom (20)."
+        [0x7A30],
+        [0x22C5C50],
+        0x2,
+        "The amount of fixed damage dealt by SonicBoom (20).",
     )
 
     RAIN_ABILITY_BONUS_REGEN = Symbol(
@@ -11167,82 +11207,91 @@ class JpOverlay10Data:
     )
 
     EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
-        None,
-        None,
-        None,
+        [0x7A54],
+        [0x22C5C74],
+        0x2,
         "The percentage increase in experience from exp-boosting exclusive items.",
     )
 
     AFTERMATH_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7A5C],
+        [0x22C5C7C],
+        0x2,
         "The chance of the Aftermath ability activating, as a percentage (50%).",
     )
 
     SET_DAMAGE_STATUS_DAMAGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7A60],
+        [0x22C5C80],
+        0x2,
         "The fixed amount of damage dealt when the Set Damage status condition is"
         " active (30).",
     )
 
     INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
-        None, None, None, "The percentage chance that Intimidator will activate."
+        [0x7A80],
+        [0x22C5CA0],
+        0x2,
+        "The percentage chance that Intimidator will activate.",
     )
 
     TYPE_ADVANTAGE_MASTER_CRIT_RATE = Symbol(
-        None, None, None, "The flat critical hit rate with Type-Advantage Master, 40%."
+        [0x7AA8],
+        [0x22C5CC8],
+        0x2,
+        "The flat critical hit rate with Type-Advantage Master, 40%.",
     )
 
     ORAN_BERRY_HP_RESTORATION = Symbol(
-        None, None, None, "The amount of HP restored by eating a Oran Berry."
+        [0x7AB4], [0x22C5CD4], 0x2, "The amount of HP restored by eating a Oran Berry."
     )
 
     SITRUS_BERRY_FULL_HP_BOOST = Symbol(
-        None,
-        None,
-        None,
+        [0x7ABC],
+        [0x22C5CDC],
+        0x2,
         "The permanent HP boost from eating a Sitrus Berry at full HP.",
     )
 
     SNORE_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7AC8],
+        [0x22C5CE8],
+        0x2,
         "The chance of Snore inflicting the cringe status, as a percentage (30%).",
     )
 
     METEOR_MASH_BOOST_ATTACK_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7ACC],
+        [0x22C5CEC],
+        0x2,
         "The chance of Meteor Mash boosting attack, as a percentage (20%).",
     )
 
     CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7AD0],
+        [0x22C5CF0],
+        0x2,
         "The chance of Crush Claw lowering defense, as a percentage (50%).",
     )
 
     BURN_DAMAGE_COOLDOWN = Symbol(
-        None, None, None, "The number of turns between passive burn damage."
+        [0x7AD8], [0x22C5CF8], 0x2, "The number of turns between passive burn damage."
     )
 
     SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7AE4],
+        [0x22C5D04],
+        0x2,
         "The chance of Shadow Ball lowering special defense, as a percentage (20%).",
     )
 
-    STICK_POWER = Symbol(None, None, None, "Attack power for Sticks.")
+    STICK_POWER = Symbol([0x7AEC], [0x22C5D0C], 0x2, "Attack power for Sticks.")
 
     BUBBLE_LOWER_SPEED_CHANCE = Symbol(
-        None, None, None, "The chance of Bubble lowering speed, as a percentage (10%)."
+        [0x7AF4],
+        [0x22C5D14],
+        0x2,
+        "The chance of Bubble lowering speed, as a percentage (10%).",
     )
 
     ICE_BODY_BONUS_REGEN = Symbol(
@@ -11254,31 +11303,34 @@ class JpOverlay10Data:
     )
 
     POWDER_SNOW_FREEZE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7AFC],
+        [0x22C5D1C],
+        0x2,
         "The chance of Powder Snow (and others, see DoMoveDamageFreeze15) freezing, as"
         " a percentage (15%).",
     )
 
     POISON_STING_POISON_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B04],
+        [0x22C5D24],
+        0x2,
         "The chance of Poison Sting (and others, see DoMoveDamagePoison18) poisoning,"
         " as a percentage (18%).",
     )
 
     SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
-        None,
-        None,
-        None,
+        [0x7B08],
+        [0x22C5D28],
+        0x2,
         "The number of turns between enemy spawns when the Thief Alert condition is"
         " active.",
     )
 
     POISON_FANG_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Poison Fang poisoning, as a percentage (30%)."
+        [0x7B0C],
+        [0x22C5D2C],
+        0x2,
+        "The chance of Poison Fang poisoning, as a percentage (30%).",
     )
 
     WEATHER_MOVE_TURN_COUNT = Symbol(
@@ -11290,141 +11342,159 @@ class JpOverlay10Data:
     )
 
     THUNDER_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B20],
+        [0x22C5D40],
+        0x2,
         "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as"
         " a percentage (20%)",
     )
 
     THUNDERBOLT_PARALYZE_CHANCE = Symbol(
-        None, None, None, "The chance of Thunderbolt paralyzing, as a percentage (15%)."
+        [0x7B24],
+        [0x22C5D44],
+        0x2,
+        "The chance of Thunderbolt paralyzing, as a percentage (15%).",
     )
 
     MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
-        None,
-        None,
-        None,
+        [0x7B28],
+        [0x22C5D48],
+        0x2,
         "The maximum number of monster spawns in a Monster House, 30, but multiplied by"
         " 2/3 for some reason (so the actual maximum is 45)",
     )
 
     TWISTER_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B30],
+        [0x22C5D50],
+        0x2,
         "The chance of Twister inflicting the cringe status, as a percentage (10%).",
     )
 
     SPEED_BOOST_TURNS = Symbol(
-        None,
-        None,
-        None,
+        [0x7B34],
+        [0x22C5D54],
+        0x2,
         "Number of turns (250) after which Speed Boost will trigger and increase speed"
         " by one stage.",
     )
 
     FAKE_OUT_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B38],
+        [0x22C5D58],
+        0x2,
         "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
     )
 
     THUNDER_FANG_CRINGE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B40],
+        [0x22C5D60],
+        0x2,
         "The chance of Thunder Fang inflicting the cringe status, as a percentage"
         " (25%).",
     )
 
     FLARE_BLITZ_BURN_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B4C],
+        [0x22C5D6C],
+        0x2,
         "The chance of Flare Blitz burning, as a percentage (25%). This value is also"
         " used for the Fire Fang burn chance.",
     )
 
     FLAME_WHEEL_BURN_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B50],
+        [0x22C5D70],
+        0x2,
         "The chance of Flame Wheel (and others, see DoMoveDamageBurn10FlameWheel)"
         " burning, as a percentage (10%).",
     )
 
     PSYBEAM_CONFUSE_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B58],
+        [0x22C5D78],
+        0x2,
         "The chance of Psybeam (and others, see DoMoveDamageConfuse10) confusing, as a"
         " percentage (10%).",
     )
 
     TRI_ATTACK_STATUS_CHANCE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B5C],
+        [0x22C5D7C],
+        0x2,
         "The chance of Tri Attack inflicting any status condition, as a percentage"
         " (20%).",
     )
 
     MIRACLE_CHEST_EXP_BOOST = Symbol(
-        None,
-        None,
-        None,
+        [0x7B60],
+        [0x22C5D80],
+        0x2,
         "The percentage increase in experience from the Miracle Chest item",
     )
 
     WONDER_CHEST_EXP_BOOST = Symbol(
-        None,
-        None,
-        None,
+        [0x7B64],
+        [0x22C5D84],
+        0x2,
         "The percentage increase in experience from the Wonder Chest item",
     )
 
     SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
-        None,
-        None,
-        None,
+        [0x7B6C],
+        [0x22C5D8C],
+        0x2,
         "The maximum number of enemies that can spawn on a floor with a monster house,"
         " not counting those in the monster house (4).",
     )
 
     POISON_DAMAGE_COOLDOWN = Symbol(
-        None, None, None, "The number of turns between passive poison damage."
+        [0x7B70], [0x22C5D90], 0x2, "The number of turns between passive poison damage."
     )
 
     LEECH_SEED_DAMAGE_COOLDOWN = Symbol(
         None, None, None, "The number of turns between leech seed health drain."
     )
 
-    GEO_PEBBLE_DAMAGE = Symbol(None, None, None, "Damage dealt by Geo Pebbles.")
+    GEO_PEBBLE_DAMAGE = Symbol(
+        [0x7B7C], [0x22C5D9C], 0x2, "Damage dealt by Geo Pebbles."
+    )
 
-    GRAVELEROCK_DAMAGE = Symbol(None, None, None, "Damage dealt by Gravelerocks.")
+    GRAVELEROCK_DAMAGE = Symbol(
+        [0x7B80], [0x22C5DA0], 0x2, "Damage dealt by Gravelerocks."
+    )
 
-    RARE_FOSSIL_DAMAGE = Symbol(None, None, None, "Damage dealt by Rare Fossils.")
+    RARE_FOSSIL_DAMAGE = Symbol(
+        [0x7B84], [0x22C5DA4], 0x2, "Damage dealt by Rare Fossils."
+    )
 
     GINSENG_CHANCE_3 = Symbol(
-        None,
-        None,
-        None,
+        [0x7B88],
+        [0x22C5DA8],
+        0x2,
         "The percentage chance for...something to be set to 3 in a calculation related"
         " to the Ginseng boost.",
     )
 
     ZINC_STAT_BOOST = Symbol(
-        None, None, None, "The permanent special defense boost from ingesting a Zinc."
+        [0x7B8C],
+        [0x22C5DAC],
+        0x2,
+        "The permanent special defense boost from ingesting a Zinc.",
     )
 
     IRON_STAT_BOOST = Symbol(
-        None, None, None, "The permanent defense boost from ingesting an Iron."
+        [0x7B90],
+        [0x22C5DB0],
+        0x2,
+        "The permanent defense boost from ingesting an Iron.",
     )
 
     CALCIUM_STAT_BOOST = Symbol(
-        None, None, None, "The permanent special attack boost from ingesting a Calcium."
+        [0x7B94],
+        [0x22C5DB4],
+        0x2,
+        "The permanent special attack boost from ingesting a Calcium.",
     )
 
     WISH_BONUS_REGEN = Symbol(
@@ -11432,80 +11502,91 @@ class JpOverlay10Data:
     )
 
     DRAGON_RAGE_FIXED_DAMAGE = Symbol(
-        None, None, None, "The amount of fixed damage dealt by Dragon Rage (30)."
+        [0x7B9C],
+        [0x22C5DBC],
+        0x2,
+        "The amount of fixed damage dealt by Dragon Rage (30).",
     )
 
-    CORSOLA_TWIG_POWER = Symbol(None, None, None, "Attack power for Corsola Twigs.")
+    CORSOLA_TWIG_POWER = Symbol(
+        [0x7BA0], [0x22C5DC0], 0x2, "Attack power for Corsola Twigs."
+    )
 
-    CACNEA_SPIKE_POWER = Symbol(None, None, None, "Attack power for Cacnea Spikes.")
+    CACNEA_SPIKE_POWER = Symbol(
+        [0x7BA4], [0x22C5DC4], 0x2, "Attack power for Cacnea Spikes."
+    )
 
-    GOLD_FANG_POWER = Symbol(None, None, None, "Attack power for Gold Fangs.")
+    GOLD_FANG_POWER = Symbol([0x7BA8], [0x22C5DC8], 0x2, "Attack power for Gold Fangs.")
 
-    SILVER_SPIKE_POWER = Symbol(None, None, None, "Attack power for Silver Spikes.")
+    SILVER_SPIKE_POWER = Symbol(
+        [0x7BAC], [0x22C5DCC], 0x2, "Attack power for Silver Spikes."
+    )
 
-    IRON_THORN_POWER = Symbol(None, None, None, "Attack power for Iron Thorns.")
+    IRON_THORN_POWER = Symbol(
+        [0x7BB0], [0x22C5DD0], 0x2, "Attack power for Iron Thorns."
+    )
 
     SCOPE_LENS_CRIT_RATE_BOOST = Symbol(
-        None,
-        None,
-        None,
+        [0x7BB8],
+        [0x22C5DD8],
+        0x2,
         "The critical hit rate (additive) boost from the Scope Lens/Patsy Band items"
         " and the Sharpshooter IQ skill, 15%.",
     )
 
     HEALING_WISH_HP_RESTORATION = Symbol(
-        None,
-        None,
-        None,
+        [0x7BBC],
+        [0x22C5DDC],
+        0x2,
         "The amount of HP restored by Healing Wish (999). This also applies to Lunar"
         " Dance.",
     )
 
     ME_FIRST_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7BC8],
+        [0x22C5DE8],
+        0x4,
         "The damage multiplier applied to attacks copied by Me First, as a fixed-point"
         " number with 8 fraction bits (1.5).",
     )
 
     FACADE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7BE0],
+        [0x22C5E00],
+        0x4,
         "The Facade damage multiplier for users with a status condition, as a binary"
         " fixed-point number with 8 fraction bits (0x200 -> 2x).",
     )
 
     IMPRISON_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7BE0],
+        [0x22C5E00],
+        0x4,
         "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype:"
         " int16_t[2]",
     )
 
     SLEEP_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7BE8],
+        [0x22C5E08],
+        0x4,
         "Appears to control the range of turns for which the sleep condition can"
         " last.\n\nThe first two bytes are the low value of the range, and the later"
         " two bytes are the high value.",
     )
 
     NIGHTMARE_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7BEC],
+        [0x22C5E0C],
+        0x4,
         "The turn range for the Nightmare status inflicted by Nightmare, [4,"
         " 8).\n\ntype: int16_t[2]",
     )
 
     BURN_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7C0C],
+        [0x22C5E2C],
+        0x4,
         "The extra damage multiplier for moves when the attacker is burned, as a"
         " fixed-point number with 8 fraction bits (the raw value is 0xCC, which is"
         " close to 0.8).\n\nUnlike in the main series, this multiplier is applied"
@@ -11513,17 +11594,17 @@ class JpOverlay10Data:
     )
 
     REST_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7C10],
+        [0x22C5E30],
+        0x4,
         "The turn range for the Napping status inflicted by Rest, [1, 4).\n\ntype:"
         " int16_t[2]",
     )
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
-        None,
-        None,
-        None,
+        [0x7C14],
+        [0x22C5E34],
+        0x4,
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE when Erratic"
         " Player is active, as a fixed-point number with 8 fraction bits (the raw value"
         " is 0x1B3, the closest possible representation of 1.7).",
@@ -11538,246 +11619,246 @@ class JpOverlay10Data:
     )
 
     SPORT_CONDITION_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7C54],
+        [0x22C5E74],
+        0x4,
         "The turn range for the sport conditions activated by Mud Sport and Water"
         " Sport, [10, 12).\n\ntype: int16_t[2]",
     )
 
     SURE_SHOT_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7C60],
+        [0x22C5E80],
+        0x4,
         "The turn range for the Sure Shot status inflicted by Mind Reader and Lock-On,"
         " [10, 12).\n\ntype: int16_t[2]",
     )
 
     DETECT_BAND_MOVE_ACCURACY_DROP = Symbol(
-        None,
-        None,
-        None,
+        [0x7C70],
+        [0x22C5E90],
+        0x4,
         "The (subtractive) move accuracy drop induced on an attacker if the defender is"
         " wearing a Detect Band (30).",
     )
 
     TINTED_LENS_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7C88],
+        [0x22C5EA8],
+        0x4,
         "The extra damage multiplier for not-very-effective moves when Tinted Lens is"
         " active, as a fixed-point number with 8 fraction bits (the raw value is 0x133,"
         " the closest possible representation of 1.2).",
     )
 
     SMOKESCREEN_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7C8C],
+        [0x22C5EAC],
+        0x4,
         "The turn range for the Whiffer status inflicted by Smokescreen, [1,"
         " 4).\n\ntype: int16_t[2]",
     )
 
     SHADOW_FORCE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CA4],
+        [0x22C5EC4],
+        0x4,
         "The damage multiplier for Shadow Force, as a fixed-point number with 8"
         " fraction bits (2).",
     )
 
     DIG_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CAC],
+        [0x22C5ECC],
+        0x4,
         "The damage multiplier for Dig, as a fixed-point number with 8 fraction bits"
         " (2).",
     )
 
     DIVE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CB0],
+        [0x22C5ED0],
+        0x4,
         "The damage multiplier for Dive, as a fixed-point number with 8 fraction bits"
         " (2).",
     )
 
     BOUNCE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CB4],
+        [0x22C5ED4],
+        0x4,
         "The damage multiplier for Bounce, as a fixed-point number with 8 fraction bits"
         " (2).",
     )
 
     POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CC0],
+        [0x22C5EE0],
+        0x4,
         "The multiplier for projectile damage from Power Pitcher (1.5), as a binary"
         " fixed-point number (8 fraction bits)",
     )
 
     QUICK_DODGER_MOVE_ACCURACY_DROP = Symbol(
-        None,
-        None,
-        None,
+        [0x7CD0],
+        [0x22C5EF0],
+        0x4,
         "The (subtractive) move accuracy drop induced on an attacker if the defender"
         " has the Quick Dodger IQ skill (10).",
     )
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CD8],
+        [0x22C5EF8],
+        0x4,
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE, as a"
         " fixed-point number with 8 fraction bits (the raw value is 0x1B4, the closest"
         " possible representation of 1/√2).",
     )
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CE0],
+        [0x22C5F00],
+        0x4,
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE, as a"
         " fixed-point number with 8 fraction bits (the raw value is 0x166, the closest"
         " possible representation of 1.4).",
     )
 
     MATCHUP_NEUTRAL_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CE4],
+        [0x22C5F04],
+        0x4,
         "The damage multiplier corresponding to MATCHUP_NEUTRAL, as a fixed-point"
         " number with 8 fraction bits (1).",
     )
 
     MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CE8],
+        [0x22C5F08],
+        0x4,
         "The damage multiplier corresponding to MATCHUP_IMMUNE when Erratic Player is"
         " active, as a fixed-point number with 8 fraction bits (0.25).",
     )
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CEC],
+        [0x22C5F0C],
+        0x4,
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE when Erratic"
         " Player is active, as a fixed-point number with 8 fraction bits (0.5).",
     )
 
     MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER = Symbol(
-        None,
-        None,
-        None,
+        [0x7CF4],
+        [0x22C5F14],
+        0x4,
         "The damage multiplier corresponding to MATCHUP_NEUTRAL when Erratic Player is"
         " active, as a fixed-point number with 8 fraction bits (1).",
     )
 
     AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7D0C],
+        [0x22C5F2C],
+        0x4,
         "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point"
         " number (8 fraction bits)",
     )
 
     KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7D14],
+        [0x22C5F34],
+        0x4,
         "The boosted kecleon shop spawn chance multiplier (~1.2) as a binary"
         " fixed-point number (8 fraction bits).",
     )
 
     HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7D18],
+        [0x22C5F38],
+        0x4,
         "The hidden stairs spawn chance multiplier (~1.2) as a binary fixed-point"
         " number (8 fraction bits), if applicable. See"
         " ShouldBoostHiddenStairsSpawnChance in overlay 29.",
     )
 
     YAWN_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7D28],
+        [0x22C5F48],
+        0x4,
         "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype:"
         " int16_t[2]",
     )
 
     SPEED_BOOST_TURN_RANGE = Symbol(
-        None,
-        None,
-        None,
+        [0x7D50],
+        [0x22C5F70],
+        0x4,
         "Appears to control the range of turns for which a speed boost can last.\n\nThe"
         " first two bytes are the low value of the range, and the later two bytes are"
         " the high value.",
     )
 
     SOLARBEAM_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7D6C],
+        [0x22C5F8C],
+        0x4,
         "The default damage multiplier for SolarBeam, as a fixed-point number with 8"
         " fraction bits (2).",
     )
 
     SKY_ATTACK_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7D70],
+        [0x22C5F90],
+        0x4,
         "The damage multiplier for Sky Attack, as a fixed-point number with 8 fraction"
         " bits (2).",
     )
 
     RAZOR_WIND_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7D78],
+        [0x22C5F98],
+        0x4,
         "The damage multiplier for Razor Wind, as a fixed-point number with 8 fraction"
         " bits (2).",
     )
 
     FOCUS_PUNCH_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7D7C],
+        [0x22C5F9C],
         None,
         "The damage multiplier for Focus Punch, as a fixed-point number with 8 fraction"
         " bits (2).",
     )
 
     SKULL_BASH_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7D84],
+        [0x22C5FA4],
+        0x4,
         "The damage multiplier for Skull Bash, as a fixed-point number with 8 fraction"
         " bits (2).",
     )
 
     FLY_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
-        None,
+        [0x7D88],
+        [0x22C5FA8],
+        0x4,
         "The damage multiplier for Fly, as a fixed-point number with 8 fraction bits"
         " (2).",
     )
 
     WEATHER_BALL_TYPE_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7DA4],
+        [0x22C5FC4],
+        0x8,
         "Maps each weather type (by index, see enum weather_id) to the corresponding"
         " Weather Ball type.\n\ntype: struct type_id_8[8]",
     )
 
     LAST_RESORT_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7E0C],
+        [0x22C602C],
+        0x10,
         "Table of damage multipliers for Last Resort for different numbers of moves out"
         " of PP, where each entry is a binary fixed-point number with 8 fraction"
         " bits.\n\nIf n is the number of moves out of PP not counting Last Resort"
@@ -11785,76 +11866,76 @@ class JpOverlay10Data:
     )
 
     SYNTHESIS_HP_RESTORATION_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7E1C],
+        [0x22C603C],
+        0x10,
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
         " restoration value for Synthesis.\n\ntype: int16_t[8]",
     )
 
     ROOST_HP_RESTORATION_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7E2C],
+        [0x22C604C],
+        0x10,
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
         " restoration value for Roost.\n\nEvery entry in this table is 40.\n\ntype:"
         " int16_t[8]",
     )
 
     MOONLIGHT_HP_RESTORATION_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7E3C],
+        [0x22C605C],
+        0x10,
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
         " restoration value for Moonlight.\n\ntype: int16_t[8]",
     )
 
     MORNING_SUN_HP_RESTORATION_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7E4C],
+        [0x22C606C],
+        0x10,
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
         " restoration value for Morning Sun.\n\ntype: int16_t[8]",
     )
 
     REVERSAL_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7E5C],
+        [0x22C607C],
+        0x10,
         "Table of damage multipliers for Reversal/Flail at different HP ranges, where"
         " each entry is a binary fixed-point number with 8 fraction bits.\n\ntype:"
         " int[4]",
     )
 
     WATER_SPOUT_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7E6C],
+        [0x22C608C],
+        0x10,
         "Table of damage multipliers for Water Spout at different HP ranges, where each"
         " entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
     )
 
     WRING_OUT_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7E7C],
+        [0x22C609C],
+        0x10,
         "Table of damage multipliers for Wring Out/Crush Grip at different HP ranges,"
         " where each entry is a binary fixed-point number with 8 fraction"
         " bits.\n\ntype: int[4]",
     )
 
     ERUPTION_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x7E8C],
+        [0x22C60AC],
+        0x10,
         "Table of damage multipliers for Eruption at different HP ranges, where each"
         " entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
     )
 
     WEATHER_BALL_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x801C],
+        [0x22C623C],
+        0x20,
         "Maps each weather type (by index, see enum weather_id) to the corresponding"
         " Weather Ball damage multiplier, where each entry is a binary fixed-point"
         " number with 8 fraction bits.\n\ntype: int[8]",
@@ -11877,17 +11958,17 @@ class JpOverlay10Data:
     )
 
     BAD_POISON_DAMAGE_TABLE = Symbol(
-        None,
-        None,
+        [0x8164],
+        [0x22C6384],
         None,
         "Table for how much damage each tick of badly poisoned should deal. The table"
         " is filled with 0x0006, but could use different values for each entry.",
     )
 
     TYPE_MATCHUP_COMBINATOR_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x81DC],
+        [0x22C63FC],
+        0x40,
         "Table of type matchup combinations.\n\nEach row corresponds to a single type"
         " matchup that results from combining two individual type matchups together."
         " For example, combining MATCHUP_NOT_VERY_EFFECTIVE with"
@@ -11896,17 +11977,17 @@ class JpOverlay10Data:
     )
 
     OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        None,
+        [0x8260],
+        [0x22C6480],
+        0x54,
         "Table of multipliers for offensive stats (attack/special attack) for each"
         " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
     )
 
     DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
-        None,
-        None,
-        None,
+        [0x82B4],
+        [0x22C64D4],
+        0x54,
         "Table of multipliers for defensive stats (defense/special defense) for each"
         " stage 0-20, as binary fixed-point numbers (8 fraction bits)",
     )
@@ -12529,25 +12610,25 @@ class JpOverlay11Data:
     )
 
     RECRUITMENT_TABLE_LOCATIONS = Symbol(
-        None,
-        None,
-        None,
+        [0x44518],
+        [0x2321DF8],
+        0x16,
         "Table of dungeon IDs corresponding to entries in"
         " RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
     )
 
     RECRUITMENT_TABLE_LEVELS = Symbol(
-        None,
-        None,
-        None,
+        [0x44530],
+        [0x2321E10],
+        0x2C,
         "Table of levels for recruited Pokémon, corresponding to entries in"
         " RECRUITMENT_TABLE_SPECIES.\n\ntype: int16_t[22]",
     )
 
     RECRUITMENT_TABLE_SPECIES = Symbol(
-        None,
-        None,
-        None,
+        [0x4455C],
+        [0x2321E3C],
+        0x2C,
         "Table of Pokémon recruited at special locations, such as at the ends of"
         " certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during"
         " a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes"
@@ -12556,8 +12637,8 @@ class JpOverlay11Data:
     )
 
     LEVEL_TILEMAP_LIST = Symbol(
-        None,
-        None,
+        [0x449B0],
+        [0x2322290],
         None,
         "Irdkwia's notes: FIXED_FLOOR_GROUND_ASSOCIATION\n\ntype: struct"
         " level_tilemap_list_entry[81]",
@@ -13115,28 +13196,31 @@ class JpOverlay14Data:
     )
 
     SENTRY_CHATOT_MONSTER_ID = Symbol(
-        None, None, None, "Monster ID for Chatot, used as the speaker ID for dialog."
+        [0x2060],
+        [0x238D700],
+        0x4,
+        "Monster ID for Chatot, used as the speaker ID for dialog.",
     )
 
     STRING_ID_SENTRY_NO_MORE_VISITORS = Symbol(
-        None,
-        None,
+        [0x2064],
+        [0x238D704],
         None,
         "String ID 0x6F5:\n [se_play:0]No more visitors! No more\nvisitors! ♪",
     )
 
     STRING_ID_SENTRY_THATS_ALL = Symbol(
-        None,
-        None,
-        None,
+        [0x2068],
+        [0x238D708],
+        0x4,
         "String ID 0x6F6:\n OK, got that![C]\n Hey, [partner] and\n[hero]![C]\n That's"
         " all for today! Now get\nback here!",
     )
 
     SENTRY_GROVYLE_MONSTER_ID = Symbol(
-        None,
-        None,
-        None,
+        [0x292C],
+        [0x238DFCC],
+        0x4,
         "Monster ID for Grovyle, which appears to be explicitly excluded when"
         " generating species choices.",
     )
@@ -13490,9 +13574,9 @@ class JpOverlay19Data:
     )
 
     BAR_RECRUITABLE_MONSTER_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0x39AC],
+        [0x238F04C],
+        0xD8,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
         " monster_id_16[108]",
     )
@@ -20887,16 +20971,16 @@ class JpOverlay29Data:
     )
 
     KECLEON_FEMALE_ID = Symbol(
-        None,
-        None,
-        None,
+        [0x1B0EC],
+        [0x22F89CC],
+        0x4,
         "0x3D7 (983). Used when spawning Kecleon on an even numbered floor.",
     )
 
     KECLEON_MALE_ID = Symbol(
-        None,
-        None,
-        None,
+        [0x1B0F0],
+        [0x22F89D0],
+        0x4,
         "0x17F (383). Used when spawning Kecleon on an odd numbered floor.",
     )
 
@@ -20917,36 +21001,45 @@ class JpOverlay29Data:
     )
 
     JUDGMENT_MOVE_ID = Symbol(
-        None, None, None, "Move ID for Judgment (0x1D3)\n\ntype: enum move_id"
+        [0x300C8],
+        [0x230D9A8],
+        0x4,
+        "Move ID for Judgment (0x1D3)\n\ntype: enum move_id",
     )
 
     REGULAR_ATTACK_MOVE_ID = Symbol(
-        None, None, None, "Move ID for the regular attack (0x163)\n\ntype: enum move_id"
+        [0x300CC],
+        [0x230D9AC],
+        0x4,
+        "Move ID for the regular attack (0x163)\n\ntype: enum move_id",
     )
 
     DEOXYS_ATTACK_ID = Symbol(
-        None,
-        None,
-        None,
+        [0x300D0],
+        [0x230D9B0],
+        0x4,
         "Monster ID for Deoxys in Attack Forme (0x1A3)\n\ntype: enum monster_id",
     )
 
     DEOXYS_SPEED_ID = Symbol(
-        None,
-        None,
-        None,
+        [0x300D4],
+        [0x230D9B4],
+        0x4,
         "Monster ID for Deoxys in Speed Forme (0x1A5)\n\ntype: enum monster_id",
     )
 
     GIRATINA_ALTERED_ID = Symbol(
-        None,
-        None,
-        None,
+        [0x300D8],
+        [0x230D9B8],
+        0x4,
         "Monster ID for Giratina in Altered Forme (0x211)\n\ntype: enum monster_id",
     )
 
     PUNISHMENT_MOVE_ID = Symbol(
-        None, None, None, "Move ID for Punishment (0x1BD)\n\ntype: enum move_id"
+        [0x300DC],
+        [0x230D9BC],
+        0x4,
+        "Move ID for Punishment (0x1BD)\n\ntype: enum move_id",
     )
 
     OFFENSE_STAT_MAX = Symbol(
@@ -21006,23 +21099,23 @@ class JpOverlay29Data:
     )
 
     CASTFORM_NORMAL_FORM_MALE_ID = Symbol(
-        None, None, None, "Castform's male normal form ID (0x17B)"
+        [0x58F44], [0x2336824], 0x4, "Castform's male normal form ID (0x17B)"
     )
 
     CASTFORM_NORMAL_FORM_FEMALE_ID = Symbol(
-        None, None, None, "Castform's female normal form ID (0x3D3)"
+        [0x58F48], [0x2336828], 0x4, "Castform's female normal form ID (0x3D3)"
     )
 
     CHERRIM_SUNSHINE_FORM_MALE_ID = Symbol(
-        None, None, None, "Cherrim's male sunshine form ID (0x1CD)"
+        [0x58F4C], [0x233682C], 0x4, "Cherrim's male sunshine form ID (0x1CD)"
     )
 
     CHERRIM_OVERCAST_FORM_FEMALE_ID = Symbol(
-        None, None, None, "Cherrim's female overcast form ID (0x424)"
+        [0x58F50], [0x2336830], 0x4, "Cherrim's female overcast form ID (0x424)"
     )
 
     CHERRIM_SUNSHINE_FORM_FEMALE_ID = Symbol(
-        None, None, None, "Cherrim's female sunshine form ID (0x425)"
+        [0x58F54], [0x2336834], 0x4, "Cherrim's female sunshine form ID (0x425)"
     )
 
     FLOOR_GENERATION_STATUS_PTR = Symbol(
@@ -22374,13 +22467,16 @@ class JpRamData:
     )
 
     MONEY_CARRIED = Symbol(
-        None, None, None, "The amount of money the player is currently carrying."
+        [0x2A6418],
+        [0x22A6418],
+        0x4,
+        "The amount of money the player is currently carrying.",
     )
 
     MONEY_STORED = Symbol(
-        None,
-        None,
-        None,
+        [0x2A6424],
+        [0x22A6424],
+        0x4,
         "The amount of money the player currently has stored in the Duskull Bank.",
     )
 

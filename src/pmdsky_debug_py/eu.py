@@ -7018,15 +7018,6 @@ class EuArm9Data:
         " binary fixed-point number with 8 fraction bits (50).",
     )
 
-    DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
-        None,
-        None,
-        None,
-        "The prefactor to the 'AT' (attack) intermediate quantity in the damage formula"
-        " (see dungeon::last_move_damage_calc_at), as a binary fixed-point number with"
-        " 8 fraction bits (153/256, which is close to 0.6).",
-    )
-
     DAMAGE_FORMULA_DEF_PREFACTOR = Symbol(
         None,
         None,
@@ -7034,6 +7025,15 @@ class EuArm9Data:
         "The prefactor to the 'DEF' (defense) intermediate quantity in the damage"
         " formula (see dungeon::last_move_damage_calc_def), as a binary fixed-point"
         " number with 8 fraction bits (-0.5).",
+    )
+
+    DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
+        None,
+        None,
+        None,
+        "The prefactor to the 'AT' (attack) intermediate quantity in the damage formula"
+        " (see dungeon::last_move_damage_calc_at), as a binary fixed-point number with"
+        " 8 fraction bits (153/256, which is close to 0.6).",
     )
 
     DAMAGE_FORMULA_LN_ARG_PREFACTOR = Symbol(
@@ -10938,7 +10938,7 @@ class EuOverlay10Data:
         [0x7A0C],
         [0x22C4DCC],
         0x2,
-        "The chance of an Unown dropping an Unown stone, as a percentage (21%).",
+        "The chance of an Unown dropping an Unown stone, as a percentage (33%).",
     )
 
     SITRUS_BERRY_HP_RESTORATION = Symbol(

@@ -4348,12 +4348,12 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DAMAGE_FORMULA_AT_PREFACTOR: Symbol[
+    DAMAGE_FORMULA_DEF_PREFACTOR: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    DAMAGE_FORMULA_DEF_PREFACTOR: Symbol[
+    DAMAGE_FORMULA_AT_PREFACTOR: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
