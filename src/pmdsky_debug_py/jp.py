@@ -12727,14 +12727,16 @@ class JpOverlay13Functions:
         [0x88],
         [0x238B728],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+        "Handles the 'return' value from MENU_PERSONALITY_TEST called by scripts."
+        " \n\nreturn: int?",
     )
 
     Overlay13SwitchFunctionNa238A574 = Symbol(
         [0x434],
         [0x238BAD4],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+        "Handles the menus and dialogue boxes associated with the personality"
+        " quiz.\n\nNo params.",
     )
 
     GetPersonality = Symbol(
@@ -14769,8 +14771,9 @@ class JpOverlay29Functions:
         " which 14 species will spawn and ensuring that the sprite size of all the"
         " species combined does not exceed the maximum of 0x58000 bytes (352 KB)."
         " Kecleon and the Decoy are always included in the random selection.\nThe"
-        " function also processes the floor's item spawn lists.\n\nr0: quick_saved\nr1:"
-        " ???\nr2: special_process",
+        " function also processes the floor's item spawn lists. When loading fixed"
+        " rooms from the hidden staircase, the game forces the number of spawnable"
+        " species to 0.\n\nr0: quick_saved\nr1: disable_monsters\nr2: special_process",
     )
 
     GetItemIdToSpawn = Symbol(
@@ -18079,7 +18082,7 @@ class JpOverlay29Functions:
         None,
         "Restores the PP the target's move in the specified move slot by the specified"
         " amount.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: move"
-        " index\nr3: PP to restore\nstack[0]: flag to suppress message logging",
+        " index\nr3: PP to restore\nstack[0]: flag to log message",
     )
 
     RestoreRandomMovePP = Symbol(
@@ -18088,7 +18091,7 @@ class JpOverlay29Functions:
         None,
         "Restores the PP of a random one of the target's moves by the specified"
         " amount.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: PP to"
-        " restore\nr3: flag to suppress message logging",
+        " restore\nr3: flag to log message",
     )
 
     ApplyProteinEffect = Symbol(
