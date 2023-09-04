@@ -7570,8 +7570,8 @@ class EuItcmItcmFunctions:
     )
 
     LightningRodStormDrainCheck = Symbol(
-        None,
-        None,
+        [0x3E5C],
+        [0x1FFBE5C],
         None,
         "Appears to check whether LightningRod or Storm Drain should draw in a"
         " move.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move pointer\nr3:"

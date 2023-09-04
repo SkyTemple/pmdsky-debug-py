@@ -7475,8 +7475,8 @@ class NaItcmArm9Section:
 
 class NaItcmItcmFunctions:
     AllocateRender3dElement = Symbol(
-        None,
-        None,
+        [0xC78],
+        [0x1FF8C78],
         None,
         "Return a new render_3d_element from RENDER_3D, to be to draw a new element"
         " using the 3d render engine later in the frame.\n\nreturn: render_3d_element"
@@ -7484,8 +7484,8 @@ class NaItcmItcmFunctions:
     )
 
     Render3dStack = Symbol(
-        None,
-        None,
+        [0xDCC],
+        [0x1FF8DCC],
         None,
         "Perform rendering of the render_stack of RENDER_3D structure. Does nothing if"
         " there are no elements, otherwise, sort them based on a value, and render them"

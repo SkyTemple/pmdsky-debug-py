@@ -7475,8 +7475,8 @@ class JpItcmArm9Section:
 
 class JpItcmItcmFunctions:
     AllocateRender3dElement = Symbol(
-        None,
-        None,
+        [0xC78],
+        [0x1FF8C78],
         None,
         "Return a new render_3d_element from RENDER_3D, to be to draw a new element"
         " using the 3d render engine later in the frame.\n\nreturn: render_3d_element"
@@ -7484,8 +7484,8 @@ class JpItcmItcmFunctions:
     )
 
     Render3dStack = Symbol(
-        None,
-        None,
+        [0xDCC],
+        [0x1FF8DCC],
         None,
         "Perform rendering of the render_stack of RENDER_3D structure. Does nothing if"
         " there are no elements, otherwise, sort them based on a value, and render them"
@@ -7570,8 +7570,8 @@ class JpItcmItcmFunctions:
     )
 
     LightningRodStormDrainCheck = Symbol(
-        None,
-        None,
+        [0x3EC4],
+        [0x1FFBEC4],
         None,
         "Appears to check whether LightningRod or Storm Drain should draw in a"
         " move.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move pointer\nr3:"

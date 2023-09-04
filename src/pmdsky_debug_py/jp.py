@@ -629,8 +629,8 @@ class JpArm9Functions:
     )
 
     Rgb8ToBgr5 = Symbol(
-        None,
-        None,
+        [0x4FCC],
+        [0x2004FCC],
         None,
         "Transform the input rgb8 color to a bgr5 color\n\nr0: pointer to target bgr5"
         " (2 bytes, aligned to LSB)\nr1: pointer to source rgb8",
@@ -925,8 +925,8 @@ class JpArm9Functions:
     )
 
     GetDungeonResultMsg = Symbol(
-        None,
-        None,
+        [0xC4FC],
+        [0x200C4FC],
         None,
         "Gets the message that is shown on the dungeon results ('The Last Outing')"
         " screen, right after the leader's name.\n\nr0: Damage source value to use when"
@@ -1008,8 +1008,8 @@ class JpArm9Functions:
     )
 
     IsLosableItem = Symbol(
-        None,
-        None,
+        [0xCC38],
+        [0x200CC38],
         None,
         "Checks if an item can be lost after fainting in a dungeon. Specifically calls"
         " IsAuraBow and checks item::f_in_shop\nso that the player can't keep an aura"
@@ -1017,8 +1017,8 @@ class JpArm9Functions:
     )
 
     IsTreasureBox = Symbol(
-        None,
-        None,
+        [0xCC84],
+        [0x200CC84],
         None,
         "Checks if the given item ID is a treasure box\n\nIn particular, it checks if"
         " the category of the item is CATEGORY_TREASURE_BOXES_1,"
@@ -1027,8 +1027,8 @@ class JpArm9Functions:
     )
 
     IsStorableItem = Symbol(
-        None,
-        None,
+        [0xCCA8],
+        [0x200CCA8],
         None,
         "Checks if an item can be put into storage. Specifically checks for the Wonder"
         " Egg, Poke, and Used TMs. Used TMs\nlikely can't be stored because the move"
@@ -1037,8 +1037,8 @@ class JpArm9Functions:
     )
 
     IsShoppableItem = Symbol(
-        None,
-        None,
+        [0xCCE0],
+        [0x200CCE0],
         None,
         "Checks if an item can be bought and sold from a Kecleon shop. Includes items"
         " like the Gold Thorn, Poke, Golden\nMask, Amber Tear, etc. Also has a special"
@@ -1047,8 +1047,8 @@ class JpArm9Functions:
     )
 
     IsValidTargetItem = Symbol(
-        None,
-        None,
+        [0xCDAC],
+        [0x200CDAC],
         None,
         "Checks if an item is a valid target item for missions. Returns true for any"
         " item less than ITEM_UNNAMED_0x16B.\nAppears to check a list for valid items"
@@ -1057,8 +1057,8 @@ class JpArm9Functions:
     )
 
     IsItemUsableNow = Symbol(
-        None,
-        None,
+        [0xCDF8],
+        [0x200CDF8],
         None,
         "Checks if an item can be used right now. Returns true for all items that are"
         " not in a shop. If the item is in a\nshop, specifically checks for TMs/HMs and"
@@ -1067,8 +1067,8 @@ class JpArm9Functions:
     )
 
     IsTicketItem = Symbol(
-        None,
-        None,
+        [0xCE74],
+        [0x200CE74],
         None,
         "Checks if an item is a ticket that can be used in the recycle shop"
         " (ITEM_PRIZE_TICKET, ITEM_SILVER_TICKET,\nITEM_GOLD_TICKET, and"
@@ -1405,8 +1405,8 @@ class JpArm9Functions:
     )
 
     AddMoneyCarried = Symbol(
-        None,
-        None,
+        [0xED88],
+        [0x200ED88],
         None,
         "Adds the amount of money to the player's current amount of money. Just"
         " calls\nSetMoneyCarried with the current money + money gained.\n\nr0: money"
@@ -1655,8 +1655,8 @@ class JpArm9Functions:
     )
 
     CountNbItemsOfTypeInStorage = Symbol(
-        None,
-        None,
+        [0xFE78],
+        [0x200FE78],
         None,
         "Returns the number of items of the given kind in the storage\n\nr0: item"
         " ID\nreturn: count",
@@ -2346,8 +2346,8 @@ class JpArm9Functions:
     )
 
     SendAudioCommandWrapper = Symbol(
-        None,
-        None,
+        [0x17EC8],
+        [0x2017EC8],
         None,
         "Initializes some values and then calls SendAudioCommand.\n\nChecks for"
         " DEBUG_FLAG_BGM_OFF. If 1, sets the volume to 0 before calling"
@@ -2356,8 +2356,8 @@ class JpArm9Functions:
     )
 
     AllocAudioCommand = Symbol(
-        None,
-        None,
+        [0x18BC4],
+        [0x2018BC4],
         None,
         "Searches for an entry in AUDIO_COMMANDS_BUFFER that's not currently in use"
         " (audio_command::status == 0). Returns the first entry not in use, or null if"
@@ -2369,8 +2369,8 @@ class JpArm9Functions:
     )
 
     SendAudioCommand = Symbol(
-        None,
-        None,
+        [0x18C00],
+        [0x2018C00],
         None,
         "Used to send commands to the audio engine (seems to be used mainly to play and"
         " stop music)\n\nThis function calls a stubbed-out one with the string 'audio"
@@ -2378,8 +2378,8 @@ class JpArm9Functions:
     )
 
     InitSoundSystem = Symbol(
-        None,
-        None,
+        [0x18C80],
+        [0x2018C80],
         None,
         "Initialize the DSE sound engine?\n\nThis function is called somewhere in the"
         " hierarchy under TaskProcBoot and appears to allocate a bunch of memory"
@@ -2475,8 +2475,8 @@ class JpArm9Functions:
     )
 
     InitAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C0A8],
+        [0x201C0A8],
         None,
         "Initialize the animation_control structure\n\nr0: animation_control",
     )
@@ -2490,8 +2490,8 @@ class JpArm9Functions:
     )
 
     SetSpriteIdForAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C140],
+        [0x201C140],
         None,
         "Set the sprite id (from WAN_TABLE) in the given animation control\nAlso set"
         " field 0x72 to the sprite id if they differ\nIf they differ, it’ll also set"
@@ -2499,8 +2499,8 @@ class JpArm9Functions:
     )
 
     SetAnimationForAnimationControlInternal = Symbol(
-        None,
-        None,
+        [0x1C1D4],
+        [0x201C1D4],
         None,
         "Set the wan animation (and other related settings) of an"
         " animation_control\nUsed by SetAnimationForAnimationControl\n\nr0:"
@@ -2511,8 +2511,8 @@ class JpArm9Functions:
     )
 
     SetAnimationForAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C324],
+        [0x201C324],
         None,
         "Set the animation to play with this animation control, but do not start"
         " it.\n\n(args same as SetAndPlayAnimationForAnimationControl)\nr0:"
@@ -2525,8 +2525,8 @@ class JpArm9Functions:
     )
 
     GetWanForAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C440],
+        [0x201C440],
         None,
         "Return the WAN to use for the given animation control\nReturn the override if"
         " it exists, otherwise look up the sprite id in WAN_TABLE\n\nr0:"
@@ -2534,8 +2534,8 @@ class JpArm9Functions:
     )
 
     SetAndPlayAnimationForAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C470],
+        [0x201C470],
         None,
         "Set the animation to play with the animation control, and start it.\n\nr0:"
         " animation_control\nr1: animation key (either an animation or animation group"
@@ -2547,16 +2547,16 @@ class JpArm9Functions:
     )
 
     SwitchAnimationControlToNextFrame = Symbol(
-        None,
-        None,
+        [0x1C4B0],
+        [0x201C4B0],
         None,
         "Handle switching to the next frame of an animation control, including"
         " looping.\n\nr0: animation_control",
     )
 
     LoadAnimationFrameAndIncrementInAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C5B8],
+        [0x201C5B8],
         None,
         "Read some value of the input animation frame, and update animation control"
         " with it.\nAlso switch next_animation_frame of animation_control to the next"
@@ -2566,8 +2566,8 @@ class JpArm9Functions:
     )
 
     AnimationControlGetAllocForMaxFrame = Symbol(
-        None,
-        None,
+        [0x1D1C8],
+        [0x201D1C8],
         None,
         "Return the maximum allocation for a frame of this sprite, as stored in the WAN"
         " file\nReturn 0 if missing and takes sprite override into account\n\nr0:"
@@ -2584,8 +2584,8 @@ class JpArm9Functions:
     )
 
     AllocateWanTableEntry = Symbol(
-        None,
-        None,
+        [0x1D29C],
+        [0x201D29C],
         None,
         "Return the identifier to a free wan table entry (-1 if none are avalaible)."
         " The entry is zeroed.\n\nr0: wan_table_ptr\nreturn: the entry id in wan_table",
@@ -2610,8 +2610,8 @@ class JpArm9Functions:
     )
 
     InitWanTable = Symbol(
-        None,
-        None,
+        [0x1D414],
+        [0x201D414],
         None,
         "Initialize the input WAN table with 0x60 free entries (it needs a length of"
         " 0x1510 bytes)\n\nr0: wan_table_ptr",
@@ -2628,8 +2628,8 @@ class JpArm9Functions:
     )
 
     LoadWanTableEntryFromPack = Symbol(
-        None,
-        None,
+        [0x1D4DC],
+        [0x201D4DC],
         None,
         "Return an already allocated entry for this sprite if it exists, otherwise"
         " allocate a new one and load the optionally compressed sprite.\n\nr0:"
@@ -2638,8 +2638,8 @@ class JpArm9Functions:
     )
 
     LoadWanTableEntryFromPackUseProvidedMemory = Symbol(
-        None,
-        None,
+        [0x1D5E8],
+        [0x201D5E8],
         None,
         "Return an already allocated entry for this sprite if it exists, otherwise"
         " allocate a new one and load the optionally compressed sprite into the"
@@ -2666,8 +2666,8 @@ class JpArm9Functions:
     )
 
     WanHasAnimationGroup = Symbol(
-        None,
-        None,
+        [0x1DA9C],
+        [0x201DA9C],
         None,
         "Check if the input WAN file loaded in memory has an animation group with this"
         " ID\nValid means that the animation group is in the range of existing"
@@ -2677,8 +2677,8 @@ class JpArm9Functions:
     )
 
     WanTableSpriteHasAnimationGroup = Symbol(
-        None,
-        None,
+        [0x1DAD8],
+        [0x201DAD8],
         None,
         "Check if the sprite in the global WAN table has the given animation group\nsee"
         " WanHasAnimationGroup for more detail\n\nr0: sprite id in the WAN table\nr1:"
@@ -2687,8 +2687,8 @@ class JpArm9Functions:
     )
 
     SpriteTypeInWanTable = Symbol(
-        None,
-        None,
+        [0x1DCC8],
+        [0x201DCC8],
         None,
         "Look up the sprite in the WAN table, and return its type\n\nr0: sprite id in"
         " the WAN table\nreturn: sprite type",
@@ -2736,8 +2736,8 @@ class JpArm9Functions:
     )
 
     GeomSetTexImageParam = Symbol(
-        None,
-        None,
+        [0x1E4EC],
+        [0x201E4EC],
         None,
         "Send the 'TEXIMAGE_PARAM' geometry engine command, that defines some"
         " parameters for the texture\nSee"
@@ -2750,8 +2750,8 @@ class JpArm9Functions:
     )
 
     GeomSetVertexCoord16 = Symbol(
-        None,
-        None,
+        [0x1E52C],
+        [0x201E52C],
         None,
         "Send the 'VTX_16' geometry engine command, that defines the coordinate of a"
         " point of a polygon, using 16 bits.\nInputs are clamped over their 16 lower"
@@ -2759,12 +2759,15 @@ class JpArm9Functions:
     )
 
     InitRender3dData = Symbol(
-        None, None, None, "Initialize the global 'RENDER_3D' structure.\n\nNo params."
+        [0x1E55C],
+        [0x201E55C],
+        None,
+        "Initialize the global 'RENDER_3D' structure.\n\nNo params.",
     )
 
     GeomSwapBuffers = Symbol(
-        None,
-        None,
+        [0x1E774],
+        [0x201E774],
         None,
         "Call the 'SWAP_BUFFERS' command. This will swap the geometry buffer. The"
         " parameter of 1 is provided, which enables manual Y-sorting of translucent"
@@ -2772,16 +2775,16 @@ class JpArm9Functions:
     )
 
     InitRender3dElement = Symbol(
-        None,
-        None,
+        [0x1E788],
+        [0x201E788],
         None,
         "Initialize the render_3d_element structure (without performing any drawing or"
         " external data access)\n\nr0: render_3d_element",
     )
 
     Generate3dCanvasBorder = Symbol(
-        None,
-        None,
+        [0x1EA44],
+        [0x201EA44],
         None,
         "Draw the border for dialogue box and other menus, using the 3D engine.\nThe"
         " render_3d_element contains certain value that needs to be set to a correct"
@@ -2958,8 +2961,8 @@ class JpArm9Functions:
     )
 
     GetBagNameString = Symbol(
-        None,
-        None,
+        [0x24E4C],
+        [0x2024E4C],
         None,
         "Returns 'One-Item Inventory' or 'Treasure Bag' depending on the size of the"
         " bag.\n\nr0: [output] Pointer to the buffer where the string will be"
@@ -3120,8 +3123,8 @@ class JpArm9Functions:
     )
 
     LoadCursors = Symbol(
-        None,
-        None,
+        [0x29864],
+        [0x2029864],
         None,
         "Load and initialise the cursor and cursor16 sprites, storing the result in"
         " CURSOR_ANIMATION_CONTROL and CURSOR_16_ANIMATION_CONTROL\n\nNo params.",
@@ -3142,16 +3145,16 @@ class JpArm9Functions:
     )
 
     LoadAlert = Symbol(
-        None,
-        None,
+        [0x2A240],
+        [0x202A240],
         None,
         "Load and initialise the alert sprite, storing the result in"
         " ALERT_ANIMATION_CONTROL\n\nNo params.",
     )
 
     PrintClearMark = Symbol(
-        None,
-        None,
+        [0x2A73C],
+        [0x202A73C],
         None,
         "Prints the specified clear mark on the screen.\n\nClear marks are shown on the"
         " save file load screen. They are used to show which plot milestones have"
@@ -3639,8 +3642,8 @@ class JpArm9Functions:
     )
 
     GetExecuteSpecialEpisodeType = Symbol(
-        None,
-        None,
+        [0x4CC98],
+        [0x204CC98],
         None,
         "Gets the special episode type from the EXECUTE_SPECIAL_EPISODE_TYPE script"
         " variable.\n\nreturn: special episode type",
@@ -3861,16 +3864,16 @@ class JpArm9Functions:
     )
 
     InitKaomadoStream = Symbol(
-        None,
-        None,
+        [0x4DAE0],
+        [0x204DAE0],
         None,
         "Initializes the stream used to load all Kaomado portraits, called once on game"
         " start!\n\nNo params.",
     )
 
     InitPortraitBox = Symbol(
-        None,
-        None,
+        [0x4DAFC],
+        [0x204DAFC],
         None,
         "Initializes a struct portrait_box.\n\nThe emote is set to PORTRAIT_NONE and"
         " the layout to the default. Everything else is initialized to 0.\n\nr0:"
@@ -3914,8 +3917,8 @@ class JpArm9Functions:
     )
 
     AllowPortraitDefault = Symbol(
-        None,
-        None,
+        [0x4DBF4],
+        [0x204DBF4],
         None,
         "Allows the portrait to try and load the default emote (PORTRAIT_NORMAL) if it"
         " can't find the specified emote.\n\nr0: portrait box pointer\nr1: allow"
@@ -3923,8 +3926,8 @@ class JpArm9Functions:
     )
 
     IsValidPortrait = Symbol(
-        None,
-        None,
+        [0x4DBFC],
+        [0x204DBFC],
         None,
         "Returns whether this portrait box represents a valid portrait.\n\nr0: portrait"
         " box pointer\nreturn: bool",
@@ -3943,24 +3946,24 @@ class JpArm9Functions:
     )
 
     SetEnterDungeon = Symbol(
-        None,
-        None,
+        [0x4ECA4],
+        [0x204ECA4],
         None,
         "Used to set the dungeon that will be accessed when switching from ground to"
         " dungeon mode.\n\nr0: Dungeon ID",
     )
 
     InitDungeonInit = Symbol(
-        None,
-        None,
+        [0x4EDB4],
+        [0x204EDB4],
         None,
         "Initializes the dungeon_init struct before entering a dungeon.\n\nr0: [output]"
         " Pointer to the struct to init\nr1: Dungeon ID",
     )
 
     IsNoLossPenaltyDungeon = Symbol(
-        None,
-        None,
+        [0x4F338],
+        [0x204F338],
         None,
         "Returns true if the specified dungeon shouldn't have a loss penalty.\n\nIf"
         " true you won't lose your money and items upon fainting. Also used to"
@@ -3971,8 +3974,8 @@ class JpArm9Functions:
     )
 
     CheckMissionRestrictions = Symbol(
-        None,
-        None,
+        [0x4F71C],
+        [0x204F71C],
         None,
         "Seems to be used to check if you have any missions that have unmet"
         " restrictions when trying to access a dungeon.\n\nr0: ?\nreturn: (?) Seems to"
@@ -4040,8 +4043,8 @@ class JpArm9Functions:
     )
 
     GetMissionRank = Symbol(
-        None,
-        None,
+        [0x4FB68],
+        [0x204FB68],
         None,
         "Gets the mission rank for the given dungeon and floor.\n\nIf the dungeon ID is"
         " >= DUNGEON_NORMAL_FLY_MAZE or the group of the dungeon is >"
@@ -4075,8 +4078,8 @@ class JpArm9Functions:
     )
 
     AddGuestMonster = Symbol(
-        None,
-        None,
+        [0x4FC34],
+        [0x204FC34],
         None,
         "Adds a guest monster to the active team\n\nr0: dungeon_init struct for the"
         " dungeon that is about to be entered\nr1: Number of the guest monster to add."
@@ -4466,8 +4469,8 @@ class JpArm9Functions:
     )
 
     GetRankupPoints = Symbol(
-        None,
-        None,
+        [0x50F08],
+        [0x2050F08],
         None,
         "Returns the number of points required to reach the next rank.\n\nIf"
         " PERFORMANCE_PROGRESS_LIST[8] is 0 and the current rank is RANK_MASTER, or if"
@@ -4476,8 +4479,8 @@ class JpArm9Functions:
     )
 
     GetRank = Symbol(
-        None,
-        None,
+        [0x50FC4],
+        [0x2050FC4],
         None,
         "Returns the team's rank\n\nIf PERFORMANCE_PROGRESS_LIST[8] is 0, the maximum"
         " rank that can be returned is RANK_MASTER.\n\nreturn: Rank",
@@ -5070,8 +5073,8 @@ class JpArm9Functions:
     )
 
     GuestMonsterToGroundMonster = Symbol(
-        None,
-        None,
+        [0x53188],
+        [0x2053188],
         None,
         "Inits a ground_monster entry with the given guest_monster struct.\n\nr0:"
         " [output] ground_monster struct to init\nr1: guest_monster struct to use",
@@ -5098,8 +5101,8 @@ class JpArm9Functions:
     )
 
     GetEncodedHalfword = Symbol(
-        None,
-        None,
+        [0x53B84],
+        [0x2053B84],
         None,
         "Decodes a 2-byte value that may be encoded using 1 or 2 bytes and writes it to"
         " the specified buffer.\n\nThe encoding system uses the most significant bit of"
@@ -5340,8 +5343,8 @@ class JpArm9Functions:
     )
 
     IsValidTeamMember = Symbol(
-        None,
-        None,
+        [0x5572C],
+        [0x205572C],
         None,
         "Returns whether or not the team member at the given index is valid for the"
         " current game mode.\n\nDuring normal play, this will only be false for the"
@@ -5351,8 +5354,8 @@ class JpArm9Functions:
     )
 
     IsMainCharacter = Symbol(
-        None,
-        None,
+        [0x558C4],
+        [0x20558C4],
         None,
         "Returns whether or not the team member at the given index is a 'main"
         " character'.\n\nDuring normal play, this will only be true for the hero and"
@@ -5471,8 +5474,8 @@ class JpArm9Functions:
     )
 
     IsMonsterNotNicknamed = Symbol(
-        None,
-        None,
+        [0x5640C],
+        [0x205640C],
         None,
         "Checks if the string_buffer matches the name of the species\n\nr0: ground"
         " monster pointer\nreturn: bool",
@@ -5498,8 +5501,8 @@ class JpArm9Functions:
     )
 
     SetActiveTeam = Symbol(
-        None,
-        None,
+        [0x56668],
+        [0x2056668],
         None,
         "Sets the specified team to active in TEAM_MEMBER_TABLE.\n\nr0: team ID",
     )
@@ -5957,8 +5960,8 @@ class JpArm9Functions:
     )
 
     MainLoop = Symbol(
-        None,
-        None,
+        [0x66004],
+        [0x2066004],
         None,
         "This function gets called shortly after the game is started. Contains a single"
         " infinite loop and has no return statement.\n\nNo params.",
@@ -5981,8 +5984,8 @@ class JpArm9Functions:
     )
 
     GetDungeonModeSpecial = Symbol(
-        None,
-        None,
+        [0x6AA60],
+        [0x206AA60],
         None,
         "Returns the status of the given dungeon, with some modifications.\n\nIf the"
         " dungeon ID is DUNGEON_BEACH, returns DMODE_REQUEST.\nIf it's"
@@ -6005,15 +6008,15 @@ class JpArm9Functions:
     )
 
     ParseDseEvents = Symbol(
-        None,
-        None,
+        [0x7150C],
+        [0x207150C],
         None,
         "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
     )
 
     UpdateSequencerTracks = Symbol(
-        None,
-        None,
+        [0x716D0],
+        [0x20716D0],
         None,
         "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
     )
@@ -6027,31 +6030,31 @@ class JpArm9Functions:
     )
 
     UpdateTrackVolumeEnvelopes = Symbol(
-        None,
-        None,
+        [0x750F4],
+        [0x20750F4],
         None,
         "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
     )
 
     EnableVramBanksInSetDontSave = Symbol(
-        None,
-        None,
+        [0x76694],
+        [0x2076694],
         None,
         "Enable the VRAM bank marked in the input set, but don’t mark them as enabled"
         " in ENABLED_VRAM_BANKS\n\nr0: vram_banks_set",
     )
 
     EnableVramBanksInSet = Symbol(
-        None,
-        None,
+        [0x773B0],
+        [0x20773B0],
         None,
         "Enable the VRAM banks in the input set. Will reset the pointed set to 0, and"
         " update ENABLED_VRAM_BANKS\n\nr0: vram_banks_set *",
     )
 
     ClearIrqFlag = Symbol(
-        None,
-        None,
+        [0x7BAB8],
+        [0x207BAB8],
         None,
         "Enables processor interrupts by clearing the i flag in the program status"
         " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
@@ -6059,8 +6062,8 @@ class JpArm9Functions:
     )
 
     EnableIrqFlag = Symbol(
-        None,
-        None,
+        [0x7BACC],
+        [0x207BACC],
         None,
         "Disables processor interrupts by setting the i flag in the program status"
         " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
@@ -6068,8 +6071,8 @@ class JpArm9Functions:
     )
 
     SetIrqFlag = Symbol(
-        None,
-        None,
+        [0x7BAE0],
+        [0x207BAE0],
         None,
         "Sets the value of the processor's interrupt flag according to the specified"
         " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
@@ -6078,8 +6081,8 @@ class JpArm9Functions:
     )
 
     EnableIrqFiqFlags = Symbol(
-        None,
-        None,
+        [0x7BAF8],
+        [0x207BAF8],
         None,
         "Disables processor all interrupts (both standard and fast) by setting the i"
         " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
@@ -6087,8 +6090,8 @@ class JpArm9Functions:
     )
 
     SetIrqFiqFlags = Symbol(
-        None,
-        None,
+        [0x7BB0C],
+        [0x207BB0C],
         None,
         "Sets the value of the processor's interrupt flags (i and f) according to the"
         " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
@@ -6098,8 +6101,8 @@ class JpArm9Functions:
     )
 
     GetIrqFlag = Symbol(
-        None,
-        None,
+        [0x7BB24],
+        [0x207BB24],
         None,
         "Gets the current value of the processor's interrupt request (i)"
         " flag\n\nreturn: cpsr & 0x80 (0x80 if interrupts are disabled, 0x0 if they are"
@@ -6107,8 +6110,8 @@ class JpArm9Functions:
     )
 
     WaitForever2 = Symbol(
-        None,
-        None,
+        [0x7BF08],
+        [0x207BF08],
         None,
         "Calls EnableIrqFlag and WaitForInterrupt in an infinite loop.\n\nThis is"
         " called on fatal errors to hang the program indefinitely.\n\nNo params.",
@@ -7702,8 +7705,8 @@ class JpArm9Section:
 
 class JpItcmFunctions:
     AllocateRender3dElement = Symbol(
-        None,
-        None,
+        [0xC78],
+        [0x20B5858],
         None,
         "Return a new render_3d_element from RENDER_3D, to be to draw a new element"
         " using the 3d render engine later in the frame.\n\nreturn: render_3d_element"
@@ -7711,8 +7714,8 @@ class JpItcmFunctions:
     )
 
     Render3dStack = Symbol(
-        None,
-        None,
+        [0xDCC],
+        [0x20B59AC],
         None,
         "Perform rendering of the render_stack of RENDER_3D structure. Does nothing if"
         " there are no elements, otherwise, sort them based on a value, and render them"
@@ -10796,8 +10799,8 @@ class JpOverlay10Functions:
     )
 
     IsBackgroundTileset = Symbol(
-        None,
-        None,
+        [0x5A3C],
+        [0x22C3C5C],
         None,
         "Given a tileset ID, returns whether it's a background or a regular"
         " tileset\n\nIn particular, returns r0 >= 0xAA\n\nr0: Tileset ID\nreturn: True"
@@ -12424,16 +12427,16 @@ class JpOverlay11Functions:
     )
 
     AllocAndInitPartnerFollowDataAndLiveActorList = Symbol(
-        None,
-        None,
+        [0x1BA60],
+        [0x22F9340],
         None,
         "Allocate and initialize the partner follow data and the live actor list (in"
         " GROUND_STATE_PTRS)\n\nNo params.",
     )
 
     InitPartnerFollowDataAndLiveActorList = Symbol(
-        None,
-        None,
+        [0x1BABC],
+        [0x22F939C],
         None,
         "Initialize the partner follow data and the live actor list (in"
         " GROUND_STATE_PTRS, doesn’t perform the allocation of the structures)\n\nNo"
@@ -12441,32 +12444,32 @@ class JpOverlay11Functions:
     )
 
     DeleteLiveActor = Symbol(
-        None,
-        None,
+        [0x1C31C],
+        [0x22F9BFC],
         None,
         "Remove the actor from the overworld actor list (in GROUND_STATE_PTRS)\n\nr0:"
         " the index of the actor in the live actor list",
     )
 
     InitPartnerFollowData = Symbol(
-        None,
-        None,
+        [0x1F7CC],
+        [0x22FD0AC],
         None,
         "Initialize the partner follow data structure, without allocating it (in"
         " GROUND_STATE_PTRS)\n\nNo params.",
     )
 
     GetDirectionLiveActor = Symbol(
-        None,
-        None,
+        [0x20F40],
+        [0x22FE820],
         None,
         "Put the direction of the actor in the destination\n\nr0: live actor\nr1:"
         " destination address (1 byte)",
     )
 
     SetDirectionLiveActor = Symbol(
-        None,
-        None,
+        [0x20F50],
+        [0x22FE830],
         None,
         "Store the direction in the actor structure\n-1 input is ignored\nUnsure if"
         " this change the animation\n\nr0: live actor\nr1: direction",
@@ -12482,16 +12485,16 @@ class JpOverlay11Functions:
     )
 
     GetExclusiveItemRequirements = Symbol(
-        None,
-        None,
+        [0x2EBFC],
+        [0x230C4DC],
         None,
         "Used to calculate the items required to get a certain exclusive item in the"
         " swap shop.\n\nr0: ?\nr1: ?",
     )
 
     GetDungeonMapPos = Symbol(
-        None,
-        None,
+        [0x32A14],
+        [0x23102F4],
         None,
         "Checks if a dungeon should be displayed on the map and the position where it"
         " should be displayed if so.\n\nr0: [Output] Buffer where the coordinates of"
@@ -12502,8 +12505,8 @@ class JpOverlay11Functions:
     )
 
     WorldMapSetMode = Symbol(
-        None,
-        None,
+        [0x32CD0],
+        [0x23105B0],
         None,
         "Function called by the script function 'worldmap_SetMode'\nDefine the mode of"
         " the world map, which can among other things be used to decide if the player"
@@ -12512,8 +12515,8 @@ class JpOverlay11Functions:
     )
 
     WorldMapSetCamera = Symbol(
-        None,
-        None,
+        [0x32D90],
+        [0x2310670],
         None,
         "Function called with the script function 'worldmap_SetCamera'.\nSet the map"
         " marker the world map should try to center on (while still ensuring it doesn't"
@@ -13483,23 +13486,23 @@ class JpOverlay18Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    MOVES_MENU_CONFIRM = Symbol(None, None, None, "")
+    MOVES_MENU_CONFIRM = Symbol([0x31EC], [0x238E88C], 0x18, "")
 
-    MOVES_SUBMENU_1 = Symbol(None, None, None, "")
+    MOVES_SUBMENU_1 = Symbol([0x3204], [0x238E8A4], 0x20, "")
 
-    MOVES_SUBMENU_2 = Symbol(None, None, None, "")
+    MOVES_SUBMENU_2 = Symbol([0x3224], [0x238E8C4], 0x20, "")
 
-    MOVES_MAIN_MENU = Symbol(None, None, None, "")
+    MOVES_MAIN_MENU = Symbol([0x3244], [0x238E8E4], 0x20, "")
 
-    MOVES_SUBMENU_3 = Symbol(None, None, None, "")
+    MOVES_SUBMENU_3 = Symbol([0x3264], [0x238E904], 0x28, "")
 
-    MOVES_SUBMENU_4 = Symbol(None, None, None, "")
+    MOVES_SUBMENU_4 = Symbol([0x328C], [0x238E92C], 0x30, "")
 
-    MOVES_SUBMENU_5 = Symbol(None, None, None, "")
+    MOVES_SUBMENU_5 = Symbol([0x32BC], [0x238E95C], 0x48, "")
 
-    MOVES_SUBMENU_6 = Symbol(None, None, None, "")
+    MOVES_SUBMENU_6 = Symbol([0x3304], [0x238E9A4], 0x48, "")
 
-    MOVES_SUBMENU_7 = Symbol(None, None, None, "")
+    MOVES_SUBMENU_7 = Symbol([0x334C], [0x238E9EC], 0x48, "")
 
     OVERLAY18_FUNCTION_POINTER_TABLE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -13614,19 +13617,19 @@ class JpOverlay19Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BAR_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+    BAR_MENU_CONFIRM_1 = Symbol([0x40C0], [0x238F760], 0x18, "")
 
-    BAR_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+    BAR_MENU_CONFIRM_2 = Symbol([0x40D8], [0x238F778], 0x18, "")
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BAR_MAIN_MENU = Symbol(None, None, None, "")
+    BAR_MAIN_MENU = Symbol([0x4108], [0x238F7A8], 0x20, "")
 
-    BAR_SUBMENU_1 = Symbol(None, None, None, "")
+    BAR_SUBMENU_1 = Symbol([0x4128], [0x238F7C8], 0x20, "")
 
-    BAR_SUBMENU_2 = Symbol(None, None, None, "")
+    BAR_SUBMENU_2 = Symbol([0x4148], [0x238F7E8], 0x30, "")
 
     OVERLAY19_RESERVED_SPACE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -13680,15 +13683,15 @@ class JpOverlay20Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_MENU_CONFIRM_1 = Symbol(None, None, None, "")
+    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E40], [0x238E4E0], 0x18, "")
 
-    RECYCLE_MENU_CONFIRM_2 = Symbol(None, None, None, "")
+    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E58], [0x238E4F8], 0x18, "")
 
-    RECYCLE_SUBMENU_1 = Symbol(None, None, None, "")
+    RECYCLE_SUBMENU_1 = Symbol([0x2E70], [0x238E510], 0x18, "")
 
-    RECYCLE_SUBMENU_2 = Symbol(None, None, None, "")
+    RECYCLE_SUBMENU_2 = Symbol([0x2E88], [0x238E528], 0x20, "")
 
-    RECYCLE_MAIN_MENU_1 = Symbol(None, None, None, "")
+    RECYCLE_MAIN_MENU_1 = Symbol([0x2EA8], [0x238E548], 0x28, "")
 
     OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -13718,7 +13721,7 @@ class JpOverlay20Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_MAIN_MENU_2 = Symbol(None, None, None, "")
+    RECYCLE_MAIN_MENU_2 = Symbol([0x2F44], [0x238E5E4], 0x20, "")
 
     RECYCLE_D_BOX_LAYOUT_7 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -13781,17 +13784,17 @@ class JpOverlay21Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+    SWAP_SHOP_MENU_CONFIRM = Symbol([0x2908], [0x238DFA8], 0x18, "")
 
-    SWAP_SHOP_SUBMENU_1 = Symbol(None, None, None, "")
+    SWAP_SHOP_SUBMENU_1 = Symbol([0x2920], [0x238DFC0], 0x18, "")
 
-    SWAP_SHOP_SUBMENU_2 = Symbol(None, None, None, "")
+    SWAP_SHOP_SUBMENU_2 = Symbol([0x2938], [0x238DFD8], 0x20, "")
 
-    SWAP_SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2958], [0x238DFF8], 0x20, "")
 
-    SWAP_SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2978], [0x238E018], 0x28, "")
 
-    SWAP_SHOP_SUBMENU_3 = Symbol(None, None, None, "")
+    SWAP_SHOP_SUBMENU_3 = Symbol([0x29A0], [0x238E040], 0x30, "")
 
     OVERLAY21_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -13870,13 +13873,13 @@ class JpOverlay22Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_MENU_CONFIRM = Symbol(None, None, None, "")
+    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238FDC8], 0x18, "")
 
-    SHOP_MAIN_MENU_1 = Symbol(None, None, None, "")
+    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238FDE0], 0x20, "")
 
-    SHOP_MAIN_MENU_2 = Symbol(None, None, None, "")
+    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238FE00], 0x20, "")
 
-    SHOP_MAIN_MENU_3 = Symbol(None, None, None, "")
+    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238FE20], 0x30, "")
 
     OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -13965,15 +13968,15 @@ class JpOverlay23Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_MENU_CONFIRM = Symbol(None, None, None, "")
+    STORAGE_MENU_CONFIRM = Symbol([0x3214], [0x238E8B4], 0x18, "")
 
-    STORAGE_MAIN_MENU_1 = Symbol(None, None, None, "")
+    STORAGE_MAIN_MENU_1 = Symbol([0x322C], [0x238E8CC], 0x20, "")
 
-    STORAGE_MAIN_MENU_2 = Symbol(None, None, None, "")
+    STORAGE_MAIN_MENU_2 = Symbol([0x324C], [0x238E8EC], 0x20, "")
 
-    STORAGE_MAIN_MENU_3 = Symbol(None, None, None, "")
+    STORAGE_MAIN_MENU_3 = Symbol([0x326C], [0x238E90C], 0x20, "")
 
-    STORAGE_MAIN_MENU_4 = Symbol(None, None, None, "")
+    STORAGE_MAIN_MENU_4 = Symbol([0x328C], [0x238E92C], 0x28, "")
 
     OVERLAY23_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -14044,9 +14047,9 @@ class JpOverlay24Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DAYCARE_MENU_CONFIRM = Symbol(None, None, None, "")
+    DAYCARE_MENU_CONFIRM = Symbol([0x23E8], [0x238DA88], 0x18, "")
 
-    DAYCARE_MAIN_MENU = Symbol(None, None, None, "")
+    DAYCARE_MAIN_MENU = Symbol([0x2400], [0x238DAA0], 0x20, "")
 
     OVERLAY24_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -14103,11 +14106,11 @@ class JpOverlay25Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_MENU_CONFIRM = Symbol(None, None, None, "")
+    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238CA14], 0x18, "")
 
-    APPRAISAL_MAIN_MENU = Symbol(None, None, None, "")
+    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238CA2C], 0x20, "")
 
-    APPRAISAL_SUBMENU = Symbol(None, None, None, "")
+    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238CA4C], 0x20, "")
 
     OVERLAY25_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -14226,13 +14229,13 @@ class JpOverlay27Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol(None, None, None, "")
+    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x284C], [0x238DEEC], 0x18, "")
 
-    DISCARD_ITEMS_SUBMENU_1 = Symbol(None, None, None, "")
+    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2864], [0x238DF04], 0x20, "")
 
-    DISCARD_ITEMS_SUBMENU_2 = Symbol(None, None, None, "")
+    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2884], [0x238DF24], 0x20, "")
 
-    DISCARD_ITEMS_MAIN_MENU = Symbol(None, None, None, "")
+    DISCARD_ITEMS_MAIN_MENU = Symbol([0x28A4], [0x238DF44], 0x28, "")
 
     OVERLAY27_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -14311,8 +14314,8 @@ class JpOverlay28Section:
 
 class JpOverlay29Functions:
     GetWeatherColorTable = Symbol(
-        None,
-        None,
+        [0x23E0],
+        [0x22DFCC0],
         None,
         "Gets a pointer to the floor's color table given the current weather.\n\nThe"
         " returned table contains 1024 color entries.\n\nr0: Weather ID\nreturn: color"
@@ -14448,8 +14451,8 @@ class JpOverlay29Functions:
     )
 
     CheckTouchscreenArea = Symbol(
-        None,
-        None,
+        [0x4A68],
+        [0x22E2348],
         None,
         "Checks if the currently pressed touchscreen position is within the specified"
         " area.\n\nr0: Area lower X coordinate\nr1: Area lower Y coordinate\nr2: Area"
@@ -14459,16 +14462,16 @@ class JpOverlay29Functions:
     )
 
     GetTrapInfo = Symbol(
-        None,
-        None,
+        [0x53B8],
+        [0x22E2C98],
         None,
         "Given a trap entity, returns the pointer to the trap info struct it"
         " contains.\n\nr0: Entity pointer\nreturn: Trap data pointer",
     )
 
     GetItemInfo = Symbol(
-        None,
-        None,
+        [0x53C0],
+        [0x22E2CA0],
         None,
         "Given an item entity, returns the pointer to the item info struct it"
         " contains.\n\nr0: Entity pointer\nreturn: Item data pointer",
@@ -14483,8 +14486,8 @@ class JpOverlay29Functions:
     )
 
     UpdateEntityPixelPos = Symbol(
-        None,
-        None,
+        [0x57F0],
+        [0x22E30D0],
         None,
         "Updates an entity's pixel_pos field using the specified pixel_position struct,"
         " or its own pos field if it's null.\n\nr0: Entity pointer\nr1: Pixel position"
@@ -14492,8 +14495,8 @@ class JpOverlay29Functions:
     )
 
     CreateEnemyEntity = Symbol(
-        None,
-        None,
+        [0x5E70],
+        [0x22E3750],
         None,
         "Creates and initializes the entity struct of a newly spawned enemy monster."
         " Fails if there's 16 enemies on the floor already.\n\nIt could also be used to"
@@ -14526,16 +14529,16 @@ class JpOverlay29Functions:
     )
 
     ShouldMinimapDisplayEntity = Symbol(
-        None,
-        None,
+        [0x624C],
+        [0x22E3B2C],
         None,
         "Checks if a given entity should be displayed on the minimap\n\nr0: Entity"
         " pointer\nreturn: True if the entity should be displayed on the minimap",
     )
 
     ShouldDisplayEntity = Symbol(
-        None,
-        None,
+        [0x6328],
+        [0x22E3C08],
         None,
         "Checks if an entity should be displayed or not.\n\nFor example, it returns"
         " false if the entity is an invisible enemy.\nAlso used to determine if"
@@ -14675,8 +14678,8 @@ class JpOverlay29Functions:
     )
 
     PlayEffectAnimationPos = Symbol(
-        None,
-        None,
+        [0x756C],
+        [0x22E4E4C],
         None,
         "Takes a position struct in r0 and converts it to a pixel position struct"
         " before calling PlayEffectAnimationPixelPos\n\nr0: Position where the effect"
@@ -14686,8 +14689,8 @@ class JpOverlay29Functions:
     )
 
     PlayEffectAnimationPixelPos = Symbol(
-        None,
-        None,
+        [0x75B0],
+        [0x22E4E90],
         None,
         "Seems like a variant of PlayEffectAnimationEntity that uses pixel coordinates"
         " as its first parameter instead of an entity pointer.\n\nr0: Pixel position"
@@ -14697,8 +14700,8 @@ class JpOverlay29Functions:
     )
 
     AnimationDelayOrSomething = Symbol(
-        None,
-        None,
+        [0x7670],
+        [0x22E4F50],
         None,
         "Called whenever most (all?) animations are played. Does not return until the"
         " animation is over.\n\nMight wait until the animation is done? Contains"
@@ -14777,8 +14780,8 @@ class JpOverlay29Functions:
     )
 
     GetItemIdToSpawn = Symbol(
-        None,
-        None,
+        [0xB850],
+        [0x22E9130],
         None,
         "Randomly picks an item to spawn using one of the floor's item spawn lists and"
         " returns its ID.\n\nIf the function fails to properly choose an item (due to,"
@@ -14787,8 +14790,8 @@ class JpOverlay29Functions:
     )
 
     MonsterSpawnListPartialCopy = Symbol(
-        None,
-        None,
+        [0xB9EC],
+        [0x22E92CC],
         None,
         "Copies all entries in the floor's monster spawn list that have a sprite size"
         " >= 6 to the specified buffer.\n\nThe parameter in r1 can be used to specify"
@@ -15097,8 +15100,8 @@ class JpOverlay29Functions:
     )
 
     MusicTableIdxToMusicId = Symbol(
-        None,
-        None,
+        [0xEA88],
+        [0x22EC368],
         None,
         "Used to convert an index that refers to a MUSIC_ID_TABLE entry to a regular"
         " music ID.\n\nr0: Music table index\nreturn: Music ID",
@@ -15122,8 +15125,8 @@ class JpOverlay29Functions:
     )
 
     SetLeaderActionFields = Symbol(
-        None,
-        None,
+        [0xF150],
+        [0x22ECA30],
         None,
         "Sets the leader's monster::action::action_id to the specified value.\n\nAlso"
         " sets monster::action::action_use_idx and monster::action::field_0xA to 0, as"
@@ -15162,16 +15165,16 @@ class JpOverlay29Functions:
     )
 
     GetItemToUseByIndex = Symbol(
-        None,
-        None,
+        [0xF1D4],
+        [0x22ECAB4],
         None,
         "Returns a pointer to the item that is about to be used by a monster given its"
         " index.\n\nr0: Entity pointer\nr1: Item index\nreturn: Pointer to the item",
     )
 
     GetItemToUse = Symbol(
-        None,
-        None,
+        [0xF2D4],
+        [0x22ECBB4],
         None,
         "Returns a pointer to the item that is about to be used by a monster.\n\nr0:"
         " Entity pointer\nr1: Parameter index in"
@@ -15194,8 +15197,8 @@ class JpOverlay29Functions:
     )
 
     RemoveUsedItem = Symbol(
-        None,
-        None,
+        [0xF394],
+        [0x22ECC74],
         None,
         "Removes an item from the bag or from the floor after using it\n\nr0: Pointer"
         " to the entity that used the item\nr1: Parameter index in"
@@ -15231,8 +15234,8 @@ class JpOverlay29Functions:
     )
 
     SetActionUseMovePlayer = Symbol(
-        None,
-        None,
+        [0xFA20],
+        [0x22ED300],
         None,
         "Sets a monster's action to action::ACTION_USE_MOVE_PLAYER, with a specified"
         " monster and move index.\n\nr0: Pointer to the monster's action field\nr1:"
@@ -15338,8 +15341,8 @@ class JpOverlay29Functions:
     )
 
     PrepareTrapperTrap = Symbol(
-        None,
-        None,
+        [0x11958],
+        [0x22EF238],
         None,
         "Saves the relevant information in the dungeon struct to later place a trap at"
         " the\nlocation of the entity. (Only called with trap ID 0x19 (TRAP_NONE), but"
@@ -15348,8 +15351,8 @@ class JpOverlay29Functions:
     )
 
     TrySpawnTrap = Symbol(
-        None,
-        None,
+        [0x11A40],
+        [0x22EF320],
         None,
         "Checks if the a trap can be placed on the tile. If the trap ID is >= TRAP_NONE"
         " (the\nlast value for a trap), randomly select another trap (except for wonder"
@@ -15360,8 +15363,8 @@ class JpOverlay29Functions:
     )
 
     TrySpawnTrapperTrap = Symbol(
-        None,
-        None,
+        [0x11B58],
+        [0x22EF438],
         None,
         "If the flag for a trapper trap is set, handles spawning a trap based upon"
         " the\ninformation inside the dungeon struct. Uses the entity for logging a"
@@ -15381,8 +15384,8 @@ class JpOverlay29Functions:
     )
 
     ApplyMudTrapEffect = Symbol(
-        None,
-        None,
+        [0x120E8],
+        [0x22EF9C8],
         None,
         "Randomly lowers attack, special attack, defense, or special defense of the"
         " defender by 3 stages.\n\nr0: attacker entity pointer\nr1: defender entity"
@@ -15390,8 +15393,8 @@ class JpOverlay29Functions:
     )
 
     ApplyStickyTrapEffect = Symbol(
-        None,
-        None,
+        [0x121B0],
+        [0x22EFA90],
         None,
         "If the defender is the leader, randomly try to make something in the bag"
         " sticky. Otherwise, try to make the item the monster is holding sticky.\n\nr0:"
@@ -15399,8 +15402,8 @@ class JpOverlay29Functions:
     )
 
     ApplyGrimyTrapEffect = Symbol(
-        None,
-        None,
+        [0x123AC],
+        [0x22EFC8C],
         None,
         "If the defender is the leader, randomly try to turn food items in the toolbox"
         " into\ngrimy food. Otherwise, try to make the food item the monster is holding"
@@ -15419,24 +15422,24 @@ class JpOverlay29Functions:
     )
 
     ApplySummonTrapEffect = Symbol(
-        None,
-        None,
+        [0x12708],
+        [0x22EFFE8],
         None,
         "Randomly spawns 2-4 enemy monsters around the position. The entity is only"
         " used for\nlogging messages.\n\nr0: entity pointer\nr1: position",
     )
 
     ApplyPpZeroTrapEffect = Symbol(
-        None,
-        None,
+        [0x127A4],
+        [0x22F0084],
         None,
         "Tries to reduce the PP of one of the defender's moves to 0.\n\nr0: attacker"
         " entity pointer\nr1: defender entity pointer",
     )
 
     ApplyPokemonTrapEffect = Symbol(
-        None,
-        None,
+        [0x1288C],
+        [0x22F016C],
         None,
         "Turns item in the same room as the tile at the position (usually just the"
         " entities's\nposition) into monsters. If the position is in a hallway, convert"
@@ -15445,8 +15448,8 @@ class JpOverlay29Functions:
     )
 
     ApplyTripTrapEffect = Symbol(
-        None,
-        None,
+        [0x12AA0],
+        [0x22F0380],
         None,
         "Tries to drop the defender's item and places it on the floor.\n\nr0: attacker"
         " entity pointer\nr1: defender entity pointer",
@@ -15488,8 +15491,8 @@ class JpOverlay29Functions:
     )
 
     ApplyTrapEffect = Symbol(
-        None,
-        None,
+        [0x12E50],
+        [0x22F0730],
         None,
         "Performs the effect of a triggered trap.\n\nThe trap's animation happens"
         " before this function is called.\n\nr0: Triggered trap\nr1: User\nr2: Target,"
@@ -15499,15 +15502,15 @@ class JpOverlay29Functions:
     )
 
     RevealTrapsNearby = Symbol(
-        None,
-        None,
+        [0x132FC],
+        [0x22F0BDC],
         None,
         "Reveals traps within the monster's viewing range.\n\nr0: entity pointer",
     )
 
     ShouldRunMonsterAi = Symbol(
-        None,
-        None,
+        [0x13710],
+        [0x22F0FF0],
         None,
         "Checks a monster's monster_behavior to see whether or not the monster should"
         " use AI. Only called on monsters with\na monster_behavior greater than or"
@@ -15528,8 +15531,8 @@ class JpOverlay29Functions:
     )
 
     TryActivateIqBooster = Symbol(
-        None,
-        None,
+        [0x13798],
+        [0x22F1078],
         None,
         "Increases the IQ of all team members holding the IQ Booster by"
         " floor_properties::iq_booster_value amount unless the\nvalue is 0.\n\nNo"
@@ -15553,8 +15556,8 @@ class JpOverlay29Functions:
     )
 
     GetEntityTouchscreenArea = Symbol(
-        None,
-        None,
+        [0x148CC],
+        [0x22F21AC],
         None,
         "Returns the area on the touchscreen that contains the sprite of the specified"
         " entity\n\nr0: Entity pointer\nr1: [output] struct where the result should be"
@@ -15573,8 +15576,8 @@ class JpOverlay29Functions:
     )
 
     ShouldLeaderKeepRunning = Symbol(
-        None,
-        None,
+        [0x16DA4],
+        [0x22F4684],
         None,
         "Determines if the leader should keep running. Returns false if the leader"
         " bumps into something, or if an action that should stop the leader takes"
@@ -15583,8 +15586,8 @@ class JpOverlay29Functions:
     )
 
     CheckLeaderTile = Symbol(
-        None,
-        None,
+        [0x1734C],
+        [0x22F4C2C],
         None,
         "Checks the tile the leader just stepped on and performs any required actions,"
         " such as picking up items, triggering traps, etc.\n\nContains a switch that"
@@ -15603,16 +15606,16 @@ class JpOverlay29Functions:
     )
 
     UseSingleUseItemWrapper = Symbol(
-        None,
-        None,
+        [0x18FE4],
+        [0x22F68C4],
         None,
         "Same as UseSingleUseItem, but the second parameter is determined automatically"
         " from monster::action_data::action_parameter[1]::action_use_idx.\n\nr0: User",
     )
 
     UseSingleUseItem = Symbol(
-        None,
-        None,
+        [0x19010],
+        [0x22F68F0],
         None,
         "Makes a monster use a single-use item. The item is deleted afterwards.\n\nThe"
         " item to use is determined by the user's"
@@ -15621,8 +15624,8 @@ class JpOverlay29Functions:
     )
 
     UseThrowableItem = Symbol(
-        None,
-        None,
+        [0x191D4],
+        [0x22F6AB4],
         None,
         "Makes a monster use a throwable item.\n\nThe item to use is determined by"
         " monster::action_data::action_parameter[0].\nIf the item's category is"
@@ -15640,16 +15643,16 @@ class JpOverlay29Functions:
     )
 
     FreeLoadedAttackSpriteAndMore = Symbol(
-        None,
-        None,
+        [0x1ABFC],
+        [0x22F84DC],
         None,
         "Among other things, free another data structure in the attack sprite storage"
         " area/data\n\nNo params.",
     )
 
     SetAndLoadCurrentAttackAnimation = Symbol(
-        None,
-        None,
+        [0x1AC54],
+        [0x22F8534],
         None,
         "Load given sprite into the currently loaded attack sprite structure, replacing"
         " the previous one if already loaded.\n\nr0: pack id\nr1: file index\nreturn:"
@@ -15657,16 +15660,16 @@ class JpOverlay29Functions:
     )
 
     ClearLoadedAttackSprite = Symbol(
-        None,
-        None,
+        [0x1ACF4],
+        [0x22F85D4],
         None,
         "Delete the data of the currently loaded attack sprite, if any.\nDoesn’t free"
         " the structure, which can continue to be used.\n\nNo params.",
     )
 
     GetLoadedAttackSpriteId = Symbol(
-        None,
-        None,
+        [0x1AD3C],
+        [0x22F861C],
         None,
         "Get the sprite ID (in the loaded WAN list) of the currently loaded attack"
         " sprite, or 0 if none.\n\nreturn: sprite ID",
@@ -15782,8 +15785,8 @@ class JpOverlay29Functions:
     )
 
     MoveMonsterToPos = Symbol(
-        None,
-        None,
+        [0x1C2D4],
+        [0x22F9BB4],
         None,
         "Moves a monster to the target position. Used both for regular movement and"
         " special movement (like teleportation).\n\nr0: Entity pointer\nr1: X target"
@@ -15831,8 +15834,8 @@ class JpOverlay29Functions:
     )
 
     TryActivateTraceAndColorChange = Symbol(
-        None,
-        None,
+        [0x1D1D4],
+        [0x22FAAB4],
         None,
         "Tries to activate the abilities trace and color change if possible. Called"
         " after using\na move.\n\nr0: attacker entity pointer\nr1: defender entity"
@@ -15861,8 +15864,8 @@ class JpOverlay29Functions:
     )
 
     TryActivateConversion2 = Symbol(
-        None,
-        None,
+        [0x1D41C],
+        [0x22FACFC],
         None,
         "Checks for the conversion2 status and applies the type change if applicable."
         " Called\nafter using a move.\n\nr0: attacker entity pointer\nr1: defender"
@@ -15898,8 +15901,8 @@ class JpOverlay29Functions:
     )
 
     BoostIQ = Symbol(
-        None,
-        None,
+        [0x1DE0C],
+        [0x22FB6EC],
         None,
         "Tries to boost the target's IQ.\n\nr0: monster entity pointer\nr1: iq"
         " boost\nr2: bool suppress logs",
@@ -15926,8 +15929,8 @@ class JpOverlay29Functions:
     )
 
     TryEndStatusWithAbility = Symbol(
-        None,
-        None,
+        [0x1E4A4],
+        [0x22FBD84],
         None,
         "Checks if any of the defender's active abilities would end one of their"
         " current status\nconditions. For example, if the ability Own Tempo will stop"
@@ -15988,8 +15991,8 @@ class JpOverlay29Functions:
     )
 
     TryEatItem = Symbol(
-        None,
-        None,
+        [0x1EEBC],
+        [0x22FC79C],
         None,
         "The user attempts to eat an item from the target.\n\nThe function tries to eat"
         " the target's held item first. If that's not possible and the target is part"
@@ -16050,8 +16053,8 @@ class JpOverlay29Functions:
     )
 
     InitOtherMonsterData = Symbol(
-        None,
-        None,
+        [0x1F968],
+        [0x22FD248],
         None,
         "Initializes stats, IQ skills and moves for a given monster\n\nMight only be"
         " used when spawning fixed room monsters.\n\nr0: Entity pointer\nr1: Fixed room"
@@ -16061,16 +16064,16 @@ class JpOverlay29Functions:
     )
 
     InitEnemySpawnStats = Symbol(
-        None,
-        None,
+        [0x1FA68],
+        [0x22FD348],
         None,
         "Initializes dungeon::enemy_spawn_stats. Might do something else too.\n\nNo"
         " params.",
     )
 
     InitEnemyStatsAndMoves = Symbol(
-        None,
-        None,
+        [0x1FD44],
+        [0x22FD624],
         None,
         "Initializes the HP, Atk, Sp. Atk, Def, Sp. Def and moveset of a newly spawned"
         " enemy. Might do something else too.\n\nr0: Pointer to the monster's move"
@@ -16118,8 +16121,8 @@ class JpOverlay29Functions:
     )
 
     InitMonster = Symbol(
-        None,
-        None,
+        [0x214E4],
+        [0x22FEDC4],
         None,
         "Initializes the monster struct within the provided entity struct.\n\nr0:"
         " ?\nr1: Pointer to the entity whose monster struct should be initialized\nr2:"
@@ -16156,16 +16159,16 @@ class JpOverlay29Functions:
     )
 
     GetMaxHpAtLevel = Symbol(
-        None,
-        None,
+        [0x21E04],
+        [0x22FF6E4],
         None,
         "Returns the max HP of a monster given its level.\n\nr0: Monster ID\nr1:"
         " Monster level\nreturn: Max HP at the given level",
     )
 
     GetOffensiveStatAtLevel = Symbol(
-        None,
-        None,
+        [0x21E58],
+        [0x22FF738],
         None,
         "Returns the Atk / Sp. Atk of a monster given its level, capped to 255.\n\nr0:"
         " Monster ID\nr1: Monster level\nr2: Stat index (0: Atk, 1: Sp. Atk)\nreturn:"
@@ -16173,8 +16176,8 @@ class JpOverlay29Functions:
     )
 
     GetDefensiveStatAtLevel = Symbol(
-        None,
-        None,
+        [0x21EC0],
+        [0x22FF7A0],
         None,
         "Returns the Def / Sp. Def of a monster given its level, capped to 255.\n\nr0:"
         " Monster ID\nr1: Monster level\nr2: Stat index (0: Def, 1: Sp. Def)\nreturn:"
@@ -16202,8 +16205,8 @@ class JpOverlay29Functions:
     )
 
     TryActivateFlashFireOnAllMonsters = Symbol(
-        None,
-        None,
+        [0x22C78],
+        [0x2300558],
         None,
         "Checks every monster for apply_flash_fire_boost. If it's true, activates Flash"
         " Fire for the monster and sets\napply_flash_fire_boost back to false.\n\nNo"
@@ -16220,8 +16223,8 @@ class JpOverlay29Functions:
     )
 
     GetMobilityTypeCheckSlip = Symbol(
-        None,
-        None,
+        [0x2313C],
+        [0x2300A1C],
         None,
         "Returns the mobility type of a monster species, accounting for"
         " STATUS_SLIP.\n\nThe function also converts MOBILITY_LAVA and MOBILITY_WATER"
@@ -16230,8 +16233,8 @@ class JpOverlay29Functions:
     )
 
     GetMobilityTypeCheckSlipAndFloating = Symbol(
-        None,
-        None,
+        [0x23184],
+        [0x2300A64],
         None,
         "Returns the mobility type of a monster, accounting for STATUS_SLIP and the"
         " result of a call to IsFloating.\n\nr0: Entity pointer\nr1: Monster"
@@ -16260,8 +16263,8 @@ class JpOverlay29Functions:
     )
 
     CannotStandOnTile = Symbol(
-        None,
-        None,
+        [0x23274],
+        [0x2300B54],
         None,
         "Checks if a given monster cannot stand on a given tile.\n\nReasons include:\n-"
         " The coordinates of the tile are out of bounds\n- There's another monster on"
@@ -16513,16 +16516,16 @@ class JpOverlay29Functions:
     )
 
     SafeguardIsActive = Symbol(
-        None,
-        None,
+        [0x255CC],
+        [0x2302EAC],
         None,
         "Checks if the monster is under the effect of Safeguard.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: flag to log a message\nreturn: bool",
     )
 
     LeafGuardIsActive = Symbol(
-        None,
-        None,
+        [0x25620],
+        [0x2302F00],
         None,
         "Checks if the monster is protected by the ability Leaf Guard.\n\nr0: user"
         " entity pointer\nr1: target entity pointer\nr2: flag to log a message\nreturn:"
@@ -16530,8 +16533,8 @@ class JpOverlay29Functions:
     )
 
     IsProtectedFromStatDrops = Symbol(
-        None,
-        None,
+        [0x257AC],
+        [0x230308C],
         None,
         "Checks if the target monster is protected from getting their stats dropped by"
         " the user.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -16674,8 +16677,8 @@ class JpOverlay29Functions:
     )
 
     IsProtectedFromNegativeStatus = Symbol(
-        None,
-        None,
+        [0x260A0],
+        [0x2303980],
         None,
         "Checks if the target monster is protected from getting a negative status"
         " condition.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -16706,8 +16709,8 @@ class JpOverlay29Functions:
     )
 
     LevelUpItemEffect = Symbol(
-        None,
-        None,
+        [0x266CC],
+        [0x2303FAC],
         None,
         "Attempts to level up the the target. Calls LevelUp with a few extra checks and"
         " messages\nfor using as an item. Used for the Joy Seed and Golden Seed.\n\nr0:"
@@ -16737,8 +16740,8 @@ class JpOverlay29Functions:
     )
 
     GetMonsterMoves = Symbol(
-        None,
-        None,
+        [0x27788],
+        [0x2305068],
         None,
         "Determines the moveset of a newly spawned monster given its species and"
         " level.\n\nThe function loops the monster's learnset, adding moves to the list"
@@ -16782,16 +16785,16 @@ class JpOverlay29Functions:
     )
 
     CheckNonLeaderTile = Symbol(
-        None,
-        None,
+        [0x29304],
+        [0x2306BE4],
         None,
         "Similar to CheckLeaderTile, but for other monsters.\n\nUsed both for enemies"
         " and team members.\n\nr0: Entity pointer",
     )
 
     EndNegativeStatusCondition = Symbol(
-        None,
-        None,
+        [0x29534],
+        [0x2306E14],
         None,
         "Cures the target's negative status conditions. The game rarely (if not never)"
         " calls\nthis function with the bool to remove the wrapping status"
@@ -16801,8 +16804,8 @@ class JpOverlay29Functions:
     )
 
     EndNegativeStatusConditionWrapper = Symbol(
-        None,
-        None,
+        [0x29898],
+        [0x2307178],
         None,
         "Calls EndNegativeStatusCondition with remove wrapping status false.\n\nr0:"
         " pointer to user\nr1: pointer to target\nr2: bool play animation\nr3: bool log"
@@ -16810,16 +16813,16 @@ class JpOverlay29Functions:
     )
 
     TransferNegativeStatusCondition = Symbol(
-        None,
-        None,
+        [0x298AC],
+        [0x230718C],
         None,
         "Transfers all negative status conditions the user has and gives then to the"
         " target.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     EndSleepClassStatus = Symbol(
-        None,
-        None,
+        [0x29C4C],
+        [0x230752C],
         None,
         "Cures the target's sleep, sleepless, nightmare, yawn or napping status due to"
         " the action of the user, and prints the event to the log.\n\nr0: pointer to"
@@ -16827,8 +16830,8 @@ class JpOverlay29Functions:
     )
 
     EndBurnClassStatus = Symbol(
-        None,
-        None,
+        [0x29E18],
+        [0x23076F8],
         None,
         "Cures the target's burned, poisoned, badly poisoned or paralysis status due to"
         " the action of the user, and prints the event to the log.\n\nr0: pointer to"
@@ -16855,8 +16858,8 @@ class JpOverlay29Functions:
     )
 
     EndReflectClassStatus = Symbol(
-        None,
-        None,
+        [0x2A144],
+        [0x2307A24],
         None,
         "Removes the target's reflect, safeguard, light screen, counter, magic coat,"
         " wish, protect, mirror coat, endure, mini counter?, mirror move, conversion 2,"
@@ -16866,8 +16869,8 @@ class JpOverlay29Functions:
     )
 
     TryRemoveSnatchedMonsterFromDungeonStruct = Symbol(
-        None,
-        None,
+        [0x2A328],
+        [0x2307C08],
         None,
         "If the target is afflicted with snatch, change dungeon::snatch_monster and"
         " dungeon::snatch_status_unique_id back\nto NULL and 0 respectively. This"
@@ -16878,8 +16881,8 @@ class JpOverlay29Functions:
     )
 
     EndCurseClassStatus = Symbol(
-        None,
-        None,
+        [0x2A378],
+        [0x2307C58],
         None,
         "Removes the target's curse (1), decoy (2), snatch (3), gastro acid (4), heal"
         " block (5), or embargo (6) status\ndue to the action of the user, and prints"
@@ -16889,8 +16892,8 @@ class JpOverlay29Functions:
     )
 
     EndLeechSeedClassStatus = Symbol(
-        None,
-        None,
+        [0x2A514],
+        [0x2307DF4],
         None,
         "Cures the target's leech seed or destiny bond status due to the action of the"
         " user, and prints the event to the log.\n\nr0: pointer to user\nr1: pointer to"
@@ -16898,8 +16901,8 @@ class JpOverlay29Functions:
     )
 
     EndSureShotClassStatus = Symbol(
-        None,
-        None,
+        [0x2A5A0],
+        [0x2307E80],
         None,
         "Removes the target's sure shot, whiffer, set damage or focus energy status due"
         " to the action of the user, and prints the event to the log.\n\nr0: pointer to"
@@ -16907,8 +16910,8 @@ class JpOverlay29Functions:
     )
 
     EndInvisibleClassStatus = Symbol(
-        None,
-        None,
+        [0x2A650],
+        [0x2307F30],
         None,
         "Removes the target's invisible, transformed, mobile, or slip status due to the"
         " action of the user, and prints\nthe event to the log.\n\nr0: pointer to"
@@ -16917,8 +16920,8 @@ class JpOverlay29Functions:
     )
 
     EndBlinkerClassStatus = Symbol(
-        None,
-        None,
+        [0x2A778],
+        [0x2308058],
         None,
         "Removes the target's blinker, cross-eyed, eyedrops, or dropeye status due to"
         " the action of the user, and\nprints the event to the log.\n\nr0: pointer to"
@@ -16926,32 +16929,32 @@ class JpOverlay29Functions:
     )
 
     EndMuzzledStatus = Symbol(
-        None,
-        None,
+        [0x2A848],
+        [0x2308128],
         None,
         "Removes the target's muzzled status due to the action of the user, and prints"
         " the event to the log.\n\nr0: pointer to user\nr1: pointer to target",
     )
 
     EndMiracleEyeStatus = Symbol(
-        None,
-        None,
+        [0x2A8B4],
+        [0x2308194],
         None,
         "Removes the target's miracle eye status due to the action of the user, and"
         " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to target",
     )
 
     EndMagnetRiseStatus = Symbol(
-        None,
-        None,
+        [0x2A920],
+        [0x2308200],
         None,
         "Removes the target's magnet rise status due to the action of the user, and"
         " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to target",
     )
 
     TransferNegativeBlinkerClassStatus = Symbol(
-        None,
-        None,
+        [0x2B53C],
+        [0x2308E1C],
         None,
         "Tries to transfer the the negative blinker class status conditions from the"
         " user to\nthe target.\n\nr0: user entity pointer\nr1: target entity"
@@ -16959,24 +16962,24 @@ class JpOverlay29Functions:
     )
 
     EndFrozenStatus = Symbol(
-        None,
-        None,
+        [0x2B8C8],
+        [0x23091A8],
         None,
         "Cures the target's freeze status due to the action of the user.\n\nr0: user"
         " entity pointer\nr1: target entity pointer",
     )
 
     EndProtectStatus = Symbol(
-        None,
-        None,
+        [0x2B968],
+        [0x2309248],
         None,
         "Ends the target's protect status due to the action of the user.\n\nr0: user"
         " entity pointer\nr1: target entity pointer",
     )
 
     TryRestoreRoostTyping = Symbol(
-        None,
-        None,
+        [0x2B9A4],
+        [0x2309284],
         None,
         "Tries to restore the target's original typings before the Roost effect took"
         " place. Does nothing if the target\nis not affected by Roost.\n\nr0: user"
@@ -17153,8 +17156,8 @@ class JpOverlay29Functions:
     )
 
     ApplyDamageAndEffectsWrapper = Symbol(
-        None,
-        None,
+        [0x30D7C],
+        [0x230E65C],
         None,
         "A wrapper for ApplyDamageAndEffects used for applying damage from sources such"
         " as statuses, traps, liquid ooze,\nhunger, and possibly more.\n\nr0: monster"
@@ -17220,8 +17223,8 @@ class JpOverlay29Functions:
     )
 
     UpdateShopkeeperModeAfterTrap = Symbol(
-        None,
-        None,
+        [0x310D8],
+        [0x230E9B8],
         None,
         "Updates the shopkeeper mode of a monster in response to stepping on a"
         " trap.\n\nIf in the normal shopkeeper mode (not aggressive), nothing happens."
@@ -17314,8 +17317,8 @@ class JpOverlay29Functions:
     )
 
     TeamMemberHasItemActive = Symbol(
-        None,
-        None,
+        [0x333F4],
+        [0x2310CD4],
         None,
         "Checks if any team member is holding a certain item and puts them into the"
         " array given.\n\nr0: [output] pointer to array of monsters (expected to have"
@@ -17377,8 +17380,8 @@ class JpOverlay29Functions:
     )
 
     IsProtectedFromSleepClassStatus = Symbol(
-        None,
-        None,
+        [0x3561C],
+        [0x2312EFC],
         None,
         "Checks if the monster is immune to sleep class status conditions.\n\nr0: user"
         " entity pointer\nr1: target entity pointer\nr2: ignore safeguard\nr3: ignore"
@@ -17594,8 +17597,8 @@ class JpOverlay29Functions:
     )
 
     ActivateFlashFire = Symbol(
-        None,
-        None,
+        [0x378E8],
+        [0x23151C8],
         None,
         "Actually applies the Flash Fire boost with a message log and animation. Passes"
         " the same monster for attacker and\ndefender, but the attacker goes"
@@ -17739,16 +17742,16 @@ class JpOverlay29Functions:
     )
 
     TryInflictTerrifiedStatus = Symbol(
-        None,
-        None,
+        [0x38A54],
+        [0x2316334],
         None,
         "Inflicts the Terrified status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictGrudgeStatus = Symbol(
-        None,
-        None,
+        [0x38AAC],
+        [0x231638C],
         None,
         "Inflicts the Grudge status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to log a"
@@ -17836,40 +17839,40 @@ class JpOverlay29Functions:
     )
 
     TryInflictSureShotStatus = Symbol(
-        None,
-        None,
+        [0x39768],
+        [0x2317048],
         None,
         "Inflicts the Sure Shot status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictWhifferStatus = Symbol(
-        None,
-        None,
+        [0x397F8],
+        [0x23170D8],
         None,
         "Inflicts the Whiffer status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictSetDamageStatus = Symbol(
-        None,
-        None,
+        [0x398E0],
+        [0x23171C0],
         None,
         "Inflicts the Set Damage status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictFocusEnergyStatus = Symbol(
-        None,
-        None,
+        [0x3997C],
+        [0x231725C],
         None,
         "Inflicts the Focus Energy status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictDecoyStatus = Symbol(
-        None,
-        None,
+        [0x39A1C],
+        [0x23172FC],
         None,
         "Inflicts the Decoy status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nreturn: Whether or not the"
@@ -17877,8 +17880,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictCurseStatus = Symbol(
-        None,
-        None,
+        [0x39CD4],
+        [0x23175B4],
         None,
         "Inflicts the Curse status condition on a target monster if possible and if the"
         " user is\na ghost type. Otherwise, just boost the user's defense and attack"
@@ -17887,16 +17890,16 @@ class JpOverlay29Functions:
     )
 
     TryInflictSnatchStatus = Symbol(
-        None,
-        None,
+        [0x39E78],
+        [0x2317758],
         None,
         "Inflicts the Snatch status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictTauntStatus = Symbol(
-        None,
-        None,
+        [0x39FA0],
+        [0x2317880],
         None,
         "Inflicts the Taunt status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nreturn: Whether or not the"
@@ -17904,8 +17907,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictStockpileStatus = Symbol(
-        None,
-        None,
+        [0x3A0CC],
+        [0x23179AC],
         None,
         "Inflicts the Stockpile condition on a target monster if possible. Won't boost"
         " the level\nof stockpiling above 3.\n\nr0: user entity pointer\nr1: target"
@@ -17914,8 +17917,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictInvisibleStatus = Symbol(
-        None,
-        None,
+        [0x3A170],
+        [0x2317A50],
         None,
         "Attempts to turn the target invisible.\n\nThe user pointer is only used when"
         " calling LogMessage functions.\n\nr0: user entity pointer\nr1: target entity"
@@ -17923,8 +17926,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictPerishSongStatus = Symbol(
-        None,
-        None,
+        [0x3A220],
+        [0x2317B00],
         None,
         "Inflicts the Perish Song status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -17933,8 +17936,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictEncoreStatus = Symbol(
-        None,
-        None,
+        [0x3A314],
+        [0x2317BF4],
         None,
         "Inflicts the Encore status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to only perform the"
@@ -17943,8 +17946,8 @@ class JpOverlay29Functions:
     )
 
     TryDecreaseBelly = Symbol(
-        None,
-        None,
+        [0x3A4C8],
+        [0x2317DA8],
         None,
         "Tries to reduce the belly size of the target. Only when max belly shrink is 0,"
         " the\ncurrent belly is reduced by belly to lose. If both are non-zero, only"
@@ -17953,8 +17956,8 @@ class JpOverlay29Functions:
     )
 
     TryIncreaseBelly = Symbol(
-        None,
-        None,
+        [0x3A7A0],
+        [0x2318080],
         None,
         "Restore belly and possibly boost max belly of the target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: belly to"
@@ -17963,8 +17966,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictMuzzledStatus = Symbol(
-        None,
-        None,
+        [0x3AD14],
+        [0x23185F4],
         None,
         "Inflicts the Muzzled status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to only perform the"
@@ -17973,8 +17976,8 @@ class JpOverlay29Functions:
     )
 
     TryTransform = Symbol(
-        None,
-        None,
+        [0x3AE0C],
+        [0x23186EC],
         None,
         "Attempts to transform the target into the species of a random monster"
         " contained in the list returned by MonsterSpawnListPartialCopy.\n\nThe user"
@@ -17983,16 +17986,16 @@ class JpOverlay29Functions:
     )
 
     TryInflictMobileStatus = Symbol(
-        None,
-        None,
+        [0x3AFFC],
+        [0x23188DC],
         None,
         "Inflicts the Mobile status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictExposedStatus = Symbol(
-        None,
-        None,
+        [0x3B0B8],
+        [0x2318998],
         None,
         "Inflicts the Exposed status condition on a target monster if possible. Only"
         " applies to\nGhost types and monsters with raised evasion. If the animation"
@@ -18004,8 +18007,8 @@ class JpOverlay29Functions:
     )
 
     TryActivateIdentifyCondition = Symbol(
-        None,
-        None,
+        [0x3B238],
+        [0x2318B18],
         None,
         "Sets the flag for the identify orb which causes monsters holding items to be"
         " shown with\na blue exclamation mark status icon.\n\nr0: user entity"
@@ -18013,8 +18016,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictBlinkerStatus = Symbol(
-        None,
-        None,
+        [0x3B2BC],
+        [0x2318B9C],
         None,
         "Inflicts the Blinker status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to only perform the"
@@ -18032,8 +18035,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictCrossEyedStatus = Symbol(
-        None,
-        None,
+        [0x3B434],
+        [0x2318D14],
         None,
         "Inflicts the Cross-Eyed status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -18042,16 +18045,16 @@ class JpOverlay29Functions:
     )
 
     TryInflictEyedropStatus = Symbol(
-        None,
-        None,
+        [0x3B54C],
+        [0x2318E2C],
         None,
         "Inflicts the Eyedrop status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictSlipStatus = Symbol(
-        None,
-        None,
+        [0x3B5FC],
+        [0x2318EDC],
         None,
         "Inflicts the Slip status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nreturn: Whether or not the"
@@ -18059,8 +18062,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictDropeyeStatus = Symbol(
-        None,
-        None,
+        [0x3B6E4],
+        [0x2318FC4],
         None,
         "Inflicts the Dropeye status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nreturn: Whether or not the"
@@ -18077,8 +18080,8 @@ class JpOverlay29Functions:
     )
 
     RestoreOneMovePP = Symbol(
-        None,
-        None,
+        [0x3B948],
+        [0x2319228],
         None,
         "Restores the PP the target's move in the specified move slot by the specified"
         " amount.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: move"
@@ -18086,8 +18089,8 @@ class JpOverlay29Functions:
     )
 
     RestoreRandomMovePP = Symbol(
-        None,
-        None,
+        [0x3BA78],
+        [0x2319358],
         None,
         "Restores the PP of a random one of the target's moves by the specified"
         " amount.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: PP to"
@@ -18095,56 +18098,56 @@ class JpOverlay29Functions:
     )
 
     ApplyProteinEffect = Symbol(
-        None,
-        None,
+        [0x3BB40],
+        [0x2319420],
         None,
         "Tries to boost the target's attack stat.\n\nr0: user entity pointer\nr1:"
         " target entity pointer\nr2: attack boost",
     )
 
     ApplyCalciumEffect = Symbol(
-        None,
-        None,
+        [0x3BBD4],
+        [0x23194B4],
         None,
         "Tries to boost the target's special attack stat.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: special attack boost",
     )
 
     ApplyIronEffect = Symbol(
-        None,
-        None,
+        [0x3BC68],
+        [0x2319548],
         None,
         "Tries to boost the target's defense stat.\n\nr0: user entity pointer\nr1:"
         " target entity pointer\nr2: defense boost",
     )
 
     ApplyZincEffect = Symbol(
-        None,
-        None,
+        [0x3BCFC],
+        [0x23195DC],
         None,
         "Tries to boost the target's special defense stat.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: special defense boost",
     )
 
     TryInflictLongTossStatus = Symbol(
-        None,
-        None,
+        [0x3BD90],
+        [0x2319670],
         None,
         "Inflicts the Long Toss status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictPierceStatus = Symbol(
-        None,
-        None,
+        [0x3BE00],
+        [0x23196E0],
         None,
         "Inflicts the Pierce status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictGastroAcidStatus = Symbol(
-        None,
-        None,
+        [0x3BE6C],
+        [0x231974C],
         None,
         "Inflicts the Gastro Acid status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -18161,32 +18164,32 @@ class JpOverlay29Functions:
     )
 
     ApplyAquaRingHealing = Symbol(
-        None,
-        None,
+        [0x3BFD8],
+        [0x23198B8],
         None,
         "Applies the passive healing gained from the Aqua Ring status.\n\nr0: pointer"
         " to entity",
     )
 
     TryInflictAquaRingStatus = Symbol(
-        None,
-        None,
+        [0x3C04C],
+        [0x231992C],
         None,
         "Inflicts the Aqua Ring status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictLuckyChantStatus = Symbol(
-        None,
-        None,
+        [0x3C0F8],
+        [0x23199D8],
         None,
         "Inflicts the Lucky Chant status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictHealBlockStatus = Symbol(
-        None,
-        None,
+        [0x3C198],
+        [0x2319A78],
         None,
         "Inflicts the Heal Block status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -18195,24 +18198,24 @@ class JpOverlay29Functions:
     )
 
     MonsterHasEmbargoStatus = Symbol(
-        None,
-        None,
+        [0x3C2BC],
+        [0x2319B9C],
         None,
         "Returns true if the monster has the Embargo status condition.\n\nr0: pointer"
         " to entity\nreturn: bool",
     )
 
     LogItemBlockedByEmbargo = Symbol(
-        None,
-        None,
+        [0x3C2F0],
+        [0x2319BD0],
         None,
         "Logs the error message when the usage of an item is blocked by Embargo.\n\nr0:"
         " pointer to entity",
     )
 
     TryInflictEmbargoStatus = Symbol(
-        None,
-        None,
+        [0x3C31C],
+        [0x2319BFC],
         None,
         "Inflicts the Embargo status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to log message\nr3:"
@@ -18221,8 +18224,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictMiracleEyeStatus = Symbol(
-        None,
-        None,
+        [0x3C440],
+        [0x2319D20],
         None,
         "Inflicts the Miracle Eye status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -18230,8 +18233,8 @@ class JpOverlay29Functions:
     )
 
     TryInflictMagnetRiseStatus = Symbol(
-        None,
-        None,
+        [0x3C574],
+        [0x2319E54],
         None,
         "Inflicts the Magnet Rise status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
@@ -18247,112 +18250,112 @@ class JpOverlay29Functions:
     )
 
     TryInflictSafeguardStatus = Symbol(
-        None,
-        None,
+        [0x3CA60],
+        [0x231A340],
         None,
         "Inflicts the Safeguard status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictMistStatus = Symbol(
-        None,
-        None,
+        [0x3CB00],
+        [0x231A3E0],
         None,
         "Inflicts the Mist status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictWishStatus = Symbol(
-        None,
-        None,
+        [0x3CB9C],
+        [0x231A47C],
         None,
         "Inflicts the Wish status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictMagicCoatStatus = Symbol(
-        None,
-        None,
+        [0x3CC3C],
+        [0x231A51C],
         None,
         "Inflicts the Magic Coat status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictLightScreenStatus = Symbol(
-        None,
-        None,
+        [0x3CCDC],
+        [0x231A5BC],
         None,
         "Inflicts the Light Screen status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictReflectStatus = Symbol(
-        None,
-        None,
+        [0x3CD7C],
+        [0x231A65C],
         None,
         "Inflicts the Reflect status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictProtectStatus = Symbol(
-        None,
-        None,
+        [0x3CE1C],
+        [0x231A6FC],
         None,
         "Inflicts the Protect status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictMirrorCoatStatus = Symbol(
-        None,
-        None,
+        [0x3CECC],
+        [0x231A7AC],
         None,
         "Inflicts the Mirror Coat status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictEndureStatus = Symbol(
-        None,
-        None,
+        [0x3CF68],
+        [0x231A848],
         None,
         "Inflicts the Endure status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictMirrorMoveStatus = Symbol(
-        None,
-        None,
+        [0x3D008],
+        [0x231A8E8],
         None,
         "Inflicts the Mirror Move status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictConversion2Status = Symbol(
-        None,
-        None,
+        [0x3D0A8],
+        [0x231A988],
         None,
         "Inflicts the Conversion2 status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictVitalThrowStatus = Symbol(
-        None,
-        None,
+        [0x3D174],
+        [0x231AA54],
         None,
         "Inflicts the Vital Throw status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryResetStatChanges = Symbol(
-        None,
-        None,
+        [0x3D214],
+        [0x231AAF4],
         None,
         "Tries to reset the stat changes of the defender.\n\nr0: attacker entity"
         " pointer\nr1: defender entity pointer\nr3: bool to force animation",
     )
 
     MirrorMoveIsActive = Symbol(
-        None,
-        None,
+        [0x3D338],
+        [0x231AC18],
         None,
         "Checks if the monster is under the effect of Mirror Move.\n\nReturns 1 if the"
         " effects is a status, 2 if it comes from an exclusive item, 0"
@@ -18360,8 +18363,8 @@ class JpOverlay29Functions:
     )
 
     MistIsActive = Symbol(
-        None,
-        None,
+        [0x3D3BC],
+        [0x231AC9C],
         None,
         "Checks if the monster is under the effect of Mist.\n\nReturns 1 if the effects"
         " is a status, 2 if it comes from an exclusive item, 0 otherwise.\n\nr0:"
@@ -18479,8 +18482,8 @@ class JpOverlay29Functions:
     )
 
     TryActivateFrisk = Symbol(
-        None,
-        None,
+        [0x3EC90],
+        [0x231C570],
         None,
         "Tries to activate the Frisk ability on the defender. The attacker has to be on"
         " the team and the defender has to be\nholding an item or be able to drop a"
@@ -18488,23 +18491,23 @@ class JpOverlay29Functions:
     )
 
     TryActivateBadDreams = Symbol(
-        None,
-        None,
+        [0x3EDA4],
+        [0x231C684],
         None,
         "Tries to apply the damage from Bad Dreams to all sleeping monsters in the"
         " room.\n\nr0: monster pointer",
     )
 
     ActivateStench = Symbol(
-        None,
-        None,
+        [0x3EF28],
+        [0x231C808],
         None,
         "Activate the Stench ability on the monster.\n\nr0: monster pointer",
     )
 
     TryActivateSteadfast = Symbol(
-        None,
-        None,
+        [0x3EF50],
+        [0x231C830],
         None,
         "Activate the Steadfast ability on the defender, if the monster has it and it's"
         " active.\n\nr0: attacker pointer\nr1: defender pointer",
@@ -18538,32 +18541,32 @@ class JpOverlay29Functions:
     )
 
     ApplyCheriBerryEffect = Symbol(
-        None,
-        None,
+        [0x407D8],
+        [0x231E0B8],
         None,
         "Tries to heal the paralysis status condition. Prints a message on"
         " failure.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyPechaBerryEffect = Symbol(
-        None,
-        None,
+        [0x40804],
+        [0x231E0E4],
         None,
         "Tries to heal the poisoned and badly poisoned status condition. Prints a"
         " message on\nfailure.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyRawstBerryEffect = Symbol(
-        None,
-        None,
+        [0x40838],
+        [0x231E118],
         None,
         "Tries to heal the burn status condition. Prints a message on failure.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     ApplyHungerSeedEffect = Symbol(
-        None,
-        None,
+        [0x40880],
+        [0x231E160],
         None,
         "Empties the targets belly to cause Hungry Pal status in non-leader monsters"
         " and\nFamished in the leader monster.\n\nr0: user entity pointer\nr1: target"
@@ -18571,8 +18574,8 @@ class JpOverlay29Functions:
     )
 
     ApplyVileSeedEffect = Symbol(
-        None,
-        None,
+        [0x4096C],
+        [0x231E24C],
         None,
         "Reduces the targets defense and special defense stages to the lowest"
         " level.\n\nr0: attacker pointer\nr1: defender pointer",
@@ -18587,8 +18590,8 @@ class JpOverlay29Functions:
     )
 
     ApplyGinsengEffect = Symbol(
-        None,
-        None,
+        [0x40A4C],
+        [0x231E32C],
         None,
         "Boosts the power of the move at the top of the target's Move List. Appears to"
         " have a\nleftover check to boost the power of a move by 3 instead of 1 that"
@@ -18597,8 +18600,8 @@ class JpOverlay29Functions:
     )
 
     ApplyBlastSeedEffect = Symbol(
-        None,
-        None,
+        [0x40B6C],
+        [0x231E44C],
         None,
         "If thrown, unfreeze and deal fixed damage to the defender. If not thrown, try"
         " to find \na monster in front of the attacker. If a monster is found unfreeze"
@@ -18619,8 +18622,8 @@ class JpOverlay29Functions:
     )
 
     CanMonsterUseItem = Symbol(
-        None,
-        None,
+        [0x4108C],
+        [0x231E96C],
         None,
         "Checks whether a monster can use a certain item.\n\nReturns false if the item"
         " is sticky, or if the monster is under the STATUS_MUZZLED status and the item"
@@ -18630,8 +18633,8 @@ class JpOverlay29Functions:
     )
 
     ApplyGrimyFoodEffect = Symbol(
-        None,
-        None,
+        [0x4111C],
+        [0x231E9FC],
         None,
         "Randomly inflicts poison, shadow hold, burn, paralysis, or an offensive stat"
         " debuff\nto the target. If the survivalist iq skill or gluttony ability is"
@@ -18640,16 +18643,16 @@ class JpOverlay29Functions:
     )
 
     ApplyMixElixirEffect = Symbol(
-        None,
-        None,
+        [0x41268],
+        [0x231EB48],
         None,
         "If the target monster is a Linoone, restores all the PP of all the target's"
         " moves.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyDoughSeedEffect = Symbol(
-        None,
-        None,
+        [0x412C8],
+        [0x231EBA8],
         None,
         "If the target monster is a team member, set dough_seed_extra_poke_flag to true"
         " to \nmake extra poke spawn on the next floor. Otherwise, do nothing.\n\nr0:"
@@ -18657,24 +18660,24 @@ class JpOverlay29Functions:
     )
 
     ApplyViaSeedEffect = Symbol(
-        None,
-        None,
+        [0x41334],
+        [0x231EC14],
         None,
         "Tries to randomly teleport the target with a message for eating the"
         " seed.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyGravelyrockEffect = Symbol(
-        None,
-        None,
+        [0x413A8],
+        [0x231EC88],
         None,
         "Restores 10 hunger to the target and will raise the target's IQ if they are a"
         " bonsly\nor sudowoodo.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyGonePebbleEffect = Symbol(
-        None,
-        None,
+        [0x41420],
+        [0x231ED00],
         None,
         "Causes a few visual effects, temporarily changes the dungeon music to the"
         " Goodnight\ntrack, and gives the target the enduring status.\n\nr0: user"
@@ -18682,8 +18685,8 @@ class JpOverlay29Functions:
     )
 
     ApplyGracideaEffect = Symbol(
-        None,
-        None,
+        [0x4159C],
+        [0x231EE7C],
         None,
         "If the target is Shaymin, attempt to change the target's form to Shaymin Sky"
         " Forme. Otherwise, do nothing.\n\nr0: user entity pointer\nr1: target entity"
@@ -18691,8 +18694,8 @@ class JpOverlay29Functions:
     )
 
     ShouldTryEatItem = Symbol(
-        None,
-        None,
+        [0x4255C],
+        [0x231FE3C],
         None,
         "Checks if a given item should be eaten by the TryEatItem effect.\n\nReturns"
         " false if the ID is lower than 0x45, greater than 0x8A or if it's listed in"
@@ -18725,8 +18728,8 @@ class JpOverlay29Functions:
     )
 
     TryDrought = Symbol(
-        None,
-        None,
+        [0x43160],
+        [0x2320A40],
         None,
         "Attempts to drain all water from the current floor.\n\nFails if orbs are"
         " disabled on the floor or if the current tileset has the is_water_tileset flag"
@@ -18784,8 +18787,8 @@ class JpOverlay29Functions:
     )
 
     EnsureCanStandCurrentTile = Symbol(
-        None,
-        None,
+        [0x44CD0],
+        [0x23225B0],
         None,
         "Checks that the given monster is standing on a tile it can stand on given its"
         " movement type, and warps it to a random location if it's not.\n\nr0: Entity"
@@ -18793,8 +18796,8 @@ class JpOverlay29Functions:
     )
 
     TryActivateNondamagingDefenderAbility = Symbol(
-        None,
-        None,
+        [0x45644],
+        [0x2322F24],
         None,
         "Applies the effects of a defender's ability on an attacker. After a move is"
         " used,\nthis function is called to see if any of the bitflags for an ability"
@@ -18803,8 +18806,8 @@ class JpOverlay29Functions:
     )
 
     TryActivateNondamagingDefenderExclusiveItem = Symbol(
-        None,
-        None,
+        [0x458BC],
+        [0x232319C],
         None,
         "Applies the effects of a defender's item on an attacker. After a move is"
         " used,\nthis function is called to see if any of the bitflags for an item were"
@@ -18813,8 +18816,8 @@ class JpOverlay29Functions:
     )
 
     GetMoveRangeDistance = Symbol(
-        None,
-        None,
+        [0x45E70],
+        [0x2323750],
         None,
         "Returns the maximum reach distance of a move, based on its AI range"
         " value.\n\nIf the move doesn't have an AI range value of RANGE_FRONT_10,"
@@ -18849,8 +18852,8 @@ class JpOverlay29Functions:
     )
 
     IsChargingTwoTurnMove = Symbol(
-        None,
-        None,
+        [0x48154],
+        [0x2325A34],
         None,
         "Checks if a monster is currently charging the specified two-turn move.\n\nr0:"
         " User entity pointer\nr1: Move pointer\nreturn: True if the user is charging"
@@ -18953,8 +18956,8 @@ class JpOverlay29Functions:
     )
 
     PlayMoveAnimation = Symbol(
-        None,
-        None,
+        [0x49260],
+        [0x2326B40],
         None,
         "Handles the process of getting and playing all the animations for a move."
         " Waits\nuntil the animation has no more frames before returning.\n\nr0:"
@@ -19099,8 +19102,8 @@ class JpOverlay29Functions:
     )
 
     TryActivateWeather = Symbol(
-        None,
-        None,
+        [0x58FD0],
+        [0x23368B0],
         None,
         "Tries to change the weather based upon the information for each weather type"
         " in the\ndungeon struct. Returns whether the weather was succesfully changed"
@@ -19182,16 +19185,16 @@ class JpOverlay29Functions:
     )
 
     TrySpawnGoldenChamber = Symbol(
-        None,
-        None,
+        [0x59D14],
+        [0x23375F4],
         None,
         "Changes the tileset and fixed room id of the floor for the Golden Chamber if"
         " the floor should be a\nGolden Chamber.\n\nNo params.",
     )
 
     CountItemsOnFloorForAcuteSniffer = Symbol(
-        None,
-        None,
+        [0x59D50],
+        [0x2337630],
         None,
         "Counts the number of items on the floor by checking every tile for an item and"
         " stores it into\ndungeon::item_sniffer_item_count\n\nNo params.",
@@ -19207,8 +19210,8 @@ class JpOverlay29Functions:
     )
 
     PositionIsOnStairs = Symbol(
-        None,
-        None,
+        [0x59EDC],
+        [0x23377BC],
         None,
         "Checks if this location is on top of the staircase. In the game it is only"
         " used to check if an outlaw has reached\nthe staircase.\n\nr0: x"
@@ -19230,31 +19233,31 @@ class JpOverlay29Functions:
     )
 
     DetermineAllTilesWalkableNeighbors = Symbol(
-        None,
-        None,
+        [0x5A534],
+        [0x2337E14],
         None,
         "Evaluates the walkable_neighbor_flags for all tiles.\n\nNo params.",
     )
 
     DetermineTileWalkableNeighbors = Symbol(
-        None,
-        None,
+        [0x5A56C],
+        [0x2337E4C],
         None,
         "Evaluates the walkable_neighbor_flags for the this tile by checking the 8"
         " adjacent tiles.\n\nr0: x coordinate\nr1: y coordinate",
     )
 
     UpdateTrapsVisibility = Symbol(
-        None,
-        None,
+        [0x5AA34],
+        [0x2338314],
         None,
         "Exact purpose unknown. Gets called whenever a trap tile is shown or"
         " hidden.\n\nNo params.",
     )
 
     DrawTileGrid = Symbol(
-        None,
-        None,
+        [0x5AF10],
+        [0x23387F0],
         None,
         "Draws a grid on the nearby walkable tiles. Triggered by pressing Y.\n\nr0:"
         " Coordinates of the entity around which the grid will be drawn\nr1: ?\nr2:"
@@ -19262,16 +19265,16 @@ class JpOverlay29Functions:
     )
 
     HideTileGrid = Symbol(
-        None,
-        None,
+        [0x5B280],
+        [0x2338B60],
         None,
         "Hides the grid on the nearby walkable tiles. Triggered by releasing Y.\n\nNo"
         " params.",
     )
 
     DiscoverMinimap = Symbol(
-        None,
-        None,
+        [0x5B520],
+        [0x2338E00],
         None,
         "Discovers the tiles around the specified position on the minimap.\n\nThe"
         " discovery radius depends on the visibility range of the floor. If"
@@ -19280,24 +19283,24 @@ class JpOverlay29Functions:
     )
 
     PositionHasItem = Symbol(
-        None,
-        None,
+        [0x5B610],
+        [0x2338EF0],
         None,
         "Checks if the tile at the position has an item on it.\n\nr0: Position to"
         " check\nreturn: bool",
     )
 
     PositionHasMonster = Symbol(
-        None,
-        None,
+        [0x5B64C],
+        [0x2338F2C],
         None,
         "Checks if the tile at the position has a monster on it.\n\nr0: Position to"
         " check\nreturn: bool",
     )
 
     TrySmashWall = Symbol(
-        None,
-        None,
+        [0x5B680],
+        [0x2338F60],
         None,
         "Checks if the tile at the position is a wall. If so, smash it (turn it into a"
         " floor tile), play an animation\n\nr0: Wall position to smash\nreturn: bool",
@@ -19373,8 +19376,8 @@ class JpOverlay29Functions:
     )
 
     TrySpawnDoughSeedPoke = Symbol(
-        None,
-        None,
+        [0x5C044],
+        [0x2339924],
         None,
         "Checks the dough_seed_extra_money_flag field on the dungeon struct and tries"
         " to spawn\nextra poke if it is set.\n\nNo params.",
@@ -19429,8 +19432,8 @@ class JpOverlay29Functions:
     )
 
     HiddenStairsPresent = Symbol(
-        None,
-        None,
+        [0x5C1BC],
+        [0x2339A9C],
         None,
         "Checks if the hidden stairs are present on this floor.\n\nThe function checks"
         " that dungeon_generation_info::hidden_stairs_pos isn't (-1, -1)\n\nreturn:"
@@ -19438,8 +19441,8 @@ class JpOverlay29Functions:
     )
 
     HiddenStairsTrigger = Symbol(
-        None,
-        None,
+        [0x5C278],
+        [0x2339B58],
         None,
         "Called whenever the leader steps on the hidden stairs.\n\nIf the stairs hadn't"
         " been revealed yet, plays the corresponding animation.\n\nr0: True to display"
@@ -19459,14 +19462,14 @@ class JpOverlay29Functions:
     )
 
     DrawMinimapTile = Symbol(
-        None,
-        None,
+        [0x5CCD0],
+        [0x233A5B0],
         None,
         "Draws a single tile on the minimap.\n\nr0: X position\nr1: Y position",
     )
 
     UpdateMinimap = Symbol(
-        None, None, None, "Graphically updates the minimap\n\nNo params."
+        [0x5D7CC], [0x233B0AC], None, "Graphically updates the minimap\n\nNo params."
     )
 
     SetMinimapDataE447 = Symbol(
@@ -19495,16 +19498,16 @@ class JpOverlay29Functions:
     )
 
     InitWeirdMinimapMatrix = Symbol(
-        None,
-        None,
+        [0x5DD74],
+        [0x233B654],
         None,
         "Initializes the matrix at minimap_display_data+0xE000. Seems to overflow said"
         " matrix when doing so.\n\nNo params.",
     )
 
     InitMinimapDisplayTile = Symbol(
-        None,
-        None,
+        [0x5DDD4],
+        [0x233B6B4],
         None,
         "Used to initialize an instance of struct minimap_display_tile\n\nr0: Pointer"
         " to struct to init\nr1: Seems to be a pointer to the file that stores minimap"
@@ -20103,8 +20106,8 @@ class JpOverlay29Functions:
     )
 
     GetNextFixedRoomAction = Symbol(
-        None,
-        None,
+        [0x65FB0],
+        [0x2343890],
         None,
         "Returns the next action that needs to be performed when spawning a fixed room"
         " tile.\n\nreturn: Next action ID",
@@ -20161,8 +20164,8 @@ class JpOverlay29Functions:
     )
 
     GetFinalKecleonShopSpawnChance = Symbol(
-        None,
-        None,
+        [0x669A0],
+        [0x2344280],
         None,
         "Gets the kecleon shop spawn chance for the floor.\n\nWhen"
         " dungeon::boost_kecleon_shop_spawn_chance is false, returns the same value as"
@@ -20181,8 +20184,8 @@ class JpOverlay29Functions:
     )
 
     PlaceFixedRoomTile = Symbol(
-        None,
-        None,
+        [0x66A14],
+        [0x23442F4],
         None,
         "Used to spawn a single tile when generating a fixed room. The tile might"
         " contain an item or a monster.\n\nr0: Pointer to the tile to spawn\nr1: Fixed"
@@ -20193,8 +20196,8 @@ class JpOverlay29Functions:
     )
 
     FixedRoomActionParamToDirection = Symbol(
-        None,
-        None,
+        [0x67450],
+        [0x2344D30],
         None,
         "Converts the parameter stored in a fixed room action value to a direction"
         " ID.\n\nThe conversion is performed by subtracting 1 to the value. If the"
@@ -20203,8 +20206,8 @@ class JpOverlay29Functions:
     )
 
     ApplyKeyEffect = Symbol(
-        None,
-        None,
+        [0x677BC],
+        [0x234509C],
         None,
         "Attempts to open a locked door in front of the target if a locked door has not"
         " already\nbeen open on the floor.\n\nr0: user entity pointer\nr1: target"
@@ -20374,8 +20377,8 @@ class JpOverlay29Functions:
     )
 
     RemoveGroundItem = Symbol(
-        None,
-        None,
+        [0x691A0],
+        [0x2346A80],
         None,
         "Removes an item lying on the ground.\n\nAlso updates dungeon::n_items.\n\nr0:"
         " Position where the item is located\nr1: If true, update"
@@ -20443,8 +20446,8 @@ class JpOverlay29Functions:
     )
 
     AddHeldItemToBag = Symbol(
-        None,
-        None,
+        [0x6A9F4],
+        [0x23482D4],
         None,
         "Adds the monster's held item to the bag. This is only called on monsters on"
         " the exploration team.\nmonster::is_not_team_member should be checked to be"
@@ -20452,8 +20455,8 @@ class JpOverlay29Functions:
     )
 
     RemoveEmptyItemsInBagWrapper = Symbol(
-        None,
-        None,
+        [0x6AB10],
+        [0x23483F0],
         None,
         "Calls RemoveEmptyItemsInBag, then some other function that seems to update the"
         " minimap, the map surveyor flag, and other stuff.\n\nNo params.",
@@ -20809,8 +20812,8 @@ class JpOverlay29Functions:
     )
 
     InitPortraitDungeon = Symbol(
-        None,
-        None,
+        [0x6F444],
+        [0x234CD24],
         None,
         "Initialize the portrait box structure for the given monster and"
         " expression\n\nr0: pointer the portrait box data structure to initialize\nr1:"
@@ -21061,9 +21064,9 @@ class JpOverlay29Data:
     )
 
     BELLY_LOST_PER_TURN = Symbol(
-        None,
-        None,
-        None,
+        [0x346B8],
+        [0x2311F98],
+        0x4,
         "The base value by which belly is decreased every turn.\n\nIts raw value is"
         " 0x199A, which encodes a binary fixed-point number (16 fraction bits) with"
         " value (0x199A * 2^-16), and is the closest approximation to 0.1 representable"
@@ -21399,17 +21402,17 @@ class JpOverlay29Data:
     )
 
     BELLY_DRAIN_IN_WALLS_INT = Symbol(
-        None,
-        None,
-        None,
+        [0x76108],
+        [0x23539E8],
+        0x2,
         "The additional amount by which belly is decreased every turn when inside walls"
         " (integer part)",
     )
 
     BELLY_DRAIN_IN_WALLS_THOUSANDTHS = Symbol(
-        None,
-        None,
-        None,
+        [0x7610A],
+        [0x23539EA],
+        0x2,
         "The additional amount by which belly is decreased every turn when inside walls"
         " (fractional thousandths)",
     )
@@ -21573,9 +21576,9 @@ class JpOverlay29Data:
     )
 
     DUNGEON_PTR = Symbol(
-        None,
-        None,
-        None,
+        [0x76ED8],
+        [0x23547B8],
+        0x4,
         "[Runtime] Pointer to the dungeon struct in dungeon mode.\n\nThis is a 'working"
         " copy' of DUNGEON_PTR_MASTER. The main dungeon engine uses this pointer (or"
         " rather pointers to this pointer) when actually running dungeon mode.\n\ntype:"
@@ -21696,7 +21699,9 @@ class JpOverlay29Data:
         " file.",
     )
 
-    NECTAR_IQ_BOOST = Symbol(None, None, None, "IQ boost from ingesting Nectar.")
+    NECTAR_IQ_BOOST = Symbol(
+        [0x3FF70], [0x231D850], None, "IQ boost from ingesting Nectar."
+    )
 
 
 class JpOverlay29Section:
@@ -21732,8 +21737,8 @@ class JpOverlay3Section:
 
 class JpOverlay30Functions:
     WriteQuicksaveData = Symbol(
-        None,
-        None,
+        [0x43C],
+        [0x2383EDC],
         None,
         "Function responsible for writing dungeon data when quicksaving.\n\nAmong other"
         " things, it contains a loop that goes through all the monsters in the current"
@@ -21856,7 +21861,7 @@ class JpOverlay31Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_MAIN_MENU = Symbol(None, None, None, "")
+    DUNGEON_MAIN_MENU = Symbol([0x75FC], [0x238B09C], 0x40, "")
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -21878,13 +21883,13 @@ class JpOverlay31Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_SUBMENU_1 = Symbol(None, None, None, "")
+    DUNGEON_SUBMENU_1 = Symbol([0x7698], [0x238B138], 0x20, "")
 
-    DUNGEON_SUBMENU_2 = Symbol(None, None, None, "")
+    DUNGEON_SUBMENU_2 = Symbol([0x76B8], [0x238B158], 0x20, "")
 
-    DUNGEON_SUBMENU_3 = Symbol(None, None, None, "")
+    DUNGEON_SUBMENU_3 = Symbol([0x76D8], [0x238B178], 0x20, "")
 
-    DUNGEON_SUBMENU_4 = Symbol(None, None, None, "")
+    DUNGEON_SUBMENU_4 = Symbol([0x76F8], [0x238B198], 0x20, "")
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -21970,7 +21975,7 @@ class JpOverlay31Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_SUBMENU_5 = Symbol(None, None, None, "")
+    DUNGEON_SUBMENU_5 = Symbol([0x7944], [0x238B3E4], 0x18, "")
 
     DUNGEON_D_BOX_LAYOUT_26 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -21992,7 +21997,7 @@ class JpOverlay31Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_SUBMENU_6 = Symbol(None, None, None, "")
+    DUNGEON_SUBMENU_6 = Symbol([0x79C8], [0x238B468], 0x48, "")
 
     DUNGEON_D_BOX_LAYOUT_29 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -22125,7 +22130,7 @@ class JpOverlay34Data:
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
-    START_MENU_CONFIRM = Symbol(None, None, None, "Irdkwia's notes: 3*0x8")
+    START_MENU_CONFIRM = Symbol([0xD4C], [0x22DE62C], 0x18, "Irdkwia's notes: 3*0x8")
 
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C = Symbol(
         None,
@@ -22134,7 +22139,7 @@ class JpOverlay34Data:
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
-    DUNGEON_DEBUG_MENU = Symbol(None, None, None, "Irdkwia's notes: 5*0x8")
+    DUNGEON_DEBUG_MENU = Symbol([0xD74], [0x22DE654], 0x28, "Irdkwia's notes: 5*0x8")
 
     OVERLAY34_RESERVED_SPACE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"

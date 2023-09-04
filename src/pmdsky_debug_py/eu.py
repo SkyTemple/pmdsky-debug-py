@@ -1008,8 +1008,8 @@ class EuArm9Functions:
     )
 
     IsLosableItem = Symbol(
-        None,
-        None,
+        [0xCCC0],
+        [0x200CCC0],
         None,
         "Checks if an item can be lost after fainting in a dungeon. Specifically calls"
         " IsAuraBow and checks item::f_in_shop\nso that the player can't keep an aura"
@@ -1027,8 +1027,8 @@ class EuArm9Functions:
     )
 
     IsStorableItem = Symbol(
-        None,
-        None,
+        [0xCD30],
+        [0x200CD30],
         None,
         "Checks if an item can be put into storage. Specifically checks for the Wonder"
         " Egg, Poke, and Used TMs. Used TMs\nlikely can't be stored because the move"
@@ -1037,8 +1037,8 @@ class EuArm9Functions:
     )
 
     IsShoppableItem = Symbol(
-        None,
-        None,
+        [0xCD68],
+        [0x200CD68],
         None,
         "Checks if an item can be bought and sold from a Kecleon shop. Includes items"
         " like the Gold Thorn, Poke, Golden\nMask, Amber Tear, etc. Also has a special"
@@ -1047,8 +1047,8 @@ class EuArm9Functions:
     )
 
     IsValidTargetItem = Symbol(
-        None,
-        None,
+        [0xCE34],
+        [0x200CE34],
         None,
         "Checks if an item is a valid target item for missions. Returns true for any"
         " item less than ITEM_UNNAMED_0x16B.\nAppears to check a list for valid items"
@@ -1057,8 +1057,8 @@ class EuArm9Functions:
     )
 
     IsItemUsableNow = Symbol(
-        None,
-        None,
+        [0xCE80],
+        [0x200CE80],
         None,
         "Checks if an item can be used right now. Returns true for all items that are"
         " not in a shop. If the item is in a\nshop, specifically checks for TMs/HMs and"
@@ -1067,8 +1067,8 @@ class EuArm9Functions:
     )
 
     IsTicketItem = Symbol(
-        None,
-        None,
+        [0xCEFC],
+        [0x200CEFC],
         None,
         "Checks if an item is a ticket that can be used in the recycle shop"
         " (ITEM_PRIZE_TICKET, ITEM_SILVER_TICKET,\nITEM_GOLD_TICKET, and"
@@ -1407,8 +1407,8 @@ class EuArm9Functions:
     )
 
     AddMoneyCarried = Symbol(
-        None,
-        None,
+        [0xEE00],
+        [0x200EE00],
         None,
         "Adds the amount of money to the player's current amount of money. Just"
         " calls\nSetMoneyCarried with the current money + money gained.\n\nr0: money"
@@ -2380,8 +2380,8 @@ class EuArm9Functions:
     )
 
     InitSoundSystem = Symbol(
-        None,
-        None,
+        [0x18CC4],
+        [0x2018CC4],
         None,
         "Initialize the DSE sound engine?\n\nThis function is called somewhere in the"
         " hierarchy under TaskProcBoot and appears to allocate a bunch of memory"
@@ -3866,16 +3866,16 @@ class EuArm9Functions:
     )
 
     InitKaomadoStream = Symbol(
-        None,
-        None,
+        [0x4DAB8],
+        [0x204DAB8],
         None,
         "Initializes the stream used to load all Kaomado portraits, called once on game"
         " start!\n\nNo params.",
     )
 
     InitPortraitBox = Symbol(
-        None,
-        None,
+        [0x4DAD4],
+        [0x204DAD4],
         None,
         "Initializes a struct portrait_box.\n\nThe emote is set to PORTRAIT_NONE and"
         " the layout to the default. Everything else is initialized to 0.\n\nr0:"
@@ -3919,8 +3919,8 @@ class EuArm9Functions:
     )
 
     AllowPortraitDefault = Symbol(
-        None,
-        None,
+        [0x4DBCC],
+        [0x204DBCC],
         None,
         "Allows the portrait to try and load the default emote (PORTRAIT_NORMAL) if it"
         " can't find the specified emote.\n\nr0: portrait box pointer\nr1: allow"
@@ -3928,8 +3928,8 @@ class EuArm9Functions:
     )
 
     IsValidPortrait = Symbol(
-        None,
-        None,
+        [0x4DBD4],
+        [0x204DBD4],
         None,
         "Returns whether this portrait box represents a valid portrait.\n\nr0: portrait"
         " box pointer\nreturn: bool",
@@ -5345,8 +5345,8 @@ class EuArm9Functions:
     )
 
     IsValidTeamMember = Symbol(
-        None,
-        None,
+        [0x5570C],
+        [0x205570C],
         None,
         "Returns whether or not the team member at the given index is valid for the"
         " current game mode.\n\nDuring normal play, this will only be false for the"
@@ -5356,8 +5356,8 @@ class EuArm9Functions:
     )
 
     IsMainCharacter = Symbol(
-        None,
-        None,
+        [0x558A4],
+        [0x20558A4],
         None,
         "Returns whether or not the team member at the given index is a 'main"
         " character'.\n\nDuring normal play, this will only be true for the hero and"
@@ -5476,8 +5476,8 @@ class EuArm9Functions:
     )
 
     IsMonsterNotNicknamed = Symbol(
-        None,
-        None,
+        [0x563EC],
+        [0x20563EC],
         None,
         "Checks if the string_buffer matches the name of the species\n\nr0: ground"
         " monster pointer\nreturn: bool",
@@ -5503,8 +5503,8 @@ class EuArm9Functions:
     )
 
     SetActiveTeam = Symbol(
-        None,
-        None,
+        [0x56648],
+        [0x2056648],
         None,
         "Sets the specified team to active in TEAM_MEMBER_TABLE.\n\nr0: team ID",
     )
@@ -6010,15 +6010,15 @@ class EuArm9Functions:
     )
 
     ParseDseEvents = Symbol(
-        None,
-        None,
+        [0x715BC],
+        [0x20715BC],
         None,
         "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
     )
 
     UpdateSequencerTracks = Symbol(
-        None,
-        None,
+        [0x71780],
+        [0x2071780],
         None,
         "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
     )
@@ -6032,8 +6032,8 @@ class EuArm9Functions:
     )
 
     UpdateTrackVolumeEnvelopes = Symbol(
-        None,
-        None,
+        [0x751A4],
+        [0x20751A4],
         None,
         "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
     )
@@ -15454,8 +15454,8 @@ class EuOverlay29Functions:
     )
 
     PrepareTrapperTrap = Symbol(
-        None,
-        None,
+        [0x11A04],
+        [0x22EE584],
         None,
         "Saves the relevant information in the dungeon struct to later place a trap at"
         " the\nlocation of the entity. (Only called with trap ID 0x19 (TRAP_NONE), but"
@@ -15464,8 +15464,8 @@ class EuOverlay29Functions:
     )
 
     TrySpawnTrap = Symbol(
-        None,
-        None,
+        [0x11AEC],
+        [0x22EE66C],
         None,
         "Checks if the a trap can be placed on the tile. If the trap ID is >= TRAP_NONE"
         " (the\nlast value for a trap), randomly select another trap (except for wonder"
@@ -15476,8 +15476,8 @@ class EuOverlay29Functions:
     )
 
     TrySpawnTrapperTrap = Symbol(
-        None,
-        None,
+        [0x11C04],
+        [0x22EE784],
         None,
         "If the flag for a trapper trap is set, handles spawning a trap based upon"
         " the\ninformation inside the dungeon struct. Uses the entity for logging a"
@@ -15497,8 +15497,8 @@ class EuOverlay29Functions:
     )
 
     ApplyMudTrapEffect = Symbol(
-        None,
-        None,
+        [0x1219C],
+        [0x22EED1C],
         None,
         "Randomly lowers attack, special attack, defense, or special defense of the"
         " defender by 3 stages.\n\nr0: attacker entity pointer\nr1: defender entity"
@@ -15506,8 +15506,8 @@ class EuOverlay29Functions:
     )
 
     ApplyStickyTrapEffect = Symbol(
-        None,
-        None,
+        [0x12264],
+        [0x22EEDE4],
         None,
         "If the defender is the leader, randomly try to make something in the bag"
         " sticky. Otherwise, try to make the item the monster is holding sticky.\n\nr0:"
@@ -15515,8 +15515,8 @@ class EuOverlay29Functions:
     )
 
     ApplyGrimyTrapEffect = Symbol(
-        None,
-        None,
+        [0x12460],
+        [0x22EEFE0],
         None,
         "If the defender is the leader, randomly try to turn food items in the toolbox"
         " into\ngrimy food. Otherwise, try to make the food item the monster is holding"
@@ -15524,8 +15524,8 @@ class EuOverlay29Functions:
     )
 
     ApplyPitfallTrapEffect = Symbol(
-        None,
-        None,
+        [0x12654],
+        [0x22EF1D4],
         None,
         "If the defender is the leader, end the current floor unless it has a rescue"
         " point.\nOtherwise, make the entity faint and ignore reviver seeds. If not"
@@ -15535,24 +15535,24 @@ class EuOverlay29Functions:
     )
 
     ApplySummonTrapEffect = Symbol(
-        None,
-        None,
+        [0x127C8],
+        [0x22EF348],
         None,
         "Randomly spawns 2-4 enemy monsters around the position. The entity is only"
         " used for\nlogging messages.\n\nr0: entity pointer\nr1: position",
     )
 
     ApplyPpZeroTrapEffect = Symbol(
-        None,
-        None,
+        [0x12864],
+        [0x22EF3E4],
         None,
         "Tries to reduce the PP of one of the defender's moves to 0.\n\nr0: attacker"
         " entity pointer\nr1: defender entity pointer",
     )
 
     ApplyPokemonTrapEffect = Symbol(
-        None,
-        None,
+        [0x1294C],
+        [0x22EF4CC],
         None,
         "Turns item in the same room as the tile at the position (usually just the"
         " entities's\nposition) into monsters. If the position is in a hallway, convert"
@@ -15561,16 +15561,16 @@ class EuOverlay29Functions:
     )
 
     ApplyTripTrapEffect = Symbol(
-        None,
-        None,
+        [0x12B60],
+        [0x22EF6E0],
         None,
         "Tries to drop the defender's item and places it on the floor.\n\nr0: attacker"
         " entity pointer\nr1: defender entity pointer",
     )
 
     ApplyStealthRockTrapEffect = Symbol(
-        None,
-        None,
+        [0x12C84],
+        [0x22EF804],
         None,
         "Tries to apply the damage from the stealth rock trap but does nothing if the"
         " defender is a rock type.\n\nr0: attacker entity pointer\nr1: defender entity"
@@ -15578,16 +15578,16 @@ class EuOverlay29Functions:
     )
 
     ApplyToxicSpikesTrapEffect = Symbol(
-        None,
-        None,
+        [0x12D20],
+        [0x22EF8A0],
         None,
         "Tries to inflict 10 damage on the defender and then tries to poison"
         " them.\n\nr0: attacker entity pointer\nr1: defender entity pointer",
     )
 
     ApplyRandomTrapEffect = Symbol(
-        None,
-        None,
+        [0x12D74],
+        [0x22EF8F4],
         None,
         "Selects a random trap that isn't a wonder tile and isn't a random trap and"
         " calls\nApplyTrapEffect on all monsters that is different from the trap's"
@@ -15596,8 +15596,8 @@ class EuOverlay29Functions:
     )
 
     ApplyGrudgeTrapEffect = Symbol(
-        None,
-        None,
+        [0x12EA8],
+        [0x22EFA28],
         None,
         "Spawns several monsters around the position and gives all monsters on the"
         " floor the\ngrudge status condition.\n\nr0: entity pointer\nr1: position",
@@ -15615,15 +15615,15 @@ class EuOverlay29Functions:
     )
 
     RevealTrapsNearby = Symbol(
-        None,
-        None,
+        [0x1340C],
+        [0x22EFF8C],
         None,
         "Reveals traps within the monster's viewing range.\n\nr0: entity pointer",
     )
 
     ShouldRunMonsterAi = Symbol(
-        None,
-        None,
+        [0x13820],
+        [0x22F03A0],
         None,
         "Checks a monster's monster_behavior to see whether or not the monster should"
         " use AI. Only called on monsters with\na monster_behavior greater than or"
@@ -15644,8 +15644,8 @@ class EuOverlay29Functions:
     )
 
     TryActivateIqBooster = Symbol(
-        None,
-        None,
+        [0x138A8],
+        [0x22F0428],
         None,
         "Increases the IQ of all team members holding the IQ Booster by"
         " floor_properties::iq_booster_value amount unless the\nvalue is 0.\n\nNo"
@@ -15947,8 +15947,8 @@ class EuOverlay29Functions:
     )
 
     TryActivateTraceAndColorChange = Symbol(
-        None,
-        None,
+        [0x1D37C],
+        [0x22F9EFC],
         None,
         "Tries to activate the abilities trace and color change if possible. Called"
         " after using\na move.\n\nr0: attacker entity pointer\nr1: defender entity"
@@ -15997,8 +15997,8 @@ class EuOverlay29Functions:
     )
 
     TryActivateConversion2 = Symbol(
-        None,
-        None,
+        [0x1D5D0],
+        [0x22FA150],
         None,
         "Checks for the conversion2 status and applies the type change if applicable."
         " Called\nafter using a move.\n\nr0: attacker entity pointer\nr1: defender"
@@ -16034,8 +16034,8 @@ class EuOverlay29Functions:
     )
 
     BoostIQ = Symbol(
-        None,
-        None,
+        [0x1DFD0],
+        [0x22FAB50],
         None,
         "Tries to boost the target's IQ.\n\nr0: monster entity pointer\nr1: iq"
         " boost\nr2: bool suppress logs",
@@ -16062,8 +16062,8 @@ class EuOverlay29Functions:
     )
 
     TryEndStatusWithAbility = Symbol(
-        None,
-        None,
+        [0x1E668],
+        [0x22FB1E8],
         None,
         "Checks if any of the defender's active abilities would end one of their"
         " current status\nconditions. For example, if the ability Own Tempo will stop"
@@ -16364,8 +16364,8 @@ class EuOverlay29Functions:
     )
 
     TryActivateFlashFireOnAllMonsters = Symbol(
-        None,
-        None,
+        [0x23014],
+        [0x22FFB94],
         None,
         "Checks every monster for apply_flash_fire_boost. If it's true, activates Flash"
         " Fire for the monster and sets\napply_flash_fire_boost back to false.\n\nNo"
@@ -16675,16 +16675,16 @@ class EuOverlay29Functions:
     )
 
     SafeguardIsActive = Symbol(
-        None,
-        None,
+        [0x257EC],
+        [0x230236C],
         None,
         "Checks if the monster is under the effect of Safeguard.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: flag to log a message\nreturn: bool",
     )
 
     LeafGuardIsActive = Symbol(
-        None,
-        None,
+        [0x25840],
+        [0x23023C0],
         None,
         "Checks if the monster is protected by the ability Leaf Guard.\n\nr0: user"
         " entity pointer\nr1: target entity pointer\nr2: flag to log a message\nreturn:"
@@ -16692,8 +16692,8 @@ class EuOverlay29Functions:
     )
 
     IsProtectedFromStatDrops = Symbol(
-        None,
-        None,
+        [0x259D8],
+        [0x2302558],
         None,
         "Checks if the target monster is protected from getting their stats dropped by"
         " the user.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -16836,8 +16836,8 @@ class EuOverlay29Functions:
     )
 
     IsProtectedFromNegativeStatus = Symbol(
-        None,
-        None,
+        [0x262DC],
+        [0x2302E5C],
         None,
         "Checks if the target monster is protected from getting a negative status"
         " condition.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -16868,8 +16868,8 @@ class EuOverlay29Functions:
     )
 
     LevelUpItemEffect = Symbol(
-        None,
-        None,
+        [0x26908],
+        [0x2303488],
         None,
         "Attempts to level up the the target. Calls LevelUp with a few extra checks and"
         " messages\nfor using as an item. Used for the Joy Seed and Golden Seed.\n\nr0:"
@@ -16952,8 +16952,8 @@ class EuOverlay29Functions:
     )
 
     EndNegativeStatusCondition = Symbol(
-        None,
-        None,
+        [0x29770],
+        [0x23062F0],
         None,
         "Cures the target's negative status conditions. The game rarely (if not never)"
         " calls\nthis function with the bool to remove the wrapping status"
@@ -16963,8 +16963,8 @@ class EuOverlay29Functions:
     )
 
     EndNegativeStatusConditionWrapper = Symbol(
-        None,
-        None,
+        [0x29AD4],
+        [0x2306654],
         None,
         "Calls EndNegativeStatusCondition with remove wrapping status false.\n\nr0:"
         " pointer to user\nr1: pointer to target\nr2: bool play animation\nr3: bool log"
@@ -16972,16 +16972,16 @@ class EuOverlay29Functions:
     )
 
     TransferNegativeStatusCondition = Symbol(
-        None,
-        None,
+        [0x29AE8],
+        [0x2306668],
         None,
         "Transfers all negative status conditions the user has and gives then to the"
         " target.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     EndSleepClassStatus = Symbol(
-        None,
-        None,
+        [0x29E88],
+        [0x2306A08],
         None,
         "Cures the target's sleep, sleepless, nightmare, yawn or napping status due to"
         " the action of the user, and prints the event to the log.\n\nr0: pointer to"
@@ -16989,8 +16989,8 @@ class EuOverlay29Functions:
     )
 
     EndBurnClassStatus = Symbol(
-        None,
-        None,
+        [0x2A054],
+        [0x2306BD4],
         None,
         "Cures the target's burned, poisoned, badly poisoned or paralysis status due to"
         " the action of the user, and prints the event to the log.\n\nr0: pointer to"
@@ -17017,8 +17017,8 @@ class EuOverlay29Functions:
     )
 
     EndReflectClassStatus = Symbol(
-        None,
-        None,
+        [0x2A3A0],
+        [0x2306F20],
         None,
         "Removes the target's reflect, safeguard, light screen, counter, magic coat,"
         " wish, protect, mirror coat, endure, mini counter?, mirror move, conversion 2,"
@@ -17028,8 +17028,8 @@ class EuOverlay29Functions:
     )
 
     TryRemoveSnatchedMonsterFromDungeonStruct = Symbol(
-        None,
-        None,
+        [0x2A584],
+        [0x2307104],
         None,
         "If the target is afflicted with snatch, change dungeon::snatch_monster and"
         " dungeon::snatch_status_unique_id back\nto NULL and 0 respectively. This"
@@ -17040,8 +17040,8 @@ class EuOverlay29Functions:
     )
 
     EndCurseClassStatus = Symbol(
-        None,
-        None,
+        [0x2A5D4],
+        [0x2307154],
         None,
         "Removes the target's curse (1), decoy (2), snatch (3), gastro acid (4), heal"
         " block (5), or embargo (6) status\ndue to the action of the user, and prints"
@@ -17051,8 +17051,8 @@ class EuOverlay29Functions:
     )
 
     EndLeechSeedClassStatus = Symbol(
-        None,
-        None,
+        [0x2A770],
+        [0x23072F0],
         None,
         "Cures the target's leech seed or destiny bond status due to the action of the"
         " user, and prints the event to the log.\n\nr0: pointer to user\nr1: pointer to"
@@ -17060,8 +17060,8 @@ class EuOverlay29Functions:
     )
 
     EndSureShotClassStatus = Symbol(
-        None,
-        None,
+        [0x2A7FC],
+        [0x230737C],
         None,
         "Removes the target's sure shot, whiffer, set damage or focus energy status due"
         " to the action of the user, and prints the event to the log.\n\nr0: pointer to"
@@ -17069,8 +17069,8 @@ class EuOverlay29Functions:
     )
 
     EndInvisibleClassStatus = Symbol(
-        None,
-        None,
+        [0x2A8AC],
+        [0x230742C],
         None,
         "Removes the target's invisible, transformed, mobile, or slip status due to the"
         " action of the user, and prints\nthe event to the log.\n\nr0: pointer to"
@@ -17079,8 +17079,8 @@ class EuOverlay29Functions:
     )
 
     EndBlinkerClassStatus = Symbol(
-        None,
-        None,
+        [0x2A9D4],
+        [0x2307554],
         None,
         "Removes the target's blinker, cross-eyed, eyedrops, or dropeye status due to"
         " the action of the user, and\nprints the event to the log.\n\nr0: pointer to"
@@ -17088,32 +17088,32 @@ class EuOverlay29Functions:
     )
 
     EndMuzzledStatus = Symbol(
-        None,
-        None,
+        [0x2AAA4],
+        [0x2307624],
         None,
         "Removes the target's muzzled status due to the action of the user, and prints"
         " the event to the log.\n\nr0: pointer to user\nr1: pointer to target",
     )
 
     EndMiracleEyeStatus = Symbol(
-        None,
-        None,
+        [0x2AB10],
+        [0x2307690],
         None,
         "Removes the target's miracle eye status due to the action of the user, and"
         " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to target",
     )
 
     EndMagnetRiseStatus = Symbol(
-        None,
-        None,
+        [0x2AB7C],
+        [0x23076FC],
         None,
         "Removes the target's magnet rise status due to the action of the user, and"
         " prints the event to the log.\n\nr0: pointer to user\nr1: pointer to target",
     )
 
     TransferNegativeBlinkerClassStatus = Symbol(
-        None,
-        None,
+        [0x2B798],
+        [0x2308318],
         None,
         "Tries to transfer the the negative blinker class status conditions from the"
         " user to\nthe target.\n\nr0: user entity pointer\nr1: target entity"
@@ -17121,24 +17121,24 @@ class EuOverlay29Functions:
     )
 
     EndFrozenStatus = Symbol(
-        None,
-        None,
+        [0x2BB24],
+        [0x23086A4],
         None,
         "Cures the target's freeze status due to the action of the user.\n\nr0: user"
         " entity pointer\nr1: target entity pointer",
     )
 
     EndProtectStatus = Symbol(
-        None,
-        None,
+        [0x2BBC4],
+        [0x2308744],
         None,
         "Ends the target's protect status due to the action of the user.\n\nr0: user"
         " entity pointer\nr1: target entity pointer",
     )
 
     TryRestoreRoostTyping = Symbol(
-        None,
-        None,
+        [0x2BC00],
+        [0x2308780],
         None,
         "Tries to restore the target's original typings before the Roost effect took"
         " place. Does nothing if the target\nis not affected by Roost.\n\nr0: user"
@@ -17315,8 +17315,8 @@ class EuOverlay29Functions:
     )
 
     ApplyDamageAndEffectsWrapper = Symbol(
-        None,
-        None,
+        [0x31010],
+        [0x230DB90],
         None,
         "A wrapper for ApplyDamageAndEffects used for applying damage from sources such"
         " as statuses, traps, liquid ooze,\nhunger, and possibly more.\n\nr0: monster"
@@ -17382,8 +17382,8 @@ class EuOverlay29Functions:
     )
 
     UpdateShopkeeperModeAfterTrap = Symbol(
-        None,
-        None,
+        [0x31370],
+        [0x230DEF0],
         None,
         "Updates the shopkeeper mode of a monster in response to stepping on a"
         " trap.\n\nIf in the normal shopkeeper mode (not aggressive), nothing happens."
@@ -17476,8 +17476,8 @@ class EuOverlay29Functions:
     )
 
     TeamMemberHasItemActive = Symbol(
-        None,
-        None,
+        [0x3368C],
+        [0x231020C],
         None,
         "Checks if any team member is holding a certain item and puts them into the"
         " array given.\n\nr0: [output] pointer to array of monsters (expected to have"
@@ -17539,8 +17539,8 @@ class EuOverlay29Functions:
     )
 
     IsProtectedFromSleepClassStatus = Symbol(
-        None,
-        None,
+        [0x358C4],
+        [0x2312444],
         None,
         "Checks if the monster is immune to sleep class status conditions.\n\nr0: user"
         " entity pointer\nr1: target entity pointer\nr2: ignore safeguard\nr3: ignore"
@@ -17756,8 +17756,8 @@ class EuOverlay29Functions:
     )
 
     ActivateFlashFire = Symbol(
-        None,
-        None,
+        [0x37BC4],
+        [0x2314744],
         None,
         "Actually applies the Flash Fire boost with a message log and animation. Passes"
         " the same monster for attacker and\ndefender, but the attacker goes"
@@ -17901,16 +17901,16 @@ class EuOverlay29Functions:
     )
 
     TryInflictTerrifiedStatus = Symbol(
-        None,
-        None,
+        [0x38D40],
+        [0x23158C0],
         None,
         "Inflicts the Terrified status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictGrudgeStatus = Symbol(
-        None,
-        None,
+        [0x38D98],
+        [0x2315918],
         None,
         "Inflicts the Grudge status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to log a"
@@ -17998,40 +17998,40 @@ class EuOverlay29Functions:
     )
 
     TryInflictSureShotStatus = Symbol(
-        None,
-        None,
+        [0x39A50],
+        [0x23165D0],
         None,
         "Inflicts the Sure Shot status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictWhifferStatus = Symbol(
-        None,
-        None,
+        [0x39AE0],
+        [0x2316660],
         None,
         "Inflicts the Whiffer status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictSetDamageStatus = Symbol(
-        None,
-        None,
+        [0x39BC8],
+        [0x2316748],
         None,
         "Inflicts the Set Damage status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictFocusEnergyStatus = Symbol(
-        None,
-        None,
+        [0x39C64],
+        [0x23167E4],
         None,
         "Inflicts the Focus Energy status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictDecoyStatus = Symbol(
-        None,
-        None,
+        [0x39D04],
+        [0x2316884],
         None,
         "Inflicts the Decoy status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nreturn: Whether or not the"
@@ -18039,8 +18039,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictCurseStatus = Symbol(
-        None,
-        None,
+        [0x39FBC],
+        [0x2316B3C],
         None,
         "Inflicts the Curse status condition on a target monster if possible and if the"
         " user is\na ghost type. Otherwise, just boost the user's defense and attack"
@@ -18049,16 +18049,16 @@ class EuOverlay29Functions:
     )
 
     TryInflictSnatchStatus = Symbol(
-        None,
-        None,
+        [0x3A160],
+        [0x2316CE0],
         None,
         "Inflicts the Snatch status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictTauntStatus = Symbol(
-        None,
-        None,
+        [0x3A288],
+        [0x2316E08],
         None,
         "Inflicts the Taunt status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nreturn: Whether or not the"
@@ -18066,8 +18066,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictStockpileStatus = Symbol(
-        None,
-        None,
+        [0x3A3B8],
+        [0x2316F38],
         None,
         "Inflicts the Stockpile condition on a target monster if possible. Won't boost"
         " the level\nof stockpiling above 3.\n\nr0: user entity pointer\nr1: target"
@@ -18085,8 +18085,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictPerishSongStatus = Symbol(
-        None,
-        None,
+        [0x3A50C],
+        [0x231708C],
         None,
         "Inflicts the Perish Song status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -18095,8 +18095,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictEncoreStatus = Symbol(
-        None,
-        None,
+        [0x3A600],
+        [0x2317180],
         None,
         "Inflicts the Encore status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to only perform the"
@@ -18105,8 +18105,8 @@ class EuOverlay29Functions:
     )
 
     TryDecreaseBelly = Symbol(
-        None,
-        None,
+        [0x3A7B8],
+        [0x2317338],
         None,
         "Tries to reduce the belly size of the target. Only when max belly shrink is 0,"
         " the\ncurrent belly is reduced by belly to lose. If both are non-zero, only"
@@ -18115,8 +18115,8 @@ class EuOverlay29Functions:
     )
 
     TryIncreaseBelly = Symbol(
-        None,
-        None,
+        [0x3AA90],
+        [0x2317610],
         None,
         "Restore belly and possibly boost max belly of the target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: belly to"
@@ -18125,8 +18125,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictMuzzledStatus = Symbol(
-        None,
-        None,
+        [0x3B004],
+        [0x2317B84],
         None,
         "Inflicts the Muzzled status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to only perform the"
@@ -18145,16 +18145,16 @@ class EuOverlay29Functions:
     )
 
     TryInflictMobileStatus = Symbol(
-        None,
-        None,
+        [0x3B2EC],
+        [0x2317E6C],
         None,
         "Inflicts the Mobile status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictExposedStatus = Symbol(
-        None,
-        None,
+        [0x3B3A8],
+        [0x2317F28],
         None,
         "Inflicts the Exposed status condition on a target monster if possible. Only"
         " applies to\nGhost types and monsters with raised evasion. If the animation"
@@ -18166,8 +18166,8 @@ class EuOverlay29Functions:
     )
 
     TryActivateIdentifyCondition = Symbol(
-        None,
-        None,
+        [0x3B528],
+        [0x23180A8],
         None,
         "Sets the flag for the identify orb which causes monsters holding items to be"
         " shown with\na blue exclamation mark status icon.\n\nr0: user entity"
@@ -18175,8 +18175,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictBlinkerStatus = Symbol(
-        None,
-        None,
+        [0x3B5AC],
+        [0x231812C],
         None,
         "Inflicts the Blinker status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to only perform the"
@@ -18194,8 +18194,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictCrossEyedStatus = Symbol(
-        None,
-        None,
+        [0x3B724],
+        [0x23182A4],
         None,
         "Inflicts the Cross-Eyed status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -18204,16 +18204,16 @@ class EuOverlay29Functions:
     )
 
     TryInflictEyedropStatus = Symbol(
-        None,
-        None,
+        [0x3B83C],
+        [0x23183BC],
         None,
         "Inflicts the Eyedrop status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictSlipStatus = Symbol(
-        None,
-        None,
+        [0x3B8EC],
+        [0x231846C],
         None,
         "Inflicts the Slip status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nreturn: Whether or not the"
@@ -18221,8 +18221,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictDropeyeStatus = Symbol(
-        None,
-        None,
+        [0x3B9D4],
+        [0x2318554],
         None,
         "Inflicts the Dropeye status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nreturn: Whether or not the"
@@ -18239,8 +18239,8 @@ class EuOverlay29Functions:
     )
 
     RestoreOneMovePP = Symbol(
-        None,
-        None,
+        [0x3BC38],
+        [0x23187B8],
         None,
         "Restores the PP the target's move in the specified move slot by the specified"
         " amount.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: move"
@@ -18248,8 +18248,8 @@ class EuOverlay29Functions:
     )
 
     RestoreRandomMovePP = Symbol(
-        None,
-        None,
+        [0x3BD68],
+        [0x23188E8],
         None,
         "Restores the PP of a random one of the target's moves by the specified"
         " amount.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: PP to"
@@ -18257,56 +18257,56 @@ class EuOverlay29Functions:
     )
 
     ApplyProteinEffect = Symbol(
-        None,
-        None,
+        [0x3BE30],
+        [0x23189B0],
         None,
         "Tries to boost the target's attack stat.\n\nr0: user entity pointer\nr1:"
         " target entity pointer\nr2: attack boost",
     )
 
     ApplyCalciumEffect = Symbol(
-        None,
-        None,
+        [0x3BEC4],
+        [0x2318A44],
         None,
         "Tries to boost the target's special attack stat.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: special attack boost",
     )
 
     ApplyIronEffect = Symbol(
-        None,
-        None,
+        [0x3BF58],
+        [0x2318AD8],
         None,
         "Tries to boost the target's defense stat.\n\nr0: user entity pointer\nr1:"
         " target entity pointer\nr2: defense boost",
     )
 
     ApplyZincEffect = Symbol(
-        None,
-        None,
+        [0x3BFEC],
+        [0x2318B6C],
         None,
         "Tries to boost the target's special defense stat.\n\nr0: user entity"
         " pointer\nr1: target entity pointer\nr2: special defense boost",
     )
 
     TryInflictLongTossStatus = Symbol(
-        None,
-        None,
+        [0x3C080],
+        [0x2318C00],
         None,
         "Inflicts the Long Toss status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictPierceStatus = Symbol(
-        None,
-        None,
+        [0x3C0F0],
+        [0x2318C70],
         None,
         "Inflicts the Pierce status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictGastroAcidStatus = Symbol(
-        None,
-        None,
+        [0x3C15C],
+        [0x2318CDC],
         None,
         "Inflicts the Gastro Acid status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -18323,32 +18323,32 @@ class EuOverlay29Functions:
     )
 
     ApplyAquaRingHealing = Symbol(
-        None,
-        None,
+        [0x3C2C8],
+        [0x2318E48],
         None,
         "Applies the passive healing gained from the Aqua Ring status.\n\nr0: pointer"
         " to entity",
     )
 
     TryInflictAquaRingStatus = Symbol(
-        None,
-        None,
+        [0x3C33C],
+        [0x2318EBC],
         None,
         "Inflicts the Aqua Ring status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictLuckyChantStatus = Symbol(
-        None,
-        None,
+        [0x3C3E8],
+        [0x2318F68],
         None,
         "Inflicts the Lucky Chant status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictHealBlockStatus = Symbol(
-        None,
-        None,
+        [0x3C488],
+        [0x2319008],
         None,
         "Inflicts the Heal Block status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -18373,8 +18373,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictEmbargoStatus = Symbol(
-        None,
-        None,
+        [0x3C60C],
+        [0x231918C],
         None,
         "Inflicts the Embargo status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: flag to log message\nr3:"
@@ -18383,8 +18383,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictMiracleEyeStatus = Symbol(
-        None,
-        None,
+        [0x3C730],
+        [0x23192B0],
         None,
         "Inflicts the Miracle Eye status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to"
@@ -18392,8 +18392,8 @@ class EuOverlay29Functions:
     )
 
     TryInflictMagnetRiseStatus = Symbol(
-        None,
-        None,
+        [0x3C864],
+        [0x23193E4],
         None,
         "Inflicts the Magnet Rise status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
@@ -18409,112 +18409,112 @@ class EuOverlay29Functions:
     )
 
     TryInflictSafeguardStatus = Symbol(
-        None,
-        None,
+        [0x3CD50],
+        [0x23198D0],
         None,
         "Inflicts the Safeguard status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictMistStatus = Symbol(
-        None,
-        None,
+        [0x3CDF0],
+        [0x2319970],
         None,
         "Inflicts the Mist status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictWishStatus = Symbol(
-        None,
-        None,
+        [0x3CE8C],
+        [0x2319A0C],
         None,
         "Inflicts the Wish status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictMagicCoatStatus = Symbol(
-        None,
-        None,
+        [0x3CF2C],
+        [0x2319AAC],
         None,
         "Inflicts the Magic Coat status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictLightScreenStatus = Symbol(
-        None,
-        None,
+        [0x3CFCC],
+        [0x2319B4C],
         None,
         "Inflicts the Light Screen status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictReflectStatus = Symbol(
-        None,
-        None,
+        [0x3D06C],
+        [0x2319BEC],
         None,
         "Inflicts the Reflect status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictProtectStatus = Symbol(
-        None,
-        None,
+        [0x3D10C],
+        [0x2319C8C],
         None,
         "Inflicts the Protect status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictMirrorCoatStatus = Symbol(
-        None,
-        None,
+        [0x3D1BC],
+        [0x2319D3C],
         None,
         "Inflicts the Mirror Coat status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictEndureStatus = Symbol(
-        None,
-        None,
+        [0x3D258],
+        [0x2319DD8],
         None,
         "Inflicts the Endure status condition on a target monster if possible.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictMirrorMoveStatus = Symbol(
-        None,
-        None,
+        [0x3D2F8],
+        [0x2319E78],
         None,
         "Inflicts the Mirror Move status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictConversion2Status = Symbol(
-        None,
-        None,
+        [0x3D398],
+        [0x2319F18],
         None,
         "Inflicts the Conversion2 status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryInflictVitalThrowStatus = Symbol(
-        None,
-        None,
+        [0x3D464],
+        [0x2319FE4],
         None,
         "Inflicts the Vital Throw status condition on a target monster if"
         " possible.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     TryResetStatChanges = Symbol(
-        None,
-        None,
+        [0x3D504],
+        [0x231A084],
         None,
         "Tries to reset the stat changes of the defender.\n\nr0: attacker entity"
         " pointer\nr1: defender entity pointer\nr3: bool to force animation",
     )
 
     MirrorMoveIsActive = Symbol(
-        None,
-        None,
+        [0x3D628],
+        [0x231A1A8],
         None,
         "Checks if the monster is under the effect of Mirror Move.\n\nReturns 1 if the"
         " effects is a status, 2 if it comes from an exclusive item, 0"
@@ -18522,8 +18522,8 @@ class EuOverlay29Functions:
     )
 
     MistIsActive = Symbol(
-        None,
-        None,
+        [0x3D6AC],
+        [0x231A22C],
         None,
         "Checks if the monster is under the effect of Mist.\n\nReturns 1 if the effects"
         " is a status, 2 if it comes from an exclusive item, 0 otherwise.\n\nr0:"
@@ -18633,16 +18633,16 @@ class EuOverlay29Functions:
     )
 
     ActivateMotorDrive = Symbol(
-        None,
-        None,
+        [0x3EF40],
+        [0x231BAC0],
         None,
         "Displays the message and applies the speed boost for the ability Motor"
         " Drive.\n\nr0: monster pointer",
     )
 
     TryActivateFrisk = Symbol(
-        None,
-        None,
+        [0x3EF84],
+        [0x231BB04],
         None,
         "Tries to activate the Frisk ability on the defender. The attacker has to be on"
         " the team and the defender has to be\nholding an item or be able to drop a"
@@ -18650,23 +18650,23 @@ class EuOverlay29Functions:
     )
 
     TryActivateBadDreams = Symbol(
-        None,
-        None,
+        [0x3F098],
+        [0x231BC18],
         None,
         "Tries to apply the damage from Bad Dreams to all sleeping monsters in the"
         " room.\n\nr0: monster pointer",
     )
 
     ActivateStench = Symbol(
-        None,
-        None,
+        [0x3F21C],
+        [0x231BD9C],
         None,
         "Activate the Stench ability on the monster.\n\nr0: monster pointer",
     )
 
     TryActivateSteadfast = Symbol(
-        None,
-        None,
+        [0x3F244],
+        [0x231BDC4],
         None,
         "Activate the Steadfast ability on the defender, if the monster has it and it's"
         " active.\n\nr0: attacker pointer\nr1: defender pointer",
@@ -18700,32 +18700,32 @@ class EuOverlay29Functions:
     )
 
     ApplyCheriBerryEffect = Symbol(
-        None,
-        None,
+        [0x40AD4],
+        [0x231D654],
         None,
         "Tries to heal the paralysis status condition. Prints a message on"
         " failure.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyPechaBerryEffect = Symbol(
-        None,
-        None,
+        [0x40B00],
+        [0x231D680],
         None,
         "Tries to heal the poisoned and badly poisoned status condition. Prints a"
         " message on\nfailure.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyRawstBerryEffect = Symbol(
-        None,
-        None,
+        [0x40B34],
+        [0x231D6B4],
         None,
         "Tries to heal the burn status condition. Prints a message on failure.\n\nr0:"
         " user entity pointer\nr1: target entity pointer",
     )
 
     ApplyHungerSeedEffect = Symbol(
-        None,
-        None,
+        [0x40B7C],
+        [0x231D6FC],
         None,
         "Empties the targets belly to cause Hungry Pal status in non-leader monsters"
         " and\nFamished in the leader monster.\n\nr0: user entity pointer\nr1: target"
@@ -18733,8 +18733,8 @@ class EuOverlay29Functions:
     )
 
     ApplyVileSeedEffect = Symbol(
-        None,
-        None,
+        [0x40C68],
+        [0x231D7E8],
         None,
         "Reduces the targets defense and special defense stages to the lowest"
         " level.\n\nr0: attacker pointer\nr1: defender pointer",
@@ -18749,8 +18749,8 @@ class EuOverlay29Functions:
     )
 
     ApplyGinsengEffect = Symbol(
-        None,
-        None,
+        [0x40D50],
+        [0x231D8D0],
         None,
         "Boosts the power of the move at the top of the target's Move List. Appears to"
         " have a\nleftover check to boost the power of a move by 3 instead of 1 that"
@@ -18759,8 +18759,8 @@ class EuOverlay29Functions:
     )
 
     ApplyBlastSeedEffect = Symbol(
-        None,
-        None,
+        [0x40E6C],
+        [0x231D9EC],
         None,
         "If thrown, unfreeze and deal fixed damage to the defender. If not thrown, try"
         " to find \na monster in front of the attacker. If a monster is found unfreeze"
@@ -18792,8 +18792,8 @@ class EuOverlay29Functions:
     )
 
     ApplyGrimyFoodEffect = Symbol(
-        None,
-        None,
+        [0x4141C],
+        [0x231DF9C],
         None,
         "Randomly inflicts poison, shadow hold, burn, paralysis, or an offensive stat"
         " debuff\nto the target. If the survivalist iq skill or gluttony ability is"
@@ -18802,16 +18802,16 @@ class EuOverlay29Functions:
     )
 
     ApplyMixElixirEffect = Symbol(
-        None,
-        None,
+        [0x41568],
+        [0x231E0E8],
         None,
         "If the target monster is a Linoone, restores all the PP of all the target's"
         " moves.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyDoughSeedEffect = Symbol(
-        None,
-        None,
+        [0x415C8],
+        [0x231E148],
         None,
         "If the target monster is a team member, set dough_seed_extra_poke_flag to true"
         " to \nmake extra poke spawn on the next floor. Otherwise, do nothing.\n\nr0:"
@@ -18819,24 +18819,24 @@ class EuOverlay29Functions:
     )
 
     ApplyViaSeedEffect = Symbol(
-        None,
-        None,
+        [0x41634],
+        [0x231E1B4],
         None,
         "Tries to randomly teleport the target with a message for eating the"
         " seed.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyGravelyrockEffect = Symbol(
-        None,
-        None,
+        [0x416A8],
+        [0x231E228],
         None,
         "Restores 10 hunger to the target and will raise the target's IQ if they are a"
         " bonsly\nor sudowoodo.\n\nr0: user entity pointer\nr1: target entity pointer",
     )
 
     ApplyGonePebbleEffect = Symbol(
-        None,
-        None,
+        [0x41720],
+        [0x231E2A0],
         None,
         "Causes a few visual effects, temporarily changes the dungeon music to the"
         " Goodnight\ntrack, and gives the target the enduring status.\n\nr0: user"
@@ -18844,8 +18844,8 @@ class EuOverlay29Functions:
     )
 
     ApplyGracideaEffect = Symbol(
-        None,
-        None,
+        [0x418A8],
+        [0x231E428],
         None,
         "If the target is Shaymin, attempt to change the target's form to Shaymin Sky"
         " Forme. Otherwise, do nothing.\n\nr0: user entity pointer\nr1: target entity"
@@ -18955,8 +18955,8 @@ class EuOverlay29Functions:
     )
 
     TryActivateNondamagingDefenderAbility = Symbol(
-        None,
-        None,
+        [0x45960],
+        [0x23224E0],
         None,
         "Applies the effects of a defender's ability on an attacker. After a move is"
         " used,\nthis function is called to see if any of the bitflags for an ability"
@@ -18965,8 +18965,8 @@ class EuOverlay29Functions:
     )
 
     TryActivateNondamagingDefenderExclusiveItem = Symbol(
-        None,
-        None,
+        [0x45BD8],
+        [0x2322758],
         None,
         "Applies the effects of a defender's item on an attacker. After a move is"
         " used,\nthis function is called to see if any of the bitflags for an item were"
@@ -19115,8 +19115,8 @@ class EuOverlay29Functions:
     )
 
     PlayMoveAnimation = Symbol(
-        None,
-        None,
+        [0x4959C],
+        [0x232611C],
         None,
         "Handles the process of getting and playing all the animations for a move."
         " Waits\nuntil the animation has no more frames before returning.\n\nr0:"
@@ -19344,24 +19344,24 @@ class EuOverlay29Functions:
     )
 
     TrySpawnGoldenChamber = Symbol(
-        None,
-        None,
+        [0x5A274],
+        [0x2336DF4],
         None,
         "Changes the tileset and fixed room id of the floor for the Golden Chamber if"
         " the floor should be a\nGolden Chamber.\n\nNo params.",
     )
 
     CountItemsOnFloorForAcuteSniffer = Symbol(
-        None,
-        None,
+        [0x5A2B0],
+        [0x2336E30],
         None,
         "Counts the number of items on the floor by checking every tile for an item and"
         " stores it into\ndungeon::item_sniffer_item_count\n\nNo params.",
     )
 
     GetStairsSpawnPosition = Symbol(
-        None,
-        None,
+        [0x5A410],
+        [0x2336F90],
         None,
         "Gets the spawn position for the stairs and stores it at the passed"
         " pointers.\n\nr0: [output] pointer to x coordinate\nr1: [output] pointer to y"
@@ -19369,8 +19369,8 @@ class EuOverlay29Functions:
     )
 
     PositionIsOnStairs = Symbol(
-        None,
-        None,
+        [0x5A43C],
+        [0x2336FBC],
         None,
         "Checks if this location is on top of the staircase. In the game it is only"
         " used to check if an outlaw has reached\nthe staircase.\n\nr0: x"
@@ -19392,15 +19392,15 @@ class EuOverlay29Functions:
     )
 
     DetermineAllTilesWalkableNeighbors = Symbol(
-        None,
-        None,
+        [0x5AA9C],
+        [0x233761C],
         None,
         "Evaluates the walkable_neighbor_flags for all tiles.\n\nNo params.",
     )
 
     DetermineTileWalkableNeighbors = Symbol(
-        None,
-        None,
+        [0x5AAD4],
+        [0x2337654],
         None,
         "Evaluates the walkable_neighbor_flags for the this tile by checking the 8"
         " adjacent tiles.\n\nr0: x coordinate\nr1: y coordinate",
@@ -19442,24 +19442,24 @@ class EuOverlay29Functions:
     )
 
     PositionHasItem = Symbol(
-        None,
-        None,
+        [0x5BB7C],
+        [0x23386FC],
         None,
         "Checks if the tile at the position has an item on it.\n\nr0: Position to"
         " check\nreturn: bool",
     )
 
     PositionHasMonster = Symbol(
-        None,
-        None,
+        [0x5BBB8],
+        [0x2338738],
         None,
         "Checks if the tile at the position has a monster on it.\n\nr0: Position to"
         " check\nreturn: bool",
     )
 
     TrySmashWall = Symbol(
-        None,
-        None,
+        [0x5BBEC],
+        [0x233876C],
         None,
         "Checks if the tile at the position is a wall. If so, smash it (turn it into a"
         " floor tile), play an animation\n\nr0: Wall position to smash\nreturn: bool",
@@ -19530,16 +19530,16 @@ class EuOverlay29Functions:
     )
 
     SetDoughSeedFlag = Symbol(
-        None,
-        None,
+        [0x5C598],
+        [0x2339118],
         None,
         "Sets the dough_seed_extra_money_flag field on the dungeon struct to the given"
         " value.\n\nr0: bool to set the flag to",
     )
 
     TrySpawnDoughSeedPoke = Symbol(
-        None,
-        None,
+        [0x5C5B0],
+        [0x2339130],
         None,
         "Checks the dough_seed_extra_money_flag field on the dungeon struct and tries"
         " to spawn\nextra poke if it is set.\n\nNo params.",
@@ -20326,8 +20326,8 @@ class EuOverlay29Functions:
     )
 
     GetFinalKecleonShopSpawnChance = Symbol(
-        None,
-        None,
+        [0x66F20],
+        [0x2343AA0],
         None,
         "Gets the kecleon shop spawn chance for the floor.\n\nWhen"
         " dungeon::boost_kecleon_shop_spawn_chance is false, returns the same value as"

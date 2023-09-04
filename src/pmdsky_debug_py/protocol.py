@@ -4883,12 +4883,12 @@ Arm9Protocol = SectionProtocol[
 
 class ItcmFunctionsProtocol(Protocol):
     AllocateRender3dElement: Symbol[
-        Optional[List[int]],
+        List[int],
         None,
     ]
 
     Render3dStack: Symbol[
-        Optional[List[int]],
+        List[int],
         None,
     ]
 
@@ -4943,7 +4943,7 @@ class ItcmFunctionsProtocol(Protocol):
     ]
 
     LightningRodStormDrainCheck: Symbol[
-        Optional[List[int]],
+        List[int],
         None,
     ]
 

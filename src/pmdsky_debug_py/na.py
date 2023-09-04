@@ -629,8 +629,8 @@ class NaArm9Functions:
     )
 
     Rgb8ToBgr5 = Symbol(
-        None,
-        None,
+        [0x4FCC],
+        [0x2004FCC],
         None,
         "Transform the input rgb8 color to a bgr5 color\n\nr0: pointer to target bgr5"
         " (2 bytes, aligned to LSB)\nr1: pointer to source rgb8",
@@ -2477,8 +2477,8 @@ class NaArm9Functions:
     )
 
     InitAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C050],
+        [0x201C050],
         None,
         "Initialize the animation_control structure\n\nr0: animation_control",
     )
@@ -2492,8 +2492,8 @@ class NaArm9Functions:
     )
 
     SetSpriteIdForAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C0E8],
+        [0x201C0E8],
         None,
         "Set the sprite id (from WAN_TABLE) in the given animation control\nAlso set"
         " field 0x72 to the sprite id if they differ\nIf they differ, it’ll also set"
@@ -2501,8 +2501,8 @@ class NaArm9Functions:
     )
 
     SetAnimationForAnimationControlInternal = Symbol(
-        None,
-        None,
+        [0x1C17C],
+        [0x201C17C],
         None,
         "Set the wan animation (and other related settings) of an"
         " animation_control\nUsed by SetAnimationForAnimationControl\n\nr0:"
@@ -2513,8 +2513,8 @@ class NaArm9Functions:
     )
 
     SetAnimationForAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C2CC],
+        [0x201C2CC],
         None,
         "Set the animation to play with this animation control, but do not start"
         " it.\n\n(args same as SetAndPlayAnimationForAnimationControl)\nr0:"
@@ -2527,8 +2527,8 @@ class NaArm9Functions:
     )
 
     GetWanForAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C3E8],
+        [0x201C3E8],
         None,
         "Return the WAN to use for the given animation control\nReturn the override if"
         " it exists, otherwise look up the sprite id in WAN_TABLE\n\nr0:"
@@ -2536,8 +2536,8 @@ class NaArm9Functions:
     )
 
     SetAndPlayAnimationForAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C418],
+        [0x201C418],
         None,
         "Set the animation to play with the animation control, and start it.\n\nr0:"
         " animation_control\nr1: animation key (either an animation or animation group"
@@ -2549,16 +2549,16 @@ class NaArm9Functions:
     )
 
     SwitchAnimationControlToNextFrame = Symbol(
-        None,
-        None,
+        [0x1C458],
+        [0x201C458],
         None,
         "Handle switching to the next frame of an animation control, including"
         " looping.\n\nr0: animation_control",
     )
 
     LoadAnimationFrameAndIncrementInAnimationControl = Symbol(
-        None,
-        None,
+        [0x1C560],
+        [0x201C560],
         None,
         "Read some value of the input animation frame, and update animation control"
         " with it.\nAlso switch next_animation_frame of animation_control to the next"
@@ -2568,8 +2568,8 @@ class NaArm9Functions:
     )
 
     AnimationControlGetAllocForMaxFrame = Symbol(
-        None,
-        None,
+        [0x1D170],
+        [0x201D170],
         None,
         "Return the maximum allocation for a frame of this sprite, as stored in the WAN"
         " file\nReturn 0 if missing and takes sprite override into account\n\nr0:"
@@ -2586,8 +2586,8 @@ class NaArm9Functions:
     )
 
     AllocateWanTableEntry = Symbol(
-        None,
-        None,
+        [0x1D244],
+        [0x201D244],
         None,
         "Return the identifier to a free wan table entry (-1 if none are avalaible)."
         " The entry is zeroed.\n\nr0: wan_table_ptr\nreturn: the entry id in wan_table",
@@ -2612,8 +2612,8 @@ class NaArm9Functions:
     )
 
     InitWanTable = Symbol(
-        None,
-        None,
+        [0x1D3BC],
+        [0x201D3BC],
         None,
         "Initialize the input WAN table with 0x60 free entries (it needs a length of"
         " 0x1510 bytes)\n\nr0: wan_table_ptr",
@@ -2630,8 +2630,8 @@ class NaArm9Functions:
     )
 
     LoadWanTableEntryFromPack = Symbol(
-        None,
-        None,
+        [0x1D484],
+        [0x201D484],
         None,
         "Return an already allocated entry for this sprite if it exists, otherwise"
         " allocate a new one and load the optionally compressed sprite.\n\nr0:"
@@ -2640,8 +2640,8 @@ class NaArm9Functions:
     )
 
     LoadWanTableEntryFromPackUseProvidedMemory = Symbol(
-        None,
-        None,
+        [0x1D590],
+        [0x201D590],
         None,
         "Return an already allocated entry for this sprite if it exists, otherwise"
         " allocate a new one and load the optionally compressed sprite into the"
@@ -2668,8 +2668,8 @@ class NaArm9Functions:
     )
 
     WanHasAnimationGroup = Symbol(
-        None,
-        None,
+        [0x1DA44],
+        [0x201DA44],
         None,
         "Check if the input WAN file loaded in memory has an animation group with this"
         " ID\nValid means that the animation group is in the range of existing"
@@ -2679,8 +2679,8 @@ class NaArm9Functions:
     )
 
     WanTableSpriteHasAnimationGroup = Symbol(
-        None,
-        None,
+        [0x1DA80],
+        [0x201DA80],
         None,
         "Check if the sprite in the global WAN table has the given animation group\nsee"
         " WanHasAnimationGroup for more detail\n\nr0: sprite id in the WAN table\nr1:"
@@ -2689,8 +2689,8 @@ class NaArm9Functions:
     )
 
     SpriteTypeInWanTable = Symbol(
-        None,
-        None,
+        [0x1DC70],
+        [0x201DC70],
         None,
         "Look up the sprite in the WAN table, and return its type\n\nr0: sprite id in"
         " the WAN table\nreturn: sprite type",
@@ -2738,8 +2738,8 @@ class NaArm9Functions:
     )
 
     GeomSetTexImageParam = Symbol(
-        None,
-        None,
+        [0x1E494],
+        [0x201E494],
         None,
         "Send the 'TEXIMAGE_PARAM' geometry engine command, that defines some"
         " parameters for the texture\nSee"
@@ -2752,8 +2752,8 @@ class NaArm9Functions:
     )
 
     GeomSetVertexCoord16 = Symbol(
-        None,
-        None,
+        [0x1E4D4],
+        [0x201E4D4],
         None,
         "Send the 'VTX_16' geometry engine command, that defines the coordinate of a"
         " point of a polygon, using 16 bits.\nInputs are clamped over their 16 lower"
@@ -2761,12 +2761,15 @@ class NaArm9Functions:
     )
 
     InitRender3dData = Symbol(
-        None, None, None, "Initialize the global 'RENDER_3D' structure.\n\nNo params."
+        [0x1E504],
+        [0x201E504],
+        None,
+        "Initialize the global 'RENDER_3D' structure.\n\nNo params.",
     )
 
     GeomSwapBuffers = Symbol(
-        None,
-        None,
+        [0x1E71C],
+        [0x201E71C],
         None,
         "Call the 'SWAP_BUFFERS' command. This will swap the geometry buffer. The"
         " parameter of 1 is provided, which enables manual Y-sorting of translucent"
@@ -2782,8 +2785,8 @@ class NaArm9Functions:
     )
 
     Generate3dCanvasBorder = Symbol(
-        None,
-        None,
+        [0x1E9EC],
+        [0x201E9EC],
         None,
         "Draw the border for dialogue box and other menus, using the 3D engine.\nThe"
         " render_3d_element contains certain value that needs to be set to a correct"
@@ -3122,8 +3125,8 @@ class NaArm9Functions:
     )
 
     LoadCursors = Symbol(
-        None,
-        None,
+        [0x2950C],
+        [0x202950C],
         None,
         "Load and initialise the cursor and cursor16 sprites, storing the result in"
         " CURSOR_ANIMATION_CONTROL and CURSOR_16_ANIMATION_CONTROL\n\nNo params.",
@@ -3144,8 +3147,8 @@ class NaArm9Functions:
     )
 
     LoadAlert = Symbol(
-        None,
-        None,
+        [0x29EE8],
+        [0x2029EE8],
         None,
         "Load and initialise the alert sprite, storing the result in"
         " ALERT_ANIMATION_CONTROL\n\nNo params.",
@@ -7716,8 +7719,8 @@ class NaArm9Section:
 
 class NaItcmFunctions:
     AllocateRender3dElement = Symbol(
-        None,
-        None,
+        [0xC78],
+        [0x20B3FF8],
         None,
         "Return a new render_3d_element from RENDER_3D, to be to draw a new element"
         " using the 3d render engine later in the frame.\n\nreturn: render_3d_element"
@@ -7725,8 +7728,8 @@ class NaItcmFunctions:
     )
 
     Render3dStack = Symbol(
-        None,
-        None,
+        [0xDCC],
+        [0x20B414C],
         None,
         "Perform rendering of the render_stack of RENDER_3D structure. Does nothing if"
         " there are no elements, otherwise, sort them based on a value, and render them"
@@ -12462,16 +12465,16 @@ class NaOverlay11Functions:
     )
 
     AllocAndInitPartnerFollowDataAndLiveActorList = Symbol(
-        None,
-        None,
+        [0x1BA7C],
+        [0x22F7CBC],
         None,
         "Allocate and initialize the partner follow data and the live actor list (in"
         " GROUND_STATE_PTRS)\n\nNo params.",
     )
 
     InitPartnerFollowDataAndLiveActorList = Symbol(
-        None,
-        None,
+        [0x1BAD8],
+        [0x22F7D18],
         None,
         "Initialize the partner follow data and the live actor list (in"
         " GROUND_STATE_PTRS, doesn’t perform the allocation of the structures)\n\nNo"
@@ -12479,32 +12482,32 @@ class NaOverlay11Functions:
     )
 
     DeleteLiveActor = Symbol(
-        None,
-        None,
+        [0x1C338],
+        [0x22F8578],
         None,
         "Remove the actor from the overworld actor list (in GROUND_STATE_PTRS)\n\nr0:"
         " the index of the actor in the live actor list",
     )
 
     InitPartnerFollowData = Symbol(
-        None,
-        None,
+        [0x1F7E8],
+        [0x22FBA28],
         None,
         "Initialize the partner follow data structure, without allocating it (in"
         " GROUND_STATE_PTRS)\n\nNo params.",
     )
 
     GetDirectionLiveActor = Symbol(
-        None,
-        None,
+        [0x20F68],
+        [0x22FD1A8],
         None,
         "Put the direction of the actor in the destination\n\nr0: live actor\nr1:"
         " destination address (1 byte)",
     )
 
     SetDirectionLiveActor = Symbol(
-        None,
-        None,
+        [0x20F78],
+        [0x22FD1B8],
         None,
         "Store the direction in the actor structure\n-1 input is ignored\nUnsure if"
         " this change the animation\n\nr0: live actor\nr1: direction",
@@ -15837,16 +15840,16 @@ class NaOverlay29Functions:
     )
 
     FreeLoadedAttackSpriteAndMore = Symbol(
-        None,
-        None,
+        [0x1ACD0],
+        [0x22F6F10],
         None,
         "Among other things, free another data structure in the attack sprite storage"
         " area/data\n\nNo params.",
     )
 
     SetAndLoadCurrentAttackAnimation = Symbol(
-        None,
-        None,
+        [0x1AD28],
+        [0x22F6F68],
         None,
         "Load given sprite into the currently loaded attack sprite structure, replacing"
         " the previous one if already loaded.\n\nr0: pack id\nr1: file index\nreturn:"
@@ -15854,16 +15857,16 @@ class NaOverlay29Functions:
     )
 
     ClearLoadedAttackSprite = Symbol(
-        None,
-        None,
+        [0x1ADC8],
+        [0x22F7008],
         None,
         "Delete the data of the currently loaded attack sprite, if any.\nDoesn’t free"
         " the structure, which can continue to be used.\n\nNo params.",
     )
 
     GetLoadedAttackSpriteId = Symbol(
-        None,
-        None,
+        [0x1AE10],
+        [0x22F7050],
         None,
         "Get the sprite ID (in the loaded WAN list) of the currently loaded attack"
         " sprite, or 0 if none.\n\nreturn: sprite ID",
@@ -21055,8 +21058,8 @@ class NaOverlay29Functions:
     )
 
     InitPortraitDungeon = Symbol(
-        None,
-        None,
+        [0x6F880],
+        [0x234BAC0],
         None,
         "Initialize the portrait box structure for the given monster and"
         " expression\n\nr0: pointer the portrait box data structure to initialize\nr1:"
