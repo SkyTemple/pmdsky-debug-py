@@ -7474,9 +7474,9 @@ class JpArm9Data:
     )
 
     LOADED_OVERLAY_GROUP_1 = Symbol(
-        None,
-        None,
-        None,
+        [0xB0674],
+        [0x20B0674],
+        0x4,
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 1. A"
         " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
         " slot 1:\n- 0x4 (overlay 1)\n- 0x5 (overlay 2)\n- 0xD (overlay 11)\n- 0xE"
@@ -7509,12 +7509,12 @@ class JpArm9Data:
         " table to load its resources when launching dungeon mode.\n\ntype: char*[6]",
     )
 
-    GAME_STATE_VALUES = Symbol(None, None, None, "[Runtime]")
+    GAME_STATE_VALUES = Symbol([0xB0AF8], [0x20B0AF8], None, "[Runtime]")
 
     BAG_ITEMS_PTR_MIRROR = Symbol(
-        None,
-        None,
-        None,
+        [0xB0AF8],
+        [0x20B0AF8],
+        0x4,
         "[Runtime] Probably a mirror of ram.yml::BAG_ITEMS_PTR?\n\nNote: unverified,"
         " ported from Irdkwia's notes",
     )
@@ -7559,7 +7559,7 @@ class JpArm9Data:
         " render_3d_global",
     )
 
-    LANGUAGE_INFO_DATA = Symbol(None, None, None, "[Runtime]")
+    LANGUAGE_INFO_DATA = Symbol([0xB1128], [0x20B1128], None, "[Runtime]")
 
     TBL_TALK_GROUP_STRING_ID_START = Symbol(
         [0xB1140],
@@ -7675,14 +7675,18 @@ class JpArm9Data:
     )
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
+        [0x117E0], [0x20117E0], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
     )
 
-    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
+    TEXT_SPEED = Symbol([0x20CE8], [0x2020CE8], None, "Controls text speed.")
 
-    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
+    HERO_START_LEVEL = Symbol(
+        [0x48BEC], [0x2048BEC], None, "Starting level of the hero."
+    )
 
-    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
+    PARTNER_START_LEVEL = Symbol(
+        [0x48C5C], [0x2048C5C], None, "Starting level of the partner."
+    )
 
 
 class JpArm9Section:
@@ -10586,7 +10590,9 @@ class JpOverlay0Functions:
 
 
 class JpOverlay0Data:
-    TOP_MENU_MUSIC_ID = Symbol(None, None, None, "Music ID to play in the top menu.")
+    TOP_MENU_MUSIC_ID = Symbol(
+        [0x1728], [0x22BF948], None, "Music ID to play in the top menu."
+    )
 
 
 class JpOverlay0Section:
@@ -10662,11 +10668,11 @@ class JpOverlay1Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    CONTINUE_CHOICE = Symbol(None, None, None, "")
+    CONTINUE_CHOICE = Symbol([0x12128], [0x233CDE8], 0x20, "")
 
-    SUBMENU = Symbol(None, None, None, "")
+    SUBMENU = Symbol([0x12148], [0x233CE08], 0x48, "")
 
-    MAIN_MENU = Symbol(None, None, None, "")
+    MAIN_MENU = Symbol([0x12190], [0x233CE50], 0xA0, "")
 
     OVERLAY1_D_BOX_LAYOUT_5 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -10690,13 +10696,13 @@ class JpOverlay1Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    MAIN_DEBUG_MENU_1 = Symbol(None, None, None, "")
+    MAIN_DEBUG_MENU_1 = Symbol([0x123C8], [0x233D088], 0x60, "")
 
     OVERLAY1_D_BOX_LAYOUT_10 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    MAIN_DEBUG_MENU_2 = Symbol(None, None, None, "")
+    MAIN_DEBUG_MENU_2 = Symbol([0x12448], [0x233D108], 0x38, "")
 
 
 class JpOverlay1Section:
@@ -12659,18 +12665,18 @@ class JpOverlay11Data:
         " struct overlay_load_entry[21]",
     )
 
-    UNIONALL_RAM_ADDRESS = Symbol(None, None, None, "[Runtime]")
+    UNIONALL_RAM_ADDRESS = Symbol([0x48924], [0x2326204], None, "[Runtime]")
 
-    GROUND_STATE_MAP = Symbol(None, None, None, "[Runtime]")
+    GROUND_STATE_MAP = Symbol([0x48940], [0x2326220], None, "[Runtime]")
 
     GROUND_STATE_WEATHER = Symbol(
         None, None, None, "[Runtime] Same structure format as GROUND_STATE_MAP"
     )
 
     GROUND_STATE_PTRS = Symbol(
-        None,
-        None,
-        None,
+        [0x48974],
+        [0x2326254],
+        0x18,
         "Host pointers to multiple structure used for performing an overworld"
         " scene\n\ntype: struct main_ground_data",
     )
@@ -13230,7 +13236,7 @@ class JpOverlay14Data:
         " generating species choices.",
     )
 
-    FOOTPRINT_DEBUG_MENU = Symbol(None, None, None, "")
+    FOOTPRINT_DEBUG_MENU = Symbol([0x3968], [0x238F008], 0x48, "")
 
     SENTRY_DUTY_PTR = Symbol(None, None, None, "Pointer to the SENTRY_DUTY_STRUCT.")
 
@@ -13257,7 +13263,7 @@ class JpOverlay15Functions:
 
 
 class JpOverlay15Data:
-    BANK_MAIN_MENU = Symbol(None, None, None, "")
+    BANK_MAIN_MENU = Symbol([0xF2C], [0x238C5CC], 0x28, "")
 
     BANK_D_BOX_LAYOUT_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -13302,11 +13308,11 @@ class JpOverlay16Functions:
 
 
 class JpOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol(None, None, None, "Irdkwia's notes: 3*0x8")
+    EVO_MENU_CONFIRM = Symbol([0x2BE8], [0x238E288], 0x18, "Irdkwia's notes: 3*0x8")
 
-    EVO_SUBMENU = Symbol(None, None, None, "Irdkwia's notes: 4*0x8")
+    EVO_SUBMENU = Symbol([0x2C00], [0x238E2A0], 0x20, "Irdkwia's notes: 4*0x8")
 
-    EVO_MAIN_MENU = Symbol(None, None, None, "Irdkwia's notes: 4*0x8")
+    EVO_MAIN_MENU = Symbol([0x2C20], [0x238E2C0], 0x20, "Irdkwia's notes: 4*0x8")
 
     EVO_MENU_STRING_IDS = Symbol(
         None, None, None, "26*0x2\n\nNote: unverified, ported from Irdkwia's notes"
@@ -13387,25 +13393,25 @@ class JpOverlay17Data:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    ASSEMBLY_MENU_CONFIRM = Symbol(None, None, None, "")
+    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A40], [0x238D0E0], 0x18, "")
 
-    ASSEMBLY_MAIN_MENU_1 = Symbol(None, None, None, "")
+    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A58], [0x238D0F8], 0x18, "")
 
-    ASSEMBLY_MAIN_MENU_2 = Symbol(None, None, None, "")
+    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A70], [0x238D110], 0x20, "")
 
-    ASSEMBLY_SUBMENU_1 = Symbol(None, None, None, "")
+    ASSEMBLY_SUBMENU_1 = Symbol([0x1A90], [0x238D130], 0x28, "")
 
-    ASSEMBLY_SUBMENU_2 = Symbol(None, None, None, "")
+    ASSEMBLY_SUBMENU_2 = Symbol([0x1AB8], [0x238D158], 0x30, "")
 
-    ASSEMBLY_SUBMENU_3 = Symbol(None, None, None, "")
+    ASSEMBLY_SUBMENU_3 = Symbol([0x1AE8], [0x238D188], 0x30, "")
 
-    ASSEMBLY_SUBMENU_4 = Symbol(None, None, None, "")
+    ASSEMBLY_SUBMENU_4 = Symbol([0x1B18], [0x238D1B8], 0x38, "")
 
-    ASSEMBLY_SUBMENU_5 = Symbol(None, None, None, "")
+    ASSEMBLY_SUBMENU_5 = Symbol([0x1B50], [0x238D1F0], 0x38, "")
 
-    ASSEMBLY_SUBMENU_6 = Symbol(None, None, None, "")
+    ASSEMBLY_SUBMENU_6 = Symbol([0x1B88], [0x238D228], 0x38, "")
 
-    ASSEMBLY_SUBMENU_7 = Symbol(None, None, None, "")
+    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC0], [0x238D260], 0x40, "")
 
     OVERLAY17_FUNCTION_POINTER_TABLE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
@@ -22291,8 +22297,8 @@ class JpOverlay9Functions:
 
 class JpOverlay9Data:
     TOP_MENU_RETURN_MUSIC_ID = Symbol(
-        None,
-        None,
+        [0xE20],
+        [0x233F120],
         None,
         "Song playing in the main menu when returning from the Sky Jukebox.",
     )
@@ -22534,9 +22540,9 @@ class JpRamData:
     )
 
     SCRIPT_VARS_VALUES = Symbol(
-        None,
-        None,
-        None,
+        [0x2AC868],
+        [0x22AC868],
+        0x400,
         "The table of game variable values. Its structure is determined by"
         " SCRIPT_VARS.\n\nNote that with the script variable list defined in"
         " SCRIPT_VARS, the used length of this table is actually only 0x2B4. However,"
@@ -22553,9 +22559,9 @@ class JpRamData:
     )
 
     DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
-        None,
-        None,
-        None,
+        [0x2ACC68],
+        [0x22ACC68],
+        0x1,
         "The number of the special episode currently being played.\n\nThis backs the"
         " EXECUTE_SPECIAL_EPISODE_TYPE script variable.\n\ntype: struct"
         " special_episode_type_8",
