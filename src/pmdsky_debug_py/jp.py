@@ -21852,41 +21852,41 @@ class JpOverlay31Functions:
 
 class JpOverlay31Data:
     DUNGEON_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x75BC], [0x238B05C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x75CC], [0x238B06C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_3 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x75DC], [0x238B07C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x75EC], [0x238B08C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_MAIN_MENU = Symbol([0x75FC], [0x238B09C], 0x40, "")
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7648], [0x238B0E8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389E30 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7658], [0x238B0F8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7668], [0x238B108], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7678], [0x238B118], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7688], [0x238B128], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_SUBMENU_1 = Symbol([0x7698], [0x238B138], 0x20, "")
@@ -21898,179 +21898,179 @@ class JpOverlay31Data:
     DUNGEON_SUBMENU_4 = Symbol([0x76F8], [0x238B198], 0x20, "")
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7718], [0x238B1B8], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7724], [0x238B1C4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_9 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7734], [0x238B1D4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_10 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7744], [0x238B1E4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_11 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7754], [0x238B1F4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_12 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7764], [0x238B204], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_13 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7774], [0x238B214], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_JP_STRING = Symbol(
-        None, None, None, "\n\n----　 初期ポジション=%d　----- \n"
+        [0x778C], [0x238B22C], 0x24, "\n\n----　 初期ポジション=%d　----- \n"
     )
 
     DUNGEON_D_BOX_LAYOUT_14 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77B0], [0x238B250], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_15 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77C0], [0x238B260], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_16 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77D0], [0x238B270], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_17 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77E0], [0x238B280], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_18 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77F0], [0x238B290], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_19 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7800], [0x238B2A0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389FE8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7810], [0x238B2B0], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_20 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x781C], [0x238B2BC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_21 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x782C], [0x238B2CC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_22 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x783C], [0x238B2DC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_23 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x784C], [0x238B2EC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_24 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x785C], [0x238B2FC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_25 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7934], [0x238B3D4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_SUBMENU_5 = Symbol([0x7944], [0x238B3E4], 0x18, "")
 
     DUNGEON_D_BOX_LAYOUT_26 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x795C], [0x238B3FC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_238A144 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x796C], [0x238B40C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_27 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7998], [0x238B438], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_28 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x79A8], [0x238B448], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_238A190 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x79B8], [0x238B458], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_SUBMENU_6 = Symbol([0x79C8], [0x238B468], 0x48, "")
 
     DUNGEON_D_BOX_LAYOUT_29 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A10], [0x238B4B0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_30 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A20], [0x238B4C0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_31 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A30], [0x238B4D0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_32 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A40], [0x238B4E0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_RESERVED_SPACE = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A78], [0x238B518], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A260 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A88], [0x238B528], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_VALUE__NA_238A264 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A8C], [0x238B52C], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A268 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A90], [0x238B530], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A26C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A94], [0x238B534], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A270 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A98], [0x238B538], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A274 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A9C], [0x238B53C], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A278 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7AA0], [0x238B540], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A27C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7AA4], [0x238B544], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A280 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7AA8], [0x238B548], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A284 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7AAC], [0x238B54C], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A288 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7AB0], [0x238B550], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A28C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7AB4], [0x238B554], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
