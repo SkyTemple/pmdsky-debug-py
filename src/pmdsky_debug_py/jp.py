@@ -12648,7 +12648,7 @@ class JpOverlay11Data:
     LEVEL_TILEMAP_LIST = Symbol(
         [0x449B0],
         [0x2322290],
-        None,
+        0x288,
         "Irdkwia's notes: FIXED_FLOOR_GROUND_ASSOCIATION\n\ntype: struct"
         " level_tilemap_list_entry[81]",
     )
@@ -21218,8 +21218,8 @@ class JpOverlay29Data:
     )
 
     FIXED_ROOM_ENTITY_SPAWN_TABLE = Symbol(
-        [0x73A94],
-        [0x2351374],
+        [0x73C8C],
+        [0x235156C],
         0xC9C,
         "Table of entities (items, monsters, tiles) that can spawn in fixed rooms,"
         " which is indexed into by the main data structure for each fixed room.\n\nThis"
