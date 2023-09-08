@@ -30,12 +30,50 @@ class EuArm7Section:
 
 
 class EuArm9Functions:
-    EntryArm9 = Symbol(
+    SvcWaitByLoop = Symbol(None, None, None, "Software interrupt.")
+
+    SvcSoftReset = Symbol(None, None, None, "Software interrupt.")
+
+    SvcCpuSet = Symbol(None, None, None, "Software interrupt.")
+
+    _start = Symbol(
         [0x800],
         [0x2000800],
         None,
         "The entrypoint for the ARM9 CPU. This is like the 'main' function for the ARM9"
         " subsystem.\n\nNo params.",
+    )
+
+    MIiUncompressBackward = Symbol(
+        None,
+        None,
+        None,
+        "Startup routine in the program's crt0 (https://en.wikipedia.org/wiki/Crt0).",
+    )
+
+    do_autoload = Symbol(
+        None,
+        None,
+        None,
+        "Startup routine in the program's crt0 (https://en.wikipedia.org/wiki/Crt0).",
+    )
+
+    StartAutoloadDoneCallback = Symbol(
+        None,
+        None,
+        None,
+        "Startup routine in the program's crt0 (https://en.wikipedia.org/wiki/Crt0).",
+    )
+
+    OSiReferSymbol = Symbol(
+        None,
+        None,
+        None,
+        "Startup routine in the program's crt0 (https://en.wikipedia.org/wiki/Crt0).",
+    )
+
+    NitroMain = Symbol(
+        None, None, None, "Entrypoint into NitroSDK, the DS devkit library."
     )
 
     InitMemAllocTable = Symbol(
@@ -2947,6 +2985,24 @@ class EuArm9Functions:
         " preprocessor args",
     )
 
+    StrcmpTagVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for StrcmpTag.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " s1\nr1: s2\nreturn: bool",
+    )
+
+    StoiTagVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for StoiTag.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " s\nreturn: int",
+    )
+
     InitPreprocessorArgs = Symbol(
         [0x238B4],
         [0x20238B4],
@@ -3357,6 +3413,15 @@ class EuArm9Functions:
 
     SetNotifyNote = Symbol(
         [0x487CC], [0x20487CC], None, "Sets NOTIFY_NOTE to the given value.\n\nr0: bool"
+    )
+
+    EventFlagBackupVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for EventFlagBackup.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo"
+        " params.",
     )
 
     InitMainTeamAfterQuiz = Symbol(
@@ -12167,6 +12232,16 @@ class EuOverlay11Functions:
 
     ScriptCommandParsing = Symbol([0x1B24], [0x22DE6A4], None, "")
 
+    LoadFileFromRomVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for LoadFileFromRom.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " [output] pointer to an IO struct {ptr, len}\nr1: file path string"
+        " pointer\nr2: flags",
+    )
+
     SsbLoad2 = Symbol([0x84BC], [0x22E503C], None, "")
 
     StationLoadHanger = Symbol([0x8994], [0x22E5514], None, "")
@@ -16031,6 +16106,24 @@ class EuOverlay29Functions:
         " move::flags2_unk5 and move::flags2_unk7, and sets flag"
         " move::f_consume_pp.\nCalled when a monster is revived.\n\nr0: pointer to"
         " entity whose moves will be restored",
+    )
+
+    CheckTeamMemberIdxVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for CheckTeamMemberIdx.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " member index\nreturn: True if the value is equal to 0x55AA or 0x5AA5",
+    )
+
+    IsMonsterIdInNormalRangeVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for IsMonsterIdInNormalRange.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " monster ID\nreturn: bool",
     )
 
     BoostIQ = Symbol(
@@ -20499,6 +20592,15 @@ class EuOverlay29Functions:
         None,
         "Checks if the current floor is either the Secret Bazaar or a Secret"
         " Room.\n\nreturn: bool",
+    )
+
+    IsSecretBazaarVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for IsSecretBazaar.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nreturn:"
+        " bool",
     )
 
     GenerateStandardItem = Symbol(

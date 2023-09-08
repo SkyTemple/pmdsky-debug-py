@@ -61,7 +61,47 @@ Arm7Protocol = SectionProtocol[
 
 
 class Arm9FunctionsProtocol(Protocol):
-    EntryArm9: Symbol[
+    SvcWaitByLoop: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SvcSoftReset: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    SvcCpuSet: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    _start: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MIiUncompressBackward: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    do_autoload: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    StartAutoloadDoneCallback: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    OSiReferSymbol: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    NitroMain: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1821,6 +1861,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    StrcmpTagVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    StoiTagVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     InitPreprocessorArgs: Symbol[
         Optional[List[int]],
         None,
@@ -2082,6 +2132,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     SetNotifyNote: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EventFlagBackupVeneer: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -7704,6 +7759,11 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    LoadFileFromRomVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SsbLoad2: Symbol[
         Optional[List[int]],
         None,
@@ -10704,6 +10764,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CheckTeamMemberIdxVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsMonsterIdInNormalRangeVeneer: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     BoostIQ: Symbol[
         Optional[List[int]],
         None,
@@ -13010,6 +13080,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsHiddenStairsFloor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    IsSecretBazaarVeneer: Symbol[
         Optional[List[int]],
         None,
     ]
