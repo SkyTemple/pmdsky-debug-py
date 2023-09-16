@@ -516,6 +516,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitDebug: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitDebugFlag: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     GetDebugFlag: Symbol[
         Optional[List[int]],
         None,
@@ -526,7 +536,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitDebugStripped6: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     AppendProgPos: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitDebugStripped5: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -536,7 +556,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    DebugDisplay: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     DebugPrint0: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitDebugLogFlag: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -552,6 +582,26 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     DebugPrint: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitDebugStripped4: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitDebugStripped3: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitDebugStripped2: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitDebugStripped1: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4769,6 +4819,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     LOADED_OVERLAY_GROUP_2: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    DEBUG_IS_INITIALIZED: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

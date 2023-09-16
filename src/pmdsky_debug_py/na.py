@@ -815,6 +815,21 @@ class NaArm9Functions:
         " pointer\nr2: flags",
     )
 
+    InitDebug = Symbol(
+        [0xC0D4],
+        [0x200C0D4],
+        None,
+        "Would have initialized debugging-related things, if they were not removed.\nAs"
+        " for the release version, does nothing but set DEBUG_IS_INITIALIZED to true.",
+    )
+
+    InitDebugFlag = Symbol(
+        [0xC10C],
+        [0x200C10C],
+        None,
+        "Would have initialized the debug flags.\nDoes nothing in release binary.",
+    )
+
     GetDebugFlag = Symbol(
         [0xC110],
         [0x200C110],
@@ -831,6 +846,13 @@ class NaArm9Functions:
         " ID\nr1: flag value",
     )
 
+    InitDebugStripped6 = Symbol(
+        [0xC11C],
+        [0x200C11C],
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
     AppendProgPos = Symbol(
         [0xC120],
         [0x200C120],
@@ -840,6 +862,13 @@ class NaArm9Functions:
         " info is given, 'ProgPos info NULL\n' is appended instead.\n\nr0: [output]"
         " str\nr1: program position info\nr2: base message\nreturn: number of"
         " characters printed, excluding the null-terminator",
+    )
+
+    InitDebugStripped5 = Symbol(
+        [0xC168],
+        [0x200C168],
+        None,
+        "Does nothing, only called in the debug initialization function.",
     )
 
     DebugPrintTrace = Symbol(
@@ -853,13 +882,31 @@ class NaArm9Functions:
         " (can be null)",
     )
 
+    DebugDisplay = Symbol(
+        [0xC1C8],
+        [0x200C1C8],
+        None,
+        "Would display a printf format string on the top screen in the debug"
+        " binary.\n\nThis still constructs the string with vsprintf, but doesn't"
+        " actually do anything with it in the final binary.\n\nIdentical to DebugPrint0"
+        " in release builds.\n\nr0: format\n...: variadic",
+    )
+
     DebugPrint0 = Symbol(
-        [0xC1C8, 0xC1FC],
-        [0x200C1C8, 0x200C1FC],
+        [0xC1FC],
+        [0x200C1FC],
         None,
         "Would log a printf format string in the debug binary.\n\nThis still constructs"
         " the string with vsprintf, but doesn't actually do anything with it in the"
-        " final binary.\n\nr0: format\n...: variadic",
+        " final binary.\n\nIdentical to DebugDisplay in release builds.\n\nr0:"
+        " format\n...: variadic",
+    )
+
+    InitDebugLogFlag = Symbol(
+        [0xC230],
+        [0x200C230],
+        None,
+        "Would have initialized the debug log flags.\nDoes nothing in release binary.",
     )
 
     GetDebugLogFlag = Symbol(
@@ -886,6 +933,34 @@ class NaArm9Functions:
         " binary.\n\nr0: log level\nr1: format\n...: variadic",
     )
 
+    InitDebugStripped4 = Symbol(
+        [0xC24C],
+        [0x200C24C],
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
+    InitDebugStripped3 = Symbol(
+        [0xC250],
+        [0x200C250],
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
+    InitDebugStripped2 = Symbol(
+        [0xC254],
+        [0x200C254],
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
+    InitDebugStripped1 = Symbol(
+        [0xC258],
+        [0x200C258],
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
     FatalError = Symbol(
         [0xC25C],
         [0x200C25C],
@@ -903,7 +978,7 @@ class NaArm9Functions:
         [0x200C2DC],
         None,
         "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILE_OPENED. Called during"
-        " game initialisation.\n\nNo params.",
+        " game initialization.\n\nNo params.",
     )
 
     GetFileLengthInPackWithPackNb = Symbol(
@@ -939,7 +1014,7 @@ class NaArm9Functions:
         [0xC3E0],
         [0x200C3E0],
         None,
-        "Open a Pack file, to be read later. Initialise the output structure.\n\nr0:"
+        "Open a Pack file, to be read later. Initialize the output structure.\n\nr0:"
         " [output] pack file struct\nr1: file name",
     )
 
@@ -3184,7 +3259,7 @@ class NaArm9Functions:
         [0x2950C],
         [0x202950C],
         None,
-        "Load and initialise the cursor and cursor16 sprites, storing the result in"
+        "Load and initialize the cursor and cursor16 sprites, storing the result in"
         " CURSOR_ANIMATION_CONTROL and CURSOR_16_ANIMATION_CONTROL\n\nNo params.",
     )
 
@@ -3206,7 +3281,7 @@ class NaArm9Functions:
         [0x29EE8],
         [0x2029EE8],
         None,
-        "Load and initialise the alert sprite, storing the result in"
+        "Load and initialize the alert sprite, storing the result in"
         " ALERT_ANIMATION_CONTROL\n\nNo params.",
     )
 
@@ -7568,10 +7643,12 @@ class NaArm9Data:
         " enum overlay_group_id",
     )
 
+    DEBUG_IS_INITIALIZED = Symbol([0xAF698], [0x20AF698], 0x1, "")
+
     PACK_FILE_OPENED = Symbol(
-        None,
-        None,
-        None,
+        [0xAF69C],
+        [0x20AF69C],
+        0x4,
         "[Runtime] A pointer to the 6 opened Pack files (listed at"
         " PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
     )

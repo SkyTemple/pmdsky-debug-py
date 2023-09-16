@@ -808,6 +808,21 @@ class NaItcmArm9Functions:
         " pointer\nr2: flags",
     )
 
+    InitDebug = Symbol(
+        None,
+        None,
+        None,
+        "Would have initialized debugging-related things, if they were not removed.\nAs"
+        " for the release version, does nothing but set DEBUG_IS_INITIALIZED to true.",
+    )
+
+    InitDebugFlag = Symbol(
+        None,
+        None,
+        None,
+        "Would have initialized the debug flags.\nDoes nothing in release binary.",
+    )
+
     GetDebugFlag = Symbol(
         None,
         None,
@@ -824,6 +839,13 @@ class NaItcmArm9Functions:
         " ID\nr1: flag value",
     )
 
+    InitDebugStripped6 = Symbol(
+        None,
+        None,
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
     AppendProgPos = Symbol(
         None,
         None,
@@ -833,6 +855,13 @@ class NaItcmArm9Functions:
         " info is given, 'ProgPos info NULL\n' is appended instead.\n\nr0: [output]"
         " str\nr1: program position info\nr2: base message\nreturn: number of"
         " characters printed, excluding the null-terminator",
+    )
+
+    InitDebugStripped5 = Symbol(
+        None,
+        None,
+        None,
+        "Does nothing, only called in the debug initialization function.",
     )
 
     DebugPrintTrace = Symbol(
@@ -846,13 +875,31 @@ class NaItcmArm9Functions:
         " (can be null)",
     )
 
+    DebugDisplay = Symbol(
+        None,
+        None,
+        None,
+        "Would display a printf format string on the top screen in the debug"
+        " binary.\n\nThis still constructs the string with vsprintf, but doesn't"
+        " actually do anything with it in the final binary.\n\nIdentical to DebugPrint0"
+        " in release builds.\n\nr0: format\n...: variadic",
+    )
+
     DebugPrint0 = Symbol(
         None,
         None,
         None,
         "Would log a printf format string in the debug binary.\n\nThis still constructs"
         " the string with vsprintf, but doesn't actually do anything with it in the"
-        " final binary.\n\nr0: format\n...: variadic",
+        " final binary.\n\nIdentical to DebugDisplay in release builds.\n\nr0:"
+        " format\n...: variadic",
+    )
+
+    InitDebugLogFlag = Symbol(
+        None,
+        None,
+        None,
+        "Would have initialized the debug log flags.\nDoes nothing in release binary.",
     )
 
     GetDebugLogFlag = Symbol(
@@ -879,6 +926,34 @@ class NaItcmArm9Functions:
         " binary.\n\nr0: log level\nr1: format\n...: variadic",
     )
 
+    InitDebugStripped4 = Symbol(
+        None,
+        None,
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
+    InitDebugStripped3 = Symbol(
+        None,
+        None,
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
+    InitDebugStripped2 = Symbol(
+        None,
+        None,
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
+    InitDebugStripped1 = Symbol(
+        None,
+        None,
+        None,
+        "Does nothing, only called in the debug initialization function.",
+    )
+
     FatalError = Symbol(
         None,
         None,
@@ -896,7 +971,7 @@ class NaItcmArm9Functions:
         None,
         None,
         "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILE_OPENED. Called during"
-        " game initialisation.\n\nNo params.",
+        " game initialization.\n\nNo params.",
     )
 
     GetFileLengthInPackWithPackNb = Symbol(
@@ -932,7 +1007,7 @@ class NaItcmArm9Functions:
         None,
         None,
         None,
-        "Open a Pack file, to be read later. Initialise the output structure.\n\nr0:"
+        "Open a Pack file, to be read later. Initialize the output structure.\n\nr0:"
         " [output] pack file struct\nr1: file name",
     )
 
@@ -3091,7 +3166,7 @@ class NaItcmArm9Functions:
         None,
         None,
         None,
-        "Load and initialise the cursor and cursor16 sprites, storing the result in"
+        "Load and initialize the cursor and cursor16 sprites, storing the result in"
         " CURSOR_ANIMATION_CONTROL and CURSOR_16_ANIMATION_CONTROL\n\nNo params.",
     )
 
@@ -3110,7 +3185,7 @@ class NaItcmArm9Functions:
         None,
         None,
         None,
-        "Load and initialise the alert sprite, storing the result in"
+        "Load and initialize the alert sprite, storing the result in"
         " ALERT_ANIMATION_CONTROL\n\nNo params.",
     )
 
@@ -7329,6 +7404,8 @@ class NaItcmArm9Data:
         " slot 2:\n- 0x1 (overlay 0)\n- 0x2 (overlay 10)\n- 0x3 (overlay 35)\n\ntype:"
         " enum overlay_group_id",
     )
+
+    DEBUG_IS_INITIALIZED = Symbol(None, None, None, "")
 
     PACK_FILE_OPENED = Symbol(
         None,
