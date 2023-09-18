@@ -431,7 +431,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    Rgb8ToBgr5: Symbol[
+    Rgb8ToRgb5: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -1816,12 +1816,57 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    InitRender3dElement: Symbol[
+    InitRender3dElement64: Symbol[
         Optional[List[int]],
         None,
     ]
 
-    Generate3dCanvasBorder: Symbol[
+    Render3d64Texture0x7: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3d64Border: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EnqueueRender3d64Tiling: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3d64Tiling: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3d64Quadrilateral: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3d64RectangleMulticolor: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3d64Rectangle: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3d64Nothing: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3d64Texture: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dElement64: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -2016,6 +2061,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    NewDialogBox: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     SetScreenWindowsColor: Symbol[
         Optional[List[int]],
         None,
@@ -2032,6 +2082,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     LoadCursors: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    InitDialogBoxTrailer: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -3816,6 +3871,21 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GeomMtxLoad4x3: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GeomMtxMult4x3: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GeomGxFifoSendMtx4x3: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
     ClearIrqFlag: Symbol[
         Optional[List[int]],
         None,
@@ -3852,6 +3922,51 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     WaitForInterrupt: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ArrayFill16: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ArrayCopy16: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ArrayFill32: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ArrayCopy32: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ArrayFill32Fast: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    ArrayCopy32Fast: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MemsetFast: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    MemcpyFast: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    AtomicExchange: Symbol[
         Optional[List[int]],
         None,
     ]
@@ -4788,7 +4903,12 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    ARM9_UNKNOWN_TABLE__NA_20A9FB0: Symbol[
+    TRIG_TABLE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_20ADFB0: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4870,7 +4990,12 @@ class Arm9DataProtocol(Protocol):
 
     RENDER_3D: Symbol[
         Optional[List[int]],
-        None,
+        Optional[int],
+    ]
+
+    RENDER_3D_FUNCTIONS_64: Symbol[
+        Optional[List[int]],
+        Optional[int],
     ]
 
     LANGUAGE_INFO_DATA: Symbol[
@@ -4992,12 +5117,87 @@ Arm9Protocol = SectionProtocol[
 
 
 class ItcmFunctionsProtocol(Protocol):
-    AllocateRender3dElement: Symbol[
+    Render3dSetTextureParams: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dSetPaletteBase: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dRectangle: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    GeomSetPolygonAttributes: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dQuadrilateral: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dTiling: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dTextureInternal: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dTexture: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dTextureNoSetup: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    NewRender3dElement: Symbol[
         List[int],
         None,
     ]
 
-    Render3dStack: Symbol[
+    EnqueueRender3dTexture: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    EnqueueRender3dTiling: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    NewRender3dRectangle: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    NewRender3dQuadrilateral: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    NewRender3dTexture: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    NewRender3dTiling: Symbol[
+        Optional[List[int]],
+        None,
+    ]
+
+    Render3dProcessQueue: Symbol[
         List[int],
         None,
     ]

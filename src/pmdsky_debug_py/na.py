@@ -666,11 +666,11 @@ class NaArm9Functions:
         " unload\nothers: ?",
     )
 
-    Rgb8ToBgr5 = Symbol(
+    Rgb8ToRgb5 = Symbol(
         [0x4FCC],
         [0x2004FCC],
         None,
-        "Transform the input rgb8 color to a bgr5 color\n\nr0: pointer to target bgr5"
+        "Transform the input rgb8 color to a rgb5 color\n\nr0: pointer to target rgb5"
         " (2 bytes, aligned to LSB)\nr1: pointer to source rgb8",
     )
 
@@ -2854,14 +2854,14 @@ class NaArm9Functions:
         [0x1E494],
         [0x201E494],
         None,
-        "Send the 'TEXIMAGE_PARAM' geometry engine command, that defines some"
-        " parameters for the texture\nSee"
-        " http://problemkaputt.de/gbatek.htm#ds3dtextureattributes for more information"
-        " on the parameters\n\nr0: texture format\nr1: texture coordinates"
-        " transformation modes\nr2: texture S-Size\nr3: texture T-Size\nstack[0] (0x0):"
-        " repeat in S Direction\nstack[1] (0x4): flip in S direction\nstack[2] (0x8):"
-        " What to make of color 0 (bit 29)\nstack[3] (0xC): Texture VRAM offset (Will"
-        " be divided by 8)",
+        "Send the TEXIMAGE_PARAM geometry engine command, that defines some parameters"
+        " for the texture\nSee http://problemkaputt.de/gbatek.htm#ds3dtextureattributes"
+        " for more information on the parameters\n\nr0: texture format\nr1: texture"
+        " coordinates transformation modes\nr2: texture S-Size\nr3: texture"
+        " T-Size\nstack[0] (0x0): repeat in S (bit 0) and/or T (bit 1)"
+        " direction\nstack[1] (0x4): flip in S (bit 0) and/or T (bit 1)"
+        " direction\nstack[2] (0x8): What to make of color 0 (bit 29)\nstack[3] (0xC):"
+        " Texture VRAM offset divided by 8",
     )
 
     GeomSetVertexCoord16 = Symbol(
@@ -2889,22 +2889,110 @@ class NaArm9Functions:
         " polygons.\n\nNo params.",
     )
 
-    InitRender3dElement = Symbol(
+    InitRender3dElement64 = Symbol(
         [0x1E730],
         [0x201E730],
         None,
-        "Initialize the render_3d_element structure (without performing any drawing or"
-        " external data access)\n\nr0: render_3d_element",
+        "Initialize the render_3d_element_64 structure (without performing any drawing"
+        " or external data access)\n\nr0: render_3d_element_64",
     )
 
-    Generate3dCanvasBorder = Symbol(
+    Render3d64Texture0x7 = Symbol(
+        [0x1E844],
+        [0x201E844],
+        None,
+        "RENDER_3D_FUNCTIONS_64[7]. Renders a render_3d_element_64 with type"
+        " RENDER64_TEXTURE_0x7.\n\nConverts the render_3d_element_64 to a"
+        " render_3d_element on the render queue of RENDER_3D, with type"
+        " RENDER_TEXTURE.\n\nr0: render_3d_element_64",
+    )
+
+    Render3d64Border = Symbol(
         [0x1E9EC],
         [0x201E9EC],
         None,
-        "Draw the border for dialogue box and other menus, using the 3D engine.\nThe"
-        " render_3d_element contains certain value that needs to be set to a correct"
+        "Draw the border for dialogue box and other menus, using the 3D engine.\n\nThe"
+        " render_3d_element_64 contains certain value that needs to be set to a correct"
         " value for it to work.\nThe element is not immediately sent to the geometry"
-        " engine, but is queued up in RENDER_3D\n\nr0: render_3d_element",
+        " engine, but is converted to a render_3d_element and queued up in"
+        " RENDER_3D.\n\nRENDER_3D_FUNCTIONS_64[6], corresponding to a type of"
+        " RENDER64_BORDER.\n\nr0: render_3d_element_64",
+    )
+
+    EnqueueRender3d64Tiling = Symbol(
+        [0x1EC9C],
+        [0x201EC9C],
+        None,
+        "Converts a render_3d_element_64 with type RENDER64_TILING to a"
+        " render_3d_element on the render queue of RENDER_3D, with type"
+        " RENDER_TILING.\n\nr0: render_3d_element_64",
+    )
+
+    Render3d64Tiling = Symbol(
+        [0x1ED88],
+        [0x201ED88],
+        None,
+        "RENDER_3D_FUNCTIONS_64[5]. Renders a render_3d_element_64 with type"
+        " RENDER64_TILING.\n\nConverts the render_3d_element_64 to a render_3d_element"
+        " on the render queue of RENDER_3D, with type RENDER_TILING.\n\nr0:"
+        " render_3d_element_64",
+    )
+
+    Render3d64Quadrilateral = Symbol(
+        [0x1EE50],
+        [0x201EE50],
+        None,
+        "RENDER_3D_FUNCTIONS_64[4]. Renders a render_3d_element_64 with type"
+        " RENDER64_QUADRILATERAL.\n\nConverts the render_3d_element_64 to a"
+        " render_3d_element on the render queue of RENDER_3D, with type"
+        " RENDER_QUADRILATERAL.\n\nr0: render_3d_element_64",
+    )
+
+    Render3d64RectangleMulticolor = Symbol(
+        [0x1EEF0],
+        [0x201EEF0],
+        None,
+        "RENDER_3D_FUNCTIONS_64[3]. Renders a render_3d_element_64 with type"
+        " RENDER64_RECTANGLE_MULTICOLOR.\n\nConverts the render_3d_element_64 to a"
+        " render_3d_element on the render queue of RENDER_3D, with type"
+        " RENDER_RECTANGLE.\n\nr0: render_3d_element_64",
+    )
+
+    Render3d64Rectangle = Symbol(
+        [0x1F05C],
+        [0x201F05C],
+        None,
+        "RENDER_3D_FUNCTIONS_64[2]. Renders a render_3d_element_64 with type"
+        " RENDER64_RECTANGLE.\n\nConverts the render_3d_element_64 to a"
+        " render_3d_element on the render queue of RENDER_3D, with type"
+        " RENDER_RECTANGLE.\n\nr0: render_3d_element_64",
+    )
+
+    Render3d64Nothing = Symbol(
+        [0x1F108],
+        [0x201F108],
+        None,
+        "RENDER_3D_FUNCTIONS_64[1]. Renders a render_3d_element_64 with type"
+        " RENDER64_NOTHING. This function is entirely empty.\n\nr0:"
+        " render_3d_element_64",
+    )
+
+    Render3d64Texture = Symbol(
+        [0x1F10C],
+        [0x201F10C],
+        None,
+        "RENDER_3D_FUNCTIONS_64[0]. Renders a render_3d_element_64 with type"
+        " RENDER64_TEXTURE.\n\nConverts the render_3d_element_64 to a render_3d_element"
+        " on the render queue of RENDER_3D, with type RENDER_TEXTURE.\n\nr0:"
+        " render_3d_element_64",
+    )
+
+    Render3dElement64 = Symbol(
+        [0x1F1D4],
+        [0x201F1D4],
+        None,
+        "Dispatches a render_3d_element_64 to the render function corresponding to its"
+        " type.\n\nr0: render_3d_element_64",
     )
 
     HandleSir0Translation = Symbol(
@@ -3231,6 +3319,18 @@ class NaArm9Functions:
         " group_id\nr2: restrictions\nreturn: ?",
     )
 
+    NewDialogBox = Symbol(
+        [0x276C0],
+        [0x20276C0],
+        None,
+        "Seems to return the ID of a newly initialized dialog box in the next available"
+        " slot in DIALOG_BOX_LIST, given some starting information.\n\nIf"
+        " DIALOG_BOX_LIST is full, it will be overflowed, with the slot with an ID of"
+        " 20 being initialized and returned.\n\nr0: dialog_box_hdr pointer to be copied"
+        " by value into dialog_box::hdr in the new dialog box\nr1: ?\nreturn: dialog"
+        " box ID",
+    )
+
     SetScreenWindowsColor = Symbol(
         [0x27A68],
         [0x2027A68],
@@ -3261,6 +3361,14 @@ class NaArm9Functions:
         None,
         "Load and initialize the cursor and cursor16 sprites, storing the result in"
         " CURSOR_ANIMATION_CONTROL and CURSOR_16_ANIMATION_CONTROL\n\nNo params.",
+    )
+
+    InitDialogBoxTrailer = Symbol(
+        [0x29670],
+        [0x2029670],
+        None,
+        "Seems to initialize a dialog_box_trailer within a new dialog_box.\n\nr0:"
+        " dialog_box_trailer pointer",
     )
 
     Arm9LoadUnkFieldNa0x2029EC8 = Symbol(
@@ -6194,6 +6302,47 @@ class NaArm9Functions:
         " update ENABLED_VRAM_BANKS\n\nr0: vram_banks_set *",
     )
 
+    GeomMtxLoad4x3 = Symbol(
+        [0x7778C],
+        [0x207778C],
+        None,
+        "Send the MTX_LOAD_4x3 geometry engine command, through a GXFIFO command. See"
+        " https://problemkaputt.de/gbatek.htm#ds3dgeometrycommands and"
+        " https://problemkaputt.de/gbatek.htm#ds3dmatrixloadmultiply for more"
+        " information.\n\nThis pops the top of the current matrix stack"
+        " (https://problemkaputt.de/gbatek.htm#ds3dmatrixstack) and sets it as the"
+        " engine's 'current' matrix. It's commonly preceded by a MTX_PUSH command to"
+        " populate the matrix stack with a matrix.\n\nr0: matrix_4x3 pointer",
+    )
+
+    GeomMtxMult4x3 = Symbol(
+        [0x777A8],
+        [0x20777A8],
+        None,
+        "Send the MTX_MULT_4x3 geometry engine command, through a GXFIFO command. See"
+        " https://problemkaputt.de/gbatek.htm#ds3dgeometrycommands and"
+        " https://problemkaputt.de/gbatek.htm#ds3dmatrixloadmultiply for more"
+        " information.\n\nThis pops the top of the current matrix stack"
+        " (https://problemkaputt.de/gbatek.htm#ds3dmatrixstack) and left-multiplies the"
+        " engine's 'current' matrix by the new matrix. It's commonly preceded by a"
+        " MTX_PUSH command to populate the matrix stack with a matrix.\n\nr0:"
+        " matrix_4x3 pointer",
+    )
+
+    GeomGxFifoSendMtx4x3 = Symbol(
+        [0x788C0],
+        [0x20788C0],
+        None,
+        "Send a 4x3 matrix argument for a GXFIFO geometry engine command.\n\nThis"
+        " function is used by GeomMtxLoad4x3 and GeomMtxMult4x3 to pass the matrix"
+        " argument for a GXFIFO command after already having written the command code."
+        " See https://problemkaputt.de/gbatek.htm#ds3dgeometrycommands for more"
+        " information.\n\nNote that the GXFIFO address is 0x4000400, but is (maybe)"
+        " mirrored up to 0x400043F. This function is optimized to take advantage of"
+        " this by writing 3 matrix entries at a time using ldmia and stmia"
+        " instructions.\n\nr0: matrix_4x3 pointer\nr1: GXFIFO pointer",
+    )
+
     ClearIrqFlag = Symbol(
         [0x7B7D0],
         [0x207B7D0],
@@ -6267,6 +6416,94 @@ class NaArm9Functions:
         " (in Ghidra terminology) coproc_moveto_Wait_for_interrupt(0). See"
         " https://en.wikipedia.org/wiki/ARM_architecture_family#Coprocessors.\n\nNo"
         " params.",
+    )
+
+    ArrayFill16 = Symbol(
+        [0x7C2B8],
+        [0x207C2B8],
+        None,
+        "Fills an array of 16-bit values with a given value.\n\nr0: value\nr1: ptr\nr2:"
+        " len (# bytes)",
+    )
+
+    ArrayCopy16 = Symbol(
+        [0x7C2E0],
+        [0x207C2E0],
+        None,
+        "Copies an array of 16-bit values to another array of 16-bit values.\n\nThis is"
+        " essentially an alternate implementation of Memcpy16, but with a different"
+        " parameter order.\n\nr0: src\nr1: dest\nr2: len (# bytes)",
+    )
+
+    ArrayFill32 = Symbol(
+        [0x7C314],
+        [0x207C314],
+        None,
+        "Fills an array of 32-bit values with a given value.\n\nThis is essentially an"
+        " alternate implementation of Memset32, but with a different parameter"
+        " order.\n\nr0: value\nr1: ptr\nr2: len (# bytes)",
+    )
+
+    ArrayCopy32 = Symbol(
+        [0x7C330],
+        [0x207C330],
+        None,
+        "Copies an array of 32-bit values to another array of 32-bit values.\n\nThis is"
+        " essentially an alternate implementation of Memcpy32, but with a different"
+        " parameter order.\n\nr0: src\nr1: dest\nr2: len (# bytes)",
+    )
+
+    ArrayFill32Fast = Symbol(
+        [0x7C358],
+        [0x207C358],
+        None,
+        "Does the same thing as ArrayFill32, except the implementation uses an unrolled"
+        " loop that sets 8 values per iteration, taking advantage of the stmia"
+        " instruction.\n\nr0: value\nr1: ptr\nr2: len (# bytes)",
+    )
+
+    ArrayCopy32Fast = Symbol(
+        [0x7C3B4],
+        [0x207C3B4],
+        None,
+        "Does the same thing as ArrayCopy32, except the implementation uses an unrolled"
+        " loop that copies 8 values per iteration, taking advantage of the ldmia/stmia"
+        " instructions.\n\nr0: src\nr1: dest\nr2: len (# bytes)",
+    )
+
+    MemsetFast = Symbol(
+        [0x7C40C],
+        [0x207C40C],
+        None,
+        "A semi-optimized implementation of the memset(3) C library function.\n\nThis"
+        " function was probably manually implemented by the developers, or was included"
+        " as part of a library other than libc (the Nitro SDK probably?). See memset"
+        " for what's probably the real libc function.\n\nThis function is optimized to"
+        " set values in 4-byte chunks, properly dealing with pointer alignment."
+        " However, unlike the libc memset, there are no loop unrolling"
+        " optimizations.\n\nr0: ptr\nr1: value\nr2: len (# bytes)",
+    )
+
+    MemcpyFast = Symbol(
+        [0x7C4C8],
+        [0x207C4C8],
+        None,
+        "Copies bytes from one buffer to another, similar to memcpy(3). Note that the"
+        " source/destination buffer parameters swapped relative to the standard"
+        " memcpy.\n\nThis function was probably manually implemented by the developers,"
+        " or was included as part of a library other than libc (the Nitro SDK"
+        " probably?). See memcpy for what's probably the real libc function.\n\nThis"
+        " function is optimized to copy values in 4-byte chunks, properly dealing with"
+        " pointer alignment.\n\nr0: src\nr1: dest\nr2: n (# bytes)",
+    )
+
+    AtomicExchange = Symbol(
+        [0x7C648],
+        [0x207C648],
+        None,
+        "Atomically replaces a pointer's pointee with a desired value, and returns the"
+        " previous value.\n\nThis function is just a single swp instruction.\n\nr0:"
+        " desired value\nr1: ptr\nreturn: previous value",
     )
 
     FileInit = Symbol(
@@ -7576,11 +7813,23 @@ class NaArm9Data:
         " End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
     )
 
-    ARM9_UNKNOWN_TABLE__NA_20A9FB0 = Symbol(
+    TRIG_TABLE = Symbol(
         [0xA9FB0],
         [0x20A9FB0],
         0x4974,
-        "4701*0x4\n\nNote: unverified, ported from Irdkwia's notes",
+        "Interleaved table of sine and cosine values at 4096 divisions over a full"
+        " period (2π radians).\n\nMore precisely, the trig_values entry at index i"
+        " corresponds to {sin(i * 2π/4096), cos(i * 2π/4096)} (each division is ~1/10"
+        " of a degree). Values are stored as signed fixed-point numbers with 12"
+        " fraction bits.\n\ntype: struct trig_values[4096]",
+    )
+
+    ARM9_UNKNOWN_TABLE__NA_20ADFB0 = Symbol(
+        [0xADFB0],
+        [0x20ADFB0],
+        0x974,
+        "701*0x4\n\nNote: unverified, ported from Irdkwia's notes (split from"
+        " TRIG_TABLE)",
     )
 
     ARM9_UNKNOWN_TABLE__NA_20AE924 = Symbol(
@@ -7704,11 +7953,19 @@ class NaArm9Data:
     )
 
     RENDER_3D = Symbol(
-        None,
-        None,
-        None,
+        [0xAFC80],
+        [0x20AFC80],
+        0x44,
         "The (seemingly) unique instance render_3d_global in the game\n\ntype: struct"
         " render_3d_global",
+    )
+
+    RENDER_3D_FUNCTIONS_64 = Symbol(
+        [0xAFCC4],
+        [0x20AFCC4],
+        0x20,
+        "Pointers to the 8 functions available for rendering a"
+        " render_3d_element_64\n\ntype: render_3d_element_64_fn_t[8]",
     )
 
     LANGUAGE_INFO_DATA = Symbol([0xAFCE8], [0x20AFCE8], None, "[Runtime]")
@@ -7860,20 +8117,159 @@ class NaArm9Section:
 
 
 class NaItcmFunctions:
-    AllocateRender3dElement = Symbol(
+    Render3dSetTextureParams = Symbol(
+        [0x130],
+        [0x20B34B0],
+        None,
+        "A wrapper around GeomSetTexImageParam that caches the VRAM offset on"
+        " RENDER_3D.\n\nAlways disables flipping and sets color values of 0 to be"
+        " transparent.\n\nr0: render_3d_texture_params pointer\nr1: texture VRAM"
+        " offset",
+    )
+
+    Render3dSetPaletteBase = Symbol(
+        [0x1CC],
+        [0x20B354C],
+        None,
+        "Send the PLTT_BASE geometry engine command, that sets the texture palette base"
+        " address. Also caches the base address on RENDER_3D.\nSee"
+        " http://problemkaputt.de/gbatek.htm#ds3dtextureattributes for more information"
+        " on the parameters.\n\nr0: render_3d_texture_params pointer\nr1: palette base"
+        " address",
+    )
+
+    Render3dRectangle = Symbol(
+        [0x224],
+        [0x20B35A4],
+        None,
+        "RENDER_3D_FUNCTIONS[0]. Renders a render_3d_element with type"
+        " RENDER_RECTANGLE.\n\nr0: render_3d_rectangle",
+    )
+
+    GeomSetPolygonAttributes = Symbol(
+        [0x480],
+        [0x20B3800],
+        None,
+        "Send the POLYGON_ATTR geometry engine command, that defines some polygon"
+        " attributes for rendering.\nSee"
+        " https://problemkaputt.de/gbatek.htm#ds3dpolygonattributes for more"
+        " information\n\nr0: polygon ID\nr1: alpha",
+    )
+
+    Render3dQuadrilateral = Symbol(
+        [0x49C],
+        [0x20B381C],
+        None,
+        "RENDER_3D_FUNCTIONS[1]. Renders a render_3d_element with type"
+        " RENDER_QUADRILATERAL.\n\nr0: render_3d_quadrilateral",
+    )
+
+    Render3dTiling = Symbol(
+        [0x728],
+        [0x20B3AA8],
+        None,
+        "RENDER_3D_FUNCTIONS[2]. Renders a render_3d_element with type"
+        " RENDER_TILING.\n\nr0: render_3d_tiling",
+    )
+
+    Render3dTextureInternal = Symbol(
+        None,
+        None,
+        None,
+        "Implements most of the rendering logic for Render3dTexture.\n\nr0:"
+        " render_3d_texture",
+    )
+
+    Render3dTexture = Symbol(
+        [0xC28],
+        [0x20B3FA8],
+        None,
+        "RENDER_3D_FUNCTIONS[3]. Renders a render_3d_element with type"
+        " RENDER_TEXTURE.\n\nThis is primarily just a wrapper around"
+        " Render3dTextureInternal, with a preceding alpha check and calls to"
+        " Render3dSetTextureParams and Render3dSetPaletteBase.\n\nr0:"
+        " render_3d_texture",
+    )
+
+    Render3dTextureNoSetup = Symbol(
+        None,
+        None,
+        None,
+        "Same as Render3dTexture except without calls to Render3dSetTextureParams and"
+        " Render3dSetPaletteBase to set up geometry engine parameters.\n\nPresumably"
+        " used to render multiple texture tiles with the same parameters without the"
+        " extra setup overhead? But this function doesn't actually seem to be"
+        " referenced anywhere.\n\nr0: render_3d_texture",
+    )
+
+    NewRender3dElement = Symbol(
         [0xC78],
         [0x20B3FF8],
         None,
-        "Return a new render_3d_element from RENDER_3D, to be to draw a new element"
-        " using the 3d render engine later in the frame.\n\nreturn: render_3d_element"
-        " or NULL if there is no more available space in the stack",
+        "Return a new render_3d_element from RENDER_3D's render queue, to draw a new"
+        " element using the 3d render engine later in the frame.\n\nreturn:"
+        " render_3d_element or NULL if there is no more available space in the queue",
     )
 
-    Render3dStack = Symbol(
+    EnqueueRender3dTexture = Symbol(
+        [0xCAC],
+        [0x20B402C],
+        None,
+        "Copies the first 40 bytes of a render_3d_element onto the render queue of"
+        " RENDER_3D, with type set to RENDER_TEXTURE.\n\nr0: render_3d_element",
+    )
+
+    EnqueueRender3dTiling = Symbol(
+        [0xCDC],
+        [0x20B405C],
+        None,
+        "Copies a render_3d_element onto the render queue of RENDER_3D, with type set"
+        " to RENDER_TILING.\n\nr0: render_3d_element",
+    )
+
+    NewRender3dRectangle = Symbol(
+        [0xD0C],
+        [0x20B408C],
+        None,
+        "Return a render_3d_element from NewRender3dElement with a type of"
+        " RENDER_RECTANGLE, and all other fields in the first 38 bytes"
+        " zeroed.\n\nreturn: render_3d_element or NULL if there is no more available"
+        " space in the queue",
+    )
+
+    NewRender3dQuadrilateral = Symbol(
+        [0xD3C],
+        [0x20B40BC],
+        None,
+        "Return a render_3d_element from NewRender3dElement with a type of"
+        " RENDER_QUADRILATERAL, and all other fields in the first 38 bytes"
+        " zeroed.\n\nreturn: render_3d_element or NULL if there is no more available"
+        " space in the queue",
+    )
+
+    NewRender3dTexture = Symbol(
+        [0xD6C],
+        [0x20B40EC],
+        None,
+        "Return a render_3d_element from NewRender3dElement with a type of"
+        " RENDER_TEXTURE, and all other fields in the first 40 bytes zeroed.\n\nreturn:"
+        " render_3d_element or NULL if there is no more available space in the queue",
+    )
+
+    NewRender3dTiling = Symbol(
+        [0xD9C],
+        [0x20B411C],
+        None,
+        "Return a render_3d_element from NewRender3dElement with a type of"
+        " RENDER_TILING, and all other fields zeroed.\n\nreturn: render_3d_element or"
+        " NULL if there is no more available space in the queue",
+    )
+
+    Render3dProcessQueue = Symbol(
         [0xDCC],
         [0x20B414C],
         None,
-        "Perform rendering of the render_stack of RENDER_3D structure. Does nothing if"
+        "Perform rendering of the render queue of RENDER_3D structure. Does nothing if"
         " there are no elements, otherwise, sort them based on a value, and render them"
         " all consecutively.\n\nNo params.",
     )
@@ -8005,11 +8401,11 @@ class NaItcmData:
     )
 
     RENDER_3D_FUNCTIONS = Symbol(
+        [0x120],
+        [0x20B34A0],
         None,
-        None,
-        None,
-        "Pointers to the 4 functions available from render_3d_element (in"
-        " ITCM)\n\ntype: render_3d_element_concrete[4]",
+        "Pointers to the 4 functions available for rendering a render_3d_element (in"
+        " ITCM)\n\ntype: render_3d_element_fn_t[4]",
     )
 
 
@@ -17125,7 +17521,7 @@ class NaOverlay29Functions:
         [0x2681C],
         [0x2302A5C],
         None,
-        "Attempts to level up the the target. Calls LevelUp with a few extra checks and"
+        "Attempts to level up the target. Calls LevelUp with a few extra checks and"
         " messages\nfor using as an item. Used for the Joy Seed and Golden Seed.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: number of levels\nr3:"
         " bool message flag?\nstack[0]: bool show level up dialog (for example 'Hey, I"
@@ -17145,11 +17541,11 @@ class NaOverlay29Functions:
         [0x26DFC],
         [0x230303C],
         None,
-        "Attempts to level up the the target. Fails if the target's level can't be"
-        " raised. The show show level up dialog bool does nothing for monsters not on"
-        " the team.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: bool"
-        " message flag?\nr3: bool show level up dialog (for example 'Hey, I leveled"
-        " up!' with a portrait)?\nreturn: success flag",
+        "Attempts to level up the target. Fails if the target's level can't be raised."
+        " The show show level up dialog bool does nothing for monsters not on the"
+        " team.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: bool message"
+        " flag?\nr3: bool show level up dialog (for example 'Hey, I leveled up!' with a"
+        " portrait)?\nreturn: success flag",
     )
 
     GetMonsterMoves = Symbol(
@@ -17369,8 +17765,8 @@ class NaOverlay29Functions:
         [0x2B6AC],
         [0x23078EC],
         None,
-        "Tries to transfer the the negative blinker class status conditions from the"
-        " user to\nthe target.\n\nr0: user entity pointer\nr1: target entity"
+        "Tries to transfer the negative blinker class status conditions from the user"
+        " to\nthe target.\n\nr0: user entity pointer\nr1: target entity"
         " pointer\nreturn: Whether or not the status could be transferred",
     )
 
@@ -19552,8 +19948,8 @@ class NaOverlay29Functions:
         [0x59748],
         [0x2335988],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: render_3d_element\nr1: x"
-        " position\nr2: y position\nr3: char_id\nstack[0]: ?\nreturn: ?",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: render_3d_element_64\nr1:"
+        " x position\nr2: y position\nr3: char_id\nstack[0]: ?\nreturn: ?",
     )
 
     DisplayUi = Symbol(
@@ -23063,7 +23459,11 @@ class NaRamData:
     )
 
     DIALOG_BOX_LIST = Symbol(
-        [0x2A88DC], [0x22A88DC], None, "Array of allocated dialog box structs."
+        [0x2A88DC],
+        [0x22A88DC],
+        None,
+        "Array of all dialog box structs. Newly created dialog box structs are taken"
+        " from slots in this array.\n\ntype: struct dialog_box_list",
     )
 
     LAST_NEW_MOVE = Symbol(
