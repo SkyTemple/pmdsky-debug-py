@@ -4178,12 +4178,12 @@ class Arm9FunctionsProtocol(Protocol):
 
 
 class Arm9DataProtocol(Protocol):
-    ARM9_HEADER: Symbol[
+    SECURE: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
 
-    SDK_STRINGS: Symbol[
+    START_MODULE_PARAMS: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4254,6 +4254,81 @@ class Arm9DataProtocol(Protocol):
     ]
 
     CART_REMOVED_IMG_DATA: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_EMPTY: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_FORMAT_LINE_FILE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_NO_PROG_POS: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_SPACED_PRINT: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_FATAL: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_NEWLINE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_LOG_NULL: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_STRING_NEWLINE: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_EFFECT_EFFECT_BIN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_MONSTER_MONSTER_BIN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_BALANCE_M_LEVEL_BIN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_DUNGEON_DUNGEON_BIN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_MONSTER_M_ATTACK_BIN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_MONSTER_M_GROUND_BIN: Symbol[
+        Optional[List[int]],
+        Optional[int],
+    ]
+
+    STRING_FILE_DIRECTORY_INIT: Symbol[
         Optional[List[int]],
         Optional[int],
     ]
@@ -4948,7 +5023,7 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    PACK_FILE_OPENED: Symbol[
+    PACK_FILES_OPENED: Symbol[
         Optional[List[int]],
         Optional[int],
     ]

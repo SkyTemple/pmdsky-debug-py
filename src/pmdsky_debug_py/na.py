@@ -977,8 +977,8 @@ class NaArm9Functions:
         [0xC2DC],
         [0x200C2DC],
         None,
-        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILE_OPENED. Called during"
-        " game initialization.\n\nNo params.",
+        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILES_OPENED. Called"
+        " during game initialization.\n\nNo params.",
     )
 
     GetFileLengthInPackWithPackNb = Symbol(
@@ -6882,12 +6882,16 @@ class NaArm9Functions:
 
 
 class NaArm9Data:
-    ARM9_HEADER = Symbol(
-        [0x0], [0x2000000], 0x800, "Note: unverified, ported from Irdkwia's notes"
+    SECURE = Symbol(
+        [0x0],
+        [0x2000000],
+        0x800,
+        "The header of the DS cartridge secure area. See"
+        " https://problemkaputt.de/gbatek.htm#dscartridgesecurearea",
     )
 
-    SDK_STRINGS = Symbol(
-        [0xBA0], [0x2000BA0], 0xCC, "Note: unverified, ported from Irdkwia's notes"
+    START_MODULE_PARAMS = Symbol(
+        [0xBA0], [0x2000BA0], 0xCC, "Parameters used by the NitroSDK to read the ROM."
     )
 
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
@@ -6979,7 +6983,37 @@ class NaArm9Data:
         " always at least 1 before reading the table.\n\ntype: int16_t[2048]",
     )
 
-    CART_REMOVED_IMG_DATA = Symbol([0x92AE8], [0x2092AE8], 0x4000, "")
+    CART_REMOVED_IMG_DATA = Symbol([0x92AE8], [0x2092AE8], 0x2000, "")
+
+    STRING_DEBUG_EMPTY = Symbol([0x94AFC], [0x2094AFC], 0x4, "")
+
+    STRING_DEBUG_FORMAT_LINE_FILE = Symbol([0x94B00], [0x2094B00], 0x1C, "")
+
+    STRING_DEBUG_NO_PROG_POS = Symbol([0x94B1C], [0x2094B1C], 0x18, "")
+
+    STRING_DEBUG_SPACED_PRINT = Symbol([0x94B34], [0x2094B34], 0xC, "")
+
+    STRING_DEBUG_FATAL = Symbol([0x94B40], [0x2094B40], 0x14, "")
+
+    STRING_DEBUG_NEWLINE = Symbol([0x94B54], [0x2094B54], 0x4, "")
+
+    STRING_DEBUG_LOG_NULL = Symbol([0x94B58], [0x2094B58], 0x8, "")
+
+    STRING_DEBUG_STRING_NEWLINE = Symbol([0x94B60], [0x2094B60], 0x4, "")
+
+    STRING_EFFECT_EFFECT_BIN = Symbol([0x94B64], [0x2094B64], 0x14, "")
+
+    STRING_MONSTER_MONSTER_BIN = Symbol([0x94B78], [0x2094B78], 0x14, "")
+
+    STRING_BALANCE_M_LEVEL_BIN = Symbol([0x94B8C], [0x2094B8C], 0x14, "")
+
+    STRING_DUNGEON_DUNGEON_BIN = Symbol([0x94BA0], [0x2094BA0], 0x14, "")
+
+    STRING_MONSTER_M_ATTACK_BIN = Symbol([0x94BB4], [0x2094BB4], 0x18, "")
+
+    STRING_MONSTER_M_GROUND_BIN = Symbol([0x94BCC], [0x2094BCC], 0x18, "")
+
+    STRING_FILE_DIRECTORY_INIT = Symbol([0x94BE4], [0x2094BE4], 0x28, "")
 
     AVAILABLE_ITEMS_IN_GROUP_TABLE = Symbol(
         [0x94D34],
@@ -7894,7 +7928,7 @@ class NaArm9Data:
 
     DEBUG_IS_INITIALIZED = Symbol([0xAF698], [0x20AF698], 0x1, "")
 
-    PACK_FILE_OPENED = Symbol(
+    PACK_FILES_OPENED = Symbol(
         [0xAF69C],
         [0x20AF69C],
         0x4,

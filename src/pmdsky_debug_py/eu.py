@@ -977,8 +977,8 @@ class EuArm9Functions:
         [0xC364],
         [0x200C364],
         None,
-        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILE_OPENED. Called during"
-        " game initialization.\n\nNo params.",
+        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILES_OPENED. Called"
+        " during game initialization.\n\nNo params.",
     )
 
     GetFileLengthInPackWithPackNb = Symbol(
@@ -6882,12 +6882,16 @@ class EuArm9Functions:
 
 
 class EuArm9Data:
-    ARM9_HEADER = Symbol(
-        [0x0], [0x2000000], 0x800, "Note: unverified, ported from Irdkwia's notes"
+    SECURE = Symbol(
+        [0x0],
+        [0x2000000],
+        0x800,
+        "The header of the DS cartridge secure area. See"
+        " https://problemkaputt.de/gbatek.htm#dscartridgesecurearea",
     )
 
-    SDK_STRINGS = Symbol(
-        [0xBA0], [0x2000BA0], 0xCC, "Note: unverified, ported from Irdkwia's notes"
+    START_MODULE_PARAMS = Symbol(
+        [0xBA0], [0x2000BA0], 0xCC, "Parameters used by the NitroSDK to read the ROM."
     )
 
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
@@ -6977,6 +6981,36 @@ class EuArm9Data:
     )
 
     CART_REMOVED_IMG_DATA = Symbol([0x92EE4], [0x2092EE4], 0x2000, "")
+
+    STRING_DEBUG_EMPTY = Symbol(None, None, None, "")
+
+    STRING_DEBUG_FORMAT_LINE_FILE = Symbol(None, None, None, "")
+
+    STRING_DEBUG_NO_PROG_POS = Symbol(None, None, None, "")
+
+    STRING_DEBUG_SPACED_PRINT = Symbol(None, None, None, "")
+
+    STRING_DEBUG_FATAL = Symbol(None, None, None, "")
+
+    STRING_DEBUG_NEWLINE = Symbol(None, None, None, "")
+
+    STRING_DEBUG_LOG_NULL = Symbol(None, None, None, "")
+
+    STRING_DEBUG_STRING_NEWLINE = Symbol(None, None, None, "")
+
+    STRING_EFFECT_EFFECT_BIN = Symbol(None, None, None, "")
+
+    STRING_MONSTER_MONSTER_BIN = Symbol(None, None, None, "")
+
+    STRING_BALANCE_M_LEVEL_BIN = Symbol(None, None, None, "")
+
+    STRING_DUNGEON_DUNGEON_BIN = Symbol(None, None, None, "")
+
+    STRING_MONSTER_M_ATTACK_BIN = Symbol(None, None, None, "")
+
+    STRING_MONSTER_M_GROUND_BIN = Symbol(None, None, None, "")
+
+    STRING_FILE_DIRECTORY_INIT = Symbol(None, None, None, "")
 
     AVAILABLE_ITEMS_IN_GROUP_TABLE = Symbol(
         [0x95130],
@@ -7891,7 +7925,7 @@ class EuArm9Data:
 
     DEBUG_IS_INITIALIZED = Symbol(None, None, None, "")
 
-    PACK_FILE_OPENED = Symbol(
+    PACK_FILES_OPENED = Symbol(
         [0xAFF54],
         [0x20AFF54],
         0x4,
