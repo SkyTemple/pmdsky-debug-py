@@ -14312,45 +14312,45 @@ class JpOverlay20Data:
     RECYCLE_MAIN_MENU_2 = Symbol([0x2F44], [0x238E5E4], 0x20, "")
 
     RECYCLE_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F64], [0x238E604], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F74], [0x238E614], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_9 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F84], [0x238E624], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT1_0 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F94], [0x238E634], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT1_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FA4], [0x238E644], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_MAIN_MENU_3 = Symbol(None, None, None, "")
+    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB4], [0x238E654], 0x18, "")
 
     OVERLAY20_RESERVED_SPACE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D120 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FE0], [0x238E680], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D124 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FE4], [0x238E684], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D128 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FE8], [0x238E688], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D12C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FEC], [0x238E68C], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
