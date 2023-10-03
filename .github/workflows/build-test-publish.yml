@@ -42,7 +42,7 @@ jobs:
           git describe --exact-match HEAD && echo "::set-output name=hastag::yes" || echo "::set-output name=hastag::no"
       - name: Download wheels
         if: steps.check.outputs.hastag == 'yes'
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: wheels
       - name: Set up Python 3.11
