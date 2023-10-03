@@ -18,10 +18,9 @@ from __future__ import annotations
 import os
 import re
 from dataclasses import dataclass, field
-from enum import Enum, auto
-from glob import glob
+from enum import Enum
 from pathlib import Path
-from typing import Dict, List, Optional, TypeVar
+from typing import TypeVar
 
 import yaml
 
@@ -57,7 +56,7 @@ class Region(Enum):
         raise ValueError(f"Unknown region string: {region_str}")
 
     @classmethod
-    def fill_missing(cls, dic: Dict[Region, Optional[T]]):
+    def fill_missing(cls, dic: dict[Region, T | None]):
         if cls.NA not in dic:
             dic[cls.NA] = None
         if cls.EU not in dic:
@@ -98,8 +97,8 @@ class Region(Enum):
 @dataclass
 class Symbol:
     name: str
-    addresses: Dict[Region, Optional[List[int]]] = field(default_factory=dict)
-    lengths: Dict[Region, Optional[int]] = field(default_factory=dict)
+    addresses: dict[Region, list[int] | None] = field(default_factory=dict)
+    lengths: dict[Region, int | None] = field(default_factory=dict)
     description: str = field(default_factory=str)
 
 
@@ -107,15 +106,15 @@ class Symbol:
 class Binary:
     name: str
     class_name: str
-    loadaddresses: Dict[Region, Optional[int]] = field(default_factory=dict)
-    lengths: Dict[Region, Optional[int]] = field(default_factory=dict)
-    functions: List[Symbol] = field(default_factory=list)
-    data: List[Symbol] = field(default_factory=list)
+    loadaddresses: dict[Region, int | None] = field(default_factory=dict)
+    lengths: dict[Region, int | None] = field(default_factory=dict)
+    functions: list[Symbol] = field(default_factory=list)
+    data: list[Symbol] = field(default_factory=list)
     description: str = field(default_factory=str)
 
     @classmethod
     def get(
-        cls, pool: List[Binary], name: str
+        cls, pool: list[Binary], name: str
     ) -> Binary:
         for e in pool:
             if e.name == name:
@@ -153,7 +152,7 @@ def _read_symbol(symbol_def: dict) -> Symbol:
     return sym
 
 
-def _read(binaries: List[Binary], yml: dict):
+def _read(binaries: list[Binary], yml: dict):
     for bin_name, definition in yml.items():
         assert isinstance(bin_name, str)
         binary = Binary.get(binaries, bin_name)
@@ -181,8 +180,8 @@ def _read(binaries: List[Binary], yml: dict):
                 binary.description = definition["description"]
 
 
-def load_binaries(symbols_dir: str) -> List[Binary]:
-    binaries: List[Binary] = []
+def load_binaries(symbols_dir: str) -> list[Binary]:
+    binaries: list[Binary] = []
 
     files = list(Path(symbols_dir).rglob("*.yml"))
 

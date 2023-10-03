@@ -1,7 +1,7 @@
 import os.path
 import re
 import traceback
-from typing import Optional, TypeVar, IO, Union, Tuple
+from typing import Optional, TypeVar, IO, Union
 
 import click
 import toml
@@ -44,7 +44,7 @@ def try_int(i: str, fallback: T) -> Union[int, T]:
     return fallback
 
 
-def version_tuple(a: str) -> Tuple[Union[int, str], ...]:
+def version_tuple(a: str) -> tuple[Union[int, str], ...]:
     if a.startswith('v'):
         a = a[1:]
     return tuple(try_int(i, i) for i in VERSION_SPLIT_RE.split(a))

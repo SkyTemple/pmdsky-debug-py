@@ -18,9 +18,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build Python wheels
-        uses: RalfG/python-wheels-manylinux-build@v0.3.4-manylinux2010_x86_64
+        uses: RalfG/python-wheels-manylinux-build@v0.5.0-manylinux2014_x86_64
         with:
-          python-versions: 'cp38-cp38 cp39-cp39 cp310-cp310'
+          python-versions: 'cp39-cp39 cp310-cp310 cp311-cp311 cp312-cp312'
           package-path: src
       - name: Upload wheels
         uses: actions/upload-artifact@v2
@@ -45,11 +45,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: wheels
-      - name: Set up Python 3.8
+      - name: Set up Python 3.11
         if: steps.check.outputs.hastag == 'yes'
         uses: actions/setup-python@v1
         with:
-          python-version: 3.8
+          python-version: 3.11
       - name: Upgrade pip
         if: steps.check.outputs.hastag == 'yes'
         run: |

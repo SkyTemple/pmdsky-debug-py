@@ -1,4 +1,4 @@
-from typing import Protocol, Optional, TypeVar, List, Generic, no_type_check
+from typing import Protocol, Optional, TypeVar, Generic, no_type_check
 from dataclasses import dataclass
 
 A = TypeVar('A')
@@ -47,7 +47,7 @@ class {{ binary.class_name }}FunctionsProtocol(Protocol):
     {% endif %}
     {% for fn in binary.functions %}
     {{ fn.name }}: Symbol[ \
-        {{ fn.addresses | has_all_else_optional("List[int]") }}, \
+        {{ fn.addresses | has_all_else_optional("list[int]") }}, \
         {{ fn.lengths | has_all_else_optional("int") }}, \
     ]
     {% endfor %}
@@ -58,7 +58,7 @@ class {{ binary.class_name }}DataProtocol(Protocol):
     {% endif %}
     {% for dt in binary.data %}
     {{ dt.name }}: Symbol[ \
-        {{ dt.addresses | has_all_else_optional("List[int]") }}, \
+        {{ dt.addresses | has_all_else_optional("list[int]") }}, \
         {{ dt.lengths | has_all_else_optional("int") }}, \
     ]
     {% endfor %}
