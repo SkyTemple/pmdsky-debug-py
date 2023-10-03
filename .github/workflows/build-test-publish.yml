@@ -16,7 +16,7 @@ jobs:
     name: Build the Python wheel
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Build Python wheels
         uses: RalfG/python-wheels-manylinux-build@v0.5.0-manylinux2014_x86_64
         with:
@@ -34,7 +34,7 @@ jobs:
     name: Deploy wheels to PyPI if tag
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Check if on tag
         id: check
         run: |
