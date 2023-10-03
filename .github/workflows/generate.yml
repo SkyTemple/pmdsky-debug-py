@@ -24,11 +24,11 @@ jobs:
       id: check
       run: |
         git diff --exit-code --quiet pmdsky-debug && echo "::set-output name=newtag::no_new_tag" || echo "::set-output name=newtag::new_tag"
-    - name: Set up Python 3.8
+    - name: Set up Python 3.11
       if: steps.check.outputs.newtag == 'new_tag'
       uses: actions/setup-python@v1
       with:
-        python-version: 3.8
+        python-version: 3.11
     - name: Install generator and yq
       if: steps.check.outputs.newtag == 'new_tag'
       run: |
