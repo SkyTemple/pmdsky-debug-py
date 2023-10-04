@@ -1199,6 +1199,34 @@ class NaItcmArm9Functions:
         " initialize\nr1: item ID\nr2: sticky flag",
     )
 
+    InitBulkItem = Symbol(
+        None,
+        None,
+        None,
+        "Initialize a struct bulk_item with the given information.\n\nThis will resolve"
+        " the quantity based on the item type. For Poké, the quantity code will always"
+        " be set to 1. For thrown items, the quantity code will be randomly generated"
+        " on the range of valid quantities for that item type. For non-stackable items,"
+        " the quantity code will always be set to 0.\n\nr0: pointer to bulk item to"
+        " initialize\nr1: item ID",
+    )
+
+    BulkItemToItem = Symbol(
+        None,
+        None,
+        None,
+        "Convert a bulk_item into an equivalent item.\n\nr0: pointer to item to"
+        " initialize\nr1: pointer to bulk_item",
+    )
+
+    ItemToBulkItem = Symbol(
+        None,
+        None,
+        None,
+        "Convert an item into an equivalent bulk_item.\n\nr0: pointer to bulk_item to"
+        " initialize\nr1: pointer to item",
+    )
+
     GetDisplayedBuyPrice = Symbol(
         None,
         None,
@@ -1448,18 +1476,19 @@ class NaItcmArm9Functions:
         " item ID\nreturn: bool",
     )
 
-    SetGold = Symbol(
+    SetActiveInventory = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: new value",
+        "Changes the currently active inventory. Has one for the main team, rescue"
+        " team, and the special\nepisode team?\n\nr0: team ID",
     )
 
-    GetGold = Symbol(
+    GetMoneyCarried = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: value",
+        "Gets the amount of money the player is carrying.\n\nreturn: value",
     )
 
     SetMoneyCarried = Symbol(
@@ -1744,6 +1773,14 @@ class NaItcmArm9Functions:
         " ScriptSpecialProcessCall).\n\nr0: pointer to an owned_item\nreturn: bool",
     )
 
+    GetMoneyStored = Symbol(
+        None,
+        None,
+        None,
+        "Gets the amount of money the player has stored in the Duskull Bank.\n\nreturn:"
+        " amount of money stored",
+    )
+
     SetMoneyStored = Symbol(
         None,
         None,
@@ -1752,12 +1789,48 @@ class NaItcmArm9Functions:
         " the value to the range [0, MAX_MONEY_STORED].\n\nr0: new value",
     )
 
-    GetKecleonItems1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    AddMoneyStored = Symbol(
+        None,
+        None,
+        None,
+        "Adds money to the amount of money the player has stored in the Duskull Bank."
+        " Just calls SetMoneyStored with the current money + money gained.\n\nr0: money"
+        " gained (can be negative)",
     )
 
-    GetKecleonItems2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    SortKecleonItems1 = Symbol(
+        None,
+        None,
+        None,
+        "Sorts the items for the normal Kecleon Shop items in Treasure Town.\n\nNo"
+        " params.",
+    )
+
+    GenerateKecleonItems1 = Symbol(
+        None,
+        None,
+        None,
+        "Generates the Kecleon Shop items for both shopkeepers in Treasure Town. This"
+        " function also calls\nGenerateKecleonItems2 despite GenerateKecleonItems2"
+        " being called directly after. This means that\nany items generated for the"
+        " Orb/TM shop will be overwritten by the subsequent call"
+        " to\nGenerateKecleonItems2.\n\nr0: kecleon_shop_version to use",
+    )
+
+    SortKecleonItems2 = Symbol(
+        None,
+        None,
+        None,
+        "Sorts the items for the Orb/TM Kecleon Shop items in Treasure Town.\n\nNo"
+        " params.",
+    )
+
+    GenerateKecleonItems2 = Symbol(
+        None,
+        None,
+        None,
+        "Generates the Kecleon Shop items for the TMs/Orbs shop in Treasure"
+        " Town.\n\nr0: kecleon_shop_version to use",
     )
 
     GetExclusiveItemOffset = Symbol(
@@ -1819,22 +1892,125 @@ class NaItcmArm9Functions:
         " ID\nr2: type ID 1\nr3: type ID 2\nreturn: item ID",
     )
 
-    ProcessGinsengOverworld = Symbol(
+    ApplyGummiBoostsToGroundMonster = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: target\nr1: [output] move"
-        " ID\nr2: [output] move boost\nreturn: boost",
+        "Applies the IQ boosts from eating a Gummi to the target monster. Basically a"
+        " wrapper around\nApplyGummiBoostsGroundMode for struct ground_monster.\n\nr0:"
+        " ground monster pointer\nr1: Item ID\nr2: bool to NOT increase stats\nr3:"
+        " [output] pointer to a struct gummi_result to fill out",
+    )
+
+    ApplyGummiBoostsToTeamMember = Symbol(
+        None,
+        None,
+        None,
+        "Applies the IQ boosts from eating a Gummi to the target monster. Basically a"
+        " wrapper around\nApplyGummiBoostsGroundMode for struct team_member.\n\nr0:"
+        " team member pointer\nr1: Item ID\nr2: bool to NOT increase stats\nr3:"
+        " [output] pointer to a struct gummi_result to fill out",
+    )
+
+    ApplySitrusBerryBoostToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        "Applies the hp boost from the Sitrus Berry to the target monster.\n\nr0:"
+        " ground monster pointer\nr1: [output] pointer to attempted hp boost, if not"
+        " NULL\nreturn: actual hp boost",
+    )
+
+    ApplyLifeSeedBoostToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        "Applies the hp boost from the Life Seed to the target monster.\n\nr0: ground"
+        " monster pointer\nr1: [output] pointer to attempted hp boost, if not"
+        " NULL\nreturn: actual hp boost",
+    )
+
+    ApplyGinsengToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        "Attempts to apply a ginseng boost to the highest valid move that the ground"
+        " monster knows.\n\nr0: ground monster pointer\nr1: [output] move ID\nr2:"
+        " [output] move boost\nreturn: actual move boost",
+    )
+
+    ApplyProteinBoostToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        "Applies the attack boost from Protein to the target monster.\n\nr0: ground"
+        " monster pointer\nr1: [output] pointer to attempted attack boost, if not"
+        " NULL\nreturn: actual attack boost",
+    )
+
+    ApplyCalciumBoostToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        "Applies the special attack boost from Calcium to the target monster.\n\nr0:"
+        " ground monster pointer\nr1: [output] pointer to attempted special attack"
+        " boost, if not NULL\nreturn: actual special attack boost",
+    )
+
+    ApplyIronBoostToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        "Applies the defense boost from Iron to the target monster.\n\nr0: ground"
+        " monster pointer\nr1: [output] pointer to attempted defense boost, if not"
+        " NULL\nreturn: actual defense boost",
+    )
+
+    ApplyZincBoostToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        "Applies the special defense boost from Zinc to the target monster.\n\nr0:"
+        " ground monster pointer\nr1: [output] pointer to attempted special defense"
+        " boost, if not NULL\nreturn: actual special defense boost",
+    )
+
+    ApplyNectarBoostToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        "Applies the iq boost from Nectar to the target monster.\n\nr0: ground monster"
+        " pointer\nr1: [output] pointer to attempted iq boost, if not NULL\nreturn:"
+        " actual iq boost",
+    )
+
+    IsMonsterAffectedByGravelyrockGroundMode = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the monster is Bonsly or Sudowoodo.\n\nr0: ground monster"
+        " pointer\nreturn: bool",
+    )
+
+    ApplyGravelyrockBoostToGroundMonster = Symbol(
+        None,
+        None,
+        None,
+        "Applies the iq boost from Gravelyrock to the target monster. Only Bonsly and"
+        " Sudowoodo gain IQ from the Gravelyrock.\n\nr0: ground monster pointer\nr1:"
+        " [output] pointer to attempted iq boost, if not NULL\nreturn: actual iq boost",
     )
 
     ApplyGummiBoostsGroundMode = Symbol(
         None,
         None,
         None,
-        "Applies the IQ boosts from eating a Gummi to the target monster.\n\nr0:"
-        " Pointer to something\nr1: Pointer to something\nr2: Pointer to something\nr3:"
-        " Pointer to something\nstack[0]: ?\nstack[1]: ?\nstack[2]: Pointer to a buffer"
-        " to store some result into",
+        "Applies the IQ boosts from eating a Gummi to the monster's data. Generally"
+        " called with not increasing stats true outside of the cafe.\n\nr0: Pointer to"
+        " monster id\nr1: Pointer to monster iq\nr2: Pointer to monster offensive"
+        " stats\nr3: Pointer to monster defensive stats\nstack[0]: Item ID\nstack[1]:"
+        " bool to NOT increase stats\nstack[2]: [output] pointer to a struct"
+        " gummi_result",
     )
 
     LoadSynthBin = Symbol(
@@ -3094,6 +3270,19 @@ class NaItcmArm9Functions:
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
+    GetCurrentTeamNameString = Symbol(
+        None,
+        None,
+        None,
+        "Returns the current team name with a check for special episodes and story"
+        " progression. If the story\nhas not progressed enough or the special episode"
+        " is not for Team Charm, '???' will be displayed.\nDuring the Team Charm"
+        " special episode, it will return 'Team Charm'.\n\nr0: [output] Pointer to the"
+        " buffer where the string will be written\nr1: 0, 1 or 2???\nreturn: Pointer to"
+        " the buffer where the string was written (in other words, the same value"
+        " passed in r0)",
+    )
+
     GetBagNameString = Symbol(
         None,
         None,
@@ -3170,11 +3359,21 @@ class NaItcmArm9Functions:
         " instruction).\n\nr0: dest\nr1: src\nr2: n",
     )
 
-    SpecialStrcpy = Symbol(
+    StrcpyName = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: dst\nr1: src",
+        "A special version of strcpy for handling names. Appears to use character 0x7E"
+        " as some kind of\nformatting character in NA?\n\nr0: dst\nr1: src",
+    )
+
+    StrncpyName = Symbol(
+        None,
+        None,
+        None,
+        "A special version of strncpy for handling names. Appears to use character 0x7E"
+        " as some kind of\nformatting character in NA? Copies at most n"
+        " characters.\n\nr0: dst\nr1: src\nr2: n",
     )
 
     GetStringFromFile = Symbol(
@@ -3210,6 +3409,14 @@ class NaItcmArm9Functions:
         None,
         None,
         "Gets the string corresponding to a given message ID and copies it to the"
+        " buffer specified in r0.\n\nr0: Buffer\nr1: String ID",
+    )
+
+    CopyNStringFromMessageId = Symbol(
+        None,
+        None,
+        None,
+        "Gets the string corresponding to a given message ID and copies it to the"
         " buffer specified in r0.\n\nThis function won't write more than <buffer"
         " length> bytes.\n\nr0: Buffer\nr1: String ID\nr2: Buffer length",
     )
@@ -3224,6 +3431,10 @@ class NaItcmArm9Functions:
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nr0: personality_index\nr1:"
         " group_id\nr2: restrictions\nreturn: ?",
+    )
+
+    IsAOrBPressed = Symbol(
+        None, None, None, "Checks if A or B is currently being held.\n\nreturn: bool"
     )
 
     NewDialogBox = Symbol(
@@ -3700,6 +3911,16 @@ class NaItcmArm9Functions:
         " variable table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID"
         " 1\nr2: script variable ID 2\nreturn: true if values are equal, false"
         " otherwise",
+    )
+
+    EventFlagResume = Symbol(
+        None,
+        None,
+        None,
+        "Restores BACKUP event flag script variables (see the code for an exhaustive"
+        " list) to their\nrespective script variables, but only in certain game"
+        " modes.\n\nThis function prints the debug string 'EventFlag BackupGameMode %d'"
+        " with the game mode.\n\nNo params.",
     )
 
     EventFlagBackup = Symbol(
@@ -4505,15 +4726,16 @@ class NaItcmArm9Functions:
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer\nr1: ability ID",
+        "Copies the string for the ability id into the buffer.\n\nr0: [output]"
+        " buffer\nr1: ability ID",
     )
 
     GetAbilityDescStringId = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: ability ID\nreturn:"
-        " string ID",
+        "Gets the ability description string ID for the corresponding ability.\n\nr0:"
+        " ability ID\nreturn: string ID",
     )
 
     GetTypeStringId = Symbol(
@@ -4522,6 +4744,14 @@ class NaItcmArm9Functions:
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nr0: type ID\nreturn:"
         " string ID",
+    )
+
+    GetConversion2ConvertToType = Symbol(
+        None,
+        None,
+        None,
+        "Determines which type a monster with Conversion2 should turn into after being"
+        " hit by a certain\ntype of move.\n\nr0: type ID\nreturn: type ID",
     )
 
     CopyBitsTo = Symbol(
@@ -4540,20 +4770,36 @@ class NaItcmArm9Functions:
         " buffer_read\nr2: nb_bits",
     )
 
-    StoreDefaultTeamName = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nNo params."
+    StoreDefaultTeamData = Symbol(
+        None,
+        None,
+        None,
+        "Sets the name of the team for the main story to the default team name"
+        " Poképals. Also initalizes\nthe team to Normal Rank and possibly set Secret"
+        " Rank unlocked to false?\n\nNo params.",
     )
 
-    GetTeamNameCheck = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer"
+    GetMainTeamNameWithCheck = Symbol(
+        None,
+        None,
+        None,
+        "Gets the name of the team for the main story with an additional check if the"
+        " team name should be\n'???' because the story has not progressed"
+        " enough.\n\nr0: [output] buffer",
     )
 
-    GetTeamName = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer"
+    GetMainTeamName = Symbol(
+        None,
+        None,
+        None,
+        "Gets the name of the team for the main story.\n\nr0: [output] buffer",
     )
 
-    SetTeamName = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer"
+    SetMainTeamName = Symbol(
+        None,
+        None,
+        None,
+        "Sets the main team name to the name in the passed buffer.\n\nr0: buffer",
     )
 
     GetRankupPoints = Symbol(
@@ -5563,6 +5809,30 @@ class NaItcmArm9Functions:
         " monster pointer\nreturn: bool",
     )
 
+    RemoveActiveMembersFromAllTeams = Symbol(
+        None,
+        None,
+        None,
+        "Removes all of the active monsters on every type of team from the team member"
+        " table.\n\nNo params.",
+    )
+
+    RemoveActiveMembersFromSpecialEpisodeTeam = Symbol(
+        None,
+        None,
+        None,
+        "Removes the active monsters on the Special Episode Team from the team member"
+        " table.\n\nNo params.",
+    )
+
+    RemoveActiveMembersFromRescueTeam = Symbol(
+        None,
+        None,
+        None,
+        "Removes the active monsters on the Rescue Team from the team member"
+        " table.\n\nNo params.",
+    )
+
     CheckTeamMemberIdx = Symbol(
         None,
         None,
@@ -5653,6 +5923,40 @@ class NaItcmArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nr0: dungeon ID",
     )
 
+    GetIqSkillStringId = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: iq skill id\nreturn: iq"
+        " skill string id",
+    )
+
+    DoesTacticFollowLeader = Symbol(
+        None,
+        None,
+        None,
+        "Returns whether or not the tactic involves following the team leader.\n\nr0:"
+        " tactic_id\nreturn: bool",
+    )
+
+    GetUnlockedTactics = Symbol(
+        None,
+        None,
+        None,
+        "Returns an array with all the enabled tactics. TACTIC_NONE is used to fill the"
+        " empty/unused entries\nin the array.\n\nr0: [output] Array of tactic_ids that"
+        " are enabled\nr1: Monster level",
+    )
+
+    GetUnlockedTacticFlags = Symbol(
+        None,
+        None,
+        None,
+        "Returns an array with an entry for each tactic and if they're unlocked at the"
+        " passed level.\n\nr0: [output] bool Array where the unlocked status of each"
+        " tactic is stored\nr1: Monster level",
+    )
+
     CanLearnIqSkill = Symbol(
         None,
         None,
@@ -5699,6 +6003,24 @@ class NaItcmArm9Functions:
         " can learn.\n\nr0: Species ID\nr1: Index (starting at 0)\nreturn: IQ skill ID",
     )
 
+    DisableAllIqSkills = Symbol(
+        None,
+        None,
+        None,
+        "Disables all IQ skills in the bitarray.\n\nr0: Pointer to the bitarray"
+        " containing the list of enabled IQ skills",
+    )
+
+    EnableAllLearnableIqSkills = Symbol(
+        None,
+        None,
+        None,
+        "Attempts to enable all the IQ skills available to the monster. If there are"
+        " incompatible IQ skils,\nthe one with the highest ID will be activated while"
+        " the others will be inactivated.\n\nr0: [output] Array where the list of"
+        " skills will be written\nr1: Monster species\nr2: Monster IQ",
+    )
+
     IqSkillFlagTest = Symbol(
         None,
         None,
@@ -5715,6 +6037,15 @@ class NaItcmArm9Functions:
         " value, or IQ_NONE if the monster won't learn any more skills.\n\nr0: Monster"
         " ID\nr1: Monster IQ\nreturn: ID of the next skill learned by the monster, or"
         " IQ_NONE if the monster won't learn any more skills.",
+    )
+
+    GetExplorerMazeTeamName = Symbol(
+        None,
+        None,
+        None,
+        "Returns the name of the explorer maze team. If the language of the team name"
+        " is different from the\nlanguage of selected in this game a default team name"
+        " is written to the buffer instead.\n\nr0: [output] Buffer",
     )
 
     GetExplorerMazeMonster = Symbol(
@@ -5773,6 +6104,15 @@ class NaItcmArm9Functions:
         "evo_status = 0: Not possible now\nevo_status = 1: Possible now\nevo_status ="
         " 2: No further\n\nNote: unverified, ported from Irdkwia's notes\n\nr0:"
         " ground_monster\nreturn: evo_status",
+    )
+
+    CopyTacticString = Symbol(
+        None,
+        None,
+        None,
+        "Gets the string corresponding to a given message ID and copies it to the"
+        " buffer specified in r0.\n\nThis function won't write more than 64"
+        " bytes.\n\nr0: [output] buffer\nr1: tactic_id",
     )
 
     GetSosMailCount = Symbol(
@@ -17284,6 +17624,15 @@ class NaItcmOverlay29Functions:
         " to dungeon_generation_info::force_create_monster_house)",
     )
 
+    ShouldMonsterFollowLeader = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the monster should follow the leader. Always returns false for enemy"
+        " monsters.\nThis function may actually be should monster target leader"
+        " position.\n\nr0: Pointer to monster\nreturn: bool",
+    )
+
     RunMonsterAi = Symbol(
         None,
         None,
@@ -19615,6 +19964,14 @@ class NaItcmOverlay29Functions:
 
     GravityIsActive = Symbol(
         None, None, None, "Checks if gravity is active on the floor.\n\nreturn: bool"
+    )
+
+    TryActivateGravity = Symbol(
+        None,
+        None,
+        None,
+        "Attempts to activate Gravity for this dungeon floor.\n\nreturn: whether or not"
+        " gravity was activated",
     )
 
     ShouldBoostKecleonShopSpawnChance = Symbol(
@@ -22967,12 +23324,46 @@ class NaItcmRamData:
         " fails to deal damage.",
     )
 
+    MULTIHIT_FATIGUE_MOVE_USED = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Appears to be set to true whenever a multihit fatigue move deals"
+        " damage.",
+    )
+
+    TWINEEDLE_HIT_TRACKER = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Appears to be set to true whenever Twineedle hits and deals damage."
+        " So that even if the second attack misses, it will still try to poison the"
+        " target.",
+    )
+
+    RAPID_SPIN_BINDING_REMOVAL = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Appears to be set to true when using Rapid Spin to later remove any"
+        " binding effects and Leech Seed.",
+    )
+
     ROLLOUT_ICE_BALL_SUCCESSIVE_HITS = Symbol(
         None,
         None,
         None,
         "[Runtime] Seems to count the number of successive hits by Rollout or Ice"
         " Ball.",
+    )
+
+    MULTIHIT_MOVE_SUCCESSIVE_HITS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Seems to count the number of successive hits for multihit moves."
+        " This is used by Twineedle to check to attempt to apply Poison after the"
+        " second attack.",
     )
 
     TRIPLE_KICK_SUCCESSIVE_HITS = Symbol(

@@ -1,4 +1,4 @@
-from typing import Protocol, Optional, TypeVar, List, Generic, no_type_check
+from typing import Protocol, Optional, TypeVar, Generic, no_type_check
 from dataclasses import dataclass
 
 A = TypeVar("A")
@@ -44,7 +44,7 @@ class SectionProtocol(Protocol[T, U, L]):
 
 class Arm7FunctionsProtocol(Protocol):
     EntryArm7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
@@ -62,5124 +62,5299 @@ Arm7Protocol = SectionProtocol[
 
 class Arm9FunctionsProtocol(Protocol):
     SvcWaitByLoop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SvcSoftReset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SvcCpuSet: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     _start: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MIiUncompressBackward: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     do_autoload: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StartAutoloadDoneCallback: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OSiReferSymbol: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NitroMain: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitMemAllocTable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMemAllocatorParams: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAllocArenaDefault: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFreeArenaDefault: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitMemArena: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemAllocFlagsToBlockType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FindAvailableMemBlock: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SplitMemBlock: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemAlloc: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemFree: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemArenaAlloc: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CreateMemArena: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemLocateSet: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemLocateUnset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RoundUpDiv256: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UFixedPoint64CmpLt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MultiplyByFixedPoint: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UMultiplyByFixedPoint: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IntToFixedPoint64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FixedPoint64ToInt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FixedPoint32To64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NegateFixedPoint64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FixedPoint64IsZero: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FixedPoint64IsNegative: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FixedPoint64CmpLt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MultiplyFixedPoint64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DivideFixedPoint64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UMultiplyFixedPoint64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UDivideFixedPoint64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddFixedPoint64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ClampedLn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRngSeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetRngSeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Rand16Bit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RandInt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RandRange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Rand32Bit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RandIntSafe: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RandRangeSafe: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WaitForever: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InterruptMasterDisable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InterruptMasterEnable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitMemAllocTableVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ZInit8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PointsToZero: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemZero: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemZero16: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemZero32: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemsetSimple: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Memset32: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemcpySimple: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Memcpy16: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Memcpy32: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TaskProcBoot: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnableAllInterrupts: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTime: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisableAllInterrupts: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SoundResume: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CardPullOutWithStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CardPullOut: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CardBackupError: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HaltProcessDisp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OverlayIsLoaded: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadOverlay: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UnloadOverlay: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Rgb8ToRgb5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EuclideanNorm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ClampComponentAbs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetHeldButtons: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetPressedButtons: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetReleasedStylus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     KeyWaitInit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DataTransferInit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DataTransferStop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FileInitVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FileOpen: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FileGetSize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FileRead: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FileSeek: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FileClose: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UnloadFile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadFileFromRom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDebug: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDebugFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDebugFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetDebugFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDebugStripped6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AppendProgPos: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDebugStripped5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DebugPrintTrace: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DebugDisplay: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DebugPrint0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDebugLogFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDebugLogFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetDebugLogFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DebugPrint: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDebugStripped4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDebugStripped3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDebugStripped2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDebugStripped1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FatalError: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OpenAllPackFiles: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFileLengthInPackWithPackNb: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadFileInPackWithPackId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AllocAndLoadFileInPack: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OpenPackFile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFileLengthInPack: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadFileInPack: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonResultMsg: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDamageSource: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemCategoryVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemMoveId16: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsThrownItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsNotMoney: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsEdible: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsHM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsGummi: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsAuraBow: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsLosableItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsTreasureBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsStorableItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsShoppableItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsValidTargetItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsItemUsableNow: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsTicketItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitStandardItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    InitBulkItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BulkItemToItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ItemToBulkItem: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     GetDisplayedBuyPrice: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDisplayedSellPrice: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetActualBuyPrice: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetActualSellPrice: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FindItemInInventory: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SprintfStatic: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ItemZInit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WriteItemsToSave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ReadItemsFromSave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsItemAvailableInDungeonGroup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemIdFromList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NormalizeTreasureBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveEmptyItems: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadItemPspi2n: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetExclusiveItemType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetExclusiveItemOffsetEnsureValid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsItemValid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetExclusiveItemParameter: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemCategory: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnsureValidItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemName: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemNameFormatted: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemBuyPrice: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemSellPrice: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemSpriteId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemPaletteId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemActionName: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetThrownItemQuantityLimit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemMoveId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TestItemAiFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsItemInTimeDarkness: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsItemValidVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
-    SetGold: Symbol[
-        Optional[List[int]],
+    SetActiveInventory: Symbol[
+        Optional[list[int]],
         None,
     ]
 
-    GetGold: Symbol[
-        Optional[List[int]],
+    GetMoneyCarried: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     SetMoneyCarried: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddMoneyCarried: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetCurrentBagCapacity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsBagFull: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbItemsInBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CountNbItemsOfTypeInBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CountItemTypeInBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsItemInBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsItemWithFlagsInBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsItemInTreasureBoxes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsHeldItemInBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsItemForSpecialSpawnInBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasStorableItems: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEquivItemIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEquippedThrowableItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFirstUnequippedItemOfType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyItemAtIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemAtIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveEmptyItemsInBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveItemNoHole: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveHeldItemNoHole: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveItemByIdAndStackNoHole: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveEquivItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveEquivItemNoHole: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DecrementStackItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveItemNoHoleCheck: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveFirstUnequippedItemOfType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveAllItems: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveAllItemsStartingAt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpecialProcAddItemToBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddItemToBagNoHeld: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddItemToBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptSpecialProcess0x39: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CountNbItemsOfTypeInStorage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CountItemTypeInStorage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveItemsTypeInStorage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddItemToStorage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    GetMoneyStored: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     SetMoneyStored: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
-    GetKecleonItems1: Symbol[
-        Optional[List[int]],
+    AddMoneyStored: Symbol[
+        Optional[list[int]],
         None,
     ]
 
-    GetKecleonItems2: Symbol[
-        Optional[List[int]],
+    SortKecleonItems1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GenerateKecleonItems1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SortKecleonItems2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GenerateKecleonItems2: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     GetExclusiveItemOffset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyExclusiveItemStatBoosts: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetExclusiveItemEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ExclusiveItemEffectFlagTest: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsExclusiveItemIdForMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsExclusiveItemForMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BagHasExclusiveItemTypeForMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
-    ProcessGinsengOverworld: Symbol[
-        Optional[List[int]],
+    ApplyGummiBoostsToGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyGummiBoostsToTeamMember: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplySitrusBerryBoostToGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyLifeSeedBoostToGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyGinsengToGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyProteinBoostToGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyCalciumBoostToGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyIronBoostToGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyZincBoostToGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyNectarBoostToGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsMonsterAffectedByGravelyrockGroundMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyGravelyrockBoostToGroundMonster: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     ApplyGummiBoostsGroundMode: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadSynthBin: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CloseSynthBin: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSynthItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadWazaP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadWazaP2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UnloadCurrentWazaP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveName: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FormatMoveString: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FormatMoveStringMore: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitMoveCheckId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetInfoMoveGround: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveTargetAndRange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMovesetLevelUpPtr: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsInvalidMoveset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMovesetHmTmPtr: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMovesetEggPtr: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveAiWeight: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveNbStrikes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveBasePower: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveBasePowerGround: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveAccuracyOrAiChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveBasePp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMaxPp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveMaxGinsengBoost: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveMaxGinsengBoostGround: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveCritChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsThawingMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsAffectedByTaunt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveRangeId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveActualAccuracy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveBasePowerFromId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMoveRangeString19: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveMessageFromId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbMoves: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMovesetIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsReflectedByMagicCoat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanBeSnatched: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FailsWhileMuzzled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSoundMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsRecoilMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AllManip1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AllManip2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ManipMoves1v1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ManipMoves1v2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ManipMoves2v1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ManipMoves2v2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonMoveToGroundMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GroundToDungeonMoveset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonToGroundMoveset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetInfoGroundMoveset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FindFirstFreeMovesetIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LearnMoves: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyMoveTo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyMoveFrom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyMovesetTo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyMovesetFrom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Is2TurnsMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsRegularAttackOrProjectile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsPunchMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsHealingWishOrLunarDance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsCopyingMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsTrappingMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsOneHitKoMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsNot2TurnsMoveOrSketch: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsRealMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMovesetValid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsRealMoveInTimeDarkness: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMovesetValidInTimeDarkness: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFirstNotRealMoveInTimeDarkness: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSameMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveCategory: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetPpIncrease: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OpenWaza: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SelectWaza: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SendAudioCommandWrapperVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SendAudioCommandWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AllocAudioCommand: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SendAudioCommand: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitSoundSystem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ManipBgmPlayback: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SoundDriverReset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadDseFile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlaySeLoad: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayBgm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StopBgm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ChangeBgm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayBgm2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StopBgm2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ChangeBgm2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayME: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StopME: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlaySe: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlaySeFullSpec: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SeChangeVolume: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SeChangePan: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StopSe: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitAnimationControl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitAnimationControlWithSet: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetSpriteIdForAnimationControl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAnimationForAnimationControlInternal: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAnimationForAnimationControl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetWanForAnimationControl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAndPlayAnimationForAnimationControl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SwitchAnimationControlToNextFrame: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadAnimationFrameAndIncrementInAnimationControl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AnimationControlGetAllocForMaxFrame: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DeleteWanTableEntry: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AllocateWanTableEntry: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FindWanTableEntry: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLoadedWanTableEntry: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitWanTable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadWanTableEntry: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadWanTableEntryFromPack: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadWanTableEntryFromPackUseProvidedMemory: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ReplaceWanFromBinFile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DeleteWanTableEntryVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WanHasAnimationGroup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WanTableSpriteHasAnimationGroup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpriteTypeInWanTable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadWteFromRom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadWteFromFileDirectory: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UnloadWte: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadWtuFromBin: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ProcessWte: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GeomSetTexImageParam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GeomSetVertexCoord16: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitRender3dData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GeomSwapBuffers: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitRender3dElement64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3d64Texture0x7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3d64Border: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnqueueRender3d64Tiling: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3d64Tiling: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3d64Quadrilateral: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3d64RectangleMulticolor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3d64Rectangle: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3d64Nothing: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3d64Texture: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3dElement64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HandleSir0Translation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ConvertPointersSir0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HandleSir0TranslationVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DecompressAtNormalVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DecompressAtNormal: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DecompressAtHalf: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DecompressAtFromMemoryPointerVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DecompressAtFromMemoryPointer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WriteByteFromMemoryPointer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAtSize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLanguageType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLanguage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StrcmpTag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StoiTag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AnalyzeText: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PreprocessString: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PreprocessStringFromMessageId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StrcmpTagVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StoiTagVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitPreprocessorArgs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetStringAccuracy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetStringPower: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCurrentTeamNameString: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     GetBagNameString: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonResultString: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetQuestionMarks: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StrcpySimple: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StrncpySimple: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StrncpySimpleNoPad: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StrncmpSimple: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StrncpySimpleNoPadSafe: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
-    SpecialStrcpy: Symbol[
-        Optional[List[int]],
+    StrcpyName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StrncpyName: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     GetStringFromFile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadStringFile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetStringFromFileVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StringFromMessageId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyStringFromMessageId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyNStringFromMessageId: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     LoadTblTalk: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTalkLine: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    IsAOrBPressed: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     NewDialogBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetScreenWindowsColor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetBothScreensWindowsColor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDialogBoxField0xC: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadCursors: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDialogBoxTrailer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Arm9LoadUnkFieldNa0x2029EC8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Arm9StoreUnkFieldNa0x2029ED8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadAlert: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PrintClearMark: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CreateNormalMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FreeNormalMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsNormalMenuActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNormalMenuResult: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CreateAdvancedMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FreeAdvancedMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsAdvancedMenuActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAdvancedMenuCurrentOption: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAdvancedMenuResult: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CreateDBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FreeDBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsDBoxActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShowMessageInDBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShowDBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CreatePortraitBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FreePortraitBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShowPortraitBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HidePortraitBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMenuOptionActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShowKeyboard: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetKeyboardStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetKeyboardStringResult: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PrintMoveOptionMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PrintIqSkillsMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNotifyNote: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetNotifyNote: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EventFlagBackupVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitMainTeamAfterQuiz: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptSpecialProcess0x3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptSpecialProcess0x4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ReadStringSave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckStringSave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WriteSaveFile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ReadSaveFile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcChecksum: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckChecksumInvalid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NoteSaveBase: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WriteQuickSaveInfo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ReadSaveHeader: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NoteLoadBase: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ReadQuickSaveInfo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetGameMode: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitScriptVariableValues: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitEventFlagScriptVars: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ZinitScriptVariable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadScriptVariableRaw: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadScriptVariableValue: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadScriptVariableValueAtIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SaveScriptVariableValue: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SaveScriptVariableValueAtIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadScriptVariableValueSum: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadScriptVariableValueBytes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SaveScriptVariableValueBytes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptVariablesEqual: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    EventFlagResume: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     EventFlagBackup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DumpScriptVariableValues: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RestoreScriptVariableValues: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitScenarioScriptVars: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetScenarioScriptVar: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpecialEpisodeType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetExecuteSpecialEpisodeType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasPlayedOldGame: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetPerformanceFlagWithChecks: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetScenarioBalance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScenarioFlagBackup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitWorldMapScriptVars: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDungeonListScriptVars: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetDungeonConquest: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonMode: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GlobalProgressAlloc: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResetGlobalProgress: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMonsterFlag1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterFlag1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMonsterFlag2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasMonsterBeenAttackedInDungeons: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetDungeonTipShown: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonTipShown: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMaxReachedFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMaxReachedFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementNbAdventures: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbAdventures: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanMonsterSpawn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementExclusiveMonsterCounts: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyProgressInfoTo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyProgressInfoFromScratchTo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyProgressInfoFrom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyProgressInfoFromScratchFrom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitKaomadoStream: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitPortraitBox: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitPortraitBoxWithMonsterId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetPortraitEmotion: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetPortraitLayout: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetPortraitOffset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AllowPortraitDefault: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsValidPortrait: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadPortrait: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetEnterDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDungeonInit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsNoLossPenaltyDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckMissionRestrictions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbFloors: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbFloorsPlusOne: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonGroup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbPrecedingFloors: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbFloorsDungeonGroup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonFloorToGroupFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMissionRank: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetOutlawLevel: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetOutlawLeaderLevel: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetOutlawMinionLevel: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddGuestMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetGroundNameId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAdventureLogStructLocation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAdventureLogDungeonFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAdventureLogDungeonFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ClearAdventureLogStruct: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAdventureLogCompleted: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsAdventureLogNotEmpty: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAdventureLogCompleted: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementNbDungeonsCleared: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbDungeonsCleared: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementNbFriendRescues: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbFriendRescues: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementNbEvolutions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbEvolutions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementNbSteals: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementNbEggsHatched: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbEggsHatched: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbPokemonJoined: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbMovesLearned: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetVictoriesOnOneFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetVictoriesOnOneFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetPokemonJoined: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetPokemonBattled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbPokemonBattled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementNbBigTreasureWins: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetNbBigTreasureWins: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbBigTreasureWins: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetNbRecycled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbRecycled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementNbSkyGiftsSent: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetNbSkyGiftsSent: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbSkyGiftsSent: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ComputeSpecialCounters: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RecruitSpecialPokemonLog: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IncrementNbFainted: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbFainted: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetItemAcquired: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbItemAcquired: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetChallengeLetterCleared: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSentryDutyGamePoints: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetSentryDutyGamePoints: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyLogTo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyLogFrom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAbilityString: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAbilityDescStringId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTypeStringId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    GetConversion2ConvertToType: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     CopyBitsTo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CopyBitsFrom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
-    StoreDefaultTeamName: Symbol[
-        Optional[List[int]],
+    StoreDefaultTeamData: Symbol[
+        Optional[list[int]],
         None,
     ]
 
-    GetTeamNameCheck: Symbol[
-        Optional[List[int]],
+    GetMainTeamNameWithCheck: Symbol[
+        Optional[list[int]],
         None,
     ]
 
-    GetTeamName: Symbol[
-        Optional[List[int]],
+    GetMainTeamName: Symbol[
+        Optional[list[int]],
         None,
     ]
 
-    SetTeamName: Symbol[
-        Optional[List[int]],
+    SetMainTeamName: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     GetRankupPoints: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRank: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SubFixedPoint: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BinToDecFixedPoint: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CeilFixedPoint: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonGoesUp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTurnLimit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoesNotSaveWhenEntering: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TreasureBoxDropsEnabled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsLevelResetDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMaxItemsAllowed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMoneyAllowed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMaxRescueAttempts: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsRecruitingAllowed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLeaderChangeFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRandomMovementChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanEnemyEvolve: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMaxMembersAllowed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsIqEnabled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsTrapInvisibleWhenAttacking: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     JoinedAtRangeCheck: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsDojoDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsFutureDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSpecialEpisodeDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RetrieveFromItemList1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsForbiddenFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Copy16BitsFrom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RetrieveFromItemList2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsInvalidForMission: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsExpEnabledInDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSkyExclusiveDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     JoinedAtRangeCheck2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBagCapacity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBagCapacitySpecialEpisode: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRankUpEntry: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBgRegionArea: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadMonsterMd: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNameRaw: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetName: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNameWithGender: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpeciesString: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNameString: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpriteIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDexNumber: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetCategoryString: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterGender: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBodySize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpriteSize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpriteFileSize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetShadowSize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpeedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMobilityType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRegenSpeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetCanMoveFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetChanceAsleep: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLowKickMultiplier: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBaseHp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanThrowItems: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanEvolve: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterPreEvolution: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBaseOffensiveStat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBaseDefensiveStat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAbility: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRecruitRate2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRecruitRate1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetExp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEvoParameters: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTreasureBoxChances: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetIqGroup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpawnThreshold: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NeedsItemToSpawn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetExclusiveItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFamilyIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadM2nAndN2m: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GuestMonsterToGroundMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StrcmpMonsterName: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLvlUpEntry: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEncodedHalfword: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEvoFamily: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEvolutions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShuffleHiddenPower: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBaseForm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBaseFormBurmyWormadamShellosGastrodonCherrim: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBaseFormCastformCherrimDeoxys: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAllBaseForms: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDexNumberVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterIdFromSpawnEntry: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMonsterId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMonsterLevelAndId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterLevelFromSpawnEntry: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterGenderVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterValid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsUnown: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsShaymin: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsCastform: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsCherrim: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsDeoxys: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSecondFormIfValid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FemaleToMaleForm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetBaseFormCastformDeoxysCherrim: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BaseFormsEqual: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DexNumbersEqual: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GendersEqual: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GendersEqualNotGenderless: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterOnTeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNbRecruited: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsValidTeamMember: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMainCharacter: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTeamMember: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetHeroMemberIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetPartnerMemberIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMainCharacter1MemberIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMainCharacter2MemberIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMainCharacter3MemberIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetHero: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetPartner: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMainCharacter1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMainCharacter2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMainCharacter3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFirstEmptyMemberIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterNotNicknamed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveActiveMembersFromAllTeams: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveActiveMembersFromSpecialEpisodeTeam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveActiveMembersFromRescueTeam: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     CheckTeamMemberIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterIdInNormalRange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetActiveTeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetActiveTeamMember: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetActiveRosterIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetTeamSetupHeroAndPartnerOnly: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetTeamSetupHeroOnly: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetPartyMembers: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RefillTeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ClearItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ChangeGiratinaFormIfSkyDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    GetIqSkillStringId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DoesTacticFollowLeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetUnlockedTactics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetUnlockedTacticFlags: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     CanLearnIqSkill: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLearnableIqSkills: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisableIqSkill: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnableIqSkill: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpeciesIqSkill: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    DisableAllIqSkills: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EnableAllLearnableIqSkills: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     IqSkillFlagTest: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNextIqSkill: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    GetExplorerMazeTeamName: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     GetExplorerMazeMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WriteMonsterInfoToSave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ReadMonsterInfoFromSave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WriteMonsterToSave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ReadMonsterFromSave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEvolutionPossibilities: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterEvoStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyTacticString: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     GetSosMailCount: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMissionValid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateMission: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateDailyMissions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRequestsDone: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRequestsDoneWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AnyDungeonRequestsDone: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAcceptedMission: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMissionByTypeAndDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckAcceptedMissionByTypeAndDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateAllPossibleMonstersList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DeleteAllPossibleMonstersList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateAllPossibleDungeonsList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DeleteAllPossibleDungeonsList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateAllPossibleDeliverList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DeleteAllPossibleDeliverList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ClearMissionData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterMissionAllowed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanMonsterBeUsedForMissionWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanMonsterBeUsedForMission: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterMissionAllowedStory: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanSendItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsAvailableItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAvailableItemDeliveryList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetActorMatchingStorageId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptSpecialProcess0x3D: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptSpecialProcess0x3E: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptSpecialProcess0x17: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ItemAtTableIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MainLoop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonSwapIdToIdx: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonSwapIdxToId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonModeSpecial: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResumeBgm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FlushChannels: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ParseDseEvents: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateSequencerTracks: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateChannels: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateTrackVolumeEnvelopes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnableVramBanksInSetDontSave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnableVramBanksInSet: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GeomMtxLoad4x3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GeomMtxMult4x3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GeomGxFifoSendMtx4x3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ClearIrqFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnableIrqFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetIrqFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnableIrqFiqFlags: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetIrqFiqFlags: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetIrqFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WaitForever2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WaitForInterrupt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ArrayFill16: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ArrayCopy16: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ArrayFill32: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ArrayCopy32: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ArrayFill32Fast: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ArrayCopy32Fast: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemsetFast: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MemcpyFast: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AtomicExchange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FileInit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     abs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     mbtowc: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryAssignByte: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryAssignByteWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     wcstombs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     memcpy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     memmove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     memset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     memchr: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     memcmp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     memset_internal: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __vsprintf_internal_slice: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryAppendToSlice: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __vsprintf_internal: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     vsprintf: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     snprintf: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     sprintf: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strlen: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strcpy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strncpy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strcat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strncat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strcmp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strncmp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strchr: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strcspn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     strstr: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     wcslen: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __addsf3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __divsf3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __extendsfdf2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __fixsfsi: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __floatsisf: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __floatunsisf: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __mulsf3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     sqrtf: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __subsf3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __divsi3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __udivsi3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     __udivsi3_no_zero_check: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Arm9DataProtocol(Protocol):
     SECURE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     START_MODULE_PARAMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEFAULT_MEMORY_ARENA_SIZE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LOG_MAX_ARG: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_SOURCE_CODE_ORB_ITEM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DAMAGE_SOURCE_CODE_NON_ORB_ITEM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AURA_BOW_ID_LAST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     NUMBER_OF_ITEMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAX_MONEY_CARRIED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAX_MONEY_STORED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DIALOG_BOX_LIST_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SCRIPT_VARS_VALUES_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MONSTER_ID_LIMIT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAX_RECRUITABLE_TEAM_MEMBERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     NATURAL_LOG_VALUE_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CART_REMOVED_IMG_DATA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_DEBUG_EMPTY: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_DEBUG_FORMAT_LINE_FILE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_DEBUG_NO_PROG_POS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_DEBUG_SPACED_PRINT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_DEBUG_FATAL: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_DEBUG_NEWLINE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_DEBUG_LOG_NULL: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_DEBUG_STRING_NEWLINE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_EFFECT_EFFECT_BIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_MONSTER_MONSTER_BIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_BALANCE_M_LEVEL_BIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_DUNGEON_DUNGEON_BIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_MONSTER_M_ATTACK_BIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_MONSTER_M_GROUND_BIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_FILE_DIRECTORY_INIT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     AVAILABLE_ITEMS_IN_GROUP_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_2097FF8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KECLEON_SHOP_ITEM_TABLE_LISTS_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KECLEON_SHOP_ITEM_TABLE_LISTS_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCLUSIVE_ITEM_ATTACK_BOOSTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCLUSIVE_ITEM_DEFENSE_BOOSTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCLUSIVE_ITEM_SPECIAL_DEFENSE_BOOSTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCLUSIVE_ITEM_EFFECT_DATA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_SHOP_ITEM_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TYPE_SPECIFIC_EXCLUSIVE_ITEMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECOIL_MOVE_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PUNCH_MOVE_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVE_POWER_STARS_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVE_ACCURACY_STARS_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PARTNER_TALK_KIND_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SCRIPT_VARS_LOCALS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SCRIPT_VARS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PORTRAIT_LAYOUTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KAOMADO_FILEPATH: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WONDER_MAIL_BITS_MAP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WONDER_MAIL_BITS_SWAP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_209E12C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_209E164: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_209E280: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WONDER_MAIL_ENCRYPTION_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_DATA_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ADVENTURE_LOG_ENCOUNTERS_MONSTER_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_DATA__NA_209E6BC: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TACTIC_NAME_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_NAME_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_RETURN_STATUS_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUSES_FULL_DESCRIPTION_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_DATA__NA_209EAAC: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_FLOOR_RANKS_AND_ITEM_LISTS_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_FLOORS_FORBIDDEN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_FLOOR_RANKS_AND_ITEM_LISTS_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_FLOOR_RANKS_PTRS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_RESTRICTIONS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPECIAL_BAND_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MUNCH_BELT_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GUMMI_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MIN_IQ_EXCLUSIVE_MOVE_USER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WONDER_GUMMI_IQ_GAIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     AURA_BOW_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MIN_IQ_ITEM_MASTER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEF_SCARF_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     POWER_BAND_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WONDER_GUMMI_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ZINC_BAND_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EGG_HP_BONUS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVOLUTION_HP_BONUS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_FLV_SHIFT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVOLUTION_PHYSICAL_STAT_BONUSES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_CONSTANT_SHIFT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EGG_STAT_BONUSES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVOLUTION_SPECIAL_STAT_BONUSES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_LN_PREFACTOR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_DEF_PREFACTOR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_AT_PREFACTOR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_LN_ARG_PREFACTOR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FORBIDDEN_FORGOT_MOVE_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TACTICS_UNLOCK_LEVEL_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CLIENT_LEVEL_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OUTLAW_LEVEL_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OUTLAW_MINION_LEVEL_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     HIDDEN_POWER_BASE_POWER_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     VERSION_EXCLUSIVE_MONSTERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     IQ_SKILL_RESTRICTIONS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SECONDARY_TERRAIN_TYPES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SENTRY_DUTY_MONSTER_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     IQ_SKILLS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     IQ_GROUP_SKILLS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MONEY_QUANTITY_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_20A20B0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     IQ_GUMMI_GAIN_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GUMMI_BELLY_RESTORE_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAG_CAPACITY_TABLE_SPECIAL_EPISODES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAG_CAPACITY_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPECIAL_EPISODE_MAIN_CHARACTERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GUEST_MONSTER_DATA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RANK_UP_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DS_DOWNLOAD_TEAMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_PTR__NA_20A2C84: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     UNOWN_SPECIES_ADDITIONAL_CHARS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MONSTER_SPRITE_DATA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     REMOTE_STRINGS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RANK_STRINGS_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_MENU_STRING_IDS_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RANK_STRINGS_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_MENU_STRING_IDS_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RANK_STRINGS_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_DUNGEON_UNLOCK_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     NO_SEND_ITEM_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_20A3CC8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_20A3CE4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_BANNED_STORY_MONSTERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ITEM_DELIVERY_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_RANK_POINTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_BANNED_MONSTERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LEVEL_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVENTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_20A68BC: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEMO_TEAMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ACTOR_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ENTITIES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_9: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_11: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_12: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_MENU_13: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JOB_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_SWAP_ID_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAP_MARKER_PLACEMENTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TRIG_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_20ADFB0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ARM9_UNKNOWN_TABLE__NA_20AE924: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MEMORY_ALLOCATION_ARENA_GETTERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PRNG_SEQUENCE_NUM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LOADED_OVERLAY_GROUP_0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LOADED_OVERLAY_GROUP_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LOADED_OVERLAY_GROUP_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEBUG_IS_INITIALIZED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PACK_FILES_OPENED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PACK_FILE_PATHS_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GAME_STATE_VALUES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BAG_ITEMS_PTR_MIRROR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ITEM_DATA_TABLE_PTRS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_MOVE_TABLES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MOVE_DATA_TABLE_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WAN_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RENDER_3D: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RENDER_3D_FUNCTIONS_64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LANGUAGE_INFO_DATA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TBL_TALK_GROUP_STRING_ID_START: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KEYBOARD_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     NOTIFY_NOTE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEFAULT_HERO_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEFAULT_PARTNER_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GAME_MODE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GLOBAL_PROGRESS_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ADVENTURE_LOG_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ITEM_TABLES_PTRS_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TEAM_MEMBER_TABLE_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MISSION_LIST_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     REMOTE_STRING_PTR_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RANK_STRING_PTR_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SMD_EVENTS_FUN_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MUSIC_DURATION_LOOKUP_TABLE_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MUSIC_DURATION_LOOKUP_TABLE_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JUICE_BAR_NECTAR_IQ_GAIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TEXT_SPEED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HERO_START_LEVEL: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PARTNER_START_LEVEL: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
@@ -5193,164 +5368,164 @@ Arm9Protocol = SectionProtocol[
 
 class ItcmFunctionsProtocol(Protocol):
     Render3dSetTextureParams: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3dSetPaletteBase: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3dRectangle: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GeomSetPolygonAttributes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3dQuadrilateral: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3dTiling: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3dTextureInternal: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3dTexture: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3dTextureNoSetup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NewRender3dElement: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     EnqueueRender3dTexture: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnqueueRender3dTiling: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NewRender3dRectangle: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NewRender3dQuadrilateral: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NewRender3dTexture: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NewRender3dTiling: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Render3dProcessQueue: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     GetKeyN2MSwitch: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     GetKeyN2M: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     GetKeyN2MBaseForm: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     GetKeyM2NSwitch: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     GetKeyM2N: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     GetKeyM2NBaseForm: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     ShouldMonsterRunAwayVariationOutlawCheck: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     AiMovement: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     CalculateAiTargetPos: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     ChooseAiMove: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
     LightningRodStormDrainCheck: Symbol[
-        List[int],
+        list[int],
         None,
     ]
 
 
 class ItcmDataProtocol(Protocol):
     MEMORY_ALLOCATION_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEFAULT_MEMORY_ARENA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEFAULT_MEMORY_ARENA_BLOCKS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RENDER_3D_FUNCTIONS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
@@ -5364,1589 +5539,1589 @@ ItcmProtocol = SectionProtocol[
 
 class Move_effectsFunctionsProtocol(Protocol):
     DoMoveDamage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveIronTail: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageMultihitUntilMiss: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveYawn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSleep: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveNightmare: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMorningSun: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveVitalThrow: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDig: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSweetScent: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCharm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRainDance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHail: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHealStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBubble: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveEncore: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSuperFang: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePainSplit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTorment: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveStringShot: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSwagger: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSnore: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveScreech: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageCringe30: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWeatherBall: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWhirlpool: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFakeTears: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSpite: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFocusEnergy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSmokescreen: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMirrorMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveOverheat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveAuroraBeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMemento: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveOctazooka: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFlatter: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWillOWisp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveReturn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveGrudge: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCounter: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageBurn10FlameWheel: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageBurn10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveExpose: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDoubleTeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveGust: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBoostDefense1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveParalyze: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBoostAttack1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRazorWind: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBide: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBideUnleash: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCrunch: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageCringe20: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageParalyze20: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveEndeavor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFacade: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageLowerSpeed20: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBrickBreak: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageLowerSpeed100: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFocusPunch: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageDrain: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveReversal: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSmellingSalt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMetalSound: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTickle: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveShadowHold: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHaze: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageMultihitFatigue: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageWeightDependent: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageBoostAllStats: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSynthesis: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBoostSpeed1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRapidSpin: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSureShot: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCosmicPower: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSkyAttack: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageFreeze15: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMeteorMash: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveEndure: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLowerSpeed1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageConfuse10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePsywave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageLowerDefensiveStatVariable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePsychoBoost: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveUproar: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWaterSpout: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePsychUp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageWithRecoil: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EntityIsValidMoveEffects: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRecoverHp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveEarthquake: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNaturePowerVariant: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveNaturePower: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageParalyze10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSelfdestruct: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveShadowBall: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCharge: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveThunderbolt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMist: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFissure: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageCringe10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSafeguard: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveAbsorb: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DefenderAbilityIsActiveMoveEffects: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSkillSwap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSketch: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHeadbutt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDoubleEdge: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSandstorm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLowerAccuracy1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamagePoison40: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveGrowth: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSacredFire: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveOhko: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSolarBeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSonicBoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFly: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveExplosion: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWaterfall: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageLowerAccuracy40: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveStockpile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTwister: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTwineedle: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRecoverHpTeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMinimize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSeismicToss: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveConfuse: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTaunt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMoonlight: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHornDrill: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSwordsDance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveConversion: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveConversion2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHelpingHand: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBoostDefense2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWarp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveThundershock: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveThunderWave: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveZapCannon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBlock: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePoison: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveToxic: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePoisonFang: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamagePoison18: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveJumpKick: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBounce: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHiJumpKick: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTriAttack: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSwapItems: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTripleKick: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSport: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMudSlap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageStealItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveAmnesia: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveNightShade: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveGrowl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSurf: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRolePlay: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSunnyDay: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLowerDefense1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWish: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFakeOut: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSleepTalk: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePayDay: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveAssist: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRest: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveIngrain: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSwallow: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCurse: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSuperpower: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSteelWing: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSpitUp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDynamicPunch: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveKnockOff: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSplash: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSetDamage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBellyDrum: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLightScreen: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSecretPower: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageConfuse30: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBulkUp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePause: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFeatherDance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBeatUp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBlastBurn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCrushClaw: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBlazeKick: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePresent: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveEruption: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTransform: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePoisonTail: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBlowback: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCamouflage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTailGlow: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageConstrict10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePerishSong: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWrap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSpikes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMagnitude: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMagicCoat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveProtect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDefenseCurl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDecoy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMistBall: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDestinyBond: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMirrorCoat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCalmMind: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHiddenPower: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMetalClaw: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveAttract: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCopycat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFrustration: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLeechSeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMetronome: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDreamEater: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSnatch: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRecycle: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveReflect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDragonRage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDragonDance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSkullBash: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageLowerSpecialDefense50: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveStruggle: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRockSmash: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSeeTrap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTakeaway: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRebound: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSwitchPositions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveStayAway: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCleanse: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSiesta: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTwoEdge: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveNoMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveScan: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePowerEars: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTransfer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSlowDown: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSearchlight: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePetrify: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePounce: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTrawl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveEscape: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDrought: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTrapBuster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWildCall: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveInvisify: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveOneShot: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHpGauge: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveVacuumCut: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveReviver: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveShocker: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveEcho: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFamish: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveOneRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFillIn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveItemize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHurl: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMobile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveSeeStairs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLongToss: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePierce: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHammerArm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveAquaRing: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveGastroAcid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHealingWish: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCloseCombat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLuckyChant: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveGuardSwap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHealOrder: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHealBlock: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveThunderFang: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDefog: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTrumpCard: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveIceFang: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePsychoShift: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveEmbargo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveBrine: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveNaturalGift: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveGyroBall: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveShadowForce: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveGravity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveStealthRock: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveChargeBeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageEatItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveAcupressure: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMagnetRise: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveToxicSpikes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLastResort: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTrickRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWorrySeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageHpDependent: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHeartSwap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRoost: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePowerSwap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMovePowerTrick: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFeint: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFlareBlitz: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDefendOrder: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveFireFang: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLunarDance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMiracleEye: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveWakeUpSlap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveMetalBurst: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveHeadSmash: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveCaptivate: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveLeafStorm: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDracoMeteor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveRockPolish: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveNastyPlot: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTag0x1AB: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTag0x1A6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveTag0x1A7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Move_effectsDataProtocol(Protocol):
     MAX_HP_CAP_MOVE_EFFECTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LUNAR_DANCE_PP_RESTORATION: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -6964,7 +7139,7 @@ class Overlay0FunctionsProtocol(Protocol):
 
 class Overlay0DataProtocol(Protocol):
     TOP_MENU_MUSIC_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
@@ -6978,109 +7153,109 @@ Overlay0Protocol = SectionProtocol[
 
 class Overlay1FunctionsProtocol(Protocol):
     CreateMainMenus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddMainMenuOption: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddSubMenuOption: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay1DataProtocol(Protocol):
     PRINTS_STRINGS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PRINTS_STRUCT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CONTINUE_CHOICE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SUBMENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAIN_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAIN_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_9: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAIN_DEBUG_MENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY1_D_BOX_LAYOUT_10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAIN_DEBUG_MENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -7094,979 +7269,979 @@ Overlay1Protocol = SectionProtocol[
 
 class Overlay10FunctionsProtocol(Protocol):
     SprintfStatic: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEffectAnimationField0x19: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AnimationHasMoreFrames: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEffectAnimation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveAnimation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpecialMonsterMoveAnimation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTrapAnimation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemAnimation1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemAnimation2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveAnimationSpeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsBackgroundTileset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MainGame: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay10DataProtocol(Protocol):
     FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAD_POISON_DAMAGE_COOLDOWN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PROTEIN_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WATERFALL_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     AURORA_BEAM_LOWER_ATTACK_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPAWN_CAP_NO_MONSTER_HOUSE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OREN_BERRY_DAMAGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     IRON_TAIL_LOWER_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TWINEEDLE_POISON_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXTRASENSORY_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ROCK_SLIDE_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CRUNCH_LOWER_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FOREWARN_FORCED_MISS_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     UNOWN_STONE_DROP_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SITRUS_BERRY_HP_RESTORATION: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MUDDY_WATER_LOWER_ACCURACY_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SILVER_WIND_BOOST_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     POISON_TAIL_POISON_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     THUNDERSHOCK_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BOUNCE_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     HEADBUTT_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FIRE_FANG_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SACRED_FIRE_BURN_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WHIRLPOOL_CONSTRICTION_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXP_ELITE_EXP_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     HEAL_ORDER_HP_RESTORATION: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STEEL_WING_BOOST_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GOLD_THORN_POWER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BURN_DAMAGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     POISON_DAMAGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPAWN_COOLDOWN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ORAN_BERRY_FULL_HP_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LIFE_SEED_HP_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OCTAZOOKA_LOWER_ACCURACY_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SUPER_LUCK_CRIT_RATE_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CONSTRICT_LOWER_SPEED_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ICE_FANG_FREEZE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SMOG_POISON_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LICK_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     THUNDER_FANG_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BITE_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SKY_ATTACK_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ICE_FANG_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BLAZE_KICK_BURN_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FLAMETHROWER_BURN_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DIZZY_PUNCH_CONFUSE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SECRET_POWER_EFFECT_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     METAL_CLAW_BOOST_ATTACK_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TECHNICIAN_MOVE_POWER_THRESHOLD: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SONICBOOM_FIXED_DAMAGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RAIN_ABILITY_BONUS_REGEN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LEECH_SEED_HP_DRAIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCLUSIVE_ITEM_EXP_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     AFTERMATH_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SET_DAMAGE_STATUS_DAMAGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     INTIMIDATOR_ACTIVATION_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TYPE_ADVANTAGE_MASTER_CRIT_RATE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ORAN_BERRY_HP_RESTORATION: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SITRUS_BERRY_FULL_HP_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SNORE_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     METEOR_MASH_BOOST_ATTACK_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CRUSH_CLAW_LOWER_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BURN_DAMAGE_COOLDOWN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STICK_POWER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BUBBLE_LOWER_SPEED_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ICE_BODY_BONUS_REGEN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     POWDER_SNOW_FREEZE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     POISON_STING_POISON_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPAWN_COOLDOWN_THIEF_ALERT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     POISON_FANG_POISON_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WEATHER_MOVE_TURN_COUNT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     THUNDER_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     THUNDERBOLT_PARALYZE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MONSTER_HOUSE_MAX_MONSTER_SPAWNS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TWISTER_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPEED_BOOST_TURNS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FAKE_OUT_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     THUNDER_FANG_CRINGE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FLARE_BLITZ_BURN_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FLAME_WHEEL_BURN_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PSYBEAM_CONFUSE_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TRI_ATTACK_STATUS_CHANCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MIRACLE_CHEST_EXP_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WONDER_CHEST_EXP_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPAWN_CAP_WITH_MONSTER_HOUSE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     POISON_DAMAGE_COOLDOWN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LEECH_SEED_DAMAGE_COOLDOWN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GEO_PEBBLE_DAMAGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GRAVELEROCK_DAMAGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RARE_FOSSIL_DAMAGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GINSENG_CHANCE_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ZINC_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     IRON_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CALCIUM_STAT_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WISH_BONUS_REGEN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DRAGON_RAGE_FIXED_DAMAGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CORSOLA_TWIG_POWER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CACNEA_SPIKE_POWER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GOLD_FANG_POWER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SILVER_SPIKE_POWER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     IRON_THORN_POWER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SCOPE_LENS_CRIT_RATE_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     HEALING_WISH_HP_RESTORATION: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ME_FIRST_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FACADE_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     IMPRISON_TURN_RANGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SLEEP_TURN_RANGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     NIGHTMARE_TURN_RANGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BURN_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     REST_TURN_RANGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MATCHUP_IMMUNE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPORT_CONDITION_TURN_RANGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SURE_SHOT_TURN_RANGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DETECT_BAND_MOVE_ACCURACY_DROP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TINTED_LENS_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SMOKESCREEN_TURN_RANGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHADOW_FORCE_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DIG_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DIVE_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BOUNCE_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     POWER_PITCHER_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUICK_DODGER_MOVE_ACCURACY_DROP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MATCHUP_NEUTRAL_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     AIR_BLADE_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     YAWN_TURN_RANGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPEED_BOOST_TURN_RANGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SOLARBEAM_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SKY_ATTACK_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RAZOR_WIND_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FOCUS_PUNCH_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SKULL_BASH_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FLY_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WEATHER_BALL_TYPE_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LAST_RESORT_DAMAGE_MULT_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SYNTHESIS_HP_RESTORATION_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ROOST_HP_RESTORATION_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOONLIGHT_HP_RESTORATION_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MORNING_SUN_HP_RESTORATION_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     REVERSAL_DAMAGE_MULT_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WATER_SPOUT_DAMAGE_MULT_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WRING_OUT_DAMAGE_MULT_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ERUPTION_DAMAGE_MULT_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WEATHER_BALL_DAMAGE_MULT_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EAT_ITEM_EFFECT_IGNORE_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CASTFORM_WEATHER_ATTRIBUTE_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAD_POISON_DAMAGE_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TYPE_MATCHUP_COMBINATOR_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OFFENSIVE_STAT_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEFENSIVE_STAT_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     NATURE_POWER_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPLES_AND_BERRIES_ITEM_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECRUITMENT_LEVEL_BOOST_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     NATURAL_GIFT_ITEM_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RANDOM_MUSIC_ID_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_ITEM_CHANCES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MALE_ACCURACY_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MALE_EVASION_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FEMALE_ACCURACY_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FEMALE_EVASION_STAGE_MULTIPLIERS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MUSIC_ID_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TYPE_MATCHUP_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     METRONOME_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TILESET_PROPERTIES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FIXED_ROOM_PROPERTIES_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TRAP_ANIMATION_INFO: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ITEM_ANIMATION_INFO: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVE_ANIMATION_INFO: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EFFECT_ANIMATION_INFO: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPECIAL_MONSTER_MOVE_ANIMATION_INFO: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -8080,334 +8255,334 @@ Overlay10Protocol = SectionProtocol[
 
 class Overlay11FunctionsProtocol(Protocol):
     FuncThatCallsCommandParsing: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptCommandParsing: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadFileFromRomVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SsbLoad2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StationLoadHanger: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptStationLoadTalk: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SsbLoad1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptSpecialProcessCall: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpecialRecruitmentSpecies: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PrepareMenuAcceptTeamMember: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitRandomNpcJobs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRandomNpcJobType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRandomNpcJobSubtype: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRandomNpcJobStillAvailable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AcceptRandomNpcJob: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GroundMainLoop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetAllocArenaGround: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFreeArenaGround: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GroundMainReturnDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GroundMainNextDay: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     JumpToTitleScreen: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ReturnToTitleScreen: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScriptSpecialProcess0x16: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadBackgroundAttributes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadMapType10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadMapType11: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpecialLayoutBackground: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAnimDataFields: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAnimDataFieldsWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitAnimDataFromOtherAnimData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAnimDataFields2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadObjectAnimData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitAnimDataFromOtherAnimDataVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AnimRelatedFunction: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AllocAndInitPartnerFollowDataAndLiveActorList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitPartnerFollowDataAndLiveActorList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DeleteLiveActor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitPartnerFollowData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDirectionLiveActor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetDirectionLiveActor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SprintfStatic: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetExclusiveItemRequirements: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonMapPos: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WorldMapSetMode: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WorldMapSetCamera: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StatusUpdate: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay11DataProtocol(Protocol):
     OVERLAY11_UNKNOWN_TABLE__NA_2316A38: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SCRIPT_COMMAND_PARSING_DATA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SCRIPT_OP_CODE_NAMES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SCRIPT_OP_CODES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY11_DEBUG_STRINGS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     C_ROUTINE_NAMES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     C_ROUTINES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_WEATHER_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_WAN_FILES_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OBJECTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECRUITMENT_TABLE_LOCATIONS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECRUITMENT_TABLE_LEVELS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECRUITMENT_TABLE_SPECIES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LEVEL_TILEMAP_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY11_OVERLAY_LOAD_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     UNIONALL_RAM_ADDRESS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GROUND_STATE_MAP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GROUND_STATE_WEATHER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GROUND_STATE_PTRS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WORLD_MAP_MODE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -8436,164 +8611,164 @@ Overlay12Protocol = SectionProtocol[
 
 class Overlay13FunctionsProtocol(Protocol):
     EntryOverlay13: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ExitOverlay13: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Overlay13SwitchFunctionNa238A1C8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Overlay13SwitchFunctionNa238A574: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetPersonality: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetOptionStringFromID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     WaitForNextStep: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay13DataProtocol(Protocol):
     QUIZ_BORDER_COLOR_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PORTRAIT_ATTRIBUTES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_MALE_FEMALE_BOOST_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY13_UNKNOWN_STRUCT__NA_238C024: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_MENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STARTERS_PARTNER_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STARTERS_HERO_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STARTERS_TYPE_INCOMPATIBILITY_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STARTERS_STRINGS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_QUESTION_STRINGS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_ANSWER_STRINGS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_ANSWER_POINTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY13_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY13_UNKNOWN_POINTER__NA_238CEA0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY13_UNKNOWN_POINTER__NA_238CEA4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY13_UNKNOWN_POINTER__NA_238CEA8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_DEBUG_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY13_UNKNOWN_STRUCT__NA_238CF14: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     QUIZ_QUESTION_ANSWER_ASSOCIATIONS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -8607,314 +8782,314 @@ Overlay13Protocol = SectionProtocol[
 
 class Overlay14FunctionsProtocol(Protocol):
     SentrySetupState: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryUpdateDisplay: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentrySetExitingState: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryRunState: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentrySetStateIntermediate: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryStateExit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState9: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryStateA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryStateB: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryStateGenerateChoices: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryStateGetUserChoice: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryStateFinalizeRound: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryStateF: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState11: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState12: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState13: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState14: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState15: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState16: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState17: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState18: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState19: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState1A: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryStateFinalizePoints: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState1C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState1D: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState1E: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState1F: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState20: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SentryState21: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay14DataProtocol(Protocol):
     SENTRY_DUTY_STRUCT_SIZE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SENTRY_LOUDRED_MONSTER_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_TOP_SESSIONS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_INSTRUCTIONS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_HERE_COMES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_WHOSE_FOOTPRINT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_TRY_AGAIN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_OUT_OF_TIME: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_FOOTPRINT_IS_6EE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_COME_IN_6EF: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_WRONG: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_BUCK_UP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_FOOTPRINT_IS_6EC: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_COME_IN_6ED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_KEEP_YOU_WAITING: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_THATLL_DO_IT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SENTRY_CHATOT_MONSTER_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_NO_MORE_VISITORS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STRING_ID_SENTRY_THATS_ALL: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SENTRY_GROVYLE_MONSTER_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FOOTPRINT_DEBUG_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SENTRY_DUTY_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SENTRY_DUTY_STATE_HANDLER_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -8932,42 +9107,42 @@ class Overlay15FunctionsProtocol(Protocol):
 
 class Overlay15DataProtocol(Protocol):
     BANK_MAIN_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BANK_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BANK_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BANK_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BANK_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BANK_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY15_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY15_UNKNOWN_POINTER__NA_238B180: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -8985,72 +9160,72 @@ class Overlay16FunctionsProtocol(Protocol):
 
 class Overlay16DataProtocol(Protocol):
     EVO_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_SUBMENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_MAIN_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_MENU_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EVO_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY16_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY16_UNKNOWN_POINTER__NA_238CE40: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY16_UNKNOWN_POINTER__NA_238CE58: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -9068,102 +9243,102 @@ class Overlay17FunctionsProtocol(Protocol):
 
 class Overlay17DataProtocol(Protocol):
     ASSEMBLY_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_MAIN_MENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_MAIN_MENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_SUBMENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_SUBMENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_SUBMENU_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_SUBMENU_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_SUBMENU_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_SUBMENU_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ASSEMBLY_SUBMENU_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY17_FUNCTION_POINTER_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY17_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY17_UNKNOWN_POINTER__NA_238BE00: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY17_UNKNOWN_POINTER__NA_238BE04: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY17_UNKNOWN_POINTER__NA_238BE08: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -9181,127 +9356,127 @@ class Overlay18FunctionsProtocol(Protocol):
 
 class Overlay18DataProtocol(Protocol):
     OVERLAY18_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_9: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_D_BOX_LAYOUT_11: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVES_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVES_SUBMENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVES_SUBMENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVES_MAIN_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVES_SUBMENU_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVES_SUBMENU_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVES_SUBMENU_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVES_SUBMENU_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVES_SUBMENU_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_FUNCTION_POINTER_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_UNKNOWN_POINTER__NA_238D620: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_UNKNOWN_POINTER__NA_238D624: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY18_UNKNOWN_POINTER__NA_238D628: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -9315,119 +9490,119 @@ Overlay18Protocol = SectionProtocol[
 
 class Overlay19FunctionsProtocol(Protocol):
     GetBarItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRecruitableMonsterAll: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRecruitableMonsterList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRecruitableMonsterListRestricted: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay19DataProtocol(Protocol):
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_UNLOCKABLE_DUNGEONS_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_RECRUITABLE_MONSTER_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_AVAILABLE_ITEMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_MENU_CONFIRM_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_MENU_CONFIRM_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_MAIN_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_SUBMENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAR_SUBMENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY19_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY19_UNKNOWN_POINTER__NA_238E360: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY19_UNKNOWN_POINTER__NA_238E364: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -9460,127 +9635,127 @@ class Overlay20FunctionsProtocol(Protocol):
 
 class Overlay20DataProtocol(Protocol):
     OVERLAY20_UNKNOWN_POINTER__NA_238CF7C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_MENU_CONFIRM_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_MENU_CONFIRM_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_SUBMENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_SUBMENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_MAIN_MENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY20_UNKNOWN_TABLE__NA_238D014: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_MAIN_MENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT_9: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT1_0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_D_BOX_LAYOUT1_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     RECYCLE_MAIN_MENU_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY20_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D120: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D124: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D128: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D12C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -9598,102 +9773,102 @@ class Overlay21FunctionsProtocol(Protocol):
 
 class Overlay21DataProtocol(Protocol):
     SWAP_SHOP_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_SUBMENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_SUBMENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_MAIN_MENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_MAIN_MENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_SUBMENU_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY21_UNKNOWN_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_D_BOX_LAYOUT_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SWAP_SHOP_D_BOX_LAYOUT_9: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY21_JP_STRING: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY21_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY21_UNKNOWN_POINTER__NA_238CF40: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY21_UNKNOWN_POINTER__NA_238CF44: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -9711,112 +9886,112 @@ class Overlay22FunctionsProtocol(Protocol):
 
 class Overlay22DataProtocol(Protocol):
     SHOP_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY22_UNKNOWN_STRUCT__NA_238E85C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_MAIN_MENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_MAIN_MENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_MAIN_MENU_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY22_UNKNOWN_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_D_BOX_LAYOUT_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_D_BOX_LAYOUT_9: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SHOP_D_BOX_LAYOUT_10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY22_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC60: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC68: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC6C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC70: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -9834,97 +10009,97 @@ class Overlay23FunctionsProtocol(Protocol):
 
 class Overlay23DataProtocol(Protocol):
     OVERLAY23_UNKNOWN_VALUE__NA_238D2E8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY23_UNKNOWN_VALUE__NA_238D2EC: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_MAIN_MENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_MAIN_MENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_MAIN_MENU_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_MAIN_MENU_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY23_UNKNOWN_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_D_BOX_LAYOUT_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY23_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY23_UNKNOWN_POINTER__NA_238D8A0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -9942,62 +10117,62 @@ class Overlay24FunctionsProtocol(Protocol):
 
 class Overlay24DataProtocol(Protocol):
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY24_UNKNOWN_STRUCT__NA_238C514: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAYCARE_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAYCARE_MAIN_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY24_UNKNOWN_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAYCARE_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAYCARE_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAYCARE_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAYCARE_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAYCARE_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY24_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY24_UNKNOWN_POINTER__NA_238C600: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -10015,77 +10190,77 @@ class Overlay25FunctionsProtocol(Protocol):
 
 class Overlay25DataProtocol(Protocol):
     OVERLAY25_UNKNOWN_STRUCT__NA_238B498: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_MAIN_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_SUBMENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY25_UNKNOWN_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     APPRAISAL_D_BOX_LAYOUT_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY25_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY25_UNKNOWN_POINTER__NA_238B5E0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -10103,37 +10278,37 @@ class Overlay26FunctionsProtocol(Protocol):
 
 class Overlay26DataProtocol(Protocol):
     OVERLAY26_UNKNOWN_TABLE__NA_238AE20: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY26_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF60: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF64: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF68: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF6C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY26_UNKNOWN_POINTER5__NA_238AF70: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -10151,97 +10326,97 @@ class Overlay27FunctionsProtocol(Protocol):
 
 class Overlay27DataProtocol(Protocol):
     OVERLAY27_UNKNOWN_VALUE__NA_238C948: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY27_UNKNOWN_VALUE__NA_238C94C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY27_UNKNOWN_STRUCT__NA_238C950: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_ITEMS_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_ITEMS_SUBMENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_ITEMS_SUBMENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_ITEMS_MAIN_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY27_UNKNOWN_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISCARD_D_BOX_LAYOUT_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY27_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY27_UNKNOWN_POINTER__NA_238CE80: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY27_UNKNOWN_POINTER__NA_238CE84: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -10270,3974 +10445,3984 @@ Overlay28Protocol = SectionProtocol[
 
 class Overlay29FunctionsProtocol(Protocol):
     GetWeatherColorTable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonAlloc: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonPtrMaster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonZInit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonFree: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RunDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EntityIsValid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFloorType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryForcedLoss: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsBossFight: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsCurrentFixedRoomBossFight: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMarowakTrainingMaze: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FixedRoomIsSubstituteRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StoryRestrictionsEnabled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetScenarioBalanceVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FadeToBlack: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckTouchscreenArea: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTrapInfo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemInfo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTileAtEntity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateEntityPixelPos: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CreateEnemyEntity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnTrap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnItemEntity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldMinimapDisplayEntity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldDisplayEntity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldDisplayEntityWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanSeeTarget: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanTargetEntity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanTargetPosition: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTeamMemberIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SubstitutePlaceholderStringTags: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateMapSurveyorFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PointCameraToMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateCamera: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ItemIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetVisibilityRange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayEffectAnimationEntity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayEffectAnimationPos: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayEffectAnimationPixelPos: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AnimationDelayOrSomething: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateStatusIconFlags: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayEffectAnimation0x171Full: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayEffectAnimation0x171: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShowPpRestoreEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayEffectAnimation0x1A9: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayEffectAnimation0x18E: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadMappaFileAttributes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemIdToSpawn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterSpawnListPartialCopy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsOnMonsterSpawnList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterIdToSpawn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterLevelToSpawn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDirectionTowardsPosition: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetChebyshevDistance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsPositionActuallyInSight: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsPositionInSight: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLeader: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLeaderMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FindNearbyUnoccupiedTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FindClosestUnoccupiedTileWithin2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FindFarthestUnoccupiedTileWithin2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FindUnoccupiedTileWithin3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TickStatusTurnCounter: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AdvanceFrame: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetDungeonRngPreseed23Bit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateDungeonRngSeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonRngPreseed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetDungeonRngPreseed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDungeonRng: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRand16Bit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRandInt: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRandRange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRandOutcome: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcStatusDuration: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRngUnsetSecondary: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRngSetSecondary: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRngSetPrimary: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MusicTableIdxToMusicId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ChangeDungeonMusic: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySwitchPlace: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetLeaderActionFields: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ClearMonsterActionFields: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMonsterActionFields: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetActionPassTurnOrWalk: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemToUseByIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemToUse: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemAction: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveUsedItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddDungeonSubMenuOption: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisableDungeonSubMenuOption: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetActionRegularAttack: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetActionUseMovePlayer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetActionUseMoveAi: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RunFractionalTurn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RunLeaderTurn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySpawnMonsterAndActivatePlusMinus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsFloorOver: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DecrementWindCounter: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetForcedLossReason: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetForcedLossReason: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BindTrapToTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnEnemyTrapAtPos: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PrepareTrapperTrap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySpawnTrap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySpawnTrapperTrap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryTriggerTrap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyMudTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyStickyTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyGrimyTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyPitfallTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplySummonTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyPpZeroTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyPokemonTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyTripTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyStealthRockTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyToxicSpikesTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyRandomTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyGrudgeTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyTrapEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RevealTrapsNearby: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldRunMonsterAi: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DebugRecruitingEnabled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateIqBooster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSecretBazaarNpcBehavior: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLeaderAction: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEntityTouchscreenArea: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetLeaderAction: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldLeaderKeepRunning: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckLeaderTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ChangeLeader: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UseSingleUseItemWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UseSingleUseItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UseThrowableItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResetDamageData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FreeLoadedAttackSpriteAndMore: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAndLoadCurrentAttackAnimation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ClearLoadedAttackSprite: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetLoadedAttackSpriteId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonGetTotalSpriteFileSize: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonGetSpriteIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     JoinedAtRangeCheck2Veneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FloorNumberIsEven: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetKecleonIdToSpawnByFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StoreSpriteFileIndexBothGenders: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadMonsterSpriteInner: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SwapMonsterWanFileIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadMonsterSprite: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DeleteMonsterSpriteFile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DeleteAllMonsterSpriteFiles: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EuFaintCheck: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HandleFaint: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MoveMonsterToPos: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateAiTargetPos: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMonsterTypeAndAbility: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateSlowStart: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateArtificialWeatherAbilities: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterApparentId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateTraceAndColorChange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DefenderAbilityIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateConversion2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateTruant: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryPointCameraToMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RestorePpAllMovesSetFlags: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckTeamMemberIdxVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterIdInNormalRangeVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BoostIQ: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldMonsterHeadToStairs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MewSpawnCheck: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryEndStatusWithAbility: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ExclusiveItemEffectIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTeamMemberWithIqSkill: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TeamMemberHasEnabledIqSkill: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TeamLeaderIqSkillIsEnabled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CountMovesOutOfPp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasSuperEffectiveMoveAgainstUser: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryEatItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckSpawnThreshold: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasLowHealth: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AreEntitiesAdjacent: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSpecialStoryAlly: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsExperienceLocked: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitOtherMonsterData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitEnemySpawnStats: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitEnemyStatsAndMoves: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnTeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnInitialMonsters: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitTeamMember: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SubInitMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MarkShopkeeperSpawn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnShopkeepers: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMaxHpAtLevel: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetOffensiveStatAtLevel: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDefensiveStatAtLevel: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetOutlawSpawnData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ExecuteMonsterAction: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateFlashFireOnAllMonsters: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasStatusThatPreventsActing: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMobilityTypeCheckSlip: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMobilityTypeCheckSlipAndFloating: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsInvalidSpawnTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMobilityTypeAfterIqSkills: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CannotStandOnTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcSpeedStage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcSpeedStageWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNumberOfAttacks: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterDisplayNameType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterName: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SprintfStatic: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterDrowsy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterHasNonvolatileNonsleepStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterHasImmobilizingStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterHasAttackInterferingStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterHasSkillInterferingStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterHasLeechSeedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterHasWhifferStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterVisuallyImpaired: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterMuzzled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterHasMiracleEyeStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterHasNegativeStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterSleeping: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanMonsterMoveInDirection: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDirectionalMobilityType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsMonsterCornered: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanAttackInDirection: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanAiMonsterMoveInDirection: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldMonsterRunAway: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldMonsterRunAwayVariation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SafeguardIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LeafGuardIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsProtectedFromStatDrops: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NoGastroAcidStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AbilityIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AbilityIsActiveVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OtherMonsterAbilityIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LevitateIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterIsType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsTypeAffectedByGravity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasTypeAffectedByGravity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanSeeInvisibleMonsters: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasDropeyeStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IqSkillIsEnabled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateIqSkills: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveTypeForMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMovePower: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateStateFlags: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsProtectedFromNegativeStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddExpSpecial: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnemyEvolution: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LevelUpItemEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryDecreaseLevel: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LevelUp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMonsterMoves: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EvolveMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSleepAnimationId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisplayActions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckNonLeaderTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndNegativeStatusCondition: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndNegativeStatusConditionWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TransferNegativeStatusCondition: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndSleepClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndBurnClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndFrozenClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndCringeClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndReflectClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryRemoveSnatchedMonsterFromDungeonStruct: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndCurseClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndLeechSeedClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndSureShotClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndInvisibleClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndBlinkerClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndMuzzledStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndMiracleEyeStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndMagnetRiseStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TransferNegativeBlinkerClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndFrozenStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EndProtectStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryRestoreRoostTyping: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryTriggerMonsterHouse: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    ShouldMonsterFollowLeader: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     RunMonsterAi: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyDamageAndEffects: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyDamage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AftermathCheck: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTypeMatchupBothTypes: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ScrappyShouldActivate: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsTypeIneffectiveAgainstGhost: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GhostImmunityIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTypeMatchup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcTypeBasedDamageEffects: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcDamage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyDamageAndEffectsWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcRecoilDamageFixed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcDamageFixed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcDamageFixedNoCategory: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CalcDamageFixedWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateShopkeeperModeAfterAttack: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateShopkeeperModeAfterTrap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResetDamageCalcDiagnostics: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpecificRecruitCheck: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RecruitCheck: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryRecruit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySpawnMonsterAndTickSpawnCounter: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryNonLeaderItemPickUp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AuraBowIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ExclusiveItemOffenseBoost: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ExclusiveItemDefenseBoost: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TeamMemberHasItemActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TeamMemberHasExclusiveItemEffectActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySpawnEnemyItemDrop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TickNoSlipCap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TickStatusAndHealthRegen: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InflictSleepStatusSingle: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictSleepStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsProtectedFromSleepClassStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictNightmareStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictNappingStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictYawningStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictSleeplessStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictPausedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictInfatuatedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictBurnStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictBurnStatusWholeTeam: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictPoisonedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictBadlyPoisonedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictFrozenStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictConstrictionStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictShadowHoldStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictIngrainStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictWrappedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FreeOtherWrappedMonsters: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictPetrifiedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LowerOffensiveStat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LowerDefensiveStat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BoostOffensiveStat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BoostDefensiveStat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FlashFireShouldActivate: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ActivateFlashFire: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyOffensiveStatMultiplier: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyDefensiveStatMultiplier: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BoostHitChanceStat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LowerHitChanceStat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictCringeStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictParalysisStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BoostSpeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BoostSpeedOneStage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LowerSpeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySealMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     BoostOrLowerSpeed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResetHitChanceStat: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ExclusiveItemEffectIsActiveWithLogging: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateQuickFeet: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictTerrifiedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictGrudgeStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictConfusedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictCoweringStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryRestoreHp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryIncreaseHp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RevealItems: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RevealStairs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RevealEnemies: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictLeechSeedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictDestinyBondStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictSureShotStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictWhifferStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictSetDamageStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictFocusEnergyStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictDecoyStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictCurseStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictSnatchStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictTauntStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictStockpileStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictInvisibleStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictPerishSongStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictEncoreStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryDecreaseBelly: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryIncreaseBelly: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictMuzzledStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryTransform: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictMobileStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictExposedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateIdentifyCondition: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictBlinkerStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsBlinded: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictCrossEyedStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictEyedropStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictSlipStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictDropeyeStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RestoreAllMovePP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RestoreOneMovePP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RestoreRandomMovePP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyProteinEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyCalciumEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyIronEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyZincEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictLongTossStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictPierceStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictGastroAcidStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetAquaRingHealingCountdownTo4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyAquaRingHealing: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictAquaRingStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictLuckyChantStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictHealBlockStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MonsterHasEmbargoStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogItemBlockedByEmbargo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictEmbargoStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictMiracleEyeStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictMagnetRiseStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsFloating: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictSafeguardStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictMistStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictWishStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictMagicCoatStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictLightScreenStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictReflectStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictProtectStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictMirrorCoatStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictEndureStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictMirrorMoveStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictConversion2Status: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryInflictVitalThrowStatus: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryResetStatChanges: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MirrorMoveIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MistIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     Conversion2IsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AiConsiderMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryAddTargetToAiTargetList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsAiTargetEligible: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsTargetInRange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldUsePp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEntityMoveTargetAndRange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEntityNaturalGiftInfo: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetEntityWeatherBallType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ActivateMotorDrive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateFrisk: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateBadDreams: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ActivateStench: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateSteadfast: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsInSpawnList: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ChangeShayminForme: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyItemEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyCheriBerryEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyPechaBerryEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyRawstBerryEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyHungerSeedEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyVileSeedEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyViolentSeedEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyGinsengEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyBlastSeedEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyGummiBoostsDungeonMode: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanMonsterUseItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyGrimyFoodEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyMixElixirEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyDoughSeedEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyViaSeedEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyGravelyrockEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyGonePebbleEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyGracideaEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldTryEatItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMaxPpWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MoveIsNotPhysical: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CategoryIsNotPhysical: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryDrought: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryPounce: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryBlowAway: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryExplosion: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryAftermathExplosion: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryWarp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnsureCanStandCurrentTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateNondamagingDefenderAbility: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateNondamagingDefenderExclusiveItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveRangeDistance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MoveHitCheck: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsHyperBeamVariant: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsChargingTwoTurnMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasMaxGinsengBoost99: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TwoTurnMoveForcedMiss: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRandOutcomeUserTargetInteraction: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRandOutcomeUserAction: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanAiUseMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CanMonsterUseMove: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateMovePp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDamageSourceWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LowerSshort: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlayMoveAnimation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMoveAnimationId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldMovePlayAlternativeAnimation: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ExecuteMoveEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DoMoveDamageInlined: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DealDamage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DealDamageWithTypeAndPowerBoost: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DealDamageProjectile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DealDamageWithType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PerformDamageSequence: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StatusCheckerCheck: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetApparentWeather: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryWeatherFormChange: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ActivateSportCondition: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryActivateWeather: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DigitCount: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadTextureUi: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisplayNumberTextureUi: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisplayCharTextureUi: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisplayUi: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTileSafe: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsFullFloorFixedRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsCurrentTilesetBackground: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySpawnGoldenChamber: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CountItemsOnFloorForAcuteSniffer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetStairsSpawnPosition: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PositionIsOnStairs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetStairsRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDefaultTileTextureId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DetermineAllTilesWalkableNeighbors: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DetermineTileWalkableNeighbors: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateTrapsVisibility: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DrawTileGrid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HideTileGrid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DiscoverMinimap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PositionHasItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PositionHasMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySmashWall: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsWaterTileset: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetRandomSpawnMonsterID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     NearbyAllyIqSkillIsEnabled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResetGravity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GravityIsActive: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        None,
+    ]
+
+    TryActivateGravity: Symbol[
+        Optional[list[int]],
         None,
     ]
 
     ShouldBoostKecleonShopSpawnChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetShouldBoostKecleonShopSpawnChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateShouldBoostKecleonShopSpawnChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetDoughSeedFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TrySpawnDoughSeedPoke: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSecretBazaar: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShouldBoostHiddenStairsSpawnChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetShouldBoostHiddenStairsSpawnChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateShouldBoostHiddenStairsSpawnChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSecretRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSecretFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HiddenStairsPresent: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HiddenStairsTrigger: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetDungeonGenInfoUnk0C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMinimapData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DrawMinimapTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     UpdateMinimap: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMinimapDataE447: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMinimapDataE447: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMinimapDataE448: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitWeirdMinimapMatrix: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitMinimapDisplayTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadFixedRoomDataVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsNormalFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTileTerrain: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonRand100: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ClearHiddenStairs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FlagHallwayJunctions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateStandardFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateOuterRingFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateCrossroadsFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateLineFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateCrossFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateBeetleFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MergeRoomsVertically: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateOuterRoomsFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsNotFullFloorFixedRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateFixedRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateOneRoomMonsterHouseFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateTwoRoomsWithMonsterHouseFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateExtraHallways: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetGridPositions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitDungeonGrid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AssignRooms: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CreateRoomsAndAnchors: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateSecondaryStructures: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AssignGridCellConnections: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CreateGridCellConnections: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateRoomImperfections: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CreateHallway: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnsureConnectedGrid: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetTerrainObstacleChecked: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FinalizeJunctions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateKecleonShop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateMonsterHouse: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateMazeRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateMaze: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateMazeLine: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetSpawnFlag5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsNextToHallway: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResolveInvalidSpawns: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ConvertSecondaryTerrainToChasms: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     EnsureImpassableTilesAreWalls: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitializeTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResetFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PosIsOutOfBounds: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ShuffleSpawnPositions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MarkNonEnemySpawns: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MarkEnemySpawns: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetSecondaryTerrainOnWall: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateSecondaryTerrainFormations: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     StairsAlwaysReachable: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetNextFixedRoomAction: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ConvertWallsToChasms: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResetInnerBoundaryTileRows: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResetImportantSpawnPositions: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnStairs: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetHiddenStairsType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetFinalKecleonShopSpawnChance: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ResetHiddenStairsSpawn: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     PlaceFixedRoomTile: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FixedRoomActionParamToDirection: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     ApplyKeyEffect: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadFixedRoomData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadFixedRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OpenFixedBin: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CloseFixedBin: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AreOrbsAllowed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AreTileJumpsAllowed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AreTrawlOrbsAllowed: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AreOrbsAllowedVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AreLateGameTrapsEnabled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AreMovesEnabled: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsRoomIlluminated: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMatchingMonsterId: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateItemExplicit: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateAndSpawnItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsHiddenStairsFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsSecretBazaarVeneer: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateStandardItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateCleanItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryLeaderItemPickUp: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveGroundItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnDroppedItemWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SpawnDroppedItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TryGenerateUnownStoneDrop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HasHeldItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateMoneyQuantity: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckTeamItemsFlags: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     AddHeldItemToBag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RemoveEmptyItemsInBagWrapper: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     CheckActiveChallengeRequest: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMissionDestination: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsOutlawOrChallengeRequestFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsDestinationFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsCurrentMissionType: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsCurrentMissionTypeExact: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsOutlawMonsterHouseFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsGoldenChamber: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsLegendaryChallengeFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsJirachiChallengeFloor: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsDestinationFloorWithMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LoadMissionMonsterSprites: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MissionTargetEnemyIsDefeated: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetMissionTargetEnemyDefeated: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsDestinationFloorWithFixedRoom: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemToRetrieve: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetItemToDeliver: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetSpecialTargetItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsDestinationFloorWithItem: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsDestinationFloorWithHiddenOutlaw: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     IsDestinationFloorWithFleeingOutlaw: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMissionTargetEnemy: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetMissionEnemyMinionGroup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetTargetMonsterNotFoundFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetTargetMonsterNotFoundFlag: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     FloorHasMissionMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GenerateMissionEggMonster: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageByIdWithPopupCheckParticipants: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageByIdWithPopupCheckUser: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageWithPopupCheckUser: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageByIdQuiet: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageQuiet: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageByIdWithPopupCheckUserTarget: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageWithPopupCheckUserTarget: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageByIdQuietCheckUserTarget: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageByIdWithPopupCheckUserUnknown: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageByIdWithPopup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageWithPopup: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LogMessageById: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     InitPortraitDungeon: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OpenMessageLog: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RunDungeonMode: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisplayDungeonTip: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     SetBothScreensWindowColorToDefault: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     GetPersonalityIndex: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisplayMessage: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisplayMessage2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     YesNoMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DisplayMessageInternal: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OpenMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OthersMenuLoop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     OthersMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay29DataProtocol(Protocol):
     DUNGEON_STRUCT_SIZE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAX_HP_CAP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OFFSET_OF_DUNGEON_FLOOR_PROPERTIES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPAWN_RAND_MAX: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_PRNG_LCG_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_PRNG_LCG_INCREMENT_SECONDARY: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KECLEON_FEMALE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KECLEON_MALE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MSG_ID_SLOW_START: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXPERIENCE_POINT_GAIN_CAP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     JUDGMENT_MOVE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     REGULAR_ATTACK_MOVE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEOXYS_ATTACK_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEOXYS_SPEED_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GIRATINA_ALTERED_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PUNISHMENT_MOVE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OFFENSE_STAT_MAX: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PROJECTILE_MOVE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BELLY_LOST_PER_TURN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MONSTER_HEAL_HP_MAX: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVE_TARGET_AND_RANGE_SPECIAL_USER_HEALING: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PLAIN_SEED_STRING_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAX_ELIXIR_PP_RESTORATION: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SLIP_SEED_FAIL_STRING_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ROCK_WRECKER_MOVE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CASTFORM_NORMAL_FORM_MALE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CASTFORM_NORMAL_FORM_FEMALE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CHERRIM_SUNSHINE_FORM_MALE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CHERRIM_OVERCAST_FORM_FEMALE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CHERRIM_SUNSHINE_FORM_FEMALE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FLOOR_GENERATION_STATUS_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OFFSET_OF_DUNGEON_N_NORMAL_ITEM_SPAWNS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_GRID_COLUMN_BYTES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEFAULT_MAX_POSITION: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OFFSET_OF_DUNGEON_GUARANTEED_ITEM_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FIXED_ROOM_TILE_SPAWN_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TREASURE_BOX_1_ITEM_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FIXED_ROOM_REVISIT_OVERRIDES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FIXED_ROOM_MONSTER_SPAWN_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FIXED_ROOM_ITEM_SPAWN_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FIXED_ROOM_ENTITY_SPAWN_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_MUZZLED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_MAGNET_RISE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_MIRACLE_EYE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_LEECH_SEED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_LONG_TOSS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_BLINDED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_BURN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_SURE_SHOT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_INVISIBLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_SLEEP: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_CURSE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_FREEZE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_CRINGE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_BIDE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STATUS_ICON_ARRAY_REFLECT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DIRECTIONS_XY: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISPLACEMENTS_WITHIN_2_LARGEST_FIRST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DISPLACEMENTS_WITHIN_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ITEM_CATEGORY_ACTIONS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FRACTIONAL_TURN_SEQUENCE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BELLY_DRAIN_IN_WALLS_INT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BELLY_DRAIN_IN_WALLS_THOUSANDTHS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_MULTIPLIER_0_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_MULTIPLIER_1_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_MULTIPLIER_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CLOUDY_DAMAGE_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SOLID_ROCK_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_MAX_BASE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     WONDER_GUARD_MULTIPLIER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_FORMULA_MIN_BASE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TWO_TURN_MOVES_AND_STATUSES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SPATK_STAT_IDX: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ATK_STAT_IDX: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ROLLOUT_DAMAGE_MULT_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MAP_COLOR_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GUMMI_LIKE_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GUMMI_IQ_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DAMAGE_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_PTR_MASTER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LEADER_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_PRNG_STATE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_PRNG_STATE_SECONDARY_VALUES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LOADED_ATTACK_SPRITE_FILE_INDEX: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LOADED_ATTACK_SPRITE_PACK_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCL_ITEM_EFFECTS_WEATHER_ATK_SPEED_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCL_ITEM_EFFECTS_WEATHER_MOVE_SPEED_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCL_ITEM_EFFECTS_WEATHER_NO_STATUS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     EXCL_ITEM_EFFECTS_EVASION_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEFAULT_TILE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     HIDDEN_STAIRS_SPAWN_BLOCKED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FIXED_ROOM_DATA_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     NECTAR_IQ_BOOST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
@@ -14266,19 +14451,19 @@ Overlay3Protocol = SectionProtocol[
 
 class Overlay30FunctionsProtocol(Protocol):
     WriteQuicksaveData: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay30DataProtocol(Protocol):
     OVERLAY30_JP_STRING_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY30_JP_STRING_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -14292,339 +14477,339 @@ Overlay30Protocol = SectionProtocol[
 
 class Overlay31FunctionsProtocol(Protocol):
     EntryOverlay31: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     DungeonMenuSwitch: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     MovesMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HandleMovesMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     TeamMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RestMenu: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     RecruitmentSearchMenuLoop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     HelpMenuLoop: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay31DataProtocol(Protocol):
     DUNGEON_D_BOX_LAYOUT_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_MAIN_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_STRING_IDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389E30: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_7: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_SUBMENU_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_SUBMENU_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_SUBMENU_3: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_SUBMENU_4: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_9: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_10: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_11: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_12: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_13: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_JP_STRING: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_14: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_15: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_16: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_17: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_18: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_19: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389FE8: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_20: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_21: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_22: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_23: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_24: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_25: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_SUBMENU_5: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_26: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_STRUCT__NA_238A144: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_27: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_28: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_STRUCT__NA_238A190: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_SUBMENU_6: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_29: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_30: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_31: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_D_BOX_LAYOUT_32: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A260: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_VALUE__NA_238A264: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A268: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A26C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A270: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A274: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A278: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A27C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A280: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A284: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A288: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A28C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -14668,59 +14853,59 @@ Overlay33Protocol = SectionProtocol[
 
 class Overlay34FunctionsProtocol(Protocol):
     ExplorersOfSkyMain: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
 
 class Overlay34DataProtocol(Protocol):
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     START_MENU_CONFIRM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_DEBUG_MENU: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY34_RESERVED_SPACE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD080: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD084: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD088: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD08C: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD090: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
@@ -14828,7 +15013,7 @@ class Overlay9FunctionsProtocol(Protocol):
 
 class Overlay9DataProtocol(Protocol):
     TOP_MENU_RETURN_MUSIC_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
@@ -14846,302 +15031,322 @@ class RamFunctionsProtocol(Protocol):
 
 class RamDataProtocol(Protocol):
     DEFAULT_MEMORY_ARENA_MEMORY: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_2: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_2_BLOCKS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_2_MEMORY: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_COLORMAP_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DUNGEON_STRUCT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MOVE_DATA_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SOUND_MEMORY_ARENA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SOUND_MEMORY_ARENA_BLOCKS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SOUND_MEMORY_ARENA_MEMORY: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FRAMES_SINCE_LAUNCH: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAG_ITEMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAG_ITEMS_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_ITEMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     STORAGE_ITEM_QUANTITIES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KECLEON_SHOP_ITEMS_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KECLEON_SHOP_ITEMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     UNUSED_KECLEON_SHOP_ITEMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KECLEON_WARES_ITEMS_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KECLEON_WARES_ITEMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     UNUSED_KECLEON_WARES_ITEMS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MONEY_CARRIED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     MONEY_STORED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     AUDIO_COMMANDS_BUFFER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CURSOR_16_SPRITE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CURSOR_SPRITE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CURSOR_ANIMATION_CONTROL: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     CURSOR_16_ANIMATION_CONTROL: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ALERT_SPRITE_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ALERT_ANIMATION_CONTROL: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SOUND_MEMORY_ARENA_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DIALOG_BOX_LIST: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         None,
     ]
 
     LAST_NEW_MOVE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SCRIPT_VARS_VALUES: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     BAG_LEVEL: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     DEBUG_SPECIAL_EPISODE_NUMBER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     KAOMADO_STREAM: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PENDING_DUNGEON_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PENDING_STARTING_FLOOR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PLAY_TIME_SECONDS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     PLAY_TIME_FRAME_COUNTER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TEAM_NAME: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LEVEL_UP_DATA_MONSTER_ID: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LEVEL_UP_DATA_DECOMPRESS_BUFFER: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TEAM_MEMBER_TABLE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ENABLED_VRAM_BANKS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_1_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_2_PTR: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_1: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_1_BLOCKS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_1_MEMORY: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     SENTRY_DUTY_STRUCT: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     TURNING_ON_THE_SPOT_FLAG: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     LOADED_ATTACK_SPRITE_DATA: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     ROLLOUT_ICE_BALL_MISSED: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MULTIHIT_FATIGUE_MOVE_USED: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TWINEEDLE_HIT_TRACKER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RAPID_SPIN_BINDING_REMOVAL: Symbol[
+        Optional[list[int]],
         Optional[int],
     ]
 
     ROLLOUT_ICE_BALL_SUCCESSIVE_HITS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MULTIHIT_MOVE_SUCCESSIVE_HITS: Symbol[
+        Optional[list[int]],
         Optional[int],
     ]
 
     TRIPLE_KICK_SUCCESSIVE_HITS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     METRONOME_NEXT_INDEX: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
     FLOOR_GENERATION_STATUS: Symbol[
-        Optional[List[int]],
+        Optional[list[int]],
         Optional[int],
     ]
 
