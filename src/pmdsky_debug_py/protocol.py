@@ -791,6 +791,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    AreItemsEquivalent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     WriteItemsToSave: Symbol[
         Optional[list[int]],
         None,
@@ -812,6 +817,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     NormalizeTreasureBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SortItemList: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -1096,7 +1106,62 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    ScriptSpecialProcess0x39: Symbol[
+    CleanStickyItemsInBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountStickyItemsInBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TransmuteHeldItemInBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetFlagsForHeldItemInBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveHolderForItemInBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetHolderForItemInBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SortItemsInBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemovePokeItemsInBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsStorageFull: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountNbOfItemsInStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountNbOfValidItemsInStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountNbOfValidItemsInTimeDarknessInStorage: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -1111,12 +1176,52 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    RemoveItemsTypeInStorage: Symbol[
+    GetEquivBulkItemIdxInStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConvertStorageItemAtIdxToBulkItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConvertStorageItemAtIdxToItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveItemAtIdxInStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveBulkItemInStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveItemInStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StorageZInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AddBulkItemToStorage: Symbol[
         Optional[list[int]],
         None,
     ]
 
     AddItemToStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SortItemsInStorage: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -1187,6 +1292,16 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     BagHasExclusiveItemTypeForMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetExclusiveItemForMonsterFromBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetHpBoostFromExclusiveItems: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3056,6 +3171,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetRankStorageSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SubFixedPoint: Symbol[
         Optional[list[int]],
         None,
@@ -3837,6 +3957,16 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     CopyTacticString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetStatBoostsForMonsterSummary: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateMonsterSummaryFromTeamMember: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11205,6 +11335,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     MoveMonsterToPos: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateMonsterSummaryFromMonster: Symbol[
         Optional[list[int]],
         None,
     ]

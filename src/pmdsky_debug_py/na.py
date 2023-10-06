@@ -1325,6 +1325,14 @@ class NaArm9Functions:
         [0xD81C], [0x200D81C], None, "Zero-initializes an item struct.\n\nr0: item"
     )
 
+    AreItemsEquivalent = Symbol(
+        [0xD834],
+        [0x200D834],
+        None,
+        "Checks whether two items are equivalent and only checks the bitflags specified"
+        " by the bitmask.\n\nr0: item\nr1: item\nr2: bitmask\nreturn: bool",
+    )
+
     WriteItemsToSave = Symbol(
         [0xD95C],
         [0x200D95C],
@@ -1362,8 +1370,18 @@ class NaArm9Functions:
         [0xE1F8],
         [0x200E1F8],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: item ID\nreturn:"
+        "If the item is a treasure box return the first version of the treasure box in"
+        " the item list.\nOtherwise, return the same item ID.\n\nr0: item ID\nreturn:"
         " normalized item ID",
+    )
+
+    SortItemList = Symbol(
+        [0xE3A0],
+        [0x200E3A0],
+        None,
+        "Attempts to combine stacks of throwable items, sort the list, and then remove"
+        " empty items.\nAppears to use selection sort to sort the list in place.\n\nr0:"
+        " item array\nr1: number of items in array",
     )
 
     RemoveEmptyItems = Symbol(
@@ -1780,55 +1798,230 @@ class NaArm9Functions:
         [0xF874],
         [0x200F874],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: item_str\nreturn: ?",
+        "A wrapper around AddItemToBag with held_by being 0 (no holder).\n\nr0:"
+        " item_str\nreturn: bool item was successfully added to the bag",
     )
 
     AddItemToBag = Symbol(
         [0xF884],
         [0x200F884],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: item_str\nr1:"
-        " held_by\nreturn: ?",
+        "Attempts to add an item to the bag.\n\nr0: item_str\nr1: held_by\nreturn: bool"
+        " item was successfully added to the bag",
     )
 
-    ScriptSpecialProcess0x39 = Symbol(
+    CleanStickyItemsInBag = Symbol(
+        [0xF910],
+        [0x200F910],
+        None,
+        "Removes the sticky flag from all the items currently in the bag.\n\nNo"
+        " params.",
+    )
+
+    CountStickyItemsInBag = Symbol(
+        [0xF940],
+        [0x200F940],
+        None,
+        "Counts the number of sticky items currently in the bag.\n\nreturn: number of"
+        " sticky items",
+    )
+
+    TransmuteHeldItemInBag = Symbol(
+        [0xFA68],
+        [0x200FA68],
+        None,
+        "Looks for an item in the bag that has the same holder (held_by) as the"
+        " transmute item and convert\ntheir equivalent item in the treasure bag into"
+        " the transmute item. The monster's held item on\ntheir struct should be"
+        " updated accordingly directly before or after calling this function.\n\nr0:"
+        " transmute_item\nreturn: bool whether or not the item could be transmuted",
+    )
+
+    SetFlagsForHeldItemInBag = Symbol(
+        [0xFAEC],
+        [0x200FAEC],
+        None,
+        "Looks for an item in the bag that has the holder (held_by) as the item and"
+        " make their equivalent\nitem in the treasure bag sticky. The monster's held"
+        " item on their struct should be updated\naccordingly directly before or after"
+        " calling this function. Mostly used for making existing items\nsticky.\n\nr0:"
+        " held_by\nr1: item bitflags",
+    )
+
+    RemoveHolderForItemInBag = Symbol(
+        [0xFB54],
+        [0x200FB54],
+        None,
+        "Looks for an item in the bag that is equivalent and make the holder none. The"
+        " monster's held item\non their struct should be updated accordingly directly"
+        " before or after calling this function.\n\nr0: pointer to an item",
+    )
+
+    SetHolderForItemInBag = Symbol(
+        [0xFBE0],
+        [0x200FBE0],
+        None,
+        "Modifies the item at the index to be held by the monster specified and updates"
+        " the item with the\nholder as well. This only modifies the flags and held_by"
+        " of the item.\n\nr0: item index\nr1: pointer to an item\nr2: held_by",
+    )
+
+    SortItemsInBag = Symbol(
+        [0xFC24],
+        [0x200FC24],
+        None,
+        "Sorts the current items in the item bag but first checks if any Poke is in the"
+        " bag to remove. If\nPoke is found, add it to money carried.\n\nNo params.",
+    )
+
+    RemovePokeItemsInBag = Symbol(
+        [0xFCAC],
+        [0x200FCAC],
+        None,
+        "Checks the bag for any Poke and removes it after adding it to money"
+        " carried.\n\nNo params.",
+    )
+
+    IsStorageFull = Symbol(
         [0xFD54],
         [0x200FD54],
         None,
-        "Implements SPECIAL_PROC_0x39 (see ScriptSpecialProcessCall).\n\nreturn: bool",
+        "Checks if the storage is full accounting for the current rank of the"
+        " team.\nImplements SPECIAL_PROC_0x39 (see"
+        " ScriptSpecialProcessCall).\n\nreturn: bool",
+    )
+
+    CountNbOfItemsInStorage = Symbol(
+        [0xFD78],
+        [0x200FD78],
+        None,
+        "Counts the number of items currently in storage (including invalid"
+        " items).\n\nreturn: number of items in storage",
+    )
+
+    CountNbOfValidItemsInStorage = Symbol(
+        [0xFDB0],
+        [0x200FDB0],
+        None,
+        "Counts the number of items currently in storage that are valid.\n\nreturn:"
+        " number of valid items in storage",
+    )
+
+    CountNbOfValidItemsInTimeDarknessInStorage = Symbol(
+        [0xFE00],
+        [0x200FE00],
+        None,
+        "Counts the number of items currently in storage that are valid and in time and"
+        " darkness.\n\nreturn: number of valid items in storage",
     )
 
     CountNbItemsOfTypeInStorage = Symbol(
         [0xFEA8],
         [0x200FEA8],
         None,
-        "Returns the number of items of the given kind in the storage\n\nr0: item"
-        " ID\nreturn: count",
+        "Counts the number of instances of an item in storage not accounting for the"
+        " number of items\nin a stack.\n\nr0: item ID\nreturn: count",
     )
 
     CountItemTypeInStorage = Symbol(
         [0xFEE4],
         [0x200FEE4],
         None,
-        "Implements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_STORAGE (see"
-        " ScriptSpecialProcessCall).\n\nr0: pointer to an owned_item\nreturn: number of"
+        "Counts the number of a certain item in storage accounting for stackable"
+        " items.\nImplements SPECIAL_PROC_COUNT_ITEM_TYPE_IN_STORAGE (see"
+        " ScriptSpecialProcessCall).\n\nr0: pointer to an bulk_item\nreturn: number of"
         " items of the specified ID in storage",
     )
 
-    RemoveItemsTypeInStorage = Symbol(
+    GetEquivBulkItemIdxInStorage = Symbol(
+        [0xFF50],
+        [0x200FF50],
+        None,
+        "Checks for a storage item equivalent to the bulk_item and returns the index of"
+        " the item in storage.\nReturns -1 if unable to find an equivalent item.\n\nr0:"
+        " pointer to a bulk_item\nreturn: index in storage",
+    )
+
+    ConvertStorageItemAtIdxToBulkItem = Symbol(
+        [0xFFAC],
+        [0x200FFAC],
+        None,
+        "Get an item in storage and converts it into an equivalent bulk_item. This does"
+        " not remove the\nitem from storage.\n\nr0: item index\nr1: [output] pointer to"
+        " a bulk_item\nreturn: bool whether or not the item id is not 0",
+    )
+
+    ConvertStorageItemAtIdxToItem = Symbol(
+        [0xFFF4],
+        [0x200FFF4],
+        None,
+        "Get an item in storage and converts it into an equivalent item. The item does"
+        " NOT have the exists\nflag set to true. This does not remove the item from"
+        " storage.\n\nr0: item index\nr1: [output] pointer to an item\nreturn: bool"
+        " whether or not the item id is not 0",
+    )
+
+    RemoveItemAtIdxInStorage = Symbol(
+        [0x101A0],
+        [0x20101A0],
+        None,
+        "Remove an item at the specified index from storage.\n\nr0: storage item"
+        " idx\nreturn: bool whether or not the item was removed (fails if there is no"
+        " storage item at the index)",
+    )
+
+    RemoveBulkItemInStorage = Symbol(
         [0x101E4],
         [0x20101E4],
         None,
-        "Probably? Implements SPECIAL_PROC_0x2A (see ScriptSpecialProcessCall).\n\nr0:"
-        " pointer to an owned_item\nreturn: bool",
+        "Removes a storage item equivalent to the bulk_item passed from"
+        " storage.\nProbably? Implements SPECIAL_PROC_0x2A (see"
+        " ScriptSpecialProcessCall).\n\nr0: pointer to a bulk_item\nreturn: bool"
+        " whether an item was removed",
     )
 
-    AddItemToStorage = Symbol(
+    RemoveItemInStorage = Symbol(
+        [0x10260],
+        [0x2010260],
+        None,
+        "Removes a storage item equivalent to the item passed from storage.\n\nr0:"
+        " pointer to an item\nreturn: bool whether an item was removed",
+    )
+
+    StorageZInit = Symbol(
+        [0x102DC],
+        [0x20102DC],
+        None,
+        "Initializes the storage to be empty.\n\nNo params.",
+    )
+
+    AddBulkItemToStorage = Symbol(
         [0x1031C],
         [0x201031C],
         None,
-        "Implements SPECIAL_PROC_ADD_ITEM_TO_STORAGE (see"
-        " ScriptSpecialProcessCall).\n\nr0: pointer to an owned_item\nreturn: bool",
+        "Attempts to add the bulk_item to storage.\nImplements"
+        " SPECIAL_PROC_ADD_ITEM_TO_STORAGE (see ScriptSpecialProcessCall).\n\nr0:"
+        " pointer to a bulk_item\nreturn: bool whether an item was added",
+    )
+
+    AddItemToStorage = Symbol(
+        [0x103AC],
+        [0x20103AC],
+        None,
+        "Attempts to add the item to storage.\n\nr0: pointer to an item\nreturn: bool"
+        " whether an item was added",
+    )
+
+    SortItemsInStorage = Symbol(
+        [0x10424],
+        [0x2010424],
+        None,
+        "Sorts the item in storage by making converting them into normal items in a"
+        " temporary list and\nusing SortItemList on them. After, it puts the list of"
+        " items back into storage. This may also have\nanother use or do something"
+        " broader than just sorting because it outputs a bool array.\n\nr0: [output]"
+        " bool array?\nr1: number of items to sort (usually just the current size of"
+        " storage)",
     )
 
     GetMoneyStored = Symbol(
@@ -1946,8 +2139,28 @@ class NaArm9Functions:
         [0x110D8],
         [0x20110D8],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: excl_type\nr1: monster"
-        " ID\nr2: type ID 1\nr3: type ID 2\nreturn: item ID",
+        "Checks the bag for any exclusive item that applies to the monster or type(s)"
+        " and gets the item ID.\n\nr0: excl_type\nr1: monster ID\nr2: type ID 1\nr3:"
+        " type ID 2\nreturn: exclusive item ID",
+    )
+
+    GetExclusiveItemForMonsterFromBag = Symbol(
+        [0x1116C],
+        [0x201116C],
+        None,
+        "Checks the bag for any exclusive item that applies to the monster or type(s)"
+        " and copies that item\ninto the passed item struct.\n\nr0: [output]"
+        " item_struct\nr1: excl_type\nr2: monster ID\nr3: type ID 1\nstack[0]: type ID"
+        " 2\nreturn: bool whether an exclusive item was found",
+    )
+
+    GetHpBoostFromExclusiveItems = Symbol(
+        [0x11394],
+        [0x2011394],
+        None,
+        "Calculates the current HP boost from exclusive items. If none are active,"
+        " return 0.\n\nr0: some struct that has species ID in it?\nreturn: max HP boost"
+        " from exclusive items",
     )
 
     ApplyGummiBoostsToGroundMonster = Symbol(
@@ -4973,6 +5186,13 @@ class NaArm9Functions:
         " rank that can be returned is RANK_MASTER.\n\nreturn: Rank",
     )
 
+    GetRankStorageSize = Symbol(
+        [0x50CE4],
+        [0x2050CE4],
+        None,
+        "Gets the size of storage for the current rank.\n\nreturn: storage size",
+    )
+
     SubFixedPoint = Symbol(
         [0x50F10],
         [0x2050F10],
@@ -6275,6 +6495,25 @@ class NaArm9Functions:
         "Gets the string corresponding to a given message ID and copies it to the"
         " buffer specified in r0.\n\nThis function won't write more than 64"
         " bytes.\n\nr0: [output] buffer\nr1: tactic_id",
+    )
+
+    GetStatBoostsForMonsterSummary = Symbol(
+        [0x5A450],
+        [0x205A450],
+        None,
+        "Gets the stat boosts from held items, exclusive items, and iq skills and"
+        " stores them into the\nmonster_summary struct.\n\nr0: monster_summary\nr1:"
+        " enum monster_id monster_id\nr2: pointer to held item\nr3: iq\nstack[0]: bool"
+        " if Klutz is active",
+    )
+
+    CreateMonsterSummaryFromTeamMember = Symbol(
+        [0x5AE28],
+        [0x205AE28],
+        None,
+        "Creates a snapshot of the condition of a team_member struct in a"
+        " monster_summary struct.\n\nr0: [output] monster_summary\nr1: team_member\nr2:"
+        " bool is leader",
     )
 
     GetSosMailCount = Symbol(
@@ -16901,6 +17140,14 @@ class NaOverlay29Functions:
         "Moves a monster to the target position. Used both for regular movement and"
         " special movement (like teleportation).\n\nr0: Entity pointer\nr1: X target"
         " position\nr2: Y target position\nr3: ?",
+    )
+
+    CreateMonsterSummaryFromMonster = Symbol(
+        [0x1C78C],
+        [0x22F89CC],
+        None,
+        "Creates a snapshot of the condition of a monster struct in a monster_summary"
+        " struct.\n\nr0: [output] monster_summary\nr1: monster",
     )
 
     UpdateAiTargetPos = Symbol(
