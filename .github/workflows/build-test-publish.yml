@@ -4,11 +4,8 @@ name: Build and publish
 
 on:
   push: {}
-  pull_request: {}
-  workflow_run:
-    workflows: [ "Generate" ]
-    types:
-      - completed
+  repository_dispatch:
+    types: [ generated ]
 
 jobs:
   build:

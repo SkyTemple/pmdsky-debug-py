@@ -61,3 +61,8 @@ jobs:
         VERSION=$(tomlq '.project.version' src/pyproject.toml -r)
         git tag $VERSION -m "Release $RELEASE"
         git push -u origin $VERSION
+    - name: Dispatch build workflow
+      if: steps.check.outputs.newtag == 'new_tag'
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        event-type: generated
