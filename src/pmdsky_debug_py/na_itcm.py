@@ -10,8 +10,57 @@ class NaItcmArm7Functions:
         " subsystem.\n\nNo params.",
     )
 
+    ClearIrqFlag = Symbol(
+        None,
+        None,
+        None,
+        "Enables processor interrupts by clearing the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " disabled, 0x0 if they were already enabled)",
+    )
+
+    EnableIrqFlag = Symbol(
+        None,
+        None,
+        None,
+        "Disables processor interrupts by setting the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " already disabled, 0x0 if they were enabled)",
+    )
+
+    SetIrqFlag = Symbol(
+        None,
+        None,
+        None,
+        "Sets the value of the processor's interrupt flag according to the specified"
+        " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
+        " interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of"
+        " cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
+    )
+
+    EnableIrqFiqFlags = Symbol(
+        None,
+        None,
+        None,
+        "Disables processor all interrupts (both standard and fast) by setting the i"
+        " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
+        " cpsr & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
+    SetIrqFiqFlags = Symbol(
+        None,
+        None,
+        None,
+        "Sets the value of the processor's interrupt flags (i and f) according to the"
+        " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
+        " flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag"
+        " and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr"
+        " & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
 
 class NaItcmArm7Data:
+
     pass
 
 
@@ -11503,6 +11552,7 @@ class NaItcmMove_effectsSection:
 
 
 class NaItcmOverlay0Functions:
+
     pass
 
 
@@ -13548,10 +13598,12 @@ class NaItcmOverlay11Section:
 
 
 class NaItcmOverlay12Functions:
+
     pass
 
 
 class NaItcmOverlay12Data:
+
     pass
 
 
@@ -14095,6 +14147,7 @@ class NaItcmOverlay14Section:
 
 
 class NaItcmOverlay15Functions:
+
     pass
 
 
@@ -14140,6 +14193,7 @@ class NaItcmOverlay15Section:
 
 
 class NaItcmOverlay16Functions:
+
     pass
 
 
@@ -14205,6 +14259,7 @@ class NaItcmOverlay16Section:
 
 
 class NaItcmOverlay17Functions:
+
     pass
 
 
@@ -14280,6 +14335,7 @@ class NaItcmOverlay17Section:
 
 
 class NaItcmOverlay18Functions:
+
     pass
 
 
@@ -14496,10 +14552,12 @@ class NaItcmOverlay19Section:
 
 
 class NaItcmOverlay2Functions:
+
     pass
 
 
 class NaItcmOverlay2Data:
+
     pass
 
 
@@ -14517,6 +14575,7 @@ class NaItcmOverlay2Section:
 
 
 class NaItcmOverlay20Functions:
+
     pass
 
 
@@ -14618,6 +14677,7 @@ class NaItcmOverlay20Section:
 
 
 class NaItcmOverlay21Functions:
+
     pass
 
 
@@ -14699,6 +14759,7 @@ class NaItcmOverlay21Section:
 
 
 class NaItcmOverlay22Functions:
+
     pass
 
 
@@ -14794,6 +14855,7 @@ class NaItcmOverlay22Section:
 
 
 class NaItcmOverlay23Functions:
+
     pass
 
 
@@ -14877,6 +14939,7 @@ class NaItcmOverlay23Section:
 
 
 class NaItcmOverlay24Functions:
+
     pass
 
 
@@ -14936,6 +14999,7 @@ class NaItcmOverlay24Section:
 
 
 class NaItcmOverlay25Functions:
+
     pass
 
 
@@ -15005,6 +15069,7 @@ class NaItcmOverlay25Section:
 
 
 class NaItcmOverlay26Functions:
+
     pass
 
 
@@ -15055,6 +15120,7 @@ class NaItcmOverlay26Section:
 
 
 class NaItcmOverlay27Functions:
+
     pass
 
 
@@ -15138,10 +15204,12 @@ class NaItcmOverlay27Section:
 
 
 class NaItcmOverlay28Functions:
+
     pass
 
 
 class NaItcmOverlay28Data:
+
     pass
 
 
@@ -22585,10 +22653,12 @@ class NaItcmOverlay29Section:
 
 
 class NaItcmOverlay3Functions:
+
     pass
 
 
 class NaItcmOverlay3Data:
+
     pass
 
 
@@ -22941,10 +23011,12 @@ class NaItcmOverlay31Section:
 
 
 class NaItcmOverlay32Functions:
+
     pass
 
 
 class NaItcmOverlay32Data:
+
     pass
 
 
@@ -22958,10 +23030,12 @@ class NaItcmOverlay32Section:
 
 
 class NaItcmOverlay33Functions:
+
     pass
 
 
 class NaItcmOverlay33Data:
+
     pass
 
 
@@ -23043,10 +23117,12 @@ class NaItcmOverlay34Section:
 
 
 class NaItcmOverlay35Functions:
+
     pass
 
 
 class NaItcmOverlay35Data:
+
     pass
 
 
@@ -23060,10 +23136,12 @@ class NaItcmOverlay35Section:
 
 
 class NaItcmOverlay4Functions:
+
     pass
 
 
 class NaItcmOverlay4Data:
+
     pass
 
 
@@ -23077,10 +23155,12 @@ class NaItcmOverlay4Section:
 
 
 class NaItcmOverlay5Functions:
+
     pass
 
 
 class NaItcmOverlay5Data:
+
     pass
 
 
@@ -23094,10 +23174,12 @@ class NaItcmOverlay5Section:
 
 
 class NaItcmOverlay6Functions:
+
     pass
 
 
 class NaItcmOverlay6Data:
+
     pass
 
 
@@ -23111,10 +23193,12 @@ class NaItcmOverlay6Section:
 
 
 class NaItcmOverlay7Functions:
+
     pass
 
 
 class NaItcmOverlay7Data:
+
     pass
 
 
@@ -23130,10 +23214,12 @@ class NaItcmOverlay7Section:
 
 
 class NaItcmOverlay8Functions:
+
     pass
 
 
 class NaItcmOverlay8Data:
+
     pass
 
 
@@ -23149,6 +23235,7 @@ class NaItcmOverlay8Section:
 
 
 class NaItcmOverlay9Functions:
+
     pass
 
 
@@ -23171,6 +23258,7 @@ class NaItcmOverlay9Section:
 
 
 class NaItcmRamFunctions:
+
     pass
 
 

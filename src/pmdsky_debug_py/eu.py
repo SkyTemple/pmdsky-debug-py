@@ -10,8 +10,57 @@ class EuArm7Functions:
         " subsystem.\n\nNo params.",
     )
 
+    ClearIrqFlag = Symbol(
+        [0x5ED4],
+        [0x2385ED4],
+        None,
+        "Enables processor interrupts by clearing the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " disabled, 0x0 if they were already enabled)",
+    )
+
+    EnableIrqFlag = Symbol(
+        [0x5EE8],
+        [0x2385EE8],
+        None,
+        "Disables processor interrupts by setting the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " already disabled, 0x0 if they were enabled)",
+    )
+
+    SetIrqFlag = Symbol(
+        [0x5EFC],
+        [0x2385EFC],
+        None,
+        "Sets the value of the processor's interrupt flag according to the specified"
+        " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
+        " interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of"
+        " cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
+    )
+
+    EnableIrqFiqFlags = Symbol(
+        [0x5F14],
+        [0x2385F14],
+        None,
+        "Disables processor all interrupts (both standard and fast) by setting the i"
+        " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
+        " cpsr & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
+    SetIrqFiqFlags = Symbol(
+        [0x5F28],
+        [0x2385F28],
+        None,
+        "Sets the value of the processor's interrupt flags (i and f) according to the"
+        " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
+        " flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag"
+        " and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr"
+        " & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
 
 class EuArm7Data:
+
     pass
 
 
@@ -11735,6 +11784,7 @@ class EuMove_effectsSection:
 
 
 class EuOverlay0Functions:
+
     pass
 
 
@@ -13826,10 +13876,12 @@ class EuOverlay11Section:
 
 
 class EuOverlay12Functions:
+
     pass
 
 
 class EuOverlay12Data:
+
     pass
 
 
@@ -14382,6 +14434,7 @@ class EuOverlay14Section:
 
 
 class EuOverlay15Functions:
+
     pass
 
 
@@ -14427,6 +14480,7 @@ class EuOverlay15Section:
 
 
 class EuOverlay16Functions:
+
     pass
 
 
@@ -14492,6 +14546,7 @@ class EuOverlay16Section:
 
 
 class EuOverlay17Functions:
+
     pass
 
 
@@ -14567,6 +14622,7 @@ class EuOverlay17Section:
 
 
 class EuOverlay18Functions:
+
     pass
 
 
@@ -14783,10 +14839,12 @@ class EuOverlay19Section:
 
 
 class EuOverlay2Functions:
+
     pass
 
 
 class EuOverlay2Data:
+
     pass
 
 
@@ -14804,6 +14862,7 @@ class EuOverlay2Section:
 
 
 class EuOverlay20Functions:
+
     pass
 
 
@@ -14905,6 +14964,7 @@ class EuOverlay20Section:
 
 
 class EuOverlay21Functions:
+
     pass
 
 
@@ -14986,6 +15046,7 @@ class EuOverlay21Section:
 
 
 class EuOverlay22Functions:
+
     pass
 
 
@@ -15081,6 +15142,7 @@ class EuOverlay22Section:
 
 
 class EuOverlay23Functions:
+
     pass
 
 
@@ -15164,6 +15226,7 @@ class EuOverlay23Section:
 
 
 class EuOverlay24Functions:
+
     pass
 
 
@@ -15223,6 +15286,7 @@ class EuOverlay24Section:
 
 
 class EuOverlay25Functions:
+
     pass
 
 
@@ -15292,6 +15356,7 @@ class EuOverlay25Section:
 
 
 class EuOverlay26Functions:
+
     pass
 
 
@@ -15342,6 +15407,7 @@ class EuOverlay26Section:
 
 
 class EuOverlay27Functions:
+
     pass
 
 
@@ -15425,10 +15491,12 @@ class EuOverlay27Section:
 
 
 class EuOverlay28Functions:
+
     pass
 
 
 class EuOverlay28Data:
+
     pass
 
 
@@ -23186,10 +23254,12 @@ class EuOverlay29Section:
 
 
 class EuOverlay3Functions:
+
     pass
 
 
 class EuOverlay3Data:
+
     pass
 
 
@@ -23545,10 +23615,12 @@ class EuOverlay31Section:
 
 
 class EuOverlay32Functions:
+
     pass
 
 
 class EuOverlay32Data:
+
     pass
 
 
@@ -23562,10 +23634,12 @@ class EuOverlay32Section:
 
 
 class EuOverlay33Functions:
+
     pass
 
 
 class EuOverlay33Data:
+
     pass
 
 
@@ -23647,10 +23721,12 @@ class EuOverlay34Section:
 
 
 class EuOverlay35Functions:
+
     pass
 
 
 class EuOverlay35Data:
+
     pass
 
 
@@ -23664,10 +23740,12 @@ class EuOverlay35Section:
 
 
 class EuOverlay4Functions:
+
     pass
 
 
 class EuOverlay4Data:
+
     pass
 
 
@@ -23681,10 +23759,12 @@ class EuOverlay4Section:
 
 
 class EuOverlay5Functions:
+
     pass
 
 
 class EuOverlay5Data:
+
     pass
 
 
@@ -23698,10 +23778,12 @@ class EuOverlay5Section:
 
 
 class EuOverlay6Functions:
+
     pass
 
 
 class EuOverlay6Data:
+
     pass
 
 
@@ -23715,10 +23797,12 @@ class EuOverlay6Section:
 
 
 class EuOverlay7Functions:
+
     pass
 
 
 class EuOverlay7Data:
+
     pass
 
 
@@ -23734,10 +23818,12 @@ class EuOverlay7Section:
 
 
 class EuOverlay8Functions:
+
     pass
 
 
 class EuOverlay8Data:
+
     pass
 
 
@@ -23753,6 +23839,7 @@ class EuOverlay8Section:
 
 
 class EuOverlay9Functions:
+
     pass
 
 
@@ -23775,6 +23862,7 @@ class EuOverlay9Section:
 
 
 class EuRamFunctions:
+
     pass
 
 

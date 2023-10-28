@@ -10,8 +10,57 @@ class NaArm7Functions:
         " subsystem.\n\nNo params.",
     )
 
+    ClearIrqFlag = Symbol(
+        [0x5ED4],
+        [0x2385ED4],
+        None,
+        "Enables processor interrupts by clearing the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " disabled, 0x0 if they were already enabled)",
+    )
+
+    EnableIrqFlag = Symbol(
+        [0x5EE8],
+        [0x2385EE8],
+        None,
+        "Disables processor interrupts by setting the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " already disabled, 0x0 if they were enabled)",
+    )
+
+    SetIrqFlag = Symbol(
+        [0x5EFC],
+        [0x2385EFC],
+        None,
+        "Sets the value of the processor's interrupt flag according to the specified"
+        " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
+        " interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of"
+        " cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
+    )
+
+    EnableIrqFiqFlags = Symbol(
+        [0x5F14],
+        [0x2385F14],
+        None,
+        "Disables processor all interrupts (both standard and fast) by setting the i"
+        " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
+        " cpsr & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
+    SetIrqFiqFlags = Symbol(
+        [0x5F28],
+        [0x2385F28],
+        None,
+        "Sets the value of the processor's interrupt flags (i and f) according to the"
+        " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
+        " flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag"
+        " and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr"
+        " & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
 
 class NaArm7Data:
+
     pass
 
 
@@ -11749,6 +11798,7 @@ class NaMove_effectsSection:
 
 
 class NaOverlay0Functions:
+
     pass
 
 
@@ -13884,10 +13934,12 @@ class NaOverlay11Section:
 
 
 class NaOverlay12Functions:
+
     pass
 
 
 class NaOverlay12Data:
+
     pass
 
 
@@ -14463,6 +14515,7 @@ class NaOverlay14Section:
 
 
 class NaOverlay15Functions:
+
     pass
 
 
@@ -14508,6 +14561,7 @@ class NaOverlay15Section:
 
 
 class NaOverlay16Functions:
+
     pass
 
 
@@ -14576,6 +14630,7 @@ class NaOverlay16Section:
 
 
 class NaOverlay17Functions:
+
     pass
 
 
@@ -14651,6 +14706,7 @@ class NaOverlay17Section:
 
 
 class NaOverlay18Functions:
+
     pass
 
 
@@ -14873,10 +14929,12 @@ class NaOverlay19Section:
 
 
 class NaOverlay2Functions:
+
     pass
 
 
 class NaOverlay2Data:
+
     pass
 
 
@@ -14894,6 +14952,7 @@ class NaOverlay2Section:
 
 
 class NaOverlay20Functions:
+
     pass
 
 
@@ -14995,6 +15054,7 @@ class NaOverlay20Section:
 
 
 class NaOverlay21Functions:
+
     pass
 
 
@@ -15076,6 +15136,7 @@ class NaOverlay21Section:
 
 
 class NaOverlay22Functions:
+
     pass
 
 
@@ -15171,6 +15232,7 @@ class NaOverlay22Section:
 
 
 class NaOverlay23Functions:
+
     pass
 
 
@@ -15254,6 +15316,7 @@ class NaOverlay23Section:
 
 
 class NaOverlay24Functions:
+
     pass
 
 
@@ -15313,6 +15376,7 @@ class NaOverlay24Section:
 
 
 class NaOverlay25Functions:
+
     pass
 
 
@@ -15382,6 +15446,7 @@ class NaOverlay25Section:
 
 
 class NaOverlay26Functions:
+
     pass
 
 
@@ -15432,6 +15497,7 @@ class NaOverlay26Section:
 
 
 class NaOverlay27Functions:
+
     pass
 
 
@@ -15515,10 +15581,12 @@ class NaOverlay27Section:
 
 
 class NaOverlay28Functions:
+
     pass
 
 
 class NaOverlay28Data:
+
     pass
 
 
@@ -23279,10 +23347,12 @@ class NaOverlay29Section:
 
 
 class NaOverlay3Functions:
+
     pass
 
 
 class NaOverlay3Data:
+
     pass
 
 
@@ -23638,10 +23708,12 @@ class NaOverlay31Section:
 
 
 class NaOverlay32Functions:
+
     pass
 
 
 class NaOverlay32Data:
+
     pass
 
 
@@ -23655,10 +23727,12 @@ class NaOverlay32Section:
 
 
 class NaOverlay33Functions:
+
     pass
 
 
 class NaOverlay33Data:
+
     pass
 
 
@@ -23740,10 +23814,12 @@ class NaOverlay34Section:
 
 
 class NaOverlay35Functions:
+
     pass
 
 
 class NaOverlay35Data:
+
     pass
 
 
@@ -23757,10 +23833,12 @@ class NaOverlay35Section:
 
 
 class NaOverlay4Functions:
+
     pass
 
 
 class NaOverlay4Data:
+
     pass
 
 
@@ -23774,10 +23852,12 @@ class NaOverlay4Section:
 
 
 class NaOverlay5Functions:
+
     pass
 
 
 class NaOverlay5Data:
+
     pass
 
 
@@ -23791,10 +23871,12 @@ class NaOverlay5Section:
 
 
 class NaOverlay6Functions:
+
     pass
 
 
 class NaOverlay6Data:
+
     pass
 
 
@@ -23808,10 +23890,12 @@ class NaOverlay6Section:
 
 
 class NaOverlay7Functions:
+
     pass
 
 
 class NaOverlay7Data:
+
     pass
 
 
@@ -23827,10 +23911,12 @@ class NaOverlay7Section:
 
 
 class NaOverlay8Functions:
+
     pass
 
 
 class NaOverlay8Data:
+
     pass
 
 
@@ -23846,6 +23932,7 @@ class NaOverlay8Section:
 
 
 class NaOverlay9Functions:
+
     pass
 
 
@@ -23868,6 +23955,7 @@ class NaOverlay9Section:
 
 
 class NaRamFunctions:
+
     pass
 
 

@@ -48,8 +48,34 @@ class Arm7FunctionsProtocol(Protocol):
         None,
     ]
 
+    ClearIrqFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EnableIrqFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetIrqFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EnableIrqFiqFlags: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetIrqFiqFlags: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
 
 class Arm7DataProtocol(Protocol):
+
     pass
 
 
@@ -7264,6 +7290,7 @@ Move_effectsProtocol = SectionProtocol[
 
 
 class Overlay0FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -8725,10 +8752,12 @@ Overlay11Protocol = SectionProtocol[
 
 
 class Overlay12FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay12DataProtocol(Protocol):
+
     pass
 
 
@@ -9232,6 +9261,7 @@ Overlay14Protocol = SectionProtocol[
 
 
 class Overlay15FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -9285,6 +9315,7 @@ Overlay15Protocol = SectionProtocol[
 
 
 class Overlay16FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -9368,6 +9399,7 @@ Overlay16Protocol = SectionProtocol[
 
 
 class Overlay17FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -9481,6 +9513,7 @@ Overlay17Protocol = SectionProtocol[
 
 
 class Overlay18FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -9745,10 +9778,12 @@ Overlay19Protocol = SectionProtocol[
 
 
 class Overlay2FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay2DataProtocol(Protocol):
+
     pass
 
 
@@ -9760,6 +9795,7 @@ Overlay2Protocol = SectionProtocol[
 
 
 class Overlay20FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -9898,6 +9934,7 @@ Overlay20Protocol = SectionProtocol[
 
 
 class Overlay21FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -10011,6 +10048,7 @@ Overlay21Protocol = SectionProtocol[
 
 
 class Overlay22FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -10134,6 +10172,7 @@ Overlay22Protocol = SectionProtocol[
 
 
 class Overlay23FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -10242,6 +10281,7 @@ Overlay23Protocol = SectionProtocol[
 
 
 class Overlay24FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -10315,6 +10355,7 @@ Overlay24Protocol = SectionProtocol[
 
 
 class Overlay25FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -10403,6 +10444,7 @@ Overlay25Protocol = SectionProtocol[
 
 
 class Overlay26FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -10451,6 +10493,7 @@ Overlay26Protocol = SectionProtocol[
 
 
 class Overlay27FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -10559,10 +10602,12 @@ Overlay27Protocol = SectionProtocol[
 
 
 class Overlay28FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay28DataProtocol(Protocol):
+
     pass
 
 
@@ -14570,10 +14615,12 @@ Overlay29Protocol = SectionProtocol[
 
 
 class Overlay3FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay3DataProtocol(Protocol):
+
     pass
 
 
@@ -14957,10 +15004,12 @@ Overlay31Protocol = SectionProtocol[
 
 
 class Overlay32FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay32DataProtocol(Protocol):
+
     pass
 
 
@@ -14972,10 +15021,12 @@ Overlay32Protocol = SectionProtocol[
 
 
 class Overlay33FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay33DataProtocol(Protocol):
+
     pass
 
 
@@ -15053,10 +15104,12 @@ Overlay34Protocol = SectionProtocol[
 
 
 class Overlay35FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay35DataProtocol(Protocol):
+
     pass
 
 
@@ -15068,10 +15121,12 @@ Overlay35Protocol = SectionProtocol[
 
 
 class Overlay4FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay4DataProtocol(Protocol):
+
     pass
 
 
@@ -15083,10 +15138,12 @@ Overlay4Protocol = SectionProtocol[
 
 
 class Overlay5FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay5DataProtocol(Protocol):
+
     pass
 
 
@@ -15098,10 +15155,12 @@ Overlay5Protocol = SectionProtocol[
 
 
 class Overlay6FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay6DataProtocol(Protocol):
+
     pass
 
 
@@ -15113,10 +15172,12 @@ Overlay6Protocol = SectionProtocol[
 
 
 class Overlay7FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay7DataProtocol(Protocol):
+
     pass
 
 
@@ -15128,10 +15189,12 @@ Overlay7Protocol = SectionProtocol[
 
 
 class Overlay8FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay8DataProtocol(Protocol):
+
     pass
 
 
@@ -15143,6 +15206,7 @@ Overlay8Protocol = SectionProtocol[
 
 
 class Overlay9FunctionsProtocol(Protocol):
+
     pass
 
 
@@ -15161,6 +15225,7 @@ Overlay9Protocol = SectionProtocol[
 
 
 class RamFunctionsProtocol(Protocol):
+
     pass
 
 

@@ -10,8 +10,57 @@ class JpItcmArm7Functions:
         " subsystem.\n\nNo params.",
     )
 
+    ClearIrqFlag = Symbol(
+        None,
+        None,
+        None,
+        "Enables processor interrupts by clearing the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " disabled, 0x0 if they were already enabled)",
+    )
+
+    EnableIrqFlag = Symbol(
+        None,
+        None,
+        None,
+        "Disables processor interrupts by setting the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " already disabled, 0x0 if they were enabled)",
+    )
+
+    SetIrqFlag = Symbol(
+        None,
+        None,
+        None,
+        "Sets the value of the processor's interrupt flag according to the specified"
+        " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
+        " interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of"
+        " cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
+    )
+
+    EnableIrqFiqFlags = Symbol(
+        None,
+        None,
+        None,
+        "Disables processor all interrupts (both standard and fast) by setting the i"
+        " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
+        " cpsr & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
+    SetIrqFiqFlags = Symbol(
+        None,
+        None,
+        None,
+        "Sets the value of the processor's interrupt flags (i and f) according to the"
+        " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
+        " flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag"
+        " and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr"
+        " & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
 
 class JpItcmArm7Data:
+
     pass
 
 
@@ -11503,6 +11552,7 @@ class JpItcmMove_effectsSection:
 
 
 class JpItcmOverlay0Functions:
+
     pass
 
 
@@ -13548,10 +13598,12 @@ class JpItcmOverlay11Section:
 
 
 class JpItcmOverlay12Functions:
+
     pass
 
 
 class JpItcmOverlay12Data:
+
     pass
 
 
@@ -14095,6 +14147,7 @@ class JpItcmOverlay14Section:
 
 
 class JpItcmOverlay15Functions:
+
     pass
 
 
@@ -14140,6 +14193,7 @@ class JpItcmOverlay15Section:
 
 
 class JpItcmOverlay16Functions:
+
     pass
 
 
@@ -14205,6 +14259,7 @@ class JpItcmOverlay16Section:
 
 
 class JpItcmOverlay17Functions:
+
     pass
 
 
@@ -14280,6 +14335,7 @@ class JpItcmOverlay17Section:
 
 
 class JpItcmOverlay18Functions:
+
     pass
 
 
@@ -14496,10 +14552,12 @@ class JpItcmOverlay19Section:
 
 
 class JpItcmOverlay2Functions:
+
     pass
 
 
 class JpItcmOverlay2Data:
+
     pass
 
 
@@ -14517,6 +14575,7 @@ class JpItcmOverlay2Section:
 
 
 class JpItcmOverlay20Functions:
+
     pass
 
 
@@ -14618,6 +14677,7 @@ class JpItcmOverlay20Section:
 
 
 class JpItcmOverlay21Functions:
+
     pass
 
 
@@ -14699,6 +14759,7 @@ class JpItcmOverlay21Section:
 
 
 class JpItcmOverlay22Functions:
+
     pass
 
 
@@ -14794,6 +14855,7 @@ class JpItcmOverlay22Section:
 
 
 class JpItcmOverlay23Functions:
+
     pass
 
 
@@ -14877,6 +14939,7 @@ class JpItcmOverlay23Section:
 
 
 class JpItcmOverlay24Functions:
+
     pass
 
 
@@ -14936,6 +14999,7 @@ class JpItcmOverlay24Section:
 
 
 class JpItcmOverlay25Functions:
+
     pass
 
 
@@ -15005,6 +15069,7 @@ class JpItcmOverlay25Section:
 
 
 class JpItcmOverlay26Functions:
+
     pass
 
 
@@ -15055,6 +15120,7 @@ class JpItcmOverlay26Section:
 
 
 class JpItcmOverlay27Functions:
+
     pass
 
 
@@ -15138,10 +15204,12 @@ class JpItcmOverlay27Section:
 
 
 class JpItcmOverlay28Functions:
+
     pass
 
 
 class JpItcmOverlay28Data:
+
     pass
 
 
@@ -22585,10 +22653,12 @@ class JpItcmOverlay29Section:
 
 
 class JpItcmOverlay3Functions:
+
     pass
 
 
 class JpItcmOverlay3Data:
+
     pass
 
 
@@ -22941,10 +23011,12 @@ class JpItcmOverlay31Section:
 
 
 class JpItcmOverlay32Functions:
+
     pass
 
 
 class JpItcmOverlay32Data:
+
     pass
 
 
@@ -22958,10 +23030,12 @@ class JpItcmOverlay32Section:
 
 
 class JpItcmOverlay33Functions:
+
     pass
 
 
 class JpItcmOverlay33Data:
+
     pass
 
 
@@ -23043,10 +23117,12 @@ class JpItcmOverlay34Section:
 
 
 class JpItcmOverlay35Functions:
+
     pass
 
 
 class JpItcmOverlay35Data:
+
     pass
 
 
@@ -23060,10 +23136,12 @@ class JpItcmOverlay35Section:
 
 
 class JpItcmOverlay4Functions:
+
     pass
 
 
 class JpItcmOverlay4Data:
+
     pass
 
 
@@ -23077,10 +23155,12 @@ class JpItcmOverlay4Section:
 
 
 class JpItcmOverlay5Functions:
+
     pass
 
 
 class JpItcmOverlay5Data:
+
     pass
 
 
@@ -23094,10 +23174,12 @@ class JpItcmOverlay5Section:
 
 
 class JpItcmOverlay6Functions:
+
     pass
 
 
 class JpItcmOverlay6Data:
+
     pass
 
 
@@ -23111,10 +23193,12 @@ class JpItcmOverlay6Section:
 
 
 class JpItcmOverlay7Functions:
+
     pass
 
 
 class JpItcmOverlay7Data:
+
     pass
 
 
@@ -23130,10 +23214,12 @@ class JpItcmOverlay7Section:
 
 
 class JpItcmOverlay8Functions:
+
     pass
 
 
 class JpItcmOverlay8Data:
+
     pass
 
 
@@ -23149,6 +23235,7 @@ class JpItcmOverlay8Section:
 
 
 class JpItcmOverlay9Functions:
+
     pass
 
 
@@ -23171,6 +23258,7 @@ class JpItcmOverlay9Section:
 
 
 class JpItcmRamFunctions:
+
     pass
 
 

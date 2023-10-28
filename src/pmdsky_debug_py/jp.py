@@ -10,8 +10,57 @@ class JpArm7Functions:
         " subsystem.\n\nNo params.",
     )
 
+    ClearIrqFlag = Symbol(
+        [0x5ED4],
+        [0x2385ED4],
+        None,
+        "Enables processor interrupts by clearing the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " disabled, 0x0 if they were already enabled)",
+    )
+
+    EnableIrqFlag = Symbol(
+        [0x5EE8],
+        [0x2385EE8],
+        None,
+        "Disables processor interrupts by setting the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " already disabled, 0x0 if they were enabled)",
+    )
+
+    SetIrqFlag = Symbol(
+        [0x5EFC],
+        [0x2385EFC],
+        None,
+        "Sets the value of the processor's interrupt flag according to the specified"
+        " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
+        " interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of"
+        " cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
+    )
+
+    EnableIrqFiqFlags = Symbol(
+        [0x5F14],
+        [0x2385F14],
+        None,
+        "Disables processor all interrupts (both standard and fast) by setting the i"
+        " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
+        " cpsr & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
+    SetIrqFiqFlags = Symbol(
+        [0x5F28],
+        [0x2385F28],
+        None,
+        "Sets the value of the processor's interrupt flags (i and f) according to the"
+        " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
+        " flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag"
+        " and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr"
+        " & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
 
 class JpArm7Data:
+
     pass
 
 
@@ -11722,6 +11771,7 @@ class JpMove_effectsSection:
 
 
 class JpOverlay0Functions:
+
     pass
 
 
@@ -13846,10 +13896,12 @@ class JpOverlay11Section:
 
 
 class JpOverlay12Functions:
+
     pass
 
 
 class JpOverlay12Data:
+
     pass
 
 
@@ -14405,6 +14457,7 @@ class JpOverlay14Section:
 
 
 class JpOverlay15Functions:
+
     pass
 
 
@@ -14450,6 +14503,7 @@ class JpOverlay15Section:
 
 
 class JpOverlay16Functions:
+
     pass
 
 
@@ -14515,6 +14569,7 @@ class JpOverlay16Section:
 
 
 class JpOverlay17Functions:
+
     pass
 
 
@@ -14590,6 +14645,7 @@ class JpOverlay17Section:
 
 
 class JpOverlay18Functions:
+
     pass
 
 
@@ -14806,10 +14862,12 @@ class JpOverlay19Section:
 
 
 class JpOverlay2Functions:
+
     pass
 
 
 class JpOverlay2Data:
+
     pass
 
 
@@ -14827,6 +14885,7 @@ class JpOverlay2Section:
 
 
 class JpOverlay20Functions:
+
     pass
 
 
@@ -14928,6 +14987,7 @@ class JpOverlay20Section:
 
 
 class JpOverlay21Functions:
+
     pass
 
 
@@ -15009,6 +15069,7 @@ class JpOverlay21Section:
 
 
 class JpOverlay22Functions:
+
     pass
 
 
@@ -15104,6 +15165,7 @@ class JpOverlay22Section:
 
 
 class JpOverlay23Functions:
+
     pass
 
 
@@ -15187,6 +15249,7 @@ class JpOverlay23Section:
 
 
 class JpOverlay24Functions:
+
     pass
 
 
@@ -15246,6 +15309,7 @@ class JpOverlay24Section:
 
 
 class JpOverlay25Functions:
+
     pass
 
 
@@ -15315,6 +15379,7 @@ class JpOverlay25Section:
 
 
 class JpOverlay26Functions:
+
     pass
 
 
@@ -15365,6 +15430,7 @@ class JpOverlay26Section:
 
 
 class JpOverlay27Functions:
+
     pass
 
 
@@ -15448,10 +15514,12 @@ class JpOverlay27Section:
 
 
 class JpOverlay28Functions:
+
     pass
 
 
 class JpOverlay28Data:
+
     pass
 
 
@@ -22923,10 +22991,12 @@ class JpOverlay29Section:
 
 
 class JpOverlay3Functions:
+
     pass
 
 
 class JpOverlay3Data:
+
     pass
 
 
@@ -23282,10 +23352,12 @@ class JpOverlay31Section:
 
 
 class JpOverlay32Functions:
+
     pass
 
 
 class JpOverlay32Data:
+
     pass
 
 
@@ -23299,10 +23371,12 @@ class JpOverlay32Section:
 
 
 class JpOverlay33Functions:
+
     pass
 
 
 class JpOverlay33Data:
+
     pass
 
 
@@ -23384,10 +23458,12 @@ class JpOverlay34Section:
 
 
 class JpOverlay35Functions:
+
     pass
 
 
 class JpOverlay35Data:
+
     pass
 
 
@@ -23401,10 +23477,12 @@ class JpOverlay35Section:
 
 
 class JpOverlay4Functions:
+
     pass
 
 
 class JpOverlay4Data:
+
     pass
 
 
@@ -23418,10 +23496,12 @@ class JpOverlay4Section:
 
 
 class JpOverlay5Functions:
+
     pass
 
 
 class JpOverlay5Data:
+
     pass
 
 
@@ -23435,10 +23515,12 @@ class JpOverlay5Section:
 
 
 class JpOverlay6Functions:
+
     pass
 
 
 class JpOverlay6Data:
+
     pass
 
 
@@ -23452,10 +23534,12 @@ class JpOverlay6Section:
 
 
 class JpOverlay7Functions:
+
     pass
 
 
 class JpOverlay7Data:
+
     pass
 
 
@@ -23471,10 +23555,12 @@ class JpOverlay7Section:
 
 
 class JpOverlay8Functions:
+
     pass
 
 
 class JpOverlay8Data:
+
     pass
 
 
@@ -23490,6 +23576,7 @@ class JpOverlay8Section:
 
 
 class JpOverlay9Functions:
+
     pass
 
 
@@ -23512,6 +23599,7 @@ class JpOverlay9Section:
 
 
 class JpRamFunctions:
+
     pass
 
 

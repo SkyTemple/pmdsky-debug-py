@@ -10,8 +10,57 @@ class EuItcmArm7Functions:
         " subsystem.\n\nNo params.",
     )
 
+    ClearIrqFlag = Symbol(
+        None,
+        None,
+        None,
+        "Enables processor interrupts by clearing the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " disabled, 0x0 if they were already enabled)",
+    )
+
+    EnableIrqFlag = Symbol(
+        None,
+        None,
+        None,
+        "Disables processor interrupts by setting the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " already disabled, 0x0 if they were enabled)",
+    )
+
+    SetIrqFlag = Symbol(
+        None,
+        None,
+        None,
+        "Sets the value of the processor's interrupt flag according to the specified"
+        " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
+        " interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of"
+        " cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
+    )
+
+    EnableIrqFiqFlags = Symbol(
+        None,
+        None,
+        None,
+        "Disables processor all interrupts (both standard and fast) by setting the i"
+        " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
+        " cpsr & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
+    SetIrqFiqFlags = Symbol(
+        None,
+        None,
+        None,
+        "Sets the value of the processor's interrupt flags (i and f) according to the"
+        " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
+        " flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag"
+        " and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr"
+        " & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
 
 class EuItcmArm7Data:
+
     pass
 
 
@@ -11503,6 +11552,7 @@ class EuItcmMove_effectsSection:
 
 
 class EuItcmOverlay0Functions:
+
     pass
 
 
@@ -13548,10 +13598,12 @@ class EuItcmOverlay11Section:
 
 
 class EuItcmOverlay12Functions:
+
     pass
 
 
 class EuItcmOverlay12Data:
+
     pass
 
 
@@ -14095,6 +14147,7 @@ class EuItcmOverlay14Section:
 
 
 class EuItcmOverlay15Functions:
+
     pass
 
 
@@ -14140,6 +14193,7 @@ class EuItcmOverlay15Section:
 
 
 class EuItcmOverlay16Functions:
+
     pass
 
 
@@ -14205,6 +14259,7 @@ class EuItcmOverlay16Section:
 
 
 class EuItcmOverlay17Functions:
+
     pass
 
 
@@ -14280,6 +14335,7 @@ class EuItcmOverlay17Section:
 
 
 class EuItcmOverlay18Functions:
+
     pass
 
 
@@ -14496,10 +14552,12 @@ class EuItcmOverlay19Section:
 
 
 class EuItcmOverlay2Functions:
+
     pass
 
 
 class EuItcmOverlay2Data:
+
     pass
 
 
@@ -14517,6 +14575,7 @@ class EuItcmOverlay2Section:
 
 
 class EuItcmOverlay20Functions:
+
     pass
 
 
@@ -14618,6 +14677,7 @@ class EuItcmOverlay20Section:
 
 
 class EuItcmOverlay21Functions:
+
     pass
 
 
@@ -14699,6 +14759,7 @@ class EuItcmOverlay21Section:
 
 
 class EuItcmOverlay22Functions:
+
     pass
 
 
@@ -14794,6 +14855,7 @@ class EuItcmOverlay22Section:
 
 
 class EuItcmOverlay23Functions:
+
     pass
 
 
@@ -14877,6 +14939,7 @@ class EuItcmOverlay23Section:
 
 
 class EuItcmOverlay24Functions:
+
     pass
 
 
@@ -14936,6 +14999,7 @@ class EuItcmOverlay24Section:
 
 
 class EuItcmOverlay25Functions:
+
     pass
 
 
@@ -15005,6 +15069,7 @@ class EuItcmOverlay25Section:
 
 
 class EuItcmOverlay26Functions:
+
     pass
 
 
@@ -15055,6 +15120,7 @@ class EuItcmOverlay26Section:
 
 
 class EuItcmOverlay27Functions:
+
     pass
 
 
@@ -15138,10 +15204,12 @@ class EuItcmOverlay27Section:
 
 
 class EuItcmOverlay28Functions:
+
     pass
 
 
 class EuItcmOverlay28Data:
+
     pass
 
 
@@ -22585,10 +22653,12 @@ class EuItcmOverlay29Section:
 
 
 class EuItcmOverlay3Functions:
+
     pass
 
 
 class EuItcmOverlay3Data:
+
     pass
 
 
@@ -22941,10 +23011,12 @@ class EuItcmOverlay31Section:
 
 
 class EuItcmOverlay32Functions:
+
     pass
 
 
 class EuItcmOverlay32Data:
+
     pass
 
 
@@ -22958,10 +23030,12 @@ class EuItcmOverlay32Section:
 
 
 class EuItcmOverlay33Functions:
+
     pass
 
 
 class EuItcmOverlay33Data:
+
     pass
 
 
@@ -23043,10 +23117,12 @@ class EuItcmOverlay34Section:
 
 
 class EuItcmOverlay35Functions:
+
     pass
 
 
 class EuItcmOverlay35Data:
+
     pass
 
 
@@ -23060,10 +23136,12 @@ class EuItcmOverlay35Section:
 
 
 class EuItcmOverlay4Functions:
+
     pass
 
 
 class EuItcmOverlay4Data:
+
     pass
 
 
@@ -23077,10 +23155,12 @@ class EuItcmOverlay4Section:
 
 
 class EuItcmOverlay5Functions:
+
     pass
 
 
 class EuItcmOverlay5Data:
+
     pass
 
 
@@ -23094,10 +23174,12 @@ class EuItcmOverlay5Section:
 
 
 class EuItcmOverlay6Functions:
+
     pass
 
 
 class EuItcmOverlay6Data:
+
     pass
 
 
@@ -23111,10 +23193,12 @@ class EuItcmOverlay6Section:
 
 
 class EuItcmOverlay7Functions:
+
     pass
 
 
 class EuItcmOverlay7Data:
+
     pass
 
 
@@ -23130,10 +23214,12 @@ class EuItcmOverlay7Section:
 
 
 class EuItcmOverlay8Functions:
+
     pass
 
 
 class EuItcmOverlay8Data:
+
     pass
 
 
@@ -23149,6 +23235,7 @@ class EuItcmOverlay8Section:
 
 
 class EuItcmOverlay9Functions:
+
     pass
 
 
@@ -23171,6 +23258,7 @@ class EuItcmOverlay9Section:
 
 
 class EuItcmRamFunctions:
+
     pass
 
 
