@@ -3876,8 +3876,11 @@ class JpArm9Functions:
         [0x2B444],
         [0x202B444],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: layout_struct_ptr\nr1:"
-        " menu_flags\nr2: additional_info_ptr\nr3: menu_struct_ptr\nstack[0]:"
+        "Creates a normal menu. If the pointer to a layout struct is null, has a"
+        " default menu to fall back\non. A NULL additional_menu_info struct pointer"
+        " works so long as the window does not have any of the\nflags set for the"
+        " information contained inside.\n\nr0: layout_struct_ptr\nr1: menu_flags\nr2:"
+        " additional_menu_info struct\nr3: normal_menu_option struct array\nstack[0]:"
         " option_id\nreturn: menu_id",
     )
 
@@ -3906,9 +3909,13 @@ class JpArm9Functions:
         [0x2BD78],
         [0x202BD78],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: layout_struct_ptr\nr1:"
-        " menu_flags\nr2: additional_info_ptr\nr3: entry_function\nstack[0]:"
-        " nb_options\nstack[1]: nb_opt_pp\nreturn: menu_id",
+        "Creates a menu with multiple pages (if needed) that can be flipped through. If"
+        " the layout struct\nis null, has a default layout to fall back on. The entry"
+        " function is used to get the strings for\nall currently available options, so"
+        " when the page is flipped the entry function is used to get the\nstrings for"
+        " the entries on the other page?\n\nr0: layout_struct_ptr\nr1: menu_flags\nr2:"
+        " additional_menu_info struct\nr3: entry_function\nstack[0]:"
+        " nb_options\nstack[1]: nb_opt_per_page\nreturn: menu_id",
     )
 
     FreeAdvancedMenu = Symbol(
