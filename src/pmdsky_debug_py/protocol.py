@@ -73,6 +73,11 @@ class Arm7FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetProcessorMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
 
 class Arm7DataProtocol(Protocol):
 

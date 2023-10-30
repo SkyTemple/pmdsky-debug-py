@@ -58,6 +58,15 @@ class JpArm7Functions:
         " & 0xC0 (contains the previous values of the i and f flags)",
     )
 
+    GetProcessorMode = Symbol(
+        [0x5F40],
+        [0x2385F40],
+        None,
+        "Gets the processor's current operating mode.\n\nSee"
+        " https://problemkaputt.de/gbatek.htm#armcpuflagsconditionfieldcond\n\nreturn:"
+        " cpsr & 0x1f (the cpsr mode bits M4-M0)",
+    )
+
 
 class JpArm7Data:
 
