@@ -6159,6 +6159,25 @@ class EuItcmArm9Functions:
         " member is active, -1 otherwise",
     )
 
+    TryAddMonsterToActiveTeam = Symbol(
+        None,
+        None,
+        None,
+        "Attempts to add a monster from the team member table to the active"
+        " team.\n\nReturns the team index of the newly added monster. If the monster"
+        " was already on the team, returns its current team index. If the monster is"
+        " not on the team and there's no space left, returns -1.\n\nr0: member"
+        " index\nreturn: Team index",
+    )
+
+    RemoveActiveMembersFromMainTeam = Symbol(
+        None,
+        None,
+        None,
+        "Removes the active monsters on the Main Team from the team member table.\n\nNo"
+        " params.",
+    )
+
     SetTeamSetupHeroAndPartnerOnly = Symbol(
         None,
         None,
@@ -6961,6 +6980,33 @@ class EuItcmArm9Functions:
         None,
         "Initializes a file_stream structure for file I/O.\n\nThis function must always"
         " be called before opening a file.\n\nr0: file_stream pointer",
+    )
+
+    GetOverlayInfo = Symbol(
+        None,
+        None,
+        None,
+        "Returns the y9.bin entry for the specified overlay\n\nr0: [output] Overlay"
+        " info struct\nr1: ?\nr2: Overlay ID\nreturn: True if the entry could be loaded"
+        " successfully?",
+    )
+
+    LoadOverlayInternal = Symbol(
+        None,
+        None,
+        None,
+        "Called by LoadOverlay to load an overlay into RAM given its info struct\n\nr0:"
+        " Overlay info struct\nReturn: True if the overlay was loaded successfully?",
+    )
+
+    InitOverlay = Symbol(
+        None,
+        None,
+        None,
+        "Performs overlay initialization right after loading an overlay with"
+        " LoadOverlayInternal.\n\nThis function is responsible for jumping to all the"
+        " pointers located in the overlay's static init array, among other"
+        " things.\n\nr0: Overlay info struct",
     )
 
     abs = Symbol(
@@ -13090,9 +13136,45 @@ class EuItcmOverlay10Section:
 
 
 class EuItcmOverlay11Functions:
-    FuncThatCallsCommandParsing = Symbol(None, None, None, "")
+    UnlockScriptingLock = Symbol(
+        None,
+        None,
+        None,
+        "Unlocks a scripting lock.\n\nSets the corresponding byte to 1 on"
+        " LOCK_NOTIFY_ARRAY to signal that the scripting engine should handle the"
+        " unlock. Also sets a global unlock flag, used to tell the scripting engine"
+        " that the state of locks have changed and they should be checked again.\n\nr0:"
+        " ID of the lock to unlock",
+    )
 
-    ScriptCommandParsing = Symbol(None, None, None, "")
+    FuncThatCallsRunNextOpcode = Symbol(
+        None,
+        None,
+        None,
+        "Called up to 16 times per frame. Exact purpose unknown.\n\nr0: Looks like a"
+        " pointer to some struct containing data about the current state of scripting"
+        " engine",
+    )
+
+    RunNextOpcode = Symbol(
+        None,
+        None,
+        None,
+        "Runs the next scripting opcode.\n\nContains a switch statement based on the"
+        " opcode ([r0+1C]).\n\nr0: Looks like a pointer to some struct containing data"
+        " about the current state of scripting engine",
+    )
+
+    HandleUnlocks = Symbol(
+        None,
+        None,
+        None,
+        "Checks if a script unlock happened by reading entries from LOCK_NOTIFY_ARRAY"
+        " and handles the ones that were set.\n\nIf the global unlock flag is not set,"
+        " returns immediately. If it is, the function loops LOCK_NOTIFY_ARRAY, checking"
+        " for true values. If it finds one, resets it back to 0 and handles the"
+        " unlock.\n\nNo params.",
+    )
 
     LoadFileFromRomVeneer = Symbol(
         None,
@@ -13105,6 +13187,16 @@ class EuItcmOverlay11Functions:
     )
 
     SsbLoad2 = Symbol(None, None, None, "")
+
+    ProcessScriptParam = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the two most significant bits (0x8000 and 0x4000) are set on a given"
+        " script opcode parameter, and modifies the value if so.\n\nr0: On input, the"
+        " parameter. On output, the modified parameter if either of the two bits listed"
+        " above is set, same parameter otherwise.",
+    )
 
     StationLoadHanger = Symbol(None, None, None, "")
 
@@ -13123,6 +13215,18 @@ class EuItcmOverlay11Functions:
         " argument, if relevant? Probably corresponds to the third parameter of"
         " OPCODE_PROCESS_SPECIAL\nreturn: return value of the special process if it has"
         " one, otherwise 0",
+    )
+
+    GetCoroutineInfo = Symbol(
+        None,
+        None,
+        None,
+        "Returns information about a coroutine in unionall\n\nIt's used by the"
+        " CallCommon code to pull the data required to call the coroutine, so maybe the"
+        " function returns data required to call a coroutine instead of info about the"
+        " coroutine itself.\n\nr0: [output] Coroutine info\nr1: Coroutine ID\nreturn:"
+        " True if the coroutine is valid? It's false only if the coroutine's offset"
+        " is 0.",
     )
 
     GetSpecialRecruitmentSpecies = Symbol(
@@ -13321,6 +13425,17 @@ class EuItcmOverlay11Functions:
         " animation pointer\nr1: flags\nr2: ?",
     )
 
+    GetIdleAnimationType = Symbol(
+        None,
+        None,
+        None,
+        "Given a monster species, returns the type of idle animation it should"
+        " have.\n\nPossible values are 'freeze animation #0' (0x300), 'loop animation"
+        " #7' (0x807) and 'freeze animation #7' (0x307).\n\nr0: Monster ID\nr1: (?)"
+        " Could contain data about the animation the monster is currently"
+        " playing\nreturn: Animation data",
+    )
+
     LoadObjectAnimData = Symbol(
         None,
         None,
@@ -13369,6 +13484,16 @@ class EuItcmOverlay11Functions:
         None,
         "Remove the actor from the overworld actor list (in GROUND_STATE_PTRS)\n\nr0:"
         " the index of the actor in the live actor list",
+    )
+
+    ChangeActorAnimation = Symbol(
+        None,
+        None,
+        None,
+        "Used by the SetAnimation opcode to change the animation of an actor.\n\nIt's"
+        " responsible for breaking down the SetAnimation parameter and determining"
+        " which animation to play and which flags to set.\n\nr0: ?\nr1: SetAnimation"
+        " parameter",
     )
 
     InitPartnerFollowData = Symbol(
@@ -13565,6 +13690,14 @@ class EuItcmOverlay11Data:
         None,
         "Irdkwia's notes: FIXED_FLOOR_GROUND_ASSOCIATION\n\ntype: struct"
         " level_tilemap_list_entry[81]",
+    )
+
+    SETANIMATION_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table that associates the parameter of the SetAnimation scripting opcode to"
+        " animation data.\n\nThe first entry is unused and has a value of 0xFFFF.",
     )
 
     OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
@@ -23624,6 +23757,15 @@ class EuItcmRamData:
 
     GROUND_MEMORY_ARENA_2_PTR = Symbol(
         None, None, None, "Pointer to GROUND_MEMORY_ARENA_2."
+    )
+
+    LOCK_NOTIFY_ARRAY = Symbol(
+        None,
+        None,
+        None,
+        "Used to notify scripts waiting for a certain lock to unlock so they can resume"
+        " their execution.\n\n1 byte per lock. Exact size isn't confirmed, it could"
+        " potentially be longer.",
     )
 
     GROUND_MEMORY_ARENA_1 = Symbol(

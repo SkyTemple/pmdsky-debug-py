@@ -3852,6 +3852,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryAddMonsterToActiveTeam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveActiveMembersFromMainTeam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetTeamSetupHeroAndPartnerOnly: Symbol[
         Optional[list[int]],
         None,
@@ -4308,6 +4318,21 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     FileInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetOverlayInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadOverlayInternal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitOverlay: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8416,12 +8441,22 @@ Overlay10Protocol = SectionProtocol[
 
 
 class Overlay11FunctionsProtocol(Protocol):
-    FuncThatCallsCommandParsing: Symbol[
+    UnlockScriptingLock: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ScriptCommandParsing: Symbol[
+    FuncThatCallsRunNextOpcode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RunNextOpcode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleUnlocks: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8432,6 +8467,11 @@ class Overlay11FunctionsProtocol(Protocol):
     ]
 
     SsbLoad2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessScriptParam: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8452,6 +8492,11 @@ class Overlay11FunctionsProtocol(Protocol):
     ]
 
     ScriptSpecialProcessCall: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCoroutineInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8571,6 +8616,11 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetIdleAnimationType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     LoadObjectAnimData: Symbol[
         Optional[list[int]],
         None,
@@ -8597,6 +8647,11 @@ class Overlay11FunctionsProtocol(Protocol):
     ]
 
     DeleteLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ChangeActorAnimation: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8714,6 +8769,11 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     LEVEL_TILEMAP_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SETANIMATION_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15476,6 +15536,11 @@ class RamDataProtocol(Protocol):
     ]
 
     GROUND_MEMORY_ARENA_2_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LOCK_NOTIFY_ARRAY: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
