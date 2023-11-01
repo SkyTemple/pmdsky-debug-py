@@ -957,6 +957,26 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetActiveInventoryToMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllInventoriesZInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SpecialEpisodeInventoryZInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RescueInventoryZInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetActiveInventory: Symbol[
         Optional[list[int]],
         None,
@@ -1253,6 +1273,21 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     SortItemsInStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllKecleonShopsZInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SpecialEpisodeKecleonShopZInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetActiveKecleonShop: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2432,6 +2467,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ShowStringInDBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShowDBox: Symbol[
         Optional[list[int]],
         None,
@@ -2497,6 +2537,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitSpecialEpisodeHero: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     EventFlagBackupVeneer: Symbol[
         Optional[list[int]],
         None,
@@ -2507,12 +2552,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    ScriptSpecialProcess0x3: Symbol[
+    InitSpecialEpisodePartners: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ScriptSpecialProcess0x4: Symbol[
+    InitSpecialEpisodeExtraPartner: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4137,17 +4182,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    ScriptSpecialProcess0x3D: Symbol[
+    SetActorTalkMainAndActorTalkSub: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ScriptSpecialProcess0x3E: Symbol[
+    SetActorTalkMain: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ScriptSpecialProcess0x17: Symbol[
+    SetActorTalkSub: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RandomizeDemoActors: Symbol[
         Optional[list[int]],
         None,
     ]

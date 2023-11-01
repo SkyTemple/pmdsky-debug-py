@@ -1601,12 +1601,41 @@ class EuArm9Functions:
         " item ID\nreturn: bool",
     )
 
+    SetActiveInventoryToMain = Symbol(
+        None,
+        None,
+        None,
+        "Changes the currently active inventory to TEAM_MAIN.\n\nNo params.",
+    )
+
+    AllInventoriesZInit = Symbol(
+        None,
+        None,
+        None,
+        "Initializes all inventories (TEAM_MAIN, TEAM_SPECIAL_EPISODE, TEAM_RESCUE) to"
+        " empty and sets the active inventory\nto TEAM_MAIN.\n\nNo params.",
+    )
+
+    SpecialEpisodeInventoryZInit = Symbol(
+        None,
+        None,
+        None,
+        "Initializes the TEAM_SPECIAL_EPISODE inventory to be empty.\n\nNo params.",
+    )
+
+    RescueInventoryZInit = Symbol(
+        None,
+        None,
+        None,
+        "Initializes the TEAM_RESCUE inventory to be empty.\n\nNo params.",
+    )
+
     SetActiveInventory = Symbol(
         [0xED80],
         [0x200ED80],
         None,
         "Changes the currently active inventory. Has one for the main team, rescue"
-        " team, and the special\nepisode team?\n\nr0: team ID",
+        " team, and the special\nepisode team.\n\nr0: team ID",
     )
 
     GetMoneyCarried = Symbol(
@@ -2077,6 +2106,28 @@ class EuArm9Functions:
         " broader than just sorting because it outputs a bool array.\n\nr0: [output]"
         " bool array?\nr1: number of items to sort (usually just the current size of"
         " storage)",
+    )
+
+    AllKecleonShopsZInit = Symbol(
+        None,
+        None,
+        None,
+        "Empties the Kecleon shop for both TEAM_MAIN and TEAM_SPECIAL_EPISODE."
+        " TEAM_RESCUE does not appear to have its own\nKecleon shop.\n\nNo params.",
+    )
+
+    SpecialEpisodeKecleonShopZInit = Symbol(
+        None, None, None, "Empties the special episode Kecleon shop.\n\nNo params."
+    )
+
+    SetActiveKecleonShop = Symbol(
+        None,
+        None,
+        None,
+        "Changes the currently active Kecleon shop. Has one for TEAM_MAIN and"
+        " TEAM_SPECIAL_EPISODE. TEAM_RESCUE does not\nappear to have its own copy of"
+        " the Kecleon shop it seems to use TEAM_MAIN intead of TEAM_RESCUE.\n\nr0:"
+        " team ID",
     )
 
     GetMoneyStored = Symbol(
@@ -3983,9 +4034,19 @@ class EuArm9Functions:
         [0x2F4A8],
         [0x202F4A8],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id\nr1: preprocessor"
-        " flags (see PreprocessString)\nr2: string_id\nr3: pointer to preprocessor args"
-        " (see PreprocessString)",
+        "Preprocesses the corresponding string_id message in the text file and puts it"
+        " into the dialogue box.\n\nr0: dbox_id\nr1: preprocessor flags (see"
+        " PreprocessString)\nr2: string_id\nr3: pointer to preprocessor args (see"
+        " PreprocessString)",
+    )
+
+    ShowStringInDBox = Symbol(
+        None,
+        None,
+        None,
+        "Preprocesses the passed string and puts it into the dialogue box.\n\nr0:"
+        " dbox_id\nr1: preprocessor flags (see PreprocessString)\nr2: string\nr3:"
+        " pointer to preprocessor args (see PreprocessString)",
     )
 
     ShowDBox = Symbol(
@@ -4084,6 +4145,17 @@ class EuArm9Functions:
         [0x487CC], [0x20487CC], None, "Sets NOTIFY_NOTE to the given value.\n\nr0: bool"
     )
 
+    InitSpecialEpisodeHero = Symbol(
+        None,
+        None,
+        None,
+        "Removes/invalidates the special episode member slots, zero inits the special"
+        " episode treasure bag, zero inits the\nspecial episode Kecleon shops, zero"
+        " inits VAR_WORLD_MAP_MARK_LIST_SPECIAL, sets VAR_SPECIAL_EPISODE_OPEN_OLD"
+        " for\nthe corresponding special episode, and initializes the hero for the"
+        " special episode.\n\nNo params.",
+    )
+
     EventFlagBackupVeneer = Symbol(
         None,
         None,
@@ -4101,18 +4173,23 @@ class EuArm9Functions:
         " ScriptSpecialProcessCall).\n\nNo params.",
     )
 
-    ScriptSpecialProcess0x3 = Symbol(
+    InitSpecialEpisodePartners = Symbol(
         [0x48D28],
         [0x2048D28],
         None,
-        "Implements SPECIAL_PROC_0x3 (see ScriptSpecialProcessCall).\n\nNo params.",
+        "Initializes the partners for the current special episode and sets the team to"
+        " be the hero and partner only.\nImplements SPECIAL_PROC_0x3 (see"
+        " ScriptSpecialProcessCall). \n\nNo params.",
     )
 
-    ScriptSpecialProcess0x4 = Symbol(
+    InitSpecialEpisodeExtraPartner = Symbol(
         [0x48DA0],
         [0x2048DA0],
         None,
-        "Implements SPECIAL_PROC_0x4 (see ScriptSpecialProcessCall).\n\nNo params.",
+        "Initializes any partners/special episode members that join the team later in a"
+        " special episode. This is used to add\nCelebi in the In the Future of Darkness"
+        " special episode.\nImplements SPECIAL_PROC_0x4 (see"
+        " ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ReadStringSave = Symbol(
@@ -5200,7 +5277,7 @@ class EuArm9Functions:
         [0x2050E04],
         None,
         "Sets the name of the team for the main story to the default team name"
-        " Poképals. Also initalizes\nthe team to Normal Rank and possibly set Secret"
+        " Poképals. Also initializes\nthe team to Normal Rank and possibly set Secret"
         " Rank unlocked to false?\n\nNo params.",
     )
 
@@ -6826,25 +6903,38 @@ class EuArm9Functions:
         " storage ID",
     )
 
-    ScriptSpecialProcess0x3D = Symbol(
+    SetActorTalkMainAndActorTalkSub = Symbol(
+        None,
+        None,
+        None,
+        "Sets ACTOR_TALK_MAIN and ACTOR_TALK_SUB to given actor IDs.\nImplements"
+        " SPECIAL_PROC_0x3D (see ScriptSpecialProcessCall).\n\nr0: actor_id for"
+        " ACTOR_TALK_MAIN\nr1: actor_id for ACTOR_TALK_SUB",
+    )
+
+    SetActorTalkMain = Symbol(
         [0x65ECC],
         [0x2065ECC],
         None,
-        "Implements SPECIAL_PROC_0x3D (see ScriptSpecialProcessCall).\n\nNo params.",
+        "Sets ACTOR_TALK_MAIN to be actor_id.\nImplements SPECIAL_PROC_0x3D (see"
+        " ScriptSpecialProcessCall).\n\nr0: actor_id",
     )
 
-    ScriptSpecialProcess0x3E = Symbol(
+    SetActorTalkSub = Symbol(
         [0x65EDC],
         [0x2065EDC],
         None,
-        "Implements SPECIAL_PROC_0x3E (see ScriptSpecialProcessCall).\n\nNo params.",
+        "Sets ACTOR_TALK_SUB to be actor_id.\nImplements SPECIAL_PROC_0x3E (see"
+        " ScriptSpecialProcessCall).\n\nNo params.",
     )
 
-    ScriptSpecialProcess0x17 = Symbol(
+    RandomizeDemoActors = Symbol(
         [0x65FC4],
         [0x2065FC4],
         None,
-        "Implements SPECIAL_PROC_0x17 (see ScriptSpecialProcessCall).\n\nNo params.",
+        "Randomly picks one of the 18 teams from DEMO_TEAMS and sets"
+        " ENTITY_NPC_DEMO_HERO and ENTITY_NPC_DEMO_PARTNER\nto the randomly selected"
+        " hero and partner.\n\nNo params.",
     )
 
     ItemAtTableIdx = Symbol(
