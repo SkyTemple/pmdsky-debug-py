@@ -20,7 +20,7 @@ import re
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
-from typing import TypeVar
+from typing import TypeVar, Optional
 
 import yaml
 
@@ -39,7 +39,7 @@ class Region(Enum):
     JP_ITCM = "jp-itcm"
 
     @classmethod
-    def from_str(cls, region_str: str):
+    def from_str(cls, region_str: str) -> Optional[Region]:
         region_str = region_str.lower()
         if region_str == "na":
             return Region.NA
@@ -53,6 +53,18 @@ class Region(Enum):
             return Region.EU_ITCM
         if region_str == "jp-itcm":
             return Region.JP_ITCM
+        if region_str == "na-wram":
+            return None
+        if region_str == "eu-wram":
+            return None
+        if region_str == "jp-wram":
+            return None
+        if region_str == "na-ram":
+            return None
+        if region_str == "eu-ram":
+            return None
+        if region_str == "jp-ram":
+            return None
         raise ValueError(f"Unknown region string: {region_str}")
 
     @classmethod
@@ -135,10 +147,11 @@ def _read_symbol(symbol_def: dict) -> Symbol:
     if "address" in symbol_def:
         for region_str, value in symbol_def["address"].items():
             region = Region.from_str(region_str)
-            if isinstance(value, list):
-                sym.addresses[region] = [int(x) for x in value]
-            else:
-                sym.addresses[region] = [int(value)]
+            if region is not None:
+                if isinstance(value, list):
+                    sym.addresses[region] = [int(x) for x in value]
+                else:
+                    sym.addresses[region] = [int(value)]
         Region.fill_missing(sym.addresses)
     else:
         raise ValueError(f"Symbol {name} is missing an address.")
@@ -146,7 +159,8 @@ def _read_symbol(symbol_def: dict) -> Symbol:
     if "length" in symbol_def:
         for region_str, value in symbol_def["length"].items():
             region = Region.from_str(region_str)
-            sym.lengths[region] = int(value)
+            if region is not None:
+                sym.lengths[region] = int(value)
     Region.fill_missing(sym.lengths)
 
     return sym
@@ -162,12 +176,14 @@ def _read(binaries: list[Binary], yml: dict):
         if "address" in definition:
             for region_str, value in definition["address"].items():
                 region = Region.from_str(region_str)
-                binary.loadaddresses[region] = int(value)
+                if region is not None:
+                    binary.loadaddresses[region] = int(value)
             Region.fill_missing(binary.loadaddresses)
         if "length" in definition:
             for region_str, value in definition["length"].items():
                 region = Region.from_str(region_str)
-                binary.lengths[region] = int(value)
+                if region is not None:
+                    binary.lengths[region] = int(value)
             Region.fill_missing(binary.lengths)
         if "functions" in definition:
             for symbol_def in definition["functions"]:
