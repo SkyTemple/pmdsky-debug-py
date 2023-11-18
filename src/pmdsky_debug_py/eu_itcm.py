@@ -6,70 +6,161 @@ class EuItcmArm7Functions:
         None,
         None,
         None,
-        "The entrypoint for the ARM7 CPU. This is like the 'main' function for the ARM7"
-        " subsystem.\n\nNo params.",
+        "The entrypoint for the ARM7 CPU.\n\nHandles mapping the ARM7 binary into the"
+        " various memory areas that the program will be using.\n\nOnce the memory"
+        " mapping has been completed, a constant containing the address to NitroSpMain"
+        " is loaded into a register (r1), and a `bx` branch will jump to"
+        " NitroSpMain.\n\nNo params.",
+    )
+
+    NitroSpMain = Symbol(
+        None,
+        None,
+        None,
+        "This main function for the ARM7 subsystem. Contains the main event loop.\n\nNo"
+        " params.",
+    )
+
+    HardwareInterrupt = Symbol(
+        None,
+        None,
+        None,
+        "Called whenever a hardware interrupt takes place.\n\nReturns immediately if"
+        " the IME flag is 0 or if none of the devices that requested an interrupt has"
+        " the corresponding Interrupt Enable flag set.\nIt searches for the first"
+        " device that requested an interrupt, clears its Interrupt Request flag, then"
+        " jumps to the start of the corresponding interrupt function. The return"
+        " address is manually set to ReturnFromInterrupt.\nThis function does not"
+        " return.\n\nNo params.",
+    )
+
+    ReturnFromInterrupt = Symbol(
+        None,
+        None,
+        None,
+        "The execution returns to this function after a hardware interrupt function is"
+        " run.\n\nNo params.",
+    )
+
+    AudioInterrupt = Symbol(
+        None,
+        None,
+        None,
+        "Called when handling a hardware interrupt from the audio system.\n\nIts"
+        " parameter is used to index a list of function pointers. The game then jumps"
+        " to the read pointer.\n\nr0: Index of the function to jump to",
+    )
+
+    ClearImeFlag = Symbol(
+        None,
+        None,
+        None,
+        "Clears the Interrupt Master Enable flag, which disables all hardware"
+        " interrupts.\n\nreturn: Previous IME value",
+    )
+
+    ClearIeFlag = Symbol(
+        None,
+        None,
+        None,
+        "Clears the specified Interrupt Enable flag, which disables interrupts for the"
+        " specified hardware component.\n\nr0: Flag to clear\nreturn: Previous value of"
+        " the Interrupt Enable flags",
+    )
+
+    GetCurrentPlaybackTime = Symbol(
+        None,
+        None,
+        None,
+        "Returns the time that the current song has been playing for. Might have a more"
+        " generic purpose.\n\nThe time is obtained using a couple of RAM counters and"
+        " the hardware timers for additional precision.\nThe game uses this value to"
+        " know when a given note should stop being played. It doesn't seem to be used"
+        " to keep track of the\ncurrent time instant within the song.\n\nreturn:"
+        " Playback time. Units unknown.",
     )
 
     ClearIrqFlag = Symbol(
         None,
         None,
         None,
-        "Enables processor interrupts by clearing the i flag in the program status"
-        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
-        " disabled, 0x0 if they were already enabled)",
+        "Copy of the ARM9 function. See arm9.yml for more information.\n\nreturn: Old"
+        " value of cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were"
+        " already enabled)",
     )
 
     EnableIrqFlag = Symbol(
         None,
         None,
         None,
-        "Disables processor interrupts by setting the i flag in the program status"
-        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
-        " already disabled, 0x0 if they were enabled)",
+        "Copy of the ARM9 function. See arm9.yml for more information.\n\nreturn: Old"
+        " value of cpsr & 0x80 (0x80 if interrupts were already disabled, 0x0 if they"
+        " were enabled)",
     )
 
     SetIrqFlag = Symbol(
         None,
         None,
         None,
-        "Sets the value of the processor's interrupt flag according to the specified"
-        " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
-        " interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of"
-        " cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
+        "Copy of the ARM9 function. See arm9.yml for more information.\n\nr0: Value to"
+        " set the flag to (0x80 to set it, which disables interrupts; 0x0 to unset it,"
+        " which enables interrupts)\nreturn: Old value of cpsr & 0x80 (0x80 if"
+        " interrupts were disabled, 0x0 if they were enabled)",
     )
 
     EnableIrqFiqFlags = Symbol(
         None,
         None,
         None,
-        "Disables processor all interrupts (both standard and fast) by setting the i"
-        " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
-        " cpsr & 0xC0 (contains the previous values of the i and f flags)",
+        "Copy of the ARM9 function. See arm9.yml for more information.\n\nreturn: Old"
+        " value of cpsr & 0xC0 (contains the previous values of the i and f flags)",
     )
 
     SetIrqFiqFlags = Symbol(
         None,
         None,
         None,
-        "Sets the value of the processor's interrupt flags (i and f) according to the"
-        " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
-        " flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag"
-        " and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr"
-        " & 0xC0 (contains the previous values of the i and f flags)",
+        "Copy of the ARM9 function. See arm9.yml for more information.\n\nr0: Value to"
+        " set the flags to (0xC0 to set both flags, 0x80 to set the i flag and clear"
+        " the f flag, 0x40 to set the f flag and clear the i flag and 0x0 to clear both"
+        " flags)\nreturn: Old value of cpsr & 0xC0 (contains the previous values of the"
+        " i and f flags)",
     )
 
     GetProcessorMode = Symbol(
         None,
         None,
         None,
-        "Gets the processor's current operating mode.\n\nSee"
-        " https://problemkaputt.de/gbatek.htm#armcpuflagsconditionfieldcond\n\nreturn:"
-        " cpsr & 0x1f (the cpsr mode bits M4-M0)",
+        "Copy of the ARM9 function. See arm9.yml for more information.\n\nreturn: cpsr"
+        " & 0x1f (the cpsr mode bits M4-M0)",
+    )
+
+    __divsi3 = Symbol(
+        None,
+        None,
+        None,
+        "Copy of the ARM9 function. See arm9.yml for more information.\n\nr0:"
+        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+    __udivsi3 = Symbol(
+        None,
+        None,
+        None,
+        "Copy of the ARM9 function. See arm9.yml for more information.\n\nr0:"
+        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+    __udivsi3_no_zero_check = Symbol(
+        None,
+        None,
+        None,
+        "Copy of the ARM9 function. See arm9.yml for more information.\n\nr0:"
+        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
     )
 
 
 class EuItcmArm7Data:
-
     pass
 
 
@@ -78,8 +169,17 @@ class EuItcmArm7Section:
     description = (
         "The ARM7 binary.\n\nThis is the secondary binary that gets loaded when the"
         " game is launched.\n\nSpeaking generally, this is the program run by the"
-        " Nintendo DS's secondary ARM7TDMI CPU, which handles the audio engine, the"
-        " touch screen, Wi-Fi functions, cryptography, and more."
+        " Nintendo DS's secondary ARM7TDMI CPU, which handles the audio I/O, the touch"
+        " screen, Wi-Fi functions, cryptography, and more.\n\nMemory map: (binary is"
+        " initially loaded at 0x2380000)\n0x2380000-0x23801E8 => Contains EntryArm7 and"
+        " two more methods, all related to memory mapping.\n0x23801E8-0x238F7F0 =>"
+        " Mapped to 0x37F8000, contains NitroSpMain and functions crucial to"
+        " execution.\n0x238F7F0-0x23A7068 => Mapped to 0x27E0000, contains everything"
+        " else that won't fit in the fast WRAM.\n\nNote that while the length for the"
+        " main EU/NA/JP block is defined as 0x27080 above, after memory mappings, the"
+        " block located at that address is only a 0x1E8 long ENTRY block, containing 3"
+        " functions solely used for the initial memory mapping. The memory following"
+        " this block is reused and its purpose is undocumented at the moment."
     )
     loadaddress = None
     length = None
@@ -99,7 +199,9 @@ class EuItcmArm9Functions:
         None,
         None,
         "The entrypoint for the ARM9 CPU. This is like the 'main' function for the ARM9"
-        " subsystem.\n\nNo params.",
+        " subsystem.\n\nOnce the entry function reaches the end, a constant containing"
+        " the address to NitroMain is loaded into a register (r1), and a `bx` branch"
+        " will jump to NitroMain.\n\nNo params.",
     )
 
     MIiUncompressBackward = Symbol(
@@ -825,8 +927,14 @@ class EuItcmArm9Functions:
         " accordingly.\n\nData transfer mode must have been initialized (with"
         " DataTransferInit) prior to calling this function. This function looks like"
         " it's doing something akin to calling read(2) or fread(3) in a loop until all"
-        " the bytes have been successfully read.\n\nr0: file_stream pointer\nr1:"
-        " [output] buffer\nr2: number of bytes to read\nreturn: number of bytes read",
+        " the bytes have been successfully read.\n\nNote: If code is running from IRQ"
+        " mode, it appears that FileRead hangs the game. When the processor mode is"
+        " forced into SYSTEM mode FileRead once again works, so it appears that ROM"
+        " access only works in certain processor modes. Note that forcing the processor"
+        " into a different mode is generally a bad idea and should be avoided as it"
+        " will easily corrupt that processor mode's states.\n\nr0: file_stream"
+        " pointer\nr1: [output] buffer\nr2: number of bytes to read\nreturn: number of"
+        " bytes read",
     )
 
     FileSeek = Symbol(
@@ -2881,24 +2989,75 @@ class EuItcmArm9Functions:
         None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: waza_id"
     )
 
-    SendAudioCommandWrapperVeneer = Symbol(
+    PlayBgmByIdVeneer = Symbol(
         None,
         None,
         None,
-        "Likely a linker-generated veneer for SendAudioCommandWrapper.\n\nSee"
+        "Likely a linker-generated veneer for PlayBgmById.\n\nSee"
+        " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
+        " Music ID",
+    )
+
+    PlayBgmByIdVolumeVeneer = Symbol(
+        None,
+        None,
+        None,
+        "Likely a linker-generated veneer for PlayBgmByIdVolume.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
         " Music ID\nr1: (?) Stored on byte 8 on the struct passed to"
         " SendAudioCommand\nr2: Volume (0-255)",
     )
 
-    SendAudioCommandWrapper = Symbol(
+    PlaySeVolumeWrapper = Symbol(
         None,
         None,
         None,
-        "Initializes some values and then calls SendAudioCommand.\n\nChecks for"
-        " DEBUG_FLAG_BGM_OFF. If 1, sets the volume to 0 before calling"
-        " SendAudioCommand.\n\nr0: Music ID\nr1: (?) Stored on byte 8 on the struct"
-        " passed to SendAudioCommand\nr2: Volume (0-255)",
+        "Wrapper for PlaySeVolume. Takes an index and uses it to determine the ID of"
+        " the sound to play.\n\nr0: Index",
+    )
+
+    PlayBgmById = Symbol(
+        None,
+        None,
+        None,
+        "Initializes some values and then calls SendAudioCommand to play a BGM"
+        " track.\n\nChecks for DEBUG_FLAG_BGM_OFF. The volume is set to either 0 or 255"
+        " depending on the flag before calling SendAudioCommand.\n\nr0: Music ID",
+    )
+
+    PlayBgmByIdVolume = Symbol(
+        None,
+        None,
+        None,
+        "Initializes some values and then calls SendAudioCommand to play a BGM"
+        " track.\n\nChecks for DEBUG_FLAG_BGM_OFF. If 1, sets the volume to 0 before"
+        " calling SendAudioCommand.\n\nr0: Music ID\nr1: (?) Stored on byte 8 on the"
+        " struct passed to SendAudioCommand\nr2: Volume (0-255)",
+    )
+
+    StopBgmCommand = Symbol(
+        None,
+        None,
+        None,
+        "Stops the BGM that is being currently played by calling"
+        " SendAudioCommand.\n\nNo params.",
+    )
+
+    PlaySeByIdVolume = Symbol(
+        None,
+        None,
+        None,
+        "Plays the specified sound effect with the specified volume.\n\nChecks for"
+        " DEBUG_FLAG_SE_OFF and sets the volume to 0 if the flag is set. Calls"
+        " SendAudioCommand2.\n\nr0: Sound effect ID\nr1: Volume (0-255)",
+    )
+
+    SendAudioCommand2 = Symbol(
+        None,
+        None,
+        None,
+        "Very similar to SendAudioCommand. Contains an additional function call.\n\nr0:"
+        " Command to send",
     )
 
     AllocAudioCommand = Symbol(
@@ -2960,6 +3119,14 @@ class EuItcmArm9Functions:
 
     PlaySeLoad = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    IsSongOver = Symbol(
+        None,
+        None,
+        None,
+        "True if the song that is currently being played has finished"
+        " playing.\n\nreturn: True if the current song is over",
     )
 
     PlayBgm = Symbol(None, None, None, "Note: unverified, ported from Irdkwia's notes")
@@ -3318,16 +3485,16 @@ class EuItcmArm9Functions:
         " RENDER_TEXTURE.\n\nr0: render_3d_element_64",
     )
 
-    Render3d64Border = Symbol(
+    Render3d64WindowFrame = Symbol(
         None,
         None,
         None,
-        "Draw the border for dialogue box and other menus, using the 3D engine.\n\nThe"
-        " render_3d_element_64 contains certain value that needs to be set to a correct"
-        " value for it to work.\nThe element is not immediately sent to the geometry"
-        " engine, but is converted to a render_3d_element and queued up in"
+        "Draw the frame for a window, using the 3D engine.\n\nThe render_3d_element_64"
+        " contains certain value that needs to be set to a correct value for it to"
+        " work.\nThe element is not immediately sent to the geometry engine, but is"
+        " converted to a render_3d_element and queued up in"
         " RENDER_3D.\n\nRENDER_3D_FUNCTIONS_64[6], corresponding to a type of"
-        " RENDER64_BORDER.\n\nr0: render_3d_element_64",
+        " RENDER64_WINDOW_FRAME.\n\nr0: render_3d_element_64",
     )
 
     EnqueueRender3d64Tiling = Symbol(
@@ -3756,16 +3923,24 @@ class EuItcmArm9Functions:
         None, None, None, "Checks if A or B is currently being held.\n\nreturn: bool"
     )
 
-    NewDialogBox = Symbol(
+    NewWindowScreenCheck = Symbol(
         None,
         None,
         None,
-        "Seems to return the ID of a newly initialized dialog box in the next available"
-        " slot in DIALOG_BOX_LIST, given some starting information.\n\nIf"
-        " DIALOG_BOX_LIST is full, it will be overflowed, with the slot with an ID of"
-        " 20 being initialized and returned.\n\nr0: dialog_box_hdr pointer to be copied"
-        " by value into dialog_box::hdr in the new dialog box\nr1: ?\nreturn: dialog"
-        " box ID",
+        "Calls NewWindow, with a pre-check for any valid existing windows in"
+        " WINDOW_LIST on each screen.\n\nr0: window_params (see NewWindow)\nr1:"
+        " ?\nreturn: window_id",
+    )
+
+    NewWindow = Symbol(
+        None,
+        None,
+        None,
+        "Seems to return the ID of a newly initialized window in the next available"
+        " slot in WINDOW_LIST, given some starting information.\n\nIf WINDOW_LIST is"
+        " full, it will be overflowed, with the slot with an ID of 20 being initialized"
+        " and returned.\n\nr0: window_params pointer to be copied by value into"
+        " window::hdr in the new window\nr1: ?\nreturn: window_id",
     )
 
     SetScreenWindowsColor = Symbol(
@@ -3784,12 +3959,12 @@ class EuItcmArm9Functions:
         " index",
     )
 
-    GetDialogBoxField0xC = Symbol(
+    GetWindowContents = Symbol(
         None,
         None,
         None,
-        "Gets field_0xc from the dialog box of the given ID.\n\nr0: dbox_id\nreturn:"
-        " field_0xc",
+        "Gets the contents structure from the window with the given ID.\n\nr0:"
+        " window_id\nreturn: contents",
     )
 
     LoadCursors = Symbol(
@@ -3800,12 +3975,12 @@ class EuItcmArm9Functions:
         " CURSOR_ANIMATION_CONTROL and CURSOR_16_ANIMATION_CONTROL\n\nNo params.",
     )
 
-    InitDialogBoxTrailer = Symbol(
+    InitWindowTrailer = Symbol(
         None,
         None,
         None,
-        "Seems to initialize a dialog_box_trailer within a new dialog_box.\n\nr0:"
-        " dialog_box_trailer pointer",
+        "Seems to initialize a window_trailer within a new window.\n\nr0:"
+        " window_trailer pointer",
     )
 
     Arm9LoadUnkFieldNa0x2029EC8 = Symbol(
@@ -3838,138 +4013,447 @@ class EuItcmArm9Functions:
         " 14)\nr3: ?",
     )
 
-    CreateNormalMenu = Symbol(
+    CreateParentMenu = Symbol(
         None,
         None,
         None,
-        "Creates a normal menu. If the pointer to a layout struct is null, has a"
-        " default menu to fall back\non. A NULL additional_menu_info struct pointer"
-        " works so long as the window does not have any of the\nflags set for the"
-        " information contained inside.\n\nr0: layout_struct_ptr\nr1: menu_flags\nr2:"
-        " additional_menu_info struct\nr3: normal_menu_option struct array\nstack[0]:"
-        " option_id\nreturn: menu_id",
+        "Creates a window containing a simple textual menu with a list of options that"
+        " might open submenus when selected. Also see struct simple_menu.\n\nMultiple"
+        " levels of nesting is possible, i.e., a submenu could itself be a parent"
+        " menu.\n\nThis is used in various menus that lead to submenus. For example,"
+        " the top-level ground and dungeon mode menus.\n\nr0: window_params\nr1: ?\nr2:"
+        " ?\nr3: ?\nreturn: window_id",
     )
 
-    FreeNormalMenu = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: menu_id"
+    UpdateParentMenu = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for parent menus.\n\nr0: window pointer",
     )
 
-    IsNormalMenuActive = Symbol(
+    CreateSimpleMenuWrapper = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: menu_id\nreturn: bool",
+        "A wrapper around CreateSimpleMenu, with a more convenient interface for"
+        " defining menu options.\n\nr0: window_params\nr1: menu_flags\nr2:"
+        " additional_menu_info struct\nr3: simple_menu_option struct array\nstack[0]:"
+        " option_id\nreturn: window_id",
     )
 
-    GetNormalMenuResult = Symbol(
+    CreateSimpleMenu = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: menu_id\nreturn: ?",
+        "Creates a window containing a simple textual menu with a list of options. Also"
+        " see struct simple_menu.\n\nIf the pointer to window_params is null, has a"
+        " default menu to fall back on. A NULL additional_menu_info struct pointer"
+        " works so long as the window does not have any of the flags set for the"
+        " information contained inside.\n\nThis is used in lots of places. For example,"
+        " some simple Yes/No prompts.\n\nr0: window_params\nr1: menu_flags\nr2:"
+        " additional_menu_info struct\nr3: some string with menu options?\nstack[0]:"
+        " option_id\nreturn: window_id",
+    )
+
+    FreeSimpleMenu = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
+    )
+
+    IsSimpleMenuActive = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: bool",
+    )
+
+    GetSimpleMenuResult = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: ?",
+    )
+
+    UpdateSimpleMenu = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for simple menus.\n\nr0: window pointer",
     )
 
     CreateAdvancedMenu = Symbol(
         None,
         None,
         None,
-        "Creates a menu with multiple pages (if needed) that can be flipped through. If"
-        " the layout struct\nis null, has a default layout to fall back on. The entry"
-        " function is used to get the strings for\nall currently available options, so"
-        " when the page is flipped the entry function is used to get the\nstrings for"
-        " the entries on the other page?\n\nr0: layout_struct_ptr\nr1: menu_flags\nr2:"
-        " additional_menu_info struct\nr3: entry_function\nstack[0]:"
-        " nb_options\nstack[1]: nb_opt_per_page\nreturn: menu_id",
+        "Creates a window containing a textual menu with complex layout and"
+        " functionality (e.g., paging through multiple pages). Also see struct"
+        " advanced_menu.\n\nIf window_params is null, has a default layout to fall back"
+        " on. The entry function is used to get the strings for all currently available"
+        " options, so when the page is flipped the entry function is used to get the"
+        " strings for the entries on the other page?\n\nThis is used for menus like the"
+        " IQ skills menu, and the dungeon selection menu from the overworld crossroads."
+        " Curiously, it's also used in some non-interactive contexts like the Adventure"
+        " Log.\n\nr0: window_params\nr1: menu_flags\nr2: additional_menu_info"
+        " struct\nr3: entry_function\nstack[0]: nb_options\nstack[1]:"
+        " nb_opt_per_page\nreturn: window_id",
     )
 
     FreeAdvancedMenu = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: menu_id"
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
     )
 
     IsAdvancedMenuActive = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: menu_id\nreturn: bool",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: bool",
     )
 
     GetAdvancedMenuCurrentOption = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: menu_id\nreturn: ?",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: ?",
     )
 
     GetAdvancedMenuResult = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: menu_id\nreturn: ?",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: ?",
     )
 
-    CreateDBox = Symbol(
+    UpdateAdvancedMenu = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0:"
-        " layout_struct_ptr\nreturn: dbox_id",
+        "Window update function for advanced menus.\n\nr0: window pointer",
     )
 
-    FreeDBox = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id"
+    CreateCollectionMenu = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing a menu for manipulating a collection of objects,"
+        " with complex layout and functionality (e.g., paging). Also see struct"
+        " collection_menu.\n\nCollection menus seem similar to advanced menus, but are"
+        " used for certain menus involving item management (Kangaskhan Storage, Kecleon"
+        " shop, Croagunk Swap Shop), missions (job selection, bulletin board), and"
+        " possibly other things.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: some function"
+        " pointer?\nstack[0]: ?\nstack[1]: ?\nstack[2]: ?\nreturn: window_id",
     )
 
-    IsDBoxActive = Symbol(
+    UpdateCollectionMenu = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id\nreturn: bool",
+        "Window update function for collection menus.\n\nr0: window pointer",
     )
 
-    ShowMessageInDBox = Symbol(
+    CreateOptionsMenu = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing a menu controlling game options. Also see struct"
+        " options_menu.\n\nThis is used for the options and window options menus, and"
+        " possibly other things.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]:"
+        " ?\nstack[1]: ?\nreturn: window_id",
+    )
+
+    UpdateOptionsMenu = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for options menus.\n\nr0: window pointer",
+    )
+
+    CreateDebugMenu = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing the debug menu (probably). Also see struct"
+        " debug_menu.\n\nThis is an educated guess, since this function references"
+        " string IDs of debug menu strings.\n\nSee enum debug_flag and enum"
+        " debug_log_flag.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]:"
+        " ?\nstack[1]: ?\nreturn: window_id",
+    )
+
+    UpdateDebugMenu = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for debug menus.\n\nr0: window pointer",
+    )
+
+    CreateScrollBox1 = Symbol(
+        None,
+        None,
+        None,
+        "Creates a text window that scrolls vertically on overflow. Also see struct"
+        " scroll_box.\n\nThis includes things like descriptions for items and"
+        " moves.\n\nIt's unclear how this function differs from"
+        " CreateScrollBox2.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]:"
+        " ?\nstack[1]: ?\nstack[2]: ?\nreturn: window_id",
+    )
+
+    CreateScrollBox2 = Symbol(
+        None,
+        None,
+        None,
+        "Creates a text window that scrolls vertically on overflow. Also see struct"
+        " scroll_box.\n\nThis includes things like descriptions for items and"
+        " moves.\n\nIt's unclear how this function differs from"
+        " CreateScrollBox1.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]:"
+        " ?\nstack[1]: ?\nstack[2]: ?\nstack[3]: ?\nreturn: window_id",
+    )
+
+    UpdateScrollBox = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for scroll boxes.\n\nr0: window pointer",
+    )
+
+    CreateDialogueBox = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing text that is gradually revealed via scrolling, and"
+        " pages on overflow. Also see struct dialogue_box.\n\nThis is primarily used"
+        " for character dialogue, hence the name. However, it can also be used for"
+        " other types of messages. The defining feature of this window type is the"
+        " scrolling/paging behavior.\n\nr0: window_params\nreturn: window_id",
+    )
+
+    FreeDialogueBox = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
+    )
+
+    IsDialogueBoxActive = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: bool",
+    )
+
+    ShowMessageInDialogueBox = Symbol(
         None,
         None,
         None,
         "Preprocesses the corresponding string_id message in the text file and puts it"
-        " into the dialogue box.\n\nr0: dbox_id\nr1: preprocessor flags (see"
+        " into the dialogue box.\n\nr0: window_id\nr1: preprocessor flags (see"
         " PreprocessString)\nr2: string_id\nr3: pointer to preprocessor args (see"
         " PreprocessString)",
     )
 
-    ShowStringInDBox = Symbol(
+    ShowStringInDialogueBox = Symbol(
         None,
         None,
         None,
         "Preprocesses the passed string and puts it into the dialogue box.\n\nr0:"
-        " dbox_id\nr1: preprocessor flags (see PreprocessString)\nr2: string\nr3:"
+        " window_id\nr1: preprocessor flags (see PreprocessString)\nr2: string\nr3:"
         " pointer to preprocessor args (see PreprocessString)",
     )
 
-    ShowDBox = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id"
+    ShowDialogueBox = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
+    )
+
+    UpdateDialogueBox = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for dialogue boxes.\n\nr0: window pointer",
     )
 
     CreatePortraitBox = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: ???\nr1: ???\nr2:"
-        " ???\nreturn: dbox_id",
+        "Creates a window containing a character portrait. Also see struct"
+        " portrait_box.\n\nThis is commonly paired with a dialogue box, but can also be"
+        " used standalone.\n\nr0: screen index\nr1: palette_idx\nr2: framed\nreturn:"
+        " window_id",
     )
 
     FreePortraitBox = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id"
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
     )
 
     ShowPortraitBox = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id\nr1: portrait box"
-        " pointer",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nr1: portrait"
+        " box pointer",
     )
 
     HidePortraitBox = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nr0: dbox_id"
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
+    )
+
+    UpdatePortraitBox = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for portrait boxes.\n\nr0: window pointer",
+    )
+
+    CreateTextBox1 = Symbol(
+        None,
+        None,
+        None,
+        "Calls CreateTextBoxInternal, sets field_0x4 to the argument in r1, and returns"
+        " the window_id.\n\nr0: window_params\nr1: ?\nreturn: window_id",
+    )
+
+    CreateTextBox2 = Symbol(
+        None,
+        None,
+        None,
+        "Calls CreateTextBoxInternal, sets field_0x8 and field_0x14 to the arguments in"
+        " r1 and r2, respectively, and returns the window_id.\n\nr0: window_params\nr1:"
+        " ?\nr2: ?\nreturn: window_id",
+    )
+
+    CreateTextBoxInternal = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing simple text, without much advanced functionality."
+        " Also see struct text_box.\n\nr0: window_params\nreturn: text_box pointer",
+    )
+
+    UpdateTextBox = Symbol(
+        None, None, None, "Window update function for text boxes.\n\nr0: window pointer"
+    )
+
+    CreateDynamicTextBox = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing dynamically determined text (probably?). Also see"
+        " struct dynamic_text_box.\n\nThis is used for the 'area name' text box in the"
+        " top-level menus in ground/dungeon mode.\n\nr0: window_params\nr1: ?\nr2:"
+        " ?\nr3: ID (for preprocessor_args)\nreturn: window_id",
+    )
+
+    UpdateDynamicTextBox = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for dynamic text boxes.\n\nr0: window pointer",
+    )
+
+    CreateControlsChart = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing a chart of player controls for some context. Also"
+        " see struct controls_chart.\n\nThis is usually used for static top-screen"
+        " control reference charts.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nreturn:"
+        " window_id",
+    )
+
+    UpdateControlsChart = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for controls charts.\n\nr0: window pointer",
+    )
+
+    CreateAlertBox = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing text that will disappear after a certain amount of"
+        " time. Also see struct alert_box.\n\nThis is only used in dungeon mode, for"
+        " the 'popup alert' messages about things happening in the dungeon (which will"
+        " also be accessible in the message logs).\n\nr0: window_params\nreturn:"
+        " window_id",
+    )
+
+    UpdateAlertBox = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for alert boxes.\n\nr0: window pointer",
+    )
+
+    CreateAdvancedTextBox1 = Symbol(
+        None,
+        None,
+        None,
+        "Calls CreateAdvancedTextBoxInternal(r0, r1, r2, stack[0]), sets field_0x1a4 to"
+        " the argument in r3, and returns the window_id.\n\nr0: window_params\nr1:"
+        " ?\nr2: ?\nr3: ?\nstack[0]: ?\nreturn: window_id",
+    )
+
+    CreateAdvancedTextBox2 = Symbol(
+        None,
+        None,
+        None,
+        "Calls CreateAdvancedTextBoxInternal(r0, r1, r2, stack[1]), setsfield_0x1a8 and"
+        " field_0x1ac to the argument in r3 and stack[0],respectively, and returns the"
+        " window_id.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]: ?\nstack[1]:"
+        " ?\nreturn: window_id",
+    )
+
+    CreateAdvancedTextBoxInternal = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing text formatted in complex, potentially sectioned"
+        " layouts. Also see struct advanced_text_box.\n\nThis is usually used to"
+        " display text with 'pretty' formatting in certain contexts, such as the"
+        " message log, the move selection menu, team member summaries, etc.\n\nr0:"
+        " window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]: ?\nreturn: advanced_text_box"
+        " pointer",
+    )
+
+    UpdateAdvancedTextBox = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for advanced text boxes.\n\nr0: window pointer",
+    )
+
+    CreateTeamSelectionMenu = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing a menu for selecting a single team member. Also"
+        " see struct simple_menu.\n\nThis appears to be used for various shop (and"
+        " shop-like) interfaces when a single team member needs to be selected. For"
+        " example, the Electivire Link Shop, the Chimecho Assembly, the Croagunk Swap"
+        " Shop, and Luminous Spring. It's unknown if this is used for other contexts"
+        " besides team member selection.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: some"
+        " function pointer?\nstack[0]: ?\nstack[1]: ?\nreturn: window_id",
+    )
+
+    UpdateTeamSelectionMenu = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for team selection menus.\n\nr0: window pointer",
     )
 
     IsMenuOptionActive = Symbol(
@@ -3979,6 +4463,14 @@ class EuItcmArm9Functions:
         "Called whenever a menu option is selected. Returns whether the option is"
         " active or not.\n\nr0: ?\nreturn: True if the menu option is enabled, false"
         " otherwise.",
+    )
+
+    PlayMenuOptionSound = Symbol(
+        None,
+        None,
+        None,
+        "Plays a 'beep' sound when choosing a menu option.\n\nr0: ?\nr1: Some kind of"
+        " index used to determine the ID of the sound to play",
     )
 
     ShowKeyboard = Symbol(
@@ -5697,8 +6189,8 @@ class EuItcmArm9Functions:
         None,
         None,
         "Base Formula = ((Level-1)*ExpYield)//10+ExpYield\nNote: Defeating an enemy"
-        " without using a move will divide this amount by 2\n\nNote: unverified, ported"
-        " from Irdkwia's notes\n\nr0: id\nr1: level\nreturn: exp",
+        " without using a move will divide this amount by 2\n\nr0: id\nr1:"
+        " level\nreturn: exp",
     )
 
     GetEvoParameters = Symbol(
@@ -6807,19 +7299,46 @@ class EuItcmArm9Functions:
         " ID\nreturn: Dungeon mode",
     )
 
+    ReadWaviEntry = Symbol(
+        None,
+        None,
+        None,
+        "Reads an entry from the pointer table of a wavi container and returns a"
+        " pointer to the data of said entry, which contains information about a"
+        " particular sample.\n\nr0: Wavi data struct\nr1: Entry index\nretrun: Pointer"
+        " to the entry's data",
+    )
+
     ResumeBgm = Symbol(
         None, None, None, "Uncertain.\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    FindSmdlSongChunk = Symbol(
+        None,
+        None,
+        None,
+        "Finds the first song chunk within an SMDL file that has the specified value on"
+        " its 0x10 field.\n\nSee"
+        " https://projectpokemon.org/home/docs/mystery-dungeon-nds/dse-smdl-format-r13/.\n\nr0:"
+        " Pointer to the start of the SMDL file\nr1: Value to search for\nreturn:"
+        " Pointer to the first chunk that has the specified value + 0x10, or null if no"
+        " chunk was found.",
     )
 
     FlushChannels = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    ParseDseEvents = Symbol(
+    ParseDseEvent = Symbol(
         None,
         None,
         None,
-        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
+        "Parses and executes a DSE event for the specified track, if necessary.\n\nThe"
+        " function checks the time left before the next event"
+        " (track_data::event_delay), and parses it if said time is 0.\n\nSee also"
+        " https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nr0:"
+        " Pointer to some struct that seems to hold the state of the audio engine\nr1:"
+        " Pointer to track data",
     )
 
     UpdateSequencerTracks = Symbol(
@@ -6901,6 +7420,14 @@ class EuItcmArm9Functions:
         " instructions.\n\nr0: matrix_4x3 pointer\nr1: GXFIFO pointer",
     )
 
+    GetTimer0Control = Symbol(
+        None,
+        None,
+        None,
+        "Returns the value of the control register for hardware timer 0\n\nreturn:"
+        " Value of the control register",
+    )
+
     ClearIrqFlag = Symbol(
         None,
         None,
@@ -6956,6 +7483,15 @@ class EuItcmArm9Functions:
         "Gets the current value of the processor's interrupt request (i)"
         " flag\n\nreturn: cpsr & 0x80 (0x80 if interrupts are disabled, 0x0 if they are"
         " enabled)",
+    )
+
+    GetProcessorMode = Symbol(
+        None,
+        None,
+        None,
+        "Gets the processor's current operating mode.\n\nSee"
+        " https://problemkaputt.de/gbatek.htm#armcpuflagsconditionfieldcond\n\nreturn:"
+        " cpsr & 0x1f (the cpsr mode bits M4-M0)",
     )
 
     WaitForever2 = Symbol(
@@ -7516,9 +8052,7 @@ class EuItcmArm9Data:
         "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
     )
 
-    DIALOG_BOX_LIST_PTR = Symbol(
-        None, None, None, "Hard-coded pointer to DIALOG_BOX_LIST."
-    )
+    WINDOW_LIST_PTR = Symbol(None, None, None, "Hard-coded pointer to WINDOW_LIST.")
 
     SCRIPT_VARS_VALUES_PTR = Symbol(
         None, None, None, "Hard-coded pointer to SCRIPT_VARS_VALUES."
@@ -8688,8 +9222,8 @@ class EuItcmArm9Section:
 
 class EuItcmItcmFunctions:
     Render3dSetTextureParams = Symbol(
-        None,
-        None,
+        [0x130],
+        [0x1FF8130],
         None,
         "A wrapper around GeomSetTexImageParam that caches the VRAM offset on"
         " RENDER_3D.\n\nAlways disables flipping and sets color values of 0 to be"
@@ -8698,8 +9232,8 @@ class EuItcmItcmFunctions:
     )
 
     Render3dSetPaletteBase = Symbol(
-        None,
-        None,
+        [0x1CC],
+        [0x1FF81CC],
         None,
         "Send the PLTT_BASE geometry engine command, that sets the texture palette base"
         " address. Also caches the base address on RENDER_3D.\nSee"
@@ -8709,16 +9243,16 @@ class EuItcmItcmFunctions:
     )
 
     Render3dRectangle = Symbol(
-        None,
-        None,
+        [0x224],
+        [0x1FF8224],
         None,
         "RENDER_3D_FUNCTIONS[0]. Renders a render_3d_element with type"
         " RENDER_RECTANGLE.\n\nr0: render_3d_rectangle",
     )
 
     GeomSetPolygonAttributes = Symbol(
-        None,
-        None,
+        [0x480],
+        [0x1FF8480],
         None,
         "Send the POLYGON_ATTR geometry engine command, that defines some polygon"
         " attributes for rendering.\nSee"
@@ -8727,16 +9261,16 @@ class EuItcmItcmFunctions:
     )
 
     Render3dQuadrilateral = Symbol(
-        None,
-        None,
+        [0x49C],
+        [0x1FF849C],
         None,
         "RENDER_3D_FUNCTIONS[1]. Renders a render_3d_element with type"
         " RENDER_QUADRILATERAL.\n\nr0: render_3d_quadrilateral",
     )
 
     Render3dTiling = Symbol(
-        None,
-        None,
+        [0x728],
+        [0x1FF8728],
         None,
         "RENDER_3D_FUNCTIONS[2]. Renders a render_3d_element with type"
         " RENDER_TILING.\n\nr0: render_3d_tiling",
@@ -8751,8 +9285,8 @@ class EuItcmItcmFunctions:
     )
 
     Render3dTexture = Symbol(
-        None,
-        None,
+        [0xC28],
+        [0x1FF8C28],
         None,
         "RENDER_3D_FUNCTIONS[3]. Renders a render_3d_element with type"
         " RENDER_TEXTURE.\n\nThis is primarily just a wrapper around"
@@ -8782,24 +9316,24 @@ class EuItcmItcmFunctions:
     )
 
     EnqueueRender3dTexture = Symbol(
-        None,
-        None,
+        [0xCAC],
+        [0x1FF8CAC],
         None,
         "Copies the first 40 bytes of a render_3d_element onto the render queue of"
         " RENDER_3D, with type set to RENDER_TEXTURE.\n\nr0: render_3d_element",
     )
 
     EnqueueRender3dTiling = Symbol(
-        None,
-        None,
+        [0xCDC],
+        [0x1FF8CDC],
         None,
         "Copies a render_3d_element onto the render queue of RENDER_3D, with type set"
         " to RENDER_TILING.\n\nr0: render_3d_element",
     )
 
     NewRender3dRectangle = Symbol(
-        None,
-        None,
+        [0xD0C],
+        [0x1FF8D0C],
         None,
         "Return a render_3d_element from NewRender3dElement with a type of"
         " RENDER_RECTANGLE, and all other fields in the first 38 bytes"
@@ -8808,8 +9342,8 @@ class EuItcmItcmFunctions:
     )
 
     NewRender3dQuadrilateral = Symbol(
-        None,
-        None,
+        [0xD3C],
+        [0x1FF8D3C],
         None,
         "Return a render_3d_element from NewRender3dElement with a type of"
         " RENDER_QUADRILATERAL, and all other fields in the first 38 bytes"
@@ -8818,8 +9352,8 @@ class EuItcmItcmFunctions:
     )
 
     NewRender3dTexture = Symbol(
-        None,
-        None,
+        [0xD6C],
+        [0x1FF8D6C],
         None,
         "Return a render_3d_element from NewRender3dElement with a type of"
         " RENDER_TEXTURE, and all other fields in the first 40 bytes zeroed.\n\nreturn:"
@@ -8884,6 +9418,28 @@ class EuItcmItcmFunctions:
         [0x1FF95AC],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: key",
+    )
+
+    HardwareInterrupt = Symbol(
+        [0x15E8],
+        [0x1FF95E8],
+        None,
+        "Called whenever a hardware interrupt takes place.\n\nReturns immediately if"
+        " the IME flag is 0 or if none of the devices that requested an interrupt has"
+        " the corresponding Interrupt Enable flag set.\nIt searches for the first"
+        " device that requested an interrupt, clears its Interrupt Request flag, then"
+        " jumps to the start of the corresponding interrupt function. The return"
+        " address is manually set to ReturnFromInterrupt.\nThe address of the function"
+        " to jump to is read from the interrupt vector at the start of the DTCM region"
+        " (0x27E0000).\nThis function does not return.\n\nNo params.",
+    )
+
+    ReturnFromInterrupt = Symbol(
+        [0x1650],
+        [0x1FF9650],
+        None,
+        "The execution returns to this function after a hardware interrupt function is"
+        " run.\n\nNo params.",
     )
 
     ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
@@ -11704,7 +12260,6 @@ class EuItcmMove_effectsSection:
 
 
 class EuItcmOverlay0Functions:
-
     pass
 
 
@@ -11838,6 +12393,25 @@ class EuItcmOverlay1Section:
 
 
 class EuItcmOverlay10Functions:
+    CreateInventoryMenu = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing a menu for inventory management. Also see struct"
+        " inventory_menu.\n\nThis is used for the Treasure Bag menu, the item"
+        " information/price window in dungeon Kecleon shops, and possibly other"
+        " things.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: some function"
+        " pointer?\nstack[0]: ?\nstack[1]: ?\nstack[2]: ?\nstack[3]: ?\nreturn:"
+        " window_id",
+    )
+
+    UpdateInventoryMenu = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for inventory menus.\n\nr0: window pointer",
+    )
+
     SprintfStatic = Symbol(
         None,
         None,
@@ -11921,6 +12495,22 @@ class EuItcmOverlay10Functions:
         " pointer)",
     )
 
+    ProcessTeamStatsLvHp = Symbol(
+        None,
+        None,
+        None,
+        "Appears to populate the Lv./HP row in the 'Team stats' top screen.\n\nr0:"
+        " index of some kind",
+    )
+
+    ProcessTeamStatsNameGender = Symbol(
+        None,
+        None,
+        None,
+        "Appears to populate the name/gender row in the 'Team stats' top screen.\n\nr0:"
+        " index of some kind",
+    )
+
     IsBackgroundTileset = Symbol(
         None,
         None,
@@ -11929,6 +12519,16 @@ class EuItcmOverlay10Functions:
         " tileset\n\nIn particular, returns r0 >= 0xAA\n\nr0: Tileset ID\nreturn: True"
         " if the tileset ID corresponds to a background, false if it corresponds to a"
         " regular tileset",
+    )
+
+    InitTilesetBuffer = Symbol(
+        None,
+        None,
+        None,
+        "Initializes a buffer that contains data related to tilesets (such as"
+        " dungeon::unknown_file_buffer_0x102A8).\n\nCalls AllocAndLoadFileInPack and"
+        " DecompressAtNormalVeneer.\n\nr0: Pointer to the buffer to init\nr1: Tileset"
+        " ID\nr2: Memory allocation flags",
     )
 
     MainGame = Symbol(
@@ -12533,6 +13133,10 @@ class EuItcmOverlay10Data:
 
     LEECH_SEED_DAMAGE_COOLDOWN = Symbol(
         None, None, None, "The number of turns between leech seed health drain."
+    )
+
+    THROWN_ITEM_HIT_CHANCE = Symbol(
+        None, None, None, "Chance of a hurled item hitting the target (90%)."
     )
 
     GEO_PEBBLE_DAMAGE = Symbol(None, None, None, "Damage dealt by Geo Pebbles.")
@@ -13610,6 +14214,22 @@ class EuItcmOverlay11Functions:
         " this change the animation\n\nr0: live actor\nr1: direction",
     )
 
+    CreateTeamInfoBox = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing team information (rank and money carried) for the"
+        " top-level menu in ground mode. Also see struct team_info_box.\n\nreturn:"
+        " window_id",
+    )
+
+    UpdateTeamInfoBox = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for team info boxes.\n\nr0: window pointer",
+    )
+
     SprintfStatic = Symbol(
         None,
         None,
@@ -13837,12 +14457,10 @@ class EuItcmOverlay11Section:
 
 
 class EuItcmOverlay12Functions:
-
     pass
 
 
 class EuItcmOverlay12Data:
-
     pass
 
 
@@ -14242,7 +14860,7 @@ class EuItcmOverlay14Data:
     )
 
     SENTRY_LOUDRED_MONSTER_ID = Symbol(
-        None, None, None, "Monster ID for Loudred, used as the speaker ID for dialog."
+        None, None, None, "Monster ID for Loudred, used as the speaker ID for dialogue."
     )
 
     STRING_ID_SENTRY_TOP_SESSIONS = Symbol(
@@ -14337,7 +14955,7 @@ class EuItcmOverlay14Data:
     )
 
     SENTRY_CHATOT_MONSTER_ID = Symbol(
-        None, None, None, "Monster ID for Chatot, used as the speaker ID for dialog."
+        None, None, None, "Monster ID for Chatot, used as the speaker ID for dialogue."
     )
 
     STRING_ID_SENTRY_NO_MORE_VISITORS = Symbol(
@@ -14386,7 +15004,6 @@ class EuItcmOverlay14Section:
 
 
 class EuItcmOverlay15Functions:
-
     pass
 
 
@@ -14432,7 +15049,6 @@ class EuItcmOverlay15Section:
 
 
 class EuItcmOverlay16Functions:
-
     pass
 
 
@@ -14498,7 +15114,6 @@ class EuItcmOverlay16Section:
 
 
 class EuItcmOverlay17Functions:
-
     pass
 
 
@@ -14574,7 +15189,6 @@ class EuItcmOverlay17Section:
 
 
 class EuItcmOverlay18Functions:
-
     pass
 
 
@@ -14791,12 +15405,10 @@ class EuItcmOverlay19Section:
 
 
 class EuItcmOverlay2Functions:
-
     pass
 
 
 class EuItcmOverlay2Data:
-
     pass
 
 
@@ -14814,7 +15426,6 @@ class EuItcmOverlay2Section:
 
 
 class EuItcmOverlay20Functions:
-
     pass
 
 
@@ -14916,7 +15527,6 @@ class EuItcmOverlay20Section:
 
 
 class EuItcmOverlay21Functions:
-
     pass
 
 
@@ -14998,7 +15608,6 @@ class EuItcmOverlay21Section:
 
 
 class EuItcmOverlay22Functions:
-
     pass
 
 
@@ -15094,7 +15703,6 @@ class EuItcmOverlay22Section:
 
 
 class EuItcmOverlay23Functions:
-
     pass
 
 
@@ -15178,7 +15786,6 @@ class EuItcmOverlay23Section:
 
 
 class EuItcmOverlay24Functions:
-
     pass
 
 
@@ -15238,7 +15845,6 @@ class EuItcmOverlay24Section:
 
 
 class EuItcmOverlay25Functions:
-
     pass
 
 
@@ -15308,7 +15914,6 @@ class EuItcmOverlay25Section:
 
 
 class EuItcmOverlay26Functions:
-
     pass
 
 
@@ -15359,7 +15964,6 @@ class EuItcmOverlay26Section:
 
 
 class EuItcmOverlay27Functions:
-
     pass
 
 
@@ -15443,12 +16047,10 @@ class EuItcmOverlay27Section:
 
 
 class EuItcmOverlay28Functions:
-
     pass
 
 
 class EuItcmOverlay28Data:
-
     pass
 
 
@@ -17887,8 +18489,8 @@ class EuItcmOverlay29Functions:
         "Attempts to level up the target. Calls LevelUp with a few extra checks and"
         " messages\nfor using as an item. Used for the Joy Seed and Golden Seed.\n\nr0:"
         " user entity pointer\nr1: target entity pointer\nr2: number of levels\nr3:"
-        " bool message flag?\nstack[0]: bool show level up dialog (for example 'Hey, I"
-        " leveled up!' with a portrait)?",
+        " bool message flag?\nstack[0]: bool show level up dialogue (for example 'Hey,"
+        " I leveled up!' with a portrait)?",
     )
 
     TryDecreaseLevel = Symbol(
@@ -17905,10 +18507,10 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "Attempts to level up the target. Fails if the target's level can't be raised."
-        " The show show level up dialog bool does nothing for monsters not on the"
+        " The show level up dialogue bool does nothing for monsters not on the"
         " team.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: bool message"
-        " flag?\nr3: bool show level up dialog (for example 'Hey, I leveled up!' with a"
-        " portrait)?\nreturn: success flag",
+        " flag?\nr3: bool show level up dialogue (for example 'Hey, I leveled up!' with"
+        " a portrait)?\nreturn: success flag",
     )
 
     GetMonsterMoves = Symbol(
@@ -21658,6 +22260,20 @@ class EuItcmOverlay29Functions:
         " item ID\nr2: quantity\nr3: stickiness type (enum gen_item_stickiness)",
     )
 
+    DoesProjectileHitTarget = Symbol(
+        None,
+        None,
+        None,
+        "Determines if a hurled projectile will impact on a target or if the target"
+        " will dodge it instead.\n\nContains a random chance using"
+        " THROWN_ITEM_HIT_CHANCE, as well as some additional checks involving certain"
+        " items (Whiff Specs, Lockon Specs and Dodge Scarf), exclusive item effects"
+        " (EXCLUSIVE_EFF_THROWN_ITEM_PROTECTION) or pokémon (Kecleon, clients, secret"
+        " bazaar NPCs).\n\nr0: Monster that throws the item\nr1: Target"
+        " monster\nreturn: True if the item impacts on the target, false if the target"
+        " dodges the item.",
+    )
+
     CheckActiveChallengeRequest = Symbol(
         None,
         None,
@@ -22892,12 +23508,10 @@ class EuItcmOverlay29Section:
 
 
 class EuItcmOverlay3Functions:
-
     pass
 
 
 class EuItcmOverlay3Data:
-
     pass
 
 
@@ -23250,12 +23864,10 @@ class EuItcmOverlay31Section:
 
 
 class EuItcmOverlay32Functions:
-
     pass
 
 
 class EuItcmOverlay32Data:
-
     pass
 
 
@@ -23269,12 +23881,10 @@ class EuItcmOverlay32Section:
 
 
 class EuItcmOverlay33Functions:
-
     pass
 
 
 class EuItcmOverlay33Data:
-
     pass
 
 
@@ -23356,12 +23966,10 @@ class EuItcmOverlay34Section:
 
 
 class EuItcmOverlay35Functions:
-
     pass
 
 
 class EuItcmOverlay35Data:
-
     pass
 
 
@@ -23375,12 +23983,10 @@ class EuItcmOverlay35Section:
 
 
 class EuItcmOverlay4Functions:
-
     pass
 
 
 class EuItcmOverlay4Data:
-
     pass
 
 
@@ -23394,12 +24000,10 @@ class EuItcmOverlay4Section:
 
 
 class EuItcmOverlay5Functions:
-
     pass
 
 
 class EuItcmOverlay5Data:
-
     pass
 
 
@@ -23413,12 +24017,10 @@ class EuItcmOverlay5Section:
 
 
 class EuItcmOverlay6Functions:
-
     pass
 
 
 class EuItcmOverlay6Data:
-
     pass
 
 
@@ -23432,12 +24034,10 @@ class EuItcmOverlay6Section:
 
 
 class EuItcmOverlay7Functions:
-
     pass
 
 
 class EuItcmOverlay7Data:
-
     pass
 
 
@@ -23453,12 +24053,10 @@ class EuItcmOverlay7Section:
 
 
 class EuItcmOverlay8Functions:
-
     pass
 
 
 class EuItcmOverlay8Data:
-
     pass
 
 
@@ -23474,8 +24072,53 @@ class EuItcmOverlay8Section:
 
 
 class EuItcmOverlay9Functions:
+    CreateJukeboxTrackMenu = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing the track selection menu for the Sky Jukebox. Also"
+        " see struct jukebox_track_menu.\n\nr0: window_params\nr1: ?\nr2: ?\nr3:"
+        " ?\nstack[0]: ?\nreturn: window_id",
+    )
 
-    pass
+    UpdateJukeboxTrackMenu = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for jukebox track menus.\n\nr0: window pointer",
+    )
+
+    CreatePlaybackControlsMenu = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing the playback controls menu for a selected song."
+        " Also see struct simple_menu.\n\nr0: window_params\nr1: ?\nr2: ?\nr3:"
+        " ?\nstack[0]: ?\nstack[1]: ?\nreturn: window_id",
+    )
+
+    UpdatePlaybackControlsMenu = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for playback controls menus.\n\nr0: window pointer",
+    )
+
+    CreateInputLockBox = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing the 'Locked' text when inputs are locked while a"
+        " song is playing. Also see struct input_lock_box.\n\nr0: window_params\nr1:"
+        " ?\nr2: ?\nr3: ?\nstack[0]: ?\nreturn: window_id",
+    )
+
+    UpdateInputLockBox = Symbol(
+        None,
+        None,
+        None,
+        "Window update function for input lock boxes.\n\nr0: window pointer",
+    )
 
 
 class EuItcmOverlay9Data:
@@ -23497,7 +24140,6 @@ class EuItcmOverlay9Section:
 
 
 class EuItcmRamFunctions:
-
     pass
 
 
@@ -23710,12 +24352,15 @@ class EuItcmRamData:
 
     SOUND_MEMORY_ARENA_PTR = Symbol(None, None, None, "Pointer to SOUND_MEMORY_ARENA.")
 
-    DIALOG_BOX_LIST = Symbol(
+    WINDOW_LIST = Symbol(
         None,
         None,
         None,
-        "Array of all dialog box structs. Newly created dialog box structs are taken"
-        " from slots in this array.\n\ntype: struct dialog_box_list",
+        "Array of all window structs. Newly created window structs are taken from slots"
+        " in this array.\n\nNote that this array isn't strictly ordered in any way. A"
+        " newly created window will occupy the first available slot. If a window in an"
+        " early slot is destroyed, windows that are still active in later slots won't"
+        " be shifted back unless destroyed and recreated.\n\ntype: struct window_list",
     )
 
     LAST_NEW_MOVE = Symbol(

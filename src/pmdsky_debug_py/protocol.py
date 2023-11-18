@@ -48,6 +48,41 @@ class Arm7FunctionsProtocol(Protocol):
         None,
     ]
 
+    NitroSpMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HardwareInterrupt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ReturnFromInterrupt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AudioInterrupt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearImeFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearIeFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCurrentPlaybackTime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ClearIrqFlag: Symbol[
         Optional[list[int]],
         None,
@@ -78,9 +113,23 @@ class Arm7FunctionsProtocol(Protocol):
         None,
     ]
 
+    __divsi3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    __udivsi3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    __udivsi3_no_zero_check: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
 
 class Arm7DataProtocol(Protocol):
-
     pass
 
 
@@ -1817,12 +1866,42 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    SendAudioCommandWrapperVeneer: Symbol[
+    PlayBgmByIdVeneer: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SendAudioCommandWrapper: Symbol[
+    PlayBgmByIdVolumeVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlaySeVolumeWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayBgmById: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayBgmByIdVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StopBgmCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlaySeByIdVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendAudioCommand2: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -1858,6 +1937,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     PlaySeLoad: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSongOver: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2097,7 +2181,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    Render3d64Border: Symbol[
+    Render3d64WindowFrame: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2352,7 +2436,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    NewDialogBox: Symbol[
+    NewWindowScreenCheck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NewWindow: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2367,7 +2456,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetDialogBoxField0xC: Symbol[
+    GetWindowContents: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2377,7 +2466,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    InitDialogBoxTrailer: Symbol[
+    InitWindowTrailer: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2402,22 +2491,42 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CreateNormalMenu: Symbol[
+    CreateParentMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FreeNormalMenu: Symbol[
+    UpdateParentMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    IsNormalMenuActive: Symbol[
+    CreateSimpleMenuWrapper: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetNormalMenuResult: Symbol[
+    CreateSimpleMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeSimpleMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSimpleMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetSimpleMenuResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateSimpleMenu: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2447,32 +2556,87 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CreateDBox: Symbol[
+    UpdateAdvancedMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FreeDBox: Symbol[
+    CreateCollectionMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    IsDBoxActive: Symbol[
+    UpdateCollectionMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ShowMessageInDBox: Symbol[
+    CreateOptionsMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ShowStringInDBox: Symbol[
+    UpdateOptionsMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ShowDBox: Symbol[
+    CreateDebugMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateDebugMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateScrollBox1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateScrollBox2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateScrollBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateDialogueBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeDialogueBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsDialogueBoxActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ShowMessageInDialogueBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ShowStringInDialogueBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ShowDialogueBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateDialogueBox: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2497,7 +2661,97 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    UpdatePortraitBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateTextBox1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateTextBox2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateTextBoxInternal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateTextBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateDynamicTextBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateDynamicTextBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateControlsChart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateControlsChart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateAlertBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateAlertBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateAdvancedTextBox1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateAdvancedTextBox2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateAdvancedTextBoxInternal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateAdvancedTextBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateTeamSelectionMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateTeamSelectionMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsMenuOptionActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayMenuOptionSound: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4227,7 +4481,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ReadWaviEntry: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ResumeBgm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FindSmdlSongChunk: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4237,7 +4501,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    ParseDseEvents: Symbol[
+    ParseDseEvent: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4282,6 +4546,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetTimer0Control: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ClearIrqFlag: Symbol[
         Optional[list[int]],
         None,
@@ -4308,6 +4577,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetIrqFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetProcessorMode: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4639,7 +4913,7 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DIALOG_BOX_LIST_PTR: Symbol[
+    WINDOW_LIST_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -5604,32 +5878,32 @@ Arm9Protocol = SectionProtocol[
 
 class ItcmFunctionsProtocol(Protocol):
     Render3dSetTextureParams: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     Render3dSetPaletteBase: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     Render3dRectangle: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     GeomSetPolygonAttributes: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     Render3dQuadrilateral: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     Render3dTiling: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
@@ -5639,7 +5913,7 @@ class ItcmFunctionsProtocol(Protocol):
     ]
 
     Render3dTexture: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
@@ -5654,32 +5928,32 @@ class ItcmFunctionsProtocol(Protocol):
     ]
 
     EnqueueRender3dTexture: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     EnqueueRender3dTiling: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     NewRender3dRectangle: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     NewRender3dQuadrilateral: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     NewRender3dTexture: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
     NewRender3dTiling: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
@@ -5714,6 +5988,16 @@ class ItcmFunctionsProtocol(Protocol):
     ]
 
     GetKeyM2NBaseForm: Symbol[
+        list[int],
+        None,
+    ]
+
+    HardwareInterrupt: Symbol[
+        list[int],
+        None,
+    ]
+
+    ReturnFromInterrupt: Symbol[
         list[int],
         None,
     ]
@@ -7370,7 +7654,6 @@ Move_effectsProtocol = SectionProtocol[
 
 
 class Overlay0FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -7505,6 +7788,16 @@ Overlay1Protocol = SectionProtocol[
 
 
 class Overlay10FunctionsProtocol(Protocol):
+    CreateInventoryMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateInventoryMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SprintfStatic: Symbol[
         Optional[list[int]],
         None,
@@ -7555,7 +7848,22 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
+    ProcessTeamStatsLvHp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessTeamStatsNameGender: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsBackgroundTileset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitTilesetBuffer: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8023,6 +8331,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     LEECH_SEED_DAMAGE_COOLDOWN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    THROWN_ITEM_HIT_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -8721,6 +9034,16 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    CreateTeamInfoBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateTeamInfoBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SprintfStatic: Symbol[
         Optional[list[int]],
         None,
@@ -8867,12 +9190,10 @@ Overlay11Protocol = SectionProtocol[
 
 
 class Overlay12FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay12DataProtocol(Protocol):
-
     pass
 
 
@@ -9376,7 +9697,6 @@ Overlay14Protocol = SectionProtocol[
 
 
 class Overlay15FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -9430,7 +9750,6 @@ Overlay15Protocol = SectionProtocol[
 
 
 class Overlay16FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -9514,7 +9833,6 @@ Overlay16Protocol = SectionProtocol[
 
 
 class Overlay17FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -9628,7 +9946,6 @@ Overlay17Protocol = SectionProtocol[
 
 
 class Overlay18FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -9893,12 +10210,10 @@ Overlay19Protocol = SectionProtocol[
 
 
 class Overlay2FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay2DataProtocol(Protocol):
-
     pass
 
 
@@ -9910,7 +10225,6 @@ Overlay2Protocol = SectionProtocol[
 
 
 class Overlay20FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -10049,7 +10363,6 @@ Overlay20Protocol = SectionProtocol[
 
 
 class Overlay21FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -10163,7 +10476,6 @@ Overlay21Protocol = SectionProtocol[
 
 
 class Overlay22FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -10287,7 +10599,6 @@ Overlay22Protocol = SectionProtocol[
 
 
 class Overlay23FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -10396,7 +10707,6 @@ Overlay23Protocol = SectionProtocol[
 
 
 class Overlay24FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -10470,7 +10780,6 @@ Overlay24Protocol = SectionProtocol[
 
 
 class Overlay25FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -10559,7 +10868,6 @@ Overlay25Protocol = SectionProtocol[
 
 
 class Overlay26FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -10608,7 +10916,6 @@ Overlay26Protocol = SectionProtocol[
 
 
 class Overlay27FunctionsProtocol(Protocol):
-
     pass
 
 
@@ -10717,12 +11024,10 @@ Overlay27Protocol = SectionProtocol[
 
 
 class Overlay28FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay28DataProtocol(Protocol):
-
     pass
 
 
@@ -13969,6 +14274,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DoesProjectileHitTarget: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CheckActiveChallengeRequest: Symbol[
         Optional[list[int]],
         None,
@@ -14730,12 +15040,10 @@ Overlay29Protocol = SectionProtocol[
 
 
 class Overlay3FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay3DataProtocol(Protocol):
-
     pass
 
 
@@ -15119,12 +15427,10 @@ Overlay31Protocol = SectionProtocol[
 
 
 class Overlay32FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay32DataProtocol(Protocol):
-
     pass
 
 
@@ -15136,12 +15442,10 @@ Overlay32Protocol = SectionProtocol[
 
 
 class Overlay33FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay33DataProtocol(Protocol):
-
     pass
 
 
@@ -15219,12 +15523,10 @@ Overlay34Protocol = SectionProtocol[
 
 
 class Overlay35FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay35DataProtocol(Protocol):
-
     pass
 
 
@@ -15236,12 +15538,10 @@ Overlay35Protocol = SectionProtocol[
 
 
 class Overlay4FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay4DataProtocol(Protocol):
-
     pass
 
 
@@ -15253,12 +15553,10 @@ Overlay4Protocol = SectionProtocol[
 
 
 class Overlay5FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay5DataProtocol(Protocol):
-
     pass
 
 
@@ -15270,12 +15568,10 @@ Overlay5Protocol = SectionProtocol[
 
 
 class Overlay6FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay6DataProtocol(Protocol):
-
     pass
 
 
@@ -15287,12 +15583,10 @@ Overlay6Protocol = SectionProtocol[
 
 
 class Overlay7FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay7DataProtocol(Protocol):
-
     pass
 
 
@@ -15304,12 +15598,10 @@ Overlay7Protocol = SectionProtocol[
 
 
 class Overlay8FunctionsProtocol(Protocol):
-
     pass
 
 
 class Overlay8DataProtocol(Protocol):
-
     pass
 
 
@@ -15321,8 +15613,35 @@ Overlay8Protocol = SectionProtocol[
 
 
 class Overlay9FunctionsProtocol(Protocol):
+    CreateJukeboxTrackMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
-    pass
+    UpdateJukeboxTrackMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreatePlaybackControlsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdatePlaybackControlsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateInputLockBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateInputLockBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay9DataProtocol(Protocol):
@@ -15340,7 +15659,6 @@ Overlay9Protocol = SectionProtocol[
 
 
 class RamFunctionsProtocol(Protocol):
-
     pass
 
 
@@ -15500,7 +15818,7 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
-    DIALOG_BOX_LIST: Symbol[
+    WINDOW_LIST: Symbol[
         Optional[list[int]],
         None,
     ]
