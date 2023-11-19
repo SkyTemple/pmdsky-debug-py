@@ -2170,7 +2170,7 @@ class NaArm9Functions:
         [0x20101E4],
         None,
         "Removes a storage item equivalent to the bulk_item passed from"
-        " storage.\nProbably? Implements SPECIAL_PROC_0x2A (see"
+        " storage.\nProbably? Implements SPECIAL_PROC_REMOVE_ITEM_TYPE_IN_STORAGE (see"
         " ScriptSpecialProcessCall).\n\nr0: pointer to a bulk_item\nreturn: bool"
         " whether an item was removed",
     )
@@ -7393,25 +7393,26 @@ class NaArm9Functions:
         [0x65B3C],
         [0x2065B3C],
         None,
-        "Sets ACTOR_TALK_MAIN and ACTOR_TALK_SUB to given actor IDs.\nImplements"
-        " SPECIAL_PROC_0x3D (see ScriptSpecialProcessCall).\n\nr0: actor_id for"
-        " ACTOR_TALK_MAIN\nr1: actor_id for ACTOR_TALK_SUB",
+        "Sets ACTOR_TALK_MAIN and ACTOR_TALK_SUB to given actor IDs.\n\nr0: actor_id"
+        " for ACTOR_TALK_MAIN\nr1: actor_id for ACTOR_TALK_SUB",
     )
 
     SetActorTalkMain = Symbol(
         [0x65B50],
         [0x2065B50],
         None,
-        "Sets ACTOR_TALK_MAIN to be actor_id.\nImplements SPECIAL_PROC_0x3D (see"
-        " ScriptSpecialProcessCall).\n\nr0: actor_id",
+        "Sets ACTOR_TALK_MAIN to be actor_id.\nImplements"
+        " SPECIAL_PROC_SET_ACTOR_TALK_MAIN (see ScriptSpecialProcessCall).\n\nr0:"
+        " actor_id",
     )
 
     SetActorTalkSub = Symbol(
         [0x65B60],
         [0x2065B60],
         None,
-        "Sets ACTOR_TALK_SUB to be actor_id.\nImplements SPECIAL_PROC_0x3E (see"
-        " ScriptSpecialProcessCall).\n\nNo params.",
+        "Sets ACTOR_TALK_SUB to be actor_id.\nImplements"
+        " SPECIAL_PROC_SET_ACTOR_TALK_SUB (see ScriptSpecialProcessCall).\n\nr0:"
+        " actor_id",
     )
 
     RandomizeDemoActors = Symbol(
@@ -7420,7 +7421,8 @@ class NaArm9Functions:
         None,
         "Randomly picks one of the 18 teams from DEMO_TEAMS and sets"
         " ENTITY_NPC_DEMO_HERO and ENTITY_NPC_DEMO_PARTNER\nto the randomly selected"
-        " hero and partner.\n\nNo params.",
+        " hero and partner.\nImplements SPECIAL_PROC_RANDOMIZE_DEMO_ACTORS (see"
+        " ScriptSpecialProcessCall).\n\nNo params.",
     )
 
     ItemAtTableIdx = Symbol(
