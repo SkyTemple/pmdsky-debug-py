@@ -43,7 +43,17 @@ class SectionProtocol(Protocol[T, U, L]):
 
 
 class Arm7FunctionsProtocol(Protocol):
-    EntryArm7: Symbol[
+    _start_arm7: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    do_autoload_arm7: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StartAutoloadDoneCallbackArm7: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -141,12 +151,12 @@ Arm7Protocol = SectionProtocol[
 
 
 class Arm9FunctionsProtocol(Protocol):
-    SvcWaitByLoop: Symbol[
+    SvcSoftReset: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SvcSoftReset: Symbol[
+    SvcWaitByLoop: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -14941,12 +14951,12 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
-    GUMMI_LIKE_STRING_IDS: Symbol[
+    GUMMI_IQ_STRING_IDS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    GUMMI_IQ_STRING_IDS: Symbol[
+    GUMMI_LIKE_STRING_IDS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

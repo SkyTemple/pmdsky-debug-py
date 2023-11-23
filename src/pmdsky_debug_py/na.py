@@ -2,7 +2,7 @@ from .protocol import Symbol
 
 
 class NaArm7Functions:
-    EntryArm7 = Symbol(
+    _start_arm7 = Symbol(
         [0x0],
         [0x2380000],
         None,
@@ -12,6 +12,10 @@ class NaArm7Functions:
         " is loaded into a register (r1), and a `bx` branch will jump to"
         " NitroSpMain.\n\nNo params.",
     )
+
+    do_autoload_arm7 = Symbol([0x118], [0x2380118], None, "")
+
+    StartAutoloadDoneCallbackArm7 = Symbol([0x188], [0x2380188], None, "")
 
     NitroSpMain = Symbol(
         [0x1E8],
@@ -171,8 +175,8 @@ class NaArm7Section:
         " game is launched.\n\nSpeaking generally, this is the program run by the"
         " Nintendo DS's secondary ARM7TDMI CPU, which handles the audio I/O, the touch"
         " screen, Wi-Fi functions, cryptography, and more.\n\nMemory map: (binary is"
-        " initially loaded at 0x2380000)\n0x2380000-0x23801E8 => Contains EntryArm7 and"
-        " two more methods, all related to memory mapping.\n0x23801E8-0x238F7F0 =>"
+        " initially loaded at 0x2380000)\n0x2380000-0x23801E8 => Contains _start_arm7"
+        " and two more methods, all related to memory mapping.\n0x23801E8-0x238F7F0 =>"
         " Mapped to 0x37F8000, contains NitroSpMain and functions crucial to"
         " execution.\n0x238F7F0-0x23A7068 => Mapped to 0x27E0000, contains everything"
         " else that won't fit in the fast WRAM.\n\nNote that while the length for the"
@@ -188,9 +192,9 @@ class NaArm7Section:
 
 
 class NaArm9Functions:
-    SvcWaitByLoop = Symbol([0x88], [0x2000088], None, "Software interrupt.")
-
     SvcSoftReset = Symbol([0x566], [0x2000566], None, "Software interrupt.")
+
+    SvcWaitByLoop = Symbol([0x88], [0x2000088], None, "Software interrupt.")
 
     SvcCpuSet = Symbol([0x78E], [0x200078E], None, "Software interrupt.")
 
@@ -3060,8 +3064,8 @@ class NaArm9Functions:
     )
 
     PlayBgmByIdVeneer = Symbol(
-        [0x17BD4],
-        [0x2017BD4],
+        [0x17B58],
+        [0x2017B58],
         None,
         "Likely a linker-generated veneer for PlayBgmById.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
@@ -3069,8 +3073,8 @@ class NaArm9Functions:
     )
 
     PlayBgmByIdVolumeVeneer = Symbol(
-        [0x17BE0],
-        [0x2017BE0],
+        [0x17B64],
+        [0x2017B64],
         None,
         "Likely a linker-generated veneer for PlayBgmByIdVolume.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
@@ -3087,8 +3091,8 @@ class NaArm9Functions:
     )
 
     PlayBgmById = Symbol(
-        [0x18024],
-        [0x2018024],
+        [0x17DF4],
+        [0x2017DF4],
         None,
         "Initializes some values and then calls SendAudioCommand to play a BGM"
         " track.\n\nChecks for DEBUG_FLAG_BGM_OFF. The volume is set to either 0 or 255"
@@ -3096,8 +3100,8 @@ class NaArm9Functions:
     )
 
     PlayBgmByIdVolume = Symbol(
-        [0x180A0],
-        [0x20180A0],
+        [0x17E70],
+        [0x2017E70],
         None,
         "Initializes some values and then calls SendAudioCommand to play a BGM"
         " track.\n\nChecks for DEBUG_FLAG_BGM_OFF. If 1, sets the volume to 0 before"
@@ -3265,8 +3269,8 @@ class NaArm9Functions:
     )
 
     InitAnimationControlWithSet = Symbol(
-        None,
-        None,
+        [0x1C0B0, 0x1C0CC],
+        [0x201C0B0, 0x201C0CC],
         None,
         "Initialize the animation_control structure, and set a certain value in a"
         " bitflag to 1\n\nr0: animation_control",
@@ -6835,8 +6839,8 @@ class NaArm9Functions:
     )
 
     CheckTeamMemberIdx = Symbol(
-        [0x56228],
-        [0x2056228],
+        [0x56264],
+        [0x2056264],
         None,
         "Checks if a team member's member index (team_member::member_idx) is equal to"
         " certain values.\n\nThis is known to return true for some or all of the guest"
@@ -13789,8 +13793,8 @@ class NaOverlay10Data:
     )
 
     SKY_ATTACK_DAMAGE_MULTIPLIER = Symbol(
-        [0x7E30],
-        [0x22C48B0],
+        [0x7E28],
+        [0x22C48A8],
         0x4,
         "The damage multiplier for Sky Attack, as a fixed-point number with 8 fraction"
         " bits (2).",
@@ -14467,8 +14471,8 @@ class NaOverlay11Functions:
     )
 
     InitAnimDataFromOtherAnimDataVeneer = Symbol(
-        [0x1ACCC],
-        [0x22F6F0C],
+        [0x1ACC8],
+        [0x22F6F08],
         None,
         "Likely a linker-generated veneer for InitAnimDataFromOtherAnimData.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
@@ -18179,8 +18183,8 @@ class NaOverlay29Functions:
     )
 
     CheckTeamMemberIdxVeneer = Symbol(
-        [0x1D9F4],
-        [0x22F9C34],
+        [0x1DA00],
+        [0x22F9C40],
         None,
         "Likely a linker-generated veneer for CheckTeamMemberIdx.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
@@ -18585,8 +18589,8 @@ class NaOverlay29Functions:
     )
 
     CannotStandOnTile = Symbol(
-        [0x23524],
-        [0x22FF764],
+        [0x23A5C],
+        [0x22FFC9C],
         None,
         "Checks if a given monster cannot stand on a given tile.\n\nReasons include:\n-"
         " The coordinates of the tile are out of bounds\n- There's another monster on"
@@ -18765,8 +18769,8 @@ class NaOverlay29Functions:
     )
 
     CanMonsterMoveInDirection = Symbol(
-        [0x24E1C],
-        [0x230105C],
+        [0x24C38],
+        [0x2300E78],
         None,
         "Checks if the given monster can move in the specified direction\n\nReturns"
         " false if any monster is standing on the target tile\n\nr0: Monster entity"
@@ -24026,19 +24030,19 @@ class NaOverlay29Data:
         " algorithm when generating room imperfections. See GenerateRoomImperfections.",
     )
 
-    GUMMI_LIKE_STRING_IDS = Symbol(
-        [0x77090],
-        [0x23532D0],
-        0x8,
-        "List that holds the message IDs for how much a monster liked a gummi in"
-        " decreasing order.",
-    )
-
     GUMMI_IQ_STRING_IDS = Symbol(
         [0x77090],
         [0x23532D0],
         0xA,
         "List that holds the message IDs for how much a monster's IQ was raised by in"
+        " decreasing order.",
+    )
+
+    GUMMI_LIKE_STRING_IDS = Symbol(
+        [0x77090],
+        [0x23532D0],
+        0x8,
+        "List that holds the message IDs for how much a monster liked a gummi in"
         " decreasing order.",
     )
 
@@ -24098,8 +24102,8 @@ class NaOverlay29Data:
     )
 
     LOADED_ATTACK_SPRITE_FILE_INDEX = Symbol(
-        None,
-        None,
+        [0x7736C],
+        [0x23535AC],
         None,
         "[Runtime] The file index of the currently loaded attack sprite.\n\ntype:"
         " uint16_t",
@@ -24212,8 +24216,8 @@ class NaOverlay3Section:
 
 class NaOverlay30Functions:
     WriteQuicksaveData = Symbol(
-        [0x44C],
-        [0x2382C6C],
+        [0x448],
+        [0x2382C68],
         None,
         "Function responsible for writing dungeon data when quicksaving.\n\nAmong other"
         " things, it contains a loop that goes through all the monsters in the current"

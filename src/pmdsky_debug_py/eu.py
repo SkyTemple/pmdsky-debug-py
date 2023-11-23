@@ -2,7 +2,7 @@ from .protocol import Symbol
 
 
 class EuArm7Functions:
-    EntryArm7 = Symbol(
+    _start_arm7 = Symbol(
         [0x0],
         [0x2380000],
         None,
@@ -12,6 +12,10 @@ class EuArm7Functions:
         " is loaded into a register (r1), and a `bx` branch will jump to"
         " NitroSpMain.\n\nNo params.",
     )
+
+    do_autoload_arm7 = Symbol([0x118], [0x2380118], None, "")
+
+    StartAutoloadDoneCallbackArm7 = Symbol([0x188], [0x2380188], None, "")
 
     NitroSpMain = Symbol(
         [0x1E8],
@@ -171,8 +175,8 @@ class EuArm7Section:
         " game is launched.\n\nSpeaking generally, this is the program run by the"
         " Nintendo DS's secondary ARM7TDMI CPU, which handles the audio I/O, the touch"
         " screen, Wi-Fi functions, cryptography, and more.\n\nMemory map: (binary is"
-        " initially loaded at 0x2380000)\n0x2380000-0x23801E8 => Contains EntryArm7 and"
-        " two more methods, all related to memory mapping.\n0x23801E8-0x238F7F0 =>"
+        " initially loaded at 0x2380000)\n0x2380000-0x23801E8 => Contains _start_arm7"
+        " and two more methods, all related to memory mapping.\n0x23801E8-0x238F7F0 =>"
         " Mapped to 0x37F8000, contains NitroSpMain and functions crucial to"
         " execution.\n0x238F7F0-0x23A7068 => Mapped to 0x27E0000, contains everything"
         " else that won't fit in the fast WRAM.\n\nNote that while the length for the"
@@ -188,11 +192,11 @@ class EuArm7Section:
 
 
 class EuArm9Functions:
-    SvcWaitByLoop = Symbol(None, None, None, "Software interrupt.")
+    SvcSoftReset = Symbol([0x1A4], [0x20001A4], None, "Software interrupt.")
 
-    SvcSoftReset = Symbol(None, None, None, "Software interrupt.")
+    SvcWaitByLoop = Symbol([0x6B0], [0x20006B0], None, "Software interrupt.")
 
-    SvcCpuSet = Symbol(None, None, None, "Software interrupt.")
+    SvcCpuSet = Symbol([0x79E], [0x200079E], None, "Software interrupt.")
 
     _start = Symbol(
         [0x800],
@@ -226,8 +230,8 @@ class EuArm9Functions:
     )
 
     OSiReferSymbol = Symbol(
-        None,
-        None,
+        [0xB9C],
+        [0x2000B9C],
         None,
         "Startup routine in the program's crt0 (https://en.wikipedia.org/wiki/Crt0).",
     )
@@ -1710,8 +1714,8 @@ class EuArm9Functions:
     )
 
     SetActiveInventoryToMain = Symbol(
-        None,
-        None,
+        [0xEC74],
+        [0x200EC74],
         None,
         "Changes the currently active inventory to TEAM_MAIN.\n\nNo params.",
     )
@@ -2404,8 +2408,8 @@ class EuArm9Functions:
     )
 
     ApplySitrusBerryBoostToGroundMonster = Symbol(
-        None,
-        None,
+        [0x11628],
+        [0x2011628],
         None,
         "Applies the hp boost from the Sitrus Berry to the target monster.\n\nr0:"
         " ground monster pointer\nr1: [output] pointer to attempted hp boost, if not"
@@ -2413,8 +2417,8 @@ class EuArm9Functions:
     )
 
     ApplyLifeSeedBoostToGroundMonster = Symbol(
-        None,
-        None,
+        [0x11664],
+        [0x2011664],
         None,
         "Applies the hp boost from the Life Seed to the target monster.\n\nr0: ground"
         " monster pointer\nr1: [output] pointer to attempted hp boost, if not"
@@ -3817,8 +3821,8 @@ class EuArm9Functions:
     )
 
     StrcmpTagVeneer = Symbol(
-        None,
-        None,
+        [0x237F4],
+        [0x20237F4],
         None,
         "Likely a linker-generated veneer for StrcmpTag.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
@@ -3826,8 +3830,8 @@ class EuArm9Functions:
     )
 
     StoiTagVeneer = Symbol(
-        None,
-        None,
+        [0x23800],
+        [0x2023800],
         None,
         "Likely a linker-generated veneer for StoiTag.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
@@ -4026,8 +4030,8 @@ class EuArm9Functions:
     )
 
     NewWindowScreenCheck = Symbol(
-        None,
-        None,
+        [0x2793C],
+        [0x202793C],
         None,
         "Calls NewWindow, with a pre-check for any valid existing windows in"
         " WINDOW_LIST on each screen.\n\nr0: window_params (see NewWindow)\nr1:"
@@ -4119,8 +4123,8 @@ class EuArm9Functions:
     )
 
     CreateParentMenu = Symbol(
-        None,
-        None,
+        [0x2AA50],
+        [0x202AA50],
         None,
         "Creates a window containing a simple textual menu with a list of options that"
         " might open submenus when selected. Also see struct simple_menu.\n\nMultiple"
@@ -4131,8 +4135,8 @@ class EuArm9Functions:
     )
 
     UpdateParentMenu = Symbol(
-        None,
-        None,
+        [0x2AEF0],
+        [0x202AEF0],
         None,
         "Window update function for parent menus.\n\nr0: window pointer",
     )
@@ -4148,8 +4152,8 @@ class EuArm9Functions:
     )
 
     CreateSimpleMenu = Symbol(
-        None,
-        None,
+        [0x2B578],
+        [0x202B578],
         None,
         "Creates a window containing a simple textual menu with a list of options. Also"
         " see struct simple_menu.\n\nIf the pointer to window_params is null, has a"
@@ -4183,8 +4187,8 @@ class EuArm9Functions:
     )
 
     UpdateSimpleMenu = Symbol(
-        None,
-        None,
+        [0x2B8BC],
+        [0x202B8BC],
         None,
         "Window update function for simple menus.\n\nr0: window pointer",
     )
@@ -4235,15 +4239,15 @@ class EuArm9Functions:
     )
 
     UpdateAdvancedMenu = Symbol(
-        None,
-        None,
+        [0x2C058],
+        [0x202C058],
         None,
         "Window update function for advanced menus.\n\nr0: window pointer",
     )
 
     CreateCollectionMenu = Symbol(
-        None,
-        None,
+        [0x2C69C],
+        [0x202C69C],
         None,
         "Creates a window containing a menu for manipulating a collection of objects,"
         " with complex layout and functionality (e.g., paging). Also see struct"
@@ -4255,15 +4259,15 @@ class EuArm9Functions:
     )
 
     UpdateCollectionMenu = Symbol(
-        None,
-        None,
+        [0x2CAFC],
+        [0x202CAFC],
         None,
         "Window update function for collection menus.\n\nr0: window pointer",
     )
 
     CreateOptionsMenu = Symbol(
-        None,
-        None,
+        [0x2D4E4],
+        [0x202D4E4],
         None,
         "Creates a window containing a menu controlling game options. Also see struct"
         " options_menu.\n\nThis is used for the options and window options menus, and"
@@ -4272,15 +4276,15 @@ class EuArm9Functions:
     )
 
     UpdateOptionsMenu = Symbol(
-        None,
-        None,
+        [0x2D90C],
+        [0x202D90C],
         None,
         "Window update function for options menus.\n\nr0: window pointer",
     )
 
     CreateDebugMenu = Symbol(
-        None,
-        None,
+        [0x2DF44],
+        [0x202DF44],
         None,
         "Creates a window containing the debug menu (probably). Also see struct"
         " debug_menu.\n\nThis is an educated guess, since this function references"
@@ -4290,15 +4294,15 @@ class EuArm9Functions:
     )
 
     UpdateDebugMenu = Symbol(
-        None,
-        None,
+        [0x2E28C],
+        [0x202E28C],
         None,
         "Window update function for debug menus.\n\nr0: window pointer",
     )
 
     CreateScrollBox1 = Symbol(
-        None,
-        None,
+        [0x2E6C0],
+        [0x202E6C0],
         None,
         "Creates a text window that scrolls vertically on overflow. Also see struct"
         " scroll_box.\n\nThis includes things like descriptions for items and"
@@ -4308,8 +4312,8 @@ class EuArm9Functions:
     )
 
     CreateScrollBox2 = Symbol(
-        None,
-        None,
+        [0x2E80C],
+        [0x202E80C],
         None,
         "Creates a text window that scrolls vertically on overflow. Also see struct"
         " scroll_box.\n\nThis includes things like descriptions for items and"
@@ -4319,8 +4323,8 @@ class EuArm9Functions:
     )
 
     UpdateScrollBox = Symbol(
-        None,
-        None,
+        [0x2E9FC],
+        [0x202E9FC],
         None,
         "Window update function for scroll boxes.\n\nr0: window pointer",
     )
@@ -4377,8 +4381,8 @@ class EuArm9Functions:
     )
 
     UpdateDialogueBox = Symbol(
-        None,
-        None,
+        [0x2F77C],
+        [0x202F77C],
         None,
         "Window update function for dialogue boxes.\n\nr0: window pointer",
     )
@@ -4416,23 +4420,23 @@ class EuArm9Functions:
     )
 
     UpdatePortraitBox = Symbol(
-        None,
-        None,
+        [0x2FA00],
+        [0x202FA00],
         None,
         "Window update function for portrait boxes.\n\nr0: window pointer",
     )
 
     CreateTextBox1 = Symbol(
-        None,
-        None,
+        [0x2FBB8],
+        [0x202FBB8],
         None,
         "Calls CreateTextBoxInternal, sets field_0x4 to the argument in r1, and returns"
         " the window_id.\n\nr0: window_params\nr1: ?\nreturn: window_id",
     )
 
     CreateTextBox2 = Symbol(
-        None,
-        None,
+        [0x2FBD0],
+        [0x202FBD0],
         None,
         "Calls CreateTextBoxInternal, sets field_0x8 and field_0x14 to the arguments in"
         " r1 and r2, respectively, and returns the window_id.\n\nr0: window_params\nr1:"
@@ -4440,20 +4444,23 @@ class EuArm9Functions:
     )
 
     CreateTextBoxInternal = Symbol(
-        None,
-        None,
+        [0x2FCD0],
+        [0x202FCD0],
         None,
         "Creates a window containing simple text, without much advanced functionality."
         " Also see struct text_box.\n\nr0: window_params\nreturn: text_box pointer",
     )
 
     UpdateTextBox = Symbol(
-        None, None, None, "Window update function for text boxes.\n\nr0: window pointer"
+        [0x2FD50],
+        [0x202FD50],
+        None,
+        "Window update function for text boxes.\n\nr0: window pointer",
     )
 
     CreateDynamicTextBox = Symbol(
-        None,
-        None,
+        [0x2FEB0],
+        [0x202FEB0],
         None,
         "Creates a window containing dynamically determined text (probably?). Also see"
         " struct dynamic_text_box.\n\nThis is used for the 'area name' text box in the"
@@ -4462,15 +4469,15 @@ class EuArm9Functions:
     )
 
     UpdateDynamicTextBox = Symbol(
-        None,
-        None,
+        [0x30080],
+        [0x2030080],
         None,
         "Window update function for dynamic text boxes.\n\nr0: window pointer",
     )
 
     CreateControlsChart = Symbol(
-        None,
-        None,
+        [0x30120],
+        [0x2030120],
         None,
         "Creates a window containing a chart of player controls for some context. Also"
         " see struct controls_chart.\n\nThis is usually used for static top-screen"
@@ -4479,15 +4486,15 @@ class EuArm9Functions:
     )
 
     UpdateControlsChart = Symbol(
-        None,
-        None,
+        [0x30204],
+        [0x2030204],
         None,
         "Window update function for controls charts.\n\nr0: window pointer",
     )
 
     CreateAlertBox = Symbol(
-        None,
-        None,
+        [0x302A4],
+        [0x20302A4],
         None,
         "Creates a window containing text that will disappear after a certain amount of"
         " time. Also see struct alert_box.\n\nThis is only used in dungeon mode, for"
@@ -4497,15 +4504,15 @@ class EuArm9Functions:
     )
 
     UpdateAlertBox = Symbol(
-        None,
-        None,
+        [0x30568],
+        [0x2030568],
         None,
         "Window update function for alert boxes.\n\nr0: window pointer",
     )
 
     CreateAdvancedTextBox1 = Symbol(
-        None,
-        None,
+        [0x308A8],
+        [0x20308A8],
         None,
         "Calls CreateAdvancedTextBoxInternal(r0, r1, r2, stack[0]), sets field_0x1a4 to"
         " the argument in r3, and returns the window_id.\n\nr0: window_params\nr1:"
@@ -4513,8 +4520,8 @@ class EuArm9Functions:
     )
 
     CreateAdvancedTextBox2 = Symbol(
-        None,
-        None,
+        [0x308D8],
+        [0x20308D8],
         None,
         "Calls CreateAdvancedTextBoxInternal(r0, r1, r2, stack[1]), setsfield_0x1a8 and"
         " field_0x1ac to the argument in r3 and stack[0],respectively, and returns the"
@@ -4523,8 +4530,8 @@ class EuArm9Functions:
     )
 
     CreateAdvancedTextBoxInternal = Symbol(
-        None,
-        None,
+        [0x30910],
+        [0x2030910],
         None,
         "Creates a window containing text formatted in complex, potentially sectioned"
         " layouts. Also see struct advanced_text_box.\n\nThis is usually used to"
@@ -4535,15 +4542,15 @@ class EuArm9Functions:
     )
 
     UpdateAdvancedTextBox = Symbol(
-        None,
-        None,
+        [0x30DDC],
+        [0x2030DDC],
         None,
         "Window update function for advanced text boxes.\n\nr0: window pointer",
     )
 
     CreateTeamSelectionMenu = Symbol(
-        None,
-        None,
+        [0x31238],
+        [0x2031238],
         None,
         "Creates a window containing a menu for selecting a single team member. Also"
         " see struct simple_menu.\n\nThis appears to be used for various shop (and"
@@ -4555,8 +4562,8 @@ class EuArm9Functions:
     )
 
     UpdateTeamSelectionMenu = Symbol(
-        None,
-        None,
+        [0x31530],
+        [0x2031530],
         None,
         "Window update function for team selection menus.\n\nr0: window pointer",
     )
@@ -4640,8 +4647,8 @@ class EuArm9Functions:
     )
 
     EventFlagBackupVeneer = Symbol(
-        None,
-        None,
+        [0x48A74],
+        [0x2048A74],
         None,
         "Likely a linker-generated veneer for EventFlagBackup.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo"
@@ -5732,8 +5739,8 @@ class EuArm9Functions:
     )
 
     GetConversion2ConvertToType = Symbol(
-        None,
-        None,
+        [0x50C9C],
+        [0x2050C9C],
         None,
         "Determines which type a monster with Conversion2 should turn into after being"
         " hit by a certain\ntype of move.\n\nr0: type ID\nreturn: type ID",
@@ -6944,16 +6951,16 @@ class EuArm9Functions:
     )
 
     GetIqSkillStringId = Symbol(
-        None,
-        None,
+        [0x58F98],
+        [0x2058F98],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nr0: iq skill id\nreturn: iq"
         " skill string id",
     )
 
     DoesTacticFollowLeader = Symbol(
-        None,
-        None,
+        [0x58FB8],
+        [0x2058FB8],
         None,
         "Returns whether or not the tactic involves following the team leader.\n\nr0:"
         " tactic_id\nreturn: bool",
@@ -8261,8 +8268,8 @@ class EuArm9Data:
     )
 
     NATURAL_LOG_VALUE_TABLE = Symbol(
-        None,
-        None,
+        [0x917E0],
+        [0x20917E0],
         None,
         "A table of values for the natural log function corresponding to integer"
         " arguments in the range [0, 2047].\n\nEach value is stored as a 16-bit"
@@ -8274,35 +8281,35 @@ class EuArm9Data:
 
     CART_REMOVED_IMG_DATA = Symbol([0x92EE4], [0x2092EE4], 0x2000, "")
 
-    STRING_DEBUG_EMPTY = Symbol(None, None, None, "")
+    STRING_DEBUG_EMPTY = Symbol([0x94EF8], [0x2094EF8], None, "")
 
-    STRING_DEBUG_FORMAT_LINE_FILE = Symbol(None, None, None, "")
+    STRING_DEBUG_FORMAT_LINE_FILE = Symbol([0x94EFC], [0x2094EFC], None, "")
 
-    STRING_DEBUG_NO_PROG_POS = Symbol(None, None, None, "")
+    STRING_DEBUG_NO_PROG_POS = Symbol([0x94F18], [0x2094F18], None, "")
 
-    STRING_DEBUG_SPACED_PRINT = Symbol(None, None, None, "")
+    STRING_DEBUG_SPACED_PRINT = Symbol([0x94F30], [0x2094F30], None, "")
 
-    STRING_DEBUG_FATAL = Symbol(None, None, None, "")
+    STRING_DEBUG_FATAL = Symbol([0x94F3C], [0x2094F3C], None, "")
 
-    STRING_DEBUG_NEWLINE = Symbol(None, None, None, "")
+    STRING_DEBUG_NEWLINE = Symbol([0x94F50], [0x2094F50], None, "")
 
-    STRING_DEBUG_LOG_NULL = Symbol(None, None, None, "")
+    STRING_DEBUG_LOG_NULL = Symbol([0x94F54], [0x2094F54], None, "")
 
-    STRING_DEBUG_STRING_NEWLINE = Symbol(None, None, None, "")
+    STRING_DEBUG_STRING_NEWLINE = Symbol([0x94F5C], [0x2094F5C], None, "")
 
-    STRING_EFFECT_EFFECT_BIN = Symbol(None, None, None, "")
+    STRING_EFFECT_EFFECT_BIN = Symbol([0x94F60], [0x2094F60], None, "")
 
-    STRING_MONSTER_MONSTER_BIN = Symbol(None, None, None, "")
+    STRING_MONSTER_MONSTER_BIN = Symbol([0x94F74], [0x2094F74], None, "")
 
-    STRING_BALANCE_M_LEVEL_BIN = Symbol(None, None, None, "")
+    STRING_BALANCE_M_LEVEL_BIN = Symbol([0x94F88], [0x2094F88], None, "")
 
-    STRING_DUNGEON_DUNGEON_BIN = Symbol(None, None, None, "")
+    STRING_DUNGEON_DUNGEON_BIN = Symbol([0x94F9C], [0x2094F9C], None, "")
 
-    STRING_MONSTER_M_ATTACK_BIN = Symbol(None, None, None, "")
+    STRING_MONSTER_M_ATTACK_BIN = Symbol([0x94FB0], [0x2094FB0], None, "")
 
-    STRING_MONSTER_M_GROUND_BIN = Symbol(None, None, None, "")
+    STRING_MONSTER_M_GROUND_BIN = Symbol([0x94FC8], [0x2094FC8], None, "")
 
-    STRING_FILE_DIRECTORY_INIT = Symbol(None, None, None, "")
+    STRING_FILE_DIRECTORY_INIT = Symbol([0x94FE0], [0x2094FE0], None, "")
 
     AVAILABLE_ITEMS_IN_GROUP_TABLE = Symbol(
         [0x95130],
@@ -8405,15 +8412,15 @@ class EuArm9Data:
     )
 
     MOVE_POWER_STARS_TABLE = Symbol(
-        None,
-        None,
+        [0x9A150],
+        [0x209A150],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int[6]",
     )
 
     MOVE_ACCURACY_STARS_TABLE = Symbol(
-        None,
-        None,
+        [0x9A168],
+        [0x209A168],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
     )
@@ -8454,8 +8461,8 @@ class EuArm9Data:
     )
 
     KAOMADO_FILEPATH = Symbol(
-        None,
-        None,
+        [0x9E658],
+        [0x209E658],
         None,
         "'Path of the file where all the portraits are stored. 'FONT/kaomado.kao',"
         " padded with null to a multiple of 4'\n\ntype: char[20]",
@@ -8651,8 +8658,8 @@ class EuArm9Data:
     )
 
     DAMAGE_FORMULA_FLV_SHIFT = Symbol(
-        None,
-        None,
+        [0xA1E50],
+        [0x20A1E50],
         None,
         "The constant shift added to the 'FLV' intermediate quantity in the damage"
         " formula (see dungeon::last_move_damage_calc_flv), as a binary fixed-point"
@@ -8667,8 +8674,8 @@ class EuArm9Data:
     )
 
     DAMAGE_FORMULA_CONSTANT_SHIFT = Symbol(
-        None,
-        None,
+        [0xA1E58],
+        [0x20A1E58],
         None,
         "The constant shift applied to the overall output of the 'unshifted base'"
         " damage formula (the sum of the scaled AT, DEF, and ClampedLn terms), as a"
@@ -8679,8 +8686,8 @@ class EuArm9Data:
     )
 
     DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR = Symbol(
-        None,
-        None,
+        [0xA1E5C],
+        [0x20A1E5C],
         None,
         "The divisor of the (AT - DEF) term within the 'FLV' intermediate quantity in"
         " the damage formula (see dungeon::last_move_damage_calc_flv), as a binary"
@@ -8703,8 +8710,8 @@ class EuArm9Data:
     )
 
     DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER = Symbol(
-        None,
-        None,
+        [0xA1E6C],
+        [0x20A1E6C],
         None,
         "The divisor applied to the overall output of the 'shifted base' damage formula"
         " (the sum of the scaled AT, Def, ClampedLn, and DAMAGE_FORMULA_CONSTANT_SHIFT"
@@ -8714,16 +8721,16 @@ class EuArm9Data:
     )
 
     DAMAGE_FORMULA_LN_PREFACTOR = Symbol(
-        None,
-        None,
+        [0xA1E70],
+        [0x20A1E70],
         None,
         "The prefactor to the output of the ClampedLn in the damage formula, as a"
         " binary fixed-point number with 8 fraction bits (50).",
     )
 
     DAMAGE_FORMULA_DEF_PREFACTOR = Symbol(
-        None,
-        None,
+        [0xA1E74],
+        [0x20A1E74],
         None,
         "The prefactor to the 'DEF' (defense) intermediate quantity in the damage"
         " formula (see dungeon::last_move_damage_calc_def), as a binary fixed-point"
@@ -8731,8 +8738,8 @@ class EuArm9Data:
     )
 
     DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
-        None,
-        None,
+        [0xA1E78],
+        [0x20A1E78],
         None,
         "The prefactor to the 'AT' (attack) intermediate quantity in the damage formula"
         " (see dungeon::last_move_damage_calc_at), as a binary fixed-point number with"
@@ -8740,8 +8747,8 @@ class EuArm9Data:
     )
 
     DAMAGE_FORMULA_LN_ARG_PREFACTOR = Symbol(
-        None,
-        None,
+        [0xA1E7C],
+        [0x20A1E7C],
         None,
         "The prefactor to the argument of ClampedLn in the damage formula (FLV +"
         " DAMAGE_FORMULA_FLV_SHIFT), as a binary fixed-point number with 8 fraction"
@@ -9215,7 +9222,7 @@ class EuArm9Data:
         " enum overlay_group_id",
     )
 
-    DEBUG_IS_INITIALIZED = Symbol(None, None, None, "")
+    DEBUG_IS_INITIALIZED = Symbol([0xAFF50], [0x20AFF50], None, "")
 
     PACK_FILES_OPENED = Symbol(
         [0xAFF54],
@@ -9294,8 +9301,8 @@ class EuArm9Data:
     LANGUAGE_INFO_DATA = Symbol([0xB05A8], [0x20B05A8], None, "[Runtime]")
 
     TBL_TALK_GROUP_STRING_ID_START = Symbol(
-        None,
-        None,
+        [0xB0614],
+        [0x20B0614],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
     )
@@ -9353,8 +9360,8 @@ class EuArm9Data:
     )
 
     UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE = Symbol(
-        [0xB12F4],
-        [0x20B12F4],
+        [0xB131C],
+        [0x20B131C],
         0x70,
         "Uses UNOWN_SPECIES_ADDITIONAL_CHARS\n\nNote: unverified, ported from Irdkwia's"
         " notes\n\ntype: enum monster_id*[28]",
@@ -9778,8 +9785,8 @@ class EuItcmSection:
 
 class EuMove_effectsFunctions:
     DoMoveDamage = Symbol(
-        None,
-        None,
+        [0x0, 0x4744, 0x5AF4, 0x7FA0],
+        [0x2326828, 0x232AF6C, 0x232C31C, 0x232E7C8],
         None,
         "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage"
         " with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker"
@@ -9788,8 +9795,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveIronTail = Symbol(
-        None,
-        None,
+        [0x24],
+        [0x232684C],
         None,
         "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -9831,8 +9838,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveMorningSun = Symbol(
-        None,
-        None,
+        [0x1B4],
+        [0x23269DC],
         None,
         "Move effect: Morning Sun\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -9855,8 +9862,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveSweetScent = Symbol(
-        None,
-        None,
+        [0x2C8],
+        [0x2326AF0],
         None,
         "Move effect: Sweet Scent\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -9896,8 +9903,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveBubble = Symbol(
-        None,
-        None,
+        [0x3E0],
+        [0x2326C08],
         None,
         "Move effect: Bubble\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -9976,8 +9983,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageCringe30 = Symbol(
-        None,
-        None,
+        [0x8B0],
+        [0x23270D8],
         None,
         "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of"
         " inflicting the cringe status on the defender.\nRelevant moves: Rock Slide,"
@@ -10003,8 +10010,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveFakeTears = Symbol(
-        None,
-        None,
+        [0xA18],
+        [0x2327240],
         None,
         "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10068,8 +10075,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveOctazooka = Symbol(
-        None,
-        None,
+        [0xCB4],
+        [0x23274DC],
         None,
         "Move effect: Octazooka\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10100,8 +10107,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveGrudge = Symbol(
-        None,
-        None,
+        [0xEE4],
+        [0x232770C],
         None,
         "Move effect: Grudge\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10117,8 +10124,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageBurn10FlameWheel = Symbol(
-        None,
-        None,
+        [0xF08],
+        [0x2327730],
         None,
         "Move effect: Deal damage with a 10% chance (FLAME_WHEEL_BURN_CHANCE) of"
         " burning the defender.\nRelevant moves: Flame Wheel, Lava Plume\n\nr0:"
@@ -10127,8 +10134,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageBurn10 = Symbol(
-        None,
-        None,
+        [0xF90],
+        [0x23277B8],
         None,
         "Move effect: Deal damage with a 10% chance (FLAMETHROWER_BURN_CHANCE) of"
         " burning the defender.\nRelevant moves: Flamethrower, Fire Blast, Heat Wave,"
@@ -10147,8 +10154,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDoubleTeam = Symbol(
-        None,
-        None,
+        [0x1044],
+        [0x232786C],
         None,
         "Move effect: Double Team\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10163,8 +10170,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveBoostDefense1 = Symbol(
-        None,
-        None,
+        [0x10A0],
+        [0x23278C8],
         None,
         "Move effect: Boost the user's defense by one stage\nRelevant moves: Harden,"
         " Withdraw\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
@@ -10172,8 +10179,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveParalyze = Symbol(
-        None,
-        None,
+        [0x10C0, 0x2474, 0x5678],
+        [0x23278E8, 0x2328C9C, 0x232BEA0],
         None,
         "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun"
         " Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
@@ -10181,8 +10188,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveBoostAttack1 = Symbol(
-        None,
-        None,
+        [0x10D8],
+        [0x2327900],
         None,
         "Move effect: Boost the user's attack by one stage\nRelevant moves: Sharpen,"
         " Howl, Meditate\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3:"
@@ -10227,8 +10234,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageCringe20 = Symbol(
-        None,
-        None,
+        [0x12F4],
+        [0x2327B1C],
         None,
         "Move effect: Deal damage with a 20% chance (BITE_CRINGE_CHANCE) of inflicting"
         " the cringe status on the defender.\nRelevant moves: Bite, Needle Arm, Stomp,"
@@ -10263,8 +10270,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageLowerSpeed20 = Symbol(
-        None,
-        None,
+        [0x14CC],
+        [0x2327CF4],
         None,
         "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of"
         " lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0:"
@@ -10308,8 +10315,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveReversal = Symbol(
-        None,
-        None,
+        [0x17D8],
+        [0x2328000],
         None,
         "Move effect: Deal damage with a higher multiplier the lower the attacker's HP"
         " is.\nRelevant moves: Reversal, Flail\n\nr0: attacker pointer\nr1: defender"
@@ -10388,8 +10395,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveSynthesis = Symbol(
-        None,
-        None,
+        [0x1B28],
+        [0x2328350],
         None,
         "Move effect: Synthesis\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10423,8 +10430,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveCosmicPower = Symbol(
-        None,
-        None,
+        [0x1C24],
+        [0x232844C],
         None,
         "Move effect: Cosmic Power\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10474,8 +10481,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageConfuse10 = Symbol(
-        None,
-        None,
+        [0x1E4C],
+        [0x2328674],
         None,
         "Move effect: Deal damage with a 10% chance (PSYBEAM_CONFUSE_CHANCE) of"
         " confusing the defender.\nRelevant moves: Psybeam, Signal Beam, Confusion,"
@@ -10524,8 +10531,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveWaterSpout = Symbol(
-        None,
-        None,
+        [0x2024],
+        [0x232884C],
         None,
         "Move effect: Water Spout\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10590,8 +10597,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageParalyze10 = Symbol(
-        None,
-        None,
+        [0x23B0],
+        [0x2328BD8],
         None,
         "Move effect: Deal damage with a 10% chance (LICK_PARALZYE_CHANCE) of"
         " paralyzing the defender.\nRelevant moves: Lick, Spark, Body Slam,"
@@ -10624,8 +10631,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveThunderbolt = Symbol(
-        None,
-        None,
+        [0x256C],
+        [0x2328D94],
         None,
         "Move effect: Thunderbolt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10648,8 +10655,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageCringe10 = Symbol(
-        None,
-        None,
+        [0x2700],
+        [0x2328F28],
         None,
         "Move effect: Deal damage with a 10% chance (EXTRASENSORY_CRINGE_CHANCE) to"
         " inflict the cringe status on the defender.\nRelevant moves: Extrasensory,"
@@ -10700,8 +10707,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveHeadbutt = Symbol(
-        None,
-        None,
+        [0x2B08],
+        [0x2329330],
         None,
         "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10724,8 +10731,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveLowerAccuracy1 = Symbol(
-        None,
-        None,
+        [0x2C98],
+        [0x23294C0],
         None,
         "Move effect: Lower the defender's accuracy by one stage\nRelevant moves:"
         " Sand-Attack, Kinesis, Flash\n\nr0: attacker pointer\nr1: defender"
@@ -10734,8 +10741,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamagePoison40 = Symbol(
-        None,
-        None,
+        [0x2CB8],
+        [0x23294E0],
         None,
         "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning"
         " the defender.\nRelevant moves: Smog, Cross Poison, Gunk Shot, Poison"
@@ -10744,16 +10751,16 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveGrowth = Symbol(
-        None,
-        None,
+        [0x2D24],
+        [0x232954C],
         None,
         "Move effect: Growth\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
     DoMoveSacredFire = Symbol(
-        None,
-        None,
+        [0x2D44],
+        [0x232956C],
         None,
         "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10777,8 +10784,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveSonicBoom = Symbol(
-        None,
-        None,
+        [0x2F88],
+        [0x23297B0],
         None,
         "Move effect: SonicBoom\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10817,8 +10824,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageLowerAccuracy40 = Symbol(
-        None,
-        None,
+        [0x3244],
+        [0x2329A6C],
         None,
         "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE)"
         " of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb,"
@@ -10860,8 +10867,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveMinimize = Symbol(
-        None,
-        None,
+        [0x3480],
+        [0x2329CA8],
         None,
         "Move effect: Minimize\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10894,8 +10901,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveMoonlight = Symbol(
-        None,
-        None,
+        [0x363C],
+        [0x2329E64],
         None,
         "Move effect: Moonlight\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10912,8 +10919,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveSwordsDance = Symbol(
-        None,
-        None,
+        [0x3778],
+        [0x2329FA0],
         None,
         "Move effect: Swords Dance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -10944,8 +10951,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveBoostDefense2 = Symbol(
-        None,
-        None,
+        [0x391C],
+        [0x232A144],
         None,
         "Move effect: Boost the defender's defense stat by two stages\nRelevant moves:"
         " Iron Defense, Acid Armor, Barrier\n\nr0: attacker pointer\nr1: defender"
@@ -10964,8 +10971,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveThundershock = Symbol(
-        None,
-        None,
+        [0x3954],
+        [0x232A17C],
         None,
         "Move effect: Thundershock\n\nThis is identical to DoMoveDamageParalyze10,"
         " except it uses a different data symbol for the paralysis chance (but it's"
@@ -11015,8 +11022,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMovePoisonFang = Symbol(
-        None,
-        None,
+        [0x3ADC],
+        [0x232A304],
         None,
         "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11100,8 +11107,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDamageStealItem = Symbol(
-        None,
-        None,
+        [0x4290],
+        [0x232AAB8],
         None,
         "Move effect: Deal damage and steal the defender's item if possible.\nRelevant"
         " moves: Thief, Covet\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
@@ -11109,8 +11116,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveAmnesia = Symbol(
-        None,
-        None,
+        [0x429C],
+        [0x232AAC4],
         None,
         "Move effect: Amnesia\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11125,8 +11132,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveGrowl = Symbol(
-        None,
-        None,
+        [0x435C],
+        [0x232AB84],
         None,
         "Move effect: Growl\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11157,8 +11164,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveLowerDefense1 = Symbol(
-        None,
-        None,
+        [0x44C0],
+        [0x232ACE8],
         None,
         "Move effect: Lower the defender's defense by one stage\nRelevant moves: Tail"
         " Whip, Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item"
@@ -11174,8 +11181,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveFakeOut = Symbol(
-        None,
-        None,
+        [0x4500],
+        [0x232AD28],
         None,
         "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11246,8 +11253,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveSteelWing = Symbol(
-        None,
-        None,
+        [0x47F0],
+        [0x232B018],
         None,
         "Move effect: Steel Wing\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11329,8 +11336,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveBulkUp = Symbol(
-        None,
-        None,
+        [0x51A0],
+        [0x232B9C8],
         None,
         "Move effect: Bulk Up\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11347,8 +11354,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveFeatherDance = Symbol(
-        None,
-        None,
+        [0x5234],
+        [0x232BA5C],
         None,
         "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11371,16 +11378,16 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveCrushClaw = Symbol(
-        None,
-        None,
+        [0x53A8],
+        [0x232BBD0],
         None,
         "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
     DoMoveBlazeKick = Symbol(
-        None,
-        None,
+        [0x5428],
+        [0x232BC50],
         None,
         "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11411,8 +11418,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMovePoisonTail = Symbol(
-        None,
-        None,
+        [0x56D8],
+        [0x232BF00],
         None,
         "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11436,8 +11443,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveTailGlow = Symbol(
-        None,
-        None,
+        [0x580C],
+        [0x232C034],
         None,
         "Move effect: Tail Glow\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11504,8 +11511,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDefenseCurl = Symbol(
-        None,
-        None,
+        [0x5A24],
+        [0x232C24C],
         None,
         "Move effect: Defense Curl\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11522,8 +11529,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveMistBall = Symbol(
-        None,
-        None,
+        [0x5A64],
+        [0x232C28C],
         None,
         "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11546,8 +11553,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveCalmMind = Symbol(
-        None,
-        None,
+        [0x5B28],
+        [0x232C350],
         None,
         "Move effect: Calm Mind\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -11564,8 +11571,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveMetalClaw = Symbol(
-        None,
-        None,
+        [0x5B84],
+        [0x232C3AC],
         None,
         "Move effect: Metal Claw\n\n Note that this move effect handler has a slightly"
         " different parameter list than all the others. Which offensive stat is boosted"
@@ -11756,8 +11763,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveSiesta = Symbol(
-        None,
-        None,
+        [0x68FC],
+        [0x232D124],
         None,
         "Move effect: Siesta (item effect)\n\nr0: attacker pointer\nr1: defender"
         " pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully"
@@ -12339,8 +12346,8 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveDefendOrder = Symbol(
-        None,
-        None,
+        [0x848C],
+        [0x232ECB4],
         None,
         "Move effect: Defend Order\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -12429,16 +12436,16 @@ class EuMove_effectsFunctions:
     )
 
     DoMoveNastyPlot = Symbol(
-        None,
-        None,
+        [0x892C],
+        [0x232F154],
         None,
         "Move effect: Nasty Plot\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
     )
 
     DoMoveTag0x1AB = Symbol(
-        None,
-        None,
+        [0x894C],
+        [0x232F174],
         None,
         "Move effect: MOVE_TAG_0x1AB\n\nr0: attacker pointer\nr1: defender pointer\nr2:"
         " move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -12577,31 +12584,31 @@ class EuOverlay1Data:
     MAIN_MENU = Symbol([0x11FDC], [0x233BD1C], 0xA0, "")
 
     OVERLAY1_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x12128], [0x233BE68], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY1_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x12138], [0x233BE78], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY1_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x12148], [0x233BE88], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     MAIN_MENU_CONFIRM = Symbol([0x12158], [0x233BE98], 0x18, "")
 
     OVERLAY1_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x121DC], [0x233BF1C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY1_D_BOX_LAYOUT_9 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x121FC], [0x233BF3C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     MAIN_DEBUG_MENU_1 = Symbol([0x1221C], [0x233BF5C], 0x60, "")
 
     OVERLAY1_D_BOX_LAYOUT_10 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1227C], [0x233BFBC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     MAIN_DEBUG_MENU_2 = Symbol([0x1229C], [0x233BFDC], 0x38, "")
@@ -12624,8 +12631,8 @@ class EuOverlay1Section:
 
 class EuOverlay10Functions:
     CreateInventoryMenu = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x22BD3C0],
         None,
         "Creates a window containing a menu for inventory management. Also see struct"
         " inventory_menu.\n\nThis is used for the Treasure Bag menu, the item"
@@ -12636,8 +12643,8 @@ class EuOverlay10Functions:
     )
 
     UpdateInventoryMenu = Symbol(
-        None,
-        None,
+        [0x3F4],
+        [0x22BD7B4],
         None,
         "Window update function for inventory menus.\n\nr0: window pointer",
     )
@@ -12726,16 +12733,16 @@ class EuOverlay10Functions:
     )
 
     ProcessTeamStatsLvHp = Symbol(
-        None,
-        None,
+        [0x4CD4],
+        [0x22C2094],
         None,
         "Appears to populate the Lv./HP row in the 'Team stats' top screen.\n\nr0:"
         " index of some kind",
     )
 
     ProcessTeamStatsNameGender = Symbol(
-        None,
-        None,
+        [0x4DFC],
+        [0x22C21BC],
         None,
         "Appears to populate the name/gender row in the 'Team stats' top screen.\n\nr0:"
         " index of some kind",
@@ -12798,15 +12805,15 @@ class EuOverlay10Data:
     )
 
     WATERFALL_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x79BC],
+        [0x22C4D7C],
         None,
         "The chance of Waterfall inflicting the cringe status, as a percentage (30%).",
     )
 
     AURORA_BEAM_LOWER_ATTACK_CHANCE = Symbol(
-        None,
-        None,
+        [0x79C0],
+        [0x22C4D80],
         None,
         "The chance of Aurora Beam halving attack, as a percentage (60%).",
     )
@@ -12824,43 +12831,46 @@ class EuOverlay10Data:
     )
 
     IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
+        [0x79D8],
+        [0x22C4D98],
         None,
         "The chance of Iron Tail lowering defense, as a percentage (30%).",
     )
 
     TWINEEDLE_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Twineedle poisoning, as a percentage (20%)."
+        [0x79DC],
+        [0x22C4D9C],
+        None,
+        "The chance of Twineedle poisoning, as a percentage (20%).",
     )
 
     EXTRASENSORY_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x79E0],
+        [0x22C4DA0],
         None,
         "The chance of Extrasensory (and others, see DoMoveDamageCringe10) inflicting"
         " the cringe status, as a percentage (10%).",
     )
 
     ROCK_SLIDE_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x79E4],
+        [0x22C4DA4],
         None,
         "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the"
         " cringe status, as a percentage (30%)",
     )
 
     CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
+        [0x79E8],
+        [0x22C4DA8],
         None,
         "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering"
         " defense, as a percentage (20%).",
     )
 
     FOREWARN_FORCED_MISS_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A00],
+        [0x22C4DC0],
         None,
         "The chance of Forewarn forcing a move to miss, as a percentage (20%).",
     )
@@ -12880,57 +12890,66 @@ class EuOverlay10Data:
     )
 
     MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A1C],
+        [0x22C4DDC],
         None,
         "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40)"
         " lowering accuracy, as a percentage (40%).",
     )
 
     SILVER_WIND_BOOST_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A20],
+        [0x22C4DE0],
         None,
         "The chance of Silver Wind (and others, see DoMoveDamageBoostAllStats) boosting"
         " all stats, as a percentage (20%).",
     )
 
     POISON_TAIL_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Poison Tail poisoning, as a percentage (10%)."
+        [0x7A24],
+        [0x22C4DE4],
+        None,
+        "The chance of Poison Tail poisoning, as a percentage (10%).",
     )
 
     THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A28],
+        [0x22C4DE8],
         None,
         "The chance of Thundershock paralyzing, as a percentage (10%).",
     )
 
     BOUNCE_PARALYZE_CHANCE = Symbol(
-        None, None, None, "The chance of Bounce paralyzing, as a percentage (30%)"
+        [0x7A2C],
+        [0x22C4DEC],
+        None,
+        "The chance of Bounce paralyzing, as a percentage (30%)",
     )
 
     HEADBUTT_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A30],
+        [0x22C4DF0],
         None,
         "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
     )
 
     FIRE_FANG_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A34],
+        [0x22C4DF4],
         None,
         "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
     )
 
     SACRED_FIRE_BURN_CHANCE = Symbol(
-        None, None, None, "The chance of Sacred Fire burning, as a percentage (50%)."
+        [0x7A38],
+        [0x22C4DF8],
+        None,
+        "The chance of Sacred Fire burning, as a percentage (50%).",
     )
 
     WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A3C],
+        [0x22C4DFC],
         None,
         "The chance of Whirlpool inflicting the constriction status, as a percentage"
         " (10%).",
@@ -12952,12 +12971,12 @@ class EuOverlay10Data:
     )
 
     HEAL_ORDER_HP_RESTORATION = Symbol(
-        None, None, None, "The amount of HP restored by Heal Order (40)."
+        [0x7A50], [0x22C4E10], None, "The amount of HP restored by Heal Order (40)."
     )
 
     STEEL_WING_BOOST_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A5C],
+        [0x22C4E1C],
         None,
         "The chance of Steel Wing boosting defense, as a percentage (20%).",
     )
@@ -12966,10 +12985,12 @@ class EuOverlay10Data:
         [0x7A68], [0x22C4E28], 0x2, "Attack power for Golden Thorns."
     )
 
-    BURN_DAMAGE = Symbol(None, None, None, "Damage dealt by the burn status condition.")
+    BURN_DAMAGE = Symbol(
+        [0x7A6C], [0x22C4E2C], None, "Damage dealt by the burn status condition."
+    )
 
     POISON_DAMAGE = Symbol(
-        None, None, None, "Damage dealt by the poison status condition."
+        [0x7A70], [0x22C4E30], None, "Damage dealt by the poison status condition."
     )
 
     SPAWN_COOLDOWN = Symbol(
@@ -12980,15 +13001,15 @@ class EuOverlay10Data:
     )
 
     MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A78],
+        [0x22C4E38],
         None,
         "The chance of Mist Ball lowering special attack, as a percentage (50%).",
     )
 
     CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A88],
+        [0x22C4E48],
         None,
         "The chance of Charge Beam boosting special attack, as a percentage (40%).",
     )
@@ -13005,137 +13026,152 @@ class EuOverlay10Data:
     )
 
     OCTAZOOKA_LOWER_ACCURACY_CHANCE = Symbol(
-        None,
-        None,
+        [0x7A98],
+        [0x22C4E58],
         None,
         "The chance of Octazooka lowering accuracy, as a percentage (60%).",
     )
 
     LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AA4],
+        [0x22C4E64],
         None,
         "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50)"
         " lowering special defense, as a percentage (50%).",
     )
 
     SUPER_LUCK_CRIT_RATE_BOOST = Symbol(
-        None, None, None, "The critical hit rate (additive) boost from Super Luck, 10%."
+        [0x7AA8],
+        [0x22C4E68],
+        None,
+        "The critical hit rate (additive) boost from Super Luck, 10%.",
     )
 
     CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AAC],
+        [0x22C4E6C],
         None,
         "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering"
         " speed, as a percentage (20%).",
     )
 
     ICE_FANG_FREEZE_CHANCE = Symbol(
-        None, None, None, "The chance of Ice Fang freezing, as a percentage (15%)."
+        [0x7AB0],
+        [0x22C4E70],
+        None,
+        "The chance of Ice Fang freezing, as a percentage (15%).",
     )
 
     SMOG_POISON_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AB4],
+        [0x22C4E74],
         None,
         "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a"
         " percentage (40%).",
     )
 
     LICK_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AC0],
+        [0x22C4E80],
         None,
         "The chance of Lick (and others, see DoMoveDamageParalyze10) paralyzing, as a"
         " percentage (10%).",
     )
 
     THUNDER_FANG_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AC4],
+        [0x22C4E84],
         None,
         "The chance of Thunder Fang paralyzing, as a percentage (10%).",
     )
 
     BITE_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7ACC],
+        [0x22C4E8C],
         None,
         "The chance of Bite (and others, see DoMoveDamageCringe20) inflicting the"
         " cringe status, as a percentage (20%)",
     )
 
     SKY_ATTACK_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AD0],
+        [0x22C4E90],
         None,
         "The chance of Sky Attack inflicting the cringe status, as a percentage (25%).",
     )
 
     ICE_FANG_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AD4],
+        [0x22C4E94],
         None,
         "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
     )
 
     BLAZE_KICK_BURN_CHANCE = Symbol(
-        None, None, None, "The chance of Blaze Kick burning, as a percentage (10%)."
+        [0x7AD8],
+        [0x22C4E98],
+        None,
+        "The chance of Blaze Kick burning, as a percentage (10%).",
     )
 
     FLAMETHROWER_BURN_CHANCE = Symbol(
-        None,
-        None,
+        [0x7ADC],
+        [0x22C4E9C],
         None,
         "The chance of Flamethrower (and others, see DoMoveDamageBurn10) burning, as a"
         " percentage (10%).",
     )
 
     DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AE0],
+        [0x22C4EA0],
         None,
         "The chance of Dizzy Punch (and others, see DoMoveDamageConfuse30) confusing,"
         " as a percentage (30%).",
     )
 
     SECRET_POWER_EFFECT_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AE4],
+        [0x22C4EA4],
         None,
         "The chance of Secret Power inflicting an effect, as a percentage (30%).",
     )
 
     METAL_CLAW_BOOST_ATTACK_CHANCE = Symbol(
-        None,
-        None,
+        [0x7AEC],
+        [0x22C4EAC],
         None,
         "The chance of Metal Claw boosting attack, as a percentage (20%).",
     )
 
     TECHNICIAN_MOVE_POWER_THRESHOLD = Symbol(
-        None,
-        None,
+        [0x7AF4],
+        [0x22C4EB4],
         None,
         "The move power threshold for Technician (4). Moves whose base power doesn't"
         " exceed this value will receive a 50% damage boost.",
     )
 
     SONICBOOM_FIXED_DAMAGE = Symbol(
-        None, None, None, "The amount of fixed damage dealt by SonicBoom (20)."
+        [0x7B00],
+        [0x22C4EC0],
+        None,
+        "The amount of fixed damage dealt by SonicBoom (20).",
     )
 
     RAIN_ABILITY_BONUS_REGEN = Symbol(
-        None,
-        None,
+        [0x7B10],
+        [0x22C4ED0],
         None,
         "The passive bonus health regen given when the weather is rain for the"
         " abilities rain dish and dry skin.",
     )
 
     LEECH_SEED_HP_DRAIN = Symbol(
-        None, None, None, "The amount of health drained by leech seed status."
+        [0x7B20],
+        [0x22C4EE0],
+        None,
+        "The amount of health drained by leech seed status.",
     )
 
     EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
@@ -13153,8 +13189,8 @@ class EuOverlay10Data:
     )
 
     SET_DAMAGE_STATUS_DAMAGE = Symbol(
-        None,
-        None,
+        [0x7B30],
+        [0x22C4EF0],
         None,
         "The fixed amount of damage dealt when the Set Damage status condition is"
         " active (30).",
@@ -13168,7 +13204,10 @@ class EuOverlay10Data:
     )
 
     TYPE_ADVANTAGE_MASTER_CRIT_RATE = Symbol(
-        None, None, None, "The flat critical hit rate with Type-Advantage Master, 40%."
+        [0x7B78],
+        [0x22C4F38],
+        None,
+        "The flat critical hit rate with Type-Advantage Master, 40%.",
     )
 
     ORAN_BERRY_HP_RESTORATION = Symbol(
@@ -13183,22 +13222,22 @@ class EuOverlay10Data:
     )
 
     SNORE_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7B98],
+        [0x22C4F58],
         None,
         "The chance of Snore inflicting the cringe status, as a percentage (30%).",
     )
 
     METEOR_MASH_BOOST_ATTACK_CHANCE = Symbol(
-        None,
-        None,
+        [0x7B9C],
+        [0x22C4F5C],
         None,
         "The chance of Meteor Mash boosting attack, as a percentage (20%).",
     )
 
     CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7BA0],
+        [0x22C4F60],
         None,
         "The chance of Crush Claw lowering defense, as a percentage (50%).",
     )
@@ -13208,8 +13247,8 @@ class EuOverlay10Data:
     )
 
     SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7BB4],
+        [0x22C4F74],
         None,
         "The chance of Shadow Ball lowering special defense, as a percentage (20%).",
     )
@@ -13217,28 +13256,31 @@ class EuOverlay10Data:
     STICK_POWER = Symbol([0x7BBC], [0x22C4F7C], 0x2, "Attack power for Sticks.")
 
     BUBBLE_LOWER_SPEED_CHANCE = Symbol(
-        None, None, None, "The chance of Bubble lowering speed, as a percentage (10%)."
+        [0x7BC4],
+        [0x22C4F84],
+        None,
+        "The chance of Bubble lowering speed, as a percentage (10%).",
     )
 
     ICE_BODY_BONUS_REGEN = Symbol(
-        None,
-        None,
+        [0x7BC8],
+        [0x22C4F88],
         0x2,
         "The passive bonus health regen given when the weather is hail for the ability"
         " ice body.",
     )
 
     POWDER_SNOW_FREEZE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7BCC],
+        [0x22C4F8C],
         None,
         "The chance of Powder Snow (and others, see DoMoveDamageFreeze15) freezing, as"
         " a percentage (15%).",
     )
 
     POISON_STING_POISON_CHANCE = Symbol(
-        None,
-        None,
+        [0x7BD4],
+        [0x22C4F94],
         None,
         "The chance of Poison Sting (and others, see DoMoveDamagePoison18) poisoning,"
         " as a percentage (18%).",
@@ -13253,27 +13295,33 @@ class EuOverlay10Data:
     )
 
     POISON_FANG_POISON_CHANCE = Symbol(
-        None, None, None, "The chance of Poison Fang poisoning, as a percentage (30%)."
+        [0x7BDC],
+        [0x22C4F9C],
+        None,
+        "The chance of Poison Fang poisoning, as a percentage (30%).",
     )
 
     WEATHER_MOVE_TURN_COUNT = Symbol(
-        None,
-        None,
+        [0x7BEC],
+        [0x22C4FAC],
         None,
         "The number of turns the moves rain dance, hail, sandstorm, sunny day and defog"
         " change the weather for. (3000)",
     )
 
     THUNDER_PARALYZE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7BF0],
+        [0x22C4FB0],
         None,
         "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as"
         " a percentage (20%)",
     )
 
     THUNDERBOLT_PARALYZE_CHANCE = Symbol(
-        None, None, None, "The chance of Thunderbolt paralyzing, as a percentage (15%)."
+        [0x7BF4],
+        [0x22C4FB4],
+        None,
+        "The chance of Thunderbolt paralyzing, as a percentage (15%).",
     )
 
     MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
@@ -13285,8 +13333,8 @@ class EuOverlay10Data:
     )
 
     TWISTER_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7C00],
+        [0x22C4FC0],
         None,
         "The chance of Twister inflicting the cringe status, as a percentage (10%).",
     )
@@ -13300,47 +13348,47 @@ class EuOverlay10Data:
     )
 
     FAKE_OUT_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7C08],
+        [0x22C4FC8],
         None,
         "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
     )
 
     THUNDER_FANG_CRINGE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7C10],
+        [0x22C4FD0],
         None,
         "The chance of Thunder Fang inflicting the cringe status, as a percentage"
         " (25%).",
     )
 
     FLARE_BLITZ_BURN_CHANCE = Symbol(
-        None,
-        None,
+        [0x7C1C],
+        [0x22C4FDC],
         None,
         "The chance of Flare Blitz burning, as a percentage (25%). This value is also"
         " used for the Fire Fang burn chance.",
     )
 
     FLAME_WHEEL_BURN_CHANCE = Symbol(
-        None,
-        None,
+        [0x7C20],
+        [0x22C4FE0],
         None,
         "The chance of Flame Wheel (and others, see DoMoveDamageBurn10FlameWheel)"
         " burning, as a percentage (10%).",
     )
 
     PSYBEAM_CONFUSE_CHANCE = Symbol(
-        None,
-        None,
+        [0x7C28],
+        [0x22C4FE8],
         None,
         "The chance of Psybeam (and others, see DoMoveDamageConfuse10) confusing, as a"
         " percentage (10%).",
     )
 
     TRI_ATTACK_STATUS_CHANCE = Symbol(
-        None,
-        None,
+        [0x7C2C],
+        [0x22C4FEC],
         None,
         "The chance of Tri Attack inflicting any status condition, as a percentage"
         " (20%).",
@@ -13425,11 +13473,17 @@ class EuOverlay10Data:
     )
 
     WISH_BONUS_REGEN = Symbol(
-        None, None, None, "The passive bonus regen given by the wish status condition."
+        [0x7C68],
+        [0x22C5028],
+        None,
+        "The passive bonus regen given by the wish status condition.",
     )
 
     DRAGON_RAGE_FIXED_DAMAGE = Symbol(
-        None, None, None, "The amount of fixed damage dealt by Dragon Rage (30)."
+        [0x7C6C],
+        [0x22C502C],
+        None,
+        "The amount of fixed damage dealt by Dragon Rage (30).",
     )
 
     CORSOLA_TWIG_POWER = Symbol(
@@ -13451,40 +13505,40 @@ class EuOverlay10Data:
     )
 
     SCOPE_LENS_CRIT_RATE_BOOST = Symbol(
-        None,
-        None,
+        [0x7C88],
+        [0x22C5048],
         None,
         "The critical hit rate (additive) boost from the Scope Lens/Patsy Band items"
         " and the Sharpshooter IQ skill, 15%.",
     )
 
     HEALING_WISH_HP_RESTORATION = Symbol(
-        None,
-        None,
+        [0x7C8C],
+        [0x22C504C],
         None,
         "The amount of HP restored by Healing Wish (999). This also applies to Lunar"
         " Dance.",
     )
 
     ME_FIRST_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7CA8],
+        [0x22C5068],
         None,
         "The damage multiplier applied to attacks copied by Me First, as a fixed-point"
         " number with 8 fraction bits (1.5).",
     )
 
     FACADE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7CB0],
+        [0x22C5070],
         None,
         "The Facade damage multiplier for users with a status condition, as a binary"
         " fixed-point number with 8 fraction bits (0x200 -> 2x).",
     )
 
     IMPRISON_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7CB4],
+        [0x22C5074],
         None,
         "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype:"
         " int16_t[2]",
@@ -13500,16 +13554,16 @@ class EuOverlay10Data:
     )
 
     NIGHTMARE_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7CBC],
+        [0x22C507C],
         None,
         "The turn range for the Nightmare status inflicted by Nightmare, [4,"
         " 8).\n\ntype: int16_t[2]",
     )
 
     BURN_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7CDC],
+        [0x22C509C],
         None,
         "The extra damage multiplier for moves when the attacker is burned, as a"
         " fixed-point number with 8 fraction bits (the raw value is 0xCC, which is"
@@ -13518,16 +13572,16 @@ class EuOverlay10Data:
     )
 
     REST_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7CE0],
+        [0x22C50A0],
         None,
         "The turn range for the Napping status inflicted by Rest, [1, 4).\n\ntype:"
         " int16_t[2]",
     )
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
-        None,
-        None,
+        [0x7CE4],
+        [0x22C50A4],
         None,
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE when Erratic"
         " Player is active, as a fixed-point number with 8 fraction bits (the raw value"
@@ -13535,40 +13589,40 @@ class EuOverlay10Data:
     )
 
     MATCHUP_IMMUNE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7CF0],
+        [0x22C50B0],
         None,
         "The damage multiplier corresponding to MATCHUP_IMMUNE, as a fixed-point number"
         " with 8 fraction bits (0.5).",
     )
 
     SPORT_CONDITION_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7D24],
+        [0x22C50E4],
         None,
         "The turn range for the sport conditions activated by Mud Sport and Water"
         " Sport, [10, 12).\n\ntype: int16_t[2]",
     )
 
     SURE_SHOT_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7D30],
+        [0x22C50F0],
         None,
         "The turn range for the Sure Shot status inflicted by Mind Reader and Lock-On,"
         " [10, 12).\n\ntype: int16_t[2]",
     )
 
     DETECT_BAND_MOVE_ACCURACY_DROP = Symbol(
-        None,
-        None,
+        [0x7D40],
+        [0x22C5100],
         None,
         "The (subtractive) move accuracy drop induced on an attacker if the defender is"
         " wearing a Detect Band (30).",
     )
 
     TINTED_LENS_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7D58],
+        [0x22C5118],
         None,
         "The extra damage multiplier for not-very-effective moves when Tinted Lens is"
         " active, as a fixed-point number with 8 fraction bits (the raw value is 0x133,"
@@ -13576,40 +13630,40 @@ class EuOverlay10Data:
     )
 
     SMOKESCREEN_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7D5C],
+        [0x22C511C],
         None,
         "The turn range for the Whiffer status inflicted by Smokescreen, [1,"
         " 4).\n\ntype: int16_t[2]",
     )
 
     SHADOW_FORCE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7D74],
+        [0x22C5134],
         None,
         "The damage multiplier for Shadow Force, as a fixed-point number with 8"
         " fraction bits (2).",
     )
 
     DIG_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7D7C],
+        [0x22C513C],
         None,
         "The damage multiplier for Dig, as a fixed-point number with 8 fraction bits"
         " (2).",
     )
 
     DIVE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7D80],
+        [0x22C5140],
         None,
         "The damage multiplier for Dive, as a fixed-point number with 8 fraction bits"
         " (2).",
     )
 
     BOUNCE_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7D84],
+        [0x22C5144],
         None,
         "The damage multiplier for Bounce, as a fixed-point number with 8 fraction bits"
         " (2).",
@@ -13624,16 +13678,16 @@ class EuOverlay10Data:
     )
 
     QUICK_DODGER_MOVE_ACCURACY_DROP = Symbol(
-        None,
-        None,
+        [0x7DA0],
+        [0x22C5160],
         None,
         "The (subtractive) move accuracy drop induced on an attacker if the defender"
         " has the Quick Dodger IQ skill (10).",
     )
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7DA8],
+        [0x22C5168],
         None,
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE, as a"
         " fixed-point number with 8 fraction bits (the raw value is 0x1B4, the closest"
@@ -13641,8 +13695,8 @@ class EuOverlay10Data:
     )
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7DB0],
+        [0x22C5170],
         None,
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE, as a"
         " fixed-point number with 8 fraction bits (the raw value is 0x166, the closest"
@@ -13650,32 +13704,32 @@ class EuOverlay10Data:
     )
 
     MATCHUP_NEUTRAL_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7DB4],
+        [0x22C5174],
         None,
         "The damage multiplier corresponding to MATCHUP_NEUTRAL, as a fixed-point"
         " number with 8 fraction bits (1).",
     )
 
     MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
-        None,
-        None,
+        [0x7DB8],
+        [0x22C5178],
         None,
         "The damage multiplier corresponding to MATCHUP_IMMUNE when Erratic Player is"
         " active, as a fixed-point number with 8 fraction bits (0.25).",
     )
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
-        None,
-        None,
+        [0x7DBC],
+        [0x22C517C],
         None,
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE when Erratic"
         " Player is active, as a fixed-point number with 8 fraction bits (0.5).",
     )
 
     MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER = Symbol(
-        None,
-        None,
+        [0x7DC4],
+        [0x22C5184],
         None,
         "The damage multiplier corresponding to MATCHUP_NEUTRAL when Erratic Player is"
         " active, as a fixed-point number with 8 fraction bits (1).",
@@ -13690,8 +13744,8 @@ class EuOverlay10Data:
     )
 
     KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7DE4],
+        [0x22C51A4],
         None,
         "The boosted kecleon shop spawn chance multiplier (~1.2) as a binary"
         " fixed-point number (8 fraction bits).",
@@ -13707,8 +13761,8 @@ class EuOverlay10Data:
     )
 
     YAWN_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7DF8],
+        [0x22C51B8],
         None,
         "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype:"
         " int16_t[2]",
@@ -13724,64 +13778,64 @@ class EuOverlay10Data:
     )
 
     SOLARBEAM_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7E3C],
+        [0x22C51FC],
         None,
         "The default damage multiplier for SolarBeam, as a fixed-point number with 8"
         " fraction bits (2).",
     )
 
     SKY_ATTACK_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7E40],
+        [0x22C5200],
         None,
         "The damage multiplier for Sky Attack, as a fixed-point number with 8 fraction"
         " bits (2).",
     )
 
     RAZOR_WIND_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7E48],
+        [0x22C5208],
         None,
         "The damage multiplier for Razor Wind, as a fixed-point number with 8 fraction"
         " bits (2).",
     )
 
     FOCUS_PUNCH_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7E4C],
+        [0x22C520C],
         None,
         "The damage multiplier for Focus Punch, as a fixed-point number with 8 fraction"
         " bits (2).",
     )
 
     SKULL_BASH_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7E54],
+        [0x22C5214],
         None,
         "The damage multiplier for Skull Bash, as a fixed-point number with 8 fraction"
         " bits (2).",
     )
 
     FLY_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7E58],
+        [0x22C5218],
         None,
         "The damage multiplier for Fly, as a fixed-point number with 8 fraction bits"
         " (2).",
     )
 
     WEATHER_BALL_TYPE_TABLE = Symbol(
-        None,
-        None,
+        [0x7E74],
+        [0x22C5234],
         None,
         "Maps each weather type (by index, see enum weather_id) to the corresponding"
         " Weather Ball type.\n\ntype: struct type_id_8[8]",
     )
 
     LAST_RESORT_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
+        [0x7EDC],
+        [0x22C529C],
         None,
         "Table of damage multipliers for Last Resort for different numbers of moves out"
         " of PP, where each entry is a binary fixed-point number with 8 fraction"
@@ -13790,16 +13844,16 @@ class EuOverlay10Data:
     )
 
     SYNTHESIS_HP_RESTORATION_TABLE = Symbol(
-        None,
-        None,
+        [0x7EEC],
+        [0x22C52AC],
         None,
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
         " restoration value for Synthesis.\n\ntype: int16_t[8]",
     )
 
     ROOST_HP_RESTORATION_TABLE = Symbol(
-        None,
-        None,
+        [0x7EFC],
+        [0x22C52BC],
         None,
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
         " restoration value for Roost.\n\nEvery entry in this table is 40.\n\ntype:"
@@ -13807,24 +13861,24 @@ class EuOverlay10Data:
     )
 
     MOONLIGHT_HP_RESTORATION_TABLE = Symbol(
-        None,
-        None,
+        [0x7F0C],
+        [0x22C52CC],
         None,
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
         " restoration value for Moonlight.\n\ntype: int16_t[8]",
     )
 
     MORNING_SUN_HP_RESTORATION_TABLE = Symbol(
-        None,
-        None,
+        [0x7F1C],
+        [0x22C52DC],
         None,
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP"
         " restoration value for Morning Sun.\n\ntype: int16_t[8]",
     )
 
     REVERSAL_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
+        [0x7F2C],
+        [0x22C52EC],
         None,
         "Table of damage multipliers for Reversal/Flail at different HP ranges, where"
         " each entry is a binary fixed-point number with 8 fraction bits.\n\ntype:"
@@ -13832,16 +13886,16 @@ class EuOverlay10Data:
     )
 
     WATER_SPOUT_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
+        [0x7F3C],
+        [0x22C52FC],
         None,
         "Table of damage multipliers for Water Spout at different HP ranges, where each"
         " entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
     )
 
     WRING_OUT_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
+        [0x7F4C],
+        [0x22C530C],
         None,
         "Table of damage multipliers for Wring Out/Crush Grip at different HP ranges,"
         " where each entry is a binary fixed-point number with 8 fraction"
@@ -13849,16 +13903,16 @@ class EuOverlay10Data:
     )
 
     ERUPTION_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
+        [0x7F5C],
+        [0x22C531C],
         None,
         "Table of damage multipliers for Eruption at different HP ranges, where each"
         " entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
     )
 
     WEATHER_BALL_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
+        [0x80EC],
+        [0x22C54AC],
         None,
         "Maps each weather type (by index, see enum weather_id) to the corresponding"
         " Weather Ball damage multiplier, where each entry is a binary fixed-point"
@@ -13882,16 +13936,16 @@ class EuOverlay10Data:
     )
 
     BAD_POISON_DAMAGE_TABLE = Symbol(
-        None,
-        None,
+        [0x8234],
+        [0x22C55F4],
         None,
         "Table for how much damage each tick of badly poisoned should deal. The table"
         " is filled with 0x0006, but could use different values for each entry.",
     )
 
     TYPE_MATCHUP_COMBINATOR_TABLE = Symbol(
-        None,
-        None,
+        [0x82AC],
+        [0x22C566C],
         None,
         "Table of type matchup combinations.\n\nEach row corresponds to a single type"
         " matchup that results from combining two individual type matchups together."
@@ -14486,8 +14540,8 @@ class EuOverlay11Functions:
     )
 
     CreateTeamInfoBox = Symbol(
-        None,
-        None,
+        [0x22CB4],
+        [0x22FF834],
         None,
         "Creates a window containing team information (rank and money carried) for the"
         " top-level menu in ground mode. Also see struct team_info_box.\n\nreturn:"
@@ -14495,8 +14549,8 @@ class EuOverlay11Functions:
     )
 
     UpdateTeamInfoBox = Symbol(
-        None,
-        None,
+        [0x22DC4],
+        [0x22FF944],
         None,
         "Window update function for team info boxes.\n\nr0: window pointer",
     )
@@ -14569,12 +14623,12 @@ class EuOverlay11Data:
     )
 
     SCRIPT_COMMAND_PARSING_DATA = Symbol(
-        None, None, None, "Used by ScriptCommandParsing somehow"
+        [0x3A938], [0x23174B8], None, "Used by ScriptCommandParsing somehow"
     )
 
     SCRIPT_OP_CODE_NAMES = Symbol(
-        None,
-        None,
+        [0x3A958],
+        [0x23174D8],
         None,
         "Opcode name strings pointed to by entries in SCRIPT_OP_CODES"
         " (script_opcode::name)",
@@ -14590,15 +14644,15 @@ class EuOverlay11Data:
     )
 
     OVERLAY11_DEBUG_STRINGS = Symbol(
-        None,
-        None,
+        [0x3D068],
+        [0x2319BE8],
         None,
         "Strings used with various debug printing functions throughout the overlay",
     )
 
     C_ROUTINE_NAMES = Symbol(
-        None,
-        None,
+        [0x3D94C],
+        [0x231A4CC],
         None,
         "Common routine name strings pointed to by entries in C_ROUTINES"
         " (common_routine::name)",
@@ -14615,8 +14669,8 @@ class EuOverlay11Data:
     )
 
     GROUND_WEATHER_TABLE = Symbol(
-        None,
-        None,
+        [0x41C70],
+        [0x231E7F0],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
         " ground_weather_entry[12]",
@@ -14986,7 +15040,10 @@ class EuOverlay14Functions:
     SentryState4 = Symbol([0x2270], [0x238CEF0], None, "No params.")
 
     SentryStateExit = Symbol(
-        None, None, None, "State 0x5: Exit (wraps SentrySetExitingState).\n\nNo params."
+        [0x2294],
+        [0x238CF14],
+        None,
+        "State 0x5: Exit (wraps SentrySetExitingState).\n\nNo params.",
     )
 
     SentryState6 = Symbol([0x22A0], [0x238CF20], None, "No params.")
@@ -15266,11 +15323,13 @@ class EuOverlay14Data:
 
     FOOTPRINT_DEBUG_MENU = Symbol([0x39C0], [0x238E640], 0x48, "")
 
-    SENTRY_DUTY_PTR = Symbol(None, None, None, "Pointer to the SENTRY_DUTY_STRUCT.")
+    SENTRY_DUTY_PTR = Symbol(
+        [0x3AA0], [0x238E720], None, "Pointer to the SENTRY_DUTY_STRUCT."
+    )
 
     SENTRY_DUTY_STATE_HANDLER_TABLE = Symbol(
-        None,
-        None,
+        [0x3AB4],
+        [0x238E734],
         None,
         "Null-terminated table of handler functions for the different states in the"
         " state machine. See SentryRunState.\n\ntype: state_handler_fn_t[35]",
@@ -15298,15 +15357,15 @@ class EuOverlay15Data:
     )
 
     BANK_D_BOX_LAYOUT_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xF78], [0x238BBF8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     BANK_D_BOX_LAYOUT_3 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xF88], [0x238BC08], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     BANK_D_BOX_LAYOUT_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xF98], [0x238BC18], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     BANK_D_BOX_LAYOUT_5 = Symbol(
@@ -15318,7 +15377,7 @@ class EuOverlay15Data:
     )
 
     OVERLAY15_UNKNOWN_POINTER__NA_238B180 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1060], [0x238BCE0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
@@ -15359,15 +15418,15 @@ class EuOverlay16Data:
     )
 
     EVO_D_BOX_LAYOUT_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2C88], [0x238D908], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     EVO_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2C98], [0x238D918], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     EVO_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2CA8], [0x238D928], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     EVO_D_BOX_LAYOUT_7 = Symbol(
@@ -15379,7 +15438,7 @@ class EuOverlay16Data:
     )
 
     OVERLAY16_UNKNOWN_POINTER__NA_238CE40 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2D00], [0x238D980], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY16_UNKNOWN_POINTER__NA_238CE58 = Symbol(
@@ -15402,23 +15461,23 @@ class EuOverlay17Functions:
 
 class EuOverlay17Data:
     ASSEMBLY_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x19F4], [0x238C674], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     ASSEMBLY_D_BOX_LAYOUT_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1A04], [0x238C684], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     ASSEMBLY_D_BOX_LAYOUT_3 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1A14], [0x238C694], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     ASSEMBLY_D_BOX_LAYOUT_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1A24], [0x238C6A4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     ASSEMBLY_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1A34], [0x238C6B4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238C6C4], 0x18, "")
@@ -15442,7 +15501,7 @@ class EuOverlay17Data:
     ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238C844], 0x40, "")
 
     OVERLAY17_FUNCTION_POINTER_TABLE = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1C04], [0x238C884], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY17_RESERVED_SPACE = Symbol(
@@ -15450,7 +15509,7 @@ class EuOverlay17Data:
     )
 
     OVERLAY17_UNKNOWN_POINTER__NA_238BE00 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1CC0], [0x238C940], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY17_UNKNOWN_POINTER__NA_238BE04 = Symbol(
@@ -15477,47 +15536,47 @@ class EuOverlay18Functions:
 
 class EuOverlay18Data:
     OVERLAY18_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x3130], [0x238DDB0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x3140], [0x238DDC0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_3 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x3150], [0x238DDD0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x3160], [0x238DDE0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x3170], [0x238DDF0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x3180], [0x238DE00], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x3190], [0x238DE10], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x31A0], [0x238DE20], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_9 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x31B0], [0x238DE30], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_10 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x31C0], [0x238DE40], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_D_BOX_LAYOUT_11 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x31D0], [0x238DE50], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238DE60], 0x18, "")
@@ -15539,7 +15598,7 @@ class EuOverlay18Data:
     MOVES_SUBMENU_7 = Symbol([0x3340], [0x238DFC0], 0x48, "")
 
     OVERLAY18_FUNCTION_POINTER_TABLE = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x3388], [0x238E008], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_RESERVED_SPACE = Symbol(
@@ -15547,7 +15606,7 @@ class EuOverlay18Data:
     )
 
     OVERLAY18_UNKNOWN_POINTER__NA_238D620 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x34E0], [0x238E160], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY18_UNKNOWN_POINTER__NA_238D624 = Symbol(
@@ -15601,54 +15660,60 @@ class EuOverlay19Functions:
 
 class EuOverlay19Data:
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
-        None, None, None, "4*0x2\n\nNote: unverified, ported from Irdkwia's notes"
+        [0x3994],
+        [0x238E614],
+        None,
+        "4*0x2\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
     BAR_UNLOCKABLE_DUNGEONS_TABLE = Symbol(
-        None,
-        None,
+        [0x399C],
+        [0x238E61C],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
         " dungeon_id_16[6]",
     )
 
     BAR_RECRUITABLE_MONSTER_TABLE = Symbol(
-        None,
-        None,
+        [0x39A8],
+        [0x238E628],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
         " monster_id_16[108]",
     )
 
     BAR_AVAILABLE_ITEMS = Symbol(
-        None,
-        None,
+        [0x3A80],
+        [0x238E700],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct bar_item[66]",
     )
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x402C], [0x238ECAC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4 = Symbol(
-        None, None, None, "5*0x8\n\nNote: unverified, ported from Irdkwia's notes"
+        [0x4058],
+        [0x238ECD8],
+        None,
+        "5*0x8\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4080], [0x238ED00], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     BAR_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x408C], [0x238ED0C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     BAR_D_BOX_LAYOUT_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x409C], [0x238ED1C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     BAR_D_BOX_LAYOUT_3 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x40AC], [0x238ED2C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     BAR_MENU_CONFIRM_1 = Symbol([0x40BC], [0x238ED3C], 0x18, "")
@@ -15656,7 +15721,7 @@ class EuOverlay19Data:
     BAR_MENU_CONFIRM_2 = Symbol([0x40D4], [0x238ED54], 0x18, "")
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x40EC], [0x238ED6C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     BAR_MAIN_MENU = Symbol([0x4104], [0x238ED84], 0x20, "")
@@ -15670,7 +15735,7 @@ class EuOverlay19Data:
     )
 
     OVERLAY19_UNKNOWN_POINTER__NA_238E360 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4200], [0x238EE80], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY19_UNKNOWN_POINTER__NA_238E364 = Symbol(
@@ -15714,7 +15779,7 @@ class EuOverlay20Functions:
 
 class EuOverlay20Data:
     OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2E3C], [0x238DABC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238DAC4], 0x18, "")
@@ -15728,53 +15793,53 @@ class EuOverlay20Data:
     RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238DB2C], 0x28, "")
 
     OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2ED4], [0x238DB54], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2EE8], [0x238DB68], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2EF8], [0x238DB78], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_3 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F08], [0x238DB88], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F18], [0x238DB98], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F28], [0x238DBA8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F38], [0x238DBB8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238DBC8], 0x20, "")
 
     RECYCLE_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F68], [0x238DBE8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F78], [0x238DBF8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT_9 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F88], [0x238DC08], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT1_0 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2F98], [0x238DC18], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_D_BOX_LAYOUT1_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FA8], [0x238DC28], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238DC38], 0x18, "")
@@ -15784,19 +15849,19 @@ class EuOverlay20Data:
     )
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D120 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FE0], [0x238DC60], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D124 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FE4], [0x238DC64], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D128 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FE8], [0x238DC68], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D12C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2FEC], [0x238DC6C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
@@ -15815,7 +15880,7 @@ class EuOverlay21Functions:
 
 class EuOverlay21Data:
     SWAP_SHOP_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x28E8], [0x238D568], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238D578], 0x18, "")
@@ -15847,33 +15912,33 @@ class EuOverlay21Data:
     )
 
     SWAP_SHOP_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2A28], [0x238D6A8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SWAP_SHOP_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2A38], [0x238D6B8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SWAP_SHOP_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2A48], [0x238D6C8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SWAP_SHOP_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2A58], [0x238D6D8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SWAP_SHOP_D_BOX_LAYOUT_9 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2A68], [0x238D6E8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY21_JP_STRING = Symbol(None, None, None, "合成：")
+    OVERLAY21_JP_STRING = Symbol([0x2DDC], [0x238DA5C], None, "合成：")
 
     OVERLAY21_RESERVED_SPACE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY21_UNKNOWN_POINTER__NA_238CF40 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2E00], [0x238DA80], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY21_UNKNOWN_POINTER__NA_238CF44 = Symbol(
@@ -15896,15 +15961,15 @@ class EuOverlay22Functions:
 
 class EuOverlay22Data:
     SHOP_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x46DC], [0x238F35C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SHOP_D_BOX_LAYOUT_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x46FC], [0x238F37C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY22_UNKNOWN_STRUCT__NA_238E85C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x471C], [0x238F39C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238F3A8], 0x18, "")
@@ -15916,7 +15981,7 @@ class EuOverlay22Data:
     SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238F400], 0x30, "")
 
     OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x47B0], [0x238F430], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SHOP_D_BOX_LAYOUT_3 = Symbol(
@@ -15932,23 +15997,23 @@ class EuOverlay22Data:
     )
 
     SHOP_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4840], [0x238F4C0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SHOP_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4850], [0x238F4D0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SHOP_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4860], [0x238F4E0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SHOP_D_BOX_LAYOUT_9 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4870], [0x238F4F0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     SHOP_D_BOX_LAYOUT_10 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4880], [0x238F500], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY22_RESERVED_SPACE = Symbol(
@@ -15956,7 +16021,7 @@ class EuOverlay22Data:
     )
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC60 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4B20], [0x238F7A0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC64 = Symbol(
@@ -15964,7 +16029,7 @@ class EuOverlay22Data:
     )
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC68 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4B28], [0x238F7A8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC6C = Symbol(
@@ -15972,7 +16037,7 @@ class EuOverlay22Data:
     )
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC70 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x4B30], [0x238F7B0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
@@ -15991,15 +16056,15 @@ class EuOverlay23Functions:
 
 class EuOverlay23Data:
     OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x31A8], [0x238DE28], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY23_UNKNOWN_VALUE__NA_238D2EC = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x31AC], [0x238DE2C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x31B0], [0x238DE30], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238DE3C], 0x18, "")
@@ -16029,23 +16094,23 @@ class EuOverlay23Data:
     )
 
     STORAGE_D_BOX_LAYOUT_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x32B8], [0x238DF38], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     STORAGE_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x32C8], [0x238DF48], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     STORAGE_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x32D8], [0x238DF58], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     STORAGE_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x32E8], [0x238DF68], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     STORAGE_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x32F8], [0x238DF78], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY23_RESERVED_SPACE = Symbol(
@@ -16053,7 +16118,7 @@ class EuOverlay23Data:
     )
 
     OVERLAY23_UNKNOWN_POINTER__NA_238D8A0 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x3760], [0x238E3E0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
@@ -16074,11 +16139,11 @@ class EuOverlay24Functions:
 
 class EuOverlay24Data:
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x23C8], [0x238D048], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY24_UNKNOWN_STRUCT__NA_238C514 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x23D4], [0x238D054], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238D060], 0x18, "")
@@ -16102,7 +16167,7 @@ class EuOverlay24Data:
     )
 
     DAYCARE_D_BOX_LAYOUT_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2480], [0x238D100], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DAYCARE_D_BOX_LAYOUT_5 = Symbol(
@@ -16114,7 +16179,7 @@ class EuOverlay24Data:
     )
 
     OVERLAY24_UNKNOWN_POINTER__NA_238C600 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x24C0], [0x238D140], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
@@ -16133,11 +16198,11 @@ class EuOverlay25Functions:
 
 class EuOverlay25Data:
     OVERLAY25_UNKNOWN_STRUCT__NA_238B498 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1358], [0x238BFD8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     APPRAISAL_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1364], [0x238BFE4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238BFF4], 0x18, "")
@@ -16163,19 +16228,19 @@ class EuOverlay25Data:
     )
 
     APPRAISAL_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1424], [0x238C0A4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     APPRAISAL_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1434], [0x238C0B4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     APPRAISAL_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1444], [0x238C0C4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     APPRAISAL_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x1454], [0x238C0D4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY25_RESERVED_SPACE = Symbol(
@@ -16183,7 +16248,7 @@ class EuOverlay25Data:
     )
 
     OVERLAY25_UNKNOWN_POINTER__NA_238B5E0 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x14A0], [0x238C120], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
@@ -16202,8 +16267,8 @@ class EuOverlay26Functions:
 
 class EuOverlay26Data:
     OVERLAY26_UNKNOWN_TABLE__NA_238AE20 = Symbol(
-        None,
-        None,
+        [0xCE0],
+        [0x238B960],
         None,
         "0x6 + 11*0xC + 0x2\n\nNote: unverified, ported from Irdkwia's notes",
     )
@@ -16213,23 +16278,23 @@ class EuOverlay26Data:
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF60 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xE20], [0x238BAA0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF64 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xE24], [0x238BAA4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF68 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xE28], [0x238BAA8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF6C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xE2C], [0x238BAAC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY26_UNKNOWN_POINTER5__NA_238AF70 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xE30], [0x238BAB0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
@@ -16252,15 +16317,15 @@ class EuOverlay27Functions:
 
 class EuOverlay27Data:
     OVERLAY27_UNKNOWN_VALUE__NA_238C948 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2808], [0x238D488], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY27_UNKNOWN_VALUE__NA_238C94C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x280C], [0x238D48C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY27_UNKNOWN_STRUCT__NA_238C950 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2810], [0x238D490], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238D49C], 0x18, "")
@@ -16292,15 +16357,15 @@ class EuOverlay27Data:
     )
 
     DISCARD_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x290C], [0x238D58C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DISCARD_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x291C], [0x238D59C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DISCARD_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x292C], [0x238D5AC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DISCARD_D_BOX_LAYOUT_8 = Symbol(
@@ -16312,11 +16377,11 @@ class EuOverlay27Data:
     )
 
     OVERLAY27_UNKNOWN_POINTER__NA_238CE80 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2D40], [0x238D9C0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY27_UNKNOWN_POINTER__NA_238CE84 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x2D44], [0x238D9C4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
@@ -16425,6 +16490,7 @@ class EuOverlay29Functions:
             0x29438,
             0x29AB0,
             0x2BDA4,
+            0x2C128,
             0x2CE68,
             0x327E4,
             0x32EFC,
@@ -16477,6 +16543,7 @@ class EuOverlay29Functions:
             0x2305FB8,
             0x2306630,
             0x2308924,
+            0x2308CA8,
             0x23099E8,
             0x230F364,
             0x230FA7C,
@@ -16913,8 +16980,8 @@ class EuOverlay29Functions:
     )
 
     PlayEffectAnimation0x1A9 = Symbol(
-        None,
-        None,
+        [0x9F60, 0x9FAC, 0x9FF8, 0xA044, 0xA2F4, 0xA340],
+        [0x22E6AE0, 0x22E6B2C, 0x22E6B78, 0x22E6BC4, 0x22E6E74, 0x22E6EC0],
         None,
         "Just a guess. Calls PlayEffectAnimation with data from animation ID"
         " 0x1A9.\n\nr0: entity pointer",
@@ -17074,8 +17141,8 @@ class EuOverlay29Functions:
     )
 
     FindClosestUnoccupiedTileWithin2 = Symbol(
-        None,
-        None,
+        [0xD820],
+        [0x22EA3A0],
         None,
         "Searches for the closest unoccupied tile within 2 steps of the given"
         " origin.\n\nCalls FindNearbyUnoccupiedTile with"
@@ -17085,8 +17152,8 @@ class EuOverlay29Functions:
     )
 
     FindFarthestUnoccupiedTileWithin2 = Symbol(
-        None,
-        None,
+        [0xD83C],
+        [0x22EA3BC],
         None,
         "Searches for the farthest unoccupied tile within 2 steps of the given"
         " origin.\n\nCalls FindNearbyUnoccupiedTile with"
@@ -18093,8 +18160,8 @@ class EuOverlay29Functions:
     )
 
     CheckTeamMemberIdxVeneer = Symbol(
-        None,
-        None,
+        [0x1DACC],
+        [0x22FA64C],
         None,
         "Likely a linker-generated veneer for CheckTeamMemberIdx.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
@@ -18102,8 +18169,8 @@ class EuOverlay29Functions:
     )
 
     IsMonsterIdInNormalRangeVeneer = Symbol(
-        None,
-        None,
+        [0x1DAF4],
+        [0x22FA674],
         None,
         "Likely a linker-generated veneer for IsMonsterIdInNormalRange.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
@@ -21471,8 +21538,8 @@ class EuOverlay29Functions:
     )
 
     GetDefaultTileTextureId = Symbol(
-        None,
-        None,
+        [0x5A4A0],
+        [0x2337020],
         None,
         "Returns the texture_id of the default tile?\n\nreturn: texture_id",
     )
@@ -22596,8 +22663,8 @@ class EuOverlay29Functions:
     )
 
     IsSecretBazaarVeneer = Symbol(
-        None,
-        None,
+        [0x6859C],
+        [0x234511C],
         None,
         "Likely a linker-generated veneer for IsSecretBazaar.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nreturn:"
@@ -23743,8 +23810,8 @@ class EuOverlay29Data:
     )
 
     DISPLACEMENTS_WITHIN_2_LARGEST_FIRST = Symbol(
-        None,
-        None,
+        [0x75868],
+        [0x23523E8],
         None,
         "An array of displacement vectors with max norm <= 2, ordered in descending"
         " order by norm.\n\nThe last element, (99, 99), is invalid and used as an end"
@@ -23752,8 +23819,8 @@ class EuOverlay29Data:
     )
 
     DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST = Symbol(
-        None,
-        None,
+        [0x758D0],
+        [0x2352450],
         None,
         "An array of displacement vectors with max norm <= 2, ordered in ascending"
         " order by norm.\n\nThe last element, (99, 99), is invalid and used as an end"
@@ -23761,8 +23828,8 @@ class EuOverlay29Data:
     )
 
     DISPLACEMENTS_WITHIN_3 = Symbol(
-        None,
-        None,
+        [0x75938],
+        [0x23524B8],
         None,
         "An array of displacement vectors with max norm <= 3. The elements are vaguely"
         " in ascending order by norm, but not exactly.\n\nThe last element, (99, 99),"
@@ -23778,8 +23845,8 @@ class EuOverlay29Data:
     )
 
     FRACTIONAL_TURN_SEQUENCE = Symbol(
-        [0x76342],
-        [0x2352EC2],
+        [0x76310],
+        [0x2352E90],
         0xFA,
         "Read by certain functions that are called by RunFractionalTurn to see if they"
         " should be executed.\n\nArray is accessed via a pointer added to some multiple"
@@ -23804,40 +23871,40 @@ class EuOverlay29Data:
     )
 
     DAMAGE_MULTIPLIER_0_5 = Symbol(
-        None,
-        None,
+        [0x768C8],
+        [0x2353448],
         None,
         "A generic damage multiplier of 0.5 used in various places, as a 64-bit"
         " fixed-point number with 16 fraction bits.",
     )
 
     DAMAGE_MULTIPLIER_1_5 = Symbol(
-        None,
-        None,
+        [0x768D0],
+        [0x2353450],
         None,
         "A generic damage multiplier of 1.5 used in various places, as a 64-bit"
         " fixed-point number with 16 fraction bits.",
     )
 
     DAMAGE_MULTIPLIER_2 = Symbol(
-        None,
-        None,
+        [0x768D8],
+        [0x2353458],
         None,
         "A generic damage multiplier of 2 used in various places, as a 64-bit"
         " fixed-point number with 16 fraction bits.",
     )
 
     CLOUDY_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x768E8],
+        [0x2353468],
         None,
         "The extra damage multiplier for non-Normal-type moves when the weather is"
         " Cloudy, as a 64-bit fixed-point number with 16 fraction bits (0.75).",
     )
 
     SOLID_ROCK_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x768F0],
+        [0x2353470],
         None,
         "The extra damage multiplier for super-effective moves when Solid Rock or"
         " Filter is active, as a 64-bit fixed-point number with 16 fraction bits"
@@ -23845,8 +23912,8 @@ class EuOverlay29Data:
     )
 
     DAMAGE_FORMULA_MAX_BASE = Symbol(
-        None,
-        None,
+        [0x768F8],
+        [0x2353478],
         None,
         "The maximum value of the base damage formula (after"
         " DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a"
@@ -23862,8 +23929,8 @@ class EuOverlay29Data:
     )
 
     DAMAGE_FORMULA_MIN_BASE = Symbol(
-        None,
-        None,
+        [0x76908],
+        [0x2353488],
         None,
         "The minimum value of the base damage formula (after"
         " DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a"
@@ -23871,8 +23938,8 @@ class EuOverlay29Data:
     )
 
     TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS = Symbol(
-        None,
-        None,
+        [0x76930],
+        [0x23534B0],
         None,
         "List of exclusive item effects that negate damage of a certain type,"
         " terminated by a TYPE_NEUTRAL entry.\n\ntype: struct"
@@ -23904,8 +23971,8 @@ class EuOverlay29Data:
     )
 
     ROLLOUT_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
+        [0x76B7C],
+        [0x23536FC],
         None,
         "A table of damage multipliers for each successive hit of Rollout/Ice Ball."
         " Each entry is a binary fixed-point number with 8 fraction bits.\n\ntype:"
@@ -23913,8 +23980,8 @@ class EuOverlay29Data:
     )
 
     MAP_COLOR_TABLE = Symbol(
-        None,
-        None,
+        [0x7705C],
+        [0x2353BDC],
         None,
         "In order: white, black, red, green, blue, magenta, dark pink, chartreuse,"
         " light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: struct"
@@ -23937,25 +24004,25 @@ class EuOverlay29Data:
         " algorithm when generating room imperfections. See GenerateRoomImperfections.",
     )
 
-    GUMMI_LIKE_STRING_IDS = Symbol(
-        None,
-        None,
-        None,
-        "List that holds the message IDs for how much a monster liked a gummi in"
-        " decreasing order.",
-    )
-
     GUMMI_IQ_STRING_IDS = Symbol(
-        None,
-        None,
+        [0x77360],
+        [0x2353EE0],
         None,
         "List that holds the message IDs for how much a monster's IQ was raised by in"
         " decreasing order.",
     )
 
+    GUMMI_LIKE_STRING_IDS = Symbol(
+        [0x77360],
+        [0x2353EE0],
+        None,
+        "List that holds the message IDs for how much a monster liked a gummi in"
+        " decreasing order.",
+    )
+
     DAMAGE_STRING_IDS = Symbol(
-        None,
-        None,
+        [0x773C8],
+        [0x2353F48],
         None,
         "List that matches the damage_message ID to their corresponding message ID. The"
         " null entry at 0xE in the middle is for hunger. The last entry is null.",
@@ -24232,41 +24299,41 @@ class EuOverlay31Functions:
 
 class EuOverlay31Data:
     DUNGEON_D_BOX_LAYOUT_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7598], [0x238A9B8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x75A8], [0x238A9C8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_3 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x75B8], [0x238A9D8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x75C8], [0x238A9E8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_MAIN_MENU = Symbol([0x75D8], [0x238A9F8], 0x40, "")
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7624], [0x238AA44], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389E30 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7634], [0x238AA54], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7644], [0x238AA64], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7654], [0x238AA74], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7664], [0x238AA84], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_SUBMENU_1 = Symbol([0x7674], [0x238AA94], 0x20, "")
@@ -24278,127 +24345,127 @@ class EuOverlay31Data:
     DUNGEON_SUBMENU_4 = Symbol([0x76D4], [0x238AAF4], 0x20, "")
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x76F4], [0x238AB14], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7700], [0x238AB20], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_9 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7710], [0x238AB30], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_10 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7720], [0x238AB40], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_11 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7730], [0x238AB50], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_12 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7740], [0x238AB60], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_13 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7750], [0x238AB70], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_JP_STRING = Symbol(
-        None, None, None, "\n\n----　 初期ポジション=%d　----- \n"
+        [0x7768], [0x238AB88], None, "\n\n----　 初期ポジション=%d　----- \n"
     )
 
     DUNGEON_D_BOX_LAYOUT_14 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x778C], [0x238ABAC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_15 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x779C], [0x238ABBC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_16 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77AC], [0x238ABCC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_17 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77BC], [0x238ABDC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_18 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77CC], [0x238ABEC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_19 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77DC], [0x238ABFC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389FE8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77EC], [0x238AC0C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_20 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x77F8], [0x238AC18], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_21 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7808], [0x238AC28], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_22 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7818], [0x238AC38], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_23 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7828], [0x238AC48], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_24 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7838], [0x238AC58], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_25 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7910], [0x238AD30], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_SUBMENU_5 = Symbol([0x7920], [0x238AD40], 0x18, "")
 
     DUNGEON_D_BOX_LAYOUT_26 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7938], [0x238AD58], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_238A144 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7948], [0x238AD68], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_27 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7974], [0x238AD94], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_28 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7984], [0x238ADA4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_238A190 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7994], [0x238ADB4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_SUBMENU_6 = Symbol([0x79A4], [0x238ADC4], 0x48, "")
 
     DUNGEON_D_BOX_LAYOUT_29 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x79EC], [0x238AE0C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_30 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x79FC], [0x238AE1C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_31 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A0C], [0x238AE2C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     DUNGEON_D_BOX_LAYOUT_32 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A1C], [0x238AE3C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_RESERVED_SPACE = Symbol(
@@ -24406,7 +24473,7 @@ class EuOverlay31Data:
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A260 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A60], [0x238AE80], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_VALUE__NA_238A264 = Symbol(
@@ -24414,15 +24481,15 @@ class EuOverlay31Data:
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A268 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A68], [0x238AE88], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A26C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A6C], [0x238AE8C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A270 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A70], [0x238AE90], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A274 = Symbol(
@@ -24434,23 +24501,23 @@ class EuOverlay31Data:
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A27C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A7C], [0x238AE9C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A280 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A80], [0x238AEA0], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A284 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A84], [0x238AEA4], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A288 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A88], [0x238AEA8], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A28C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0x7A8C], [0x238AEAC], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
 
@@ -24499,8 +24566,8 @@ class EuOverlay33Section:
 
 class EuOverlay34Functions:
     ExplorersOfSkyMain = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x22DCB80],
         None,
         "The main function for Explorers of Sky.\n\nNote: unverified, ported from"
         " Irdkwia's notes\n\nr0: probably a game mode ID?\nreturn: probably a return"
@@ -24510,8 +24577,8 @@ class EuOverlay34Functions:
 
 class EuOverlay34Data:
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014 = Symbol(
-        None,
-        None,
+        [0xD3C],
+        [0x22DD8BC],
         None,
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
@@ -24519,8 +24586,8 @@ class EuOverlay34Data:
     START_MENU_CONFIRM = Symbol([0xD4C], [0x22DD8CC], 0x18, "Irdkwia's notes: 3*0x8")
 
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C = Symbol(
-        None,
-        None,
+        [0xD64],
+        [0x22DD8E4],
         None,
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
@@ -24532,11 +24599,11 @@ class EuOverlay34Data:
     )
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD080 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xDA0], [0x22DD920], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD084 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xDA4], [0x22DD924], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD088 = Symbol(
@@ -24544,7 +24611,7 @@ class EuOverlay34Data:
     )
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD08C = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+        [0xDAC], [0x22DD92C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD090 = Symbol(
@@ -24673,8 +24740,8 @@ class EuOverlay8Section:
 
 class EuOverlay9Functions:
     CreateJukeboxTrackMenu = Symbol(
-        None,
-        None,
+        [0x15B0],
+        [0x233E7B0],
         None,
         "Creates a window containing the track selection menu for the Sky Jukebox. Also"
         " see struct jukebox_track_menu.\n\nr0: window_params\nr1: ?\nr2: ?\nr3:"
@@ -24682,15 +24749,15 @@ class EuOverlay9Functions:
     )
 
     UpdateJukeboxTrackMenu = Symbol(
-        None,
-        None,
+        [0x195C],
+        [0x233EB5C],
         None,
         "Window update function for jukebox track menus.\n\nr0: window pointer",
     )
 
     CreatePlaybackControlsMenu = Symbol(
-        None,
-        None,
+        [0x1E98],
+        [0x233F098],
         None,
         "Creates a window containing the playback controls menu for a selected song."
         " Also see struct simple_menu.\n\nr0: window_params\nr1: ?\nr2: ?\nr3:"
@@ -24698,15 +24765,15 @@ class EuOverlay9Functions:
     )
 
     UpdatePlaybackControlsMenu = Symbol(
-        None,
-        None,
+        [0x2304],
+        [0x233F504],
         None,
         "Window update function for playback controls menus.\n\nr0: window pointer",
     )
 
     CreateInputLockBox = Symbol(
-        None,
-        None,
+        [0x2790],
+        [0x233F990],
         None,
         "Creates a window containing the 'Locked' text when inputs are locked while a"
         " song is playing. Also see struct input_lock_box.\n\nr0: window_params\nr1:"
@@ -24714,8 +24781,8 @@ class EuOverlay9Functions:
     )
 
     UpdateInputLockBox = Symbol(
-        None,
-        None,
+        [0x297C],
+        [0x233FB7C],
         None,
         "Window update function for input lock boxes.\n\nr0: window pointer",
     )

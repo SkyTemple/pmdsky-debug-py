@@ -2,7 +2,7 @@ from .protocol import Symbol
 
 
 class JpArm7Functions:
-    EntryArm7 = Symbol(
+    _start_arm7 = Symbol(
         [0x0],
         [0x2380000],
         None,
@@ -12,6 +12,10 @@ class JpArm7Functions:
         " is loaded into a register (r1), and a `bx` branch will jump to"
         " NitroSpMain.\n\nNo params.",
     )
+
+    do_autoload_arm7 = Symbol([0x118], [0x2380118], None, "")
+
+    StartAutoloadDoneCallbackArm7 = Symbol([0x188], [0x2380188], None, "")
 
     NitroSpMain = Symbol(
         [0x1E8],
@@ -171,8 +175,8 @@ class JpArm7Section:
         " game is launched.\n\nSpeaking generally, this is the program run by the"
         " Nintendo DS's secondary ARM7TDMI CPU, which handles the audio I/O, the touch"
         " screen, Wi-Fi functions, cryptography, and more.\n\nMemory map: (binary is"
-        " initially loaded at 0x2380000)\n0x2380000-0x23801E8 => Contains EntryArm7 and"
-        " two more methods, all related to memory mapping.\n0x23801E8-0x238F7F0 =>"
+        " initially loaded at 0x2380000)\n0x2380000-0x23801E8 => Contains _start_arm7"
+        " and two more methods, all related to memory mapping.\n0x23801E8-0x238F7F0 =>"
         " Mapped to 0x37F8000, contains NitroSpMain and functions crucial to"
         " execution.\n0x238F7F0-0x23A7068 => Mapped to 0x27E0000, contains everything"
         " else that won't fit in the fast WRAM.\n\nNote that while the length for the"
@@ -188,9 +192,9 @@ class JpArm7Section:
 
 
 class JpArm9Functions:
-    SvcWaitByLoop = Symbol(None, None, None, "Software interrupt.")
-
     SvcSoftReset = Symbol(None, None, None, "Software interrupt.")
+
+    SvcWaitByLoop = Symbol(None, None, None, "Software interrupt.")
 
     SvcCpuSet = Symbol(None, None, None, "Software interrupt.")
 
@@ -23671,19 +23675,19 @@ class JpOverlay29Data:
         " algorithm when generating room imperfections. See GenerateRoomImperfections.",
     )
 
-    GUMMI_LIKE_STRING_IDS = Symbol(
-        None,
-        None,
-        None,
-        "List that holds the message IDs for how much a monster liked a gummi in"
-        " decreasing order.",
-    )
-
     GUMMI_IQ_STRING_IDS = Symbol(
         None,
         None,
         None,
         "List that holds the message IDs for how much a monster's IQ was raised by in"
+        " decreasing order.",
+    )
+
+    GUMMI_LIKE_STRING_IDS = Symbol(
+        None,
+        None,
+        None,
+        "List that holds the message IDs for how much a monster liked a gummi in"
         " decreasing order.",
     )
 
