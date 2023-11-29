@@ -7600,6 +7600,66 @@ class NaArm9Functions:
         " instructions.\n\nr0: matrix_4x3 pointer\nr1: GXFIFO pointer",
     )
 
+    IncrementThreadCount = Symbol(
+        [0x79150],
+        [0x2079150],
+        None,
+        "Increments thread_info::thread_count by 1 and returns the new"
+        " value.\n\nreturn: New thread count",
+    )
+
+    InsertThreadIntoList = Symbol(
+        [0x79298],
+        [0x2079298],
+        None,
+        "Inserts a new thread into the linked thread list (see"
+        " thread_info::thread_list_head).\n\nThe thread is inserted in sorted"
+        " order.\n\nr0: Thread to insert",
+    )
+
+    StartThread = Symbol(
+        [0x79560],
+        [0x2079560],
+        None,
+        "Called to start a new thread.\n\nInitializes the specified thread struct and"
+        " some values on its stack area.\n\nr0: Struct of the thread to init\nr1:"
+        " Pointer to the function to run on this thread\nr2: Pointer to a thread"
+        " struct. Sometimes equal to r0. Sometimes null.\nr3: Pointer to the stack area"
+        " for this thread. Not all the space is usable. See"
+        " thread::usable_stack_pointer for more info.\nstack[0]: Stack size\nstack[1]:"
+        " (?) Used to sort threads on a list",
+    )
+
+    ThreadExit = Symbol(
+        [0x7965C],
+        [0x207965C],
+        None,
+        "Function called by threads on exit.\n\nBase functions that contain an infinite"
+        " loop that is not supposed to return and that have their stacks in main RAM"
+        " have this function as their return address.\n\nNo params.",
+    )
+
+    SetThreadField0xB4 = Symbol(
+        [0x79C7C],
+        [0x2079C7C],
+        None,
+        "Sets the given thread's field_0xB4 to the specified value.\n\nr0: Thread\nr1:"
+        " Value to set",
+    )
+
+    InitThread = Symbol(
+        [0x79C84],
+        [0x2079C84],
+        None,
+        "Initializes some fields of the given thread struct.\n\nMost notably,"
+        " thread::flags, thread::function_address_plus_4, thread::stack_pointer_minus_4"
+        " and thread::usable_stack_pointer. Also initializes a few more fields with a"
+        " value of 0.\nthread::flags is initialized to 0x1F, unless the address of the"
+        " function is odd (???), in which case it's initialized to 0x3F.\n\nr0: Pointer"
+        " to the thread to initialize\nr1: Pointer to the function the thread will"
+        " run\nr2: Pointer to the start of the thread's stack area - 4",
+    )
+
     GetTimer0Control = Symbol(
         [0x7AEE4],
         [0x207AEE4],
@@ -16916,6 +16976,18 @@ class NaOverlay29Functions:
         " the visibility is 0.",
     )
 
+    RevealWholeFloor = Symbol(
+        [0x71F0],
+        [0x22E3430],
+        None,
+        "Sets the luminous state for the floor and marks all the tiles on the floor as"
+        " revealed.\n\nMore specifically, sets dungeon::display_data::luminous to 1,"
+        " sets visibility_flags::f_revealed for all tiles on the floor, calls"
+        " UpdateCamera, UpdateTrapsVisibility, UpdateMinimap and logs the message 'It"
+        " became brighter on the floor!'.\n\nr0: Pointer to the entity who revealed the"
+        " floor",
+    )
+
     PlayEffectAnimationEntity = Symbol(
         [0x73A4],
         [0x22E35E4],
@@ -17210,6 +17282,19 @@ class NaOverlay29Functions:
         None,
         "Advances one frame. Does not return until the next frame starts.\n\nr0: ? -"
         " Unused by the function",
+    )
+
+    DisplayAnimatedNumbers = Symbol(
+        [0xE4D8],
+        [0x22EA718],
+        None,
+        "Displays numbers or the 'MISS' text above a monster. Normally used to display"
+        " damage amounts, although it also has other uses (such as showing the"
+        " stockpile count).\n\nr0: Amount to display. Can be negative. 9999 displays"
+        " 'MISS' instead.\nr1: Entity above which the numbers will be displayed\nr2:"
+        " True to display a plus or minus sign before the numbers, false to hide"
+        " it\nr3: Color of the numbers. NUMBER_COLOR_AUTO to determine it"
+        " automatically.",
     )
 
     SetDungeonRngPreseed23Bit = Symbol(
@@ -21869,6 +21954,15 @@ class NaOverlay29Functions:
         " params.",
     )
 
+    UnloadFixedRoomData = Symbol(
+        [0x5E3F0],
+        [0x233A630],
+        None,
+        "Unloads fixed room data from the buffer pointed to by FIXED_ROOM_DATA_PTR,"
+        " then clears the pointer.\n\nAlso clears"
+        " dungeon::unk_fixed_room_pointer.\n\nNo params.",
+    )
+
     IsNormalFloor = Symbol(
         [0x5E414],
         [0x233A654],
@@ -24270,6 +24364,26 @@ class NaOverlay31Functions:
         " monster whose moves will be checked in the action_use_idx field.",
     )
 
+    HandleMovesMenuWrapper0 = Symbol(
+        [0x2B9C],
+        [0x23853BC],
+        None,
+        "Sets some field on a struct to 0 and calls HandleMovesMenu.\n\nr0: struct"
+        " pointer, see HandleMovesMenu\nr1: See HandleMovesMenu\nr2: See"
+        " HandleMovesMenu\nr3: monster index, see HandleMovesMenu\nreturn: bool, see"
+        " HandleMovesMenu",
+    )
+
+    HandleMovesMenuWrapper1 = Symbol(
+        [0x2BC0],
+        [0x23853E0],
+        None,
+        "Sets some field on a struct to 1 and calls HandleMovesMenu.\n\nr0: struct"
+        " pointer, see HandleMovesMenu\nr1: See HandleMovesMenu\nr2: See"
+        " HandleMovesMenu\nr3: monster index, see HandleMovesMenu\nreturn: bool, see"
+        " HandleMovesMenu",
+    )
+
     HandleMovesMenu = Symbol(
         [0x2BE4],
         [0x2385404],
@@ -24277,10 +24391,11 @@ class NaOverlay31Functions:
         "Handles the different options on the moves menu. Does not return until the"
         " menu is closed.\n\nThis function also takes care of updating the fields in"
         " the action_data struct it receives when a menu option is chosen.\n\nr0:"
-        " Pointer to pointer to the entity that opened the menu. The chosen action will"
-        " be written on its action field.\nr1: ?\nr2: ?\nr3: Index of the monster whose"
-        " moves are going to be displayed on the menu. Unused.\nreturn: True if the"
-        " menu was closed without selecting anything, false if an option was chosen.",
+        " Pointer to some struct that was created by a previous function. Contains a"
+        " pointer to the monster whose moves are being displayed at offset 0x0.\nr1:"
+        " ?\nr2: ?\nr3: Index of the monster whose moves are going to be displayed on"
+        " the menu. Unused.\nreturn: True if the menu was closed without selecting"
+        " anything, false if an option was chosen.",
     )
 
     TeamMenu = Symbol(
@@ -25179,6 +25294,13 @@ class NaRamData:
         [0x22B958C],
         0x2,
         "Bitset of enabled VRAM banks\n\ntype: vram_banks_set",
+    )
+
+    THREAD_INFO_STRUCT = Symbol(
+        [0x2B9648],
+        [0x22B9648],
+        None,
+        "thread_info struct that contains global state about threads",
     )
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(

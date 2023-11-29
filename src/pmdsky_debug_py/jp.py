@@ -7595,6 +7595,66 @@ class JpArm9Functions:
         " instructions.\n\nr0: matrix_4x3 pointer\nr1: GXFIFO pointer",
     )
 
+    IncrementThreadCount = Symbol(
+        None,
+        None,
+        None,
+        "Increments thread_info::thread_count by 1 and returns the new"
+        " value.\n\nreturn: New thread count",
+    )
+
+    InsertThreadIntoList = Symbol(
+        None,
+        None,
+        None,
+        "Inserts a new thread into the linked thread list (see"
+        " thread_info::thread_list_head).\n\nThe thread is inserted in sorted"
+        " order.\n\nr0: Thread to insert",
+    )
+
+    StartThread = Symbol(
+        None,
+        None,
+        None,
+        "Called to start a new thread.\n\nInitializes the specified thread struct and"
+        " some values on its stack area.\n\nr0: Struct of the thread to init\nr1:"
+        " Pointer to the function to run on this thread\nr2: Pointer to a thread"
+        " struct. Sometimes equal to r0. Sometimes null.\nr3: Pointer to the stack area"
+        " for this thread. Not all the space is usable. See"
+        " thread::usable_stack_pointer for more info.\nstack[0]: Stack size\nstack[1]:"
+        " (?) Used to sort threads on a list",
+    )
+
+    ThreadExit = Symbol(
+        None,
+        None,
+        None,
+        "Function called by threads on exit.\n\nBase functions that contain an infinite"
+        " loop that is not supposed to return and that have their stacks in main RAM"
+        " have this function as their return address.\n\nNo params.",
+    )
+
+    SetThreadField0xB4 = Symbol(
+        None,
+        None,
+        None,
+        "Sets the given thread's field_0xB4 to the specified value.\n\nr0: Thread\nr1:"
+        " Value to set",
+    )
+
+    InitThread = Symbol(
+        None,
+        None,
+        None,
+        "Initializes some fields of the given thread struct.\n\nMost notably,"
+        " thread::flags, thread::function_address_plus_4, thread::stack_pointer_minus_4"
+        " and thread::usable_stack_pointer. Also initializes a few more fields with a"
+        " value of 0.\nthread::flags is initialized to 0x1F, unless the address of the"
+        " function is odd (???), in which case it's initialized to 0x3F.\n\nr0: Pointer"
+        " to the thread to initialize\nr1: Pointer to the function the thread will"
+        " run\nr2: Pointer to the start of the thread's stack area - 4",
+    )
+
     GetTimer0Control = Symbol(
         [0x7B1CC],
         [0x207B1CC],
@@ -16720,6 +16780,18 @@ class JpOverlay29Functions:
         " the visibility is 0.",
     )
 
+    RevealWholeFloor = Symbol(
+        None,
+        None,
+        None,
+        "Sets the luminous state for the floor and marks all the tiles on the floor as"
+        " revealed.\n\nMore specifically, sets dungeon::display_data::luminous to 1,"
+        " sets visibility_flags::f_revealed for all tiles on the floor, calls"
+        " UpdateCamera, UpdateTrapsVisibility, UpdateMinimap and logs the message 'It"
+        " became brighter on the floor!'.\n\nr0: Pointer to the entity who revealed the"
+        " floor",
+    )
+
     PlayEffectAnimationEntity = Symbol(
         [0x7374],
         [0x22E4C54],
@@ -17014,6 +17086,19 @@ class JpOverlay29Functions:
         None,
         "Advances one frame. Does not return until the next frame starts.\n\nr0: ? -"
         " Unused by the function",
+    )
+
+    DisplayAnimatedNumbers = Symbol(
+        None,
+        None,
+        None,
+        "Displays numbers or the 'MISS' text above a monster. Normally used to display"
+        " damage amounts, although it also has other uses (such as showing the"
+        " stockpile count).\n\nr0: Amount to display. Can be negative. 9999 displays"
+        " 'MISS' instead.\nr1: Entity above which the numbers will be displayed\nr2:"
+        " True to display a plus or minus sign before the numbers, false to hide"
+        " it\nr3: Color of the numbers. NUMBER_COLOR_AUTO to determine it"
+        " automatically.",
     )
 
     SetDungeonRngPreseed23Bit = Symbol(
@@ -21624,6 +21709,15 @@ class JpOverlay29Functions:
         " params.",
     )
 
+    UnloadFixedRoomData = Symbol(
+        None,
+        None,
+        None,
+        "Unloads fixed room data from the buffer pointed to by FIXED_ROOM_DATA_PTR,"
+        " then clears the pointer.\n\nAlso clears"
+        " dungeon::unk_fixed_room_pointer.\n\nNo params.",
+    )
+
     IsNormalFloor = Symbol(
         [0x5E138],
         [0x233BA18],
@@ -23915,6 +24009,26 @@ class JpOverlay31Functions:
         " monster whose moves will be checked in the action_use_idx field.",
     )
 
+    HandleMovesMenuWrapper0 = Symbol(
+        None,
+        None,
+        None,
+        "Sets some field on a struct to 0 and calls HandleMovesMenu.\n\nr0: struct"
+        " pointer, see HandleMovesMenu\nr1: See HandleMovesMenu\nr2: See"
+        " HandleMovesMenu\nr3: monster index, see HandleMovesMenu\nreturn: bool, see"
+        " HandleMovesMenu",
+    )
+
+    HandleMovesMenuWrapper1 = Symbol(
+        None,
+        None,
+        None,
+        "Sets some field on a struct to 1 and calls HandleMovesMenu.\n\nr0: struct"
+        " pointer, see HandleMovesMenu\nr1: See HandleMovesMenu\nr2: See"
+        " HandleMovesMenu\nr3: monster index, see HandleMovesMenu\nreturn: bool, see"
+        " HandleMovesMenu",
+    )
+
     HandleMovesMenu = Symbol(
         [0x2BD4],
         [0x2386674],
@@ -23922,10 +24036,11 @@ class JpOverlay31Functions:
         "Handles the different options on the moves menu. Does not return until the"
         " menu is closed.\n\nThis function also takes care of updating the fields in"
         " the action_data struct it receives when a menu option is chosen.\n\nr0:"
-        " Pointer to pointer to the entity that opened the menu. The chosen action will"
-        " be written on its action field.\nr1: ?\nr2: ?\nr3: Index of the monster whose"
-        " moves are going to be displayed on the menu. Unused.\nreturn: True if the"
-        " menu was closed without selecting anything, false if an option was chosen.",
+        " Pointer to some struct that was created by a previous function. Contains a"
+        " pointer to the monster whose moves are being displayed at offset 0x0.\nr1:"
+        " ?\nr2: ?\nr3: Index of the monster whose moves are going to be displayed on"
+        " the menu. Unused.\nreturn: True if the menu was closed without selecting"
+        " anything, false if an option was chosen.",
     )
 
     TeamMenu = Symbol(
@@ -24817,6 +24932,10 @@ class JpRamData:
 
     ENABLED_VRAM_BANKS = Symbol(
         None, None, None, "Bitset of enabled VRAM banks\n\ntype: vram_banks_set"
+    )
+
+    THREAD_INFO_STRUCT = Symbol(
+        None, None, None, "thread_info struct that contains global state about threads"
     )
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(

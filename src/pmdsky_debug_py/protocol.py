@@ -4556,6 +4556,36 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IncrementThreadCount: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InsertThreadIntoList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StartThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ThreadExit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetThreadField0xB4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetTimer0Control: Symbol[
         Optional[list[int]],
         None,
@@ -11234,6 +11264,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    RevealWholeFloor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlayEffectAnimationEntity: Symbol[
         Optional[list[int]],
         None,
@@ -11370,6 +11405,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     AdvanceFrame: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisplayAnimatedNumbers: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -13829,6 +13869,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    UnloadFixedRoomData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsNormalFloor: Symbol[
         Optional[list[int]],
         None,
@@ -15106,6 +15151,16 @@ class Overlay31FunctionsProtocol(Protocol):
         None,
     ]
 
+    HandleMovesMenuWrapper0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleMovesMenuWrapper1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     HandleMovesMenu: Symbol[
         Optional[list[int]],
         None,
@@ -15901,6 +15956,11 @@ class RamDataProtocol(Protocol):
     ENABLED_VRAM_BANKS: Symbol[
         Optional[list[int]],
         Optional[int],
+    ]
+
+    THREAD_INFO_STRUCT: Symbol[
+        Optional[list[int]],
+        None,
     ]
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE: Symbol[
