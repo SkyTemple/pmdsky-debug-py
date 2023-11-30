@@ -14996,12 +14996,12 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
-    GUMMI_IQ_STRING_IDS: Symbol[
+    GUMMI_LIKE_STRING_IDS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    GUMMI_LIKE_STRING_IDS: Symbol[
+    GUMMI_IQ_STRING_IDS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

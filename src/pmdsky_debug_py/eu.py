@@ -24098,19 +24098,19 @@ class EuOverlay29Data:
         " algorithm when generating room imperfections. See GenerateRoomImperfections.",
     )
 
-    GUMMI_IQ_STRING_IDS = Symbol(
-        [0x77360],
-        [0x2353EE0],
-        None,
-        "List that holds the message IDs for how much a monster's IQ was raised by in"
-        " decreasing order.",
-    )
-
     GUMMI_LIKE_STRING_IDS = Symbol(
         [0x77360],
         [0x2353EE0],
-        None,
+        0x8,
         "List that holds the message IDs for how much a monster liked a gummi in"
+        " decreasing order.",
+    )
+
+    GUMMI_IQ_STRING_IDS = Symbol(
+        [0x773BC],
+        [0x2353F3C],
+        0xA,
+        "List that holds the message IDs for how much a monster's IQ was raised by in"
         " decreasing order.",
     )
 
