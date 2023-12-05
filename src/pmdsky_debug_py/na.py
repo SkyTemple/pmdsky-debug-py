@@ -3779,14 +3779,20 @@ class NaArm9Functions:
         [0x208C8],
         [0x20208C8],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: s1\nr1: s2\nreturn: bool",
+        "Checks if a null-terminated string s1 either exactly equals a null-terminated"
+        " string s2, or starts with s2 followed by a ':' or a ']'.\n\nr0: s1\nr1:"
+        " s2\nreturn: bool",
     )
 
-    StoiTag = Symbol(
+    AtoiTag = Symbol(
         [0x2090C],
         [0x202090C],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: s\nreturn: int",
+        "Parses a null-terminated string to a base-10 integer, reading digit characters"
+        " between '0' and '9' until ':', ']', or the end of the string is"
+        " encountered.\n\nAny characters that are not digits, ':', or ']' are ignored,"
+        " and the string is converted as if those characters were removed from the"
+        " string.\n\nr0: string to convert\nreturn: int",
     )
 
     AnalyzeText = Symbol(
@@ -3810,14 +3816,13 @@ class NaArm9Functions:
         " flags\nstack[0]: pointer to preprocessor args",
     )
 
-    PreprocessStringFromMessageId = Symbol(
+    PreprocessStringFromId = Symbol(
         [0x235B8],
         [0x20235B8],
         None,
-        "Calls PreprocessString after resolving the given message ID to a"
-        " string.\n\nr0: [output] formatted string\nr1: maximum capacity of the output"
-        " buffer\nr2: message ID\nr3: preprocessor flags\nstack[0]: pointer to"
-        " preprocessor args",
+        "Calls PreprocessString after resolving the given string ID to a string.\n\nr0:"
+        " [output] formatted string\nr1: maximum capacity of the output buffer\nr2:"
+        " string ID\nr3: preprocessor flags\nstack[0]: pointer to preprocessor args",
     )
 
     StrcmpTagVeneer = Symbol(
@@ -3829,11 +3834,11 @@ class NaArm9Functions:
         " s1\nr1: s2\nreturn: bool",
     )
 
-    StoiTagVeneer = Symbol(
+    AtoiTagVeneer = Symbol(
         [0x23604],
         [0x2023604],
         None,
-        "Likely a linker-generated veneer for StoiTag.\n\nSee"
+        "Likely a linker-generated veneer for AtoiTag.\n\nSee"
         " https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0:"
         " s\nreturn: int",
     )
@@ -3982,29 +3987,29 @@ class NaArm9Functions:
         " Buffer\nr1: String ID",
     )
 
-    StringFromMessageId = Symbol(
+    StringFromId = Symbol(
         [0x258C4],
         [0x20258C4],
         None,
-        "Gets the string corresponding to a given message ID.\n\nr0: message"
-        " ID\nreturn: string from the string files with the given message ID",
+        "Gets the string corresponding to a given string ID.\n\nr0: string ID\nreturn:"
+        " string from the string files with the given string ID",
     )
 
-    CopyStringFromMessageId = Symbol(
+    CopyStringFromId = Symbol(
         [0x258E4],
         [0x20258E4],
         None,
-        "Gets the string corresponding to a given message ID and copies it to the"
-        " buffer specified in r0.\n\nr0: Buffer\nr1: String ID",
+        "Gets the string corresponding to a given string ID and copies it to the buffer"
+        " specified in r0.\n\nr0: buffer\nr1: string ID",
     )
 
-    CopyNStringFromMessageId = Symbol(
+    CopyNStringFromId = Symbol(
         [0x2590C],
         [0x202590C],
         None,
-        "Gets the string corresponding to a given message ID and copies it to the"
-        " buffer specified in r0.\n\nThis function won't write more than <buffer"
-        " length> bytes.\n\nr0: Buffer\nr1: String ID\nr2: Buffer length",
+        "Gets the string corresponding to a given string ID and copies it to the buffer"
+        " specified in r0.\n\nThis function won't write more than <buffer length>"
+        " bytes.\n\nr0: buffer\nr1: string ID\nr2: buffer length",
     )
 
     LoadTblTalk = Symbol(
@@ -4027,6 +4032,14 @@ class NaArm9Functions:
         [0x2025EE8],
         None,
         "Checks if A or B is currently being held.\n\nreturn: bool",
+    )
+
+    GetWindow = Symbol(
+        [0x275F8],
+        [0x20275F8],
+        None,
+        "Get the window with a given ID from WINDOW_LIST.\n\nr0: window_id\nreturn:"
+        " window",
     )
 
     NewWindowScreenCheck = Symbol(
@@ -4063,6 +4076,22 @@ class NaArm9Functions:
         None,
         "Sets the palette of the frames of windows in both screens\n\nr0: palette"
         " index",
+    )
+
+    DeleteWindow = Symbol(
+        [0x28194],
+        [0x2028194],
+        None,
+        "Seems to uninitialize an active window in WINDOW_LIST with a given ID, freeing"
+        " the slot for reuse by another window.\n\nr0: window_id",
+    )
+
+    GetWindowRectangle = Symbol(
+        [0x28284],
+        [0x2028284],
+        None,
+        "Get the rectangle defined by a window.\n\nr0: window_id\nr1: [output]"
+        " rectangle",
     )
 
     GetWindowContents = Symbol(
@@ -4122,7 +4151,48 @@ class NaArm9Functions:
         " 14)\nr3: ?",
     )
 
+    CreateParentMenuFromStringIds = Symbol(
+        [0x2A5CC],
+        [0x202A5CC],
+        None,
+        "A wrapper around CreateParentMenuInternal, where the menu items can be defined"
+        " by string ID instead of as strings.\n\nr0: window_params\nr1:"
+        " window_flags\nr2: window_extra_info pointer\nr3: simple_menu_id_item struct"
+        " array, terminated with an item with string_id 0\nreturn: window_id",
+    )
+
+    IsEmptyString = Symbol(
+        [0x2A66C],
+        [0x202A66C],
+        None,
+        "Checks if a null-terminated string is empty. A NULL pointer counts as"
+        " empty.\n\nr0: string\nreturn: whether the string is NULL or empty",
+    )
+
     CreateParentMenu = Symbol(
+        [0x2A690],
+        [0x202A690],
+        None,
+        "A wrapper around CreateParentMenuInternal where ownership of the items array"
+        " parameter won't be transferred to the menu.\n\nThe menu item array will be"
+        " copied onto a new array on the heap. This means the argument doesn't need to"
+        " remain valid after the function returns (e.g., it can be"
+        " stack-allocated).\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: simple_menu_ptr_item struct array, terminated"
+        " with an item with an NULL string pointer\nreturn: window_id",
+    )
+
+    CreateParentMenuWrapper = Symbol(
+        [0x2A730],
+        [0x202A730],
+        None,
+        "A wrapper around CreateParentMenu that sets field_0x1b0 to 1 if the returned"
+        " window_id is not -2.\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: simple_menu_ptr_item struct array, terminated"
+        " with an item with an NULL string pointer\nreturn: window_id",
+    )
+
+    CreateParentMenuInternal = Symbol(
         [0x2A75C],
         [0x202A75C],
         None,
@@ -4130,8 +4200,46 @@ class NaArm9Functions:
         " might open submenus when selected. Also see struct simple_menu.\n\nMultiple"
         " levels of nesting is possible, i.e., a submenu could itself be a parent"
         " menu.\n\nThis is used in various menus that lead to submenus. For example,"
-        " the top-level ground and dungeon mode menus.\n\nr0: window_params\nr1: ?\nr2:"
-        " ?\nr3: ?\nreturn: window_id",
+        " the top-level ground and dungeon mode menus.\n\nIf window_params is NULL,"
+        " PARENT_MENU_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be copied"
+        " onto the window, ignoring the update and contents fields. If"
+        " window_params::width and/or window_params::height are 0, they will be"
+        " computed based on the contained text.\n\nIf window_extra_info is non-NULL, it"
+        " will be copied onto the window. Note that window_extra_info can only be NULL"
+        " if there are no window_flags set that require extra info.\n\nr0:"
+        " window_params\nr1: window_flags\nr2: window_extra_info pointer\nr3:"
+        " heap-allocated simple_menu_items array, the menu takes ownership\nreturn:"
+        " window_id",
+    )
+
+    SetParentMenuState7 = Symbol(
+        [0x2AAA8],
+        [0x202AAA8],
+        None,
+        "Sets the state of a parent menu to 7.\n\nr0: window_id",
+    )
+
+    CloseParentMenu = Symbol(
+        [0x2AABC],
+        [0x202AABC],
+        None,
+        "Closes a window created with CreateParentMenu or"
+        " CreateParentMenuFromStringIds.\n\nr0: window_id",
+    )
+
+    IsParentMenuActive = Symbol(
+        [0x2AB40],
+        [0x202AB40],
+        None,
+        "This is a guess.\n\nChecks if the state of a parent menu is something other"
+        " than 8 or 9.\n\nr0: window_id\nreturn: bool",
+    )
+
+    CheckParentMenuField0x1A0 = Symbol(
+        [0x2AB60],
+        [0x202AB60],
+        None,
+        "Checks if a parent menu's field_0x1a0 is 0.\n\nr0: window_id\nreturn: bool",
     )
 
     UpdateParentMenu = Symbol(
@@ -4141,42 +4249,77 @@ class NaArm9Functions:
         "Window update function for parent menus.\n\nr0: window pointer",
     )
 
-    CreateSimpleMenuWrapper = Symbol(
+    CreateSimpleMenuFromStringIds = Symbol(
         [0x2B0EC],
         [0x202B0EC],
         None,
-        "A wrapper around CreateSimpleMenu, with a more convenient interface for"
-        " defining menu options.\n\nr0: window_params\nr1: menu_flags\nr2:"
-        " additional_menu_info struct\nr3: simple_menu_option struct array\nstack[0]:"
-        " option_id\nreturn: window_id",
+        "A wrapper around CreateSimpleMenuInternal, where the menu items can be defined"
+        " by string ID instead of as strings.\n\nr0: window_params\nr1:"
+        " window_flags\nr2: window_extra_info pointer\nr3: simple_menu_id_item struct"
+        " array, terminated with an item with string_id 0\nstack[0]: number of"
+        " items\nreturn: window_id",
     )
 
     CreateSimpleMenu = Symbol(
+        [0x2B1AC],
+        [0x202B1AC],
+        None,
+        "A wrapper around CreateSimpleMenuInternal where ownership of the"
+        " simple_menu_items array parameter won't be transferred to the menu.\n\nThe"
+        " menu item array will be copied onto a new array on the heap. This means the"
+        " argument doesn't need to remain valid after the function returns (e.g., it"
+        " can be stack-allocated).\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: simple_menu_items array\nstack[0]: number of"
+        " items\nreturn: window_id",
+    )
+
+    CreateSimpleMenuInternal = Symbol(
         [0x2B284],
         [0x202B284],
         None,
         "Creates a window containing a simple textual menu with a list of options. Also"
-        " see struct simple_menu.\n\nIf the pointer to window_params is null, has a"
-        " default menu to fall back on. A NULL additional_menu_info struct pointer"
-        " works so long as the window does not have any of the flags set for the"
-        " information contained inside.\n\nThis is used in lots of places. For example,"
-        " some simple Yes/No prompts.\n\nr0: window_params\nr1: menu_flags\nr2:"
-        " additional_menu_info struct\nr3: some string with menu options?\nstack[0]:"
-        " option_id\nreturn: window_id",
+        " see struct simple_menu.\n\nThis is used in lots of places. For example, some"
+        " simple Yes/No prompts.\n\nIf window_params is NULL,"
+        " SIMPLE_MENU_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be copied"
+        " onto the window, ignoring the update and contents fields. If"
+        " window_params::width and/or window_params::height are 0, they will be"
+        " computed based on the contained text.\n\nIf window_extra_info is non-NULL, it"
+        " will be copied onto the window. Note that window_extra_info can only be NULL"
+        " if there are no window_flags set that require extra info.\n\nr0:"
+        " window_params\nr1: window_flags\nr2: window_extra_info pointer\nr3:"
+        " heap-allocated simple_menu_items array, the menu takes ownership\nstack[0]:"
+        " number of items\nreturn: window_id",
     )
 
-    FreeSimpleMenu = Symbol(
+    CloseSimpleMenu = Symbol(
         [0x2B4C4],
         [0x202B4C4],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
+        "Closes a window created with CreateSimpleMenu or"
+        " CreateSimpleMenuFromStringIds.\n\nr0: window_id",
     )
 
     IsSimpleMenuActive = Symbol(
         [0x2B4F0],
         [0x202B4F0],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: bool",
+        "Note: unverified, ported from Irdkwia's notes\n\nChecks if the menu state is"
+        " anything other than 7 or 8.\n\nr0: window_id\nreturn: bool",
+    )
+
+    CheckSimpleMenuField0x1A0 = Symbol(
+        [0x2B510],
+        [0x202B510],
+        None,
+        "Checks if simple_menu::field_0x1a0 is 0.\n\nr0: window_id\nreturn: bool",
+    )
+
+    GetSimpleMenuField0x1A4 = Symbol(
+        [0x2B558],
+        [0x202B558],
+        None,
+        "Gets the value of simple_menu::field_0x1a4.\n\nr0: window_id\nreturn:"
+        " field_0x1a4",
     )
 
     GetSimpleMenuResult = Symbol(
@@ -4193,35 +4336,65 @@ class NaArm9Functions:
         "Window update function for simple menus.\n\nr0: window pointer",
     )
 
+    SetSimpleMenuField0x1AC = Symbol(
+        [0x2BA0C],
+        [0x202BA0C],
+        None,
+        "Sets simple_menu::field_0x1ac to the given value.\n\nr0: window_id\nr1: value",
+    )
+
     CreateAdvancedMenu = Symbol(
         [0x2BA20],
         [0x202BA20],
         None,
         "Creates a window containing a textual menu with complex layout and"
         " functionality (e.g., paging through multiple pages). Also see struct"
-        " advanced_menu.\n\nIf window_params is null, has a default layout to fall back"
-        " on. The entry function is used to get the strings for all currently available"
+        " advanced_menu.\n\nThis is used for menus like the IQ skills menu, and the"
+        " dungeon selection menu from the overworld crossroads. Curiously, it's also"
+        " used in some non-interactive contexts like the Adventure Log.\n\nIf"
+        " window_params is NULL, ADVANCED_MENU_DEFAULT_WINDOW_PARAMS will be used."
+        " Otherwise, it will be copied onto the window, ignoring the update and"
+        " contents fields. If window_params::width and/or window_params::height are 0,"
+        " they will be computed based on the contained text.\n\nIf window_extra_info is"
+        " non-NULL, it will be copied onto the window. Note that window_extra_info can"
+        " only be NULL if there are no window_flags set that require extra info.\n\nThe"
+        " entry function is used to get the strings for all currently available"
         " options, so when the page is flipped the entry function is used to get the"
-        " strings for the entries on the other page?\n\nThis is used for menus like the"
-        " IQ skills menu, and the dungeon selection menu from the overworld crossroads."
-        " Curiously, it's also used in some non-interactive contexts like the Adventure"
-        " Log.\n\nr0: window_params\nr1: menu_flags\nr2: additional_menu_info"
-        " struct\nr3: entry_function\nstack[0]: nb_options\nstack[1]:"
-        " nb_opt_per_page\nreturn: window_id",
+        " strings for the entries on the other page?\n\nr0: window_params\nr1:"
+        " window_flags\nr2: window_extra_info pointer\nr3: entry_function\nstack[0]:"
+        " total number of options\nstack[1]: number of options per page\nreturn:"
+        " window_id",
     )
 
-    FreeAdvancedMenu = Symbol(
+    CloseAdvancedMenu = Symbol(
         [0x2BC44],
         [0x202BC44],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
+        "Closes a window created with CreateAdvancedMenu.\n\nr0: window_id",
+    )
+
+    IsAdvancedMenuActive2 = Symbol(
+        [0x2BCBC],
+        [0x202BCBC],
+        None,
+        "This is a guess, by analogy to IsSimpleMenuActive, which does the same thing."
+        " Most of window types also have an analogous function that checks the state"
+        " value. It's unclear how this relates to the other IsAdvancedMenuActive, or if"
+        " this guess is completely wrong.\n\nChecks if the state of an advanced menu is"
+        " something other than 7 or 8.\n\nr0: window_id\nreturn: bool",
     )
 
     IsAdvancedMenuActive = Symbol(
         [0x2BCDC],
         [0x202BCDC],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: bool",
+        "Note: unverified, ported from Irdkwia's notes\n\nChecks if"
+        " advanced_menu::field_0x1a0 is 0.\n\nThis seems to resemble the Check*Field*"
+        " functions of some of the other menu types. It's unclear whether these are the"
+        " real 'IsActive' functions, or whether the ones that check the state value"
+        " are. It may be noteworthy that all menu types seem to have a variant of the"
+        " 'state checking' function, but only some menu types seem to have a variant of"
+        " the 'check field' function.\n\nr0: window_id\nreturn: bool",
     )
 
     GetAdvancedMenuCurrentOption = Symbol(
@@ -4254,8 +4427,79 @@ class NaArm9Functions:
         " collection_menu.\n\nCollection menus seem similar to advanced menus, but are"
         " used for certain menus involving item management (Kangaskhan Storage, Kecleon"
         " shop, Croagunk Swap Shop), missions (job selection, bulletin board), and"
-        " possibly other things.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: some function"
-        " pointer?\nstack[0]: ?\nstack[1]: ?\nstack[2]: ?\nreturn: window_id",
+        " possibly other things.\n\nIf window_params is NULL,"
+        " COLLECTION_MENU_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be"
+        " copied onto the window, ignoring the update and contents fields. If"
+        " window_params::width and/or window_params::height are 0, they will be"
+        " computed based on the contained text.\n\nIf window_extra_info is non-NULL, it"
+        " will be copied onto the window. Note that window_extra_info can only be NULL"
+        " if there are no window_flags set that require extra info.\n\nr0:"
+        " window_params\nr1: window_flags\nr2: window_extra_info pointer\nr3: some"
+        " function pointer?\nstack[0]: ?\nstack[1]: total number of options\nstack[2]:"
+        " number of options per page\nreturn: window_id",
+    )
+
+    SetCollectionMenuField0x1BC = Symbol(
+        [0x2C5E0],
+        [0x202C5E0],
+        None,
+        "Sets collection_menu::field_0x1bc to the given value.\n\nr0: window_id\nr1:"
+        " value",
+    )
+
+    SetCollectionMenuWidth = Symbol(
+        [0x2C5F4],
+        [0x202C5F4],
+        None,
+        "Sets collection_menu::width to a new value, clamped to be no greater than"
+        " (window_params::width * 8 - 1) for the window.\n\nr0: window_id\nr1: width",
+    )
+
+    CloseCollectionMenu = Symbol(
+        [0x2C70C],
+        [0x202C70C],
+        None,
+        "Closes a window created with CreateCollectionMenu.\n\nr0: window_id",
+    )
+
+    IsCollectionMenuActive = Symbol(
+        [0x2C728],
+        [0x202C728],
+        None,
+        "This is a guess.\n\nChecks if the state of a collection menu is something"
+        " other than 6 or 7.\n\nr0: window_id\nreturn: bool",
+    )
+
+    SetCollectionMenuField0x1C8 = Symbol(
+        [0x2C794],
+        [0x202C794],
+        None,
+        "Sets collection_menu::field_0x1c8 to the given value.\n\nr0: window_id\nr1:"
+        " value",
+    )
+
+    SetCollectionMenuField0x1A0 = Symbol(
+        [0x2C7A8],
+        [0x202C7A8],
+        None,
+        "Sets collection_menu::field_0x1a0 to the given value.\n\nr0: window_id\nr1:"
+        " value",
+    )
+
+    SetCollectionMenuField0x1A4 = Symbol(
+        [0x2C7BC],
+        [0x202C7BC],
+        None,
+        "Sets collection_menu::field_0x1a4 to the given value.\n\nr0: window_id\nr1:"
+        " value",
+    )
+
+    SetCollectionMenuVoidFn = Symbol(
+        [0x2C7D0],
+        [0x202C7D0],
+        None,
+        "Sets collection_menu::field_0x1a8 to the given function pointer.\n\nr0:"
+        " window_id\nr1: some function pointer?",
     )
 
     UpdateCollectionMenu = Symbol(
@@ -4265,14 +4509,60 @@ class NaArm9Functions:
         "Window update function for collection menus.\n\nr0: window pointer",
     )
 
+    SetCollectionMenuField0x1B2 = Symbol(
+        [0x2D0D8],
+        [0x202D0D8],
+        None,
+        "Sets collection_menu::field_0x1b2 to the given value.\n\nr0: window_id\nr1:"
+        " value",
+    )
+
+    IsCollectionMenuState3 = Symbol(
+        [0x2D114],
+        [0x202D114],
+        None,
+        "Checks if a collection menu has a state value of 3.\n\nr0: window_id\nreturn:"
+        " bool",
+    )
+
     CreateOptionsMenu = Symbol(
         [0x2D1F0],
         [0x202D1F0],
         None,
         "Creates a window containing a menu controlling game options. Also see struct"
-        " options_menu.\n\nThis is used for the options and window options menus, and"
-        " possibly other things.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]:"
-        " ?\nstack[1]: ?\nreturn: window_id",
+        " options_menu.\n\nThis is used for the options and window options menus, among"
+        " other things.\n\nIf window_params is NULL, OPTIONS_MENU_DEFAULT_WINDOW_PARAMS"
+        " will be used. Otherwise, it will be copied onto the window, ignoring the"
+        " update and contents fields. If window_params::width and/or"
+        " window_params::height are 0, they will be computed based on the contained"
+        " text.\n\nIf window_extra_info is non-NULL, it will be copied onto the window."
+        " Note that window_extra_info can only be NULL if there are no window_flags set"
+        " that require extra info.\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: options_menu_id_item struct array, terminated"
+        " with an item with msg_id 0\nstack[0]: number of items\nstack[1]: ?\nreturn:"
+        " window_id",
+    )
+
+    CloseOptionsMenu = Symbol(
+        [0x2D530],
+        [0x202D530],
+        None,
+        "Closes a window created with CreateOptionsMenu.\n\nr0: window_id",
+    )
+
+    IsOptionsMenuActive = Symbol(
+        [0x2D55C],
+        [0x202D55C],
+        None,
+        "This is a guess.\n\nChecks if the state of an options menu is something other"
+        " than 6 or 7.\n\nr0: window_id\nreturn: bool",
+    )
+
+    CheckOptionsMenuField0x1A4 = Symbol(
+        [0x2D57C],
+        [0x202D57C],
+        None,
+        "Checks if options_menu::field_0x1a4 is 0.\n\nr0: window_id\nreturn: bool",
     )
 
     UpdateOptionsMenu = Symbol(
@@ -4289,8 +4579,37 @@ class NaArm9Functions:
         "Creates a window containing the debug menu (probably). Also see struct"
         " debug_menu.\n\nThis is an educated guess, since this function references"
         " string IDs of debug menu strings.\n\nSee enum debug_flag and enum"
-        " debug_log_flag.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]:"
-        " ?\nstack[1]: ?\nreturn: window_id",
+        " debug_log_flag.\n\nIf window_params is NULL, DEBUG_MENU_DEFAULT_WINDOW_PARAMS"
+        " will be used. Otherwise, it will be copied onto the window, ignoring the"
+        " update and contents fields. If window_params::width and/or"
+        " window_params::height are 0, they will be computed based on the contained"
+        " text.\n\nIf window_extra_info is non-NULL, it will be copied onto the window."
+        " Note that window_extra_info can only be NULL if there are no window_flags set"
+        " that require extra info.\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: array of menu item string IDs\nstack[0]:"
+        " number of menu items\nstack[1]: ?\nreturn: window_id",
+    )
+
+    CloseDebugMenu = Symbol(
+        [0x2DEF8],
+        [0x202DEF8],
+        None,
+        "Closes a window created with CreateDebugMenu.\n\nr0: window_id",
+    )
+
+    IsDebugMenuActive = Symbol(
+        [0x2DF24],
+        [0x202DF24],
+        None,
+        "This is a guess.\n\nChecks if the state of a debug menu is something other"
+        " than 6 or 7.\n\nr0: window_id\nreturn: bool",
+    )
+
+    CheckDebugMenuField0x1A4 = Symbol(
+        [0x2DF44],
+        [0x202DF44],
+        None,
+        "Checks if debug_menu::field_0x1a4 is 0.\n\nr0: window_id\nreturn: bool",
     )
 
     UpdateDebugMenu = Symbol(
@@ -4300,26 +4619,60 @@ class NaArm9Functions:
         "Window update function for debug menus.\n\nr0: window pointer",
     )
 
-    CreateScrollBox1 = Symbol(
+    CreateScrollBoxSingle = Symbol(
         [0x2E3CC],
         [0x202E3CC],
         None,
-        "Creates a text window that scrolls vertically on overflow. Also see struct"
-        " scroll_box.\n\nThis includes things like descriptions for items and"
-        " moves.\n\nIt's unclear how this function differs from"
-        " CreateScrollBox2.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]:"
-        " ?\nstack[1]: ?\nstack[2]: ?\nreturn: window_id",
+        "Creates window containing text that pages vertically on overflow, with a"
+        " single pair of strings. Also see struct scroll_box.\n\nThis includes things"
+        " like descriptions for items and moves.\n\nIf window_params is NULL,"
+        " SCROLL_BOX_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be copied"
+        " onto the window, ignoring the update and contents fields.\n\nIf"
+        " window_extra_info is non-NULL, it will be copied onto the window. Note that"
+        " window_extra_info can only be NULL if there are no window_flags set that"
+        " require extra info.\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: string ID 1\nstack[0]: preprocessor args"
+        " 1\nstack[1]: string ID 2\nstack[2]: preprocessor args 2\nreturn: window_id",
     )
 
-    CreateScrollBox2 = Symbol(
+    CreateScrollBoxMulti = Symbol(
         [0x2E518],
         [0x202E518],
         None,
-        "Creates a text window that scrolls vertically on overflow. Also see struct"
-        " scroll_box.\n\nThis includes things like descriptions for items and"
-        " moves.\n\nIt's unclear how this function differs from"
-        " CreateScrollBox1.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]:"
-        " ?\nstack[1]: ?\nstack[2]: ?\nstack[3]: ?\nreturn: window_id",
+        "Creates window containing text that pages vertically on overflow, with an"
+        " array of string pairs. Also see struct scroll_box.\n\nThis includes things"
+        " like descriptions for items and moves.\n\nIf window_params is NULL,"
+        " SCROLL_BOX_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be copied"
+        " onto the window, ignoring the update and contents fields.\n\nIf"
+        " window_extra_info is non-NULL, it will be copied onto the window. Note that"
+        " window_extra_info can only be NULL if there are no window_flags set that"
+        " require extra info.\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: number of string pairs\nstack[0]: string ID 1"
+        " array\nstack[1]: preprocessor args 1 array\nstack[2]: string ID 2"
+        " array\nstack[3]: preprocessor args 2 array\nreturn: window_id",
+    )
+
+    SetScrollBoxState7 = Symbol(
+        [0x2E6B0],
+        [0x202E6B0],
+        None,
+        "Sets the state of a scroll box to 7.\n\nr0: window_id",
+    )
+
+    CloseScrollBox = Symbol(
+        [0x2E6C8],
+        [0x202E6C8],
+        None,
+        "Closes a window created with CreateScrollBoxSingle or"
+        " CreateScrollBoxMulti.\n\nr0: window_id",
+    )
+
+    IsScrollBoxActive = Symbol(
+        [0x2E6E4],
+        [0x202E6E4],
+        None,
+        "This is a guess.\n\nChecks if the state of a scroll box is not 8.\n\nr0:"
+        " window_id\nreturn: bool",
     )
 
     UpdateScrollBox = Symbol(
@@ -4337,14 +4690,17 @@ class NaArm9Functions:
         " pages on overflow. Also see struct dialogue_box.\n\nThis is primarily used"
         " for character dialogue, hence the name. However, it can also be used for"
         " other types of messages. The defining feature of this window type is the"
-        " scrolling/paging behavior.\n\nr0: window_params\nreturn: window_id",
+        " scrolling/paging behavior.\n\nIf window_params is NULL,"
+        " DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be copied"
+        " onto the window, ignoring the update and contents fields.\n\nr0:"
+        " window_params\nreturn: window_id",
     )
 
-    FreeDialogueBox = Symbol(
+    CloseDialogueBox = Symbol(
         [0x2F148],
         [0x202F148],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
+        "Closes a window created with CreateDialogueBox.\n\nr0: window_id",
     )
 
     IsDialogueBoxActive = Symbol(
@@ -4354,7 +4710,7 @@ class NaArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: bool",
     )
 
-    ShowMessageInDialogueBox = Symbol(
+    ShowStringIdInDialogueBox = Symbol(
         [0x2F1B4],
         [0x202F1B4],
         None,
@@ -4380,6 +4736,15 @@ class NaArm9Functions:
         "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
     )
 
+    ReadStringFromDialogueBox = Symbol(
+        [0x2F44C],
+        [0x202F44C],
+        None,
+        "Copies data from the dialogue box's string buffer into an output"
+        " buffer.\n\nr0: window_id\nr1: [output] string buffer\nr2: number of bytes to"
+        " read",
+    )
+
     UpdateDialogueBox = Symbol(
         [0x2F488],
         [0x202F488],
@@ -4393,30 +4758,44 @@ class NaArm9Functions:
         None,
         "Creates a window containing a character portrait. Also see struct"
         " portrait_box.\n\nThis is commonly paired with a dialogue box, but can also be"
-        " used standalone.\n\nr0: screen index\nr1: palette_idx\nr2: framed\nreturn:"
-        " window_id",
+        " used standalone.\n\nIf framed, the window box type will be 0xFC, otherwise it"
+        " will be 0xF9.\n\nThe new window will always default to"
+        " PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS.\n\nr0: screen index\nr1: palette_idx\nr2:"
+        " framed\nreturn: window_id",
     )
 
-    FreePortraitBox = Symbol(
+    ClosePortraitBox = Symbol(
         [0x2F650],
         [0x202F650],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
+        "Closes a window created with CreatePortraitBox.\n\nr0: window_id",
     )
 
-    ShowPortraitBox = Symbol(
+    PortraitBoxNeedsUpdate = Symbol(
+        [0x2F66C],
+        [0x202F66C],
+        None,
+        "Checks if a portrait box has a state of PORTRAIT_BOX_TRY_UPDATE or"
+        " PORTRAIT_BOX_UPDATE.\n\nr0: window_id\nreturn: bool",
+    )
+
+    ShowPortraitInPortraitBox = Symbol(
         [0x2F690],
         [0x202F690],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nr1: portrait"
-        " box pointer",
+        "Stages a portrait to be rendered in a portrait box at next update (sets"
+        " portrait_box::buffer_state).\n\nIf portrait is NULL, the default portrait"
+        " will be shown (see InitPortraitParams).\n\nr0: window_id\nr1: portrait params"
+        " pointer",
     )
 
     HidePortraitBox = Symbol(
         [0x2F6DC],
         [0x202F6DC],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id",
+        "Flags a portrait box to be hidden at next update (sets portrait_box::hide) if"
+        " it's not already in the PORTRAIT_BOX_HIDDEN state, and resets its buffer"
+        " state.\n\nr0: window_id",
     )
 
     UpdatePortraitBox = Symbol(
@@ -4426,21 +4805,38 @@ class NaArm9Functions:
         "Window update function for portrait boxes.\n\nr0: window pointer",
     )
 
-    CreateTextBox1 = Symbol(
+    CreateTextBox = Symbol(
         [0x2F8C4],
         [0x202F8C4],
         None,
-        "Calls CreateTextBoxInternal, sets field_0x4 to the argument in r1, and returns"
-        " the window_id.\n\nr0: window_params\nr1: ?\nreturn: window_id",
+        "Calls CreateTextBoxInternal, sets the callback without an argument, and"
+        " returns the window_id.\n\nr0: window_params\nr1: text box callback"
+        " function\nreturn: window_id",
     )
 
-    CreateTextBox2 = Symbol(
+    CreateTextBoxWithArg = Symbol(
         [0x2F8DC],
         [0x202F8DC],
         None,
-        "Calls CreateTextBoxInternal, sets field_0x8 and field_0x14 to the arguments in"
-        " r1 and r2, respectively, and returns the window_id.\n\nr0: window_params\nr1:"
-        " ?\nr2: ?\nreturn: window_id",
+        "Calls CreateTextBoxInternal, sets the callback with an argument, and returns"
+        " the window_id.\n\nr0: window_params\nr1: text box callback with arg"
+        " function\nr2: callback argument\nreturn: window_id",
+    )
+
+    CloseTextBox = Symbol(
+        [0x2F8FC],
+        [0x202F8FC],
+        None,
+        "Closes a window created with CreateTextBox or CreateTextBoxWithArg.\n\nr0:"
+        " window_id",
+    )
+
+    CloseTextBox2 = Symbol(
+        [0x2F918],
+        [0x202F918],
+        None,
+        "Seems to do some things with the text box, before doing the same things that"
+        " CloseTextBox does.\n\nr0: window_id",
     )
 
     CreateTextBoxInternal = Symbol(
@@ -4448,7 +4844,10 @@ class NaArm9Functions:
         [0x202F9DC],
         None,
         "Creates a window containing simple text, without much advanced functionality."
-        " Also see struct text_box.\n\nr0: window_params\nreturn: text_box pointer",
+        " Also see struct text_box.\n\nIf window_params is NULL,"
+        " TEXT_BOX_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be copied"
+        " onto the window, ignoring the update and contents fields.\n\nr0:"
+        " window_params\nreturn: text_box pointer",
     )
 
     UpdateTextBox = Symbol(
@@ -4458,21 +4857,59 @@ class NaArm9Functions:
         "Window update function for text boxes.\n\nr0: window pointer",
     )
 
-    CreateDynamicTextBox = Symbol(
+    IsTextBoxActive = Symbol(
+        [0x2FB9C],
+        [0x202FB9C],
+        None,
+        "This is a guess.\n\nChecks if the state of a text box is not 7.\n\nr0:"
+        " window_id\nreturn: bool",
+    )
+
+    CreateAreaNameBox = Symbol(
         [0x2FBBC],
         [0x202FBBC],
         None,
-        "Creates a window containing dynamically determined text (probably?). Also see"
-        " struct dynamic_text_box.\n\nThis is used for the 'area name' text box in the"
-        " top-level menus in ground/dungeon mode.\n\nr0: window_params\nr1: ?\nr2:"
-        " ?\nr3: ID (for preprocessor_args)\nreturn: window_id",
+        "Creates a window containing the area name, as resolved from the '[area:0]'"
+        " tag.\n\nThis only seems to be used for the 'area name' text box in the"
+        " top-level menu in ground mode (not dungeon mode), and the analogous text box"
+        " on the world map transition screen before entering a dungeon.\n\nIf"
+        " window_params is NULL, AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS will be used."
+        " Otherwise, it will be copied onto the window, ignoring the update and"
+        " contents fields. If window_params::width is 0, it will be computed based on"
+        " the contained text. If window_params::height is 0, it will default to"
+        " 2.\n\nIf window_extra_info is non-NULL, it will be copied onto the window."
+        " Note that window_extra_info can only be NULL if there are no window_flags set"
+        " that require extra info.\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: ID (for preprocessor_args)\nreturn: window_id",
     )
 
-    UpdateDynamicTextBox = Symbol(
+    SetAreaNameBoxState3 = Symbol(
+        [0x2FD3C],
+        [0x202FD3C],
+        None,
+        "Sets the state of an area name box to 3.\n\nr0: window_id",
+    )
+
+    CloseAreaNameBox = Symbol(
+        [0x2FD50],
+        [0x202FD50],
+        None,
+        "Closes a window created with CreateAreaNameBox.\n\nr0: window_id",
+    )
+
+    IsAreaNameBoxActive = Symbol(
+        [0x2FD6C],
+        [0x202FD6C],
+        None,
+        "This is a guess.\n\nChecks if the state of an area name box is something other"
+        " than 2 or 4.\n\nr0: window_id\nreturn: bool",
+    )
+
+    UpdateAreaNameBox = Symbol(
         [0x2FD8C],
         [0x202FD8C],
         None,
-        "Window update function for dynamic text boxes.\n\nr0: window pointer",
+        "Window update function for area name boxes.\n\nr0: window pointer",
     )
 
     CreateControlsChart = Symbol(
@@ -4481,8 +4918,28 @@ class NaArm9Functions:
         None,
         "Creates a window containing a chart of player controls for some context. Also"
         " see struct controls_chart.\n\nThis is usually used for static top-screen"
-        " control reference charts.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nreturn:"
-        " window_id",
+        " control reference charts.\n\nIf window_params is NULL,"
+        " CONTROLS_CHART_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be"
+        " copied onto the window, ignoring the update and contents fields.\n\nIf"
+        " window_extra_info is non-NULL, it will be copied onto the window. Note that"
+        " window_extra_info can only be NULL if there are no window_flags set that"
+        " require extra info.\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: string ID\nreturn: window_id",
+    )
+
+    CloseControlsChart = Symbol(
+        [0x2FED4],
+        [0x202FED4],
+        None,
+        "Closes a window created with CreateControlsChart.\n\nr0: window_id",
+    )
+
+    IsControlsChartActive = Symbol(
+        [0x2FEF0],
+        [0x202FEF0],
+        None,
+        "This is a guess.\n\nChecks if the state of a controls chart is something other"
+        " than 2 or 4.\n\nr0: window_id\nreturn: bool",
     )
 
     UpdateControlsChart = Symbol(
@@ -4499,8 +4956,25 @@ class NaArm9Functions:
         "Creates a window containing text that will disappear after a certain amount of"
         " time. Also see struct alert_box.\n\nThis is only used in dungeon mode, for"
         " the 'popup alert' messages about things happening in the dungeon (which will"
-        " also be accessible in the message logs).\n\nr0: window_params\nreturn:"
-        " window_id",
+        " also be accessible in the message logs).\n\nIf window_params is NULL,"
+        " ALERT_BOX_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be copied"
+        " onto the window, ignoring the update and contents fields.\n\nr0:"
+        " window_params\nreturn: window_id",
+    )
+
+    CloseAlertBox = Symbol(
+        [0x30044],
+        [0x2030044],
+        None,
+        "Closes a window created with CreateAlertBox.\n\nr0: window_id",
+    )
+
+    IsAlertBoxActive = Symbol(
+        [0x301F4],
+        [0x20301F4],
+        None,
+        "This is a guess.\n\nChecks if the state of an alert box is 3.\n\nr0:"
+        " window_id\nreturn: bool",
     )
 
     UpdateAlertBox = Symbol(
@@ -4510,23 +4984,31 @@ class NaArm9Functions:
         "Window update function for alert boxes.\n\nr0: window pointer",
     )
 
-    CreateAdvancedTextBox1 = Symbol(
+    CreateAdvancedTextBox = Symbol(
         [0x305B4],
         [0x20305B4],
         None,
-        "Calls CreateAdvancedTextBoxInternal(r0, r1, r2, stack[0]), sets field_0x1a4 to"
-        " the argument in r3, and returns the window_id.\n\nr0: window_params\nr1:"
-        " ?\nr2: ?\nr3: ?\nstack[0]: ?\nreturn: window_id",
+        "Calls CreateAdvancedTextBoxInternal with all the selectable items on one page"
+        " (n_items_per_page = n_items), sets the callback without an argument, and"
+        " returns the window_id.\n\nIf window_params is NULL,"
+        " ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be"
+        " copied onto the window, ignoring the update and contents fields.\n\nIf"
+        " window_extra_info is non-NULL, it will be copied onto the window. Note that"
+        " window_extra_info can only be NULL if there are no window_flags set that"
+        " require extra info.\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: text box callback function\nstack[0]: number"
+        " of selectable items\nreturn: window_id",
     )
 
-    CreateAdvancedTextBox2 = Symbol(
+    CreateAdvancedTextBoxWithArg = Symbol(
         [0x305E4],
         [0x20305E4],
         None,
-        "Calls CreateAdvancedTextBoxInternal(r0, r1, r2, stack[1]), setsfield_0x1a8 and"
-        " field_0x1ac to the argument in r3 and stack[0],respectively, and returns the"
-        " window_id.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]: ?\nstack[1]:"
-        " ?\nreturn: window_id",
+        "Calls CreateAdvancedTextBoxInternal with all the selectable items on one page"
+        " (n_items_per_page = n_items), sets the callback with an argument, and returns"
+        " the window_id.\n\nr0: window_params\nr1: window_flags\nr2: window_extra_info"
+        " pointer\nr3: text box callback with arg function\nstack[0]: callback"
+        " argument\nstack[1]: number of selectable items\nreturn: window_id",
     )
 
     CreateAdvancedTextBoxInternal = Symbol(
@@ -4537,8 +5019,86 @@ class NaArm9Functions:
         " layouts. Also see struct advanced_text_box.\n\nThis is usually used to"
         " display text with 'pretty' formatting in certain contexts, such as the"
         " message log, the move selection menu, team member summaries, etc.\n\nr0:"
-        " window_params\nr1: ?\nr2: ?\nr3: ?\nstack[0]: ?\nreturn: advanced_text_box"
-        " pointer",
+        " window_params\nr1: window_flags\nr2: window_extra_info pointer\nr3: total"
+        " number of selectable items\nstack[0]: number of selectable items per"
+        " page\nreturn: advanced_text_box pointer",
+    )
+
+    SetAdvancedTextBoxPartialMenu = Symbol(
+        [0x3077C],
+        [0x203077C],
+        None,
+        "Seems to set advanced_text_box::flags::partial_menu to the given value?\n\nr0:"
+        " window_id\nr1: partial_menu flag value",
+    )
+
+    SetAdvancedTextBoxField0x1C4 = Symbol(
+        [0x307A4],
+        [0x20307A4],
+        None,
+        "Sets the value of advanced_text_box::field_0x1c4 to the given value.\n\nr0:"
+        " window_id\nr1: value",
+    )
+
+    SetAdvancedTextBoxField0x1C2 = Symbol(
+        [0x3083C],
+        [0x203083C],
+        None,
+        "Sets advanced_text_box::field_0x1c2 to 1.\n\nr0: window_id",
+    )
+
+    CloseAdvancedTextBox2 = Symbol(
+        [0x30850],
+        [0x2030850],
+        None,
+        "Seems to do some things with the text box, before doing the same things that"
+        " CloseAdvancedTextBox does.\n\nr0: window_id",
+    )
+
+    SetAdvancedTextBoxState5 = Symbol(
+        [0x3088C],
+        [0x203088C],
+        None,
+        "Sets the state of an advanced text box to 5.\n\nr0: window_id",
+    )
+
+    CloseAdvancedTextBox = Symbol(
+        [0x308A0],
+        [0x20308A0],
+        None,
+        "Closes a window created with CreateAdvancedTextBox or"
+        " CreateAdvancedTextBoxWithArg.\n\nr0: window_id",
+    )
+
+    IsAdvancedTextBoxActive = Symbol(
+        [0x308C4],
+        [0x20308C4],
+        None,
+        "This is a guess.\n\nChecks if the state of an advanced text box is something"
+        " other than 6 or 7.\n\nr0: window_id\nreturn: bool",
+    )
+
+    GetAdvancedTextBoxFlags2 = Symbol(
+        [0x30A40],
+        [0x2030A40],
+        None,
+        "Gets the value of advanced_text_box::flags2.\n\nr0: window_id\nreturn: flags2",
+    )
+
+    SetUnkAdvancedTextBoxFn = Symbol(
+        [0x30AC0],
+        [0x2030AC0],
+        None,
+        "Sets the value of advanced_text_box::field_0x1b4 to the given function"
+        " pointer.\n\nr0: window_id\nr1: some function pointer?",
+    )
+
+    SetUnkAdvancedTextBoxWindowFn = Symbol(
+        [0x30AD4],
+        [0x2030AD4],
+        None,
+        "Sets the value of advanced_text_box::field_0x1b8 to the given function"
+        " pointer.\n\nr0: window_id\nr1: some function pointer?",
     )
 
     UpdateAdvancedTextBox = Symbol(
@@ -4548,17 +5108,44 @@ class NaArm9Functions:
         "Window update function for advanced text boxes.\n\nr0: window pointer",
     )
 
+    PlayAdvancedTextBoxInputSound = Symbol(
+        [0x30F28],
+        [0x2030F28],
+        None,
+        "Calls PlayWindowInputSound for an advanced text box.\n\nr0: window_id\nr1:"
+        " index for PlayWindowInputSound",
+    )
+
     CreateTeamSelectionMenu = Symbol(
         [0x30F44],
         [0x2030F44],
         None,
         "Creates a window containing a menu for selecting a single team member. Also"
-        " see struct simple_menu.\n\nThis appears to be used for various shop (and"
-        " shop-like) interfaces when a single team member needs to be selected. For"
-        " example, the Electivire Link Shop, the Chimecho Assembly, the Croagunk Swap"
-        " Shop, and Luminous Spring. It's unknown if this is used for other contexts"
-        " besides team member selection.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: some"
-        " function pointer?\nstack[0]: ?\nstack[1]: ?\nreturn: window_id",
+        " see struct team_selection_menu.\n\nIf window_params::width and/or"
+        " window_params::height are 0, they will be computed based on the contained"
+        " text.\n\nThis appears to be used for various shop (and shop-like) interfaces"
+        " when a single team member needs to be selected. For example, the Electivire"
+        " Link Shop, the Chimecho Assembly, the Croagunk Swap Shop, and Luminous"
+        " Spring. It's unknown if this is used for other contexts besides team member"
+        " selection.\n\nr0: window_params\nr1: window_flags\nr2: window_extra_info"
+        " pointer\nr3: function to get the menu item text for a given team"
+        " member\nstack[0]: total number of options\nstack[1]: number of options per"
+        " page\nreturn: window_id",
+    )
+
+    CloseTeamSelectionMenu = Symbol(
+        [0x31198],
+        [0x2031198],
+        None,
+        "Closes a window created with CreateTeamSelectionMenu.\n\nr0: window_id",
+    )
+
+    IsTeamSelectionMenuActive = Symbol(
+        [0x311B4],
+        [0x20311B4],
+        None,
+        "This is a guess.\n\nChecks if the state of a team selection menu is something"
+        " other than 6 or 7.\n\nr0: window_id\nreturn: bool",
     )
 
     UpdateTeamSelectionMenu = Symbol(
@@ -4566,6 +5153,38 @@ class NaArm9Functions:
         [0x203123C],
         None,
         "Window update function for team selection menus.\n\nr0: window pointer",
+    )
+
+    IsTeamSelectionMenuState3 = Symbol(
+        [0x318B0],
+        [0x20318B0],
+        None,
+        "Checks if the state of a team selection menu is 3.\n\nr0: window_id",
+    )
+
+    CalcMenuHeightDiv8 = Symbol(
+        [0x31AA4, 0x329E4],
+        [0x2031AA4, 0x20329E4],
+        None,
+        "Calculates the window height (divided by 8, as in struct window_params) of a"
+        " menu, given its items and input flags.\n\nFor certain input flags, the number"
+        " of options per page will be clamped to the total number of options if the"
+        " per-page count exceeds the total.\n\nr0: window_flags\nr1: window_extra_info"
+        " pointer\nr2: total number of options\nr3: number of options per page\nreturn:"
+        " height / 8",
+    )
+
+    InitWindowInput = Symbol(
+        [0x31AF8],
+        [0x2031AF8],
+        None,
+        "This seems to be called when creating most interactive windows that respond to"
+        " user input, like menus (but also other interactive windows like scroll boxes"
+        " and advanced text boxes). It presumably sets up the state necessary for"
+        " detecting and responding to user input.\n\nr0: window_input_ctx pointer\nr1:"
+        " window_flags\nr2: window_extra_info pointer\nr3: window rectangle\nstack[0]:"
+        " total number of selectable items\nstack[1]: number of selectable items per"
+        " page",
     )
 
     IsMenuOptionActive = Symbol(
@@ -4577,19 +5196,31 @@ class NaArm9Functions:
         " otherwise.",
     )
 
-    PlayMenuOptionSound = Symbol(
+    PlayWindowInputSound = Symbol(
         [0x32960],
         [0x2032960],
         None,
-        "Plays a 'beep' sound when choosing a menu option.\n\nr0: ?\nr1: Some kind of"
-        " index used to determine the ID of the sound to play",
+        "Plays a 'beep' sound when giving an input to an interactive window (typically,"
+        " when choosing a menu option).\n\nr0: window_input_ctx pointer\nr1: Some kind"
+        " of index used to determine the ID of the sound to play",
+    )
+
+    InitInventoryMenuInput = Symbol(
+        [0x32A38],
+        [0x2032A38],
+        None,
+        "Almost exactly the same as InitWindowInput, except two differences in field"
+        " assignments on the window input context, one of which uses an extra"
+        " parameter.\n\nr0: inventory_menu_input_ctx pointer\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: window rectangle\nstack[0]: total number of"
+        " selectable items\nstack[1]: number of selectable items per page\nstack[2]: ?",
     )
 
     ShowKeyboard = Symbol(
         [0x367F0],
         [0x20367F0],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: MessageID\nr1:"
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: string ID\nr1:"
         " buffer1\nr2: ???\nr3: buffer2\nreturn: ?",
     )
 
@@ -4605,6 +5236,15 @@ class NaArm9Functions:
         [0x203755C],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nreturn: ?",
+    )
+
+    TeamSelectionMenuGetItem = Symbol(
+        [0x3A75C],
+        [0x203A75C],
+        None,
+        "Gets the menu item text (member name) for a given team member for a team"
+        " selection menu.\n\nr0: buffer\nr1: team member index\nreturn: menu item text"
+        " (points into buffer)",
     )
 
     PrintMoveOptionMenu = Symbol(
@@ -5184,21 +5824,21 @@ class NaArm9Functions:
         " start!\n\nNo params.",
     )
 
-    InitPortraitBox = Symbol(
+    InitPortraitParams = Symbol(
         [0x4D79C],
         [0x204D79C],
         None,
-        "Initializes a struct portrait_box.\n\nThe emote is set to PORTRAIT_NONE and"
+        "Initializes a struct portrait_params.\n\nThe emote is set to PORTRAIT_NONE and"
         " the layout to the default. Everything else is initialized to 0.\n\nr0:"
-        " portrait box pointer",
+        " portrait params pointer",
     )
 
-    InitPortraitBoxWithMonsterId = Symbol(
+    InitPortraitParamsWithMonsterId = Symbol(
         [0x4D7D4],
         [0x204D7D4],
         None,
-        "Calls InitPortraitBox, and also initializes emote to PORTRAIT_NORMAL and"
-        " monster ID to the passed argument.\n\nr0: portrait box pointer\nr1:"
+        "Calls InitPortraitParams, and also initializes emote to PORTRAIT_NORMAL and"
+        " monster ID to the passed argument.\n\nr0: portrait params pointer\nr1:"
         " monster ID",
     )
 
@@ -5206,8 +5846,8 @@ class NaArm9Functions:
         [0x4D7F4],
         [0x204D7F4],
         None,
-        "Sets the emote in the passed portrait box, only if the monster ID isn't"
-        " MONSTER_NONE.\n\nr0: portrait box pointer\nr1: emotion ID",
+        "Sets the emote in the passed portrait params, only if the monster ID isn't"
+        " MONSTER_NONE.\n\nr0: portrait params pointer\nr1: emotion ID",
     )
 
     SetPortraitLayout = Symbol(
@@ -5216,7 +5856,7 @@ class NaArm9Functions:
         None,
         "Sets the layout in the passed portrait from the array of possible"
         " layouts.\n\nIf the layout is 32 or if the monster ID is MONSTER_NONE, then it"
-        " does nothing.\n\nr0: portrait box pointer\nr1: layout index",
+        " does nothing.\n\nr0: portrait params pointer\nr1: layout index",
     )
 
     SetPortraitOffset = Symbol(
@@ -5225,7 +5865,7 @@ class NaArm9Functions:
         None,
         "Offsets the portrait from the original offset determined by the layout, by the"
         " vector passed as argument.\n\nIf the monster ID is MONSTER_NONE, then it does"
-        " nothing.\n\nr0: portrait box pointer\nr1: (x, y) offset in tiles from the"
+        " nothing.\n\nr0: portrait params pointer\nr1: (x, y) offset in tiles from the"
         " original offset, derived from the layout",
     )
 
@@ -5234,7 +5874,7 @@ class NaArm9Functions:
         [0x204D894],
         None,
         "Allows the portrait to try and load the default emote (PORTRAIT_NORMAL) if it"
-        " can't find the specified emote.\n\nr0: portrait box pointer\nr1: allow"
+        " can't find the specified emote.\n\nr0: portrait params pointer\nr1: allow"
         " default",
     )
 
@@ -5242,8 +5882,8 @@ class NaArm9Functions:
         [0x4D89C],
         [0x204D89C],
         None,
-        "Returns whether this portrait box represents a valid portrait.\n\nr0: portrait"
-        " box pointer\nreturn: bool",
+        "Returns whether this portrait params represents a valid portrait.\n\nr0:"
+        " portrait params pointer\nreturn: bool",
     )
 
     LoadPortrait = Symbol(
@@ -5251,10 +5891,10 @@ class NaArm9Functions:
         [0x204D8BC],
         None,
         "Tries to load the portrait data associated with the passed portrait"
-        " box.\n\nReturns whether the operation was successful (the portrait could be"
-        " found). If the passed buffer is null, the check if performed without loading"
-        " any data.\n\nThis function also modifies the flip fields in the passed"
-        " portrait box.\n\nr0: portrait box pointer\nr1: kaomado_buffer"
+        " params.\n\nReturns whether the operation was successful (the portrait could"
+        " be found). If the passed buffer is null, the check if performed without"
+        " loading any data.\n\nThis function also modifies the flip fields in the"
+        " passed portrait params.\n\nr0: portrait params pointer\nr1: kaomado_buffer"
         " pointer\nreturn: portrait exists",
     )
 
@@ -7137,9 +7777,9 @@ class NaArm9Functions:
         [0x5A430],
         [0x205A430],
         None,
-        "Gets the string corresponding to a given message ID and copies it to the"
-        " buffer specified in r0.\n\nThis function won't write more than 64"
-        " bytes.\n\nr0: [output] buffer\nr1: tactic_id",
+        "Gets the string corresponding to a given string ID and copies it to the buffer"
+        " specified in r0.\n\nThis function won't write more than 64 bytes.\n\nr0:"
+        " [output] buffer\nr1: tactic_id",
     )
 
     GetStatBoostsForMonsterSummary = Symbol(
@@ -8490,6 +9130,132 @@ class NaArm9Data:
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
     )
 
+    PARENT_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AE90],
+        [0x209AE90],
+        0x10,
+        "Default window_params for a simple_menu created with"
+        " CreateParentMenuInternal.\n\nNote that x_offset and y_offset refer to the"
+        " right and bottom edges, since they will be paired with the x_offset_end and"
+        " y_offset_end window flags in CreateParentMenuInternal.\n\nAdditionally, width"
+        " and height are 0, and will be computed in CreateParentMenuInternal.",
+    )
+
+    SIMPLE_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AEA0],
+        [0x209AEA0],
+        0x10,
+        "Default window_params for a simple_menu.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateSimpleMenuInternal.\n\nAdditionally, width and height are 0, and will"
+        " be computed in CreateSimpleMenuInternal.",
+    )
+
+    ADVANCED_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AEB0],
+        [0x209AEB0],
+        0x10,
+        "Default window_params for an advanced_menu.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateAdvancedMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateAdvancedMenu.",
+    )
+
+    COLLECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AEC0],
+        [0x209AEC0],
+        0x10,
+        "Default window_params for a collection_menu.\n\nNote that x_offset and"
+        " y_offset refer to the right and bottom edges, since they will be paired with"
+        " the x_offset_end and y_offset_end window flags in"
+        " CreateCollectionMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateCollectionMenu.",
+    )
+
+    OPTIONS_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AED0],
+        [0x209AED0],
+        0x10,
+        "Default window_params for an options_menu.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateOptionsMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateOptionsMenu.",
+    )
+
+    DEBUG_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AF0C],
+        [0x209AF0C],
+        0x10,
+        "Default window_params for a debug_menu.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateDebugMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateDebugMenu.",
+    )
+
+    SCROLL_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AF1C], [0x209AF1C], 0x10, "Default window_params for a scroll_box."
+    )
+
+    DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AF2C], [0x209AF2C], 0x10, "Default window_params for a dialogue_box."
+    )
+
+    PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AF3C],
+        [0x209AF3C],
+        0x10,
+        "Default window_params for a portrait_box.\n\nNote that the screen and box type"
+        " are unset, and are determined in CreatePortraitBox.",
+    )
+
+    TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AF4C], [0x209AF4C], 0x10, "Default window_params for a text_box."
+    )
+
+    AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AF5C],
+        [0x209AF5C],
+        0x10,
+        "Default window_params for an area_name_box.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateAreaNameBox.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateAreaNameBox.",
+    )
+
+    CONTROLS_CHART_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AF78], [0x209AF78], 0x10, "Default window_params for a controls_chart."
+    )
+
+    ALERT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AF94], [0x209AF94], 0x10, "Default window_params for an alert_box."
+    )
+
+    ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AFA4],
+        [0x209AFA4],
+        0x10,
+        "Default window_params for an advanced_text_box.\n\nNote that x_offset and"
+        " y_offset refer to the right and bottom edges, since they will be paired with"
+        " the x_offset_end and y_offset_end window flags in"
+        " CreateAdvancedTextBoxInternal.",
+    )
+
+    TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x9AFB4],
+        [0x209AFB4],
+        0x10,
+        "Default window_params for a team_selection_menu.\n\nNote that x_offset and"
+        " y_offset refer to the right and bottom edges, since they will be paired with"
+        " the x_offset_end and y_offset_end window flags in"
+        " CreateTeamSelectionMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateTeamSelectionMenu.",
+    )
+
     PARTNER_TALK_KIND_TABLE = Symbol(
         [0x9CCE4],
         [0x209CCE4],
@@ -9130,63 +9896,63 @@ class NaArm9Data:
         " script_entity[386]",
     )
 
-    JOB_D_BOX_LAYOUT_1 = Symbol(
+    JOB_WINDOW_PARAMS_1 = Symbol(
         [0xA9218], [0x20A9218], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_1 = Symbol(
+    JOB_MENU_ITEMS_1 = Symbol(
         [0xA9228], [0x20A9228], 0x20, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_2 = Symbol(
+    JOB_MENU_ITEMS_2 = Symbol(
         [0xA9248], [0x20A9248], 0x20, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_3 = Symbol(
+    JOB_MENU_ITEMS_3 = Symbol(
         [0xA92B8], [0x20A92B8], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_4 = Symbol(
+    JOB_MENU_ITEMS_4 = Symbol(
         [0xA92D0], [0x20A92D0], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_5 = Symbol(
+    JOB_MENU_ITEMS_5 = Symbol(
         [0xA92E8], [0x20A92E8], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_6 = Symbol(
+    JOB_MENU_ITEMS_6 = Symbol(
         [0xA9300], [0x20A9300], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_7 = Symbol(
+    JOB_MENU_ITEMS_7 = Symbol(
         [0xA9318], [0x20A9318], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_8 = Symbol(
+    JOB_MENU_ITEMS_8 = Symbol(
         [0xA9330], [0x20A9330], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_9 = Symbol(
+    JOB_MENU_ITEMS_9 = Symbol(
         [0xA9348], [0x20A9348], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_10 = Symbol(
+    JOB_MENU_ITEMS_10 = Symbol(
         [0xA9360], [0x20A9360], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_11 = Symbol(
+    JOB_MENU_ITEMS_11 = Symbol(
         [0xA9378], [0x20A9378], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_12 = Symbol(
+    JOB_MENU_ITEMS_12 = Symbol(
         [0xA9390], [0x20A9390], 0x20, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_MENU_13 = Symbol(
+    JOB_MENU_ITEMS_13 = Symbol(
         [0xA93B0], [0x20A93B0], 0x20, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    JOB_D_BOX_LAYOUT_2 = Symbol(
+    JOB_WINDOW_PARAMS_2 = Symbol(
         [0xA93D0], [0x20A93D0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -12631,19 +13397,19 @@ class NaOverlay1Data:
         "62*0x8\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
-    OVERLAY1_D_BOX_LAYOUT_1 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_1 = Symbol(
         [0x11FF8], [0x233B518], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY1_D_BOX_LAYOUT_2 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_2 = Symbol(
         [0x12008], [0x233B528], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY1_D_BOX_LAYOUT_3 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_3 = Symbol(
         [0x12018], [0x233B538], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY1_D_BOX_LAYOUT_4 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_4 = Symbol(
         [0x12028], [0x233B548], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -12653,35 +13419,35 @@ class NaOverlay1Data:
 
     MAIN_MENU = Symbol([0x120B0], [0x233B5D0], 0xA0, "")
 
-    OVERLAY1_D_BOX_LAYOUT_5 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_5 = Symbol(
         [0x121FC], [0x233B71C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY1_D_BOX_LAYOUT_6 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_6 = Symbol(
         [0x1220C], [0x233B72C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY1_D_BOX_LAYOUT_7 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_7 = Symbol(
         [0x1221C], [0x233B73C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    MAIN_MENU_CONFIRM = Symbol([0x1222C], [0x233B74C], 0x18, "")
+    MAIN_MENU_ITEMS_CONFIRM = Symbol([0x1222C], [0x233B74C], 0x18, "")
 
-    OVERLAY1_D_BOX_LAYOUT_8 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_8 = Symbol(
         [0x122B0], [0x233B7D0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY1_D_BOX_LAYOUT_9 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_9 = Symbol(
         [0x122D0], [0x233B7F0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    MAIN_DEBUG_MENU_1 = Symbol([0x122F0], [0x233B810], 0x60, "")
+    MAIN_DEBUG_MENU_ITEMS_1 = Symbol([0x122F0], [0x233B810], 0x60, "")
 
-    OVERLAY1_D_BOX_LAYOUT_10 = Symbol(
+    MAIN_MENU_WINDOW_PARAMS_10 = Symbol(
         [0x12350], [0x233B870], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    MAIN_DEBUG_MENU_2 = Symbol([0x12370], [0x233B890], 0x38, "")
+    MAIN_DEBUG_MENU_ITEMS_2 = Symbol([0x12370], [0x233B890], 0x38, "")
 
 
 class NaOverlay1Section:
@@ -12707,9 +13473,60 @@ class NaOverlay10Functions:
         "Creates a window containing a menu for inventory management. Also see struct"
         " inventory_menu.\n\nThis is used for the Treasure Bag menu, the item"
         " information/price window in dungeon Kecleon shops, and possibly other"
-        " things.\n\nr0: window_params\nr1: ?\nr2: ?\nr3: some function"
-        " pointer?\nstack[0]: ?\nstack[1]: ?\nstack[2]: ?\nstack[3]: ?\nreturn:"
-        " window_id",
+        " things.\n\nIf window_params is NULL, INVENTORY_MENU_DEFAULT_WINDOW_PARAMS"
+        " will be used. Otherwise, it will be copied onto the window, ignoring the"
+        " update and contents fields. If window_params::width and/or"
+        " window_params::height are 0, they will be computed based on the contained"
+        " text.\n\nIf window_extra_info is non-NULL, it will be copied onto the window."
+        " Note that window_extra_info can only be NULL if there are no window_flags set"
+        " that require extra info.\n\nr0: window_params\nr1: window_flags\nr2:"
+        " window_extra_info pointer\nr3: some function pointer?\nstack[0]: ?\nstack[1]:"
+        " total number of items\nstack[2]: number of items per page\nstack[3]:"
+        " ?\nreturn: window_id",
+    )
+
+    SetInventoryMenuState0 = Symbol(
+        [0x24C],
+        [0x22BCCCC],
+        None,
+        "Sets an inventory menu to state 0.\n\nr0: window_id",
+    )
+
+    SetInventoryMenuState6 = Symbol(
+        [0x260],
+        [0x22BCCE0],
+        None,
+        "Sets an inventory menu to state 6.\n\nr0: window_id",
+    )
+
+    CloseInventoryMenu = Symbol(
+        [0x274],
+        [0x22BCCF4],
+        None,
+        "Closes a window created with CreateInventoryMenu.\n\nr0: window_id",
+    )
+
+    IsInventoryMenuActive = Symbol(
+        [0x2E8],
+        [0x22BCD68],
+        None,
+        "This is a guess.\n\nChecks if the state of an inventory menu is something"
+        " other than 7 or 8\n\nr0: window_id\nreturn: bool",
+    )
+
+    CheckInventoryMenuField0x1A0 = Symbol(
+        [0x308],
+        [0x22BCD88],
+        None,
+        "Checks if inventory_menu::field_0x1a0 is 0.\n\nr0: window_id\nreturn: bool",
+    )
+
+    PopInventoryMenuField0x1A3 = Symbol(
+        [0x3D8],
+        [0x22BCE58],
+        None,
+        "Sets inventory_menu::field_0x1a3 to 0 and returns the old value.\n\nr0:"
+        " window_id\nreturn: old value",
     )
 
     UpdateInventoryMenu = Symbol(
@@ -12717,6 +13534,14 @@ class NaOverlay10Functions:
         [0x22BCE74],
         None,
         "Window update function for inventory menus.\n\nr0: window pointer",
+    )
+
+    IsInventoryMenuState3 = Symbol(
+        [0x8F4],
+        [0x22BD374],
+        None,
+        "Checks if an inventory menu has a state value of 3.\n\nr0: window_id\nreturn:"
+        " bool",
     )
 
     SprintfStatic = Symbol(
@@ -12852,6 +13677,17 @@ class NaOverlay10Functions:
 
 
 class NaOverlay10Data:
+    INVENTORY_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x7914],
+        [0x22C4394],
+        0x10,
+        "Default window_params for an inventory_menu.\n\nNote that x_offset and"
+        " y_offset refer to the right and bottom edges, since they will be paired with"
+        " the x_offset_end and y_offset_end window flags in"
+        " CreateInventoryMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateInventoryMenu.",
+    )
+
     FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
         [0x798C],
         [0x22C440C],
@@ -14611,8 +15447,24 @@ class NaOverlay11Functions:
         [0x22FEE94],
         None,
         "Creates a window containing team information (rank and money carried) for the"
-        " top-level menu in ground mode. Also see struct team_info_box.\n\nreturn:"
+        " top-level menu in ground mode. Also see struct team_info_box.\n\nThe new"
+        " window will always default to TEAM_INFO_BOX_DEFAULT_WINDOW_PARAMS.\n\nreturn:"
         " window_id",
+    )
+
+    CloseTeamInfoBox = Symbol(
+        [0x22D0C],
+        [0x22FEF4C],
+        None,
+        "Closes a window created with CreateTeamInfoBox.\n\nr0: window_id",
+    )
+
+    IsTeamInfoBoxActive = Symbol(
+        [0x22D44],
+        [0x22FEF84],
+        None,
+        "This is a guess.\n\nChecks if the state of a team info box is not 5.\n\nr0:"
+        " window_id\nreturn: bool",
     )
 
     UpdateTeamInfoBox = Symbol(
@@ -14802,6 +15654,10 @@ class NaOverlay11Data:
         " animation data.\n\nThe first entry is unused and has a value of 0xFFFF.",
     )
 
+    TEAM_INFO_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x4621C], [0x232245C], 0x10, "Default window_params for a team_info_box."
+    )
+
     OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
         [0x46E2C],
         [0x232306C],
@@ -14943,23 +15799,23 @@ class NaOverlay13Data:
         [0x1EE4], [0x238C024], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    QUIZ_D_BOX_LAYOUT_1 = Symbol(
+    QUIZ_WINDOW_PARAMS_1 = Symbol(
         [0x1EF4], [0x238C034], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    QUIZ_D_BOX_LAYOUT_2 = Symbol(
+    QUIZ_WINDOW_PARAMS_2 = Symbol(
         [0x1F04], [0x238C044], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    QUIZ_D_BOX_LAYOUT_3 = Symbol(
+    QUIZ_WINDOW_PARAMS_3 = Symbol(
         [0x1F14], [0x238C054], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    QUIZ_D_BOX_LAYOUT_4 = Symbol(
+    QUIZ_WINDOW_PARAMS_4 = Symbol(
         [0x1F24], [0x238C064], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    QUIZ_MENU_1 = Symbol(
+    QUIZ_MENU_ITEMS_1 = Symbol(
         [0x1F34], [0x238C074], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -15008,15 +15864,15 @@ class NaOverlay13Data:
         [0x2D68], [0x238CEA8], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    QUIZ_D_BOX_LAYOUT_5 = Symbol(
+    QUIZ_WINDOW_PARAMS_5 = Symbol(
         [0x2D6C], [0x238CEAC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    QUIZ_D_BOX_LAYOUT_6 = Symbol(
+    QUIZ_WINDOW_PARAMS_6 = Symbol(
         [0x2D7C], [0x238CEBC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    QUIZ_DEBUG_MENU = Symbol(
+    QUIZ_DEBUG_MENU_ITEMS = Symbol(
         [0x2D8C], [0x238CECC], 0x48, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -15403,7 +16259,7 @@ class NaOverlay14Data:
         " generating species choices.",
     )
 
-    FOOTPRINT_DEBUG_MENU = Symbol([0x3960], [0x238DAA0], 0x48, "")
+    SENTRY_DEBUG_MENU_ITEMS = Symbol([0x3960], [0x238DAA0], 0x48, "")
 
     SENTRY_DUTY_PTR = Symbol(
         [0x3A40], [0x238DB80], 0x4, "Pointer to the SENTRY_DUTY_STRUCT."
@@ -15432,25 +16288,25 @@ class NaOverlay15Functions:
 
 
 class NaOverlay15Data:
-    BANK_MAIN_MENU = Symbol([0xF14], [0x238B054], 0x28, "")
+    BANK_MAIN_MENU_ITEMS = Symbol([0xF14], [0x238B054], 0x28, "")
 
-    BANK_D_BOX_LAYOUT_1 = Symbol(
+    BANK_WINDOW_PARAMS_1 = Symbol(
         [0xF3C], [0x238B07C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BANK_D_BOX_LAYOUT_2 = Symbol(
+    BANK_WINDOW_PARAMS_2 = Symbol(
         [0xF4C], [0x238B08C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BANK_D_BOX_LAYOUT_3 = Symbol(
+    BANK_WINDOW_PARAMS_3 = Symbol(
         [0xF5C], [0x238B09C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BANK_D_BOX_LAYOUT_4 = Symbol(
+    BANK_WINDOW_PARAMS_4 = Symbol(
         [0xF6C], [0x238B0AC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BANK_D_BOX_LAYOUT_5 = Symbol(
+    BANK_WINDOW_PARAMS_5 = Symbol(
         [0xF7C], [0x238B0BC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -15477,11 +16333,11 @@ class NaOverlay16Functions:
 
 
 class NaOverlay16Data:
-    EVO_MENU_CONFIRM = Symbol([0x2BC8], [0x238CD08], 0x18, "Irdkwia's notes: 3*0x8")
+    EVO_MENU_ITEMS_CONFIRM = Symbol([0x2BC8], [0x238CD08], 0x18, "")
 
-    EVO_SUBMENU = Symbol([0x2BE0], [0x238CD20], 0x20, "Irdkwia's notes: 4*0x8")
+    EVO_SUBMENU_ITEMS = Symbol([0x2BE0], [0x238CD20], 0x20, "")
 
-    EVO_MAIN_MENU = Symbol([0x2C00], [0x238CD40], 0x20, "Irdkwia's notes: 4*0x8")
+    EVO_MAIN_MENU_ITEMS = Symbol([0x2C00], [0x238CD40], 0x20, "")
 
     EVO_MENU_STRING_IDS = Symbol(
         [0x2C20],
@@ -15490,31 +16346,31 @@ class NaOverlay16Data:
         "26*0x2\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
-    EVO_D_BOX_LAYOUT_1 = Symbol(
+    EVO_WINDOW_PARAMS_1 = Symbol(
         [0x2C54], [0x238CD94], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    EVO_D_BOX_LAYOUT_2 = Symbol(
+    EVO_WINDOW_PARAMS_2 = Symbol(
         [0x2C64], [0x238CDA4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    EVO_D_BOX_LAYOUT_3 = Symbol(
+    EVO_WINDOW_PARAMS_3 = Symbol(
         [0x2C74], [0x238CDB4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    EVO_D_BOX_LAYOUT_4 = Symbol(
+    EVO_WINDOW_PARAMS_4 = Symbol(
         [0x2C84], [0x238CDC4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    EVO_D_BOX_LAYOUT_5 = Symbol(
+    EVO_WINDOW_PARAMS_5 = Symbol(
         [0x2C94], [0x238CDD4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    EVO_D_BOX_LAYOUT_6 = Symbol(
+    EVO_WINDOW_PARAMS_6 = Symbol(
         [0x2CA4], [0x238CDE4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    EVO_D_BOX_LAYOUT_7 = Symbol(
+    EVO_WINDOW_PARAMS_7 = Symbol(
         [0x2CB4], [0x238CDF4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -15545,45 +16401,45 @@ class NaOverlay17Functions:
 
 
 class NaOverlay17Data:
-    ASSEMBLY_D_BOX_LAYOUT_1 = Symbol(
+    ASSEMBLY_WINDOW_PARAMS_1 = Symbol(
         [0x19F4], [0x238BB34], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    ASSEMBLY_D_BOX_LAYOUT_2 = Symbol(
+    ASSEMBLY_WINDOW_PARAMS_2 = Symbol(
         [0x1A04], [0x238BB44], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    ASSEMBLY_D_BOX_LAYOUT_3 = Symbol(
+    ASSEMBLY_WINDOW_PARAMS_3 = Symbol(
         [0x1A14], [0x238BB54], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    ASSEMBLY_D_BOX_LAYOUT_4 = Symbol(
+    ASSEMBLY_WINDOW_PARAMS_4 = Symbol(
         [0x1A24], [0x238BB64], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    ASSEMBLY_D_BOX_LAYOUT_5 = Symbol(
+    ASSEMBLY_WINDOW_PARAMS_5 = Symbol(
         [0x1A34], [0x238BB74], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    ASSEMBLY_MENU_CONFIRM = Symbol([0x1A44], [0x238BB84], 0x18, "")
+    ASSEMBLY_MENU_ITEMS_CONFIRM = Symbol([0x1A44], [0x238BB84], 0x18, "")
 
-    ASSEMBLY_MAIN_MENU_1 = Symbol([0x1A5C], [0x238BB9C], 0x18, "")
+    ASSEMBLY_MAIN_MENU_ITEMS_1 = Symbol([0x1A5C], [0x238BB9C], 0x18, "")
 
-    ASSEMBLY_MAIN_MENU_2 = Symbol([0x1A74], [0x238BBB4], 0x20, "")
+    ASSEMBLY_MAIN_MENU_ITEMS_2 = Symbol([0x1A74], [0x238BBB4], 0x20, "")
 
-    ASSEMBLY_SUBMENU_1 = Symbol([0x1A94], [0x238BBD4], 0x28, "")
+    ASSEMBLY_SUBMENU_ITEMS_1 = Symbol([0x1A94], [0x238BBD4], 0x28, "")
 
-    ASSEMBLY_SUBMENU_2 = Symbol([0x1ABC], [0x238BBFC], 0x30, "")
+    ASSEMBLY_SUBMENU_ITEMS_2 = Symbol([0x1ABC], [0x238BBFC], 0x30, "")
 
-    ASSEMBLY_SUBMENU_3 = Symbol([0x1AEC], [0x238BC2C], 0x30, "")
+    ASSEMBLY_SUBMENU_ITEMS_3 = Symbol([0x1AEC], [0x238BC2C], 0x30, "")
 
-    ASSEMBLY_SUBMENU_4 = Symbol([0x1B1C], [0x238BC5C], 0x38, "")
+    ASSEMBLY_SUBMENU_ITEMS_4 = Symbol([0x1B1C], [0x238BC5C], 0x38, "")
 
-    ASSEMBLY_SUBMENU_5 = Symbol([0x1B54], [0x238BC94], 0x38, "")
+    ASSEMBLY_SUBMENU_ITEMS_5 = Symbol([0x1B54], [0x238BC94], 0x38, "")
 
-    ASSEMBLY_SUBMENU_6 = Symbol([0x1B8C], [0x238BCCC], 0x38, "")
+    ASSEMBLY_SUBMENU_ITEMS_6 = Symbol([0x1B8C], [0x238BCCC], 0x38, "")
 
-    ASSEMBLY_SUBMENU_7 = Symbol([0x1BC4], [0x238BD04], 0x40, "")
+    ASSEMBLY_SUBMENU_ITEMS_7 = Symbol([0x1BC4], [0x238BD04], 0x40, "")
 
     OVERLAY17_FUNCTION_POINTER_TABLE = Symbol(
         [0x1C04], [0x238BD44], 0xA8, "Note: unverified, ported from Irdkwia's notes"
@@ -15620,67 +16476,67 @@ class NaOverlay18Functions:
 
 
 class NaOverlay18Data:
-    OVERLAY18_D_BOX_LAYOUT_1 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_1 = Symbol(
         [0x3130], [0x238D270], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_2 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_2 = Symbol(
         [0x3140], [0x238D280], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_3 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_3 = Symbol(
         [0x3150], [0x238D290], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_4 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_4 = Symbol(
         [0x3160], [0x238D2A0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_5 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_5 = Symbol(
         [0x3170], [0x238D2B0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_6 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_6 = Symbol(
         [0x3180], [0x238D2C0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_7 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_7 = Symbol(
         [0x3190], [0x238D2D0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_8 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_8 = Symbol(
         [0x31A0], [0x238D2E0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_9 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_9 = Symbol(
         [0x31B0], [0x238D2F0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_10 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_10 = Symbol(
         [0x31C0], [0x238D300], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    OVERLAY18_D_BOX_LAYOUT_11 = Symbol(
+    LINK_SHOP_WINDOW_PARAMS_11 = Symbol(
         [0x31D0], [0x238D310], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    MOVES_MENU_CONFIRM = Symbol([0x31E0], [0x238D320], 0x18, "")
+    LINK_SHOP_MENU_ITEMS_CONFIRM = Symbol([0x31E0], [0x238D320], 0x18, "")
 
-    MOVES_SUBMENU_1 = Symbol([0x31F8], [0x238D338], 0x20, "")
+    LINK_SHOP_SUBMENU_ITEMS_1 = Symbol([0x31F8], [0x238D338], 0x20, "")
 
-    MOVES_SUBMENU_2 = Symbol([0x3218], [0x238D358], 0x20, "")
+    LINK_SHOP_SUBMENU_ITEMS_2 = Symbol([0x3218], [0x238D358], 0x20, "")
 
-    MOVES_MAIN_MENU = Symbol([0x3238], [0x238D378], 0x20, "")
+    LINK_SHOP_MAIN_MENU_ITEMS = Symbol([0x3238], [0x238D378], 0x20, "")
 
-    MOVES_SUBMENU_3 = Symbol([0x3258], [0x238D398], 0x28, "")
+    LINK_SHOP_SUBMENU_ITEMS_3 = Symbol([0x3258], [0x238D398], 0x28, "")
 
-    MOVES_SUBMENU_4 = Symbol([0x3280], [0x238D3C0], 0x30, "")
+    LINK_SHOP_SUBMENU_ITEMS_4 = Symbol([0x3280], [0x238D3C0], 0x30, "")
 
-    MOVES_SUBMENU_5 = Symbol([0x32B0], [0x238D3F0], 0x48, "")
+    LINK_SHOP_SUBMENU_ITEMS_5 = Symbol([0x32B0], [0x238D3F0], 0x48, "")
 
-    MOVES_SUBMENU_6 = Symbol([0x32F8], [0x238D438], 0x48, "")
+    LINK_SHOP_SUBMENU_ITEMS_6 = Symbol([0x32F8], [0x238D438], 0x48, "")
 
-    MOVES_SUBMENU_7 = Symbol([0x3340], [0x238D480], 0x48, "")
+    LINK_SHOP_SUBMENU_ITEMS_7 = Symbol([0x3340], [0x238D480], 0x48, "")
 
     OVERLAY18_FUNCTION_POINTER_TABLE = Symbol(
         [0x3388], [0x238D4C8], 0x130, "Note: unverified, ported from Irdkwia's notes"
@@ -15789,31 +16645,31 @@ class NaOverlay19Data:
         [0x408C], [0x238E1CC], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BAR_D_BOX_LAYOUT_1 = Symbol(
+    BAR_WINDOW_PARAMS_1 = Symbol(
         [0x4098], [0x238E1D8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BAR_D_BOX_LAYOUT_2 = Symbol(
+    BAR_WINDOW_PARAMS_2 = Symbol(
         [0x40A8], [0x238E1E8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BAR_D_BOX_LAYOUT_3 = Symbol(
+    BAR_WINDOW_PARAMS_3 = Symbol(
         [0x40B8], [0x238E1F8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BAR_MENU_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
+    BAR_MENU_ITEMS_CONFIRM_1 = Symbol([0x40C8], [0x238E208], 0x18, "")
 
-    BAR_MENU_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
+    BAR_MENU_ITEMS_CONFIRM_2 = Symbol([0x40E0], [0x238E220], 0x18, "")
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
         [0x40F8], [0x238E238], 0x18, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    BAR_MAIN_MENU = Symbol([0x4110], [0x238E250], 0x20, "")
+    BAR_MAIN_MENU_ITEMS = Symbol([0x4110], [0x238E250], 0x20, "")
 
-    BAR_SUBMENU_1 = Symbol([0x4130], [0x238E270], 0x20, "")
+    BAR_SUBMENU_ITEMS_1 = Symbol([0x4130], [0x238E270], 0x20, "")
 
-    BAR_SUBMENU_2 = Symbol([0x4150], [0x238E290], 0x30, "")
+    BAR_SUBMENU_ITEMS_2 = Symbol([0x4150], [0x238E290], 0x30, "")
 
     OVERLAY19_RESERVED_SPACE = Symbol(
         [0x4204], [0x238E344], 0x1C, "Note: unverified, ported from Irdkwia's notes"
@@ -15867,67 +16723,67 @@ class NaOverlay20Data:
         [0x2E3C], [0x238CF7C], 0x8, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_MENU_CONFIRM_1 = Symbol([0x2E44], [0x238CF84], 0x18, "")
+    RECYCLE_MENU_ITEMS_CONFIRM_1 = Symbol([0x2E44], [0x238CF84], 0x18, "")
 
-    RECYCLE_MENU_CONFIRM_2 = Symbol([0x2E5C], [0x238CF9C], 0x18, "")
+    RECYCLE_MENU_ITEMS_CONFIRM_2 = Symbol([0x2E5C], [0x238CF9C], 0x18, "")
 
-    RECYCLE_SUBMENU_1 = Symbol([0x2E74], [0x238CFB4], 0x18, "")
+    RECYCLE_SUBMENU_ITEMS_1 = Symbol([0x2E74], [0x238CFB4], 0x18, "")
 
-    RECYCLE_SUBMENU_2 = Symbol([0x2E8C], [0x238CFCC], 0x20, "")
+    RECYCLE_SUBMENU_ITEMS_2 = Symbol([0x2E8C], [0x238CFCC], 0x20, "")
 
-    RECYCLE_MAIN_MENU_1 = Symbol([0x2EAC], [0x238CFEC], 0x28, "")
+    RECYCLE_MAIN_MENU_ITEMS_1 = Symbol([0x2EAC], [0x238CFEC], 0x28, "")
 
     OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
         [0x2ED4], [0x238D014], 0x14, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT_1 = Symbol(
+    RECYCLE_WINDOW_PARAMS_1 = Symbol(
         [0x2EE8], [0x238D028], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT_2 = Symbol(
+    RECYCLE_WINDOW_PARAMS_2 = Symbol(
         [0x2EF8], [0x238D038], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT_3 = Symbol(
+    RECYCLE_WINDOW_PARAMS_3 = Symbol(
         [0x2F08], [0x238D048], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT_4 = Symbol(
+    RECYCLE_WINDOW_PARAMS_4 = Symbol(
         [0x2F18], [0x238D058], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT_5 = Symbol(
+    RECYCLE_WINDOW_PARAMS_5 = Symbol(
         [0x2F28], [0x238D068], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT_6 = Symbol(
+    RECYCLE_WINDOW_PARAMS_6 = Symbol(
         [0x2F38], [0x238D078], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_MAIN_MENU_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
+    RECYCLE_MAIN_MENU_ITEMS_2 = Symbol([0x2F48], [0x238D088], 0x20, "")
 
-    RECYCLE_D_BOX_LAYOUT_7 = Symbol(
+    RECYCLE_WINDOW_PARAMS_7 = Symbol(
         [0x2F68], [0x238D0A8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT_8 = Symbol(
+    RECYCLE_WINDOW_PARAMS_8 = Symbol(
         [0x2F78], [0x238D0B8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT_9 = Symbol(
+    RECYCLE_WINDOW_PARAMS_9 = Symbol(
         [0x2F88], [0x238D0C8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT1_0 = Symbol(
+    RECYCLE_WINDOW_PARAMS_10 = Symbol(
         [0x2F98], [0x238D0D8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_D_BOX_LAYOUT1_1 = Symbol(
+    RECYCLE_WINDOW_PARAMS_11 = Symbol(
         [0x2FA8], [0x238D0E8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    RECYCLE_MAIN_MENU_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
+    RECYCLE_MAIN_MENU_ITEMS_3 = Symbol([0x2FB8], [0x238D0F8], 0x18, "")
 
     OVERLAY20_RESERVED_SPACE = Symbol(
         [0x2FD0], [0x238D110], 0x10, "Note: unverified, ported from Irdkwia's notes"
@@ -15964,55 +16820,55 @@ class NaOverlay21Functions:
 
 
 class NaOverlay21Data:
-    SWAP_SHOP_D_BOX_LAYOUT_1 = Symbol(
+    SWAP_SHOP_WINDOW_PARAMS_1 = Symbol(
         [0x28E8], [0x238CA28], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_MENU_CONFIRM = Symbol([0x28F8], [0x238CA38], 0x18, "")
+    SWAP_SHOP_MENU_ITEMS_CONFIRM = Symbol([0x28F8], [0x238CA38], 0x18, "")
 
-    SWAP_SHOP_SUBMENU_1 = Symbol([0x2910], [0x238CA50], 0x18, "")
+    SWAP_SHOP_SUBMENU_ITEMS_1 = Symbol([0x2910], [0x238CA50], 0x18, "")
 
-    SWAP_SHOP_SUBMENU_2 = Symbol([0x2928], [0x238CA68], 0x20, "")
+    SWAP_SHOP_SUBMENU_ITEMS_2 = Symbol([0x2928], [0x238CA68], 0x20, "")
 
-    SWAP_SHOP_MAIN_MENU_1 = Symbol([0x2948], [0x238CA88], 0x20, "")
+    SWAP_SHOP_MAIN_MENU_ITEMS_1 = Symbol([0x2948], [0x238CA88], 0x20, "")
 
-    SWAP_SHOP_MAIN_MENU_2 = Symbol([0x2968], [0x238CAA8], 0x28, "")
+    SWAP_SHOP_MAIN_MENU_ITEMS_2 = Symbol([0x2968], [0x238CAA8], 0x28, "")
 
-    SWAP_SHOP_SUBMENU_3 = Symbol([0x2990], [0x238CAD0], 0x30, "")
+    SWAP_SHOP_SUBMENU_ITEMS_3 = Symbol([0x2990], [0x238CAD0], 0x30, "")
 
     OVERLAY21_UNKNOWN_STRING_IDS = Symbol(
         [0x29C0], [0x238CB00], 0x38, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_D_BOX_LAYOUT_2 = Symbol(
+    SWAP_SHOP_WINDOW_PARAMS_2 = Symbol(
         [0x29F8], [0x238CB38], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_D_BOX_LAYOUT_3 = Symbol(
+    SWAP_SHOP_WINDOW_PARAMS_3 = Symbol(
         [0x2A08], [0x238CB48], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_D_BOX_LAYOUT_4 = Symbol(
+    SWAP_SHOP_WINDOW_PARAMS_4 = Symbol(
         [0x2A18], [0x238CB58], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_D_BOX_LAYOUT_5 = Symbol(
+    SWAP_SHOP_WINDOW_PARAMS_5 = Symbol(
         [0x2A28], [0x238CB68], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_D_BOX_LAYOUT_6 = Symbol(
+    SWAP_SHOP_WINDOW_PARAMS_6 = Symbol(
         [0x2A38], [0x238CB78], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_D_BOX_LAYOUT_7 = Symbol(
+    SWAP_SHOP_WINDOW_PARAMS_7 = Symbol(
         [0x2A48], [0x238CB88], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_D_BOX_LAYOUT_8 = Symbol(
+    SWAP_SHOP_WINDOW_PARAMS_8 = Symbol(
         [0x2A58], [0x238CB98], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SWAP_SHOP_D_BOX_LAYOUT_9 = Symbol(
+    SWAP_SHOP_WINDOW_PARAMS_9 = Symbol(
         [0x2A68], [0x238CBA8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -16045,11 +16901,11 @@ class NaOverlay22Functions:
 
 
 class NaOverlay22Data:
-    SHOP_D_BOX_LAYOUT_1 = Symbol(
+    SHOP_WINDOW_PARAMS_1 = Symbol(
         [0x46DC], [0x238E81C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_D_BOX_LAYOUT_2 = Symbol(
+    SHOP_WINDOW_PARAMS_2 = Symbol(
         [0x46FC], [0x238E83C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -16057,47 +16913,47 @@ class NaOverlay22Data:
         [0x471C], [0x238E85C], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_MENU_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
+    SHOP_MENU_ITEMS_CONFIRM = Symbol([0x4728], [0x238E868], 0x18, "")
 
-    SHOP_MAIN_MENU_1 = Symbol([0x4740], [0x238E880], 0x20, "")
+    SHOP_MAIN_MENU_ITEMS_1 = Symbol([0x4740], [0x238E880], 0x20, "")
 
-    SHOP_MAIN_MENU_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
+    SHOP_MAIN_MENU_ITEMS_2 = Symbol([0x4760], [0x238E8A0], 0x20, "")
 
-    SHOP_MAIN_MENU_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
+    SHOP_MAIN_MENU_ITEMS_3 = Symbol([0x4780], [0x238E8C0], 0x30, "")
 
     OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
         [0x47B0], [0x238E8F0], 0x60, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_D_BOX_LAYOUT_3 = Symbol(
+    SHOP_WINDOW_PARAMS_3 = Symbol(
         [0x4810], [0x238E950], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_D_BOX_LAYOUT_4 = Symbol(
+    SHOP_WINDOW_PARAMS_4 = Symbol(
         [0x4820], [0x238E960], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_D_BOX_LAYOUT_5 = Symbol(
+    SHOP_WINDOW_PARAMS_5 = Symbol(
         [0x4830], [0x238E970], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_D_BOX_LAYOUT_6 = Symbol(
+    SHOP_WINDOW_PARAMS_6 = Symbol(
         [0x4840], [0x238E980], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_D_BOX_LAYOUT_7 = Symbol(
+    SHOP_WINDOW_PARAMS_7 = Symbol(
         [0x4850], [0x238E990], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_D_BOX_LAYOUT_8 = Symbol(
+    SHOP_WINDOW_PARAMS_8 = Symbol(
         [0x4860], [0x238E9A0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_D_BOX_LAYOUT_9 = Symbol(
+    SHOP_WINDOW_PARAMS_9 = Symbol(
         [0x4870], [0x238E9B0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    SHOP_D_BOX_LAYOUT_10 = Symbol(
+    SHOP_WINDOW_PARAMS_10 = Symbol(
         [0x4880], [0x238E9C0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -16152,49 +17008,49 @@ class NaOverlay23Data:
         [0x31B0], [0x238D2F0], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_MENU_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
+    STORAGE_MENU_ITEMS_CONFIRM = Symbol([0x31BC], [0x238D2FC], 0x18, "")
 
-    STORAGE_MAIN_MENU_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
+    STORAGE_MAIN_MENU_ITEMS_1 = Symbol([0x31D4], [0x238D314], 0x20, "")
 
-    STORAGE_MAIN_MENU_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
+    STORAGE_MAIN_MENU_ITEMS_2 = Symbol([0x31F4], [0x238D334], 0x20, "")
 
-    STORAGE_MAIN_MENU_3 = Symbol([0x3214], [0x238D354], 0x20, "")
+    STORAGE_MAIN_MENU_ITEMS_3 = Symbol([0x3214], [0x238D354], 0x20, "")
 
-    STORAGE_MAIN_MENU_4 = Symbol([0x3234], [0x238D374], 0x28, "")
+    STORAGE_MAIN_MENU_ITEMS_4 = Symbol([0x3234], [0x238D374], 0x28, "")
 
     OVERLAY23_UNKNOWN_STRING_IDS = Symbol(
         [0x325C], [0x238D39C], 0x2C, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_D_BOX_LAYOUT_1 = Symbol(
+    STORAGE_WINDOW_PARAMS_1 = Symbol(
         [0x3288], [0x238D3C8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_D_BOX_LAYOUT_2 = Symbol(
+    STORAGE_WINDOW_PARAMS_2 = Symbol(
         [0x3298], [0x238D3D8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_D_BOX_LAYOUT_3 = Symbol(
+    STORAGE_WINDOW_PARAMS_3 = Symbol(
         [0x32A8], [0x238D3E8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_D_BOX_LAYOUT_4 = Symbol(
+    STORAGE_WINDOW_PARAMS_4 = Symbol(
         [0x32B8], [0x238D3F8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_D_BOX_LAYOUT_5 = Symbol(
+    STORAGE_WINDOW_PARAMS_5 = Symbol(
         [0x32C8], [0x238D408], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_D_BOX_LAYOUT_6 = Symbol(
+    STORAGE_WINDOW_PARAMS_6 = Symbol(
         [0x32D8], [0x238D418], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_D_BOX_LAYOUT_7 = Symbol(
+    STORAGE_WINDOW_PARAMS_7 = Symbol(
         [0x32E8], [0x238D428], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    STORAGE_D_BOX_LAYOUT_8 = Symbol(
+    STORAGE_WINDOW_PARAMS_8 = Symbol(
         [0x32F8], [0x238D438], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -16231,31 +17087,31 @@ class NaOverlay24Data:
         [0x23D4], [0x238C514], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DAYCARE_MENU_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
+    DAYCARE_MENU_ITEMS_CONFIRM = Symbol([0x23E0], [0x238C520], 0x18, "")
 
-    DAYCARE_MAIN_MENU = Symbol([0x23F8], [0x238C538], 0x20, "")
+    DAYCARE_MAIN_MENU_ITEMS = Symbol([0x23F8], [0x238C538], 0x20, "")
 
     OVERLAY24_UNKNOWN_STRING_IDS = Symbol(
         [0x2418], [0x238C558], 0x38, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DAYCARE_D_BOX_LAYOUT_1 = Symbol(
+    DAYCARE_WINDOW_PARAMS_1 = Symbol(
         [0x2450], [0x238C590], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DAYCARE_D_BOX_LAYOUT_2 = Symbol(
+    DAYCARE_WINDOW_PARAMS_2 = Symbol(
         [0x2460], [0x238C5A0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DAYCARE_D_BOX_LAYOUT_3 = Symbol(
+    DAYCARE_WINDOW_PARAMS_3 = Symbol(
         [0x2470], [0x238C5B0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DAYCARE_D_BOX_LAYOUT_4 = Symbol(
+    DAYCARE_WINDOW_PARAMS_4 = Symbol(
         [0x2480], [0x238C5C0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DAYCARE_D_BOX_LAYOUT_5 = Symbol(
+    DAYCARE_WINDOW_PARAMS_5 = Symbol(
         [0x2490], [0x238C5D0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -16286,45 +17142,45 @@ class NaOverlay25Data:
         [0x1358], [0x238B498], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_D_BOX_LAYOUT_1 = Symbol(
+    APPRAISAL_WINDOW_PARAMS_1 = Symbol(
         [0x1364], [0x238B4A4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_MENU_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
+    APPRAISAL_MENU_ITEMS_CONFIRM = Symbol([0x1374], [0x238B4B4], 0x18, "")
 
-    APPRAISAL_MAIN_MENU = Symbol([0x138C], [0x238B4CC], 0x20, "")
+    APPRAISAL_MAIN_MENU_ITEMS = Symbol([0x138C], [0x238B4CC], 0x20, "")
 
-    APPRAISAL_SUBMENU = Symbol([0x13AC], [0x238B4EC], 0x20, "")
+    APPRAISAL_SUBMENU_ITEMS = Symbol([0x13AC], [0x238B4EC], 0x20, "")
 
     OVERLAY25_UNKNOWN_STRING_IDS = Symbol(
         [0x13CC], [0x238B50C], 0x28, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_D_BOX_LAYOUT_2 = Symbol(
+    APPRAISAL_WINDOW_PARAMS_2 = Symbol(
         [0x13F4], [0x238B534], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_D_BOX_LAYOUT_3 = Symbol(
+    APPRAISAL_WINDOW_PARAMS_3 = Symbol(
         [0x1404], [0x238B544], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_D_BOX_LAYOUT_4 = Symbol(
+    APPRAISAL_WINDOW_PARAMS_4 = Symbol(
         [0x1414], [0x238B554], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_D_BOX_LAYOUT_5 = Symbol(
+    APPRAISAL_WINDOW_PARAMS_5 = Symbol(
         [0x1424], [0x238B564], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_D_BOX_LAYOUT_6 = Symbol(
+    APPRAISAL_WINDOW_PARAMS_6 = Symbol(
         [0x1434], [0x238B574], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_D_BOX_LAYOUT_7 = Symbol(
+    APPRAISAL_WINDOW_PARAMS_7 = Symbol(
         [0x1444], [0x238B584], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    APPRAISAL_D_BOX_LAYOUT_8 = Symbol(
+    APPRAISAL_WINDOW_PARAMS_8 = Symbol(
         [0x1454], [0x238B594], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -16413,47 +17269,47 @@ class NaOverlay27Data:
         [0x2810], [0x238C950], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_ITEMS_MENU_CONFIRM = Symbol([0x281C], [0x238C95C], 0x18, "")
+    DISCARD_ITEMS_MENU_ITEMS_CONFIRM = Symbol([0x281C], [0x238C95C], 0x18, "")
 
-    DISCARD_ITEMS_SUBMENU_1 = Symbol([0x2834], [0x238C974], 0x20, "")
+    DISCARD_ITEMS_SUBMENU_ITEMS_1 = Symbol([0x2834], [0x238C974], 0x20, "")
 
-    DISCARD_ITEMS_SUBMENU_2 = Symbol([0x2854], [0x238C994], 0x20, "")
+    DISCARD_ITEMS_SUBMENU_ITEMS_2 = Symbol([0x2854], [0x238C994], 0x20, "")
 
-    DISCARD_ITEMS_MAIN_MENU = Symbol([0x2874], [0x238C9B4], 0x28, "")
+    DISCARD_ITEMS_MAIN_MENU_ITEMS = Symbol([0x2874], [0x238C9B4], 0x28, "")
 
     OVERLAY27_UNKNOWN_STRING_IDS = Symbol(
         [0x289C], [0x238C9DC], 0x30, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_D_BOX_LAYOUT_1 = Symbol(
+    DISCARD_WINDOW_PARAMS_1 = Symbol(
         [0x28CC], [0x238CA0C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_D_BOX_LAYOUT_2 = Symbol(
+    DISCARD_WINDOW_PARAMS_2 = Symbol(
         [0x28DC], [0x238CA1C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_D_BOX_LAYOUT_3 = Symbol(
+    DISCARD_WINDOW_PARAMS_3 = Symbol(
         [0x28EC], [0x238CA2C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_D_BOX_LAYOUT_4 = Symbol(
+    DISCARD_WINDOW_PARAMS_4 = Symbol(
         [0x28FC], [0x238CA3C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_D_BOX_LAYOUT_5 = Symbol(
+    DISCARD_WINDOW_PARAMS_5 = Symbol(
         [0x290C], [0x238CA4C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_D_BOX_LAYOUT_6 = Symbol(
+    DISCARD_WINDOW_PARAMS_6 = Symbol(
         [0x291C], [0x238CA5C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_D_BOX_LAYOUT_7 = Symbol(
+    DISCARD_WINDOW_PARAMS_7 = Symbol(
         [0x292C], [0x238CA6C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DISCARD_D_BOX_LAYOUT_8 = Symbol(
+    DISCARD_WINDOW_PARAMS_8 = Symbol(
         [0x293C], [0x238CA7C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -23278,9 +24134,9 @@ class NaOverlay29Functions:
         [0x6F880],
         [0x234BAC0],
         None,
-        "Initialize the portrait box structure for the given monster and"
-        " expression\n\nr0: pointer the portrait box data structure to initialize\nr1:"
-        " monster id\nr2: emotion id",
+        "Initialize the portrait params structure for the given monster and"
+        " expression\n\nr0: pointer the portrait params data structure to"
+        " initialize\nr1: monster id\nr2: emotion id",
     )
 
     OpenMessageLog = Symbol(
@@ -24128,7 +24984,7 @@ class NaOverlay29Data:
         [0x77090],
         [0x23532D0],
         0x8,
-        "List that holds the message IDs for how much a monster liked a gummi in"
+        "List that holds the string IDs for how much a monster liked a gummi in"
         " decreasing order.",
     )
 
@@ -24136,7 +24992,7 @@ class NaOverlay29Data:
         [0x770E4],
         [0x2353324],
         0xA,
-        "List that holds the message IDs for how much a monster's IQ was raised by in"
+        "List that holds the string IDs for how much a monster's IQ was raised by in"
         " decreasing order.",
     )
 
@@ -24144,7 +25000,7 @@ class NaOverlay29Data:
         [0x770F0],
         [0x2353330],
         0x36,
-        "List that matches the damage_message ID to their corresponding message ID. The"
+        "List that matches the damage_message ID to their corresponding string ID. The"
         " null entry at 0xE in the middle is for hunger. The last entry is null.",
     )
 
@@ -24439,23 +25295,23 @@ class NaOverlay31Functions:
 
 
 class NaOverlay31Data:
-    DUNGEON_D_BOX_LAYOUT_1 = Symbol(
+    DUNGEON_WINDOW_PARAMS_1 = Symbol(
         [0x7574], [0x2389D94], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_2 = Symbol(
+    DUNGEON_WINDOW_PARAMS_2 = Symbol(
         [0x7584], [0x2389DA4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_3 = Symbol(
+    DUNGEON_WINDOW_PARAMS_3 = Symbol(
         [0x7594], [0x2389DB4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_4 = Symbol(
+    DUNGEON_WINDOW_PARAMS_4 = Symbol(
         [0x75A4], [0x2389DC4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_MAIN_MENU = Symbol([0x75B4], [0x2389DD4], 0x40, "")
+    DUNGEON_MAIN_MENU_ITEMS = Symbol([0x75B4], [0x2389DD4], 0x40, "")
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
         [0x7600], [0x2389E20], 0x10, "Note: unverified, ported from Irdkwia's notes"
@@ -24465,51 +25321,51 @@ class NaOverlay31Data:
         [0x7610], [0x2389E30], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_5 = Symbol(
+    DUNGEON_WINDOW_PARAMS_5 = Symbol(
         [0x7620], [0x2389E40], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_6 = Symbol(
+    DUNGEON_WINDOW_PARAMS_6 = Symbol(
         [0x7630], [0x2389E50], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_7 = Symbol(
+    DUNGEON_WINDOW_PARAMS_7 = Symbol(
         [0x7640], [0x2389E60], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_SUBMENU_1 = Symbol([0x7650], [0x2389E70], 0x20, "")
+    DUNGEON_SUBMENU_ITEMS_1 = Symbol([0x7650], [0x2389E70], 0x20, "")
 
-    DUNGEON_SUBMENU_2 = Symbol([0x7670], [0x2389E90], 0x20, "")
+    DUNGEON_SUBMENU_ITEMS_2 = Symbol([0x7670], [0x2389E90], 0x20, "")
 
-    DUNGEON_SUBMENU_3 = Symbol([0x7690], [0x2389EB0], 0x20, "")
+    DUNGEON_SUBMENU_ITEMS_3 = Symbol([0x7690], [0x2389EB0], 0x20, "")
 
-    DUNGEON_SUBMENU_4 = Symbol([0x76B0], [0x2389ED0], 0x20, "")
+    DUNGEON_SUBMENU_ITEMS_4 = Symbol([0x76B0], [0x2389ED0], 0x20, "")
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
         [0x76D0], [0x2389EF0], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_8 = Symbol(
+    DUNGEON_WINDOW_PARAMS_8 = Symbol(
         [0x76DC], [0x2389EFC], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_9 = Symbol(
+    DUNGEON_WINDOW_PARAMS_9 = Symbol(
         [0x76EC], [0x2389F0C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_10 = Symbol(
+    DUNGEON_WINDOW_PARAMS_10 = Symbol(
         [0x76FC], [0x2389F1C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_11 = Symbol(
+    DUNGEON_WINDOW_PARAMS_11 = Symbol(
         [0x770C], [0x2389F2C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_12 = Symbol(
+    DUNGEON_WINDOW_PARAMS_12 = Symbol(
         [0x771C], [0x2389F3C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_13 = Symbol(
+    DUNGEON_WINDOW_PARAMS_13 = Symbol(
         [0x772C], [0x2389F4C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -24517,27 +25373,27 @@ class NaOverlay31Data:
         [0x7744], [0x2389F64], 0x24, "\n\n----　 初期ポジション=%d　----- \n"
     )
 
-    DUNGEON_D_BOX_LAYOUT_14 = Symbol(
+    DUNGEON_WINDOW_PARAMS_14 = Symbol(
         [0x7768], [0x2389F88], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_15 = Symbol(
+    DUNGEON_WINDOW_PARAMS_15 = Symbol(
         [0x7778], [0x2389F98], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_16 = Symbol(
+    DUNGEON_WINDOW_PARAMS_16 = Symbol(
         [0x7788], [0x2389FA8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_17 = Symbol(
+    DUNGEON_WINDOW_PARAMS_17 = Symbol(
         [0x7798], [0x2389FB8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_18 = Symbol(
+    DUNGEON_WINDOW_PARAMS_18 = Symbol(
         [0x77A8], [0x2389FC8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_19 = Symbol(
+    DUNGEON_WINDOW_PARAMS_19 = Symbol(
         [0x77B8], [0x2389FD8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -24545,33 +25401,33 @@ class NaOverlay31Data:
         [0x77C8], [0x2389FE8], 0xC, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_20 = Symbol(
+    DUNGEON_WINDOW_PARAMS_20 = Symbol(
         [0x77D4], [0x2389FF4], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_21 = Symbol(
+    DUNGEON_WINDOW_PARAMS_21 = Symbol(
         [0x77E4], [0x238A004], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_22 = Symbol(
+    DUNGEON_WINDOW_PARAMS_22 = Symbol(
         [0x77F4], [0x238A014], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_23 = Symbol(
+    DUNGEON_WINDOW_PARAMS_23 = Symbol(
         [0x7804], [0x238A024], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_24 = Symbol(
+    DUNGEON_WINDOW_PARAMS_24 = Symbol(
         [0x7814], [0x238A034], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_25 = Symbol(
+    DUNGEON_WINDOW_PARAMS_25 = Symbol(
         [0x78EC], [0x238A10C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_SUBMENU_5 = Symbol([0x78FC], [0x238A11C], 0x18, "")
+    DUNGEON_SUBMENU_ITEMS_5 = Symbol([0x78FC], [0x238A11C], 0x18, "")
 
-    DUNGEON_D_BOX_LAYOUT_26 = Symbol(
+    DUNGEON_WINDOW_PARAMS_26 = Symbol(
         [0x7914], [0x238A134], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -24579,11 +25435,11 @@ class NaOverlay31Data:
         [0x7924], [0x238A144], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_27 = Symbol(
+    DUNGEON_WINDOW_PARAMS_27 = Symbol(
         [0x7950], [0x238A170], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_28 = Symbol(
+    DUNGEON_WINDOW_PARAMS_28 = Symbol(
         [0x7960], [0x238A180], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -24591,21 +25447,21 @@ class NaOverlay31Data:
         [0x7970], [0x238A190], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_SUBMENU_6 = Symbol([0x7980], [0x238A1A0], 0x48, "")
+    DUNGEON_SUBMENU_ITEMS_6 = Symbol([0x7980], [0x238A1A0], 0x48, "")
 
-    DUNGEON_D_BOX_LAYOUT_29 = Symbol(
+    DUNGEON_WINDOW_PARAMS_29 = Symbol(
         [0x79C8], [0x238A1E8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_30 = Symbol(
+    DUNGEON_WINDOW_PARAMS_30 = Symbol(
         [0x79D8], [0x238A1F8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_31 = Symbol(
+    DUNGEON_WINDOW_PARAMS_31 = Symbol(
         [0x79E8], [0x238A208], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DUNGEON_D_BOX_LAYOUT_32 = Symbol(
+    DUNGEON_WINDOW_PARAMS_32 = Symbol(
         [0x79F8], [0x238A218], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
 
@@ -24724,7 +25580,7 @@ class NaOverlay34Data:
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
-    START_MENU_CONFIRM = Symbol([0xDE4], [0x22DD024], 0x18, "Irdkwia's notes: 3*0x8")
+    START_MENU_ITEMS_CONFIRM = Symbol([0xDE4], [0x22DD024], 0x18, "")
 
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C = Symbol(
         [0xDFC],
@@ -24733,7 +25589,7 @@ class NaOverlay34Data:
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
-    DUNGEON_DEBUG_MENU = Symbol([0xE0C], [0x22DD04C], 0x28, "Irdkwia's notes: 5*0x8")
+    DUNGEON_DEBUG_MENU_ITEMS = Symbol([0xE0C], [0x22DD04C], 0x28, "")
 
     OVERLAY34_RESERVED_SPACE = Symbol(
         [0xE34], [0x22DD074], 0xC, "Note: unverified, ported from Irdkwia's notes"
@@ -24885,8 +25741,31 @@ class NaOverlay9Functions:
         [0x233E030],
         None,
         "Creates a window containing the track selection menu for the Sky Jukebox. Also"
-        " see struct jukebox_track_menu.\n\nr0: window_params\nr1: ?\nr2: ?\nr3:"
-        " ?\nstack[0]: ?\nreturn: window_id",
+        " see struct jukebox_track_menu.\n\nIf window_params is NULL,"
+        " JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be"
+        " copied onto the window, ignoring the update and contents fields. If"
+        " window_params::width and/or window_params::height are 0, they will be"
+        " computed based on the contained text.\n\nIf window_extra_info is non-NULL, it"
+        " will be copied onto the window. Note that window_extra_info can only be NULL"
+        " if there are no window_flags set that require extra info.\n\nr0:"
+        " window_params\nr1: window_flags\nr2: window_extra_info pointer\nr3:"
+        " simple_menu_id_item struct array, terminated with an item with string_id"
+        " 0\nstack[0]: number of menu items\nreturn: window_id",
+    )
+
+    CloseJukeboxTrackMenu = Symbol(
+        [0x18CC],
+        [0x233E34C],
+        None,
+        "Closes a window created with CreateJukeboxTrackMenu.\n\nr0: window_id",
+    )
+
+    IsJukeboxTrackMenuActive = Symbol(
+        [0x1904],
+        [0x233E384],
+        None,
+        "This is a guess.\n\nChecks if the state of a jukebox track menu is something"
+        " other than 7 or 8.\n\nr0: window_id\nreturn: bool",
     )
 
     UpdateJukeboxTrackMenu = Symbol(
@@ -24901,8 +25780,32 @@ class NaOverlay9Functions:
         [0x233E918],
         None,
         "Creates a window containing the playback controls menu for a selected song."
-        " Also see struct simple_menu.\n\nr0: window_params\nr1: ?\nr2: ?\nr3:"
-        " ?\nstack[0]: ?\nstack[1]: ?\nreturn: window_id",
+        " Also see struct playback_controls_menu.\n\nIf window_params is NULL,"
+        " PLAYBACK_CONTROLS_MENU_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will"
+        " be copied onto the window, ignoring the update and contents fields. If"
+        " window_params::width and/or window_params::height are 0, they will be"
+        " computed based on the contained text.\n\nIf window_extra_info is non-NULL, it"
+        " will be copied onto the window. Note that window_extra_info can only be NULL"
+        " if there are no window_flags set that require extra info.\n\nr0:"
+        " window_params\nr1: window_flags\nr2: window_extra_info pointer\nr3:"
+        " ?\nstack[0]: simple_menu_id_item struct array 1, terminated with an item with"
+        " string_id 0\nstack[1]: simple_menu_id_item struct array 2, terminated with an"
+        " item with string_id 0\nreturn: window_id",
+    )
+
+    ClosePlaybackControlsMenu = Symbol(
+        [0x21D8],
+        [0x233EC58],
+        None,
+        "Closes a window created with CreatePlaybackControlsMenu.\n\nr0: window_id",
+    )
+
+    IsPlaybackControlsMenuActive = Symbol(
+        [0x227C],
+        [0x233ECFC],
+        None,
+        "This is a guess.\n\nChecks if the state of a playback controls menu is"
+        " something other than 7 or 8.\n\nr0: window_id\nreturn: bool",
     )
 
     UpdatePlaybackControlsMenu = Symbol(
@@ -24917,8 +25820,29 @@ class NaOverlay9Functions:
         [0x233F210],
         None,
         "Creates a window containing the 'Locked' text when inputs are locked while a"
-        " song is playing. Also see struct input_lock_box.\n\nr0: window_params\nr1:"
-        " ?\nr2: ?\nr3: ?\nstack[0]: ?\nreturn: window_id",
+        " song is playing. Also see struct input_lock_box.\n\nIf window_params is NULL,"
+        " INPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be"
+        " copied onto the window, ignoring the update and contents fields. If"
+        " window_params::height is 0, it will default to 2.\n\nIf window_extra_info is"
+        " non-NULL, it will be copied onto the window. Note that window_extra_info can"
+        " only be NULL if there are no window_flags set that require extra info.\n\nr0:"
+        " window_params\nr1: window_flags\nr2: window_extra_info pointer\nr3:"
+        " ?\nstack[0]: string ID\nreturn: window_id",
+    )
+
+    CloseInputLockBox = Symbol(
+        [0x2940],
+        [0x233F3C0],
+        None,
+        "Closes a window created with InputLockBox.\n\nr0: window_id",
+    )
+
+    IsInputLockBoxActive = Symbol(
+        [0x295C],
+        [0x233F3DC],
+        None,
+        "This is a guess.\n\nChecks if the state of an input lock box is not 4.\n\nr0:"
+        " window_id\nreturn: bool",
     )
 
     UpdateInputLockBox = Symbol(
@@ -24930,6 +25854,32 @@ class NaOverlay9Functions:
 
 
 class NaOverlay9Data:
+    JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x2D14],
+        [0x233F794],
+        0x10,
+        "Default window_params for a jukebox_track_menu.\n\nNote that x_offset and"
+        " y_offset refer to the right and bottom edges, since they will be paired with"
+        " the x_offset_end and y_offset_end window flags in"
+        " CreateJukeboxTrackMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateJukeboxTrackMenu.",
+    )
+
+    PLAYBACK_CONTROLS_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x2D24],
+        [0x233F7A4],
+        0x10,
+        "Default window_params for a playback_controls_menu.\n\nNote that x_offset and"
+        " y_offset refer to the right and bottom edges, since they will be paired with"
+        " the x_offset_end and y_offset_end window flags in"
+        " CreatePlaybackControlsMenu.\n\nAdditionally, width and height are 0, and will"
+        " be computed in CreatePlaybackControlsMenu.",
+    )
+
+    INPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        [0x2D34], [0x233F7B4], 0x10, "Default window_params for an input_lock_box."
+    )
+
     TOP_MENU_RETURN_MUSIC_ID = Symbol(
         [0xE80],
         [0x233D900],

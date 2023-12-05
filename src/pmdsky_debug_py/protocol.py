@@ -2301,7 +2301,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    StoiTag: Symbol[
+    AtoiTag: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2316,7 +2316,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    PreprocessStringFromMessageId: Symbol[
+    PreprocessStringFromId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2326,7 +2326,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    StoiTagVeneer: Symbol[
+    AtoiTagVeneer: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2416,17 +2416,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    StringFromMessageId: Symbol[
+    StringFromId: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyStringFromMessageId: Symbol[
+    CopyStringFromId: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyNStringFromMessageId: Symbol[
+    CopyNStringFromId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2442,6 +2442,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     IsAOrBPressed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetWindow: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2462,6 +2467,16 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     SetBothScreensWindowsColor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DeleteWindow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetWindowRectangle: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2501,7 +2516,47 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CreateParentMenuFromStringIds: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsEmptyString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CreateParentMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateParentMenuWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateParentMenuInternal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetParentMenuState7: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseParentMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsParentMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckParentMenuField0x1A0: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2511,7 +2566,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CreateSimpleMenuWrapper: Symbol[
+    CreateSimpleMenuFromStringIds: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2521,12 +2576,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    FreeSimpleMenu: Symbol[
+    CreateSimpleMenuInternal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseSimpleMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
     IsSimpleMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckSimpleMenuField0x1A0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetSimpleMenuField0x1A4: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2541,12 +2611,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetSimpleMenuField0x1AC: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CreateAdvancedMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FreeAdvancedMenu: Symbol[
+    CloseAdvancedMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsAdvancedMenuActive2: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2576,12 +2656,77 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetCollectionMenuField0x1BC: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetCollectionMenuWidth: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseCollectionMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsCollectionMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetCollectionMenuField0x1C8: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetCollectionMenuField0x1A0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetCollectionMenuField0x1A4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetCollectionMenuVoidFn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateCollectionMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    SetCollectionMenuField0x1B2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsCollectionMenuState3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CreateOptionsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseOptionsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsOptionsMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckOptionsMenuField0x1A4: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2596,17 +2741,47 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CloseDebugMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsDebugMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckDebugMenuField0x1A4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateDebugMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CreateScrollBox1: Symbol[
+    CreateScrollBoxSingle: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CreateScrollBox2: Symbol[
+    CreateScrollBoxMulti: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetScrollBoxState7: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseScrollBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsScrollBoxActive: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2621,7 +2796,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    FreeDialogueBox: Symbol[
+    CloseDialogueBox: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2631,7 +2806,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    ShowMessageInDialogueBox: Symbol[
+    ShowStringIdInDialogueBox: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2646,6 +2821,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ReadStringFromDialogueBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateDialogueBox: Symbol[
         Optional[list[int]],
         None,
@@ -2656,12 +2836,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    FreePortraitBox: Symbol[
+    ClosePortraitBox: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ShowPortraitBox: Symbol[
+    PortraitBoxNeedsUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ShowPortraitInPortraitBox: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2676,12 +2861,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CreateTextBox1: Symbol[
+    CreateTextBox: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CreateTextBox2: Symbol[
+    CreateTextBoxWithArg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseTextBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseTextBox2: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2696,17 +2891,47 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CreateDynamicTextBox: Symbol[
+    IsTextBoxActive: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    UpdateDynamicTextBox: Symbol[
+    CreateAreaNameBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAreaNameBoxState3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseAreaNameBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsAreaNameBoxActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateAreaNameBox: Symbol[
         Optional[list[int]],
         None,
     ]
 
     CreateControlsChart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseControlsChart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsControlsChartActive: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2721,17 +2946,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CloseAlertBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsAlertBoxActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateAlertBox: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CreateAdvancedTextBox1: Symbol[
+    CreateAdvancedTextBox: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CreateAdvancedTextBox2: Symbol[
+    CreateAdvancedTextBoxWithArg: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2741,7 +2976,62 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetAdvancedTextBoxPartialMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAdvancedTextBoxField0x1C4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAdvancedTextBoxField0x1C2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseAdvancedTextBox2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAdvancedTextBoxState5: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseAdvancedTextBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsAdvancedTextBoxActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAdvancedTextBoxFlags2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetUnkAdvancedTextBoxFn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetUnkAdvancedTextBoxWindowFn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateAdvancedTextBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayAdvancedTextBoxInputSound: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2751,7 +3041,32 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CloseTeamSelectionMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsTeamSelectionMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateTeamSelectionMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsTeamSelectionMenuState3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CalcMenuHeightDiv8: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitWindowInput: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2761,7 +3076,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    PlayMenuOptionSound: Symbol[
+    PlayWindowInputSound: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitInventoryMenuInput: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2777,6 +3097,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetKeyboardStringResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TeamSelectionMenuGetItem: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3121,12 +3446,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    InitPortraitBox: Symbol[
+    InitPortraitParams: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitPortraitBoxWithMonsterId: Symbol[
+    InitPortraitParamsWithMonsterId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5143,6 +5468,81 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    PARENT_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SIMPLE_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ADVANCED_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    COLLECTION_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OPTIONS_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SCROLL_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEXT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CONTROLS_CHART_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ALERT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     PARTNER_TALK_KIND_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -5618,77 +6018,77 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    JOB_D_BOX_LAYOUT_1: Symbol[
+    JOB_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_1: Symbol[
+    JOB_MENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_2: Symbol[
+    JOB_MENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_3: Symbol[
+    JOB_MENU_ITEMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_4: Symbol[
+    JOB_MENU_ITEMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_5: Symbol[
+    JOB_MENU_ITEMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_6: Symbol[
+    JOB_MENU_ITEMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_7: Symbol[
+    JOB_MENU_ITEMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_8: Symbol[
+    JOB_MENU_ITEMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_9: Symbol[
+    JOB_MENU_ITEMS_9: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_10: Symbol[
+    JOB_MENU_ITEMS_10: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_11: Symbol[
+    JOB_MENU_ITEMS_11: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_12: Symbol[
+    JOB_MENU_ITEMS_12: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_MENU_13: Symbol[
+    JOB_MENU_ITEMS_13: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    JOB_D_BOX_LAYOUT_2: Symbol[
+    JOB_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -7739,22 +8139,22 @@ class Overlay1DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_1: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_2: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_3: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_4: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -7774,47 +8174,47 @@ class Overlay1DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_5: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_6: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_7: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MAIN_MENU_CONFIRM: Symbol[
+    MAIN_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_8: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_9: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_9: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MAIN_DEBUG_MENU_1: Symbol[
+    MAIN_DEBUG_MENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY1_D_BOX_LAYOUT_10: Symbol[
+    MAIN_MENU_WINDOW_PARAMS_10: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MAIN_DEBUG_MENU_2: Symbol[
+    MAIN_DEBUG_MENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -7833,7 +8233,42 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetInventoryMenuState0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetInventoryMenuState6: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseInventoryMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsInventoryMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckInventoryMenuField0x1A0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PopInventoryMenuField0x1A3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateInventoryMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsInventoryMenuState3: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -7915,6 +8350,11 @@ class Overlay10FunctionsProtocol(Protocol):
 
 
 class Overlay10DataProtocol(Protocol):
+    INVENTORY_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -9079,6 +9519,16 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    CloseTeamInfoBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsTeamInfoBoxActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateTeamInfoBox: Symbol[
         Optional[list[int]],
         None,
@@ -9187,6 +9637,11 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     SETANIMATION_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEAM_INFO_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -9302,27 +9757,27 @@ class Overlay13DataProtocol(Protocol):
         Optional[int],
     ]
 
-    QUIZ_D_BOX_LAYOUT_1: Symbol[
+    QUIZ_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_D_BOX_LAYOUT_2: Symbol[
+    QUIZ_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_D_BOX_LAYOUT_3: Symbol[
+    QUIZ_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_D_BOX_LAYOUT_4: Symbol[
+    QUIZ_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_MENU_1: Symbol[
+    QUIZ_MENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -9382,17 +9837,17 @@ class Overlay13DataProtocol(Protocol):
         Optional[int],
     ]
 
-    QUIZ_D_BOX_LAYOUT_5: Symbol[
+    QUIZ_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_D_BOX_LAYOUT_6: Symbol[
+    QUIZ_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_DEBUG_MENU: Symbol[
+    QUIZ_DEBUG_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -9713,7 +10168,7 @@ class Overlay14DataProtocol(Protocol):
         Optional[int],
     ]
 
-    FOOTPRINT_DEBUG_MENU: Symbol[
+    SENTRY_DEBUG_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -9741,32 +10196,32 @@ class Overlay15FunctionsProtocol(Protocol):
 
 
 class Overlay15DataProtocol(Protocol):
-    BANK_MAIN_MENU: Symbol[
+    BANK_MAIN_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BANK_D_BOX_LAYOUT_1: Symbol[
+    BANK_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BANK_D_BOX_LAYOUT_2: Symbol[
+    BANK_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BANK_D_BOX_LAYOUT_3: Symbol[
+    BANK_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BANK_D_BOX_LAYOUT_4: Symbol[
+    BANK_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BANK_D_BOX_LAYOUT_5: Symbol[
+    BANK_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -9794,17 +10249,17 @@ class Overlay16FunctionsProtocol(Protocol):
 
 
 class Overlay16DataProtocol(Protocol):
-    EVO_MENU_CONFIRM: Symbol[
+    EVO_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    EVO_SUBMENU: Symbol[
+    EVO_SUBMENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    EVO_MAIN_MENU: Symbol[
+    EVO_MAIN_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -9814,37 +10269,37 @@ class Overlay16DataProtocol(Protocol):
         Optional[int],
     ]
 
-    EVO_D_BOX_LAYOUT_1: Symbol[
+    EVO_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    EVO_D_BOX_LAYOUT_2: Symbol[
+    EVO_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    EVO_D_BOX_LAYOUT_3: Symbol[
+    EVO_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    EVO_D_BOX_LAYOUT_4: Symbol[
+    EVO_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    EVO_D_BOX_LAYOUT_5: Symbol[
+    EVO_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    EVO_D_BOX_LAYOUT_6: Symbol[
+    EVO_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    EVO_D_BOX_LAYOUT_7: Symbol[
+    EVO_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -9877,77 +10332,77 @@ class Overlay17FunctionsProtocol(Protocol):
 
 
 class Overlay17DataProtocol(Protocol):
-    ASSEMBLY_D_BOX_LAYOUT_1: Symbol[
+    ASSEMBLY_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_D_BOX_LAYOUT_2: Symbol[
+    ASSEMBLY_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_D_BOX_LAYOUT_3: Symbol[
+    ASSEMBLY_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_D_BOX_LAYOUT_4: Symbol[
+    ASSEMBLY_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_D_BOX_LAYOUT_5: Symbol[
+    ASSEMBLY_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_MENU_CONFIRM: Symbol[
+    ASSEMBLY_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_MAIN_MENU_1: Symbol[
+    ASSEMBLY_MAIN_MENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_MAIN_MENU_2: Symbol[
+    ASSEMBLY_MAIN_MENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_SUBMENU_1: Symbol[
+    ASSEMBLY_SUBMENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_SUBMENU_2: Symbol[
+    ASSEMBLY_SUBMENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_SUBMENU_3: Symbol[
+    ASSEMBLY_SUBMENU_ITEMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_SUBMENU_4: Symbol[
+    ASSEMBLY_SUBMENU_ITEMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_SUBMENU_5: Symbol[
+    ASSEMBLY_SUBMENU_ITEMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_SUBMENU_6: Symbol[
+    ASSEMBLY_SUBMENU_ITEMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ASSEMBLY_SUBMENU_7: Symbol[
+    ASSEMBLY_SUBMENU_ITEMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -9990,102 +10445,102 @@ class Overlay18FunctionsProtocol(Protocol):
 
 
 class Overlay18DataProtocol(Protocol):
-    OVERLAY18_D_BOX_LAYOUT_1: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_2: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_3: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_4: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_5: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_6: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_7: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_8: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_9: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_9: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_10: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_10: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY18_D_BOX_LAYOUT_11: Symbol[
+    LINK_SHOP_WINDOW_PARAMS_11: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MOVES_MENU_CONFIRM: Symbol[
+    LINK_SHOP_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MOVES_SUBMENU_1: Symbol[
+    LINK_SHOP_SUBMENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MOVES_SUBMENU_2: Symbol[
+    LINK_SHOP_SUBMENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MOVES_MAIN_MENU: Symbol[
+    LINK_SHOP_MAIN_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MOVES_SUBMENU_3: Symbol[
+    LINK_SHOP_SUBMENU_ITEMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MOVES_SUBMENU_4: Symbol[
+    LINK_SHOP_SUBMENU_ITEMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MOVES_SUBMENU_5: Symbol[
+    LINK_SHOP_SUBMENU_ITEMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MOVES_SUBMENU_6: Symbol[
+    LINK_SHOP_SUBMENU_ITEMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    MOVES_SUBMENU_7: Symbol[
+    LINK_SHOP_SUBMENU_ITEMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10181,27 +10636,27 @@ class Overlay19DataProtocol(Protocol):
         Optional[int],
     ]
 
-    BAR_D_BOX_LAYOUT_1: Symbol[
+    BAR_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BAR_D_BOX_LAYOUT_2: Symbol[
+    BAR_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BAR_D_BOX_LAYOUT_3: Symbol[
+    BAR_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BAR_MENU_CONFIRM_1: Symbol[
+    BAR_MENU_ITEMS_CONFIRM_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BAR_MENU_CONFIRM_2: Symbol[
+    BAR_MENU_ITEMS_CONFIRM_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10211,17 +10666,17 @@ class Overlay19DataProtocol(Protocol):
         Optional[int],
     ]
 
-    BAR_MAIN_MENU: Symbol[
+    BAR_MAIN_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BAR_SUBMENU_1: Symbol[
+    BAR_SUBMENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BAR_SUBMENU_2: Symbol[
+    BAR_SUBMENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10274,27 +10729,27 @@ class Overlay20DataProtocol(Protocol):
         Optional[int],
     ]
 
-    RECYCLE_MENU_CONFIRM_1: Symbol[
+    RECYCLE_MENU_ITEMS_CONFIRM_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_MENU_CONFIRM_2: Symbol[
+    RECYCLE_MENU_ITEMS_CONFIRM_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_SUBMENU_1: Symbol[
+    RECYCLE_SUBMENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_SUBMENU_2: Symbol[
+    RECYCLE_SUBMENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_MAIN_MENU_1: Symbol[
+    RECYCLE_MAIN_MENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10304,67 +10759,67 @@ class Overlay20DataProtocol(Protocol):
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT_1: Symbol[
+    RECYCLE_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT_2: Symbol[
+    RECYCLE_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT_3: Symbol[
+    RECYCLE_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT_4: Symbol[
+    RECYCLE_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT_5: Symbol[
+    RECYCLE_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT_6: Symbol[
+    RECYCLE_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_MAIN_MENU_2: Symbol[
+    RECYCLE_MAIN_MENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT_7: Symbol[
+    RECYCLE_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT_8: Symbol[
+    RECYCLE_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT_9: Symbol[
+    RECYCLE_WINDOW_PARAMS_9: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT1_0: Symbol[
+    RECYCLE_WINDOW_PARAMS_10: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_D_BOX_LAYOUT1_1: Symbol[
+    RECYCLE_WINDOW_PARAMS_11: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    RECYCLE_MAIN_MENU_3: Symbol[
+    RECYCLE_MAIN_MENU_ITEMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10407,37 +10862,37 @@ class Overlay21FunctionsProtocol(Protocol):
 
 
 class Overlay21DataProtocol(Protocol):
-    SWAP_SHOP_D_BOX_LAYOUT_1: Symbol[
+    SWAP_SHOP_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_MENU_CONFIRM: Symbol[
+    SWAP_SHOP_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_SUBMENU_1: Symbol[
+    SWAP_SHOP_SUBMENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_SUBMENU_2: Symbol[
+    SWAP_SHOP_SUBMENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_MAIN_MENU_1: Symbol[
+    SWAP_SHOP_MAIN_MENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_MAIN_MENU_2: Symbol[
+    SWAP_SHOP_MAIN_MENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_SUBMENU_3: Symbol[
+    SWAP_SHOP_SUBMENU_ITEMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10447,42 +10902,42 @@ class Overlay21DataProtocol(Protocol):
         Optional[int],
     ]
 
-    SWAP_SHOP_D_BOX_LAYOUT_2: Symbol[
+    SWAP_SHOP_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_D_BOX_LAYOUT_3: Symbol[
+    SWAP_SHOP_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_D_BOX_LAYOUT_4: Symbol[
+    SWAP_SHOP_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_D_BOX_LAYOUT_5: Symbol[
+    SWAP_SHOP_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_D_BOX_LAYOUT_6: Symbol[
+    SWAP_SHOP_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_D_BOX_LAYOUT_7: Symbol[
+    SWAP_SHOP_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_D_BOX_LAYOUT_8: Symbol[
+    SWAP_SHOP_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SWAP_SHOP_D_BOX_LAYOUT_9: Symbol[
+    SWAP_SHOP_WINDOW_PARAMS_9: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10520,12 +10975,12 @@ class Overlay22FunctionsProtocol(Protocol):
 
 
 class Overlay22DataProtocol(Protocol):
-    SHOP_D_BOX_LAYOUT_1: Symbol[
+    SHOP_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_D_BOX_LAYOUT_2: Symbol[
+    SHOP_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10535,22 +10990,22 @@ class Overlay22DataProtocol(Protocol):
         Optional[int],
     ]
 
-    SHOP_MENU_CONFIRM: Symbol[
+    SHOP_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_MAIN_MENU_1: Symbol[
+    SHOP_MAIN_MENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_MAIN_MENU_2: Symbol[
+    SHOP_MAIN_MENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_MAIN_MENU_3: Symbol[
+    SHOP_MAIN_MENU_ITEMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10560,42 +11015,42 @@ class Overlay22DataProtocol(Protocol):
         Optional[int],
     ]
 
-    SHOP_D_BOX_LAYOUT_3: Symbol[
+    SHOP_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_D_BOX_LAYOUT_4: Symbol[
+    SHOP_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_D_BOX_LAYOUT_5: Symbol[
+    SHOP_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_D_BOX_LAYOUT_6: Symbol[
+    SHOP_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_D_BOX_LAYOUT_7: Symbol[
+    SHOP_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_D_BOX_LAYOUT_8: Symbol[
+    SHOP_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_D_BOX_LAYOUT_9: Symbol[
+    SHOP_WINDOW_PARAMS_9: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    SHOP_D_BOX_LAYOUT_10: Symbol[
+    SHOP_WINDOW_PARAMS_10: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10658,27 +11113,27 @@ class Overlay23DataProtocol(Protocol):
         Optional[int],
     ]
 
-    STORAGE_MENU_CONFIRM: Symbol[
+    STORAGE_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_MAIN_MENU_1: Symbol[
+    STORAGE_MAIN_MENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_MAIN_MENU_2: Symbol[
+    STORAGE_MAIN_MENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_MAIN_MENU_3: Symbol[
+    STORAGE_MAIN_MENU_ITEMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_MAIN_MENU_4: Symbol[
+    STORAGE_MAIN_MENU_ITEMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10688,42 +11143,42 @@ class Overlay23DataProtocol(Protocol):
         Optional[int],
     ]
 
-    STORAGE_D_BOX_LAYOUT_1: Symbol[
+    STORAGE_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_D_BOX_LAYOUT_2: Symbol[
+    STORAGE_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_D_BOX_LAYOUT_3: Symbol[
+    STORAGE_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_D_BOX_LAYOUT_4: Symbol[
+    STORAGE_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_D_BOX_LAYOUT_5: Symbol[
+    STORAGE_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_D_BOX_LAYOUT_6: Symbol[
+    STORAGE_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_D_BOX_LAYOUT_7: Symbol[
+    STORAGE_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    STORAGE_D_BOX_LAYOUT_8: Symbol[
+    STORAGE_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10761,12 +11216,12 @@ class Overlay24DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DAYCARE_MENU_CONFIRM: Symbol[
+    DAYCARE_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DAYCARE_MAIN_MENU: Symbol[
+    DAYCARE_MAIN_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10776,27 +11231,27 @@ class Overlay24DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DAYCARE_D_BOX_LAYOUT_1: Symbol[
+    DAYCARE_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DAYCARE_D_BOX_LAYOUT_2: Symbol[
+    DAYCARE_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DAYCARE_D_BOX_LAYOUT_3: Symbol[
+    DAYCARE_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DAYCARE_D_BOX_LAYOUT_4: Symbol[
+    DAYCARE_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DAYCARE_D_BOX_LAYOUT_5: Symbol[
+    DAYCARE_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10829,22 +11284,22 @@ class Overlay25DataProtocol(Protocol):
         Optional[int],
     ]
 
-    APPRAISAL_D_BOX_LAYOUT_1: Symbol[
+    APPRAISAL_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    APPRAISAL_MENU_CONFIRM: Symbol[
+    APPRAISAL_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    APPRAISAL_MAIN_MENU: Symbol[
+    APPRAISAL_MAIN_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    APPRAISAL_SUBMENU: Symbol[
+    APPRAISAL_SUBMENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10854,37 +11309,37 @@ class Overlay25DataProtocol(Protocol):
         Optional[int],
     ]
 
-    APPRAISAL_D_BOX_LAYOUT_2: Symbol[
+    APPRAISAL_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    APPRAISAL_D_BOX_LAYOUT_3: Symbol[
+    APPRAISAL_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    APPRAISAL_D_BOX_LAYOUT_4: Symbol[
+    APPRAISAL_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    APPRAISAL_D_BOX_LAYOUT_5: Symbol[
+    APPRAISAL_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    APPRAISAL_D_BOX_LAYOUT_6: Symbol[
+    APPRAISAL_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    APPRAISAL_D_BOX_LAYOUT_7: Symbol[
+    APPRAISAL_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    APPRAISAL_D_BOX_LAYOUT_8: Symbol[
+    APPRAISAL_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10975,22 +11430,22 @@ class Overlay27DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DISCARD_ITEMS_MENU_CONFIRM: Symbol[
+    DISCARD_ITEMS_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_ITEMS_SUBMENU_1: Symbol[
+    DISCARD_ITEMS_SUBMENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_ITEMS_SUBMENU_2: Symbol[
+    DISCARD_ITEMS_SUBMENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_ITEMS_MAIN_MENU: Symbol[
+    DISCARD_ITEMS_MAIN_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -11000,42 +11455,42 @@ class Overlay27DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DISCARD_D_BOX_LAYOUT_1: Symbol[
+    DISCARD_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_D_BOX_LAYOUT_2: Symbol[
+    DISCARD_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_D_BOX_LAYOUT_3: Symbol[
+    DISCARD_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_D_BOX_LAYOUT_4: Symbol[
+    DISCARD_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_D_BOX_LAYOUT_5: Symbol[
+    DISCARD_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_D_BOX_LAYOUT_6: Symbol[
+    DISCARD_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_D_BOX_LAYOUT_7: Symbol[
+    DISCARD_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DISCARD_D_BOX_LAYOUT_8: Symbol[
+    DISCARD_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15188,27 +15643,27 @@ class Overlay31FunctionsProtocol(Protocol):
 
 
 class Overlay31DataProtocol(Protocol):
-    DUNGEON_D_BOX_LAYOUT_1: Symbol[
+    DUNGEON_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_2: Symbol[
+    DUNGEON_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_3: Symbol[
+    DUNGEON_WINDOW_PARAMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_4: Symbol[
+    DUNGEON_WINDOW_PARAMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_MAIN_MENU: Symbol[
+    DUNGEON_MAIN_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15223,37 +15678,37 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_5: Symbol[
+    DUNGEON_WINDOW_PARAMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_6: Symbol[
+    DUNGEON_WINDOW_PARAMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_7: Symbol[
+    DUNGEON_WINDOW_PARAMS_7: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_1: Symbol[
+    DUNGEON_SUBMENU_ITEMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_2: Symbol[
+    DUNGEON_SUBMENU_ITEMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_3: Symbol[
+    DUNGEON_SUBMENU_ITEMS_3: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_4: Symbol[
+    DUNGEON_SUBMENU_ITEMS_4: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15263,32 +15718,32 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_8: Symbol[
+    DUNGEON_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_9: Symbol[
+    DUNGEON_WINDOW_PARAMS_9: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_10: Symbol[
+    DUNGEON_WINDOW_PARAMS_10: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_11: Symbol[
+    DUNGEON_WINDOW_PARAMS_11: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_12: Symbol[
+    DUNGEON_WINDOW_PARAMS_12: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_13: Symbol[
+    DUNGEON_WINDOW_PARAMS_13: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15298,32 +15753,32 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_14: Symbol[
+    DUNGEON_WINDOW_PARAMS_14: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_15: Symbol[
+    DUNGEON_WINDOW_PARAMS_15: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_16: Symbol[
+    DUNGEON_WINDOW_PARAMS_16: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_17: Symbol[
+    DUNGEON_WINDOW_PARAMS_17: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_18: Symbol[
+    DUNGEON_WINDOW_PARAMS_18: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_19: Symbol[
+    DUNGEON_WINDOW_PARAMS_19: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15333,42 +15788,42 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_20: Symbol[
+    DUNGEON_WINDOW_PARAMS_20: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_21: Symbol[
+    DUNGEON_WINDOW_PARAMS_21: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_22: Symbol[
+    DUNGEON_WINDOW_PARAMS_22: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_23: Symbol[
+    DUNGEON_WINDOW_PARAMS_23: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_24: Symbol[
+    DUNGEON_WINDOW_PARAMS_24: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_25: Symbol[
+    DUNGEON_WINDOW_PARAMS_25: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_5: Symbol[
+    DUNGEON_SUBMENU_ITEMS_5: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_26: Symbol[
+    DUNGEON_WINDOW_PARAMS_26: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15378,12 +15833,12 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_27: Symbol[
+    DUNGEON_WINDOW_PARAMS_27: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_28: Symbol[
+    DUNGEON_WINDOW_PARAMS_28: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15393,27 +15848,27 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_6: Symbol[
+    DUNGEON_SUBMENU_ITEMS_6: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_29: Symbol[
+    DUNGEON_WINDOW_PARAMS_29: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_30: Symbol[
+    DUNGEON_WINDOW_PARAMS_30: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_31: Symbol[
+    DUNGEON_WINDOW_PARAMS_31: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_D_BOX_LAYOUT_32: Symbol[
+    DUNGEON_WINDOW_PARAMS_32: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15534,7 +15989,7 @@ class Overlay34DataProtocol(Protocol):
         Optional[int],
     ]
 
-    START_MENU_CONFIRM: Symbol[
+    START_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15544,7 +15999,7 @@ class Overlay34DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_DEBUG_MENU: Symbol[
+    DUNGEON_DEBUG_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15683,12 +16138,32 @@ class Overlay9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CloseJukeboxTrackMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsJukeboxTrackMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateJukeboxTrackMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
     CreatePlaybackControlsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClosePlaybackControlsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsPlaybackControlsMenuActive: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15703,6 +16178,16 @@ class Overlay9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CloseInputLockBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsInputLockBoxActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateInputLockBox: Symbol[
         Optional[list[int]],
         None,
@@ -15710,6 +16195,21 @@ class Overlay9FunctionsProtocol(Protocol):
 
 
 class Overlay9DataProtocol(Protocol):
+    JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PLAYBACK_CONTROLS_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    INPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     TOP_MENU_RETURN_MUSIC_ID: Symbol[
         Optional[list[int]],
         None,
