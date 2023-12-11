@@ -4816,6 +4816,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SoundUtilGetRandomNumber: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ReadWaviEntry: Symbol[
         Optional[list[int]],
         None,
@@ -4851,7 +4856,122 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SoundEnvelopeReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundEnvelopeParametersReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundEnvelopeParametersCheckValidity: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundEnvelopeSetParameters: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundEnvelopeSetSlide: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateTrackVolumeEnvelopes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundEnvelopeRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundEnvelopeStop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundEnvelopeForceVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundEnvelopeStop2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundEnvelopeTick: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoBankReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoBankSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoBankSetConstEnvelopes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoBankTick: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoWaveInvalidFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoWaveHalfSquareFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoWaveFullSquareFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoWaveHalfTriangleFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoWaveFullTriangleFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoWaveSawFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoWaveReverseSawFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoWaveHalfNoiseFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoundLfoWaveFullNoiseFunc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6103,6 +6223,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    LFO_OUTPUT_VOICE_UPDATE_FLAGS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     TRIG_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -6284,6 +6409,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     MUSIC_DURATION_LOOKUP_TABLE_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LFO_WAVEFORM_CALLBACKS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

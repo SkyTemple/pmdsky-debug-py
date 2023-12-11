@@ -8116,6 +8116,10 @@ class EuArm9Functions:
         " ID\nreturn: Dungeon mode",
     )
 
+    SoundUtilGetRandomNumber = Symbol(
+        [0x6CC8C], [0x206CC8C], None, "return: random number in the range [0, 32767]"
+    )
+
     ReadWaviEntry = Symbol(
         [0x6D8F0],
         [0x206D8F0],
@@ -8176,11 +8180,118 @@ class EuArm9Functions:
         " and Irdkwia's notes.\n\nNo params.",
     )
 
+    SoundEnvelopeReset = Symbol(
+        [0x75008], [0x2075008], None, "r0: Sound envelope pointer"
+    )
+
+    SoundEnvelopeParametersReset = Symbol(
+        [0x7501C], [0x207501C], None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeParametersCheckValidity = Symbol(
+        [0x75038], [0x2075038], None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeSetParameters = Symbol(
+        [0x7508C],
+        [0x207508C],
+        None,
+        "r0: Sound envelope pointer\nr1: Sound envelope parameters pointer",
+    )
+
+    SoundEnvelopeSetSlide = Symbol(
+        [0x750F0],
+        [0x20750F0],
+        None,
+        "r0: Sound envelope pointer\nr1: Target volume\nr2: Music duration lookup table"
+        " index",
+    )
+
     UpdateTrackVolumeEnvelopes = Symbol(
         [0x751A4],
         [0x20751A4],
         None,
-        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nr0:"
+        " Sound envelope pointer",
+    )
+
+    SoundEnvelopeRelease = Symbol(
+        [0x75270], [0x2075270], None, "r0: Sound envelope pointer"
+    )
+
+    SoundEnvelopeStop = Symbol(
+        [0x7529C], [0x207529C], None, "r0: Sound envelope pointer"
+    )
+
+    SoundEnvelopeForceVolume = Symbol(
+        [0x752B4], [0x20752B4], None, "r0: Sound envelope pointer\nr1: Volume"
+    )
+
+    SoundEnvelopeStop2 = Symbol(
+        [0x752D4], [0x20752D4], None, "r0: Sound envelope pointer"
+    )
+
+    SoundEnvelopeTick = Symbol(
+        [0x752EC],
+        [0x20752EC],
+        None,
+        "r0: Sound envelope pointer\nreturn: Current volume",
+    )
+
+    SoundLfoBankReset = Symbol([0x75434], [0x2075434], None, "r0: LFO bank pointer")
+
+    SoundLfoBankSet = Symbol(
+        [0x7544C],
+        [0x207544C],
+        None,
+        "r0: LFO bank pointer\nr1: LFO settings pointer\nr2: Envelope level",
+    )
+
+    SoundLfoBankSetConstEnvelopes = Symbol(
+        [0x75644], [0x2075644], None, "r0: LFO bank pointer\nr1: Level"
+    )
+
+    SoundLfoBankTick = Symbol(
+        [0x75690],
+        [0x2075690],
+        None,
+        "r0: LFO bank pointer\nreturn: New voice update flags",
+    )
+
+    SoundLfoWaveInvalidFunc = Symbol(
+        [0x75744], [0x2075744], None, "r0: LFO pointer\nreturn: 0"
+    )
+
+    SoundLfoWaveHalfSquareFunc = Symbol(
+        [0x75758], [0x2075758], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullSquareFunc = Symbol(
+        [0x75794], [0x2075794], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfTriangleFunc = Symbol(
+        [0x757DC], [0x20757DC], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullTriangleFunc = Symbol(
+        [0x75830], [0x2075830], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveSawFunc = Symbol(
+        [0x75894], [0x2075894], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveReverseSawFunc = Symbol(
+        [0x758D0], [0x20758D0], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfNoiseFunc = Symbol(
+        [0x7590C], [0x207590C], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullNoiseFunc = Symbol(
+        [0x75950], [0x2075950], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     EnableVramBanksInSetDontSave = Symbol(
@@ -9969,6 +10080,8 @@ class EuArm9Data:
         " End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
     )
 
+    LFO_OUTPUT_VOICE_UPDATE_FLAGS = Symbol([0xAA840], [0x20AA840], 0x10, "")
+
     TRIG_TABLE = Symbol(
         [0xAA850],
         [0x20AA850],
@@ -10238,6 +10351,8 @@ class EuArm9Data:
         0x200,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int32_t[128]",
     )
+
+    LFO_WAVEFORM_CALLBACKS = Symbol([0xB1B94], [0x20B1B94], 0x40, "")
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."

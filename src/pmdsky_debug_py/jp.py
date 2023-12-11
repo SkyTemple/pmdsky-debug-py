@@ -8114,6 +8114,10 @@ class JpArm9Functions:
         " ID\nreturn: Dungeon mode",
     )
 
+    SoundUtilGetRandomNumber = Symbol(
+        None, None, None, "return: random number in the range [0, 32767]"
+    )
+
     ReadWaviEntry = Symbol(
         [0x6D840],
         [0x206D840],
@@ -8174,11 +8178,102 @@ class JpArm9Functions:
         " and Irdkwia's notes.\n\nNo params.",
     )
 
+    SoundEnvelopeReset = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeParametersReset = Symbol(
+        None, None, None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeParametersCheckValidity = Symbol(
+        None, None, None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeSetParameters = Symbol(
+        None,
+        None,
+        None,
+        "r0: Sound envelope pointer\nr1: Sound envelope parameters pointer",
+    )
+
+    SoundEnvelopeSetSlide = Symbol(
+        None,
+        None,
+        None,
+        "r0: Sound envelope pointer\nr1: Target volume\nr2: Music duration lookup table"
+        " index",
+    )
+
     UpdateTrackVolumeEnvelopes = Symbol(
         [0x750F4],
         [0x20750F4],
         None,
-        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nr0:"
+        " Sound envelope pointer",
+    )
+
+    SoundEnvelopeRelease = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeStop = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeForceVolume = Symbol(
+        None, None, None, "r0: Sound envelope pointer\nr1: Volume"
+    )
+
+    SoundEnvelopeStop2 = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeTick = Symbol(
+        None, None, None, "r0: Sound envelope pointer\nreturn: Current volume"
+    )
+
+    SoundLfoBankReset = Symbol(None, None, None, "r0: LFO bank pointer")
+
+    SoundLfoBankSet = Symbol(
+        None,
+        None,
+        None,
+        "r0: LFO bank pointer\nr1: LFO settings pointer\nr2: Envelope level",
+    )
+
+    SoundLfoBankSetConstEnvelopes = Symbol(
+        None, None, None, "r0: LFO bank pointer\nr1: Level"
+    )
+
+    SoundLfoBankTick = Symbol(
+        None, None, None, "r0: LFO bank pointer\nreturn: New voice update flags"
+    )
+
+    SoundLfoWaveInvalidFunc = Symbol(None, None, None, "r0: LFO pointer\nreturn: 0")
+
+    SoundLfoWaveHalfSquareFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullSquareFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfTriangleFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullTriangleFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveSawFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveReverseSawFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfNoiseFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullNoiseFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     EnableVramBanksInSetDontSave = Symbol(
@@ -9447,7 +9542,7 @@ class JpArm9Data:
         [0xA2C6C], [0x20A2C6C], 0x2, "Stat boost value for the aura bows."
     )
 
-    MIN_IQ_ITEM_MASTER = Symbol([0xA2C60], [0x20A2C60], 0x4, "")
+    MIN_IQ_ITEM_MASTER = Symbol([0xA2C78], [0x20A2C78], 0x4, "")
 
     DEF_SCARF_STAT_BOOST = Symbol(
         [0xA2C7C], [0x20A2C7C], 0x2, "Stat boost value for the Defense Scarf."
@@ -9962,6 +10057,8 @@ class JpArm9Data:
         " End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
     )
 
+    LFO_OUTPUT_VOICE_UPDATE_FLAGS = Symbol(None, None, None, "")
+
     TRIG_TABLE = Symbol(
         [0xAB3F8],
         [0x20AB3F8],
@@ -10231,6 +10328,8 @@ class JpArm9Data:
         0x200,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int32_t[128]",
     )
+
+    LFO_WAVEFORM_CALLBACKS = Symbol(None, None, None, "")
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x117E0], [0x20117E0], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
@@ -14406,8 +14505,8 @@ class JpOverlay10Data:
     )
 
     IMPRISON_TURN_RANGE = Symbol(
-        [0x7BE0],
-        [0x22C5E00],
+        [0x7BE4],
+        [0x22C5E04],
         0x4,
         "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype:"
         " int16_t[2]",

@@ -8116,6 +8116,10 @@ class NaArm9Functions:
         " ID\nreturn: Dungeon mode",
     )
 
+    SoundUtilGetRandomNumber = Symbol(
+        [0x6C8F4], [0x206C8F4], None, "return: random number in the range [0, 32767]"
+    )
+
     ReadWaviEntry = Symbol(
         [0x6D558],
         [0x206D558],
@@ -8176,11 +8180,118 @@ class NaArm9Functions:
         " and Irdkwia's notes.\n\nNo params.",
     )
 
+    SoundEnvelopeReset = Symbol(
+        [0x74C70], [0x2074C70], None, "r0: Sound envelope pointer"
+    )
+
+    SoundEnvelopeParametersReset = Symbol(
+        [0x74C84], [0x2074C84], None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeParametersCheckValidity = Symbol(
+        [0x74CA0], [0x2074CA0], None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeSetParameters = Symbol(
+        [0x74CF4],
+        [0x2074CF4],
+        None,
+        "r0: Sound envelope pointer\nr1: Sound envelope parameters pointer",
+    )
+
+    SoundEnvelopeSetSlide = Symbol(
+        [0x74D58],
+        [0x2074D58],
+        None,
+        "r0: Sound envelope pointer\nr1: Target volume\nr2: Music duration lookup table"
+        " index",
+    )
+
     UpdateTrackVolumeEnvelopes = Symbol(
         [0x74E0C],
         [0x2074E0C],
         None,
-        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nr0:"
+        " Sound envelope pointer",
+    )
+
+    SoundEnvelopeRelease = Symbol(
+        [0x74ED8], [0x2074ED8], None, "r0: Sound envelope pointer"
+    )
+
+    SoundEnvelopeStop = Symbol(
+        [0x74F04], [0x2074F04], None, "r0: Sound envelope pointer"
+    )
+
+    SoundEnvelopeForceVolume = Symbol(
+        [0x74F1C], [0x2074F1C], None, "r0: Sound envelope pointer\nr1: Volume"
+    )
+
+    SoundEnvelopeStop2 = Symbol(
+        [0x74F3C], [0x2074F3C], None, "r0: Sound envelope pointer"
+    )
+
+    SoundEnvelopeTick = Symbol(
+        [0x74F54],
+        [0x2074F54],
+        None,
+        "r0: Sound envelope pointer\nreturn: Current volume",
+    )
+
+    SoundLfoBankReset = Symbol([0x7509C], [0x207509C], None, "r0: LFO bank pointer")
+
+    SoundLfoBankSet = Symbol(
+        [0x750B4],
+        [0x20750B4],
+        None,
+        "r0: LFO bank pointer\nr1: LFO settings pointer\nr2: Envelope level",
+    )
+
+    SoundLfoBankSetConstEnvelopes = Symbol(
+        [0x752AC], [0x20752AC], None, "r0: LFO bank pointer\nr1: Level"
+    )
+
+    SoundLfoBankTick = Symbol(
+        [0x752F8],
+        [0x20752F8],
+        None,
+        "r0: LFO bank pointer\nreturn: New voice update flags",
+    )
+
+    SoundLfoWaveInvalidFunc = Symbol(
+        [0x753AC], [0x20753AC], None, "r0: LFO pointer\nreturn: 0"
+    )
+
+    SoundLfoWaveHalfSquareFunc = Symbol(
+        [0x753C0], [0x20753C0], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullSquareFunc = Symbol(
+        [0x753FC], [0x20753FC], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfTriangleFunc = Symbol(
+        [0x75444], [0x2075444], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullTriangleFunc = Symbol(
+        [0x75498], [0x2075498], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveSawFunc = Symbol(
+        [0x754FC], [0x20754FC], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveReverseSawFunc = Symbol(
+        [0x75538], [0x2075538], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfNoiseFunc = Symbol(
+        [0x75574], [0x2075574], None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullNoiseFunc = Symbol(
+        [0x755B8], [0x20755B8], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     EnableVramBanksInSetDontSave = Symbol(
@@ -9974,6 +10085,8 @@ class NaArm9Data:
         " End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
     )
 
+    LFO_OUTPUT_VOICE_UPDATE_FLAGS = Symbol([0xA9FA0], [0x20A9FA0], 0x10, "")
+
     TRIG_TABLE = Symbol(
         [0xA9FB0],
         [0x20A9FB0],
@@ -10243,6 +10356,8 @@ class NaArm9Data:
         0x200,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int32_t[128]",
     )
+
+    LFO_WAVEFORM_CALLBACKS = Symbol([0xB1250], [0x20B1250], 0x40, "")
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x11810], [0x2011810], 0x1, "IQ gain when ingesting nectar at the Juice Bar."

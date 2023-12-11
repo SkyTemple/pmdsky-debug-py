@@ -7933,6 +7933,10 @@ class EuItcmArm9Functions:
         " ID\nreturn: Dungeon mode",
     )
 
+    SoundUtilGetRandomNumber = Symbol(
+        None, None, None, "return: random number in the range [0, 32767]"
+    )
+
     ReadWaviEntry = Symbol(
         None,
         None,
@@ -7990,11 +7994,102 @@ class EuItcmArm9Functions:
         " and Irdkwia's notes.\n\nNo params.",
     )
 
+    SoundEnvelopeReset = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeParametersReset = Symbol(
+        None, None, None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeParametersCheckValidity = Symbol(
+        None, None, None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeSetParameters = Symbol(
+        None,
+        None,
+        None,
+        "r0: Sound envelope pointer\nr1: Sound envelope parameters pointer",
+    )
+
+    SoundEnvelopeSetSlide = Symbol(
+        None,
+        None,
+        None,
+        "r0: Sound envelope pointer\nr1: Target volume\nr2: Music duration lookup table"
+        " index",
+    )
+
     UpdateTrackVolumeEnvelopes = Symbol(
         None,
         None,
         None,
-        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nr0:"
+        " Sound envelope pointer",
+    )
+
+    SoundEnvelopeRelease = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeStop = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeForceVolume = Symbol(
+        None, None, None, "r0: Sound envelope pointer\nr1: Volume"
+    )
+
+    SoundEnvelopeStop2 = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeTick = Symbol(
+        None, None, None, "r0: Sound envelope pointer\nreturn: Current volume"
+    )
+
+    SoundLfoBankReset = Symbol(None, None, None, "r0: LFO bank pointer")
+
+    SoundLfoBankSet = Symbol(
+        None,
+        None,
+        None,
+        "r0: LFO bank pointer\nr1: LFO settings pointer\nr2: Envelope level",
+    )
+
+    SoundLfoBankSetConstEnvelopes = Symbol(
+        None, None, None, "r0: LFO bank pointer\nr1: Level"
+    )
+
+    SoundLfoBankTick = Symbol(
+        None, None, None, "r0: LFO bank pointer\nreturn: New voice update flags"
+    )
+
+    SoundLfoWaveInvalidFunc = Symbol(None, None, None, "r0: LFO pointer\nreturn: 0")
+
+    SoundLfoWaveHalfSquareFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullSquareFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfTriangleFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullTriangleFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveSawFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveReverseSawFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfNoiseFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullNoiseFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     EnableVramBanksInSetDontSave = Symbol(
@@ -9746,6 +9841,8 @@ class EuItcmArm9Data:
         " End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
     )
 
+    LFO_OUTPUT_VOICE_UPDATE_FLAGS = Symbol(None, None, None, "")
+
     TRIG_TABLE = Symbol(
         None,
         None,
@@ -10010,6 +10107,8 @@ class EuItcmArm9Data:
         None,
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int32_t[128]",
     )
+
+    LFO_WAVEFORM_CALLBACKS = Symbol(None, None, None, "")
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
