@@ -2,6 +2,7 @@ from .protocol import Symbol
 
 
 class JpArm7Functions:
+
     _start_arm7 = Symbol(
         [0x0],
         [0x2380000],
@@ -165,6 +166,7 @@ class JpArm7Functions:
 
 
 class JpArm7Data:
+
     pass
 
 
@@ -192,6 +194,7 @@ class JpArm7Section:
 
 
 class JpArm9Functions:
+
     SvcSoftReset = Symbol(None, None, None, "Software interrupt.")
 
     SvcWaitByLoop = Symbol(None, None, None, "Software interrupt.")
@@ -985,6 +988,35 @@ class JpArm9Functions:
         " pointer\nr2: flags",
     )
 
+    UpdateFadeStatus = Symbol(
+        None,
+        None,
+        None,
+        "Updates the given screen_fade struct to initiate a fade for example.\n\nIn"
+        " addition to initiating a fade this is called when a fade out is complete to"
+        " set a flag for that in the struct.\n\nr0: screen_fade\nr1: probably the type"
+        " of the fade\nr2: duration",
+    )
+
+    HandleFades = Symbol(
+        None,
+        None,
+        None,
+        "Handles updating the screen_fade struct in all modes except dungeon"
+        " mode.\n\nGets called every frame for both screens, analyzes the fade_struct"
+        " and does appropriate actions. If there's a fade in progress, it calculates"
+        " the brightness on the next frame and updates the structure"
+        " accordingly.\n\nr0: screen_fade\nreturn: bool",
+    )
+
+    GetFadeStatus = Symbol(
+        None,
+        None,
+        None,
+        "Returns 1 if fading to black, 2 if fading to white, 0 otherwise.\n\nr0:"
+        " screen_fade\nreturn: int",
+    )
+
     InitDebug = Symbol(
         [0xC0D4],
         [0x200C0D4],
@@ -1588,7 +1620,8 @@ class JpArm9Functions:
         [0xE7F0],
         [0x200E7F0],
         None,
-        "Checks if an item ID is valid(?).\n\nr0: item ID\nreturn: bool",
+        "Checks if an item is valid given its ID.\n\nIn particular, checks if the 'is"
+        " valid' flag is set on its item_p.bin entry.\n\nr0: item ID\nreturn: bool",
     )
 
     GetExclusiveItemParameter = Symbol(
@@ -4032,6 +4065,16 @@ class JpArm9Functions:
         "Checks if A or B is currently being held.\n\nreturn: bool",
     )
 
+    DrawTextInWindow = Symbol(
+        None,
+        None,
+        None,
+        "Seems to be responsible for drawing the text in a window.\n\nNeeds a call to"
+        " UpdateWindow after to actually display the contents.\nUnclear if this is"
+        " generic for windows or just text boxes.\n\nr0: window_id\nr1: x offset within"
+        " window\nr2: y offset within window\nr3: text to draw",
+    )
+
     GetWindow = Symbol(
         [0x27940],
         [0x2027940],
@@ -4074,6 +4117,15 @@ class JpArm9Functions:
         None,
         "Sets the palette of the frames of windows in both screens\n\nr0: palette"
         " index",
+    )
+
+    ClearWindow = Symbol(
+        None,
+        None,
+        None,
+        "Clears the window, at least in the case of a text box.\n\nThe low number of"
+        " XREFs makes it seem like there might be more such functions.\n\nr0:"
+        " window_id",
     )
 
     DeleteWindow = Symbol(
@@ -6457,6 +6509,19 @@ class JpArm9Functions:
         "Gets the size of storage for the current rank.\n\nreturn: storage size",
     )
 
+    ResetPlayTimer = Symbol(None, None, None, "Reset the file timer.\n\nr0: play_time")
+
+    PlayTimerTick = Symbol(
+        None, None, None, "Advance the file timer by 1 frame.\n\nr0: play_time"
+    )
+
+    GetPlayTimeSeconds = Symbol(
+        None,
+        None,
+        None,
+        "Returns the current play time in seconds.\n\nreturn: play time in seconds",
+    )
+
     SubFixedPoint = Symbol(
         [0x51260],
         [0x2051260],
@@ -7811,7 +7876,12 @@ class JpArm9Functions:
         [0x5CD40],
         [0x205CD40],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: mission\nreturn: bool",
+        "Checks if a mission contains valid fields.\n\nFor example, a mission will be"
+        " considered invalid if the ID of the monsters or items involved are out of"
+        " bounds, if their entries are marked as invalid, if the destination floor does"
+        " not exist, etc.\nIf the mission fails one of the checks, the game will print"
+        " an error message explaining what is wrong using DebugPrint0.\n\nr0: mission"
+        " to check\nreturn: True if the mission is valid, false if it's not.",
     )
 
     GenerateMission = Symbol(
@@ -8976,6 +9046,7 @@ class JpArm9Functions:
 
 
 class JpArm9Data:
+
     SECURE = Symbol(
         [0x0],
         [0x2000000],
@@ -9040,6 +9111,14 @@ class JpArm9Data:
 
     SCRIPT_VARS_VALUES_PTR = Symbol(
         None, None, None, "Hard-coded pointer to SCRIPT_VARS_VALUES."
+    )
+
+    MAX_PLAY_TIME = Symbol(
+        None,
+        None,
+        None,
+        "Maximum number of seconds that the file timer counts up to.\n\n35999999"
+        " seconds (one second under 10000 hours).",
     )
 
     MONSTER_ID_LIMIT = Symbol(
@@ -10365,6 +10444,7 @@ class JpArm9Section:
 
 
 class JpItcmFunctions:
+
     Render3dSetTextureParams = Symbol(
         [0x130],
         [0x20B4D10],
@@ -10633,6 +10713,7 @@ class JpItcmFunctions:
 
 
 class JpItcmData:
+
     MEMORY_ALLOCATION_TABLE = Symbol(
         [0x0],
         [0x20B4BE0],
@@ -10702,6 +10783,7 @@ class JpItcmSection:
 
 
 class JpMove_effectsFunctions:
+
     DoMoveDamage = Symbol(
         None,
         None,
@@ -13381,6 +13463,7 @@ class JpMove_effectsFunctions:
 
 
 class JpMove_effectsData:
+
     MAX_HP_CAP_MOVE_EFFECTS = Symbol(None, None, None, "See overlay29.yml::MAX_HP_CAP")
 
     LUNAR_DANCE_PP_RESTORATION = Symbol(
@@ -13404,10 +13487,12 @@ class JpMove_effectsSection:
 
 
 class JpOverlay0Functions:
+
     pass
 
 
 class JpOverlay0Data:
+
     TOP_MENU_MUSIC_ID = Symbol(
         [0x1728], [0x22BF948], None, "Music ID to play in the top menu."
     )
@@ -13429,6 +13514,7 @@ class JpOverlay0Section:
 
 
 class JpOverlay1Functions:
+
     CreateMainMenus = Symbol(
         [0x7BC8],
         [0x2332888],
@@ -13460,8 +13546,18 @@ class JpOverlay1Functions:
         " otherwise",
     )
 
+    ProcessContinueScreenContents = Symbol(
+        None,
+        None,
+        None,
+        "Fetches the required data and creates all the strings to display the contents"
+        " shown in the window\nwhen choosing continue in the main menu.\n\nr0:"
+        " undefined4",
+    )
+
 
 class JpOverlay1Data:
+
     PRINTS_STRINGS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -13539,6 +13635,7 @@ class JpOverlay1Section:
 
 
 class JpOverlay10Functions:
+
     CreateInventoryMenu = Symbol(
         [0x0],
         [0x22BE220],
@@ -13700,6 +13797,40 @@ class JpOverlay10Functions:
         " pointer)",
     )
 
+    DrawTeamStats = Symbol(
+        None,
+        None,
+        None,
+        "Handles creating the windows, sprites, etc. for the team stats top screen"
+        " display.\n\nr0: undefined4\nr1: int\nr2: undefined4\nr3: uint32_t\nreturn:"
+        " undefined4",
+    )
+
+    UpdateTeamStats = Symbol(
+        None,
+        None,
+        None,
+        "Handles updating the team stats top screen display.\n\nNo params.",
+    )
+
+    FreeTeamStats = Symbol(
+        None,
+        None,
+        None,
+        "Handles the procedure to close the team stats top screen display.\n\nFirst it"
+        " deletes the sprites, then it closes the portrait boxes and then the text"
+        " boxes containing the stats for all 4 team members.\n\nreturn: always 1, seems"
+        " unused",
+    )
+
+    FreeMapAndTeam = Symbol(
+        None,
+        None,
+        None,
+        "Handles the procedure to close the map and team top screen display.\n\nreturn:"
+        " always 1, seems unused",
+    )
+
     ProcessTeamStatsLvHp = Symbol(
         None,
         None,
@@ -13750,6 +13881,7 @@ class JpOverlay10Functions:
 
 
 class JpOverlay10Data:
+
     INVENTORY_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
         None,
         None,
@@ -15123,6 +15255,7 @@ class JpOverlay10Section:
 
 
 class JpOverlay11Functions:
+
     UnlockScriptingLock = Symbol(
         [0xEF0],
         [0x22DE7D0],
@@ -15347,6 +15480,15 @@ class JpOverlay11Functions:
         "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
     )
 
+    IsScreenFadeInProgress = Symbol(
+        None,
+        None,
+        None,
+        "Used for example in the handler functions of the top screen types in ground"
+        " mode to check whether the top screen fade is complete or not.\n\nreturn: True"
+        " if the top screen is still fading, false if it's done fading.",
+    )
+
     LoadBackgroundAttributes = Symbol(
         [0xF894],
         [0x22ED174],
@@ -15556,6 +15698,19 @@ class JpOverlay11Functions:
         " swap shop.\n\nr0: ?\nr1: ?",
     )
 
+    HandleControlsTopScreenGround = Symbol(
+        None,
+        None,
+        None,
+        "Handles the controls top screen display in the overworld.\n\nFor some reason"
+        " the implementation seems considerably jankier in ground mode. In dungeon mode"
+        " there's this structure for the top screen that has handlers for creating,"
+        " updating and closing the various top screen layouts in a sort of polymorphic"
+        " way. Here there's just a separate function for every layout that gets called"
+        " every frame and seems to have a switch-case to handle everything about"
+        " it.\n\nNo params.",
+    )
+
     GetDungeonMapPos = Symbol(
         [0x32A14],
         [0x23102F4],
@@ -15596,8 +15751,22 @@ class JpOverlay11Functions:
         " params.",
     )
 
+    HandleTeamStatsGround = Symbol(
+        None,
+        None,
+        None,
+        "Handles the team stats top screen display in the overworld.\n\nFor some reason"
+        " the implementation seems considerably jankier in ground mode. In dungeon mode"
+        " there's this structure for the top screen that has handlers for creating,"
+        " updating and closing the various top screen layouts in a sort of polymorphic"
+        " way. Here there's just a separate function for every layout that gets called"
+        " every frame and seems to have a switch-case to handle everything about"
+        " it.\n\nNo params.",
+    )
+
 
 class JpOverlay11Data:
+
     OVERLAY11_UNKNOWN_TABLE__NA_2316A38 = Symbol(
         None,
         None,
@@ -15770,10 +15939,12 @@ class JpOverlay11Section:
 
 
 class JpOverlay12Functions:
+
     pass
 
 
 class JpOverlay12Data:
+
     pass
 
 
@@ -15787,6 +15958,7 @@ class JpOverlay12Section:
 
 
 class JpOverlay13Functions:
+
     EntryOverlay13 = Symbol(
         [0x0],
         [0x238B6A0],
@@ -15848,6 +16020,7 @@ class JpOverlay13Functions:
 
 
 class JpOverlay13Data:
+
     QUIZ_BORDER_COLOR_TABLE = Symbol(
         [0x1ED8], [0x238D578], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -15967,6 +16140,7 @@ class JpOverlay13Section:
 
 
 class JpOverlay14Functions:
+
     SentrySetupState = Symbol(
         [0x0],
         [0x238B6A0],
@@ -16177,6 +16351,7 @@ class JpOverlay14Functions:
 
 
 class JpOverlay14Data:
+
     SENTRY_DUTY_STRUCT_SIZE = Symbol(
         None, None, None, "Number of bytes in the sentry duty struct (14548)."
     )
@@ -16329,10 +16504,12 @@ class JpOverlay14Section:
 
 
 class JpOverlay15Functions:
+
     pass
 
 
 class JpOverlay15Data:
+
     BANK_MAIN_MENU_ITEMS = Symbol([0xF2C], [0x238C5CC], 0x28, "")
 
     BANK_WINDOW_PARAMS_1 = Symbol(
@@ -16374,10 +16551,12 @@ class JpOverlay15Section:
 
 
 class JpOverlay16Functions:
+
     pass
 
 
 class JpOverlay16Data:
+
     EVO_MENU_ITEMS_CONFIRM = Symbol([0x2BE8], [0x238E288], 0x18, "")
 
     EVO_SUBMENU_ITEMS = Symbol([0x2C00], [0x238E2A0], 0x20, "")
@@ -16439,10 +16618,12 @@ class JpOverlay16Section:
 
 
 class JpOverlay17Functions:
+
     pass
 
 
 class JpOverlay17Data:
+
     ASSEMBLY_WINDOW_PARAMS_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16514,10 +16695,12 @@ class JpOverlay17Section:
 
 
 class JpOverlay18Functions:
+
     pass
 
 
 class JpOverlay18Data:
+
     LINK_SHOP_WINDOW_PARAMS_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16611,6 +16794,7 @@ class JpOverlay18Section:
 
 
 class JpOverlay19Functions:
+
     GetBarItem = Symbol(
         [0x0],
         [0x238B6A0],
@@ -16642,6 +16826,7 @@ class JpOverlay19Functions:
 
 
 class JpOverlay19Data:
+
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
         None, None, None, "4*0x2\n\nNote: unverified, ported from Irdkwia's notes"
     )
@@ -16730,10 +16915,12 @@ class JpOverlay19Section:
 
 
 class JpOverlay2Functions:
+
     pass
 
 
 class JpOverlay2Data:
+
     pass
 
 
@@ -16751,10 +16938,12 @@ class JpOverlay2Section:
 
 
 class JpOverlay20Functions:
+
     pass
 
 
 class JpOverlay20Data:
+
     OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16852,10 +17041,12 @@ class JpOverlay20Section:
 
 
 class JpOverlay21Functions:
+
     pass
 
 
 class JpOverlay21Data:
+
     SWAP_SHOP_WINDOW_PARAMS_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16933,10 +17124,12 @@ class JpOverlay21Section:
 
 
 class JpOverlay22Functions:
+
     pass
 
 
 class JpOverlay22Data:
+
     SHOP_WINDOW_PARAMS_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17028,10 +17221,12 @@ class JpOverlay22Section:
 
 
 class JpOverlay23Functions:
+
     pass
 
 
 class JpOverlay23Data:
+
     OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17111,10 +17306,12 @@ class JpOverlay23Section:
 
 
 class JpOverlay24Functions:
+
     pass
 
 
 class JpOverlay24Data:
+
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17170,10 +17367,12 @@ class JpOverlay24Section:
 
 
 class JpOverlay25Functions:
+
     pass
 
 
 class JpOverlay25Data:
+
     OVERLAY25_UNKNOWN_STRUCT__NA_238B498 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17239,10 +17438,12 @@ class JpOverlay25Section:
 
 
 class JpOverlay26Functions:
+
     pass
 
 
 class JpOverlay26Data:
+
     OVERLAY26_UNKNOWN_TABLE__NA_238AE20 = Symbol(
         None,
         None,
@@ -17289,10 +17490,12 @@ class JpOverlay26Section:
 
 
 class JpOverlay27Functions:
+
     pass
 
 
 class JpOverlay27Data:
+
     OVERLAY27_UNKNOWN_VALUE__NA_238C948 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17372,10 +17575,12 @@ class JpOverlay27Section:
 
 
 class JpOverlay28Functions:
+
     pass
 
 
 class JpOverlay28Data:
+
     pass
 
 
@@ -17389,6 +17594,7 @@ class JpOverlay28Section:
 
 
 class JpOverlay29Functions:
+
     GetWeatherColorTable = Symbol(
         [0x23E0],
         [0x22DFCC0],
@@ -17915,6 +18121,74 @@ class JpOverlay29Functions:
         "Get the level of the monster to be spawned, given its id.\n\nr0: monster"
         " ID\nreturn: Level of the monster to be spawned, or 1 if the specified ID"
         " can't be found on the floor's spawn table.",
+    )
+
+    AllocTopScreenStatus = Symbol(
+        None,
+        None,
+        None,
+        "Allocates and initializes the top_screen_status struct when entering dungeon"
+        " mode.\n\nNo params.",
+    )
+
+    FreeTopScreenStatus = Symbol(
+        None,
+        None,
+        None,
+        "Gets called when leaving dungeon mode, calls FreeTopScreen and then also frees"
+        " the allocated memory to the top_screen_status struct.\n\nNo params.",
+    )
+
+    InitializeTeamStats = Symbol(
+        None,
+        None,
+        None,
+        "Initializes the team stats top screen.\n\nreturn: always 1, seems unused",
+    )
+
+    UpdateTeamStatsWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Contains a check and calls UpdateTeamStats in overlay10.\n\nreturn: always 1,"
+        " seems unused",
+    )
+
+    FreeTeamStatsWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Calls a function that calls FreeTeamStats in overlay10.\n\nreturn: always 1,"
+        " seems unused",
+    )
+
+    AssignTopScreenHandlers = Symbol(
+        None,
+        None,
+        None,
+        "Sets the handler functions of the top screen type.\n\nr0: Array where the"
+        " handler function pointers get written to.\nr1: init_func\nr2:"
+        " update_func\nr3: ?\nstack[0]: free_func",
+    )
+
+    HandleTopScreenFades = Symbol(
+        None,
+        None,
+        None,
+        "Used to initialize and uninitialize the top screen in dungeon mode in"
+        " conjunction with handling the fade status of the screen.\n\nFor example, when"
+        " a fade out is done, it calls the necessary functions to close the top screen"
+        " windows. When it starts fading in again, it re-creates all the necessary"
+        " windows corresponding to the top screen type setting.\n\nNo params.",
+    )
+
+    FreeTopScreen = Symbol(
+        None,
+        None,
+        None,
+        "Gets called twice when fading out the top screen. First it calls the free_func"
+        " of the top screen type and sets the handlers to null and on the second pass"
+        " it just returns.\n\nreturn: always 1, seems unused",
     )
 
     GetDirectionTowardsPosition = Symbol(
@@ -22575,6 +22849,14 @@ class JpOverlay29Functions:
         " bool",
     )
 
+    GetCurrentHiddenStairsType = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the current floor is a secret bazaar or a secret room and returns"
+        " which one it is.\n\nreturn: enum hidden_stairs_type",
+    )
+
     HiddenStairsPresent = Symbol(
         [0x5C1BC],
         [0x2339A9C],
@@ -23648,6 +23930,27 @@ class JpOverlay29Functions:
         " dodges the item.",
     )
 
+    DisplayFloorCard = Symbol(
+        None,
+        None,
+        None,
+        "Dispatches the splash screen between floors showing the dungeon name and the"
+        " current floor.\n\nFirst it checks whether the current floor is a secret"
+        " bazaar or secret room, then it calls HandleFloorCard.\n\nr0: Duration in"
+        " frames",
+    )
+
+    HandleFloorCard = Symbol(
+        None,
+        None,
+        None,
+        "Handles the display of the splash screen between floors showing the dungeon"
+        " name and the current floor.\n\nSeems to enter a loop where it calls"
+        " AdvanceFrame until the desired number of frames is waited or A is"
+        " pressed.\n\nr0: dungeon_id\nr1: floor\nr2: duration\nr3: enum"
+        " hidden_stairs_type",
+    )
+
     CheckActiveChallengeRequest = Symbol(
         [0x6CB94],
         [0x234A474],
@@ -24011,6 +24314,39 @@ class JpOverlay29Functions:
         " engine, etc.",
     )
 
+    StartFadeDungeon = Symbol(
+        None,
+        None,
+        None,
+        "Initiates a screen fade in dungeon mode.\n\nSets the fields of the"
+        " dungeon_fade struct to appropriate values given in the args.\n\nr0: Dungeon"
+        " fade struct\nr1: Change of brightness per frame\nr2: Fade type",
+    )
+
+    StartFadeDungeonWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Calls StartFadeDungeon to initiate a screen fade in dungeon mode.\n\nSets the"
+        " status field in the dungeon_fades struct to the fade type, then uses a"
+        " switch-case to create a mapping of the status enums to different ones for"
+        " some reason. This mapped value is then used in the StartFadeDungeon"
+        " call.\n\nr0: Fade type\nr1: Change of brightness per frame\nr2: Screen to"
+        " fade",
+    )
+
+    HandleFadesDungeon = Symbol(
+        None,
+        None,
+        None,
+        "Gets called every frame for both screens in dungeon mode. Handles the status"
+        " of the screen fades.\n\nr0: enum screen",
+    )
+
+    HandleFadesDungeonBothScreens = Symbol(
+        None, None, None, "Calls HandleFadesDungeon for both screens.\n\nNo params."
+    )
+
     DisplayDungeonTip = Symbol(
         [0x70874],
         [0x234E154],
@@ -24112,6 +24448,7 @@ class JpOverlay29Functions:
 
 
 class JpOverlay29Data:
+
     DUNGEON_STRUCT_SIZE = Symbol(
         None, None, None, "Size of the dungeon struct (0x2CB14)"
     )
@@ -24771,6 +25108,14 @@ class JpOverlay29Data:
         " for most other dungeon mode work.\n\ntype: struct dungeon*",
     )
 
+    TOP_SCREEN_STATUS_PTR = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Pointer for struct for handling the status of the top screen in"
+        " dungeon mode.\n\ntype: struct top_screen_status",
+    )
+
     LEADER_PTR = Symbol(
         None,
         None,
@@ -24875,6 +25220,14 @@ class JpOverlay29Data:
         " file.",
     )
 
+    DUNGEON_FADES_PTR = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Pointer to the dungeon fades struct that maintains the status of"
+        " screen fades in dungeon mode.",
+    )
+
     NECTAR_IQ_BOOST = Symbol(
         [0x3FF70], [0x231D850], None, "IQ boost from ingesting Nectar."
     )
@@ -24895,10 +25248,12 @@ class JpOverlay29Section:
 
 
 class JpOverlay3Functions:
+
     pass
 
 
 class JpOverlay3Data:
+
     pass
 
 
@@ -24912,6 +25267,7 @@ class JpOverlay3Section:
 
 
 class JpOverlay30Functions:
+
     WriteQuicksaveData = Symbol(
         [0x43C],
         [0x2383EDC],
@@ -24927,6 +25283,7 @@ class JpOverlay30Functions:
 
 
 class JpOverlay30Data:
+
     OVERLAY30_JP_STRING_1 = Symbol([0x3840], [0x23872E0], 0xC, "みさき様")
 
     OVERLAY30_JP_STRING_2 = Symbol([0x384C], [0x23872EC], 0xC, "やよい様")
@@ -24942,11 +25299,20 @@ class JpOverlay30Section:
 
 
 class JpOverlay31Functions:
+
     EntryOverlay31 = Symbol(
         [0x0],
         [0x2383AA0],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    DrawDungeonMenuStatusWindow = Symbol(
+        None,
+        None,
+        None,
+        "Draws the contents shown in the main dungeon menu status window showing the"
+        " player's belly, money, play time, etc.\n\nr0: int",
     )
 
     DungeonMenuSwitch = Symbol(
@@ -25042,6 +25408,7 @@ class JpOverlay31Functions:
 
 
 class JpOverlay31Data:
+
     DUNGEON_WINDOW_PARAMS_1 = Symbol(
         [0x75BC], [0x238B05C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -25275,10 +25642,12 @@ class JpOverlay31Section:
 
 
 class JpOverlay32Functions:
+
     pass
 
 
 class JpOverlay32Data:
+
     pass
 
 
@@ -25292,10 +25661,12 @@ class JpOverlay32Section:
 
 
 class JpOverlay33Functions:
+
     pass
 
 
 class JpOverlay33Data:
+
     pass
 
 
@@ -25309,6 +25680,7 @@ class JpOverlay33Section:
 
 
 class JpOverlay34Functions:
+
     ExplorersOfSkyMain = Symbol(
         None,
         None,
@@ -25320,6 +25692,7 @@ class JpOverlay34Functions:
 
 
 class JpOverlay34Data:
+
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014 = Symbol(
         None,
         None,
@@ -25377,10 +25750,12 @@ class JpOverlay34Section:
 
 
 class JpOverlay35Functions:
+
     pass
 
 
 class JpOverlay35Data:
+
     pass
 
 
@@ -25394,10 +25769,12 @@ class JpOverlay35Section:
 
 
 class JpOverlay4Functions:
+
     pass
 
 
 class JpOverlay4Data:
+
     pass
 
 
@@ -25411,10 +25788,12 @@ class JpOverlay4Section:
 
 
 class JpOverlay5Functions:
+
     pass
 
 
 class JpOverlay5Data:
+
     pass
 
 
@@ -25428,10 +25807,12 @@ class JpOverlay5Section:
 
 
 class JpOverlay6Functions:
+
     pass
 
 
 class JpOverlay6Data:
+
     pass
 
 
@@ -25445,10 +25826,12 @@ class JpOverlay6Section:
 
 
 class JpOverlay7Functions:
+
     pass
 
 
 class JpOverlay7Data:
+
     pass
 
 
@@ -25464,10 +25847,12 @@ class JpOverlay7Section:
 
 
 class JpOverlay8Functions:
+
     pass
 
 
 class JpOverlay8Data:
+
     pass
 
 
@@ -25483,6 +25868,7 @@ class JpOverlay8Section:
 
 
 class JpOverlay9Functions:
+
     CreateJukeboxTrackMenu = Symbol(
         [0x1558],
         [0x233F858],
@@ -25601,6 +25987,7 @@ class JpOverlay9Functions:
 
 
 class JpOverlay9Data:
+
     JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
         None,
         None,
@@ -25645,10 +26032,12 @@ class JpOverlay9Section:
 
 
 class JpRamFunctions:
+
     pass
 
 
 class JpRamData:
+
     DEFAULT_MEMORY_ARENA_MEMORY = Symbol(
         None,
         None,
@@ -25922,7 +26311,8 @@ class JpRamData:
         "The ID of the selected dungeon when setting off from the"
         " overworld.\n\nControls the text and map location during the 'map cutscene'"
         " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
+        " afterwards.\n\nThis field is actually part of a larger struct that also"
+        " contains PENDING_STARTING_FLOOR.\n\ntype: struct dungeon_id_8",
     )
 
     PENDING_STARTING_FLOOR = Symbol(
@@ -26145,6 +26535,7 @@ class JpRamSection:
 
 
 class JpSections:
+
     arm7 = JpArm7Section
 
     arm9 = JpArm9Section

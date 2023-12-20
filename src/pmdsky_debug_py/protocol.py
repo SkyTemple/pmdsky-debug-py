@@ -43,6 +43,7 @@ class SectionProtocol(Protocol[T, U, L]):
 
 
 class Arm7FunctionsProtocol(Protocol):
+
     _start_arm7: Symbol[
         Optional[list[int]],
         None,
@@ -140,6 +141,7 @@ class Arm7FunctionsProtocol(Protocol):
 
 
 class Arm7DataProtocol(Protocol):
+
     pass
 
 
@@ -151,6 +153,7 @@ Arm7Protocol = SectionProtocol[
 
 
 class Arm9FunctionsProtocol(Protocol):
+
     SvcSoftReset: Symbol[
         Optional[list[int]],
         None,
@@ -602,6 +605,21 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     LoadFileFromRom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateFadeStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleFades: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetFadeStatus: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2446,6 +2464,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    DrawTextInWindow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetWindow: Symbol[
         Optional[list[int]],
         None,
@@ -2467,6 +2490,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     SetBothScreensWindowsColor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearWindow: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3837,6 +3865,21 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetRankStorageSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetPlayTimer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayTimerTick: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetPlayTimeSeconds: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5348,6 +5391,7 @@ class Arm9FunctionsProtocol(Protocol):
 
 
 class Arm9DataProtocol(Protocol):
+
     SECURE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -5404,6 +5448,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     SCRIPT_VARS_VALUES_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MAX_PLAY_TIME: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -6447,6 +6496,7 @@ Arm9Protocol = SectionProtocol[
 
 
 class ItcmFunctionsProtocol(Protocol):
+
     Render3dSetTextureParams: Symbol[
         list[int],
         None,
@@ -6599,6 +6649,7 @@ class ItcmFunctionsProtocol(Protocol):
 
 
 class ItcmDataProtocol(Protocol):
+
     MEMORY_ALLOCATION_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -6628,6 +6679,7 @@ ItcmProtocol = SectionProtocol[
 
 
 class Move_effectsFunctionsProtocol(Protocol):
+
     DoMoveDamage: Symbol[
         Optional[list[int]],
         None,
@@ -8205,6 +8257,7 @@ class Move_effectsFunctionsProtocol(Protocol):
 
 
 class Move_effectsDataProtocol(Protocol):
+
     MAX_HP_CAP_MOVE_EFFECTS: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -8224,10 +8277,12 @@ Move_effectsProtocol = SectionProtocol[
 
 
 class Overlay0FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay0DataProtocol(Protocol):
+
     TOP_MENU_MUSIC_ID: Symbol[
         Optional[list[int]],
         None,
@@ -8242,6 +8297,7 @@ Overlay0Protocol = SectionProtocol[
 
 
 class Overlay1FunctionsProtocol(Protocol):
+
     CreateMainMenus: Symbol[
         Optional[list[int]],
         None,
@@ -8257,8 +8313,14 @@ class Overlay1FunctionsProtocol(Protocol):
         None,
     ]
 
+    ProcessContinueScreenContents: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
 
 class Overlay1DataProtocol(Protocol):
+
     PRINTS_STRINGS: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -8358,6 +8420,7 @@ Overlay1Protocol = SectionProtocol[
 
 
 class Overlay10FunctionsProtocol(Protocol):
+
     CreateInventoryMenu: Symbol[
         Optional[list[int]],
         None,
@@ -8453,6 +8516,26 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
+    DrawTeamStats: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateTeamStats: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeTeamStats: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeMapAndTeam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ProcessTeamStatsLvHp: Symbol[
         Optional[list[int]],
         None,
@@ -8480,6 +8563,7 @@ class Overlay10FunctionsProtocol(Protocol):
 
 
 class Overlay10DataProtocol(Protocol):
+
     INVENTORY_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -9414,6 +9498,7 @@ Overlay10Protocol = SectionProtocol[
 
 
 class Overlay11FunctionsProtocol(Protocol):
+
     UnlockScriptingLock: Symbol[
         Optional[list[int]],
         None,
@@ -9549,6 +9634,11 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsScreenFadeInProgress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     LoadBackgroundAttributes: Symbol[
         Optional[list[int]],
         None,
@@ -9674,6 +9764,11 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    HandleControlsTopScreenGround: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetDungeonMapPos: Symbol[
         Optional[list[int]],
         None,
@@ -9694,8 +9789,14 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    HandleTeamStatsGround: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
 
 class Overlay11DataProtocol(Protocol):
+
     OVERLAY11_UNKNOWN_TABLE__NA_2316A38: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -9815,10 +9916,12 @@ Overlay11Protocol = SectionProtocol[
 
 
 class Overlay12FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay12DataProtocol(Protocol):
+
     pass
 
 
@@ -9830,6 +9933,7 @@ Overlay12Protocol = SectionProtocol[
 
 
 class Overlay13FunctionsProtocol(Protocol):
+
     EntryOverlay13: Symbol[
         Optional[list[int]],
         None,
@@ -9867,6 +9971,7 @@ class Overlay13FunctionsProtocol(Protocol):
 
 
 class Overlay13DataProtocol(Protocol):
+
     QUIZ_BORDER_COLOR_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -10001,6 +10106,7 @@ Overlay13Protocol = SectionProtocol[
 
 
 class Overlay14FunctionsProtocol(Protocol):
+
     SentrySetupState: Symbol[
         Optional[list[int]],
         None,
@@ -10198,6 +10304,7 @@ class Overlay14FunctionsProtocol(Protocol):
 
 
 class Overlay14DataProtocol(Protocol):
+
     SENTRY_DUTY_STRUCT_SIZE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -10322,10 +10429,12 @@ Overlay14Protocol = SectionProtocol[
 
 
 class Overlay15FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay15DataProtocol(Protocol):
+
     BANK_MAIN_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -10375,10 +10484,12 @@ Overlay15Protocol = SectionProtocol[
 
 
 class Overlay16FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay16DataProtocol(Protocol):
+
     EVO_MENU_ITEMS_CONFIRM: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -10458,10 +10569,12 @@ Overlay16Protocol = SectionProtocol[
 
 
 class Overlay17FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay17DataProtocol(Protocol):
+
     ASSEMBLY_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -10571,10 +10684,12 @@ Overlay17Protocol = SectionProtocol[
 
 
 class Overlay18FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay18DataProtocol(Protocol):
+
     LINK_SHOP_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -10709,6 +10824,7 @@ Overlay18Protocol = SectionProtocol[
 
 
 class Overlay19FunctionsProtocol(Protocol):
+
     GetBarItem: Symbol[
         Optional[list[int]],
         None,
@@ -10731,6 +10847,7 @@ class Overlay19FunctionsProtocol(Protocol):
 
 
 class Overlay19DataProtocol(Protocol):
+
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -10835,10 +10952,12 @@ Overlay19Protocol = SectionProtocol[
 
 
 class Overlay2FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay2DataProtocol(Protocol):
+
     pass
 
 
@@ -10850,10 +10969,12 @@ Overlay2Protocol = SectionProtocol[
 
 
 class Overlay20FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay20DataProtocol(Protocol):
+
     OVERLAY20_UNKNOWN_POINTER__NA_238CF7C: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -10988,10 +11109,12 @@ Overlay20Protocol = SectionProtocol[
 
 
 class Overlay21FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay21DataProtocol(Protocol):
+
     SWAP_SHOP_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11101,10 +11224,12 @@ Overlay21Protocol = SectionProtocol[
 
 
 class Overlay22FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay22DataProtocol(Protocol):
+
     SHOP_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11224,10 +11349,12 @@ Overlay22Protocol = SectionProtocol[
 
 
 class Overlay23FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay23DataProtocol(Protocol):
+
     OVERLAY23_UNKNOWN_VALUE__NA_238D2E8: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11332,10 +11459,12 @@ Overlay23Protocol = SectionProtocol[
 
 
 class Overlay24FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay24DataProtocol(Protocol):
+
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11405,10 +11534,12 @@ Overlay24Protocol = SectionProtocol[
 
 
 class Overlay25FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay25DataProtocol(Protocol):
+
     OVERLAY25_UNKNOWN_STRUCT__NA_238B498: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11493,10 +11624,12 @@ Overlay25Protocol = SectionProtocol[
 
 
 class Overlay26FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay26DataProtocol(Protocol):
+
     OVERLAY26_UNKNOWN_TABLE__NA_238AE20: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11541,10 +11674,12 @@ Overlay26Protocol = SectionProtocol[
 
 
 class Overlay27FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay27DataProtocol(Protocol):
+
     OVERLAY27_UNKNOWN_VALUE__NA_238C948: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11649,10 +11784,12 @@ Overlay27Protocol = SectionProtocol[
 
 
 class Overlay28FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay28DataProtocol(Protocol):
+
     pass
 
 
@@ -11664,6 +11801,7 @@ Overlay28Protocol = SectionProtocol[
 
 
 class Overlay29FunctionsProtocol(Protocol):
+
     GetWeatherColorTable: Symbol[
         Optional[list[int]],
         None,
@@ -11930,6 +12068,46 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetMonsterLevelToSpawn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllocTopScreenStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeTopScreenStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitializeTeamStats: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateTeamStatsWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeTeamStatsWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AssignTopScreenHandlers: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleTopScreenFades: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeTopScreen: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -14394,6 +14572,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetCurrentHiddenStairsType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     HiddenStairsPresent: Symbol[
         Optional[list[int]],
         None,
@@ -14919,6 +15102,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DisplayFloorCard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleFloorCard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CheckActiveChallengeRequest: Symbol[
         Optional[list[int]],
         None,
@@ -15134,6 +15327,26 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    StartFadeDungeon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StartFadeDungeonWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleFadesDungeon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleFadesDungeonBothScreens: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DisplayDungeonTip: Symbol[
         Optional[list[int]],
         None,
@@ -15186,6 +15399,7 @@ class Overlay29FunctionsProtocol(Protocol):
 
 
 class Overlay29DataProtocol(Protocol):
+
     DUNGEON_STRUCT_SIZE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -15606,6 +15820,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    TOP_SCREEN_STATUS_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     LEADER_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -15666,6 +15885,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DUNGEON_FADES_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     NECTAR_IQ_BOOST: Symbol[
         Optional[list[int]],
         None,
@@ -15680,10 +15904,12 @@ Overlay29Protocol = SectionProtocol[
 
 
 class Overlay3FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay3DataProtocol(Protocol):
+
     pass
 
 
@@ -15695,6 +15921,7 @@ Overlay3Protocol = SectionProtocol[
 
 
 class Overlay30FunctionsProtocol(Protocol):
+
     WriteQuicksaveData: Symbol[
         Optional[list[int]],
         None,
@@ -15702,6 +15929,7 @@ class Overlay30FunctionsProtocol(Protocol):
 
 
 class Overlay30DataProtocol(Protocol):
+
     OVERLAY30_JP_STRING_1: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -15721,7 +15949,13 @@ Overlay30Protocol = SectionProtocol[
 
 
 class Overlay31FunctionsProtocol(Protocol):
+
     EntryOverlay31: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawDungeonMenuStatusWindow: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15773,6 +16007,7 @@ class Overlay31FunctionsProtocol(Protocol):
 
 
 class Overlay31DataProtocol(Protocol):
+
     DUNGEON_WINDOW_PARAMS_1: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -16077,10 +16312,12 @@ Overlay31Protocol = SectionProtocol[
 
 
 class Overlay32FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay32DataProtocol(Protocol):
+
     pass
 
 
@@ -16092,10 +16329,12 @@ Overlay32Protocol = SectionProtocol[
 
 
 class Overlay33FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay33DataProtocol(Protocol):
+
     pass
 
 
@@ -16107,6 +16346,7 @@ Overlay33Protocol = SectionProtocol[
 
 
 class Overlay34FunctionsProtocol(Protocol):
+
     ExplorersOfSkyMain: Symbol[
         Optional[list[int]],
         None,
@@ -16114,6 +16354,7 @@ class Overlay34FunctionsProtocol(Protocol):
 
 
 class Overlay34DataProtocol(Protocol):
+
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -16173,10 +16414,12 @@ Overlay34Protocol = SectionProtocol[
 
 
 class Overlay35FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay35DataProtocol(Protocol):
+
     pass
 
 
@@ -16188,10 +16431,12 @@ Overlay35Protocol = SectionProtocol[
 
 
 class Overlay4FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay4DataProtocol(Protocol):
+
     pass
 
 
@@ -16203,10 +16448,12 @@ Overlay4Protocol = SectionProtocol[
 
 
 class Overlay5FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay5DataProtocol(Protocol):
+
     pass
 
 
@@ -16218,10 +16465,12 @@ Overlay5Protocol = SectionProtocol[
 
 
 class Overlay6FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay6DataProtocol(Protocol):
+
     pass
 
 
@@ -16233,10 +16482,12 @@ Overlay6Protocol = SectionProtocol[
 
 
 class Overlay7FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay7DataProtocol(Protocol):
+
     pass
 
 
@@ -16248,10 +16499,12 @@ Overlay7Protocol = SectionProtocol[
 
 
 class Overlay8FunctionsProtocol(Protocol):
+
     pass
 
 
 class Overlay8DataProtocol(Protocol):
+
     pass
 
 
@@ -16263,6 +16516,7 @@ Overlay8Protocol = SectionProtocol[
 
 
 class Overlay9FunctionsProtocol(Protocol):
+
     CreateJukeboxTrackMenu: Symbol[
         Optional[list[int]],
         None,
@@ -16325,6 +16579,7 @@ class Overlay9FunctionsProtocol(Protocol):
 
 
 class Overlay9DataProtocol(Protocol):
+
     JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -16354,10 +16609,12 @@ Overlay9Protocol = SectionProtocol[
 
 
 class RamFunctionsProtocol(Protocol):
+
     pass
 
 
 class RamDataProtocol(Protocol):
+
     DEFAULT_MEMORY_ARENA_MEMORY: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -16697,6 +16954,7 @@ RamProtocol = SectionProtocol[
 
 
 class AllSymbolsProtocol(Protocol):
+
     arm7: Arm7Protocol
 
     arm9: Arm9Protocol

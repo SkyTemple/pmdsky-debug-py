@@ -2,6 +2,7 @@ from .protocol import Symbol
 
 
 class NaItcmArm7Functions:
+
     _start_arm7 = Symbol(
         None,
         None,
@@ -165,6 +166,7 @@ class NaItcmArm7Functions:
 
 
 class NaItcmArm7Data:
+
     pass
 
 
@@ -192,6 +194,7 @@ class NaItcmArm7Section:
 
 
 class NaItcmArm9Functions:
+
     SvcSoftReset = Symbol(None, None, None, "Software interrupt.")
 
     SvcWaitByLoop = Symbol(None, None, None, "Software interrupt.")
@@ -978,6 +981,35 @@ class NaItcmArm9Functions:
         " pointer\nr2: flags",
     )
 
+    UpdateFadeStatus = Symbol(
+        None,
+        None,
+        None,
+        "Updates the given screen_fade struct to initiate a fade for example.\n\nIn"
+        " addition to initiating a fade this is called when a fade out is complete to"
+        " set a flag for that in the struct.\n\nr0: screen_fade\nr1: probably the type"
+        " of the fade\nr2: duration",
+    )
+
+    HandleFades = Symbol(
+        None,
+        None,
+        None,
+        "Handles updating the screen_fade struct in all modes except dungeon"
+        " mode.\n\nGets called every frame for both screens, analyzes the fade_struct"
+        " and does appropriate actions. If there's a fade in progress, it calculates"
+        " the brightness on the next frame and updates the structure"
+        " accordingly.\n\nr0: screen_fade\nreturn: bool",
+    )
+
+    GetFadeStatus = Symbol(
+        None,
+        None,
+        None,
+        "Returns 1 if fading to black, 2 if fading to white, 0 otherwise.\n\nr0:"
+        " screen_fade\nreturn: int",
+    )
+
     InitDebug = Symbol(
         None,
         None,
@@ -1541,7 +1573,8 @@ class NaItcmArm9Functions:
         None,
         None,
         None,
-        "Checks if an item ID is valid(?).\n\nr0: item ID\nreturn: bool",
+        "Checks if an item is valid given its ID.\n\nIn particular, checks if the 'is"
+        " valid' flag is set on its item_p.bin entry.\n\nr0: item ID\nreturn: bool",
     )
 
     GetExclusiveItemParameter = Symbol(
@@ -3932,6 +3965,16 @@ class NaItcmArm9Functions:
         None, None, None, "Checks if A or B is currently being held.\n\nreturn: bool"
     )
 
+    DrawTextInWindow = Symbol(
+        None,
+        None,
+        None,
+        "Seems to be responsible for drawing the text in a window.\n\nNeeds a call to"
+        " UpdateWindow after to actually display the contents.\nUnclear if this is"
+        " generic for windows or just text boxes.\n\nr0: window_id\nr1: x offset within"
+        " window\nr2: y offset within window\nr3: text to draw",
+    )
+
     GetWindow = Symbol(
         None,
         None,
@@ -3974,6 +4017,15 @@ class NaItcmArm9Functions:
         None,
         "Sets the palette of the frames of windows in both screens\n\nr0: palette"
         " index",
+    )
+
+    ClearWindow = Symbol(
+        None,
+        None,
+        None,
+        "Clears the window, at least in the case of a text box.\n\nThe low number of"
+        " XREFs makes it seem like there might be more such functions.\n\nr0:"
+        " window_id",
     )
 
     DeleteWindow = Symbol(
@@ -6303,6 +6355,19 @@ class NaItcmArm9Functions:
         "Gets the size of storage for the current rank.\n\nreturn: storage size",
     )
 
+    ResetPlayTimer = Symbol(None, None, None, "Reset the file timer.\n\nr0: play_time")
+
+    PlayTimerTick = Symbol(
+        None, None, None, "Advance the file timer by 1 frame.\n\nr0: play_time"
+    )
+
+    GetPlayTimeSeconds = Symbol(
+        None,
+        None,
+        None,
+        "Returns the current play time in seconds.\n\nreturn: play time in seconds",
+    )
+
     SubFixedPoint = Symbol(
         None,
         None,
@@ -7648,7 +7713,12 @@ class NaItcmArm9Functions:
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: mission\nreturn: bool",
+        "Checks if a mission contains valid fields.\n\nFor example, a mission will be"
+        " considered invalid if the ID of the monsters or items involved are out of"
+        " bounds, if their entries are marked as invalid, if the destination floor does"
+        " not exist, etc.\nIf the mission fails one of the checks, the game will print"
+        " an error message explaining what is wrong using DebugPrint0.\n\nr0: mission"
+        " to check\nreturn: True if the mission is valid, false if it's not.",
     )
 
     GenerateMission = Symbol(
@@ -8789,6 +8859,7 @@ class NaItcmArm9Functions:
 
 
 class NaItcmArm9Data:
+
     SECURE = Symbol(
         None,
         None,
@@ -8845,6 +8916,14 @@ class NaItcmArm9Data:
 
     SCRIPT_VARS_VALUES_PTR = Symbol(
         None, None, None, "Hard-coded pointer to SCRIPT_VARS_VALUES."
+    )
+
+    MAX_PLAY_TIME = Symbol(
+        None,
+        None,
+        None,
+        "Maximum number of seconds that the file timer counts up to.\n\n35999999"
+        " seconds (one second under 10000 hours).",
     )
 
     MONSTER_ID_LIMIT = Symbol(
@@ -10140,6 +10219,7 @@ class NaItcmArm9Section:
 
 
 class NaItcmItcmFunctions:
+
     Render3dSetTextureParams = Symbol(
         [0x130],
         [0x1FF8130],
@@ -10408,6 +10488,7 @@ class NaItcmItcmFunctions:
 
 
 class NaItcmItcmData:
+
     MEMORY_ALLOCATION_TABLE = Symbol(
         None,
         None,
@@ -10477,6 +10558,7 @@ class NaItcmItcmSection:
 
 
 class NaItcmMove_effectsFunctions:
+
     DoMoveDamage = Symbol(
         None,
         None,
@@ -13156,6 +13238,7 @@ class NaItcmMove_effectsFunctions:
 
 
 class NaItcmMove_effectsData:
+
     MAX_HP_CAP_MOVE_EFFECTS = Symbol(None, None, None, "See overlay29.yml::MAX_HP_CAP")
 
     LUNAR_DANCE_PP_RESTORATION = Symbol(
@@ -13179,10 +13262,12 @@ class NaItcmMove_effectsSection:
 
 
 class NaItcmOverlay0Functions:
+
     pass
 
 
 class NaItcmOverlay0Data:
+
     TOP_MENU_MUSIC_ID = Symbol(None, None, None, "Music ID to play in the top menu.")
 
 
@@ -13202,6 +13287,7 @@ class NaItcmOverlay0Section:
 
 
 class NaItcmOverlay1Functions:
+
     CreateMainMenus = Symbol(
         None,
         None,
@@ -13233,8 +13319,18 @@ class NaItcmOverlay1Functions:
         " otherwise",
     )
 
+    ProcessContinueScreenContents = Symbol(
+        None,
+        None,
+        None,
+        "Fetches the required data and creates all the strings to display the contents"
+        " shown in the window\nwhen choosing continue in the main menu.\n\nr0:"
+        " undefined4",
+    )
+
 
 class NaItcmOverlay1Data:
+
     PRINTS_STRINGS = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -13312,6 +13408,7 @@ class NaItcmOverlay1Section:
 
 
 class NaItcmOverlay10Functions:
+
     CreateInventoryMenu = Symbol(
         None,
         None,
@@ -13467,6 +13564,40 @@ class NaItcmOverlay10Functions:
         " pointer)",
     )
 
+    DrawTeamStats = Symbol(
+        None,
+        None,
+        None,
+        "Handles creating the windows, sprites, etc. for the team stats top screen"
+        " display.\n\nr0: undefined4\nr1: int\nr2: undefined4\nr3: uint32_t\nreturn:"
+        " undefined4",
+    )
+
+    UpdateTeamStats = Symbol(
+        None,
+        None,
+        None,
+        "Handles updating the team stats top screen display.\n\nNo params.",
+    )
+
+    FreeTeamStats = Symbol(
+        None,
+        None,
+        None,
+        "Handles the procedure to close the team stats top screen display.\n\nFirst it"
+        " deletes the sprites, then it closes the portrait boxes and then the text"
+        " boxes containing the stats for all 4 team members.\n\nreturn: always 1, seems"
+        " unused",
+    )
+
+    FreeMapAndTeam = Symbol(
+        None,
+        None,
+        None,
+        "Handles the procedure to close the map and team top screen display.\n\nreturn:"
+        " always 1, seems unused",
+    )
+
     ProcessTeamStatsLvHp = Symbol(
         None,
         None,
@@ -13517,6 +13648,7 @@ class NaItcmOverlay10Functions:
 
 
 class NaItcmOverlay10Data:
+
     INVENTORY_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
         None,
         None,
@@ -14813,6 +14945,7 @@ class NaItcmOverlay10Section:
 
 
 class NaItcmOverlay11Functions:
+
     UnlockScriptingLock = Symbol(
         None,
         None,
@@ -15037,6 +15170,15 @@ class NaItcmOverlay11Functions:
         "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
     )
 
+    IsScreenFadeInProgress = Symbol(
+        None,
+        None,
+        None,
+        "Used for example in the handler functions of the top screen types in ground"
+        " mode to check whether the top screen fade is complete or not.\n\nreturn: True"
+        " if the top screen is still fading, false if it's done fading.",
+    )
+
     LoadBackgroundAttributes = Symbol(
         None,
         None,
@@ -15246,6 +15388,19 @@ class NaItcmOverlay11Functions:
         " swap shop.\n\nr0: ?\nr1: ?",
     )
 
+    HandleControlsTopScreenGround = Symbol(
+        None,
+        None,
+        None,
+        "Handles the controls top screen display in the overworld.\n\nFor some reason"
+        " the implementation seems considerably jankier in ground mode. In dungeon mode"
+        " there's this structure for the top screen that has handlers for creating,"
+        " updating and closing the various top screen layouts in a sort of polymorphic"
+        " way. Here there's just a separate function for every layout that gets called"
+        " every frame and seems to have a switch-case to handle everything about"
+        " it.\n\nNo params.",
+    )
+
     GetDungeonMapPos = Symbol(
         None,
         None,
@@ -15286,8 +15441,22 @@ class NaItcmOverlay11Functions:
         " params.",
     )
 
+    HandleTeamStatsGround = Symbol(
+        None,
+        None,
+        None,
+        "Handles the team stats top screen display in the overworld.\n\nFor some reason"
+        " the implementation seems considerably jankier in ground mode. In dungeon mode"
+        " there's this structure for the top screen that has handlers for creating,"
+        " updating and closing the various top screen layouts in a sort of polymorphic"
+        " way. Here there's just a separate function for every layout that gets called"
+        " every frame and seems to have a switch-case to handle everything about"
+        " it.\n\nNo params.",
+    )
+
 
 class NaItcmOverlay11Data:
+
     OVERLAY11_UNKNOWN_TABLE__NA_2316A38 = Symbol(
         None,
         None,
@@ -15460,10 +15629,12 @@ class NaItcmOverlay11Section:
 
 
 class NaItcmOverlay12Functions:
+
     pass
 
 
 class NaItcmOverlay12Data:
+
     pass
 
 
@@ -15477,6 +15648,7 @@ class NaItcmOverlay12Section:
 
 
 class NaItcmOverlay13Functions:
+
     EntryOverlay13 = Symbol(
         None,
         None,
@@ -15535,6 +15707,7 @@ class NaItcmOverlay13Functions:
 
 
 class NaItcmOverlay13Data:
+
     QUIZ_BORDER_COLOR_TABLE = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -15648,6 +15821,7 @@ class NaItcmOverlay13Section:
 
 
 class NaItcmOverlay14Functions:
+
     SentrySetupState = Symbol(
         None,
         None,
@@ -15858,6 +16032,7 @@ class NaItcmOverlay14Functions:
 
 
 class NaItcmOverlay14Data:
+
     SENTRY_DUTY_STRUCT_SIZE = Symbol(
         None, None, None, "Number of bytes in the sentry duty struct (14548)."
     )
@@ -16007,10 +16182,12 @@ class NaItcmOverlay14Section:
 
 
 class NaItcmOverlay15Functions:
+
     pass
 
 
 class NaItcmOverlay15Data:
+
     BANK_MAIN_MENU_ITEMS = Symbol(None, None, None, "")
 
     BANK_WINDOW_PARAMS_1 = Symbol(
@@ -16052,10 +16229,12 @@ class NaItcmOverlay15Section:
 
 
 class NaItcmOverlay16Functions:
+
     pass
 
 
 class NaItcmOverlay16Data:
+
     EVO_MENU_ITEMS_CONFIRM = Symbol(None, None, None, "")
 
     EVO_SUBMENU_ITEMS = Symbol(None, None, None, "")
@@ -16117,10 +16296,12 @@ class NaItcmOverlay16Section:
 
 
 class NaItcmOverlay17Functions:
+
     pass
 
 
 class NaItcmOverlay17Data:
+
     ASSEMBLY_WINDOW_PARAMS_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16192,10 +16373,12 @@ class NaItcmOverlay17Section:
 
 
 class NaItcmOverlay18Functions:
+
     pass
 
 
 class NaItcmOverlay18Data:
+
     LINK_SHOP_WINDOW_PARAMS_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16289,6 +16472,7 @@ class NaItcmOverlay18Section:
 
 
 class NaItcmOverlay19Functions:
+
     GetBarItem = Symbol(
         None,
         None,
@@ -16320,6 +16504,7 @@ class NaItcmOverlay19Functions:
 
 
 class NaItcmOverlay19Data:
+
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
         None, None, None, "4*0x2\n\nNote: unverified, ported from Irdkwia's notes"
     )
@@ -16408,10 +16593,12 @@ class NaItcmOverlay19Section:
 
 
 class NaItcmOverlay2Functions:
+
     pass
 
 
 class NaItcmOverlay2Data:
+
     pass
 
 
@@ -16429,10 +16616,12 @@ class NaItcmOverlay2Section:
 
 
 class NaItcmOverlay20Functions:
+
     pass
 
 
 class NaItcmOverlay20Data:
+
     OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16530,10 +16719,12 @@ class NaItcmOverlay20Section:
 
 
 class NaItcmOverlay21Functions:
+
     pass
 
 
 class NaItcmOverlay21Data:
+
     SWAP_SHOP_WINDOW_PARAMS_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16611,10 +16802,12 @@ class NaItcmOverlay21Section:
 
 
 class NaItcmOverlay22Functions:
+
     pass
 
 
 class NaItcmOverlay22Data:
+
     SHOP_WINDOW_PARAMS_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16706,10 +16899,12 @@ class NaItcmOverlay22Section:
 
 
 class NaItcmOverlay23Functions:
+
     pass
 
 
 class NaItcmOverlay23Data:
+
     OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16789,10 +16984,12 @@ class NaItcmOverlay23Section:
 
 
 class NaItcmOverlay24Functions:
+
     pass
 
 
 class NaItcmOverlay24Data:
+
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16848,10 +17045,12 @@ class NaItcmOverlay24Section:
 
 
 class NaItcmOverlay25Functions:
+
     pass
 
 
 class NaItcmOverlay25Data:
+
     OVERLAY25_UNKNOWN_STRUCT__NA_238B498 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16917,10 +17116,12 @@ class NaItcmOverlay25Section:
 
 
 class NaItcmOverlay26Functions:
+
     pass
 
 
 class NaItcmOverlay26Data:
+
     OVERLAY26_UNKNOWN_TABLE__NA_238AE20 = Symbol(
         None,
         None,
@@ -16967,10 +17168,12 @@ class NaItcmOverlay26Section:
 
 
 class NaItcmOverlay27Functions:
+
     pass
 
 
 class NaItcmOverlay27Data:
+
     OVERLAY27_UNKNOWN_VALUE__NA_238C948 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17050,10 +17253,12 @@ class NaItcmOverlay27Section:
 
 
 class NaItcmOverlay28Functions:
+
     pass
 
 
 class NaItcmOverlay28Data:
+
     pass
 
 
@@ -17067,6 +17272,7 @@ class NaItcmOverlay28Section:
 
 
 class NaItcmOverlay29Functions:
+
     GetWeatherColorTable = Symbol(
         None,
         None,
@@ -17593,6 +17799,74 @@ class NaItcmOverlay29Functions:
         "Get the level of the monster to be spawned, given its id.\n\nr0: monster"
         " ID\nreturn: Level of the monster to be spawned, or 1 if the specified ID"
         " can't be found on the floor's spawn table.",
+    )
+
+    AllocTopScreenStatus = Symbol(
+        None,
+        None,
+        None,
+        "Allocates and initializes the top_screen_status struct when entering dungeon"
+        " mode.\n\nNo params.",
+    )
+
+    FreeTopScreenStatus = Symbol(
+        None,
+        None,
+        None,
+        "Gets called when leaving dungeon mode, calls FreeTopScreen and then also frees"
+        " the allocated memory to the top_screen_status struct.\n\nNo params.",
+    )
+
+    InitializeTeamStats = Symbol(
+        None,
+        None,
+        None,
+        "Initializes the team stats top screen.\n\nreturn: always 1, seems unused",
+    )
+
+    UpdateTeamStatsWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Contains a check and calls UpdateTeamStats in overlay10.\n\nreturn: always 1,"
+        " seems unused",
+    )
+
+    FreeTeamStatsWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Calls a function that calls FreeTeamStats in overlay10.\n\nreturn: always 1,"
+        " seems unused",
+    )
+
+    AssignTopScreenHandlers = Symbol(
+        None,
+        None,
+        None,
+        "Sets the handler functions of the top screen type.\n\nr0: Array where the"
+        " handler function pointers get written to.\nr1: init_func\nr2:"
+        " update_func\nr3: ?\nstack[0]: free_func",
+    )
+
+    HandleTopScreenFades = Symbol(
+        None,
+        None,
+        None,
+        "Used to initialize and uninitialize the top screen in dungeon mode in"
+        " conjunction with handling the fade status of the screen.\n\nFor example, when"
+        " a fade out is done, it calls the necessary functions to close the top screen"
+        " windows. When it starts fading in again, it re-creates all the necessary"
+        " windows corresponding to the top screen type setting.\n\nNo params.",
+    )
+
+    FreeTopScreen = Symbol(
+        None,
+        None,
+        None,
+        "Gets called twice when fading out the top screen. First it calls the free_func"
+        " of the top screen type and sets the handlers to null and on the second pass"
+        " it just returns.\n\nreturn: always 1, seems unused",
     )
 
     GetDirectionTowardsPosition = Symbol(
@@ -22244,6 +22518,14 @@ class NaItcmOverlay29Functions:
         " bool",
     )
 
+    GetCurrentHiddenStairsType = Symbol(
+        None,
+        None,
+        None,
+        "Checks if the current floor is a secret bazaar or a secret room and returns"
+        " which one it is.\n\nreturn: enum hidden_stairs_type",
+    )
+
     HiddenStairsPresent = Symbol(
         None,
         None,
@@ -23311,6 +23593,27 @@ class NaItcmOverlay29Functions:
         " dodges the item.",
     )
 
+    DisplayFloorCard = Symbol(
+        None,
+        None,
+        None,
+        "Dispatches the splash screen between floors showing the dungeon name and the"
+        " current floor.\n\nFirst it checks whether the current floor is a secret"
+        " bazaar or secret room, then it calls HandleFloorCard.\n\nr0: Duration in"
+        " frames",
+    )
+
+    HandleFloorCard = Symbol(
+        None,
+        None,
+        None,
+        "Handles the display of the splash screen between floors showing the dungeon"
+        " name and the current floor.\n\nSeems to enter a loop where it calls"
+        " AdvanceFrame until the desired number of frames is waited or A is"
+        " pressed.\n\nr0: dungeon_id\nr1: floor\nr2: duration\nr3: enum"
+        " hidden_stairs_type",
+    )
+
     CheckActiveChallengeRequest = Symbol(
         None,
         None,
@@ -23674,6 +23977,39 @@ class NaItcmOverlay29Functions:
         " engine, etc.",
     )
 
+    StartFadeDungeon = Symbol(
+        None,
+        None,
+        None,
+        "Initiates a screen fade in dungeon mode.\n\nSets the fields of the"
+        " dungeon_fade struct to appropriate values given in the args.\n\nr0: Dungeon"
+        " fade struct\nr1: Change of brightness per frame\nr2: Fade type",
+    )
+
+    StartFadeDungeonWrapper = Symbol(
+        None,
+        None,
+        None,
+        "Calls StartFadeDungeon to initiate a screen fade in dungeon mode.\n\nSets the"
+        " status field in the dungeon_fades struct to the fade type, then uses a"
+        " switch-case to create a mapping of the status enums to different ones for"
+        " some reason. This mapped value is then used in the StartFadeDungeon"
+        " call.\n\nr0: Fade type\nr1: Change of brightness per frame\nr2: Screen to"
+        " fade",
+    )
+
+    HandleFadesDungeon = Symbol(
+        None,
+        None,
+        None,
+        "Gets called every frame for both screens in dungeon mode. Handles the status"
+        " of the screen fades.\n\nr0: enum screen",
+    )
+
+    HandleFadesDungeonBothScreens = Symbol(
+        None, None, None, "Calls HandleFadesDungeon for both screens.\n\nNo params."
+    )
+
     DisplayDungeonTip = Symbol(
         None,
         None,
@@ -23773,6 +24109,7 @@ class NaItcmOverlay29Functions:
 
 
 class NaItcmOverlay29Data:
+
     DUNGEON_STRUCT_SIZE = Symbol(
         None, None, None, "Size of the dungeon struct (0x2CB14)"
     )
@@ -24423,6 +24760,14 @@ class NaItcmOverlay29Data:
         " for most other dungeon mode work.\n\ntype: struct dungeon*",
     )
 
+    TOP_SCREEN_STATUS_PTR = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Pointer for struct for handling the status of the top screen in"
+        " dungeon mode.\n\ntype: struct top_screen_status",
+    )
+
     LEADER_PTR = Symbol(
         None,
         None,
@@ -24527,6 +24872,14 @@ class NaItcmOverlay29Data:
         " file.",
     )
 
+    DUNGEON_FADES_PTR = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Pointer to the dungeon fades struct that maintains the status of"
+        " screen fades in dungeon mode.",
+    )
+
     NECTAR_IQ_BOOST = Symbol(None, None, None, "IQ boost from ingesting Nectar.")
 
 
@@ -24545,10 +24898,12 @@ class NaItcmOverlay29Section:
 
 
 class NaItcmOverlay3Functions:
+
     pass
 
 
 class NaItcmOverlay3Data:
+
     pass
 
 
@@ -24562,6 +24917,7 @@ class NaItcmOverlay3Section:
 
 
 class NaItcmOverlay30Functions:
+
     WriteQuicksaveData = Symbol(
         None,
         None,
@@ -24577,6 +24933,7 @@ class NaItcmOverlay30Functions:
 
 
 class NaItcmOverlay30Data:
+
     OVERLAY30_JP_STRING_1 = Symbol(None, None, None, "みさき様")
 
     OVERLAY30_JP_STRING_2 = Symbol(None, None, None, "やよい様")
@@ -24592,8 +24949,17 @@ class NaItcmOverlay30Section:
 
 
 class NaItcmOverlay31Functions:
+
     EntryOverlay31 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nNo params."
+    )
+
+    DrawDungeonMenuStatusWindow = Symbol(
+        None,
+        None,
+        None,
+        "Draws the contents shown in the main dungeon menu status window showing the"
+        " player's belly, money, play time, etc.\n\nr0: int",
     )
 
     DungeonMenuSwitch = Symbol(
@@ -24689,6 +25055,7 @@ class NaItcmOverlay31Functions:
 
 
 class NaItcmOverlay31Data:
+
     DUNGEON_WINDOW_PARAMS_1 = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -24922,10 +25289,12 @@ class NaItcmOverlay31Section:
 
 
 class NaItcmOverlay32Functions:
+
     pass
 
 
 class NaItcmOverlay32Data:
+
     pass
 
 
@@ -24939,10 +25308,12 @@ class NaItcmOverlay32Section:
 
 
 class NaItcmOverlay33Functions:
+
     pass
 
 
 class NaItcmOverlay33Data:
+
     pass
 
 
@@ -24956,6 +25327,7 @@ class NaItcmOverlay33Section:
 
 
 class NaItcmOverlay34Functions:
+
     ExplorersOfSkyMain = Symbol(
         None,
         None,
@@ -24967,6 +25339,7 @@ class NaItcmOverlay34Functions:
 
 
 class NaItcmOverlay34Data:
+
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014 = Symbol(
         None,
         None,
@@ -25024,10 +25397,12 @@ class NaItcmOverlay34Section:
 
 
 class NaItcmOverlay35Functions:
+
     pass
 
 
 class NaItcmOverlay35Data:
+
     pass
 
 
@@ -25041,10 +25416,12 @@ class NaItcmOverlay35Section:
 
 
 class NaItcmOverlay4Functions:
+
     pass
 
 
 class NaItcmOverlay4Data:
+
     pass
 
 
@@ -25058,10 +25435,12 @@ class NaItcmOverlay4Section:
 
 
 class NaItcmOverlay5Functions:
+
     pass
 
 
 class NaItcmOverlay5Data:
+
     pass
 
 
@@ -25075,10 +25454,12 @@ class NaItcmOverlay5Section:
 
 
 class NaItcmOverlay6Functions:
+
     pass
 
 
 class NaItcmOverlay6Data:
+
     pass
 
 
@@ -25092,10 +25473,12 @@ class NaItcmOverlay6Section:
 
 
 class NaItcmOverlay7Functions:
+
     pass
 
 
 class NaItcmOverlay7Data:
+
     pass
 
 
@@ -25111,10 +25494,12 @@ class NaItcmOverlay7Section:
 
 
 class NaItcmOverlay8Functions:
+
     pass
 
 
 class NaItcmOverlay8Data:
+
     pass
 
 
@@ -25130,6 +25515,7 @@ class NaItcmOverlay8Section:
 
 
 class NaItcmOverlay9Functions:
+
     CreateJukeboxTrackMenu = Symbol(
         None,
         None,
@@ -25245,6 +25631,7 @@ class NaItcmOverlay9Functions:
 
 
 class NaItcmOverlay9Data:
+
     JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
         None,
         None,
@@ -25289,10 +25676,12 @@ class NaItcmOverlay9Section:
 
 
 class NaItcmRamFunctions:
+
     pass
 
 
 class NaItcmRamData:
+
     DEFAULT_MEMORY_ARENA_MEMORY = Symbol(
         None,
         None,
@@ -25563,7 +25952,8 @@ class NaItcmRamData:
         "The ID of the selected dungeon when setting off from the"
         " overworld.\n\nControls the text and map location during the 'map cutscene'"
         " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
+        " afterwards.\n\nThis field is actually part of a larger struct that also"
+        " contains PENDING_STARTING_FLOOR.\n\ntype: struct dungeon_id_8",
     )
 
     PENDING_STARTING_FLOOR = Symbol(
@@ -25786,6 +26176,7 @@ class NaItcmRamSection:
 
 
 class NaItcmSections:
+
     arm7 = NaItcmArm7Section
 
     arm9 = NaItcmArm9Section

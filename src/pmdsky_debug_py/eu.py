@@ -2,6 +2,7 @@ from .protocol import Symbol
 
 
 class EuArm7Functions:
+
     _start_arm7 = Symbol(
         [0x0],
         [0x2380000],
@@ -165,6 +166,7 @@ class EuArm7Functions:
 
 
 class EuArm7Data:
+
     pass
 
 
@@ -192,6 +194,7 @@ class EuArm7Section:
 
 
 class EuArm9Functions:
+
     SvcSoftReset = Symbol([0x1A4], [0x20001A4], None, "Software interrupt.")
 
     SvcWaitByLoop = Symbol([0x6B0], [0x20006B0], None, "Software interrupt.")
@@ -985,6 +988,35 @@ class EuArm9Functions:
         " pointer\nr2: flags",
     )
 
+    UpdateFadeStatus = Symbol(
+        [0xBA18],
+        [0x200BA18],
+        None,
+        "Updates the given screen_fade struct to initiate a fade for example.\n\nIn"
+        " addition to initiating a fade this is called when a fade out is complete to"
+        " set a flag for that in the struct.\n\nr0: screen_fade\nr1: probably the type"
+        " of the fade\nr2: duration",
+    )
+
+    HandleFades = Symbol(
+        [0xBA90],
+        [0x200BA90],
+        None,
+        "Handles updating the screen_fade struct in all modes except dungeon"
+        " mode.\n\nGets called every frame for both screens, analyzes the fade_struct"
+        " and does appropriate actions. If there's a fade in progress, it calculates"
+        " the brightness on the next frame and updates the structure"
+        " accordingly.\n\nr0: screen_fade\nreturn: bool",
+    )
+
+    GetFadeStatus = Symbol(
+        [0xBDB4],
+        [0x200BDB4],
+        None,
+        "Returns 1 if fading to black, 2 if fading to white, 0 otherwise.\n\nr0:"
+        " screen_fade\nreturn: int",
+    )
+
     InitDebug = Symbol(
         [0xC15C],
         [0x200C15C],
@@ -1590,7 +1622,8 @@ class EuArm9Functions:
         [0xE890],
         [0x200E890],
         None,
-        "Checks if an item ID is valid(?).\n\nr0: item ID\nreturn: bool",
+        "Checks if an item is valid given its ID.\n\nIn particular, checks if the 'is"
+        " valid' flag is set on its item_p.bin entry.\n\nr0: item ID\nreturn: bool",
     )
 
     GetExclusiveItemParameter = Symbol(
@@ -4034,6 +4067,16 @@ class EuArm9Functions:
         "Checks if A or B is currently being held.\n\nreturn: bool",
     )
 
+    DrawTextInWindow = Symbol(
+        [0x264F8],
+        [0x20264F8],
+        None,
+        "Seems to be responsible for drawing the text in a window.\n\nNeeds a call to"
+        " UpdateWindow after to actually display the contents.\nUnclear if this is"
+        " generic for windows or just text boxes.\n\nr0: window_id\nr1: x offset within"
+        " window\nr2: y offset within window\nr3: text to draw",
+    )
+
     GetWindow = Symbol(
         [0x278EC],
         [0x20278EC],
@@ -4076,6 +4119,15 @@ class EuArm9Functions:
         None,
         "Sets the palette of the frames of windows in both screens\n\nr0: palette"
         " index",
+    )
+
+    ClearWindow = Symbol(
+        [0x27E4C],
+        [0x2027E4C],
+        None,
+        "Clears the window, at least in the case of a text box.\n\nThe low number of"
+        " XREFs makes it seem like there might be more such functions.\n\nr0:"
+        " window_id",
     )
 
     DeleteWindow = Symbol(
@@ -6459,6 +6511,24 @@ class EuArm9Functions:
         "Gets the size of storage for the current rank.\n\nreturn: storage size",
     )
 
+    ResetPlayTimer = Symbol(
+        [0x51140], [0x2051140], None, "Reset the file timer.\n\nr0: play_time"
+    )
+
+    PlayTimerTick = Symbol(
+        [0x51150],
+        [0x2051150],
+        None,
+        "Advance the file timer by 1 frame.\n\nr0: play_time",
+    )
+
+    GetPlayTimeSeconds = Symbol(
+        [0x5118C],
+        [0x205118C],
+        None,
+        "Returns the current play time in seconds.\n\nreturn: play time in seconds",
+    )
+
     SubFixedPoint = Symbol(
         [0x51248],
         [0x2051248],
@@ -7813,7 +7883,12 @@ class EuArm9Functions:
         [0x5CDBC],
         [0x205CDBC],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: mission\nreturn: bool",
+        "Checks if a mission contains valid fields.\n\nFor example, a mission will be"
+        " considered invalid if the ID of the monsters or items involved are out of"
+        " bounds, if their entries are marked as invalid, if the destination floor does"
+        " not exist, etc.\nIf the mission fails one of the checks, the game will print"
+        " an error message explaining what is wrong using DebugPrint0.\n\nr0: mission"
+        " to check\nreturn: True if the mission is valid, false if it's not.",
     )
 
     GenerateMission = Symbol(
@@ -8994,6 +9069,7 @@ class EuArm9Functions:
 
 
 class EuArm9Data:
+
     SECURE = Symbol(
         [0x0],
         [0x2000000],
@@ -9060,6 +9136,14 @@ class EuArm9Data:
         [0x204B630, 0x204B81C, 0x204C764, 0x204C7BC],
         0x4,
         "Hard-coded pointer to SCRIPT_VARS_VALUES.",
+    )
+
+    MAX_PLAY_TIME = Symbol(
+        [0x51188],
+        [0x2051188],
+        0x4,
+        "Maximum number of seconds that the file timer counts up to.\n\n35999999"
+        " seconds (one second under 10000 hours).",
     )
 
     MONSTER_ID_LIMIT = Symbol(
@@ -10388,6 +10472,7 @@ class EuArm9Section:
 
 
 class EuItcmFunctions:
+
     Render3dSetTextureParams = Symbol(
         [0x130],
         [0x20B3DF0],
@@ -10656,6 +10741,7 @@ class EuItcmFunctions:
 
 
 class EuItcmData:
+
     MEMORY_ALLOCATION_TABLE = Symbol(
         [0x0],
         [0x20B3CC0],
@@ -10725,6 +10811,7 @@ class EuItcmSection:
 
 
 class EuMove_effectsFunctions:
+
     DoMoveDamage = Symbol(
         [0x0, 0x4744, 0x5AF4, 0x7FA0],
         [0x2326828, 0x232AF6C, 0x232C31C, 0x232E7C8],
@@ -13410,6 +13497,7 @@ class EuMove_effectsFunctions:
 
 
 class EuMove_effectsData:
+
     MAX_HP_CAP_MOVE_EFFECTS = Symbol(None, None, None, "See overlay29.yml::MAX_HP_CAP")
 
     LUNAR_DANCE_PP_RESTORATION = Symbol(
@@ -13433,10 +13521,12 @@ class EuMove_effectsSection:
 
 
 class EuOverlay0Functions:
+
     pass
 
 
 class EuOverlay0Data:
+
     TOP_MENU_MUSIC_ID = Symbol(
         [0x15F4], [0x22BE9B4], None, "Music ID to play in the top menu."
     )
@@ -13458,6 +13548,7 @@ class EuOverlay0Section:
 
 
 class EuOverlay1Functions:
+
     CreateMainMenus = Symbol(
         [0x7B88],
         [0x23318C8],
@@ -13489,8 +13580,18 @@ class EuOverlay1Functions:
         " otherwise",
     )
 
+    ProcessContinueScreenContents = Symbol(
+        [0x9998],
+        [0x23336D8],
+        None,
+        "Fetches the required data and creates all the strings to display the contents"
+        " shown in the window\nwhen choosing continue in the main menu.\n\nr0:"
+        " undefined4",
+    )
+
 
 class EuOverlay1Data:
+
     PRINTS_STRINGS = Symbol(
         [0x11B38], [0x233B878], 0x1E8, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -13571,6 +13672,7 @@ class EuOverlay1Section:
 
 
 class EuOverlay10Functions:
+
     CreateInventoryMenu = Symbol(
         [0x0],
         [0x22BD3C0],
@@ -13732,6 +13834,40 @@ class EuOverlay10Functions:
         " pointer)",
     )
 
+    DrawTeamStats = Symbol(
+        [0x3F68],
+        [0x22C1328],
+        None,
+        "Handles creating the windows, sprites, etc. for the team stats top screen"
+        " display.\n\nr0: undefined4\nr1: int\nr2: undefined4\nr3: uint32_t\nreturn:"
+        " undefined4",
+    )
+
+    UpdateTeamStats = Symbol(
+        [0x4260],
+        [0x22C1620],
+        None,
+        "Handles updating the team stats top screen display.\n\nNo params.",
+    )
+
+    FreeTeamStats = Symbol(
+        [0x4934],
+        [0x22C1CF4],
+        None,
+        "Handles the procedure to close the team stats top screen display.\n\nFirst it"
+        " deletes the sprites, then it closes the portrait boxes and then the text"
+        " boxes containing the stats for all 4 team members.\n\nreturn: always 1, seems"
+        " unused",
+    )
+
+    FreeMapAndTeam = Symbol(
+        [0x4C64],
+        [0x22C2024],
+        None,
+        "Handles the procedure to close the map and team top screen display.\n\nreturn:"
+        " always 1, seems unused",
+    )
+
     ProcessTeamStatsLvHp = Symbol(
         [0x4CD4],
         [0x22C2094],
@@ -13782,6 +13918,7 @@ class EuOverlay10Functions:
 
 
 class EuOverlay10Data:
+
     INVENTORY_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
         [0x792C],
         [0x22C4CEC],
@@ -15166,6 +15303,7 @@ class EuOverlay10Section:
 
 
 class EuOverlay11Functions:
+
     UnlockScriptingLock = Symbol(
         [0xEF0],
         [0x22DDA70],
@@ -15390,6 +15528,15 @@ class EuOverlay11Functions:
         "Implements SPECIAL_PROC_0x16 (see ScriptSpecialProcessCall).\n\nr0: bool",
     )
 
+    IsScreenFadeInProgress = Symbol(
+        [0xDD38],
+        [0x22EA8B8],
+        None,
+        "Used for example in the handler functions of the top screen types in ground"
+        " mode to check whether the top screen fade is complete or not.\n\nreturn: True"
+        " if the top screen is still fading, false if it's done fading.",
+    )
+
     LoadBackgroundAttributes = Symbol(
         [0xF900],
         [0x22EC480],
@@ -15599,6 +15746,19 @@ class EuOverlay11Functions:
         " swap shop.\n\nr0: ?\nr1: ?",
     )
 
+    HandleControlsTopScreenGround = Symbol(
+        [0x32434],
+        [0x230EFB4],
+        None,
+        "Handles the controls top screen display in the overworld.\n\nFor some reason"
+        " the implementation seems considerably jankier in ground mode. In dungeon mode"
+        " there's this structure for the top screen that has handlers for creating,"
+        " updating and closing the various top screen layouts in a sort of polymorphic"
+        " way. Here there's just a separate function for every layout that gets called"
+        " every frame and seems to have a switch-case to handle everything about"
+        " it.\n\nNo params.",
+    )
+
     GetDungeonMapPos = Symbol(
         [0x32B64],
         [0x230F6E4],
@@ -15639,8 +15799,22 @@ class EuOverlay11Functions:
         " params.",
     )
 
+    HandleTeamStatsGround = Symbol(
+        [0x3793C],
+        [0x23144BC],
+        None,
+        "Handles the team stats top screen display in the overworld.\n\nFor some reason"
+        " the implementation seems considerably jankier in ground mode. In dungeon mode"
+        " there's this structure for the top screen that has handlers for creating,"
+        " updating and closing the various top screen layouts in a sort of polymorphic"
+        " way. Here there's just a separate function for every layout that gets called"
+        " every frame and seems to have a switch-case to handle everything about"
+        " it.\n\nNo params.",
+    )
+
 
 class EuOverlay11Data:
+
     OVERLAY11_UNKNOWN_TABLE__NA_2316A38 = Symbol(
         None,
         None,
@@ -15816,10 +15990,12 @@ class EuOverlay11Section:
 
 
 class EuOverlay12Functions:
+
     pass
 
 
 class EuOverlay12Data:
+
     pass
 
 
@@ -15833,6 +16009,7 @@ class EuOverlay12Section:
 
 
 class EuOverlay13Functions:
+
     EntryOverlay13 = Symbol(
         [0x0],
         [0x238AC80],
@@ -15894,6 +16071,7 @@ class EuOverlay13Functions:
 
 
 class EuOverlay13Data:
+
     QUIZ_BORDER_COLOR_TABLE = Symbol(
         [0x1ED0], [0x238CB50], 0x4, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16013,6 +16191,7 @@ class EuOverlay13Section:
 
 
 class EuOverlay14Functions:
+
     SentrySetupState = Symbol(
         [0x0],
         [0x238AC80],
@@ -16226,6 +16405,7 @@ class EuOverlay14Functions:
 
 
 class EuOverlay14Data:
+
     SENTRY_DUTY_STRUCT_SIZE = Symbol(
         None, None, None, "Number of bytes in the sentry duty struct (14548)."
     )
@@ -16377,10 +16557,12 @@ class EuOverlay14Section:
 
 
 class EuOverlay15Functions:
+
     pass
 
 
 class EuOverlay15Data:
+
     BANK_MAIN_MENU_ITEMS = Symbol([0xF40], [0x238BBC0], 0x28, "")
 
     BANK_WINDOW_PARAMS_1 = Symbol(
@@ -16422,10 +16604,12 @@ class EuOverlay15Section:
 
 
 class EuOverlay16Functions:
+
     pass
 
 
 class EuOverlay16Data:
+
     EVO_MENU_ITEMS_CONFIRM = Symbol([0x2BCC], [0x238D84C], 0x18, "")
 
     EVO_SUBMENU_ITEMS = Symbol([0x2BE4], [0x238D864], 0x20, "")
@@ -16487,10 +16671,12 @@ class EuOverlay16Section:
 
 
 class EuOverlay17Functions:
+
     pass
 
 
 class EuOverlay17Data:
+
     ASSEMBLY_WINDOW_PARAMS_1 = Symbol(
         [0x19F4], [0x238C674], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16562,10 +16748,12 @@ class EuOverlay17Section:
 
 
 class EuOverlay18Functions:
+
     pass
 
 
 class EuOverlay18Data:
+
     LINK_SHOP_WINDOW_PARAMS_1 = Symbol(
         [0x3130], [0x238DDB0], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16659,6 +16847,7 @@ class EuOverlay18Section:
 
 
 class EuOverlay19Functions:
+
     GetBarItem = Symbol(
         [0x0],
         [0x238AC80],
@@ -16690,6 +16879,7 @@ class EuOverlay19Functions:
 
 
 class EuOverlay19Data:
+
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
         [0x3994],
         [0x238E614],
@@ -16784,10 +16974,12 @@ class EuOverlay19Section:
 
 
 class EuOverlay2Functions:
+
     pass
 
 
 class EuOverlay2Data:
+
     pass
 
 
@@ -16805,10 +16997,12 @@ class EuOverlay2Section:
 
 
 class EuOverlay20Functions:
+
     pass
 
 
 class EuOverlay20Data:
+
     OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
         [0x2E3C], [0x238DABC], None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16906,10 +17100,12 @@ class EuOverlay20Section:
 
 
 class EuOverlay21Functions:
+
     pass
 
 
 class EuOverlay21Data:
+
     SWAP_SHOP_WINDOW_PARAMS_1 = Symbol(
         [0x28E8], [0x238D568], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -16987,10 +17183,12 @@ class EuOverlay21Section:
 
 
 class EuOverlay22Functions:
+
     pass
 
 
 class EuOverlay22Data:
+
     SHOP_WINDOW_PARAMS_1 = Symbol(
         [0x46DC], [0x238F35C], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17082,10 +17280,12 @@ class EuOverlay22Section:
 
 
 class EuOverlay23Functions:
+
     pass
 
 
 class EuOverlay23Data:
+
     OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
         [0x31A8], [0x238DE28], None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17165,10 +17365,12 @@ class EuOverlay23Section:
 
 
 class EuOverlay24Functions:
+
     pass
 
 
 class EuOverlay24Data:
+
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508 = Symbol(
         [0x23C8], [0x238D048], None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17224,10 +17426,12 @@ class EuOverlay24Section:
 
 
 class EuOverlay25Functions:
+
     pass
 
 
 class EuOverlay25Data:
+
     OVERLAY25_UNKNOWN_STRUCT__NA_238B498 = Symbol(
         [0x1358], [0x238BFD8], None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17293,10 +17497,12 @@ class EuOverlay25Section:
 
 
 class EuOverlay26Functions:
+
     pass
 
 
 class EuOverlay26Data:
+
     OVERLAY26_UNKNOWN_TABLE__NA_238AE20 = Symbol(
         [0xCE0],
         [0x238B960],
@@ -17343,10 +17549,12 @@ class EuOverlay26Section:
 
 
 class EuOverlay27Functions:
+
     pass
 
 
 class EuOverlay27Data:
+
     OVERLAY27_UNKNOWN_VALUE__NA_238C948 = Symbol(
         [0x2808], [0x238D488], None, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -17426,10 +17634,12 @@ class EuOverlay27Section:
 
 
 class EuOverlay28Functions:
+
     pass
 
 
 class EuOverlay28Data:
+
     pass
 
 
@@ -17443,6 +17653,7 @@ class EuOverlay28Section:
 
 
 class EuOverlay29Functions:
+
     GetWeatherColorTable = Symbol(
         [0x23E0],
         [0x22DEF60],
@@ -18101,6 +18312,74 @@ class EuOverlay29Functions:
         "Get the level of the monster to be spawned, given its id.\n\nr0: monster"
         " ID\nreturn: Level of the monster to be spawned, or 1 if the specified ID"
         " can't be found on the floor's spawn table.",
+    )
+
+    AllocTopScreenStatus = Symbol(
+        [0xBCF4],
+        [0x22E8874],
+        None,
+        "Allocates and initializes the top_screen_status struct when entering dungeon"
+        " mode.\n\nNo params.",
+    )
+
+    FreeTopScreenStatus = Symbol(
+        [0xBD74],
+        [0x22E88F4],
+        None,
+        "Gets called when leaving dungeon mode, calls FreeTopScreen and then also frees"
+        " the allocated memory to the top_screen_status struct.\n\nNo params.",
+    )
+
+    InitializeTeamStats = Symbol(
+        [0xBF60],
+        [0x22E8AE0],
+        None,
+        "Initializes the team stats top screen.\n\nreturn: always 1, seems unused",
+    )
+
+    UpdateTeamStatsWrapper = Symbol(
+        [0xBFC0],
+        [0x22E8B40],
+        None,
+        "Contains a check and calls UpdateTeamStats in overlay10.\n\nreturn: always 1,"
+        " seems unused",
+    )
+
+    FreeTeamStatsWrapper = Symbol(
+        [0xC018],
+        [0x22E8B98],
+        None,
+        "Calls a function that calls FreeTeamStats in overlay10.\n\nreturn: always 1,"
+        " seems unused",
+    )
+
+    AssignTopScreenHandlers = Symbol(
+        [0xC4F8],
+        [0x22E9078],
+        None,
+        "Sets the handler functions of the top screen type.\n\nr0: Array where the"
+        " handler function pointers get written to.\nr1: init_func\nr2:"
+        " update_func\nr3: ?\nstack[0]: free_func",
+    )
+
+    HandleTopScreenFades = Symbol(
+        [0xC69C],
+        [0x22E921C],
+        None,
+        "Used to initialize and uninitialize the top screen in dungeon mode in"
+        " conjunction with handling the fade status of the screen.\n\nFor example, when"
+        " a fade out is done, it calls the necessary functions to close the top screen"
+        " windows. When it starts fading in again, it re-creates all the necessary"
+        " windows corresponding to the top screen type setting.\n\nNo params.",
+    )
+
+    FreeTopScreen = Symbol(
+        [0xCA7C],
+        [0x22E95FC],
+        None,
+        "Gets called twice when fading out the top screen. First it calls the free_func"
+        " of the top screen type and sets the handlers to null and on the second pass"
+        " it just returns.\n\nreturn: always 1, seems unused",
     )
 
     GetDirectionTowardsPosition = Symbol(
@@ -22810,6 +23089,14 @@ class EuOverlay29Functions:
         " bool",
     )
 
+    GetCurrentHiddenStairsType = Symbol(
+        [0x5C700],
+        [0x2339280],
+        None,
+        "Checks if the current floor is a secret bazaar or a secret room and returns"
+        " which one it is.\n\nreturn: enum hidden_stairs_type",
+    )
+
     HiddenStairsPresent = Symbol(
         [0x5C728],
         [0x23392A8],
@@ -23883,6 +24170,27 @@ class EuOverlay29Functions:
         " dodges the item.",
     )
 
+    DisplayFloorCard = Symbol(
+        [0x6C354],
+        [0x2348ED4],
+        None,
+        "Dispatches the splash screen between floors showing the dungeon name and the"
+        " current floor.\n\nFirst it checks whether the current floor is a secret"
+        " bazaar or secret room, then it calls HandleFloorCard.\n\nr0: Duration in"
+        " frames",
+    )
+
+    HandleFloorCard = Symbol(
+        [0x6C38C],
+        [0x2348F0C],
+        None,
+        "Handles the display of the splash screen between floors showing the dungeon"
+        " name and the current floor.\n\nSeems to enter a loop where it calls"
+        " AdvanceFrame until the desired number of frames is waited or A is"
+        " pressed.\n\nr0: dungeon_id\nr1: floor\nr2: duration\nr3: enum"
+        " hidden_stairs_type",
+    )
+
     CheckActiveChallengeRequest = Symbol(
         [0x6D1CC],
         [0x2349D4C],
@@ -24246,6 +24554,42 @@ class EuOverlay29Functions:
         " engine, etc.",
     )
 
+    StartFadeDungeon = Symbol(
+        [0x70488],
+        [0x234D008],
+        None,
+        "Initiates a screen fade in dungeon mode.\n\nSets the fields of the"
+        " dungeon_fade struct to appropriate values given in the args.\n\nr0: Dungeon"
+        " fade struct\nr1: Change of brightness per frame\nr2: Fade type",
+    )
+
+    StartFadeDungeonWrapper = Symbol(
+        [0x706E8],
+        [0x234D268],
+        None,
+        "Calls StartFadeDungeon to initiate a screen fade in dungeon mode.\n\nSets the"
+        " status field in the dungeon_fades struct to the fade type, then uses a"
+        " switch-case to create a mapping of the status enums to different ones for"
+        " some reason. This mapped value is then used in the StartFadeDungeon"
+        " call.\n\nr0: Fade type\nr1: Change of brightness per frame\nr2: Screen to"
+        " fade",
+    )
+
+    HandleFadesDungeon = Symbol(
+        [0x70854],
+        [0x234D3D4],
+        None,
+        "Gets called every frame for both screens in dungeon mode. Handles the status"
+        " of the screen fades.\n\nr0: enum screen",
+    )
+
+    HandleFadesDungeonBothScreens = Symbol(
+        [0x70A64],
+        [0x234D5E4],
+        None,
+        "Calls HandleFadesDungeon for both screens.\n\nNo params.",
+    )
+
     DisplayDungeonTip = Symbol(
         [0x70F70],
         [0x234DAF0],
@@ -24347,6 +24691,7 @@ class EuOverlay29Functions:
 
 
 class EuOverlay29Data:
+
     DUNGEON_STRUCT_SIZE = Symbol(
         [0x2838, 0x286C],
         [0x22DF3B8, 0x22DF3EC],
@@ -25113,6 +25458,14 @@ class EuOverlay29Data:
         " for most other dungeon mode work.\n\ntype: struct dungeon*",
     )
 
+    TOP_SCREEN_STATUS_PTR = Symbol(
+        [0x775D4],
+        [0x2354154],
+        0x4,
+        "[Runtime] Pointer for struct for handling the status of the top screen in"
+        " dungeon mode.\n\ntype: struct top_screen_status",
+    )
+
     LEADER_PTR = Symbol(
         [0x775DC],
         [0x235415C],
@@ -25217,6 +25570,14 @@ class EuOverlay29Data:
         " file.",
     )
 
+    DUNGEON_FADES_PTR = Symbol(
+        [0x77878],
+        [0x23543F8],
+        0x4,
+        "[Runtime] Pointer to the dungeon fades struct that maintains the status of"
+        " screen fades in dungeon mode.",
+    )
+
     NECTAR_IQ_BOOST = Symbol(
         [0x40264], [0x231CDE4], None, "IQ boost from ingesting Nectar."
     )
@@ -25237,10 +25598,12 @@ class EuOverlay29Section:
 
 
 class EuOverlay3Functions:
+
     pass
 
 
 class EuOverlay3Data:
+
     pass
 
 
@@ -25254,6 +25617,7 @@ class EuOverlay3Section:
 
 
 class EuOverlay30Functions:
+
     WriteQuicksaveData = Symbol(
         [0x448],
         [0x2383868],
@@ -25269,6 +25633,7 @@ class EuOverlay30Functions:
 
 
 class EuOverlay30Data:
+
     OVERLAY30_JP_STRING_1 = Symbol([0x3864], [0x2386C84], 0xC, "みさき様")
 
     OVERLAY30_JP_STRING_2 = Symbol([0x3870], [0x2386C90], 0xC, "やよい様")
@@ -25284,11 +25649,20 @@ class EuOverlay30Section:
 
 
 class EuOverlay31Functions:
+
     EntryOverlay31 = Symbol(
         [0x0],
         [0x2383420],
         None,
         "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+    )
+
+    DrawDungeonMenuStatusWindow = Symbol(
+        [0x44],
+        [0x2383464],
+        None,
+        "Draws the contents shown in the main dungeon menu status window showing the"
+        " player's belly, money, play time, etc.\n\nr0: int",
     )
 
     DungeonMenuSwitch = Symbol(
@@ -25384,6 +25758,7 @@ class EuOverlay31Functions:
 
 
 class EuOverlay31Data:
+
     DUNGEON_WINDOW_PARAMS_1 = Symbol(
         [0x7598], [0x238A9B8], 0x10, "Note: unverified, ported from Irdkwia's notes"
     )
@@ -25617,10 +25992,12 @@ class EuOverlay31Section:
 
 
 class EuOverlay32Functions:
+
     pass
 
 
 class EuOverlay32Data:
+
     pass
 
 
@@ -25634,10 +26011,12 @@ class EuOverlay32Section:
 
 
 class EuOverlay33Functions:
+
     pass
 
 
 class EuOverlay33Data:
+
     pass
 
 
@@ -25651,6 +26030,7 @@ class EuOverlay33Section:
 
 
 class EuOverlay34Functions:
+
     ExplorersOfSkyMain = Symbol(
         [0x0],
         [0x22DCB80],
@@ -25662,6 +26042,7 @@ class EuOverlay34Functions:
 
 
 class EuOverlay34Data:
+
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014 = Symbol(
         [0xD3C],
         [0x22DD8BC],
@@ -25719,10 +26100,12 @@ class EuOverlay34Section:
 
 
 class EuOverlay35Functions:
+
     pass
 
 
 class EuOverlay35Data:
+
     pass
 
 
@@ -25736,10 +26119,12 @@ class EuOverlay35Section:
 
 
 class EuOverlay4Functions:
+
     pass
 
 
 class EuOverlay4Data:
+
     pass
 
 
@@ -25753,10 +26138,12 @@ class EuOverlay4Section:
 
 
 class EuOverlay5Functions:
+
     pass
 
 
 class EuOverlay5Data:
+
     pass
 
 
@@ -25770,10 +26157,12 @@ class EuOverlay5Section:
 
 
 class EuOverlay6Functions:
+
     pass
 
 
 class EuOverlay6Data:
+
     pass
 
 
@@ -25787,10 +26176,12 @@ class EuOverlay6Section:
 
 
 class EuOverlay7Functions:
+
     pass
 
 
 class EuOverlay7Data:
+
     pass
 
 
@@ -25806,10 +26197,12 @@ class EuOverlay7Section:
 
 
 class EuOverlay8Functions:
+
     pass
 
 
 class EuOverlay8Data:
+
     pass
 
 
@@ -25825,6 +26218,7 @@ class EuOverlay8Section:
 
 
 class EuOverlay9Functions:
+
     CreateJukeboxTrackMenu = Symbol(
         [0x15B0],
         [0x233E7B0],
@@ -25943,6 +26337,7 @@ class EuOverlay9Functions:
 
 
 class EuOverlay9Data:
+
     JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
         [0x2D1C],
         [0x233FF1C],
@@ -25987,10 +26382,12 @@ class EuOverlay9Section:
 
 
 class EuRamFunctions:
+
     pass
 
 
 class EuRamData:
+
     DEFAULT_MEMORY_ARENA_MEMORY = Symbol(
         None,
         None,
@@ -26275,7 +26672,8 @@ class EuRamData:
         "The ID of the selected dungeon when setting off from the"
         " overworld.\n\nControls the text and map location during the 'map cutscene'"
         " just before entering a dungeon, as well as the actual dungeon loaded"
-        " afterwards.\n\ntype: struct dungeon_id_8",
+        " afterwards.\n\nThis field is actually part of a larger struct that also"
+        " contains PENDING_STARTING_FLOOR.\n\ntype: struct dungeon_id_8",
     )
 
     PENDING_STARTING_FLOOR = Symbol(
@@ -26504,6 +26902,7 @@ class EuRamSection:
 
 
 class EuSections:
+
     arm7 = EuArm7Section
 
     arm9 = EuArm9Section
