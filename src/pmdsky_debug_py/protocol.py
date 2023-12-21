@@ -9754,6 +9754,26 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    CreateTopGroundMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseTopGroundMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateTopGroundMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsBagNotEmpty: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SprintfStatic: Symbol[
         Optional[list[int]],
         None,

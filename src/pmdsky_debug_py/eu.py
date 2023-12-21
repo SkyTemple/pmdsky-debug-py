@@ -15729,6 +15729,38 @@ class EuOverlay11Functions:
         "Window update function for team info boxes.\n\nr0: window pointer",
     )
 
+    CreateTopGroundMenu = Symbol(
+        [0x24BA4],
+        [0x2301724],
+        None,
+        "Creates a parent menu (containing Items, Team, etc.) and two other windows"
+        " upon pressing X in the overworld.\n\nreturn: always 1",
+    )
+
+    CloseTopGroundMenu = Symbol(
+        [0x24D10],
+        [0x2301890],
+        None,
+        "Closes the three windows created by CreateOverworldMenu.\n\nNo params.",
+    )
+
+    UpdateTopGroundMenu = Symbol(
+        [0x24D6C],
+        [0x23018EC],
+        None,
+        "Window update function for the top-level ground mode menu.\n\nreturn: status"
+        " code",
+    )
+
+    IsBagNotEmpty = Symbol(
+        [0x288E0],
+        [0x2305460],
+        None,
+        "Checks if the bag has at least one valid item. Notably used in"
+        " CreateTopGroundMenu to decide if the 'Items' option should be"
+        " enabled.\n\nreturn: bool",
+    )
+
     SprintfStatic = Symbol(
         [0x2CCE8],
         [0x2309868],

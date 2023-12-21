@@ -15736,6 +15736,38 @@ class NaOverlay11Functions:
         "Window update function for team info boxes.\n\nr0: window pointer",
     )
 
+    CreateTopGroundMenu = Symbol(
+        [0x24B48],
+        [0x2300D88],
+        None,
+        "Creates a parent menu (containing Items, Team, etc.) and two other windows"
+        " upon pressing X in the overworld.\n\nreturn: always 1",
+    )
+
+    CloseTopGroundMenu = Symbol(
+        [0x24CB4],
+        [0x2300EF4],
+        None,
+        "Closes the three windows created by CreateOverworldMenu.\n\nNo params.",
+    )
+
+    UpdateTopGroundMenu = Symbol(
+        [0x24D10],
+        [0x2300F50],
+        None,
+        "Window update function for the top-level ground mode menu.\n\nreturn: status"
+        " code",
+    )
+
+    IsBagNotEmpty = Symbol(
+        [0x28884],
+        [0x2304AC4],
+        None,
+        "Checks if the bag has at least one valid item. Notably used in"
+        " CreateTopGroundMenu to decide if the 'Items' option should be"
+        " enabled.\n\nreturn: bool",
+    )
+
     SprintfStatic = Symbol(
         [0x2CC8C],
         [0x2308ECC],

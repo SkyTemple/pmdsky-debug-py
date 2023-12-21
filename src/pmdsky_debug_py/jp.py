@@ -15681,6 +15681,38 @@ class JpOverlay11Functions:
         "Window update function for team info boxes.\n\nr0: window pointer",
     )
 
+    CreateTopGroundMenu = Symbol(
+        [0x24AFC],
+        [0x23023DC],
+        None,
+        "Creates a parent menu (containing Items, Team, etc.) and two other windows"
+        " upon pressing X in the overworld.\n\nreturn: always 1",
+    )
+
+    CloseTopGroundMenu = Symbol(
+        [0x24C68],
+        [0x2302548],
+        None,
+        "Closes the three windows created by CreateOverworldMenu.\n\nNo params.",
+    )
+
+    UpdateTopGroundMenu = Symbol(
+        [0x24CC4],
+        [0x23025A4],
+        None,
+        "Window update function for the top-level ground mode menu.\n\nreturn: status"
+        " code",
+    )
+
+    IsBagNotEmpty = Symbol(
+        [0x28848],
+        [0x2306128],
+        None,
+        "Checks if the bag has at least one valid item. Notably used in"
+        " CreateTopGroundMenu to decide if the 'Items' option should be"
+        " enabled.\n\nreturn: bool",
+    )
+
     SprintfStatic = Symbol(
         [0x2CB98],
         [0x230A478],
