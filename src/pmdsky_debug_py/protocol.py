@@ -2494,6 +2494,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    UpdateWindow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ClearWindow: Symbol[
         Optional[list[int]],
         None,

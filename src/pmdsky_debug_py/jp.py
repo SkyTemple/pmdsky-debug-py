@@ -4119,6 +4119,16 @@ class JpArm9Functions:
         " index",
     )
 
+    UpdateWindow = Symbol(
+        None,
+        None,
+        None,
+        "Seems to cause updated window contents to be displayed.\n   \nGets called for"
+        " example at the end of a text box window update and seems to 'commit' the"
+        " update, but in general also gets called with all kinds of window updates."
+        " \n\nr0: window_id",
+    )
+
     ClearWindow = Symbol(
         None,
         None,

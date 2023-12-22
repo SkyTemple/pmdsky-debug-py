@@ -4121,6 +4121,16 @@ class EuArm9Functions:
         " index",
     )
 
+    UpdateWindow = Symbol(
+        [0x27DE4],
+        [0x2027DE4],
+        None,
+        "Seems to cause updated window contents to be displayed.\n   \nGets called for"
+        " example at the end of a text box window update and seems to 'commit' the"
+        " update, but in general also gets called with all kinds of window updates."
+        " \n\nr0: window_id",
+    )
+
     ClearWindow = Symbol(
         [0x27E4C],
         [0x2027E4C],
