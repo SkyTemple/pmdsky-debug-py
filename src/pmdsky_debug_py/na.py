@@ -140,7 +140,7 @@ class NaArm7Functions:
         " & 0x1f (the cpsr mode bits M4-M0)",
     )
 
-    __divsi3 = Symbol(
+    _s32_div_f = Symbol(
         [0xEDB0],
         [0x238EDB0],
         None,
@@ -148,7 +148,7 @@ class NaArm7Functions:
         " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
     )
 
-    __udivsi3 = Symbol(
+    _u32_div_f = Symbol(
         [0xEFBC],
         [0x238EFBC],
         None,
@@ -156,7 +156,7 @@ class NaArm7Functions:
         " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
     )
 
-    __udivsi3_no_zero_check = Symbol(
+    _u32_div_not_0_f = Symbol(
         [0xEFC4],
         [0x238EFC4],
         None,
@@ -195,11 +195,11 @@ class NaArm7Section:
 
 class NaArm9Functions:
 
-    SvcSoftReset = Symbol([0x566], [0x2000566], None, "Software interrupt.")
+    Svc_SoftReset = Symbol([0x566], [0x2000566], None, "Software interrupt.")
 
-    SvcWaitByLoop = Symbol([0x88], [0x2000088], None, "Software interrupt.")
+    Svc_WaitByLoop = Symbol([0x88], [0x2000088], None, "Software interrupt.")
 
-    SvcCpuSet = Symbol([0x78E], [0x200078E], None, "Software interrupt.")
+    Svc_CpuSet = Symbol([0x78E], [0x200078E], None, "Software interrupt.")
 
     _start = Symbol(
         [0x800],
@@ -211,7 +211,7 @@ class NaArm9Functions:
         " will jump to NitroMain.\n\nNo params.",
     )
 
-    MIiUncompressBackward = Symbol(
+    MIi_UncompressBackward = Symbol(
         [0x970],
         [0x2000970],
         None,
@@ -232,7 +232,7 @@ class NaArm9Functions:
         "Startup routine in the program's crt0 (https://en.wikipedia.org/wiki/Crt0).",
     )
 
-    OSiReferSymbol = Symbol(
+    OSi_ReferSymbol = Symbol(
         [0xB9C],
         [0x2000B9C],
         None,
@@ -8951,68 +8951,212 @@ class NaArm9Functions:
         "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
     )
 
-    __addsf3 = Symbol(
+    _dadd = Symbol(
+        [0x8DEC8],
+        [0x208DEC8],
+        None,
+        "Implements the addition operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
+        " Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
+        " a + b",
+    )
+
+    _d2f = Symbol(
+        [0x8E1E0],
+        [0x208E1E0],
+        None,
+        "Implements the double to float cast operator for IEEE 754 floating-point"
+        " numbers.\n\nr0: double (low bits)\nr1: double (high bits)\nreturn:"
+        " (float)double",
+    )
+
+    _ll_ufrom_d = Symbol(
+        [0x8E2E4],
+        [0x208E2E4],
+        None,
+        "Implements the double to unsigned long long cast operation for IEEE 754"
+        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
+        " with the Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " double (low bits)\nr1: double (high bits)\nreturn: (unsigned long"
+        " long)double",
+    )
+
+    _dflt = Symbol(
+        [0x8E370],
+        [0x208E370],
+        None,
+        "Implements the int to double cast operation for IEEE 754 floating-point"
+        " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
+        " Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " int\nreturn: (double)int",
+    )
+
+    _dfltu = Symbol(
+        [0x8E3B0],
+        [0x208E3B0],
+        None,
+        "Implements the unsigned int to double cast operation for IEEE 754"
+        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
+        " with the Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " uint\nreturn: (double)uint",
+    )
+
+    _dmul = Symbol(
+        [0x8E3EC],
+        [0x208E3EC],
+        None,
+        "Implements the multiplication operator for IEEE 754 double-precision"
+        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
+        " with the Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
+        " a * b",
+    )
+
+    _dsqrt = Symbol(
+        [0x8E750],
+        [0x208E750],
+        None,
+        "Analogous to the sqrt(3) C library function.\n\nThe result is returned in r0"
+        " and r1, in accordance with the Procedure Call Standard for the Arm"
+        " Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " x (low bits)\nr1: x (high bits)\nreturn: sqrt(x)",
+    )
+
+    _dsub = Symbol(
+        [0x8E904],
+        [0x208E904],
+        None,
+        "Implements the subtraction operator for IEEE 754 double-precision"
+        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
+        " with the Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
+        " a - b",
+    )
+
+    _fadd = Symbol(
         [0x8ECB8],
         [0x208ECB8],
         None,
-        "This appears to be the libgcc implementation of __addsf3 (not sure which gcc"
-        " version), which implements the addition operator for IEEE 754 floating-point"
-        " numbers.\n\nr0: a\nr1: b\nreturn: a + b",
+        "Implements the addition operator for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __addsf3 in libgcc.\n\nr0: a\nr1: b\nreturn: a + b",
     )
 
-    __divsf3 = Symbol(
+    _dgeq = Symbol(
+        [0x8EEDC],
+        [0x208EEDC],
+        None,
+        "Implements the >= operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a >= b",
+    )
+
+    _dleq = Symbol(
+        [0x8EF74],
+        [0x208EF74],
+        None,
+        "Implements the <= operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a <= b",
+    )
+
+    _dls = Symbol(
+        [0x8F018],
+        [0x208F018],
+        None,
+        "Implements the < operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a < b",
+    )
+
+    _deq = Symbol(
+        [0x8F0B4],
+        [0x208F0B4],
+        None,
+        "Implements the == operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a == b",
+    )
+
+    _dneq = Symbol(
+        [0x8F140],
+        [0x208F140],
+        None,
+        "Implements the != operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a != b",
+    )
+
+    _fls = Symbol(
+        [0x8F1CC],
+        [0x208F1CC],
+        None,
+        "Implements the < operator for IEEE 754 floating-point numbers.\n\nr0: a\nr1:"
+        " b\nreturn: a < b",
+    )
+
+    _fdiv = Symbol(
         [0x8F234],
         [0x208F234],
         None,
-        "This appears to be the libgcc implementation of __divsf3 (not sure which gcc"
-        " version), which implements the division operator for IEEE 754 floating-point"
-        " numbers.\n\nr0: dividend\nr1: divisor\nreturn: dividend / divisor",
+        "Implements the division operator for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __divsf3 in libgcc.\n\nr0: dividend\nr1:"
+        " divisor\nreturn: dividend / divisor",
     )
 
-    __extendsfdf2 = Symbol(
+    _f2d = Symbol(
         [0x8F5EC],
         [0x208F5EC],
         None,
-        "This appears to be the libgcc implementation of __extendsfdf2 (not sure which"
-        " gcc version), which implements the float to double cast operation for IEEE"
-        " 754 floating-point numbers.\n\nr0: float\nreturn: (double)float",
+        "Implements the float to double cast operation for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __extendsfdf2 in libgcc.\n\nThe result is returned"
+        " in r0 and r1, in accordance with the Procedure Call Standard for the Arm"
+        " Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " float\nreturn: (double)float",
     )
 
-    __fixsfsi = Symbol(
+    _ffix = Symbol(
         [0x8F670],
         [0x208F670],
         None,
-        "This appears to be the libgcc implementation of __fixsfsi (not sure which gcc"
-        " version), which implements the float to int cast operation for IEEE 754"
-        " floating-point numbers. The output saturates if the input is out of the"
-        " representable range for the int type.\n\nr0: float\nreturn: (int)float",
+        "Implements the float to int cast operation for IEEE 754 floating-point"
+        " numbers. The output saturates if the input is out of the representable range"
+        " for the int type.\n\nAnalogous to __fixsfsi in libgcc.\n\nr0: float\nreturn:"
+        " (int)float",
     )
 
-    __floatsisf = Symbol(
+    _fflt = Symbol(
         [0x8F6A4],
         [0x208F6A4],
         None,
-        "This appears to be the libgcc implementation of __floatsisf (not sure which"
-        " gcc version), which implements the int to float cast operation for IEEE 754"
-        " floating-point numbers.\n\nr0: int\nreturn: (float)int",
+        "Implements the int to float cast operation for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __floatsisf in libgcc.\n\nr0: int\nreturn:"
+        " (float)int",
     )
 
-    __floatunsisf = Symbol(
+    _ffltu = Symbol(
         [0x8F6EC],
         [0x208F6EC],
         None,
-        "This appears to be the libgcc implementation of __floatunsisf (not sure which"
-        " gcc version), which implements the unsigned int to float cast operation for"
-        " IEEE 754 floating-point numbers.\n\nr0: uint\nreturn: (float)uint",
+        "Implements the unsigned int to float cast operation for IEEE 754"
+        " floating-point numbers.\n\nAnalogous to __floatunsisf in libgcc.\n\nr0:"
+        " uint\nreturn: (float)uint",
     )
 
-    __mulsf3 = Symbol(
+    _fmul = Symbol(
         [0x8F734],
         [0x208F734],
         None,
-        "This appears to be the libgcc implementation of __mulsf3 (not sure which gcc"
-        " version), which implements the multiplication operator for IEEE 754"
-        " floating-point numbers.",
+        "Implements the multiplication operator for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __mulsf3 in libgcc.\n\nr0: a\nr1: b\nreturn: a * b",
     )
 
     sqrtf = Symbol(
@@ -9022,51 +9166,108 @@ class NaArm9Functions:
         "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)",
     )
 
-    __subsf3 = Symbol(
+    _fsub = Symbol(
         [0x8FA04],
         [0x208FA04],
         None,
-        "This appears to be the libgcc implementation of __subsf3 (not sure which gcc"
-        " version), which implements the subtraction operator for IEEE 754"
-        " floating-point numbers.\n\nr0: a\nr1: b\nreturn: a - b",
+        "Implements the subtraction operator for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __subsf3 in libgcc.\n\nr0: a\nr1: b\nreturn: a - b",
     )
 
-    __divsi3 = Symbol(
+    _ll_mod = Symbol(
+        [0x8FC7C],
+        [0x208FC7C],
+        None,
+        "Implements the modulus operator for signed long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend % divisor",
+    )
+
+    _ll_sdiv = Symbol(
+        [0x8FC8C],
+        [0x208FC8C],
+        None,
+        "Implements the division operator for signed long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend / divisor",
+    )
+
+    _ll_udiv = Symbol(
+        [0x8FE3C],
+        [0x208FE3C],
+        None,
+        "Implements the division operator for unsigned long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend / divisor",
+    )
+
+    _ull_mod = Symbol(
+        [0x8FE48],
+        [0x208FE48],
+        None,
+        "Implements the modulus operator for unsigned long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend % divisor",
+    )
+
+    _ll_mul = Symbol(
+        [0x8FE84],
+        [0x208FE84],
+        None,
+        "Implements the multiplication operator for signed long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
+        " a * b",
+    )
+
+    _s32_div_f = Symbol(
         [0x8FEA4],
         [0x208FEA4],
         None,
-        "This appears to be the libgcc implementation of __divsi3 (not sure which gcc"
-        " version), which implements the division operator for signed ints.\n\nThe"
-        " return value is a 64-bit integer, with the quotient (dividend / divisor) in"
-        " the lower 32 bits and the remainder (dividend % divisor) in the upper 32"
-        " bits. In accordance with the Procedure Call Standard for the Arm Architecture"
-        " (see"
+        "Implements the division operator for signed ints.\n\nAnalogous to __divsi3 in"
+        " libgcc.\n\nThe return value is a 64-bit integer, with the quotient (dividend"
+        " / divisor) in the lower 32 bits and the remainder (dividend % divisor) in the"
+        " upper 32 bits. In accordance with the Procedure Call Standard for the Arm"
+        " Architecture (see"
         " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
         " this means that the quotient is returned in r0 and the remainder is returned"
         " in r1.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
     )
 
-    __udivsi3 = Symbol(
+    _u32_div_f = Symbol(
         [0x900B0],
         [0x20900B0],
         None,
-        "This appears to be the libgcc implementation of __udivsi3 (not sure which gcc"
-        " version), which implements the division operator for unsigned ints.\n\nThe"
-        " return value is a 64-bit integer, with the quotient (dividend / divisor) in"
-        " the lower 32 bits and the remainder (dividend % divisor) in the upper 32"
-        " bits. In accordance with the Procedure Call Standard for the Arm Architecture"
-        " (see"
+        "Implements the division operator for unsigned ints.\n\nAnalogous to __udivsi3"
+        " in libgcc.\n\nThe return value is a 64-bit integer, with the quotient"
+        " (dividend / divisor) in the lower 32 bits and the remainder (dividend %"
+        " divisor) in the upper 32 bits. In accordance with the Procedure Call Standard"
+        " for the Arm Architecture (see"
         " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
         " this means that the quotient is returned in r0 and the remainder is returned"
-        " in r1.\nNote: This function falls through to __udivsi3_no_zero_check.\n\nr0:"
+        " in r1.\nNote: This function falls through to _u32_div_not_0_f.\n\nr0:"
         " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
     )
 
-    __udivsi3_no_zero_check = Symbol(
+    _u32_div_not_0_f = Symbol(
         [0x900B8],
         [0x20900B8],
         None,
-        "Subsidiary function to __udivsi3. Skips the initial check for divisor =="
+        "Subsidiary function to _u32_div_f. Skips the initial check for divisor =="
         " 0.\n\nThe return value is a 64-bit integer, with the quotient (dividend /"
         " divisor) in the lower 32 bits and the remainder (dividend % divisor) in the"
         " upper 32 bits. In accordance with the Procedure Call Standard for the Arm"
@@ -9075,6 +9276,39 @@ class NaArm9Functions:
         " this means that the quotient is returned in r0 and the remainder is returned"
         " in r1.\nThis function appears to only be called internally.\n\nr0:"
         " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+    _drdiv = Symbol(
+        [0x90294],
+        [0x2090294],
+        None,
+        "The same as _ddiv, but with the parameters reversed.\n\nThis simply swaps the"
+        " first and second parameters, then falls through to _ddiv.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " divisor (low bits)\nr1: divisor (high bits)\nr2: dividend (low bits)\nr3:"
+        " dividend (high bits)\nreturn: dividend / divisor",
+    )
+
+    _ddiv = Symbol(
+        [0x902AC],
+        [0x20902AC],
+        None,
+        "Implements the division operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
+        " Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend / divisor",
+    )
+
+    _fp_init = Symbol(
+        [0x907F0],
+        [0x20907F0],
+        None,
+        "Meant to do set up for floating point calculations? Does nothing.\n\nNo"
+        " params.",
     )
 
 

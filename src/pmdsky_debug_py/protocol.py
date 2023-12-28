@@ -124,17 +124,17 @@ class Arm7FunctionsProtocol(Protocol):
         None,
     ]
 
-    __divsi3: Symbol[
+    _s32_div_f: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __udivsi3: Symbol[
+    _u32_div_f: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __udivsi3_no_zero_check: Symbol[
+    _u32_div_not_0_f: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -154,17 +154,17 @@ Arm7Protocol = SectionProtocol[
 
 class Arm9FunctionsProtocol(Protocol):
 
-    SvcSoftReset: Symbol[
+    Svc_SoftReset: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SvcWaitByLoop: Symbol[
+    Svc_WaitByLoop: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SvcCpuSet: Symbol[
+    Svc_CpuSet: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -174,7 +174,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    MIiUncompressBackward: Symbol[
+    MIi_UncompressBackward: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -189,7 +189,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    OSiReferSymbol: Symbol[
+    OSi_ReferSymbol: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5334,37 +5334,107 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    __addsf3: Symbol[
+    _dadd: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __divsf3: Symbol[
+    _d2f: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __extendsfdf2: Symbol[
+    _ll_ufrom_d: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __fixsfsi: Symbol[
+    _dflt: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __floatsisf: Symbol[
+    _dfltu: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __floatunsisf: Symbol[
+    _dmul: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __mulsf3: Symbol[
+    _dsqrt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _dsub: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _fadd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _dgeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _dleq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _dls: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _deq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _dneq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _fls: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _fdiv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _f2d: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _ffix: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _fflt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _ffltu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _fmul: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5374,22 +5444,62 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    __subsf3: Symbol[
+    _fsub: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __divsi3: Symbol[
+    _ll_mod: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __udivsi3: Symbol[
+    _ll_sdiv: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    __udivsi3_no_zero_check: Symbol[
+    _ll_udiv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _ull_mod: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _ll_mul: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _s32_div_f: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _u32_div_f: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _u32_div_not_0_f: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _drdiv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _ddiv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _fp_init: Symbol[
         Optional[list[int]],
         None,
     ]
