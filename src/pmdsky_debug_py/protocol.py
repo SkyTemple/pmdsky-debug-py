@@ -174,6 +174,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitI_CpuClear32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MIi_UncompressBackward: Symbol[
         Optional[list[int]],
         None,
@@ -185,6 +190,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     StartAutoloadDoneCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    init_cp15: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -559,22 +569,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    DataTransferInit: Symbol[
+    FileRom_InitDataTransfer: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DataTransferStop: Symbol[
+    FileRom_StopDataTransfer: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FileInitVeneer: Symbol[
+    FileRom_Veneer_FileInit: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FileOpen: Symbol[
+    FileRom_HandleOpen: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -584,12 +594,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    FileRead: Symbol[
+    FileRom_HandleRead: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FileSeek: Symbol[
+    FileRom_HandleSeek: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -624,27 +634,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    InitDebug: Symbol[
+    Debug_Init: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitDebugFlag: Symbol[
+    Debug_InitDebugFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetDebugFlag: Symbol[
+    Debug_GetDebugFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SetDebugFlag: Symbol[
+    Debug_SetDebugFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitDebugStripped6: Symbol[
+    Debug_Stripped6: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -654,12 +664,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    InitDebugStripped5: Symbol[
+    Debug_Stripped5: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DebugPrintTrace: Symbol[
+    Debug_PrintTrace: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -669,87 +679,87 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    DebugPrint0: Symbol[
+    Debug_Print0: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitDebugLogFlag: Symbol[
+    Debug_InitLogFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetDebugLogFlag: Symbol[
+    Debug_GetLogFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SetDebugLogFlag: Symbol[
+    Debug_SetLogFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DebugPrint: Symbol[
+    Debug_Print: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitDebugStripped4: Symbol[
+    Debug_Stripped4: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitDebugStripped3: Symbol[
+    Debug_Stripped3: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitDebugStripped2: Symbol[
+    Debug_Stripped2: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitDebugStripped1: Symbol[
+    Debug_Stripped1: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FatalError: Symbol[
+    Debug_FatalError: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    OpenAllPackFiles: Symbol[
+    DirectoryFileMngr_ExtractAllDirectoryFiles: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetFileLengthInPackWithPackNb: Symbol[
+    DirectoryFileMngr_GetDirectoryFileSize: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    LoadFileInPackWithPackId: Symbol[
+    DirectoryFileMngr_LoadDirectoryFile: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    AllocAndLoadFileInPack: Symbol[
+    DirectoryFileMngr_OpenDirectoryFile: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    OpenPackFile: Symbol[
+    DirectoryFile_ExtractDirectoryFile: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetFileLengthInPack: Symbol[
+    DirectoryFile_GetDirectoryFileSize: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    LoadFileInPack: Symbol[
+    DirectoryFile_LoadDirectoryFile: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5024,7 +5034,192 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    Crypto_RC4Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Mtx_LookAt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Mtx_OrthoW: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FX_Div: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FX_GetDivResultFx64c: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FX_GetDivResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FX_InvAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FX_DivAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FX_DivS32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FX_ModS32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Vec_DotProduct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Vec_CrossProduct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Vec_Normalize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Vec_Distance: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FX_Atan2Idx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_HBlankIntr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_VBlankIntr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DispOff: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DispOn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetGraphicsMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_SetGraphicsMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GXx_SetMasterBrightness: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_InitGxState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     EnableVramBanksInSetDontSave: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForBg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForBgExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForObjExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForTex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForTexPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForClearImage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForArm7: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForLcdc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForSubBg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForSubObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForSubBgExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SetBankForSubObjExtPltt: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5034,17 +5229,432 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GeomMtxLoad4x3: Symbol[
+    GX_ResetBankForBgExtPltt: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GeomMtxMult4x3: Symbol[
+    GX_ResetBankForObjExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_ResetBankForTex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_ResetBankForTexPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_ResetBankForSubBgExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_ResetBankForSubObjExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisableBankForX: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForBg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForBgExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForObjExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForTex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForTexPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForClearImage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForArm7: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForLcdc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForSubBg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForSubObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForSubBgExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_DisableBankForSubObjExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2_GetBG0ScrPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2S_GetBG0ScrPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2_GetBG1ScrPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2S_GetBG1ScrPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2_GetBG2ScrPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2_GetBG3ScrPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2_GetBG0CharPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2S_GetBG0CharPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2_GetBG1CharPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2S_GetBG1CharPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2_GetBG2CharPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2_GetBG3CharPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2x_SetBlendAlpha: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2x_SetBlendBrightness: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G2x_ChangeBlendBrightness: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3_LoadMtx44: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3_LoadMtx43: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3_MultMtx43: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3X_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3X_Reset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3X_ClearFifo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3X_InitMtxStack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3X_ResetMtxStack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3X_SetClearColor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3X_InitTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3X_GetMtxStackLevelPV: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3X_GetMtxStackLevelPJ: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GXi_NopClearFifo128: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3i_OrthoW: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    G3i_LookAt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadBgPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_LoadBgPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadObjPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_LoadObjPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadOam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_LoadOam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_LoadObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadBg0Scr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadBg1Scr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_LoadBg1Scr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadBg2Scr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadBg3Scr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadBg0Char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_LoadBg0Char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadBg1Char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_LoadBg1Char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadBg2Char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadBg3Char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_BeginLoadBgExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_EndLoadBgExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_BeginLoadObjExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_EndLoadObjExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_BeginLoadBgExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_EndLoadBgExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_BeginLoadObjExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gxs_EndLoadObjExtPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_BeginLoadTex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadTex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_EndLoadTex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_BeginLoadTexPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_LoadTexPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_EndLoadTexPltt: Symbol[
         Optional[list[int]],
         None,
     ]
 
     GeomGxFifoSendMtx4x3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GX_SendFifo64B: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetLockID: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5115,6 +5725,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetProcessorMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountLeadingZeros: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6397,7 +7012,17 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    ARM9_UNKNOWN_TABLE__NA_20ADFB0: Symbol[
+    FX_ATAN_IDX_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEX_PLTT_START_ADDR_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEX_START_ADDR_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -6437,12 +7062,12 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    PACK_FILES_OPENED: Symbol[
+    DIRECTORY_FILES_EXTRACTED: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    PACK_FILE_PATHS_TABLE: Symbol[
+    DIRECTORY_FILE_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -6578,6 +7203,16 @@ class Arm9DataProtocol(Protocol):
     ]
 
     LFO_WAVEFORM_CALLBACKS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    IS_DISP_ON: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GXI_DMA_ID: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -16975,7 +17610,32 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
+    DRIVER_WORK: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DISP_MODE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GXI_VRAM_LOCK_ID: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     ENABLED_VRAM_BANKS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SUB_BG_EXT_PLTT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CLR_IMG: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

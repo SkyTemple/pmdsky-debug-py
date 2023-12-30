@@ -211,6 +211,8 @@ class EuArm9Functions:
         " will jump to NitroMain.\n\nNo params.",
     )
 
+    InitI_CpuClear32 = Symbol([0x954], [0x2000954], None, "")
+
     MIi_UncompressBackward = Symbol(
         [0x970],
         [0x2000970],
@@ -231,6 +233,8 @@ class EuArm9Functions:
         None,
         "Startup routine in the program's crt0 (https://en.wikipedia.org/wiki/Crt0).",
     )
+
+    init_cp15 = Symbol([0xAB0], [0x2000AB0], None, "")
 
     OSi_ReferSymbol = Symbol(
         [0xB9C],
@@ -892,7 +896,7 @@ class EuArm9Functions:
         " ScriptSpecialProcessCall).\n\nNo params.",
     )
 
-    DataTransferInit = Symbol(
+    FileRom_InitDataTransfer = Symbol(
         [0x8168],
         [0x2008168],
         None,
@@ -900,16 +904,16 @@ class EuArm9Functions:
         " params.",
     )
 
-    DataTransferStop = Symbol(
+    FileRom_StopDataTransfer = Symbol(
         [0x8194],
         [0x2008194],
         None,
         "Finalizes data transfer from the ROM cartridge.\n\nThis function must always"
-        " be called if DataTransferInit was called, or the game will crash.\n\nNo"
-        " params.",
+        " be called if FileRom_InitDataTransfer was called, or the game will"
+        " crash.\n\nNo params.",
     )
 
-    FileInitVeneer = Symbol(
+    FileRom_Veneer_FileInit = Symbol(
         [0x8204],
         [0x2008204],
         None,
@@ -918,7 +922,7 @@ class EuArm9Functions:
         " file_stream pointer",
     )
 
-    FileOpen = Symbol(
+    FileRom_HandleOpen = Symbol(
         [0x8210],
         [0x2008210],
         None,
@@ -933,25 +937,25 @@ class EuArm9Functions:
         "Gets the size of an open file.\n\nr0: file_stream pointer\nreturn: file size",
     )
 
-    FileRead = Symbol(
+    FileRom_HandleRead = Symbol(
         [0x8254],
         [0x2008254],
         None,
         "Reads the contents of a file into the given buffer, and moves the file cursor"
         " accordingly.\n\nData transfer mode must have been initialized (with"
-        " DataTransferInit) prior to calling this function. This function looks like"
-        " it's doing something akin to calling read(2) or fread(3) in a loop until all"
-        " the bytes have been successfully read.\n\nNote: If code is running from IRQ"
-        " mode, it appears that FileRead hangs the game. When the processor mode is"
-        " forced into SYSTEM mode FileRead once again works, so it appears that ROM"
-        " access only works in certain processor modes. Note that forcing the processor"
-        " into a different mode is generally a bad idea and should be avoided as it"
-        " will easily corrupt that processor mode's states.\n\nr0: file_stream"
-        " pointer\nr1: [output] buffer\nr2: number of bytes to read\nreturn: number of"
-        " bytes read",
+        " FileRom_InitDataTransfer) prior to calling this function. This function looks"
+        " like it's doing something akin to calling read(2) or fread(3) in a loop until"
+        " all the bytes have been successfully read.\n\nNote: If code is running from"
+        " IRQ mode, it appears that FileRom_HandleRead hangs the game. When the"
+        " processor mode is forced into SYSTEM mode FileRom_HandleRead once again"
+        " works, so it appears that ROM access only works in certain processor modes."
+        " Note that forcing the processor into a different mode is generally a bad idea"
+        " and should be avoided as it will easily corrupt that processor mode's"
+        " states.\n\nr0: file_stream pointer\nr1: [output] buffer\nr2: number of bytes"
+        " to read\nreturn: number of bytes read",
     )
 
-    FileSeek = Symbol(
+    FileRom_HandleSeek = Symbol(
         [0x82A8],
         [0x20082A8],
         None,
@@ -966,10 +970,10 @@ class EuArm9Functions:
         [0x20082C4],
         None,
         "Closes a file.\n\nData transfer mode must have been initialized (with"
-        " DataTransferInit) prior to calling this function.\n\nNote: It is possible to"
-        " keep a file stream open even if data transfer mode has been stopped, in which"
-        " case the file stream can be used again if data transfer mode is"
-        " reinitialized.\n\nr0: file_stream pointer",
+        " FileRom_InitDataTransfer) prior to calling this function.\n\nNote: It is"
+        " possible to keep a file stream open even if data transfer mode has been"
+        " stopped, in which case the file stream can be used again if data transfer"
+        " mode is reinitialized.\n\nr0: file_stream pointer",
     )
 
     UnloadFile = Symbol(
@@ -1017,7 +1021,7 @@ class EuArm9Functions:
         " screen_fade\nreturn: int",
     )
 
-    InitDebug = Symbol(
+    Debug_Init = Symbol(
         [0xC15C],
         [0x200C15C],
         None,
@@ -1025,14 +1029,14 @@ class EuArm9Functions:
         " for the release version, does nothing but set DEBUG_IS_INITIALIZED to true.",
     )
 
-    InitDebugFlag = Symbol(
+    Debug_InitDebugFlag = Symbol(
         [0xC194],
         [0x200C194],
         None,
         "Would have initialized the debug flags.\nDoes nothing in release binary.",
     )
 
-    GetDebugFlag = Symbol(
+    Debug_GetDebugFlag = Symbol(
         [0xC198],
         [0x200C198],
         None,
@@ -1040,7 +1044,7 @@ class EuArm9Functions:
         " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    SetDebugFlag = Symbol(
+    Debug_SetDebugFlag = Symbol(
         [0xC1A0],
         [0x200C1A0],
         None,
@@ -1048,7 +1052,7 @@ class EuArm9Functions:
         " ID\nr1: flag value",
     )
 
-    InitDebugStripped6 = Symbol(
+    Debug_Stripped6 = Symbol(
         [0xC1A4],
         [0x200C1A4],
         None,
@@ -1066,14 +1070,14 @@ class EuArm9Functions:
         " characters printed, excluding the null-terminator",
     )
 
-    InitDebugStripped5 = Symbol(
+    Debug_Stripped5 = Symbol(
         [0xC1F0],
         [0x200C1F0],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    DebugPrintTrace = Symbol(
+    Debug_PrintTrace = Symbol(
         [0xC1F4],
         [0x200C1F4],
         None,
@@ -1090,11 +1094,11 @@ class EuArm9Functions:
         None,
         "Would display a printf format string on the top screen in the debug"
         " binary.\n\nThis still constructs the string with vsprintf, but doesn't"
-        " actually do anything with it in the final binary.\n\nIdentical to DebugPrint0"
-        " in release builds.\n\nr0: format\n...: variadic",
+        " actually do anything with it in the final binary.\n\nIdentical to"
+        " Debug_Print0 in release builds.\n\nr0: format\n...: variadic",
     )
 
-    DebugPrint0 = Symbol(
+    Debug_Print0 = Symbol(
         [0xC284],
         [0x200C284],
         None,
@@ -1104,14 +1108,14 @@ class EuArm9Functions:
         " format\n...: variadic",
     )
 
-    InitDebugLogFlag = Symbol(
+    Debug_InitLogFlag = Symbol(
         [0xC2B8],
         [0x200C2B8],
         None,
         "Would have initialized the debug log flags.\nDoes nothing in release binary.",
     )
 
-    GetDebugLogFlag = Symbol(
+    Debug_GetLogFlag = Symbol(
         [0xC2BC],
         [0x200C2BC],
         None,
@@ -1119,7 +1123,7 @@ class EuArm9Functions:
         " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    SetDebugLogFlag = Symbol(
+    Debug_SetLogFlag = Symbol(
         [0xC2C4],
         [0x200C2C4],
         None,
@@ -1127,7 +1131,7 @@ class EuArm9Functions:
         " flag ID\nr1: flag value",
     )
 
-    DebugPrint = Symbol(
+    Debug_Print = Symbol(
         [0xC2C8],
         [0x200C2C8],
         None,
@@ -1135,35 +1139,35 @@ class EuArm9Functions:
         " binary.\n\nr0: log level\nr1: format\n...: variadic",
     )
 
-    InitDebugStripped4 = Symbol(
+    Debug_Stripped4 = Symbol(
         [0xC2D4],
         [0x200C2D4],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    InitDebugStripped3 = Symbol(
+    Debug_Stripped3 = Symbol(
         [0xC2D8],
         [0x200C2D8],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    InitDebugStripped2 = Symbol(
+    Debug_Stripped2 = Symbol(
         [0xC2DC],
         [0x200C2DC],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    InitDebugStripped1 = Symbol(
+    Debug_Stripped1 = Symbol(
         [0xC2E0],
         [0x200C2E0],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    FatalError = Symbol(
+    Debug_FatalError = Symbol(
         [0xC2E4],
         [0x200C2E4],
         None,
@@ -1175,34 +1179,34 @@ class EuArm9Functions:
         " code.\n\nr0: program position info\nr1: format\n...: variadic",
     )
 
-    OpenAllPackFiles = Symbol(
+    DirectoryFileMngr_ExtractAllDirectoryFiles = Symbol(
         [0xC364],
         [0x200C364],
         None,
-        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILES_OPENED. Called"
-        " during game initialization.\n\nNo params.",
+        "Open the 6 files at DIRECTORY_FILE_TABLE into DIRECTORY_FILES_EXTRACTED."
+        " Called during game initialization.\n\nNo params.",
     )
 
-    GetFileLengthInPackWithPackNb = Symbol(
+    DirectoryFileMngr_GetDirectoryFileSize = Symbol(
         [0xC3C4],
         [0x200C3C4],
         None,
-        "Call GetFileLengthInPack after looking up the global Pack archive by its"
-        " number\n\nr0: pack file number\nr1: file number\nreturn: size of the file in"
-        " bytes from the Pack Table of Content",
+        "Call DirectoryFile_GetDirectoryFileSize after looking up the global Pack"
+        " archive by its number\n\nr0: pack file number\nr1: file number\nreturn: size"
+        " of the file in bytes from the Pack Table of Content",
     )
 
-    LoadFileInPackWithPackId = Symbol(
+    DirectoryFileMngr_LoadDirectoryFile = Symbol(
         [0xC3E4],
         [0x200C3E4],
         None,
-        "Call LoadFileInPack after looking up the global Pack archive by its"
-        " identifier\n\nr0: pack file identifier\nr1: file index\nr2: [output] target"
-        " buffer\nreturn: number of read bytes (identical to the length of the pack"
-        " from the Table of Content)",
+        "Call DirectoryFile_LoadDirectoryFile after looking up the global Pack archive"
+        " by its identifier\n\nr0: pack file identifier\nr1: file index\nr2: [output]"
+        " target buffer\nreturn: number of read bytes (identical to the length of the"
+        " pack from the Table of Content)",
     )
 
-    AllocAndLoadFileInPack = Symbol(
+    DirectoryFileMngr_OpenDirectoryFile = Symbol(
         [0xC410],
         [0x200C410],
         None,
@@ -1212,7 +1216,7 @@ class EuArm9Functions:
         " struct (will contain length and pointer)\nr3: allocation flags",
     )
 
-    OpenPackFile = Symbol(
+    DirectoryFile_ExtractDirectoryFile = Symbol(
         [0xC468],
         [0x200C468],
         None,
@@ -1220,7 +1224,7 @@ class EuArm9Functions:
         " [output] pack file struct\nr1: file name",
     )
 
-    GetFileLengthInPack = Symbol(
+    DirectoryFile_GetDirectoryFileSize = Symbol(
         [0xC4FC],
         [0x200C4FC],
         None,
@@ -1229,7 +1233,7 @@ class EuArm9Functions:
         " of Content",
     )
 
-    LoadFileInPack = Symbol(
+    DirectoryFile_LoadDirectoryFile = Symbol(
         [0xC50C],
         [0x200C50C],
         None,
@@ -7897,7 +7901,7 @@ class EuArm9Functions:
         " considered invalid if the ID of the monsters or items involved are out of"
         " bounds, if their entries are marked as invalid, if the destination floor does"
         " not exist, etc.\nIf the mission fails one of the checks, the game will print"
-        " an error message explaining what is wrong using DebugPrint0.\n\nr0: mission"
+        " an error message explaining what is wrong using Debug_Print0.\n\nr0: mission"
         " to check\nreturn: True if the mission is valid, false if it's not.",
     )
 
@@ -8379,6 +8383,54 @@ class EuArm9Functions:
         [0x75950], [0x2075950], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
+    Crypto_RC4Init = Symbol([0x75AB8], [0x2075AB8], None, "")
+
+    Mtx_LookAt = Symbol([0x75BC0], [0x2075BC0], None, "")
+
+    Mtx_OrthoW = Symbol([0x75CC8], [0x2075CC8], None, "")
+
+    FX_Div = Symbol([0x75ED0], [0x2075ED0], None, "")
+
+    FX_GetDivResultFx64c = Symbol([0x75EE0], [0x2075EE0], None, "")
+
+    FX_GetDivResult = Symbol([0x75F04], [0x2075F04], None, "")
+
+    FX_InvAsync = Symbol([0x75F3C], [0x2075F3C], None, "")
+
+    FX_DivAsync = Symbol([0x75F6C], [0x2075F6C], None, "")
+
+    FX_DivS32 = Symbol([0x75F94], [0x2075F94], None, "")
+
+    FX_ModS32 = Symbol([0x75FD0], [0x2075FD0], None, "")
+
+    Vec_DotProduct = Symbol([0x7600C], [0x207600C], None, "")
+
+    Vec_CrossProduct = Symbol([0x76048], [0x2076048], None, "")
+
+    Vec_Normalize = Symbol([0x760CC], [0x20760CC], None, "")
+
+    Vec_Distance = Symbol([0x761E4], [0x20761E4], None, "")
+
+    FX_Atan2Idx = Symbol([0x76260], [0x2076260], None, "")
+
+    GX_Init = Symbol([0x7640C], [0x207640C], None, "")
+
+    GX_HBlankIntr = Symbol([0x76558], [0x2076558], None, "")
+
+    GX_VBlankIntr = Symbol([0x76580], [0x2076580], None, "")
+
+    GX_DispOff = Symbol([0x765B4], [0x20765B4], None, "")
+
+    GX_DispOn = Symbol([0x765F0], [0x20765F0], None, "")
+
+    GX_SetGraphicsMode = Symbol([0x76638], [0x2076638], None, "")
+
+    Gxs_SetGraphicsMode = Symbol([0x766A0], [0x20766A0], None, "")
+
+    GXx_SetMasterBrightness = Symbol([0x766BC], [0x20766BC], None, "")
+
+    GX_InitGxState = Symbol([0x766E4], [0x20766E4], None, "")
+
     EnableVramBanksInSetDontSave = Symbol(
         [0x76744],
         [0x2076744],
@@ -8386,6 +8438,32 @@ class EuArm9Functions:
         "Enable the VRAM bank marked in the input set, but don’t mark them as enabled"
         " in ENABLED_VRAM_BANKS\n\nr0: vram_banks_set",
     )
+
+    GX_SetBankForBg = Symbol([0x767FC], [0x20767FC], None, "")
+
+    GX_SetBankForObj = Symbol([0x76A8C], [0x2076A8C], None, "")
+
+    GX_SetBankForBgExtPltt = Symbol([0x76BDC], [0x2076BDC], None, "")
+
+    GX_SetBankForObjExtPltt = Symbol([0x76CDC], [0x2076CDC], None, "")
+
+    GX_SetBankForTex = Symbol([0x76D88], [0x2076D88], None, "")
+
+    GX_SetBankForTexPltt = Symbol([0x76F60], [0x2076F60], None, "")
+
+    GX_SetBankForClearImage = Symbol([0x77048], [0x2077048], None, "")
+
+    GX_SetBankForArm7 = Symbol([0x7717C], [0x207717C], None, "")
+
+    GX_SetBankForLcdc = Symbol([0x77228], [0x2077228], None, "")
+
+    GX_SetBankForSubBg = Symbol([0x77248], [0x2077248], None, "")
+
+    GX_SetBankForSubObj = Symbol([0x772F0], [0x20772F0], None, "")
+
+    GX_SetBankForSubBgExtPltt = Symbol([0x77360], [0x2077360], None, "")
+
+    GX_SetBankForSubObjExtPltt = Symbol([0x773E0], [0x20773E0], None, "")
 
     EnableVramBanksInSet = Symbol(
         [0x77460],
@@ -8395,7 +8473,79 @@ class EuArm9Functions:
         " update ENABLED_VRAM_BANKS\n\nr0: vram_banks_set *",
     )
 
-    GeomMtxLoad4x3 = Symbol(
+    GX_ResetBankForBgExtPltt = Symbol([0x77494], [0x2077494], None, "")
+
+    GX_ResetBankForObjExtPltt = Symbol([0x774B8], [0x20774B8], None, "")
+
+    GX_ResetBankForTex = Symbol([0x774DC], [0x20774DC], None, "")
+
+    GX_ResetBankForTexPltt = Symbol([0x774F0], [0x20774F0], None, "")
+
+    GX_ResetBankForSubBgExtPltt = Symbol([0x77504], [0x2077504], None, "")
+
+    GX_ResetBankForSubObjExtPltt = Symbol([0x7752C], [0x207752C], None, "")
+
+    DisableBankForX = Symbol([0x77554], [0x2077554], None, "")
+
+    GX_DisableBankForBg = Symbol([0x77634], [0x2077634], None, "")
+
+    GX_DisableBankForObj = Symbol([0x77648], [0x2077648], None, "")
+
+    GX_DisableBankForBgExtPltt = Symbol([0x7765C], [0x207765C], None, "")
+
+    GX_DisableBankForObjExtPltt = Symbol([0x77680], [0x2077680], None, "")
+
+    GX_DisableBankForTex = Symbol([0x776A4], [0x20776A4], None, "")
+
+    GX_DisableBankForTexPltt = Symbol([0x776B8], [0x20776B8], None, "")
+
+    GX_DisableBankForClearImage = Symbol([0x776CC], [0x20776CC], None, "")
+
+    GX_DisableBankForArm7 = Symbol([0x776E0], [0x20776E0], None, "")
+
+    GX_DisableBankForLcdc = Symbol([0x776F4], [0x20776F4], None, "")
+
+    GX_DisableBankForSubBg = Symbol([0x77708], [0x2077708], None, "")
+
+    GX_DisableBankForSubObj = Symbol([0x7771C], [0x207771C], None, "")
+
+    GX_DisableBankForSubBgExtPltt = Symbol([0x77730], [0x2077730], None, "")
+
+    GX_DisableBankForSubObjExtPltt = Symbol([0x77758], [0x2077758], None, "")
+
+    G2_GetBG0ScrPtr = Symbol([0x77780], [0x2077780], None, "")
+
+    G2S_GetBG0ScrPtr = Symbol([0x777B4], [0x20777B4], None, "")
+
+    G2_GetBG1ScrPtr = Symbol([0x777D4], [0x20777D4], None, "")
+
+    G2S_GetBG1ScrPtr = Symbol([0x77808], [0x2077808], None, "")
+
+    G2_GetBG2ScrPtr = Symbol([0x77828], [0x2077828], None, "")
+
+    G2_GetBG3ScrPtr = Symbol([0x778AC], [0x20778AC], None, "")
+
+    G2_GetBG0CharPtr = Symbol([0x77930], [0x2077930], None, "")
+
+    G2S_GetBG0CharPtr = Symbol([0x77964], [0x2077964], None, "")
+
+    G2_GetBG1CharPtr = Symbol([0x77984], [0x2077984], None, "")
+
+    G2S_GetBG1CharPtr = Symbol([0x779B8], [0x20779B8], None, "")
+
+    G2_GetBG2CharPtr = Symbol([0x779D8], [0x20779D8], None, "")
+
+    G2_GetBG3CharPtr = Symbol([0x77A28], [0x2077A28], None, "")
+
+    G2x_SetBlendAlpha = Symbol([0x77A80], [0x2077A80], None, "")
+
+    G2x_SetBlendBrightness = Symbol([0x77A9C], [0x2077A9C], None, "")
+
+    G2x_ChangeBlendBrightness = Symbol([0x77AC4], [0x2077AC4], None, "")
+
+    G3_LoadMtx44 = Symbol([0x77B08], [0x2077B08], None, "")
+
+    G3_LoadMtx43 = Symbol(
         [0x77B24],
         [0x2077B24],
         None,
@@ -8408,7 +8558,7 @@ class EuArm9Functions:
         " populate the matrix stack with a matrix.\n\nr0: matrix_4x3 pointer",
     )
 
-    GeomMtxMult4x3 = Symbol(
+    G3_MultMtx43 = Symbol(
         [0x77B40],
         [0x2077B40],
         None,
@@ -8421,6 +8571,96 @@ class EuArm9Functions:
         " MTX_PUSH command to populate the matrix stack with a matrix.\n\nr0:"
         " matrix_4x3 pointer",
     )
+
+    G3X_Init = Symbol([0x77B5C], [0x2077B5C], None, "")
+
+    G3X_Reset = Symbol([0x77C68], [0x2077C68], None, "")
+
+    G3X_ClearFifo = Symbol([0x77CD4], [0x2077CD4], None, "")
+
+    G3X_InitMtxStack = Symbol([0x77CFC], [0x2077CFC], None, "")
+
+    G3X_ResetMtxStack = Symbol([0x77D94], [0x2077D94], None, "")
+
+    G3X_SetClearColor = Symbol([0x77E24], [0x2077E24], None, "")
+
+    G3X_InitTable = Symbol([0x77E4C], [0x2077E4C], None, "")
+
+    G3X_GetMtxStackLevelPV = Symbol([0x77EEC], [0x2077EEC], None, "")
+
+    G3X_GetMtxStackLevelPJ = Symbol([0x77F1C], [0x2077F1C], None, "")
+
+    GXi_NopClearFifo128 = Symbol([0x77F4C], [0x2077F4C], None, "")
+
+    G3i_OrthoW = Symbol([0x77FE0], [0x2077FE0], None, "")
+
+    G3i_LookAt = Symbol([0x78044], [0x2078044], None, "")
+
+    GX_LoadBgPltt = Symbol([0x78090], [0x2078090], None, "")
+
+    Gxs_LoadBgPltt = Symbol([0x780E4], [0x20780E4], None, "")
+
+    GX_LoadObjPltt = Symbol([0x7813C], [0x207813C], None, "")
+
+    Gxs_LoadObjPltt = Symbol([0x78194], [0x2078194], None, "")
+
+    GX_LoadOam = Symbol([0x781EC], [0x20781EC], None, "")
+
+    Gxs_LoadOam = Symbol([0x78240], [0x2078240], None, "")
+
+    GX_LoadObj = Symbol([0x78298], [0x2078298], None, "")
+
+    Gxs_LoadObj = Symbol([0x782F0], [0x20782F0], None, "")
+
+    GX_LoadBg0Scr = Symbol([0x78348], [0x2078348], None, "")
+
+    GX_LoadBg1Scr = Symbol([0x783A8], [0x20783A8], None, "")
+
+    Gxs_LoadBg1Scr = Symbol([0x78408], [0x2078408], None, "")
+
+    GX_LoadBg2Scr = Symbol([0x78468], [0x2078468], None, "")
+
+    GX_LoadBg3Scr = Symbol([0x784C8], [0x20784C8], None, "")
+
+    GX_LoadBg0Char = Symbol([0x78528], [0x2078528], None, "")
+
+    Gxs_LoadBg0Char = Symbol([0x78588], [0x2078588], None, "")
+
+    GX_LoadBg1Char = Symbol([0x785E8], [0x20785E8], None, "")
+
+    Gxs_LoadBg1Char = Symbol([0x78648], [0x2078648], None, "")
+
+    GX_LoadBg2Char = Symbol([0x786A8], [0x20786A8], None, "")
+
+    GX_LoadBg3Char = Symbol([0x78708], [0x2078708], None, "")
+
+    GX_BeginLoadBgExtPltt = Symbol([0x78768], [0x2078768], None, "")
+
+    GX_EndLoadBgExtPltt = Symbol([0x78808], [0x2078808], None, "")
+
+    GX_BeginLoadObjExtPltt = Symbol([0x78850], [0x2078850], None, "")
+
+    GX_EndLoadObjExtPltt = Symbol([0x78898], [0x2078898], None, "")
+
+    Gxs_BeginLoadBgExtPltt = Symbol([0x788DC], [0x20788DC], None, "")
+
+    Gxs_EndLoadBgExtPltt = Symbol([0x788F4], [0x20788F4], None, "")
+
+    Gxs_BeginLoadObjExtPltt = Symbol([0x78934], [0x2078934], None, "")
+
+    Gxs_EndLoadObjExtPltt = Symbol([0x7894C], [0x207894C], None, "")
+
+    GX_BeginLoadTex = Symbol([0x7898C], [0x207898C], None, "")
+
+    GX_LoadTex = Symbol([0x789E8], [0x20789E8], None, "")
+
+    GX_EndLoadTex = Symbol([0x78B28], [0x2078B28], None, "")
+
+    GX_BeginLoadTexPltt = Symbol([0x78B74], [0x2078B74], None, "")
+
+    GX_LoadTexPltt = Symbol([0x78BA8], [0x2078BA8], None, "")
+
+    GX_EndLoadTexPltt = Symbol([0x78C14], [0x2078C14], None, "")
 
     GeomGxFifoSendMtx4x3 = Symbol(
         [0x78C58],
@@ -8435,6 +8675,10 @@ class EuArm9Functions:
         " this by writing 3 matrix entries at a time using ldmia and stmia"
         " instructions.\n\nr0: matrix_4x3 pointer\nr1: GXFIFO pointer",
     )
+
+    GX_SendFifo64B = Symbol([0x78C7C], [0x2078C7C], None, "")
+
+    OS_GetLockID = Symbol([0x793C4], [0x20793C4], None, "")
 
     IncrementThreadCount = Symbol(
         [0x794E8],
@@ -8568,6 +8812,14 @@ class EuArm9Functions:
         "Gets the processor's current operating mode.\n\nSee"
         " https://problemkaputt.de/gbatek.htm#armcpuflagsconditionfieldcond\n\nreturn:"
         " cpsr & 0x1f (the cpsr mode bits M4-M0)",
+    )
+
+    CountLeadingZeros = Symbol(
+        [0x7BE24],
+        [0x207BE24],
+        None,
+        "Counts the number of leading zeros in a 32-bit integer.\n\nr0: x\nreturn:"
+        " clz(x)",
     )
 
     WaitForever2 = Symbol(
@@ -10421,13 +10673,18 @@ class EuArm9Data:
         " fraction bits.\n\ntype: struct trig_values[4096]",
     )
 
-    ARM9_UNKNOWN_TABLE__NA_20ADFB0 = Symbol(
+    FX_ATAN_IDX_TABLE = Symbol(
         [0xAE850],
         [0x20AE850],
-        0x974,
-        "701*0x4\n\nNote: unverified, ported from Irdkwia's notes (split from"
-        " TRIG_TABLE)",
+        0x102,
+        "Table of arctangent values at 129 divisions over the domain [0, 1].\n\nMore"
+        " precisely, entry at index i corresponds to (atan(i/128) / (π/2)). Values are"
+        " stored as signed fixed-point numbers with 14 fraction bits.",
     )
+
+    TEX_PLTT_START_ADDR_TABLE = Symbol([0xAE954], [0x20AE954], 0x10, "")
+
+    TEX_START_ADDR_TABLE = Symbol([0xAE964], [0x20AE964], 0x60, "")
 
     ARM9_UNKNOWN_TABLE__NA_20AE924 = Symbol(
         [0xAF1C4],
@@ -10491,15 +10748,15 @@ class EuArm9Data:
 
     DEBUG_IS_INITIALIZED = Symbol([0xAFF50], [0x20AFF50], None, "")
 
-    PACK_FILES_OPENED = Symbol(
+    DIRECTORY_FILES_EXTRACTED = Symbol(
         [0xAFF54],
         [0x20AFF54],
         0x4,
         "[Runtime] A pointer to the 6 opened Pack files (listed at"
-        " PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
+        " DIRECTORY_FILE_TABLE)\n\ntype: struct pack_file_opened*",
     )
 
-    PACK_FILE_PATHS_TABLE = Symbol(
+    DIRECTORY_FILE_TABLE = Symbol(
         [0xAFF58],
         [0x20AFF58],
         0x18,
@@ -10681,6 +10938,10 @@ class EuArm9Data:
     )
 
     LFO_WAVEFORM_CALLBACKS = Symbol([0xB1B94], [0x20B1B94], 0x40, "")
+
+    IS_DISP_ON = Symbol([0xB34D8], [0x20B34D8], 0x1, "")
+
+    GXI_DMA_ID = Symbol([0xB34DC], [0x20B34DC], 0x4, "")
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x118B8], [0x20118B8], 0x1, "IQ gain when ingesting nectar at the Juice Bar."
@@ -14143,9 +14404,9 @@ class EuOverlay10Functions:
         [0x22C3014],
         None,
         "Initializes a buffer that contains data related to tilesets (such as"
-        " dungeon::unknown_file_buffer_0x102A8).\n\nCalls AllocAndLoadFileInPack and"
-        " DecompressAtNormalVeneer.\n\nr0: Pointer to the buffer to init\nr1: Tileset"
-        " ID\nr2: Memory allocation flags",
+        " dungeon::unknown_file_buffer_0x102A8).\n\nCalls"
+        " DirectoryFileMngr_OpenDirectoryFile and DecompressAtNormalVeneer.\n\nr0:"
+        " Pointer to the buffer to init\nr1: Tileset ID\nr2: Memory allocation flags",
     )
 
     MainGame = Symbol(
@@ -27009,12 +27270,22 @@ class EuRamData:
         " team_member_table",
     )
 
+    DRIVER_WORK = Symbol([0x2B7C70], [0x22B7C70], None, "")
+
+    DISP_MODE = Symbol([0x2B9EC8], [0x22B9EC8], 0x2, "")
+
+    GXI_VRAM_LOCK_ID = Symbol([0x2B9ECA], [0x22B9ECA], 0x2, "")
+
     ENABLED_VRAM_BANKS = Symbol(
         [0x2B9ECC],
         [0x22B9ECC],
         0x2,
         "Bitset of enabled VRAM banks\n\ntype: vram_banks_set",
     )
+
+    SUB_BG_EXT_PLTT = Symbol([0x2B9EE8], [0x22B9EE8], 0x4, "")
+
+    CLR_IMG = Symbol([0x2B9F04], [0x22B9F04], 0x4, "")
 
     THREAD_INFO_STRUCT = Symbol(
         [0x2B9F88],
