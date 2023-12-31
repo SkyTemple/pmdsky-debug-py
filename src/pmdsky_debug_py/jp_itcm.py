@@ -889,7 +889,7 @@ class JpItcmArm9Functions:
         " ScriptSpecialProcessCall).\n\nNo params.",
     )
 
-    FileRom_InitDataTransfer = Symbol(
+    DataTransferInit = Symbol(
         None,
         None,
         None,
@@ -897,16 +897,16 @@ class JpItcmArm9Functions:
         " params.",
     )
 
-    FileRom_StopDataTransfer = Symbol(
+    DataTransferStop = Symbol(
         None,
         None,
         None,
         "Finalizes data transfer from the ROM cartridge.\n\nThis function must always"
-        " be called if FileRom_InitDataTransfer was called, or the game will"
-        " crash.\n\nNo params.",
+        " be called if DataTransferInit was called, or the game will crash.\n\nNo"
+        " params.",
     )
 
-    FileRom_Veneer_FileInit = Symbol(
+    FileInitVeneer = Symbol(
         None,
         None,
         None,
@@ -915,7 +915,7 @@ class JpItcmArm9Functions:
         " file_stream pointer",
     )
 
-    FileRom_HandleOpen = Symbol(
+    FileOpen = Symbol(
         None,
         None,
         None,
@@ -930,25 +930,25 @@ class JpItcmArm9Functions:
         "Gets the size of an open file.\n\nr0: file_stream pointer\nreturn: file size",
     )
 
-    FileRom_HandleRead = Symbol(
+    FileRead = Symbol(
         None,
         None,
         None,
         "Reads the contents of a file into the given buffer, and moves the file cursor"
         " accordingly.\n\nData transfer mode must have been initialized (with"
-        " FileRom_InitDataTransfer) prior to calling this function. This function looks"
-        " like it's doing something akin to calling read(2) or fread(3) in a loop until"
-        " all the bytes have been successfully read.\n\nNote: If code is running from"
-        " IRQ mode, it appears that FileRom_HandleRead hangs the game. When the"
-        " processor mode is forced into SYSTEM mode FileRom_HandleRead once again"
-        " works, so it appears that ROM access only works in certain processor modes."
-        " Note that forcing the processor into a different mode is generally a bad idea"
-        " and should be avoided as it will easily corrupt that processor mode's"
-        " states.\n\nr0: file_stream pointer\nr1: [output] buffer\nr2: number of bytes"
-        " to read\nreturn: number of bytes read",
+        " DataTransferInit) prior to calling this function. This function looks like"
+        " it's doing something akin to calling read(2) or fread(3) in a loop until all"
+        " the bytes have been successfully read.\n\nNote: If code is running from IRQ"
+        " mode, it appears that FileRead hangs the game. When the processor mode is"
+        " forced into SYSTEM mode FileRead once again works, so it appears that ROM"
+        " access only works in certain processor modes. Note that forcing the processor"
+        " into a different mode is generally a bad idea and should be avoided as it"
+        " will easily corrupt that processor mode's states.\n\nr0: file_stream"
+        " pointer\nr1: [output] buffer\nr2: number of bytes to read\nreturn: number of"
+        " bytes read",
     )
 
-    FileRom_HandleSeek = Symbol(
+    FileSeek = Symbol(
         None,
         None,
         None,
@@ -963,10 +963,10 @@ class JpItcmArm9Functions:
         None,
         None,
         "Closes a file.\n\nData transfer mode must have been initialized (with"
-        " FileRom_InitDataTransfer) prior to calling this function.\n\nNote: It is"
-        " possible to keep a file stream open even if data transfer mode has been"
-        " stopped, in which case the file stream can be used again if data transfer"
-        " mode is reinitialized.\n\nr0: file_stream pointer",
+        " DataTransferInit) prior to calling this function.\n\nNote: It is possible to"
+        " keep a file stream open even if data transfer mode has been stopped, in which"
+        " case the file stream can be used again if data transfer mode is"
+        " reinitialized.\n\nr0: file_stream pointer",
     )
 
     UnloadFile = Symbol(
@@ -1014,7 +1014,7 @@ class JpItcmArm9Functions:
         " screen_fade\nreturn: int",
     )
 
-    Debug_Init = Symbol(
+    InitDebug = Symbol(
         None,
         None,
         None,
@@ -1022,14 +1022,14 @@ class JpItcmArm9Functions:
         " for the release version, does nothing but set DEBUG_IS_INITIALIZED to true.",
     )
 
-    Debug_InitDebugFlag = Symbol(
+    InitDebugFlag = Symbol(
         None,
         None,
         None,
         "Would have initialized the debug flags.\nDoes nothing in release binary.",
     )
 
-    Debug_GetDebugFlag = Symbol(
+    GetDebugFlag = Symbol(
         None,
         None,
         None,
@@ -1037,7 +1037,7 @@ class JpItcmArm9Functions:
         " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    Debug_SetDebugFlag = Symbol(
+    SetDebugFlag = Symbol(
         None,
         None,
         None,
@@ -1045,7 +1045,7 @@ class JpItcmArm9Functions:
         " ID\nr1: flag value",
     )
 
-    Debug_Stripped6 = Symbol(
+    InitDebugStripped6 = Symbol(
         None,
         None,
         None,
@@ -1063,14 +1063,14 @@ class JpItcmArm9Functions:
         " characters printed, excluding the null-terminator",
     )
 
-    Debug_Stripped5 = Symbol(
+    InitDebugStripped5 = Symbol(
         None,
         None,
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_PrintTrace = Symbol(
+    DebugPrintTrace = Symbol(
         None,
         None,
         None,
@@ -1087,11 +1087,11 @@ class JpItcmArm9Functions:
         None,
         "Would display a printf format string on the top screen in the debug"
         " binary.\n\nThis still constructs the string with vsprintf, but doesn't"
-        " actually do anything with it in the final binary.\n\nIdentical to"
-        " Debug_Print0 in release builds.\n\nr0: format\n...: variadic",
+        " actually do anything with it in the final binary.\n\nIdentical to DebugPrint0"
+        " in release builds.\n\nr0: format\n...: variadic",
     )
 
-    Debug_Print0 = Symbol(
+    DebugPrint0 = Symbol(
         None,
         None,
         None,
@@ -1101,14 +1101,14 @@ class JpItcmArm9Functions:
         " format\n...: variadic",
     )
 
-    Debug_InitLogFlag = Symbol(
+    InitDebugLogFlag = Symbol(
         None,
         None,
         None,
         "Would have initialized the debug log flags.\nDoes nothing in release binary.",
     )
 
-    Debug_GetLogFlag = Symbol(
+    GetDebugLogFlag = Symbol(
         None,
         None,
         None,
@@ -1116,7 +1116,7 @@ class JpItcmArm9Functions:
         " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    Debug_SetLogFlag = Symbol(
+    SetDebugLogFlag = Symbol(
         None,
         None,
         None,
@@ -1124,7 +1124,7 @@ class JpItcmArm9Functions:
         " flag ID\nr1: flag value",
     )
 
-    Debug_Print = Symbol(
+    DebugPrint = Symbol(
         None,
         None,
         None,
@@ -1132,35 +1132,35 @@ class JpItcmArm9Functions:
         " binary.\n\nr0: log level\nr1: format\n...: variadic",
     )
 
-    Debug_Stripped4 = Symbol(
+    InitDebugStripped4 = Symbol(
         None,
         None,
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_Stripped3 = Symbol(
+    InitDebugStripped3 = Symbol(
         None,
         None,
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_Stripped2 = Symbol(
+    InitDebugStripped2 = Symbol(
         None,
         None,
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_Stripped1 = Symbol(
+    InitDebugStripped1 = Symbol(
         None,
         None,
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_FatalError = Symbol(
+    FatalError = Symbol(
         None,
         None,
         None,
@@ -1172,34 +1172,34 @@ class JpItcmArm9Functions:
         " code.\n\nr0: program position info\nr1: format\n...: variadic",
     )
 
-    DirectoryFileMngr_ExtractAllDirectoryFiles = Symbol(
+    OpenAllPackFiles = Symbol(
         None,
         None,
         None,
-        "Open the 6 files at DIRECTORY_FILE_TABLE into DIRECTORY_FILES_EXTRACTED."
-        " Called during game initialization.\n\nNo params.",
+        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILES_OPENED. Called"
+        " during game initialization.\n\nNo params.",
     )
 
-    DirectoryFileMngr_GetDirectoryFileSize = Symbol(
+    GetFileLengthInPackWithPackNb = Symbol(
         None,
         None,
         None,
-        "Call DirectoryFile_GetDirectoryFileSize after looking up the global Pack"
-        " archive by its number\n\nr0: pack file number\nr1: file number\nreturn: size"
-        " of the file in bytes from the Pack Table of Content",
+        "Call GetFileLengthInPack after looking up the global Pack archive by its"
+        " number\n\nr0: pack file number\nr1: file number\nreturn: size of the file in"
+        " bytes from the Pack Table of Content",
     )
 
-    DirectoryFileMngr_LoadDirectoryFile = Symbol(
+    LoadFileInPackWithPackId = Symbol(
         None,
         None,
         None,
-        "Call DirectoryFile_LoadDirectoryFile after looking up the global Pack archive"
-        " by its identifier\n\nr0: pack file identifier\nr1: file index\nr2: [output]"
-        " target buffer\nreturn: number of read bytes (identical to the length of the"
-        " pack from the Table of Content)",
+        "Call LoadFileInPack after looking up the global Pack archive by its"
+        " identifier\n\nr0: pack file identifier\nr1: file index\nr2: [output] target"
+        " buffer\nreturn: number of read bytes (identical to the length of the pack"
+        " from the Table of Content)",
     )
 
-    DirectoryFileMngr_OpenDirectoryFile = Symbol(
+    AllocAndLoadFileInPack = Symbol(
         None,
         None,
         None,
@@ -1209,7 +1209,7 @@ class JpItcmArm9Functions:
         " struct (will contain length and pointer)\nr3: allocation flags",
     )
 
-    DirectoryFile_ExtractDirectoryFile = Symbol(
+    OpenPackFile = Symbol(
         None,
         None,
         None,
@@ -1217,7 +1217,7 @@ class JpItcmArm9Functions:
         " [output] pack file struct\nr1: file name",
     )
 
-    DirectoryFile_GetDirectoryFileSize = Symbol(
+    GetFileLengthInPack = Symbol(
         None,
         None,
         None,
@@ -1226,7 +1226,7 @@ class JpItcmArm9Functions:
         " of Content",
     )
 
-    DirectoryFile_LoadDirectoryFile = Symbol(
+    LoadFileInPack = Symbol(
         None,
         None,
         None,
@@ -7731,7 +7731,7 @@ class JpItcmArm9Functions:
         " considered invalid if the ID of the monsters or items involved are out of"
         " bounds, if their entries are marked as invalid, if the destination floor does"
         " not exist, etc.\nIf the mission fails one of the checks, the game will print"
-        " an error message explaining what is wrong using Debug_Print0.\n\nr0: mission"
+        " an error message explaining what is wrong using DebugPrint0.\n\nr0: mission"
         " to check\nreturn: True if the mission is valid, false if it's not.",
     )
 
@@ -8016,6 +8016,1716 @@ class JpItcmArm9Functions:
         " if the dungeon has been cleared, or DMODE_OPEN if it's not.\n\nr0: Dungeon"
         " ID\nreturn: Dungeon mode",
     )
+
+
+class JpItcmArm9Data:
+
+    SECURE = Symbol(
+        None,
+        None,
+        None,
+        "The header of the DS cartridge secure area. See"
+        " https://problemkaputt.de/gbatek.htm#dscartridgesecurearea",
+    )
+
+    START_MODULE_PARAMS = Symbol(
+        None, None, None, "Parameters used by the NitroSDK to read the ROM."
+    )
+
+    DEFAULT_MEMORY_ARENA_SIZE = Symbol(
+        None,
+        None,
+        None,
+        "Length in bytes of the default memory allocation arena, 1991680.",
+    )
+
+    LOG_MAX_ARG = Symbol(
+        None, None, None, "The maximum argument value for the Log function, 2047."
+    )
+
+    DAMAGE_SOURCE_CODE_ORB_ITEM = Symbol(
+        None,
+        None,
+        None,
+        "The damage source value for any item in CATEGORY_ORBS, 0x262.",
+    )
+
+    DAMAGE_SOURCE_CODE_NON_ORB_ITEM = Symbol(
+        None,
+        None,
+        None,
+        "The damage source value for any item not in CATEGORY_ORBS, 0x263.",
+    )
+
+    AURA_BOW_ID_LAST = Symbol(None, None, None, "Highest item ID of the aura bows.")
+
+    NUMBER_OF_ITEMS = Symbol(None, None, None, "Number of items in the game.")
+
+    MAX_MONEY_CARRIED = Symbol(
+        None, None, None, "Maximum amount of money the player can carry, 99999."
+    )
+
+    MAX_MONEY_STORED = Symbol(
+        None,
+        None,
+        None,
+        "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
+    )
+
+    WINDOW_LIST_PTR = Symbol(None, None, None, "Hard-coded pointer to WINDOW_LIST.")
+
+    SCRIPT_VARS_VALUES_PTR = Symbol(
+        None, None, None, "Hard-coded pointer to SCRIPT_VARS_VALUES."
+    )
+
+    MAX_PLAY_TIME = Symbol(
+        None,
+        None,
+        None,
+        "Maximum number of seconds that the file timer counts up to.\n\n35999999"
+        " seconds (one second under 10000 hours).",
+    )
+
+    MONSTER_ID_LIMIT = Symbol(
+        None, None, None, "One more than the maximum valid monster ID (0x483)."
+    )
+
+    MAX_RECRUITABLE_TEAM_MEMBERS = Symbol(
+        None,
+        None,
+        None,
+        "555, appears to be the maximum number of members recruited to an exploration"
+        " team, at least for the purposes of some checks that need to iterate over all"
+        " team members.",
+    )
+
+    NATURAL_LOG_VALUE_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "A table of values for the natural log function corresponding to integer"
+        " arguments in the range [0, 2047].\n\nEach value is stored as a 16-bit"
+        " fixed-point number with 12 fractional bits. I.e., to get the actual natural"
+        " log value, take the table entry and divide it by 2^12.\n\nThe value at an"
+        " input of 0 is just listed as 0; the Log function makes sure the input is"
+        " always at least 1 before reading the table.\n\ntype: int16_t[2048]",
+    )
+
+    CART_REMOVED_IMG_DATA = Symbol(None, None, None, "")
+
+    STRING_DEBUG_EMPTY = Symbol(None, None, None, "")
+
+    STRING_DEBUG_FORMAT_LINE_FILE = Symbol(None, None, None, "")
+
+    STRING_DEBUG_NO_PROG_POS = Symbol(None, None, None, "")
+
+    STRING_DEBUG_SPACED_PRINT = Symbol(None, None, None, "")
+
+    STRING_DEBUG_FATAL = Symbol(None, None, None, "")
+
+    STRING_DEBUG_NEWLINE = Symbol(None, None, None, "")
+
+    STRING_DEBUG_LOG_NULL = Symbol(None, None, None, "")
+
+    STRING_DEBUG_STRING_NEWLINE = Symbol(None, None, None, "")
+
+    STRING_EFFECT_EFFECT_BIN = Symbol(None, None, None, "")
+
+    STRING_MONSTER_MONSTER_BIN = Symbol(None, None, None, "")
+
+    STRING_BALANCE_M_LEVEL_BIN = Symbol(None, None, None, "")
+
+    STRING_DUNGEON_DUNGEON_BIN = Symbol(None, None, None, "")
+
+    STRING_MONSTER_M_ATTACK_BIN = Symbol(None, None, None, "")
+
+    STRING_MONSTER_M_GROUND_BIN = Symbol(None, None, None, "")
+
+    STRING_FILE_DIRECTORY_INIT = Symbol(None, None, None, "")
+
+    AVAILABLE_ITEMS_IN_GROUP_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "100*0x80\nLinked to the dungeon group id\n\nNote: unverified, ported from"
+        " Irdkwia's notes",
+    )
+
+    ARM9_UNKNOWN_TABLE__NA_2097FF8 = Symbol(
+        None,
+        None,
+        None,
+        "16*0x4 (0x2+0x2)\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    KECLEON_SHOP_ITEM_TABLE_LISTS_1 = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: enum item_id[4]",
+    )
+
+    KECLEON_SHOP_ITEM_TABLE_LISTS_2 = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: enum item_id[4]",
+    )
+
+    EXCLUSIVE_ITEM_STAT_BOOST_DATA = Symbol(
+        None,
+        None,
+        None,
+        "Contains stat boost effects for different exclusive item classes.\n\nEach"
+        " 4-byte entry contains the boost data for (attack, defense, special attack,"
+        " special defense), 1 byte each, for a specific exclusive item class, indexed"
+        " according to the stat boost data index list.\n\ntype: struct"
+        " exclusive_item_stat_boost_entry[15]",
+    )
+
+    EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
+        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
+    )
+
+    EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
+        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
+    )
+
+    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
+        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
+    )
+
+    EXCLUSIVE_ITEM_SPECIAL_DEFENSE_BOOSTS = Symbol(
+        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 3"
+    )
+
+    EXCLUSIVE_ITEM_EFFECT_DATA = Symbol(
+        None,
+        None,
+        None,
+        "Contains special effects for each exclusive item.\n\nEach entry is 2 bytes,"
+        " with the first entry corresponding to the first exclusive item (Prism Ruff)."
+        " The first byte is the exclusive item effect ID, and the second byte is an"
+        " index into other data tables (related to the more generic stat boosting"
+        " effects for specific monsters).\n\ntype: struct"
+        " exclusive_item_effect_entry[956]",
+    )
+
+    EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
+        None, None, None, "EXCLUSIVE_ITEM_EFFECT_DATA, offset by 1"
+    )
+
+    RECYCLE_SHOP_ITEM_LIST = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    TYPE_SPECIFIC_EXCLUSIVE_ITEMS = Symbol(
+        None,
+        None,
+        None,
+        "Lists of type-specific exclusive items (silk, dust, gem, globe) for each"
+        " type.\n\ntype: struct item_id_16[17][4]",
+    )
+
+    RECOIL_MOVE_LIST = Symbol(
+        None,
+        None,
+        None,
+        "Null-terminated list of all the recoil moves, as 2-byte move IDs.\n\ntype:"
+        " struct move_id_16[11]",
+    )
+
+    PUNCH_MOVE_LIST = Symbol(
+        None,
+        None,
+        None,
+        "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
+        " struct move_id_16[16]",
+    )
+
+    MOVE_POWER_STARS_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[6]",
+    )
+
+    MOVE_ACCURACY_STARS_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
+    )
+
+    PARENT_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for a simple_menu created with"
+        " CreateParentMenuInternal.\n\nNote that x_offset and y_offset refer to the"
+        " right and bottom edges, since they will be paired with the x_offset_end and"
+        " y_offset_end window flags in CreateParentMenuInternal.\n\nAdditionally, width"
+        " and height are 0, and will be computed in CreateParentMenuInternal.",
+    )
+
+    SIMPLE_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for a simple_menu.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateSimpleMenuInternal.\n\nAdditionally, width and height are 0, and will"
+        " be computed in CreateSimpleMenuInternal.",
+    )
+
+    ADVANCED_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for an advanced_menu.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateAdvancedMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateAdvancedMenu.",
+    )
+
+    COLLECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for a collection_menu.\n\nNote that x_offset and"
+        " y_offset refer to the right and bottom edges, since they will be paired with"
+        " the x_offset_end and y_offset_end window flags in"
+        " CreateCollectionMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateCollectionMenu.",
+    )
+
+    OPTIONS_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for an options_menu.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateOptionsMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateOptionsMenu.",
+    )
+
+    DEBUG_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for a debug_menu.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateDebugMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateDebugMenu.",
+    )
+
+    SCROLL_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        None, None, None, "Default window_params for a scroll_box."
+    )
+
+    DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        None, None, None, "Default window_params for a dialogue_box."
+    )
+
+    PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for a portrait_box.\n\nNote that the screen and box type"
+        " are unset, and are determined in CreatePortraitBox.",
+    )
+
+    TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        None, None, None, "Default window_params for a text_box."
+    )
+
+    AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for an area_name_box.\n\nNote that x_offset and y_offset"
+        " refer to the right and bottom edges, since they will be paired with the"
+        " x_offset_end and y_offset_end window flags in"
+        " CreateAreaNameBox.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateAreaNameBox.",
+    )
+
+    CONTROLS_CHART_DEFAULT_WINDOW_PARAMS = Symbol(
+        None, None, None, "Default window_params for a controls_chart."
+    )
+
+    ALERT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        None, None, None, "Default window_params for an alert_box."
+    )
+
+    ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for an advanced_text_box.\n\nNote that x_offset and"
+        " y_offset refer to the right and bottom edges, since they will be paired with"
+        " the x_offset_end and y_offset_end window flags in"
+        " CreateAdvancedTextBoxInternal.",
+    )
+
+    TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "Default window_params for a team_selection_menu.\n\nNote that x_offset and"
+        " y_offset refer to the right and bottom edges, since they will be paired with"
+        " the x_offset_end and y_offset_end window flags in"
+        " CreateTeamSelectionMenu.\n\nAdditionally, width and height are 0, and will be"
+        " computed in CreateTeamSelectionMenu.",
+    )
+
+    PARTNER_TALK_KIND_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of values for the PARTNER_TALK_KIND script variable.\n\ntype: struct"
+        " partner_talk_kind_table_entry[11]",
+    )
+
+    SCRIPT_VARS_LOCALS = Symbol(
+        None,
+        None,
+        None,
+        "List of special 'local' variables available to the script engine. There are 4"
+        " 16-byte entries.\n\nEach entry has the same structure as an entry in"
+        " SCRIPT_VARS.\n\ntype: struct script_local_var_table",
+    )
+
+    SCRIPT_VARS = Symbol(
+        None,
+        None,
+        None,
+        "List of predefined global variables that track game state, which are available"
+        " to the script engine. There are 115 16-byte entries.\n\nThese variables"
+        " underpin the various ExplorerScript global variables you can use in the"
+        " SkyTemple SSB debugger.\n\ntype: struct script_var_table",
+    )
+
+    PORTRAIT_LAYOUTS = Symbol(
+        None,
+        None,
+        None,
+        "All the possible layouts a portrait can be placed in by default.\n\ntype:"
+        " struct portrait_layout[32]",
+    )
+
+    KAOMADO_FILEPATH = Symbol(
+        None,
+        None,
+        None,
+        "'Path of the file where all the portraits are stored. 'FONT/kaomado.kao',"
+        " padded with null to a multiple of 4'\n\ntype: char[20]",
+    )
+
+    WONDER_MAIL_BITS_MAP = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: uint8_t[32]",
+    )
+
+    WONDER_MAIL_BITS_SWAP = Symbol(
+        None,
+        None,
+        None,
+        "Last 2 bytes are unused\n\nNote: unverified, ported from Irdkwia's"
+        " notes\n\ntype: uint8_t[36]",
+    )
+
+    ARM9_UNKNOWN_TABLE__NA_209E12C = Symbol(
+        None,
+        None,
+        None,
+        "52*0x2 + 2 bytes unused\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    ARM9_UNKNOWN_TABLE__NA_209E164 = Symbol(
+        None, None, None, "256*0x1\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    ARM9_UNKNOWN_TABLE__NA_209E280 = Symbol(
+        None, None, None, "32*0x1\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    WONDER_MAIL_ENCRYPTION_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: uint8_t[256]",
+    )
+
+    DUNGEON_DATA_LIST = Symbol(
+        None,
+        None,
+        None,
+        "Data about every dungeon in the game.\n\nThis is an array of 180 dungeon data"
+        " list entry structs. Each entry is 4 bytes, and contains floor count"
+        " information along with an index into the bulk of the dungeon's data in"
+        " mappa_s.bin.\n\nSee the struct definitions and End45's dungeon data document"
+        " for more info.\n\ntype: struct dungeon_data_list_entry[180]",
+    )
+
+    ADVENTURE_LOG_ENCOUNTERS_MONSTER_IDS = Symbol(
+        None,
+        None,
+        None,
+        "List of monster IDs with a corresponding milestone in the Adventure"
+        " Log.\n\ntype: struct monster_id_16[38]",
+    )
+
+    ARM9_UNKNOWN_DATA__NA_209E6BC = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    TACTIC_NAME_STRING_IDS = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[12]",
+    )
+
+    STATUS_NAME_STRING_IDS = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[102]",
+    )
+
+    DUNGEON_RETURN_STATUS_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " dungeon_return_status[91]",
+    )
+
+    STATUSES_FULL_DESCRIPTION_STRING_IDS = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " status_description[103]",
+    )
+
+    ARM9_UNKNOWN_DATA__NA_209EAAC = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    MISSION_FLOOR_RANKS_AND_ITEM_LISTS_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    MISSION_FLOORS_FORBIDDEN = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " mission_floors_forbidden[100]",
+    )
+
+    MISSION_FLOOR_RANKS_AND_ITEM_LISTS_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    MISSION_FLOOR_RANKS_PTRS = Symbol(
+        None,
+        None,
+        None,
+        "Uses MISSION_FLOOR_RANKS_AND_ITEM_LISTS\n\nNote: unverified, ported from"
+        " Irdkwia's notes",
+    )
+
+    DUNGEON_RESTRICTIONS = Symbol(
+        None,
+        None,
+        None,
+        "Data related to dungeon restrictions for every dungeon in the game.\n\nThis is"
+        " an array of 256 dungeon restriction structs. Each entry is 12 bytes, and"
+        " contains information about restrictions within the given dungeon.\n\nSee the"
+        " struct definitions and End45's dungeon data document for more info.\n\ntype:"
+        " struct dungeon_restriction[256]",
+    )
+
+    SPECIAL_BAND_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the Special Band."
+    )
+
+    MUNCH_BELT_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the Munch Belt."
+    )
+
+    GUMMI_STAT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "Stat boost value if a stat boost occurs when eating normal Gummis.",
+    )
+
+    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol(None, None, None, "")
+
+    WONDER_GUMMI_IQ_GAIN = Symbol(
+        None, None, None, "IQ gain when ingesting wonder gummis."
+    )
+
+    AURA_BOW_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the aura bows."
+    )
+
+    MIN_IQ_ITEM_MASTER = Symbol(None, None, None, "")
+
+    DEF_SCARF_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the Defense Scarf."
+    )
+
+    POWER_BAND_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the Power Band."
+    )
+
+    WONDER_GUMMI_STAT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "Stat boost value if a stat boost occurs when eating Wonder Gummis.",
+    )
+
+    ZINC_BAND_STAT_BOOST = Symbol(
+        None, None, None, "Stat boost value for the Zinc Band."
+    )
+
+    EGG_HP_BONUS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVOLUTION_HP_BONUS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DAMAGE_FORMULA_FLV_SHIFT = Symbol(
+        None,
+        None,
+        None,
+        "The constant shift added to the 'FLV' intermediate quantity in the damage"
+        " formula (see dungeon::last_move_damage_calc_flv), as a binary fixed-point"
+        " number with 8 fraction bits (50).",
+    )
+
+    EVOLUTION_PHYSICAL_STAT_BONUSES = Symbol(
+        None,
+        None,
+        None,
+        "0x2: Atk + 0x2: Def\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    DAMAGE_FORMULA_CONSTANT_SHIFT = Symbol(
+        None,
+        None,
+        None,
+        "The constant shift applied to the overall output of the 'unshifted base'"
+        " damage formula (the sum of the scaled AT, DEF, and ClampedLn terms), as a"
+        " binary fixed-point number with 8 fraction bits (-311).\n\nThe value of -311"
+        " is notably equal to -round[DAMAGE_FORMULA_LN_PREFACTOR *"
+        " ln(DAMAGE_FORMULA_LN_ARG_PREFACTOR * DAMAGE_FORMULA_FLV_SHIFT)]. This is"
+        " probably not a coincidence.",
+    )
+
+    DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR = Symbol(
+        None,
+        None,
+        None,
+        "The divisor of the (AT - DEF) term within the 'FLV' intermediate quantity in"
+        " the damage formula (see dungeon::last_move_damage_calc_flv), as a binary"
+        " fixed-point number with 8 fraction bits (8).",
+    )
+
+    EGG_STAT_BONUSES = Symbol(
+        None,
+        None,
+        None,
+        "0x2: Atk + 0x2: SpAtk + 0x2: Def + 0x2: SpDef\n\nNote: unverified, ported from"
+        " Irdkwia's notes",
+    )
+
+    EVOLUTION_SPECIAL_STAT_BONUSES = Symbol(
+        None,
+        None,
+        None,
+        "0x2: SpAtk + 0x2: SpDef\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER = Symbol(
+        None,
+        None,
+        None,
+        "The divisor applied to the overall output of the 'shifted base' damage formula"
+        " (the sum of the scaled AT, Def, ClampedLn, and DAMAGE_FORMULA_CONSTANT_SHIFT"
+        " terms) if the attacker is not a team member (and the current fixed room is"
+        " not the substitute room...for some reason), as a binary fixed-point number"
+        " with 8 fraction bits (85/64).",
+    )
+
+    DAMAGE_FORMULA_LN_PREFACTOR = Symbol(
+        None,
+        None,
+        None,
+        "The prefactor to the output of the ClampedLn in the damage formula, as a"
+        " binary fixed-point number with 8 fraction bits (50).",
+    )
+
+    DAMAGE_FORMULA_DEF_PREFACTOR = Symbol(
+        None,
+        None,
+        None,
+        "The prefactor to the 'DEF' (defense) intermediate quantity in the damage"
+        " formula (see dungeon::last_move_damage_calc_def), as a binary fixed-point"
+        " number with 8 fraction bits (-0.5).",
+    )
+
+    DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
+        None,
+        None,
+        None,
+        "The prefactor to the 'AT' (attack) intermediate quantity in the damage formula"
+        " (see dungeon::last_move_damage_calc_at), as a binary fixed-point number with"
+        " 8 fraction bits (153/256, which is close to 0.6).",
+    )
+
+    DAMAGE_FORMULA_LN_ARG_PREFACTOR = Symbol(
+        None,
+        None,
+        None,
+        "The prefactor to the argument of ClampedLn in the damage formula (FLV +"
+        " DAMAGE_FORMULA_FLV_SHIFT), as a binary fixed-point number with 8 fraction"
+        " bits (10).",
+    )
+
+    FORBIDDEN_FORGOT_MOVE_LIST = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " forbidden_forgot_move_entry[3]",
+    )
+
+    TACTICS_UNLOCK_LEVEL_TABLE = Symbol(None, None, None, "type: int16_t[12]")
+
+    CLIENT_LEVEL_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Still a guess\n\nNote: unverified, ported from Irdkwia's notes\n\ntype:"
+        " int16_t[16]",
+    )
+
+    OUTLAW_LEVEL_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of 2-byte outlaw levels for outlaw missions, indexed by mission"
+        " rank.\n\ntype: int16_t[16]",
+    )
+
+    OUTLAW_MINION_LEVEL_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of 2-byte outlaw minion levels for outlaw hideout missions, indexed by"
+        " mission rank.\n\ntype: int16_t[16]",
+    )
+
+    HIDDEN_POWER_BASE_POWER_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Still a guess\n\nNote: unverified, ported from Irdkwia's notes\n\ntype:"
+        " int[10]",
+    )
+
+    VERSION_EXCLUSIVE_MONSTERS = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " version_exclusive_monster[23]",
+    )
+
+    IQ_SKILL_RESTRICTIONS = Symbol(
+        None,
+        None,
+        None,
+        "Table of 2-byte values for each IQ skill that represent a group. IQ skills in"
+        " the same group can not be enabled at the same time.\n\ntype: int16_t[69]",
+    )
+
+    SECONDARY_TERRAIN_TYPES = Symbol(
+        None,
+        None,
+        None,
+        "The type of secondary terrain for each dungeon in the game.\n\nThis is an"
+        " array of 200 bytes. Each byte is an enum corresponding to one"
+        " dungeon.\n\ntype: struct secondary_terrain_type_8[200]",
+    )
+
+    SENTRY_DUTY_MONSTER_IDS = Symbol(
+        None,
+        None,
+        None,
+        "Table of monster IDs usable in the sentry duty minigame.\n\ntype: struct"
+        " monster_id_16[102]",
+    )
+
+    IQ_SKILLS = Symbol(
+        None,
+        None,
+        None,
+        "Table of 4-byte values for each IQ skill that represent the required IQ value"
+        " to unlock a skill.\n\ntype: int[69]",
+    )
+
+    IQ_GROUP_SKILLS = Symbol(None, None, None, "Irdkwia's notes: 25*16*0x1")
+
+    MONEY_QUANTITY_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table that maps money quantity codes (as recorded in, e.g., struct item) to"
+        " actual amounts.\n\ntype: int[100]",
+    )
+
+    ARM9_UNKNOWN_TABLE__NA_20A20B0 = Symbol(
+        None, None, None, "256*0x2\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    IQ_GUMMI_GAIN_TABLE = Symbol(None, None, None, "type: int16_t[18][18]")
+
+    GUMMI_BELLY_RESTORE_TABLE = Symbol(None, None, None, "type: int16_t[18][18]")
+
+    BAG_CAPACITY_TABLE_SPECIAL_EPISODES = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: uint32_t[5]",
+    )
+
+    BAG_CAPACITY_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Array of 4-byte integers containing the bag capacity for each bag"
+        " level.\n\ntype: uint32_t[8]",
+    )
+
+    SPECIAL_EPISODE_MAIN_CHARACTERS = Symbol(
+        None, None, None, "type: struct monster_id_16[100]"
+    )
+
+    GUEST_MONSTER_DATA = Symbol(
+        None,
+        None,
+        None,
+        "Data for guest monsters that join you during certain story dungeons.\n\nArray"
+        " of 18 36-byte entries.\n\nSee the struct definitions and End45's dungeon data"
+        " document for more info.\n\ntype: struct guest_monster[18]",
+    )
+
+    RANK_UP_TABLE = Symbol(None, None, None, "")
+
+    DS_DOWNLOAD_TEAMS = Symbol(
+        None,
+        None,
+        None,
+        "Seems like this is just a collection of null-terminated lists concatenated"
+        " together.\n\nNote: unverified, ported from Irdkwia's notes\n\nstruct"
+        " monster_id_16[56]",
+    )
+
+    ARM9_UNKNOWN_PTR__NA_20A2C84 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    UNOWN_SPECIES_ADDITIONAL_CHARS = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: enum monster_id[28]",
+    )
+
+    MONSTER_SPRITE_DATA = Symbol(None, None, None, "")
+
+    REMOTE_STRINGS = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    RANK_STRINGS_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    MISSION_MENU_STRING_IDS_1 = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[8]",
+    )
+
+    RANK_STRINGS_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    MISSION_MENU_STRING_IDS_2 = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[8]",
+    )
+
+    RANK_STRINGS_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    MISSION_DUNGEON_UNLOCK_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Irdkwia's notes: SpecialDungeonMissions\n\ntype: struct"
+        " dungeon_unlock_entry[3]",
+    )
+
+    NO_SEND_ITEM_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct item_id_16[3]",
+    )
+
+    ARM9_UNKNOWN_TABLE__NA_20A3CC8 = Symbol(
+        None,
+        None,
+        None,
+        "14*0x2\nLinked to ARM9_UNKNOWN_TABLE__NA_20A3CE4\n\nNote: unverified, ported"
+        " from Irdkwia's notes",
+    )
+
+    ARM9_UNKNOWN_TABLE__NA_20A3CE4 = Symbol(
+        None, None, None, "8*0x2\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4 = Symbol(
+        None,
+        None,
+        None,
+        "Could be related to missions\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    MISSION_BANNED_STORY_MONSTERS = Symbol(
+        None,
+        None,
+        None,
+        "Null-terminated list of monster IDs that can't be used (probably as clients or"
+        " targets) when generating missions before a certain point in the story.\n\nTo"
+        " be precise, PERFOMANCE_PROGRESS_FLAG[9] must be enabled so these monsters can"
+        " appear as mission clients.\n\ntype: struct monster_id_16[length / 2]",
+    )
+
+    ITEM_DELIVERY_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Maybe it is the Item table used for Item Deliveries\n\nNote: unverified,"
+        " ported from Irdkwia's notes\n\ntype: struct item_id_16[23]",
+    )
+
+    MISSION_RANK_POINTS = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[16]",
+    )
+
+    MISSION_BANNED_MONSTERS = Symbol(
+        None,
+        None,
+        None,
+        "Null-terminated list of monster IDs that can't be used (probably as clients or"
+        " targets) when generating missions.\n\ntype: struct monster_id_16[124]",
+    )
+
+    MISSION_STRING_IDS = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[964]",
+    )
+
+    LEVEL_LIST = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    EVENTS = Symbol(
+        None,
+        None,
+        None,
+        "Table of levels for the script engine, in which scenes can take place. There"
+        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
+        " script_level[length / 12]",
+    )
+
+    ARM9_UNKNOWN_TABLE__NA_20A68BC = Symbol(
+        None, None, None, "6*0x2\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    DEMO_TEAMS = Symbol(
+        None,
+        None,
+        None,
+        "18*0x4 (Hero ID 0x2, Partner ID 0x2)\n\nNote: unverified, ported from"
+        " Irdkwia's notes",
+    )
+
+    ACTOR_LIST = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ENTITIES = Symbol(
+        None,
+        None,
+        None,
+        "Table of entities for the script engine, which can move around and do things"
+        " within a scene. There are 386 12-byte entries.\n\ntype: struct"
+        " script_entity[386]",
+    )
+
+    JOB_WINDOW_PARAMS_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_1 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_3 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_4 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_5 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_6 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_7 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_8 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_9 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_10 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_11 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_12 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_MENU_ITEMS_13 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    JOB_WINDOW_PARAMS_2 = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    DUNGEON_SWAP_ID_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
+        " dungeon_id_8[212]",
+    )
+
+    MAP_MARKER_PLACEMENTS = Symbol(
+        None,
+        None,
+        None,
+        "The map marker position of each dungeon on the Wonder Map.\n\nThis is an array"
+        " of 310 map marker structs. Each entry is 8 bytes, and contains positional"
+        " information about a dungeon on the map.\n\nSee the struct definitions and"
+        " End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
+    )
+
+    LFO_OUTPUT_VOICE_UPDATE_FLAGS = Symbol(None, None, None, "")
+
+    TRIG_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Interleaved table of sine and cosine values at 4096 divisions over a full"
+        " period (2π radians).\n\nMore precisely, the trig_values entry at index i"
+        " corresponds to {sin(i * 2π/4096), cos(i * 2π/4096)} (each division is ~1/10"
+        " of a degree). Values are stored as signed fixed-point numbers with 12"
+        " fraction bits.\n\ntype: struct trig_values[4096]",
+    )
+
+    FX_ATAN_IDX_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of arctangent values at 129 divisions over the domain [0, 1].\n\nMore"
+        " precisely, entry at index i corresponds to (atan(i/128) / (π/2)). Values are"
+        " stored as signed fixed-point numbers with 14 fraction bits.",
+    )
+
+    TEX_PLTT_START_ADDR_TABLE = Symbol(None, None, None, "")
+
+    TEX_START_ADDR_TABLE = Symbol(None, None, None, "")
+
+    ARM9_UNKNOWN_TABLE__NA_20AE924 = Symbol(
+        None, None, None, "724*0x1\n\nNote: unverified, ported from Irdkwia's notes"
+    )
+
+    MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
+        None,
+        None,
+        None,
+        "Functions to get the desired memory arena for allocating and freeing heap"
+        " memory.\n\ntype: struct mem_arena_getters",
+    )
+
+    PRNG_SEQUENCE_NUM = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The current PRNG sequence number for the general-purpose PRNG. See"
+        " Rand16Bit for more information on how the general-purpose PRNG works.",
+    )
+
+    LOADED_OVERLAY_GROUP_0 = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The overlay group ID of the overlay currently loaded in slot 0. A"
+        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
+        " slot 0:\n- 0x06 (overlay 3)\n- 0x07 (overlay 6)\n- 0x08 (overlay 4)\n- 0x09"
+        " (overlay 5)\n- 0x0A (overlay 7)\n- 0x0B (overlay 8)\n- 0x0C (overlay 9)\n-"
+        " 0x10 (overlay 12)\n- 0x11 (overlay 13)\n- 0x12 (overlay 14)\n- 0x13 (overlay"
+        " 15)\n- 0x14 (overlay 16)\n- 0x15 (overlay 17)\n- 0x16 (overlay 18)\n- 0x17"
+        " (overlay 19)\n- 0x18 (overlay 20)\n- 0x19 (overlay 21)\n- 0x1A (overlay"
+        " 22)\n- 0x1B (overlay 23)\n- 0x1C (overlay 24)\n- 0x1D (overlay 25)\n- 0x1E"
+        " (overlay 26)\n- 0x1F (overlay 27)\n- 0x20 (overlay 28)\n- 0x21 (overlay"
+        " 30)\n- 0x22 (overlay 31)\n- 0x23 (overlay 32)\n- 0x24 (overlay 33)\n\ntype:"
+        " enum overlay_group_id",
+    )
+
+    LOADED_OVERLAY_GROUP_1 = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The overlay group ID of the overlay currently loaded in slot 1. A"
+        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
+        " slot 1:\n- 0x4 (overlay 1)\n- 0x5 (overlay 2)\n- 0xD (overlay 11)\n- 0xE"
+        " (overlay 29)\n- 0xF (overlay 34)\n\ntype: enum overlay_group_id",
+    )
+
+    LOADED_OVERLAY_GROUP_2 = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The overlay group ID of the overlay currently loaded in slot 2. A"
+        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
+        " slot 2:\n- 0x1 (overlay 0)\n- 0x2 (overlay 10)\n- 0x3 (overlay 35)\n\ntype:"
+        " enum overlay_group_id",
+    )
+
+    DEBUG_IS_INITIALIZED = Symbol(None, None, None, "")
+
+    PACK_FILES_OPENED = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] A pointer to the 6 opened Pack files (listed at"
+        " PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
+    )
+
+    PACK_FILE_PATHS_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "List of pointers to path strings to all known pack files.\nThe game uses this"
+        " table to load its resources when launching dungeon mode.\n\ntype: char*[6]",
+    )
+
+    GAME_STATE_VALUES = Symbol(None, None, None, "[Runtime]")
+
+    BAG_ITEMS_PTR_MIRROR = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Probably a mirror of ram.yml::BAG_ITEMS_PTR?\n\nNote: unverified,"
+        " ported from Irdkwia's notes",
+    )
+
+    ITEM_DATA_TABLE_PTRS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] List of pointers to various item data tables.\n\nThe first two"
+        " pointers are definitely item-related (although the order appears to be"
+        " flipped between EU/NA?). Not sure about the third pointer.",
+    )
+
+    DUNGEON_MOVE_TABLES = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Seems to be some sort of region (a table of tables?) that holds"
+        " pointers to various important tables related to moves.",
+    )
+
+    MOVE_DATA_TABLE_PTR = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Points to the contents of the move data table loaded from"
+        " waza_p.bin\n\ntype: struct move_data_table*",
+    )
+
+    WAN_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "pointer to the list of wan sprite loaded in RAM\n\nstruct wan_table*",
+    )
+
+    RENDER_3D = Symbol(
+        None,
+        None,
+        None,
+        "The (seemingly) unique instance render_3d_global in the game\n\ntype: struct"
+        " render_3d_global",
+    )
+
+    RENDER_3D_FUNCTIONS_64 = Symbol(
+        None,
+        None,
+        None,
+        "Pointers to the 8 functions available for rendering a"
+        " render_3d_element_64\n\ntype: render_3d_element_64_fn_t[8]",
+    )
+
+    LANGUAGE_INFO_DATA = Symbol(None, None, None, "[Runtime]")
+
+    TBL_TALK_GROUP_STRING_ID_START = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
+    )
+
+    KEYBOARD_STRING_IDS = Symbol(
+        None,
+        None,
+        None,
+        "30*0x2\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: int16_t[30]",
+    )
+
+    NOTIFY_NOTE = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Flag related to saving and loading state?\n\ntype: bool",
+    )
+
+    DEFAULT_HERO_ID = Symbol(
+        None,
+        None,
+        None,
+        "The default monster ID for the hero (0x4: Charmander)\n\ntype: struct"
+        " monster_id_16",
+    )
+
+    DEFAULT_PARTNER_ID = Symbol(
+        None,
+        None,
+        None,
+        "The default monster ID for the partner (0x1: Bulbasaur)\n\ntype: struct"
+        " monster_id_16",
+    )
+
+    GAME_MODE = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Game mode, see enum game_mode for possible values.\n\ntype: uint8_t",
+    )
+
+    GLOBAL_PROGRESS_PTR = Symbol(
+        None, None, None, "[Runtime]\n\ntype: struct global_progress*"
+    )
+
+    ADVENTURE_LOG_PTR = Symbol(
+        None, None, None, "[Runtime]\n\ntype: struct adventure_log*"
+    )
+
+    ITEM_TABLES_PTRS_1 = Symbol(
+        None,
+        None,
+        None,
+        "Irdkwia's notes: 26*0x4, uses MISSION_FLOOR_RANKS_AND_ITEM_LISTS",
+    )
+
+    UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Uses UNOWN_SPECIES_ADDITIONAL_CHARS\n\nNote: unverified, ported from Irdkwia's"
+        " notes\n\ntype: enum monster_id*[28]",
+    )
+
+    TEAM_MEMBER_TABLE_PTR = Symbol(None, None, None, "Pointer to TEAM_MEMBER_TABLE")
+
+    MISSION_LIST_PTR = Symbol(
+        None, None, None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    REMOTE_STRING_PTR_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: const char*[7]",
+    )
+
+    RANK_STRING_PTR_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: const char*[16]",
+    )
+
+    SMD_EVENTS_FUN_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "Table of all DSE events, see"
+        " https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nIrdkwia's"
+        " notes: named DSEEventFunctionPtrTable with length 0x3C0 (note the"
+        " disagreement), 240*0x4.",
+    )
+
+    MUSIC_DURATION_LOOKUP_TABLE_1 = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[128]",
+    )
+
+    MUSIC_DURATION_LOOKUP_TABLE_2 = Symbol(
+        None,
+        None,
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\ntype: int32_t[128]",
+    )
+
+    LFO_WAVEFORM_CALLBACKS = Symbol(None, None, None, "")
+
+    IS_DISP_ON = Symbol(None, None, None, "")
+
+    GXI_DMA_ID = Symbol(None, None, None, "")
+
+    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
+        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
+    )
+
+    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
+
+    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
+
+    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
+
+
+class JpItcmArm9Section:
+    name = "arm9"
+    description = (
+        "The main ARM9 binary.\n\nThis is the main binary that gets loaded when the"
+        " game is launched, and contains the core code that runs the game, low level"
+        " facilities such as memory allocation, compression, other external"
+        " dependencies (such as linked libraries), and the functions and tables"
+        " necessary to load overlays and dispatch execution to them.\n\nSpeaking"
+        " generally, this is the program run by the Nintendo DS's main ARM946E-S CPU,"
+        " which handles all gameplay mechanisms and graphics rendering."
+    )
+    loadaddress = 0x1FF8000
+    length = 0x4060
+    functions = JpItcmArm9Functions
+    data = JpItcmArm9Data
+
+
+class JpItcmItcmFunctions:
+
+    Render3dSetTextureParams = Symbol(
+        [0x130],
+        [0x1FF8130],
+        None,
+        "A wrapper around GeomSetTexImageParam that caches the VRAM offset on"
+        " RENDER_3D.\n\nAlways disables flipping and sets color values of 0 to be"
+        " transparent.\n\nr0: render_3d_texture_params pointer\nr1: texture VRAM"
+        " offset",
+    )
+
+    Render3dSetPaletteBase = Symbol(
+        [0x1CC],
+        [0x1FF81CC],
+        None,
+        "Send the PLTT_BASE geometry engine command, that sets the texture palette base"
+        " address. Also caches the base address on RENDER_3D.\nSee"
+        " http://problemkaputt.de/gbatek.htm#ds3dtextureattributes for more information"
+        " on the parameters.\n\nr0: render_3d_texture_params pointer\nr1: palette base"
+        " address",
+    )
+
+    Render3dRectangle = Symbol(
+        [0x224],
+        [0x1FF8224],
+        None,
+        "RENDER_3D_FUNCTIONS[0]. Renders a render_3d_element with type"
+        " RENDER_RECTANGLE.\n\nr0: render_3d_rectangle",
+    )
+
+    GeomSetPolygonAttributes = Symbol(
+        [0x480],
+        [0x1FF8480],
+        None,
+        "Send the POLYGON_ATTR geometry engine command, that defines some polygon"
+        " attributes for rendering.\nSee"
+        " https://problemkaputt.de/gbatek.htm#ds3dpolygonattributes for more"
+        " information\n\nr0: polygon ID\nr1: alpha",
+    )
+
+    Render3dQuadrilateral = Symbol(
+        [0x49C],
+        [0x1FF849C],
+        None,
+        "RENDER_3D_FUNCTIONS[1]. Renders a render_3d_element with type"
+        " RENDER_QUADRILATERAL.\n\nr0: render_3d_quadrilateral",
+    )
+
+    Render3dTiling = Symbol(
+        [0x728],
+        [0x1FF8728],
+        None,
+        "RENDER_3D_FUNCTIONS[2]. Renders a render_3d_element with type"
+        " RENDER_TILING.\n\nr0: render_3d_tiling",
+    )
+
+    Render3dTextureInternal = Symbol(
+        None,
+        None,
+        None,
+        "Implements most of the rendering logic for Render3dTexture.\n\nr0:"
+        " render_3d_texture",
+    )
+
+    Render3dTexture = Symbol(
+        [0xC28],
+        [0x1FF8C28],
+        None,
+        "RENDER_3D_FUNCTIONS[3]. Renders a render_3d_element with type"
+        " RENDER_TEXTURE.\n\nThis is primarily just a wrapper around"
+        " Render3dTextureInternal, with a preceding alpha check and calls to"
+        " Render3dSetTextureParams and Render3dSetPaletteBase.\n\nr0:"
+        " render_3d_texture",
+    )
+
+    Render3dTextureNoSetup = Symbol(
+        None,
+        None,
+        None,
+        "Same as Render3dTexture except without calls to Render3dSetTextureParams and"
+        " Render3dSetPaletteBase to set up geometry engine parameters.\n\nPresumably"
+        " used to render multiple texture tiles with the same parameters without the"
+        " extra setup overhead? But this function doesn't actually seem to be"
+        " referenced anywhere.\n\nr0: render_3d_texture",
+    )
+
+    NewRender3dElement = Symbol(
+        [0xC78],
+        [0x1FF8C78],
+        None,
+        "Return a new render_3d_element from RENDER_3D's render queue, to draw a new"
+        " element using the 3d render engine later in the frame.\n\nreturn:"
+        " render_3d_element or NULL if there is no more available space in the queue",
+    )
+
+    EnqueueRender3dTexture = Symbol(
+        [0xCAC],
+        [0x1FF8CAC],
+        None,
+        "Copies the first 40 bytes of a render_3d_element onto the render queue of"
+        " RENDER_3D, with type set to RENDER_TEXTURE.\n\nr0: render_3d_element",
+    )
+
+    EnqueueRender3dTiling = Symbol(
+        [0xCDC],
+        [0x1FF8CDC],
+        None,
+        "Copies a render_3d_element onto the render queue of RENDER_3D, with type set"
+        " to RENDER_TILING.\n\nr0: render_3d_element",
+    )
+
+    NewRender3dRectangle = Symbol(
+        [0xD0C],
+        [0x1FF8D0C],
+        None,
+        "Return a render_3d_element from NewRender3dElement with a type of"
+        " RENDER_RECTANGLE, and all other fields in the first 38 bytes"
+        " zeroed.\n\nreturn: render_3d_element or NULL if there is no more available"
+        " space in the queue",
+    )
+
+    NewRender3dQuadrilateral = Symbol(
+        [0xD3C],
+        [0x1FF8D3C],
+        None,
+        "Return a render_3d_element from NewRender3dElement with a type of"
+        " RENDER_QUADRILATERAL, and all other fields in the first 38 bytes"
+        " zeroed.\n\nreturn: render_3d_element or NULL if there is no more available"
+        " space in the queue",
+    )
+
+    NewRender3dTexture = Symbol(
+        [0xD6C],
+        [0x1FF8D6C],
+        None,
+        "Return a render_3d_element from NewRender3dElement with a type of"
+        " RENDER_TEXTURE, and all other fields in the first 40 bytes zeroed.\n\nreturn:"
+        " render_3d_element or NULL if there is no more available space in the queue",
+    )
+
+    NewRender3dTiling = Symbol(
+        [0xD9C],
+        [0x1FF8D9C],
+        None,
+        "Return a render_3d_element from NewRender3dElement with a type of"
+        " RENDER_TILING, and all other fields zeroed.\n\nreturn: render_3d_element or"
+        " NULL if there is no more available space in the queue",
+    )
+
+    Render3dProcessQueue = Symbol(
+        [0xDCC],
+        [0x1FF8DCC],
+        None,
+        "Perform rendering of the render queue of RENDER_3D structure. Does nothing if"
+        " there are no elements, otherwise, sort them based on a value, and render them"
+        " all consecutively.\n\nNo params.",
+    )
+
+    GetKeyN2MSwitch = Symbol(
+        [0x149C],
+        [0x1FF949C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: key\nr1: switch",
+    )
+
+    GetKeyN2M = Symbol(
+        [0x14D0],
+        [0x1FF94D0],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: key\nreturn: monster ID",
+    )
+
+    GetKeyN2MBaseForm = Symbol(
+        [0x153C],
+        [0x1FF953C],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: key\nreturn: monster ID",
+    )
+
+    GetKeyM2NSwitch = Symbol(
+        [0x1574],
+        [0x1FF9574],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nr1: switch",
+    )
+
+    GetKeyM2N = Symbol(
+        [0x15A8],
+        [0x1FF95A8],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: key",
+    )
+
+    GetKeyM2NBaseForm = Symbol(
+        [0x1614],
+        [0x1FF9614],
+        None,
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: key",
+    )
+
+    HardwareInterrupt = Symbol(
+        [0x1650],
+        [0x1FF9650],
+        None,
+        "Called whenever a hardware interrupt takes place.\n\nReturns immediately if"
+        " the IME flag is 0 or if none of the devices that requested an interrupt has"
+        " the corresponding Interrupt Enable flag set.\nIt searches for the first"
+        " device that requested an interrupt, clears its Interrupt Request flag, then"
+        " jumps to the start of the corresponding interrupt function. The return"
+        " address is manually set to ReturnFromInterrupt.\nThe address of the function"
+        " to jump to is read from the interrupt vector at the start of the DTCM region"
+        " (0x27E0000).\nThis function does not return.\n\nNo params.",
+    )
+
+    ReturnFromInterrupt = Symbol(
+        [0x16B8],
+        [0x1FF96B8],
+        None,
+        "The execution returns to this function after a hardware interrupt function is"
+        " run.\n\nNo params.",
+    )
+
+    ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
+        [0x23F8],
+        [0x1FFA3F8],
+        None,
+        "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
+        " Otherwise, returns true only if the monster's behavior field is equal to"
+        " monster_behavior::BEHAVIOR_FLEEING_OUTLAW.\n\nr0: Entity pointer\nr1:"
+        " ?\nreturn: True if ShouldMonsterRunAway returns true or the monster is a"
+        " fleeing outlaw",
+    )
+
+    AiMovement = Symbol(
+        [0x242C],
+        [0x1FFA42C],
+        None,
+        "Used by the AI to determine the direction in which a monster should"
+        " move\n\nr0: Entity pointer\nr1: ?",
+    )
+
+    CalculateAiTargetPos = Symbol(
+        [0x3330],
+        [0x1FFB330],
+        None,
+        "Calculates the target position of an AI-controlled monster and stores it in"
+        " the monster's ai_target_pos field\n\nr0: Entity pointer",
+    )
+
+    ChooseAiMove = Symbol(
+        [0x36C0],
+        [0x1FFB6C0],
+        None,
+        "Determines if an AI-controlled monster will use a move and which one it will"
+        " use\n\nr0: Entity pointer",
+    )
+
+    LightningRodStormDrainCheck = Symbol(
+        [0x3EC4],
+        [0x1FFBEC4],
+        None,
+        "Appears to check whether LightningRod or Storm Drain should draw in a"
+        " move.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move pointer\nr3:"
+        " true if checking for Storm Drain, false if checking for LightningRod\nreturn:"
+        " whether the move should be drawn in",
+    )
+
+
+class JpItcmItcmData:
+
+    MEMORY_ALLOCATION_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
+        " in the ARM9 binary uses region-based memory management (see"
+        " https://en.wikipedia.org/wiki/Region-based_memory_management). The heap is"
+        " broken up into smaller contiguous chunks called arenas (struct mem_arena),"
+        " which are in turn broken up into chunks referred to as blocks (struct"
+        " mem_block). Most of the time, an allocation results in a block being split"
+        " off from a free part of an existing memory arena.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_alloc_table",
+    )
+
+    DEFAULT_MEMORY_ARENA = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The default memory allocation arena. This is part of"
+        " MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various"
+        " functions.\n\nNote: This symbol isn't actually part of the ITCM, it gets"
+        " created at runtime on the spot in RAM that used to contain the code that was"
+        " moved to the ITCM.\n\ntype: struct mem_arena",
+    )
+
+    DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
+        None,
+        None,
+        None,
+        "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\nNote: This symbol isn't"
+        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
+        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
+        " mem_block[256]",
+    )
+
+    RENDER_3D_FUNCTIONS = Symbol(
+        None,
+        None,
+        None,
+        "Pointers to the 4 functions available for rendering a render_3d_element (in"
+        " ITCM)\n\ntype: render_3d_element_fn_t[4]",
+    )
+
+
+class JpItcmItcmSection:
+    name = "itcm"
+    description = (
+        "The instruction TCM (tightly-coupled memory) and the corresponding region in"
+        " the ARM9 binary.\n\nThe ITCM is a special area of low-latency memory meant"
+        " for performance-critical routines. It's similar to an instruction cache, but"
+        " more predictable. See the ARMv5 Architecture Reference Manual, Chapter B7"
+        " (https://developer.arm.com/documentation/ddi0100/i).\n\nThe Nintendo DS ITCM"
+        " region is located at 0x0-0x7FFF in memory, but the 32 KiB segment is mirrored"
+        " throughout the 16 MiB block from 0x0-0x1FFFFFF. The Explorers of Sky code"
+        " seems to reference only the mirror at 0x1FF8000, the closest one to main"
+        " memory.\n\nIn Explorers of Sky, a fixed region of the ARM9 binary appears to"
+        " be loaded in the ITCM at all times, and seems to contain functions related to"
+        " the dungeon AI, among other things. The ITCM has a max capacity of 0x8000,"
+        " although not all of it is used."
+    )
+    loadaddress = 0x1FF8000
+    length = 0x4060
+    functions = JpItcmItcmFunctions
+    data = JpItcmItcmData
+
+
+class JpItcmLibsFunctions:
 
     SoundUtilGetRandomNumber = Symbol(
         None, None, None, "return: random number in the range [0, 32767]"
@@ -9354,1712 +11064,28 @@ class JpItcmArm9Functions:
     )
 
 
-class JpItcmArm9Data:
+class JpItcmLibsData:
 
-    SECURE = Symbol(
-        None,
-        None,
-        None,
-        "The header of the DS cartridge secure area. See"
-        " https://problemkaputt.de/gbatek.htm#dscartridgesecurearea",
-    )
+    pass
 
-    START_MODULE_PARAMS = Symbol(
-        None, None, None, "Parameters used by the NitroSDK to read the ROM."
-    )
 
-    DEFAULT_MEMORY_ARENA_SIZE = Symbol(
-        None,
-        None,
-        None,
-        "Length in bytes of the default memory allocation arena, 1991680.",
-    )
-
-    LOG_MAX_ARG = Symbol(
-        None, None, None, "The maximum argument value for the Log function, 2047."
-    )
-
-    DAMAGE_SOURCE_CODE_ORB_ITEM = Symbol(
-        None,
-        None,
-        None,
-        "The damage source value for any item in CATEGORY_ORBS, 0x262.",
-    )
-
-    DAMAGE_SOURCE_CODE_NON_ORB_ITEM = Symbol(
-        None,
-        None,
-        None,
-        "The damage source value for any item not in CATEGORY_ORBS, 0x263.",
-    )
-
-    AURA_BOW_ID_LAST = Symbol(None, None, None, "Highest item ID of the aura bows.")
-
-    NUMBER_OF_ITEMS = Symbol(None, None, None, "Number of items in the game.")
-
-    MAX_MONEY_CARRIED = Symbol(
-        None, None, None, "Maximum amount of money the player can carry, 99999."
-    )
-
-    MAX_MONEY_STORED = Symbol(
-        None,
-        None,
-        None,
-        "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
-    )
-
-    WINDOW_LIST_PTR = Symbol(None, None, None, "Hard-coded pointer to WINDOW_LIST.")
-
-    SCRIPT_VARS_VALUES_PTR = Symbol(
-        None, None, None, "Hard-coded pointer to SCRIPT_VARS_VALUES."
-    )
-
-    MAX_PLAY_TIME = Symbol(
-        None,
-        None,
-        None,
-        "Maximum number of seconds that the file timer counts up to.\n\n35999999"
-        " seconds (one second under 10000 hours).",
-    )
-
-    MONSTER_ID_LIMIT = Symbol(
-        None, None, None, "One more than the maximum valid monster ID (0x483)."
-    )
-
-    MAX_RECRUITABLE_TEAM_MEMBERS = Symbol(
-        None,
-        None,
-        None,
-        "555, appears to be the maximum number of members recruited to an exploration"
-        " team, at least for the purposes of some checks that need to iterate over all"
-        " team members.",
-    )
-
-    NATURAL_LOG_VALUE_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "A table of values for the natural log function corresponding to integer"
-        " arguments in the range [0, 2047].\n\nEach value is stored as a 16-bit"
-        " fixed-point number with 12 fractional bits. I.e., to get the actual natural"
-        " log value, take the table entry and divide it by 2^12.\n\nThe value at an"
-        " input of 0 is just listed as 0; the Log function makes sure the input is"
-        " always at least 1 before reading the table.\n\ntype: int16_t[2048]",
-    )
-
-    CART_REMOVED_IMG_DATA = Symbol(None, None, None, "")
-
-    STRING_DEBUG_EMPTY = Symbol(None, None, None, "")
-
-    STRING_DEBUG_FORMAT_LINE_FILE = Symbol(None, None, None, "")
-
-    STRING_DEBUG_NO_PROG_POS = Symbol(None, None, None, "")
-
-    STRING_DEBUG_SPACED_PRINT = Symbol(None, None, None, "")
-
-    STRING_DEBUG_FATAL = Symbol(None, None, None, "")
-
-    STRING_DEBUG_NEWLINE = Symbol(None, None, None, "")
-
-    STRING_DEBUG_LOG_NULL = Symbol(None, None, None, "")
-
-    STRING_DEBUG_STRING_NEWLINE = Symbol(None, None, None, "")
-
-    STRING_EFFECT_EFFECT_BIN = Symbol(None, None, None, "")
-
-    STRING_MONSTER_MONSTER_BIN = Symbol(None, None, None, "")
-
-    STRING_BALANCE_M_LEVEL_BIN = Symbol(None, None, None, "")
-
-    STRING_DUNGEON_DUNGEON_BIN = Symbol(None, None, None, "")
-
-    STRING_MONSTER_M_ATTACK_BIN = Symbol(None, None, None, "")
-
-    STRING_MONSTER_M_GROUND_BIN = Symbol(None, None, None, "")
-
-    STRING_FILE_DIRECTORY_INIT = Symbol(None, None, None, "")
-
-    AVAILABLE_ITEMS_IN_GROUP_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "100*0x80\nLinked to the dungeon group id\n\nNote: unverified, ported from"
-        " Irdkwia's notes",
-    )
-
-    ARM9_UNKNOWN_TABLE__NA_2097FF8 = Symbol(
-        None,
-        None,
-        None,
-        "16*0x4 (0x2+0x2)\n\nNote: unverified, ported from Irdkwia's notes",
-    )
-
-    KECLEON_SHOP_ITEM_TABLE_LISTS_1 = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: enum item_id[4]",
-    )
-
-    KECLEON_SHOP_ITEM_TABLE_LISTS_2 = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: enum item_id[4]",
-    )
-
-    EXCLUSIVE_ITEM_STAT_BOOST_DATA = Symbol(
-        None,
-        None,
-        None,
-        "Contains stat boost effects for different exclusive item classes.\n\nEach"
-        " 4-byte entry contains the boost data for (attack, defense, special attack,"
-        " special defense), 1 byte each, for a specific exclusive item class, indexed"
-        " according to the stat boost data index list.\n\ntype: struct"
-        " exclusive_item_stat_boost_entry[15]",
-    )
-
-    EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
-        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
-    )
-
-    EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
-        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
-    )
-
-    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS = Symbol(
-        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 2"
-    )
-
-    EXCLUSIVE_ITEM_SPECIAL_DEFENSE_BOOSTS = Symbol(
-        None, None, None, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 3"
-    )
-
-    EXCLUSIVE_ITEM_EFFECT_DATA = Symbol(
-        None,
-        None,
-        None,
-        "Contains special effects for each exclusive item.\n\nEach entry is 2 bytes,"
-        " with the first entry corresponding to the first exclusive item (Prism Ruff)."
-        " The first byte is the exclusive item effect ID, and the second byte is an"
-        " index into other data tables (related to the more generic stat boosting"
-        " effects for specific monsters).\n\ntype: struct"
-        " exclusive_item_effect_entry[956]",
-    )
-
-    EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
-        None, None, None, "EXCLUSIVE_ITEM_EFFECT_DATA, offset by 1"
-    )
-
-    RECYCLE_SHOP_ITEM_LIST = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    TYPE_SPECIFIC_EXCLUSIVE_ITEMS = Symbol(
-        None,
-        None,
-        None,
-        "Lists of type-specific exclusive items (silk, dust, gem, globe) for each"
-        " type.\n\ntype: struct item_id_16[17][4]",
-    )
-
-    RECOIL_MOVE_LIST = Symbol(
-        None,
-        None,
-        None,
-        "Null-terminated list of all the recoil moves, as 2-byte move IDs.\n\ntype:"
-        " struct move_id_16[11]",
-    )
-
-    PUNCH_MOVE_LIST = Symbol(
-        None,
-        None,
-        None,
-        "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype:"
-        " struct move_id_16[16]",
-    )
-
-    MOVE_POWER_STARS_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[6]",
-    )
-
-    MOVE_ACCURACY_STARS_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
-    )
-
-    PARENT_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for a simple_menu created with"
-        " CreateParentMenuInternal.\n\nNote that x_offset and y_offset refer to the"
-        " right and bottom edges, since they will be paired with the x_offset_end and"
-        " y_offset_end window flags in CreateParentMenuInternal.\n\nAdditionally, width"
-        " and height are 0, and will be computed in CreateParentMenuInternal.",
-    )
-
-    SIMPLE_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for a simple_menu.\n\nNote that x_offset and y_offset"
-        " refer to the right and bottom edges, since they will be paired with the"
-        " x_offset_end and y_offset_end window flags in"
-        " CreateSimpleMenuInternal.\n\nAdditionally, width and height are 0, and will"
-        " be computed in CreateSimpleMenuInternal.",
-    )
-
-    ADVANCED_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for an advanced_menu.\n\nNote that x_offset and y_offset"
-        " refer to the right and bottom edges, since they will be paired with the"
-        " x_offset_end and y_offset_end window flags in"
-        " CreateAdvancedMenu.\n\nAdditionally, width and height are 0, and will be"
-        " computed in CreateAdvancedMenu.",
-    )
-
-    COLLECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for a collection_menu.\n\nNote that x_offset and"
-        " y_offset refer to the right and bottom edges, since they will be paired with"
-        " the x_offset_end and y_offset_end window flags in"
-        " CreateCollectionMenu.\n\nAdditionally, width and height are 0, and will be"
-        " computed in CreateCollectionMenu.",
-    )
-
-    OPTIONS_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for an options_menu.\n\nNote that x_offset and y_offset"
-        " refer to the right and bottom edges, since they will be paired with the"
-        " x_offset_end and y_offset_end window flags in"
-        " CreateOptionsMenu.\n\nAdditionally, width and height are 0, and will be"
-        " computed in CreateOptionsMenu.",
-    )
-
-    DEBUG_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for a debug_menu.\n\nNote that x_offset and y_offset"
-        " refer to the right and bottom edges, since they will be paired with the"
-        " x_offset_end and y_offset_end window flags in"
-        " CreateDebugMenu.\n\nAdditionally, width and height are 0, and will be"
-        " computed in CreateDebugMenu.",
-    )
-
-    SCROLL_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None, None, None, "Default window_params for a scroll_box."
-    )
-
-    DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None, None, None, "Default window_params for a dialogue_box."
-    )
-
-    PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for a portrait_box.\n\nNote that the screen and box type"
-        " are unset, and are determined in CreatePortraitBox.",
-    )
-
-    TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None, None, None, "Default window_params for a text_box."
-    )
-
-    AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for an area_name_box.\n\nNote that x_offset and y_offset"
-        " refer to the right and bottom edges, since they will be paired with the"
-        " x_offset_end and y_offset_end window flags in"
-        " CreateAreaNameBox.\n\nAdditionally, width and height are 0, and will be"
-        " computed in CreateAreaNameBox.",
-    )
-
-    CONTROLS_CHART_DEFAULT_WINDOW_PARAMS = Symbol(
-        None, None, None, "Default window_params for a controls_chart."
-    )
-
-    ALERT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None, None, None, "Default window_params for an alert_box."
-    )
-
-    ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for an advanced_text_box.\n\nNote that x_offset and"
-        " y_offset refer to the right and bottom edges, since they will be paired with"
-        " the x_offset_end and y_offset_end window flags in"
-        " CreateAdvancedTextBoxInternal.",
-    )
-
-    TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
-        None,
-        "Default window_params for a team_selection_menu.\n\nNote that x_offset and"
-        " y_offset refer to the right and bottom edges, since they will be paired with"
-        " the x_offset_end and y_offset_end window flags in"
-        " CreateTeamSelectionMenu.\n\nAdditionally, width and height are 0, and will be"
-        " computed in CreateTeamSelectionMenu.",
-    )
-
-    PARTNER_TALK_KIND_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Table of values for the PARTNER_TALK_KIND script variable.\n\ntype: struct"
-        " partner_talk_kind_table_entry[11]",
-    )
-
-    SCRIPT_VARS_LOCALS = Symbol(
-        None,
-        None,
-        None,
-        "List of special 'local' variables available to the script engine. There are 4"
-        " 16-byte entries.\n\nEach entry has the same structure as an entry in"
-        " SCRIPT_VARS.\n\ntype: struct script_local_var_table",
-    )
-
-    SCRIPT_VARS = Symbol(
-        None,
-        None,
-        None,
-        "List of predefined global variables that track game state, which are available"
-        " to the script engine. There are 115 16-byte entries.\n\nThese variables"
-        " underpin the various ExplorerScript global variables you can use in the"
-        " SkyTemple SSB debugger.\n\ntype: struct script_var_table",
-    )
-
-    PORTRAIT_LAYOUTS = Symbol(
-        None,
-        None,
-        None,
-        "All the possible layouts a portrait can be placed in by default.\n\ntype:"
-        " struct portrait_layout[32]",
-    )
-
-    KAOMADO_FILEPATH = Symbol(
-        None,
-        None,
-        None,
-        "'Path of the file where all the portraits are stored. 'FONT/kaomado.kao',"
-        " padded with null to a multiple of 4'\n\ntype: char[20]",
-    )
-
-    WONDER_MAIL_BITS_MAP = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: uint8_t[32]",
-    )
-
-    WONDER_MAIL_BITS_SWAP = Symbol(
-        None,
-        None,
-        None,
-        "Last 2 bytes are unused\n\nNote: unverified, ported from Irdkwia's"
-        " notes\n\ntype: uint8_t[36]",
-    )
-
-    ARM9_UNKNOWN_TABLE__NA_209E12C = Symbol(
-        None,
-        None,
-        None,
-        "52*0x2 + 2 bytes unused\n\nNote: unverified, ported from Irdkwia's notes",
-    )
-
-    ARM9_UNKNOWN_TABLE__NA_209E164 = Symbol(
-        None, None, None, "256*0x1\n\nNote: unverified, ported from Irdkwia's notes"
-    )
-
-    ARM9_UNKNOWN_TABLE__NA_209E280 = Symbol(
-        None, None, None, "32*0x1\n\nNote: unverified, ported from Irdkwia's notes"
-    )
-
-    WONDER_MAIL_ENCRYPTION_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: uint8_t[256]",
-    )
-
-    DUNGEON_DATA_LIST = Symbol(
-        None,
-        None,
-        None,
-        "Data about every dungeon in the game.\n\nThis is an array of 180 dungeon data"
-        " list entry structs. Each entry is 4 bytes, and contains floor count"
-        " information along with an index into the bulk of the dungeon's data in"
-        " mappa_s.bin.\n\nSee the struct definitions and End45's dungeon data document"
-        " for more info.\n\ntype: struct dungeon_data_list_entry[180]",
-    )
-
-    ADVENTURE_LOG_ENCOUNTERS_MONSTER_IDS = Symbol(
-        None,
-        None,
-        None,
-        "List of monster IDs with a corresponding milestone in the Adventure"
-        " Log.\n\ntype: struct monster_id_16[38]",
-    )
-
-    ARM9_UNKNOWN_DATA__NA_209E6BC = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    TACTIC_NAME_STRING_IDS = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[12]",
-    )
-
-    STATUS_NAME_STRING_IDS = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[102]",
-    )
-
-    DUNGEON_RETURN_STATUS_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " dungeon_return_status[91]",
-    )
-
-    STATUSES_FULL_DESCRIPTION_STRING_IDS = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " status_description[103]",
-    )
-
-    ARM9_UNKNOWN_DATA__NA_209EAAC = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    MISSION_FLOOR_RANKS_AND_ITEM_LISTS_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    MISSION_FLOORS_FORBIDDEN = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " mission_floors_forbidden[100]",
-    )
-
-    MISSION_FLOOR_RANKS_AND_ITEM_LISTS_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    MISSION_FLOOR_RANKS_PTRS = Symbol(
-        None,
-        None,
-        None,
-        "Uses MISSION_FLOOR_RANKS_AND_ITEM_LISTS\n\nNote: unverified, ported from"
-        " Irdkwia's notes",
-    )
-
-    DUNGEON_RESTRICTIONS = Symbol(
-        None,
-        None,
-        None,
-        "Data related to dungeon restrictions for every dungeon in the game.\n\nThis is"
-        " an array of 256 dungeon restriction structs. Each entry is 12 bytes, and"
-        " contains information about restrictions within the given dungeon.\n\nSee the"
-        " struct definitions and End45's dungeon data document for more info.\n\ntype:"
-        " struct dungeon_restriction[256]",
-    )
-
-    SPECIAL_BAND_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Special Band."
-    )
-
-    MUNCH_BELT_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Munch Belt."
-    )
-
-    GUMMI_STAT_BOOST = Symbol(
-        None,
-        None,
-        None,
-        "Stat boost value if a stat boost occurs when eating normal Gummis.",
-    )
-
-    MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol(None, None, None, "")
-
-    WONDER_GUMMI_IQ_GAIN = Symbol(
-        None, None, None, "IQ gain when ingesting wonder gummis."
-    )
-
-    AURA_BOW_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the aura bows."
-    )
-
-    MIN_IQ_ITEM_MASTER = Symbol(None, None, None, "")
-
-    DEF_SCARF_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Defense Scarf."
-    )
-
-    POWER_BAND_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Power Band."
-    )
-
-    WONDER_GUMMI_STAT_BOOST = Symbol(
-        None,
-        None,
-        None,
-        "Stat boost value if a stat boost occurs when eating Wonder Gummis.",
-    )
-
-    ZINC_BAND_STAT_BOOST = Symbol(
-        None, None, None, "Stat boost value for the Zinc Band."
-    )
-
-    EGG_HP_BONUS = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    EVOLUTION_HP_BONUS = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    DAMAGE_FORMULA_FLV_SHIFT = Symbol(
-        None,
-        None,
-        None,
-        "The constant shift added to the 'FLV' intermediate quantity in the damage"
-        " formula (see dungeon::last_move_damage_calc_flv), as a binary fixed-point"
-        " number with 8 fraction bits (50).",
-    )
-
-    EVOLUTION_PHYSICAL_STAT_BONUSES = Symbol(
-        None,
-        None,
-        None,
-        "0x2: Atk + 0x2: Def\n\nNote: unverified, ported from Irdkwia's notes",
-    )
-
-    DAMAGE_FORMULA_CONSTANT_SHIFT = Symbol(
-        None,
-        None,
-        None,
-        "The constant shift applied to the overall output of the 'unshifted base'"
-        " damage formula (the sum of the scaled AT, DEF, and ClampedLn terms), as a"
-        " binary fixed-point number with 8 fraction bits (-311).\n\nThe value of -311"
-        " is notably equal to -round[DAMAGE_FORMULA_LN_PREFACTOR *"
-        " ln(DAMAGE_FORMULA_LN_ARG_PREFACTOR * DAMAGE_FORMULA_FLV_SHIFT)]. This is"
-        " probably not a coincidence.",
-    )
-
-    DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR = Symbol(
-        None,
-        None,
-        None,
-        "The divisor of the (AT - DEF) term within the 'FLV' intermediate quantity in"
-        " the damage formula (see dungeon::last_move_damage_calc_flv), as a binary"
-        " fixed-point number with 8 fraction bits (8).",
-    )
-
-    EGG_STAT_BONUSES = Symbol(
-        None,
-        None,
-        None,
-        "0x2: Atk + 0x2: SpAtk + 0x2: Def + 0x2: SpDef\n\nNote: unverified, ported from"
-        " Irdkwia's notes",
-    )
-
-    EVOLUTION_SPECIAL_STAT_BONUSES = Symbol(
-        None,
-        None,
-        None,
-        "0x2: SpAtk + 0x2: SpDef\n\nNote: unverified, ported from Irdkwia's notes",
-    )
-
-    DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER = Symbol(
-        None,
-        None,
-        None,
-        "The divisor applied to the overall output of the 'shifted base' damage formula"
-        " (the sum of the scaled AT, Def, ClampedLn, and DAMAGE_FORMULA_CONSTANT_SHIFT"
-        " terms) if the attacker is not a team member (and the current fixed room is"
-        " not the substitute room...for some reason), as a binary fixed-point number"
-        " with 8 fraction bits (85/64).",
-    )
-
-    DAMAGE_FORMULA_LN_PREFACTOR = Symbol(
-        None,
-        None,
-        None,
-        "The prefactor to the output of the ClampedLn in the damage formula, as a"
-        " binary fixed-point number with 8 fraction bits (50).",
-    )
-
-    DAMAGE_FORMULA_DEF_PREFACTOR = Symbol(
-        None,
-        None,
-        None,
-        "The prefactor to the 'DEF' (defense) intermediate quantity in the damage"
-        " formula (see dungeon::last_move_damage_calc_def), as a binary fixed-point"
-        " number with 8 fraction bits (-0.5).",
-    )
-
-    DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
-        None,
-        None,
-        None,
-        "The prefactor to the 'AT' (attack) intermediate quantity in the damage formula"
-        " (see dungeon::last_move_damage_calc_at), as a binary fixed-point number with"
-        " 8 fraction bits (153/256, which is close to 0.6).",
-    )
-
-    DAMAGE_FORMULA_LN_ARG_PREFACTOR = Symbol(
-        None,
-        None,
-        None,
-        "The prefactor to the argument of ClampedLn in the damage formula (FLV +"
-        " DAMAGE_FORMULA_FLV_SHIFT), as a binary fixed-point number with 8 fraction"
-        " bits (10).",
-    )
-
-    FORBIDDEN_FORGOT_MOVE_LIST = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " forbidden_forgot_move_entry[3]",
-    )
-
-    TACTICS_UNLOCK_LEVEL_TABLE = Symbol(None, None, None, "type: int16_t[12]")
-
-    CLIENT_LEVEL_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Still a guess\n\nNote: unverified, ported from Irdkwia's notes\n\ntype:"
-        " int16_t[16]",
-    )
-
-    OUTLAW_LEVEL_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Table of 2-byte outlaw levels for outlaw missions, indexed by mission"
-        " rank.\n\ntype: int16_t[16]",
-    )
-
-    OUTLAW_MINION_LEVEL_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Table of 2-byte outlaw minion levels for outlaw hideout missions, indexed by"
-        " mission rank.\n\ntype: int16_t[16]",
-    )
-
-    HIDDEN_POWER_BASE_POWER_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Still a guess\n\nNote: unverified, ported from Irdkwia's notes\n\ntype:"
-        " int[10]",
-    )
-
-    VERSION_EXCLUSIVE_MONSTERS = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " version_exclusive_monster[23]",
-    )
-
-    IQ_SKILL_RESTRICTIONS = Symbol(
-        None,
-        None,
-        None,
-        "Table of 2-byte values for each IQ skill that represent a group. IQ skills in"
-        " the same group can not be enabled at the same time.\n\ntype: int16_t[69]",
-    )
-
-    SECONDARY_TERRAIN_TYPES = Symbol(
-        None,
-        None,
-        None,
-        "The type of secondary terrain for each dungeon in the game.\n\nThis is an"
-        " array of 200 bytes. Each byte is an enum corresponding to one"
-        " dungeon.\n\ntype: struct secondary_terrain_type_8[200]",
-    )
-
-    SENTRY_DUTY_MONSTER_IDS = Symbol(
-        None,
-        None,
-        None,
-        "Table of monster IDs usable in the sentry duty minigame.\n\ntype: struct"
-        " monster_id_16[102]",
-    )
-
-    IQ_SKILLS = Symbol(
-        None,
-        None,
-        None,
-        "Table of 4-byte values for each IQ skill that represent the required IQ value"
-        " to unlock a skill.\n\ntype: int[69]",
-    )
-
-    IQ_GROUP_SKILLS = Symbol(None, None, None, "Irdkwia's notes: 25*16*0x1")
-
-    MONEY_QUANTITY_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Table that maps money quantity codes (as recorded in, e.g., struct item) to"
-        " actual amounts.\n\ntype: int[100]",
-    )
-
-    ARM9_UNKNOWN_TABLE__NA_20A20B0 = Symbol(
-        None, None, None, "256*0x2\n\nNote: unverified, ported from Irdkwia's notes"
-    )
-
-    IQ_GUMMI_GAIN_TABLE = Symbol(None, None, None, "type: int16_t[18][18]")
-
-    GUMMI_BELLY_RESTORE_TABLE = Symbol(None, None, None, "type: int16_t[18][18]")
-
-    BAG_CAPACITY_TABLE_SPECIAL_EPISODES = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: uint32_t[5]",
-    )
-
-    BAG_CAPACITY_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Array of 4-byte integers containing the bag capacity for each bag"
-        " level.\n\ntype: uint32_t[8]",
-    )
-
-    SPECIAL_EPISODE_MAIN_CHARACTERS = Symbol(
-        None, None, None, "type: struct monster_id_16[100]"
-    )
-
-    GUEST_MONSTER_DATA = Symbol(
-        None,
-        None,
-        None,
-        "Data for guest monsters that join you during certain story dungeons.\n\nArray"
-        " of 18 36-byte entries.\n\nSee the struct definitions and End45's dungeon data"
-        " document for more info.\n\ntype: struct guest_monster[18]",
-    )
-
-    RANK_UP_TABLE = Symbol(None, None, None, "")
-
-    DS_DOWNLOAD_TEAMS = Symbol(
-        None,
-        None,
-        None,
-        "Seems like this is just a collection of null-terminated lists concatenated"
-        " together.\n\nNote: unverified, ported from Irdkwia's notes\n\nstruct"
-        " monster_id_16[56]",
-    )
-
-    ARM9_UNKNOWN_PTR__NA_20A2C84 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    UNOWN_SPECIES_ADDITIONAL_CHARS = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: enum monster_id[28]",
-    )
-
-    MONSTER_SPRITE_DATA = Symbol(None, None, None, "")
-
-    REMOTE_STRINGS = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    RANK_STRINGS_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    MISSION_MENU_STRING_IDS_1 = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[8]",
-    )
-
-    RANK_STRINGS_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    MISSION_MENU_STRING_IDS_2 = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[8]",
-    )
-
-    RANK_STRINGS_3 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    MISSION_DUNGEON_UNLOCK_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Irdkwia's notes: SpecialDungeonMissions\n\ntype: struct"
-        " dungeon_unlock_entry[3]",
-    )
-
-    NO_SEND_ITEM_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct item_id_16[3]",
-    )
-
-    ARM9_UNKNOWN_TABLE__NA_20A3CC8 = Symbol(
-        None,
-        None,
-        None,
-        "14*0x2\nLinked to ARM9_UNKNOWN_TABLE__NA_20A3CE4\n\nNote: unverified, ported"
-        " from Irdkwia's notes",
-    )
-
-    ARM9_UNKNOWN_TABLE__NA_20A3CE4 = Symbol(
-        None, None, None, "8*0x2\n\nNote: unverified, ported from Irdkwia's notes"
-    )
-
-    ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4 = Symbol(
-        None,
-        None,
-        None,
-        "Could be related to missions\n\nNote: unverified, ported from Irdkwia's notes",
-    )
-
-    MISSION_BANNED_STORY_MONSTERS = Symbol(
-        None,
-        None,
-        None,
-        "Null-terminated list of monster IDs that can't be used (probably as clients or"
-        " targets) when generating missions before a certain point in the story.\n\nTo"
-        " be precise, PERFOMANCE_PROGRESS_FLAG[9] must be enabled so these monsters can"
-        " appear as mission clients.\n\ntype: struct monster_id_16[length / 2]",
-    )
-
-    ITEM_DELIVERY_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Maybe it is the Item table used for Item Deliveries\n\nNote: unverified,"
-        " ported from Irdkwia's notes\n\ntype: struct item_id_16[23]",
-    )
-
-    MISSION_RANK_POINTS = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int[16]",
-    )
-
-    MISSION_BANNED_MONSTERS = Symbol(
-        None,
-        None,
-        None,
-        "Null-terminated list of monster IDs that can't be used (probably as clients or"
-        " targets) when generating missions.\n\ntype: struct monster_id_16[124]",
-    )
-
-    MISSION_STRING_IDS = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[964]",
-    )
-
-    LEVEL_LIST = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    EVENTS = Symbol(
-        None,
-        None,
-        None,
-        "Table of levels for the script engine, in which scenes can take place. There"
-        " are a version-dependent number of 12-byte entries.\n\ntype: struct"
-        " script_level[length / 12]",
-    )
-
-    ARM9_UNKNOWN_TABLE__NA_20A68BC = Symbol(
-        None, None, None, "6*0x2\n\nNote: unverified, ported from Irdkwia's notes"
-    )
-
-    DEMO_TEAMS = Symbol(
-        None,
-        None,
-        None,
-        "18*0x4 (Hero ID 0x2, Partner ID 0x2)\n\nNote: unverified, ported from"
-        " Irdkwia's notes",
-    )
-
-    ACTOR_LIST = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    ENTITIES = Symbol(
-        None,
-        None,
-        None,
-        "Table of entities for the script engine, which can move around and do things"
-        " within a scene. There are 386 12-byte entries.\n\ntype: struct"
-        " script_entity[386]",
-    )
-
-    JOB_WINDOW_PARAMS_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_1 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_3 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_4 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_5 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_6 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_7 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_8 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_9 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_10 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_11 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_12 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_MENU_ITEMS_13 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    JOB_WINDOW_PARAMS_2 = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    DUNGEON_SWAP_ID_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct"
-        " dungeon_id_8[212]",
-    )
-
-    MAP_MARKER_PLACEMENTS = Symbol(
-        None,
-        None,
-        None,
-        "The map marker position of each dungeon on the Wonder Map.\n\nThis is an array"
-        " of 310 map marker structs. Each entry is 8 bytes, and contains positional"
-        " information about a dungeon on the map.\n\nSee the struct definitions and"
-        " End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
-    )
-
-    LFO_OUTPUT_VOICE_UPDATE_FLAGS = Symbol(None, None, None, "")
-
-    TRIG_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Interleaved table of sine and cosine values at 4096 divisions over a full"
-        " period (2π radians).\n\nMore precisely, the trig_values entry at index i"
-        " corresponds to {sin(i * 2π/4096), cos(i * 2π/4096)} (each division is ~1/10"
-        " of a degree). Values are stored as signed fixed-point numbers with 12"
-        " fraction bits.\n\ntype: struct trig_values[4096]",
-    )
-
-    FX_ATAN_IDX_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Table of arctangent values at 129 divisions over the domain [0, 1].\n\nMore"
-        " precisely, entry at index i corresponds to (atan(i/128) / (π/2)). Values are"
-        " stored as signed fixed-point numbers with 14 fraction bits.",
-    )
-
-    TEX_PLTT_START_ADDR_TABLE = Symbol(None, None, None, "")
-
-    TEX_START_ADDR_TABLE = Symbol(None, None, None, "")
-
-    ARM9_UNKNOWN_TABLE__NA_20AE924 = Symbol(
-        None, None, None, "724*0x1\n\nNote: unverified, ported from Irdkwia's notes"
-    )
-
-    MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
-        None,
-        None,
-        None,
-        "Functions to get the desired memory arena for allocating and freeing heap"
-        " memory.\n\ntype: struct mem_arena_getters",
-    )
-
-    PRNG_SEQUENCE_NUM = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] The current PRNG sequence number for the general-purpose PRNG. See"
-        " Rand16Bit for more information on how the general-purpose PRNG works.",
-    )
-
-    LOADED_OVERLAY_GROUP_0 = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] The overlay group ID of the overlay currently loaded in slot 0. A"
-        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
-        " slot 0:\n- 0x06 (overlay 3)\n- 0x07 (overlay 6)\n- 0x08 (overlay 4)\n- 0x09"
-        " (overlay 5)\n- 0x0A (overlay 7)\n- 0x0B (overlay 8)\n- 0x0C (overlay 9)\n-"
-        " 0x10 (overlay 12)\n- 0x11 (overlay 13)\n- 0x12 (overlay 14)\n- 0x13 (overlay"
-        " 15)\n- 0x14 (overlay 16)\n- 0x15 (overlay 17)\n- 0x16 (overlay 18)\n- 0x17"
-        " (overlay 19)\n- 0x18 (overlay 20)\n- 0x19 (overlay 21)\n- 0x1A (overlay"
-        " 22)\n- 0x1B (overlay 23)\n- 0x1C (overlay 24)\n- 0x1D (overlay 25)\n- 0x1E"
-        " (overlay 26)\n- 0x1F (overlay 27)\n- 0x20 (overlay 28)\n- 0x21 (overlay"
-        " 30)\n- 0x22 (overlay 31)\n- 0x23 (overlay 32)\n- 0x24 (overlay 33)\n\ntype:"
-        " enum overlay_group_id",
-    )
-
-    LOADED_OVERLAY_GROUP_1 = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] The overlay group ID of the overlay currently loaded in slot 1. A"
-        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
-        " slot 1:\n- 0x4 (overlay 1)\n- 0x5 (overlay 2)\n- 0xD (overlay 11)\n- 0xE"
-        " (overlay 29)\n- 0xF (overlay 34)\n\ntype: enum overlay_group_id",
-    )
-
-    LOADED_OVERLAY_GROUP_2 = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] The overlay group ID of the overlay currently loaded in slot 2. A"
-        " group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in"
-        " slot 2:\n- 0x1 (overlay 0)\n- 0x2 (overlay 10)\n- 0x3 (overlay 35)\n\ntype:"
-        " enum overlay_group_id",
-    )
-
-    DEBUG_IS_INITIALIZED = Symbol(None, None, None, "")
-
-    DIRECTORY_FILES_EXTRACTED = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] A pointer to the 6 opened Pack files (listed at"
-        " DIRECTORY_FILE_TABLE)\n\ntype: struct pack_file_opened*",
-    )
-
-    DIRECTORY_FILE_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "List of pointers to path strings to all known pack files.\nThe game uses this"
-        " table to load its resources when launching dungeon mode.\n\ntype: char*[6]",
-    )
-
-    GAME_STATE_VALUES = Symbol(None, None, None, "[Runtime]")
-
-    BAG_ITEMS_PTR_MIRROR = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] Probably a mirror of ram.yml::BAG_ITEMS_PTR?\n\nNote: unverified,"
-        " ported from Irdkwia's notes",
-    )
-
-    ITEM_DATA_TABLE_PTRS = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] List of pointers to various item data tables.\n\nThe first two"
-        " pointers are definitely item-related (although the order appears to be"
-        " flipped between EU/NA?). Not sure about the third pointer.",
-    )
-
-    DUNGEON_MOVE_TABLES = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] Seems to be some sort of region (a table of tables?) that holds"
-        " pointers to various important tables related to moves.",
-    )
-
-    MOVE_DATA_TABLE_PTR = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] Points to the contents of the move data table loaded from"
-        " waza_p.bin\n\ntype: struct move_data_table*",
-    )
-
-    WAN_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "pointer to the list of wan sprite loaded in RAM\n\nstruct wan_table*",
-    )
-
-    RENDER_3D = Symbol(
-        None,
-        None,
-        None,
-        "The (seemingly) unique instance render_3d_global in the game\n\ntype: struct"
-        " render_3d_global",
-    )
-
-    RENDER_3D_FUNCTIONS_64 = Symbol(
-        None,
-        None,
-        None,
-        "Pointers to the 8 functions available for rendering a"
-        " render_3d_element_64\n\ntype: render_3d_element_64_fn_t[8]",
-    )
-
-    LANGUAGE_INFO_DATA = Symbol(None, None, None, "[Runtime]")
-
-    TBL_TALK_GROUP_STRING_ID_START = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
-    )
-
-    KEYBOARD_STRING_IDS = Symbol(
-        None,
-        None,
-        None,
-        "30*0x2\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: int16_t[30]",
-    )
-
-    NOTIFY_NOTE = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] Flag related to saving and loading state?\n\ntype: bool",
-    )
-
-    DEFAULT_HERO_ID = Symbol(
-        None,
-        None,
-        None,
-        "The default monster ID for the hero (0x4: Charmander)\n\ntype: struct"
-        " monster_id_16",
-    )
-
-    DEFAULT_PARTNER_ID = Symbol(
-        None,
-        None,
-        None,
-        "The default monster ID for the partner (0x1: Bulbasaur)\n\ntype: struct"
-        " monster_id_16",
-    )
-
-    GAME_MODE = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] Game mode, see enum game_mode for possible values.\n\ntype: uint8_t",
-    )
-
-    GLOBAL_PROGRESS_PTR = Symbol(
-        None, None, None, "[Runtime]\n\ntype: struct global_progress*"
-    )
-
-    ADVENTURE_LOG_PTR = Symbol(
-        None, None, None, "[Runtime]\n\ntype: struct adventure_log*"
-    )
-
-    ITEM_TABLES_PTRS_1 = Symbol(
-        None,
-        None,
-        None,
-        "Irdkwia's notes: 26*0x4, uses MISSION_FLOOR_RANKS_AND_ITEM_LISTS",
-    )
-
-    UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Uses UNOWN_SPECIES_ADDITIONAL_CHARS\n\nNote: unverified, ported from Irdkwia's"
-        " notes\n\ntype: enum monster_id*[28]",
-    )
-
-    TEAM_MEMBER_TABLE_PTR = Symbol(None, None, None, "Pointer to TEAM_MEMBER_TABLE")
-
-    MISSION_LIST_PTR = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    REMOTE_STRING_PTR_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: const char*[7]",
-    )
-
-    RANK_STRING_PTR_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: const char*[16]",
-    )
-
-    SMD_EVENTS_FUN_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "Table of all DSE events, see"
-        " https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nIrdkwia's"
-        " notes: named DSEEventFunctionPtrTable with length 0x3C0 (note the"
-        " disagreement), 240*0x4.",
-    )
-
-    MUSIC_DURATION_LOOKUP_TABLE_1 = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[128]",
-    )
-
-    MUSIC_DURATION_LOOKUP_TABLE_2 = Symbol(
-        None,
-        None,
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int32_t[128]",
-    )
-
-    LFO_WAVEFORM_CALLBACKS = Symbol(None, None, None, "")
-
-    IS_DISP_ON = Symbol(None, None, None, "")
-
-    GXI_DMA_ID = Symbol(None, None, None, "")
-
-    JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
-        None, None, None, "IQ gain when ingesting nectar at the Juice Bar."
-    )
-
-    TEXT_SPEED = Symbol(None, None, None, "Controls text speed.")
-
-    HERO_START_LEVEL = Symbol(None, None, None, "Starting level of the hero.")
-
-    PARTNER_START_LEVEL = Symbol(None, None, None, "Starting level of the partner.")
-
-
-class JpItcmArm9Section:
-    name = "arm9"
+class JpItcmLibsSection:
+    name = "libs"
     description = (
-        "The main ARM9 binary.\n\nThis is the main binary that gets loaded when the"
-        " game is launched, and contains the core code that runs the game, low level"
-        " facilities such as memory allocation, compression, other external"
-        " dependencies (such as linked functions from libc and libgcc), and the"
-        " functions and tables necessary to load overlays and dispatch execution to"
-        " them.\n\nSpeaking generally, this is the program run by the Nintendo DS's"
-        " main ARM946E-S CPU, which handles all gameplay mechanisms and graphics"
-        " rendering."
+        "System libraries linked to the main ARM9 binary.\n\nThis includes code from"
+        " common NDS system libraries like the Nitro SDK (which contains NDS-specific"
+        " functionality as well as utilities akin to libc and libgcc).\n\nWhere the"
+        " library region starts and ends is a guess, but there appear to be fairly"
+        " sharp boundaries. The function directly before it calls functions at lower"
+        " memory addresses outside of the region, while all functions in the region"
+        " only call other functions within the region. The bytes after the region seem"
+        " to be the start of a global data region, used by both the libraries and the"
+        " rest of ARM9."
     )
-    loadaddress = 0x1FF8000
-    length = 0x4060
-    functions = JpItcmArm9Functions
-    data = JpItcmArm9Data
-
-
-class JpItcmItcmFunctions:
-
-    Render3dSetTextureParams = Symbol(
-        [0x130],
-        [0x1FF8130],
-        None,
-        "A wrapper around GeomSetTexImageParam that caches the VRAM offset on"
-        " RENDER_3D.\n\nAlways disables flipping and sets color values of 0 to be"
-        " transparent.\n\nr0: render_3d_texture_params pointer\nr1: texture VRAM"
-        " offset",
-    )
-
-    Render3dSetPaletteBase = Symbol(
-        [0x1CC],
-        [0x1FF81CC],
-        None,
-        "Send the PLTT_BASE geometry engine command, that sets the texture palette base"
-        " address. Also caches the base address on RENDER_3D.\nSee"
-        " http://problemkaputt.de/gbatek.htm#ds3dtextureattributes for more information"
-        " on the parameters.\n\nr0: render_3d_texture_params pointer\nr1: palette base"
-        " address",
-    )
-
-    Render3dRectangle = Symbol(
-        [0x224],
-        [0x1FF8224],
-        None,
-        "RENDER_3D_FUNCTIONS[0]. Renders a render_3d_element with type"
-        " RENDER_RECTANGLE.\n\nr0: render_3d_rectangle",
-    )
-
-    GeomSetPolygonAttributes = Symbol(
-        [0x480],
-        [0x1FF8480],
-        None,
-        "Send the POLYGON_ATTR geometry engine command, that defines some polygon"
-        " attributes for rendering.\nSee"
-        " https://problemkaputt.de/gbatek.htm#ds3dpolygonattributes for more"
-        " information\n\nr0: polygon ID\nr1: alpha",
-    )
-
-    Render3dQuadrilateral = Symbol(
-        [0x49C],
-        [0x1FF849C],
-        None,
-        "RENDER_3D_FUNCTIONS[1]. Renders a render_3d_element with type"
-        " RENDER_QUADRILATERAL.\n\nr0: render_3d_quadrilateral",
-    )
-
-    Render3dTiling = Symbol(
-        [0x728],
-        [0x1FF8728],
-        None,
-        "RENDER_3D_FUNCTIONS[2]. Renders a render_3d_element with type"
-        " RENDER_TILING.\n\nr0: render_3d_tiling",
-    )
-
-    Render3dTextureInternal = Symbol(
-        None,
-        None,
-        None,
-        "Implements most of the rendering logic for Render3dTexture.\n\nr0:"
-        " render_3d_texture",
-    )
-
-    Render3dTexture = Symbol(
-        [0xC28],
-        [0x1FF8C28],
-        None,
-        "RENDER_3D_FUNCTIONS[3]. Renders a render_3d_element with type"
-        " RENDER_TEXTURE.\n\nThis is primarily just a wrapper around"
-        " Render3dTextureInternal, with a preceding alpha check and calls to"
-        " Render3dSetTextureParams and Render3dSetPaletteBase.\n\nr0:"
-        " render_3d_texture",
-    )
-
-    Render3dTextureNoSetup = Symbol(
-        None,
-        None,
-        None,
-        "Same as Render3dTexture except without calls to Render3dSetTextureParams and"
-        " Render3dSetPaletteBase to set up geometry engine parameters.\n\nPresumably"
-        " used to render multiple texture tiles with the same parameters without the"
-        " extra setup overhead? But this function doesn't actually seem to be"
-        " referenced anywhere.\n\nr0: render_3d_texture",
-    )
-
-    NewRender3dElement = Symbol(
-        [0xC78],
-        [0x1FF8C78],
-        None,
-        "Return a new render_3d_element from RENDER_3D's render queue, to draw a new"
-        " element using the 3d render engine later in the frame.\n\nreturn:"
-        " render_3d_element or NULL if there is no more available space in the queue",
-    )
-
-    EnqueueRender3dTexture = Symbol(
-        [0xCAC],
-        [0x1FF8CAC],
-        None,
-        "Copies the first 40 bytes of a render_3d_element onto the render queue of"
-        " RENDER_3D, with type set to RENDER_TEXTURE.\n\nr0: render_3d_element",
-    )
-
-    EnqueueRender3dTiling = Symbol(
-        [0xCDC],
-        [0x1FF8CDC],
-        None,
-        "Copies a render_3d_element onto the render queue of RENDER_3D, with type set"
-        " to RENDER_TILING.\n\nr0: render_3d_element",
-    )
-
-    NewRender3dRectangle = Symbol(
-        [0xD0C],
-        [0x1FF8D0C],
-        None,
-        "Return a render_3d_element from NewRender3dElement with a type of"
-        " RENDER_RECTANGLE, and all other fields in the first 38 bytes"
-        " zeroed.\n\nreturn: render_3d_element or NULL if there is no more available"
-        " space in the queue",
-    )
-
-    NewRender3dQuadrilateral = Symbol(
-        [0xD3C],
-        [0x1FF8D3C],
-        None,
-        "Return a render_3d_element from NewRender3dElement with a type of"
-        " RENDER_QUADRILATERAL, and all other fields in the first 38 bytes"
-        " zeroed.\n\nreturn: render_3d_element or NULL if there is no more available"
-        " space in the queue",
-    )
-
-    NewRender3dTexture = Symbol(
-        [0xD6C],
-        [0x1FF8D6C],
-        None,
-        "Return a render_3d_element from NewRender3dElement with a type of"
-        " RENDER_TEXTURE, and all other fields in the first 40 bytes zeroed.\n\nreturn:"
-        " render_3d_element or NULL if there is no more available space in the queue",
-    )
-
-    NewRender3dTiling = Symbol(
-        [0xD9C],
-        [0x1FF8D9C],
-        None,
-        "Return a render_3d_element from NewRender3dElement with a type of"
-        " RENDER_TILING, and all other fields zeroed.\n\nreturn: render_3d_element or"
-        " NULL if there is no more available space in the queue",
-    )
-
-    Render3dProcessQueue = Symbol(
-        [0xDCC],
-        [0x1FF8DCC],
-        None,
-        "Perform rendering of the render queue of RENDER_3D structure. Does nothing if"
-        " there are no elements, otherwise, sort them based on a value, and render them"
-        " all consecutively.\n\nNo params.",
-    )
-
-    GetKeyN2MSwitch = Symbol(
-        [0x149C],
-        [0x1FF949C],
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: key\nr1: switch",
-    )
-
-    GetKeyN2M = Symbol(
-        [0x14D0],
-        [0x1FF94D0],
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: key\nreturn: monster ID",
-    )
-
-    GetKeyN2MBaseForm = Symbol(
-        [0x153C],
-        [0x1FF953C],
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: key\nreturn: monster ID",
-    )
-
-    GetKeyM2NSwitch = Symbol(
-        [0x1574],
-        [0x1FF9574],
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nr1: switch",
-    )
-
-    GetKeyM2N = Symbol(
-        [0x15A8],
-        [0x1FF95A8],
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: key",
-    )
-
-    GetKeyM2NBaseForm = Symbol(
-        [0x1614],
-        [0x1FF9614],
-        None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: key",
-    )
-
-    HardwareInterrupt = Symbol(
-        [0x1650],
-        [0x1FF9650],
-        None,
-        "Called whenever a hardware interrupt takes place.\n\nReturns immediately if"
-        " the IME flag is 0 or if none of the devices that requested an interrupt has"
-        " the corresponding Interrupt Enable flag set.\nIt searches for the first"
-        " device that requested an interrupt, clears its Interrupt Request flag, then"
-        " jumps to the start of the corresponding interrupt function. The return"
-        " address is manually set to ReturnFromInterrupt.\nThe address of the function"
-        " to jump to is read from the interrupt vector at the start of the DTCM region"
-        " (0x27E0000).\nThis function does not return.\n\nNo params.",
-    )
-
-    ReturnFromInterrupt = Symbol(
-        [0x16B8],
-        [0x1FF96B8],
-        None,
-        "The execution returns to this function after a hardware interrupt function is"
-        " run.\n\nNo params.",
-    )
-
-    ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
-        [0x23F8],
-        [0x1FFA3F8],
-        None,
-        "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true."
-        " Otherwise, returns true only if the monster's behavior field is equal to"
-        " monster_behavior::BEHAVIOR_FLEEING_OUTLAW.\n\nr0: Entity pointer\nr1:"
-        " ?\nreturn: True if ShouldMonsterRunAway returns true or the monster is a"
-        " fleeing outlaw",
-    )
-
-    AiMovement = Symbol(
-        [0x242C],
-        [0x1FFA42C],
-        None,
-        "Used by the AI to determine the direction in which a monster should"
-        " move\n\nr0: Entity pointer\nr1: ?",
-    )
-
-    CalculateAiTargetPos = Symbol(
-        [0x3330],
-        [0x1FFB330],
-        None,
-        "Calculates the target position of an AI-controlled monster and stores it in"
-        " the monster's ai_target_pos field\n\nr0: Entity pointer",
-    )
-
-    ChooseAiMove = Symbol(
-        [0x36C0],
-        [0x1FFB6C0],
-        None,
-        "Determines if an AI-controlled monster will use a move and which one it will"
-        " use\n\nr0: Entity pointer",
-    )
-
-    LightningRodStormDrainCheck = Symbol(
-        [0x3EC4],
-        [0x1FFBEC4],
-        None,
-        "Appears to check whether LightningRod or Storm Drain should draw in a"
-        " move.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move pointer\nr3:"
-        " true if checking for Storm Drain, false if checking for LightningRod\nreturn:"
-        " whether the move should be drawn in",
-    )
-
-
-class JpItcmItcmData:
-
-    MEMORY_ALLOCATION_TABLE = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator"
-        " in the ARM9 binary uses region-based memory management (see"
-        " https://en.wikipedia.org/wiki/Region-based_memory_management). The heap is"
-        " broken up into smaller contiguous chunks called arenas (struct mem_arena),"
-        " which are in turn broken up into chunks referred to as blocks (struct"
-        " mem_block). Most of the time, an allocation results in a block being split"
-        " off from a free part of an existing memory arena.\n\nNote: This symbol isn't"
-        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
-        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
-        " mem_alloc_table",
-    )
-
-    DEFAULT_MEMORY_ARENA = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] The default memory allocation arena. This is part of"
-        " MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various"
-        " functions.\n\nNote: This symbol isn't actually part of the ITCM, it gets"
-        " created at runtime on the spot in RAM that used to contain the code that was"
-        " moved to the ITCM.\n\ntype: struct mem_arena",
-    )
-
-    DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
-        None,
-        None,
-        None,
-        "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\nNote: This symbol isn't"
-        " actually part of the ITCM, it gets created at runtime on the spot in RAM that"
-        " used to contain the code that was moved to the ITCM.\n\ntype: struct"
-        " mem_block[256]",
-    )
-
-    RENDER_3D_FUNCTIONS = Symbol(
-        None,
-        None,
-        None,
-        "Pointers to the 4 functions available for rendering a render_3d_element (in"
-        " ITCM)\n\ntype: render_3d_element_fn_t[4]",
-    )
-
-
-class JpItcmItcmSection:
-    name = "itcm"
-    description = (
-        "The instruction TCM (tightly-coupled memory) and the corresponding region in"
-        " the ARM9 binary.\n\nThe ITCM is a special area of low-latency memory meant"
-        " for performance-critical routines. It's similar to an instruction cache, but"
-        " more predictable. See the ARMv5 Architecture Reference Manual, Chapter B7"
-        " (https://developer.arm.com/documentation/ddi0100/i).\n\nThe Nintendo DS ITCM"
-        " region is located at 0x0-0x7FFF in memory, but the 32 KiB segment is mirrored"
-        " throughout the 16 MiB block from 0x0-0x1FFFFFF. The Explorers of Sky code"
-        " seems to reference only the mirror at 0x1FF8000, the closest one to main"
-        " memory.\n\nIn Explorers of Sky, a fixed region of the ARM9 binary appears to"
-        " be loaded in the ITCM at all times, and seems to contain functions related to"
-        " the dungeon AI, among other things. The ITCM has a max capacity of 0x8000,"
-        " although not all of it is used."
-    )
-    loadaddress = 0x1FF8000
-    length = 0x4060
-    functions = JpItcmItcmFunctions
-    data = JpItcmItcmData
+    loadaddress = None
+    length = None
+    functions = JpItcmLibsFunctions
+    data = JpItcmLibsData
 
 
 class JpItcmMove_effectsFunctions:
@@ -14134,9 +14160,9 @@ class JpItcmOverlay10Functions:
         None,
         None,
         "Initializes a buffer that contains data related to tilesets (such as"
-        " dungeon::unknown_file_buffer_0x102A8).\n\nCalls"
-        " DirectoryFileMngr_OpenDirectoryFile and DecompressAtNormalVeneer.\n\nr0:"
-        " Pointer to the buffer to init\nr1: Tileset ID\nr2: Memory allocation flags",
+        " dungeon::unknown_file_buffer_0x102A8).\n\nCalls AllocAndLoadFileInPack and"
+        " DecompressAtNormalVeneer.\n\nr0: Pointer to the buffer to init\nr1: Tileset"
+        " ID\nr2: Memory allocation flags",
     )
 
     MainGame = Symbol(
@@ -26729,6 +26755,8 @@ class JpItcmSections:
     arm9 = JpItcmArm9Section
 
     itcm = JpItcmItcmSection
+
+    libs = JpItcmLibsSection
 
     move_effects = JpItcmMove_effectsSection
 

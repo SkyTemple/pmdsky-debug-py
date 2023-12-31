@@ -896,7 +896,7 @@ class JpArm9Functions:
         " ScriptSpecialProcessCall).\n\nNo params.",
     )
 
-    FileRom_InitDataTransfer = Symbol(
+    DataTransferInit = Symbol(
         [0x8168],
         [0x2008168],
         None,
@@ -904,16 +904,16 @@ class JpArm9Functions:
         " params.",
     )
 
-    FileRom_StopDataTransfer = Symbol(
+    DataTransferStop = Symbol(
         [0x8194],
         [0x2008194],
         None,
         "Finalizes data transfer from the ROM cartridge.\n\nThis function must always"
-        " be called if FileRom_InitDataTransfer was called, or the game will"
-        " crash.\n\nNo params.",
+        " be called if DataTransferInit was called, or the game will crash.\n\nNo"
+        " params.",
     )
 
-    FileRom_Veneer_FileInit = Symbol(
+    FileInitVeneer = Symbol(
         [0x8204],
         [0x2008204],
         None,
@@ -922,7 +922,7 @@ class JpArm9Functions:
         " file_stream pointer",
     )
 
-    FileRom_HandleOpen = Symbol(
+    FileOpen = Symbol(
         [0x8210],
         [0x2008210],
         None,
@@ -937,25 +937,25 @@ class JpArm9Functions:
         "Gets the size of an open file.\n\nr0: file_stream pointer\nreturn: file size",
     )
 
-    FileRom_HandleRead = Symbol(
+    FileRead = Symbol(
         [0x8254],
         [0x2008254],
         None,
         "Reads the contents of a file into the given buffer, and moves the file cursor"
         " accordingly.\n\nData transfer mode must have been initialized (with"
-        " FileRom_InitDataTransfer) prior to calling this function. This function looks"
-        " like it's doing something akin to calling read(2) or fread(3) in a loop until"
-        " all the bytes have been successfully read.\n\nNote: If code is running from"
-        " IRQ mode, it appears that FileRom_HandleRead hangs the game. When the"
-        " processor mode is forced into SYSTEM mode FileRom_HandleRead once again"
-        " works, so it appears that ROM access only works in certain processor modes."
-        " Note that forcing the processor into a different mode is generally a bad idea"
-        " and should be avoided as it will easily corrupt that processor mode's"
-        " states.\n\nr0: file_stream pointer\nr1: [output] buffer\nr2: number of bytes"
-        " to read\nreturn: number of bytes read",
+        " DataTransferInit) prior to calling this function. This function looks like"
+        " it's doing something akin to calling read(2) or fread(3) in a loop until all"
+        " the bytes have been successfully read.\n\nNote: If code is running from IRQ"
+        " mode, it appears that FileRead hangs the game. When the processor mode is"
+        " forced into SYSTEM mode FileRead once again works, so it appears that ROM"
+        " access only works in certain processor modes. Note that forcing the processor"
+        " into a different mode is generally a bad idea and should be avoided as it"
+        " will easily corrupt that processor mode's states.\n\nr0: file_stream"
+        " pointer\nr1: [output] buffer\nr2: number of bytes to read\nreturn: number of"
+        " bytes read",
     )
 
-    FileRom_HandleSeek = Symbol(
+    FileSeek = Symbol(
         [0x82A8],
         [0x20082A8],
         None,
@@ -970,10 +970,10 @@ class JpArm9Functions:
         [0x20082C4],
         None,
         "Closes a file.\n\nData transfer mode must have been initialized (with"
-        " FileRom_InitDataTransfer) prior to calling this function.\n\nNote: It is"
-        " possible to keep a file stream open even if data transfer mode has been"
-        " stopped, in which case the file stream can be used again if data transfer"
-        " mode is reinitialized.\n\nr0: file_stream pointer",
+        " DataTransferInit) prior to calling this function.\n\nNote: It is possible to"
+        " keep a file stream open even if data transfer mode has been stopped, in which"
+        " case the file stream can be used again if data transfer mode is"
+        " reinitialized.\n\nr0: file_stream pointer",
     )
 
     UnloadFile = Symbol(
@@ -1021,7 +1021,7 @@ class JpArm9Functions:
         " screen_fade\nreturn: int",
     )
 
-    Debug_Init = Symbol(
+    InitDebug = Symbol(
         [0xC0D4],
         [0x200C0D4],
         None,
@@ -1029,14 +1029,14 @@ class JpArm9Functions:
         " for the release version, does nothing but set DEBUG_IS_INITIALIZED to true.",
     )
 
-    Debug_InitDebugFlag = Symbol(
+    InitDebugFlag = Symbol(
         [0xC10C],
         [0x200C10C],
         None,
         "Would have initialized the debug flags.\nDoes nothing in release binary.",
     )
 
-    Debug_GetDebugFlag = Symbol(
+    GetDebugFlag = Symbol(
         [0xC110],
         [0x200C110],
         None,
@@ -1044,7 +1044,7 @@ class JpArm9Functions:
         " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    Debug_SetDebugFlag = Symbol(
+    SetDebugFlag = Symbol(
         [0xC118],
         [0x200C118],
         None,
@@ -1052,7 +1052,7 @@ class JpArm9Functions:
         " ID\nr1: flag value",
     )
 
-    Debug_Stripped6 = Symbol(
+    InitDebugStripped6 = Symbol(
         [0xC11C],
         [0x200C11C],
         None,
@@ -1070,14 +1070,14 @@ class JpArm9Functions:
         " characters printed, excluding the null-terminator",
     )
 
-    Debug_Stripped5 = Symbol(
+    InitDebugStripped5 = Symbol(
         [0xC168],
         [0x200C168],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_PrintTrace = Symbol(
+    DebugPrintTrace = Symbol(
         [0xC16C],
         [0x200C16C],
         None,
@@ -1094,11 +1094,11 @@ class JpArm9Functions:
         None,
         "Would display a printf format string on the top screen in the debug"
         " binary.\n\nThis still constructs the string with vsprintf, but doesn't"
-        " actually do anything with it in the final binary.\n\nIdentical to"
-        " Debug_Print0 in release builds.\n\nr0: format\n...: variadic",
+        " actually do anything with it in the final binary.\n\nIdentical to DebugPrint0"
+        " in release builds.\n\nr0: format\n...: variadic",
     )
 
-    Debug_Print0 = Symbol(
+    DebugPrint0 = Symbol(
         [0xC1FC],
         [0x200C1FC],
         None,
@@ -1108,14 +1108,14 @@ class JpArm9Functions:
         " format\n...: variadic",
     )
 
-    Debug_InitLogFlag = Symbol(
+    InitDebugLogFlag = Symbol(
         [0xC230],
         [0x200C230],
         None,
         "Would have initialized the debug log flags.\nDoes nothing in release binary.",
     )
 
-    Debug_GetLogFlag = Symbol(
+    GetDebugLogFlag = Symbol(
         [0xC234],
         [0x200C234],
         None,
@@ -1123,7 +1123,7 @@ class JpArm9Functions:
         " final binary.\n\nr0: flag ID\nreturn: flag value",
     )
 
-    Debug_SetLogFlag = Symbol(
+    SetDebugLogFlag = Symbol(
         [0xC23C],
         [0x200C23C],
         None,
@@ -1131,7 +1131,7 @@ class JpArm9Functions:
         " flag ID\nr1: flag value",
     )
 
-    Debug_Print = Symbol(
+    DebugPrint = Symbol(
         [0xC240],
         [0x200C240],
         None,
@@ -1139,35 +1139,35 @@ class JpArm9Functions:
         " binary.\n\nr0: log level\nr1: format\n...: variadic",
     )
 
-    Debug_Stripped4 = Symbol(
+    InitDebugStripped4 = Symbol(
         [0xC24C],
         [0x200C24C],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_Stripped3 = Symbol(
+    InitDebugStripped3 = Symbol(
         [0xC250],
         [0x200C250],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_Stripped2 = Symbol(
+    InitDebugStripped2 = Symbol(
         [0xC254],
         [0x200C254],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_Stripped1 = Symbol(
+    InitDebugStripped1 = Symbol(
         [0xC258],
         [0x200C258],
         None,
         "Does nothing, only called in the debug initialization function.",
     )
 
-    Debug_FatalError = Symbol(
+    FatalError = Symbol(
         [0xC25C],
         [0x200C25C],
         None,
@@ -1179,34 +1179,34 @@ class JpArm9Functions:
         " code.\n\nr0: program position info\nr1: format\n...: variadic",
     )
 
-    DirectoryFileMngr_ExtractAllDirectoryFiles = Symbol(
+    OpenAllPackFiles = Symbol(
         [0xC2DC],
         [0x200C2DC],
         None,
-        "Open the 6 files at DIRECTORY_FILE_TABLE into DIRECTORY_FILES_EXTRACTED."
-        " Called during game initialization.\n\nNo params.",
+        "Open the 6 files at PACK_FILE_PATHS_TABLE into PACK_FILES_OPENED. Called"
+        " during game initialization.\n\nNo params.",
     )
 
-    DirectoryFileMngr_GetDirectoryFileSize = Symbol(
+    GetFileLengthInPackWithPackNb = Symbol(
         [0xC33C],
         [0x200C33C],
         None,
-        "Call DirectoryFile_GetDirectoryFileSize after looking up the global Pack"
-        " archive by its number\n\nr0: pack file number\nr1: file number\nreturn: size"
-        " of the file in bytes from the Pack Table of Content",
+        "Call GetFileLengthInPack after looking up the global Pack archive by its"
+        " number\n\nr0: pack file number\nr1: file number\nreturn: size of the file in"
+        " bytes from the Pack Table of Content",
     )
 
-    DirectoryFileMngr_LoadDirectoryFile = Symbol(
+    LoadFileInPackWithPackId = Symbol(
         [0xC35C],
         [0x200C35C],
         None,
-        "Call DirectoryFile_LoadDirectoryFile after looking up the global Pack archive"
-        " by its identifier\n\nr0: pack file identifier\nr1: file index\nr2: [output]"
-        " target buffer\nreturn: number of read bytes (identical to the length of the"
-        " pack from the Table of Content)",
+        "Call LoadFileInPack after looking up the global Pack archive by its"
+        " identifier\n\nr0: pack file identifier\nr1: file index\nr2: [output] target"
+        " buffer\nreturn: number of read bytes (identical to the length of the pack"
+        " from the Table of Content)",
     )
 
-    DirectoryFileMngr_OpenDirectoryFile = Symbol(
+    AllocAndLoadFileInPack = Symbol(
         [0xC388],
         [0x200C388],
         None,
@@ -1216,7 +1216,7 @@ class JpArm9Functions:
         " struct (will contain length and pointer)\nr3: allocation flags",
     )
 
-    DirectoryFile_ExtractDirectoryFile = Symbol(
+    OpenPackFile = Symbol(
         [0xC3E0],
         [0x200C3E0],
         None,
@@ -1224,7 +1224,7 @@ class JpArm9Functions:
         " [output] pack file struct\nr1: file name",
     )
 
-    DirectoryFile_GetDirectoryFileSize = Symbol(
+    GetFileLengthInPack = Symbol(
         [0xC474],
         [0x200C474],
         None,
@@ -1233,7 +1233,7 @@ class JpArm9Functions:
         " of Content",
     )
 
-    DirectoryFile_LoadDirectoryFile = Symbol(
+    LoadFileInPack = Symbol(
         [0xC484],
         [0x200C484],
         None,
@@ -7894,7 +7894,7 @@ class JpArm9Functions:
         " considered invalid if the ID of the monsters or items involved are out of"
         " bounds, if their entries are marked as invalid, if the destination floor does"
         " not exist, etc.\nIf the mission fails one of the checks, the game will print"
-        " an error message explaining what is wrong using Debug_Print0.\n\nr0: mission"
+        " an error message explaining what is wrong using DebugPrint0.\n\nr0: mission"
         " to check\nreturn: True if the mission is valid, false if it's not.",
     )
 
@@ -8196,1348 +8196,6 @@ class JpArm9Functions:
         " DMODE_OPEN_AND_REQUEST.\nElse, calls GetDungeonMode and returns DMODE_REQUEST"
         " if the dungeon has been cleared, or DMODE_OPEN if it's not.\n\nr0: Dungeon"
         " ID\nreturn: Dungeon mode",
-    )
-
-    SoundUtilGetRandomNumber = Symbol(
-        None, None, None, "return: random number in the range [0, 32767]"
-    )
-
-    ReadWaviEntry = Symbol(
-        [0x6D840],
-        [0x206D840],
-        None,
-        "Reads an entry from the pointer table of a wavi container and returns a"
-        " pointer to the data of said entry, which contains information about a"
-        " particular sample.\n\nr0: Wavi data struct\nr1: Entry index\nretrun: Pointer"
-        " to the entry's data",
-    )
-
-    ResumeBgm = Symbol(
-        [0x6DCA4],
-        [0x206DCA4],
-        None,
-        "Uncertain.\n\nNote: unverified, ported from Irdkwia's notes",
-    )
-
-    FindSmdlSongChunk = Symbol(
-        [0x6E7D0],
-        [0x206E7D0],
-        None,
-        "Finds the first song chunk within an SMDL file that has the specified value on"
-        " its 0x10 field.\n\nSee"
-        " https://projectpokemon.org/home/docs/mystery-dungeon-nds/dse-smdl-format-r13/.\n\nr0:"
-        " Pointer to the start of the SMDL file\nr1: Value to search for\nreturn:"
-        " Pointer to the first chunk that has the specified value + 0x10, or null if no"
-        " chunk was found.",
-    )
-
-    FlushChannels = Symbol(
-        [0x7095C], [0x207095C], None, "Note: unverified, ported from Irdkwia's notes"
-    )
-
-    ParseDseEvent = Symbol(
-        [0x7150C],
-        [0x207150C],
-        None,
-        "Parses and executes a DSE event for the specified track, if necessary.\n\nThe"
-        " function checks the time left before the next event"
-        " (track_data::event_delay), and parses it if said time is 0.\n\nSee also"
-        " https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nr0:"
-        " Pointer to some struct that seems to hold the state of the audio engine\nr1:"
-        " Pointer to track data",
-    )
-
-    UpdateSequencerTracks = Symbol(
-        [0x716D0],
-        [0x20716D0],
-        None,
-        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
-    )
-
-    UpdateChannels = Symbol(
-        [0x74774],
-        [0x2074774],
-        None,
-        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/"
-        " and Irdkwia's notes.\n\nNo params.",
-    )
-
-    SoundEnvelopeReset = Symbol(None, None, None, "r0: Sound envelope pointer")
-
-    SoundEnvelopeParametersReset = Symbol(
-        None, None, None, "r0: Sound envelope parameters pointer"
-    )
-
-    SoundEnvelopeParametersCheckValidity = Symbol(
-        None, None, None, "r0: Sound envelope parameters pointer"
-    )
-
-    SoundEnvelopeSetParameters = Symbol(
-        None,
-        None,
-        None,
-        "r0: Sound envelope pointer\nr1: Sound envelope parameters pointer",
-    )
-
-    SoundEnvelopeSetSlide = Symbol(
-        None,
-        None,
-        None,
-        "r0: Sound envelope pointer\nr1: Target volume\nr2: Music duration lookup table"
-        " index",
-    )
-
-    UpdateTrackVolumeEnvelopes = Symbol(
-        [0x750F4],
-        [0x20750F4],
-        None,
-        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nr0:"
-        " Sound envelope pointer",
-    )
-
-    SoundEnvelopeRelease = Symbol(None, None, None, "r0: Sound envelope pointer")
-
-    SoundEnvelopeStop = Symbol(None, None, None, "r0: Sound envelope pointer")
-
-    SoundEnvelopeForceVolume = Symbol(
-        None, None, None, "r0: Sound envelope pointer\nr1: Volume"
-    )
-
-    SoundEnvelopeStop2 = Symbol(None, None, None, "r0: Sound envelope pointer")
-
-    SoundEnvelopeTick = Symbol(
-        None, None, None, "r0: Sound envelope pointer\nreturn: Current volume"
-    )
-
-    SoundLfoBankReset = Symbol(None, None, None, "r0: LFO bank pointer")
-
-    SoundLfoBankSet = Symbol(
-        None,
-        None,
-        None,
-        "r0: LFO bank pointer\nr1: LFO settings pointer\nr2: Envelope level",
-    )
-
-    SoundLfoBankSetConstEnvelopes = Symbol(
-        None, None, None, "r0: LFO bank pointer\nr1: Level"
-    )
-
-    SoundLfoBankTick = Symbol(
-        None, None, None, "r0: LFO bank pointer\nreturn: New voice update flags"
-    )
-
-    SoundLfoWaveInvalidFunc = Symbol(None, None, None, "r0: LFO pointer\nreturn: 0")
-
-    SoundLfoWaveHalfSquareFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
-    )
-
-    SoundLfoWaveFullSquareFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
-    )
-
-    SoundLfoWaveHalfTriangleFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
-    )
-
-    SoundLfoWaveFullTriangleFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
-    )
-
-    SoundLfoWaveSawFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
-    )
-
-    SoundLfoWaveReverseSawFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
-    )
-
-    SoundLfoWaveHalfNoiseFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
-    )
-
-    SoundLfoWaveFullNoiseFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
-    )
-
-    Crypto_RC4Init = Symbol(None, None, None, "")
-
-    Mtx_LookAt = Symbol(None, None, None, "")
-
-    Mtx_OrthoW = Symbol(None, None, None, "")
-
-    FX_Div = Symbol(None, None, None, "")
-
-    FX_GetDivResultFx64c = Symbol(None, None, None, "")
-
-    FX_GetDivResult = Symbol(None, None, None, "")
-
-    FX_InvAsync = Symbol(None, None, None, "")
-
-    FX_DivAsync = Symbol(None, None, None, "")
-
-    FX_DivS32 = Symbol(None, None, None, "")
-
-    FX_ModS32 = Symbol(None, None, None, "")
-
-    Vec_DotProduct = Symbol(None, None, None, "")
-
-    Vec_CrossProduct = Symbol(None, None, None, "")
-
-    Vec_Normalize = Symbol(None, None, None, "")
-
-    Vec_Distance = Symbol(None, None, None, "")
-
-    FX_Atan2Idx = Symbol(None, None, None, "")
-
-    GX_Init = Symbol(None, None, None, "")
-
-    GX_HBlankIntr = Symbol(None, None, None, "")
-
-    GX_VBlankIntr = Symbol(None, None, None, "")
-
-    GX_DispOff = Symbol(None, None, None, "")
-
-    GX_DispOn = Symbol(None, None, None, "")
-
-    GX_SetGraphicsMode = Symbol(None, None, None, "")
-
-    Gxs_SetGraphicsMode = Symbol(None, None, None, "")
-
-    GXx_SetMasterBrightness = Symbol(None, None, None, "")
-
-    GX_InitGxState = Symbol(None, None, None, "")
-
-    EnableVramBanksInSetDontSave = Symbol(
-        [0x76694],
-        [0x2076694],
-        None,
-        "Enable the VRAM bank marked in the input set, but don’t mark them as enabled"
-        " in ENABLED_VRAM_BANKS\n\nr0: vram_banks_set",
-    )
-
-    GX_SetBankForBg = Symbol(None, None, None, "")
-
-    GX_SetBankForObj = Symbol(None, None, None, "")
-
-    GX_SetBankForBgExtPltt = Symbol(None, None, None, "")
-
-    GX_SetBankForObjExtPltt = Symbol(None, None, None, "")
-
-    GX_SetBankForTex = Symbol(None, None, None, "")
-
-    GX_SetBankForTexPltt = Symbol(None, None, None, "")
-
-    GX_SetBankForClearImage = Symbol(None, None, None, "")
-
-    GX_SetBankForArm7 = Symbol(None, None, None, "")
-
-    GX_SetBankForLcdc = Symbol(None, None, None, "")
-
-    GX_SetBankForSubBg = Symbol(None, None, None, "")
-
-    GX_SetBankForSubObj = Symbol(None, None, None, "")
-
-    GX_SetBankForSubBgExtPltt = Symbol(None, None, None, "")
-
-    GX_SetBankForSubObjExtPltt = Symbol(None, None, None, "")
-
-    EnableVramBanksInSet = Symbol(
-        [0x773B0],
-        [0x20773B0],
-        None,
-        "Enable the VRAM banks in the input set. Will reset the pointed set to 0, and"
-        " update ENABLED_VRAM_BANKS\n\nr0: vram_banks_set *",
-    )
-
-    GX_ResetBankForBgExtPltt = Symbol(None, None, None, "")
-
-    GX_ResetBankForObjExtPltt = Symbol(None, None, None, "")
-
-    GX_ResetBankForTex = Symbol(None, None, None, "")
-
-    GX_ResetBankForTexPltt = Symbol(None, None, None, "")
-
-    GX_ResetBankForSubBgExtPltt = Symbol(None, None, None, "")
-
-    GX_ResetBankForSubObjExtPltt = Symbol(None, None, None, "")
-
-    DisableBankForX = Symbol(None, None, None, "")
-
-    GX_DisableBankForBg = Symbol(None, None, None, "")
-
-    GX_DisableBankForObj = Symbol(None, None, None, "")
-
-    GX_DisableBankForBgExtPltt = Symbol(None, None, None, "")
-
-    GX_DisableBankForObjExtPltt = Symbol(None, None, None, "")
-
-    GX_DisableBankForTex = Symbol(None, None, None, "")
-
-    GX_DisableBankForTexPltt = Symbol(None, None, None, "")
-
-    GX_DisableBankForClearImage = Symbol(None, None, None, "")
-
-    GX_DisableBankForArm7 = Symbol(None, None, None, "")
-
-    GX_DisableBankForLcdc = Symbol(None, None, None, "")
-
-    GX_DisableBankForSubBg = Symbol(None, None, None, "")
-
-    GX_DisableBankForSubObj = Symbol(None, None, None, "")
-
-    GX_DisableBankForSubBgExtPltt = Symbol(None, None, None, "")
-
-    GX_DisableBankForSubObjExtPltt = Symbol(None, None, None, "")
-
-    G2_GetBG0ScrPtr = Symbol(None, None, None, "")
-
-    G2S_GetBG0ScrPtr = Symbol(None, None, None, "")
-
-    G2_GetBG1ScrPtr = Symbol(None, None, None, "")
-
-    G2S_GetBG1ScrPtr = Symbol(None, None, None, "")
-
-    G2_GetBG2ScrPtr = Symbol(None, None, None, "")
-
-    G2_GetBG3ScrPtr = Symbol(None, None, None, "")
-
-    G2_GetBG0CharPtr = Symbol(None, None, None, "")
-
-    G2S_GetBG0CharPtr = Symbol(None, None, None, "")
-
-    G2_GetBG1CharPtr = Symbol(None, None, None, "")
-
-    G2S_GetBG1CharPtr = Symbol(None, None, None, "")
-
-    G2_GetBG2CharPtr = Symbol(None, None, None, "")
-
-    G2_GetBG3CharPtr = Symbol(None, None, None, "")
-
-    G2x_SetBlendAlpha = Symbol(None, None, None, "")
-
-    G2x_SetBlendBrightness = Symbol(None, None, None, "")
-
-    G2x_ChangeBlendBrightness = Symbol(None, None, None, "")
-
-    G3_LoadMtx44 = Symbol(None, None, None, "")
-
-    G3_LoadMtx43 = Symbol(
-        [0x77A74],
-        [0x2077A74],
-        None,
-        "Send the MTX_LOAD_4x3 geometry engine command, through a GXFIFO command. See"
-        " https://problemkaputt.de/gbatek.htm#ds3dgeometrycommands and"
-        " https://problemkaputt.de/gbatek.htm#ds3dmatrixloadmultiply for more"
-        " information.\n\nThis pops the top of the current matrix stack"
-        " (https://problemkaputt.de/gbatek.htm#ds3dmatrixstack) and sets it as the"
-        " engine's 'current' matrix. It's commonly preceded by a MTX_PUSH command to"
-        " populate the matrix stack with a matrix.\n\nr0: matrix_4x3 pointer",
-    )
-
-    G3_MultMtx43 = Symbol(
-        [0x77A90],
-        [0x2077A90],
-        None,
-        "Send the MTX_MULT_4x3 geometry engine command, through a GXFIFO command. See"
-        " https://problemkaputt.de/gbatek.htm#ds3dgeometrycommands and"
-        " https://problemkaputt.de/gbatek.htm#ds3dmatrixloadmultiply for more"
-        " information.\n\nThis pops the top of the current matrix stack"
-        " (https://problemkaputt.de/gbatek.htm#ds3dmatrixstack) and left-multiplies the"
-        " engine's 'current' matrix by the new matrix. It's commonly preceded by a"
-        " MTX_PUSH command to populate the matrix stack with a matrix.\n\nr0:"
-        " matrix_4x3 pointer",
-    )
-
-    G3X_Init = Symbol(None, None, None, "")
-
-    G3X_Reset = Symbol(None, None, None, "")
-
-    G3X_ClearFifo = Symbol(None, None, None, "")
-
-    G3X_InitMtxStack = Symbol(None, None, None, "")
-
-    G3X_ResetMtxStack = Symbol(None, None, None, "")
-
-    G3X_SetClearColor = Symbol(None, None, None, "")
-
-    G3X_InitTable = Symbol(None, None, None, "")
-
-    G3X_GetMtxStackLevelPV = Symbol(None, None, None, "")
-
-    G3X_GetMtxStackLevelPJ = Symbol(None, None, None, "")
-
-    GXi_NopClearFifo128 = Symbol(None, None, None, "")
-
-    G3i_OrthoW = Symbol(None, None, None, "")
-
-    G3i_LookAt = Symbol(None, None, None, "")
-
-    GX_LoadBgPltt = Symbol(None, None, None, "")
-
-    Gxs_LoadBgPltt = Symbol(None, None, None, "")
-
-    GX_LoadObjPltt = Symbol(None, None, None, "")
-
-    Gxs_LoadObjPltt = Symbol(None, None, None, "")
-
-    GX_LoadOam = Symbol(None, None, None, "")
-
-    Gxs_LoadOam = Symbol(None, None, None, "")
-
-    GX_LoadObj = Symbol(None, None, None, "")
-
-    Gxs_LoadObj = Symbol(None, None, None, "")
-
-    GX_LoadBg0Scr = Symbol(None, None, None, "")
-
-    GX_LoadBg1Scr = Symbol(None, None, None, "")
-
-    Gxs_LoadBg1Scr = Symbol(None, None, None, "")
-
-    GX_LoadBg2Scr = Symbol(None, None, None, "")
-
-    GX_LoadBg3Scr = Symbol(None, None, None, "")
-
-    GX_LoadBg0Char = Symbol(None, None, None, "")
-
-    Gxs_LoadBg0Char = Symbol(None, None, None, "")
-
-    GX_LoadBg1Char = Symbol(None, None, None, "")
-
-    Gxs_LoadBg1Char = Symbol(None, None, None, "")
-
-    GX_LoadBg2Char = Symbol(None, None, None, "")
-
-    GX_LoadBg3Char = Symbol(None, None, None, "")
-
-    GX_BeginLoadBgExtPltt = Symbol(None, None, None, "")
-
-    GX_EndLoadBgExtPltt = Symbol(None, None, None, "")
-
-    GX_BeginLoadObjExtPltt = Symbol(None, None, None, "")
-
-    GX_EndLoadObjExtPltt = Symbol(None, None, None, "")
-
-    Gxs_BeginLoadBgExtPltt = Symbol(None, None, None, "")
-
-    Gxs_EndLoadBgExtPltt = Symbol(None, None, None, "")
-
-    Gxs_BeginLoadObjExtPltt = Symbol(None, None, None, "")
-
-    Gxs_EndLoadObjExtPltt = Symbol(None, None, None, "")
-
-    GX_BeginLoadTex = Symbol(None, None, None, "")
-
-    GX_LoadTex = Symbol(None, None, None, "")
-
-    GX_EndLoadTex = Symbol(None, None, None, "")
-
-    GX_BeginLoadTexPltt = Symbol(None, None, None, "")
-
-    GX_LoadTexPltt = Symbol(None, None, None, "")
-
-    GX_EndLoadTexPltt = Symbol(None, None, None, "")
-
-    GeomGxFifoSendMtx4x3 = Symbol(
-        [0x78BA8],
-        [0x2078BA8],
-        None,
-        "Send a 4x3 matrix argument for a GXFIFO geometry engine command.\n\nThis"
-        " function is used by GeomMtxLoad4x3 and GeomMtxMult4x3 to pass the matrix"
-        " argument for a GXFIFO command after already having written the command code."
-        " See https://problemkaputt.de/gbatek.htm#ds3dgeometrycommands for more"
-        " information.\n\nNote that the GXFIFO address is 0x4000400, but is (maybe)"
-        " mirrored up to 0x400043F. This function is optimized to take advantage of"
-        " this by writing 3 matrix entries at a time using ldmia and stmia"
-        " instructions.\n\nr0: matrix_4x3 pointer\nr1: GXFIFO pointer",
-    )
-
-    GX_SendFifo64B = Symbol(None, None, None, "")
-
-    OS_GetLockID = Symbol(None, None, None, "")
-
-    IncrementThreadCount = Symbol(
-        [0x79438],
-        [0x2079438],
-        None,
-        "Increments thread_info::thread_count by 1 and returns the new"
-        " value.\n\nreturn: New thread count",
-    )
-
-    InsertThreadIntoList = Symbol(
-        [0x79580],
-        [0x2079580],
-        None,
-        "Inserts a new thread into the linked thread list (see"
-        " thread_info::thread_list_head).\n\nThe thread is inserted in sorted"
-        " order.\n\nr0: Thread to insert",
-    )
-
-    StartThread = Symbol(
-        [0x79848],
-        [0x2079848],
-        None,
-        "Called to start a new thread.\n\nInitializes the specified thread struct and"
-        " some values on its stack area.\n\nr0: Struct of the thread to init\nr1:"
-        " Pointer to the function to run on this thread\nr2: Pointer to a thread"
-        " struct. Sometimes equal to r0. Sometimes null.\nr3: Pointer to the stack area"
-        " for this thread. Not all the space is usable. See"
-        " thread::usable_stack_pointer for more info.\nstack[0]: Stack size\nstack[1]:"
-        " (?) Used to sort threads on a list",
-    )
-
-    ThreadExit = Symbol(
-        [0x79944],
-        [0x2079944],
-        None,
-        "Function called by threads on exit.\n\nBase functions that contain an infinite"
-        " loop that is not supposed to return and that have their stacks in main RAM"
-        " have this function as their return address.\n\nNo params.",
-    )
-
-    SetThreadField0xB4 = Symbol(
-        [0x79F64],
-        [0x2079F64],
-        None,
-        "Sets the given thread's field_0xB4 to the specified value.\n\nr0: Thread\nr1:"
-        " Value to set",
-    )
-
-    InitThread = Symbol(
-        [0x79F6C],
-        [0x2079F6C],
-        None,
-        "Initializes some fields of the given thread struct.\n\nMost notably,"
-        " thread::flags, thread::function_address_plus_4, thread::stack_pointer_minus_4"
-        " and thread::usable_stack_pointer. Also initializes a few more fields with a"
-        " value of 0.\nthread::flags is initialized to 0x1F, unless the address of the"
-        " function is odd (???), in which case it's initialized to 0x3F.\n\nr0: Pointer"
-        " to the thread to initialize\nr1: Pointer to the function the thread will"
-        " run\nr2: Pointer to the start of the thread's stack area - 4",
-    )
-
-    GetTimer0Control = Symbol(
-        [0x7B1CC],
-        [0x207B1CC],
-        None,
-        "Returns the value of the control register for hardware timer 0\n\nreturn:"
-        " Value of the control register",
-    )
-
-    ClearIrqFlag = Symbol(
-        [0x7BAB8],
-        [0x207BAB8],
-        None,
-        "Enables processor interrupts by clearing the i flag in the program status"
-        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
-        " disabled, 0x0 if they were already enabled)",
-    )
-
-    EnableIrqFlag = Symbol(
-        [0x7BACC],
-        [0x207BACC],
-        None,
-        "Disables processor interrupts by setting the i flag in the program status"
-        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
-        " already disabled, 0x0 if they were enabled)",
-    )
-
-    SetIrqFlag = Symbol(
-        [0x7BAE0],
-        [0x207BAE0],
-        None,
-        "Sets the value of the processor's interrupt flag according to the specified"
-        " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
-        " interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of"
-        " cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
-    )
-
-    EnableIrqFiqFlags = Symbol(
-        [0x7BAF8],
-        [0x207BAF8],
-        None,
-        "Disables processor all interrupts (both standard and fast) by setting the i"
-        " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
-        " cpsr & 0xC0 (contains the previous values of the i and f flags)",
-    )
-
-    SetIrqFiqFlags = Symbol(
-        [0x7BB0C],
-        [0x207BB0C],
-        None,
-        "Sets the value of the processor's interrupt flags (i and f) according to the"
-        " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
-        " flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag"
-        " and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr"
-        " & 0xC0 (contains the previous values of the i and f flags)",
-    )
-
-    GetIrqFlag = Symbol(
-        [0x7BB24],
-        [0x207BB24],
-        None,
-        "Gets the current value of the processor's interrupt request (i)"
-        " flag\n\nreturn: cpsr & 0x80 (0x80 if interrupts are disabled, 0x0 if they are"
-        " enabled)",
-    )
-
-    GetProcessorMode = Symbol(
-        [0x7BB30],
-        [0x207BB30],
-        None,
-        "Gets the processor's current operating mode.\n\nSee"
-        " https://problemkaputt.de/gbatek.htm#armcpuflagsconditionfieldcond\n\nreturn:"
-        " cpsr & 0x1f (the cpsr mode bits M4-M0)",
-    )
-
-    CountLeadingZeros = Symbol(
-        None,
-        None,
-        None,
-        "Counts the number of leading zeros in a 32-bit integer.\n\nr0: x\nreturn:"
-        " clz(x)",
-    )
-
-    WaitForever2 = Symbol(
-        [0x7BF08],
-        [0x207BF08],
-        None,
-        "Calls EnableIrqFlag and WaitForInterrupt in an infinite loop.\n\nThis is"
-        " called on fatal errors to hang the program indefinitely.\n\nNo params.",
-    )
-
-    WaitForInterrupt = Symbol(
-        [0x7BF18],
-        [0x207BF18],
-        None,
-        "Presumably blocks until the program receives an interrupt.\n\nThis just calls"
-        " (in Ghidra terminology) coproc_moveto_Wait_for_interrupt(0). See"
-        " https://en.wikipedia.org/wiki/ARM_architecture_family#Coprocessors.\n\nNo"
-        " params.",
-    )
-
-    ArrayFill16 = Symbol(
-        [0x7C5A0],
-        [0x207C5A0],
-        None,
-        "Fills an array of 16-bit values with a given value.\n\nr0: value\nr1: ptr\nr2:"
-        " len (# bytes)",
-    )
-
-    ArrayCopy16 = Symbol(
-        [0x7C5C8],
-        [0x207C5C8],
-        None,
-        "Copies an array of 16-bit values to another array of 16-bit values.\n\nThis is"
-        " essentially an alternate implementation of Memcpy16, but with a different"
-        " parameter order.\n\nr0: src\nr1: dest\nr2: len (# bytes)",
-    )
-
-    ArrayFill32 = Symbol(
-        [0x7C5FC],
-        [0x207C5FC],
-        None,
-        "Fills an array of 32-bit values with a given value.\n\nThis is essentially an"
-        " alternate implementation of Memset32, but with a different parameter"
-        " order.\n\nr0: value\nr1: ptr\nr2: len (# bytes)",
-    )
-
-    ArrayCopy32 = Symbol(
-        [0x7C618],
-        [0x207C618],
-        None,
-        "Copies an array of 32-bit values to another array of 32-bit values.\n\nThis is"
-        " essentially an alternate implementation of Memcpy32, but with a different"
-        " parameter order.\n\nr0: src\nr1: dest\nr2: len (# bytes)",
-    )
-
-    ArrayFill32Fast = Symbol(
-        [0x7C640],
-        [0x207C640],
-        None,
-        "Does the same thing as ArrayFill32, except the implementation uses an unrolled"
-        " loop that sets 8 values per iteration, taking advantage of the stmia"
-        " instruction.\n\nr0: value\nr1: ptr\nr2: len (# bytes)",
-    )
-
-    ArrayCopy32Fast = Symbol(
-        [0x7C69C],
-        [0x207C69C],
-        None,
-        "Does the same thing as ArrayCopy32, except the implementation uses an unrolled"
-        " loop that copies 8 values per iteration, taking advantage of the ldmia/stmia"
-        " instructions.\n\nr0: src\nr1: dest\nr2: len (# bytes)",
-    )
-
-    MemsetFast = Symbol(
-        [0x7C6F4],
-        [0x207C6F4],
-        None,
-        "A semi-optimized implementation of the memset(3) C library function.\n\nThis"
-        " function was probably manually implemented by the developers, or was included"
-        " as part of a library other than libc (the Nitro SDK probably?). See memset"
-        " for what's probably the real libc function.\n\nThis function is optimized to"
-        " set values in 4-byte chunks, properly dealing with pointer alignment."
-        " However, unlike the libc memset, there are no loop unrolling"
-        " optimizations.\n\nr0: ptr\nr1: value\nr2: len (# bytes)",
-    )
-
-    MemcpyFast = Symbol(
-        [0x7C7B0],
-        [0x207C7B0],
-        None,
-        "Copies bytes from one buffer to another, similar to memcpy(3). Note that the"
-        " source/destination buffer parameters swapped relative to the standard"
-        " memcpy.\n\nThis function was probably manually implemented by the developers,"
-        " or was included as part of a library other than libc (the Nitro SDK"
-        " probably?). See memcpy for what's probably the real libc function.\n\nThis"
-        " function is optimized to copy values in 4-byte chunks, properly dealing with"
-        " pointer alignment.\n\nr0: src\nr1: dest\nr2: n (# bytes)",
-    )
-
-    AtomicExchange = Symbol(
-        [0x7C930],
-        [0x207C930],
-        None,
-        "Atomically replaces a pointer's pointee with a desired value, and returns the"
-        " previous value.\n\nThis function is just a single swp instruction.\n\nr0:"
-        " desired value\nr1: ptr\nreturn: previous value",
-    )
-
-    FileInit = Symbol(
-        [0x7F6CC],
-        [0x207F6CC],
-        None,
-        "Initializes a file_stream structure for file I/O.\n\nThis function must always"
-        " be called before opening a file.\n\nr0: file_stream pointer",
-    )
-
-    GetOverlayInfo = Symbol(
-        [0x7FF84],
-        [0x207FF84],
-        None,
-        "Returns the y9.bin entry for the specified overlay\n\nr0: [output] Overlay"
-        " info struct\nr1: ?\nr2: Overlay ID\nreturn: True if the entry could be loaded"
-        " successfully?",
-    )
-
-    LoadOverlayInternal = Symbol(
-        [0x80080],
-        [0x2080080],
-        None,
-        "Called by LoadOverlay to load an overlay into RAM given its info struct\n\nr0:"
-        " Overlay info struct\nReturn: True if the overlay was loaded successfully?",
-    )
-
-    InitOverlay = Symbol(
-        [0x801A4],
-        [0x20801A4],
-        None,
-        "Performs overlay initialization right after loading an overlay with"
-        " LoadOverlayInternal.\n\nThis function is responsible for jumping to all the"
-        " pointers located in the overlay's static init array, among other"
-        " things.\n\nr0: Overlay info struct",
-    )
-
-    abs = Symbol(
-        [0x86844],
-        [0x2086844],
-        None,
-        "Takes the absolute value of an integer.\n\nr0: x\nreturn: abs(x)",
-    )
-
-    mbtowc = Symbol(
-        [0x874A4],
-        [0x20874A4],
-        None,
-        "The mbtowc(3) C library function.\n\nr0: pwc\nr1: s\nr2: n\nreturn: number of"
-        " consumed bytes, or -1 on failure",
-    )
-
-    TryAssignByte = Symbol(
-        [0x874DC],
-        [0x20874DC],
-        None,
-        "Assign a byte to the target of a pointer if the pointer is non-null.\n\nr0:"
-        " pointer\nr1: value\nreturn: true on success, false on failure",
-    )
-
-    TryAssignByteWrapper = Symbol(
-        [0x874F0],
-        [0x20874F0],
-        None,
-        "Wrapper around TryAssignByte.\n\nAccesses the TryAssignByte function with a"
-        " weird chain of pointer dereferences.\n\nr0: pointer\nr1: value\nreturn: true"
-        " on success, false on failure",
-    )
-
-    wcstombs = Symbol(
-        [0x8750C],
-        [0x208750C],
-        None,
-        "The wcstombs(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn:"
-        " characters converted",
-    )
-
-    memcpy = Symbol(
-        [0x87584],
-        [0x2087584],
-        None,
-        "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
-    )
-
-    memmove = Symbol(
-        [0x875A4],
-        [0x20875A4],
-        None,
-        "The memmove(3) C library function.\n\nThe implementation is nearly the same as"
-        " memcpy, but it copies bytes from back to front if src < dst.\n\nr0: dest\nr1:"
-        " src\nr2: n\nreturn: dest",
-    )
-
-    memset = Symbol(
-        [0x875F0],
-        [0x20875F0],
-        None,
-        "The memset(3) C library function.\n\nThis is just a wrapper around"
-        " memset_internal that returns the pointer at the end.\n\nr0: s\nr1: c (int,"
-        " but must be a single-byte value)\nr2: n\nreturn: s",
-    )
-
-    memchr = Symbol(
-        [0x87604],
-        [0x2087604],
-        None,
-        "The memchr(3) C library function.\n\nr0: s\nr1: c\nr2: n\nreturn: pointer to"
-        " first occurrence of c in s, or a null pointer if no match",
-    )
-
-    memcmp = Symbol(
-        [0x87630],
-        [0x2087630],
-        None,
-        "The memcmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn: comparison"
-        " value",
-    )
-
-    memset_internal = Symbol(
-        [0x87670],
-        [0x2087670],
-        None,
-        "The actual memory-setting implementation for the memset(3) C library"
-        " function.\n\nThis function is optimized to set bytes in 4-byte chunks for n"
-        " >= 32, correctly handling any unaligned bytes at the front/back. In this"
-        " case, it also further optimizes by unrolling a for loop to set 8 4-byte"
-        " values at once (effectively a 32-byte chunk).\n\nr0: s\nr1: c (int, but must"
-        " be a single-byte value)\nr2: n",
-    )
-
-    __vsprintf_internal_slice = Symbol(
-        [0x88F5C],
-        [0x2088F5C],
-        None,
-        "This is what implements the bulk of __vsprintf_internal.\n\nThe"
-        " __vsprintf_internal in the modern-day version of glibc relies on"
-        " __vfprintf_internal; this function has a slightly different interface, but it"
-        " serves a similar role.\n\nr0: function pointer to append to the string being"
-        " built (__vsprintf_internal uses TryAppendToSlice)\nr1: string buffer"
-        " slice\nr2: format\nr3: ap\nreturn: number of characters printed, excluding"
-        " the null-terminator",
-    )
-
-    TryAppendToSlice = Symbol(
-        [0x89780],
-        [0x2089780],
-        None,
-        "Best-effort append the given data to a slice. If the slice's capacity is"
-        " reached, any remaining data will be truncated.\n\nr0: slice pointer\nr1:"
-        " buffer of data to append\nr2: number of bytes in the data buffer\nreturn:"
-        " true",
-    )
-
-    __vsprintf_internal = Symbol(
-        [0x897C4],
-        [0x20897C4],
-        None,
-        "This is what implements vsprintf. It's akin to __vsprintf_internal in the"
-        " modern-day version of glibc (in fact, it's probably an older version of"
-        " this).\n\nr0: str\nr1: maxlen (vsprintf passes UINT32_MAX for this)\nr2:"
-        " format\nr3: ap\nreturn: number of characters printed, excluding the"
-        " null-terminator",
-    )
-
-    vsprintf = Symbol(
-        [0x8982C],
-        [0x208982C],
-        None,
-        "The vsprintf(3) C library function.\n\nr0: str\nr1: format\nr2: ap\nreturn:"
-        " number of characters printed, excluding the null-terminator",
-    )
-
-    snprintf = Symbol(
-        [0x89844],
-        [0x2089844],
-        None,
-        "The snprintf(3) C library function.\n\nThis calls __vsprintf_internal"
-        " directly, so it's presumably the real snprintf.\n\nr0: str\nr1: n\nr2:"
-        " format\n...: variadic\nreturn: number of characters printed, excluding the"
-        " null-terminator",
-    )
-
-    sprintf = Symbol(
-        [0x8986C],
-        [0x208986C],
-        None,
-        "The sprintf(3) C library function.\n\nThis calls __vsprintf_internal directly,"
-        " so it's presumably the real sprintf.\n\nr0: str\nr1: format\n...:"
-        " variadic\nreturn: number of characters printed, excluding the"
-        " null-terminator",
-    )
-
-    strlen = Symbol(
-        [0x89960],
-        [0x2089960],
-        None,
-        "The strlen(3) C library function.\n\nr0: s\nreturn: length of s",
-    )
-
-    strcpy = Symbol(
-        [0x8997C],
-        [0x208997C],
-        None,
-        "The strcpy(3) C library function.\n\nThis function is optimized to copy"
-        " characters in aligned 4-byte chunks if possible, correctly handling any"
-        " unaligned bytes at the front/back.\n\nr0: dest\nr1: src\nreturn: dest",
-    )
-
-    strncpy = Symbol(
-        [0x89A44],
-        [0x2089A44],
-        None,
-        "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
-    )
-
-    strcat = Symbol(
-        [0x89A94],
-        [0x2089A94],
-        None,
-        "The strcat(3) C library function.\n\nr0: dest\nr1: src\nreturn: dest",
-    )
-
-    strncat = Symbol(
-        [0x89AC4],
-        [0x2089AC4],
-        None,
-        "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
-    )
-
-    strcmp = Symbol(
-        [0x89B14],
-        [0x2089B14],
-        None,
-        "The strcmp(3) C library function.\n\nSimilarly to strcpy, this function is"
-        " optimized to compare characters in aligned 4-byte chunks if possible.\n\nr0:"
-        " s1\nr1: s2\nreturn: comparison value",
-    )
-
-    strncmp = Symbol(
-        [0x89C28],
-        [0x2089C28],
-        None,
-        "The strncmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn:"
-        " comparison value",
-    )
-
-    strchr = Symbol(
-        [0x89C5C],
-        [0x2089C5C],
-        None,
-        "The strchr(3) C library function.\n\nr0: string\nr1: c\nreturn: pointer to the"
-        " located byte c, or null pointer if no match",
-    )
-
-    strcspn = Symbol(
-        [0x89C98],
-        [0x2089C98],
-        None,
-        "The strcspn(3) C library function.\n\nr0: string\nr1: stopset\nreturn: offset"
-        " of the first character in string within stopset",
-    )
-
-    strstr = Symbol(
-        [0x89D58],
-        [0x2089D58],
-        None,
-        "The strstr(3) C library function.\n\nr0: haystack\nr1: needle\nreturn: pointer"
-        " into haystack where needle starts, or null pointer if no match",
-    )
-
-    wcslen = Symbol(
-        [0x8B6D0],
-        [0x208B6D0],
-        None,
-        "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
-    )
-
-    _dadd = Symbol(
-        None,
-        None,
-        None,
-        "Implements the addition operator for IEEE 754 double-precision floating-point"
-        " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
-        " Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a + b",
-    )
-
-    _d2f = Symbol(
-        None,
-        None,
-        None,
-        "Implements the double to float cast operator for IEEE 754 floating-point"
-        " numbers.\n\nr0: double (low bits)\nr1: double (high bits)\nreturn:"
-        " (float)double",
-    )
-
-    _ll_ufrom_d = Symbol(
-        None,
-        None,
-        None,
-        "Implements the double to unsigned long long cast operation for IEEE 754"
-        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
-        " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " double (low bits)\nr1: double (high bits)\nreturn: (unsigned long"
-        " long)double",
-    )
-
-    _dflt = Symbol(
-        None,
-        None,
-        None,
-        "Implements the int to double cast operation for IEEE 754 floating-point"
-        " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
-        " Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " int\nreturn: (double)int",
-    )
-
-    _dfltu = Symbol(
-        None,
-        None,
-        None,
-        "Implements the unsigned int to double cast operation for IEEE 754"
-        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
-        " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " uint\nreturn: (double)uint",
-    )
-
-    _dmul = Symbol(
-        None,
-        None,
-        None,
-        "Implements the multiplication operator for IEEE 754 double-precision"
-        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
-        " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a * b",
-    )
-
-    _dsqrt = Symbol(
-        None,
-        None,
-        None,
-        "Analogous to the sqrt(3) C library function.\n\nThe result is returned in r0"
-        " and r1, in accordance with the Procedure Call Standard for the Arm"
-        " Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " x (low bits)\nr1: x (high bits)\nreturn: sqrt(x)",
-    )
-
-    _dsub = Symbol(
-        None,
-        None,
-        None,
-        "Implements the subtraction operator for IEEE 754 double-precision"
-        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
-        " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a - b",
-    )
-
-    _fadd = Symbol(
-        [0x8EFA0],
-        [0x208EFA0],
-        None,
-        "Implements the addition operator for IEEE 754 floating-point"
-        " numbers.\n\nAnalogous to __addsf3 in libgcc.\n\nr0: a\nr1: b\nreturn: a + b",
-    )
-
-    _dgeq = Symbol(
-        None,
-        None,
-        None,
-        "Implements the >= operator for IEEE 754 double-precision floating-point"
-        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
-        " (high bits)\nreturn: a >= b",
-    )
-
-    _dleq = Symbol(
-        None,
-        None,
-        None,
-        "Implements the <= operator for IEEE 754 double-precision floating-point"
-        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
-        " (high bits)\nreturn: a <= b",
-    )
-
-    _dls = Symbol(
-        None,
-        None,
-        None,
-        "Implements the < operator for IEEE 754 double-precision floating-point"
-        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
-        " (high bits)\nreturn: a < b",
-    )
-
-    _deq = Symbol(
-        None,
-        None,
-        None,
-        "Implements the == operator for IEEE 754 double-precision floating-point"
-        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
-        " (high bits)\nreturn: a == b",
-    )
-
-    _dneq = Symbol(
-        None,
-        None,
-        None,
-        "Implements the != operator for IEEE 754 double-precision floating-point"
-        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
-        " (high bits)\nreturn: a != b",
-    )
-
-    _fls = Symbol(
-        None,
-        None,
-        None,
-        "Implements the < operator for IEEE 754 floating-point numbers.\n\nr0: a\nr1:"
-        " b\nreturn: a < b",
-    )
-
-    _fdiv = Symbol(
-        [0x8F51C],
-        [0x208F51C],
-        None,
-        "Implements the division operator for IEEE 754 floating-point"
-        " numbers.\n\nAnalogous to __divsf3 in libgcc.\n\nr0: dividend\nr1:"
-        " divisor\nreturn: dividend / divisor",
-    )
-
-    _f2d = Symbol(
-        [0x8F8D4],
-        [0x208F8D4],
-        None,
-        "Implements the float to double cast operation for IEEE 754 floating-point"
-        " numbers.\n\nAnalogous to __extendsfdf2 in libgcc.\n\nThe result is returned"
-        " in r0 and r1, in accordance with the Procedure Call Standard for the Arm"
-        " Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " float\nreturn: (double)float",
-    )
-
-    _ffix = Symbol(
-        [0x8F958],
-        [0x208F958],
-        None,
-        "Implements the float to int cast operation for IEEE 754 floating-point"
-        " numbers. The output saturates if the input is out of the representable range"
-        " for the int type.\n\nAnalogous to __fixsfsi in libgcc.\n\nr0: float\nreturn:"
-        " (int)float",
-    )
-
-    _fflt = Symbol(
-        [0x8F98C],
-        [0x208F98C],
-        None,
-        "Implements the int to float cast operation for IEEE 754 floating-point"
-        " numbers.\n\nAnalogous to __floatsisf in libgcc.\n\nr0: int\nreturn:"
-        " (float)int",
-    )
-
-    _ffltu = Symbol(
-        [0x8F9D4],
-        [0x208F9D4],
-        None,
-        "Implements the unsigned int to float cast operation for IEEE 754"
-        " floating-point numbers.\n\nAnalogous to __floatunsisf in libgcc.\n\nr0:"
-        " uint\nreturn: (float)uint",
-    )
-
-    _fmul = Symbol(
-        [0x8FA1C],
-        [0x208FA1C],
-        None,
-        "Implements the multiplication operator for IEEE 754 floating-point"
-        " numbers.\n\nAnalogous to __mulsf3 in libgcc.\n\nr0: a\nr1: b\nreturn: a * b",
-    )
-
-    sqrtf = Symbol(
-        [0x8FBFC],
-        [0x208FBFC],
-        None,
-        "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)",
-    )
-
-    _fsub = Symbol(
-        [0x8FCEC],
-        [0x208FCEC],
-        None,
-        "Implements the subtraction operator for IEEE 754 floating-point"
-        " numbers.\n\nAnalogous to __subsf3 in libgcc.\n\nr0: a\nr1: b\nreturn: a - b",
-    )
-
-    _ll_mod = Symbol(
-        None,
-        None,
-        None,
-        "Implements the modulus operator for signed long longs.\n\nThe result is"
-        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
-        " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend % divisor",
-    )
-
-    _ll_sdiv = Symbol(
-        None,
-        None,
-        None,
-        "Implements the division operator for signed long longs.\n\nThe result is"
-        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
-        " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend / divisor",
-    )
-
-    _ll_udiv = Symbol(
-        None,
-        None,
-        None,
-        "Implements the division operator for unsigned long longs.\n\nThe result is"
-        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
-        " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend / divisor",
-    )
-
-    _ull_mod = Symbol(
-        None,
-        None,
-        None,
-        "Implements the modulus operator for unsigned long longs.\n\nThe result is"
-        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
-        " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend % divisor",
-    )
-
-    _ll_mul = Symbol(
-        None,
-        None,
-        None,
-        "Implements the multiplication operator for signed long longs.\n\nThe result is"
-        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
-        " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a * b",
-    )
-
-    _s32_div_f = Symbol(
-        [0x9018C],
-        [0x209018C],
-        None,
-        "Implements the division operator for signed ints.\n\nAnalogous to __divsi3 in"
-        " libgcc.\n\nThe return value is a 64-bit integer, with the quotient (dividend"
-        " / divisor) in the lower 32 bits and the remainder (dividend % divisor) in the"
-        " upper 32 bits. In accordance with the Procedure Call Standard for the Arm"
-        " Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
-        " this means that the quotient is returned in r0 and the remainder is returned"
-        " in r1.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
-    )
-
-    _u32_div_f = Symbol(
-        [0x90398],
-        [0x2090398],
-        None,
-        "Implements the division operator for unsigned ints.\n\nAnalogous to __udivsi3"
-        " in libgcc.\n\nThe return value is a 64-bit integer, with the quotient"
-        " (dividend / divisor) in the lower 32 bits and the remainder (dividend %"
-        " divisor) in the upper 32 bits. In accordance with the Procedure Call Standard"
-        " for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
-        " this means that the quotient is returned in r0 and the remainder is returned"
-        " in r1.\nNote: This function falls through to _u32_div_not_0_f.\n\nr0:"
-        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
-    )
-
-    _u32_div_not_0_f = Symbol(
-        [0x903A0],
-        [0x20903A0],
-        None,
-        "Subsidiary function to _u32_div_f. Skips the initial check for divisor =="
-        " 0.\n\nThe return value is a 64-bit integer, with the quotient (dividend /"
-        " divisor) in the lower 32 bits and the remainder (dividend % divisor) in the"
-        " upper 32 bits. In accordance with the Procedure Call Standard for the Arm"
-        " Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
-        " this means that the quotient is returned in r0 and the remainder is returned"
-        " in r1.\nThis function appears to only be called internally.\n\nr0:"
-        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
-    )
-
-    _drdiv = Symbol(
-        None,
-        None,
-        None,
-        "The same as _ddiv, but with the parameters reversed.\n\nThis simply swaps the"
-        " first and second parameters, then falls through to _ddiv.\n\nThe result is"
-        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
-        " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " divisor (low bits)\nr1: divisor (high bits)\nr2: dividend (low bits)\nr3:"
-        " dividend (high bits)\nreturn: dividend / divisor",
-    )
-
-    _ddiv = Symbol(
-        None,
-        None,
-        None,
-        "Implements the division operator for IEEE 754 double-precision floating-point"
-        " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
-        " Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend / divisor",
-    )
-
-    _fp_init = Symbol(
-        None,
-        None,
-        None,
-        "Meant to do set up for floating point calculations? Does nothing.\n\nNo"
-        " params.",
     )
 
 
@@ -10720,15 +9378,15 @@ class JpArm9Data:
 
     DEBUG_IS_INITIALIZED = Symbol(None, None, None, "")
 
-    DIRECTORY_FILES_EXTRACTED = Symbol(
+    PACK_FILES_OPENED = Symbol(
         None,
         None,
         None,
         "[Runtime] A pointer to the 6 opened Pack files (listed at"
-        " DIRECTORY_FILE_TABLE)\n\ntype: struct pack_file_opened*",
+        " PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
     )
 
-    DIRECTORY_FILE_TABLE = Symbol(
+    PACK_FILE_PATHS_TABLE = Symbol(
         None,
         None,
         None,
@@ -10936,11 +9594,10 @@ class JpArm9Section:
         "The main ARM9 binary.\n\nThis is the main binary that gets loaded when the"
         " game is launched, and contains the core code that runs the game, low level"
         " facilities such as memory allocation, compression, other external"
-        " dependencies (such as linked functions from libc and libgcc), and the"
-        " functions and tables necessary to load overlays and dispatch execution to"
-        " them.\n\nSpeaking generally, this is the program run by the Nintendo DS's"
-        " main ARM946E-S CPU, which handles all gameplay mechanisms and graphics"
-        " rendering."
+        " dependencies (such as linked libraries), and the functions and tables"
+        " necessary to load overlays and dispatch execution to them.\n\nSpeaking"
+        " generally, this is the program run by the Nintendo DS's main ARM946E-S CPU,"
+        " which handles all gameplay mechanisms and graphics rendering."
     )
     loadaddress = 0x2000000
     length = 0xB8CB8
@@ -11285,6 +9942,1375 @@ class JpItcmSection:
     length = 0x4060
     functions = JpItcmFunctions
     data = JpItcmData
+
+
+class JpLibsFunctions:
+
+    SoundUtilGetRandomNumber = Symbol(
+        None, None, None, "return: random number in the range [0, 32767]"
+    )
+
+    ReadWaviEntry = Symbol(
+        [0x1480],
+        [0x206D840],
+        None,
+        "Reads an entry from the pointer table of a wavi container and returns a"
+        " pointer to the data of said entry, which contains information about a"
+        " particular sample.\n\nr0: Wavi data struct\nr1: Entry index\nretrun: Pointer"
+        " to the entry's data",
+    )
+
+    ResumeBgm = Symbol(
+        [0x18E4],
+        [0x206DCA4],
+        None,
+        "Uncertain.\n\nNote: unverified, ported from Irdkwia's notes",
+    )
+
+    FindSmdlSongChunk = Symbol(
+        [0x2410],
+        [0x206E7D0],
+        None,
+        "Finds the first song chunk within an SMDL file that has the specified value on"
+        " its 0x10 field.\n\nSee"
+        " https://projectpokemon.org/home/docs/mystery-dungeon-nds/dse-smdl-format-r13/.\n\nr0:"
+        " Pointer to the start of the SMDL file\nr1: Value to search for\nreturn:"
+        " Pointer to the first chunk that has the specified value + 0x10, or null if no"
+        " chunk was found.",
+    )
+
+    FlushChannels = Symbol(
+        [0x459C], [0x207095C], None, "Note: unverified, ported from Irdkwia's notes"
+    )
+
+    ParseDseEvent = Symbol(
+        [0x514C],
+        [0x207150C],
+        None,
+        "Parses and executes a DSE event for the specified track, if necessary.\n\nThe"
+        " function checks the time left before the next event"
+        " (track_data::event_delay), and parses it if said time is 0.\n\nSee also"
+        " https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nr0:"
+        " Pointer to some struct that seems to hold the state of the audio engine\nr1:"
+        " Pointer to track data",
+    )
+
+    UpdateSequencerTracks = Symbol(
+        [0x5310],
+        [0x20716D0],
+        None,
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
+    )
+
+    UpdateChannels = Symbol(
+        [0x83B4],
+        [0x2074774],
+        None,
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/"
+        " and Irdkwia's notes.\n\nNo params.",
+    )
+
+    SoundEnvelopeReset = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeParametersReset = Symbol(
+        None, None, None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeParametersCheckValidity = Symbol(
+        None, None, None, "r0: Sound envelope parameters pointer"
+    )
+
+    SoundEnvelopeSetParameters = Symbol(
+        None,
+        None,
+        None,
+        "r0: Sound envelope pointer\nr1: Sound envelope parameters pointer",
+    )
+
+    SoundEnvelopeSetSlide = Symbol(
+        None,
+        None,
+        None,
+        "r0: Sound envelope pointer\nr1: Target volume\nr2: Music duration lookup table"
+        " index",
+    )
+
+    UpdateTrackVolumeEnvelopes = Symbol(
+        [0x8D34],
+        [0x20750F4],
+        None,
+        "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nr0:"
+        " Sound envelope pointer",
+    )
+
+    SoundEnvelopeRelease = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeStop = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeForceVolume = Symbol(
+        None, None, None, "r0: Sound envelope pointer\nr1: Volume"
+    )
+
+    SoundEnvelopeStop2 = Symbol(None, None, None, "r0: Sound envelope pointer")
+
+    SoundEnvelopeTick = Symbol(
+        None, None, None, "r0: Sound envelope pointer\nreturn: Current volume"
+    )
+
+    SoundLfoBankReset = Symbol(None, None, None, "r0: LFO bank pointer")
+
+    SoundLfoBankSet = Symbol(
+        None,
+        None,
+        None,
+        "r0: LFO bank pointer\nr1: LFO settings pointer\nr2: Envelope level",
+    )
+
+    SoundLfoBankSetConstEnvelopes = Symbol(
+        None, None, None, "r0: LFO bank pointer\nr1: Level"
+    )
+
+    SoundLfoBankTick = Symbol(
+        None, None, None, "r0: LFO bank pointer\nreturn: New voice update flags"
+    )
+
+    SoundLfoWaveInvalidFunc = Symbol(None, None, None, "r0: LFO pointer\nreturn: 0")
+
+    SoundLfoWaveHalfSquareFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullSquareFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfTriangleFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullTriangleFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveSawFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveReverseSawFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveHalfNoiseFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    SoundLfoWaveFullNoiseFunc = Symbol(
+        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+    )
+
+    Crypto_RC4Init = Symbol(None, None, None, "")
+
+    Mtx_LookAt = Symbol(None, None, None, "")
+
+    Mtx_OrthoW = Symbol(None, None, None, "")
+
+    FX_Div = Symbol(None, None, None, "")
+
+    FX_GetDivResultFx64c = Symbol(None, None, None, "")
+
+    FX_GetDivResult = Symbol(None, None, None, "")
+
+    FX_InvAsync = Symbol(None, None, None, "")
+
+    FX_DivAsync = Symbol(None, None, None, "")
+
+    FX_DivS32 = Symbol(None, None, None, "")
+
+    FX_ModS32 = Symbol(None, None, None, "")
+
+    Vec_DotProduct = Symbol(None, None, None, "")
+
+    Vec_CrossProduct = Symbol(None, None, None, "")
+
+    Vec_Normalize = Symbol(None, None, None, "")
+
+    Vec_Distance = Symbol(None, None, None, "")
+
+    FX_Atan2Idx = Symbol(None, None, None, "")
+
+    GX_Init = Symbol(None, None, None, "")
+
+    GX_HBlankIntr = Symbol(None, None, None, "")
+
+    GX_VBlankIntr = Symbol(None, None, None, "")
+
+    GX_DispOff = Symbol(None, None, None, "")
+
+    GX_DispOn = Symbol(None, None, None, "")
+
+    GX_SetGraphicsMode = Symbol(None, None, None, "")
+
+    Gxs_SetGraphicsMode = Symbol(None, None, None, "")
+
+    GXx_SetMasterBrightness = Symbol(None, None, None, "")
+
+    GX_InitGxState = Symbol(None, None, None, "")
+
+    EnableVramBanksInSetDontSave = Symbol(
+        [0xA2D4],
+        [0x2076694],
+        None,
+        "Enable the VRAM bank marked in the input set, but don’t mark them as enabled"
+        " in ENABLED_VRAM_BANKS\n\nr0: vram_banks_set",
+    )
+
+    GX_SetBankForBg = Symbol(None, None, None, "")
+
+    GX_SetBankForObj = Symbol(None, None, None, "")
+
+    GX_SetBankForBgExtPltt = Symbol(None, None, None, "")
+
+    GX_SetBankForObjExtPltt = Symbol(None, None, None, "")
+
+    GX_SetBankForTex = Symbol(None, None, None, "")
+
+    GX_SetBankForTexPltt = Symbol(None, None, None, "")
+
+    GX_SetBankForClearImage = Symbol(None, None, None, "")
+
+    GX_SetBankForArm7 = Symbol(None, None, None, "")
+
+    GX_SetBankForLcdc = Symbol(None, None, None, "")
+
+    GX_SetBankForSubBg = Symbol(None, None, None, "")
+
+    GX_SetBankForSubObj = Symbol(None, None, None, "")
+
+    GX_SetBankForSubBgExtPltt = Symbol(None, None, None, "")
+
+    GX_SetBankForSubObjExtPltt = Symbol(None, None, None, "")
+
+    EnableVramBanksInSet = Symbol(
+        [0xAFF0],
+        [0x20773B0],
+        None,
+        "Enable the VRAM banks in the input set. Will reset the pointed set to 0, and"
+        " update ENABLED_VRAM_BANKS\n\nr0: vram_banks_set *",
+    )
+
+    GX_ResetBankForBgExtPltt = Symbol(None, None, None, "")
+
+    GX_ResetBankForObjExtPltt = Symbol(None, None, None, "")
+
+    GX_ResetBankForTex = Symbol(None, None, None, "")
+
+    GX_ResetBankForTexPltt = Symbol(None, None, None, "")
+
+    GX_ResetBankForSubBgExtPltt = Symbol(None, None, None, "")
+
+    GX_ResetBankForSubObjExtPltt = Symbol(None, None, None, "")
+
+    DisableBankForX = Symbol(None, None, None, "")
+
+    GX_DisableBankForBg = Symbol(None, None, None, "")
+
+    GX_DisableBankForObj = Symbol(None, None, None, "")
+
+    GX_DisableBankForBgExtPltt = Symbol(None, None, None, "")
+
+    GX_DisableBankForObjExtPltt = Symbol(None, None, None, "")
+
+    GX_DisableBankForTex = Symbol(None, None, None, "")
+
+    GX_DisableBankForTexPltt = Symbol(None, None, None, "")
+
+    GX_DisableBankForClearImage = Symbol(None, None, None, "")
+
+    GX_DisableBankForArm7 = Symbol(None, None, None, "")
+
+    GX_DisableBankForLcdc = Symbol(None, None, None, "")
+
+    GX_DisableBankForSubBg = Symbol(None, None, None, "")
+
+    GX_DisableBankForSubObj = Symbol(None, None, None, "")
+
+    GX_DisableBankForSubBgExtPltt = Symbol(None, None, None, "")
+
+    GX_DisableBankForSubObjExtPltt = Symbol(None, None, None, "")
+
+    G2_GetBG0ScrPtr = Symbol(None, None, None, "")
+
+    G2S_GetBG0ScrPtr = Symbol(None, None, None, "")
+
+    G2_GetBG1ScrPtr = Symbol(None, None, None, "")
+
+    G2S_GetBG1ScrPtr = Symbol(None, None, None, "")
+
+    G2_GetBG2ScrPtr = Symbol(None, None, None, "")
+
+    G2_GetBG3ScrPtr = Symbol(None, None, None, "")
+
+    G2_GetBG0CharPtr = Symbol(None, None, None, "")
+
+    G2S_GetBG0CharPtr = Symbol(None, None, None, "")
+
+    G2_GetBG1CharPtr = Symbol(None, None, None, "")
+
+    G2S_GetBG1CharPtr = Symbol(None, None, None, "")
+
+    G2_GetBG2CharPtr = Symbol(None, None, None, "")
+
+    G2_GetBG3CharPtr = Symbol(None, None, None, "")
+
+    G2x_SetBlendAlpha = Symbol(None, None, None, "")
+
+    G2x_SetBlendBrightness = Symbol(None, None, None, "")
+
+    G2x_ChangeBlendBrightness = Symbol(None, None, None, "")
+
+    G3_LoadMtx44 = Symbol(None, None, None, "")
+
+    G3_LoadMtx43 = Symbol(
+        [0xB6B4],
+        [0x2077A74],
+        None,
+        "Send the MTX_LOAD_4x3 geometry engine command, through a GXFIFO command. See"
+        " https://problemkaputt.de/gbatek.htm#ds3dgeometrycommands and"
+        " https://problemkaputt.de/gbatek.htm#ds3dmatrixloadmultiply for more"
+        " information.\n\nThis pops the top of the current matrix stack"
+        " (https://problemkaputt.de/gbatek.htm#ds3dmatrixstack) and sets it as the"
+        " engine's 'current' matrix. It's commonly preceded by a MTX_PUSH command to"
+        " populate the matrix stack with a matrix.\n\nr0: matrix_4x3 pointer",
+    )
+
+    G3_MultMtx43 = Symbol(
+        [0xB6D0],
+        [0x2077A90],
+        None,
+        "Send the MTX_MULT_4x3 geometry engine command, through a GXFIFO command. See"
+        " https://problemkaputt.de/gbatek.htm#ds3dgeometrycommands and"
+        " https://problemkaputt.de/gbatek.htm#ds3dmatrixloadmultiply for more"
+        " information.\n\nThis pops the top of the current matrix stack"
+        " (https://problemkaputt.de/gbatek.htm#ds3dmatrixstack) and left-multiplies the"
+        " engine's 'current' matrix by the new matrix. It's commonly preceded by a"
+        " MTX_PUSH command to populate the matrix stack with a matrix.\n\nr0:"
+        " matrix_4x3 pointer",
+    )
+
+    G3X_Init = Symbol(None, None, None, "")
+
+    G3X_Reset = Symbol(None, None, None, "")
+
+    G3X_ClearFifo = Symbol(None, None, None, "")
+
+    G3X_InitMtxStack = Symbol(None, None, None, "")
+
+    G3X_ResetMtxStack = Symbol(None, None, None, "")
+
+    G3X_SetClearColor = Symbol(None, None, None, "")
+
+    G3X_InitTable = Symbol(None, None, None, "")
+
+    G3X_GetMtxStackLevelPV = Symbol(None, None, None, "")
+
+    G3X_GetMtxStackLevelPJ = Symbol(None, None, None, "")
+
+    GXi_NopClearFifo128 = Symbol(None, None, None, "")
+
+    G3i_OrthoW = Symbol(None, None, None, "")
+
+    G3i_LookAt = Symbol(None, None, None, "")
+
+    GX_LoadBgPltt = Symbol(None, None, None, "")
+
+    Gxs_LoadBgPltt = Symbol(None, None, None, "")
+
+    GX_LoadObjPltt = Symbol(None, None, None, "")
+
+    Gxs_LoadObjPltt = Symbol(None, None, None, "")
+
+    GX_LoadOam = Symbol(None, None, None, "")
+
+    Gxs_LoadOam = Symbol(None, None, None, "")
+
+    GX_LoadObj = Symbol(None, None, None, "")
+
+    Gxs_LoadObj = Symbol(None, None, None, "")
+
+    GX_LoadBg0Scr = Symbol(None, None, None, "")
+
+    GX_LoadBg1Scr = Symbol(None, None, None, "")
+
+    Gxs_LoadBg1Scr = Symbol(None, None, None, "")
+
+    GX_LoadBg2Scr = Symbol(None, None, None, "")
+
+    GX_LoadBg3Scr = Symbol(None, None, None, "")
+
+    GX_LoadBg0Char = Symbol(None, None, None, "")
+
+    Gxs_LoadBg0Char = Symbol(None, None, None, "")
+
+    GX_LoadBg1Char = Symbol(None, None, None, "")
+
+    Gxs_LoadBg1Char = Symbol(None, None, None, "")
+
+    GX_LoadBg2Char = Symbol(None, None, None, "")
+
+    GX_LoadBg3Char = Symbol(None, None, None, "")
+
+    GX_BeginLoadBgExtPltt = Symbol(None, None, None, "")
+
+    GX_EndLoadBgExtPltt = Symbol(None, None, None, "")
+
+    GX_BeginLoadObjExtPltt = Symbol(None, None, None, "")
+
+    GX_EndLoadObjExtPltt = Symbol(None, None, None, "")
+
+    Gxs_BeginLoadBgExtPltt = Symbol(None, None, None, "")
+
+    Gxs_EndLoadBgExtPltt = Symbol(None, None, None, "")
+
+    Gxs_BeginLoadObjExtPltt = Symbol(None, None, None, "")
+
+    Gxs_EndLoadObjExtPltt = Symbol(None, None, None, "")
+
+    GX_BeginLoadTex = Symbol(None, None, None, "")
+
+    GX_LoadTex = Symbol(None, None, None, "")
+
+    GX_EndLoadTex = Symbol(None, None, None, "")
+
+    GX_BeginLoadTexPltt = Symbol(None, None, None, "")
+
+    GX_LoadTexPltt = Symbol(None, None, None, "")
+
+    GX_EndLoadTexPltt = Symbol(None, None, None, "")
+
+    GeomGxFifoSendMtx4x3 = Symbol(
+        [0xC7E8],
+        [0x2078BA8],
+        None,
+        "Send a 4x3 matrix argument for a GXFIFO geometry engine command.\n\nThis"
+        " function is used by GeomMtxLoad4x3 and GeomMtxMult4x3 to pass the matrix"
+        " argument for a GXFIFO command after already having written the command code."
+        " See https://problemkaputt.de/gbatek.htm#ds3dgeometrycommands for more"
+        " information.\n\nNote that the GXFIFO address is 0x4000400, but is (maybe)"
+        " mirrored up to 0x400043F. This function is optimized to take advantage of"
+        " this by writing 3 matrix entries at a time using ldmia and stmia"
+        " instructions.\n\nr0: matrix_4x3 pointer\nr1: GXFIFO pointer",
+    )
+
+    GX_SendFifo64B = Symbol(None, None, None, "")
+
+    OS_GetLockID = Symbol(None, None, None, "")
+
+    IncrementThreadCount = Symbol(
+        [0xD078],
+        [0x2079438],
+        None,
+        "Increments thread_info::thread_count by 1 and returns the new"
+        " value.\n\nreturn: New thread count",
+    )
+
+    InsertThreadIntoList = Symbol(
+        [0xD1C0],
+        [0x2079580],
+        None,
+        "Inserts a new thread into the linked thread list (see"
+        " thread_info::thread_list_head).\n\nThe thread is inserted in sorted"
+        " order.\n\nr0: Thread to insert",
+    )
+
+    StartThread = Symbol(
+        [0xD488],
+        [0x2079848],
+        None,
+        "Called to start a new thread.\n\nInitializes the specified thread struct and"
+        " some values on its stack area.\n\nr0: Struct of the thread to init\nr1:"
+        " Pointer to the function to run on this thread\nr2: Pointer to a thread"
+        " struct. Sometimes equal to r0. Sometimes null.\nr3: Pointer to the stack area"
+        " for this thread. Not all the space is usable. See"
+        " thread::usable_stack_pointer for more info.\nstack[0]: Stack size\nstack[1]:"
+        " (?) Used to sort threads on a list",
+    )
+
+    ThreadExit = Symbol(
+        [0xD584],
+        [0x2079944],
+        None,
+        "Function called by threads on exit.\n\nBase functions that contain an infinite"
+        " loop that is not supposed to return and that have their stacks in main RAM"
+        " have this function as their return address.\n\nNo params.",
+    )
+
+    SetThreadField0xB4 = Symbol(
+        [0xDBA4],
+        [0x2079F64],
+        None,
+        "Sets the given thread's field_0xB4 to the specified value.\n\nr0: Thread\nr1:"
+        " Value to set",
+    )
+
+    InitThread = Symbol(
+        [0xDBAC],
+        [0x2079F6C],
+        None,
+        "Initializes some fields of the given thread struct.\n\nMost notably,"
+        " thread::flags, thread::function_address_plus_4, thread::stack_pointer_minus_4"
+        " and thread::usable_stack_pointer. Also initializes a few more fields with a"
+        " value of 0.\nthread::flags is initialized to 0x1F, unless the address of the"
+        " function is odd (???), in which case it's initialized to 0x3F.\n\nr0: Pointer"
+        " to the thread to initialize\nr1: Pointer to the function the thread will"
+        " run\nr2: Pointer to the start of the thread's stack area - 4",
+    )
+
+    GetTimer0Control = Symbol(
+        [0xEE0C],
+        [0x207B1CC],
+        None,
+        "Returns the value of the control register for hardware timer 0\n\nreturn:"
+        " Value of the control register",
+    )
+
+    ClearIrqFlag = Symbol(
+        [0xF6F8],
+        [0x207BAB8],
+        None,
+        "Enables processor interrupts by clearing the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " disabled, 0x0 if they were already enabled)",
+    )
+
+    EnableIrqFlag = Symbol(
+        [0xF70C],
+        [0x207BACC],
+        None,
+        "Disables processor interrupts by setting the i flag in the program status"
+        " register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were"
+        " already disabled, 0x0 if they were enabled)",
+    )
+
+    SetIrqFlag = Symbol(
+        [0xF720],
+        [0x207BAE0],
+        None,
+        "Sets the value of the processor's interrupt flag according to the specified"
+        " parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables"
+        " interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of"
+        " cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
+    )
+
+    EnableIrqFiqFlags = Symbol(
+        [0xF738],
+        [0x207BAF8],
+        None,
+        "Disables processor all interrupts (both standard and fast) by setting the i"
+        " and f flags in the program status register (cpsr).\n\nreturn: Old value of"
+        " cpsr & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
+    SetIrqFiqFlags = Symbol(
+        [0xF74C],
+        [0x207BB0C],
+        None,
+        "Sets the value of the processor's interrupt flags (i and f) according to the"
+        " specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both"
+        " flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag"
+        " and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr"
+        " & 0xC0 (contains the previous values of the i and f flags)",
+    )
+
+    GetIrqFlag = Symbol(
+        [0xF764],
+        [0x207BB24],
+        None,
+        "Gets the current value of the processor's interrupt request (i)"
+        " flag\n\nreturn: cpsr & 0x80 (0x80 if interrupts are disabled, 0x0 if they are"
+        " enabled)",
+    )
+
+    GetProcessorMode = Symbol(
+        [0xF770],
+        [0x207BB30],
+        None,
+        "Gets the processor's current operating mode.\n\nSee"
+        " https://problemkaputt.de/gbatek.htm#armcpuflagsconditionfieldcond\n\nreturn:"
+        " cpsr & 0x1f (the cpsr mode bits M4-M0)",
+    )
+
+    CountLeadingZeros = Symbol(
+        None,
+        None,
+        None,
+        "Counts the number of leading zeros in a 32-bit integer.\n\nr0: x\nreturn:"
+        " clz(x)",
+    )
+
+    WaitForever2 = Symbol(
+        [0xFB48],
+        [0x207BF08],
+        None,
+        "Calls EnableIrqFlag and WaitForInterrupt in an infinite loop.\n\nThis is"
+        " called on fatal errors to hang the program indefinitely.\n\nNo params.",
+    )
+
+    WaitForInterrupt = Symbol(
+        [0xFB58],
+        [0x207BF18],
+        None,
+        "Presumably blocks until the program receives an interrupt.\n\nThis just calls"
+        " (in Ghidra terminology) coproc_moveto_Wait_for_interrupt(0). See"
+        " https://en.wikipedia.org/wiki/ARM_architecture_family#Coprocessors.\n\nNo"
+        " params.",
+    )
+
+    ArrayFill16 = Symbol(
+        [0x101E0],
+        [0x207C5A0],
+        None,
+        "Fills an array of 16-bit values with a given value.\n\nr0: value\nr1: ptr\nr2:"
+        " len (# bytes)",
+    )
+
+    ArrayCopy16 = Symbol(
+        [0x10208],
+        [0x207C5C8],
+        None,
+        "Copies an array of 16-bit values to another array of 16-bit values.\n\nThis is"
+        " essentially an alternate implementation of Memcpy16, but with a different"
+        " parameter order.\n\nr0: src\nr1: dest\nr2: len (# bytes)",
+    )
+
+    ArrayFill32 = Symbol(
+        [0x1023C],
+        [0x207C5FC],
+        None,
+        "Fills an array of 32-bit values with a given value.\n\nThis is essentially an"
+        " alternate implementation of Memset32, but with a different parameter"
+        " order.\n\nr0: value\nr1: ptr\nr2: len (# bytes)",
+    )
+
+    ArrayCopy32 = Symbol(
+        [0x10258],
+        [0x207C618],
+        None,
+        "Copies an array of 32-bit values to another array of 32-bit values.\n\nThis is"
+        " essentially an alternate implementation of Memcpy32, but with a different"
+        " parameter order.\n\nr0: src\nr1: dest\nr2: len (# bytes)",
+    )
+
+    ArrayFill32Fast = Symbol(
+        [0x10280],
+        [0x207C640],
+        None,
+        "Does the same thing as ArrayFill32, except the implementation uses an unrolled"
+        " loop that sets 8 values per iteration, taking advantage of the stmia"
+        " instruction.\n\nr0: value\nr1: ptr\nr2: len (# bytes)",
+    )
+
+    ArrayCopy32Fast = Symbol(
+        [0x102DC],
+        [0x207C69C],
+        None,
+        "Does the same thing as ArrayCopy32, except the implementation uses an unrolled"
+        " loop that copies 8 values per iteration, taking advantage of the ldmia/stmia"
+        " instructions.\n\nr0: src\nr1: dest\nr2: len (# bytes)",
+    )
+
+    MemsetFast = Symbol(
+        [0x10334],
+        [0x207C6F4],
+        None,
+        "A semi-optimized implementation of the memset(3) C library function.\n\nThis"
+        " function was probably manually implemented by the developers, or was included"
+        " as part of a library other than libc (the Nitro SDK probably?). See memset"
+        " for what's probably the real libc function.\n\nThis function is optimized to"
+        " set values in 4-byte chunks, properly dealing with pointer alignment."
+        " However, unlike the libc memset, there are no loop unrolling"
+        " optimizations.\n\nr0: ptr\nr1: value\nr2: len (# bytes)",
+    )
+
+    MemcpyFast = Symbol(
+        [0x103F0],
+        [0x207C7B0],
+        None,
+        "Copies bytes from one buffer to another, similar to memcpy(3). Note that the"
+        " source/destination buffer parameters swapped relative to the standard"
+        " memcpy.\n\nThis function was probably manually implemented by the developers,"
+        " or was included as part of a library other than libc (the Nitro SDK"
+        " probably?). See memcpy for what's probably the real libc function.\n\nThis"
+        " function is optimized to copy values in 4-byte chunks, properly dealing with"
+        " pointer alignment.\n\nr0: src\nr1: dest\nr2: n (# bytes)",
+    )
+
+    AtomicExchange = Symbol(
+        [0x10570],
+        [0x207C930],
+        None,
+        "Atomically replaces a pointer's pointee with a desired value, and returns the"
+        " previous value.\n\nThis function is just a single swp instruction.\n\nr0:"
+        " desired value\nr1: ptr\nreturn: previous value",
+    )
+
+    FileInit = Symbol(
+        [0x1330C],
+        [0x207F6CC],
+        None,
+        "Initializes a file_stream structure for file I/O.\n\nThis function must always"
+        " be called before opening a file.\n\nr0: file_stream pointer",
+    )
+
+    GetOverlayInfo = Symbol(
+        [0x13BC4],
+        [0x207FF84],
+        None,
+        "Returns the y9.bin entry for the specified overlay\n\nr0: [output] Overlay"
+        " info struct\nr1: ?\nr2: Overlay ID\nreturn: True if the entry could be loaded"
+        " successfully?",
+    )
+
+    LoadOverlayInternal = Symbol(
+        [0x13CC0],
+        [0x2080080],
+        None,
+        "Called by LoadOverlay to load an overlay into RAM given its info struct\n\nr0:"
+        " Overlay info struct\nReturn: True if the overlay was loaded successfully?",
+    )
+
+    InitOverlay = Symbol(
+        [0x13DE4],
+        [0x20801A4],
+        None,
+        "Performs overlay initialization right after loading an overlay with"
+        " LoadOverlayInternal.\n\nThis function is responsible for jumping to all the"
+        " pointers located in the overlay's static init array, among other"
+        " things.\n\nr0: Overlay info struct",
+    )
+
+    abs = Symbol(
+        [0x1A484],
+        [0x2086844],
+        None,
+        "Takes the absolute value of an integer.\n\nr0: x\nreturn: abs(x)",
+    )
+
+    mbtowc = Symbol(
+        [0x1B0E4],
+        [0x20874A4],
+        None,
+        "The mbtowc(3) C library function.\n\nr0: pwc\nr1: s\nr2: n\nreturn: number of"
+        " consumed bytes, or -1 on failure",
+    )
+
+    TryAssignByte = Symbol(
+        [0x1B11C],
+        [0x20874DC],
+        None,
+        "Assign a byte to the target of a pointer if the pointer is non-null.\n\nr0:"
+        " pointer\nr1: value\nreturn: true on success, false on failure",
+    )
+
+    TryAssignByteWrapper = Symbol(
+        [0x1B130],
+        [0x20874F0],
+        None,
+        "Wrapper around TryAssignByte.\n\nAccesses the TryAssignByte function with a"
+        " weird chain of pointer dereferences.\n\nr0: pointer\nr1: value\nreturn: true"
+        " on success, false on failure",
+    )
+
+    wcstombs = Symbol(
+        [0x1B14C],
+        [0x208750C],
+        None,
+        "The wcstombs(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn:"
+        " characters converted",
+    )
+
+    memcpy = Symbol(
+        [0x1B1C4],
+        [0x2087584],
+        None,
+        "The memcpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
+    )
+
+    memmove = Symbol(
+        [0x1B1E4],
+        [0x20875A4],
+        None,
+        "The memmove(3) C library function.\n\nThe implementation is nearly the same as"
+        " memcpy, but it copies bytes from back to front if src < dst.\n\nr0: dest\nr1:"
+        " src\nr2: n\nreturn: dest",
+    )
+
+    memset = Symbol(
+        [0x1B230],
+        [0x20875F0],
+        None,
+        "The memset(3) C library function.\n\nThis is just a wrapper around"
+        " memset_internal that returns the pointer at the end.\n\nr0: s\nr1: c (int,"
+        " but must be a single-byte value)\nr2: n\nreturn: s",
+    )
+
+    memchr = Symbol(
+        [0x1B244],
+        [0x2087604],
+        None,
+        "The memchr(3) C library function.\n\nr0: s\nr1: c\nr2: n\nreturn: pointer to"
+        " first occurrence of c in s, or a null pointer if no match",
+    )
+
+    memcmp = Symbol(
+        [0x1B270],
+        [0x2087630],
+        None,
+        "The memcmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn: comparison"
+        " value",
+    )
+
+    memset_internal = Symbol(
+        [0x1B2B0],
+        [0x2087670],
+        None,
+        "The actual memory-setting implementation for the memset(3) C library"
+        " function.\n\nThis function is optimized to set bytes in 4-byte chunks for n"
+        " >= 32, correctly handling any unaligned bytes at the front/back. In this"
+        " case, it also further optimizes by unrolling a for loop to set 8 4-byte"
+        " values at once (effectively a 32-byte chunk).\n\nr0: s\nr1: c (int, but must"
+        " be a single-byte value)\nr2: n",
+    )
+
+    __vsprintf_internal_slice = Symbol(
+        [0x1CB9C],
+        [0x2088F5C],
+        None,
+        "This is what implements the bulk of __vsprintf_internal.\n\nThe"
+        " __vsprintf_internal in the modern-day version of glibc relies on"
+        " __vfprintf_internal; this function has a slightly different interface, but it"
+        " serves a similar role.\n\nr0: function pointer to append to the string being"
+        " built (__vsprintf_internal uses TryAppendToSlice)\nr1: string buffer"
+        " slice\nr2: format\nr3: ap\nreturn: number of characters printed, excluding"
+        " the null-terminator",
+    )
+
+    TryAppendToSlice = Symbol(
+        [0x1D3C0],
+        [0x2089780],
+        None,
+        "Best-effort append the given data to a slice. If the slice's capacity is"
+        " reached, any remaining data will be truncated.\n\nr0: slice pointer\nr1:"
+        " buffer of data to append\nr2: number of bytes in the data buffer\nreturn:"
+        " true",
+    )
+
+    __vsprintf_internal = Symbol(
+        [0x1D404],
+        [0x20897C4],
+        None,
+        "This is what implements vsprintf. It's akin to __vsprintf_internal in the"
+        " modern-day version of glibc (in fact, it's probably an older version of"
+        " this).\n\nr0: str\nr1: maxlen (vsprintf passes UINT32_MAX for this)\nr2:"
+        " format\nr3: ap\nreturn: number of characters printed, excluding the"
+        " null-terminator",
+    )
+
+    vsprintf = Symbol(
+        [0x1D46C],
+        [0x208982C],
+        None,
+        "The vsprintf(3) C library function.\n\nr0: str\nr1: format\nr2: ap\nreturn:"
+        " number of characters printed, excluding the null-terminator",
+    )
+
+    snprintf = Symbol(
+        [0x1D484],
+        [0x2089844],
+        None,
+        "The snprintf(3) C library function.\n\nThis calls __vsprintf_internal"
+        " directly, so it's presumably the real snprintf.\n\nr0: str\nr1: n\nr2:"
+        " format\n...: variadic\nreturn: number of characters printed, excluding the"
+        " null-terminator",
+    )
+
+    sprintf = Symbol(
+        [0x1D4AC],
+        [0x208986C],
+        None,
+        "The sprintf(3) C library function.\n\nThis calls __vsprintf_internal directly,"
+        " so it's presumably the real sprintf.\n\nr0: str\nr1: format\n...:"
+        " variadic\nreturn: number of characters printed, excluding the"
+        " null-terminator",
+    )
+
+    strlen = Symbol(
+        [0x1D5A0],
+        [0x2089960],
+        None,
+        "The strlen(3) C library function.\n\nr0: s\nreturn: length of s",
+    )
+
+    strcpy = Symbol(
+        [0x1D5BC],
+        [0x208997C],
+        None,
+        "The strcpy(3) C library function.\n\nThis function is optimized to copy"
+        " characters in aligned 4-byte chunks if possible, correctly handling any"
+        " unaligned bytes at the front/back.\n\nr0: dest\nr1: src\nreturn: dest",
+    )
+
+    strncpy = Symbol(
+        [0x1D684],
+        [0x2089A44],
+        None,
+        "The strncpy(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
+    )
+
+    strcat = Symbol(
+        [0x1D6D4],
+        [0x2089A94],
+        None,
+        "The strcat(3) C library function.\n\nr0: dest\nr1: src\nreturn: dest",
+    )
+
+    strncat = Symbol(
+        [0x1D704],
+        [0x2089AC4],
+        None,
+        "The strncat(3) C library function.\n\nr0: dest\nr1: src\nr2: n\nreturn: dest",
+    )
+
+    strcmp = Symbol(
+        [0x1D754],
+        [0x2089B14],
+        None,
+        "The strcmp(3) C library function.\n\nSimilarly to strcpy, this function is"
+        " optimized to compare characters in aligned 4-byte chunks if possible.\n\nr0:"
+        " s1\nr1: s2\nreturn: comparison value",
+    )
+
+    strncmp = Symbol(
+        [0x1D868],
+        [0x2089C28],
+        None,
+        "The strncmp(3) C library function.\n\nr0: s1\nr1: s2\nr2: n\nreturn:"
+        " comparison value",
+    )
+
+    strchr = Symbol(
+        [0x1D89C],
+        [0x2089C5C],
+        None,
+        "The strchr(3) C library function.\n\nr0: string\nr1: c\nreturn: pointer to the"
+        " located byte c, or null pointer if no match",
+    )
+
+    strcspn = Symbol(
+        [0x1D8D8],
+        [0x2089C98],
+        None,
+        "The strcspn(3) C library function.\n\nr0: string\nr1: stopset\nreturn: offset"
+        " of the first character in string within stopset",
+    )
+
+    strstr = Symbol(
+        [0x1D998],
+        [0x2089D58],
+        None,
+        "The strstr(3) C library function.\n\nr0: haystack\nr1: needle\nreturn: pointer"
+        " into haystack where needle starts, or null pointer if no match",
+    )
+
+    wcslen = Symbol(
+        [0x1F310],
+        [0x208B6D0],
+        None,
+        "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
+    )
+
+    _dadd = Symbol(
+        None,
+        None,
+        None,
+        "Implements the addition operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
+        " Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
+        " a + b",
+    )
+
+    _d2f = Symbol(
+        None,
+        None,
+        None,
+        "Implements the double to float cast operator for IEEE 754 floating-point"
+        " numbers.\n\nr0: double (low bits)\nr1: double (high bits)\nreturn:"
+        " (float)double",
+    )
+
+    _ll_ufrom_d = Symbol(
+        None,
+        None,
+        None,
+        "Implements the double to unsigned long long cast operation for IEEE 754"
+        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
+        " with the Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " double (low bits)\nr1: double (high bits)\nreturn: (unsigned long"
+        " long)double",
+    )
+
+    _dflt = Symbol(
+        None,
+        None,
+        None,
+        "Implements the int to double cast operation for IEEE 754 floating-point"
+        " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
+        " Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " int\nreturn: (double)int",
+    )
+
+    _dfltu = Symbol(
+        None,
+        None,
+        None,
+        "Implements the unsigned int to double cast operation for IEEE 754"
+        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
+        " with the Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " uint\nreturn: (double)uint",
+    )
+
+    _dmul = Symbol(
+        None,
+        None,
+        None,
+        "Implements the multiplication operator for IEEE 754 double-precision"
+        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
+        " with the Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
+        " a * b",
+    )
+
+    _dsqrt = Symbol(
+        None,
+        None,
+        None,
+        "Analogous to the sqrt(3) C library function.\n\nThe result is returned in r0"
+        " and r1, in accordance with the Procedure Call Standard for the Arm"
+        " Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " x (low bits)\nr1: x (high bits)\nreturn: sqrt(x)",
+    )
+
+    _dsub = Symbol(
+        None,
+        None,
+        None,
+        "Implements the subtraction operator for IEEE 754 double-precision"
+        " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
+        " with the Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
+        " a - b",
+    )
+
+    _fadd = Symbol(
+        [0x22BE0],
+        [0x208EFA0],
+        None,
+        "Implements the addition operator for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __addsf3 in libgcc.\n\nr0: a\nr1: b\nreturn: a + b",
+    )
+
+    _dgeq = Symbol(
+        None,
+        None,
+        None,
+        "Implements the >= operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a >= b",
+    )
+
+    _dleq = Symbol(
+        None,
+        None,
+        None,
+        "Implements the <= operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a <= b",
+    )
+
+    _dls = Symbol(
+        None,
+        None,
+        None,
+        "Implements the < operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a < b",
+    )
+
+    _deq = Symbol(
+        None,
+        None,
+        None,
+        "Implements the == operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a == b",
+    )
+
+    _dneq = Symbol(
+        None,
+        None,
+        None,
+        "Implements the != operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
+        " (high bits)\nreturn: a != b",
+    )
+
+    _fls = Symbol(
+        None,
+        None,
+        None,
+        "Implements the < operator for IEEE 754 floating-point numbers.\n\nr0: a\nr1:"
+        " b\nreturn: a < b",
+    )
+
+    _fdiv = Symbol(
+        [0x2315C],
+        [0x208F51C],
+        None,
+        "Implements the division operator for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __divsf3 in libgcc.\n\nr0: dividend\nr1:"
+        " divisor\nreturn: dividend / divisor",
+    )
+
+    _f2d = Symbol(
+        [0x23514],
+        [0x208F8D4],
+        None,
+        "Implements the float to double cast operation for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __extendsfdf2 in libgcc.\n\nThe result is returned"
+        " in r0 and r1, in accordance with the Procedure Call Standard for the Arm"
+        " Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " float\nreturn: (double)float",
+    )
+
+    _ffix = Symbol(
+        [0x23598],
+        [0x208F958],
+        None,
+        "Implements the float to int cast operation for IEEE 754 floating-point"
+        " numbers. The output saturates if the input is out of the representable range"
+        " for the int type.\n\nAnalogous to __fixsfsi in libgcc.\n\nr0: float\nreturn:"
+        " (int)float",
+    )
+
+    _fflt = Symbol(
+        [0x235CC],
+        [0x208F98C],
+        None,
+        "Implements the int to float cast operation for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __floatsisf in libgcc.\n\nr0: int\nreturn:"
+        " (float)int",
+    )
+
+    _ffltu = Symbol(
+        [0x23614],
+        [0x208F9D4],
+        None,
+        "Implements the unsigned int to float cast operation for IEEE 754"
+        " floating-point numbers.\n\nAnalogous to __floatunsisf in libgcc.\n\nr0:"
+        " uint\nreturn: (float)uint",
+    )
+
+    _fmul = Symbol(
+        [0x2365C],
+        [0x208FA1C],
+        None,
+        "Implements the multiplication operator for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __mulsf3 in libgcc.\n\nr0: a\nr1: b\nreturn: a * b",
+    )
+
+    sqrtf = Symbol(
+        [0x2383C],
+        [0x208FBFC],
+        None,
+        "The sqrtf(3) C library function.\n\nr0: x\nreturn: sqrt(x)",
+    )
+
+    _fsub = Symbol(
+        [0x2392C],
+        [0x208FCEC],
+        None,
+        "Implements the subtraction operator for IEEE 754 floating-point"
+        " numbers.\n\nAnalogous to __subsf3 in libgcc.\n\nr0: a\nr1: b\nreturn: a - b",
+    )
+
+    _ll_mod = Symbol(
+        None,
+        None,
+        None,
+        "Implements the modulus operator for signed long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend % divisor",
+    )
+
+    _ll_sdiv = Symbol(
+        None,
+        None,
+        None,
+        "Implements the division operator for signed long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend / divisor",
+    )
+
+    _ll_udiv = Symbol(
+        None,
+        None,
+        None,
+        "Implements the division operator for unsigned long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend / divisor",
+    )
+
+    _ull_mod = Symbol(
+        None,
+        None,
+        None,
+        "Implements the modulus operator for unsigned long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend % divisor",
+    )
+
+    _ll_mul = Symbol(
+        None,
+        None,
+        None,
+        "Implements the multiplication operator for signed long longs.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
+        " a * b",
+    )
+
+    _s32_div_f = Symbol(
+        [0x23DCC],
+        [0x209018C],
+        None,
+        "Implements the division operator for signed ints.\n\nAnalogous to __divsi3 in"
+        " libgcc.\n\nThe return value is a 64-bit integer, with the quotient (dividend"
+        " / divisor) in the lower 32 bits and the remainder (dividend % divisor) in the"
+        " upper 32 bits. In accordance with the Procedure Call Standard for the Arm"
+        " Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
+        " this means that the quotient is returned in r0 and the remainder is returned"
+        " in r1.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+    _u32_div_f = Symbol(
+        [0x23FD8],
+        [0x2090398],
+        None,
+        "Implements the division operator for unsigned ints.\n\nAnalogous to __udivsi3"
+        " in libgcc.\n\nThe return value is a 64-bit integer, with the quotient"
+        " (dividend / divisor) in the lower 32 bits and the remainder (dividend %"
+        " divisor) in the upper 32 bits. In accordance with the Procedure Call Standard"
+        " for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
+        " this means that the quotient is returned in r0 and the remainder is returned"
+        " in r1.\nNote: This function falls through to _u32_div_not_0_f.\n\nr0:"
+        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+    _u32_div_not_0_f = Symbol(
+        [0x23FE0],
+        [0x20903A0],
+        None,
+        "Subsidiary function to _u32_div_f. Skips the initial check for divisor =="
+        " 0.\n\nThe return value is a 64-bit integer, with the quotient (dividend /"
+        " divisor) in the lower 32 bits and the remainder (dividend % divisor) in the"
+        " upper 32 bits. In accordance with the Procedure Call Standard for the Arm"
+        " Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return),"
+        " this means that the quotient is returned in r0 and the remainder is returned"
+        " in r1.\nThis function appears to only be called internally.\n\nr0:"
+        " dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
+    )
+
+    _drdiv = Symbol(
+        None,
+        None,
+        None,
+        "The same as _ddiv, but with the parameters reversed.\n\nThis simply swaps the"
+        " first and second parameters, then falls through to _ddiv.\n\nThe result is"
+        " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
+        " Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " divisor (low bits)\nr1: divisor (high bits)\nr2: dividend (low bits)\nr3:"
+        " dividend (high bits)\nreturn: dividend / divisor",
+    )
+
+    _ddiv = Symbol(
+        None,
+        None,
+        None,
+        "Implements the division operator for IEEE 754 double-precision floating-point"
+        " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
+        " Procedure Call Standard for the Arm Architecture (see"
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
+        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
+        " divisor (high bits)\nreturn: dividend / divisor",
+    )
+
+    _fp_init = Symbol(
+        None,
+        None,
+        None,
+        "Meant to do set up for floating point calculations? Does nothing.\n\nNo"
+        " params.",
+    )
+
+
+class JpLibsData:
+
+    pass
+
+
+class JpLibsSection:
+    name = "libs"
+    description = (
+        "System libraries linked to the main ARM9 binary.\n\nThis includes code from"
+        " common NDS system libraries like the Nitro SDK (which contains NDS-specific"
+        " functionality as well as utilities akin to libc and libgcc).\n\nWhere the"
+        " library region starts and ends is a guess, but there appear to be fairly"
+        " sharp boundaries. The function directly before it calls functions at lower"
+        " memory addresses outside of the region, while all functions in the region"
+        " only call other functions within the region. The bytes after the region seem"
+        " to be the start of a global data region, used by both the libraries and the"
+        " rest of ARM9."
+    )
+    loadaddress = 0x206C3C0
+    length = 0x247FC
+    functions = JpLibsFunctions
+    data = JpLibsData
 
 
 class JpMove_effectsFunctions:
@@ -14367,9 +14393,9 @@ class JpOverlay10Functions:
         [0x22C3DA4],
         None,
         "Initializes a buffer that contains data related to tilesets (such as"
-        " dungeon::unknown_file_buffer_0x102A8).\n\nCalls"
-        " DirectoryFileMngr_OpenDirectoryFile and DecompressAtNormalVeneer.\n\nr0:"
-        " Pointer to the buffer to init\nr1: Tileset ID\nr2: Memory allocation flags",
+        " dungeon::unknown_file_buffer_0x102A8).\n\nCalls AllocAndLoadFileInPack and"
+        " DecompressAtNormalVeneer.\n\nr0: Pointer to the buffer to init\nr1: Tileset"
+        " ID\nr2: Memory allocation flags",
     )
 
     MainGame = Symbol(
@@ -27088,6 +27114,8 @@ class JpSections:
     arm9 = JpArm9Section
 
     itcm = JpItcmSection
+
+    libs = JpLibsSection
 
     move_effects = JpMove_effectsSection
 

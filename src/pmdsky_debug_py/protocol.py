@@ -569,22 +569,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    FileRom_InitDataTransfer: Symbol[
+    DataTransferInit: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FileRom_StopDataTransfer: Symbol[
+    DataTransferStop: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FileRom_Veneer_FileInit: Symbol[
+    FileInitVeneer: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FileRom_HandleOpen: Symbol[
+    FileOpen: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -594,12 +594,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    FileRom_HandleRead: Symbol[
+    FileRead: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FileRom_HandleSeek: Symbol[
+    FileSeek: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -634,27 +634,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    Debug_Init: Symbol[
+    InitDebug: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_InitDebugFlag: Symbol[
+    InitDebugFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_GetDebugFlag: Symbol[
+    GetDebugFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_SetDebugFlag: Symbol[
+    SetDebugFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_Stripped6: Symbol[
+    InitDebugStripped6: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -664,12 +664,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    Debug_Stripped5: Symbol[
+    InitDebugStripped5: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_PrintTrace: Symbol[
+    DebugPrintTrace: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -679,87 +679,87 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    Debug_Print0: Symbol[
+    DebugPrint0: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_InitLogFlag: Symbol[
+    InitDebugLogFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_GetLogFlag: Symbol[
+    GetDebugLogFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_SetLogFlag: Symbol[
+    SetDebugLogFlag: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_Print: Symbol[
+    DebugPrint: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_Stripped4: Symbol[
+    InitDebugStripped4: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_Stripped3: Symbol[
+    InitDebugStripped3: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_Stripped2: Symbol[
+    InitDebugStripped2: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_Stripped1: Symbol[
+    InitDebugStripped1: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Debug_FatalError: Symbol[
+    FatalError: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DirectoryFileMngr_ExtractAllDirectoryFiles: Symbol[
+    OpenAllPackFiles: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DirectoryFileMngr_GetDirectoryFileSize: Symbol[
+    GetFileLengthInPackWithPackNb: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DirectoryFileMngr_LoadDirectoryFile: Symbol[
+    LoadFileInPackWithPackId: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DirectoryFileMngr_OpenDirectoryFile: Symbol[
+    AllocAndLoadFileInPack: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DirectoryFile_ExtractDirectoryFile: Symbol[
+    OpenPackFile: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DirectoryFile_GetDirectoryFileSize: Symbol[
+    GetFileLengthInPack: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DirectoryFile_LoadDirectoryFile: Symbol[
+    LoadFileInPack: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4874,6 +4874,1317 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+
+class Arm9DataProtocol(Protocol):
+
+    SECURE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    START_MODULE_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEFAULT_MEMORY_ARENA_SIZE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LOG_MAX_ARG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_SOURCE_CODE_ORB_ITEM: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DAMAGE_SOURCE_CODE_NON_ORB_ITEM: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AURA_BOW_ID_LAST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    NUMBER_OF_ITEMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MAX_MONEY_CARRIED: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MAX_MONEY_STORED: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WINDOW_LIST_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SCRIPT_VARS_VALUES_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MAX_PLAY_TIME: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MONSTER_ID_LIMIT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MAX_RECRUITABLE_TEAM_MEMBERS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    NATURAL_LOG_VALUE_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CART_REMOVED_IMG_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_EMPTY: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_FORMAT_LINE_FILE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_NO_PROG_POS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_SPACED_PRINT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_FATAL: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_NEWLINE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_LOG_NULL: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_DEBUG_STRING_NEWLINE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_EFFECT_EFFECT_BIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_MONSTER_MONSTER_BIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_BALANCE_M_LEVEL_BIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_DUNGEON_DUNGEON_BIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_MONSTER_M_ATTACK_BIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_MONSTER_M_GROUND_BIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STRING_FILE_DIRECTORY_INIT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AVAILABLE_ITEMS_IN_GROUP_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_2097FF8: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KECLEON_SHOP_ITEM_TABLE_LISTS_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KECLEON_SHOP_ITEM_TABLE_LISTS_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_STAT_BOOST_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_ATTACK_BOOSTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_DEFENSE_BOOSTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_SPECIAL_DEFENSE_BOOSTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_EFFECT_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_SHOP_ITEM_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TYPE_SPECIFIC_EXCLUSIVE_ITEMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RECOIL_MOVE_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PUNCH_MOVE_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MOVE_POWER_STARS_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MOVE_ACCURACY_STARS_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PARENT_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SIMPLE_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ADVANCED_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    COLLECTION_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OPTIONS_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SCROLL_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEXT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CONTROLS_CHART_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ALERT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PARTNER_TALK_KIND_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SCRIPT_VARS_LOCALS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SCRIPT_VARS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PORTRAIT_LAYOUTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KAOMADO_FILEPATH: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WONDER_MAIL_BITS_MAP: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WONDER_MAIL_BITS_SWAP: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_209E12C: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_209E164: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_209E280: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WONDER_MAIL_ENCRYPTION_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_DATA_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ADVENTURE_LOG_ENCOUNTERS_MONSTER_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_DATA__NA_209E6BC: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TACTIC_NAME_STRING_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STATUS_NAME_STRING_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_RETURN_STATUS_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STATUSES_FULL_DESCRIPTION_STRING_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_DATA__NA_209EAAC: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_FLOOR_RANKS_AND_ITEM_LISTS_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_FLOORS_FORBIDDEN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_FLOOR_RANKS_AND_ITEM_LISTS_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_FLOOR_RANKS_PTRS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_RESTRICTIONS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SPECIAL_BAND_STAT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MUNCH_BELT_STAT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUMMI_STAT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MIN_IQ_EXCLUSIVE_MOVE_USER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WONDER_GUMMI_IQ_GAIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AURA_BOW_STAT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MIN_IQ_ITEM_MASTER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEF_SCARF_STAT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    POWER_BAND_STAT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WONDER_GUMMI_STAT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ZINC_BAND_STAT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EGG_HP_BONUS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EVOLUTION_HP_BONUS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_FLV_SHIFT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EVOLUTION_PHYSICAL_STAT_BONUSES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_CONSTANT_SHIFT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EGG_STAT_BONUSES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EVOLUTION_SPECIAL_STAT_BONUSES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_LN_PREFACTOR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_DEF_PREFACTOR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_AT_PREFACTOR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DAMAGE_FORMULA_LN_ARG_PREFACTOR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    FORBIDDEN_FORGOT_MOVE_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TACTICS_UNLOCK_LEVEL_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CLIENT_LEVEL_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OUTLAW_LEVEL_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OUTLAW_MINION_LEVEL_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    HIDDEN_POWER_BASE_POWER_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    VERSION_EXCLUSIVE_MONSTERS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    IQ_SKILL_RESTRICTIONS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SECONDARY_TERRAIN_TYPES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SENTRY_DUTY_MONSTER_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    IQ_SKILLS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    IQ_GROUP_SKILLS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MONEY_QUANTITY_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_20A20B0: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    IQ_GUMMI_GAIN_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUMMI_BELLY_RESTORE_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BAG_CAPACITY_TABLE_SPECIAL_EPISODES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BAG_CAPACITY_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SPECIAL_EPISODE_MAIN_CHARACTERS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RANK_UP_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DS_DOWNLOAD_TEAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_PTR__NA_20A2C84: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    UNOWN_SPECIES_ADDITIONAL_CHARS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MONSTER_SPRITE_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    REMOTE_STRINGS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RANK_STRINGS_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_MENU_STRING_IDS_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RANK_STRINGS_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_MENU_STRING_IDS_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RANK_STRINGS_3: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_DUNGEON_UNLOCK_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    NO_SEND_ITEM_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_20A3CC8: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_20A3CE4: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_BANNED_STORY_MONSTERS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_DELIVERY_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_RANK_POINTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_BANNED_MONSTERS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_STRING_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LEVEL_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EVENTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_20A68BC: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEMO_TEAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ACTOR_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ENTITIES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_WINDOW_PARAMS_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_3: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_4: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_5: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_6: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_7: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_8: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_9: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_10: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_11: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_12: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_MENU_ITEMS_13: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JOB_WINDOW_PARAMS_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_SWAP_ID_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MAP_MARKER_PLACEMENTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LFO_OUTPUT_VOICE_UPDATE_FLAGS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TRIG_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    FX_ATAN_IDX_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEX_PLTT_START_ADDR_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEX_START_ADDR_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ARM9_UNKNOWN_TABLE__NA_20AE924: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MEMORY_ALLOCATION_ARENA_GETTERS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PRNG_SEQUENCE_NUM: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LOADED_OVERLAY_GROUP_0: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LOADED_OVERLAY_GROUP_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LOADED_OVERLAY_GROUP_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_IS_INITIALIZED: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PACK_FILES_OPENED: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PACK_FILE_PATHS_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GAME_STATE_VALUES: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BAG_ITEMS_PTR_MIRROR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_DATA_TABLE_PTRS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_MOVE_TABLES: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MOVE_DATA_TABLE_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WAN_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RENDER_3D: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RENDER_3D_FUNCTIONS_64: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LANGUAGE_INFO_DATA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TBL_TALK_GROUP_STRING_ID_START: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEYBOARD_STRING_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    NOTIFY_NOTE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEFAULT_HERO_ID: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEFAULT_PARTNER_ID: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GAME_MODE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GLOBAL_PROGRESS_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ADVENTURE_LOG_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_TABLES_PTRS_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEAM_MEMBER_TABLE_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_LIST_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    REMOTE_STRING_PTR_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RANK_STRING_PTR_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SMD_EVENTS_FUN_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MUSIC_DURATION_LOOKUP_TABLE_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MUSIC_DURATION_LOOKUP_TABLE_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LFO_WAVEFORM_CALLBACKS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    IS_DISP_ON: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GXI_DMA_ID: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    JUICE_BAR_NECTAR_IQ_GAIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEXT_SPEED: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HERO_START_LEVEL: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PARTNER_START_LEVEL: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+
+Arm9Protocol = SectionProtocol[
+    Arm9FunctionsProtocol,
+    Arm9DataProtocol,
+    int,
+]
+
+
+class ItcmFunctionsProtocol(Protocol):
+
+    Render3dSetTextureParams: Symbol[
+        list[int],
+        None,
+    ]
+
+    Render3dSetPaletteBase: Symbol[
+        list[int],
+        None,
+    ]
+
+    Render3dRectangle: Symbol[
+        list[int],
+        None,
+    ]
+
+    GeomSetPolygonAttributes: Symbol[
+        list[int],
+        None,
+    ]
+
+    Render3dQuadrilateral: Symbol[
+        list[int],
+        None,
+    ]
+
+    Render3dTiling: Symbol[
+        list[int],
+        None,
+    ]
+
+    Render3dTextureInternal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Render3dTexture: Symbol[
+        list[int],
+        None,
+    ]
+
+    Render3dTextureNoSetup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NewRender3dElement: Symbol[
+        list[int],
+        None,
+    ]
+
+    EnqueueRender3dTexture: Symbol[
+        list[int],
+        None,
+    ]
+
+    EnqueueRender3dTiling: Symbol[
+        list[int],
+        None,
+    ]
+
+    NewRender3dRectangle: Symbol[
+        list[int],
+        None,
+    ]
+
+    NewRender3dQuadrilateral: Symbol[
+        list[int],
+        None,
+    ]
+
+    NewRender3dTexture: Symbol[
+        list[int],
+        None,
+    ]
+
+    NewRender3dTiling: Symbol[
+        list[int],
+        None,
+    ]
+
+    Render3dProcessQueue: Symbol[
+        list[int],
+        None,
+    ]
+
+    GetKeyN2MSwitch: Symbol[
+        list[int],
+        None,
+    ]
+
+    GetKeyN2M: Symbol[
+        list[int],
+        None,
+    ]
+
+    GetKeyN2MBaseForm: Symbol[
+        list[int],
+        None,
+    ]
+
+    GetKeyM2NSwitch: Symbol[
+        list[int],
+        None,
+    ]
+
+    GetKeyM2N: Symbol[
+        list[int],
+        None,
+    ]
+
+    GetKeyM2NBaseForm: Symbol[
+        list[int],
+        None,
+    ]
+
+    HardwareInterrupt: Symbol[
+        list[int],
+        None,
+    ]
+
+    ReturnFromInterrupt: Symbol[
+        list[int],
+        None,
+    ]
+
+    ShouldMonsterRunAwayVariationOutlawCheck: Symbol[
+        list[int],
+        None,
+    ]
+
+    AiMovement: Symbol[
+        list[int],
+        None,
+    ]
+
+    CalculateAiTargetPos: Symbol[
+        list[int],
+        None,
+    ]
+
+    ChooseAiMove: Symbol[
+        list[int],
+        None,
+    ]
+
+    LightningRodStormDrainCheck: Symbol[
+        list[int],
+        None,
+    ]
+
+
+class ItcmDataProtocol(Protocol):
+
+    MEMORY_ALLOCATION_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEFAULT_MEMORY_ARENA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEFAULT_MEMORY_ARENA_BLOCKS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RENDER_3D_FUNCTIONS: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+
+ItcmProtocol = SectionProtocol[
+    ItcmFunctionsProtocol,
+    ItcmDataProtocol,
+    int,
+]
+
+
+class LibsFunctionsProtocol(Protocol):
+
     SoundUtilGetRandomNumber: Symbol[
         Optional[list[int]],
         None,
@@ -6120,1311 +7431,15 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
 
-class Arm9DataProtocol(Protocol):
+class LibsDataProtocol(Protocol):
 
-    SECURE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
+    pass
 
-    START_MODULE_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
 
-    DEFAULT_MEMORY_ARENA_SIZE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    LOG_MAX_ARG: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DAMAGE_SOURCE_CODE_ORB_ITEM: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    DAMAGE_SOURCE_CODE_NON_ORB_ITEM: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    AURA_BOW_ID_LAST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    NUMBER_OF_ITEMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MAX_MONEY_CARRIED: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MAX_MONEY_STORED: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    WINDOW_LIST_PTR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SCRIPT_VARS_VALUES_PTR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MAX_PLAY_TIME: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MONSTER_ID_LIMIT: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MAX_RECRUITABLE_TEAM_MEMBERS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    NATURAL_LOG_VALUE_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    CART_REMOVED_IMG_DATA: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_DEBUG_EMPTY: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_DEBUG_FORMAT_LINE_FILE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_DEBUG_NO_PROG_POS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_DEBUG_SPACED_PRINT: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_DEBUG_FATAL: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_DEBUG_NEWLINE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_DEBUG_LOG_NULL: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_DEBUG_STRING_NEWLINE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_EFFECT_EFFECT_BIN: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_MONSTER_MONSTER_BIN: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_BALANCE_M_LEVEL_BIN: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_DUNGEON_DUNGEON_BIN: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_MONSTER_M_ATTACK_BIN: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_MONSTER_M_GROUND_BIN: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STRING_FILE_DIRECTORY_INIT: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    AVAILABLE_ITEMS_IN_GROUP_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_TABLE__NA_2097FF8: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    KECLEON_SHOP_ITEM_TABLE_LISTS_1: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    KECLEON_SHOP_ITEM_TABLE_LISTS_2: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EXCLUSIVE_ITEM_STAT_BOOST_DATA: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EXCLUSIVE_ITEM_ATTACK_BOOSTS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EXCLUSIVE_ITEM_DEFENSE_BOOSTS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EXCLUSIVE_ITEM_SPECIAL_ATTACK_BOOSTS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EXCLUSIVE_ITEM_SPECIAL_DEFENSE_BOOSTS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EXCLUSIVE_ITEM_EFFECT_DATA: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RECYCLE_SHOP_ITEM_LIST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TYPE_SPECIFIC_EXCLUSIVE_ITEMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RECOIL_MOVE_LIST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    PUNCH_MOVE_LIST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MOVE_POWER_STARS_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MOVE_ACCURACY_STARS_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    PARENT_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SIMPLE_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ADVANCED_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    COLLECTION_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    OPTIONS_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DEBUG_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SCROLL_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TEXT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    CONTROLS_CHART_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ALERT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    PARTNER_TALK_KIND_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SCRIPT_VARS_LOCALS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SCRIPT_VARS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    PORTRAIT_LAYOUTS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    KAOMADO_FILEPATH: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    WONDER_MAIL_BITS_MAP: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    WONDER_MAIL_BITS_SWAP: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_TABLE__NA_209E12C: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_TABLE__NA_209E164: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_TABLE__NA_209E280: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    WONDER_MAIL_ENCRYPTION_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_DATA_LIST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ADVENTURE_LOG_ENCOUNTERS_MONSTER_IDS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_DATA__NA_209E6BC: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TACTIC_NAME_STRING_IDS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STATUS_NAME_STRING_IDS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_RETURN_STATUS_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    STATUSES_FULL_DESCRIPTION_STRING_IDS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_DATA__NA_209EAAC: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_FLOOR_RANKS_AND_ITEM_LISTS_1: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_FLOORS_FORBIDDEN: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_FLOOR_RANKS_AND_ITEM_LISTS_2: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_FLOOR_RANKS_PTRS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_RESTRICTIONS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SPECIAL_BAND_STAT_BOOST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MUNCH_BELT_STAT_BOOST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    GUMMI_STAT_BOOST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MIN_IQ_EXCLUSIVE_MOVE_USER: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    WONDER_GUMMI_IQ_GAIN: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    AURA_BOW_STAT_BOOST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MIN_IQ_ITEM_MASTER: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DEF_SCARF_STAT_BOOST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    POWER_BAND_STAT_BOOST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    WONDER_GUMMI_STAT_BOOST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ZINC_BAND_STAT_BOOST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EGG_HP_BONUS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EVOLUTION_HP_BONUS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DAMAGE_FORMULA_FLV_SHIFT: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EVOLUTION_PHYSICAL_STAT_BONUSES: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DAMAGE_FORMULA_CONSTANT_SHIFT: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EGG_STAT_BONUSES: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EVOLUTION_SPECIAL_STAT_BONUSES: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DAMAGE_FORMULA_LN_PREFACTOR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DAMAGE_FORMULA_DEF_PREFACTOR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DAMAGE_FORMULA_AT_PREFACTOR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DAMAGE_FORMULA_LN_ARG_PREFACTOR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    FORBIDDEN_FORGOT_MOVE_LIST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TACTICS_UNLOCK_LEVEL_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    CLIENT_LEVEL_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    OUTLAW_LEVEL_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    OUTLAW_MINION_LEVEL_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    HIDDEN_POWER_BASE_POWER_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    VERSION_EXCLUSIVE_MONSTERS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    IQ_SKILL_RESTRICTIONS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SECONDARY_TERRAIN_TYPES: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SENTRY_DUTY_MONSTER_IDS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    IQ_SKILLS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    IQ_GROUP_SKILLS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MONEY_QUANTITY_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_TABLE__NA_20A20B0: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    IQ_GUMMI_GAIN_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    GUMMI_BELLY_RESTORE_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    BAG_CAPACITY_TABLE_SPECIAL_EPISODES: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    BAG_CAPACITY_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SPECIAL_EPISODE_MAIN_CHARACTERS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    GUEST_MONSTER_DATA: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RANK_UP_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DS_DOWNLOAD_TEAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_PTR__NA_20A2C84: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    UNOWN_SPECIES_ADDITIONAL_CHARS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MONSTER_SPRITE_DATA: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    REMOTE_STRINGS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RANK_STRINGS_1: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_MENU_STRING_IDS_1: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RANK_STRINGS_2: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_MENU_STRING_IDS_2: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RANK_STRINGS_3: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_DUNGEON_UNLOCK_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    NO_SEND_ITEM_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_TABLE__NA_20A3CC8: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_TABLE__NA_20A3CE4: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_BANNED_STORY_MONSTERS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ITEM_DELIVERY_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_RANK_POINTS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_BANNED_MONSTERS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_STRING_IDS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    LEVEL_LIST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    EVENTS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_TABLE__NA_20A68BC: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DEMO_TEAMS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ACTOR_LIST: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ENTITIES: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_WINDOW_PARAMS_1: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_1: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_2: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_3: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_4: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_5: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_6: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_7: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_8: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_9: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_10: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_11: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_12: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_MENU_ITEMS_13: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JOB_WINDOW_PARAMS_2: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_SWAP_ID_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MAP_MARKER_PLACEMENTS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    LFO_OUTPUT_VOICE_UPDATE_FLAGS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TRIG_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    FX_ATAN_IDX_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TEX_PLTT_START_ADDR_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TEX_START_ADDR_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ARM9_UNKNOWN_TABLE__NA_20AE924: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MEMORY_ALLOCATION_ARENA_GETTERS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    PRNG_SEQUENCE_NUM: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    LOADED_OVERLAY_GROUP_0: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    LOADED_OVERLAY_GROUP_1: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    LOADED_OVERLAY_GROUP_2: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DEBUG_IS_INITIALIZED: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DIRECTORY_FILES_EXTRACTED: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DIRECTORY_FILE_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    GAME_STATE_VALUES: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    BAG_ITEMS_PTR_MIRROR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ITEM_DATA_TABLE_PTRS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DUNGEON_MOVE_TABLES: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    MOVE_DATA_TABLE_PTR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    WAN_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RENDER_3D: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RENDER_3D_FUNCTIONS_64: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    LANGUAGE_INFO_DATA: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    TBL_TALK_GROUP_STRING_ID_START: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    KEYBOARD_STRING_IDS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    NOTIFY_NOTE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DEFAULT_HERO_ID: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DEFAULT_PARTNER_ID: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    GAME_MODE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    GLOBAL_PROGRESS_PTR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ADVENTURE_LOG_PTR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    ITEM_TABLES_PTRS_1: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TEAM_MEMBER_TABLE_PTR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MISSION_LIST_PTR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    REMOTE_STRING_PTR_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RANK_STRING_PTR_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    SMD_EVENTS_FUN_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MUSIC_DURATION_LOOKUP_TABLE_1: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    MUSIC_DURATION_LOOKUP_TABLE_2: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    LFO_WAVEFORM_CALLBACKS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    IS_DISP_ON: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    GXI_DMA_ID: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    JUICE_BAR_NECTAR_IQ_GAIN: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    TEXT_SPEED: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    HERO_START_LEVEL: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    PARTNER_START_LEVEL: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-
-Arm9Protocol = SectionProtocol[
-    Arm9FunctionsProtocol,
-    Arm9DataProtocol,
-    int,
-]
-
-
-class ItcmFunctionsProtocol(Protocol):
-
-    Render3dSetTextureParams: Symbol[
-        list[int],
-        None,
-    ]
-
-    Render3dSetPaletteBase: Symbol[
-        list[int],
-        None,
-    ]
-
-    Render3dRectangle: Symbol[
-        list[int],
-        None,
-    ]
-
-    GeomSetPolygonAttributes: Symbol[
-        list[int],
-        None,
-    ]
-
-    Render3dQuadrilateral: Symbol[
-        list[int],
-        None,
-    ]
-
-    Render3dTiling: Symbol[
-        list[int],
-        None,
-    ]
-
-    Render3dTextureInternal: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    Render3dTexture: Symbol[
-        list[int],
-        None,
-    ]
-
-    Render3dTextureNoSetup: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    NewRender3dElement: Symbol[
-        list[int],
-        None,
-    ]
-
-    EnqueueRender3dTexture: Symbol[
-        list[int],
-        None,
-    ]
-
-    EnqueueRender3dTiling: Symbol[
-        list[int],
-        None,
-    ]
-
-    NewRender3dRectangle: Symbol[
-        list[int],
-        None,
-    ]
-
-    NewRender3dQuadrilateral: Symbol[
-        list[int],
-        None,
-    ]
-
-    NewRender3dTexture: Symbol[
-        list[int],
-        None,
-    ]
-
-    NewRender3dTiling: Symbol[
-        list[int],
-        None,
-    ]
-
-    Render3dProcessQueue: Symbol[
-        list[int],
-        None,
-    ]
-
-    GetKeyN2MSwitch: Symbol[
-        list[int],
-        None,
-    ]
-
-    GetKeyN2M: Symbol[
-        list[int],
-        None,
-    ]
-
-    GetKeyN2MBaseForm: Symbol[
-        list[int],
-        None,
-    ]
-
-    GetKeyM2NSwitch: Symbol[
-        list[int],
-        None,
-    ]
-
-    GetKeyM2N: Symbol[
-        list[int],
-        None,
-    ]
-
-    GetKeyM2NBaseForm: Symbol[
-        list[int],
-        None,
-    ]
-
-    HardwareInterrupt: Symbol[
-        list[int],
-        None,
-    ]
-
-    ReturnFromInterrupt: Symbol[
-        list[int],
-        None,
-    ]
-
-    ShouldMonsterRunAwayVariationOutlawCheck: Symbol[
-        list[int],
-        None,
-    ]
-
-    AiMovement: Symbol[
-        list[int],
-        None,
-    ]
-
-    CalculateAiTargetPos: Symbol[
-        list[int],
-        None,
-    ]
-
-    ChooseAiMove: Symbol[
-        list[int],
-        None,
-    ]
-
-    LightningRodStormDrainCheck: Symbol[
-        list[int],
-        None,
-    ]
-
-
-class ItcmDataProtocol(Protocol):
-
-    MEMORY_ALLOCATION_TABLE: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DEFAULT_MEMORY_ARENA: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    DEFAULT_MEMORY_ARENA_BLOCKS: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    RENDER_3D_FUNCTIONS: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-
-ItcmProtocol = SectionProtocol[
-    ItcmFunctionsProtocol,
-    ItcmDataProtocol,
-    int,
+LibsProtocol = SectionProtocol[
+    LibsFunctionsProtocol,
+    LibsDataProtocol,
+    Optional[int],
 ]
 
 
@@ -17755,6 +17770,8 @@ class AllSymbolsProtocol(Protocol):
     arm9: Arm9Protocol
 
     itcm: ItcmProtocol
+
+    libs: LibsProtocol
 
     move_effects: Move_effectsProtocol
 
