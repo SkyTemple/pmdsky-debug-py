@@ -9727,7 +9727,7 @@ class EuItcmItcmSection:
 
 class EuItcmLibsFunctions:
 
-    SoundUtilGetRandomNumber = Symbol(
+    SoundUtil_GetRandomNumber = Symbol(
         None, None, None, "return: random number in the range [0, 32767]"
     )
 
@@ -9788,24 +9788,24 @@ class EuItcmLibsFunctions:
         " and Irdkwia's notes.\n\nNo params.",
     )
 
-    SoundEnvelopeReset = Symbol(None, None, None, "r0: Sound envelope pointer")
+    SoundEnvelope_Reset = Symbol(None, None, None, "r0: Sound envelope pointer")
 
-    SoundEnvelopeParametersReset = Symbol(
+    SoundEnvelopeParameters_Reset = Symbol(
         None, None, None, "r0: Sound envelope parameters pointer"
     )
 
-    SoundEnvelopeParametersCheckValidity = Symbol(
+    SoundEnvelopeParameters_CheckValidity = Symbol(
         None, None, None, "r0: Sound envelope parameters pointer"
     )
 
-    SoundEnvelopeSetParameters = Symbol(
+    SoundEnvelope_SetParameters = Symbol(
         None,
         None,
         None,
         "r0: Sound envelope pointer\nr1: Sound envelope parameters pointer",
     )
 
-    SoundEnvelopeSetSlide = Symbol(
+    SoundEnvelope_SetSlide = Symbol(
         None,
         None,
         None,
@@ -9821,68 +9821,68 @@ class EuItcmLibsFunctions:
         " Sound envelope pointer",
     )
 
-    SoundEnvelopeRelease = Symbol(None, None, None, "r0: Sound envelope pointer")
+    SoundEnvelope_Release = Symbol(None, None, None, "r0: Sound envelope pointer")
 
-    SoundEnvelopeStop = Symbol(None, None, None, "r0: Sound envelope pointer")
+    SoundEnvelope_Stop = Symbol(None, None, None, "r0: Sound envelope pointer")
 
-    SoundEnvelopeForceVolume = Symbol(
+    SoundEnvelope_ForceVolume = Symbol(
         None, None, None, "r0: Sound envelope pointer\nr1: Volume"
     )
 
-    SoundEnvelopeStop2 = Symbol(None, None, None, "r0: Sound envelope pointer")
+    SoundEnvelope_Stop2 = Symbol(None, None, None, "r0: Sound envelope pointer")
 
-    SoundEnvelopeTick = Symbol(
+    SoundEnvelope_Tick = Symbol(
         None, None, None, "r0: Sound envelope pointer\nreturn: Current volume"
     )
 
-    SoundLfoBankReset = Symbol(None, None, None, "r0: LFO bank pointer")
+    SoundLfoBank_Reset = Symbol(None, None, None, "r0: LFO bank pointer")
 
-    SoundLfoBankSet = Symbol(
+    SoundLfoBank_Set = Symbol(
         None,
         None,
         None,
         "r0: LFO bank pointer\nr1: LFO settings pointer\nr2: Envelope level",
     )
 
-    SoundLfoBankSetConstEnvelopes = Symbol(
+    SoundLfoBank_SetConstEnvelopes = Symbol(
         None, None, None, "r0: LFO bank pointer\nr1: Level"
     )
 
-    SoundLfoBankTick = Symbol(
+    SoundLfoBank_Tick = Symbol(
         None, None, None, "r0: LFO bank pointer\nreturn: New voice update flags"
     )
 
-    SoundLfoWaveInvalidFunc = Symbol(None, None, None, "r0: LFO pointer\nreturn: 0")
+    SoundLfoWave_InvalidFunc = Symbol(None, None, None, "r0: LFO pointer\nreturn: 0")
 
-    SoundLfoWaveHalfSquareFunc = Symbol(
+    SoundLfoWave_HalfSquareFunc = Symbol(
         None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
-    SoundLfoWaveFullSquareFunc = Symbol(
+    SoundLfoWave_FullSquareFunc = Symbol(
         None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
-    SoundLfoWaveHalfTriangleFunc = Symbol(
+    SoundLfoWave_HalfTriangleFunc = Symbol(
         None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
-    SoundLfoWaveFullTriangleFunc = Symbol(
+    SoundLfoWave_FullTriangleFunc = Symbol(
         None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
-    SoundLfoWaveSawFunc = Symbol(
+    SoundLfoWave_SawFunc = Symbol(
         None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
-    SoundLfoWaveReverseSawFunc = Symbol(
+    SoundLfoWave_ReverseSawFunc = Symbol(
         None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
-    SoundLfoWaveHalfNoiseFunc = Symbol(
+    SoundLfoWave_HalfNoiseFunc = Symbol(
         None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
-    SoundLfoWaveFullNoiseFunc = Symbol(
+    SoundLfoWave_FullNoiseFunc = Symbol(
         None, None, None, "r0: LFO pointer\nreturn: LFO current output"
     )
 

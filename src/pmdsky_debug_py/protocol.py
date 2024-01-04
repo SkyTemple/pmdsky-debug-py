@@ -6185,7 +6185,7 @@ ItcmProtocol = SectionProtocol[
 
 class LibsFunctionsProtocol(Protocol):
 
-    SoundUtilGetRandomNumber: Symbol[
+    SoundUtil_GetRandomNumber: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6225,27 +6225,27 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    SoundEnvelopeReset: Symbol[
+    SoundEnvelope_Reset: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundEnvelopeParametersReset: Symbol[
+    SoundEnvelopeParameters_Reset: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundEnvelopeParametersCheckValidity: Symbol[
+    SoundEnvelopeParameters_CheckValidity: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundEnvelopeSetParameters: Symbol[
+    SoundEnvelope_SetParameters: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundEnvelopeSetSlide: Symbol[
+    SoundEnvelope_SetSlide: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6255,92 +6255,92 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    SoundEnvelopeRelease: Symbol[
+    SoundEnvelope_Release: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundEnvelopeStop: Symbol[
+    SoundEnvelope_Stop: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundEnvelopeForceVolume: Symbol[
+    SoundEnvelope_ForceVolume: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundEnvelopeStop2: Symbol[
+    SoundEnvelope_Stop2: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundEnvelopeTick: Symbol[
+    SoundEnvelope_Tick: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoBankReset: Symbol[
+    SoundLfoBank_Reset: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoBankSet: Symbol[
+    SoundLfoBank_Set: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoBankSetConstEnvelopes: Symbol[
+    SoundLfoBank_SetConstEnvelopes: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoBankTick: Symbol[
+    SoundLfoBank_Tick: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoWaveInvalidFunc: Symbol[
+    SoundLfoWave_InvalidFunc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoWaveHalfSquareFunc: Symbol[
+    SoundLfoWave_HalfSquareFunc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoWaveFullSquareFunc: Symbol[
+    SoundLfoWave_FullSquareFunc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoWaveHalfTriangleFunc: Symbol[
+    SoundLfoWave_HalfTriangleFunc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoWaveFullTriangleFunc: Symbol[
+    SoundLfoWave_FullTriangleFunc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoWaveSawFunc: Symbol[
+    SoundLfoWave_SawFunc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoWaveReverseSawFunc: Symbol[
+    SoundLfoWave_ReverseSawFunc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoWaveHalfNoiseFunc: Symbol[
+    SoundLfoWave_HalfNoiseFunc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SoundLfoWaveFullNoiseFunc: Symbol[
+    SoundLfoWave_FullNoiseFunc: Symbol[
         Optional[list[int]],
         None,
     ]
