@@ -211,7 +211,7 @@ class JpArm9Functions:
         " will jump to NitroMain.\n\nNo params.",
     )
 
-    InitI_CpuClear32 = Symbol(None, None, None, "")
+    InitI_CpuClear32 = Symbol([0x954], [0x2000954], None, "")
 
     MIi_UncompressBackward = Symbol(
         [0x970],
@@ -234,7 +234,7 @@ class JpArm9Functions:
         "Startup routine in the program's crt0 (https://en.wikipedia.org/wiki/Crt0).",
     )
 
-    init_cp15 = Symbol(None, None, None, "")
+    init_cp15 = Symbol([0xAB0], [0x2000AB0], None, "")
 
     OSi_ReferSymbol = Symbol(
         None,
@@ -993,8 +993,8 @@ class JpArm9Functions:
     )
 
     UpdateFadeStatus = Symbol(
-        None,
-        None,
+        [0xB990],
+        [0x200B990],
         None,
         "Updates the given screen_fade struct to initiate a fade for example.\n\nIn"
         " addition to initiating a fade this is called when a fade out is complete to"
@@ -1003,8 +1003,8 @@ class JpArm9Functions:
     )
 
     HandleFades = Symbol(
-        None,
-        None,
+        [0xBA08],
+        [0x200BA08],
         None,
         "Handles updating the screen_fade struct in all modes except dungeon"
         " mode.\n\nGets called every frame for both screens, analyzes the fade_struct"
@@ -1014,8 +1014,8 @@ class JpArm9Functions:
     )
 
     GetFadeStatus = Symbol(
-        None,
-        None,
+        [0xBD2C],
+        [0x200BD2C],
         None,
         "Returns 1 if fading to black, 2 if fading to white, 0 otherwise.\n\nr0:"
         " screen_fade\nreturn: int",
@@ -4070,8 +4070,8 @@ class JpArm9Functions:
     )
 
     DrawTextInWindow = Symbol(
-        None,
-        None,
+        [0x262EC],
+        [0x20262EC],
         None,
         "Seems to be responsible for drawing the text in a window.\n\nNeeds a call to"
         " UpdateWindow after to actually display the contents.\nUnclear if this is"
@@ -4124,8 +4124,8 @@ class JpArm9Functions:
     )
 
     UpdateWindow = Symbol(
-        None,
-        None,
+        [0x27E50],
+        [0x2027E50],
         None,
         "Seems to cause updated window contents to be displayed.\n   \nGets called for"
         " example at the end of a text box window update and seems to 'commit' the"
@@ -4134,8 +4134,8 @@ class JpArm9Functions:
     )
 
     ClearWindow = Symbol(
-        None,
-        None,
+        [0x27EB8],
+        [0x2027EB8],
         None,
         "Clears the window, at least in the case of a text box.\n\nThe low number of"
         " XREFs makes it seem like there might be more such functions.\n\nr0:"
@@ -6523,15 +6523,20 @@ class JpArm9Functions:
         "Gets the size of storage for the current rank.\n\nreturn: storage size",
     )
 
-    ResetPlayTimer = Symbol(None, None, None, "Reset the file timer.\n\nr0: play_time")
+    ResetPlayTimer = Symbol(
+        [0x51158], [0x2051158], None, "Reset the file timer.\n\nr0: play_time"
+    )
 
     PlayTimerTick = Symbol(
-        None, None, None, "Advance the file timer by 1 frame.\n\nr0: play_time"
+        [0x51168],
+        [0x2051168],
+        None,
+        "Advance the file timer by 1 frame.\n\nr0: play_time",
     )
 
     GetPlayTimeSeconds = Symbol(
-        None,
-        None,
+        [0x511A4],
+        [0x20511A4],
         None,
         "Returns the current play time in seconds.\n\nreturn: play time in seconds",
     )
@@ -8372,10 +8377,6 @@ class JpArm9Data:
         " exclusive_item_stat_boost_entry[15]",
     )
 
-    EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
-        [0x983DC], [0x20983DC], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
-    )
-
     EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
         [0x983DD], [0x20983DD], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
     )
@@ -9947,7 +9948,7 @@ class JpItcmSection:
 class JpLibsFunctions:
 
     SoundUtil_GetRandomNumber = Symbol(
-        None, None, None, "return: random number in the range [0, 32767]"
+        [0x81C], [0x206CBDC], None, "return: random number in the range [0, 32767]"
     )
 
     ReadWaviEntry = Symbol(
@@ -10010,26 +10011,28 @@ class JpLibsFunctions:
         " and Irdkwia's notes.\n\nNo params.",
     )
 
-    SoundEnvelope_Reset = Symbol(None, None, None, "r0: Sound envelope pointer")
+    SoundEnvelope_Reset = Symbol(
+        [0x8B98], [0x2074F58], None, "r0: Sound envelope pointer"
+    )
 
     SoundEnvelopeParameters_Reset = Symbol(
-        None, None, None, "r0: Sound envelope parameters pointer"
+        [0x8BAC], [0x2074F6C], None, "r0: Sound envelope parameters pointer"
     )
 
     SoundEnvelopeParameters_CheckValidity = Symbol(
-        None, None, None, "r0: Sound envelope parameters pointer"
+        [0x8BC8], [0x2074F88], None, "r0: Sound envelope parameters pointer"
     )
 
     SoundEnvelope_SetParameters = Symbol(
-        None,
-        None,
+        [0x8C1C],
+        [0x2074FDC],
         None,
         "r0: Sound envelope pointer\nr1: Sound envelope parameters pointer",
     )
 
     SoundEnvelope_SetSlide = Symbol(
-        None,
-        None,
+        [0x8C80],
+        [0x2075040],
         None,
         "r0: Sound envelope pointer\nr1: Target volume\nr2: Music duration lookup table"
         " index",
@@ -10043,118 +10046,132 @@ class JpLibsFunctions:
         " Sound envelope pointer",
     )
 
-    SoundEnvelope_Release = Symbol(None, None, None, "r0: Sound envelope pointer")
+    SoundEnvelope_Release = Symbol(
+        [0x8E00], [0x20751C0], None, "r0: Sound envelope pointer"
+    )
 
-    SoundEnvelope_Stop = Symbol(None, None, None, "r0: Sound envelope pointer")
+    SoundEnvelope_Stop = Symbol(
+        [0x8E2C], [0x20751EC], None, "r0: Sound envelope pointer"
+    )
 
     SoundEnvelope_ForceVolume = Symbol(
-        None, None, None, "r0: Sound envelope pointer\nr1: Volume"
+        [0x8E44], [0x2075204], None, "r0: Sound envelope pointer\nr1: Volume"
     )
 
-    SoundEnvelope_Stop2 = Symbol(None, None, None, "r0: Sound envelope pointer")
+    SoundEnvelope_Stop2 = Symbol(
+        [0x8E64], [0x2075224], None, "r0: Sound envelope pointer"
+    )
 
     SoundEnvelope_Tick = Symbol(
-        None, None, None, "r0: Sound envelope pointer\nreturn: Current volume"
+        [0x8E7C],
+        [0x207523C],
+        None,
+        "r0: Sound envelope pointer\nreturn: Current volume",
     )
 
-    SoundLfoBank_Reset = Symbol(None, None, None, "r0: LFO bank pointer")
+    SoundLfoBank_Reset = Symbol([0x8FC4], [0x2075384], None, "r0: LFO bank pointer")
 
     SoundLfoBank_Set = Symbol(
-        None,
-        None,
+        [0x8FDC],
+        [0x207539C],
         None,
         "r0: LFO bank pointer\nr1: LFO settings pointer\nr2: Envelope level",
     )
 
     SoundLfoBank_SetConstEnvelopes = Symbol(
-        None, None, None, "r0: LFO bank pointer\nr1: Level"
+        [0x91D4], [0x2075594], None, "r0: LFO bank pointer\nr1: Level"
     )
 
     SoundLfoBank_Tick = Symbol(
-        None, None, None, "r0: LFO bank pointer\nreturn: New voice update flags"
+        [0x9220],
+        [0x20755E0],
+        None,
+        "r0: LFO bank pointer\nreturn: New voice update flags",
     )
 
-    SoundLfoWave_InvalidFunc = Symbol(None, None, None, "r0: LFO pointer\nreturn: 0")
+    SoundLfoWave_InvalidFunc = Symbol(
+        [0x92D4], [0x2075694], None, "r0: LFO pointer\nreturn: 0"
+    )
 
     SoundLfoWave_HalfSquareFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+        [0x92E8], [0x20756A8], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     SoundLfoWave_FullSquareFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+        [0x9324], [0x20756E4], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     SoundLfoWave_HalfTriangleFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+        [0x936C], [0x207572C], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     SoundLfoWave_FullTriangleFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+        [0x93C0], [0x2075780], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     SoundLfoWave_SawFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+        [0x9424], [0x20757E4], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     SoundLfoWave_ReverseSawFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+        [0x9460], [0x2075820], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     SoundLfoWave_HalfNoiseFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+        [0x949C], [0x207585C], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
     SoundLfoWave_FullNoiseFunc = Symbol(
-        None, None, None, "r0: LFO pointer\nreturn: LFO current output"
+        [0x94E0], [0x20758A0], None, "r0: LFO pointer\nreturn: LFO current output"
     )
 
-    Crypto_RC4Init = Symbol(None, None, None, "")
+    Crypto_RC4Init = Symbol([0x9648], [0x2075A08], None, "")
 
-    Mtx_LookAt = Symbol(None, None, None, "")
+    Mtx_LookAt = Symbol([0x9750], [0x2075B10], None, "")
 
-    Mtx_OrthoW = Symbol(None, None, None, "")
+    Mtx_OrthoW = Symbol([0x9858], [0x2075C18], None, "")
 
-    FX_Div = Symbol(None, None, None, "")
+    FX_Div = Symbol([0x9A60], [0x2075E20], None, "")
 
-    FX_GetDivResultFx64c = Symbol(None, None, None, "")
+    FX_GetDivResultFx64c = Symbol([0x9A70], [0x2075E30], None, "")
 
-    FX_GetDivResult = Symbol(None, None, None, "")
+    FX_GetDivResult = Symbol([0x9A94], [0x2075E54], None, "")
 
-    FX_InvAsync = Symbol(None, None, None, "")
+    FX_InvAsync = Symbol([0x9ACC], [0x2075E8C], None, "")
 
-    FX_DivAsync = Symbol(None, None, None, "")
+    FX_DivAsync = Symbol([0x9AFC], [0x2075EBC], None, "")
 
-    FX_DivS32 = Symbol(None, None, None, "")
+    FX_DivS32 = Symbol([0x9B24], [0x2075EE4], None, "")
 
-    FX_ModS32 = Symbol(None, None, None, "")
+    FX_ModS32 = Symbol([0x9B60], [0x2075F20], None, "")
 
-    Vec_DotProduct = Symbol(None, None, None, "")
+    Vec_DotProduct = Symbol([0x9B9C], [0x2075F5C], None, "")
 
-    Vec_CrossProduct = Symbol(None, None, None, "")
+    Vec_CrossProduct = Symbol([0x9BD8], [0x2075F98], None, "")
 
-    Vec_Normalize = Symbol(None, None, None, "")
+    Vec_Normalize = Symbol([0x9C5C], [0x207601C], None, "")
 
-    Vec_Distance = Symbol(None, None, None, "")
+    Vec_Distance = Symbol([0x9D74], [0x2076134], None, "")
 
-    FX_Atan2Idx = Symbol(None, None, None, "")
+    FX_Atan2Idx = Symbol([0x9DF0], [0x20761B0], None, "")
 
-    GX_Init = Symbol(None, None, None, "")
+    GX_Init = Symbol([0x9F9C], [0x207635C], None, "")
 
-    GX_HBlankIntr = Symbol(None, None, None, "")
+    GX_HBlankIntr = Symbol([0xA0E8], [0x20764A8], None, "")
 
-    GX_VBlankIntr = Symbol(None, None, None, "")
+    GX_VBlankIntr = Symbol([0xA110], [0x20764D0], None, "")
 
-    GX_DispOff = Symbol(None, None, None, "")
+    GX_DispOff = Symbol([0xA144], [0x2076504], None, "")
 
-    GX_DispOn = Symbol(None, None, None, "")
+    GX_DispOn = Symbol([0xA180], [0x2076540], None, "")
 
-    GX_SetGraphicsMode = Symbol(None, None, None, "")
+    GX_SetGraphicsMode = Symbol([0xA1C8], [0x2076588], None, "")
 
-    Gxs_SetGraphicsMode = Symbol(None, None, None, "")
+    Gxs_SetGraphicsMode = Symbol([0xA230], [0x20765F0], None, "")
 
-    GXx_SetMasterBrightness = Symbol(None, None, None, "")
+    GXx_SetMasterBrightness = Symbol([0xA24C], [0x207660C], None, "")
 
-    GX_InitGxState = Symbol(None, None, None, "")
+    GX_InitGxState = Symbol([0xA274], [0x2076634], None, "")
 
     EnableVramBanksInSetDontSave = Symbol(
         [0xA2D4],
@@ -10164,31 +10181,31 @@ class JpLibsFunctions:
         " in ENABLED_VRAM_BANKS\n\nr0: vram_banks_set",
     )
 
-    GX_SetBankForBg = Symbol(None, None, None, "")
+    GX_SetBankForBg = Symbol([0xA38C], [0x207674C], None, "")
 
-    GX_SetBankForObj = Symbol(None, None, None, "")
+    GX_SetBankForObj = Symbol([0xA61C], [0x20769DC], None, "")
 
-    GX_SetBankForBgExtPltt = Symbol(None, None, None, "")
+    GX_SetBankForBgExtPltt = Symbol([0xA76C], [0x2076B2C], None, "")
 
-    GX_SetBankForObjExtPltt = Symbol(None, None, None, "")
+    GX_SetBankForObjExtPltt = Symbol([0xA86C], [0x2076C2C], None, "")
 
-    GX_SetBankForTex = Symbol(None, None, None, "")
+    GX_SetBankForTex = Symbol([0xA918], [0x2076CD8], None, "")
 
-    GX_SetBankForTexPltt = Symbol(None, None, None, "")
+    GX_SetBankForTexPltt = Symbol([0xAAF0], [0x2076EB0], None, "")
 
-    GX_SetBankForClearImage = Symbol(None, None, None, "")
+    GX_SetBankForClearImage = Symbol([0xABD8], [0x2076F98], None, "")
 
-    GX_SetBankForArm7 = Symbol(None, None, None, "")
+    GX_SetBankForArm7 = Symbol([0xAD0C], [0x20770CC], None, "")
 
-    GX_SetBankForLcdc = Symbol(None, None, None, "")
+    GX_SetBankForLcdc = Symbol([0xADB8], [0x2077178], None, "")
 
-    GX_SetBankForSubBg = Symbol(None, None, None, "")
+    GX_SetBankForSubBg = Symbol([0xADD8], [0x2077198], None, "")
 
-    GX_SetBankForSubObj = Symbol(None, None, None, "")
+    GX_SetBankForSubObj = Symbol([0xAE80], [0x2077240], None, "")
 
-    GX_SetBankForSubBgExtPltt = Symbol(None, None, None, "")
+    GX_SetBankForSubBgExtPltt = Symbol([0xAEF0], [0x20772B0], None, "")
 
-    GX_SetBankForSubObjExtPltt = Symbol(None, None, None, "")
+    GX_SetBankForSubObjExtPltt = Symbol([0xAF70], [0x2077330], None, "")
 
     EnableVramBanksInSet = Symbol(
         [0xAFF0],
@@ -10210,7 +10227,7 @@ class JpLibsFunctions:
 
     GX_ResetBankForSubObjExtPltt = Symbol(None, None, None, "")
 
-    DisableBankForX = Symbol(None, None, None, "")
+    DisableBankForX = Symbol([0xB0E4], [0x20774A4], None, "")
 
     GX_DisableBankForBg = Symbol(None, None, None, "")
 
@@ -10238,37 +10255,37 @@ class JpLibsFunctions:
 
     GX_DisableBankForSubObjExtPltt = Symbol(None, None, None, "")
 
-    G2_GetBG0ScrPtr = Symbol(None, None, None, "")
+    G2_GetBG0ScrPtr = Symbol([0xB310], [0x20776D0], None, "")
 
-    G2S_GetBG0ScrPtr = Symbol(None, None, None, "")
+    G2S_GetBG0ScrPtr = Symbol([0xB344], [0x2077704], None, "")
 
-    G2_GetBG1ScrPtr = Symbol(None, None, None, "")
+    G2_GetBG1ScrPtr = Symbol([0xB364], [0x2077724], None, "")
 
-    G2S_GetBG1ScrPtr = Symbol(None, None, None, "")
+    G2S_GetBG1ScrPtr = Symbol([0xB398], [0x2077758], None, "")
 
-    G2_GetBG2ScrPtr = Symbol(None, None, None, "")
+    G2_GetBG2ScrPtr = Symbol([0xB3B8], [0x2077778], None, "")
 
-    G2_GetBG3ScrPtr = Symbol(None, None, None, "")
+    G2_GetBG3ScrPtr = Symbol([0xB43C], [0x20777FC], None, "")
 
-    G2_GetBG0CharPtr = Symbol(None, None, None, "")
+    G2_GetBG0CharPtr = Symbol([0xB4C0], [0x2077880], None, "")
 
-    G2S_GetBG0CharPtr = Symbol(None, None, None, "")
+    G2S_GetBG0CharPtr = Symbol([0xB4F4], [0x20778B4], None, "")
 
-    G2_GetBG1CharPtr = Symbol(None, None, None, "")
+    G2_GetBG1CharPtr = Symbol([0xB514], [0x20778D4], None, "")
 
-    G2S_GetBG1CharPtr = Symbol(None, None, None, "")
+    G2S_GetBG1CharPtr = Symbol([0xB548], [0x2077908], None, "")
 
-    G2_GetBG2CharPtr = Symbol(None, None, None, "")
+    G2_GetBG2CharPtr = Symbol([0xB568], [0x2077928], None, "")
 
-    G2_GetBG3CharPtr = Symbol(None, None, None, "")
+    G2_GetBG3CharPtr = Symbol([0xB5B8], [0x2077978], None, "")
 
-    G2x_SetBlendAlpha = Symbol(None, None, None, "")
+    G2x_SetBlendAlpha = Symbol([0xB610], [0x20779D0], None, "")
 
-    G2x_SetBlendBrightness = Symbol(None, None, None, "")
+    G2x_SetBlendBrightness = Symbol([0xB62C], [0x20779EC], None, "")
 
-    G2x_ChangeBlendBrightness = Symbol(None, None, None, "")
+    G2x_ChangeBlendBrightness = Symbol([0xB654], [0x2077A14], None, "")
 
-    G3_LoadMtx44 = Symbol(None, None, None, "")
+    G3_LoadMtx44 = Symbol([0xB698], [0x2077A58], None, "")
 
     G3_LoadMtx43 = Symbol(
         [0xB6B4],
@@ -10297,45 +10314,45 @@ class JpLibsFunctions:
         " matrix_4x3 pointer",
     )
 
-    G3X_Init = Symbol(None, None, None, "")
+    G3X_Init = Symbol([0xB6EC], [0x2077AAC], None, "")
 
-    G3X_Reset = Symbol(None, None, None, "")
+    G3X_Reset = Symbol([0xB7F8], [0x2077BB8], None, "")
 
-    G3X_ClearFifo = Symbol(None, None, None, "")
+    G3X_ClearFifo = Symbol([0xB864], [0x2077C24], None, "")
 
-    G3X_InitMtxStack = Symbol(None, None, None, "")
+    G3X_InitMtxStack = Symbol([0xB88C], [0x2077C4C], None, "")
 
-    G3X_ResetMtxStack = Symbol(None, None, None, "")
+    G3X_ResetMtxStack = Symbol([0xB924], [0x2077CE4], None, "")
 
-    G3X_SetClearColor = Symbol(None, None, None, "")
+    G3X_SetClearColor = Symbol([0xB9B4], [0x2077D74], None, "")
 
-    G3X_InitTable = Symbol(None, None, None, "")
+    G3X_InitTable = Symbol([0xB9DC], [0x2077D9C], None, "")
 
-    G3X_GetMtxStackLevelPV = Symbol(None, None, None, "")
+    G3X_GetMtxStackLevelPV = Symbol([0xBA7C], [0x2077E3C], None, "")
 
-    G3X_GetMtxStackLevelPJ = Symbol(None, None, None, "")
+    G3X_GetMtxStackLevelPJ = Symbol([0xBAAC], [0x2077E6C], None, "")
 
-    GXi_NopClearFifo128 = Symbol(None, None, None, "")
+    GXi_NopClearFifo128 = Symbol([0xBADC], [0x2077E9C], None, "")
 
-    G3i_OrthoW = Symbol(None, None, None, "")
+    G3i_OrthoW = Symbol([0xBB70], [0x2077F30], None, "")
 
-    G3i_LookAt = Symbol(None, None, None, "")
+    G3i_LookAt = Symbol([0xBBD4], [0x2077F94], None, "")
 
-    GX_LoadBgPltt = Symbol(None, None, None, "")
+    GX_LoadBgPltt = Symbol([0xBC20], [0x2077FE0], None, "")
 
-    Gxs_LoadBgPltt = Symbol(None, None, None, "")
+    Gxs_LoadBgPltt = Symbol([0xBC74], [0x2078034], None, "")
 
-    GX_LoadObjPltt = Symbol(None, None, None, "")
+    GX_LoadObjPltt = Symbol([0xBCCC], [0x207808C], None, "")
 
-    Gxs_LoadObjPltt = Symbol(None, None, None, "")
+    Gxs_LoadObjPltt = Symbol([0xBD24], [0x20780E4], None, "")
 
-    GX_LoadOam = Symbol(None, None, None, "")
+    GX_LoadOam = Symbol([0xBD7C], [0x207813C], None, "")
 
-    Gxs_LoadOam = Symbol(None, None, None, "")
+    Gxs_LoadOam = Symbol([0xBDD0], [0x2078190], None, "")
 
-    GX_LoadObj = Symbol(None, None, None, "")
+    GX_LoadObj = Symbol([0xBE28], [0x20781E8], None, "")
 
-    Gxs_LoadObj = Symbol(None, None, None, "")
+    Gxs_LoadObj = Symbol([0xBE80], [0x2078240], None, "")
 
     GX_LoadBg0Scr = Symbol(None, None, None, "")
 
@@ -10359,33 +10376,33 @@ class JpLibsFunctions:
 
     GX_LoadBg3Char = Symbol(None, None, None, "")
 
-    GX_BeginLoadBgExtPltt = Symbol(None, None, None, "")
+    GX_BeginLoadBgExtPltt = Symbol([0xC2F8], [0x20786B8], None, "")
 
-    GX_EndLoadBgExtPltt = Symbol(None, None, None, "")
+    GX_EndLoadBgExtPltt = Symbol([0xC398], [0x2078758], None, "")
 
-    GX_BeginLoadObjExtPltt = Symbol(None, None, None, "")
+    GX_BeginLoadObjExtPltt = Symbol([0xC3E0], [0x20787A0], None, "")
 
-    GX_EndLoadObjExtPltt = Symbol(None, None, None, "")
+    GX_EndLoadObjExtPltt = Symbol([0xC428], [0x20787E8], None, "")
 
-    Gxs_BeginLoadBgExtPltt = Symbol(None, None, None, "")
+    Gxs_BeginLoadBgExtPltt = Symbol([0xC46C], [0x207882C], None, "")
 
-    Gxs_EndLoadBgExtPltt = Symbol(None, None, None, "")
+    Gxs_EndLoadBgExtPltt = Symbol([0xC484], [0x2078844], None, "")
 
-    Gxs_BeginLoadObjExtPltt = Symbol(None, None, None, "")
+    Gxs_BeginLoadObjExtPltt = Symbol([0xC4C4], [0x2078884], None, "")
 
-    Gxs_EndLoadObjExtPltt = Symbol(None, None, None, "")
+    Gxs_EndLoadObjExtPltt = Symbol([0xC4DC], [0x207889C], None, "")
 
-    GX_BeginLoadTex = Symbol(None, None, None, "")
+    GX_BeginLoadTex = Symbol([0xC51C], [0x20788DC], None, "")
 
-    GX_LoadTex = Symbol(None, None, None, "")
+    GX_LoadTex = Symbol([0xC578], [0x2078938], None, "")
 
-    GX_EndLoadTex = Symbol(None, None, None, "")
+    GX_EndLoadTex = Symbol([0xC6B8], [0x2078A78], None, "")
 
-    GX_BeginLoadTexPltt = Symbol(None, None, None, "")
+    GX_BeginLoadTexPltt = Symbol([0xC704], [0x2078AC4], None, "")
 
-    GX_LoadTexPltt = Symbol(None, None, None, "")
+    GX_LoadTexPltt = Symbol([0xC738], [0x2078AF8], None, "")
 
-    GX_EndLoadTexPltt = Symbol(None, None, None, "")
+    GX_EndLoadTexPltt = Symbol([0xC7A4], [0x2078B64], None, "")
 
     GeomGxFifoSendMtx4x3 = Symbol(
         [0xC7E8],
@@ -10401,9 +10418,9 @@ class JpLibsFunctions:
         " instructions.\n\nr0: matrix_4x3 pointer\nr1: GXFIFO pointer",
     )
 
-    GX_SendFifo64B = Symbol(None, None, None, "")
+    GX_SendFifo64B = Symbol([0xC80C], [0x2078BCC], None, "")
 
-    OS_GetLockID = Symbol(None, None, None, "")
+    OS_GetLockID = Symbol([0xCF54], [0x2079314], None, "")
 
     IncrementThreadCount = Symbol(
         [0xD078],
@@ -10540,8 +10557,8 @@ class JpLibsFunctions:
     )
 
     CountLeadingZeros = Symbol(
-        None,
-        None,
+        [0xF9B4],
+        [0x207BD74],
         None,
         "Counts the number of leading zeros in a 32-bit integer.\n\nr0: x\nreturn:"
         " clz(x)",
@@ -10929,75 +10946,75 @@ class JpLibsFunctions:
     )
 
     _dadd = Symbol(
-        None,
-        None,
+        [0x21DF0],
+        [0x208E1B0],
         None,
         "Implements the addition operator for IEEE 754 double-precision floating-point"
         " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
         " Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a + b",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __adddf3 in libgcc.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low"
+        " bits)\nr3: b (high bits)\nreturn: a + b",
     )
 
     _d2f = Symbol(
-        None,
-        None,
+        [0x22108],
+        [0x208E4C8],
         None,
         "Implements the double to float cast operator for IEEE 754 floating-point"
-        " numbers.\n\nr0: double (low bits)\nr1: double (high bits)\nreturn:"
-        " (float)double",
+        " numbers.\n\nAnalogous to __truncdfsf2 in libgcc.\n\nr0: double (low"
+        " bits)\nr1: double (high bits)\nreturn: (float)double",
     )
 
     _ll_ufrom_d = Symbol(
-        None,
-        None,
+        [0x2220C],
+        [0x208E5CC],
         None,
         "Implements the double to unsigned long long cast operation for IEEE 754"
         " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
         " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " double (low bits)\nr1: double (high bits)\nreturn: (unsigned long"
-        " long)double",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __fixunsdfti in libgcc.\n\nr0: double (low bits)\nr1: double (high"
+        " bits)\nreturn: (unsigned long long)double",
     )
 
     _dflt = Symbol(
-        None,
-        None,
+        [0x22298],
+        [0x208E658],
         None,
         "Implements the int to double cast operation for IEEE 754 floating-point"
         " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
         " Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " int\nreturn: (double)int",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __floatsidf in libgcc.\n\nr0: int\nreturn: (double)int",
     )
 
     _dfltu = Symbol(
-        None,
-        None,
+        [0x222D8],
+        [0x208E698],
         None,
         "Implements the unsigned int to double cast operation for IEEE 754"
         " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
         " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " uint\nreturn: (double)uint",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __floatunsidf in libgcc.\n\nr0: uint\nreturn: (double)uint",
     )
 
     _dmul = Symbol(
-        None,
-        None,
+        [0x22314],
+        [0x208E6D4],
         None,
         "Implements the multiplication operator for IEEE 754 double-precision"
         " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
         " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a * b",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __muldf3 in libgcc.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low"
+        " bits)\nr3: b (high bits)\nreturn: a * b",
     )
 
     _dsqrt = Symbol(
-        None,
-        None,
+        [0x22678],
+        [0x208EA38],
         None,
         "Analogous to the sqrt(3) C library function.\n\nThe result is returned in r0"
         " and r1, in accordance with the Procedure Call Standard for the Arm"
@@ -11007,15 +11024,15 @@ class JpLibsFunctions:
     )
 
     _dsub = Symbol(
-        None,
-        None,
+        [0x2282C],
+        [0x208EBEC],
         None,
         "Implements the subtraction operator for IEEE 754 double-precision"
         " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
         " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a - b",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __subdf3 in libgcc.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low"
+        " bits)\nr3: b (high bits)\nreturn: a - b",
     )
 
     _fadd = Symbol(
@@ -11027,8 +11044,8 @@ class JpLibsFunctions:
     )
 
     _dgeq = Symbol(
-        None,
-        None,
+        [0x22E04],
+        [0x208F1C4],
         None,
         "Implements the >= operator for IEEE 754 double-precision floating-point"
         " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
@@ -11036,8 +11053,8 @@ class JpLibsFunctions:
     )
 
     _dleq = Symbol(
-        None,
-        None,
+        [0x22E9C],
+        [0x208F25C],
         None,
         "Implements the <= operator for IEEE 754 double-precision floating-point"
         " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
@@ -11045,8 +11062,8 @@ class JpLibsFunctions:
     )
 
     _dls = Symbol(
-        None,
-        None,
+        [0x22F40],
+        [0x208F300],
         None,
         "Implements the < operator for IEEE 754 double-precision floating-point"
         " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
@@ -11054,8 +11071,8 @@ class JpLibsFunctions:
     )
 
     _deq = Symbol(
-        None,
-        None,
+        [0x22FDC],
+        [0x208F39C],
         None,
         "Implements the == operator for IEEE 754 double-precision floating-point"
         " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
@@ -11063,8 +11080,8 @@ class JpLibsFunctions:
     )
 
     _dneq = Symbol(
-        None,
-        None,
+        [0x23068],
+        [0x208F428],
         None,
         "Implements the != operator for IEEE 754 double-precision floating-point"
         " numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b"
@@ -11072,8 +11089,8 @@ class JpLibsFunctions:
     )
 
     _fls = Symbol(
-        None,
-        None,
+        [0x230F4],
+        [0x208F4B4],
         None,
         "Implements the < operator for IEEE 754 floating-point numbers.\n\nr0: a\nr1:"
         " b\nreturn: a < b",
@@ -11152,63 +11169,67 @@ class JpLibsFunctions:
     )
 
     _ll_mod = Symbol(
-        None,
-        None,
+        [0x23BA4],
+        [0x208FF64],
         None,
         "Implements the modulus operator for signed long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend % divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __modti3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend %"
+        " divisor",
     )
 
     _ll_sdiv = Symbol(
-        None,
-        None,
+        [0x23BB4],
+        [0x208FF74],
         None,
         "Implements the division operator for signed long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend / divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __divti3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend /"
+        " divisor",
     )
 
     _ll_udiv = Symbol(
-        None,
-        None,
+        [0x23D64],
+        [0x2090124],
         None,
         "Implements the division operator for unsigned long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend / divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __udivti3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend /"
+        " divisor",
     )
 
     _ull_mod = Symbol(
-        None,
-        None,
+        [0x23D70],
+        [0x2090130],
         None,
         "Implements the modulus operator for unsigned long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend % divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __umodti3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend %"
+        " divisor",
     )
 
     _ll_mul = Symbol(
-        None,
-        None,
+        [0x23DAC],
+        [0x209016C],
         None,
         "Implements the multiplication operator for signed long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a * b",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __multi3 in libgcc.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low"
+        " bits)\nr3: b (high bits)\nreturn: a * b",
     )
 
     _s32_div_f = Symbol(
@@ -11256,8 +11277,8 @@ class JpLibsFunctions:
     )
 
     _drdiv = Symbol(
-        None,
-        None,
+        [0x241BC],
+        [0x209057C],
         None,
         "The same as _ddiv, but with the parameters reversed.\n\nThis simply swaps the"
         " first and second parameters, then falls through to _ddiv.\n\nThe result is"
@@ -11269,20 +11290,21 @@ class JpLibsFunctions:
     )
 
     _ddiv = Symbol(
-        None,
-        None,
+        [0x241D4],
+        [0x2090594],
         None,
         "Implements the division operator for IEEE 754 double-precision floating-point"
         " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
         " Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend / divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __divdf3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend /"
+        " divisor",
     )
 
     _fp_init = Symbol(
-        None,
-        None,
+        [0x24718],
+        [0x2090AD8],
         None,
         "Meant to do set up for floating point calculations? Does nothing.\n\nNo"
         " params.",
@@ -14338,15 +14360,15 @@ class JpOverlay10Functions:
     )
 
     UpdateTeamStats = Symbol(
-        None,
-        None,
+        [0x4268],
+        [0x22C2488],
         None,
         "Handles updating the team stats top screen display.\n\nNo params.",
     )
 
     FreeTeamStats = Symbol(
-        None,
-        None,
+        [0x48E8],
+        [0x22C2B08],
         None,
         "Handles the procedure to close the team stats top screen display.\n\nFirst it"
         " deletes the sprites, then it closes the portrait boxes and then the text"
@@ -14355,8 +14377,8 @@ class JpOverlay10Functions:
     )
 
     FreeMapAndTeam = Symbol(
-        None,
-        None,
+        [0x4C0C],
+        [0x22C2E2C],
         None,
         "Handles the procedure to close the map and team top screen display.\n\nreturn:"
         " always 1, seems unused",
@@ -16012,8 +16034,8 @@ class JpOverlay11Functions:
     )
 
     IsScreenFadeInProgress = Symbol(
-        None,
-        None,
+        [0xDCCC],
+        [0x22EB5AC],
         None,
         "Used for example in the handler functions of the top screen types in ground"
         " mode to check whether the top screen fade is complete or not.\n\nreturn: True"
@@ -16262,8 +16284,8 @@ class JpOverlay11Functions:
     )
 
     HandleControlsTopScreenGround = Symbol(
-        None,
-        None,
+        [0x322E4],
+        [0x230FBC4],
         None,
         "Handles the controls top screen display in the overworld.\n\nFor some reason"
         " the implementation seems considerably jankier in ground mode. In dungeon mode"
@@ -16315,8 +16337,8 @@ class JpOverlay11Functions:
     )
 
     HandleTeamStatsGround = Symbol(
-        None,
-        None,
+        [0x37760],
+        [0x2315040],
         None,
         "Handles the team stats top screen display in the overworld.\n\nFor some reason"
         " the implementation seems considerably jankier in ground mode. In dungeon mode"
@@ -18687,47 +18709,47 @@ class JpOverlay29Functions:
     )
 
     AllocTopScreenStatus = Symbol(
-        None,
-        None,
+        [0xBC4C],
+        [0x22E952C],
         None,
         "Allocates and initializes the top_screen_status struct when entering dungeon"
         " mode.\n\nNo params.",
     )
 
     FreeTopScreenStatus = Symbol(
-        None,
-        None,
+        [0xBCCC],
+        [0x22E95AC],
         None,
         "Gets called when leaving dungeon mode, calls FreeTopScreen and then also frees"
         " the allocated memory to the top_screen_status struct.\n\nNo params.",
     )
 
     InitializeTeamStats = Symbol(
-        None,
-        None,
+        [0xBEB8],
+        [0x22E9798],
         None,
         "Initializes the team stats top screen.\n\nreturn: always 1, seems unused",
     )
 
     UpdateTeamStatsWrapper = Symbol(
-        None,
-        None,
+        [0xBF18],
+        [0x22E97F8],
         None,
         "Contains a check and calls UpdateTeamStats in overlay10.\n\nreturn: always 1,"
         " seems unused",
     )
 
     FreeTeamStatsWrapper = Symbol(
-        None,
-        None,
+        [0xBF70],
+        [0x22E9850],
         None,
         "Calls a function that calls FreeTeamStats in overlay10.\n\nreturn: always 1,"
         " seems unused",
     )
 
     AssignTopScreenHandlers = Symbol(
-        None,
-        None,
+        [0xC450],
+        [0x22E9D30],
         None,
         "Sets the handler functions of the top screen type.\n\nr0: Array where the"
         " handler function pointers get written to.\nr1: init_func\nr2:"
@@ -18735,8 +18757,8 @@ class JpOverlay29Functions:
     )
 
     HandleTopScreenFades = Symbol(
-        None,
-        None,
+        [0xC5F4],
+        [0x22E9ED4],
         None,
         "Used to initialize and uninitialize the top screen in dungeon mode in"
         " conjunction with handling the fade status of the screen.\n\nFor example, when"
@@ -18746,8 +18768,8 @@ class JpOverlay29Functions:
     )
 
     FreeTopScreen = Symbol(
-        None,
-        None,
+        [0xC9D4],
+        [0x22EA2B4],
         None,
         "Gets called twice when fading out the top screen. First it calls the free_func"
         " of the top screen type and sets the handlers to null and on the second pass"
@@ -23413,8 +23435,8 @@ class JpOverlay29Functions:
     )
 
     GetCurrentHiddenStairsType = Symbol(
-        None,
-        None,
+        [0x5C194],
+        [0x2339A74],
         None,
         "Checks if the current floor is a secret bazaar or a secret room and returns"
         " which one it is.\n\nreturn: enum hidden_stairs_type",
@@ -24494,8 +24516,8 @@ class JpOverlay29Functions:
     )
 
     DisplayFloorCard = Symbol(
-        None,
-        None,
+        [0x6BD7C],
+        [0x234965C],
         None,
         "Dispatches the splash screen between floors showing the dungeon name and the"
         " current floor.\n\nFirst it checks whether the current floor is a secret"
@@ -24504,8 +24526,8 @@ class JpOverlay29Functions:
     )
 
     HandleFloorCard = Symbol(
-        None,
-        None,
+        [0x6BDB4],
+        [0x2349694],
         None,
         "Handles the display of the splash screen between floors showing the dungeon"
         " name and the current floor.\n\nSeems to enter a loop where it calls"
@@ -24878,8 +24900,8 @@ class JpOverlay29Functions:
     )
 
     StartFadeDungeon = Symbol(
-        None,
-        None,
+        [0x6FD8C],
+        [0x234D66C],
         None,
         "Initiates a screen fade in dungeon mode.\n\nSets the fields of the"
         " dungeon_fade struct to appropriate values given in the args.\n\nr0: Dungeon"
@@ -24887,8 +24909,8 @@ class JpOverlay29Functions:
     )
 
     StartFadeDungeonWrapper = Symbol(
-        None,
-        None,
+        [0x6FFEC],
+        [0x234D8CC],
         None,
         "Calls StartFadeDungeon to initiate a screen fade in dungeon mode.\n\nSets the"
         " status field in the dungeon_fades struct to the fade type, then uses a"
@@ -24899,15 +24921,18 @@ class JpOverlay29Functions:
     )
 
     HandleFadesDungeon = Symbol(
-        None,
-        None,
+        [0x70158],
+        [0x234DA38],
         None,
         "Gets called every frame for both screens in dungeon mode. Handles the status"
         " of the screen fades.\n\nr0: enum screen",
     )
 
     HandleFadesDungeonBothScreens = Symbol(
-        None, None, None, "Calls HandleFadesDungeon for both screens.\n\nNo params."
+        [0x70368],
+        [0x234DC48],
+        None,
+        "Calls HandleFadesDungeon for both screens.\n\nNo params.",
     )
 
     DisplayDungeonTip = Symbol(
@@ -25871,8 +25896,8 @@ class JpOverlay31Functions:
     )
 
     DrawDungeonMenuStatusWindow = Symbol(
-        None,
-        None,
+        [0x44],
+        [0x2383AE4],
         None,
         "Draws the contents shown in the main dungeon menu status window showing the"
         " player's belly, money, play time, etc.\n\nr0: int",

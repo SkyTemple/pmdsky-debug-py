@@ -8389,10 +8389,6 @@ class NaArm9Data:
         " exclusive_item_stat_boost_entry[15]",
     )
 
-    EXCLUSIVE_ITEM_ATTACK_BOOSTS = Symbol(
-        [0x980E8], [0x20980E8], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 0"
-    )
-
     EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
         [0x980E9], [0x20980E9], 0x39, "EXCLUSIVE_ITEM_STAT_BOOST_DATA, offset by 1"
     )
@@ -10968,9 +10964,9 @@ class NaLibsFunctions:
         "Implements the addition operator for IEEE 754 double-precision floating-point"
         " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
         " Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a + b",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __adddf3 in libgcc.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low"
+        " bits)\nr3: b (high bits)\nreturn: a + b",
     )
 
     _d2f = Symbol(
@@ -10978,8 +10974,8 @@ class NaLibsFunctions:
         [0x208E1E0],
         None,
         "Implements the double to float cast operator for IEEE 754 floating-point"
-        " numbers.\n\nr0: double (low bits)\nr1: double (high bits)\nreturn:"
-        " (float)double",
+        " numbers.\n\nAnalogous to __truncdfsf2 in libgcc.\n\nr0: double (low"
+        " bits)\nr1: double (high bits)\nreturn: (float)double",
     )
 
     _ll_ufrom_d = Symbol(
@@ -10989,9 +10985,9 @@ class NaLibsFunctions:
         "Implements the double to unsigned long long cast operation for IEEE 754"
         " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
         " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " double (low bits)\nr1: double (high bits)\nreturn: (unsigned long"
-        " long)double",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __fixunsdfti in libgcc.\n\nr0: double (low bits)\nr1: double (high"
+        " bits)\nreturn: (unsigned long long)double",
     )
 
     _dflt = Symbol(
@@ -11001,8 +10997,8 @@ class NaLibsFunctions:
         "Implements the int to double cast operation for IEEE 754 floating-point"
         " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
         " Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " int\nreturn: (double)int",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __floatsidf in libgcc.\n\nr0: int\nreturn: (double)int",
     )
 
     _dfltu = Symbol(
@@ -11012,8 +11008,8 @@ class NaLibsFunctions:
         "Implements the unsigned int to double cast operation for IEEE 754"
         " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
         " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " uint\nreturn: (double)uint",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __floatunsidf in libgcc.\n\nr0: uint\nreturn: (double)uint",
     )
 
     _dmul = Symbol(
@@ -11023,9 +11019,9 @@ class NaLibsFunctions:
         "Implements the multiplication operator for IEEE 754 double-precision"
         " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
         " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a * b",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __muldf3 in libgcc.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low"
+        " bits)\nr3: b (high bits)\nreturn: a * b",
     )
 
     _dsqrt = Symbol(
@@ -11046,9 +11042,9 @@ class NaLibsFunctions:
         "Implements the subtraction operator for IEEE 754 double-precision"
         " floating-point numbers.\n\nThe result is returned in r0 and r1, in accordance"
         " with the Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a - b",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __subdf3 in libgcc.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low"
+        " bits)\nr3: b (high bits)\nreturn: a - b",
     )
 
     _fadd = Symbol(
@@ -11191,9 +11187,10 @@ class NaLibsFunctions:
         "Implements the modulus operator for signed long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend % divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __modti3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend %"
+        " divisor",
     )
 
     _ll_sdiv = Symbol(
@@ -11203,9 +11200,10 @@ class NaLibsFunctions:
         "Implements the division operator for signed long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend / divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __divti3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend /"
+        " divisor",
     )
 
     _ll_udiv = Symbol(
@@ -11215,9 +11213,10 @@ class NaLibsFunctions:
         "Implements the division operator for unsigned long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend / divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __udivti3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend /"
+        " divisor",
     )
 
     _ull_mod = Symbol(
@@ -11227,9 +11226,10 @@ class NaLibsFunctions:
         "Implements the modulus operator for unsigned long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend % divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __umodti3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend %"
+        " divisor",
     )
 
     _ll_mul = Symbol(
@@ -11239,9 +11239,9 @@ class NaLibsFunctions:
         "Implements the multiplication operator for signed long longs.\n\nThe result is"
         " returned in r0 and r1, in accordance with the Procedure Call Standard for the"
         " Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn:"
-        " a * b",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __multi3 in libgcc.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low"
+        " bits)\nr3: b (high bits)\nreturn: a * b",
     )
 
     _s32_div_f = Symbol(
@@ -11308,9 +11308,10 @@ class NaLibsFunctions:
         "Implements the division operator for IEEE 754 double-precision floating-point"
         " numbers.\n\nThe result is returned in r0 and r1, in accordance with the"
         " Procedure Call Standard for the Arm Architecture (see"
-        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nr0:"
-        " dividend (low bits)\nr1: dividend (high bits)\nr2: divisor (low bits)\nr3:"
-        " divisor (high bits)\nreturn: dividend / divisor",
+        " https://github.com/ARM-software/abi-aa/blob/60a8eb8c55e999d74dac5e368fc9d7e36e38dda4/aapcs32/aapcs32.rst#result-return).\n\nAnalogous"
+        " to __divdf3 in libgcc.\n\nr0: dividend (low bits)\nr1: dividend (high"
+        " bits)\nr2: divisor (low bits)\nr3: divisor (high bits)\nreturn: dividend /"
+        " divisor",
     )
 
     _fp_init = Symbol(
