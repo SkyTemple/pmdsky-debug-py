@@ -1513,8 +1513,8 @@ class JpItcmArm9Functions:
         None,
         None,
         None,
-        "Checks one specific bit from table [NA]2094D34\n\nNote: unverified, ported"
-        " from Irdkwia's notes\n\nr0: dungeon ID\nr1: item ID\nreturn: bool",
+        "Checks one specific bit from AVAILABLE_ITEMS_IN_GROUP_TABLE?\n\nr0: dungeon"
+        " ID\nr1: item ID\nreturn: bool",
     )
 
     GetItemIdFromList = Symbol(
@@ -4173,6 +4173,14 @@ class JpItcmArm9Functions:
         " window_id",
     )
 
+    ResumeParentMenu = Symbol(
+        None,
+        None,
+        None,
+        "Resumes input for a window created with CreateParentMenuInternal. Used for"
+        " menus that do not close even after selecting an option.\n\nr0: window_id",
+    )
+
     SetParentMenuState7 = Symbol(
         None, None, None, "Sets the state of a parent menu to 7.\n\nr0: window_id"
     )
@@ -4249,6 +4257,14 @@ class JpItcmArm9Functions:
         " number of items\nreturn: window_id",
     )
 
+    ResumeSimpleMenu = Symbol(
+        None,
+        None,
+        None,
+        "Resumes input for a window created with CreateSimpleMenuInternal. Used for"
+        " menus that do not close even after selecting an option.\n\nr0: window_id",
+    )
+
     CloseSimpleMenu = Symbol(
         None,
         None,
@@ -4322,6 +4338,14 @@ class JpItcmArm9Functions:
         " window_flags\nr2: window_extra_info pointer\nr3: entry_function\nstack[0]:"
         " total number of options\nstack[1]: number of options per page\nreturn:"
         " window_id",
+    )
+
+    ResumeAdvancedMenu = Symbol(
+        None,
+        None,
+        None,
+        "Resumes input for a window created with CreateAdvancedMenu. Used for menus"
+        " that do not close even after selecting an option.\n\nr0: window_id",
     )
 
     CloseAdvancedMenu = Symbol(
@@ -5522,12 +5546,28 @@ class JpItcmArm9Functions:
         " variable.\n\nreturn: special episode type",
     )
 
+    SetSpecialEpisodeType = Symbol(
+        None,
+        None,
+        None,
+        "Sets the special episode type by changing the SPECIAL_EPISODE_TYPE script"
+        " variable.\n\nr0: special episode type",
+    )
+
     GetExecuteSpecialEpisodeType = Symbol(
         None,
         None,
         None,
         "Gets the special episode type from the EXECUTE_SPECIAL_EPISODE_TYPE script"
         " variable.\n\nreturn: special episode type",
+    )
+
+    IsSpecialEpisodeOpen = Symbol(
+        None,
+        None,
+        None,
+        "Checks if a special episode is unlocked from the SPECIAL_EPISODE_OPEN script"
+        " variable.\n\nr0: special episode type\nreturn: bool",
     )
 
     HasPlayedOldGame = Symbol(
@@ -5818,6 +5858,17 @@ class JpItcmArm9Functions:
         " loading any data.\n\nThis function also modifies the flip fields in the"
         " passed portrait params.\n\nr0: portrait params pointer\nr1: kaomado_buffer"
         " pointer\nreturn: portrait exists",
+    )
+
+    WonderMailPasswordToMission = Symbol(
+        None,
+        None,
+        None,
+        "Tries to convert a Wonder Mail S password to a mission struct.\n\nReturns"
+        " whether the conversion was successful. This function does not include any"
+        " checks if the mission itself is valid, only if the code is valid.\n\nr0:"
+        " string\nr1: Pointer to the struct where the data of the converted mission"
+        " will be written to\nreturn: successful conversion",
     )
 
     SetEnterDungeon = Symbol(
@@ -7353,14 +7404,24 @@ class JpItcmArm9Functions:
         " (index 4) if one is present.\n\nreturn: ground monster pointer",
     )
 
+    GetFirstMatchingMemberIdx = Symbol(
+        None,
+        None,
+        None,
+        "Gets the first team member index (in the Chimecho Assembly) that has a"
+        " specific monster ID, or -1 if there is none.\n\nIf valid, this will always be"
+        " 5 or greater, since indexes 0-4 are reserved for main characters.\n\nr0:"
+        " monster ID\nreturn: team member index of the first matching slot",
+    )
+
     GetFirstEmptyMemberIdx = Symbol(
         None,
         None,
         None,
         "Gets the first unoccupied team member index (in the Chimecho Assembly), or -1"
-        " if there is none.\n\nIf valid, this will always be at least 5, since indexes"
-        " 0-4 are reserved for main characters.\n\nr0: ?\nreturn: team member index of"
-        " the first available slot",
+        " if there is none.\n\nIf valid, this will always be 5 or greater, since"
+        " indexes 0-4 are reserved for main characters.\n\nr0: ?\nreturn: team member"
+        " index of the first available slot",
     )
 
     IsMonsterNotNicknamed = Symbol(
@@ -7723,6 +7784,22 @@ class JpItcmArm9Functions:
         " ScriptSpecialProcessCall).\n\nr0: ?\nr1: some flag?\nreturn: SOS mail count",
     )
 
+    IsMissionSuspendedAndValid = Symbol(
+        None,
+        None,
+        None,
+        "Checks if a mission is currently suspended and contains valid fields. Calls"
+        " IsMissionValid for the validity check.\n\nr0: mission to check\nreturn: bool",
+    )
+
+    AreMissionsEquivalent = Symbol(
+        None,
+        None,
+        None,
+        "Checks if two missions are equivalent.\n\nr0: mission1\nr1: mission2\nreturn:"
+        " bool",
+    )
+
     IsMissionValid = Symbol(
         None,
         None,
@@ -7747,12 +7824,38 @@ class JpItcmArm9Functions:
         " generate more.",
     )
 
+    IsMissionTypeSpecialEpisode = Symbol(
+        None,
+        None,
+        None,
+        "Checks if a mission is for a Special Episode Transmission, which unlocks"
+        " Special Episode 3. This specifically checks for a mission of type"
+        " MISSION_SPECIAL_EPISODE and subtype 0x2.\n\nr0: mission pointer\nreturn:"
+        " bool",
+    )
+
     GenerateDailyMissions = Symbol(
         None,
         None,
         None,
         "Generates the missions displayed on the Job Bulletin Board and the Outlaw"
         " Notice Board.\n\nNo params.",
+    )
+
+    AlreadyHaveMission = Symbol(
+        None,
+        None,
+        None,
+        "Checks if a specified mission already exists in the Job List.\n\nr0: mission"
+        " to check\nreturn: bool",
+    )
+
+    CountJobListMissions = Symbol(
+        None,
+        None,
+        None,
+        "Gets the number of missions currently in the Job List.\n\nreturn: number of"
+        " missions",
     )
 
     DungeonRequestsDone = Symbol(
@@ -7780,6 +7883,10 @@ class JpItcmArm9Functions:
         "Calls DungeonRequestsDone with the second argument set to true, and converts"
         " the integer output to a boolean.\n\nr0: ?\nreturn: bool: whether the number"
         " of missions completed is greater than 0",
+    )
+
+    AddMissionToJobList = Symbol(
+        None, None, None, "Adds a mission to the Job List.\n\nr0: mission to add"
     )
 
     GetAcceptedMission = Symbol(
@@ -7818,28 +7925,68 @@ class JpItcmArm9Functions:
         " specified requirements, false otherwise.",
     )
 
+    GetAllPossibleMonsters = Symbol(
+        None,
+        None,
+        None,
+        "Stores MISSION_MONSTER_LIST_PTR into the passed buffer and retrieves the"
+        " number of monsters that can be used in a mission.\n\nr0: buffer\nreturn:"
+        " Number of monsters usable for a mission",
+    )
+
     GenerateAllPossibleMonstersList = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nreturn: ?"
+        None,
+        None,
+        None,
+        "Attempts to add monster IDs 1 (Bulbasaur) through 535 (Shaymin Sky) as entries"
+        " to a heap-allocated list.\n\nIf no monsters are valid mission targets, the"
+        " heap-allocated list is freed. Otherwise, sets MISSION_MONSTER_LIST_PTR and"
+        " MISSION_MONSTER_COUNT.\n\nreturn: Number of monsters usable for a mission",
     )
 
     DeleteAllPossibleMonstersList = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nNo params."
+        None,
+        None,
+        None,
+        "If MISSION_MONSTER_LIST_PTR is not null, frees its heap-allocated list and"
+        " nulls MISSION_MONSTER_LIST_PTR and MISSION_MONSTER_COUNT.\n\nNo params.",
     )
 
     GenerateAllPossibleDungeonsList = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nreturn: ?"
+        None,
+        None,
+        None,
+        "Attempts to add dungeon IDs 1 (DUNGEON_TEST_DUNGEON) through 179"
+        " (DUNGEON_RESCUE) as entries to a heap-allocated list.\n\nIf no dungeons are"
+        " valid mission targets, the heap-allocated list is freed. Otherwise, sets"
+        " MISSION_DUNGEON_LIST_PTR and MISSION_DUNGEON_COUNT.\n\nreturn: Number of"
+        " dungeons usable for a mission",
     )
 
     DeleteAllPossibleDungeonsList = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nNo params."
+        None,
+        None,
+        None,
+        "If MISSION_DUNGEON_LIST_PTR is not null, frees its heap-allocated list and"
+        " nulls MISSION_DUNGEON_LIST_PTR and MISSION_DUNGEON_COUNT.\n\nNo params.",
     )
 
     GenerateAllPossibleDeliverList = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nreturn: ?"
+        None,
+        None,
+        None,
+        "Attempts to add all items in ITEM_DELIVERY_TABLE as entries to a"
+        " heap-allocated list.\n\nIf no items are valid for a delivery mission, the"
+        " heap-allocated list is freed. Otherwise, sets MISSION_DELIVER_LIST_PTR and"
+        " MISSION_DELIVER_COUNT.\n\nreturn: Number of deliverable items for a mission",
     )
 
     DeleteAllPossibleDeliverList = Symbol(
-        None, None, None, "Note: unverified, ported from Irdkwia's notes\n\nNo params."
+        None,
+        None,
+        None,
+        "If MISSION_DELIVER_LIST_PTR is not null, frees its heap-allocated list and"
+        " nulls MISSION_DELIVER_LIST_PTR and MISSION_DELIVER_COUNT.\n\nNo params.",
     )
 
     ClearMissionData = Symbol(
@@ -7903,27 +8050,45 @@ class JpItcmArm9Functions:
         " it's the ID of the player or the partner, true otherwise.",
     )
 
+    CanDungeonBeUsedForMission = Symbol(
+        None,
+        None,
+        None,
+        "Returns whether a certain dungeon can be used when generating a"
+        " mission.\n\nExcluded dungeons include DUNGEON_ICE_AEGIS_CAVE,"
+        " DUNGEON_DESTINY_TOWER, all Special Episode dungeons, dungeons with IDs"
+        " greater than 174 (DUNGEON_STAR_CAVE), DUNGEON_CRYSTAL_CAVE and"
+        " DUNGEON_CRYSTAL_CROSSING if PERFORMANCE_PROGRESS_LIST[9] is false, and any"
+        " dungeon that does not have a dungeon mode of DMODE_OPEN_AND_REQUEST.\n\nr0:"
+        " Dungeon ID\nreturn: True if the specified dungeon can be part of a mission",
+    )
+
     CanSendItem = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: item ID\nr1:"
-        " to_sky\nreturn: bool",
+        "Returns whether a certain item can be sent to another player via Wonder"
+        " Mail.\n\nr0: item ID\nr1: to_sky\nreturn: bool",
     )
 
     IsAvailableItem = Symbol(
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: item ID\nreturn: bool",
+        "Checks if a certain item is valid to be used in delivery missions."
+        " \n\nValidity entails a loop throughout all dungeons, checking if they have"
+        " been visited before (via a call to GetMaxReachedFloor), and checking if the"
+        " item is available within a dungeon's group (via a call to"
+        " IsItemAvailableInDungeonGroup).\n\nr0: item ID\nreturn: bool",
     )
 
     GetAvailableItemDeliveryList = Symbol(
         None,
         None,
         None,
-        "Uncertain.\n\nNote: unverified, ported from Irdkwia's notes\n\nr0:"
-        " item_buffer\nreturn: nb_items",
+        "Iterates through ITEM_DELIVERY_TABLE and checks if each entry is valid to be"
+        " used in delivery missions.\n\nr0: item_buffer\nreturn: Number of deliverable"
+        " items for a mission",
     )
 
     GetActorMatchingStorageId = Symbol(
@@ -7986,6 +8151,14 @@ class JpItcmArm9Functions:
         None,
         "This function gets called shortly after the game is started. Contains a single"
         " infinite loop and has no return statement.\n\nNo params.",
+    )
+
+    CreateJobSummary = Symbol(
+        None,
+        None,
+        None,
+        "Creates a window containing a summary of a specific mission on the Top"
+        " Screen.\n\nr0: mission pointer\nr1: ?",
     )
 
     DungeonSwapIdToIdx = Symbol(
@@ -8898,7 +9071,8 @@ class JpItcmArm9Data:
         None,
         None,
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct item_id_16[3]",
+        "A list of items that are forbidden from being used in a mission sent by Wonder"
+        " Mail.\n\ntype: struct item_id_16[3]",
     )
 
     ARM9_UNKNOWN_TABLE__NA_20A3CC8 = Symbol(
@@ -8934,8 +9108,8 @@ class JpItcmArm9Data:
         None,
         None,
         None,
-        "Maybe it is the Item table used for Item Deliveries\n\nNote: unverified,"
-        " ported from Irdkwia's notes\n\ntype: struct item_id_16[23]",
+        "A list of valid items used for delivering an item for a mission"
+        " client.\n\ntype: struct item_id_16[23]",
     )
 
     MISSION_RANK_POINTS = Symbol(
@@ -9305,6 +9479,39 @@ class JpItcmArm9Data:
     )
 
     TEAM_MEMBER_TABLE_PTR = Symbol(None, None, None, "Pointer to TEAM_MEMBER_TABLE")
+
+    MISSION_DELIVER_LIST_PTR = Symbol(
+        None,
+        None,
+        None,
+        "A pointer to a heap-allocated list of items usable for delivery missions",
+    )
+
+    MISSION_DELIVER_COUNT = Symbol(
+        None, None, None, "The total number of items usable for delivery missions"
+    )
+
+    MISSION_DUNGEON_LIST_PTR = Symbol(
+        None,
+        None,
+        None,
+        "A pointer to a heap-allocated list of dungeons usable for missions",
+    )
+
+    MISSION_DUNGEON_COUNT = Symbol(
+        None, None, None, "The total number of dungeons usable for missions"
+    )
+
+    MISSION_MONSTER_LIST_PTR = Symbol(
+        None,
+        None,
+        None,
+        "A pointer to a heap-allocated list of monsters usable for missions",
+    )
+
+    MISSION_MONSTER_COUNT = Symbol(
+        None, None, None, "The total number of monsters usable for missions"
+    )
 
     MISSION_LIST_PTR = Symbol(
         None, None, None, "Note: unverified, ported from Irdkwia's notes"

@@ -2584,6 +2584,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ResumeParentMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetParentMenuState7: Symbol[
         Optional[list[int]],
         None,
@@ -2624,6 +2629,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ResumeSimpleMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CloseSimpleMenu: Symbol[
         Optional[list[int]],
         None,
@@ -2660,6 +2670,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     CreateAdvancedMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResumeAdvancedMenu: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3349,7 +3364,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetSpecialEpisodeType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetExecuteSpecialEpisodeType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSpecialEpisodeOpen: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3525,6 +3550,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     LoadPortrait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WonderMailPasswordToMission: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4494,6 +4524,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetFirstMatchingMemberIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetFirstEmptyMemberIdx: Symbol[
         Optional[list[int]],
         None,
@@ -4709,6 +4744,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsMissionSuspendedAndValid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AreMissionsEquivalent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsMissionValid: Symbol[
         Optional[list[int]],
         None,
@@ -4719,7 +4764,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsMissionTypeSpecialEpisode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GenerateDailyMissions: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AlreadyHaveMission: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountJobListMissions: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4739,6 +4799,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    AddMissionToJobList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetAcceptedMission: Symbol[
         Optional[list[int]],
         None,
@@ -4750,6 +4815,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     CheckAcceptedMissionByTypeAndDungeon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAllPossibleMonsters: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4809,6 +4879,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CanDungeonBeUsedForMission: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CanSendItem: Symbol[
         Optional[list[int]],
         None,
@@ -4855,6 +4930,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     MainLoop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateJobSummary: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5918,6 +5998,36 @@ class Arm9DataProtocol(Protocol):
     ]
 
     TEAM_MEMBER_TABLE_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_DELIVER_LIST_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_DELIVER_COUNT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_DUNGEON_LIST_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_DUNGEON_COUNT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_MONSTER_LIST_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_MONSTER_COUNT: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
