@@ -6290,7 +6290,112 @@ ItcmProtocol = SectionProtocol[
 
 class LibsFunctionsProtocol(Protocol):
 
+    DseDriver_LoadDefaultSettings: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseDriver_IsSettingsValid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseDriver_ConfigureHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseDriver_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dse_SetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dse_SetError2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseUtil_ByteSwap32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SoundUtil_GetRandomNumber: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseMem_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseMem_Quit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseMem_AllocateUser: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseMem_Allocate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseMem_Alloc2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseMem_Free: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseMem_Clear: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseFile_CheckHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_MainBankDummyCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_LoadMainBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_LoadBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_LoadBankWavesFromMainBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_LoadWaves: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_Unload: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6300,7 +6405,112 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    DseSwd_GetInstrument: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_GetNextSplitInRange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_GetMainBankById: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_GetBankById: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_InitMainBankFileReader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_OpenMainBankFileReader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_CloseMainBankFileReader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_ReadMainBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseBgm_DefaultSignalCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseBgm_Load: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseBgm_Unload: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseBgm_SetSignalCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseBgm_IsPlaying: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ResumeBgm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseBgm_Stop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseBgm_StopAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseBgm_SetFades: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_Start: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_PauseList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_SetFades: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_Reset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_Stop: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6310,7 +6520,117 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    DseSequence_LoadSong: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_GetById: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_AllocateNew: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_Unload: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_InitTracks: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_SysReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_Load: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_Unload: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_GetUsedBankIDs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_HasPlayingInstances: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_Play: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_GetEffectSong: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_CheckTooManyInstances: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_CheckTooManyInstancesInGroup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_GetBestSeqAllocation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_GetById: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_Stop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_StopAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSe_StopSeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     FlushChannels: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseDriver_StartMainThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseDriver_Main: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_TickNotes: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6325,7 +6645,542 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    DseSequence_TickFades: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_Invalid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_WaitSame: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_WaitDelta: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_Wait8: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_Wait16: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_Wait24: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_WaitUntilFadeout: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_EndTrack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_MainLoopBegin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SubLoopBegin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SubLoopEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SubLoopBreakOnLastIteration: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetOctave: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_OctaveDelta: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetBpm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetBpm2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetBankMsb: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetBankLsb: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_Dummy1Byte: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetInstrument: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SongVolumeFade: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_RestoreEnvelopeDefaults: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetEnvelopeAttackBegin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetEnvelopeAttackTime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetEnvelopeHoldTime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetEnvelopeDecayTimeAndSustainLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetEnvelopeSustainTime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetEnvelopeReleaseTime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetNoteDurationMultiplier: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_ForceLfoEnvelopeLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetHoldNotes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetFlagBit1Unknown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetOptionalVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_Dummy2Bytes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetTuning: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_TuningDeltaCoarse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_TuningDeltaFine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_TuningDeltaFull: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_TuningFade: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetNoteRandomRegion: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetTuningJitterAmplitude: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetKeyBend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetUnknown2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetKeyBendRange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetupKeyBendLfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetupKeyBendLfoEnvelope: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_UseKeyBendLfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_VolumeDelta: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_VolumeFade: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetExpression: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetupVolumeLfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetupVolumeLfoEnvelope: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_UseVolumeLfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetPan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_PanDelta: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_PanFade: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetupPanLfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetupPanLfoEnvelope: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_UsePanLfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetupLfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetupLfoEnvelope: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_SetLfoParameter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_UseLfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_Signal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseTrackEvent_Dummy2Bytes2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_Reset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_AllocateNew: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_Unload: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_ClearHeldNotes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_ResetAndSetBankAndSequence: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_StopChannels: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_ResetAllVoiceTimersAndVolumes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_RestoreHeldNotes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_SetGlobalVolumeIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_SetBend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_SetVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_SetPan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSynth_SetBankAndSequence: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_DeallocateVoices: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_ResetTimerAndVolumeForVoices: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_SetBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_SetInstrument: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_SetLfoConstEnvelopeLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_SetKeyBend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_AllocateNote: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_ReleaseNote: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_ChangeNote: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseChannel_ReleaseNote2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_PlayNote: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_ReleaseNote: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_UpdateParameters: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_ResetAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_ResetHW: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateChannels: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_Cleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_Allocate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_Start: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_ReleaseHeld: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_Release: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_Deallocate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_FlagForActivation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_FlagForDeactivation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_CountNumActiveInChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseVoice_UpdateHardware: Symbol[
         Optional[list[int]],
         None,
     ]
