@@ -63,6 +63,6 @@ jobs:
         git push -u origin $VERSION
     - name: Dispatch build workflow
       if: steps.check.outputs.newtag == 'new_tag'
-      uses: peter-evans/repository-dispatch@v2
+      uses: peter-evans/repository-dispatch@v3
       with:
         event-type: generated
