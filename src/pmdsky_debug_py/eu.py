@@ -8273,7 +8273,12 @@ class EuLibsFunctions:
 
     DseDriver_LoadDefaultSettings = Symbol([0xE8], [0x206C558], None, "")
 
-    DseDriver_IsSettingsValid = Symbol([0x180], [0x206C5F0], None, "")
+    DseDriver_IsSettingsValid = Symbol(
+        [0x180],
+        [0x206C5F0],
+        None,
+        "r0: DSE driver settings\nreturn: Flags specifying what settings are invalid.",
+    )
 
     DseDriver_ConfigureHeap = Symbol([0x264], [0x206C6D4], None, "")
 
@@ -8297,7 +8302,7 @@ class EuLibsFunctions:
 
     DseMem_Allocate = Symbol([0x8E4], [0x206CD54], None, "")
 
-    DseMem_Alloc2 = Symbol([0x9F4], [0x206CE64], None, "")
+    DseMem_AllocateThreadStack = Symbol([0x9F4], [0x206CE64], None, "")
 
     DseMem_Free = Symbol([0xB3C], [0x206CFAC], None, "")
 
@@ -8305,15 +8310,23 @@ class EuLibsFunctions:
 
     DseFile_CheckHeader = Symbol([0xC44], [0x206D0B4], None, "")
 
+    DseSwd_SysInit = Symbol([0xCC4], [0x206D134], None, "")
+
+    DseSwd_SysQuit = Symbol([0xD50], [0x206D1C0], None, "")
+
+    DseSwd_SampleLoaderMain = Symbol([0xD90], [0x206D200], None, "")
+
     DseSwd_MainBankDummyCallback = Symbol([0xDF0], [0x206D260], None, "")
 
     DseSwd_LoadMainBank = Symbol([0xDF8], [0x206D268], None, "")
 
     DseSwd_LoadBank = Symbol([0x1030], [0x206D4A0], None, "")
 
-    DseSwd_LoadBankWavesFromMainBank = Symbol([0x1250], [0x206D6C0], None, "")
+    DseSwd_IsBankLoading = Symbol([0x1234], [0x206D6A4], None, "")
 
-    DseSwd_LoadWaves = Symbol([0x1300], [0x206D770], None, "")
+    DseSwd_LoadWaves = Symbol([0x1250], [0x206D6C0], None, "")
+
+    DseSwd_LoadWavesInternal = Symbol([0x1300], [0x206D770], None, "")
 
     DseSwd_Unload = Symbol([0x140C], [0x206D87C], None, "")
 
@@ -8321,7 +8334,7 @@ class EuLibsFunctions:
         [0x1480],
         [0x206D8F0],
         None,
-        "Reads an entry from the pointer table of a wavi container and returns a pointer to the data of said entry, which contains information about a particular sample.\n\nr0: Wavi data struct\nr1: Entry index\nretrun: Pointer to the entry's data",
+        "Reads an entry from the pointer table of a wavi container and returns a pointer to the data of said entry, which contains information about a particular sample.\n\nr0: Wavi data struct\nr1: Entry index\nreturn: Pointer to the entry's data",
     )
 
     DseSwd_GetInstrument = Symbol([0x14B8], [0x206D928], None, "")
@@ -8369,6 +8382,10 @@ class EuLibsFunctions:
 
     DseSequence_SetFades = Symbol([0x1C98], [0x206E108], None, "")
 
+    DseSequence_GetParameter = Symbol([0x1F8C], [0x206E3FC], None, "")
+
+    DseSequence_GetSmallestNumLoops = Symbol([0x2140], [0x206E5B0], None, "")
+
     DseSequence_Reset = Symbol([0x2194], [0x206E604], None, "")
 
     DseSequence_Stop = Symbol([0x22EC], [0x206E75C], None, "")
@@ -8389,6 +8406,8 @@ class EuLibsFunctions:
     DseSequence_Unload = Symbol([0x2700], [0x206EB70], None, "")
 
     DseSequence_InitTracks = Symbol([0x2784], [0x206EBF4], None, "")
+
+    DseBgm_SysSetupNoteList = Symbol([0x27D4], [0x206EC44], None, "")
 
     DseSe_SysReset = Symbol([0x2848], [0x206ECB8], None, "")
 
@@ -8423,6 +8442,10 @@ class EuLibsFunctions:
     )
 
     DseDriver_StartMainThread = Symbol([0x4D34], [0x20711A4], None, "")
+
+    DseDriver_StartTickTimer = Symbol([0x4E04], [0x2071274], None, "")
+
+    DseDriver_NotifyTick = Symbol([0x4EFC], [0x207136C], None, "")
 
     DseDriver_Main = Symbol([0x4F3C], [0x20713AC], None, "")
 
@@ -8622,11 +8645,11 @@ class EuLibsFunctions:
 
     DseChannel_AllocateNote = Symbol([0x7C00], [0x2074070], None, "")
 
-    DseChannel_ReleaseNote = Symbol([0x7C90], [0x2074100], None, "")
+    DseChannel_ReleaseNoteInternal = Symbol([0x7C90], [0x2074100], None, "")
 
     DseChannel_ChangeNote = Symbol([0x7D38], [0x20741A8], None, "")
 
-    DseChannel_ReleaseNote2 = Symbol([0x7DC8], [0x2074238], None, "")
+    DseChannel_ReleaseNote = Symbol([0x7DC8], [0x2074238], None, "")
 
     DseVoice_PlayNote = Symbol([0x7E04], [0x2074274], None, "")
 

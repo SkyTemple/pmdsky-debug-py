@@ -6350,7 +6350,7 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    DseMem_Alloc2: Symbol[
+    DseMem_AllocateThreadStack: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6370,6 +6370,21 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    DseSwd_SysInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_SysQuit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_SampleLoaderMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DseSwd_MainBankDummyCallback: Symbol[
         Optional[list[int]],
         None,
@@ -6385,12 +6400,17 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    DseSwd_LoadBankWavesFromMainBank: Symbol[
+    DseSwd_IsBankLoading: Symbol[
         Optional[list[int]],
         None,
     ]
 
     DseSwd_LoadWaves: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSwd_LoadWavesInternal: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6505,6 +6525,16 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    DseSequence_GetParameter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseSequence_GetSmallestNumLoops: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DseSequence_Reset: Symbol[
         Optional[list[int]],
         None,
@@ -6541,6 +6571,11 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     DseSequence_InitTracks: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseBgm_SysSetupNoteList: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6621,6 +6656,16 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     DseDriver_StartMainThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseDriver_StartTickTimer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DseDriver_NotifyTick: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -7090,7 +7135,7 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    DseChannel_ReleaseNote: Symbol[
+    DseChannel_ReleaseNoteInternal: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -7100,7 +7145,7 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    DseChannel_ReleaseNote2: Symbol[
+    DseChannel_ReleaseNote: Symbol[
         Optional[list[int]],
         None,
     ]

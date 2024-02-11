@@ -8266,7 +8266,12 @@ class JpLibsFunctions:
 
     DseDriver_LoadDefaultSettings = Symbol(None, None, None, "")
 
-    DseDriver_IsSettingsValid = Symbol(None, None, None, "")
+    DseDriver_IsSettingsValid = Symbol(
+        None,
+        None,
+        None,
+        "r0: DSE driver settings\nreturn: Flags specifying what settings are invalid.",
+    )
 
     DseDriver_ConfigureHeap = Symbol(None, None, None, "")
 
@@ -8290,7 +8295,7 @@ class JpLibsFunctions:
 
     DseMem_Allocate = Symbol(None, None, None, "")
 
-    DseMem_Alloc2 = Symbol(None, None, None, "")
+    DseMem_AllocateThreadStack = Symbol(None, None, None, "")
 
     DseMem_Free = Symbol(None, None, None, "")
 
@@ -8298,15 +8303,23 @@ class JpLibsFunctions:
 
     DseFile_CheckHeader = Symbol(None, None, None, "")
 
+    DseSwd_SysInit = Symbol(None, None, None, "")
+
+    DseSwd_SysQuit = Symbol(None, None, None, "")
+
+    DseSwd_SampleLoaderMain = Symbol(None, None, None, "")
+
     DseSwd_MainBankDummyCallback = Symbol(None, None, None, "")
 
     DseSwd_LoadMainBank = Symbol(None, None, None, "")
 
     DseSwd_LoadBank = Symbol(None, None, None, "")
 
-    DseSwd_LoadBankWavesFromMainBank = Symbol(None, None, None, "")
+    DseSwd_IsBankLoading = Symbol(None, None, None, "")
 
     DseSwd_LoadWaves = Symbol(None, None, None, "")
+
+    DseSwd_LoadWavesInternal = Symbol(None, None, None, "")
 
     DseSwd_Unload = Symbol(None, None, None, "")
 
@@ -8314,7 +8327,7 @@ class JpLibsFunctions:
         [0x1480],
         [0x206D840],
         None,
-        "Reads an entry from the pointer table of a wavi container and returns a pointer to the data of said entry, which contains information about a particular sample.\n\nr0: Wavi data struct\nr1: Entry index\nretrun: Pointer to the entry's data",
+        "Reads an entry from the pointer table of a wavi container and returns a pointer to the data of said entry, which contains information about a particular sample.\n\nr0: Wavi data struct\nr1: Entry index\nreturn: Pointer to the entry's data",
     )
 
     DseSwd_GetInstrument = Symbol(None, None, None, "")
@@ -8362,6 +8375,10 @@ class JpLibsFunctions:
 
     DseSequence_SetFades = Symbol(None, None, None, "")
 
+    DseSequence_GetParameter = Symbol(None, None, None, "")
+
+    DseSequence_GetSmallestNumLoops = Symbol(None, None, None, "")
+
     DseSequence_Reset = Symbol(None, None, None, "")
 
     DseSequence_Stop = Symbol(None, None, None, "")
@@ -8382,6 +8399,8 @@ class JpLibsFunctions:
     DseSequence_Unload = Symbol(None, None, None, "")
 
     DseSequence_InitTracks = Symbol(None, None, None, "")
+
+    DseBgm_SysSetupNoteList = Symbol(None, None, None, "")
 
     DseSe_SysReset = Symbol(None, None, None, "")
 
@@ -8416,6 +8435,10 @@ class JpLibsFunctions:
     )
 
     DseDriver_StartMainThread = Symbol(None, None, None, "")
+
+    DseDriver_StartTickTimer = Symbol(None, None, None, "")
+
+    DseDriver_NotifyTick = Symbol(None, None, None, "")
 
     DseDriver_Main = Symbol(None, None, None, "")
 
@@ -8613,11 +8636,11 @@ class JpLibsFunctions:
 
     DseChannel_AllocateNote = Symbol(None, None, None, "")
 
-    DseChannel_ReleaseNote = Symbol(None, None, None, "")
+    DseChannel_ReleaseNoteInternal = Symbol(None, None, None, "")
 
     DseChannel_ChangeNote = Symbol(None, None, None, "")
 
-    DseChannel_ReleaseNote2 = Symbol(None, None, None, "")
+    DseChannel_ReleaseNote = Symbol(None, None, None, "")
 
     DseVoice_PlayNote = Symbol(None, None, None, "")
 
