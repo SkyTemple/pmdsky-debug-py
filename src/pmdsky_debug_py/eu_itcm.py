@@ -17193,11 +17193,18 @@ class EuItcmOverlay29Functions:
         "Makes the specified monster evolve into the specified species. Has a special case when\na monster evolves into Ninjask and tries to spawn a Shedinja as well.\n\nr0: user entity pointer?\nr1: target pointer to the entity to evolve\nr2: Species to evolve into",
     )
 
-    GetSleepAnimationId = Symbol(
+    ChangeMonsterAnimation = Symbol(
         None,
         None,
         None,
-        "Returns the animation id to be applied to a monster that has the sleep, napping, nightmare or bide status.\n\nReturns a different animation for sudowoodo and for monsters with infinite sleep turns (0x7F).\n\nr0: pointer to entity\nreturn: animation ID",
+        "Changes the animation a monster is currently playing. Optionally changes their direction as well.\n\nDoes nothing if the provided entity is not a monster.\n\nr0: Entity pointer\nr1: ID of the animation to set\nr2: Direction to turn the monster in, or DIR_NONE to keep the current direction",
+    )
+
+    GetIdleAnimationId = Symbol(
+        None,
+        None,
+        None,
+        "Returns the animation id to be applied to a monster that is currently idling.\n\nReturns a different animation for monsters with the sleep, napping, nightmare or bide status, as well as for sudowoodo and for monsters with infinite sleep turns (0x7F).\n\nr0: pointer to entity\nreturn: animation ID",
     )
 
     DisplayActions = Symbol(

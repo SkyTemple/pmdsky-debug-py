@@ -14932,7 +14932,12 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetSleepAnimationId: Symbol[
+    ChangeMonsterAnimation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetIdleAnimationId: Symbol[
         Optional[list[int]],
         None,
     ]
