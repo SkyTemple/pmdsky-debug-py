@@ -16784,7 +16784,7 @@ class JpItcmOverlay29Functions:
         None,
         None,
         None,
-        "Executes the set action for the specified monster. Used for both AI actions and player-inputted actions. If the action is not ACTION_NOTHING, ACTION_PASS_TURN, ACTION_WALK or ACTION_UNK_4, the monster's already_acted field is set to true. Includes a switch based on the action ID that performs the action, although some of them aren't handled by said swtich.\n\nr0: Pointer to monster entity",
+        "Executes the set action for the specified monster. Used for both AI actions and player-inputted actions. If the action is not ACTION_NOTHING, ACTION_PASS_TURN, ACTION_WALK or ACTION_UNK_4, the monster's already_acted field is set to true. Includes a switch based on the action ID that performs the action, although some of them aren't handled by said swtich.\n\nr0: Pointer to monster entity\nreturn: If the result is true, the AI is run again for the current ally, and it performs another action. This can happen up to three times.",
     )
 
     TryActivateFlashFireOnAllMonsters = Symbol(
