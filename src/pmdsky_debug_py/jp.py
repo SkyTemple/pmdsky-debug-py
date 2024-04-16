@@ -2904,7 +2904,7 @@ class JpArm9Functions:
         [0x1E108],
         [0x201E108],
         None,
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: header_ptr\nr1: unk_pal\nr2: unk_tex\nr3: unk_tex_param",
+        "Prepare a WTE data to be loaded into VRAM. Seems to need to be called with another undocumented function (at 0x0201e1d8 (EU))\nIt skips the texture and/or the palette if missing from the file. The texture VRAM has 128KiB of space, and palette has 16KiB.\nThe true palette VRAM offset will be upper_part*0x100+lower_part\n\nThis may or may not be the function that adds to the queue so it can be added during VBlank.\n\nr0: pointer to the WTE file header loaded in memory\nr1: where the WTE texture will be loaded in the VRAM (from 0 to 0x1FFFF)\nr2: upper part of the palette VRAM\nr3: lower part of the palette VRAM",
     )
 
     GeomSetTexImageParam = Symbol(
@@ -20600,11 +20600,25 @@ class JpOverlay29Functions:
         "Calls HandleFadesDungeon for both screens.\n\nNo params.",
     )
 
+    DisplayFloorTip = Symbol(
+        None,
+        None,
+        None,
+        "Display the dungeon tip that displays on floor change, based on which tips have already been displayed.\n\nNo params.\n\nreturn: 1 if a tip has been displayed, 0 otherwise",
+    )
+
+    DisplayItemTip = Symbol(
+        None,
+        None,
+        None,
+        "Display the dungeon tip if not already displayed matching the (presumably newly acquired) item\n\nr0: item id\nreturn: 1 if a tip has been displayed, 0 otherwise",
+    )
+
     DisplayDungeonTip = Symbol(
         [0x70874],
         [0x234E154],
         None,
-        "Checks if a given dungeon tip should be displayed at the start of a floor and if so, displays it. Called up to 4 times at the start of each new floor, with a different r0 parameter each time.\n\nr0: Pointer to the message_tip struct of the message that should be displayed\nr1: True to log the message in the message log",
+        "Checks if a given dungeon tip should be displayed at the start of a floor and if so, displays it. Called up to 4 times at the start of each new floor, with a different r0 parameter each time.\n\nr0: Pointer to the message_tip struct of the message that should be displayed\nr1: True to log the message in the message log\n\nreturn: 1 if the message has been displayed, 0 if it wasn’t",
     )
 
     SetBothScreensWindowColorToDefault = Symbol(

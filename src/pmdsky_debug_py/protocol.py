@@ -17142,6 +17142,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DisplayFloorTip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisplayItemTip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DisplayDungeonTip: Symbol[
         Optional[list[int]],
         None,
