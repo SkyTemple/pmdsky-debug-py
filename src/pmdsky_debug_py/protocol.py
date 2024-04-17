@@ -11299,7 +11299,12 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
-    ProcessScriptParam: Symbol[
+    ScriptParamToInt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ScriptParamToFixedPoint16: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -18471,6 +18476,11 @@ class RamDataProtocol(Protocol):
     ]
 
     FRAMES_SINCE_LAUNCH: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TOUCHSCREEN_STATUS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

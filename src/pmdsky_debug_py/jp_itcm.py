@@ -13217,11 +13217,18 @@ class JpItcmOverlay11Functions:
 
     SsbLoad2 = Symbol(None, None, None, "")
 
-    ProcessScriptParam = Symbol(
+    ScriptParamToInt = Symbol(
         None,
         None,
         None,
-        "Checks if the two most significant bits (0x8000 and 0x4000) are set on a given script opcode parameter, and modifies the value if so.\n\nr0: On input, the parameter. On output, the modified parameter if either of the two bits listed above is set, same parameter otherwise.",
+        "Converts the given opcode parameter to a signed integer.\n\nThe parameter will be returned unchanged unless one of its two most significant bits (0x8000 and 0x4000) are set, in which case both bits will be cleared and the original value will be modified according to the following two rules:\n- If the 0x4000 bit is set (sign bit), the value will be set to -16384 + value.\n- If the 0x8000 bit is set (fixed-point flag), the value will be set to value / 256, rounded down.\nBoth rules can be applied, in the same order as listed, if both conditions are met.\n\nr0: Parameter to convert\nreturn: The input parameter, as a signed integer",
+    )
+
+    ScriptParamToFixedPoint16 = Symbol(
+        None,
+        None,
+        None,
+        "Converts the given opcode parameter to a 16-bit signed fixed-point number with 8 fraction bits.\n\nThe resulting number is encoded as (value) * 256, with the last byte acting as a fraction byte capable of representing multiples of 1/256.\n\nThe parameter will either be returned unchanged or modified depending on which of its two most significant bits (0x8000 and 0x4000) are set. Both bits are unset before running the operations listed below:\n- If the 0x4000 bit is set (sign bit), the value will be set to -16384 + value.\n- If the 0x8000 bit is set (fixed-point flag), the raw value is interpreted as being fixed-point already, and nothing else happens. Otherwise, it's assumed to be a normal integer and is converted to fixed-point by left-shifting it by 8 (moving the integer part to its proper place).\nBoth rules can be applied, in the same order as listed, if both conditions are met.\n\nr0: Parameter to convert\nreturn: The input parameter, as a 16-bit signed fixed-point number with 8 fraction bits",
     )
 
     StationLoadHanger = Symbol(None, None, None, "")
@@ -21765,6 +21772,13 @@ class JpItcmRamData:
         None,
         None,
         "Starts at 0 when the game is first launched, and continuously ticks up once per frame while the game is running.",
+    )
+
+    TOUCHSCREEN_STATUS = Symbol(
+        None,
+        None,
+        None,
+        "Status of the touchscreen, including the coordinates of the currently pressed position in pixels.",
     )
 
     BAG_ITEMS = Symbol(
