@@ -8264,64 +8264,64 @@ class JpItcmSection:
 
 class JpLibsFunctions:
 
-    DseDriver_LoadDefaultSettings = Symbol(None, None, None, "")
+    DseDriver_LoadDefaultSettings = Symbol([0xE8], [0x206C4A8], None, "")
 
     DseDriver_IsSettingsValid = Symbol(
-        None,
-        None,
+        [0x180],
+        [0x206C540],
         None,
         "r0: DSE driver settings\nreturn: Flags specifying what settings are invalid.",
     )
 
-    DseDriver_ConfigureHeap = Symbol(None, None, None, "")
+    DseDriver_ConfigureHeap = Symbol([0x264], [0x206C624], None, "")
 
-    DseDriver_Init = Symbol(None, None, None, "")
+    DseDriver_Init = Symbol([0x308], [0x206C6C8], None, "")
 
-    Dse_SetError = Symbol(None, None, None, "")
+    Dse_SetError = Symbol([0x77C], [0x206CB3C], None, "")
 
-    Dse_SetError2 = Symbol(None, None, None, "")
+    Dse_SetError2 = Symbol([0x7B0], [0x206CB70], None, "")
 
-    DseUtil_ByteSwap32 = Symbol(None, None, None, "")
+    DseUtil_ByteSwap32 = Symbol([0x7EC], [0x206CBAC], None, "")
 
     SoundUtil_GetRandomNumber = Symbol(
         [0x81C], [0x206CBDC], None, "return: random number in the range [0, 32767]"
     )
 
-    DseMem_Init = Symbol(None, None, None, "")
+    DseMem_Init = Symbol([0x844], [0x206CC04], None, "")
 
-    DseMem_Quit = Symbol(None, None, None, "")
+    DseMem_Quit = Symbol([0x8B4], [0x206CC74], None, "")
 
     DseMem_AllocateUser = Symbol(None, None, None, "")
 
-    DseMem_Allocate = Symbol(None, None, None, "")
+    DseMem_Allocate = Symbol([0x8E4], [0x206CCA4], None, "")
 
-    DseMem_AllocateThreadStack = Symbol(None, None, None, "")
+    DseMem_AllocateThreadStack = Symbol([0x9F4], [0x206CDB4], None, "")
 
-    DseMem_Free = Symbol(None, None, None, "")
+    DseMem_Free = Symbol([0xB3C], [0x206CEFC], None, "")
 
-    DseMem_Clear = Symbol(None, None, None, "")
+    DseMem_Clear = Symbol([0xBE4], [0x206CFA4], None, "")
 
-    DseFile_CheckHeader = Symbol(None, None, None, "")
+    DseFile_CheckHeader = Symbol([0xC44], [0x206D004], None, "")
 
-    DseSwd_SysInit = Symbol(None, None, None, "")
+    DseSwd_SysInit = Symbol([0xCC4], [0x206D084], None, "")
 
-    DseSwd_SysQuit = Symbol(None, None, None, "")
+    DseSwd_SysQuit = Symbol([0xD50], [0x206D110], None, "")
 
-    DseSwd_SampleLoaderMain = Symbol(None, None, None, "")
+    DseSwd_SampleLoaderMain = Symbol([0xD90], [0x206D150], None, "")
 
-    DseSwd_MainBankDummyCallback = Symbol(None, None, None, "")
+    DseSwd_MainBankDummyCallback = Symbol([0xDF0], [0x206D1B0], None, "")
 
-    DseSwd_LoadMainBank = Symbol(None, None, None, "")
+    DseSwd_LoadMainBank = Symbol([0xDF8], [0x206D1B8], None, "")
 
-    DseSwd_LoadBank = Symbol(None, None, None, "")
+    DseSwd_LoadBank = Symbol([0x1030], [0x206D3F0], None, "")
 
-    DseSwd_IsBankLoading = Symbol(None, None, None, "")
+    DseSwd_IsBankLoading = Symbol([0x1234], [0x206D5F4], None, "")
 
-    DseSwd_LoadWaves = Symbol(None, None, None, "")
+    DseSwd_LoadWaves = Symbol([0x1250], [0x206D610], None, "")
 
-    DseSwd_LoadWavesInternal = Symbol(None, None, None, "")
+    DseSwd_LoadWavesInternal = Symbol([0x1300], [0x206D6C0], None, "")
 
-    DseSwd_Unload = Symbol(None, None, None, "")
+    DseSwd_Unload = Symbol([0x140C], [0x206D7CC], None, "")
 
     ReadWaviEntry = Symbol(
         [0x1480],
@@ -8330,31 +8330,31 @@ class JpLibsFunctions:
         "Reads an entry from the pointer table of a wavi container and returns a pointer to the data of said entry, which contains information about a particular sample.\n\nr0: Wavi data struct\nr1: Entry index\nreturn: Pointer to the entry's data",
     )
 
-    DseSwd_GetInstrument = Symbol(None, None, None, "")
+    DseSwd_GetInstrument = Symbol([0x14B8], [0x206D878], None, "")
 
-    DseSwd_GetNextSplitInRange = Symbol(None, None, None, "")
+    DseSwd_GetNextSplitInRange = Symbol([0x14F0], [0x206D8B0], None, "")
 
-    DseSwd_GetMainBankById = Symbol(None, None, None, "")
+    DseSwd_GetMainBankById = Symbol([0x1578], [0x206D938], None, "")
 
-    DseSwd_GetBankById = Symbol(None, None, None, "")
+    DseSwd_GetBankById = Symbol([0x15C8], [0x206D988], None, "")
 
-    DseSwd_InitMainBankFileReader = Symbol(None, None, None, "")
+    DseSwd_InitMainBankFileReader = Symbol([0x1618], [0x206D9D8], None, "")
 
-    DseSwd_OpenMainBankFileReader = Symbol(None, None, None, "")
+    DseSwd_OpenMainBankFileReader = Symbol([0x1628], [0x206D9E8], None, "")
 
-    DseSwd_CloseMainBankFileReader = Symbol(None, None, None, "")
+    DseSwd_CloseMainBankFileReader = Symbol([0x1654], [0x206DA14], None, "")
 
-    DseSwd_ReadMainBank = Symbol(None, None, None, "")
+    DseSwd_ReadMainBank = Symbol([0x1664], [0x206DA24], None, "")
 
-    DseBgm_DefaultSignalCallback = Symbol(None, None, None, "")
+    DseBgm_DefaultSignalCallback = Symbol([0x1728], [0x206DAE8], None, "")
 
-    DseBgm_Load = Symbol(None, None, None, "")
+    DseBgm_Load = Symbol([0x1730], [0x206DAF0], None, "")
 
-    DseBgm_Unload = Symbol(None, None, None, "")
+    DseBgm_Unload = Symbol([0x1834], [0x206DBF4], None, "")
 
-    DseBgm_SetSignalCallback = Symbol(None, None, None, "")
+    DseBgm_SetSignalCallback = Symbol([0x186C], [0x206DC2C], None, "")
 
-    DseBgm_IsPlaying = Symbol(None, None, None, "")
+    DseBgm_IsPlaying = Symbol([0x18CC], [0x206DC8C], None, "")
 
     ResumeBgm = Symbol(
         [0x18E4],
@@ -8363,25 +8363,25 @@ class JpLibsFunctions:
         "Uncertain.\n\nNote: unverified, ported from Irdkwia's notes",
     )
 
-    DseBgm_Stop = Symbol(None, None, None, "")
+    DseBgm_Stop = Symbol([0x19C4], [0x206DD84], None, "")
 
-    DseBgm_StopAll = Symbol(None, None, None, "")
+    DseBgm_StopAll = Symbol([0x1A04], [0x206DDC4], None, "")
 
-    DseBgm_SetFades = Symbol(None, None, None, "")
+    DseBgm_SetFades = Symbol([0x1A64], [0x206DE24], None, "")
 
-    DseSequence_Start = Symbol(None, None, None, "")
+    DseSequence_Start = Symbol([0x1AA4], [0x206DE64], None, "")
 
-    DseSequence_PauseList = Symbol(None, None, None, "")
+    DseSequence_PauseList = Symbol([0x1B34], [0x206DEF4], None, "")
 
-    DseSequence_SetFades = Symbol(None, None, None, "")
+    DseSequence_SetFades = Symbol([0x1C98], [0x206E058], None, "")
 
-    DseSequence_GetParameter = Symbol(None, None, None, "")
+    DseSequence_GetParameter = Symbol([0x1F8C], [0x206E34C], None, "")
 
-    DseSequence_GetSmallestNumLoops = Symbol(None, None, None, "")
+    DseSequence_GetSmallestNumLoops = Symbol([0x2140], [0x206E500], None, "")
 
-    DseSequence_Reset = Symbol(None, None, None, "")
+    DseSequence_Reset = Symbol([0x2194], [0x206E554], None, "")
 
-    DseSequence_Stop = Symbol(None, None, None, "")
+    DseSequence_Stop = Symbol([0x22EC], [0x206E6AC], None, "")
 
     FindSmdlSongChunk = Symbol(
         [0x2410],
@@ -8390,59 +8390,59 @@ class JpLibsFunctions:
         "Finds the first song chunk within an SMDL file that has the specified value on its 0x10 field.\n\nSee https://projectpokemon.org/home/docs/mystery-dungeon-nds/dse-smdl-format-r13/.\n\nr0: Pointer to the start of the SMDL file\nr1: Value to search for\nreturn: Pointer to the first chunk that has the specified value + 0x10, or null if no chunk was found.",
     )
 
-    DseSequence_LoadSong = Symbol(None, None, None, "")
+    DseSequence_LoadSong = Symbol([0x247C], [0x206E83C], None, "")
 
-    DseSequence_GetById = Symbol(None, None, None, "")
+    DseSequence_GetById = Symbol([0x257C], [0x206E93C], None, "")
 
-    DseSequence_AllocateNew = Symbol(None, None, None, "")
+    DseSequence_AllocateNew = Symbol([0x25C8], [0x206E988], None, "")
 
-    DseSequence_Unload = Symbol(None, None, None, "")
+    DseSequence_Unload = Symbol([0x2700], [0x206EAC0], None, "")
 
-    DseSequence_InitTracks = Symbol(None, None, None, "")
+    DseSequence_InitTracks = Symbol([0x2784], [0x206EB44], None, "")
 
-    DseBgm_SysSetupNoteList = Symbol(None, None, None, "")
+    DseBgm_SysSetupNoteList = Symbol([0x27D4], [0x206EB94], None, "")
 
-    DseSe_SysReset = Symbol(None, None, None, "")
+    DseSe_SysReset = Symbol([0x2848], [0x206EC08], None, "")
 
-    DseSe_Load = Symbol(None, None, None, "")
+    DseSe_Load = Symbol([0x2940], [0x206ED00], None, "")
 
-    DseSe_Unload = Symbol(None, None, None, "")
+    DseSe_Unload = Symbol([0x2AF4], [0x206EEB4], None, "")
 
-    DseSe_GetUsedBankIDs = Symbol(None, None, None, "")
+    DseSe_GetUsedBankIDs = Symbol([0x2B84], [0x206EF44], None, "")
 
-    DseSe_HasPlayingInstances = Symbol(None, None, None, "")
+    DseSe_HasPlayingInstances = Symbol([0x2C58], [0x206F018], None, "")
 
-    DseSe_Play = Symbol(None, None, None, "")
+    DseSe_Play = Symbol([0x2D24], [0x206F0E4], None, "")
 
-    DseSe_GetEffectSong = Symbol(None, None, None, "")
+    DseSe_GetEffectSong = Symbol([0x2ED8], [0x206F298], None, "")
 
-    DseSe_CheckTooManyInstances = Symbol(None, None, None, "")
+    DseSe_CheckTooManyInstances = Symbol([0x2F20], [0x206F2E0], None, "")
 
-    DseSe_CheckTooManyInstancesInGroup = Symbol(None, None, None, "")
+    DseSe_CheckTooManyInstancesInGroup = Symbol([0x3028], [0x206F3E8], None, "")
 
-    DseSe_GetBestSeqAllocation = Symbol(None, None, None, "")
+    DseSe_GetBestSeqAllocation = Symbol([0x31EC], [0x206F5AC], None, "")
 
-    DseSe_GetById = Symbol(None, None, None, "")
+    DseSe_GetById = Symbol([0x3268], [0x206F628], None, "")
 
-    DseSe_Stop = Symbol(None, None, None, "")
+    DseSe_Stop = Symbol([0x32B4], [0x206F674], None, "")
 
-    DseSe_StopAll = Symbol(None, None, None, "")
+    DseSe_StopAll = Symbol([0x3408], [0x206F7C8], None, "")
 
-    DseSe_StopSeq = Symbol(None, None, None, "")
+    DseSe_StopSeq = Symbol([0x3474], [0x206F834], None, "")
 
     FlushChannels = Symbol(
         [0x459C], [0x207095C], None, "Note: unverified, ported from Irdkwia's notes"
     )
 
-    DseDriver_StartMainThread = Symbol(None, None, None, "")
+    DseDriver_StartMainThread = Symbol([0x4D34], [0x20710F4], None, "")
 
-    DseDriver_StartTickTimer = Symbol(None, None, None, "")
+    DseDriver_StartTickTimer = Symbol([0x4E04], [0x20711C4], None, "")
 
-    DseDriver_NotifyTick = Symbol(None, None, None, "")
+    DseDriver_NotifyTick = Symbol([0x4EFC], [0x20712BC], None, "")
 
-    DseDriver_Main = Symbol(None, None, None, "")
+    DseDriver_Main = Symbol([0x4F3C], [0x20712FC], None, "")
 
-    DseSequence_TickNotes = Symbol(None, None, None, "")
+    DseSequence_TickNotes = Symbol([0x5088], [0x2071448], None, "")
 
     ParseDseEvent = Symbol(
         [0x514C],
@@ -8458,199 +8458,201 @@ class JpLibsFunctions:
         "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/",
     )
 
-    DseSequence_TickFades = Symbol(None, None, None, "")
+    DseSequence_TickFades = Symbol([0x56AC], [0x2071A6C], None, "")
 
-    DseTrackEvent_Invalid = Symbol(None, None, None, "")
+    DseTrackEvent_Invalid = Symbol([0x5844], [0x2071C04], None, "")
 
-    DseTrackEvent_WaitSame = Symbol(None, None, None, "")
+    DseTrackEvent_WaitSame = Symbol([0x5850], [0x2071C10], None, "")
 
-    DseTrackEvent_WaitDelta = Symbol(None, None, None, "")
+    DseTrackEvent_WaitDelta = Symbol([0x585C], [0x2071C1C], None, "")
 
-    DseTrackEvent_Wait8 = Symbol(None, None, None, "")
+    DseTrackEvent_Wait8 = Symbol([0x5874], [0x2071C34], None, "")
 
-    DseTrackEvent_Wait16 = Symbol(None, None, None, "")
+    DseTrackEvent_Wait16 = Symbol([0x5884], [0x2071C44], None, "")
 
-    DseTrackEvent_Wait24 = Symbol(None, None, None, "")
+    DseTrackEvent_Wait24 = Symbol([0x58A0], [0x2071C60], None, "")
 
-    DseTrackEvent_WaitUntilFadeout = Symbol(None, None, None, "")
+    DseTrackEvent_WaitUntilFadeout = Symbol([0x58C4], [0x2071C84], None, "")
 
-    DseTrackEvent_EndTrack = Symbol(None, None, None, "")
+    DseTrackEvent_EndTrack = Symbol([0x58F0], [0x2071CB0], None, "")
 
-    DseTrackEvent_MainLoopBegin = Symbol(None, None, None, "")
+    DseTrackEvent_MainLoopBegin = Symbol([0x593C], [0x2071CFC], None, "")
 
-    DseTrackEvent_SubLoopBegin = Symbol(None, None, None, "")
+    DseTrackEvent_SubLoopBegin = Symbol([0x5944], [0x2071D04], None, "")
 
-    DseTrackEvent_SubLoopEnd = Symbol(None, None, None, "")
+    DseTrackEvent_SubLoopEnd = Symbol([0x5984], [0x2071D44], None, "")
 
-    DseTrackEvent_SubLoopBreakOnLastIteration = Symbol(None, None, None, "")
+    DseTrackEvent_SubLoopBreakOnLastIteration = Symbol([0x59C0], [0x2071D80], None, "")
 
-    DseTrackEvent_SetOctave = Symbol(None, None, None, "")
+    DseTrackEvent_SetOctave = Symbol([0x59E8], [0x2071DA8], None, "")
 
-    DseTrackEvent_OctaveDelta = Symbol(None, None, None, "")
+    DseTrackEvent_OctaveDelta = Symbol([0x59F4], [0x2071DB4], None, "")
 
-    DseTrackEvent_SetBpm = Symbol(None, None, None, "")
+    DseTrackEvent_SetBpm = Symbol([0x5A08], [0x2071DC8], None, "")
 
-    DseTrackEvent_SetBpm2 = Symbol(None, None, None, "")
+    DseTrackEvent_SetBpm2 = Symbol([0x5A48], [0x2071E08], None, "")
 
-    DseTrackEvent_SetBank = Symbol(None, None, None, "")
+    DseTrackEvent_SetBank = Symbol([0x5A88], [0x2071E48], None, "")
 
-    DseTrackEvent_SetBankMsb = Symbol(None, None, None, "")
+    DseTrackEvent_SetBankMsb = Symbol([0x5AB4], [0x2071E74], None, "")
 
-    DseTrackEvent_SetBankLsb = Symbol(None, None, None, "")
+    DseTrackEvent_SetBankLsb = Symbol([0x5AE4], [0x2071EA4], None, "")
 
-    DseTrackEvent_Dummy1Byte = Symbol(None, None, None, "")
+    DseTrackEvent_Dummy1Byte = Symbol([0x5B14], [0x2071ED4], None, "")
 
-    DseTrackEvent_SetInstrument = Symbol(None, None, None, "")
+    DseTrackEvent_SetInstrument = Symbol([0x5B1C], [0x2071EDC], None, "")
 
-    DseTrackEvent_SongVolumeFade = Symbol(None, None, None, "")
+    DseTrackEvent_SongVolumeFade = Symbol([0x5B64], [0x2071F24], None, "")
 
-    DseTrackEvent_RestoreEnvelopeDefaults = Symbol(None, None, None, "")
+    DseTrackEvent_RestoreEnvelopeDefaults = Symbol([0x5BF0], [0x2071FB0], None, "")
 
-    DseTrackEvent_SetEnvelopeAttackBegin = Symbol(None, None, None, "")
+    DseTrackEvent_SetEnvelopeAttackBegin = Symbol([0x5C08], [0x2071FC8], None, "")
 
-    DseTrackEvent_SetEnvelopeAttackTime = Symbol(None, None, None, "")
+    DseTrackEvent_SetEnvelopeAttackTime = Symbol([0x5C28], [0x2071FE8], None, "")
 
-    DseTrackEvent_SetEnvelopeHoldTime = Symbol(None, None, None, "")
+    DseTrackEvent_SetEnvelopeHoldTime = Symbol([0x5C48], [0x2072008], None, "")
 
-    DseTrackEvent_SetEnvelopeDecayTimeAndSustainLevel = Symbol(None, None, None, "")
+    DseTrackEvent_SetEnvelopeDecayTimeAndSustainLevel = Symbol(
+        [0x5C68], [0x2072028], None, ""
+    )
 
-    DseTrackEvent_SetEnvelopeSustainTime = Symbol(None, None, None, "")
+    DseTrackEvent_SetEnvelopeSustainTime = Symbol([0x5C98], [0x2072058], None, "")
 
-    DseTrackEvent_SetEnvelopeReleaseTime = Symbol(None, None, None, "")
+    DseTrackEvent_SetEnvelopeReleaseTime = Symbol([0x5CB8], [0x2072078], None, "")
 
-    DseTrackEvent_SetNoteDurationMultiplier = Symbol(None, None, None, "")
+    DseTrackEvent_SetNoteDurationMultiplier = Symbol([0x5CD8], [0x2072098], None, "")
 
-    DseTrackEvent_ForceLfoEnvelopeLevel = Symbol(None, None, None, "")
+    DseTrackEvent_ForceLfoEnvelopeLevel = Symbol([0x5CE4], [0x20720A4], None, "")
 
-    DseTrackEvent_SetHoldNotes = Symbol(None, None, None, "")
+    DseTrackEvent_SetHoldNotes = Symbol([0x5D00], [0x20720C0], None, "")
 
-    DseTrackEvent_SetFlagBit1Unknown = Symbol(None, None, None, "")
+    DseTrackEvent_SetFlagBit1Unknown = Symbol([0x5D38], [0x20720F8], None, "")
 
-    DseTrackEvent_SetOptionalVolume = Symbol(None, None, None, "")
+    DseTrackEvent_SetOptionalVolume = Symbol([0x5D48], [0x2072108], None, "")
 
-    DseTrackEvent_Dummy2Bytes = Symbol(None, None, None, "")
+    DseTrackEvent_Dummy2Bytes = Symbol([0x5D54], [0x2072114], None, "")
 
-    DseTrackEvent_SetTuning = Symbol(None, None, None, "")
+    DseTrackEvent_SetTuning = Symbol([0x5D5C], [0x207211C], None, "")
 
-    DseTrackEvent_TuningDeltaCoarse = Symbol(None, None, None, "")
+    DseTrackEvent_TuningDeltaCoarse = Symbol([0x5DDC], [0x207219C], None, "")
 
-    DseTrackEvent_TuningDeltaFine = Symbol(None, None, None, "")
+    DseTrackEvent_TuningDeltaFine = Symbol([0x5E64], [0x2072224], None, "")
 
-    DseTrackEvent_TuningDeltaFull = Symbol(None, None, None, "")
+    DseTrackEvent_TuningDeltaFull = Symbol([0x5EEC], [0x20722AC], None, "")
 
-    DseTrackEvent_TuningFade = Symbol(None, None, None, "")
+    DseTrackEvent_TuningFade = Symbol([0x5F7C], [0x207233C], None, "")
 
-    DseTrackEvent_SetNoteRandomRegion = Symbol(None, None, None, "")
+    DseTrackEvent_SetNoteRandomRegion = Symbol([0x606C], [0x207242C], None, "")
 
-    DseTrackEvent_SetTuningJitterAmplitude = Symbol(None, None, None, "")
+    DseTrackEvent_SetTuningJitterAmplitude = Symbol([0x6094], [0x2072454], None, "")
 
-    DseTrackEvent_SetKeyBend = Symbol(None, None, None, "")
+    DseTrackEvent_SetKeyBend = Symbol([0x60AC], [0x207246C], None, "")
 
-    DseTrackEvent_SetUnknown2 = Symbol(None, None, None, "")
+    DseTrackEvent_SetUnknown2 = Symbol([0x60D8], [0x2072498], None, "")
 
-    DseTrackEvent_SetKeyBendRange = Symbol(None, None, None, "")
+    DseTrackEvent_SetKeyBendRange = Symbol([0x60F0], [0x20724B0], None, "")
 
-    DseTrackEvent_SetupKeyBendLfo = Symbol(None, None, None, "")
+    DseTrackEvent_SetupKeyBendLfo = Symbol([0x60FC], [0x20724BC], None, "")
 
-    DseTrackEvent_SetupKeyBendLfoEnvelope = Symbol(None, None, None, "")
+    DseTrackEvent_SetupKeyBendLfoEnvelope = Symbol([0x6154], [0x2072514], None, "")
 
-    DseTrackEvent_UseKeyBendLfo = Symbol(None, None, None, "")
+    DseTrackEvent_UseKeyBendLfo = Symbol([0x617C], [0x207253C], None, "")
 
-    DseTrackEvent_SetVolume = Symbol(None, None, None, "")
+    DseTrackEvent_SetVolume = Symbol([0x61A4], [0x2072564], None, "")
 
-    DseTrackEvent_VolumeDelta = Symbol(None, None, None, "")
+    DseTrackEvent_VolumeDelta = Symbol([0x6238], [0x20725F8], None, "")
 
-    DseTrackEvent_VolumeFade = Symbol(None, None, None, "")
+    DseTrackEvent_VolumeFade = Symbol([0x62E8], [0x20726A8], None, "")
 
-    DseTrackEvent_SetExpression = Symbol(None, None, None, "")
+    DseTrackEvent_SetExpression = Symbol([0x6344], [0x2072704], None, "")
 
-    DseTrackEvent_SetupVolumeLfo = Symbol(None, None, None, "")
+    DseTrackEvent_SetupVolumeLfo = Symbol([0x63D0], [0x2072790], None, "")
 
-    DseTrackEvent_SetupVolumeLfoEnvelope = Symbol(None, None, None, "")
+    DseTrackEvent_SetupVolumeLfoEnvelope = Symbol([0x642C], [0x20727EC], None, "")
 
-    DseTrackEvent_UseVolumeLfo = Symbol(None, None, None, "")
+    DseTrackEvent_UseVolumeLfo = Symbol([0x6454], [0x2072814], None, "")
 
-    DseTrackEvent_SetPan = Symbol(None, None, None, "")
+    DseTrackEvent_SetPan = Symbol([0x647C], [0x207283C], None, "")
 
-    DseTrackEvent_PanDelta = Symbol(None, None, None, "")
+    DseTrackEvent_PanDelta = Symbol([0x64FC], [0x20728BC], None, "")
 
-    DseTrackEvent_PanFade = Symbol(None, None, None, "")
+    DseTrackEvent_PanFade = Symbol([0x6590], [0x2072950], None, "")
 
-    DseTrackEvent_SetupPanLfo = Symbol(None, None, None, "")
+    DseTrackEvent_SetupPanLfo = Symbol([0x65EC], [0x20729AC], None, "")
 
-    DseTrackEvent_SetupPanLfoEnvelope = Symbol(None, None, None, "")
+    DseTrackEvent_SetupPanLfoEnvelope = Symbol([0x6648], [0x2072A08], None, "")
 
-    DseTrackEvent_UsePanLfo = Symbol(None, None, None, "")
+    DseTrackEvent_UsePanLfo = Symbol([0x6670], [0x2072A30], None, "")
 
-    DseTrackEvent_SetupLfo = Symbol(None, None, None, "")
+    DseTrackEvent_SetupLfo = Symbol([0x6698], [0x2072A58], None, "")
 
-    DseTrackEvent_SetupLfoEnvelope = Symbol(None, None, None, "")
+    DseTrackEvent_SetupLfoEnvelope = Symbol([0x66F0], [0x2072AB0], None, "")
 
-    DseTrackEvent_SetLfoParameter = Symbol(None, None, None, "")
+    DseTrackEvent_SetLfoParameter = Symbol([0x6724], [0x2072AE4], None, "")
 
-    DseTrackEvent_UseLfo = Symbol(None, None, None, "")
+    DseTrackEvent_UseLfo = Symbol([0x6860], [0x2072C20], None, "")
 
-    DseTrackEvent_Signal = Symbol(None, None, None, "")
+    DseTrackEvent_Signal = Symbol([0x6894], [0x2072C54], None, "")
 
-    DseTrackEvent_Dummy2Bytes2 = Symbol(None, None, None, "")
+    DseTrackEvent_Dummy2Bytes2 = Symbol([0x68C4], [0x2072C84], None, "")
 
-    DseSynth_Reset = Symbol(None, None, None, "")
+    DseSynth_Reset = Symbol([0x7130], [0x20734F0], None, "")
 
-    DseSynth_AllocateNew = Symbol(None, None, None, "")
+    DseSynth_AllocateNew = Symbol([0x71A8], [0x2073568], None, "")
 
-    DseSynth_Unload = Symbol(None, None, None, "")
+    DseSynth_Unload = Symbol([0x7278], [0x2073638], None, "")
 
-    DseSynth_ClearHeldNotes = Symbol(None, None, None, "")
+    DseSynth_ClearHeldNotes = Symbol([0x72E4], [0x20736A4], None, "")
 
-    DseSynth_ResetAndSetBankAndSequence = Symbol(None, None, None, "")
+    DseSynth_ResetAndSetBankAndSequence = Symbol([0x7380], [0x2073740], None, "")
 
-    DseSynth_StopChannels = Symbol(None, None, None, "")
+    DseSynth_StopChannels = Symbol([0x73A8], [0x2073768], None, "")
 
-    DseSynth_ResetAllVoiceTimersAndVolumes = Symbol(None, None, None, "")
+    DseSynth_ResetAllVoiceTimersAndVolumes = Symbol([0x73D4], [0x2073794], None, "")
 
-    DseSynth_RestoreHeldNotes = Symbol(None, None, None, "")
+    DseSynth_RestoreHeldNotes = Symbol([0x742C], [0x20737EC], None, "")
 
-    DseSynth_SetGlobalVolumeIndex = Symbol(None, None, None, "")
+    DseSynth_SetGlobalVolumeIndex = Symbol([0x7494], [0x2073854], None, "")
 
-    DseSynth_SetBend = Symbol(None, None, None, "")
+    DseSynth_SetBend = Symbol([0x757C], [0x207393C], None, "")
 
-    DseSynth_SetVolume = Symbol(None, None, None, "")
+    DseSynth_SetVolume = Symbol([0x7610], [0x20739D0], None, "")
 
-    DseSynth_SetPan = Symbol(None, None, None, "")
+    DseSynth_SetPan = Symbol([0x76E0], [0x2073AA0], None, "")
 
-    DseSynth_SetBankAndSequence = Symbol(None, None, None, "")
+    DseSynth_SetBankAndSequence = Symbol([0x7774], [0x2073B34], None, "")
 
-    DseChannel_Init = Symbol(None, None, None, "")
+    DseChannel_Init = Symbol([0x7804], [0x2073BC4], None, "")
 
-    DseChannel_DeallocateVoices = Symbol(None, None, None, "")
+    DseChannel_DeallocateVoices = Symbol([0x79B8], [0x2073D78], None, "")
 
-    DseChannel_ResetTimerAndVolumeForVoices = Symbol(None, None, None, "")
+    DseChannel_ResetTimerAndVolumeForVoices = Symbol([0x7A3C], [0x2073DFC], None, "")
 
-    DseChannel_SetBank = Symbol(None, None, None, "")
+    DseChannel_SetBank = Symbol([0x7AB8], [0x2073E78], None, "")
 
-    DseChannel_SetInstrument = Symbol(None, None, None, "")
+    DseChannel_SetInstrument = Symbol([0x7AF0], [0x2073EB0], None, "")
 
-    DseChannel_SetLfoConstEnvelopeLevel = Symbol(None, None, None, "")
+    DseChannel_SetLfoConstEnvelopeLevel = Symbol([0x7B84], [0x2073F44], None, "")
 
-    DseChannel_SetKeyBend = Symbol(None, None, None, "")
+    DseChannel_SetKeyBend = Symbol([0x7BB8], [0x2073F78], None, "")
 
-    DseChannel_AllocateNote = Symbol(None, None, None, "")
+    DseChannel_AllocateNote = Symbol([0x7C00], [0x2073FC0], None, "")
 
-    DseChannel_ReleaseNoteInternal = Symbol(None, None, None, "")
+    DseChannel_ReleaseNoteInternal = Symbol([0x7C90], [0x2074050], None, "")
 
-    DseChannel_ChangeNote = Symbol(None, None, None, "")
+    DseChannel_ChangeNote = Symbol([0x7D38], [0x20740F8], None, "")
 
-    DseChannel_ReleaseNote = Symbol(None, None, None, "")
+    DseChannel_ReleaseNote = Symbol([0x7DC8], [0x2074188], None, "")
 
-    DseVoice_PlayNote = Symbol(None, None, None, "")
+    DseVoice_PlayNote = Symbol([0x7E04], [0x20741C4], None, "")
 
-    DseVoice_ReleaseNote = Symbol(None, None, None, "")
+    DseVoice_ReleaseNote = Symbol([0x8078], [0x2074438], None, "")
 
-    DseVoice_UpdateParameters = Symbol(None, None, None, "")
+    DseVoice_UpdateParameters = Symbol([0x80BC], [0x207447C], None, "")
 
-    DseVoice_ResetAll = Symbol(None, None, None, "")
+    DseVoice_ResetAll = Symbol([0x8260], [0x2074620], None, "")
 
-    DseVoice_ResetHW = Symbol(None, None, None, "")
+    DseVoice_ResetHW = Symbol([0x8304], [0x20746C4], None, "")
 
     UpdateChannels = Symbol(
         [0x83B4],
@@ -8659,25 +8661,25 @@ class JpLibsFunctions:
         "From https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/ and Irdkwia's notes.\n\nNo params.",
     )
 
-    DseVoice_Cleanup = Symbol(None, None, None, "")
+    DseVoice_Cleanup = Symbol([0x84A4], [0x2074864], None, "")
 
-    DseVoice_Allocate = Symbol(None, None, None, "")
+    DseVoice_Allocate = Symbol([0x8540], [0x2074900], None, "")
 
-    DseVoice_Start = Symbol(None, None, None, "")
+    DseVoice_Start = Symbol([0x86A8], [0x2074A68], None, "")
 
-    DseVoice_ReleaseHeld = Symbol(None, None, None, "")
+    DseVoice_ReleaseHeld = Symbol([0x8704], [0x2074AC4], None, "")
 
-    DseVoice_Release = Symbol(None, None, None, "")
+    DseVoice_Release = Symbol([0x8784], [0x2074B44], None, "")
 
-    DseVoice_Deallocate = Symbol(None, None, None, "")
+    DseVoice_Deallocate = Symbol([0x87C8], [0x2074B88], None, "")
 
-    DseVoice_FlagForActivation = Symbol(None, None, None, "")
+    DseVoice_FlagForActivation = Symbol([0x88CC], [0x2074C8C], None, "")
 
-    DseVoice_FlagForDeactivation = Symbol(None, None, None, "")
+    DseVoice_FlagForDeactivation = Symbol([0x891C], [0x2074CDC], None, "")
 
-    DseVoice_CountNumActiveInChannel = Symbol(None, None, None, "")
+    DseVoice_CountNumActiveInChannel = Symbol([0x8954], [0x2074D14], None, "")
 
-    DseVoice_UpdateHardware = Symbol(None, None, None, "")
+    DseVoice_UpdateHardware = Symbol([0x8980], [0x2074D40], None, "")
 
     SoundEnvelope_Reset = Symbol(
         [0x8B98], [0x2074F58], None, "r0: Sound envelope pointer"
@@ -13544,8 +13546,8 @@ class JpOverlay11Functions:
     )
 
     ScriptParamToFixedPoint16 = Symbol(
-        None,
-        None,
+        [0x862C],
+        [0x22E5F0C],
         None,
         "Converts the given opcode parameter to a 16-bit signed fixed-point number with 8 fraction bits.\n\nThe resulting number is encoded as (value) * 256, with the last byte acting as a fraction byte capable of representing multiples of 1/256.\n\nThe parameter will either be returned unchanged or modified depending on which of its two most significant bits (0x8000 and 0x4000) are set. Both bits are unset before running the operations listed below:\n- If the 0x4000 bit is set (sign bit), the value will be set to -16384 + value.\n- If the 0x8000 bit is set (fixed-point flag), the raw value is interpreted as being fixed-point already, and nothing else happens. Otherwise, it's assumed to be a normal integer and is converted to fixed-point by left-shifting it by 8 (moving the integer part to its proper place).\nBoth rules can be applied, in the same order as listed, if both conditions are met.\n\nr0: Parameter to convert\nreturn: The input parameter, as a 16-bit signed fixed-point number with 8 fraction bits",
     )
@@ -17535,8 +17537,8 @@ class JpOverlay29Functions:
     )
 
     ChangeMonsterAnimation = Symbol(
-        None,
-        None,
+        [0x28618],
+        [0x2305EF8],
         None,
         "Changes the animation a monster is currently playing. Optionally changes their direction as well.\n\nDoes nothing if the provided entity is not a monster.\n\nr0: Entity pointer\nr1: ID of the animation to set\nr2: Direction to turn the monster in, or DIR_NONE to keep the current direction",
     )
@@ -20608,15 +20610,15 @@ class JpOverlay29Functions:
     )
 
     DisplayFloorTip = Symbol(
-        None,
-        None,
+        [0x7050C],
+        [0x234DDEC],
         None,
         "Display the dungeon tip that displays on floor change, based on which tips have already been displayed.\n\nNo params.\n\nreturn: 1 if a tip has been displayed, 0 otherwise",
     )
 
     DisplayItemTip = Symbol(
-        None,
-        None,
+        [0x70638],
+        [0x234DF18],
         None,
         "Display the dungeon tip if not already displayed matching the (presumably newly acquired) item\n\nr0: item id\nreturn: 1 if a tip has been displayed, 0 otherwise",
     )
