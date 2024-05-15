@@ -88,7 +88,7 @@ def calculate_out_version(release: str, pptml: dict) -> str:
 )
 @click.option(
     '-i', '--in-path', required=True,
-    help='Input path of the YAML files (usually the symbols/ directory in pmdsky-debug).'
+    help='Input path of the symbol data files (usually the root directory in pmdsky-debug).'
 )
 @click.option(
     '-r', '--release', required=True,

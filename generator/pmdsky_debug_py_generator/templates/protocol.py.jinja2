@@ -13,6 +13,8 @@ class Symbol(Generic[A, B]):
     # None for most functions. Data fields should generally have a length defined.
     length: B
     description: str
+    # C type of this symbol. Empty string if unknown. None for functions.
+    c_type: Optional[str]
 
     @property
     @no_type_check

@@ -25,6 +25,9 @@ from typing import TypeVar, Optional
 import yaml
 
 OVERLAY_REGEX = re.compile(r"overlay(\d+)")
+C_TYPE_REGEX = re.compile(r"(((enum )|(struct ))?[a-z0-9_*]+) ([A-Z0-9_]+)(\[\d+])*;")
+PMDSKY_DEBUG_YAML_DIR = "symbols"
+PMDSKY_DEBUG_DATA_HEADERS_DIR = "headers/data"
 
 
 T = TypeVar('T')
@@ -112,6 +115,7 @@ class Symbol:
     addresses: dict[Region, list[int] | None] = field(default_factory=dict)
     lengths: dict[Region, int | None] = field(default_factory=dict)
     description: str = field(default_factory=str)
+    type: str = field(default_factory=str)
 
 
 @dataclass
@@ -196,10 +200,13 @@ def _read(binaries: list[Binary], yml: dict):
                 binary.description = definition["description"]
 
 
-def load_binaries(symbols_dir: str) -> list[Binary]:
+def load_binaries(pmdsky_debug_dir: str) -> list[Binary]:
     binaries: list[Binary] = []
 
-    files = list(Path(symbols_dir).rglob("*.yml"))
+    yml_dir = os.path.join(pmdsky_debug_dir, PMDSKY_DEBUG_YAML_DIR)
+    data_headers_dir = os.path.join(pmdsky_debug_dir, PMDSKY_DEBUG_DATA_HEADERS_DIR)
+
+    files = list(Path(yml_dir).rglob("*.yml"))
 
     # Make sure the arm and overlay files are read this: These are the main files.
     # They will contain the address, length and description.
@@ -216,7 +223,60 @@ def load_binaries(symbols_dir: str) -> list[Binary]:
             _read(binaries, yaml.safe_load(f))
 
     binaries.sort(key=lambda b: b.name)
+    add_types(binaries, data_headers_dir)
     return binaries
+
+
+def get_binary_by_name(name: str, binaries: list[Binary]) -> Optional[Binary]:
+    """
+    Given a list of binaries, returns the first one that has the specified name
+    :return The first binary with the given name, or None if none of the binaries has that name.
+    """
+    for binary in binaries:
+        if binary.name == name:
+            return binary
+    return None
+
+
+def get_data_symbol_by_name(name: str, binary: Binary) -> Optional[Symbol]:
+    """
+    Given a symbol name and a binary, returns the first data symbol in the binary with the specified name, or
+    None if no symbol with that name is found.
+    """
+    for symbol in binary.data:
+        if symbol.name == name:
+            return symbol
+    return None
+
+
+def add_types(binaries: list[Binary], data_headers_dir: str):
+    """
+    Loads type information for data symbols from the pmdsky-debug C headers
+    :param binaries: List of binaries. Its items will be modified to include type information.
+    :param data_headers_dir: Directory where the C headers for data fields is located
+    """
+    files = list(Path(data_headers_dir).rglob("*.h"))
+
+    for header_path in files:
+        binary_name = header_path.name.split(".")[0]
+        binary = get_binary_by_name(binary_name, binaries)
+
+        if binary is not None:
+            with open(header_path) as f:
+                for line in f:
+                    if not line.startswith("#"):
+                        match = re.search(C_TYPE_REGEX, line)
+                        if match:
+                            symbol_type = match.group(1)
+                            array_notation = match.group(6)
+                            if array_notation:
+                                # Append array notation to the type string, if present
+                                symbol_type += array_notation
+                            symbol_name = match.group(5)
+
+                            symbol = get_data_symbol_by_name(symbol_name, binary)
+                            if symbol:
+                                symbol.type = symbol_type
 
 
 if __name__ == '__main__':
