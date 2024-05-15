@@ -44,7 +44,7 @@ jobs:
       if: steps.check.outputs.newtag == 'new_tag'
       run: |
         python -m pmdsky_debug_py_generator.main \
-          -i ../pmdsky-debug/symbols \
+          -i ../pmdsky-debug \
           -o ../src \
           -r $RELEASE
       working-directory: generator

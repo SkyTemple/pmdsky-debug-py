@@ -1,6 +1,6 @@
 [project]
 name = "pmdsky-debug-py-generator"
-version = "1.0.0"
+version = "1.1.0"
 description = "Generator for pdmsky-debug-py."
 requires-python = ">=3.9"
 license = { text = "MIT" }
