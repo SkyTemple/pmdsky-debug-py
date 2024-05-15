@@ -1,7 +1,13 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: "/"
+    directory: "/generator"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "skytemple/dependabot-reviewers"
+  - package-ecosystem: "pip"
+    directory: "/src"
     schedule:
       interval: "weekly"
     reviewers:
