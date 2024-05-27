@@ -25,7 +25,7 @@ from typing import TypeVar, Optional
 import yaml
 
 OVERLAY_REGEX = re.compile(r"overlay(\d+)")
-C_TYPE_REGEX = re.compile(r"(((enum )|(struct ))?[a-z0-9_*]+) ([A-Z0-9_]+)(\[\d+])*;")
+C_TYPE_REGEX = re.compile(r"(((enum )|(struct ))?[a-z0-9_*]+) (([A-Z0-9_]+)(\[\d+])*);")
 PMDSKY_DEBUG_YAML_DIR = "symbols"
 PMDSKY_DEBUG_DATA_HEADERS_DIR = "headers/data"
 
