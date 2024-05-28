@@ -9,7 +9,8 @@ class {{ region.class_prefix() }}{{ binary.class_name }}Functions:
     {{ fn.name }} = Symbol(
         {{ fn.addresses[region] | make_relative(binary.loadaddresses[region]) | as_hex }},
         {{ fn.addresses[region] | as_hex }},
-        {{ fn.lengths[region] | as_hex }}, 
+        {{ fn.lengths[region] | as_hex }},
+        "{{ fn.name | escape_py }}",
         "{{ fn.description | escape_py }}",
         None
     )
@@ -23,7 +24,8 @@ class {{ region.class_prefix() }}{{ binary.class_name }}Data:
     {{ dt.name }} = Symbol(
         {{ dt.addresses[region] | make_relative(binary.loadaddresses[region]) | as_hex }},
         {{ dt.addresses[region] | as_hex }},
-        {{ dt.lengths[region] | as_hex }}, 
+        {{ dt.lengths[region] | as_hex }},
+        "{{ dt.name | escape_py }}",
         "{{ dt.description | escape_py }}",
         "{{ dt.type | escape_py }}"
     )
