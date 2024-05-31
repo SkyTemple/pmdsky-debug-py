@@ -13,6 +13,7 @@ class Symbol(Generic[A, B]):
     absolute_addresses: A
     # None for most functions. Data fields should generally have a length defined.
     length: B
+    name: str
     description: str
     # C type of this symbol. Empty string if unknown. None for functions.
     c_type: Optional[str]
