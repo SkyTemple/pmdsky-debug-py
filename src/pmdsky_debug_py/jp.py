@@ -7941,8 +7941,8 @@ class JpArm9Data:
         None,
         None,
         None,
-        "A table of values for the natural log function corresponding to integer arguments in the range [0, 2047].\n\nEach value is stored as a 16-bit fixed-point number with 12 fractional bits. I.e., to get the actual natural log value, take the table entry and divide it by 2^12.\n\nThe value at an input of 0 is just listed as 0; the Log function makes sure the input is always at least 1 before reading the table.\n\ntype: int16_t[2048]",
-        "int16_t[2048]",
+        "A table of values for the natural log function corresponding to integer arguments in the range [0, 2047].\n\nEach value is stored as a 16-bit fixed-point number with 12 fractional bits. I.e., to get the actual natural log value, take the table entry and divide it by 2^12.\n\nThe value at an input of 0 is just listed as 0; the Log function makes sure the input is always at least 1 before reading the table.\n\ntype: fx16_12[2048]",
+        "fx16_12[2048]",
     )
 
     CART_REMOVED_IMG_DATA = Symbol([0x92DD0], [0x2092DD0], 0x2000, "", "undefined[0]")
@@ -8466,7 +8466,7 @@ class JpArm9Data:
         [0x20A2CA0],
         0x4,
         "The constant shift added to the 'FLV' intermediate quantity in the damage formula (see dungeon::last_move_damage_calc_flv), as a binary fixed-point number with 8 fraction bits (50).",
-        "int",
+        "fx32_8",
     )
 
     EVOLUTION_PHYSICAL_STAT_BONUSES = Symbol(
@@ -8482,7 +8482,7 @@ class JpArm9Data:
         [0x20A2CA8],
         0x4,
         "The constant shift applied to the overall output of the 'unshifted base' damage formula (the sum of the scaled AT, DEF, and ClampedLn terms), as a binary fixed-point number with 8 fraction bits (-311).\n\nThe value of -311 is notably equal to -round[DAMAGE_FORMULA_LN_PREFACTOR * ln(DAMAGE_FORMULA_LN_ARG_PREFACTOR * DAMAGE_FORMULA_FLV_SHIFT)]. This is probably not a coincidence.",
-        "int",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR = Symbol(
@@ -8490,7 +8490,7 @@ class JpArm9Data:
         [0x20A2CAC],
         0x4,
         "The divisor of the (AT - DEF) term within the 'FLV' intermediate quantity in the damage formula (see dungeon::last_move_damage_calc_flv), as a binary fixed-point number with 8 fraction bits (8).",
-        "int",
+        "fx32_8",
     )
 
     EGG_STAT_BONUSES = Symbol(
@@ -8514,7 +8514,7 @@ class JpArm9Data:
         [0x20A2CBC],
         0x4,
         "The divisor applied to the overall output of the 'shifted base' damage formula (the sum of the scaled AT, Def, ClampedLn, and DAMAGE_FORMULA_CONSTANT_SHIFT terms) if the attacker is not a team member (and the current fixed room is not the substitute room...for some reason), as a binary fixed-point number with 8 fraction bits (85/64).",
-        "int",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_LN_PREFACTOR = Symbol(
@@ -8522,7 +8522,7 @@ class JpArm9Data:
         [0x20A2CC0],
         0x4,
         "The prefactor to the output of the ClampedLn in the damage formula, as a binary fixed-point number with 8 fraction bits (50).",
-        "int",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_DEF_PREFACTOR = Symbol(
@@ -8530,7 +8530,7 @@ class JpArm9Data:
         [0x20A2CC4],
         0x4,
         "The prefactor to the 'DEF' (defense) intermediate quantity in the damage formula (see dungeon::last_move_damage_calc_def), as a binary fixed-point number with 8 fraction bits (-0.5).",
-        "int",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
@@ -8538,7 +8538,7 @@ class JpArm9Data:
         [0x20A2CC8],
         0x4,
         "The prefactor to the 'AT' (attack) intermediate quantity in the damage formula (see dungeon::last_move_damage_calc_at), as a binary fixed-point number with 8 fraction bits (153/256, which is close to 0.6).",
-        "int",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_LN_ARG_PREFACTOR = Symbol(
@@ -8546,7 +8546,7 @@ class JpArm9Data:
         [0x20A2CCC],
         0x4,
         "The prefactor to the argument of ClampedLn in the damage formula (FLV + DAMAGE_FORMULA_FLV_SHIFT), as a binary fixed-point number with 8 fraction bits (10).",
-        "int",
+        "fx32_8",
     )
 
     FORBIDDEN_FORGOT_MOVE_LIST = Symbol(
@@ -9048,7 +9048,7 @@ class JpArm9Data:
         [0x20AF3F8],
         0x102,
         "Table of arctangent values at 129 divisions over the domain [0, 1].\n\nMore precisely, entry at index i corresponds to (atan(i/128) / (π/2)). Values are stored as signed fixed-point numbers with 14 fraction bits.",
-        "int16_t[129]",
+        "fx16_14[129]",
     )
 
     TEX_PLTT_START_ADDR_TABLE = Symbol(None, None, None, "", "int16_t[8]")
@@ -15008,7 +15008,7 @@ class JpOverlay10Data:
         [0x22C5DE8],
         0x4,
         "The damage multiplier applied to attacks copied by Me First, as a fixed-point number with 8 fraction bits (1.5).",
-        "int",
+        "fx32_8",
     )
 
     FACADE_DAMAGE_MULTIPLIER = Symbol(
@@ -15016,7 +15016,7 @@ class JpOverlay10Data:
         [0x22C5E00],
         0x4,
         "The Facade damage multiplier for users with a status condition, as a binary fixed-point number with 8 fraction bits (0x200 -> 2x).",
-        "int",
+        "fx32_8",
     )
 
     IMPRISON_TURN_RANGE = Symbol(
@@ -15048,7 +15048,7 @@ class JpOverlay10Data:
         [0x22C5E2C],
         0x4,
         "The extra damage multiplier for moves when the attacker is burned, as a fixed-point number with 8 fraction bits (the raw value is 0xCC, which is close to 0.8).\n\nUnlike in the main series, this multiplier is applied regardless of whether the move being used is physical or special.",
-        "int",
+        "fx32_8",
     )
 
     REST_TURN_RANGE = Symbol(
@@ -15064,7 +15064,7 @@ class JpOverlay10Data:
         [0x22C5E34],
         0x4,
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE when Erratic Player is active, as a fixed-point number with 8 fraction bits (the raw value is 0x1B3, the closest possible representation of 1.7).",
-        "int",
+        "fx32_8",
     )
 
     MATCHUP_IMMUNE_MULTIPLIER = Symbol(
@@ -15072,7 +15072,7 @@ class JpOverlay10Data:
         None,
         None,
         "The damage multiplier corresponding to MATCHUP_IMMUNE, as a fixed-point number with 8 fraction bits (0.5).",
-        "int",
+        "fx32_8",
     )
 
     SPORT_CONDITION_TURN_RANGE = Symbol(
@@ -15104,7 +15104,7 @@ class JpOverlay10Data:
         [0x22C5EA8],
         0x4,
         "The extra damage multiplier for not-very-effective moves when Tinted Lens is active, as a fixed-point number with 8 fraction bits (the raw value is 0x133, the closest possible representation of 1.2).",
-        "int",
+        "fx32_8",
     )
 
     SMOKESCREEN_TURN_RANGE = Symbol(
@@ -15120,7 +15120,7 @@ class JpOverlay10Data:
         [0x22C5EC4],
         0x4,
         "The damage multiplier for Shadow Force, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     DIG_DAMAGE_MULTIPLIER = Symbol(
@@ -15128,7 +15128,7 @@ class JpOverlay10Data:
         [0x22C5ECC],
         0x4,
         "The damage multiplier for Dig, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     DIVE_DAMAGE_MULTIPLIER = Symbol(
@@ -15136,7 +15136,7 @@ class JpOverlay10Data:
         [0x22C5ED0],
         0x4,
         "The damage multiplier for Dive, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     BOUNCE_DAMAGE_MULTIPLIER = Symbol(
@@ -15144,7 +15144,7 @@ class JpOverlay10Data:
         [0x22C5ED4],
         0x4,
         "The damage multiplier for Bounce, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
@@ -15152,7 +15152,7 @@ class JpOverlay10Data:
         [0x22C5EE0],
         0x4,
         "The multiplier for projectile damage from Power Pitcher (1.5), as a binary fixed-point number (8 fraction bits)",
-        "int",
+        "fx32_8",
     )
 
     QUICK_DODGER_MOVE_ACCURACY_DROP = Symbol(
@@ -15168,7 +15168,7 @@ class JpOverlay10Data:
         [0x22C5EF8],
         0x4,
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE, as a fixed-point number with 8 fraction bits (the raw value is 0x1B4, the closest possible representation of 1/√2).",
-        "int",
+        "fx32_8",
     )
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER = Symbol(
@@ -15176,7 +15176,7 @@ class JpOverlay10Data:
         [0x22C5F00],
         0x4,
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE, as a fixed-point number with 8 fraction bits (the raw value is 0x166, the closest possible representation of 1.4).",
-        "int",
+        "fx32_8",
     )
 
     MATCHUP_NEUTRAL_MULTIPLIER = Symbol(
@@ -15184,7 +15184,7 @@ class JpOverlay10Data:
         [0x22C5F04],
         0x4,
         "The damage multiplier corresponding to MATCHUP_NEUTRAL, as a fixed-point number with 8 fraction bits (1).",
-        "int",
+        "fx32_8",
     )
 
     MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
@@ -15192,7 +15192,7 @@ class JpOverlay10Data:
         [0x22C5F08],
         0x4,
         "The damage multiplier corresponding to MATCHUP_IMMUNE when Erratic Player is active, as a fixed-point number with 8 fraction bits (0.25).",
-        "int",
+        "fx32_8",
     )
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
@@ -15200,7 +15200,7 @@ class JpOverlay10Data:
         [0x22C5F0C],
         0x4,
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE when Erratic Player is active, as a fixed-point number with 8 fraction bits (0.5).",
-        "int",
+        "fx32_8",
     )
 
     MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER = Symbol(
@@ -15208,7 +15208,7 @@ class JpOverlay10Data:
         [0x22C5F14],
         0x4,
         "The damage multiplier corresponding to MATCHUP_NEUTRAL when Erratic Player is active, as a fixed-point number with 8 fraction bits (1).",
-        "int",
+        "fx32_8",
     )
 
     AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
@@ -15216,7 +15216,7 @@ class JpOverlay10Data:
         [0x22C5F2C],
         0x4,
         "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point number (8 fraction bits)",
-        "int",
+        "fx32_8",
     )
 
     KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER = Symbol(
@@ -15224,7 +15224,7 @@ class JpOverlay10Data:
         [0x22C5F34],
         0x4,
         "The boosted kecleon shop spawn chance multiplier (~1.2) as a binary fixed-point number (8 fraction bits).",
-        "int",
+        "fx32_8",
     )
 
     HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER = Symbol(
@@ -15232,7 +15232,7 @@ class JpOverlay10Data:
         [0x22C5F38],
         0x4,
         "The hidden stairs spawn chance multiplier (~1.2) as a binary fixed-point number (8 fraction bits), if applicable. See ShouldBoostHiddenStairsSpawnChance in overlay 29.",
-        "int",
+        "fx32_8",
     )
 
     YAWN_TURN_RANGE = Symbol(
@@ -15256,7 +15256,7 @@ class JpOverlay10Data:
         [0x22C5F8C],
         0x4,
         "The default damage multiplier for SolarBeam, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     SKY_ATTACK_DAMAGE_MULTIPLIER = Symbol(
@@ -15264,7 +15264,7 @@ class JpOverlay10Data:
         [0x22C5F90],
         0x4,
         "The damage multiplier for Sky Attack, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     RAZOR_WIND_DAMAGE_MULTIPLIER = Symbol(
@@ -15272,7 +15272,7 @@ class JpOverlay10Data:
         [0x22C5F98],
         0x4,
         "The damage multiplier for Razor Wind, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     FOCUS_PUNCH_DAMAGE_MULTIPLIER = Symbol(
@@ -15280,7 +15280,7 @@ class JpOverlay10Data:
         [0x22C5F9C],
         None,
         "The damage multiplier for Focus Punch, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     SKULL_BASH_DAMAGE_MULTIPLIER = Symbol(
@@ -15288,7 +15288,7 @@ class JpOverlay10Data:
         [0x22C5FA4],
         0x4,
         "The damage multiplier for Skull Bash, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     FLY_DAMAGE_MULTIPLIER = Symbol(
@@ -15296,7 +15296,7 @@ class JpOverlay10Data:
         [0x22C5FA8],
         0x4,
         "The damage multiplier for Fly, as a fixed-point number with 8 fraction bits (2).",
-        "int",
+        "fx32_8",
     )
 
     WEATHER_BALL_TYPE_TABLE = Symbol(
@@ -15312,7 +15312,7 @@ class JpOverlay10Data:
         [0x22C602C],
         0x10,
         "Table of damage multipliers for Last Resort for different numbers of moves out of PP, where each entry is a binary fixed-point number with 8 fraction bits.\n\nIf n is the number of moves out of PP not counting Last Resort itself, the table is indexed by (n - 1).\n\ntype: int[4]",
-        "int[4]",
+        "fx32_8[4]",
     )
 
     SYNTHESIS_HP_RESTORATION_TABLE = Symbol(
@@ -15352,7 +15352,7 @@ class JpOverlay10Data:
         [0x22C607C],
         0x10,
         "Table of damage multipliers for Reversal/Flail at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
-        "int[4]",
+        "fx32_8[4]",
     )
 
     WATER_SPOUT_DAMAGE_MULT_TABLE = Symbol(
@@ -15360,7 +15360,7 @@ class JpOverlay10Data:
         [0x22C608C],
         0x10,
         "Table of damage multipliers for Water Spout at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
-        "int[4]",
+        "fx32_8[4]",
     )
 
     WRING_OUT_DAMAGE_MULT_TABLE = Symbol(
@@ -15368,7 +15368,7 @@ class JpOverlay10Data:
         [0x22C609C],
         0x10,
         "Table of damage multipliers for Wring Out/Crush Grip at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
-        "int[4]",
+        "fx32_8[4]",
     )
 
     ERUPTION_DAMAGE_MULT_TABLE = Symbol(
@@ -15376,7 +15376,7 @@ class JpOverlay10Data:
         [0x22C60AC],
         0x10,
         "Table of damage multipliers for Eruption at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
-        "int[4]",
+        "fx32_8[4]",
     )
 
     WEATHER_BALL_DAMAGE_MULT_TABLE = Symbol(
@@ -15384,7 +15384,7 @@ class JpOverlay10Data:
         [0x22C623C],
         0x20,
         "Maps each weather type (by index, see enum weather_id) to the corresponding Weather Ball damage multiplier, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[8]",
-        "int[8]",
+        "fx32_8[8]",
     )
 
     EAT_ITEM_EFFECT_IGNORE_LIST = Symbol(
@@ -15424,7 +15424,7 @@ class JpOverlay10Data:
         [0x22C6480],
         0x54,
         "Table of multipliers for offensive stats (attack/special attack) for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "int[21]",
+        "fx32_8[21]",
     )
 
     DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
@@ -15432,7 +15432,7 @@ class JpOverlay10Data:
         [0x22C64D4],
         0x54,
         "Table of multipliers for defensive stats (defense/special defense) for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "int[21]",
+        "fx32_8[21]",
     )
 
     NATURE_POWER_TABLE = Symbol(
@@ -15488,7 +15488,7 @@ class JpOverlay10Data:
         [0x22C6AF4],
         0x54,
         "Table of multipliers for the accuracy stat for males for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "int[21]",
+        "fx32_8[21]",
     )
 
     MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
@@ -15496,7 +15496,7 @@ class JpOverlay10Data:
         [0x22C6B48],
         0x54,
         "Table of multipliers for the evasion stat for males for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "int[21]",
+        "fx32_8[21]",
     )
 
     FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
@@ -15504,7 +15504,7 @@ class JpOverlay10Data:
         [0x22C6B9C],
         0x54,
         "Table of multipliers for the accuracy stat for females for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "int[21]",
+        "fx32_8[21]",
     )
 
     FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
@@ -15512,7 +15512,7 @@ class JpOverlay10Data:
         [0x22C6BF0],
         0x54,
         "Table of multipliers for the evasion stat for females for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "int[21]",
+        "fx32_8[21]",
     )
 
     MUSIC_ID_TABLE = Symbol(
@@ -24372,7 +24372,7 @@ class JpOverlay29Data:
         [0x2311F98],
         0x4,
         "The base value by which belly is decreased every turn.\n\nIts raw value is 0x199A, which encodes a binary fixed-point number (16 fraction bits) with value (0x199A * 2^-16), and is the closest approximation to 0.1 representable in this number format.",
-        "int",
+        "fx32_16",
     )
 
     MONSTER_HEAL_HP_MAX = Symbol(
@@ -24728,7 +24728,7 @@ class JpOverlay29Data:
         None,
         None,
         "A generic damage multiplier of 0.5 used in various places, as a 64-bit fixed-point number with 16 fraction bits.",
-        "struct fx64",
+        "struct fx64_16",
     )
 
     DAMAGE_MULTIPLIER_1_5 = Symbol(
@@ -24736,7 +24736,7 @@ class JpOverlay29Data:
         None,
         None,
         "A generic damage multiplier of 1.5 used in various places, as a 64-bit fixed-point number with 16 fraction bits.",
-        "struct fx64",
+        "struct fx64_16",
     )
 
     DAMAGE_MULTIPLIER_2 = Symbol(
@@ -24744,7 +24744,7 @@ class JpOverlay29Data:
         None,
         None,
         "A generic damage multiplier of 2 used in various places, as a 64-bit fixed-point number with 16 fraction bits.",
-        "struct fx64",
+        "struct fx64_16",
     )
 
     CLOUDY_DAMAGE_MULTIPLIER = Symbol(
@@ -24752,7 +24752,7 @@ class JpOverlay29Data:
         None,
         None,
         "The extra damage multiplier for non-Normal-type moves when the weather is Cloudy, as a 64-bit fixed-point number with 16 fraction bits (0.75).",
-        "struct fx64",
+        "struct fx64_16",
     )
 
     SOLID_ROCK_MULTIPLIER = Symbol(
@@ -24760,7 +24760,7 @@ class JpOverlay29Data:
         None,
         None,
         "The extra damage multiplier for super-effective moves when Solid Rock or Filter is active, as a 64-bit fixed-point number with 16 fraction bits (0.75).",
-        "struct fx64",
+        "struct fx64_16",
     )
 
     DAMAGE_FORMULA_MAX_BASE = Symbol(
@@ -24768,7 +24768,7 @@ class JpOverlay29Data:
         None,
         None,
         "The maximum value of the base damage formula (after DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a 64-bit binary fixed-point number with 16 fraction bits (999).",
-        "struct fx64",
+        "struct fx64_16",
     )
 
     WONDER_GUARD_MULTIPLIER = Symbol(
@@ -24776,7 +24776,7 @@ class JpOverlay29Data:
         None,
         None,
         "The damage multiplier for moves affected by Wonder Guard, as a 64-bit fixed-point number with 16 fraction bits (0).",
-        "struct fx64",
+        "struct fx64_16",
     )
 
     DAMAGE_FORMULA_MIN_BASE = Symbol(
@@ -24784,7 +24784,7 @@ class JpOverlay29Data:
         None,
         None,
         "The minimum value of the base damage formula (after DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a 64-bit binary fixed-point number with 16 fraction bits (1).",
-        "struct fx64",
+        "struct fx64_16",
     )
 
     TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS = Symbol(
@@ -24824,7 +24824,7 @@ class JpOverlay29Data:
         None,
         None,
         "A table of damage multipliers for each successive hit of Rollout/Ice Ball. Each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int32_t[10]",
-        "int32_t[10]",
+        "fx32_8[10]",
     )
 
     MAP_COLOR_TABLE = Symbol(
