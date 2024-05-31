@@ -259,6 +259,9 @@ def add_types(binaries: list[Binary], data_headers_dir: str):
 
     for header_path in files:
         binary_name = header_path.name.split(".")[0]
+        # For overlays 1-9, the header file is named "overlay_0X.h", but the root of the corresponding yml file is
+        # named "overlayX", so we need to remove the 0 to ensure the binary is found.
+        binary_name = binary_name.replace("overlay0", "overlay")
         binary = get_binary_by_name(binary_name, binaries)
 
         if binary is not None:
