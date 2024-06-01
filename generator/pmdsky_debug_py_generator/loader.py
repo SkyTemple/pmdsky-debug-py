@@ -26,7 +26,7 @@ import yaml
 
 OVERLAY_REGEX = re.compile(r"overlay(\d+)")
 C_TYPE_REGEX = re.compile(r"(extern\s+)?(?P<symbol_type>((enum)|(struct)\s+)?[a-z0-9_*]+)\s+"
-                          r"(?P<symbol_name>[A-Z0-9_]+)(?P<array_notation>(\[\d+])*);")
+                          r"(?P<symbol_name>[A-Z0-9_]+)(?P<array_notation>(\[\d+]\s*)*);")
 PMDSKY_DEBUG_YAML_DIR = "symbols"
 PMDSKY_DEBUG_DATA_HEADERS_DIR = "headers/data"
 
@@ -272,10 +272,16 @@ def add_types(binaries: list[Binary], data_headers_dir: str):
                         match = re.match(C_TYPE_REGEX, line)
                         if match:
                             symbol_type = match.group("symbol_type")
+                            # Limit whitspace to 1 character
+                            symbol_type = re.sub(r"\s+", " ", symbol_type)
+
                             array_notation = match.group("array_notation")
                             if array_notation:
-                                # Append array notation to the type string, if present
+                                # Remove whitespace
+                                array_notation = re.sub(r"\s+", "", array_notation)
+                                # Append array notation to the type string
                                 symbol_type += array_notation
+
                             symbol_name = match.group("symbol_name")
 
                             symbol = get_data_symbol_by_name(symbol_name, binary)
