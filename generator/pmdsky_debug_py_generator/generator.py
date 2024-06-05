@@ -73,7 +73,7 @@ def generate(
 
     for file in files:
         template = J2ENV.get_template(file.template_name)
-        with open(os.path.join(pkg_path, file.output_name), 'w') as f:
+        with open(os.path.join(pkg_path, file.output_name), 'w', encoding="utf-8") as f:
             f.write(format_str(template.render(
                 binaries=binaries,
                 region=file.region,
@@ -86,5 +86,5 @@ def generate(
 
 def update_version(pyproject_toml: dict, out_version: str, pptml_path: str):
     pyproject_toml['project']['version'] = out_version
-    with open(pptml_path, 'w') as f:
+    with open(pptml_path, 'w', encoding="utf-8") as f:
         toml.dump(pyproject_toml, f)

@@ -181,7 +181,7 @@ class Loader:
         self._all_symbols = {}
 
         for yml_path in files:
-            with yml_path.open("r") as f:
+            with yml_path.open("r", encoding="utf-8") as f:
                 self._read_yml(yaml.safe_load(f))
 
         self._all_binaries.sort(key=lambda b: b.name)
