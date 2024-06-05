@@ -1,6 +1,6 @@
 from .protocol import Symbol
 
-{% for binary in symbols %}
+{% for binary in binaries %}
 class {{ region.class_prefix() }}{{ binary.class_name }}Functions:
     {% if not binary.functions | length %}
     pass
@@ -41,9 +41,9 @@ class {{ region.class_prefix() }}{{ binary.class_name }}Section:
 {% endfor %}
 
 class {{ region.class_prefix() }}Sections:
-    {% if not symbols | length %}
+    {% if not binaries | length %}
     pass
     {% endif %}
-    {% for binary in symbols %}
+    {% for binary in binaries %}
     {{ binary.name }} = {{ region.class_prefix() }}{{ binary.class_name }}Section
     {% endfor %}

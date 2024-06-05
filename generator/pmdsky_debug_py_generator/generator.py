@@ -59,7 +59,7 @@ class File:
 
 
 def generate(
-        symbols: list[Binary],
+        binaries: list[Binary],
         pkg_path: str,
         pkg_name: str,
         release: str
@@ -75,7 +75,7 @@ def generate(
         template = J2ENV.get_template(file.template_name)
         with open(os.path.join(pkg_path, file.output_name), 'w') as f:
             f.write(format_str(template.render(
-                symbols=symbols,
+                binaries=binaries,
                 region=file.region,
                 pkg_name=pkg_name
             ), mode=FileMode(preview=True)))

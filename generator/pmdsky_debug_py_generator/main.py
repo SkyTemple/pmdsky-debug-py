@@ -9,7 +9,7 @@ from click import echo, style, ClickException
 from click._compat import get_text_stderr
 
 from pmdsky_debug_py_generator.generator import generate, update_version
-from pmdsky_debug_py_generator.loader import load_binaries
+from pmdsky_debug_py_generator.loader import Loader
 PYPROJECT_TOML = "pyproject.toml"
 VERSION_SPLIT_RE = re.compile(r'[.+]')
 T = TypeVar('T')
@@ -130,9 +130,10 @@ def run(
             echo(style(f"ℹ Specified output version: {out_version}", fg='green'))
 
         echo(style("⚒ Loading symbol table...", fg='cyan'))
-        symbols = load_binaries(in_path)
+        symbol_loader = Loader(in_path)
+        binaries = symbol_loader.get_binaries()
         echo(style("⚒ Generating code...", fg='cyan'))
-        generate(symbols, os.path.join(out_path, package_name), package_name, release)
+        generate(binaries, os.path.join(out_path, package_name), package_name, release)
         echo(style("⚒ Updating version...", fg='cyan'))
         update_version(pyproject_toml, out_version, pptml_path)
         echo(style(f"ℹ Done!", fg='green'))
