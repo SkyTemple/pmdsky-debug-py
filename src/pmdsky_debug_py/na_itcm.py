@@ -10625,7 +10625,23 @@ class NaItcmArm9Data:
         "",
     )
 
-    TEXT_SPEED = Symbol(None, None, None, "TEXT_SPEED", "Controls text speed.", "")
+    DEBUG_TEXT_SPEED = Symbol(
+        None,
+        None,
+        None,
+        "DEBUG_TEXT_SPEED",
+        "Text speed when debug flag DEBUG_FLAG_TEXT_SPEEDUP is enabled.",
+        "",
+    )
+
+    REGULAR_TEXT_SPEED = Symbol(
+        None,
+        None,
+        None,
+        "REGULAR_TEXT_SPEED",
+        "Text speed when debug flag DEBUG_FLAG_TEXT_SPEEDUP is disabled.",
+        "",
+    )
 
     HERO_START_LEVEL = Symbol(
         None, None, None, "HERO_START_LEVEL", "Starting level of the hero.", ""

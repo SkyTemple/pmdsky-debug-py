@@ -10717,14 +10717,28 @@ class EuArm9Data:
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x118B8],
         [0x20118B8],
-        0x1,
+        None,
         "JUICE_BAR_NECTAR_IQ_GAIN",
         "IQ gain when ingesting nectar at the Juice Bar.",
         "",
     )
 
-    TEXT_SPEED = Symbol(
-        [0x20DF0], [0x2020DF0], None, "TEXT_SPEED", "Controls text speed.", ""
+    DEBUG_TEXT_SPEED = Symbol(
+        [0x20DEC],
+        [0x2020DEC],
+        None,
+        "DEBUG_TEXT_SPEED",
+        "Text speed when debug flag DEBUG_FLAG_TEXT_SPEEDUP is enabled.",
+        "",
+    )
+
+    REGULAR_TEXT_SPEED = Symbol(
+        [0x20DF0],
+        [0x2020DF0],
+        None,
+        "REGULAR_TEXT_SPEED",
+        "Text speed when debug flag DEBUG_FLAG_TEXT_SPEEDUP is disabled.",
+        "",
     )
 
     HERO_START_LEVEL = Symbol(

@@ -10694,14 +10694,28 @@ class JpArm9Data:
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x117E0],
         [0x20117E0],
-        0x1,
+        None,
         "JUICE_BAR_NECTAR_IQ_GAIN",
         "IQ gain when ingesting nectar at the Juice Bar.",
         "",
     )
 
-    TEXT_SPEED = Symbol(
-        [0x20CE8], [0x2020CE8], None, "TEXT_SPEED", "Controls text speed.", ""
+    DEBUG_TEXT_SPEED = Symbol(
+        [0x20CE4],
+        [0x2020CE4],
+        None,
+        "DEBUG_TEXT_SPEED",
+        "Text speed when debug flag DEBUG_FLAG_TEXT_SPEEDUP is enabled.",
+        "",
+    )
+
+    REGULAR_TEXT_SPEED = Symbol(
+        [0x20CE8],
+        [0x2020CE8],
+        None,
+        "REGULAR_TEXT_SPEED",
+        "Text speed when debug flag DEBUG_FLAG_TEXT_SPEEDUP is disabled.",
+        "",
     )
 
     HERO_START_LEVEL = Symbol(

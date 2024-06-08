@@ -6082,10 +6082,15 @@ class Arm9DataProtocol(Protocol):
 
     JUICE_BAR_NECTAR_IQ_GAIN: Symbol[
         Optional[list[int]],
-        Optional[int],
+        None,
     ]
 
-    TEXT_SPEED: Symbol[
+    DEBUG_TEXT_SPEED: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    REGULAR_TEXT_SPEED: Symbol[
         Optional[list[int]],
         None,
     ]
