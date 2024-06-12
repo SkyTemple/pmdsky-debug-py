@@ -20,12 +20,13 @@ import re
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
-from typing import TypeVar, Optional
+from typing import TypeVar, Optional, Dict, List
 
 import yaml
 
 OVERLAY_REGEX = re.compile(r"overlay(\d+)")
-C_TYPE_REGEX = re.compile(r"(((enum )|(struct ))?[a-z0-9_*]+) (([A-Z0-9_]+)(\[\d+])*);")
+C_TYPE_REGEX = re.compile(r"(extern\s+)?(const\s+)?(?P<symbol_type>((enum|struct)\s+)?[a-z0-9_*]+)\s+(const\s+)?"
+                          r"(?P<symbol_name>[A-Z0-9_]+)(?P<array_notation>(\[\d+]\s*)*);")
 PMDSKY_DEBUG_YAML_DIR = "symbols"
 PMDSKY_DEBUG_DATA_HEADERS_DIR = "headers/data"
 
@@ -140,150 +141,174 @@ class Binary:
         return newobj
 
 
-def _read_symbol(symbol_def: dict) -> Symbol:
-    if "name" in symbol_def:
-        name = symbol_def["name"]
-    else:
-        raise ValueError("Symbol is missing its name.")
+class Loader:
+    """
+    Used to load pmdsky-debug symbols and their types
+    """
+    pmdsky_debug_dir: str
+    # Contains all loaded binaries. None if symbols weren't loaded yet.
+    _all_binaries: Optional[List[Binary]]
+    # Contains all loaded symbols, indexed by name. None if symbols weren't loaded yet.
+    _all_symbols: Optional[Dict[str, Symbol]]
 
-    sym = Symbol(name, description=symbol_def.get("description", ""))
+    def __init__(self, pmdsky_debug_dir: str):
+        self.pmdsky_debug_dir = pmdsky_debug_dir
+        self._all_binaries = None
+        self._all_symbols = None
 
-    if "address" in symbol_def:
-        for region_str, value in symbol_def["address"].items():
-            region = Region.from_str(region_str)
-            if region is not None:
-                if isinstance(value, list):
-                    sym.addresses[region] = [int(x) for x in value]
-                else:
-                    sym.addresses[region] = [int(value)]
-        Region.fill_missing(sym.addresses)
-    else:
-        raise ValueError(f"Symbol {name} is missing an address.")
+    def load(self):
+        """
+        Loads all the symbols present in the specified pmdsky-debug directory.
+        The symbols can then be retrieved grouped by binary by calling get_binaries() or grouped by name
+        by calling get_symbols().
+        """
+        yml_dir = os.path.join(self.pmdsky_debug_dir, PMDSKY_DEBUG_YAML_DIR)
+        data_headers_dir = os.path.join(self.pmdsky_debug_dir, PMDSKY_DEBUG_DATA_HEADERS_DIR)
 
-    if "length" in symbol_def:
-        for region_str, value in symbol_def["length"].items():
-            region = Region.from_str(region_str)
-            if region is not None:
-                sym.lengths[region] = int(value)
-    Region.fill_missing(sym.lengths)
+        files = list(Path(yml_dir).rglob("*.yml"))
 
-    return sym
-
-
-def _read(binaries: list[Binary], yml: dict):
-    for bin_name, definition in yml.items():
-        assert isinstance(bin_name, str)
-        binary = Binary.get(binaries, bin_name)
-        # TODO: Do something special with "versions"?
-        #       For now we will just assume all symbols are for all regions
-        #       and just treat missing load-addresses and symbol addresses/lengths.
-        if "address" in definition:
-            for region_str, value in definition["address"].items():
-                region = Region.from_str(region_str)
-                if region is not None:
-                    binary.loadaddresses[region] = int(value)
-            Region.fill_missing(binary.loadaddresses)
-        if "length" in definition:
-            for region_str, value in definition["length"].items():
-                region = Region.from_str(region_str)
-                if region is not None:
-                    binary.lengths[region] = int(value)
-            Region.fill_missing(binary.lengths)
-        if "functions" in definition:
-            for symbol_def in definition["functions"]:
-                binary.functions.append(_read_symbol(symbol_def))
-        if "data" in definition:
-            for symbol_def in definition["data"]:
-                binary.data.append(_read_symbol(symbol_def))
-        if "description" in definition:
-            if binary.description == "":
-                binary.description = definition["description"]
-
-
-def load_binaries(pmdsky_debug_dir: str) -> list[Binary]:
-    binaries: list[Binary] = []
-
-    yml_dir = os.path.join(pmdsky_debug_dir, PMDSKY_DEBUG_YAML_DIR)
-    data_headers_dir = os.path.join(pmdsky_debug_dir, PMDSKY_DEBUG_DATA_HEADERS_DIR)
-
-    files = list(Path(yml_dir).rglob("*.yml"))
-
-    # Make sure the arm and overlay files are read this: These are the main files.
-    # They will contain the address, length and description.
-    # Make sure sub-files are read last.
-    files.sort(
-        key=lambda key: (
-            len(key.parts),
-            -1 if key.name.startswith("arm") or key.name.startswith("overlay") else 1,
+        # Make sure the arm and overlay files are read this: These are the main files.
+        # They will contain the address, length and description.
+        # Make sure sub-files are read last.
+        files.sort(
+            key=lambda key: (
+                len(key.parts),
+                -1 if key.name.startswith("arm") or key.name.startswith("overlay") else 1,
+            )
         )
-    )
 
-    for yml_path in files:
-        with yml_path.open("r") as f:
-            _read(binaries, yaml.safe_load(f))
+        self._all_binaries = []
+        self._all_symbols = {}
 
-    binaries.sort(key=lambda b: b.name)
-    add_types(binaries, data_headers_dir)
-    return binaries
+        for yml_path in files:
+            with yml_path.open("r", encoding="utf-8") as f:
+                self._read_yml(yaml.safe_load(f))
 
+        self._all_binaries.sort(key=lambda b: b.name)
+        self.add_types(data_headers_dir)
+        return self._all_binaries
 
-def get_binary_by_name(name: str, binaries: list[Binary]) -> Optional[Binary]:
-    """
-    Given a list of binaries, returns the first one that has the specified name
-    :return The first binary with the given name, or None if none of the binaries has that name.
-    """
-    for binary in binaries:
-        if binary.name == name:
-            return binary
-    return None
+    def get_binaries(self) -> List[Binary]:
+        """
+        Gets all loaded binaries. If symbol information has not been laoded yet, it is loaded before returning
+        the result.
+        """
+        if self._all_binaries is None:
+            self.load()
+        return self._all_binaries
 
+    def get_symbols(self) -> Dict[Symbol]:
+        """
+        Gets all loaded symbols in a dict. The dict uses symbol names as the key. If symbol information has not been
+        laoded yet, it is loaded before returning the result.
+        """
+        if self._all_binaries is None or self._all_symbols is None:
+            self.load()
+        # noinspection PyTypeChecker
+        # The dict should to be loaded at this point
+        return self._all_symbols
 
-def get_data_symbol_by_name(name: str, binary: Binary) -> Optional[Symbol]:
-    """
-    Given a symbol name and a binary, returns the first data symbol in the binary with the specified name, or
-    None if no symbol with that name is found.
-    """
-    for symbol in binary.data:
-        if symbol.name == name:
-            return symbol
-    return None
+    def _read_yml(self, yml: dict):
+        for bin_name, definition in yml.items():
+            assert isinstance(bin_name, str)
+            binary = Binary.get(self._all_binaries, bin_name)
+            # TODO: Do something special with "versions"?
+            #       For now we will just assume all symbols are for all regions
+            #       and just treat missing load-addresses and symbol addresses/lengths.
+            if "address" in definition:
+                for region_str, value in definition["address"].items():
+                    region = Region.from_str(region_str)
+                    if region is not None:
+                        binary.loadaddresses[region] = int(value)
+                Region.fill_missing(binary.loadaddresses)
+            if "length" in definition:
+                for region_str, value in definition["length"].items():
+                    region = Region.from_str(region_str)
+                    if region is not None:
+                        binary.lengths[region] = int(value)
+                Region.fill_missing(binary.lengths)
+            if "functions" in definition:
+                for symbol_def in definition["functions"]:
+                    binary.functions.append(self._read_symbol(symbol_def))
+            if "data" in definition:
+                for symbol_def in definition["data"]:
+                    binary.data.append(self._read_symbol(symbol_def))
+            if "description" in definition:
+                if binary.description == "":
+                    binary.description = definition["description"]
 
+    def _read_symbol(self, symbol_def: dict) -> Symbol:
+        """
+        Reads a symbol given its definition taken from a yml file. Also adds the symbol to this instance's symbol
+        list.
+        """
 
-def add_types(binaries: list[Binary], data_headers_dir: str):
-    """
-    Loads type information for data symbols from the pmdsky-debug C headers
-    :param binaries: List of binaries. Its items will be modified to include type information.
-    :param data_headers_dir: Directory where the C headers for data fields is located
-    """
-    files = list(Path(data_headers_dir).rglob("*.h"))
+        if "name" in symbol_def:
+            name = symbol_def["name"]
+        else:
+            raise ValueError("Symbol is missing its name.")
 
-    for header_path in files:
-        binary_name = header_path.name.split(".")[0]
-        # For overlays 1-9, the header file is named "overlay_0X.h", but the root of the corresponding yml file is
-        # named "overlayX", so we need to remove the 0 to ensure the binary is found.
-        binary_name = binary_name.replace("overlay0", "overlay")
-        binary = get_binary_by_name(binary_name, binaries)
+        sym = Symbol(name, description=symbol_def.get("description", ""))
 
-        if binary is not None:
+        if "address" in symbol_def:
+            for region_str, value in symbol_def["address"].items():
+                region = Region.from_str(region_str)
+                if region is not None:
+                    if isinstance(value, list):
+                        sym.addresses[region] = [int(x) for x in value]
+                    else:
+                        sym.addresses[region] = [int(value)]
+            Region.fill_missing(sym.addresses)
+        else:
+            raise ValueError(f"Symbol {name} is missing an address.")
+
+        if "length" in symbol_def:
+            for region_str, value in symbol_def["length"].items():
+                region = Region.from_str(region_str)
+                if region is not None:
+                    sym.lengths[region] = int(value)
+        Region.fill_missing(sym.lengths)
+
+        # Add to all symbols dict
+        self._all_symbols[sym.name] = sym
+
+        return sym
+
+    def add_types(self, data_headers_dir: str):
+        """
+        Loads type information for data symbols from the pmdsky-debug C headers
+        :param data_headers_dir: Directory where the C headers for data fields is located
+        """
+        files = list(Path(data_headers_dir).rglob("*.h"))
+
+        for header_path in files:
             with open(header_path) as f:
                 for line in f:
                     if not line.startswith("#"):
-                        match = re.search(C_TYPE_REGEX, line)
+                        match = re.match(C_TYPE_REGEX, line)
                         if match:
-                            symbol_type = match.group(1)
-                            array_notation = match.group(6)
-                            if array_notation:
-                                # Append array notation to the type string, if present
-                                symbol_type += array_notation
-                            symbol_name = match.group(5)
+                            symbol_type = match.group("symbol_type")
+                            # Limit whitspace to 1 character
+                            symbol_type = re.sub(r"\s+", " ", symbol_type)
 
-                            symbol = get_data_symbol_by_name(symbol_name, binary)
+                            array_notation = match.group("array_notation")
+                            if array_notation:
+                                # Remove whitespace
+                                array_notation = re.sub(r"\s+", "", array_notation)
+                                # Append array notation to the type string
+                                symbol_type += array_notation
+
+                            symbol_name = match.group("symbol_name")
+
+                            symbol = self._all_symbols[symbol_name]
                             if symbol:
                                 symbol.type = symbol_type
+                            else:
+                                print("Warning: Symbol \"" + symbol_name + "\" not found while adding types.")
 
 
 if __name__ == '__main__':
-    for _binary in load_binaries(os.path.join(os.path.dirname(__file__), "..", "..", "pmdsky-debug", "symbols")):
+    for _binary in Loader(os.path.join(os.path.dirname(__file__), "..", "..", "pmdsky-debug", "symbols")).get_binaries():
         print("==============")
         print(f"{_binary.name}")
         print(f"loads: {_binary.loadaddresses}")

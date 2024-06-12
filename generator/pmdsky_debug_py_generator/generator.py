@@ -59,7 +59,7 @@ class File:
 
 
 def generate(
-        symbols: list[Binary],
+        binaries: list[Binary],
         pkg_path: str,
         pkg_name: str,
         release: str
@@ -73,9 +73,9 @@ def generate(
 
     for file in files:
         template = J2ENV.get_template(file.template_name)
-        with open(os.path.join(pkg_path, file.output_name), 'w') as f:
+        with open(os.path.join(pkg_path, file.output_name), 'w', encoding="utf-8") as f:
             f.write(format_str(template.render(
-                symbols=symbols,
+                binaries=binaries,
                 region=file.region,
                 pkg_name=pkg_name
             ), mode=FileMode(preview=True)))
@@ -86,5 +86,5 @@ def generate(
 
 def update_version(pyproject_toml: dict, out_version: str, pptml_path: str):
     pyproject_toml['project']['version'] = out_version
-    with open(pptml_path, 'w') as f:
+    with open(pptml_path, 'w', encoding="utf-8") as f:
         toml.dump(pyproject_toml, f)

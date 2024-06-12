@@ -43,7 +43,7 @@ class SectionProtocol(Protocol[T, U, L]):
     functions: T
     data: U
 
-{% for binary in symbols %}
+{% for binary in binaries %}
 class {{ binary.class_name }}FunctionsProtocol(Protocol):
     {% if not binary.functions | length %}
     pass
@@ -74,9 +74,9 @@ class {{ binary.class_name }}DataProtocol(Protocol):
 {% endfor %}
 
 class AllSymbolsProtocol(Protocol):
-    {% if not symbols | length %}
+    {% if not binaries | length %}
     pass
     {% endif %}
-    {% for binary in symbols %}
+    {% for binary in binaries %}
     {{ binary.name }}: {{ binary.class_name }}Protocol
     {% endfor %}
