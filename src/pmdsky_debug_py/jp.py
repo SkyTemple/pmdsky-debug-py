@@ -8838,7 +8838,7 @@ class JpArm9Data:
         0xCC,
         "START_MODULE_PARAMS",
         "Parameters used by the NitroSDK to read the ROM.",
-        "struct start_module_params*START_MODULE_PARAMS",
+        "struct start_module_params*",
     )
 
     DEFAULT_MEMORY_ARENA_SIZE = Symbol(
@@ -8847,7 +8847,7 @@ class JpArm9Data:
         0x4,
         "DEFAULT_MEMORY_ARENA_SIZE",
         "Length in bytes of the default memory allocation arena, 1991680.",
-        "uint32_tDEFAULT_MEMORY_ARENA_SIZE",
+        "uint32_t",
     )
 
     LOG_MAX_ARG = Symbol(
@@ -8856,7 +8856,7 @@ class JpArm9Data:
         0x4,
         "LOG_MAX_ARG",
         "The maximum argument value for the Log function, 2047.",
-        "intLOG_MAX_ARG",
+        "int",
     )
 
     DAMAGE_SOURCE_CODE_ORB_ITEM = Symbol(
@@ -8865,7 +8865,7 @@ class JpArm9Data:
         None,
         "DAMAGE_SOURCE_CODE_ORB_ITEM",
         "The damage source value for any item in CATEGORY_ORBS, 0x262.",
-        "enum damage_source_non_moveDAMAGE_SOURCE_CODE_ORB_ITEM",
+        "enum damage_source_non_move",
     )
 
     DAMAGE_SOURCE_CODE_NON_ORB_ITEM = Symbol(
@@ -8874,7 +8874,7 @@ class JpArm9Data:
         None,
         "DAMAGE_SOURCE_CODE_NON_ORB_ITEM",
         "The damage source value for any item not in CATEGORY_ORBS, 0x263.",
-        "enum damage_source_non_moveDAMAGE_SOURCE_CODE_NON_ORB_ITEM",
+        "enum damage_source_non_move",
     )
 
     AURA_BOW_ID_LAST = Symbol(
@@ -8883,16 +8883,11 @@ class JpArm9Data:
         None,
         "AURA_BOW_ID_LAST",
         "Highest item ID of the aura bows.",
-        "enum item_idAURA_BOW_ID_LAST",
+        "enum item_id",
     )
 
     NUMBER_OF_ITEMS = Symbol(
-        None,
-        None,
-        None,
-        "NUMBER_OF_ITEMS",
-        "Number of items in the game.",
-        "uint32_tNUMBER_OF_ITEMS",
+        None, None, None, "NUMBER_OF_ITEMS", "Number of items in the game.", "uint32_t"
     )
 
     MAX_MONEY_CARRIED = Symbol(
@@ -8901,7 +8896,7 @@ class JpArm9Data:
         0x4,
         "MAX_MONEY_CARRIED",
         "Maximum amount of money the player can carry, 99999.",
-        "uint32_tMAX_MONEY_CARRIED",
+        "uint32_t",
     )
 
     MAX_MONEY_STORED = Symbol(
@@ -8910,7 +8905,7 @@ class JpArm9Data:
         None,
         "MAX_MONEY_STORED",
         "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
-        "uint32_tMAX_MONEY_STORED",
+        "uint32_t",
     )
 
     WINDOW_LIST_PTR = Symbol(
@@ -8919,7 +8914,7 @@ class JpArm9Data:
         None,
         "WINDOW_LIST_PTR",
         "Hard-coded pointer to WINDOW_LIST.",
-        "struct window_list*WINDOW_LIST_PTR",
+        "struct window_list*",
     )
 
     SCRIPT_VARS_VALUES_PTR = Symbol(
@@ -8928,7 +8923,7 @@ class JpArm9Data:
         None,
         "SCRIPT_VARS_VALUES_PTR",
         "Hard-coded pointer to SCRIPT_VARS_VALUES.",
-        "struct script_var_value_table*SCRIPT_VARS_VALUES_PTR",
+        "struct script_var_value_table*",
     )
 
     MAX_PLAY_TIME = Symbol(
@@ -8937,7 +8932,7 @@ class JpArm9Data:
         None,
         "MAX_PLAY_TIME",
         "Maximum number of seconds that the file timer counts up to.\n\n35999999 seconds (one second under 10000 hours).",
-        "uint32_tMAX_PLAY_TIME",
+        "uint32_t",
     )
 
     MONSTER_ID_LIMIT = Symbol(
@@ -8946,7 +8941,7 @@ class JpArm9Data:
         None,
         "MONSTER_ID_LIMIT",
         "One more than the maximum valid monster ID (0x483).",
-        "uint32_tMONSTER_ID_LIMIT",
+        "uint32_t",
     )
 
     MAX_RECRUITABLE_TEAM_MEMBERS = Symbol(
@@ -8955,7 +8950,7 @@ class JpArm9Data:
         None,
         "MAX_RECRUITABLE_TEAM_MEMBERS",
         "555, appears to be the maximum number of members recruited to an exploration team, at least for the purposes of some checks that need to iterate over all team members.",
-        "uint32_tMAX_RECRUITABLE_TEAM_MEMBERS",
+        "uint32_t",
     )
 
     NATURAL_LOG_VALUE_TABLE = Symbol(
@@ -8964,63 +8959,67 @@ class JpArm9Data:
         None,
         "NATURAL_LOG_VALUE_TABLE",
         "A table of values for the natural log function corresponding to integer arguments in the range [0, 2047].\n\nEach value is stored as a 16-bit fixed-point number with 12 fractional bits. I.e., to get the actual natural log value, take the table entry and divide it by 2^12.\n\nThe value at an input of 0 is just listed as 0; the Log function makes sure the input is always at least 1 before reading the table.\n\ntype: fx16_12[2048]",
-        "",
+        "fx16_12[2048]",
     )
 
     CART_REMOVED_IMG_DATA = Symbol(
-        [0x92DD0], [0x2092DD0], 0x2000, "CART_REMOVED_IMG_DATA", "", ""
+        [0x92DD0], [0x2092DD0], 0x2000, "CART_REMOVED_IMG_DATA", "", "undefined[0]"
     )
 
-    STRING_DEBUG_EMPTY = Symbol(None, None, None, "STRING_DEBUG_EMPTY", "", "")
+    STRING_DEBUG_EMPTY = Symbol(None, None, None, "STRING_DEBUG_EMPTY", "", "char[4]")
 
     STRING_DEBUG_FORMAT_LINE_FILE = Symbol(
-        None, None, None, "STRING_DEBUG_FORMAT_LINE_FILE", "", ""
+        None, None, None, "STRING_DEBUG_FORMAT_LINE_FILE", "", "char[28]"
     )
 
     STRING_DEBUG_NO_PROG_POS = Symbol(
-        None, None, None, "STRING_DEBUG_NO_PROG_POS", "", ""
+        None, None, None, "STRING_DEBUG_NO_PROG_POS", "", "char[24]"
     )
 
     STRING_DEBUG_SPACED_PRINT = Symbol(
-        None, None, None, "STRING_DEBUG_SPACED_PRINT", "", ""
+        None, None, None, "STRING_DEBUG_SPACED_PRINT", "", "char[12]"
     )
 
-    STRING_DEBUG_FATAL = Symbol(None, None, None, "STRING_DEBUG_FATAL", "", "")
+    STRING_DEBUG_FATAL = Symbol(None, None, None, "STRING_DEBUG_FATAL", "", "char[20]")
 
-    STRING_DEBUG_NEWLINE = Symbol(None, None, None, "STRING_DEBUG_NEWLINE", "", "")
+    STRING_DEBUG_NEWLINE = Symbol(
+        None, None, None, "STRING_DEBUG_NEWLINE", "", "char[4]"
+    )
 
-    STRING_DEBUG_LOG_NULL = Symbol(None, None, None, "STRING_DEBUG_LOG_NULL", "", "")
+    STRING_DEBUG_LOG_NULL = Symbol(
+        None, None, None, "STRING_DEBUG_LOG_NULL", "", "char[8]"
+    )
 
     STRING_DEBUG_STRING_NEWLINE = Symbol(
-        None, None, None, "STRING_DEBUG_STRING_NEWLINE", "", ""
+        None, None, None, "STRING_DEBUG_STRING_NEWLINE", "", "char[4]"
     )
 
     STRING_EFFECT_EFFECT_BIN = Symbol(
-        None, None, None, "STRING_EFFECT_EFFECT_BIN", "", ""
+        None, None, None, "STRING_EFFECT_EFFECT_BIN", "", "char[20]"
     )
 
     STRING_MONSTER_MONSTER_BIN = Symbol(
-        None, None, None, "STRING_MONSTER_MONSTER_BIN", "", ""
+        None, None, None, "STRING_MONSTER_MONSTER_BIN", "", "char[20]"
     )
 
     STRING_BALANCE_M_LEVEL_BIN = Symbol(
-        None, None, None, "STRING_BALANCE_M_LEVEL_BIN", "", ""
+        None, None, None, "STRING_BALANCE_M_LEVEL_BIN", "", "char[20]"
     )
 
     STRING_DUNGEON_DUNGEON_BIN = Symbol(
-        None, None, None, "STRING_DUNGEON_DUNGEON_BIN", "", ""
+        None, None, None, "STRING_DUNGEON_DUNGEON_BIN", "", "char[20]"
     )
 
     STRING_MONSTER_M_ATTACK_BIN = Symbol(
-        None, None, None, "STRING_MONSTER_M_ATTACK_BIN", "", ""
+        None, None, None, "STRING_MONSTER_M_ATTACK_BIN", "", "char[24]"
     )
 
     STRING_MONSTER_M_GROUND_BIN = Symbol(
-        None, None, None, "STRING_MONSTER_M_GROUND_BIN", "", ""
+        None, None, None, "STRING_MONSTER_M_GROUND_BIN", "", "char[24]"
     )
 
     STRING_FILE_DIRECTORY_INIT = Symbol(
-        None, None, None, "STRING_FILE_DIRECTORY_INIT", "", ""
+        None, None, None, "STRING_FILE_DIRECTORY_INIT", "", "char[40]"
     )
 
     AVAILABLE_ITEMS_IN_GROUP_TABLE = Symbol(
@@ -9047,7 +9046,7 @@ class JpArm9Data:
         0x10,
         "KECLEON_SHOP_ITEM_TABLE_LISTS_1",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: enum item_id[4]",
-        "",
+        "enum item_id[4]",
     )
 
     KECLEON_SHOP_ITEM_TABLE_LISTS_2 = Symbol(
@@ -9056,7 +9055,7 @@ class JpArm9Data:
         0x10,
         "KECLEON_SHOP_ITEM_TABLE_LISTS_2",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: enum item_id[4]",
-        "",
+        "enum item_id[4]",
     )
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA = Symbol(
@@ -9065,7 +9064,7 @@ class JpArm9Data:
         0x3C,
         "EXCLUSIVE_ITEM_STAT_BOOST_DATA",
         "Contains stat boost effects for different exclusive item classes.\n\nEach 4-byte entry contains the boost data for (attack, defense, special attack, special defense), 1 byte each, for a specific exclusive item class, indexed according to the stat boost data index list.\n\ntype: struct exclusive_item_stat_boost_entry[15]",
-        "",
+        "struct exclusive_item_stat_boost_entry[15]",
     )
 
     EXCLUSIVE_ITEM_DEFENSE_BOOSTS = Symbol(
@@ -9101,7 +9100,7 @@ class JpArm9Data:
         0x778,
         "EXCLUSIVE_ITEM_EFFECT_DATA",
         "Contains special effects for each exclusive item.\n\nEach entry is 2 bytes, with the first entry corresponding to the first exclusive item (Prism Ruff). The first byte is the exclusive item effect ID, and the second byte is an index into other data tables (related to the more generic stat boosting effects for specific monsters).\n\ntype: struct exclusive_item_effect_entry[956]",
-        "",
+        "struct exclusive_item_effect_entry[956]",
     )
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
@@ -9128,7 +9127,7 @@ class JpArm9Data:
         0x88,
         "TYPE_SPECIFIC_EXCLUSIVE_ITEMS",
         "Lists of type-specific exclusive items (silk, dust, gem, globe) for each type.\n\ntype: struct item_id_16[17][4]",
-        "",
+        "struct item_id_16[17][4]",
     )
 
     RECOIL_MOVE_LIST = Symbol(
@@ -9137,7 +9136,7 @@ class JpArm9Data:
         0x16,
         "RECOIL_MOVE_LIST",
         "Null-terminated list of all the recoil moves, as 2-byte move IDs.\n\ntype: struct move_id_16[11]",
-        "",
+        "struct move_id_16[11]",
     )
 
     PUNCH_MOVE_LIST = Symbol(
@@ -9146,7 +9145,7 @@ class JpArm9Data:
         0x20,
         "PUNCH_MOVE_LIST",
         "Null-terminated list of all the punch moves, as 2-byte move IDs.\n\ntype: struct move_id_16[16]",
-        "",
+        "struct move_id_16[16]",
     )
 
     MOVE_POWER_STARS_TABLE = Symbol(
@@ -9155,7 +9154,7 @@ class JpArm9Data:
         0x18,
         "MOVE_POWER_STARS_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int[6]",
-        "",
+        "int[6]",
     )
 
     MOVE_ACCURACY_STARS_TABLE = Symbol(
@@ -9164,7 +9163,7 @@ class JpArm9Data:
         0x20,
         "MOVE_ACCURACY_STARS_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int[8]",
-        "",
+        "int[8]",
     )
 
     PARENT_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9173,7 +9172,7 @@ class JpArm9Data:
         None,
         "PARENT_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a simple_menu created with CreateParentMenuInternal.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateParentMenuInternal.\n\nAdditionally, width and height are 0, and will be computed in CreateParentMenuInternal.",
-        "struct window_paramsPARENT_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     SIMPLE_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9182,7 +9181,7 @@ class JpArm9Data:
         None,
         "SIMPLE_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a simple_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateSimpleMenuInternal.\n\nAdditionally, width and height are 0, and will be computed in CreateSimpleMenuInternal.",
-        "struct window_paramsSIMPLE_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     ADVANCED_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9191,7 +9190,7 @@ class JpArm9Data:
         None,
         "ADVANCED_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an advanced_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateAdvancedMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateAdvancedMenu.",
-        "struct window_paramsADVANCED_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     COLLECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9200,7 +9199,7 @@ class JpArm9Data:
         None,
         "COLLECTION_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a collection_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateCollectionMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateCollectionMenu.",
-        "struct window_paramsCOLLECTION_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     OPTIONS_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9209,7 +9208,7 @@ class JpArm9Data:
         None,
         "OPTIONS_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an options_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateOptionsMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateOptionsMenu.",
-        "struct window_paramsOPTIONS_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     DEBUG_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9218,7 +9217,7 @@ class JpArm9Data:
         None,
         "DEBUG_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a debug_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateDebugMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateDebugMenu.",
-        "struct window_paramsDEBUG_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     SCROLL_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9227,7 +9226,7 @@ class JpArm9Data:
         None,
         "SCROLL_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a scroll_box.",
-        "struct window_paramsSCROLL_BOX_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9236,7 +9235,7 @@ class JpArm9Data:
         None,
         "DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a dialogue_box.",
-        "struct window_paramsDIALOGUE_BOX_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9245,7 +9244,7 @@ class JpArm9Data:
         None,
         "PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a portrait_box.\n\nNote that the screen and box type are unset, and are determined in CreatePortraitBox.",
-        "struct window_paramsPORTRAIT_BOX_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9254,7 +9253,7 @@ class JpArm9Data:
         None,
         "TEXT_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a text_box.",
-        "struct window_paramsTEXT_BOX_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9263,7 +9262,7 @@ class JpArm9Data:
         None,
         "AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an area_name_box.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateAreaNameBox.\n\nAdditionally, width and height are 0, and will be computed in CreateAreaNameBox.",
-        "struct window_paramsAREA_NAME_BOX_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     CONTROLS_CHART_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9272,7 +9271,7 @@ class JpArm9Data:
         None,
         "CONTROLS_CHART_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a controls_chart.",
-        "struct window_paramsCONTROLS_CHART_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     ALERT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9281,7 +9280,7 @@ class JpArm9Data:
         None,
         "ALERT_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an alert_box.",
-        "struct window_paramsALERT_BOX_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9290,7 +9289,7 @@ class JpArm9Data:
         None,
         "ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an advanced_text_box.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateAdvancedTextBoxInternal.",
-        "struct window_paramsADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -9299,7 +9298,7 @@ class JpArm9Data:
         None,
         "TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a team_selection_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateTeamSelectionMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateTeamSelectionMenu.",
-        "struct window_paramsTEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     PARTNER_TALK_KIND_TABLE = Symbol(
@@ -9308,7 +9307,7 @@ class JpArm9Data:
         0x58,
         "PARTNER_TALK_KIND_TABLE",
         "Table of values for the PARTNER_TALK_KIND script variable.\n\ntype: struct partner_talk_kind_table_entry[11]",
-        "",
+        "struct partner_talk_kind_table_entry[11]",
     )
 
     SCRIPT_VARS_LOCALS = Symbol(
@@ -9317,7 +9316,7 @@ class JpArm9Data:
         0x40,
         "SCRIPT_VARS_LOCALS",
         "List of special 'local' variables available to the script engine. There are 4 16-byte entries.\n\nEach entry has the same structure as an entry in SCRIPT_VARS.\n\ntype: struct script_local_var_table",
-        "struct script_local_var_tableSCRIPT_VARS_LOCALS",
+        "struct script_local_var_table",
     )
 
     SCRIPT_VARS = Symbol(
@@ -9326,7 +9325,7 @@ class JpArm9Data:
         0x730,
         "SCRIPT_VARS",
         "List of predefined global variables that track game state, which are available to the script engine. There are 115 16-byte entries.\n\nThese variables underpin the various ExplorerScript global variables you can use in the SkyTemple SSB debugger.\n\ntype: struct script_var_table",
-        "struct script_var_tableSCRIPT_VARS",
+        "struct script_var_table",
     )
 
     PORTRAIT_LAYOUTS = Symbol(
@@ -9335,7 +9334,7 @@ class JpArm9Data:
         0xC0,
         "PORTRAIT_LAYOUTS",
         "All the possible layouts a portrait can be placed in by default.\n\ntype: struct portrait_layout[32]",
-        "",
+        "struct portrait_layout[32]",
     )
 
     KAOMADO_FILEPATH = Symbol(
@@ -9344,7 +9343,7 @@ class JpArm9Data:
         None,
         "KAOMADO_FILEPATH",
         "'Path of the file where all the portraits are stored. 'FONT/kaomado.kao', padded with null to a multiple of 4'\n\ntype: char[20]",
-        "",
+        "char[20]",
     )
 
     WONDER_MAIL_BITS_MAP = Symbol(
@@ -9353,7 +9352,7 @@ class JpArm9Data:
         0x20,
         "WONDER_MAIL_BITS_MAP",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: uint8_t[32]",
-        "",
+        "uint8_t[32]",
     )
 
     WONDER_MAIL_BITS_SWAP = Symbol(
@@ -9362,7 +9361,7 @@ class JpArm9Data:
         0x24,
         "WONDER_MAIL_BITS_SWAP",
         "Last 2 bytes are unused\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: uint8_t[36]",
-        "",
+        "uint8_t[36]",
     )
 
     ARM9_UNKNOWN_TABLE__NA_209E12C = Symbol(
@@ -9398,7 +9397,7 @@ class JpArm9Data:
         0x100,
         "WONDER_MAIL_ENCRYPTION_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: uint8_t[256]",
-        "",
+        "uint8_t[256]",
     )
 
     DUNGEON_DATA_LIST = Symbol(
@@ -9407,7 +9406,7 @@ class JpArm9Data:
         0x2D0,
         "DUNGEON_DATA_LIST",
         "Data about every dungeon in the game.\n\nThis is an array of 180 dungeon data list entry structs. Each entry is 4 bytes, and contains floor count information along with an index into the bulk of the dungeon's data in mappa_s.bin.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct dungeon_data_list_entry[180]",
-        "",
+        "struct dungeon_data_list_entry[180]",
     )
 
     ADVENTURE_LOG_ENCOUNTERS_MONSTER_IDS = Symbol(
@@ -9416,7 +9415,7 @@ class JpArm9Data:
         0x4C,
         "ADVENTURE_LOG_ENCOUNTERS_MONSTER_IDS",
         "List of monster IDs with a corresponding milestone in the Adventure Log.\n\ntype: struct monster_id_16[38]",
-        "",
+        "struct monster_id_16[38]",
     )
 
     ARM9_UNKNOWN_DATA__NA_209E6BC = Symbol(
@@ -9434,7 +9433,7 @@ class JpArm9Data:
         0x18,
         "TACTIC_NAME_STRING_IDS",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[12]",
-        "",
+        "int16_t[12]",
     )
 
     STATUS_NAME_STRING_IDS = Symbol(
@@ -9443,7 +9442,7 @@ class JpArm9Data:
         0xCC,
         "STATUS_NAME_STRING_IDS",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[102]",
-        "",
+        "int16_t[102]",
     )
 
     DUNGEON_RETURN_STATUS_TABLE = Symbol(
@@ -9452,7 +9451,7 @@ class JpArm9Data:
         0x16C,
         "DUNGEON_RETURN_STATUS_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct dungeon_return_status[91]",
-        "",
+        "struct dungeon_return_status[91]",
     )
 
     STATUSES_FULL_DESCRIPTION_STRING_IDS = Symbol(
@@ -9461,7 +9460,7 @@ class JpArm9Data:
         0x19C,
         "STATUSES_FULL_DESCRIPTION_STRING_IDS",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct status_description[103]",
-        "",
+        "struct status_description[103]",
     )
 
     ARM9_UNKNOWN_DATA__NA_209EAAC = Symbol(
@@ -9488,7 +9487,7 @@ class JpArm9Data:
         0xC8,
         "MISSION_FLOORS_FORBIDDEN",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct mission_floors_forbidden[100]",
-        "",
+        "struct mission_floors_forbidden[100]",
     )
 
     MISSION_FLOOR_RANKS_AND_ITEM_LISTS_2 = Symbol(
@@ -9506,7 +9505,7 @@ class JpArm9Data:
         0x190,
         "MISSION_FLOOR_RANKS_PTRS",
         "Uses MISSION_FLOOR_RANKS_AND_ITEM_LISTS\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "undefined*[100]",
     )
 
     DUNGEON_RESTRICTIONS = Symbol(
@@ -9515,7 +9514,7 @@ class JpArm9Data:
         0xC00,
         "DUNGEON_RESTRICTIONS",
         "Data related to dungeon restrictions for every dungeon in the game.\n\nThis is an array of 256 dungeon restriction structs. Each entry is 12 bytes, and contains information about restrictions within the given dungeon.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct dungeon_restriction[256]",
-        "",
+        "struct dungeon_restriction[256]",
     )
 
     SPECIAL_BAND_STAT_BOOST = Symbol(
@@ -9524,7 +9523,7 @@ class JpArm9Data:
         0x2,
         "SPECIAL_BAND_STAT_BOOST",
         "Stat boost value for the Special Band.",
-        "int16_tSPECIAL_BAND_STAT_BOOST",
+        "int16_t",
     )
 
     MUNCH_BELT_STAT_BOOST = Symbol(
@@ -9533,7 +9532,7 @@ class JpArm9Data:
         0x2,
         "MUNCH_BELT_STAT_BOOST",
         "Stat boost value for the Munch Belt.",
-        "int16_tMUNCH_BELT_STAT_BOOST",
+        "int16_t",
     )
 
     GUMMI_STAT_BOOST = Symbol(
@@ -9542,16 +9541,11 @@ class JpArm9Data:
         0x2,
         "GUMMI_STAT_BOOST",
         "Stat boost value if a stat boost occurs when eating normal Gummis.",
-        "int16_tGUMMI_STAT_BOOST",
+        "int16_t",
     )
 
     MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol(
-        [0xA2C60],
-        [0x20A2C60],
-        0x4,
-        "MIN_IQ_EXCLUSIVE_MOVE_USER",
-        "",
-        "int32_tMIN_IQ_EXCLUSIVE_MOVE_USER",
+        [0xA2C60], [0x20A2C60], 0x4, "MIN_IQ_EXCLUSIVE_MOVE_USER", "", "int32_t"
     )
 
     WONDER_GUMMI_IQ_GAIN = Symbol(
@@ -9560,7 +9554,7 @@ class JpArm9Data:
         0x2,
         "WONDER_GUMMI_IQ_GAIN",
         "IQ gain when ingesting wonder gummis.",
-        "int16_tWONDER_GUMMI_IQ_GAIN",
+        "int16_t",
     )
 
     AURA_BOW_STAT_BOOST = Symbol(
@@ -9569,16 +9563,11 @@ class JpArm9Data:
         0x2,
         "AURA_BOW_STAT_BOOST",
         "Stat boost value for the aura bows.",
-        "int16_tAURA_BOW_STAT_BOOST",
+        "int16_t",
     )
 
     MIN_IQ_ITEM_MASTER = Symbol(
-        [0xA2C78],
-        [0x20A2C78],
-        0x4,
-        "MIN_IQ_ITEM_MASTER",
-        "",
-        "int32_tMIN_IQ_ITEM_MASTER",
+        [0xA2C78], [0x20A2C78], 0x4, "MIN_IQ_ITEM_MASTER", "", "int32_t"
     )
 
     DEF_SCARF_STAT_BOOST = Symbol(
@@ -9587,7 +9576,7 @@ class JpArm9Data:
         0x2,
         "DEF_SCARF_STAT_BOOST",
         "Stat boost value for the Defense Scarf.",
-        "int16_tDEF_SCARF_STAT_BOOST",
+        "int16_t",
     )
 
     POWER_BAND_STAT_BOOST = Symbol(
@@ -9596,7 +9585,7 @@ class JpArm9Data:
         0x2,
         "POWER_BAND_STAT_BOOST",
         "Stat boost value for the Power Band.",
-        "int16_tPOWER_BAND_STAT_BOOST",
+        "int16_t",
     )
 
     WONDER_GUMMI_STAT_BOOST = Symbol(
@@ -9605,7 +9594,7 @@ class JpArm9Data:
         0x2,
         "WONDER_GUMMI_STAT_BOOST",
         "Stat boost value if a stat boost occurs when eating Wonder Gummis.",
-        "int16_tWONDER_GUMMI_STAT_BOOST",
+        "int16_t",
     )
 
     ZINC_BAND_STAT_BOOST = Symbol(
@@ -9614,7 +9603,7 @@ class JpArm9Data:
         0x2,
         "ZINC_BAND_STAT_BOOST",
         "Stat boost value for the Zinc Band.",
-        "int16_tZINC_BAND_STAT_BOOST",
+        "int16_t",
     )
 
     EGG_HP_BONUS = Symbol(
@@ -9623,7 +9612,7 @@ class JpArm9Data:
         0x2,
         "EGG_HP_BONUS",
         "Note: unverified, ported from Irdkwia's notes",
-        "int16_tEGG_HP_BONUS",
+        "int16_t",
     )
 
     EVOLUTION_HP_BONUS = Symbol(
@@ -9632,7 +9621,7 @@ class JpArm9Data:
         0x2,
         "EVOLUTION_HP_BONUS",
         "Note: unverified, ported from Irdkwia's notes",
-        "int16_tEVOLUTION_HP_BONUS",
+        "int16_t",
     )
 
     DAMAGE_FORMULA_FLV_SHIFT = Symbol(
@@ -9641,7 +9630,7 @@ class JpArm9Data:
         0x4,
         "DAMAGE_FORMULA_FLV_SHIFT",
         "The constant shift added to the 'FLV' intermediate quantity in the damage formula (see dungeon::last_move_damage_calc_flv), as a binary fixed-point number with 8 fraction bits (50).",
-        "fx32_8DAMAGE_FORMULA_FLV_SHIFT",
+        "fx32_8",
     )
 
     EVOLUTION_PHYSICAL_STAT_BONUSES = Symbol(
@@ -9650,7 +9639,7 @@ class JpArm9Data:
         0x4,
         "EVOLUTION_PHYSICAL_STAT_BONUSES",
         "0x2: Atk + 0x2: Def\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "int16_t[2]",
     )
 
     DAMAGE_FORMULA_CONSTANT_SHIFT = Symbol(
@@ -9659,7 +9648,7 @@ class JpArm9Data:
         0x4,
         "DAMAGE_FORMULA_CONSTANT_SHIFT",
         "The constant shift applied to the overall output of the 'unshifted base' damage formula (the sum of the scaled AT, DEF, and ClampedLn terms), as a binary fixed-point number with 8 fraction bits (-311).\n\nThe value of -311 is notably equal to -round[DAMAGE_FORMULA_LN_PREFACTOR * ln(DAMAGE_FORMULA_LN_ARG_PREFACTOR * DAMAGE_FORMULA_FLV_SHIFT)]. This is probably not a coincidence.",
-        "fx32_8DAMAGE_FORMULA_CONSTANT_SHIFT",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR = Symbol(
@@ -9668,7 +9657,7 @@ class JpArm9Data:
         0x4,
         "DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR",
         "The divisor of the (AT - DEF) term within the 'FLV' intermediate quantity in the damage formula (see dungeon::last_move_damage_calc_flv), as a binary fixed-point number with 8 fraction bits (8).",
-        "fx32_8DAMAGE_FORMULA_FLV_DEFICIT_DIVISOR",
+        "fx32_8",
     )
 
     EGG_STAT_BONUSES = Symbol(
@@ -9677,7 +9666,7 @@ class JpArm9Data:
         0x8,
         "EGG_STAT_BONUSES",
         "0x2: Atk + 0x2: SpAtk + 0x2: Def + 0x2: SpDef\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "int16_t[4]",
     )
 
     EVOLUTION_SPECIAL_STAT_BONUSES = Symbol(
@@ -9686,7 +9675,7 @@ class JpArm9Data:
         0x4,
         "EVOLUTION_SPECIAL_STAT_BONUSES",
         "0x2: SpAtk + 0x2: SpDef\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "int16_t[2]",
     )
 
     DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER = Symbol(
@@ -9695,7 +9684,7 @@ class JpArm9Data:
         0x4,
         "DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER",
         "The divisor applied to the overall output of the 'shifted base' damage formula (the sum of the scaled AT, Def, ClampedLn, and DAMAGE_FORMULA_CONSTANT_SHIFT terms) if the attacker is not a team member (and the current fixed room is not the substitute room...for some reason), as a binary fixed-point number with 8 fraction bits (85/64).",
-        "fx32_8DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_LN_PREFACTOR = Symbol(
@@ -9704,7 +9693,7 @@ class JpArm9Data:
         0x4,
         "DAMAGE_FORMULA_LN_PREFACTOR",
         "The prefactor to the output of the ClampedLn in the damage formula, as a binary fixed-point number with 8 fraction bits (50).",
-        "fx32_8DAMAGE_FORMULA_LN_PREFACTOR",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_DEF_PREFACTOR = Symbol(
@@ -9713,7 +9702,7 @@ class JpArm9Data:
         0x4,
         "DAMAGE_FORMULA_DEF_PREFACTOR",
         "The prefactor to the 'DEF' (defense) intermediate quantity in the damage formula (see dungeon::last_move_damage_calc_def), as a binary fixed-point number with 8 fraction bits (-0.5).",
-        "fx32_8DAMAGE_FORMULA_DEF_PREFACTOR",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_AT_PREFACTOR = Symbol(
@@ -9722,7 +9711,7 @@ class JpArm9Data:
         0x4,
         "DAMAGE_FORMULA_AT_PREFACTOR",
         "The prefactor to the 'AT' (attack) intermediate quantity in the damage formula (see dungeon::last_move_damage_calc_at), as a binary fixed-point number with 8 fraction bits (153/256, which is close to 0.6).",
-        "fx32_8DAMAGE_FORMULA_AT_PREFACTOR",
+        "fx32_8",
     )
 
     DAMAGE_FORMULA_LN_ARG_PREFACTOR = Symbol(
@@ -9731,7 +9720,7 @@ class JpArm9Data:
         0x4,
         "DAMAGE_FORMULA_LN_ARG_PREFACTOR",
         "The prefactor to the argument of ClampedLn in the damage formula (FLV + DAMAGE_FORMULA_FLV_SHIFT), as a binary fixed-point number with 8 fraction bits (10).",
-        "fx32_8DAMAGE_FORMULA_LN_ARG_PREFACTOR",
+        "fx32_8",
     )
 
     FORBIDDEN_FORGOT_MOVE_LIST = Symbol(
@@ -9740,7 +9729,7 @@ class JpArm9Data:
         0x12,
         "FORBIDDEN_FORGOT_MOVE_LIST",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct forbidden_forgot_move_entry[3]",
-        "",
+        "struct forbidden_forgot_move_entry[3]",
     )
 
     TACTICS_UNLOCK_LEVEL_TABLE = Symbol(
@@ -9749,7 +9738,7 @@ class JpArm9Data:
         0x18,
         "TACTICS_UNLOCK_LEVEL_TABLE",
         "type: int16_t[12]",
-        "",
+        "int16_t[12]",
     )
 
     CLIENT_LEVEL_TABLE = Symbol(
@@ -9758,7 +9747,7 @@ class JpArm9Data:
         0x20,
         "CLIENT_LEVEL_TABLE",
         "Still a guess\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: int16_t[16]",
-        "",
+        "int16_t[16]",
     )
 
     OUTLAW_LEVEL_TABLE = Symbol(
@@ -9767,7 +9756,7 @@ class JpArm9Data:
         0x20,
         "OUTLAW_LEVEL_TABLE",
         "Table of 2-byte outlaw levels for outlaw missions, indexed by mission rank.\n\ntype: int16_t[16]",
-        "",
+        "int16_t[16]",
     )
 
     OUTLAW_MINION_LEVEL_TABLE = Symbol(
@@ -9776,7 +9765,7 @@ class JpArm9Data:
         0x20,
         "OUTLAW_MINION_LEVEL_TABLE",
         "Table of 2-byte outlaw minion levels for outlaw hideout missions, indexed by mission rank.\n\ntype: int16_t[16]",
-        "",
+        "int16_t[16]",
     )
 
     HIDDEN_POWER_BASE_POWER_TABLE = Symbol(
@@ -9785,7 +9774,7 @@ class JpArm9Data:
         0x28,
         "HIDDEN_POWER_BASE_POWER_TABLE",
         "Still a guess\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: int[10]",
-        "",
+        "int[10]",
     )
 
     VERSION_EXCLUSIVE_MONSTERS = Symbol(
@@ -9794,7 +9783,7 @@ class JpArm9Data:
         0x5C,
         "VERSION_EXCLUSIVE_MONSTERS",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct version_exclusive_monster[23]",
-        "",
+        "struct version_exclusive_monster[23]",
     )
 
     IQ_SKILL_RESTRICTIONS = Symbol(
@@ -9803,7 +9792,7 @@ class JpArm9Data:
         0x8A,
         "IQ_SKILL_RESTRICTIONS",
         "Table of 2-byte values for each IQ skill that represent a group. IQ skills in the same group can not be enabled at the same time.\n\ntype: int16_t[69]",
-        "",
+        "int16_t[69]",
     )
 
     SECONDARY_TERRAIN_TYPES = Symbol(
@@ -9812,7 +9801,7 @@ class JpArm9Data:
         0xC8,
         "SECONDARY_TERRAIN_TYPES",
         "The type of secondary terrain for each dungeon in the game.\n\nThis is an array of 200 bytes. Each byte is an enum corresponding to one dungeon.\n\ntype: struct secondary_terrain_type_8[200]",
-        "",
+        "struct secondary_terrain_type_8[200]",
     )
 
     SENTRY_DUTY_MONSTER_IDS = Symbol(
@@ -9821,7 +9810,7 @@ class JpArm9Data:
         0xCC,
         "SENTRY_DUTY_MONSTER_IDS",
         "Table of monster IDs usable in the sentry duty minigame.\n\ntype: struct monster_id_16[102]",
-        "",
+        "struct monster_id_16[102]",
     )
 
     IQ_SKILLS = Symbol(
@@ -9830,7 +9819,7 @@ class JpArm9Data:
         0x114,
         "IQ_SKILLS",
         "Table of 4-byte values for each IQ skill that represent the required IQ value to unlock a skill.\n\ntype: int[69]",
-        "",
+        "int32_t[69]",
     )
 
     IQ_GROUP_SKILLS = Symbol(
@@ -9839,7 +9828,7 @@ class JpArm9Data:
         0x190,
         "IQ_GROUP_SKILLS",
         "Irdkwia's notes: 25*16*0x1",
-        "",
+        "uint8_t[400]",
     )
 
     MONEY_QUANTITY_TABLE = Symbol(
@@ -9848,7 +9837,7 @@ class JpArm9Data:
         0x190,
         "MONEY_QUANTITY_TABLE",
         "Table that maps money quantity codes (as recorded in, e.g., struct item) to actual amounts.\n\ntype: int[100]",
-        "",
+        "int[100]",
     )
 
     ARM9_UNKNOWN_TABLE__NA_20A20B0 = Symbol(
@@ -9866,7 +9855,7 @@ class JpArm9Data:
         0x288,
         "IQ_GUMMI_GAIN_TABLE",
         "type: int16_t[18][18]",
-        "",
+        "int16_t[18][18]",
     )
 
     GUMMI_BELLY_RESTORE_TABLE = Symbol(
@@ -9875,7 +9864,7 @@ class JpArm9Data:
         0x288,
         "GUMMI_BELLY_RESTORE_TABLE",
         "type: int16_t[18][18]",
-        "",
+        "int16_t[18][18]",
     )
 
     BAG_CAPACITY_TABLE_SPECIAL_EPISODES = Symbol(
@@ -9884,7 +9873,7 @@ class JpArm9Data:
         0x14,
         "BAG_CAPACITY_TABLE_SPECIAL_EPISODES",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: uint32_t[5]",
-        "",
+        "uint32_t[5]",
     )
 
     BAG_CAPACITY_TABLE = Symbol(
@@ -9893,7 +9882,7 @@ class JpArm9Data:
         0x20,
         "BAG_CAPACITY_TABLE",
         "Array of 4-byte integers containing the bag capacity for each bag level.\n\ntype: uint32_t[8]",
-        "",
+        "uint32_t[8]",
     )
 
     SPECIAL_EPISODE_MAIN_CHARACTERS = Symbol(
@@ -9902,7 +9891,7 @@ class JpArm9Data:
         0xC8,
         "SPECIAL_EPISODE_MAIN_CHARACTERS",
         "type: struct monster_id_16[100]",
-        "",
+        "struct monster_id_16[100]",
     )
 
     GUEST_MONSTER_DATA = Symbol(
@@ -9911,10 +9900,17 @@ class JpArm9Data:
         0x288,
         "GUEST_MONSTER_DATA",
         "Data for guest monsters that join you during certain story dungeons.\n\nArray of 18 36-byte entries.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct guest_monster[18]",
-        "",
+        "struct guest_monster[18]",
     )
 
-    RANK_UP_TABLE = Symbol([0xA3F18], [0x20A3F18], 0xD0, "RANK_UP_TABLE", "", "")
+    RANK_UP_TABLE = Symbol(
+        [0xA3F18],
+        [0x20A3F18],
+        0xD0,
+        "RANK_UP_TABLE",
+        "",
+        "struct rankup_table_entry[13]",
+    )
 
     DS_DOWNLOAD_TEAMS = Symbol(
         [0xA3FE8],
@@ -9922,7 +9918,7 @@ class JpArm9Data:
         0x70,
         "DS_DOWNLOAD_TEAMS",
         "Seems like this is just a collection of null-terminated lists concatenated together.\n\nNote: unverified, ported from Irdkwia's notes\n\nstruct monster_id_16[56]",
-        "",
+        "struct monster_id_16[56]",
     )
 
     ARM9_UNKNOWN_PTR__NA_20A2C84 = Symbol(
@@ -9940,11 +9936,11 @@ class JpArm9Data:
         0x80,
         "UNOWN_SPECIES_ADDITIONAL_CHARS",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: enum monster_id[28]",
-        "",
+        "enum monster_id[28]",
     )
 
     MONSTER_SPRITE_DATA = Symbol(
-        [0xA40DC], [0x20A40DC], 0x4B0, "MONSTER_SPRITE_DATA", "", ""
+        [0xA40DC], [0x20A40DC], 0x4B0, "MONSTER_SPRITE_DATA", "", "undefined[1200]"
     )
 
     REMOTE_STRINGS = Symbol(
@@ -9971,7 +9967,7 @@ class JpArm9Data:
         0x10,
         "MISSION_MENU_STRING_IDS_1",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[8]",
-        "",
+        "int16_t[8]",
     )
 
     RANK_STRINGS_2 = Symbol(
@@ -9989,7 +9985,7 @@ class JpArm9Data:
         0x10,
         "MISSION_MENU_STRING_IDS_2",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[8]",
-        "",
+        "int16_t[8]",
     )
 
     RANK_STRINGS_3 = Symbol(
@@ -10007,7 +10003,7 @@ class JpArm9Data:
         0x6,
         "MISSION_DUNGEON_UNLOCK_TABLE",
         "Irdkwia's notes: SpecialDungeonMissions\n\ntype: struct dungeon_unlock_entry[3]",
-        "",
+        "struct dungeon_unlock_entry[3]",
     )
 
     NO_SEND_ITEM_TABLE = Symbol(
@@ -10016,7 +10012,7 @@ class JpArm9Data:
         0x6,
         "NO_SEND_ITEM_TABLE",
         "A list of items that are forbidden from being used in a mission sent by Wonder Mail.\n\ntype: struct item_id_16[3]",
-        "",
+        "struct item_id_16[3]",
     )
 
     ARM9_UNKNOWN_TABLE__NA_20A3CC8 = Symbol(
@@ -10052,7 +10048,7 @@ class JpArm9Data:
         0x2A,
         "MISSION_BANNED_STORY_MONSTERS",
         "Null-terminated list of monster IDs that can't be used (probably as clients or targets) when generating missions before a certain point in the story.\n\nTo be precise, PERFOMANCE_PROGRESS_FLAG[9] must be enabled so these monsters can appear as mission clients.\n\ntype: struct monster_id_16[length / 2]",
-        "",
+        "struct monster_id_16[21]",
     )
 
     ITEM_DELIVERY_TABLE = Symbol(
@@ -10061,7 +10057,7 @@ class JpArm9Data:
         0x2E,
         "ITEM_DELIVERY_TABLE",
         "A list of valid items used for delivering an item for a mission client.\n\ntype: struct item_id_16[23]",
-        "",
+        "struct item_id_16[23]",
     )
 
     MISSION_RANK_POINTS = Symbol(
@@ -10070,7 +10066,7 @@ class JpArm9Data:
         0x40,
         "MISSION_RANK_POINTS",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int[16]",
-        "",
+        "int[16]",
     )
 
     MISSION_BANNED_MONSTERS = Symbol(
@@ -10079,7 +10075,7 @@ class JpArm9Data:
         0xF8,
         "MISSION_BANNED_MONSTERS",
         "Null-terminated list of monster IDs that can't be used (probably as clients or targets) when generating missions.\n\ntype: struct monster_id_16[124]",
-        "",
+        "struct monster_id_16[124]",
     )
 
     MISSION_STRING_IDS = Symbol(
@@ -10088,7 +10084,7 @@ class JpArm9Data:
         0x788,
         "MISSION_STRING_IDS",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[964]",
-        "",
+        "int16_t[964]",
     )
 
     LEVEL_LIST = Symbol(
@@ -10106,7 +10102,7 @@ class JpArm9Data:
         0x1470,
         "EVENTS",
         "Table of levels for the script engine, in which scenes can take place. There are a version-dependent number of 12-byte entries.\n\ntype: struct script_level[length / 12]",
-        "",
+        "struct script_level[0]",
     )
 
     ARM9_UNKNOWN_TABLE__NA_20A68BC = Symbol(
@@ -10124,7 +10120,7 @@ class JpArm9Data:
         0x48,
         "DEMO_TEAMS",
         "18*0x4 (Hero ID 0x2, Partner ID 0x2)\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "struct monster_id_16[18][2]",
     )
 
     ACTOR_LIST = Symbol(
@@ -10142,7 +10138,7 @@ class JpArm9Data:
         0x1218,
         "ENTITIES",
         "Table of entities for the script engine, which can move around and do things within a scene. There are 386 12-byte entries.\n\ntype: struct script_entity[386]",
-        "",
+        "struct script_entity[386]",
     )
 
     JOB_WINDOW_PARAMS_1 = Symbol(
@@ -10151,7 +10147,7 @@ class JpArm9Data:
         0x10,
         "JOB_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsJOB_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     JOB_MENU_ITEMS_1 = Symbol(
@@ -10160,7 +10156,7 @@ class JpArm9Data:
         0x20,
         "JOB_MENU_ITEMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[4]",
     )
 
     JOB_MENU_ITEMS_2 = Symbol(
@@ -10169,7 +10165,7 @@ class JpArm9Data:
         0x20,
         "JOB_MENU_ITEMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[4]",
     )
 
     JOB_MENU_ITEMS_3 = Symbol(
@@ -10178,7 +10174,7 @@ class JpArm9Data:
         0x18,
         "JOB_MENU_ITEMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     JOB_MENU_ITEMS_4 = Symbol(
@@ -10187,7 +10183,7 @@ class JpArm9Data:
         0x18,
         "JOB_MENU_ITEMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     JOB_MENU_ITEMS_5 = Symbol(
@@ -10196,7 +10192,7 @@ class JpArm9Data:
         0x18,
         "JOB_MENU_ITEMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     JOB_MENU_ITEMS_6 = Symbol(
@@ -10205,7 +10201,7 @@ class JpArm9Data:
         0x18,
         "JOB_MENU_ITEMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     JOB_MENU_ITEMS_7 = Symbol(
@@ -10214,7 +10210,7 @@ class JpArm9Data:
         0x18,
         "JOB_MENU_ITEMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     JOB_MENU_ITEMS_8 = Symbol(
@@ -10223,7 +10219,7 @@ class JpArm9Data:
         0x18,
         "JOB_MENU_ITEMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     JOB_MENU_ITEMS_9 = Symbol(
@@ -10232,7 +10228,7 @@ class JpArm9Data:
         0x18,
         "JOB_MENU_ITEMS_9",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     JOB_MENU_ITEMS_10 = Symbol(
@@ -10241,7 +10237,7 @@ class JpArm9Data:
         0x18,
         "JOB_MENU_ITEMS_10",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     JOB_MENU_ITEMS_11 = Symbol(
@@ -10250,7 +10246,7 @@ class JpArm9Data:
         0x18,
         "JOB_MENU_ITEMS_11",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     JOB_MENU_ITEMS_12 = Symbol(
@@ -10259,7 +10255,7 @@ class JpArm9Data:
         0x20,
         "JOB_MENU_ITEMS_12",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[4]",
     )
 
     JOB_MENU_ITEMS_13 = Symbol(
@@ -10268,7 +10264,7 @@ class JpArm9Data:
         0x20,
         "JOB_MENU_ITEMS_13",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[4]",
     )
 
     JOB_WINDOW_PARAMS_2 = Symbol(
@@ -10277,7 +10273,7 @@ class JpArm9Data:
         0x10,
         "JOB_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsJOB_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     DUNGEON_SWAP_ID_TABLE = Symbol(
@@ -10286,7 +10282,7 @@ class JpArm9Data:
         0xD4,
         "DUNGEON_SWAP_ID_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct dungeon_id_8[212]",
-        "",
+        "struct dungeon_id_8[212]",
     )
 
     MAP_MARKER_PLACEMENTS = Symbol(
@@ -10295,7 +10291,7 @@ class JpArm9Data:
         0x9B0,
         "MAP_MARKER_PLACEMENTS",
         "The map marker position of each dungeon on the Wonder Map.\n\nThis is an array of 310 map marker structs. Each entry is 8 bytes, and contains positional information about a dungeon on the map.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
-        "",
+        "struct map_marker[310]",
     )
 
     LFO_OUTPUT_VOICE_UPDATE_FLAGS = Symbol(
@@ -10304,7 +10300,7 @@ class JpArm9Data:
         None,
         "LFO_OUTPUT_VOICE_UPDATE_FLAGS",
         "",
-        "struct dse_voice_update_flagsLFO_OUTPUT_VOICE_UPDATE_FLAGS",
+        "struct dse_voice_update_flags",
     )
 
     TRIG_TABLE = Symbol(
@@ -10313,7 +10309,7 @@ class JpArm9Data:
         0x4974,
         "TRIG_TABLE",
         "Interleaved table of sine and cosine values at 4096 divisions over a full period (2π radians).\n\nMore precisely, the trig_values entry at index i corresponds to {sin(i * 2π/4096), cos(i * 2π/4096)} (each division is ~1/10 of a degree). Values are stored as signed fixed-point numbers with 12 fraction bits.\n\ntype: struct trig_values[4096]",
-        "",
+        "struct trig_values[4096]",
     )
 
     FX_ATAN_IDX_TABLE = Symbol(
@@ -10322,14 +10318,16 @@ class JpArm9Data:
         0x102,
         "FX_ATAN_IDX_TABLE",
         "Table of arctangent values at 129 divisions over the domain [0, 1].\n\nMore precisely, entry at index i corresponds to (atan(i/128) / (π/2)). Values are stored as signed fixed-point numbers with 14 fraction bits.",
-        "",
+        "fx16_14[129]",
     )
 
     TEX_PLTT_START_ADDR_TABLE = Symbol(
-        None, None, None, "TEX_PLTT_START_ADDR_TABLE", "", ""
+        None, None, None, "TEX_PLTT_START_ADDR_TABLE", "", "int16_t[8]"
     )
 
-    TEX_START_ADDR_TABLE = Symbol(None, None, None, "TEX_START_ADDR_TABLE", "", "")
+    TEX_START_ADDR_TABLE = Symbol(
+        None, None, None, "TEX_START_ADDR_TABLE", "", "int16_t[48]"
+    )
 
     ARM9_UNKNOWN_TABLE__NA_20AE924 = Symbol(
         [0xAFD6C],
@@ -10346,7 +10344,7 @@ class JpArm9Data:
         None,
         "MEMORY_ALLOCATION_ARENA_GETTERS",
         "Functions to get the desired memory arena for allocating and freeing heap memory.\n\ntype: struct mem_arena_getters",
-        "struct mem_arena_gettersMEMORY_ALLOCATION_ARENA_GETTERS",
+        "struct mem_arena_getters",
     )
 
     PRNG_SEQUENCE_NUM = Symbol(
@@ -10355,7 +10353,7 @@ class JpArm9Data:
         0x2,
         "PRNG_SEQUENCE_NUM",
         "[Runtime] The current PRNG sequence number for the general-purpose PRNG. See Rand16Bit for more information on how the general-purpose PRNG works.",
-        "uint16_tPRNG_SEQUENCE_NUM",
+        "uint16_t",
     )
 
     LOADED_OVERLAY_GROUP_0 = Symbol(
@@ -10364,7 +10362,7 @@ class JpArm9Data:
         None,
         "LOADED_OVERLAY_GROUP_0",
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 0. A group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in slot 0:\n- 0x06 (overlay 3)\n- 0x07 (overlay 6)\n- 0x08 (overlay 4)\n- 0x09 (overlay 5)\n- 0x0A (overlay 7)\n- 0x0B (overlay 8)\n- 0x0C (overlay 9)\n- 0x10 (overlay 12)\n- 0x11 (overlay 13)\n- 0x12 (overlay 14)\n- 0x13 (overlay 15)\n- 0x14 (overlay 16)\n- 0x15 (overlay 17)\n- 0x16 (overlay 18)\n- 0x17 (overlay 19)\n- 0x18 (overlay 20)\n- 0x19 (overlay 21)\n- 0x1A (overlay 22)\n- 0x1B (overlay 23)\n- 0x1C (overlay 24)\n- 0x1D (overlay 25)\n- 0x1E (overlay 26)\n- 0x1F (overlay 27)\n- 0x20 (overlay 28)\n- 0x21 (overlay 30)\n- 0x22 (overlay 31)\n- 0x23 (overlay 32)\n- 0x24 (overlay 33)\n\ntype: enum overlay_group_id",
-        "enum overlay_group_idLOADED_OVERLAY_GROUP_0",
+        "enum overlay_group_id",
     )
 
     LOADED_OVERLAY_GROUP_1 = Symbol(
@@ -10373,7 +10371,7 @@ class JpArm9Data:
         0x4,
         "LOADED_OVERLAY_GROUP_1",
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 1. A group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in slot 1:\n- 0x4 (overlay 1)\n- 0x5 (overlay 2)\n- 0xD (overlay 11)\n- 0xE (overlay 29)\n- 0xF (overlay 34)\n\ntype: enum overlay_group_id",
-        "enum overlay_group_idLOADED_OVERLAY_GROUP_1",
+        "enum overlay_group_id",
     )
 
     LOADED_OVERLAY_GROUP_2 = Symbol(
@@ -10382,12 +10380,10 @@ class JpArm9Data:
         None,
         "LOADED_OVERLAY_GROUP_2",
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 2. A group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in slot 2:\n- 0x1 (overlay 0)\n- 0x2 (overlay 10)\n- 0x3 (overlay 35)\n\ntype: enum overlay_group_id",
-        "enum overlay_group_idLOADED_OVERLAY_GROUP_2",
+        "enum overlay_group_id",
     )
 
-    DEBUG_IS_INITIALIZED = Symbol(
-        None, None, None, "DEBUG_IS_INITIALIZED", "", "boolDEBUG_IS_INITIALIZED"
-    )
+    DEBUG_IS_INITIALIZED = Symbol(None, None, None, "DEBUG_IS_INITIALIZED", "", "bool")
 
     PACK_FILES_OPENED = Symbol(
         None,
@@ -10395,7 +10391,7 @@ class JpArm9Data:
         None,
         "PACK_FILES_OPENED",
         "[Runtime] A pointer to the 6 opened Pack files (listed at PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
-        "struct pack_file_opened*PACK_FILES_OPENED",
+        "struct pack_file_opened*",
     )
 
     PACK_FILE_PATHS_TABLE = Symbol(
@@ -10404,7 +10400,7 @@ class JpArm9Data:
         None,
         "PACK_FILE_PATHS_TABLE",
         "List of pointers to path strings to all known pack files.\nThe game uses this table to load its resources when launching dungeon mode.\n\ntype: char*[6]",
-        "",
+        "char*[6]",
     )
 
     GAME_STATE_VALUES = Symbol(
@@ -10417,7 +10413,7 @@ class JpArm9Data:
         0x4,
         "BAG_ITEMS_PTR_MIRROR",
         "[Runtime] Probably a mirror of ram.yml::BAG_ITEMS_PTR?\n\nNote: unverified, ported from Irdkwia's notes",
-        "struct item*BAG_ITEMS_PTR_MIRROR",
+        "struct item*",
     )
 
     ITEM_DATA_TABLE_PTRS = Symbol(
@@ -10426,7 +10422,7 @@ class JpArm9Data:
         None,
         "ITEM_DATA_TABLE_PTRS",
         "[Runtime] List of pointers to various item data tables.\n\nThe first two pointers are definitely item-related (although the order appears to be flipped between EU/NA?). Not sure about the third pointer.",
-        "",
+        "void*[3]",
     )
 
     DUNGEON_MOVE_TABLES = Symbol(
@@ -10444,7 +10440,7 @@ class JpArm9Data:
         None,
         "MOVE_DATA_TABLE_PTR",
         "[Runtime] Points to the contents of the move data table loaded from waza_p.bin\n\ntype: struct move_data_table*",
-        "struct move_data_table*MOVE_DATA_TABLE_PTR",
+        "struct move_data_table*",
     )
 
     WAN_TABLE = Symbol(
@@ -10453,7 +10449,7 @@ class JpArm9Data:
         None,
         "WAN_TABLE",
         "pointer to the list of wan sprite loaded in RAM\n\nstruct wan_table*",
-        "struct wan_table*WAN_TABLE",
+        "struct wan_table*",
     )
 
     RENDER_3D = Symbol(
@@ -10462,7 +10458,7 @@ class JpArm9Data:
         None,
         "RENDER_3D",
         "The (seemingly) unique instance render_3d_global in the game\n\ntype: struct render_3d_global",
-        "struct render_3d_globalRENDER_3D",
+        "struct render_3d_global",
     )
 
     RENDER_3D_FUNCTIONS_64 = Symbol(
@@ -10471,7 +10467,7 @@ class JpArm9Data:
         None,
         "RENDER_3D_FUNCTIONS_64",
         "Pointers to the 8 functions available for rendering a render_3d_element_64\n\ntype: render_3d_element_64_fn_t[8]",
-        "",
+        "render_3d_element_64_fn_t[8]",
     )
 
     LANGUAGE_INFO_DATA = Symbol(
@@ -10484,7 +10480,7 @@ class JpArm9Data:
         None,
         "TBL_TALK_GROUP_STRING_ID_START",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
-        "",
+        "int16_t[6]",
     )
 
     KEYBOARD_STRING_IDS = Symbol(
@@ -10493,7 +10489,7 @@ class JpArm9Data:
         0x3C,
         "KEYBOARD_STRING_IDS",
         "30*0x2\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: int16_t[30]",
-        "",
+        "int16_t[30]",
     )
 
     NOTIFY_NOTE = Symbol(
@@ -10502,7 +10498,7 @@ class JpArm9Data:
         0x1,
         "NOTIFY_NOTE",
         "[Runtime] Flag related to saving and loading state?\n\ntype: bool",
-        "boolNOTIFY_NOTE",
+        "bool",
     )
 
     DEFAULT_HERO_ID = Symbol(
@@ -10511,7 +10507,7 @@ class JpArm9Data:
         0x2,
         "DEFAULT_HERO_ID",
         "The default monster ID for the hero (0x4: Charmander)\n\ntype: struct monster_id_16",
-        "struct monster_id_16DEFAULT_HERO_ID",
+        "struct monster_id_16",
     )
 
     DEFAULT_PARTNER_ID = Symbol(
@@ -10520,7 +10516,7 @@ class JpArm9Data:
         0x2,
         "DEFAULT_PARTNER_ID",
         "The default monster ID for the partner (0x1: Bulbasaur)\n\ntype: struct monster_id_16",
-        "struct monster_id_16DEFAULT_PARTNER_ID",
+        "struct monster_id_16",
     )
 
     GAME_MODE = Symbol(
@@ -10529,7 +10525,7 @@ class JpArm9Data:
         0x1,
         "GAME_MODE",
         "[Runtime] Game mode, see enum game_mode for possible values.\n\ntype: uint8_t",
-        "uint8_tGAME_MODE",
+        "uint8_t",
     )
 
     GLOBAL_PROGRESS_PTR = Symbol(
@@ -10538,7 +10534,7 @@ class JpArm9Data:
         None,
         "GLOBAL_PROGRESS_PTR",
         "[Runtime]\n\ntype: struct global_progress*",
-        "struct global_progress*GLOBAL_PROGRESS_PTR",
+        "struct global_progress*",
     )
 
     ADVENTURE_LOG_PTR = Symbol(
@@ -10547,7 +10543,7 @@ class JpArm9Data:
         0x4,
         "ADVENTURE_LOG_PTR",
         "[Runtime]\n\ntype: struct adventure_log*",
-        "struct adventure_log*ADVENTURE_LOG_PTR",
+        "struct adventure_log*",
     )
 
     ITEM_TABLES_PTRS_1 = Symbol(
@@ -10556,7 +10552,7 @@ class JpArm9Data:
         0x68,
         "ITEM_TABLES_PTRS_1",
         "Irdkwia's notes: 26*0x4, uses MISSION_FLOOR_RANKS_AND_ITEM_LISTS",
-        "",
+        "void*[26]",
     )
 
     UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE = Symbol(
@@ -10565,7 +10561,7 @@ class JpArm9Data:
         0x70,
         "UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE",
         "Uses UNOWN_SPECIES_ADDITIONAL_CHARS\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: enum monster_id*[28]",
-        "",
+        "enum monster_id*[28]",
     )
 
     TEAM_MEMBER_TABLE_PTR = Symbol(
@@ -10574,7 +10570,7 @@ class JpArm9Data:
         0x4,
         "TEAM_MEMBER_TABLE_PTR",
         "Pointer to TEAM_MEMBER_TABLE",
-        "struct team_member_table*TEAM_MEMBER_TABLE_PTR",
+        "struct team_member_table*",
     )
 
     MISSION_DELIVER_LIST_PTR = Symbol(
@@ -10583,7 +10579,7 @@ class JpArm9Data:
         0x4,
         "MISSION_DELIVER_LIST_PTR",
         "A pointer to a heap-allocated list of items usable for delivery missions",
-        "undefined*MISSION_DELIVER_LIST_PTR",
+        "undefined*",
     )
 
     MISSION_DELIVER_COUNT = Symbol(
@@ -10592,7 +10588,7 @@ class JpArm9Data:
         0x4,
         "MISSION_DELIVER_COUNT",
         "The total number of items usable for delivery missions",
-        "intMISSION_DELIVER_COUNT",
+        "int",
     )
 
     MISSION_DUNGEON_LIST_PTR = Symbol(
@@ -10601,7 +10597,7 @@ class JpArm9Data:
         0x4,
         "MISSION_DUNGEON_LIST_PTR",
         "A pointer to a heap-allocated list of dungeons usable for missions",
-        "undefined*MISSION_DUNGEON_LIST_PTR",
+        "undefined*",
     )
 
     MISSION_DUNGEON_COUNT = Symbol(
@@ -10610,7 +10606,7 @@ class JpArm9Data:
         0x4,
         "MISSION_DUNGEON_COUNT",
         "The total number of dungeons usable for missions",
-        "intMISSION_DUNGEON_COUNT",
+        "int",
     )
 
     MISSION_MONSTER_LIST_PTR = Symbol(
@@ -10619,7 +10615,7 @@ class JpArm9Data:
         0x4,
         "MISSION_MONSTER_LIST_PTR",
         "A pointer to a heap-allocated list of monsters usable for missions",
-        "undefined*MISSION_MONSTER_LIST_PTR",
+        "undefined*",
     )
 
     MISSION_MONSTER_COUNT = Symbol(
@@ -10628,7 +10624,7 @@ class JpArm9Data:
         0x4,
         "MISSION_MONSTER_COUNT",
         "The total number of monsters usable for missions",
-        "intMISSION_MONSTER_COUNT",
+        "int",
     )
 
     MISSION_LIST_PTR = Symbol(
@@ -10637,7 +10633,7 @@ class JpArm9Data:
         0x4,
         "MISSION_LIST_PTR",
         "Note: unverified, ported from Irdkwia's notes",
-        "undefined*MISSION_LIST_PTR",
+        "undefined*",
     )
 
     REMOTE_STRING_PTR_TABLE = Symbol(
@@ -10646,7 +10642,7 @@ class JpArm9Data:
         0x1C,
         "REMOTE_STRING_PTR_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: const char*[7]",
-        "",
+        "char*[7]",
     )
 
     RANK_STRING_PTR_TABLE = Symbol(
@@ -10655,7 +10651,7 @@ class JpArm9Data:
         0x40,
         "RANK_STRING_PTR_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: const char*[16]",
-        "",
+        "char*[16]",
     )
 
     SMD_EVENTS_FUN_TABLE = Symbol(
@@ -10664,7 +10660,7 @@ class JpArm9Data:
         None,
         "SMD_EVENTS_FUN_TABLE",
         "Table of all DSE events, see https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nIrdkwia's notes: named DSEEventFunctionPtrTable with length 0x3C0 (note the disagreement), 240*0x4.",
-        "",
+        "void*[127]",
     )
 
     MUSIC_DURATION_LOOKUP_TABLE_1 = Symbol(
@@ -10673,7 +10669,7 @@ class JpArm9Data:
         0x100,
         "MUSIC_DURATION_LOOKUP_TABLE_1",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[128]",
-        "",
+        "int16_t[128]",
     )
 
     MUSIC_DURATION_LOOKUP_TABLE_2 = Symbol(
@@ -10682,14 +10678,21 @@ class JpArm9Data:
         0x200,
         "MUSIC_DURATION_LOOKUP_TABLE_2",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int32_t[128]",
-        "",
+        "int32_t[128]",
     )
 
-    LFO_WAVEFORM_CALLBACKS = Symbol(None, None, None, "LFO_WAVEFORM_CALLBACKS", "", "")
+    LFO_WAVEFORM_CALLBACKS = Symbol(
+        None,
+        None,
+        None,
+        "LFO_WAVEFORM_CALLBACKS",
+        "",
+        "sound_lfo_waveform_callback[16]",
+    )
 
-    IS_DISP_ON = Symbol(None, None, None, "IS_DISP_ON", "", "boolIS_DISP_ON")
+    IS_DISP_ON = Symbol(None, None, None, "IS_DISP_ON", "", "bool")
 
-    GXI_DMA_ID = Symbol(None, None, None, "GXI_DMA_ID", "", "uint32_tGXI_DMA_ID")
+    GXI_DMA_ID = Symbol(None, None, None, "GXI_DMA_ID", "", "uint32_t")
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x117E0],
@@ -10697,7 +10700,7 @@ class JpArm9Data:
         None,
         "JUICE_BAR_NECTAR_IQ_GAIN",
         "IQ gain when ingesting nectar at the Juice Bar.",
-        "",
+        "struct data_processing_instruction",
     )
 
     DEBUG_TEXT_SPEED = Symbol(
@@ -10706,7 +10709,7 @@ class JpArm9Data:
         None,
         "DEBUG_TEXT_SPEED",
         "Text speed when debug flag DEBUG_FLAG_TEXT_SPEEDUP is enabled.",
-        "",
+        "struct data_processing_instruction",
     )
 
     REGULAR_TEXT_SPEED = Symbol(
@@ -10715,7 +10718,7 @@ class JpArm9Data:
         None,
         "REGULAR_TEXT_SPEED",
         "Text speed when debug flag DEBUG_FLAG_TEXT_SPEEDUP is disabled.",
-        "",
+        "struct data_processing_instruction",
     )
 
     HERO_START_LEVEL = Symbol(
@@ -10724,7 +10727,7 @@ class JpArm9Data:
         None,
         "HERO_START_LEVEL",
         "Starting level of the hero.",
-        "",
+        "struct data_processing_instruction",
     )
 
     PARTNER_START_LEVEL = Symbol(
@@ -10733,7 +10736,7 @@ class JpArm9Data:
         None,
         "PARTNER_START_LEVEL",
         "Starting level of the partner.",
-        "",
+        "struct data_processing_instruction",
     )
 
 
@@ -11027,7 +11030,7 @@ class JpItcmData:
         None,
         "MEMORY_ALLOCATION_TABLE",
         "[Runtime] Keeps track of all active heap allocations.\n\nThe memory allocator in the ARM9 binary uses region-based memory management (see https://en.wikipedia.org/wiki/Region-based_memory_management). The heap is broken up into smaller contiguous chunks called arenas (struct mem_arena), which are in turn broken up into chunks referred to as blocks (struct mem_block). Most of the time, an allocation results in a block being split off from a free part of an existing memory arena.\n\nNote: This symbol isn't actually part of the ITCM, it gets created at runtime on the spot in RAM that used to contain the code that was moved to the ITCM.\n\ntype: struct mem_alloc_table",
-        "struct mem_alloc_tableMEMORY_ALLOCATION_TABLE",
+        "struct mem_alloc_table",
     )
 
     DEFAULT_MEMORY_ARENA = Symbol(
@@ -11036,7 +11039,7 @@ class JpItcmData:
         None,
         "DEFAULT_MEMORY_ARENA",
         "[Runtime] The default memory allocation arena. This is part of MEMORY_ALLOCATION_TABLE, but is also referenced on its own by various functions.\n\nNote: This symbol isn't actually part of the ITCM, it gets created at runtime on the spot in RAM that used to contain the code that was moved to the ITCM.\n\ntype: struct mem_arena",
-        "struct mem_arenaDEFAULT_MEMORY_ARENA",
+        "struct mem_arena",
     )
 
     DEFAULT_MEMORY_ARENA_BLOCKS = Symbol(
@@ -11045,7 +11048,7 @@ class JpItcmData:
         None,
         "DEFAULT_MEMORY_ARENA_BLOCKS",
         "[Runtime] The block array for DEFAULT_MEMORY_ARENA.\n\nNote: This symbol isn't actually part of the ITCM, it gets created at runtime on the spot in RAM that used to contain the code that was moved to the ITCM.\n\ntype: struct mem_block[256]",
-        "",
+        "struct mem_block[256]",
     )
 
     RENDER_3D_FUNCTIONS = Symbol(
@@ -11054,7 +11057,7 @@ class JpItcmData:
         None,
         "RENDER_3D_FUNCTIONS",
         "Pointers to the 4 functions available for rendering a render_3d_element (in ITCM)\n\ntype: render_3d_element_fn_t[4]",
-        "",
+        "render_3d_element_fn_t[4]",
     )
 
 
@@ -16077,7 +16080,7 @@ class JpMove_effectsData:
         None,
         "MAX_HP_CAP_MOVE_EFFECTS",
         "See overlay29.yml::MAX_HP_CAP",
-        "int32_tMAX_HP_CAP_MOVE_EFFECTS",
+        "int32_t",
     )
 
     LUNAR_DANCE_PP_RESTORATION = Symbol(
@@ -16086,7 +16089,7 @@ class JpMove_effectsData:
         None,
         "LUNAR_DANCE_PP_RESTORATION",
         "The amount of PP restored by Lunar Dance (999).",
-        "int32_tLUNAR_DANCE_PP_RESTORATION",
+        "int32_t",
     )
 
 
@@ -16112,7 +16115,7 @@ class JpOverlay0Data:
         None,
         "TOP_MENU_MUSIC_ID",
         "Music ID to play in the top menu.",
-        "",
+        "struct data_processing_instruction",
     )
 
 
@@ -16190,7 +16193,7 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     MAIN_MENU_WINDOW_PARAMS_2 = Symbol(
@@ -16199,7 +16202,7 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     MAIN_MENU_WINDOW_PARAMS_3 = Symbol(
@@ -16208,7 +16211,7 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     MAIN_MENU_WINDOW_PARAMS_4 = Symbol(
@@ -16217,7 +16220,7 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     CONTINUE_CHOICE = Symbol([0x12128], [0x233CDE8], 0x20, "CONTINUE_CHOICE", "", "")
@@ -16232,7 +16235,7 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     MAIN_MENU_WINDOW_PARAMS_6 = Symbol(
@@ -16241,7 +16244,7 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     MAIN_MENU_WINDOW_PARAMS_7 = Symbol(
@@ -16250,11 +16253,11 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     MAIN_MENU_ITEMS_CONFIRM = Symbol(
-        None, None, None, "MAIN_MENU_ITEMS_CONFIRM", "", ""
+        None, None, None, "MAIN_MENU_ITEMS_CONFIRM", "", "struct simple_menu_id_item[3]"
     )
 
     MAIN_MENU_WINDOW_PARAMS_8 = Symbol(
@@ -16263,7 +16266,7 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_8",
+        "struct window_params",
     )
 
     MAIN_MENU_WINDOW_PARAMS_9 = Symbol(
@@ -16272,11 +16275,16 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_9",
+        "struct window_params",
     )
 
     MAIN_DEBUG_MENU_ITEMS_1 = Symbol(
-        [0x123C8], [0x233D088], 0x60, "MAIN_DEBUG_MENU_ITEMS_1", "", ""
+        [0x123C8],
+        [0x233D088],
+        0x60,
+        "MAIN_DEBUG_MENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[12]",
     )
 
     MAIN_MENU_WINDOW_PARAMS_10 = Symbol(
@@ -16285,11 +16293,16 @@ class JpOverlay1Data:
         None,
         "MAIN_MENU_WINDOW_PARAMS_10",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsMAIN_MENU_WINDOW_PARAMS_10",
+        "struct window_params",
     )
 
     MAIN_DEBUG_MENU_ITEMS_2 = Symbol(
-        [0x12448], [0x233D108], 0x38, "MAIN_DEBUG_MENU_ITEMS_2", "", ""
+        [0x12448],
+        [0x233D108],
+        0x38,
+        "MAIN_DEBUG_MENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[7]",
     )
 
 
@@ -16565,7 +16578,7 @@ class JpOverlay10Data:
         None,
         "INVENTORY_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an inventory_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateInventoryMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateInventoryMenu.",
-        "struct window_paramsINVENTORY_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS = Symbol(
@@ -16574,7 +16587,7 @@ class JpOverlay10Data:
         0x1,
         "FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS",
         "The first dungeon that can have extra traps spawn in Monster Houses, Dark Hill\n\ntype: struct dungeon_id_8",
-        "struct dungeon_id_8FIRST_DUNGEON_WITH_MONSTER_HOUSE_TRAPS",
+        "struct dungeon_id_8",
     )
 
     BAD_POISON_DAMAGE_COOLDOWN = Symbol(
@@ -16583,7 +16596,7 @@ class JpOverlay10Data:
         0x2,
         "BAD_POISON_DAMAGE_COOLDOWN",
         "The number of turns between passive bad poison (toxic) damage.",
-        "int16_tBAD_POISON_DAMAGE_COOLDOWN",
+        "int16_t",
     )
 
     PROTEIN_STAT_BOOST = Symbol(
@@ -16592,7 +16605,7 @@ class JpOverlay10Data:
         0x2,
         "PROTEIN_STAT_BOOST",
         "The permanent attack boost from ingesting a Protein.",
-        "int16_tPROTEIN_STAT_BOOST",
+        "int16_t",
     )
 
     WATERFALL_CRINGE_CHANCE = Symbol(
@@ -16601,7 +16614,7 @@ class JpOverlay10Data:
         0x2,
         "WATERFALL_CRINGE_CHANCE",
         "The chance of Waterfall inflicting the cringe status, as a percentage (30%).",
-        "int16_tWATERFALL_CRINGE_CHANCE",
+        "int16_t",
     )
 
     AURORA_BEAM_LOWER_ATTACK_CHANCE = Symbol(
@@ -16610,7 +16623,7 @@ class JpOverlay10Data:
         0x2,
         "AURORA_BEAM_LOWER_ATTACK_CHANCE",
         "The chance of Aurora Beam halving attack, as a percentage (60%).",
-        "int16_tAURORA_BEAM_LOWER_ATTACK_CHANCE",
+        "int16_t",
     )
 
     SPAWN_CAP_NO_MONSTER_HOUSE = Symbol(
@@ -16619,7 +16632,7 @@ class JpOverlay10Data:
         0x2,
         "SPAWN_CAP_NO_MONSTER_HOUSE",
         "The maximum number of enemies that can spawn on a floor without a monster house (15).",
-        "int16_tSPAWN_CAP_NO_MONSTER_HOUSE",
+        "int16_t",
     )
 
     OREN_BERRY_DAMAGE = Symbol(
@@ -16628,7 +16641,7 @@ class JpOverlay10Data:
         0x2,
         "OREN_BERRY_DAMAGE",
         "Damage dealt by eating an Oren Berry.",
-        "int16_tOREN_BERRY_DAMAGE",
+        "int16_t",
     )
 
     IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
@@ -16637,7 +16650,7 @@ class JpOverlay10Data:
         0x2,
         "IRON_TAIL_LOWER_DEFENSE_CHANCE",
         "The chance of Iron Tail lowering defense, as a percentage (30%).",
-        "int16_tIRON_TAIL_LOWER_DEFENSE_CHANCE",
+        "int16_t",
     )
 
     TWINEEDLE_POISON_CHANCE = Symbol(
@@ -16646,7 +16659,7 @@ class JpOverlay10Data:
         0x2,
         "TWINEEDLE_POISON_CHANCE",
         "The chance of Twineedle poisoning, as a percentage (20%).",
-        "int16_tTWINEEDLE_POISON_CHANCE",
+        "int16_t",
     )
 
     EXTRASENSORY_CRINGE_CHANCE = Symbol(
@@ -16655,7 +16668,7 @@ class JpOverlay10Data:
         0x2,
         "EXTRASENSORY_CRINGE_CHANCE",
         "The chance of Extrasensory (and others, see DoMoveDamageCringe10) inflicting the cringe status, as a percentage (10%).",
-        "int16_tEXTRASENSORY_CRINGE_CHANCE",
+        "int16_t",
     )
 
     ROCK_SLIDE_CRINGE_CHANCE = Symbol(
@@ -16664,7 +16677,7 @@ class JpOverlay10Data:
         0x2,
         "ROCK_SLIDE_CRINGE_CHANCE",
         "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the cringe status, as a percentage (30%)",
-        "int16_tROCK_SLIDE_CRINGE_CHANCE",
+        "int16_t",
     )
 
     CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
@@ -16673,7 +16686,7 @@ class JpOverlay10Data:
         0x2,
         "CRUNCH_LOWER_DEFENSE_CHANCE",
         "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering defense, as a percentage (20%).",
-        "int16_tCRUNCH_LOWER_DEFENSE_CHANCE",
+        "int16_t",
     )
 
     FOREWARN_FORCED_MISS_CHANCE = Symbol(
@@ -16682,7 +16695,7 @@ class JpOverlay10Data:
         0x2,
         "FOREWARN_FORCED_MISS_CHANCE",
         "The chance of Forewarn forcing a move to miss, as a percentage (20%).",
-        "int16_tFOREWARN_FORCED_MISS_CHANCE",
+        "int16_t",
     )
 
     UNOWN_STONE_DROP_CHANCE = Symbol(
@@ -16691,7 +16704,7 @@ class JpOverlay10Data:
         0x2,
         "UNOWN_STONE_DROP_CHANCE",
         "The chance of an Unown dropping an Unown stone, as a percentage (33%).",
-        "int16_tUNOWN_STONE_DROP_CHANCE",
+        "int16_t",
     )
 
     SITRUS_BERRY_HP_RESTORATION = Symbol(
@@ -16700,7 +16713,7 @@ class JpOverlay10Data:
         0x2,
         "SITRUS_BERRY_HP_RESTORATION",
         "The amount of HP restored by eating a Sitrus Berry.",
-        "int16_tSITRUS_BERRY_HP_RESTORATION",
+        "int16_t",
     )
 
     MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
@@ -16709,7 +16722,7 @@ class JpOverlay10Data:
         None,
         "MUDDY_WATER_LOWER_ACCURACY_CHANCE",
         "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40) lowering accuracy, as a percentage (40%).",
-        "int16_tMUDDY_WATER_LOWER_ACCURACY_CHANCE",
+        "int16_t",
     )
 
     SILVER_WIND_BOOST_CHANCE = Symbol(
@@ -16718,7 +16731,7 @@ class JpOverlay10Data:
         0x2,
         "SILVER_WIND_BOOST_CHANCE",
         "The chance of Silver Wind (and others, see DoMoveDamageBoostAllStats) boosting all stats, as a percentage (20%).",
-        "int16_tSILVER_WIND_BOOST_CHANCE",
+        "int16_t",
     )
 
     POISON_TAIL_POISON_CHANCE = Symbol(
@@ -16727,7 +16740,7 @@ class JpOverlay10Data:
         0x2,
         "POISON_TAIL_POISON_CHANCE",
         "The chance of Poison Tail poisoning, as a percentage (10%).",
-        "int16_tPOISON_TAIL_POISON_CHANCE",
+        "int16_t",
     )
 
     THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
@@ -16736,7 +16749,7 @@ class JpOverlay10Data:
         0x2,
         "THUNDERSHOCK_PARALYZE_CHANCE",
         "The chance of Thundershock paralyzing, as a percentage (10%).",
-        "int16_tTHUNDERSHOCK_PARALYZE_CHANCE",
+        "int16_t",
     )
 
     BOUNCE_PARALYZE_CHANCE = Symbol(
@@ -16745,7 +16758,7 @@ class JpOverlay10Data:
         0x2,
         "BOUNCE_PARALYZE_CHANCE",
         "The chance of Bounce paralyzing, as a percentage (30%)",
-        "int16_tBOUNCE_PARALYZE_CHANCE",
+        "int16_t",
     )
 
     HEADBUTT_CRINGE_CHANCE = Symbol(
@@ -16754,7 +16767,7 @@ class JpOverlay10Data:
         0x2,
         "HEADBUTT_CRINGE_CHANCE",
         "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
-        "int16_tHEADBUTT_CRINGE_CHANCE",
+        "int16_t",
     )
 
     FIRE_FANG_CRINGE_CHANCE = Symbol(
@@ -16763,7 +16776,7 @@ class JpOverlay10Data:
         0x2,
         "FIRE_FANG_CRINGE_CHANCE",
         "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
-        "int16_tFIRE_FANG_CRINGE_CHANCE",
+        "int16_t",
     )
 
     SACRED_FIRE_BURN_CHANCE = Symbol(
@@ -16772,7 +16785,7 @@ class JpOverlay10Data:
         0x2,
         "SACRED_FIRE_BURN_CHANCE",
         "The chance of Sacred Fire burning, as a percentage (50%).",
-        "int16_tSACRED_FIRE_BURN_CHANCE",
+        "int16_t",
     )
 
     WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
@@ -16781,7 +16794,7 @@ class JpOverlay10Data:
         0x2,
         "WHIRLPOOL_CONSTRICTION_CHANCE",
         "The chance of Whirlpool inflicting the constriction status, as a percentage (10%).",
-        "int16_tWHIRLPOOL_CONSTRICTION_CHANCE",
+        "int16_t",
     )
 
     EXP_ELITE_EXP_BOOST = Symbol(
@@ -16790,7 +16803,7 @@ class JpOverlay10Data:
         0x2,
         "EXP_ELITE_EXP_BOOST",
         "The percentage increase in experience from the Exp. Elite IQ skill",
-        "int16_tEXP_ELITE_EXP_BOOST",
+        "int16_t",
     )
 
     MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS = Symbol(
@@ -16799,7 +16812,7 @@ class JpOverlay10Data:
         0x2,
         "MONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS",
         "The maximum number of extra non-monster spawns (items/traps) in a Monster House, 7",
-        "int16_tMONSTER_HOUSE_MAX_NON_MONSTER_SPAWNS",
+        "int16_t",
     )
 
     HEAL_ORDER_HP_RESTORATION = Symbol(
@@ -16808,7 +16821,7 @@ class JpOverlay10Data:
         0x2,
         "HEAL_ORDER_HP_RESTORATION",
         "The amount of HP restored by Heal Order (40).",
-        "int16_tHEAL_ORDER_HP_RESTORATION",
+        "int16_t",
     )
 
     STEEL_WING_BOOST_DEFENSE_CHANCE = Symbol(
@@ -16817,7 +16830,7 @@ class JpOverlay10Data:
         0x2,
         "STEEL_WING_BOOST_DEFENSE_CHANCE",
         "The chance of Steel Wing boosting defense, as a percentage (20%).",
-        "int16_tSTEEL_WING_BOOST_DEFENSE_CHANCE",
+        "int16_t",
     )
 
     GOLD_THORN_POWER = Symbol(
@@ -16826,7 +16839,7 @@ class JpOverlay10Data:
         0x2,
         "GOLD_THORN_POWER",
         "Attack power for Golden Thorns.",
-        "int16_tGOLD_THORN_POWER",
+        "int16_t",
     )
 
     BURN_DAMAGE = Symbol(
@@ -16835,7 +16848,7 @@ class JpOverlay10Data:
         None,
         "BURN_DAMAGE",
         "Damage dealt by the burn status condition.",
-        "int16_tBURN_DAMAGE",
+        "int16_t",
     )
 
     POISON_DAMAGE = Symbol(
@@ -16844,7 +16857,7 @@ class JpOverlay10Data:
         None,
         "POISON_DAMAGE",
         "Damage dealt by the poison status condition.",
-        "int16_tPOISON_DAMAGE",
+        "int16_t",
     )
 
     SPAWN_COOLDOWN = Symbol(
@@ -16853,7 +16866,7 @@ class JpOverlay10Data:
         0x2,
         "SPAWN_COOLDOWN",
         "The number of turns between enemy spawns under normal conditions.",
-        "int16_tSPAWN_COOLDOWN",
+        "int16_t",
     )
 
     MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
@@ -16862,7 +16875,7 @@ class JpOverlay10Data:
         0x2,
         "MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE",
         "The chance of Mist Ball lowering special attack, as a percentage (50%).",
-        "int16_tMIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE",
+        "int16_t",
     )
 
     CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
@@ -16871,7 +16884,7 @@ class JpOverlay10Data:
         0x2,
         "CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE",
         "The chance of Charge Beam boosting special attack, as a percentage (40%).",
-        "int16_tCHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE",
+        "int16_t",
     )
 
     ORAN_BERRY_FULL_HP_BOOST = Symbol(
@@ -16880,7 +16893,7 @@ class JpOverlay10Data:
         0x2,
         "ORAN_BERRY_FULL_HP_BOOST",
         "The permanent HP boost from eating an Oran Berry at full HP (0).",
-        "int16_tORAN_BERRY_FULL_HP_BOOST",
+        "int16_t",
     )
 
     LIFE_SEED_HP_BOOST = Symbol(
@@ -16889,7 +16902,7 @@ class JpOverlay10Data:
         0x2,
         "LIFE_SEED_HP_BOOST",
         "The permanent HP boost from eating a Life Seed.",
-        "int16_tLIFE_SEED_HP_BOOST",
+        "int16_t",
     )
 
     OCTAZOOKA_LOWER_ACCURACY_CHANCE = Symbol(
@@ -16898,7 +16911,7 @@ class JpOverlay10Data:
         0x2,
         "OCTAZOOKA_LOWER_ACCURACY_CHANCE",
         "The chance of Octazooka lowering accuracy, as a percentage (60%).",
-        "int16_tOCTAZOOKA_LOWER_ACCURACY_CHANCE",
+        "int16_t",
     )
 
     LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
@@ -16907,7 +16920,7 @@ class JpOverlay10Data:
         0x2,
         "LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE",
         "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50) lowering special defense, as a percentage (50%).",
-        "int16_tLUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE",
+        "int16_t",
     )
 
     SUPER_LUCK_CRIT_RATE_BOOST = Symbol(
@@ -16916,7 +16929,7 @@ class JpOverlay10Data:
         0x2,
         "SUPER_LUCK_CRIT_RATE_BOOST",
         "The critical hit rate (additive) boost from Super Luck, 10%.",
-        "int16_tSUPER_LUCK_CRIT_RATE_BOOST",
+        "int16_t",
     )
 
     CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
@@ -16925,7 +16938,7 @@ class JpOverlay10Data:
         0x2,
         "CONSTRICT_LOWER_SPEED_CHANCE",
         "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering speed, as a percentage (20%).",
-        "int16_tCONSTRICT_LOWER_SPEED_CHANCE",
+        "int16_t",
     )
 
     ICE_FANG_FREEZE_CHANCE = Symbol(
@@ -16934,7 +16947,7 @@ class JpOverlay10Data:
         0x2,
         "ICE_FANG_FREEZE_CHANCE",
         "The chance of Ice Fang freezing, as a percentage (15%).",
-        "int16_tICE_FANG_FREEZE_CHANCE",
+        "int16_t",
     )
 
     SMOG_POISON_CHANCE = Symbol(
@@ -16943,7 +16956,7 @@ class JpOverlay10Data:
         0x2,
         "SMOG_POISON_CHANCE",
         "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a percentage (40%).",
-        "int16_tSMOG_POISON_CHANCE",
+        "int16_t",
     )
 
     LICK_PARALYZE_CHANCE = Symbol(
@@ -16952,7 +16965,7 @@ class JpOverlay10Data:
         0x2,
         "LICK_PARALYZE_CHANCE",
         "The chance of Lick (and others, see DoMoveDamageParalyze10) paralyzing, as a percentage (10%).",
-        "int16_tLICK_PARALYZE_CHANCE",
+        "int16_t",
     )
 
     THUNDER_FANG_PARALYZE_CHANCE = Symbol(
@@ -16961,7 +16974,7 @@ class JpOverlay10Data:
         0x2,
         "THUNDER_FANG_PARALYZE_CHANCE",
         "The chance of Thunder Fang paralyzing, as a percentage (10%).",
-        "int16_tTHUNDER_FANG_PARALYZE_CHANCE",
+        "int16_t",
     )
 
     BITE_CRINGE_CHANCE = Symbol(
@@ -16970,7 +16983,7 @@ class JpOverlay10Data:
         0x2,
         "BITE_CRINGE_CHANCE",
         "The chance of Bite (and others, see DoMoveDamageCringe20) inflicting the cringe status, as a percentage (20%)",
-        "int16_tBITE_CRINGE_CHANCE",
+        "int16_t",
     )
 
     SKY_ATTACK_CRINGE_CHANCE = Symbol(
@@ -16979,7 +16992,7 @@ class JpOverlay10Data:
         0x2,
         "SKY_ATTACK_CRINGE_CHANCE",
         "The chance of Sky Attack inflicting the cringe status, as a percentage (25%).",
-        "int16_tSKY_ATTACK_CRINGE_CHANCE",
+        "int16_t",
     )
 
     ICE_FANG_CRINGE_CHANCE = Symbol(
@@ -16988,7 +17001,7 @@ class JpOverlay10Data:
         0x2,
         "ICE_FANG_CRINGE_CHANCE",
         "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
-        "int16_tICE_FANG_CRINGE_CHANCE",
+        "int16_t",
     )
 
     BLAZE_KICK_BURN_CHANCE = Symbol(
@@ -16997,7 +17010,7 @@ class JpOverlay10Data:
         0x2,
         "BLAZE_KICK_BURN_CHANCE",
         "The chance of Blaze Kick burning, as a percentage (10%).",
-        "int16_tBLAZE_KICK_BURN_CHANCE",
+        "int16_t",
     )
 
     FLAMETHROWER_BURN_CHANCE = Symbol(
@@ -17006,7 +17019,7 @@ class JpOverlay10Data:
         0x2,
         "FLAMETHROWER_BURN_CHANCE",
         "The chance of Flamethrower (and others, see DoMoveDamageBurn10) burning, as a percentage (10%).",
-        "int16_tFLAMETHROWER_BURN_CHANCE",
+        "int16_t",
     )
 
     DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
@@ -17015,7 +17028,7 @@ class JpOverlay10Data:
         0x2,
         "DIZZY_PUNCH_CONFUSE_CHANCE",
         "The chance of Dizzy Punch (and others, see DoMoveDamageConfuse30) confusing, as a percentage (30%).",
-        "int16_tDIZZY_PUNCH_CONFUSE_CHANCE",
+        "int16_t",
     )
 
     SECRET_POWER_EFFECT_CHANCE = Symbol(
@@ -17024,7 +17037,7 @@ class JpOverlay10Data:
         0x2,
         "SECRET_POWER_EFFECT_CHANCE",
         "The chance of Secret Power inflicting an effect, as a percentage (30%).",
-        "int16_tSECRET_POWER_EFFECT_CHANCE",
+        "int16_t",
     )
 
     METAL_CLAW_BOOST_ATTACK_CHANCE = Symbol(
@@ -17033,7 +17046,7 @@ class JpOverlay10Data:
         0x2,
         "METAL_CLAW_BOOST_ATTACK_CHANCE",
         "The chance of Metal Claw boosting attack, as a percentage (20%).",
-        "int16_tMETAL_CLAW_BOOST_ATTACK_CHANCE",
+        "int16_t",
     )
 
     TECHNICIAN_MOVE_POWER_THRESHOLD = Symbol(
@@ -17042,7 +17055,7 @@ class JpOverlay10Data:
         0x2,
         "TECHNICIAN_MOVE_POWER_THRESHOLD",
         "The move power threshold for Technician (4). Moves whose base power doesn't exceed this value will receive a 50% damage boost.",
-        "int16_tTECHNICIAN_MOVE_POWER_THRESHOLD",
+        "int16_t",
     )
 
     SONICBOOM_FIXED_DAMAGE = Symbol(
@@ -17051,7 +17064,7 @@ class JpOverlay10Data:
         0x2,
         "SONICBOOM_FIXED_DAMAGE",
         "The amount of fixed damage dealt by SonicBoom (20).",
-        "int16_tSONICBOOM_FIXED_DAMAGE",
+        "int16_t",
     )
 
     RAIN_ABILITY_BONUS_REGEN = Symbol(
@@ -17060,7 +17073,7 @@ class JpOverlay10Data:
         None,
         "RAIN_ABILITY_BONUS_REGEN",
         "The passive bonus health regen given when the weather is rain for the abilities rain dish and dry skin.",
-        "int16_tRAIN_ABILITY_BONUS_REGEN",
+        "int16_t",
     )
 
     LEECH_SEED_HP_DRAIN = Symbol(
@@ -17069,7 +17082,7 @@ class JpOverlay10Data:
         None,
         "LEECH_SEED_HP_DRAIN",
         "The amount of health drained by leech seed status.",
-        "int16_tLEECH_SEED_HP_DRAIN",
+        "int16_t",
     )
 
     EXCLUSIVE_ITEM_EXP_BOOST = Symbol(
@@ -17078,7 +17091,7 @@ class JpOverlay10Data:
         0x2,
         "EXCLUSIVE_ITEM_EXP_BOOST",
         "The percentage increase in experience from exp-boosting exclusive items.",
-        "int16_tEXCLUSIVE_ITEM_EXP_BOOST",
+        "int16_t",
     )
 
     AFTERMATH_CHANCE = Symbol(
@@ -17087,7 +17100,7 @@ class JpOverlay10Data:
         0x2,
         "AFTERMATH_CHANCE",
         "The chance of the Aftermath ability activating, as a percentage (50%).",
-        "int16_tAFTERMATH_CHANCE",
+        "int16_t",
     )
 
     SET_DAMAGE_STATUS_DAMAGE = Symbol(
@@ -17096,7 +17109,7 @@ class JpOverlay10Data:
         0x2,
         "SET_DAMAGE_STATUS_DAMAGE",
         "The fixed amount of damage dealt when the Set Damage status condition is active (30).",
-        "int16_tSET_DAMAGE_STATUS_DAMAGE",
+        "int16_t",
     )
 
     INTIMIDATOR_ACTIVATION_CHANCE = Symbol(
@@ -17105,7 +17118,7 @@ class JpOverlay10Data:
         0x2,
         "INTIMIDATOR_ACTIVATION_CHANCE",
         "The percentage chance that Intimidator will activate.",
-        "int16_tINTIMIDATOR_ACTIVATION_CHANCE",
+        "int16_t",
     )
 
     TYPE_ADVANTAGE_MASTER_CRIT_RATE = Symbol(
@@ -17114,7 +17127,7 @@ class JpOverlay10Data:
         0x2,
         "TYPE_ADVANTAGE_MASTER_CRIT_RATE",
         "The flat critical hit rate with Type-Advantage Master, 40%.",
-        "int16_tTYPE_ADVANTAGE_MASTER_CRIT_RATE",
+        "int16_t",
     )
 
     ORAN_BERRY_HP_RESTORATION = Symbol(
@@ -17123,7 +17136,7 @@ class JpOverlay10Data:
         0x2,
         "ORAN_BERRY_HP_RESTORATION",
         "The amount of HP restored by eating a Oran Berry.",
-        "int16_tORAN_BERRY_HP_RESTORATION",
+        "int16_t",
     )
 
     SITRUS_BERRY_FULL_HP_BOOST = Symbol(
@@ -17132,7 +17145,7 @@ class JpOverlay10Data:
         0x2,
         "SITRUS_BERRY_FULL_HP_BOOST",
         "The permanent HP boost from eating a Sitrus Berry at full HP.",
-        "int16_tSITRUS_BERRY_FULL_HP_BOOST",
+        "int16_t",
     )
 
     SNORE_CRINGE_CHANCE = Symbol(
@@ -17141,7 +17154,7 @@ class JpOverlay10Data:
         0x2,
         "SNORE_CRINGE_CHANCE",
         "The chance of Snore inflicting the cringe status, as a percentage (30%).",
-        "int16_tSNORE_CRINGE_CHANCE",
+        "int16_t",
     )
 
     METEOR_MASH_BOOST_ATTACK_CHANCE = Symbol(
@@ -17150,7 +17163,7 @@ class JpOverlay10Data:
         0x2,
         "METEOR_MASH_BOOST_ATTACK_CHANCE",
         "The chance of Meteor Mash boosting attack, as a percentage (20%).",
-        "int16_tMETEOR_MASH_BOOST_ATTACK_CHANCE",
+        "int16_t",
     )
 
     CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
@@ -17159,7 +17172,7 @@ class JpOverlay10Data:
         0x2,
         "CRUSH_CLAW_LOWER_DEFENSE_CHANCE",
         "The chance of Crush Claw lowering defense, as a percentage (50%).",
-        "int16_tCRUSH_CLAW_LOWER_DEFENSE_CHANCE",
+        "int16_t",
     )
 
     BURN_DAMAGE_COOLDOWN = Symbol(
@@ -17168,7 +17181,7 @@ class JpOverlay10Data:
         0x2,
         "BURN_DAMAGE_COOLDOWN",
         "The number of turns between passive burn damage.",
-        "int16_tBURN_DAMAGE_COOLDOWN",
+        "int16_t",
     )
 
     SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
@@ -17177,16 +17190,11 @@ class JpOverlay10Data:
         0x2,
         "SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE",
         "The chance of Shadow Ball lowering special defense, as a percentage (20%).",
-        "int16_tSHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE",
+        "int16_t",
     )
 
     STICK_POWER = Symbol(
-        [0x7AEC],
-        [0x22C5D0C],
-        0x2,
-        "STICK_POWER",
-        "Attack power for Sticks.",
-        "int16_tSTICK_POWER",
+        [0x7AEC], [0x22C5D0C], 0x2, "STICK_POWER", "Attack power for Sticks.", "int16_t"
     )
 
     BUBBLE_LOWER_SPEED_CHANCE = Symbol(
@@ -17195,7 +17203,7 @@ class JpOverlay10Data:
         0x2,
         "BUBBLE_LOWER_SPEED_CHANCE",
         "The chance of Bubble lowering speed, as a percentage (10%).",
-        "int16_tBUBBLE_LOWER_SPEED_CHANCE",
+        "int16_t",
     )
 
     ICE_BODY_BONUS_REGEN = Symbol(
@@ -17204,7 +17212,7 @@ class JpOverlay10Data:
         None,
         "ICE_BODY_BONUS_REGEN",
         "The passive bonus health regen given when the weather is hail for the ability ice body.",
-        "int16_tICE_BODY_BONUS_REGEN",
+        "int16_t",
     )
 
     POWDER_SNOW_FREEZE_CHANCE = Symbol(
@@ -17213,7 +17221,7 @@ class JpOverlay10Data:
         0x2,
         "POWDER_SNOW_FREEZE_CHANCE",
         "The chance of Powder Snow (and others, see DoMoveDamageFreeze15) freezing, as a percentage (15%).",
-        "int16_tPOWDER_SNOW_FREEZE_CHANCE",
+        "int16_t",
     )
 
     POISON_STING_POISON_CHANCE = Symbol(
@@ -17222,7 +17230,7 @@ class JpOverlay10Data:
         0x2,
         "POISON_STING_POISON_CHANCE",
         "The chance of Poison Sting (and others, see DoMoveDamagePoison18) poisoning, as a percentage (18%).",
-        "int16_tPOISON_STING_POISON_CHANCE",
+        "int16_t",
     )
 
     SPAWN_COOLDOWN_THIEF_ALERT = Symbol(
@@ -17231,7 +17239,7 @@ class JpOverlay10Data:
         0x2,
         "SPAWN_COOLDOWN_THIEF_ALERT",
         "The number of turns between enemy spawns when the Thief Alert condition is active.",
-        "int16_tSPAWN_COOLDOWN_THIEF_ALERT",
+        "int16_t",
     )
 
     POISON_FANG_POISON_CHANCE = Symbol(
@@ -17240,7 +17248,7 @@ class JpOverlay10Data:
         0x2,
         "POISON_FANG_POISON_CHANCE",
         "The chance of Poison Fang poisoning, as a percentage (30%).",
-        "int16_tPOISON_FANG_POISON_CHANCE",
+        "int16_t",
     )
 
     WEATHER_MOVE_TURN_COUNT = Symbol(
@@ -17249,7 +17257,7 @@ class JpOverlay10Data:
         None,
         "WEATHER_MOVE_TURN_COUNT",
         "The number of turns the moves rain dance, hail, sandstorm, sunny day and defog change the weather for. (3000)",
-        "int16_tWEATHER_MOVE_TURN_COUNT",
+        "int16_t",
     )
 
     THUNDER_PARALYZE_CHANCE = Symbol(
@@ -17258,7 +17266,7 @@ class JpOverlay10Data:
         0x2,
         "THUNDER_PARALYZE_CHANCE",
         "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as a percentage (20%)",
-        "int16_tTHUNDER_PARALYZE_CHANCE",
+        "int16_t",
     )
 
     THUNDERBOLT_PARALYZE_CHANCE = Symbol(
@@ -17267,7 +17275,7 @@ class JpOverlay10Data:
         0x2,
         "THUNDERBOLT_PARALYZE_CHANCE",
         "The chance of Thunderbolt paralyzing, as a percentage (15%).",
-        "int16_tTHUNDERBOLT_PARALYZE_CHANCE",
+        "int16_t",
     )
 
     MONSTER_HOUSE_MAX_MONSTER_SPAWNS = Symbol(
@@ -17276,7 +17284,7 @@ class JpOverlay10Data:
         0x2,
         "MONSTER_HOUSE_MAX_MONSTER_SPAWNS",
         "The maximum number of monster spawns in a Monster House, 30, but multiplied by 2/3 for some reason (so the actual maximum is 45)",
-        "int16_tMONSTER_HOUSE_MAX_MONSTER_SPAWNS",
+        "int16_t",
     )
 
     TWISTER_CRINGE_CHANCE = Symbol(
@@ -17285,7 +17293,7 @@ class JpOverlay10Data:
         0x2,
         "TWISTER_CRINGE_CHANCE",
         "The chance of Twister inflicting the cringe status, as a percentage (10%).",
-        "int16_tTWISTER_CRINGE_CHANCE",
+        "int16_t",
     )
 
     SPEED_BOOST_TURNS = Symbol(
@@ -17294,7 +17302,7 @@ class JpOverlay10Data:
         0x2,
         "SPEED_BOOST_TURNS",
         "Number of turns (250) after which Speed Boost will trigger and increase speed by one stage.",
-        "int16_tSPEED_BOOST_TURNS",
+        "int16_t",
     )
 
     FAKE_OUT_CRINGE_CHANCE = Symbol(
@@ -17303,7 +17311,7 @@ class JpOverlay10Data:
         0x2,
         "FAKE_OUT_CRINGE_CHANCE",
         "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
-        "int16_tFAKE_OUT_CRINGE_CHANCE",
+        "int16_t",
     )
 
     THUNDER_FANG_CRINGE_CHANCE = Symbol(
@@ -17312,7 +17320,7 @@ class JpOverlay10Data:
         0x2,
         "THUNDER_FANG_CRINGE_CHANCE",
         "The chance of Thunder Fang inflicting the cringe status, as a percentage (25%).",
-        "int16_tTHUNDER_FANG_CRINGE_CHANCE",
+        "int16_t",
     )
 
     FLARE_BLITZ_BURN_CHANCE = Symbol(
@@ -17321,7 +17329,7 @@ class JpOverlay10Data:
         0x2,
         "FLARE_BLITZ_BURN_CHANCE",
         "The chance of Flare Blitz burning, as a percentage (25%). This value is also used for the Fire Fang burn chance.",
-        "int16_tFLARE_BLITZ_BURN_CHANCE",
+        "int16_t",
     )
 
     FLAME_WHEEL_BURN_CHANCE = Symbol(
@@ -17330,7 +17338,7 @@ class JpOverlay10Data:
         0x2,
         "FLAME_WHEEL_BURN_CHANCE",
         "The chance of Flame Wheel (and others, see DoMoveDamageBurn10FlameWheel) burning, as a percentage (10%).",
-        "int16_tFLAME_WHEEL_BURN_CHANCE",
+        "int16_t",
     )
 
     PSYBEAM_CONFUSE_CHANCE = Symbol(
@@ -17339,7 +17347,7 @@ class JpOverlay10Data:
         0x2,
         "PSYBEAM_CONFUSE_CHANCE",
         "The chance of Psybeam (and others, see DoMoveDamageConfuse10) confusing, as a percentage (10%).",
-        "int16_tPSYBEAM_CONFUSE_CHANCE",
+        "int16_t",
     )
 
     TRI_ATTACK_STATUS_CHANCE = Symbol(
@@ -17348,7 +17356,7 @@ class JpOverlay10Data:
         0x2,
         "TRI_ATTACK_STATUS_CHANCE",
         "The chance of Tri Attack inflicting any status condition, as a percentage (20%).",
-        "int16_tTRI_ATTACK_STATUS_CHANCE",
+        "int16_t",
     )
 
     MIRACLE_CHEST_EXP_BOOST = Symbol(
@@ -17357,7 +17365,7 @@ class JpOverlay10Data:
         0x2,
         "MIRACLE_CHEST_EXP_BOOST",
         "The percentage increase in experience from the Miracle Chest item",
-        "int16_tMIRACLE_CHEST_EXP_BOOST",
+        "int16_t",
     )
 
     WONDER_CHEST_EXP_BOOST = Symbol(
@@ -17366,7 +17374,7 @@ class JpOverlay10Data:
         0x2,
         "WONDER_CHEST_EXP_BOOST",
         "The percentage increase in experience from the Wonder Chest item",
-        "int16_tWONDER_CHEST_EXP_BOOST",
+        "int16_t",
     )
 
     SPAWN_CAP_WITH_MONSTER_HOUSE = Symbol(
@@ -17375,7 +17383,7 @@ class JpOverlay10Data:
         0x2,
         "SPAWN_CAP_WITH_MONSTER_HOUSE",
         "The maximum number of enemies that can spawn on a floor with a monster house, not counting those in the monster house (4).",
-        "int16_tSPAWN_CAP_WITH_MONSTER_HOUSE",
+        "int16_t",
     )
 
     POISON_DAMAGE_COOLDOWN = Symbol(
@@ -17384,7 +17392,7 @@ class JpOverlay10Data:
         0x2,
         "POISON_DAMAGE_COOLDOWN",
         "The number of turns between passive poison damage.",
-        "int16_tPOISON_DAMAGE_COOLDOWN",
+        "int16_t",
     )
 
     LEECH_SEED_DAMAGE_COOLDOWN = Symbol(
@@ -17393,7 +17401,7 @@ class JpOverlay10Data:
         None,
         "LEECH_SEED_DAMAGE_COOLDOWN",
         "The number of turns between leech seed health drain.",
-        "int16_tLEECH_SEED_DAMAGE_COOLDOWN",
+        "int16_t",
     )
 
     THROWN_ITEM_HIT_CHANCE = Symbol(
@@ -17402,7 +17410,7 @@ class JpOverlay10Data:
         0x2,
         "THROWN_ITEM_HIT_CHANCE",
         "Chance of a hurled item hitting the target (90%).",
-        "int16_tTHROWN_ITEM_HIT_CHANCE",
+        "int16_t",
     )
 
     GEO_PEBBLE_DAMAGE = Symbol(
@@ -17411,7 +17419,7 @@ class JpOverlay10Data:
         0x2,
         "GEO_PEBBLE_DAMAGE",
         "Damage dealt by Geo Pebbles.",
-        "int16_tGEO_PEBBLE_DAMAGE",
+        "int16_t",
     )
 
     GRAVELEROCK_DAMAGE = Symbol(
@@ -17420,7 +17428,7 @@ class JpOverlay10Data:
         0x2,
         "GRAVELEROCK_DAMAGE",
         "Damage dealt by Gravelerocks.",
-        "int16_tGRAVELEROCK_DAMAGE",
+        "int16_t",
     )
 
     RARE_FOSSIL_DAMAGE = Symbol(
@@ -17429,7 +17437,7 @@ class JpOverlay10Data:
         0x2,
         "RARE_FOSSIL_DAMAGE",
         "Damage dealt by Rare Fossils.",
-        "int16_tRARE_FOSSIL_DAMAGE",
+        "int16_t",
     )
 
     GINSENG_CHANCE_3 = Symbol(
@@ -17438,7 +17446,7 @@ class JpOverlay10Data:
         0x2,
         "GINSENG_CHANCE_3",
         "The percentage chance for...something to be set to 3 in a calculation related to the Ginseng boost.",
-        "int16_tGINSENG_CHANCE_3",
+        "int16_t",
     )
 
     ZINC_STAT_BOOST = Symbol(
@@ -17447,7 +17455,7 @@ class JpOverlay10Data:
         0x2,
         "ZINC_STAT_BOOST",
         "The permanent special defense boost from ingesting a Zinc.",
-        "int16_tZINC_STAT_BOOST",
+        "int16_t",
     )
 
     IRON_STAT_BOOST = Symbol(
@@ -17456,7 +17464,7 @@ class JpOverlay10Data:
         0x2,
         "IRON_STAT_BOOST",
         "The permanent defense boost from ingesting an Iron.",
-        "int16_tIRON_STAT_BOOST",
+        "int16_t",
     )
 
     CALCIUM_STAT_BOOST = Symbol(
@@ -17465,7 +17473,7 @@ class JpOverlay10Data:
         0x2,
         "CALCIUM_STAT_BOOST",
         "The permanent special attack boost from ingesting a Calcium.",
-        "int16_tCALCIUM_STAT_BOOST",
+        "int16_t",
     )
 
     WISH_BONUS_REGEN = Symbol(
@@ -17474,7 +17482,7 @@ class JpOverlay10Data:
         None,
         "WISH_BONUS_REGEN",
         "The passive bonus regen given by the wish status condition.",
-        "int16_tWISH_BONUS_REGEN",
+        "int16_t",
     )
 
     DRAGON_RAGE_FIXED_DAMAGE = Symbol(
@@ -17483,7 +17491,7 @@ class JpOverlay10Data:
         0x2,
         "DRAGON_RAGE_FIXED_DAMAGE",
         "The amount of fixed damage dealt by Dragon Rage (30).",
-        "int16_tDRAGON_RAGE_FIXED_DAMAGE",
+        "int16_t",
     )
 
     CORSOLA_TWIG_POWER = Symbol(
@@ -17492,7 +17500,7 @@ class JpOverlay10Data:
         0x2,
         "CORSOLA_TWIG_POWER",
         "Attack power for Corsola Twigs.",
-        "int16_tCORSOLA_TWIG_POWER",
+        "int16_t",
     )
 
     CACNEA_SPIKE_POWER = Symbol(
@@ -17501,7 +17509,7 @@ class JpOverlay10Data:
         0x2,
         "CACNEA_SPIKE_POWER",
         "Attack power for Cacnea Spikes.",
-        "int16_tCACNEA_SPIKE_POWER",
+        "int16_t",
     )
 
     GOLD_FANG_POWER = Symbol(
@@ -17510,7 +17518,7 @@ class JpOverlay10Data:
         0x2,
         "GOLD_FANG_POWER",
         "Attack power for Gold Fangs.",
-        "int16_tGOLD_FANG_POWER",
+        "int16_t",
     )
 
     SILVER_SPIKE_POWER = Symbol(
@@ -17519,7 +17527,7 @@ class JpOverlay10Data:
         0x2,
         "SILVER_SPIKE_POWER",
         "Attack power for Silver Spikes.",
-        "int16_tSILVER_SPIKE_POWER",
+        "int16_t",
     )
 
     IRON_THORN_POWER = Symbol(
@@ -17528,7 +17536,7 @@ class JpOverlay10Data:
         0x2,
         "IRON_THORN_POWER",
         "Attack power for Iron Thorns.",
-        "int16_tIRON_THORN_POWER",
+        "int16_t",
     )
 
     SCOPE_LENS_CRIT_RATE_BOOST = Symbol(
@@ -17537,7 +17545,7 @@ class JpOverlay10Data:
         0x2,
         "SCOPE_LENS_CRIT_RATE_BOOST",
         "The critical hit rate (additive) boost from the Scope Lens/Patsy Band items and the Sharpshooter IQ skill, 15%.",
-        "int16_tSCOPE_LENS_CRIT_RATE_BOOST",
+        "int16_t",
     )
 
     HEALING_WISH_HP_RESTORATION = Symbol(
@@ -17546,7 +17554,7 @@ class JpOverlay10Data:
         0x2,
         "HEALING_WISH_HP_RESTORATION",
         "The amount of HP restored by Healing Wish (999). This also applies to Lunar Dance.",
-        "int16_tHEALING_WISH_HP_RESTORATION",
+        "int16_t",
     )
 
     ME_FIRST_MULTIPLIER = Symbol(
@@ -17555,7 +17563,7 @@ class JpOverlay10Data:
         0x4,
         "ME_FIRST_MULTIPLIER",
         "The damage multiplier applied to attacks copied by Me First, as a fixed-point number with 8 fraction bits (1.5).",
-        "fx32_8ME_FIRST_MULTIPLIER",
+        "fx32_8",
     )
 
     FACADE_DAMAGE_MULTIPLIER = Symbol(
@@ -17564,7 +17572,7 @@ class JpOverlay10Data:
         0x4,
         "FACADE_DAMAGE_MULTIPLIER",
         "The Facade damage multiplier for users with a status condition, as a binary fixed-point number with 8 fraction bits (0x200 -> 2x).",
-        "fx32_8FACADE_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     IMPRISON_TURN_RANGE = Symbol(
@@ -17573,7 +17581,7 @@ class JpOverlay10Data:
         0x4,
         "IMPRISON_TURN_RANGE",
         "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype: int16_t[2]",
-        "",
+        "int16_t[2]",
     )
 
     SLEEP_TURN_RANGE = Symbol(
@@ -17582,7 +17590,7 @@ class JpOverlay10Data:
         0x4,
         "SLEEP_TURN_RANGE",
         "Appears to control the range of turns for which the sleep condition can last.\n\nThe first two bytes are the low value of the range, and the later two bytes are the high value.",
-        "",
+        "int16_t[2]",
     )
 
     NIGHTMARE_TURN_RANGE = Symbol(
@@ -17591,7 +17599,7 @@ class JpOverlay10Data:
         0x4,
         "NIGHTMARE_TURN_RANGE",
         "The turn range for the Nightmare status inflicted by Nightmare, [4, 8).\n\ntype: int16_t[2]",
-        "",
+        "int16_t[2]",
     )
 
     BURN_DAMAGE_MULTIPLIER = Symbol(
@@ -17600,7 +17608,7 @@ class JpOverlay10Data:
         0x4,
         "BURN_DAMAGE_MULTIPLIER",
         "The extra damage multiplier for moves when the attacker is burned, as a fixed-point number with 8 fraction bits (the raw value is 0xCC, which is close to 0.8).\n\nUnlike in the main series, this multiplier is applied regardless of whether the move being used is physical or special.",
-        "fx32_8BURN_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     REST_TURN_RANGE = Symbol(
@@ -17609,7 +17617,7 @@ class JpOverlay10Data:
         0x4,
         "REST_TURN_RANGE",
         "The turn range for the Napping status inflicted by Rest, [1, 4).\n\ntype: int16_t[2]",
-        "",
+        "int16_t[2]",
     )
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
@@ -17618,7 +17626,7 @@ class JpOverlay10Data:
         0x4,
         "MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE when Erratic Player is active, as a fixed-point number with 8 fraction bits (the raw value is 0x1B3, the closest possible representation of 1.7).",
-        "fx32_8MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER",
+        "fx32_8",
     )
 
     MATCHUP_IMMUNE_MULTIPLIER = Symbol(
@@ -17627,7 +17635,7 @@ class JpOverlay10Data:
         None,
         "MATCHUP_IMMUNE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_IMMUNE, as a fixed-point number with 8 fraction bits (0.5).",
-        "fx32_8MATCHUP_IMMUNE_MULTIPLIER",
+        "fx32_8",
     )
 
     SPORT_CONDITION_TURN_RANGE = Symbol(
@@ -17636,7 +17644,7 @@ class JpOverlay10Data:
         0x4,
         "SPORT_CONDITION_TURN_RANGE",
         "The turn range for the sport conditions activated by Mud Sport and Water Sport, [10, 12).\n\ntype: int16_t[2]",
-        "",
+        "int16_t[2]",
     )
 
     SURE_SHOT_TURN_RANGE = Symbol(
@@ -17645,7 +17653,7 @@ class JpOverlay10Data:
         0x4,
         "SURE_SHOT_TURN_RANGE",
         "The turn range for the Sure Shot status inflicted by Mind Reader and Lock-On, [10, 12).\n\ntype: int16_t[2]",
-        "",
+        "int16_t[2]",
     )
 
     DETECT_BAND_MOVE_ACCURACY_DROP = Symbol(
@@ -17654,7 +17662,7 @@ class JpOverlay10Data:
         0x4,
         "DETECT_BAND_MOVE_ACCURACY_DROP",
         "The (subtractive) move accuracy drop induced on an attacker if the defender is wearing a Detect Band (30).",
-        "intDETECT_BAND_MOVE_ACCURACY_DROP",
+        "int",
     )
 
     TINTED_LENS_MULTIPLIER = Symbol(
@@ -17663,7 +17671,7 @@ class JpOverlay10Data:
         0x4,
         "TINTED_LENS_MULTIPLIER",
         "The extra damage multiplier for not-very-effective moves when Tinted Lens is active, as a fixed-point number with 8 fraction bits (the raw value is 0x133, the closest possible representation of 1.2).",
-        "fx32_8TINTED_LENS_MULTIPLIER",
+        "fx32_8",
     )
 
     SMOKESCREEN_TURN_RANGE = Symbol(
@@ -17672,7 +17680,7 @@ class JpOverlay10Data:
         0x4,
         "SMOKESCREEN_TURN_RANGE",
         "The turn range for the Whiffer status inflicted by Smokescreen, [1, 4).\n\ntype: int16_t[2]",
-        "",
+        "int16_t[2]",
     )
 
     SHADOW_FORCE_DAMAGE_MULTIPLIER = Symbol(
@@ -17681,7 +17689,7 @@ class JpOverlay10Data:
         0x4,
         "SHADOW_FORCE_DAMAGE_MULTIPLIER",
         "The damage multiplier for Shadow Force, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8SHADOW_FORCE_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     DIG_DAMAGE_MULTIPLIER = Symbol(
@@ -17690,7 +17698,7 @@ class JpOverlay10Data:
         0x4,
         "DIG_DAMAGE_MULTIPLIER",
         "The damage multiplier for Dig, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8DIG_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     DIVE_DAMAGE_MULTIPLIER = Symbol(
@@ -17699,7 +17707,7 @@ class JpOverlay10Data:
         0x4,
         "DIVE_DAMAGE_MULTIPLIER",
         "The damage multiplier for Dive, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8DIVE_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     BOUNCE_DAMAGE_MULTIPLIER = Symbol(
@@ -17708,7 +17716,7 @@ class JpOverlay10Data:
         0x4,
         "BOUNCE_DAMAGE_MULTIPLIER",
         "The damage multiplier for Bounce, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8BOUNCE_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     POWER_PITCHER_DAMAGE_MULTIPLIER = Symbol(
@@ -17717,7 +17725,7 @@ class JpOverlay10Data:
         0x4,
         "POWER_PITCHER_DAMAGE_MULTIPLIER",
         "The multiplier for projectile damage from Power Pitcher (1.5), as a binary fixed-point number (8 fraction bits)",
-        "fx32_8POWER_PITCHER_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     QUICK_DODGER_MOVE_ACCURACY_DROP = Symbol(
@@ -17726,7 +17734,7 @@ class JpOverlay10Data:
         0x4,
         "QUICK_DODGER_MOVE_ACCURACY_DROP",
         "The (subtractive) move accuracy drop induced on an attacker if the defender has the Quick Dodger IQ skill (10).",
-        "intQUICK_DODGER_MOVE_ACCURACY_DROP",
+        "int",
     )
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER = Symbol(
@@ -17735,7 +17743,7 @@ class JpOverlay10Data:
         0x4,
         "MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE, as a fixed-point number with 8 fraction bits (the raw value is 0x1B4, the closest possible representation of 1/√2).",
-        "fx32_8MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER",
+        "fx32_8",
     )
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER = Symbol(
@@ -17744,7 +17752,7 @@ class JpOverlay10Data:
         0x4,
         "MATCHUP_SUPER_EFFECTIVE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE, as a fixed-point number with 8 fraction bits (the raw value is 0x166, the closest possible representation of 1.4).",
-        "fx32_8MATCHUP_SUPER_EFFECTIVE_MULTIPLIER",
+        "fx32_8",
     )
 
     MATCHUP_NEUTRAL_MULTIPLIER = Symbol(
@@ -17753,7 +17761,7 @@ class JpOverlay10Data:
         0x4,
         "MATCHUP_NEUTRAL_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_NEUTRAL, as a fixed-point number with 8 fraction bits (1).",
-        "fx32_8MATCHUP_NEUTRAL_MULTIPLIER",
+        "fx32_8",
     )
 
     MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
@@ -17762,7 +17770,7 @@ class JpOverlay10Data:
         0x4,
         "MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_IMMUNE when Erratic Player is active, as a fixed-point number with 8 fraction bits (0.25).",
-        "fx32_8MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER",
+        "fx32_8",
     )
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
@@ -17771,7 +17779,7 @@ class JpOverlay10Data:
         0x4,
         "MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE when Erratic Player is active, as a fixed-point number with 8 fraction bits (0.5).",
-        "fx32_8MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER",
+        "fx32_8",
     )
 
     MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER = Symbol(
@@ -17780,7 +17788,7 @@ class JpOverlay10Data:
         0x4,
         "MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_NEUTRAL when Erratic Player is active, as a fixed-point number with 8 fraction bits (1).",
-        "fx32_8MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER",
+        "fx32_8",
     )
 
     AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
@@ -17789,7 +17797,7 @@ class JpOverlay10Data:
         0x4,
         "AIR_BLADE_DAMAGE_MULTIPLIER",
         "The multiplier for damage from the Air Blade (1.5), as a binary fixed-point number (8 fraction bits)",
-        "fx32_8AIR_BLADE_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER = Symbol(
@@ -17798,7 +17806,7 @@ class JpOverlay10Data:
         0x4,
         "KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER",
         "The boosted kecleon shop spawn chance multiplier (~1.2) as a binary fixed-point number (8 fraction bits).",
-        "fx32_8KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER",
+        "fx32_8",
     )
 
     HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER = Symbol(
@@ -17807,7 +17815,7 @@ class JpOverlay10Data:
         0x4,
         "HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER",
         "The hidden stairs spawn chance multiplier (~1.2) as a binary fixed-point number (8 fraction bits), if applicable. See ShouldBoostHiddenStairsSpawnChance in overlay 29.",
-        "fx32_8HIDDEN_STAIRS_SPAWN_CHANCE_MULTIPLIER",
+        "fx32_8",
     )
 
     YAWN_TURN_RANGE = Symbol(
@@ -17816,7 +17824,7 @@ class JpOverlay10Data:
         0x4,
         "YAWN_TURN_RANGE",
         "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype: int16_t[2]",
-        "",
+        "int16_t[2]",
     )
 
     SPEED_BOOST_TURN_RANGE = Symbol(
@@ -17825,7 +17833,7 @@ class JpOverlay10Data:
         0x4,
         "SPEED_BOOST_TURN_RANGE",
         "Appears to control the range of turns for which a speed boost can last.\n\nThe first two bytes are the low value of the range, and the later two bytes are the high value.",
-        "",
+        "int16_t[2]",
     )
 
     SOLARBEAM_DAMAGE_MULTIPLIER = Symbol(
@@ -17834,7 +17842,7 @@ class JpOverlay10Data:
         0x4,
         "SOLARBEAM_DAMAGE_MULTIPLIER",
         "The default damage multiplier for SolarBeam, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8SOLARBEAM_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     SKY_ATTACK_DAMAGE_MULTIPLIER = Symbol(
@@ -17843,7 +17851,7 @@ class JpOverlay10Data:
         0x4,
         "SKY_ATTACK_DAMAGE_MULTIPLIER",
         "The damage multiplier for Sky Attack, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8SKY_ATTACK_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     RAZOR_WIND_DAMAGE_MULTIPLIER = Symbol(
@@ -17852,7 +17860,7 @@ class JpOverlay10Data:
         0x4,
         "RAZOR_WIND_DAMAGE_MULTIPLIER",
         "The damage multiplier for Razor Wind, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8RAZOR_WIND_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     FOCUS_PUNCH_DAMAGE_MULTIPLIER = Symbol(
@@ -17861,7 +17869,7 @@ class JpOverlay10Data:
         None,
         "FOCUS_PUNCH_DAMAGE_MULTIPLIER",
         "The damage multiplier for Focus Punch, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8FOCUS_PUNCH_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     SKULL_BASH_DAMAGE_MULTIPLIER = Symbol(
@@ -17870,7 +17878,7 @@ class JpOverlay10Data:
         0x4,
         "SKULL_BASH_DAMAGE_MULTIPLIER",
         "The damage multiplier for Skull Bash, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8SKULL_BASH_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     FLY_DAMAGE_MULTIPLIER = Symbol(
@@ -17879,7 +17887,7 @@ class JpOverlay10Data:
         0x4,
         "FLY_DAMAGE_MULTIPLIER",
         "The damage multiplier for Fly, as a fixed-point number with 8 fraction bits (2).",
-        "fx32_8FLY_DAMAGE_MULTIPLIER",
+        "fx32_8",
     )
 
     WEATHER_BALL_TYPE_TABLE = Symbol(
@@ -17888,7 +17896,7 @@ class JpOverlay10Data:
         0x8,
         "WEATHER_BALL_TYPE_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding Weather Ball type.\n\ntype: struct type_id_8[8]",
-        "",
+        "struct type_id_8[8]",
     )
 
     LAST_RESORT_DAMAGE_MULT_TABLE = Symbol(
@@ -17897,7 +17905,7 @@ class JpOverlay10Data:
         0x10,
         "LAST_RESORT_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Last Resort for different numbers of moves out of PP, where each entry is a binary fixed-point number with 8 fraction bits.\n\nIf n is the number of moves out of PP not counting Last Resort itself, the table is indexed by (n - 1).\n\ntype: int[4]",
-        "",
+        "fx32_8[4]",
     )
 
     SYNTHESIS_HP_RESTORATION_TABLE = Symbol(
@@ -17906,7 +17914,7 @@ class JpOverlay10Data:
         0x10,
         "SYNTHESIS_HP_RESTORATION_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP restoration value for Synthesis.\n\ntype: int16_t[8]",
-        "",
+        "int16_t[8]",
     )
 
     ROOST_HP_RESTORATION_TABLE = Symbol(
@@ -17915,7 +17923,7 @@ class JpOverlay10Data:
         0x10,
         "ROOST_HP_RESTORATION_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP restoration value for Roost.\n\nEvery entry in this table is 40.\n\ntype: int16_t[8]",
-        "",
+        "int16_t[8]",
     )
 
     MOONLIGHT_HP_RESTORATION_TABLE = Symbol(
@@ -17924,7 +17932,7 @@ class JpOverlay10Data:
         0x10,
         "MOONLIGHT_HP_RESTORATION_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP restoration value for Moonlight.\n\ntype: int16_t[8]",
-        "",
+        "int16_t[8]",
     )
 
     MORNING_SUN_HP_RESTORATION_TABLE = Symbol(
@@ -17933,7 +17941,7 @@ class JpOverlay10Data:
         0x10,
         "MORNING_SUN_HP_RESTORATION_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP restoration value for Morning Sun.\n\ntype: int16_t[8]",
-        "",
+        "int16_t[8]",
     )
 
     REVERSAL_DAMAGE_MULT_TABLE = Symbol(
@@ -17942,7 +17950,7 @@ class JpOverlay10Data:
         0x10,
         "REVERSAL_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Reversal/Flail at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
-        "",
+        "fx32_8[4]",
     )
 
     WATER_SPOUT_DAMAGE_MULT_TABLE = Symbol(
@@ -17951,7 +17959,7 @@ class JpOverlay10Data:
         0x10,
         "WATER_SPOUT_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Water Spout at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
-        "",
+        "fx32_8[4]",
     )
 
     WRING_OUT_DAMAGE_MULT_TABLE = Symbol(
@@ -17960,7 +17968,7 @@ class JpOverlay10Data:
         0x10,
         "WRING_OUT_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Wring Out/Crush Grip at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
-        "",
+        "fx32_8[4]",
     )
 
     ERUPTION_DAMAGE_MULT_TABLE = Symbol(
@@ -17969,7 +17977,7 @@ class JpOverlay10Data:
         0x10,
         "ERUPTION_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Eruption at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
-        "",
+        "fx32_8[4]",
     )
 
     WEATHER_BALL_DAMAGE_MULT_TABLE = Symbol(
@@ -17978,7 +17986,7 @@ class JpOverlay10Data:
         0x20,
         "WEATHER_BALL_DAMAGE_MULT_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding Weather Ball damage multiplier, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[8]",
-        "",
+        "fx32_8[8]",
     )
 
     EAT_ITEM_EFFECT_IGNORE_LIST = Symbol(
@@ -17987,7 +17995,7 @@ class JpOverlay10Data:
         None,
         "EAT_ITEM_EFFECT_IGNORE_LIST",
         "List of item IDs that should be ignored by the ShouldTryEatItem function. The last entry is null.",
-        "",
+        "struct item_id_16[36]",
     )
 
     CASTFORM_WEATHER_ATTRIBUTE_TABLE = Symbol(
@@ -17996,7 +18004,7 @@ class JpOverlay10Data:
         0x30,
         "CASTFORM_WEATHER_ATTRIBUTE_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding Castform type and form.\n\ntype: struct castform_weather_attributes[8]",
-        "",
+        "struct castform_weather_attributes[8]",
     )
 
     BAD_POISON_DAMAGE_TABLE = Symbol(
@@ -18005,7 +18013,7 @@ class JpOverlay10Data:
         None,
         "BAD_POISON_DAMAGE_TABLE",
         "Table for how much damage each tick of badly poisoned should deal. The table is filled with 0x0006, but could use different values for each entry.",
-        "",
+        "int16_t[30]",
     )
 
     TYPE_MATCHUP_COMBINATOR_TABLE = Symbol(
@@ -18014,7 +18022,7 @@ class JpOverlay10Data:
         0x40,
         "TYPE_MATCHUP_COMBINATOR_TABLE",
         "Table of type matchup combinations.\n\nEach row corresponds to a single type matchup that results from combining two individual type matchups together. For example, combining MATCHUP_NOT_VERY_EFFECTIVE with MATCHUP_SUPER_EFFECTIVE results in MATCHUP_NEUTRAL.\n\ntype: struct type_matchup_combinator_table",
-        "struct type_matchup_combinator_tableTYPE_MATCHUP_COMBINATOR_TABLE",
+        "struct type_matchup_combinator_table",
     )
 
     OFFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
@@ -18023,7 +18031,7 @@ class JpOverlay10Data:
         0x54,
         "OFFENSIVE_STAT_STAGE_MULTIPLIERS",
         "Table of multipliers for offensive stats (attack/special attack) for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "",
+        "fx32_8[21]",
     )
 
     DEFENSIVE_STAT_STAGE_MULTIPLIERS = Symbol(
@@ -18032,7 +18040,7 @@ class JpOverlay10Data:
         0x54,
         "DEFENSIVE_STAT_STAGE_MULTIPLIERS",
         "Table of multipliers for defensive stats (defense/special defense) for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "",
+        "fx32_8[21]",
     )
 
     NATURE_POWER_TABLE = Symbol(
@@ -18041,7 +18049,7 @@ class JpOverlay10Data:
         0x78,
         "NATURE_POWER_TABLE",
         "Maps enum nature_power_variant to the associated move ID and effect handler.\n\ntype: struct wildcard_move_desc[15]",
-        "",
+        "struct wildcard_move_desc[15]",
     )
 
     APPLES_AND_BERRIES_ITEM_IDS = Symbol(
@@ -18050,7 +18058,7 @@ class JpOverlay10Data:
         0x84,
         "APPLES_AND_BERRIES_ITEM_IDS",
         "Table of item IDs for Apples and Berries, which trigger the exclusive item effect EXCLUSIVE_EFF_RECOVER_HP_FROM_APPLES_AND_BERRIES.\n\ntype: struct item_id_16[66]",
-        "",
+        "struct item_id_16[66]",
     )
 
     RECRUITMENT_LEVEL_BOOST_TABLE = Symbol(
@@ -18059,7 +18067,7 @@ class JpOverlay10Data:
         0xCC,
         "RECRUITMENT_LEVEL_BOOST_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[102]",
-        "",
+        "int16_t[102]",
     )
 
     NATURAL_GIFT_ITEM_TABLE = Symbol(
@@ -18068,7 +18076,7 @@ class JpOverlay10Data:
         0xCC,
         "NATURAL_GIFT_ITEM_TABLE",
         "Maps items to their type and base power if used with Natural Gift.\n\nAny item not listed in this table explicitly will be Normal type with a base power of 1 when used with Natural Gift.\n\ntype: struct natural_gift_item_info[34]",
-        "",
+        "struct natural_gift_item_info[34]",
     )
 
     RANDOM_MUSIC_ID_TABLE = Symbol(
@@ -18077,7 +18085,7 @@ class JpOverlay10Data:
         0xF0,
         "RANDOM_MUSIC_ID_TABLE",
         "Table of music IDs for dungeons with a random assortment of music tracks.\n\nThis is a table with 30 rows, each with 4 2-byte music IDs. Each row contains the possible music IDs for a given group, from which the music track will be selected randomly.\n\ntype: struct music_id_16[30][4]",
-        "",
+        "struct music_id_16[30][4]",
     )
 
     SHOP_ITEM_CHANCES = Symbol(
@@ -18086,7 +18094,7 @@ class JpOverlay10Data:
         0x120,
         "SHOP_ITEM_CHANCES",
         "8 * 6 * 3 * 0x2\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "int16_t[144]",
     )
 
     MALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
@@ -18095,7 +18103,7 @@ class JpOverlay10Data:
         0x54,
         "MALE_ACCURACY_STAGE_MULTIPLIERS",
         "Table of multipliers for the accuracy stat for males for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "",
+        "fx32_8[21]",
     )
 
     MALE_EVASION_STAGE_MULTIPLIERS = Symbol(
@@ -18104,7 +18112,7 @@ class JpOverlay10Data:
         0x54,
         "MALE_EVASION_STAGE_MULTIPLIERS",
         "Table of multipliers for the evasion stat for males for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "",
+        "fx32_8[21]",
     )
 
     FEMALE_ACCURACY_STAGE_MULTIPLIERS = Symbol(
@@ -18113,7 +18121,7 @@ class JpOverlay10Data:
         0x54,
         "FEMALE_ACCURACY_STAGE_MULTIPLIERS",
         "Table of multipliers for the accuracy stat for females for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "",
+        "fx32_8[21]",
     )
 
     FEMALE_EVASION_STAGE_MULTIPLIERS = Symbol(
@@ -18122,7 +18130,7 @@ class JpOverlay10Data:
         0x54,
         "FEMALE_EVASION_STAGE_MULTIPLIERS",
         "Table of multipliers for the evasion stat for females for each stage 0-20, as binary fixed-point numbers (8 fraction bits)",
-        "",
+        "fx32_8[21]",
     )
 
     MUSIC_ID_TABLE = Symbol(
@@ -18131,7 +18139,7 @@ class JpOverlay10Data:
         0x154,
         "MUSIC_ID_TABLE",
         "List of music IDs used in dungeons with a single music track.\n\nThis is an array of 170 2-byte music IDs, and is indexed into by the music value in the floor properties struct for a given floor. Music IDs with the highest bit set (0x8000) are indexes into the RANDOM_MUSIC_ID_TABLE.\n\ntype: struct music_id_16[170] (or not a music ID if the highest bit is set)",
-        "",
+        "struct music_id_16[170]",
     )
 
     TYPE_MATCHUP_TABLE = Symbol(
@@ -18140,7 +18148,7 @@ class JpOverlay10Data:
         0x288,
         "TYPE_MATCHUP_TABLE",
         "Table of type matchups.\n\nEach row corresponds to the type matchups of a specific attack type, with each entry within the row specifying the type's effectiveness against a target type.\n\ntype: struct type_matchup_table",
-        "struct type_matchup_tableTYPE_MATCHUP_TABLE",
+        "struct type_matchup_table",
     )
 
     FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE = Symbol(
@@ -18149,7 +18157,7 @@ class JpOverlay10Data:
         0x4A4,
         "FIXED_ROOM_MONSTER_SPAWN_STATS_TABLE",
         "Table of stats for monsters that can spawn in fixed rooms, pointed into by the FIXED_ROOM_MONSTER_SPAWN_TABLE.\n\nThis is an array of 99 12-byte entries containing stat spreads for one monster entry each.\n\ntype: struct fixed_room_monster_spawn_stats_entry[99]",
-        "",
+        "struct fixed_room_monster_spawn_stats_entry[99]",
     )
 
     METRONOME_TABLE = Symbol(
@@ -18158,7 +18166,7 @@ class JpOverlay10Data:
         0x540,
         "METRONOME_TABLE",
         "Something to do with the moves that Metronome can turn into.\n\ntype: struct wildcard_move_desc[168]",
-        "",
+        "struct wildcard_move_desc[168]",
     )
 
     TILESET_PROPERTIES = Symbol(
@@ -18167,7 +18175,7 @@ class JpOverlay10Data:
         0x954,
         "TILESET_PROPERTIES",
         "type: struct tileset_property[199]",
-        "",
+        "struct tileset_property[199]",
     )
 
     FIXED_ROOM_PROPERTIES_TABLE = Symbol(
@@ -18176,7 +18184,7 @@ class JpOverlay10Data:
         0xC00,
         "FIXED_ROOM_PROPERTIES_TABLE",
         "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte entries containing properties for a given fixed room ID.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct fixed_room_properties_entry[256]",
-        "",
+        "struct fixed_room_properties_entry[256]",
     )
 
     TRAP_ANIMATION_INFO = Symbol(
@@ -18185,7 +18193,7 @@ class JpOverlay10Data:
         0x34,
         "TRAP_ANIMATION_INFO",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct trap_animation[26]",
-        "",
+        "struct trap_animation[26]",
     )
 
     ITEM_ANIMATION_INFO = Symbol(
@@ -18194,7 +18202,7 @@ class JpOverlay10Data:
         0x15E0,
         "ITEM_ANIMATION_INFO",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct item_animation[1400]",
-        "",
+        "struct item_animation[1400]",
     )
 
     MOVE_ANIMATION_INFO = Symbol(
@@ -18203,7 +18211,7 @@ class JpOverlay10Data:
         0x34C8,
         "MOVE_ANIMATION_INFO",
         "type: struct move_animation[563]",
-        "",
+        "struct move_animation[563]",
     )
 
     EFFECT_ANIMATION_INFO = Symbol(
@@ -18212,7 +18220,7 @@ class JpOverlay10Data:
         0x4C90,
         "EFFECT_ANIMATION_INFO",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct effect_animation[700]",
-        "",
+        "struct effect_animation[700]",
     )
 
     SPECIAL_MONSTER_MOVE_ANIMATION_INFO = Symbol(
@@ -18221,7 +18229,7 @@ class JpOverlay10Data:
         0xADF4,
         "SPECIAL_MONSTER_MOVE_ANIMATION_INFO",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct special_monster_move_animation[7422]",
-        "",
+        "struct special_monster_move_animation[7422]",
     )
 
 
@@ -18806,7 +18814,7 @@ class JpOverlay11Data:
         None,
         "SCRIPT_COMMAND_PARSING_DATA",
         "Used by ScriptCommandParsing somehow",
-        "",
+        "undefined[32]",
     )
 
     SCRIPT_OP_CODE_NAMES = Symbol(
@@ -18815,7 +18823,7 @@ class JpOverlay11Data:
         None,
         "SCRIPT_OP_CODE_NAMES",
         "Opcode name strings pointed to by entries in SCRIPT_OP_CODES (script_opcode::name)",
-        "",
+        "char[0]",
     )
 
     SCRIPT_OP_CODES = Symbol(
@@ -18824,7 +18832,7 @@ class JpOverlay11Data:
         0xBF8,
         "SCRIPT_OP_CODES",
         "Table of opcodes for the script engine. There are 383 8-byte entries.\n\nThese opcodes underpin the various ExplorerScript functions you can call in the SkyTemple SSB debugger.\n\ntype: struct script_opcode_table",
-        "struct script_opcode_tableSCRIPT_OP_CODES",
+        "struct script_opcode_table",
     )
 
     OVERLAY11_DEBUG_STRINGS = Symbol(
@@ -18833,7 +18841,7 @@ class JpOverlay11Data:
         None,
         "OVERLAY11_DEBUG_STRINGS",
         "Strings used with various debug printing functions throughout the overlay",
-        "",
+        "char[0]",
     )
 
     C_ROUTINE_NAMES = Symbol(
@@ -18842,7 +18850,7 @@ class JpOverlay11Data:
         None,
         "C_ROUTINE_NAMES",
         "Common routine name strings pointed to by entries in C_ROUTINES (common_routine::name)",
-        "",
+        "char[0]",
     )
 
     C_ROUTINES = Symbol(
@@ -18851,7 +18859,7 @@ class JpOverlay11Data:
         0x15E8,
         "C_ROUTINES",
         "Common routines used within the unionall.ssb script (the master script). There are 701 8-byte entries.\n\nThese routines underpin the ExplorerScript coroutines you can call in the SkyTemple SSB debugger.\n\ntype: struct common_routine_table",
-        "struct common_routine_tableC_ROUTINES",
+        "struct common_routine_table",
     )
 
     GROUND_WEATHER_TABLE = Symbol(
@@ -18860,7 +18868,7 @@ class JpOverlay11Data:
         None,
         "GROUND_WEATHER_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct ground_weather_entry[12]",
-        "",
+        "struct ground_weather_entry[12]",
     )
 
     GROUND_WAN_FILES_TABLE = Symbol(
@@ -18869,7 +18877,7 @@ class JpOverlay11Data:
         None,
         "GROUND_WAN_FILES_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: char[343][12]",
-        "",
+        "char[343][12]",
     )
 
     OBJECTS = Symbol(
@@ -18878,7 +18886,7 @@ class JpOverlay11Data:
         0x1A04,
         "OBJECTS",
         "Table of objects for the script engine, which can be placed in scenes. There are a version-dependent number of 12-byte entries.\n\ntype: struct script_object[length / 12]",
-        "",
+        "struct script_object[0]",
     )
 
     RECRUITMENT_TABLE_LOCATIONS = Symbol(
@@ -18887,7 +18895,7 @@ class JpOverlay11Data:
         0x16,
         "RECRUITMENT_TABLE_LOCATIONS",
         "Table of dungeon IDs corresponding to entries in RECRUITMENT_TABLE_SPECIES.\n\ntype: struct dungeon_id_16[22]",
-        "",
+        "struct dungeon_id_16[22]",
     )
 
     RECRUITMENT_TABLE_LEVELS = Symbol(
@@ -18896,7 +18904,7 @@ class JpOverlay11Data:
         0x2C,
         "RECRUITMENT_TABLE_LEVELS",
         "Table of levels for recruited Pokémon, corresponding to entries in RECRUITMENT_TABLE_SPECIES.\n\ntype: int16_t[22]",
-        "",
+        "int16_t[22]",
     )
 
     RECRUITMENT_TABLE_SPECIES = Symbol(
@@ -18905,7 +18913,7 @@ class JpOverlay11Data:
         0x2C,
         "RECRUITMENT_TABLE_SPECIES",
         "Table of Pokémon recruited at special locations, such as at the ends of certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes both Heatran genders. It also includes Darkrai for some reason?\n\ntype: struct monster_id_16[22]",
-        "",
+        "struct monster_id_16[22]",
     )
 
     LEVEL_TILEMAP_LIST = Symbol(
@@ -18914,7 +18922,7 @@ class JpOverlay11Data:
         0x288,
         "LEVEL_TILEMAP_LIST",
         "Irdkwia's notes: FIXED_FLOOR_GROUND_ASSOCIATION\n\ntype: struct level_tilemap_list_entry[81]",
-        "",
+        "struct level_tilemap_list_entry[81]",
     )
 
     SETANIMATION_TABLE = Symbol(
@@ -18923,7 +18931,7 @@ class JpOverlay11Data:
         None,
         "SETANIMATION_TABLE",
         "Table that associates the parameter of the SetAnimation scripting opcode to animation data.\n\nThe first entry is unused and has a value of 0xFFFF.",
-        "",
+        "struct animation_data[84]",
     )
 
     TEAM_INFO_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -18932,7 +18940,7 @@ class JpOverlay11Data:
         None,
         "TEAM_INFO_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a team_info_box.",
-        "struct window_paramsTEAM_INFO_BOX_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
@@ -18941,7 +18949,7 @@ class JpOverlay11Data:
         None,
         "OVERLAY11_OVERLAY_LOAD_TABLE",
         "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16 bytes, consisting of:\n- overlay group ID (see arm9.yml or enum overlay_group_id in the C headers for a mapping between group ID and overlay number)\n- function pointer to entry point\n- function pointer to destructor\n- possibly function pointer to frame-update function?\n\ntype: struct overlay_load_entry[21]",
-        "",
+        "struct overlay_load_entry[21]",
     )
 
     UNIONALL_RAM_ADDRESS = Symbol(
@@ -18967,16 +18975,11 @@ class JpOverlay11Data:
         0x18,
         "GROUND_STATE_PTRS",
         "Host pointers to multiple structure used for performing an overworld scene\n\ntype: struct main_ground_data",
-        "struct main_ground_dataGROUND_STATE_PTRS",
+        "struct main_ground_data",
     )
 
     WORLD_MAP_MODE = Symbol(
-        None,
-        None,
-        None,
-        "WORLD_MAP_MODE",
-        "The current world map",
-        "uint32_tWORLD_MAP_MODE",
+        None, None, None, "WORLD_MAP_MODE", "The current world map", "uint32_t"
     )
 
 
@@ -19118,7 +19121,7 @@ class JpOverlay13Data:
         0x10,
         "QUIZ_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsQUIZ_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     QUIZ_WINDOW_PARAMS_2 = Symbol(
@@ -19127,7 +19130,7 @@ class JpOverlay13Data:
         0x10,
         "QUIZ_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsQUIZ_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     QUIZ_WINDOW_PARAMS_3 = Symbol(
@@ -19136,7 +19139,7 @@ class JpOverlay13Data:
         0x10,
         "QUIZ_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsQUIZ_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     QUIZ_WINDOW_PARAMS_4 = Symbol(
@@ -19145,7 +19148,7 @@ class JpOverlay13Data:
         0x10,
         "QUIZ_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsQUIZ_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     QUIZ_MENU_ITEMS_1 = Symbol(
@@ -19154,7 +19157,7 @@ class JpOverlay13Data:
         0x18,
         "QUIZ_MENU_ITEMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[3]",
     )
 
     STARTERS_PARTNER_IDS = Symbol(
@@ -19163,7 +19166,7 @@ class JpOverlay13Data:
         0x2A,
         "STARTERS_PARTNER_IDS",
         "type: struct monster_id_16[21]",
-        "",
+        "struct monster_id_16[21]",
     )
 
     STARTERS_HERO_IDS = Symbol(
@@ -19172,7 +19175,7 @@ class JpOverlay13Data:
         0x40,
         "STARTERS_HERO_IDS",
         "type: struct monster_id_16[32]",
-        "",
+        "struct monster_id_16[32]",
     )
 
     STARTERS_TYPE_INCOMPATIBILITY_TABLE = Symbol(
@@ -19190,11 +19193,16 @@ class JpOverlay13Data:
         0x60,
         "STARTERS_STRINGS",
         "Irdkwia's notes: InsightsStringIDs",
-        "",
+        "uint16_t[48]",
     )
 
     QUIZ_QUESTION_STRINGS = Symbol(
-        [0x2074], [0x238D714], 0x84, "QUIZ_QUESTION_STRINGS", "0x2 * (66 questions)", ""
+        [0x2074],
+        [0x238D714],
+        0x84,
+        "QUIZ_QUESTION_STRINGS",
+        "0x2 * (66 questions)",
+        "uint16_t[66]",
     )
 
     QUIZ_ANSWER_STRINGS = Symbol(
@@ -19203,7 +19211,7 @@ class JpOverlay13Data:
         0x160,
         "QUIZ_ANSWER_STRINGS",
         "0x2 * (175 answers + null-terminator)",
-        "",
+        "uint16_t[176]",
     )
 
     QUIZ_ANSWER_POINTS = Symbol(
@@ -19212,7 +19220,7 @@ class JpOverlay13Data:
         0xAE0,
         "QUIZ_ANSWER_POINTS",
         "0x10 * (174 answers?)\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "struct quiz_answer_points_entry[174]",
     )
 
     OVERLAY13_RESERVED_SPACE = Symbol(
@@ -19257,7 +19265,7 @@ class JpOverlay13Data:
         0x10,
         "QUIZ_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsQUIZ_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     QUIZ_WINDOW_PARAMS_6 = Symbol(
@@ -19266,7 +19274,7 @@ class JpOverlay13Data:
         0x10,
         "QUIZ_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsQUIZ_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     QUIZ_DEBUG_MENU_ITEMS = Symbol(
@@ -19275,7 +19283,7 @@ class JpOverlay13Data:
         0x48,
         "QUIZ_DEBUG_MENU_ITEMS",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "struct simple_menu_id_item[9]",
     )
 
     OVERLAY13_UNKNOWN_STRUCT__NA_238CF14 = Symbol(
@@ -19293,7 +19301,7 @@ class JpOverlay13Data:
         0x84,
         "QUIZ_QUESTION_ANSWER_ASSOCIATIONS",
         "0x2 * (66 questions)\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "uint16_t[66]",
     )
 
 
@@ -19573,7 +19581,7 @@ class JpOverlay14Data:
         None,
         "SENTRY_DUTY_STRUCT_SIZE",
         "Number of bytes in the sentry duty struct (14548).",
-        "uint32_tSENTRY_DUTY_STRUCT_SIZE",
+        "uint32_t",
     )
 
     SENTRY_LOUDRED_MONSTER_ID = Symbol(
@@ -19582,7 +19590,7 @@ class JpOverlay14Data:
         None,
         "SENTRY_LOUDRED_MONSTER_ID",
         "Monster ID for Loudred, used as the speaker ID for dialogue.",
-        "enum monster_idSENTRY_LOUDRED_MONSTER_ID",
+        "enum monster_id",
     )
 
     STRING_ID_SENTRY_TOP_SESSIONS = Symbol(
@@ -19591,7 +19599,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_TOP_SESSIONS",
         "String ID 0x6D9:\n Here are the rankings for the\ntop sentry sessions.",
-        "intSTRING_ID_SENTRY_TOP_SESSIONS",
+        "int",
     )
 
     STRING_ID_SENTRY_INSTRUCTIONS = Symbol(
@@ -19600,7 +19608,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_INSTRUCTIONS",
         "String ID 0x6D8:\n Look at the footprint on the top\nscreen, OK? Then identify the Pokémon![C]\n You can get only [CS:V]two wrong[CR], OK?\n[partner] will keep an eye on things!",
-        "intSTRING_ID_SENTRY_INSTRUCTIONS",
+        "int",
     )
 
     STRING_ID_SENTRY_HERE_COMES = Symbol(
@@ -19609,7 +19617,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_HERE_COMES",
         "String ID 0x6DA:\n Here comes a Pokémon! Check\nits footprint and tell me what it is!",
-        "intSTRING_ID_SENTRY_HERE_COMES",
+        "int",
     )
 
     STRING_ID_SENTRY_WHOSE_FOOTPRINT = Symbol(
@@ -19618,7 +19626,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_WHOSE_FOOTPRINT",
         "String ID 0x6DB:\n Whose footprint is this?[W:60]",
-        "intSTRING_ID_SENTRY_WHOSE_FOOTPRINT",
+        "int",
     )
 
     STRING_ID_SENTRY_TRY_AGAIN = Symbol(
@@ -19627,7 +19635,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_TRY_AGAIN",
         "String ID 0x6EB:\n Huh? I don't think so. Try again!",
-        "intSTRING_ID_SENTRY_TRY_AGAIN",
+        "int",
     )
 
     STRING_ID_SENTRY_OUT_OF_TIME = Symbol(
@@ -19636,7 +19644,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_OUT_OF_TIME",
         "String ID 0x6DC:\n [se_play:0][W:30]Out of time! Pick up the pace![W:75]",
-        "intSTRING_ID_SENTRY_OUT_OF_TIME",
+        "int",
     )
 
     STRING_ID_SENTRY_FOOTPRINT_IS_6EE = Symbol(
@@ -19645,7 +19653,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_FOOTPRINT_IS_6EE",
         "String ID 0x6EE:\n The footprint is [kind:]'s!\nThe footprint is [kind:]'s![W:60]",
-        "intSTRING_ID_SENTRY_FOOTPRINT_IS_6EE",
+        "int",
     )
 
     STRING_ID_SENTRY_COME_IN_6EF = Symbol(
@@ -19654,7 +19662,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_COME_IN_6EF",
         "String ID 0x6EF:\n Heard ya! Come in, visitor![W:30]",
-        "intSTRING_ID_SENTRY_COME_IN_6EF",
+        "int",
     )
 
     STRING_ID_SENTRY_WRONG = Symbol(
@@ -19663,7 +19671,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_WRONG",
         "String ID 0x6F1:\n ......[se_play:0][W:30]Huh?! Looks wrong to me![W:50]",
-        "intSTRING_ID_SENTRY_WRONG",
+        "int",
     )
 
     STRING_ID_SENTRY_BUCK_UP = Symbol(
@@ -19672,7 +19680,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_BUCK_UP",
         "String ID 0x6F2 (and also used as Loudred's speaker ID after subtracting 0x5B0):\n The correct answer is\n[kind:]! Buck up! And snap to it![se_play:0][W:120]",
-        "intSTRING_ID_SENTRY_BUCK_UP",
+        "int",
     )
 
     STRING_ID_SENTRY_FOOTPRINT_IS_6EC = Symbol(
@@ -19681,7 +19689,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_FOOTPRINT_IS_6EC",
         "String ID 0x6EC:\n The footprint is [kind:]'s!\nThe footprint is [kind:]'s![W:60]",
-        "intSTRING_ID_SENTRY_FOOTPRINT_IS_6EC",
+        "int",
     )
 
     STRING_ID_SENTRY_COME_IN_6ED = Symbol(
@@ -19690,7 +19698,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_COME_IN_6ED",
         "String ID 0x6ED:\n Heard ya! Come in, visitor![W:30]",
-        "intSTRING_ID_SENTRY_COME_IN_6ED",
+        "int",
     )
 
     STRING_ID_SENTRY_KEEP_YOU_WAITING = Symbol(
@@ -19699,7 +19707,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_KEEP_YOU_WAITING",
         "String ID 0x6F3:\n [se_play:0]Sorry to keep you waiting.",
-        "intSTRING_ID_SENTRY_KEEP_YOU_WAITING",
+        "int",
     )
 
     STRING_ID_SENTRY_THATLL_DO_IT = Symbol(
@@ -19708,7 +19716,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_THATLL_DO_IT",
         "String ID 0x6F4:\n [partner] and [hero]![C]\n That'll do it! Now get back here!",
-        "intSTRING_ID_SENTRY_THATLL_DO_IT",
+        "int",
     )
 
     SENTRY_CHATOT_MONSTER_ID = Symbol(
@@ -19717,7 +19725,7 @@ class JpOverlay14Data:
         0x4,
         "SENTRY_CHATOT_MONSTER_ID",
         "Monster ID for Chatot, used as the speaker ID for dialogue.",
-        "enum monster_idSENTRY_CHATOT_MONSTER_ID",
+        "enum monster_id",
     )
 
     STRING_ID_SENTRY_NO_MORE_VISITORS = Symbol(
@@ -19726,7 +19734,7 @@ class JpOverlay14Data:
         None,
         "STRING_ID_SENTRY_NO_MORE_VISITORS",
         "String ID 0x6F5:\n [se_play:0]No more visitors! No more\nvisitors! ♪",
-        "intSTRING_ID_SENTRY_NO_MORE_VISITORS",
+        "int",
     )
 
     STRING_ID_SENTRY_THATS_ALL = Symbol(
@@ -19735,7 +19743,7 @@ class JpOverlay14Data:
         0x4,
         "STRING_ID_SENTRY_THATS_ALL",
         "String ID 0x6F6:\n OK, got that![C]\n Hey, [partner] and\n[hero]![C]\n That's all for today! Now get\nback here!",
-        "intSTRING_ID_SENTRY_THATS_ALL",
+        "int",
     )
 
     SENTRY_GROVYLE_MONSTER_ID = Symbol(
@@ -19744,11 +19752,16 @@ class JpOverlay14Data:
         0x4,
         "SENTRY_GROVYLE_MONSTER_ID",
         "Monster ID for Grovyle, which appears to be explicitly excluded when generating species choices.",
-        "enum monster_idSENTRY_GROVYLE_MONSTER_ID",
+        "enum monster_id",
     )
 
     SENTRY_DEBUG_MENU_ITEMS = Symbol(
-        [0x3968], [0x238F008], 0x48, "SENTRY_DEBUG_MENU_ITEMS", "", ""
+        [0x3968],
+        [0x238F008],
+        0x48,
+        "SENTRY_DEBUG_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[9]",
     )
 
     SENTRY_DUTY_PTR = Symbol(
@@ -19757,7 +19770,7 @@ class JpOverlay14Data:
         None,
         "SENTRY_DUTY_PTR",
         "Pointer to the SENTRY_DUTY_STRUCT.",
-        "struct sentry_duty*SENTRY_DUTY_PTR",
+        "struct sentry_duty*",
     )
 
     SENTRY_DUTY_STATE_HANDLER_TABLE = Symbol(
@@ -19766,7 +19779,7 @@ class JpOverlay14Data:
         None,
         "SENTRY_DUTY_STATE_HANDLER_TABLE",
         "Null-terminated table of handler functions for the different states in the state machine. See SentryRunState.\n\ntype: state_handler_fn_t[35]",
-        "",
+        "state_handler_fn_t[35]",
     )
 
 
@@ -19787,7 +19800,12 @@ class JpOverlay15Functions:
 class JpOverlay15Data:
 
     BANK_MAIN_MENU_ITEMS = Symbol(
-        [0xF2C], [0x238C5CC], 0x28, "BANK_MAIN_MENU_ITEMS", "", ""
+        [0xF2C],
+        [0x238C5CC],
+        0x28,
+        "BANK_MAIN_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[5]",
     )
 
     BANK_WINDOW_PARAMS_1 = Symbol(
@@ -19796,7 +19814,7 @@ class JpOverlay15Data:
         None,
         "BANK_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsBANK_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     BANK_WINDOW_PARAMS_2 = Symbol(
@@ -19805,7 +19823,7 @@ class JpOverlay15Data:
         None,
         "BANK_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsBANK_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     BANK_WINDOW_PARAMS_3 = Symbol(
@@ -19814,7 +19832,7 @@ class JpOverlay15Data:
         None,
         "BANK_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsBANK_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     BANK_WINDOW_PARAMS_4 = Symbol(
@@ -19823,7 +19841,7 @@ class JpOverlay15Data:
         None,
         "BANK_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsBANK_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     BANK_WINDOW_PARAMS_5 = Symbol(
@@ -19832,7 +19850,7 @@ class JpOverlay15Data:
         None,
         "BANK_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsBANK_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     OVERLAY15_RESERVED_SPACE = Symbol(
@@ -19871,13 +19889,30 @@ class JpOverlay16Functions:
 class JpOverlay16Data:
 
     EVO_MENU_ITEMS_CONFIRM = Symbol(
-        [0x2BE8], [0x238E288], 0x18, "EVO_MENU_ITEMS_CONFIRM", "", ""
+        [0x2BE8],
+        [0x238E288],
+        0x18,
+        "EVO_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
-    EVO_SUBMENU_ITEMS = Symbol([0x2C00], [0x238E2A0], 0x20, "EVO_SUBMENU_ITEMS", "", "")
+    EVO_SUBMENU_ITEMS = Symbol(
+        [0x2C00],
+        [0x238E2A0],
+        0x20,
+        "EVO_SUBMENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[4]",
+    )
 
     EVO_MAIN_MENU_ITEMS = Symbol(
-        [0x2C20], [0x238E2C0], 0x20, "EVO_MAIN_MENU_ITEMS", "", ""
+        [0x2C20],
+        [0x238E2C0],
+        0x20,
+        "EVO_MAIN_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     EVO_MENU_STRING_IDS = Symbol(
@@ -19886,7 +19921,7 @@ class JpOverlay16Data:
         None,
         "EVO_MENU_STRING_IDS",
         "26*0x2\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "uint16_t[26]",
     )
 
     EVO_WINDOW_PARAMS_1 = Symbol(
@@ -19895,7 +19930,7 @@ class JpOverlay16Data:
         None,
         "EVO_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsEVO_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     EVO_WINDOW_PARAMS_2 = Symbol(
@@ -19904,7 +19939,7 @@ class JpOverlay16Data:
         None,
         "EVO_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsEVO_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     EVO_WINDOW_PARAMS_3 = Symbol(
@@ -19913,7 +19948,7 @@ class JpOverlay16Data:
         None,
         "EVO_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsEVO_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     EVO_WINDOW_PARAMS_4 = Symbol(
@@ -19922,7 +19957,7 @@ class JpOverlay16Data:
         None,
         "EVO_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsEVO_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     EVO_WINDOW_PARAMS_5 = Symbol(
@@ -19931,7 +19966,7 @@ class JpOverlay16Data:
         None,
         "EVO_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsEVO_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     EVO_WINDOW_PARAMS_6 = Symbol(
@@ -19940,7 +19975,7 @@ class JpOverlay16Data:
         None,
         "EVO_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsEVO_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     EVO_WINDOW_PARAMS_7 = Symbol(
@@ -19949,7 +19984,7 @@ class JpOverlay16Data:
         None,
         "EVO_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsEVO_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     OVERLAY16_RESERVED_SPACE = Symbol(
@@ -20002,7 +20037,7 @@ class JpOverlay17Data:
         None,
         "ASSEMBLY_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsASSEMBLY_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     ASSEMBLY_WINDOW_PARAMS_2 = Symbol(
@@ -20011,7 +20046,7 @@ class JpOverlay17Data:
         None,
         "ASSEMBLY_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsASSEMBLY_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     ASSEMBLY_WINDOW_PARAMS_3 = Symbol(
@@ -20020,7 +20055,7 @@ class JpOverlay17Data:
         None,
         "ASSEMBLY_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsASSEMBLY_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     ASSEMBLY_WINDOW_PARAMS_4 = Symbol(
@@ -20029,7 +20064,7 @@ class JpOverlay17Data:
         None,
         "ASSEMBLY_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsASSEMBLY_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     ASSEMBLY_WINDOW_PARAMS_5 = Symbol(
@@ -20038,47 +20073,97 @@ class JpOverlay17Data:
         None,
         "ASSEMBLY_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsASSEMBLY_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     ASSEMBLY_MENU_ITEMS_CONFIRM = Symbol(
-        [0x1A40], [0x238D0E0], 0x18, "ASSEMBLY_MENU_ITEMS_CONFIRM", "", ""
+        [0x1A40],
+        [0x238D0E0],
+        0x18,
+        "ASSEMBLY_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     ASSEMBLY_MAIN_MENU_ITEMS_1 = Symbol(
-        [0x1A58], [0x238D0F8], 0x18, "ASSEMBLY_MAIN_MENU_ITEMS_1", "", ""
+        [0x1A58],
+        [0x238D0F8],
+        0x18,
+        "ASSEMBLY_MAIN_MENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     ASSEMBLY_MAIN_MENU_ITEMS_2 = Symbol(
-        [0x1A70], [0x238D110], 0x20, "ASSEMBLY_MAIN_MENU_ITEMS_2", "", ""
+        [0x1A70],
+        [0x238D110],
+        0x20,
+        "ASSEMBLY_MAIN_MENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     ASSEMBLY_SUBMENU_ITEMS_1 = Symbol(
-        [0x1A90], [0x238D130], 0x28, "ASSEMBLY_SUBMENU_ITEMS_1", "", ""
+        [0x1A90],
+        [0x238D130],
+        0x28,
+        "ASSEMBLY_SUBMENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[5]",
     )
 
     ASSEMBLY_SUBMENU_ITEMS_2 = Symbol(
-        [0x1AB8], [0x238D158], 0x30, "ASSEMBLY_SUBMENU_ITEMS_2", "", ""
+        [0x1AB8],
+        [0x238D158],
+        0x30,
+        "ASSEMBLY_SUBMENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[6]",
     )
 
     ASSEMBLY_SUBMENU_ITEMS_3 = Symbol(
-        [0x1AE8], [0x238D188], 0x30, "ASSEMBLY_SUBMENU_ITEMS_3", "", ""
+        [0x1AE8],
+        [0x238D188],
+        0x30,
+        "ASSEMBLY_SUBMENU_ITEMS_3",
+        "",
+        "struct simple_menu_id_item[6]",
     )
 
     ASSEMBLY_SUBMENU_ITEMS_4 = Symbol(
-        [0x1B18], [0x238D1B8], 0x38, "ASSEMBLY_SUBMENU_ITEMS_4", "", ""
+        [0x1B18],
+        [0x238D1B8],
+        0x38,
+        "ASSEMBLY_SUBMENU_ITEMS_4",
+        "",
+        "struct simple_menu_id_item[7]",
     )
 
     ASSEMBLY_SUBMENU_ITEMS_5 = Symbol(
-        [0x1B50], [0x238D1F0], 0x38, "ASSEMBLY_SUBMENU_ITEMS_5", "", ""
+        [0x1B50],
+        [0x238D1F0],
+        0x38,
+        "ASSEMBLY_SUBMENU_ITEMS_5",
+        "",
+        "struct simple_menu_id_item[7]",
     )
 
     ASSEMBLY_SUBMENU_ITEMS_6 = Symbol(
-        [0x1B88], [0x238D228], 0x38, "ASSEMBLY_SUBMENU_ITEMS_6", "", ""
+        [0x1B88],
+        [0x238D228],
+        0x38,
+        "ASSEMBLY_SUBMENU_ITEMS_6",
+        "",
+        "struct simple_menu_id_item[7]",
     )
 
     ASSEMBLY_SUBMENU_ITEMS_7 = Symbol(
-        [0x1BC0], [0x238D260], 0x40, "ASSEMBLY_SUBMENU_ITEMS_7", "", ""
+        [0x1BC0],
+        [0x238D260],
+        0x40,
+        "ASSEMBLY_SUBMENU_ITEMS_7",
+        "",
+        "struct simple_menu_id_item[8]",
     )
 
     OVERLAY17_FUNCTION_POINTER_TABLE = Symbol(
@@ -20087,7 +20172,7 @@ class JpOverlay17Data:
         None,
         "OVERLAY17_FUNCTION_POINTER_TABLE",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "void*[42]",
     )
 
     OVERLAY17_RESERVED_SPACE = Symbol(
@@ -20149,7 +20234,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_2 = Symbol(
@@ -20158,7 +20243,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_3 = Symbol(
@@ -20167,7 +20252,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_4 = Symbol(
@@ -20176,7 +20261,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_5 = Symbol(
@@ -20185,7 +20270,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_6 = Symbol(
@@ -20194,7 +20279,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_7 = Symbol(
@@ -20203,7 +20288,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_8 = Symbol(
@@ -20212,7 +20297,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_8",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_9 = Symbol(
@@ -20221,7 +20306,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_9",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_10 = Symbol(
@@ -20230,7 +20315,7 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_10",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_10",
+        "struct window_params",
     )
 
     LINK_SHOP_WINDOW_PARAMS_11 = Symbol(
@@ -20239,43 +20324,88 @@ class JpOverlay18Data:
         None,
         "LINK_SHOP_WINDOW_PARAMS_11",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsLINK_SHOP_WINDOW_PARAMS_11",
+        "struct window_params",
     )
 
     LINK_SHOP_MENU_ITEMS_CONFIRM = Symbol(
-        [0x31EC], [0x238E88C], 0x18, "LINK_SHOP_MENU_ITEMS_CONFIRM", "", ""
+        [0x31EC],
+        [0x238E88C],
+        0x18,
+        "LINK_SHOP_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     LINK_SHOP_SUBMENU_ITEMS_1 = Symbol(
-        [0x3204], [0x238E8A4], 0x20, "LINK_SHOP_SUBMENU_ITEMS_1", "", ""
+        [0x3204],
+        [0x238E8A4],
+        0x20,
+        "LINK_SHOP_SUBMENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     LINK_SHOP_SUBMENU_ITEMS_2 = Symbol(
-        [0x3224], [0x238E8C4], 0x20, "LINK_SHOP_SUBMENU_ITEMS_2", "", ""
+        [0x3224],
+        [0x238E8C4],
+        0x20,
+        "LINK_SHOP_SUBMENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     LINK_SHOP_MAIN_MENU_ITEMS = Symbol(
-        [0x3244], [0x238E8E4], 0x20, "LINK_SHOP_MAIN_MENU_ITEMS", "", ""
+        [0x3244],
+        [0x238E8E4],
+        0x20,
+        "LINK_SHOP_MAIN_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     LINK_SHOP_SUBMENU_ITEMS_3 = Symbol(
-        [0x3264], [0x238E904], 0x28, "LINK_SHOP_SUBMENU_ITEMS_3", "", ""
+        [0x3264],
+        [0x238E904],
+        0x28,
+        "LINK_SHOP_SUBMENU_ITEMS_3",
+        "",
+        "struct simple_menu_id_item[5]",
     )
 
     LINK_SHOP_SUBMENU_ITEMS_4 = Symbol(
-        [0x328C], [0x238E92C], 0x30, "LINK_SHOP_SUBMENU_ITEMS_4", "", ""
+        [0x328C],
+        [0x238E92C],
+        0x30,
+        "LINK_SHOP_SUBMENU_ITEMS_4",
+        "",
+        "struct simple_menu_id_item[6]",
     )
 
     LINK_SHOP_SUBMENU_ITEMS_5 = Symbol(
-        [0x32BC], [0x238E95C], 0x48, "LINK_SHOP_SUBMENU_ITEMS_5", "", ""
+        [0x32BC],
+        [0x238E95C],
+        0x48,
+        "LINK_SHOP_SUBMENU_ITEMS_5",
+        "",
+        "struct simple_menu_id_item[9]",
     )
 
     LINK_SHOP_SUBMENU_ITEMS_6 = Symbol(
-        [0x3304], [0x238E9A4], 0x48, "LINK_SHOP_SUBMENU_ITEMS_6", "", ""
+        [0x3304],
+        [0x238E9A4],
+        0x48,
+        "LINK_SHOP_SUBMENU_ITEMS_6",
+        "",
+        "struct simple_menu_id_item[9]",
     )
 
     LINK_SHOP_SUBMENU_ITEMS_7 = Symbol(
-        [0x334C], [0x238E9EC], 0x48, "LINK_SHOP_SUBMENU_ITEMS_7", "", ""
+        [0x334C],
+        [0x238E9EC],
+        0x48,
+        "LINK_SHOP_SUBMENU_ITEMS_7",
+        "",
+        "struct simple_menu_id_item[9]",
     )
 
     OVERLAY18_FUNCTION_POINTER_TABLE = Symbol(
@@ -20284,7 +20414,7 @@ class JpOverlay18Data:
         None,
         "OVERLAY18_FUNCTION_POINTER_TABLE",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "void*[76]",
     )
 
     OVERLAY18_RESERVED_SPACE = Symbol(
@@ -20389,7 +20519,7 @@ class JpOverlay19Data:
         None,
         "BAR_UNLOCKABLE_DUNGEONS_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct dungeon_id_16[6]",
-        "",
+        "struct dungeon_id_16[6]",
     )
 
     BAR_RECRUITABLE_MONSTER_TABLE = Symbol(
@@ -20398,7 +20528,7 @@ class JpOverlay19Data:
         0xD8,
         "BAR_RECRUITABLE_MONSTER_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct monster_id_16[108]",
-        "",
+        "struct monster_id_16[108]",
     )
 
     BAR_AVAILABLE_ITEMS = Symbol(
@@ -20407,7 +20537,7 @@ class JpOverlay19Data:
         None,
         "BAR_AVAILABLE_ITEMS",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct bar_item[66]",
-        "",
+        "struct bar_item[66]",
     )
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178 = Symbol(
@@ -20443,7 +20573,7 @@ class JpOverlay19Data:
         None,
         "BAR_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsBAR_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     BAR_WINDOW_PARAMS_2 = Symbol(
@@ -20452,7 +20582,7 @@ class JpOverlay19Data:
         None,
         "BAR_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsBAR_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     BAR_WINDOW_PARAMS_3 = Symbol(
@@ -20461,15 +20591,25 @@ class JpOverlay19Data:
         None,
         "BAR_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsBAR_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     BAR_MENU_ITEMS_CONFIRM_1 = Symbol(
-        [0x40C0], [0x238F760], 0x18, "BAR_MENU_ITEMS_CONFIRM_1", "", ""
+        [0x40C0],
+        [0x238F760],
+        0x18,
+        "BAR_MENU_ITEMS_CONFIRM_1",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     BAR_MENU_ITEMS_CONFIRM_2 = Symbol(
-        [0x40D8], [0x238F778], 0x18, "BAR_MENU_ITEMS_CONFIRM_2", "", ""
+        [0x40D8],
+        [0x238F778],
+        0x18,
+        "BAR_MENU_ITEMS_CONFIRM_2",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
@@ -20482,15 +20622,30 @@ class JpOverlay19Data:
     )
 
     BAR_MAIN_MENU_ITEMS = Symbol(
-        [0x4108], [0x238F7A8], 0x20, "BAR_MAIN_MENU_ITEMS", "", ""
+        [0x4108],
+        [0x238F7A8],
+        0x20,
+        "BAR_MAIN_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     BAR_SUBMENU_ITEMS_1 = Symbol(
-        [0x4128], [0x238F7C8], 0x20, "BAR_SUBMENU_ITEMS_1", "", ""
+        [0x4128],
+        [0x238F7C8],
+        0x20,
+        "BAR_SUBMENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     BAR_SUBMENU_ITEMS_2 = Symbol(
-        [0x4148], [0x238F7E8], 0x30, "BAR_SUBMENU_ITEMS_2", "", ""
+        [0x4148],
+        [0x238F7E8],
+        0x30,
+        "BAR_SUBMENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[6]",
     )
 
     OVERLAY19_RESERVED_SPACE = Symbol(
@@ -20566,23 +20721,48 @@ class JpOverlay20Data:
     )
 
     RECYCLE_MENU_ITEMS_CONFIRM_1 = Symbol(
-        [0x2E40], [0x238E4E0], 0x18, "RECYCLE_MENU_ITEMS_CONFIRM_1", "", ""
+        [0x2E40],
+        [0x238E4E0],
+        0x18,
+        "RECYCLE_MENU_ITEMS_CONFIRM_1",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     RECYCLE_MENU_ITEMS_CONFIRM_2 = Symbol(
-        [0x2E58], [0x238E4F8], 0x18, "RECYCLE_MENU_ITEMS_CONFIRM_2", "", ""
+        [0x2E58],
+        [0x238E4F8],
+        0x18,
+        "RECYCLE_MENU_ITEMS_CONFIRM_2",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     RECYCLE_SUBMENU_ITEMS_1 = Symbol(
-        [0x2E70], [0x238E510], 0x18, "RECYCLE_SUBMENU_ITEMS_1", "", ""
+        [0x2E70],
+        [0x238E510],
+        0x18,
+        "RECYCLE_SUBMENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     RECYCLE_SUBMENU_ITEMS_2 = Symbol(
-        [0x2E88], [0x238E528], 0x20, "RECYCLE_SUBMENU_ITEMS_2", "", ""
+        [0x2E88],
+        [0x238E528],
+        0x20,
+        "RECYCLE_SUBMENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     RECYCLE_MAIN_MENU_ITEMS_1 = Symbol(
-        [0x2EA8], [0x238E548], 0x28, "RECYCLE_MAIN_MENU_ITEMS_1", "", ""
+        [0x2EA8],
+        [0x238E548],
+        0x28,
+        "RECYCLE_MAIN_MENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[5]",
     )
 
     OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
@@ -20600,7 +20780,7 @@ class JpOverlay20Data:
         None,
         "RECYCLE_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     RECYCLE_WINDOW_PARAMS_2 = Symbol(
@@ -20609,7 +20789,7 @@ class JpOverlay20Data:
         None,
         "RECYCLE_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     RECYCLE_WINDOW_PARAMS_3 = Symbol(
@@ -20618,7 +20798,7 @@ class JpOverlay20Data:
         None,
         "RECYCLE_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     RECYCLE_WINDOW_PARAMS_4 = Symbol(
@@ -20627,7 +20807,7 @@ class JpOverlay20Data:
         None,
         "RECYCLE_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     RECYCLE_WINDOW_PARAMS_5 = Symbol(
@@ -20636,7 +20816,7 @@ class JpOverlay20Data:
         None,
         "RECYCLE_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     RECYCLE_WINDOW_PARAMS_6 = Symbol(
@@ -20645,11 +20825,16 @@ class JpOverlay20Data:
         None,
         "RECYCLE_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     RECYCLE_MAIN_MENU_ITEMS_2 = Symbol(
-        [0x2F44], [0x238E5E4], 0x20, "RECYCLE_MAIN_MENU_ITEMS_2", "", ""
+        [0x2F44],
+        [0x238E5E4],
+        0x20,
+        "RECYCLE_MAIN_MENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     RECYCLE_WINDOW_PARAMS_7 = Symbol(
@@ -20658,7 +20843,7 @@ class JpOverlay20Data:
         0x10,
         "RECYCLE_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     RECYCLE_WINDOW_PARAMS_8 = Symbol(
@@ -20667,7 +20852,7 @@ class JpOverlay20Data:
         0x10,
         "RECYCLE_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_8",
+        "struct window_params",
     )
 
     RECYCLE_WINDOW_PARAMS_9 = Symbol(
@@ -20676,7 +20861,7 @@ class JpOverlay20Data:
         0x10,
         "RECYCLE_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_9",
+        "struct window_params",
     )
 
     RECYCLE_WINDOW_PARAMS_10 = Symbol(
@@ -20685,7 +20870,7 @@ class JpOverlay20Data:
         0x10,
         "RECYCLE_WINDOW_PARAMS_10",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_10",
+        "struct window_params",
     )
 
     RECYCLE_WINDOW_PARAMS_11 = Symbol(
@@ -20694,11 +20879,16 @@ class JpOverlay20Data:
         0x10,
         "RECYCLE_WINDOW_PARAMS_11",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsRECYCLE_WINDOW_PARAMS_11",
+        "struct window_params",
     )
 
     RECYCLE_MAIN_MENU_ITEMS_3 = Symbol(
-        [0x2FB4], [0x238E654], 0x18, "RECYCLE_MAIN_MENU_ITEMS_3", "", ""
+        [0x2FB4],
+        [0x238E654],
+        0x18,
+        "RECYCLE_MAIN_MENU_ITEMS_3",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     OVERLAY20_RESERVED_SPACE = Symbol(
@@ -20769,31 +20959,61 @@ class JpOverlay21Data:
         None,
         "SWAP_SHOP_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSWAP_SHOP_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     SWAP_SHOP_MENU_ITEMS_CONFIRM = Symbol(
-        [0x2908], [0x238DFA8], 0x18, "SWAP_SHOP_MENU_ITEMS_CONFIRM", "", ""
+        [0x2908],
+        [0x238DFA8],
+        0x18,
+        "SWAP_SHOP_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     SWAP_SHOP_SUBMENU_ITEMS_1 = Symbol(
-        [0x2920], [0x238DFC0], 0x18, "SWAP_SHOP_SUBMENU_ITEMS_1", "", ""
+        [0x2920],
+        [0x238DFC0],
+        0x18,
+        "SWAP_SHOP_SUBMENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     SWAP_SHOP_SUBMENU_ITEMS_2 = Symbol(
-        [0x2938], [0x238DFD8], 0x20, "SWAP_SHOP_SUBMENU_ITEMS_2", "", ""
+        [0x2938],
+        [0x238DFD8],
+        0x20,
+        "SWAP_SHOP_SUBMENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     SWAP_SHOP_MAIN_MENU_ITEMS_1 = Symbol(
-        [0x2958], [0x238DFF8], 0x20, "SWAP_SHOP_MAIN_MENU_ITEMS_1", "", ""
+        [0x2958],
+        [0x238DFF8],
+        0x20,
+        "SWAP_SHOP_MAIN_MENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     SWAP_SHOP_MAIN_MENU_ITEMS_2 = Symbol(
-        [0x2978], [0x238E018], 0x28, "SWAP_SHOP_MAIN_MENU_ITEMS_2", "", ""
+        [0x2978],
+        [0x238E018],
+        0x28,
+        "SWAP_SHOP_MAIN_MENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[5]",
     )
 
     SWAP_SHOP_SUBMENU_ITEMS_3 = Symbol(
-        [0x29A0], [0x238E040], 0x30, "SWAP_SHOP_SUBMENU_ITEMS_3", "", ""
+        [0x29A0],
+        [0x238E040],
+        0x30,
+        "SWAP_SHOP_SUBMENU_ITEMS_3",
+        "",
+        "struct simple_menu_id_item[6]",
     )
 
     OVERLAY21_UNKNOWN_STRING_IDS = Symbol(
@@ -20811,7 +21031,7 @@ class JpOverlay21Data:
         None,
         "SWAP_SHOP_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSWAP_SHOP_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     SWAP_SHOP_WINDOW_PARAMS_3 = Symbol(
@@ -20820,7 +21040,7 @@ class JpOverlay21Data:
         None,
         "SWAP_SHOP_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSWAP_SHOP_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     SWAP_SHOP_WINDOW_PARAMS_4 = Symbol(
@@ -20829,7 +21049,7 @@ class JpOverlay21Data:
         None,
         "SWAP_SHOP_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSWAP_SHOP_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     SWAP_SHOP_WINDOW_PARAMS_5 = Symbol(
@@ -20838,7 +21058,7 @@ class JpOverlay21Data:
         None,
         "SWAP_SHOP_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSWAP_SHOP_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     SWAP_SHOP_WINDOW_PARAMS_6 = Symbol(
@@ -20847,7 +21067,7 @@ class JpOverlay21Data:
         None,
         "SWAP_SHOP_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSWAP_SHOP_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     SWAP_SHOP_WINDOW_PARAMS_7 = Symbol(
@@ -20856,7 +21076,7 @@ class JpOverlay21Data:
         None,
         "SWAP_SHOP_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSWAP_SHOP_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     SWAP_SHOP_WINDOW_PARAMS_8 = Symbol(
@@ -20865,7 +21085,7 @@ class JpOverlay21Data:
         None,
         "SWAP_SHOP_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSWAP_SHOP_WINDOW_PARAMS_8",
+        "struct window_params",
     )
 
     SWAP_SHOP_WINDOW_PARAMS_9 = Symbol(
@@ -20874,7 +21094,7 @@ class JpOverlay21Data:
         None,
         "SWAP_SHOP_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSWAP_SHOP_WINDOW_PARAMS_9",
+        "struct window_params",
     )
 
     OVERLAY21_JP_STRING = Symbol(None, None, None, "OVERLAY21_JP_STRING", "合成：", "")
@@ -20929,7 +21149,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_2 = Symbol(
@@ -20938,7 +21158,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     OVERLAY22_UNKNOWN_STRUCT__NA_238E85C = Symbol(
@@ -20951,19 +21171,39 @@ class JpOverlay22Data:
     )
 
     SHOP_MENU_ITEMS_CONFIRM = Symbol(
-        [0x4728], [0x238FDC8], 0x18, "SHOP_MENU_ITEMS_CONFIRM", "", ""
+        [0x4728],
+        [0x238FDC8],
+        0x18,
+        "SHOP_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     SHOP_MAIN_MENU_ITEMS_1 = Symbol(
-        [0x4740], [0x238FDE0], 0x20, "SHOP_MAIN_MENU_ITEMS_1", "", ""
+        [0x4740],
+        [0x238FDE0],
+        0x20,
+        "SHOP_MAIN_MENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     SHOP_MAIN_MENU_ITEMS_2 = Symbol(
-        [0x4760], [0x238FE00], 0x20, "SHOP_MAIN_MENU_ITEMS_2", "", ""
+        [0x4760],
+        [0x238FE00],
+        0x20,
+        "SHOP_MAIN_MENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     SHOP_MAIN_MENU_ITEMS_3 = Symbol(
-        [0x4780], [0x238FE20], 0x30, "SHOP_MAIN_MENU_ITEMS_3", "", ""
+        [0x4780],
+        [0x238FE20],
+        0x30,
+        "SHOP_MAIN_MENU_ITEMS_3",
+        "",
+        "struct simple_menu_id_item[6]",
     )
 
     OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
@@ -20981,7 +21221,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_4 = Symbol(
@@ -20990,7 +21230,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_5 = Symbol(
@@ -20999,7 +21239,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_6 = Symbol(
@@ -21008,7 +21248,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_7 = Symbol(
@@ -21017,7 +21257,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_8 = Symbol(
@@ -21026,7 +21266,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_8",
+        "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_9 = Symbol(
@@ -21035,7 +21275,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_9",
+        "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_10 = Symbol(
@@ -21044,7 +21284,7 @@ class JpOverlay22Data:
         None,
         "SHOP_WINDOW_PARAMS_10",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSHOP_WINDOW_PARAMS_10",
+        "struct window_params",
     )
 
     OVERLAY22_RESERVED_SPACE = Symbol(
@@ -21146,23 +21386,48 @@ class JpOverlay23Data:
     )
 
     STORAGE_MENU_ITEMS_CONFIRM = Symbol(
-        [0x3214], [0x238E8B4], 0x18, "STORAGE_MENU_ITEMS_CONFIRM", "", ""
+        [0x3214],
+        [0x238E8B4],
+        0x18,
+        "STORAGE_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     STORAGE_MAIN_MENU_ITEMS_1 = Symbol(
-        [0x322C], [0x238E8CC], 0x20, "STORAGE_MAIN_MENU_ITEMS_1", "", ""
+        [0x322C],
+        [0x238E8CC],
+        0x20,
+        "STORAGE_MAIN_MENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     STORAGE_MAIN_MENU_ITEMS_2 = Symbol(
-        [0x324C], [0x238E8EC], 0x20, "STORAGE_MAIN_MENU_ITEMS_2", "", ""
+        [0x324C],
+        [0x238E8EC],
+        0x20,
+        "STORAGE_MAIN_MENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     STORAGE_MAIN_MENU_ITEMS_3 = Symbol(
-        [0x326C], [0x238E90C], 0x20, "STORAGE_MAIN_MENU_ITEMS_3", "", ""
+        [0x326C],
+        [0x238E90C],
+        0x20,
+        "STORAGE_MAIN_MENU_ITEMS_3",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     STORAGE_MAIN_MENU_ITEMS_4 = Symbol(
-        [0x328C], [0x238E92C], 0x28, "STORAGE_MAIN_MENU_ITEMS_4", "", ""
+        [0x328C],
+        [0x238E92C],
+        0x28,
+        "STORAGE_MAIN_MENU_ITEMS_4",
+        "",
+        "struct simple_menu_id_item[5]",
     )
 
     OVERLAY23_UNKNOWN_STRING_IDS = Symbol(
@@ -21180,7 +21445,7 @@ class JpOverlay23Data:
         None,
         "STORAGE_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSTORAGE_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     STORAGE_WINDOW_PARAMS_2 = Symbol(
@@ -21189,7 +21454,7 @@ class JpOverlay23Data:
         None,
         "STORAGE_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSTORAGE_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     STORAGE_WINDOW_PARAMS_3 = Symbol(
@@ -21198,7 +21463,7 @@ class JpOverlay23Data:
         None,
         "STORAGE_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSTORAGE_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     STORAGE_WINDOW_PARAMS_4 = Symbol(
@@ -21207,7 +21472,7 @@ class JpOverlay23Data:
         None,
         "STORAGE_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSTORAGE_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     STORAGE_WINDOW_PARAMS_5 = Symbol(
@@ -21216,7 +21481,7 @@ class JpOverlay23Data:
         None,
         "STORAGE_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSTORAGE_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     STORAGE_WINDOW_PARAMS_6 = Symbol(
@@ -21225,7 +21490,7 @@ class JpOverlay23Data:
         None,
         "STORAGE_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSTORAGE_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     STORAGE_WINDOW_PARAMS_7 = Symbol(
@@ -21234,7 +21499,7 @@ class JpOverlay23Data:
         None,
         "STORAGE_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSTORAGE_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     STORAGE_WINDOW_PARAMS_8 = Symbol(
@@ -21243,7 +21508,7 @@ class JpOverlay23Data:
         None,
         "STORAGE_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsSTORAGE_WINDOW_PARAMS_8",
+        "struct window_params",
     )
 
     OVERLAY23_RESERVED_SPACE = Symbol(
@@ -21302,11 +21567,21 @@ class JpOverlay24Data:
     )
 
     DAYCARE_MENU_ITEMS_CONFIRM = Symbol(
-        [0x23E8], [0x238DA88], 0x18, "DAYCARE_MENU_ITEMS_CONFIRM", "", ""
+        [0x23E8],
+        [0x238DA88],
+        0x18,
+        "DAYCARE_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     DAYCARE_MAIN_MENU_ITEMS = Symbol(
-        [0x2400], [0x238DAA0], 0x20, "DAYCARE_MAIN_MENU_ITEMS", "", ""
+        [0x2400],
+        [0x238DAA0],
+        0x20,
+        "DAYCARE_MAIN_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     OVERLAY24_UNKNOWN_STRING_IDS = Symbol(
@@ -21324,7 +21599,7 @@ class JpOverlay24Data:
         None,
         "DAYCARE_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDAYCARE_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     DAYCARE_WINDOW_PARAMS_2 = Symbol(
@@ -21333,7 +21608,7 @@ class JpOverlay24Data:
         None,
         "DAYCARE_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDAYCARE_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     DAYCARE_WINDOW_PARAMS_3 = Symbol(
@@ -21342,7 +21617,7 @@ class JpOverlay24Data:
         None,
         "DAYCARE_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDAYCARE_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     DAYCARE_WINDOW_PARAMS_4 = Symbol(
@@ -21351,7 +21626,7 @@ class JpOverlay24Data:
         None,
         "DAYCARE_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDAYCARE_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     DAYCARE_WINDOW_PARAMS_5 = Symbol(
@@ -21360,7 +21635,7 @@ class JpOverlay24Data:
         None,
         "DAYCARE_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDAYCARE_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     OVERLAY24_RESERVED_SPACE = Symbol(
@@ -21413,19 +21688,34 @@ class JpOverlay25Data:
         None,
         "APPRAISAL_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsAPPRAISAL_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     APPRAISAL_MENU_ITEMS_CONFIRM = Symbol(
-        [0x1374], [0x238CA14], 0x18, "APPRAISAL_MENU_ITEMS_CONFIRM", "", ""
+        [0x1374],
+        [0x238CA14],
+        0x18,
+        "APPRAISAL_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     APPRAISAL_MAIN_MENU_ITEMS = Symbol(
-        [0x138C], [0x238CA2C], 0x20, "APPRAISAL_MAIN_MENU_ITEMS", "", ""
+        [0x138C],
+        [0x238CA2C],
+        0x20,
+        "APPRAISAL_MAIN_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     APPRAISAL_SUBMENU_ITEMS = Symbol(
-        [0x13AC], [0x238CA4C], 0x20, "APPRAISAL_SUBMENU_ITEMS", "", ""
+        [0x13AC],
+        [0x238CA4C],
+        0x20,
+        "APPRAISAL_SUBMENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     OVERLAY25_UNKNOWN_STRING_IDS = Symbol(
@@ -21443,7 +21733,7 @@ class JpOverlay25Data:
         None,
         "APPRAISAL_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsAPPRAISAL_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     APPRAISAL_WINDOW_PARAMS_3 = Symbol(
@@ -21452,7 +21742,7 @@ class JpOverlay25Data:
         None,
         "APPRAISAL_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsAPPRAISAL_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     APPRAISAL_WINDOW_PARAMS_4 = Symbol(
@@ -21461,7 +21751,7 @@ class JpOverlay25Data:
         None,
         "APPRAISAL_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsAPPRAISAL_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     APPRAISAL_WINDOW_PARAMS_5 = Symbol(
@@ -21470,7 +21760,7 @@ class JpOverlay25Data:
         None,
         "APPRAISAL_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsAPPRAISAL_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     APPRAISAL_WINDOW_PARAMS_6 = Symbol(
@@ -21479,7 +21769,7 @@ class JpOverlay25Data:
         None,
         "APPRAISAL_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsAPPRAISAL_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     APPRAISAL_WINDOW_PARAMS_7 = Symbol(
@@ -21488,7 +21778,7 @@ class JpOverlay25Data:
         None,
         "APPRAISAL_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsAPPRAISAL_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     APPRAISAL_WINDOW_PARAMS_8 = Symbol(
@@ -21497,7 +21787,7 @@ class JpOverlay25Data:
         None,
         "APPRAISAL_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsAPPRAISAL_WINDOW_PARAMS_8",
+        "struct window_params",
     )
 
     OVERLAY25_RESERVED_SPACE = Symbol(
@@ -21643,19 +21933,39 @@ class JpOverlay27Data:
     )
 
     DISCARD_ITEMS_MENU_ITEMS_CONFIRM = Symbol(
-        [0x284C], [0x238DEEC], 0x18, "DISCARD_ITEMS_MENU_ITEMS_CONFIRM", "", ""
+        [0x284C],
+        [0x238DEEC],
+        0x18,
+        "DISCARD_ITEMS_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     DISCARD_ITEMS_SUBMENU_ITEMS_1 = Symbol(
-        [0x2864], [0x238DF04], 0x20, "DISCARD_ITEMS_SUBMENU_ITEMS_1", "", ""
+        [0x2864],
+        [0x238DF04],
+        0x20,
+        "DISCARD_ITEMS_SUBMENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     DISCARD_ITEMS_SUBMENU_ITEMS_2 = Symbol(
-        [0x2884], [0x238DF24], 0x20, "DISCARD_ITEMS_SUBMENU_ITEMS_2", "", ""
+        [0x2884],
+        [0x238DF24],
+        0x20,
+        "DISCARD_ITEMS_SUBMENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     DISCARD_ITEMS_MAIN_MENU_ITEMS = Symbol(
-        [0x28A4], [0x238DF44], 0x28, "DISCARD_ITEMS_MAIN_MENU_ITEMS", "", ""
+        [0x28A4],
+        [0x238DF44],
+        0x28,
+        "DISCARD_ITEMS_MAIN_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[5]",
     )
 
     OVERLAY27_UNKNOWN_STRING_IDS = Symbol(
@@ -21673,7 +21983,7 @@ class JpOverlay27Data:
         None,
         "DISCARD_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDISCARD_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     DISCARD_WINDOW_PARAMS_2 = Symbol(
@@ -21682,7 +21992,7 @@ class JpOverlay27Data:
         None,
         "DISCARD_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDISCARD_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     DISCARD_WINDOW_PARAMS_3 = Symbol(
@@ -21691,7 +22001,7 @@ class JpOverlay27Data:
         None,
         "DISCARD_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDISCARD_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     DISCARD_WINDOW_PARAMS_4 = Symbol(
@@ -21700,7 +22010,7 @@ class JpOverlay27Data:
         None,
         "DISCARD_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDISCARD_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     DISCARD_WINDOW_PARAMS_5 = Symbol(
@@ -21709,7 +22019,7 @@ class JpOverlay27Data:
         None,
         "DISCARD_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDISCARD_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     DISCARD_WINDOW_PARAMS_6 = Symbol(
@@ -21718,7 +22028,7 @@ class JpOverlay27Data:
         None,
         "DISCARD_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDISCARD_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     DISCARD_WINDOW_PARAMS_7 = Symbol(
@@ -21727,7 +22037,7 @@ class JpOverlay27Data:
         None,
         "DISCARD_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDISCARD_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     DISCARD_WINDOW_PARAMS_8 = Symbol(
@@ -21736,7 +22046,7 @@ class JpOverlay27Data:
         None,
         "DISCARD_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDISCARD_WINDOW_PARAMS_8",
+        "struct window_params",
     )
 
     OVERLAY27_RESERVED_SPACE = Symbol(
@@ -28304,7 +28614,7 @@ class JpOverlay29Data:
         None,
         "DUNGEON_STRUCT_SIZE",
         "Size of the dungeon struct (0x2CB14)",
-        "uint32_tDUNGEON_STRUCT_SIZE",
+        "uint32_t",
     )
 
     MAX_HP_CAP = Symbol(
@@ -28313,7 +28623,7 @@ class JpOverlay29Data:
         None,
         "MAX_HP_CAP",
         "The maximum amount of HP a monster can have (999).",
-        "int32_tMAX_HP_CAP",
+        "int32_t",
     )
 
     OFFSET_OF_DUNGEON_FLOOR_PROPERTIES = Symbol(
@@ -28322,7 +28632,7 @@ class JpOverlay29Data:
         None,
         "OFFSET_OF_DUNGEON_FLOOR_PROPERTIES",
         "Offset of the floor properties field in the dungeon struct (0x286B2)",
-        "uint32_tOFFSET_OF_DUNGEON_FLOOR_PROPERTIES",
+        "uint32_t",
     )
 
     SPAWN_RAND_MAX = Symbol(
@@ -28331,7 +28641,7 @@ class JpOverlay29Data:
         None,
         "SPAWN_RAND_MAX",
         "Equal to 10,000 (0x2710). Used as parameter for DungeonRandInt to generate the random number which determines the entity to spawn.",
-        "int32_tSPAWN_RAND_MAX",
+        "int32_t",
     )
 
     DUNGEON_PRNG_LCG_MULTIPLIER = Symbol(
@@ -28340,7 +28650,7 @@ class JpOverlay29Data:
         None,
         "DUNGEON_PRNG_LCG_MULTIPLIER",
         "The multiplier shared by all of the dungeon PRNG's LCGs, 1566083941 (0x5D588B65).",
-        "uint32_tDUNGEON_PRNG_LCG_MULTIPLIER",
+        "uint32_t",
     )
 
     DUNGEON_PRNG_LCG_INCREMENT_SECONDARY = Symbol(
@@ -28349,7 +28659,7 @@ class JpOverlay29Data:
         None,
         "DUNGEON_PRNG_LCG_INCREMENT_SECONDARY",
         "The increment for the dungeon PRNG's secondary LCGs, 2531011 (0x269EC3). This happens to be the same increment that the Microsoft Visual C++ runtime library uses in its implementation of the rand() function.",
-        "uint32_tDUNGEON_PRNG_LCG_INCREMENT_SECONDARY",
+        "uint32_t",
     )
 
     KECLEON_FEMALE_ID = Symbol(
@@ -28358,7 +28668,7 @@ class JpOverlay29Data:
         0x4,
         "KECLEON_FEMALE_ID",
         "0x3D7 (983). Used when spawning Kecleon on an even numbered floor.",
-        "enum monster_idKECLEON_FEMALE_ID",
+        "enum monster_id",
     )
 
     KECLEON_MALE_ID = Symbol(
@@ -28367,7 +28677,7 @@ class JpOverlay29Data:
         0x4,
         "KECLEON_MALE_ID",
         "0x17F (383). Used when spawning Kecleon on an odd numbered floor.",
-        "enum monster_idKECLEON_MALE_ID",
+        "enum monster_id",
     )
 
     MSG_ID_SLOW_START = Symbol(
@@ -28376,7 +28686,7 @@ class JpOverlay29Data:
         None,
         "MSG_ID_SLOW_START",
         "ID of the message printed when a monster has the ability Slow Start at the beginning of the floor.",
-        "int32_tMSG_ID_SLOW_START",
+        "int32_t",
     )
 
     EXPERIENCE_POINT_GAIN_CAP = Symbol(
@@ -28385,7 +28695,7 @@ class JpOverlay29Data:
         None,
         "EXPERIENCE_POINT_GAIN_CAP",
         "A cap on the experience that can be given to a monster in one call to AddExpSpecial",
-        "int32_tEXPERIENCE_POINT_GAIN_CAP",
+        "int32_t",
     )
 
     JUDGMENT_MOVE_ID = Symbol(
@@ -28394,7 +28704,7 @@ class JpOverlay29Data:
         0x4,
         "JUDGMENT_MOVE_ID",
         "Move ID for Judgment (0x1D3)\n\ntype: enum move_id",
-        "enum move_idJUDGMENT_MOVE_ID",
+        "enum move_id",
     )
 
     REGULAR_ATTACK_MOVE_ID = Symbol(
@@ -28403,7 +28713,7 @@ class JpOverlay29Data:
         0x4,
         "REGULAR_ATTACK_MOVE_ID",
         "Move ID for the regular attack (0x163)\n\ntype: enum move_id",
-        "enum move_idREGULAR_ATTACK_MOVE_ID",
+        "enum move_id",
     )
 
     DEOXYS_ATTACK_ID = Symbol(
@@ -28412,7 +28722,7 @@ class JpOverlay29Data:
         0x4,
         "DEOXYS_ATTACK_ID",
         "Monster ID for Deoxys in Attack Forme (0x1A3)\n\ntype: enum monster_id",
-        "enum monster_idDEOXYS_ATTACK_ID",
+        "enum monster_id",
     )
 
     DEOXYS_SPEED_ID = Symbol(
@@ -28421,7 +28731,7 @@ class JpOverlay29Data:
         0x4,
         "DEOXYS_SPEED_ID",
         "Monster ID for Deoxys in Speed Forme (0x1A5)\n\ntype: enum monster_id",
-        "enum monster_idDEOXYS_SPEED_ID",
+        "enum monster_id",
     )
 
     GIRATINA_ALTERED_ID = Symbol(
@@ -28430,7 +28740,7 @@ class JpOverlay29Data:
         0x4,
         "GIRATINA_ALTERED_ID",
         "Monster ID for Giratina in Altered Forme (0x211)\n\ntype: enum monster_id",
-        "enum monster_idGIRATINA_ALTERED_ID",
+        "enum monster_id",
     )
 
     PUNISHMENT_MOVE_ID = Symbol(
@@ -28439,7 +28749,7 @@ class JpOverlay29Data:
         0x4,
         "PUNISHMENT_MOVE_ID",
         "Move ID for Punishment (0x1BD)\n\ntype: enum move_id",
-        "enum move_idPUNISHMENT_MOVE_ID",
+        "enum move_id",
     )
 
     OFFENSE_STAT_MAX = Symbol(
@@ -28448,7 +28758,7 @@ class JpOverlay29Data:
         None,
         "OFFENSE_STAT_MAX",
         "Cap on an attacker's modified offense (attack or special attack) stat after boosts. Used during damage calculation.",
-        "int32_tOFFENSE_STAT_MAX",
+        "int32_t",
     )
 
     PROJECTILE_MOVE_ID = Symbol(
@@ -28457,7 +28767,7 @@ class JpOverlay29Data:
         None,
         "PROJECTILE_MOVE_ID",
         "The move ID of the special 'projectile' move (0x195)\n\ntype: enum move_id",
-        "enum move_idPROJECTILE_MOVE_ID",
+        "enum move_id",
     )
 
     BELLY_LOST_PER_TURN = Symbol(
@@ -28466,7 +28776,7 @@ class JpOverlay29Data:
         0x4,
         "BELLY_LOST_PER_TURN",
         "The base value by which belly is decreased every turn.\n\nIts raw value is 0x199A, which encodes a binary fixed-point number (16 fraction bits) with value (0x199A * 2^-16), and is the closest approximation to 0.1 representable in this number format.",
-        "fx32_16BELLY_LOST_PER_TURN",
+        "fx32_16",
     )
 
     MONSTER_HEAL_HP_MAX = Symbol(
@@ -28475,7 +28785,7 @@ class JpOverlay29Data:
         None,
         "MONSTER_HEAL_HP_MAX",
         "The maximum amount of HP a monster can have (999).",
-        "intMONSTER_HEAL_HP_MAX",
+        "int",
     )
 
     MOVE_TARGET_AND_RANGE_SPECIAL_USER_HEALING = Symbol(
@@ -28484,7 +28794,7 @@ class JpOverlay29Data:
         None,
         "MOVE_TARGET_AND_RANGE_SPECIAL_USER_HEALING",
         "The move target and range code for special healing moves that target just the user (0x273).\n\ntype: struct move_target_and_range (+ padding)",
-        "struct move_target_and_rangeMOVE_TARGET_AND_RANGE_SPECIAL_USER_HEALING",
+        "struct move_target_and_range",
     )
 
     PLAIN_SEED_STRING_ID = Symbol(
@@ -28493,7 +28803,7 @@ class JpOverlay29Data:
         None,
         "PLAIN_SEED_STRING_ID",
         "The string ID for eating a Plain Seed (0xBE9).",
-        "int32_tPLAIN_SEED_STRING_ID",
+        "int32_t",
     )
 
     MAX_ELIXIR_PP_RESTORATION = Symbol(
@@ -28502,7 +28812,7 @@ class JpOverlay29Data:
         None,
         "MAX_ELIXIR_PP_RESTORATION",
         "The amount of PP restored per move by ingesting a Max Elixir (0x3E7).",
-        "int32_tMAX_ELIXIR_PP_RESTORATION",
+        "int32_t",
     )
 
     SLIP_SEED_FAIL_STRING_ID = Symbol(
@@ -28511,7 +28821,7 @@ class JpOverlay29Data:
         None,
         "SLIP_SEED_FAIL_STRING_ID",
         "The string ID for when eating the Slip Seed fails (0xC75).",
-        "int32_tSLIP_SEED_FAIL_STRING_ID",
+        "int32_t",
     )
 
     ROCK_WRECKER_MOVE_ID = Symbol(
@@ -28520,7 +28830,7 @@ class JpOverlay29Data:
         None,
         "ROCK_WRECKER_MOVE_ID",
         "The move ID for Rock Wrecker (453).",
-        "enum move_idROCK_WRECKER_MOVE_ID",
+        "enum move_id",
     )
 
     CASTFORM_NORMAL_FORM_MALE_ID = Symbol(
@@ -28529,7 +28839,7 @@ class JpOverlay29Data:
         0x4,
         "CASTFORM_NORMAL_FORM_MALE_ID",
         "Castform's male normal form ID (0x17B)",
-        "enum monster_idCASTFORM_NORMAL_FORM_MALE_ID",
+        "enum monster_id",
     )
 
     CASTFORM_NORMAL_FORM_FEMALE_ID = Symbol(
@@ -28538,7 +28848,7 @@ class JpOverlay29Data:
         0x4,
         "CASTFORM_NORMAL_FORM_FEMALE_ID",
         "Castform's female normal form ID (0x3D3)",
-        "enum monster_idCASTFORM_NORMAL_FORM_FEMALE_ID",
+        "enum monster_id",
     )
 
     CHERRIM_SUNSHINE_FORM_MALE_ID = Symbol(
@@ -28547,7 +28857,7 @@ class JpOverlay29Data:
         0x4,
         "CHERRIM_SUNSHINE_FORM_MALE_ID",
         "Cherrim's male sunshine form ID (0x1CD)",
-        "enum monster_idCHERRIM_SUNSHINE_FORM_MALE_ID",
+        "enum monster_id",
     )
 
     CHERRIM_OVERCAST_FORM_FEMALE_ID = Symbol(
@@ -28556,7 +28866,7 @@ class JpOverlay29Data:
         0x4,
         "CHERRIM_OVERCAST_FORM_FEMALE_ID",
         "Cherrim's female overcast form ID (0x424)",
-        "enum monster_idCHERRIM_OVERCAST_FORM_FEMALE_ID",
+        "enum monster_id",
     )
 
     CHERRIM_SUNSHINE_FORM_FEMALE_ID = Symbol(
@@ -28565,7 +28875,7 @@ class JpOverlay29Data:
         0x4,
         "CHERRIM_SUNSHINE_FORM_FEMALE_ID",
         "Cherrim's female sunshine form ID (0x425)",
-        "enum monster_idCHERRIM_SUNSHINE_FORM_FEMALE_ID",
+        "enum monster_id",
     )
 
     FLOOR_GENERATION_STATUS_PTR = Symbol(
@@ -28574,7 +28884,7 @@ class JpOverlay29Data:
         None,
         "FLOOR_GENERATION_STATUS_PTR",
         "Pointer to the global FLOOR_GENERATION_STATUS\n\ntype: struct floor_generation_status*",
-        "struct floor_generation_status*FLOOR_GENERATION_STATUS_PTR",
+        "struct floor_generation_status*",
     )
 
     OFFSET_OF_DUNGEON_N_NORMAL_ITEM_SPAWNS = Symbol(
@@ -28583,7 +28893,7 @@ class JpOverlay29Data:
         None,
         "OFFSET_OF_DUNGEON_N_NORMAL_ITEM_SPAWNS",
         "Offset of the (number of base items + 1) field on the dungeon struct (0x12AFA)",
-        "uint32_tOFFSET_OF_DUNGEON_N_NORMAL_ITEM_SPAWNS",
+        "uint32_t",
     )
 
     DUNGEON_GRID_COLUMN_BYTES = Symbol(
@@ -28592,7 +28902,7 @@ class JpOverlay29Data:
         None,
         "DUNGEON_GRID_COLUMN_BYTES",
         "The number of bytes in one column of the dungeon grid cell array, 450, which corresponds to a column of 15 grid cells.",
-        "uint32_tDUNGEON_GRID_COLUMN_BYTES",
+        "uint32_t",
     )
 
     DEFAULT_MAX_POSITION = Symbol(
@@ -28601,7 +28911,7 @@ class JpOverlay29Data:
         None,
         "DEFAULT_MAX_POSITION",
         "A large number (9999) to use as a default position for keeping track of min/max position values",
-        "int32_tDEFAULT_MAX_POSITION",
+        "int32_t",
     )
 
     OFFSET_OF_DUNGEON_GUARANTEED_ITEM_ID = Symbol(
@@ -28610,7 +28920,7 @@ class JpOverlay29Data:
         None,
         "OFFSET_OF_DUNGEON_GUARANTEED_ITEM_ID",
         "Offset of the guaranteed item ID field in the dungeon struct (0x2C9E8)",
-        "uint32_tOFFSET_OF_DUNGEON_GUARANTEED_ITEM_ID",
+        "uint32_t",
     )
 
     FIXED_ROOM_TILE_SPAWN_TABLE = Symbol(
@@ -28619,7 +28929,7 @@ class JpOverlay29Data:
         0x2C,
         "FIXED_ROOM_TILE_SPAWN_TABLE",
         "Table of tiles that can spawn in fixed rooms, pointed into by the FIXED_ROOM_TILE_SPAWN_TABLE.\n\nThis is an array of 11 4-byte entries containing info about one tile each. Info includes the trap ID if a trap, room ID, and flags.\n\ntype: struct fixed_room_tile_spawn_entry[11]",
-        "",
+        "struct fixed_room_tile_spawn_entry[11]",
     )
 
     TREASURE_BOX_1_ITEM_IDS = Symbol(
@@ -28628,7 +28938,7 @@ class JpOverlay29Data:
         0x18,
         "TREASURE_BOX_1_ITEM_IDS",
         "Item IDs for variant 1 of each of the treasure box items (ITEM_*_BOX_1).\n\ntype: struct item_id_16[12]",
-        "",
+        "struct item_id_16[12]",
     )
 
     FIXED_ROOM_REVISIT_OVERRIDES = Symbol(
@@ -28637,7 +28947,7 @@ class JpOverlay29Data:
         0x100,
         "FIXED_ROOM_REVISIT_OVERRIDES",
         "Table of fixed room IDs, which if nonzero, overrides the normal fixed room ID for a floor (which is used to index the table) if the dungeon has already been cleared previously.\n\nOverrides are used to substitute different fixed room data for things like revisits to story dungeons.\n\ntype: struct fixed_room_id_8[256]",
-        "",
+        "struct fixed_room_id_8[256]",
     )
 
     FIXED_ROOM_MONSTER_SPAWN_TABLE = Symbol(
@@ -28646,7 +28956,7 @@ class JpOverlay29Data:
         0x1E0,
         "FIXED_ROOM_MONSTER_SPAWN_TABLE",
         "Table of monsters that can spawn in fixed rooms, pointed into by the FIXED_ROOM_ENTITY_SPAWN_TABLE.\n\nThis is an array of 120 4-byte entries containing info about one monster each. Info includes the monster ID, stats, and behavior type.\n\ntype: struct fixed_room_monster_spawn_entry[120]",
-        "",
+        "struct fixed_room_monster_spawn_entry[120]",
     )
 
     FIXED_ROOM_ITEM_SPAWN_TABLE = Symbol(
@@ -28655,7 +28965,7 @@ class JpOverlay29Data:
         0x1F8,
         "FIXED_ROOM_ITEM_SPAWN_TABLE",
         "Table of items that can spawn in fixed rooms, pointed into by the FIXED_ROOM_ENTITY_SPAWN_TABLE.\n\nThis is an array of 63 8-byte entries containing one item ID each.\n\ntype: struct fixed_room_item_spawn_entry[63]",
-        "",
+        "struct fixed_room_item_spawn_entry[63]",
     )
 
     FIXED_ROOM_ENTITY_SPAWN_TABLE = Symbol(
@@ -28664,7 +28974,7 @@ class JpOverlay29Data:
         0xC9C,
         "FIXED_ROOM_ENTITY_SPAWN_TABLE",
         "Table of entities (items, monsters, tiles) that can spawn in fixed rooms, which is indexed into by the main data structure for each fixed room.\n\nThis is an array of 269 entries. Each entry contains 3 pointers (one into FIXED_ROOM_ITEM_SPAWN_TABLE, one into FIXED_ROOM_MONSTER_SPAWN_TABLE, and one into FIXED_ROOM_TILE_SPAWN_TABLE), and represents the entities that can spawn on one specific tile in a fixed room.\n\ntype: struct fixed_room_entity_spawn_entry[269]",
-        "",
+        "struct fixed_room_entity_spawn_entry[269]",
     )
 
     STATUS_ICON_ARRAY_MUZZLED = Symbol(
@@ -28673,7 +28983,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_MUZZLED",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::muzzled * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[2]",
     )
 
     STATUS_ICON_ARRAY_MAGNET_RISE = Symbol(
@@ -28682,7 +28992,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_MAGNET_RISE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::magnet_rise * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[2]",
     )
 
     STATUS_ICON_ARRAY_MIRACLE_EYE = Symbol(
@@ -28691,7 +29001,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_MIRACLE_EYE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::miracle_eye * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[3]",
     )
 
     STATUS_ICON_ARRAY_LEECH_SEED = Symbol(
@@ -28700,7 +29010,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_LEECH_SEED",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::leech_seed * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[3]",
     )
 
     STATUS_ICON_ARRAY_LONG_TOSS = Symbol(
@@ -28709,7 +29019,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_LONG_TOSS",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::long_toss * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[3]",
     )
 
     STATUS_ICON_ARRAY_BLINDED = Symbol(
@@ -28718,7 +29028,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_BLINDED",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::blinded * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[5]",
     )
 
     STATUS_ICON_ARRAY_BURN = Symbol(
@@ -28727,7 +29037,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_BURN",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::burn * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[5]",
     )
 
     STATUS_ICON_ARRAY_SURE_SHOT = Symbol(
@@ -28736,7 +29046,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_SURE_SHOT",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::sure_shot * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[5]",
     )
 
     STATUS_ICON_ARRAY_INVISIBLE = Symbol(
@@ -28745,7 +29055,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_INVISIBLE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::invisible * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[5]",
     )
 
     STATUS_ICON_ARRAY_SLEEP = Symbol(
@@ -28754,7 +29064,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_SLEEP",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::sleep * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[8]",
     )
 
     STATUS_ICON_ARRAY_CURSE = Symbol(
@@ -28763,7 +29073,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_CURSE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::curse * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[7]",
     )
 
     STATUS_ICON_ARRAY_FREEZE = Symbol(
@@ -28772,7 +29082,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_FREEZE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::freeze * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[8]",
     )
 
     STATUS_ICON_ARRAY_CRINGE = Symbol(
@@ -28781,7 +29091,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_CRINGE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::cringe * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[8]",
     )
 
     STATUS_ICON_ARRAY_BIDE = Symbol(
@@ -28790,7 +29100,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_BIDE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::bide * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[14]",
     )
 
     STATUS_ICON_ARRAY_REFLECT = Symbol(
@@ -28799,7 +29109,7 @@ class JpOverlay29Data:
         None,
         "STATUS_ICON_ARRAY_REFLECT",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::reflect * 8. See UpdateStatusIconFlags for details.",
-        "",
+        "struct status_icon_flags[18]",
     )
 
     DIRECTIONS_XY = Symbol(
@@ -28808,7 +29118,7 @@ class JpOverlay29Data:
         None,
         "DIRECTIONS_XY",
         "An array mapping each direction index to its x and y displacements.\n\nDirections start with 0=down and proceed counterclockwise (see enum direction_id). Displacements for x and y are interleaved and encoded as 2-byte signed integers. For example, the first two integers are [0, 1], which correspond to the x and y displacements for the 'down' direction (positive y means down).",
-        "",
+        "int16_t[8][2]",
     )
 
     DISPLACEMENTS_WITHIN_2_LARGEST_FIRST = Symbol(
@@ -28817,7 +29127,7 @@ class JpOverlay29Data:
         None,
         "DISPLACEMENTS_WITHIN_2_LARGEST_FIRST",
         "An array of displacement vectors with max norm <= 2, ordered in descending order by norm.\n\nThe last element, (99, 99), is invalid and used as an end marker.\n\ntype: position[26]",
-        "",
+        "struct position[26]",
     )
 
     DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST = Symbol(
@@ -28826,7 +29136,7 @@ class JpOverlay29Data:
         None,
         "DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST",
         "An array of displacement vectors with max norm <= 2, ordered in ascending order by norm.\n\nThe last element, (99, 99), is invalid and used as an end marker.\n\ntype: position[26]",
-        "",
+        "struct position[26]",
     )
 
     DISPLACEMENTS_WITHIN_3 = Symbol(
@@ -28835,7 +29145,7 @@ class JpOverlay29Data:
         None,
         "DISPLACEMENTS_WITHIN_3",
         "An array of displacement vectors with max norm <= 3. The elements are vaguely in ascending order by norm, but not exactly.\n\nThe last element, (99, 99), is invalid and used as an end marker.\n\ntype: position[50]",
-        "",
+        "struct position[50]",
     )
 
     ITEM_CATEGORY_ACTIONS = Symbol(
@@ -28844,7 +29154,7 @@ class JpOverlay29Data:
         None,
         "ITEM_CATEGORY_ACTIONS",
         "Action ID associated with each item category. Used by GetItemAction.\n\nEach entry is 2 bytes long.",
-        "",
+        "struct action_16[16]",
     )
 
     FRACTIONAL_TURN_SEQUENCE = Symbol(
@@ -28853,7 +29163,7 @@ class JpOverlay29Data:
         None,
         "FRACTIONAL_TURN_SEQUENCE",
         "Read by certain functions that are called by RunFractionalTurn to see if they should be executed.\n\nArray is accessed via a pointer added to some multiple of fractional_turn, so that if the resulting memory location is zero, the function returns.",
-        "",
+        "int16_t[125]",
     )
 
     BELLY_DRAIN_IN_WALLS_INT = Symbol(
@@ -28862,7 +29172,7 @@ class JpOverlay29Data:
         0x2,
         "BELLY_DRAIN_IN_WALLS_INT",
         "The additional amount by which belly is decreased every turn when inside walls (integer part)",
-        "uint16_tBELLY_DRAIN_IN_WALLS_INT",
+        "uint16_t",
     )
 
     BELLY_DRAIN_IN_WALLS_THOUSANDTHS = Symbol(
@@ -28871,7 +29181,7 @@ class JpOverlay29Data:
         0x2,
         "BELLY_DRAIN_IN_WALLS_THOUSANDTHS",
         "The additional amount by which belly is decreased every turn when inside walls (fractional thousandths)",
-        "uint16_tBELLY_DRAIN_IN_WALLS_THOUSANDTHS",
+        "uint16_t",
     )
 
     DAMAGE_MULTIPLIER_0_5 = Symbol(
@@ -28880,7 +29190,7 @@ class JpOverlay29Data:
         None,
         "DAMAGE_MULTIPLIER_0_5",
         "A generic damage multiplier of 0.5 used in various places, as a 64-bit fixed-point number with 16 fraction bits.",
-        "struct fx64_16DAMAGE_MULTIPLIER_0_5",
+        "struct fx64_16",
     )
 
     DAMAGE_MULTIPLIER_1_5 = Symbol(
@@ -28889,7 +29199,7 @@ class JpOverlay29Data:
         None,
         "DAMAGE_MULTIPLIER_1_5",
         "A generic damage multiplier of 1.5 used in various places, as a 64-bit fixed-point number with 16 fraction bits.",
-        "struct fx64_16DAMAGE_MULTIPLIER_1_5",
+        "struct fx64_16",
     )
 
     DAMAGE_MULTIPLIER_2 = Symbol(
@@ -28898,7 +29208,7 @@ class JpOverlay29Data:
         None,
         "DAMAGE_MULTIPLIER_2",
         "A generic damage multiplier of 2 used in various places, as a 64-bit fixed-point number with 16 fraction bits.",
-        "struct fx64_16DAMAGE_MULTIPLIER_2",
+        "struct fx64_16",
     )
 
     CLOUDY_DAMAGE_MULTIPLIER = Symbol(
@@ -28907,7 +29217,7 @@ class JpOverlay29Data:
         None,
         "CLOUDY_DAMAGE_MULTIPLIER",
         "The extra damage multiplier for non-Normal-type moves when the weather is Cloudy, as a 64-bit fixed-point number with 16 fraction bits (0.75).",
-        "struct fx64_16CLOUDY_DAMAGE_MULTIPLIER",
+        "struct fx64_16",
     )
 
     SOLID_ROCK_MULTIPLIER = Symbol(
@@ -28916,7 +29226,7 @@ class JpOverlay29Data:
         None,
         "SOLID_ROCK_MULTIPLIER",
         "The extra damage multiplier for super-effective moves when Solid Rock or Filter is active, as a 64-bit fixed-point number with 16 fraction bits (0.75).",
-        "struct fx64_16SOLID_ROCK_MULTIPLIER",
+        "struct fx64_16",
     )
 
     DAMAGE_FORMULA_MAX_BASE = Symbol(
@@ -28925,7 +29235,7 @@ class JpOverlay29Data:
         None,
         "DAMAGE_FORMULA_MAX_BASE",
         "The maximum value of the base damage formula (after DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a 64-bit binary fixed-point number with 16 fraction bits (999).",
-        "struct fx64_16DAMAGE_FORMULA_MAX_BASE",
+        "struct fx64_16",
     )
 
     WONDER_GUARD_MULTIPLIER = Symbol(
@@ -28934,7 +29244,7 @@ class JpOverlay29Data:
         None,
         "WONDER_GUARD_MULTIPLIER",
         "The damage multiplier for moves affected by Wonder Guard, as a 64-bit fixed-point number with 16 fraction bits (0).",
-        "struct fx64_16WONDER_GUARD_MULTIPLIER",
+        "struct fx64_16",
     )
 
     DAMAGE_FORMULA_MIN_BASE = Symbol(
@@ -28943,7 +29253,7 @@ class JpOverlay29Data:
         None,
         "DAMAGE_FORMULA_MIN_BASE",
         "The minimum value of the base damage formula (after DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a 64-bit binary fixed-point number with 16 fraction bits (1).",
-        "struct fx64_16DAMAGE_FORMULA_MIN_BASE",
+        "struct fx64_16",
     )
 
     TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS = Symbol(
@@ -28952,7 +29262,7 @@ class JpOverlay29Data:
         None,
         "TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS",
         "List of exclusive item effects that negate damage of a certain type, terminated by a TYPE_NEUTRAL entry.\n\ntype: struct damage_negating_exclusive_eff_entry[28]",
-        "",
+        "struct damage_negating_exclusive_eff_entry[28]",
     )
 
     TWO_TURN_MOVES_AND_STATUSES = Symbol(
@@ -28961,7 +29271,7 @@ class JpOverlay29Data:
         None,
         "TWO_TURN_MOVES_AND_STATUSES",
         "List that matches two-turn move IDs to their corresponding status ID. The last entry is null.",
-        "",
+        "struct two_turn_move_and_status[22]",
     )
 
     SPATK_STAT_IDX = Symbol(
@@ -28970,7 +29280,7 @@ class JpOverlay29Data:
         None,
         "SPATK_STAT_IDX",
         "The index (1) of the special attack entry in internal stat structs, such as the stat modifier array for a monster.",
-        "int32_tSPATK_STAT_IDX",
+        "int32_t",
     )
 
     ATK_STAT_IDX = Symbol(
@@ -28979,7 +29289,7 @@ class JpOverlay29Data:
         None,
         "ATK_STAT_IDX",
         "The index (0) of the attack entry in internal stat structs, such as the stat modifier array for a monster.",
-        "int32_tATK_STAT_IDX",
+        "int32_t",
     )
 
     ROLLOUT_DAMAGE_MULT_TABLE = Symbol(
@@ -28988,7 +29298,7 @@ class JpOverlay29Data:
         None,
         "ROLLOUT_DAMAGE_MULT_TABLE",
         "A table of damage multipliers for each successive hit of Rollout/Ice Ball. Each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int32_t[10]",
-        "",
+        "fx32_8[10]",
     )
 
     MAP_COLOR_TABLE = Symbol(
@@ -28997,7 +29307,7 @@ class JpOverlay29Data:
         None,
         "MAP_COLOR_TABLE",
         "In order: white, black, red, green, blue, magenta, dark pink, chartreuse, light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: struct rgba[9]",
-        "",
+        "struct rgba[9]",
     )
 
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN = Symbol(
@@ -29006,7 +29316,7 @@ class JpOverlay29Data:
         None,
         "CORNER_CARDINAL_NEIGHBOR_IS_OPEN",
         "An array mapping each (corner index, neighbor direction index) to whether or not that neighbor is expected to be open floor.\n\nCorners start with 0=top-left and proceed clockwise. Directions are enumerated as with DIRECTIONS_XY. The array is indexed by i=(corner_index * N_DIRECTIONS + direction). An element of 1 (0) means that starting from the specified corner of a room, moving in the specified direction should lead to an open floor tile (non-open terrain like a wall).\n\nNote that this array is only used for the cardinal directions. The elements at odd indexes are unused and unconditionally set to 0.\n\nThis array is used by the dungeon generation algorithm when generating room imperfections. See GenerateRoomImperfections.",
-        "",
+        "bool[4][8]",
     )
 
     GUMMI_LIKE_STRING_IDS = Symbol(
@@ -29015,7 +29325,7 @@ class JpOverlay29Data:
         None,
         "GUMMI_LIKE_STRING_IDS",
         "List that holds the string IDs for how much a monster liked a gummi in decreasing order.",
-        "",
+        "int16_t[4]",
     )
 
     GUMMI_IQ_STRING_IDS = Symbol(
@@ -29024,7 +29334,7 @@ class JpOverlay29Data:
         None,
         "GUMMI_IQ_STRING_IDS",
         "List that holds the string IDs for how much a monster's IQ was raised by in decreasing order.",
-        "",
+        "int16_t[5]",
     )
 
     DAMAGE_STRING_IDS = Symbol(
@@ -29033,7 +29343,7 @@ class JpOverlay29Data:
         None,
         "DAMAGE_STRING_IDS",
         "List that matches the damage_message ID to their corresponding string ID. The null entry at 0xE in the middle is for hunger. The last entry is null.",
-        "",
+        "int16_t[27]",
     )
 
     DUNGEON_PTR = Symbol(
@@ -29042,7 +29352,7 @@ class JpOverlay29Data:
         0x4,
         "DUNGEON_PTR",
         "[Runtime] Pointer to the dungeon struct in dungeon mode.\n\nThis is a 'working copy' of DUNGEON_PTR_MASTER. The main dungeon engine uses this pointer (or rather pointers to this pointer) when actually running dungeon mode.\n\ntype: struct dungeon*",
-        "struct dungeon*DUNGEON_PTR",
+        "struct dungeon*",
     )
 
     DUNGEON_PTR_MASTER = Symbol(
@@ -29051,7 +29361,7 @@ class JpOverlay29Data:
         None,
         "DUNGEON_PTR_MASTER",
         "[Runtime] Pointer to the dungeon struct in dungeon mode.\n\nThis is a 'master copy' of the dungeon pointer. The game uses this pointer when doing low-level memory work (allocation, freeing, zeroing). The normal DUNGEON_PTR is used for most other dungeon mode work.\n\ntype: struct dungeon*",
-        "struct dungeon*DUNGEON_PTR_MASTER",
+        "struct dungeon*",
     )
 
     TOP_SCREEN_STATUS_PTR = Symbol(
@@ -29060,7 +29370,7 @@ class JpOverlay29Data:
         None,
         "TOP_SCREEN_STATUS_PTR",
         "[Runtime] Pointer for struct for handling the status of the top screen in dungeon mode.\n\ntype: struct top_screen_status",
-        "struct top_screen_status*TOP_SCREEN_STATUS_PTR",
+        "struct top_screen_status*",
     )
 
     LEADER_PTR = Symbol(
@@ -29069,7 +29379,7 @@ class JpOverlay29Data:
         None,
         "LEADER_PTR",
         "[Runtime] Pointer to the current leader of the team.\n\ntype: struct entity*",
-        "struct entity*LEADER_PTR",
+        "struct entity*",
     )
 
     DUNGEON_PRNG_STATE = Symbol(
@@ -29078,7 +29388,7 @@ class JpOverlay29Data:
         None,
         "DUNGEON_PRNG_STATE",
         "[Runtime] The global PRNG state for dungeon mode, not including the current values in the secondary sequences.\n\nThis struct holds state for the primary LCG, as well as the current configuration controlling which LCG to use when generating random numbers. See DungeonRand16Bit for more information on how the dungeon PRNG works.\n\ntype: struct prng_state",
-        "struct prng_stateDUNGEON_PRNG_STATE",
+        "struct prng_state",
     )
 
     DUNGEON_PRNG_STATE_SECONDARY_VALUES = Symbol(
@@ -29087,7 +29397,7 @@ class JpOverlay29Data:
         None,
         "DUNGEON_PRNG_STATE_SECONDARY_VALUES",
         "[Runtime] An array of 5 integers corresponding to the last value generated for each secondary LCG sequence.\n\nBased on the assembly, this appears to be its own global array, separate from DUNGEON_PRNG_STATE.",
-        "",
+        "uint32_t[5]",
     )
 
     LOADED_ATTACK_SPRITE_FILE_INDEX = Symbol(
@@ -29096,7 +29406,7 @@ class JpOverlay29Data:
         None,
         "LOADED_ATTACK_SPRITE_FILE_INDEX",
         "[Runtime] The file index of the currently loaded attack sprite.\n\ntype: uint16_t",
-        "uint16_tLOADED_ATTACK_SPRITE_FILE_INDEX",
+        "uint16_t",
     )
 
     LOADED_ATTACK_SPRITE_PACK_ID = Symbol(
@@ -29105,7 +29415,7 @@ class JpOverlay29Data:
         None,
         "LOADED_ATTACK_SPRITE_PACK_ID",
         "[Runtime] The pack id of the currently loaded attack sprite. Should correspond to the id of m_attack.bin\n\ntype: enum pack_file_id",
-        "enum pack_file_idLOADED_ATTACK_SPRITE_PACK_ID",
+        "enum pack_file_id",
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_ATK_SPEED_BOOST = Symbol(
@@ -29114,7 +29424,7 @@ class JpOverlay29Data:
         None,
         "EXCL_ITEM_EFFECTS_WEATHER_ATK_SPEED_BOOST",
         "Array of IDs for exclusive item effects that increase attack speed with certain weather conditions.",
-        "",
+        "struct exclusive_item_effect_id_8[8]",
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_MOVE_SPEED_BOOST = Symbol(
@@ -29123,7 +29433,7 @@ class JpOverlay29Data:
         None,
         "EXCL_ITEM_EFFECTS_WEATHER_MOVE_SPEED_BOOST",
         "Array of IDs for exclusive item effects that increase movement speed with certain weather conditions.",
-        "",
+        "struct exclusive_item_effect_id_8[8]",
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_NO_STATUS = Symbol(
@@ -29132,7 +29442,7 @@ class JpOverlay29Data:
         None,
         "EXCL_ITEM_EFFECTS_WEATHER_NO_STATUS",
         "Array of IDs for exclusive item effects that grant status immunity with certain weather conditions.",
-        "",
+        "struct exclusive_item_effect_id_8[8]",
     )
 
     EXCL_ITEM_EFFECTS_EVASION_BOOST = Symbol(
@@ -29141,7 +29451,7 @@ class JpOverlay29Data:
         None,
         "EXCL_ITEM_EFFECTS_EVASION_BOOST",
         "Array of IDs for exclusive item effects that grant an evasion boost with certain weather conditions.",
-        "",
+        "struct exclusive_item_effect_id_8[8]",
     )
 
     DEFAULT_TILE = Symbol(
@@ -29150,7 +29460,7 @@ class JpOverlay29Data:
         None,
         "DEFAULT_TILE",
         "The default tile struct.\n\nThis is just a struct full of zeroes, but is used as a fallback in various places where a 'default' tile is needed, such as when a grid index is out of range.\n\ntype: struct tile",
-        "struct tileDEFAULT_TILE",
+        "struct tile",
     )
 
     HIDDEN_STAIRS_SPAWN_BLOCKED = Symbol(
@@ -29159,7 +29469,7 @@ class JpOverlay29Data:
         None,
         "HIDDEN_STAIRS_SPAWN_BLOCKED",
         "[Runtime] A flag for when Hidden Stairs could normally have spawned on the floor but didn't.\n\nThis is set either when the Hidden Stairs just happen not to spawn by chance, or when the current floor is a rescue or mission destination floor.\n\nThis appears to be part of a larger (8-byte?) struct. It seems like this value is at least followed by 3 bytes of padding and a 4-byte integer field.",
-        "boolHIDDEN_STAIRS_SPAWN_BLOCKED",
+        "bool",
     )
 
     FIXED_ROOM_DATA_PTR = Symbol(
@@ -29168,7 +29478,7 @@ class JpOverlay29Data:
         None,
         "FIXED_ROOM_DATA_PTR",
         "[Runtime] Pointer to decoded fixed room data loaded from the BALANCE/fixed.bin file.",
-        "void*FIXED_ROOM_DATA_PTR",
+        "void*",
     )
 
     DUNGEON_FADES_PTR = Symbol(
@@ -29177,7 +29487,7 @@ class JpOverlay29Data:
         None,
         "DUNGEON_FADES_PTR",
         "[Runtime] Pointer to the dungeon fades struct that maintains the status of screen fades in dungeon mode.",
-        "struct dungeon_fades*DUNGEON_FADES_PTR",
+        "struct dungeon_fades*",
     )
 
     NECTAR_IQ_BOOST = Symbol(
@@ -29186,7 +29496,7 @@ class JpOverlay29Data:
         None,
         "NECTAR_IQ_BOOST",
         "IQ boost from ingesting Nectar.",
-        "",
+        "struct data_processing_instruction",
     )
 
 
@@ -29360,7 +29670,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_1",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_2 = Symbol(
@@ -29369,7 +29679,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_2",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_3 = Symbol(
@@ -29378,7 +29688,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_3",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_4 = Symbol(
@@ -29387,11 +29697,16 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_4",
+        "struct window_params",
     )
 
     DUNGEON_MAIN_MENU_ITEMS = Symbol(
-        [0x75FC], [0x238B09C], 0x40, "DUNGEON_MAIN_MENU_ITEMS", "", ""
+        [0x75FC],
+        [0x238B09C],
+        0x40,
+        "DUNGEON_MAIN_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[8]",
     )
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
@@ -29418,7 +29733,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_5",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_6 = Symbol(
@@ -29427,7 +29742,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_6",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_7 = Symbol(
@@ -29436,23 +29751,43 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_7",
+        "struct window_params",
     )
 
     DUNGEON_SUBMENU_ITEMS_1 = Symbol(
-        [0x7698], [0x238B138], 0x20, "DUNGEON_SUBMENU_ITEMS_1", "", ""
+        [0x7698],
+        [0x238B138],
+        0x20,
+        "DUNGEON_SUBMENU_ITEMS_1",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     DUNGEON_SUBMENU_ITEMS_2 = Symbol(
-        [0x76B8], [0x238B158], 0x20, "DUNGEON_SUBMENU_ITEMS_2", "", ""
+        [0x76B8],
+        [0x238B158],
+        0x20,
+        "DUNGEON_SUBMENU_ITEMS_2",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     DUNGEON_SUBMENU_ITEMS_3 = Symbol(
-        [0x76D8], [0x238B178], 0x20, "DUNGEON_SUBMENU_ITEMS_3", "", ""
+        [0x76D8],
+        [0x238B178],
+        0x20,
+        "DUNGEON_SUBMENU_ITEMS_3",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     DUNGEON_SUBMENU_ITEMS_4 = Symbol(
-        [0x76F8], [0x238B198], 0x20, "DUNGEON_SUBMENU_ITEMS_4", "", ""
+        [0x76F8],
+        [0x238B198],
+        0x20,
+        "DUNGEON_SUBMENU_ITEMS_4",
+        "",
+        "struct simple_menu_id_item[4]",
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
@@ -29470,7 +29805,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_8",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_9 = Symbol(
@@ -29479,7 +29814,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_9",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_10 = Symbol(
@@ -29488,7 +29823,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_10",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_10",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_11 = Symbol(
@@ -29497,7 +29832,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_11",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_11",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_12 = Symbol(
@@ -29506,7 +29841,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_12",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_12",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_13 = Symbol(
@@ -29515,7 +29850,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_13",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_13",
+        "struct window_params",
     )
 
     OVERLAY31_JP_STRING = Symbol(
@@ -29533,7 +29868,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_14",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_14",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_15 = Symbol(
@@ -29542,7 +29877,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_15",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_15",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_16 = Symbol(
@@ -29551,7 +29886,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_16",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_16",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_17 = Symbol(
@@ -29560,7 +29895,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_17",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_17",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_18 = Symbol(
@@ -29569,7 +29904,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_18",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_18",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_19 = Symbol(
@@ -29578,7 +29913,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_19",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_19",
+        "struct window_params",
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389FE8 = Symbol(
@@ -29596,7 +29931,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_20",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_20",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_21 = Symbol(
@@ -29605,7 +29940,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_21",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_21",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_22 = Symbol(
@@ -29614,7 +29949,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_22",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_22",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_23 = Symbol(
@@ -29623,7 +29958,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_23",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_23",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_24 = Symbol(
@@ -29632,7 +29967,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_24",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_24",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_25 = Symbol(
@@ -29641,11 +29976,16 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_25",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_25",
+        "struct window_params",
     )
 
     DUNGEON_SUBMENU_ITEMS_5 = Symbol(
-        [0x7944], [0x238B3E4], 0x18, "DUNGEON_SUBMENU_ITEMS_5", "", ""
+        [0x7944],
+        [0x238B3E4],
+        0x18,
+        "DUNGEON_SUBMENU_ITEMS_5",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     DUNGEON_WINDOW_PARAMS_26 = Symbol(
@@ -29654,7 +29994,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_26",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_26",
+        "struct window_params",
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_238A144 = Symbol(
@@ -29672,7 +30012,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_27",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_27",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_28 = Symbol(
@@ -29681,7 +30021,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_28",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_28",
+        "struct window_params",
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_238A190 = Symbol(
@@ -29694,7 +30034,12 @@ class JpOverlay31Data:
     )
 
     DUNGEON_SUBMENU_ITEMS_6 = Symbol(
-        [0x79C8], [0x238B468], 0x48, "DUNGEON_SUBMENU_ITEMS_6", "", ""
+        [0x79C8],
+        [0x238B468],
+        0x48,
+        "DUNGEON_SUBMENU_ITEMS_6",
+        "",
+        "struct simple_menu_id_item[9]",
     )
 
     DUNGEON_WINDOW_PARAMS_29 = Symbol(
@@ -29703,7 +30048,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_29",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_29",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_30 = Symbol(
@@ -29712,7 +30057,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_30",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_30",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_31 = Symbol(
@@ -29721,7 +30066,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_31",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_31",
+        "struct window_params",
     )
 
     DUNGEON_WINDOW_PARAMS_32 = Symbol(
@@ -29730,7 +30075,7 @@ class JpOverlay31Data:
         0x10,
         "DUNGEON_WINDOW_PARAMS_32",
         "Note: unverified, ported from Irdkwia's notes",
-        "struct window_paramsDUNGEON_WINDOW_PARAMS_32",
+        "struct window_params",
     )
 
     OVERLAY31_RESERVED_SPACE = Symbol(
@@ -29922,7 +30267,12 @@ class JpOverlay34Data:
     )
 
     START_MENU_ITEMS_CONFIRM = Symbol(
-        [0xD4C], [0x22DE62C], 0x18, "START_MENU_ITEMS_CONFIRM", "", ""
+        [0xD4C],
+        [0x22DE62C],
+        0x18,
+        "START_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C = Symbol(
@@ -29935,7 +30285,12 @@ class JpOverlay34Data:
     )
 
     DUNGEON_DEBUG_MENU_ITEMS = Symbol(
-        [0xD74], [0x22DE654], 0x28, "DUNGEON_DEBUG_MENU_ITEMS", "", ""
+        [0xD74],
+        [0x22DE654],
+        0x28,
+        "DUNGEON_DEBUG_MENU_ITEMS",
+        "",
+        "struct simple_menu_id_item[5]",
     )
 
     OVERLAY34_RESERVED_SPACE = Symbol(
@@ -30239,7 +30594,7 @@ class JpOverlay9Data:
         None,
         "JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a jukebox_track_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateJukeboxTrackMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateJukeboxTrackMenu.",
-        "struct window_paramsJUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     PLAYBACK_CONTROLS_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -30248,7 +30603,7 @@ class JpOverlay9Data:
         None,
         "PLAYBACK_CONTROLS_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a playback_controls_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreatePlaybackControlsMenu.\n\nAdditionally, width and height are 0, and will be computed in CreatePlaybackControlsMenu.",
-        "struct window_paramsPLAYBACK_CONTROLS_MENU_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     INPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
@@ -30257,7 +30612,7 @@ class JpOverlay9Data:
         None,
         "INPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an input_lock_box.",
-        "struct window_paramsINPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS",
+        "struct window_params",
     )
 
     TOP_MENU_RETURN_MUSIC_ID = Symbol(
@@ -30266,7 +30621,7 @@ class JpOverlay9Data:
         None,
         "TOP_MENU_RETURN_MUSIC_ID",
         "Song playing in the main menu when returning from the Sky Jukebox.",
-        "",
+        "struct data_processing_instruction",
     )
 
 
@@ -30292,7 +30647,7 @@ class JpRamData:
         None,
         "DEFAULT_MEMORY_ARENA_MEMORY",
         "The memory region for the default memory arena.\n\nThe length is defined by DEFAULT_MEMORY_ARENA_SIZE.\n\nOne mode that uses this region for heap allocations is dungeon mode.",
-        "",
+        "uint8_t[1991680]",
     )
 
     GROUND_MEMORY_ARENA_2 = Symbol(
@@ -30301,7 +30656,7 @@ class JpRamData:
         None,
         "GROUND_MEMORY_ARENA_2",
         "This is a memory subarena under DEFAULT_MEMORY_ARENA used for some things in ground mode.\n\nIt's used for user_flags 14.\n\nIncluding the allocator metadata, this arena occupies 0xB0000 bytes of space.\n\ntype: struct mem_arena",
-        "struct mem_arenaGROUND_MEMORY_ARENA_2",
+        "struct mem_arena",
     )
 
     GROUND_MEMORY_ARENA_2_BLOCKS = Symbol(
@@ -30310,7 +30665,7 @@ class JpRamData:
         None,
         "GROUND_MEMORY_ARENA_2_BLOCKS",
         "The block array for GROUND_MEMORY_ARENA_2.\n\ntype: struct mem_block[32]",
-        "",
+        "struct mem_block[32]",
     )
 
     GROUND_MEMORY_ARENA_2_MEMORY = Symbol(
@@ -30319,7 +30674,7 @@ class JpRamData:
         None,
         "GROUND_MEMORY_ARENA_2_MEMORY",
         "The memory region for GROUND_MEMORY_ARENA_2.",
-        "",
+        "uint8_t[720100]",
     )
 
     DUNGEON_COLORMAP_PTR = Symbol(
@@ -30328,7 +30683,7 @@ class JpRamData:
         None,
         "DUNGEON_COLORMAP_PTR",
         "Pointer to a colormap used to render colors in a dungeon.\n\nThe colormap is a list of 4-byte RGB colors of the form {R, G, B, padding}, which the game indexes into when rendering colors. Some weather conditions modify the colormap, which is how the color scheme changes when it's, e.g., raining.",
-        "struct rgba*DUNGEON_COLORMAP_PTR",
+        "struct rgba*",
     )
 
     DUNGEON_STRUCT = Symbol(
@@ -30337,7 +30692,7 @@ class JpRamData:
         None,
         "DUNGEON_STRUCT",
         "The dungeon context struct used for tons of stuff in dungeon mode. See struct dungeon in the C headers.\n\nThis struct never seems to be referenced directly, and is instead usually accessed via DUNGEON_PTR in overlay 29.\n\ntype: struct dungeon",
-        "struct dungeonDUNGEON_STRUCT",
+        "struct dungeon",
     )
 
     MOVE_DATA_TABLE = Symbol(
@@ -30346,7 +30701,7 @@ class JpRamData:
         None,
         "MOVE_DATA_TABLE",
         "The move data table loaded directly from /BALANCE/waza_p.bin. See struct move_data_table in the C headers.\n\nPointed to by MOVE_DATA_TABLE_PTR in the ARM 9 binary.\n\ntype: struct move_data_table",
-        "struct move_data_tableMOVE_DATA_TABLE",
+        "struct move_data_table",
     )
 
     SOUND_MEMORY_ARENA = Symbol(
@@ -30355,7 +30710,7 @@ class JpRamData:
         None,
         "SOUND_MEMORY_ARENA",
         "This is a memory subarena under DEFAULT_MEMORY_ARENA that seems to be used exclusively for sound data.\n\nIncluding allocator metadata, this subarena occupies 0x3C000 bytes of space within the default arena.\n\nIt's referenced by various sound functions like LoadDseFile, PlaySeLoad, and PlayBgm when allocating memory.\n\ntype: struct mem_arena",
-        "struct mem_arenaSOUND_MEMORY_ARENA",
+        "struct mem_arena",
     )
 
     SOUND_MEMORY_ARENA_BLOCKS = Symbol(
@@ -30364,7 +30719,7 @@ class JpRamData:
         None,
         "SOUND_MEMORY_ARENA_BLOCKS",
         "The block array for SOUND_MEMORY_ARENA.\n\ntype: struct mem_block[20]",
-        "",
+        "struct mem_block[20]",
     )
 
     SOUND_MEMORY_ARENA_MEMORY = Symbol(
@@ -30373,7 +30728,7 @@ class JpRamData:
         None,
         "SOUND_MEMORY_ARENA_MEMORY",
         "The memory region for SOUND_MEMORY_ARENA.\n\nThis region appears to be used for sound-related heap allocations, like when loading sound files into memory.",
-        "",
+        "uint8_t[245252]",
     )
 
     FRAMES_SINCE_LAUNCH = Symbol(
@@ -30382,7 +30737,7 @@ class JpRamData:
         None,
         "FRAMES_SINCE_LAUNCH",
         "Starts at 0 when the game is first launched, and continuously ticks up once per frame while the game is running.",
-        "uint32_tFRAMES_SINCE_LAUNCH",
+        "uint32_t",
     )
 
     TOUCHSCREEN_STATUS = Symbol(
@@ -30391,7 +30746,7 @@ class JpRamData:
         None,
         "TOUCHSCREEN_STATUS",
         "Status of the touchscreen, including the coordinates of the currently pressed position in pixels.",
-        "struct touchscreen_statusTOUCHSCREEN_STATUS",
+        "struct touchscreen_status",
     )
 
     BAG_ITEMS = Symbol(
@@ -30400,16 +30755,11 @@ class JpRamData:
         None,
         "BAG_ITEMS",
         "Array of item structs within the player's bag.\n\nWhile the game only allows a maximum of 48 items during normal play, it seems to read up to 50 item slots if filled.\n\ntype: struct item[50]",
-        "",
+        "struct item[50]",
     )
 
     BAG_ITEMS_PTR = Symbol(
-        None,
-        None,
-        None,
-        "BAG_ITEMS_PTR",
-        "Pointer to BAG_ITEMS.",
-        "struct item*BAG_ITEMS_PTR",
+        None, None, None, "BAG_ITEMS_PTR", "Pointer to BAG_ITEMS.", "struct item*"
     )
 
     STORAGE_ITEMS = Symbol(
@@ -30418,7 +30768,7 @@ class JpRamData:
         None,
         "STORAGE_ITEMS",
         "Array of item IDs in the player's item storage.\n\nFor stackable items, the quantities are stored elsewhere, in STORAGE_ITEM_QUANTITIES.\n\ntype: struct item_id_16[1000]",
-        "",
+        "struct item_id_16[1000]",
     )
 
     STORAGE_ITEM_QUANTITIES = Symbol(
@@ -30427,7 +30777,7 @@ class JpRamData:
         None,
         "STORAGE_ITEM_QUANTITIES",
         "Array of 1000 2-byte (unsigned) quantities corresponding to the item IDs in STORAGE_ITEMS.\n\nIf the corresponding item ID is not a stackable item, the entry in this array is unused, and will be 0.",
-        "",
+        "uint16_t[1000]",
     )
 
     KECLEON_SHOP_ITEMS_PTR = Symbol(
@@ -30436,7 +30786,7 @@ class JpRamData:
         None,
         "KECLEON_SHOP_ITEMS_PTR",
         "Pointer to KECLEON_SHOP_ITEMS.",
-        "struct bulk_item*KECLEON_SHOP_ITEMS_PTR",
+        "struct bulk_item*",
     )
 
     KECLEON_SHOP_ITEMS = Symbol(
@@ -30445,7 +30795,7 @@ class JpRamData:
         None,
         "KECLEON_SHOP_ITEMS",
         "Array of up to 8 items in the Kecleon Shop.\n\nIf there are fewer than 8 items, the array is expected to be null-terminated.\n\ntype: struct bulk_item[8]",
-        "",
+        "struct bulk_item[8]",
     )
 
     UNUSED_KECLEON_SHOP_ITEMS = Symbol(
@@ -30454,7 +30804,7 @@ class JpRamData:
         None,
         "UNUSED_KECLEON_SHOP_ITEMS",
         "Seems to be another array like KECLEON_SHOP_ITEMS, but don't actually appear to be used by the Kecleon Shop.",
-        "",
+        "struct bulk_item[8]",
     )
 
     KECLEON_WARES_ITEMS_PTR = Symbol(
@@ -30463,7 +30813,7 @@ class JpRamData:
         None,
         "KECLEON_WARES_ITEMS_PTR",
         "Pointer to KECLEON_WARES_ITEMS.",
-        "struct bulk_item*KECLEON_WARES_ITEMS_PTR",
+        "struct bulk_item*",
     )
 
     KECLEON_WARES_ITEMS = Symbol(
@@ -30472,7 +30822,7 @@ class JpRamData:
         None,
         "KECLEON_WARES_ITEMS",
         "Array of up to 4 items in Kecleon Wares.\n\nIf there are fewer than 4 items, the array is expected to be null-terminated.\n\ntype: struct bulk_item[4]",
-        "",
+        "struct bulk_item[4]",
     )
 
     UNUSED_KECLEON_WARES_ITEMS = Symbol(
@@ -30481,7 +30831,7 @@ class JpRamData:
         None,
         "UNUSED_KECLEON_WARES_ITEMS",
         "Seems to be another array like KECLEON_WARES_ITEMS, but don't actually appear to be used by Kecleon Wares.",
-        "",
+        "struct bulk_item[4]",
     )
 
     MONEY_CARRIED = Symbol(
@@ -30490,7 +30840,7 @@ class JpRamData:
         0x4,
         "MONEY_CARRIED",
         "The amount of money the player is currently carrying.",
-        "int32_tMONEY_CARRIED",
+        "int32_t",
     )
 
     MONEY_STORED = Symbol(
@@ -30499,7 +30849,7 @@ class JpRamData:
         0x4,
         "MONEY_STORED",
         "The amount of money the player currently has stored in the Duskull Bank.",
-        "int32_tMONEY_STORED",
+        "int32_t",
     )
 
     AUDIO_COMMANDS_BUFFER = Symbol(
@@ -30508,7 +30858,7 @@ class JpRamData:
         None,
         "AUDIO_COMMANDS_BUFFER",
         "Buffer used to store audio commands. 16 entries in total. Seems like entries are removed at some point (maybe after the commands are read or after they finish executing).",
-        "",
+        "struct audio_command[16]",
     )
 
     CURSOR_16_SPRITE_ID = Symbol(
@@ -30517,7 +30867,7 @@ class JpRamData:
         None,
         "CURSOR_16_SPRITE_ID",
         "Id of the 'FONT/cursor_16.wan' sprite loaded in WAN_TABLE",
-        "uint16_tCURSOR_16_SPRITE_ID",
+        "uint16_t",
     )
 
     CURSOR_SPRITE_ID = Symbol(
@@ -30526,7 +30876,7 @@ class JpRamData:
         None,
         "CURSOR_SPRITE_ID",
         "Id of the 'FONT/cursor.wan' sprite loaded in WAN_TABLE",
-        "uint16_tCURSOR_SPRITE_ID",
+        "uint16_t",
     )
 
     CURSOR_ANIMATION_CONTROL = Symbol(
@@ -30535,7 +30885,7 @@ class JpRamData:
         None,
         "CURSOR_ANIMATION_CONTROL",
         "animation_control of 'FONT/cursor.wan'",
-        "struct animation_control*CURSOR_ANIMATION_CONTROL",
+        "struct animation_control*",
     )
 
     CURSOR_16_ANIMATION_CONTROL = Symbol(
@@ -30544,7 +30894,7 @@ class JpRamData:
         None,
         "CURSOR_16_ANIMATION_CONTROL",
         "animation_control of 'FONT/cursor_16.wan'",
-        "struct animation_control*CURSOR_16_ANIMATION_CONTROL",
+        "struct animation_control*",
     )
 
     ALERT_SPRITE_ID = Symbol(
@@ -30553,7 +30903,7 @@ class JpRamData:
         None,
         "ALERT_SPRITE_ID",
         "Id of the 'FONT/alert.wan' sprite loaded in WAN_TABLE",
-        "uint16_tALERT_SPRITE_ID",
+        "uint16_t",
     )
 
     ALERT_ANIMATION_CONTROL = Symbol(
@@ -30562,7 +30912,7 @@ class JpRamData:
         None,
         "ALERT_ANIMATION_CONTROL",
         "animation_control of 'FONT/alter.wan'",
-        "struct animation_control*ALERT_ANIMATION_CONTROL",
+        "struct animation_control*",
     )
 
     SOUND_MEMORY_ARENA_PTR = Symbol(
@@ -30571,7 +30921,7 @@ class JpRamData:
         None,
         "SOUND_MEMORY_ARENA_PTR",
         "Pointer to SOUND_MEMORY_ARENA.",
-        "struct mem_arena*SOUND_MEMORY_ARENA_PTR",
+        "struct mem_arena*",
     )
 
     WINDOW_LIST = Symbol(
@@ -30580,7 +30930,7 @@ class JpRamData:
         None,
         "WINDOW_LIST",
         "Array of all window structs. Newly created window structs are taken from slots in this array.\n\nNote that this array isn't strictly ordered in any way. A newly created window will occupy the first available slot. If a window in an early slot is destroyed, windows that are still active in later slots won't be shifted back unless destroyed and recreated.\n\ntype: struct window_list",
-        "struct window_listWINDOW_LIST",
+        "struct window_list",
     )
 
     LAST_NEW_MOVE = Symbol(
@@ -30589,7 +30939,7 @@ class JpRamData:
         None,
         "LAST_NEW_MOVE",
         "Move struct of the last new move introduced when learning a new move. Persists even after the move selection is made in the menu.\n\ntype: struct move",
-        "struct moveLAST_NEW_MOVE",
+        "struct move",
     )
 
     SCRIPT_VARS_VALUES = Symbol(
@@ -30598,7 +30948,7 @@ class JpRamData:
         0x400,
         "SCRIPT_VARS_VALUES",
         "The table of game variable values. Its structure is determined by SCRIPT_VARS.\n\nNote that with the script variable list defined in SCRIPT_VARS, the used length of this table is actually only 0x2B4. However, the real length of this table is 0x400 based on the game code.\n\ntype: struct script_var_value_table",
-        "struct script_var_value_tableSCRIPT_VARS_VALUES",
+        "struct script_var_value_table",
     )
 
     BAG_LEVEL = Symbol(
@@ -30607,7 +30957,7 @@ class JpRamData:
         None,
         "BAG_LEVEL",
         "The player's bag level, which determines the bag capacity. This indexes directly into the BAG_CAPACITY_TABLE in the ARM9 binary.",
-        "uint8_tBAG_LEVEL",
+        "uint8_t",
     )
 
     DEBUG_SPECIAL_EPISODE_NUMBER = Symbol(
@@ -30616,7 +30966,7 @@ class JpRamData:
         0x1,
         "DEBUG_SPECIAL_EPISODE_NUMBER",
         "The number of the special episode currently being played.\n\nThis backs the EXECUTE_SPECIAL_EPISODE_TYPE script variable.\n\ntype: struct special_episode_type_8",
-        "struct special_episode_type_8DEBUG_SPECIAL_EPISODE_NUMBER",
+        "struct special_episode_type_8",
     )
 
     KAOMADO_STREAM = Symbol(
@@ -30625,7 +30975,7 @@ class JpRamData:
         None,
         "KAOMADO_STREAM",
         "The file stream utilized for all Kaomado portrait loads.\n\ntype: struct file_stream",
-        "struct file_streamKAOMADO_STREAM",
+        "struct file_stream",
     )
 
     PENDING_DUNGEON_ID = Symbol(
@@ -30634,7 +30984,7 @@ class JpRamData:
         None,
         "PENDING_DUNGEON_ID",
         "The ID of the selected dungeon when setting off from the overworld.\n\nControls the text and map location during the 'map cutscene' just before entering a dungeon, as well as the actual dungeon loaded afterwards.\n\nThis field is actually part of a larger struct that also contains PENDING_STARTING_FLOOR.\n\ntype: struct dungeon_id_8",
-        "struct dungeon_id_8PENDING_DUNGEON_ID",
+        "struct dungeon_id_8",
     )
 
     PENDING_STARTING_FLOOR = Symbol(
@@ -30643,7 +30993,7 @@ class JpRamData:
         None,
         "PENDING_STARTING_FLOOR",
         "The floor number to start from in the dungeon specified by PENDING_DUNGEON_ID.",
-        "uint8_tPENDING_STARTING_FLOOR",
+        "uint8_t",
     )
 
     PLAY_TIME_SECONDS = Symbol(
@@ -30652,7 +31002,7 @@ class JpRamData:
         None,
         "PLAY_TIME_SECONDS",
         "The player's total play time in seconds.",
-        "uint32_tPLAY_TIME_SECONDS",
+        "uint32_t",
     )
 
     PLAY_TIME_FRAME_COUNTER = Symbol(
@@ -30661,7 +31011,7 @@ class JpRamData:
         None,
         "PLAY_TIME_FRAME_COUNTER",
         "Counts from 0-59 in a loop, with the play time being incremented by 1 second with each rollover.",
-        "uint8_tPLAY_TIME_FRAME_COUNTER",
+        "uint8_t",
     )
 
     TEAM_NAME = Symbol(
@@ -30670,7 +31020,7 @@ class JpRamData:
         None,
         "TEAM_NAME",
         "The team name.\n\nA null-terminated string, with a maximum length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game typically uses.\n\nThis is presumably part of a larger struct, together with other nearby data.",
-        "",
+        "char[10]",
     )
 
     LEVEL_UP_DATA_MONSTER_ID = Symbol(
@@ -30679,7 +31029,7 @@ class JpRamData:
         None,
         "LEVEL_UP_DATA_MONSTER_ID",
         "ID of the monster whose level-up data is currently stored in LEVEL_UP_DATA_DECOMPRESS_BUFFER.",
-        "struct monster_id_16LEVEL_UP_DATA_MONSTER_ID",
+        "struct monster_id_16",
     )
 
     LEVEL_UP_DATA_DECOMPRESS_BUFFER = Symbol(
@@ -30688,7 +31038,7 @@ class JpRamData:
         None,
         "LEVEL_UP_DATA_DECOMPRESS_BUFFER",
         "Buffer used to stored a monster's decompressed level up data. Used by GetLvlUpEntry.\n\nExact size is a guess (100 levels * 12 bytes per entry = 1200 = 0x4B0).",
-        "",
+        "struct level_up_entry[100]",
     )
 
     TEAM_MEMBER_TABLE = Symbol(
@@ -30697,16 +31047,14 @@ class JpRamData:
         0x99A8,
         "TEAM_MEMBER_TABLE",
         "Table with all team members, persistent information about them, and information about which ones are currently active.\n\nSee the comments on struct team_member_table for more information.\n\ntype: struct team_member_table",
-        "struct team_member_tableTEAM_MEMBER_TABLE",
+        "struct team_member_table",
     )
 
     DRIVER_WORK = Symbol(None, None, None, "DRIVER_WORK", "", "")
 
-    DISP_MODE = Symbol(None, None, None, "DISP_MODE", "", "uint16_tDISP_MODE")
+    DISP_MODE = Symbol(None, None, None, "DISP_MODE", "", "uint16_t")
 
-    GXI_VRAM_LOCK_ID = Symbol(
-        None, None, None, "GXI_VRAM_LOCK_ID", "", "uint16_tGXI_VRAM_LOCK_ID"
-    )
+    GXI_VRAM_LOCK_ID = Symbol(None, None, None, "GXI_VRAM_LOCK_ID", "", "uint16_t")
 
     ENABLED_VRAM_BANKS = Symbol(
         None,
@@ -30714,14 +31062,12 @@ class JpRamData:
         None,
         "ENABLED_VRAM_BANKS",
         "Bitset of enabled VRAM banks\n\ntype: vram_banks_set",
-        "struct vram_banks_setENABLED_VRAM_BANKS",
+        "struct vram_banks_set",
     )
 
-    SUB_BG_EXT_PLTT = Symbol(
-        None, None, None, "SUB_BG_EXT_PLTT", "", "undefined4SUB_BG_EXT_PLTT"
-    )
+    SUB_BG_EXT_PLTT = Symbol(None, None, None, "SUB_BG_EXT_PLTT", "", "undefined4")
 
-    CLR_IMG = Symbol(None, None, None, "CLR_IMG", "", "undefined4CLR_IMG")
+    CLR_IMG = Symbol(None, None, None, "CLR_IMG", "", "undefined4")
 
     THREAD_INFO_STRUCT = Symbol(
         None,
@@ -30729,7 +31075,7 @@ class JpRamData:
         None,
         "THREAD_INFO_STRUCT",
         "thread_info struct that contains global state about threads",
-        "struct thread_infoTHREAD_INFO_STRUCT",
+        "struct thread_info",
     )
 
     FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
@@ -30738,7 +31084,7 @@ class JpRamData:
         None,
         "FRAMES_SINCE_LAUNCH_TIMES_THREE",
         "Starts at 0 when the game is first launched, and ticks up by 3 per frame while the game is running.",
-        "uint32_tFRAMES_SINCE_LAUNCH_TIMES_THREE",
+        "uint32_t",
     )
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
@@ -30747,7 +31093,7 @@ class JpRamData:
         None,
         "GROUND_MEMORY_ARENA_1_PTR",
         "Pointer to GROUND_MEMORY_ARENA_1.",
-        "struct mem_arena*GROUND_MEMORY_ARENA_1_PTR",
+        "struct mem_arena*",
     )
 
     GROUND_MEMORY_ARENA_2_PTR = Symbol(
@@ -30756,7 +31102,7 @@ class JpRamData:
         None,
         "GROUND_MEMORY_ARENA_2_PTR",
         "Pointer to GROUND_MEMORY_ARENA_2.",
-        "struct mem_arena*GROUND_MEMORY_ARENA_2_PTR",
+        "struct mem_arena*",
     )
 
     LOCK_NOTIFY_ARRAY = Symbol(
@@ -30765,7 +31111,7 @@ class JpRamData:
         None,
         "LOCK_NOTIFY_ARRAY",
         "Used to notify scripts waiting for a certain lock to unlock so they can resume their execution.\n\n1 byte per lock. Exact size isn't confirmed, it could potentially be longer.",
-        "",
+        "bool[20]",
     )
 
     GROUND_MEMORY_ARENA_1 = Symbol(
@@ -30774,7 +31120,7 @@ class JpRamData:
         None,
         "GROUND_MEMORY_ARENA_1",
         "This is a top-level memory arena used for some things in ground mode.\n\nIt's used for user_flags 8, 15, and 16.\n\nIncluding the allocator metadata, this arena occupies 0x64000 bytes of space.\n\ntype: struct mem_arena",
-        "struct mem_arenaGROUND_MEMORY_ARENA_1",
+        "struct mem_arena",
     )
 
     GROUND_MEMORY_ARENA_1_BLOCKS = Symbol(
@@ -30783,7 +31129,7 @@ class JpRamData:
         None,
         "GROUND_MEMORY_ARENA_1_BLOCKS",
         "The block array for GROUND_MEMORY_ARENA_1.\n\ntype: struct mem_block[52]",
-        "",
+        "struct mem_block[52]",
     )
 
     GROUND_MEMORY_ARENA_1_MEMORY = Symbol(
@@ -30792,16 +31138,11 @@ class JpRamData:
         None,
         "GROUND_MEMORY_ARENA_1_MEMORY",
         "The memory region for GROUND_MEMORY_ARENA_1.",
-        "",
+        "uint8_t[408324]",
     )
 
     SENTRY_DUTY_STRUCT = Symbol(
-        None,
-        None,
-        None,
-        "SENTRY_DUTY_STRUCT",
-        "",
-        "struct sentry_dutySENTRY_DUTY_STRUCT",
+        None, None, None, "SENTRY_DUTY_STRUCT", "", "struct sentry_duty"
     )
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(
@@ -30810,7 +31151,7 @@ class JpRamData:
         None,
         "TURNING_ON_THE_SPOT_FLAG",
         "[Runtime] Flag for whether the player is turning on the spot (pressing Y).",
-        "boolTURNING_ON_THE_SPOT_FLAG",
+        "bool",
     )
 
     LOADED_ATTACK_SPRITE_DATA = Symbol(
@@ -30819,7 +31160,7 @@ class JpRamData:
         None,
         "LOADED_ATTACK_SPRITE_DATA",
         "[Runtime] Pointer to the dynamically allocated structure relating to the currently loaded attack sprite, in dungeon mode.\n\ntype: struct loaded_attack_sprite_data*",
-        "struct loaded_attack_sprite_data*LOADED_ATTACK_SPRITE_DATA",
+        "struct loaded_attack_sprite_data*",
     )
 
     ROLLOUT_ICE_BALL_MISSED = Symbol(
@@ -30828,7 +31169,7 @@ class JpRamData:
         None,
         "ROLLOUT_ICE_BALL_MISSED",
         "[Runtime] Appears to be set to true whenever a hit from Rollout or Ice Ball fails to deal damage.",
-        "boolROLLOUT_ICE_BALL_MISSED",
+        "bool",
     )
 
     MULTIHIT_FATIGUE_MOVE_USED = Symbol(
@@ -30837,7 +31178,7 @@ class JpRamData:
         None,
         "MULTIHIT_FATIGUE_MOVE_USED",
         "[Runtime] Appears to be set to true whenever a multihit fatigue move deals damage.",
-        "boolMULTIHIT_FATIGUE_MOVE_USED",
+        "bool",
     )
 
     TWINEEDLE_HIT_TRACKER = Symbol(
@@ -30846,7 +31187,7 @@ class JpRamData:
         None,
         "TWINEEDLE_HIT_TRACKER",
         "[Runtime] Appears to be set to true whenever Twineedle hits and deals damage. So that even if the second attack misses, it will still try to poison the target.",
-        "boolTWINEEDLE_HIT_TRACKER",
+        "bool",
     )
 
     RAPID_SPIN_BINDING_REMOVAL = Symbol(
@@ -30855,7 +31196,7 @@ class JpRamData:
         None,
         "RAPID_SPIN_BINDING_REMOVAL",
         "[Runtime] Appears to be set to true when using Rapid Spin to later remove any binding effects and Leech Seed.",
-        "boolRAPID_SPIN_BINDING_REMOVAL",
+        "bool",
     )
 
     ROLLOUT_ICE_BALL_SUCCESSIVE_HITS = Symbol(
@@ -30864,7 +31205,7 @@ class JpRamData:
         None,
         "ROLLOUT_ICE_BALL_SUCCESSIVE_HITS",
         "[Runtime] Seems to count the number of successive hits by Rollout or Ice Ball.",
-        "intROLLOUT_ICE_BALL_SUCCESSIVE_HITS",
+        "int",
     )
 
     MULTIHIT_MOVE_SUCCESSIVE_HITS = Symbol(
@@ -30873,7 +31214,7 @@ class JpRamData:
         None,
         "MULTIHIT_MOVE_SUCCESSIVE_HITS",
         "[Runtime] Seems to count the number of successive hits for multihit moves. This is used by Twineedle to check to attempt to apply Poison after the second attack.",
-        "intMULTIHIT_MOVE_SUCCESSIVE_HITS",
+        "int",
     )
 
     TRIPLE_KICK_SUCCESSIVE_HITS = Symbol(
@@ -30882,7 +31223,7 @@ class JpRamData:
         None,
         "TRIPLE_KICK_SUCCESSIVE_HITS",
         "[Runtime] Seems to count the number of successive hits by Triple Kick.",
-        "intTRIPLE_KICK_SUCCESSIVE_HITS",
+        "int",
     )
 
     METRONOME_NEXT_INDEX = Symbol(
@@ -30891,7 +31232,7 @@ class JpRamData:
         None,
         "METRONOME_NEXT_INDEX",
         "[Runtime] The index into METRONOME_TABLE for the next usage of Metronome.",
-        "intMETRONOME_NEXT_INDEX",
+        "int",
     )
 
     FLOOR_GENERATION_STATUS = Symbol(
@@ -30900,7 +31241,7 @@ class JpRamData:
         None,
         "FLOOR_GENERATION_STATUS",
         "[Runtime] Status data related to generation of the current floor in a dungeon.\n\nThis data is populated as the dungeon floor is generated.\n\ntype: struct floor_generation_status",
-        "struct floor_generation_statusFLOOR_GENERATION_STATUS",
+        "struct floor_generation_status",
     )
 
 
