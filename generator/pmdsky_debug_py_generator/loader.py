@@ -117,6 +117,13 @@ class Symbol:
     lengths: dict[Region, int | None] = field(default_factory=dict)
     description: str = field(default_factory=str)
     type: str = field(default_factory=str)
+    aliases: list[str] = field(default_factory=list)
+
+
+@dataclass
+class DeprecatedSymbol:
+    oldname: str
+    sym: Symbol
 
 
 @dataclass
@@ -126,7 +133,9 @@ class Binary:
     loadaddresses: dict[Region, int | None] = field(default_factory=dict)
     lengths: dict[Region, int | None] = field(default_factory=dict)
     functions: list[Symbol] = field(default_factory=list)
+    deprecated_functions: list[DeprecatedSymbol] = field(default_factory=list)
     data: list[Symbol] = field(default_factory=list)
+    deprecated_data: list[DeprecatedSymbol] = field(default_factory=list)
     description: str = field(default_factory=str)
 
     @classmethod
@@ -229,10 +238,14 @@ class Loader:
                 Region.fill_missing(binary.lengths)
             if "functions" in definition:
                 for symbol_def in definition["functions"]:
-                    binary.functions.append(self._read_symbol(symbol_def))
+                    sym = self._read_symbol(symbol_def)
+                    binary.functions.append(sym)
+                    self._read_deprecations(binary.deprecated_functions, sym)
             if "data" in definition:
                 for symbol_def in definition["data"]:
-                    binary.data.append(self._read_symbol(symbol_def))
+                    sym = self._read_symbol(symbol_def)
+                    binary.data.append(sym)
+                    self._read_deprecations(binary.deprecated_data, sym)
             if "description" in definition:
                 if binary.description == "":
                     binary.description = definition["description"]
@@ -248,7 +261,7 @@ class Loader:
         else:
             raise ValueError("Symbol is missing its name.")
 
-        sym = Symbol(name, description=symbol_def.get("description", ""))
+        sym = Symbol(name, description=symbol_def.get("description", ""), aliases=symbol_def.get("aliases", []))
 
         if "address" in symbol_def:
             for region_str, value in symbol_def["address"].items():
@@ -273,6 +286,11 @@ class Loader:
         self._all_symbols[sym.name] = sym
 
         return sym
+
+    def _read_deprecations(self, deprecations: list[DeprecatedSymbol], symbol: Symbol):
+        for alias in symbol.aliases:
+            deprecations.append(DeprecatedSymbol(sym=symbol, oldname=alias))
+        return len(deprecations) > 0
 
     def add_types(self, data_headers_dir: str):
         """
