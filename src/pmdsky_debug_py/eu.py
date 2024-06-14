@@ -1,4 +1,19 @@
 from .protocol import Symbol
+import warnings
+
+
+class _Deprecated:
+    def __init__(self, oldname, symbol):
+        self.oldname = oldname
+        self.symbol = symbol
+
+    def __get__(self, _obj, _objtype=None):
+        warnings.warn(
+            f"symbol {self.oldname} has been renamed to {self.symbol.name}",
+            category=DeprecationWarning,
+            stacklevel=2,
+        )
+        return self.symbol
 
 
 class EuArm7Functions:
@@ -161,6 +176,12 @@ class EuArm7Functions:
         "Copy of the ARM9 function. See arm9.yml for more information.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
         None,
     )
+
+    __divsi3 = _Deprecated("__divsi3", _s32_div_f)
+
+    __udivsi3 = _Deprecated("__udivsi3", _u32_div_f)
+
+    __udivsi3_no_zero_check = _Deprecated("__udivsi3_no_zero_check", _u32_div_not_0_f)
 
 
 class EuArm7Data:
@@ -8824,6 +8845,80 @@ class EuArm9Functions:
         None,
     )
 
+    FileRom_InitDataTransfer = _Deprecated("FileRom_InitDataTransfer", DataTransferInit)
+
+    FileRom_StopDataTransfer = _Deprecated("FileRom_StopDataTransfer", DataTransferStop)
+
+    FileRom_Veneer_FileInit = _Deprecated("FileRom_Veneer_FileInit", FileInitVeneer)
+
+    FileRom_HandleOpen = _Deprecated("FileRom_HandleOpen", FileOpen)
+
+    FileRom_HandleRead = _Deprecated("FileRom_HandleRead", FileRead)
+
+    FileRom_HandleSeek = _Deprecated("FileRom_HandleSeek", FileSeek)
+
+    Debug_Init = _Deprecated("Debug_Init", InitDebug)
+
+    Debug_InitDebugFlag = _Deprecated("Debug_InitDebugFlag", InitDebugFlag)
+
+    Debug_GetDebugFlag = _Deprecated("Debug_GetDebugFlag", GetDebugFlag)
+
+    Debug_SetDebugFlag = _Deprecated("Debug_SetDebugFlag", SetDebugFlag)
+
+    Debug_Stripped6 = _Deprecated("Debug_Stripped6", InitDebugStripped6)
+
+    Debug_Stripped5 = _Deprecated("Debug_Stripped5", InitDebugStripped5)
+
+    Debug_PrintTrace = _Deprecated("Debug_PrintTrace", DebugPrintTrace)
+
+    Debug_Print0 = _Deprecated("Debug_Print0", DebugPrint0)
+
+    Debug_InitLogFlag = _Deprecated("Debug_InitLogFlag", InitDebugLogFlag)
+
+    Debug_GetLogFlag = _Deprecated("Debug_GetLogFlag", GetDebugLogFlag)
+
+    Debug_SetLogFlag = _Deprecated("Debug_SetLogFlag", SetDebugLogFlag)
+
+    Debug_Print = _Deprecated("Debug_Print", DebugPrint)
+
+    Debug_Stripped4 = _Deprecated("Debug_Stripped4", InitDebugStripped4)
+
+    Debug_Stripped3 = _Deprecated("Debug_Stripped3", InitDebugStripped3)
+
+    Debug_Stripped2 = _Deprecated("Debug_Stripped2", InitDebugStripped2)
+
+    Debug_Stripped1 = _Deprecated("Debug_Stripped1", InitDebugStripped1)
+
+    Debug_FatalError = _Deprecated("Debug_FatalError", FatalError)
+
+    DirectoryFileMngr_ExtractAllDirectoryFiles = _Deprecated(
+        "DirectoryFileMngr_ExtractAllDirectoryFiles", OpenAllPackFiles
+    )
+
+    DirectoryFileMngr_GetDirectoryFileSize = _Deprecated(
+        "DirectoryFileMngr_GetDirectoryFileSize", GetFileLengthInPackWithPackNb
+    )
+
+    DirectoryFileMngr_LoadDirectoryFile = _Deprecated(
+        "DirectoryFileMngr_LoadDirectoryFile", LoadFileInPackWithPackId
+    )
+
+    DirectoryFileMngr_OpenDirectoryFile = _Deprecated(
+        "DirectoryFileMngr_OpenDirectoryFile", AllocAndLoadFileInPack
+    )
+
+    DirectoryFile_ExtractDirectoryFile = _Deprecated(
+        "DirectoryFile_ExtractDirectoryFile", OpenPackFile
+    )
+
+    DirectoryFile_GetDirectoryFileSize = _Deprecated(
+        "DirectoryFile_GetDirectoryFileSize", GetFileLengthInPack
+    )
+
+    DirectoryFile_LoadDirectoryFile = _Deprecated(
+        "DirectoryFile_LoadDirectoryFile", LoadFileInPack
+    )
+
 
 class EuArm9Data:
 
@@ -10753,6 +10848,18 @@ class EuArm9Data:
         "Starting level of the partner.",
         "struct data_processing_instruction",
     )
+
+    EXCLUSIVE_ITEM_ATTACK_BOOSTS = _Deprecated(
+        "EXCLUSIVE_ITEM_ATTACK_BOOSTS", EXCLUSIVE_ITEM_STAT_BOOST_DATA
+    )
+
+    DIRECTORY_FILES_EXTRACTED = _Deprecated(
+        "DIRECTORY_FILES_EXTRACTED", PACK_FILES_OPENED
+    )
+
+    DIRECTORY_FILE_TABLE = _Deprecated("DIRECTORY_FILE_TABLE", PACK_FILE_PATHS_TABLE)
+
+    TEXT_SPEED = _Deprecated("TEXT_SPEED", REGULAR_TEXT_SPEED)
 
 
 class EuArm9Section:
@@ -13247,6 +13354,32 @@ class EuLibsFunctions:
         "Meant to do set up for floating point calculations? Does nothing.\n\nNo params.",
         None,
     )
+
+    DseUtil_GetRandomNumber = _Deprecated(
+        "DseUtil_GetRandomNumber", SoundUtil_GetRandomNumber
+    )
+
+    __addsf3 = _Deprecated("__addsf3", _fadd)
+
+    __divsf3 = _Deprecated("__divsf3", _fdiv)
+
+    __extendsfdf2 = _Deprecated("__extendsfdf2", _f2d)
+
+    __fixsfsi = _Deprecated("__fixsfsi", _ffix)
+
+    __floatsisf = _Deprecated("__floatsisf", _fflt)
+
+    __floatunsisf = _Deprecated("__floatunsisf", _ffltu)
+
+    __mulsf3 = _Deprecated("__mulsf3", _fmul)
+
+    __subsf3 = _Deprecated("__subsf3", _fsub)
+
+    __divsi3 = _Deprecated("__divsi3", _s32_div_f)
+
+    __udivsi3 = _Deprecated("__udivsi3", _u32_div_f)
+
+    __udivsi3_no_zero_check = _Deprecated("__udivsi3_no_zero_check", _u32_div_not_0_f)
 
 
 class EuLibsData:
@@ -18829,6 +18962,8 @@ class EuOverlay11Functions:
         "Handles the team stats top screen display in the overworld.\n\nFor some reason the implementation seems considerably jankier in ground mode. In dungeon mode there's this structure for the top screen that has handlers for creating, updating and closing the various top screen layouts in a sort of polymorphic way. Here there's just a separate function for every layout that gets called every frame and seems to have a switch-case to handle everything about it.\n\nNo params.",
         None,
     )
+
+    ProcessScriptParam = _Deprecated("ProcessScriptParam", ScriptParamToInt)
 
 
 class EuOverlay11Data:
