@@ -1,4 +1,14 @@
 from .protocol import Symbol
+import warnings
+
+class _Deprecated:
+    def __init__(self, oldname, symbol):
+        self.oldname = oldname
+        self.symbol = symbol
+
+    def __get__(self, _obj, _objtype=None):
+        warnings.warn(f"symbol {self.oldname} has been renamed to {self.symbol.name}", category=DeprecationWarning, stacklevel=2)
+        return self.symbol
 
 {% for binary in binaries %}
 class {{ region.class_prefix() }}{{ binary.class_name }}Functions:
@@ -15,6 +25,9 @@ class {{ region.class_prefix() }}{{ binary.class_name }}Functions:
         None
     )
     {% endfor %}
+    {% for dep_fn in binary.deprecated_functions %}
+    {{ dep_fn.oldname }} = _Deprecated("{{ dep_fn.oldname }}", {{ dep_fn.sym.name }})
+    {% endfor %}
 
 class {{ region.class_prefix() }}{{ binary.class_name }}Data:
     {% if not binary.data | length %}
@@ -29,6 +42,9 @@ class {{ region.class_prefix() }}{{ binary.class_name }}Data:
         "{{ dt.description | escape_py }}",
         "{{ dt.type | escape_py }}"
     )
+    {% endfor %}
+    {% for dep_dt in binary.deprecated_data %}
+    {{ dep_dt.oldname }} = _Deprecated("{{ dep_dt.oldname }}", {{ dep_dt.sym.name }})
     {% endfor %}
 
 class {{ region.class_prefix() }}{{ binary.class_name }}Section:
