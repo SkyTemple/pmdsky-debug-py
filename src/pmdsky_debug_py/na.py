@@ -9653,7 +9653,12 @@ class NaArm9Data:
     )
 
     MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol(
-        [0xA188C], [0x20A188C], 0x4, "MIN_IQ_EXCLUSIVE_MOVE_USER", "", "int32_t"
+        [0xA188C],
+        [0x20A188C],
+        0x4,
+        "MIN_IQ_EXCLUSIVE_MOVE_USER",
+        "Minimum IQ required for enemies to use Exclusive-Move User",
+        "int32_t",
     )
 
     WONDER_GUMMI_IQ_GAIN = Symbol(
@@ -9675,7 +9680,12 @@ class NaArm9Data:
     )
 
     MIN_IQ_ITEM_MASTER = Symbol(
-        [0xA18A4], [0x20A18A4], 0x4, "MIN_IQ_ITEM_MASTER", "", "int32_t"
+        [0xA18A4],
+        [0x20A18A4],
+        0x4,
+        "MIN_IQ_ITEM_MASTER",
+        "Minimum IQ required for enemies to use Item Master",
+        "int32_t",
     )
 
     DEF_SCARF_STAT_BOOST = Symbol(
@@ -17612,7 +17622,7 @@ class NaOverlay10Data:
         [0x22C46C0],
         0x2,
         "GINSENG_CHANCE_3",
-        "The percentage chance for...something to be set to 3 in a calculation related to the Ginseng boost.",
+        "The percentage chance for Ginseng to boost a move's power by 3 (12%).",
         "int16_t",
     )
 

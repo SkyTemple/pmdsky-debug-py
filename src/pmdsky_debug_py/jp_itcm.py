@@ -9598,7 +9598,12 @@ class JpItcmArm9Data:
     )
 
     MIN_IQ_EXCLUSIVE_MOVE_USER = Symbol(
-        None, None, None, "MIN_IQ_EXCLUSIVE_MOVE_USER", "", "int32_t"
+        None,
+        None,
+        None,
+        "MIN_IQ_EXCLUSIVE_MOVE_USER",
+        "Minimum IQ required for enemies to use Exclusive-Move User",
+        "int32_t",
     )
 
     WONDER_GUMMI_IQ_GAIN = Symbol(
@@ -9619,7 +9624,14 @@ class JpItcmArm9Data:
         "int16_t",
     )
 
-    MIN_IQ_ITEM_MASTER = Symbol(None, None, None, "MIN_IQ_ITEM_MASTER", "", "int32_t")
+    MIN_IQ_ITEM_MASTER = Symbol(
+        None,
+        None,
+        None,
+        "MIN_IQ_ITEM_MASTER",
+        "Minimum IQ required for enemies to use Item Master",
+        "int32_t",
+    )
 
     DEF_SCARF_STAT_BOOST = Symbol(
         None,
@@ -17354,7 +17366,7 @@ class JpItcmOverlay10Data:
         None,
         None,
         "GINSENG_CHANCE_3",
-        "The percentage chance for...something to be set to 3 in a calculation related to the Ginseng boost.",
+        "The percentage chance for Ginseng to boost a move's power by 3 (12%).",
         "int16_t",
     )
 
