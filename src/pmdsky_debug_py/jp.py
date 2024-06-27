@@ -201,14 +201,16 @@ class JpArm7Section:
 class JpArm9Functions:
 
     Svc_SoftReset = Symbol(
-        None, None, None, "Svc_SoftReset", "Software interrupt.", None
+        [0x154], [0x2000154], None, "Svc_SoftReset", "Software interrupt.", None
     )
 
     Svc_WaitByLoop = Symbol(
-        None, None, None, "Svc_WaitByLoop", "Software interrupt.", None
+        [0x73A], [0x200073A], None, "Svc_WaitByLoop", "Software interrupt.", None
     )
 
-    Svc_CpuSet = Symbol(None, None, None, "Svc_CpuSet", "Software interrupt.", None)
+    Svc_CpuSet = Symbol(
+        [0x226], [0x2000226], None, "Svc_CpuSet", "Software interrupt.", None
+    )
 
     _start = Symbol(
         [0x800],
@@ -251,8 +253,8 @@ class JpArm9Functions:
     init_cp15 = Symbol([0xAB0], [0x2000AB0], None, "init_cp15", "", None)
 
     OSi_ReferSymbol = Symbol(
-        None,
-        None,
+        [0xB9C],
+        [0x2000B9C],
         None,
         "OSi_ReferSymbol",
         "Startup routine in the program's crt0 (https://en.wikipedia.org/wiki/Crt0).",
@@ -863,8 +865,8 @@ class JpArm9Functions:
     )
 
     EuclideanNorm = Symbol(
-        None,
-        None,
+        [0x5050, 0x50B0],
+        [0x2005050, 0x20050B0],
         None,
         "EuclideanNorm",
         "Computes the Euclidean norm of a two-component integer array, sort of like hypotf(3).\n\nr0: integer array [x, y]\nreturn: sqrt(x*x + y*y)",
@@ -1527,6 +1529,7 @@ class JpArm9Functions:
             0x42DF4,
             0x52768,
             0x54D98,
+            0x60CD8,
         ],
         [
             0x200D634,
@@ -1544,6 +1547,7 @@ class JpArm9Functions:
             0x2042DF4,
             0x2052768,
             0x2054D98,
+            0x2060CD8,
         ],
         None,
         "SprintfStatic",
@@ -1804,8 +1808,8 @@ class JpArm9Functions:
     )
 
     SetActiveInventoryToMain = Symbol(
-        None,
-        None,
+        [0xEBFC],
+        [0x200EBFC],
         None,
         "SetActiveInventoryToMain",
         "Changes the currently active inventory to TEAM_MAIN.\n\nNo params.",
@@ -2569,8 +2573,8 @@ class JpArm9Functions:
     )
 
     ApplySitrusBerryBoostToGroundMonster = Symbol(
-        None,
-        None,
+        [0x11550],
+        [0x2011550],
         None,
         "ApplySitrusBerryBoostToGroundMonster",
         "Applies the hp boost from the Sitrus Berry to the target monster.\n\nr0: ground monster pointer\nr1: [output] pointer to attempted hp boost, if not NULL\nreturn: actual hp boost",
@@ -2578,8 +2582,8 @@ class JpArm9Functions:
     )
 
     ApplyLifeSeedBoostToGroundMonster = Symbol(
-        None,
-        None,
+        [0x1158C],
+        [0x201158C],
         None,
         "ApplyLifeSeedBoostToGroundMonster",
         "Applies the hp boost from the Life Seed to the target monster.\n\nr0: ground monster pointer\nr1: [output] pointer to attempted hp boost, if not NULL\nreturn: actual hp boost",
@@ -3352,8 +3356,8 @@ class JpArm9Functions:
     )
 
     PlayBgmByIdVeneer = Symbol(
-        None,
-        None,
+        [0x17BB0],
+        [0x2017BB0],
         None,
         "PlayBgmByIdVeneer",
         "Likely a linker-generated veneer for PlayBgmById.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: Music ID",
@@ -3361,8 +3365,8 @@ class JpArm9Functions:
     )
 
     PlayBgmByIdVolumeVeneer = Symbol(
-        None,
-        None,
+        [0x17BBC],
+        [0x2017BBC],
         None,
         "PlayBgmByIdVolumeVeneer",
         "Likely a linker-generated veneer for PlayBgmByIdVolume.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: Music ID\nr1: (?) Stored on byte 8 on the struct passed to SendAudioCommand\nr2: Volume (0-255)",
@@ -3622,8 +3626,8 @@ class JpArm9Functions:
     )
 
     InitAnimationControlWithSet = Symbol(
-        None,
-        None,
+        [0x1C108, 0x1C124],
+        [0x201C108, 0x201C124],
         None,
         "InitAnimationControlWithSet",
         "Initialize the animation_control structure, and set a certain value in a bitflag to 1\n\nr0: animation_control",
@@ -4153,8 +4157,8 @@ class JpArm9Functions:
     )
 
     StrcmpTagVeneer = Symbol(
-        None,
-        None,
+        [0x23648],
+        [0x2023648],
         None,
         "StrcmpTagVeneer",
         "Likely a linker-generated veneer for StrcmpTag.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: s1\nr1: s2\nreturn: bool",
@@ -4162,8 +4166,8 @@ class JpArm9Functions:
     )
 
     AtoiTagVeneer = Symbol(
-        None,
-        None,
+        [0x23654],
+        [0x2023654],
         None,
         "AtoiTagVeneer",
         "Likely a linker-generated veneer for AtoiTag.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: s\nreturn: int",
@@ -4216,8 +4220,8 @@ class JpArm9Functions:
     )
 
     GetDungeonResultString = Symbol(
-        None,
-        None,
+        [0x25028],
+        [0x2025028],
         None,
         "GetDungeonResultString",
         "Returns a string containing some information to be used when displaying the dungeon results screen.\n\nThe exact string returned depends on the value of r0:\n0: Name of the move that fainted the leader. Empty string if the leader didn't faint.\n1-3: Seems to always result in an empty string.\n4: Name of the pokémon that fainted the leader, or name of the leader if the leader didn't faint.\n5: Name of the fainted leader. Empty string if the leader didn't faint.\n\nr0: String to return\nreturn: Pointer to resulting string",
@@ -4288,8 +4292,8 @@ class JpArm9Functions:
     )
 
     StrncpyName = Symbol(
-        None,
-        None,
+        [0x2536C],
+        [0x202536C],
         None,
         "StrncpyName",
         "A special version of strncpy for handling names. Appears to use character 0x7E as some kind of\nformatting character in NA? Copies at most n characters.\n\nr0: dst\nr1: src\nr2: n",
@@ -5539,8 +5543,8 @@ class JpArm9Functions:
     )
 
     CalcMenuHeightDiv8 = Symbol(
-        None,
-        None,
+        [0x31DC4, 0x32D04],
+        [0x2031DC4, 0x2032D04],
         None,
         "CalcMenuHeightDiv8",
         "Calculates the window height (divided by 8, as in struct window_params) of a menu, given its items and input flags.\n\nFor certain input flags, the number of options per page will be clamped to the total number of options if the per-page count exceeds the total.\n\nr0: window_flags\nr1: window_extra_info pointer\nr2: total number of options\nr3: number of options per page\nreturn: height / 8",
@@ -5611,8 +5615,8 @@ class JpArm9Functions:
     )
 
     TeamSelectionMenuGetItem = Symbol(
-        None,
-        None,
+        [0x3AB68],
+        [0x203AB68],
         None,
         "TeamSelectionMenuGetItem",
         "Gets the menu item text (member name) for a given team member for a team selection menu.\n\nr0: buffer\nr1: team member index\nreturn: menu item text (points into buffer)",
@@ -5665,8 +5669,8 @@ class JpArm9Functions:
     )
 
     EventFlagBackupVeneer = Symbol(
-        None,
-        None,
+        [0x48AC4],
+        [0x2048AC4],
         None,
         "EventFlagBackupVeneer",
         "Likely a linker-generated veneer for EventFlagBackup.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo params.",
@@ -6430,8 +6434,8 @@ class JpArm9Functions:
     )
 
     GetOutlawLevel = Symbol(
-        None,
-        None,
+        [0x4FBE0],
+        [0x204FBE0],
         None,
         "GetOutlawLevel",
         "Gets the level that should be used for outlaws for the given dungeon and floor\n\nr0: Dungeon and floor\nreturn: Outlaw level",
@@ -6439,8 +6443,8 @@ class JpArm9Functions:
     )
 
     GetOutlawLeaderLevel = Symbol(
-        None,
-        None,
+        [0x4FBFC],
+        [0x204FBFC],
         None,
         "GetOutlawLeaderLevel",
         "Gets the level that should be used for team leader outlaws for the given dungeon and floor. Identical to GetOutlawLevel.\n\nr0: Dungeon and floor\nreturn: Outlaw leader level",
@@ -6448,8 +6452,8 @@ class JpArm9Functions:
     )
 
     GetOutlawMinionLevel = Symbol(
-        None,
-        None,
+        [0x4FC18],
+        [0x204FC18],
         None,
         "GetOutlawMinionLevel",
         "Gets the level that should be used for minion outlaws for the given dungeon and floor.\n\nr0: Dungeon and floor\nreturn: Outlaw minion level",
@@ -6880,8 +6884,8 @@ class JpArm9Functions:
     )
 
     GetConversion2ConvertToType = Symbol(
-        None,
-        None,
+        [0x50CB0],
+        [0x2050CB0],
         None,
         "GetConversion2ConvertToType",
         "Determines which type a monster with Conversion2 should turn into after being hit by a certain\ntype of move.\n\nr0: type ID\nreturn: type ID",
@@ -8122,8 +8126,8 @@ class JpArm9Functions:
     )
 
     CheckTeamMemberIdx = Symbol(
-        [0x565C4],
-        [0x20565C4],
+        [0x56600],
+        [0x2056600],
         None,
         "CheckTeamMemberIdx",
         "Checks if a team member's member index (team_member::member_idx) is equal to certain values.\n\nThis is known to return true for some or all of the guest monsters.\n\nr0: member index\nreturn: True if the value is equal to 0x55AA or 0x5AA5",
@@ -8239,8 +8243,8 @@ class JpArm9Functions:
     )
 
     GetIqSkillStringId = Symbol(
-        None,
-        None,
+        [0x58F18],
+        [0x2058F18],
         None,
         "GetIqSkillStringId",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: iq skill id\nreturn: iq skill string id",
@@ -8248,8 +8252,8 @@ class JpArm9Functions:
     )
 
     DoesTacticFollowLeader = Symbol(
-        None,
-        None,
+        [0x58F38],
+        [0x2058F38],
         None,
         "DoesTacticFollowLeader",
         "Returns whether or not the tactic involves following the team leader.\n\nr0: tactic_id\nreturn: bool",
@@ -9049,8 +9053,8 @@ class JpArm9Data:
     )
 
     NATURAL_LOG_VALUE_TABLE = Symbol(
-        None,
-        None,
+        [0x91730],
+        [0x2091730],
         None,
         "NATURAL_LOG_VALUE_TABLE",
         "A table of values for the natural log function corresponding to integer arguments in the range [0, 2047].\n\nEach value is stored as a 16-bit fixed-point number with 12 fractional bits. I.e., to get the actual natural log value, take the table entry and divide it by 2^12.\n\nThe value at an input of 0 is just listed as 0; the Log function makes sure the input is always at least 1 before reading the table.\n\ntype: fx16_12[2048]",
@@ -9061,60 +9065,64 @@ class JpArm9Data:
         [0x92DD0], [0x2092DD0], 0x2000, "CART_REMOVED_IMG_DATA", "", "undefined[0]"
     )
 
-    STRING_DEBUG_EMPTY = Symbol(None, None, None, "STRING_DEBUG_EMPTY", "", "char[4]")
+    STRING_DEBUG_EMPTY = Symbol(
+        [0x94DE4], [0x2094DE4], None, "STRING_DEBUG_EMPTY", "", "char[4]"
+    )
 
     STRING_DEBUG_FORMAT_LINE_FILE = Symbol(
-        None, None, None, "STRING_DEBUG_FORMAT_LINE_FILE", "", "char[28]"
+        [0x94DE8], [0x2094DE8], None, "STRING_DEBUG_FORMAT_LINE_FILE", "", "char[28]"
     )
 
     STRING_DEBUG_NO_PROG_POS = Symbol(
-        None, None, None, "STRING_DEBUG_NO_PROG_POS", "", "char[24]"
+        [0x94E04], [0x2094E04], None, "STRING_DEBUG_NO_PROG_POS", "", "char[24]"
     )
 
     STRING_DEBUG_SPACED_PRINT = Symbol(
-        None, None, None, "STRING_DEBUG_SPACED_PRINT", "", "char[12]"
+        [0x94E1C], [0x2094E1C], None, "STRING_DEBUG_SPACED_PRINT", "", "char[12]"
     )
 
-    STRING_DEBUG_FATAL = Symbol(None, None, None, "STRING_DEBUG_FATAL", "", "char[20]")
+    STRING_DEBUG_FATAL = Symbol(
+        [0x94E28], [0x2094E28], None, "STRING_DEBUG_FATAL", "", "char[20]"
+    )
 
     STRING_DEBUG_NEWLINE = Symbol(
-        None, None, None, "STRING_DEBUG_NEWLINE", "", "char[4]"
+        [0x94E3C], [0x2094E3C], None, "STRING_DEBUG_NEWLINE", "", "char[4]"
     )
 
     STRING_DEBUG_LOG_NULL = Symbol(
-        None, None, None, "STRING_DEBUG_LOG_NULL", "", "char[8]"
+        [0x94E40], [0x2094E40], None, "STRING_DEBUG_LOG_NULL", "", "char[8]"
     )
 
     STRING_DEBUG_STRING_NEWLINE = Symbol(
-        None, None, None, "STRING_DEBUG_STRING_NEWLINE", "", "char[4]"
+        [0x94E48], [0x2094E48], None, "STRING_DEBUG_STRING_NEWLINE", "", "char[4]"
     )
 
     STRING_EFFECT_EFFECT_BIN = Symbol(
-        None, None, None, "STRING_EFFECT_EFFECT_BIN", "", "char[20]"
+        [0x94E4C], [0x2094E4C], None, "STRING_EFFECT_EFFECT_BIN", "", "char[20]"
     )
 
     STRING_MONSTER_MONSTER_BIN = Symbol(
-        None, None, None, "STRING_MONSTER_MONSTER_BIN", "", "char[20]"
+        [0x94E60], [0x2094E60], None, "STRING_MONSTER_MONSTER_BIN", "", "char[20]"
     )
 
     STRING_BALANCE_M_LEVEL_BIN = Symbol(
-        None, None, None, "STRING_BALANCE_M_LEVEL_BIN", "", "char[20]"
+        [0x94E74], [0x2094E74], None, "STRING_BALANCE_M_LEVEL_BIN", "", "char[20]"
     )
 
     STRING_DUNGEON_DUNGEON_BIN = Symbol(
-        None, None, None, "STRING_DUNGEON_DUNGEON_BIN", "", "char[20]"
+        [0x94E88], [0x2094E88], None, "STRING_DUNGEON_DUNGEON_BIN", "", "char[20]"
     )
 
     STRING_MONSTER_M_ATTACK_BIN = Symbol(
-        None, None, None, "STRING_MONSTER_M_ATTACK_BIN", "", "char[24]"
+        [0x94E9C], [0x2094E9C], None, "STRING_MONSTER_M_ATTACK_BIN", "", "char[24]"
     )
 
     STRING_MONSTER_M_GROUND_BIN = Symbol(
-        None, None, None, "STRING_MONSTER_M_GROUND_BIN", "", "char[24]"
+        [0x94EB4], [0x2094EB4], None, "STRING_MONSTER_M_GROUND_BIN", "", "char[24]"
     )
 
     STRING_FILE_DIRECTORY_INIT = Symbol(
-        None, None, None, "STRING_FILE_DIRECTORY_INIT", "", "char[40]"
+        [0x94ECC], [0x2094ECC], None, "STRING_FILE_DIRECTORY_INIT", "", "char[40]"
     )
 
     AVAILABLE_ITEMS_IN_GROUP_TABLE = Symbol(
@@ -9199,8 +9207,8 @@ class JpArm9Data:
     )
 
     EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES = Symbol(
-        None,
-        None,
+        [0x98419],
+        [0x2098419],
         None,
         "EXCLUSIVE_ITEM_STAT_BOOST_DATA_INDEXES",
         "EXCLUSIVE_ITEM_EFFECT_DATA, offset by 1",
@@ -9262,8 +9270,8 @@ class JpArm9Data:
     )
 
     PARENT_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B7E4],
+        [0x209B7E4],
         None,
         "PARENT_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a simple_menu created with CreateParentMenuInternal.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateParentMenuInternal.\n\nAdditionally, width and height are 0, and will be computed in CreateParentMenuInternal.",
@@ -9271,8 +9279,8 @@ class JpArm9Data:
     )
 
     SIMPLE_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B7F4],
+        [0x209B7F4],
         None,
         "SIMPLE_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a simple_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateSimpleMenuInternal.\n\nAdditionally, width and height are 0, and will be computed in CreateSimpleMenuInternal.",
@@ -9280,8 +9288,8 @@ class JpArm9Data:
     )
 
     ADVANCED_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B804],
+        [0x209B804],
         None,
         "ADVANCED_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an advanced_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateAdvancedMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateAdvancedMenu.",
@@ -9289,8 +9297,8 @@ class JpArm9Data:
     )
 
     COLLECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B814],
+        [0x209B814],
         None,
         "COLLECTION_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a collection_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateCollectionMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateCollectionMenu.",
@@ -9298,8 +9306,8 @@ class JpArm9Data:
     )
 
     OPTIONS_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B824],
+        [0x209B824],
         None,
         "OPTIONS_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an options_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateOptionsMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateOptionsMenu.",
@@ -9307,8 +9315,8 @@ class JpArm9Data:
     )
 
     DEBUG_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B860],
+        [0x209B860],
         None,
         "DEBUG_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a debug_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateDebugMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateDebugMenu.",
@@ -9316,8 +9324,8 @@ class JpArm9Data:
     )
 
     SCROLL_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B870],
+        [0x209B870],
         None,
         "SCROLL_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a scroll_box.",
@@ -9325,8 +9333,8 @@ class JpArm9Data:
     )
 
     DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B880],
+        [0x209B880],
         None,
         "DIALOGUE_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a dialogue_box.",
@@ -9334,8 +9342,8 @@ class JpArm9Data:
     )
 
     PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B890],
+        [0x209B890],
         None,
         "PORTRAIT_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a portrait_box.\n\nNote that the screen and box type are unset, and are determined in CreatePortraitBox.",
@@ -9343,8 +9351,8 @@ class JpArm9Data:
     )
 
     TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B8A0],
+        [0x209B8A0],
         None,
         "TEXT_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a text_box.",
@@ -9352,8 +9360,8 @@ class JpArm9Data:
     )
 
     AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B8B0],
+        [0x209B8B0],
         None,
         "AREA_NAME_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an area_name_box.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateAreaNameBox.\n\nAdditionally, width and height are 0, and will be computed in CreateAreaNameBox.",
@@ -9361,8 +9369,8 @@ class JpArm9Data:
     )
 
     CONTROLS_CHART_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B8CC],
+        [0x209B8CC],
         None,
         "CONTROLS_CHART_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a controls_chart.",
@@ -9370,8 +9378,8 @@ class JpArm9Data:
     )
 
     ALERT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B8E8],
+        [0x209B8E8],
         None,
         "ALERT_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an alert_box.",
@@ -9379,8 +9387,8 @@ class JpArm9Data:
     )
 
     ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B8F8],
+        [0x209B8F8],
         None,
         "ADVANCED_TEXT_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an advanced_text_box.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateAdvancedTextBoxInternal.",
@@ -9388,8 +9396,8 @@ class JpArm9Data:
     )
 
     TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x9B908],
+        [0x209B908],
         None,
         "TEAM_SELECTION_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a team_selection_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateTeamSelectionMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateTeamSelectionMenu.",
@@ -9433,8 +9441,8 @@ class JpArm9Data:
     )
 
     KAOMADO_FILEPATH = Symbol(
-        None,
-        None,
+        [0x9F4A8],
+        [0x209F4A8],
         None,
         "KAOMADO_FILEPATH",
         "'Path of the file where all the portraits are stored. 'FONT/kaomado.kao', padded with null to a multiple of 4'\n\ntype: char[20]",
@@ -10058,8 +10066,8 @@ class JpArm9Data:
     )
 
     RANK_STRINGS_1 = Symbol(
-        [0xA4F50],
-        [0x20A4F50],
+        [0xA4F60],
+        [0x20A4F60],
         0x30,
         "RANK_STRINGS_1",
         "Note: unverified, ported from Irdkwia's notes",
@@ -10067,8 +10075,8 @@ class JpArm9Data:
     )
 
     MISSION_MENU_STRING_IDS_1 = Symbol(
-        [0xA4F80],
-        [0x20A4F80],
+        [0xA4F50],
+        [0x20A4F50],
         0x10,
         "MISSION_MENU_STRING_IDS_1",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[8]",
@@ -10400,8 +10408,8 @@ class JpArm9Data:
     )
 
     LFO_OUTPUT_VOICE_UPDATE_FLAGS = Symbol(
-        None,
-        None,
+        [0xAB3E8],
+        [0x20AB3E8],
         None,
         "LFO_OUTPUT_VOICE_UPDATE_FLAGS",
         "",
@@ -10427,11 +10435,11 @@ class JpArm9Data:
     )
 
     TEX_PLTT_START_ADDR_TABLE = Symbol(
-        None, None, None, "TEX_PLTT_START_ADDR_TABLE", "", "int16_t[8]"
+        [0xAF4FC], [0x20AF4FC], None, "TEX_PLTT_START_ADDR_TABLE", "", "int16_t[8]"
     )
 
     TEX_START_ADDR_TABLE = Symbol(
-        None, None, None, "TEX_START_ADDR_TABLE", "", "int16_t[48]"
+        [0xAF50C], [0x20AF50C], None, "TEX_START_ADDR_TABLE", "", "int16_t[48]"
     )
 
     ARM9_UNKNOWN_TABLE__NA_20AE924 = Symbol(
@@ -10444,8 +10452,8 @@ class JpArm9Data:
     )
 
     MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
-        None,
-        None,
+        [0xB0340],
+        [0x20B0340],
         None,
         "MEMORY_ALLOCATION_ARENA_GETTERS",
         "Functions to get the desired memory arena for allocating and freeing heap memory.\n\ntype: struct mem_arena_getters",
@@ -10462,8 +10470,8 @@ class JpArm9Data:
     )
 
     LOADED_OVERLAY_GROUP_0 = Symbol(
-        None,
-        None,
+        [0xB0670],
+        [0x20B0670],
         None,
         "LOADED_OVERLAY_GROUP_0",
         "[Runtime] The overlay group ID of the overlay currently loaded in slot 0. A group ID of 0 denotes no overlay.\n\nOverlay group IDs that can be loaded in slot 0:\n- 0x06 (overlay 3)\n- 0x07 (overlay 6)\n- 0x08 (overlay 4)\n- 0x09 (overlay 5)\n- 0x0A (overlay 7)\n- 0x0B (overlay 8)\n- 0x0C (overlay 9)\n- 0x10 (overlay 12)\n- 0x11 (overlay 13)\n- 0x12 (overlay 14)\n- 0x13 (overlay 15)\n- 0x14 (overlay 16)\n- 0x15 (overlay 17)\n- 0x16 (overlay 18)\n- 0x17 (overlay 19)\n- 0x18 (overlay 20)\n- 0x19 (overlay 21)\n- 0x1A (overlay 22)\n- 0x1B (overlay 23)\n- 0x1C (overlay 24)\n- 0x1D (overlay 25)\n- 0x1E (overlay 26)\n- 0x1F (overlay 27)\n- 0x20 (overlay 28)\n- 0x21 (overlay 30)\n- 0x22 (overlay 31)\n- 0x23 (overlay 32)\n- 0x24 (overlay 33)\n\ntype: enum overlay_group_id",
@@ -10488,7 +10496,9 @@ class JpArm9Data:
         "enum overlay_group_id",
     )
 
-    DEBUG_IS_INITIALIZED = Symbol(None, None, None, "DEBUG_IS_INITIALIZED", "", "bool")
+    DEBUG_IS_INITIALIZED = Symbol(
+        [0xB0AD8], [0x20B0AD8], None, "DEBUG_IS_INITIALIZED", "", "bool"
+    )
 
     PACK_FILES_OPENED = Symbol(
         None,
@@ -10522,8 +10532,8 @@ class JpArm9Data:
     )
 
     ITEM_DATA_TABLE_PTRS = Symbol(
-        None,
-        None,
+        [0xB0B00],
+        [0x20B0B00],
         None,
         "ITEM_DATA_TABLE_PTRS",
         "[Runtime] List of pointers to various item data tables.\n\nThe first two pointers are definitely item-related (although the order appears to be flipped between EU/NA?). Not sure about the third pointer.",
@@ -10531,8 +10541,8 @@ class JpArm9Data:
     )
 
     DUNGEON_MOVE_TABLES = Symbol(
-        None,
-        None,
+        [0xB0B1C],
+        [0x20B0B1C],
         None,
         "DUNGEON_MOVE_TABLES",
         "[Runtime] Seems to be some sort of region (a table of tables?) that holds pointers to various important tables related to moves.",
@@ -10549,8 +10559,8 @@ class JpArm9Data:
     )
 
     WAN_TABLE = Symbol(
-        None,
-        None,
+        [0xB10A8],
+        [0x20B10A8],
         None,
         "WAN_TABLE",
         "pointer to the list of wan sprite loaded in RAM\n\nstruct wan_table*",
@@ -10558,8 +10568,8 @@ class JpArm9Data:
     )
 
     RENDER_3D = Symbol(
-        None,
-        None,
+        [0xB10C0],
+        [0x20B10C0],
         None,
         "RENDER_3D",
         "The (seemingly) unique instance render_3d_global in the game\n\ntype: struct render_3d_global",
@@ -10567,8 +10577,8 @@ class JpArm9Data:
     )
 
     RENDER_3D_FUNCTIONS_64 = Symbol(
-        None,
-        None,
+        [0xB1104],
+        [0x20B1104],
         None,
         "RENDER_3D_FUNCTIONS_64",
         "Pointers to the 8 functions available for rendering a render_3d_element_64\n\ntype: render_3d_element_64_fn_t[8]",
@@ -10634,8 +10644,8 @@ class JpArm9Data:
     )
 
     GLOBAL_PROGRESS_PTR = Symbol(
-        None,
-        None,
+        [0xB17E8],
+        [0x20B17E8],
         None,
         "GLOBAL_PROGRESS_PTR",
         "[Runtime]\n\ntype: struct global_progress*",
@@ -10760,8 +10770,8 @@ class JpArm9Data:
     )
 
     SMD_EVENTS_FUN_TABLE = Symbol(
-        None,
-        None,
+        [0xB2404],
+        [0x20B2404],
         None,
         "SMD_EVENTS_FUN_TABLE",
         "Table of all DSE events, see https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nIrdkwia's notes: named DSEEventFunctionPtrTable with length 0x3C0 (note the disagreement), 240*0x4.",
@@ -10787,17 +10797,17 @@ class JpArm9Data:
     )
 
     LFO_WAVEFORM_CALLBACKS = Symbol(
-        None,
-        None,
+        [0xB2AC4],
+        [0x20B2AC4],
         None,
         "LFO_WAVEFORM_CALLBACKS",
         "",
         "sound_lfo_waveform_callback[16]",
     )
 
-    IS_DISP_ON = Symbol(None, None, None, "IS_DISP_ON", "", "bool")
+    IS_DISP_ON = Symbol([0xB4408], [0x20B4408], None, "IS_DISP_ON", "", "bool")
 
-    GXI_DMA_ID = Symbol(None, None, None, "GXI_DMA_ID", "", "uint32_t")
+    GXI_DMA_ID = Symbol([0xB440C], [0x20B440C], None, "GXI_DMA_ID", "", "uint32_t")
 
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         [0x117E0],
@@ -11229,7 +11239,9 @@ class JpLibsFunctions:
 
     DseMem_Quit = Symbol([0x8B4], [0x206CC74], None, "DseMem_Quit", "", None)
 
-    DseMem_AllocateUser = Symbol(None, None, None, "DseMem_AllocateUser", "", None)
+    DseMem_AllocateUser = Symbol(
+        [0x8D0], [0x206CC90], None, "DseMem_AllocateUser", "", None
+    )
 
     DseMem_Allocate = Symbol([0x8E4], [0x206CCA4], None, "DseMem_Allocate", "", None)
 
@@ -12250,69 +12262,81 @@ class JpLibsFunctions:
     )
 
     GX_ResetBankForBgExtPltt = Symbol(
-        None, None, None, "GX_ResetBankForBgExtPltt", "", None
+        [0xB024], [0x20773E4], None, "GX_ResetBankForBgExtPltt", "", None
     )
 
     GX_ResetBankForObjExtPltt = Symbol(
-        None, None, None, "GX_ResetBankForObjExtPltt", "", None
+        [0xB048], [0x2077408], None, "GX_ResetBankForObjExtPltt", "", None
     )
 
-    GX_ResetBankForTex = Symbol(None, None, None, "GX_ResetBankForTex", "", None)
+    GX_ResetBankForTex = Symbol(
+        [0xB06C], [0x207742C], None, "GX_ResetBankForTex", "", None
+    )
 
     GX_ResetBankForTexPltt = Symbol(
-        None, None, None, "GX_ResetBankForTexPltt", "", None
+        [0xB080], [0x2077440], None, "GX_ResetBankForTexPltt", "", None
     )
 
     GX_ResetBankForSubBgExtPltt = Symbol(
-        None, None, None, "GX_ResetBankForSubBgExtPltt", "", None
+        [0xB094], [0x2077454], None, "GX_ResetBankForSubBgExtPltt", "", None
     )
 
     GX_ResetBankForSubObjExtPltt = Symbol(
-        None, None, None, "GX_ResetBankForSubObjExtPltt", "", None
+        [0xB0BC], [0x207747C], None, "GX_ResetBankForSubObjExtPltt", "", None
     )
 
     DisableBankForX = Symbol([0xB0E4], [0x20774A4], None, "DisableBankForX", "", None)
 
-    GX_DisableBankForBg = Symbol(None, None, None, "GX_DisableBankForBg", "", None)
+    GX_DisableBankForBg = Symbol(
+        [0xB1C4], [0x2077584], None, "GX_DisableBankForBg", "", None
+    )
 
-    GX_DisableBankForObj = Symbol(None, None, None, "GX_DisableBankForObj", "", None)
+    GX_DisableBankForObj = Symbol(
+        [0xB1D8], [0x2077598], None, "GX_DisableBankForObj", "", None
+    )
 
     GX_DisableBankForBgExtPltt = Symbol(
-        None, None, None, "GX_DisableBankForBgExtPltt", "", None
+        [0xB1EC], [0x20775AC], None, "GX_DisableBankForBgExtPltt", "", None
     )
 
     GX_DisableBankForObjExtPltt = Symbol(
-        None, None, None, "GX_DisableBankForObjExtPltt", "", None
+        [0xB210], [0x20775D0], None, "GX_DisableBankForObjExtPltt", "", None
     )
 
-    GX_DisableBankForTex = Symbol(None, None, None, "GX_DisableBankForTex", "", None)
+    GX_DisableBankForTex = Symbol(
+        [0xB234], [0x20775F4], None, "GX_DisableBankForTex", "", None
+    )
 
     GX_DisableBankForTexPltt = Symbol(
-        None, None, None, "GX_DisableBankForTexPltt", "", None
+        [0xB248], [0x2077608], None, "GX_DisableBankForTexPltt", "", None
     )
 
     GX_DisableBankForClearImage = Symbol(
-        None, None, None, "GX_DisableBankForClearImage", "", None
+        [0xB25C], [0x207761C], None, "GX_DisableBankForClearImage", "", None
     )
 
-    GX_DisableBankForArm7 = Symbol(None, None, None, "GX_DisableBankForArm7", "", None)
+    GX_DisableBankForArm7 = Symbol(
+        [0xB270], [0x2077630], None, "GX_DisableBankForArm7", "", None
+    )
 
-    GX_DisableBankForLcdc = Symbol(None, None, None, "GX_DisableBankForLcdc", "", None)
+    GX_DisableBankForLcdc = Symbol(
+        [0xB284], [0x2077644], None, "GX_DisableBankForLcdc", "", None
+    )
 
     GX_DisableBankForSubBg = Symbol(
-        None, None, None, "GX_DisableBankForSubBg", "", None
+        [0xB298], [0x2077658], None, "GX_DisableBankForSubBg", "", None
     )
 
     GX_DisableBankForSubObj = Symbol(
-        None, None, None, "GX_DisableBankForSubObj", "", None
+        [0xB2AC], [0x207766C], None, "GX_DisableBankForSubObj", "", None
     )
 
     GX_DisableBankForSubBgExtPltt = Symbol(
-        None, None, None, "GX_DisableBankForSubBgExtPltt", "", None
+        [0xB2C0], [0x2077680], None, "GX_DisableBankForSubBgExtPltt", "", None
     )
 
     GX_DisableBankForSubObjExtPltt = Symbol(
-        None, None, None, "GX_DisableBankForSubObjExtPltt", "", None
+        [0xB2E8], [0x20776A8], None, "GX_DisableBankForSubObjExtPltt", "", None
     )
 
     G2_GetBG0ScrPtr = Symbol([0xB310], [0x20776D0], None, "G2_GetBG0ScrPtr", "", None)
@@ -12425,27 +12449,27 @@ class JpLibsFunctions:
 
     Gxs_LoadObj = Symbol([0xBE80], [0x2078240], None, "Gxs_LoadObj", "", None)
 
-    GX_LoadBg0Scr = Symbol(None, None, None, "GX_LoadBg0Scr", "", None)
+    GX_LoadBg0Scr = Symbol([0xBED8], [0x2078298], None, "GX_LoadBg0Scr", "", None)
 
-    GX_LoadBg1Scr = Symbol(None, None, None, "GX_LoadBg1Scr", "", None)
+    GX_LoadBg1Scr = Symbol([0xBF38], [0x20782F8], None, "GX_LoadBg1Scr", "", None)
 
-    Gxs_LoadBg1Scr = Symbol(None, None, None, "Gxs_LoadBg1Scr", "", None)
+    Gxs_LoadBg1Scr = Symbol([0xBF98], [0x2078358], None, "Gxs_LoadBg1Scr", "", None)
 
-    GX_LoadBg2Scr = Symbol(None, None, None, "GX_LoadBg2Scr", "", None)
+    GX_LoadBg2Scr = Symbol([0xBFF8], [0x20783B8], None, "GX_LoadBg2Scr", "", None)
 
-    GX_LoadBg3Scr = Symbol(None, None, None, "GX_LoadBg3Scr", "", None)
+    GX_LoadBg3Scr = Symbol([0xC058], [0x2078418], None, "GX_LoadBg3Scr", "", None)
 
-    GX_LoadBg0Char = Symbol(None, None, None, "GX_LoadBg0Char", "", None)
+    GX_LoadBg0Char = Symbol([0xC0B8], [0x2078478], None, "GX_LoadBg0Char", "", None)
 
-    Gxs_LoadBg0Char = Symbol(None, None, None, "Gxs_LoadBg0Char", "", None)
+    Gxs_LoadBg0Char = Symbol([0xC118], [0x20784D8], None, "Gxs_LoadBg0Char", "", None)
 
-    GX_LoadBg1Char = Symbol(None, None, None, "GX_LoadBg1Char", "", None)
+    GX_LoadBg1Char = Symbol([0xC178], [0x2078538], None, "GX_LoadBg1Char", "", None)
 
-    Gxs_LoadBg1Char = Symbol(None, None, None, "Gxs_LoadBg1Char", "", None)
+    Gxs_LoadBg1Char = Symbol([0xC1D8], [0x2078598], None, "Gxs_LoadBg1Char", "", None)
 
-    GX_LoadBg2Char = Symbol(None, None, None, "GX_LoadBg2Char", "", None)
+    GX_LoadBg2Char = Symbol([0xC238], [0x20785F8], None, "GX_LoadBg2Char", "", None)
 
-    GX_LoadBg3Char = Symbol(None, None, None, "GX_LoadBg3Char", "", None)
+    GX_LoadBg3Char = Symbol([0xC298], [0x2078658], None, "GX_LoadBg3Char", "", None)
 
     GX_BeginLoadBgExtPltt = Symbol(
         [0xC2F8], [0x20786B8], None, "GX_BeginLoadBgExtPltt", "", None
@@ -13380,8 +13404,8 @@ class JpLibsSection:
 class JpMove_effectsFunctions:
 
     DoMoveDamage = Symbol(
-        None,
-        None,
+        [0x0, 0x4724, 0x5AB0, 0x7F44],
+        [0x232724C, 0x232B970, 0x232CCFC, 0x232F190],
         None,
         "DoMoveDamage",
         "Move effect: Deal damage.\nRelevant moves: Many!\n\nThis just wraps DealDamage with a multiplier of 1 (i.e., the fixed-point number 0x100).\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
@@ -13389,8 +13413,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveIronTail = Symbol(
-        None,
-        None,
+        [0x24],
+        [0x2327270],
         None,
         "DoMoveIronTail",
         "Move effect: Iron Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13416,8 +13440,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSleep = Symbol(
-        None,
-        None,
+        [0x140],
+        [0x232738C],
         None,
         "DoMoveSleep",
         "Move effect: Put target enemies to sleep\nRelevant moves: Lovely Kiss, Sing, Spore, Grasswhistle, Hypnosis, Sleep Powder, Dark Void\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13434,8 +13458,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveMorningSun = Symbol(
-        None,
-        None,
+        [0x1B4],
+        [0x2327400],
         None,
         "DoMoveMorningSun",
         "Move effect: Morning Sun\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13461,8 +13485,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSweetScent = Symbol(
-        None,
-        None,
+        [0x2C8],
+        [0x2327514],
         None,
         "DoMoveSweetScent",
         "Move effect: Sweet Scent\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13479,8 +13503,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveRainDance = Symbol(
-        None,
-        None,
+        [0x310],
+        [0x232755C],
         None,
         "DoMoveRainDance",
         "Move effect: Rain Dance\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13488,8 +13512,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveHail = Symbol(
-        None,
-        None,
+        [0x36C],
+        [0x23275B8],
         None,
         "DoMoveHail",
         "Move effect: Hail\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13506,8 +13530,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveBubble = Symbol(
-        None,
-        None,
+        [0x3E0],
+        [0x232762C],
         None,
         "DoMoveBubble",
         "Move effect: Bubble\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13596,8 +13620,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageCringe30 = Symbol(
-        None,
-        None,
+        [0x8B0],
+        [0x2327AFC],
         None,
         "DoMoveDamageCringe30",
         "Move effect: Deal damage with a 30% chance (ROCK_SLIDE_CRINGE_CHANCE) of inflicting the cringe status on the defender.\nRelevant moves: Rock Slide, Astonish, Iron Head, Dark Pulse, Air Slash, Zen Headbutt, Dragon Rush\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
@@ -13623,8 +13647,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveFakeTears = Symbol(
-        None,
-        None,
+        [0xA18],
+        [0x2327C64],
         None,
         "DoMoveFakeTears",
         "Move effect: Fake Tears\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13695,8 +13719,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveOctazooka = Symbol(
-        None,
-        None,
+        [0xCB0],
+        [0x2327EFC],
         None,
         "DoMoveOctazooka",
         "Move effect: Octazooka\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13731,8 +13755,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveGrudge = Symbol(
-        None,
-        None,
+        [0xEE0],
+        [0x232812C],
         None,
         "DoMoveGrudge",
         "Move effect: Grudge\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13749,8 +13773,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageBurn10FlameWheel = Symbol(
-        None,
-        None,
+        [0xF04],
+        [0x2328150],
         None,
         "DoMoveDamageBurn10FlameWheel",
         "Move effect: Deal damage with a 10% chance (FLAME_WHEEL_BURN_CHANCE) of burning the defender.\nRelevant moves: Flame Wheel, Lava Plume\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13758,8 +13782,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageBurn10 = Symbol(
-        None,
-        None,
+        [0xF8C],
+        [0x23281D8],
         None,
         "DoMoveDamageBurn10",
         "Move effect: Deal damage with a 10% chance (FLAMETHROWER_BURN_CHANCE) of burning the defender.\nRelevant moves: Flamethrower, Fire Blast, Heat Wave, Ember, Fire Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13776,8 +13800,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDoubleTeam = Symbol(
-        None,
-        None,
+        [0x1040],
+        [0x232828C],
         None,
         "DoMoveDoubleTeam",
         "Move effect: Double Team\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13794,8 +13818,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveBoostDefense1 = Symbol(
-        None,
-        None,
+        [0x109C],
+        [0x23282E8],
         None,
         "DoMoveBoostDefense1",
         "Move effect: Boost the user's defense by one stage\nRelevant moves: Harden, Withdraw\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13803,8 +13827,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveParalyze = Symbol(
-        None,
-        None,
+        [0x10BC, 0x246C, 0x5648],
+        [0x2328308, 0x23296B8, 0x232C894],
         None,
         "DoMoveParalyze",
         "Move effect: Paralyze the defender if possible\nRelevant moves: Disable, Stun Spore, Glare\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13812,8 +13836,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveBoostAttack1 = Symbol(
-        None,
-        None,
+        [0x10D4],
+        [0x2328320],
         None,
         "DoMoveBoostAttack1",
         "Move effect: Boost the user's attack by one stage\nRelevant moves: Sharpen, Howl, Meditate\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13848,8 +13872,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveCrunch = Symbol(
-        None,
-        None,
+        [0x1270],
+        [0x23284BC],
         None,
         "DoMoveCrunch",
         "Move effect: Deal damage with a 20% chance (CRUNCH_LOWER_DEFENSE_CHANCE) of lowering the defender's defense.\nRelevant moves: Crunch, Shadow Ball via Nature Power\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
@@ -13857,8 +13881,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageCringe20 = Symbol(
-        None,
-        None,
+        [0x12F0],
+        [0x232853C],
         None,
         "DoMoveDamageCringe20",
         "Move effect: Deal damage with a 20% chance (BITE_CRINGE_CHANCE) of inflicting the cringe status on the defender.\nRelevant moves: Bite, Needle Arm, Stomp, Rolling Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13866,8 +13890,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageParalyze20 = Symbol(
-        None,
-        None,
+        [0x135C],
+        [0x23285A8],
         None,
         "DoMoveDamageParalyze20",
         "Move effect: Deal damage with a 20% chance (THUNDER_PARALYZE_CHANCE) of paralyzing the defender.\nRelevant moves: Thunder, ThunderPunch, Force Palm, Discharge\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
@@ -13893,8 +13917,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageLowerSpeed20 = Symbol(
-        None,
-        None,
+        [0x14C8],
+        [0x2328714],
         None,
         "DoMoveDamageLowerSpeed20",
         "Move effect: Deal damage with a 20% chance (CONSTRICT_LOWER_SPEED_CHANCE) of lowering the defender's speed.\nRelevant moves: Constrict, Bubblebeam\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
@@ -13920,8 +13944,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveFocusPunch = Symbol(
-        None,
-        None,
+        [0x1608],
+        [0x2328854],
         None,
         "DoMoveFocusPunch",
         "Move effect: Focus Punch\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -13938,8 +13962,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveReversal = Symbol(
-        None,
-        None,
+        [0x17D4],
+        [0x2328A20],
         None,
         "DoMoveReversal",
         "Move effect: Deal damage with a higher multiplier the lower the attacker's HP is.\nRelevant moves: Reversal, Flail\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14019,8 +14043,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSynthesis = Symbol(
-        None,
-        None,
+        [0x1B24],
+        [0x2328D70],
         None,
         "DoMoveSynthesis",
         "Move effect: Synthesis\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14055,8 +14079,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveCosmicPower = Symbol(
-        None,
-        None,
+        [0x1C20],
+        [0x2328E6C],
         None,
         "DoMoveCosmicPower",
         "Move effect: Cosmic Power\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14109,8 +14133,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageConfuse10 = Symbol(
-        None,
-        None,
+        [0x1E44],
+        [0x2329090],
         None,
         "DoMoveDamageConfuse10",
         "Move effect: Deal damage with a 10% chance (PSYBEAM_CONFUSE_CHANCE) of confusing the defender.\nRelevant moves: Psybeam, Signal Beam, Confusion, Chatter, Rock Climb\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14154,8 +14178,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveWaterSpout = Symbol(
-        None,
-        None,
+        [0x201C],
+        [0x2329268],
         None,
         "DoMoveWaterSpout",
         "Move effect: Water Spout\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14181,8 +14205,8 @@ class JpMove_effectsFunctions:
     )
 
     EntityIsValidMoveEffects = Symbol(
-        None,
-        None,
+        [0x2248, 0x45FC, 0x66F8, 0x8404],
+        [0x2329494, 0x232B848, 0x232D944, 0x232F650],
         None,
         "EntityIsValidMoveEffects",
         "See overlay29.yml::EntityIsValid",
@@ -14208,8 +14232,8 @@ class JpMove_effectsFunctions:
     )
 
     GetNaturePowerVariant = Symbol(
-        None,
-        None,
+        [0x2310],
+        [0x232955C],
         None,
         "GetNaturePowerVariant",
         "Gets the nature power variant for the current dungeon, based on the tileset ID.\n\nreturn: nature power variant",
@@ -14226,8 +14250,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageParalyze10 = Symbol(
-        None,
-        None,
+        [0x23A8],
+        [0x23295F4],
         None,
         "DoMoveDamageParalyze10",
         "Move effect: Deal damage with a 10% chance (LICK_PARALZYE_CHANCE) of paralyzing the defender.\nRelevant moves: Lick, Spark, Body Slam, DragonBreath\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14244,8 +14268,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveShadowBall = Symbol(
-        None,
-        None,
+        [0x2484],
+        [0x23296D0],
         None,
         "DoMoveShadowBall",
         "Move effect: Shadow Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14262,8 +14286,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveThunderbolt = Symbol(
-        None,
-        None,
+        [0x2564],
+        [0x23297B0],
         None,
         "DoMoveThunderbolt",
         "Move effect: Thunderbolt\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14289,8 +14313,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageCringe10 = Symbol(
-        None,
-        None,
+        [0x26F8],
+        [0x2329944],
         None,
         "DoMoveDamageCringe10",
         "Move effect: Deal damage with a 10% chance (EXTRASENSORY_CRINGE_CHANCE) to inflict the cringe status on the defender.\nRelevant moves: Extrasensory, Hyper Fang, Bone Club\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14307,8 +14331,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveAbsorb = Symbol(
-        None,
-        None,
+        [0x2774],
+        [0x23299C0],
         None,
         "DoMoveAbsorb",
         "Move effect: Absorb\n\nThis is essentially identical to DoMoveDamageDrain, except the ordering of the instructions is slightly different enough to introduce subtle variations in functionality.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
@@ -14316,8 +14340,8 @@ class JpMove_effectsFunctions:
     )
 
     DefenderAbilityIsActiveMoveEffects = Symbol(
-        None,
-        None,
+        [0x286C, 0x413C, 0x5FD4, 0x7FD8],
+        [0x2329AB8, 0x232B388, 0x232D220, 0x232F224],
         None,
         "DefenderAbilityIsActiveMoveEffects",
         "See overlay29.yml::DefenderAbilityIsActive",
@@ -14343,8 +14367,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveHeadbutt = Symbol(
-        None,
-        None,
+        [0x2AF8],
+        [0x2329D44],
         None,
         "DoMoveHeadbutt",
         "Move effect: Headbutt\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14361,8 +14385,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSandstorm = Symbol(
-        None,
-        None,
+        [0x2C2C],
+        [0x2329E78],
         None,
         "DoMoveSandstorm",
         "Move effect: Sandstorm\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14370,8 +14394,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveLowerAccuracy1 = Symbol(
-        None,
-        None,
+        [0x2C88],
+        [0x2329ED4],
         None,
         "DoMoveLowerAccuracy1",
         "Move effect: Lower the defender's accuracy by one stage\nRelevant moves: Sand-Attack, Kinesis, Flash\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14379,8 +14403,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamagePoison40 = Symbol(
-        None,
-        None,
+        [0x2CA8],
+        [0x2329EF4],
         None,
         "DoMoveDamagePoison40",
         "Move effect: Deal damage with a 40% chance (SMOG_POISON_CHANCE) of poisoning the defender.\nRelevant moves: Smog, Cross Poison, Gunk Shot, Poison Jab\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
@@ -14388,8 +14412,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveGrowth = Symbol(
-        None,
-        None,
+        [0x2D14],
+        [0x2329F60],
         None,
         "DoMoveGrowth",
         "Move effect: Growth\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14397,8 +14421,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSacredFire = Symbol(
-        None,
-        None,
+        [0x2D34],
+        [0x2329F80],
         None,
         "DoMoveSacredFire",
         "Move effect: Sacred Fire\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14424,8 +14448,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSonicBoom = Symbol(
-        None,
-        None,
+        [0x2F78],
+        [0x232A1C4],
         None,
         "DoMoveSonicBoom",
         "Move effect: SonicBoom\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14460,8 +14484,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveWaterfall = Symbol(
-        None,
-        None,
+        [0x31C8],
+        [0x232A414],
         None,
         "DoMoveWaterfall",
         "Move effect: Waterfall\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14469,8 +14493,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageLowerAccuracy40 = Symbol(
-        None,
-        None,
+        [0x3234],
+        [0x232A480],
         None,
         "DoMoveDamageLowerAccuracy40",
         "Move effect: Deal damage with a 40% chance (MUDDY_WATER_LOWER_ACCURACY_CHANCE) of lowering the defender's accuracy.\nRelevant moves: Muddy Water, Mud Bomb, Mirror Shot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether or not damage was dealt",
@@ -14514,8 +14538,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveMinimize = Symbol(
-        None,
-        None,
+        [0x3470],
+        [0x232A6BC],
         None,
         "DoMoveMinimize",
         "Move effect: Minimize\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14550,8 +14574,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveMoonlight = Symbol(
-        None,
-        None,
+        [0x362C],
+        [0x232A878],
         None,
         "DoMoveMoonlight",
         "Move effect: Moonlight\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14568,8 +14592,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSwordsDance = Symbol(
-        None,
-        None,
+        [0x3768],
+        [0x232A9B4],
         None,
         "DoMoveSwordsDance",
         "Move effect: Swords Dance\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14604,8 +14628,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveBoostDefense2 = Symbol(
-        None,
-        None,
+        [0x390C],
+        [0x232AB58],
         None,
         "DoMoveBoostDefense2",
         "Move effect: Boost the defender's defense stat by two stages\nRelevant moves: Iron Defense, Acid Armor, Barrier\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14622,8 +14646,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveThundershock = Symbol(
-        None,
-        None,
+        [0x3944],
+        [0x232AB90],
         None,
         "DoMoveThundershock",
         "Move effect: Thundershock\n\nThis is identical to DoMoveDamageParalyze10, except it uses a different data symbol for the paralysis chance (but it's still 10%).\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14676,8 +14700,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMovePoisonFang = Symbol(
-        None,
-        None,
+        [0x3AC8],
+        [0x232AD14],
         None,
         "DoMovePoisonFang",
         "Move effect: Poison Fang\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14685,8 +14709,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamagePoison18 = Symbol(
-        None,
-        None,
+        [0x3B34],
+        [0x232AD80],
         None,
         "DoMoveDamagePoison18",
         "Move effect: Deal damage with an 18% chance (POISON_STING_POISON_CHANCE) to poison the defender.\nRelevant moves: Poison Sting, Sludge, Sludge Bomb\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14766,8 +14790,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageStealItem = Symbol(
-        None,
-        None,
+        [0x4270],
+        [0x232B4BC],
         None,
         "DoMoveDamageStealItem",
         "Move effect: Deal damage and steal the defender's item if possible.\nRelevant moves: Thief, Covet\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14775,8 +14799,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveAmnesia = Symbol(
-        None,
-        None,
+        [0x427C],
+        [0x232B4C8],
         None,
         "DoMoveAmnesia",
         "Move effect: Amnesia\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14793,8 +14817,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveGrowl = Symbol(
-        None,
-        None,
+        [0x433C],
+        [0x232B588],
         None,
         "DoMoveGrowl",
         "Move effect: Growl\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14820,8 +14844,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSunnyDay = Symbol(
-        None,
-        None,
+        [0x4444],
+        [0x232B690],
         None,
         "DoMoveSunnyDay",
         "Move effect: Sunny Day\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14829,8 +14853,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveLowerDefense1 = Symbol(
-        None,
-        None,
+        [0x44A0],
+        [0x232B6EC],
         None,
         "DoMoveLowerDefense1",
         "Move effect: Lower the defender's defense by one stage\nRelevant moves: Tail Whip, Leer\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14847,8 +14871,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveFakeOut = Symbol(
-        None,
-        None,
+        [0x44E0],
+        [0x232B72C],
         None,
         "DoMoveFakeOut",
         "Move effect: Fake Out\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14856,8 +14880,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSleepTalk = Symbol(
-        None,
-        None,
+        [0x454C],
+        [0x232B798],
         None,
         "DoMoveSleepTalk",
         "Move effect: Sleep Talk\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14874,8 +14898,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveAssist = Symbol(
-        None,
-        None,
+        [0x4620],
+        [0x232B86C],
         None,
         "DoMoveAssist",
         "Move effect: Assist\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14901,8 +14925,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSwallow = Symbol(
-        None,
-        None,
+        [0x46B4],
+        [0x232B900],
         None,
         "DoMoveSwallow",
         "Move effect: Swallow\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14928,8 +14952,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSteelWing = Symbol(
-        None,
-        None,
+        [0x47D0],
+        [0x232BA1C],
         None,
         "DoMoveSteelWing",
         "Move effect: Steel Wing\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -14937,8 +14961,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSpitUp = Symbol(
-        None,
-        None,
+        [0x4860],
+        [0x232BAAC],
         None,
         "DoMoveSpitUp",
         "Move effect: Spit Up\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15009,8 +15033,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageConfuse30 = Symbol(
-        None,
-        None,
+        [0x5104],
+        [0x232C350],
         None,
         "DoMoveDamageConfuse30",
         "Move effect: Deal damage with a 30% chance (DIZZY_PUNCH_CONFUSE_CHANCE) to confuse the defender.\nRelevant moves: Dizzy Punch, Water Pulse\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15018,8 +15042,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveBulkUp = Symbol(
-        None,
-        None,
+        [0x5170],
+        [0x232C3BC],
         None,
         "DoMoveBulkUp",
         "Move effect: Bulk Up\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15036,8 +15060,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveFeatherDance = Symbol(
-        None,
-        None,
+        [0x5204],
+        [0x232C450],
         None,
         "DoMoveFeatherDance",
         "Move effect: FeatherDance\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15063,8 +15087,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveCrushClaw = Symbol(
-        None,
-        None,
+        [0x5378],
+        [0x232C5C4],
         None,
         "DoMoveCrushClaw",
         "Move effect: Crush Claw\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15072,8 +15096,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveBlazeKick = Symbol(
-        None,
-        None,
+        [0x53F8],
+        [0x232C644],
         None,
         "DoMoveBlazeKick",
         "Move effect: Blaze Kick\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15108,8 +15132,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMovePoisonTail = Symbol(
-        None,
-        None,
+        [0x56A8],
+        [0x232C8F4],
         None,
         "DoMovePoisonTail",
         "Move effect: Poison Tail\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15135,8 +15159,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveTailGlow = Symbol(
-        None,
-        None,
+        [0x57D8],
+        [0x232CA24],
         None,
         "DoMoveTailGlow",
         "Move effect: Tail Glow\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15153,8 +15177,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMovePerishSong = Symbol(
-        None,
-        None,
+        [0x58B4],
+        [0x232CB00],
         None,
         "DoMovePerishSong",
         "Move effect: Perish Song\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15171,8 +15195,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSpikes = Symbol(
-        None,
-        None,
+        [0x58D8],
+        [0x232CB24],
         None,
         "DoMoveSpikes",
         "Move effect: Spikes\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15207,8 +15231,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDefenseCurl = Symbol(
-        None,
-        None,
+        [0x59E0],
+        [0x232CC2C],
         None,
         "DoMoveDefenseCurl",
         "Move effect: Defense Curl\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15225,8 +15249,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveMistBall = Symbol(
-        None,
-        None,
+        [0x5A20],
+        [0x232CC6C],
         None,
         "DoMoveMistBall",
         "Move effect: Mist Ball\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15252,8 +15276,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveCalmMind = Symbol(
-        None,
-        None,
+        [0x5AE4],
+        [0x232CD30],
         None,
         "DoMoveCalmMind",
         "Move effect: Calm Mind\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15270,8 +15294,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveMetalClaw = Symbol(
-        None,
-        None,
+        [0x5B40],
+        [0x232CD8C],
         None,
         "DoMoveMetalClaw",
         "Move effect: Metal Claw\n\n Note that this move effect handler has a slightly different parameter list than all the others. Which offensive stat is boosted is specified by the caller.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: stat index for the offensive stat to boost\nstack[0]: item ID\nreturn: whether the move was successfully used",
@@ -15324,8 +15348,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDreamEater = Symbol(
-        None,
-        None,
+        [0x5ECC],
+        [0x232D118],
         None,
         "DoMoveDreamEater",
         "Move effect: Dream Eater\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15360,8 +15384,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDragonRage = Symbol(
-        None,
-        None,
+        [0x6188],
+        [0x232D3D4],
         None,
         "DoMoveDragonRage",
         "Move effect: Dragon Rage\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15441,8 +15465,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSwitchPositions = Symbol(
-        None,
-        None,
+        [0x6730],
+        [0x232D97C],
         None,
         "DoMoveSwitchPositions",
         "Move effect: Switches the user's position with positions of other monsters in the room.\nRelevant moves: Baton Pass, Switcher (item effect)\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15468,8 +15492,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveSiesta = Symbol(
-        None,
-        None,
+        [0x68B0],
+        [0x232DAFC],
         None,
         "DoMoveSiesta",
         "Move effect: Siesta (item effect)\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15639,8 +15663,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveReviver = Symbol(
-        None,
-        None,
+        [0x7078],
+        [0x232E2C4],
         None,
         "DoMoveReviver",
         "Move effect: Reviver (item effect)\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15810,8 +15834,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveGuardSwap = Symbol(
-        None,
-        None,
+        [0x7570],
+        [0x232E7BC],
         None,
         "DoMoveGuardSwap",
         "Move effect: Guard Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15936,8 +15960,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveStealthRock = Symbol(
-        None,
-        None,
+        [0x7B04],
+        [0x232ED50],
         None,
         "DoMoveStealthRock",
         "Move effect: Stealth Rock\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15954,8 +15978,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDamageEatItem = Symbol(
-        None,
-        None,
+        [0x7BCC],
+        [0x232EE18],
         None,
         "DoMoveDamageEatItem",
         "Move effect: Deals damage, and eats any beneficial items the defender is holding.\nRelevant moves: Pluck, Bug Bite\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -15981,8 +16005,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveToxicSpikes = Symbol(
-        None,
-        None,
+        [0x7E30],
+        [0x232F07C],
         None,
         "DoMoveToxicSpikes",
         "Move effect: Toxic Spikes\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -16008,8 +16032,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveWorrySeed = Symbol(
-        None,
-        None,
+        [0x7F68],
+        [0x232F1B4],
         None,
         "DoMoveWorrySeed",
         "Move effect: Worry Seed\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -16044,8 +16068,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMovePowerSwap = Symbol(
-        None,
-        None,
+        [0x8238],
+        [0x232F484],
         None,
         "DoMovePowerSwap",
         "Move effect: Power Swap\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -16080,8 +16104,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveDefendOrder = Symbol(
-        None,
-        None,
+        [0x8428],
+        [0x232F674],
         None,
         "DoMoveDefendOrder",
         "Move effect: Defend Order\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -16179,8 +16203,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveNastyPlot = Symbol(
-        None,
-        None,
+        [0x88C4],
+        [0x232FB10],
         None,
         "DoMoveNastyPlot",
         "Move effect: Nasty Plot\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -16188,8 +16212,8 @@ class JpMove_effectsFunctions:
     )
 
     DoMoveTag0x1AB = Symbol(
-        None,
-        None,
+        [0x88E4],
+        [0x232FB30],
         None,
         "DoMoveTag0x1AB",
         "Move effect: MOVE_TAG_0x1AB\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
@@ -16301,8 +16325,8 @@ class JpOverlay1Functions:
     )
 
     ProcessContinueScreenContents = Symbol(
-        None,
-        None,
+        [0x99E4],
+        [0x23346A4],
         None,
         "ProcessContinueScreenContents",
         "Fetches the required data and creates all the strings to display the contents shown in the window\nwhen choosing continue in the main menu.\n\nr0: undefined4",
@@ -16313,8 +16337,8 @@ class JpOverlay1Functions:
 class JpOverlay1Data:
 
     PRINTS_STRINGS = Symbol(
-        None,
-        None,
+        [0x11CEC],
+        [0x233C9AC],
         None,
         "PRINTS_STRINGS",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16322,8 +16346,8 @@ class JpOverlay1Data:
     )
 
     PRINTS_STRUCT = Symbol(
-        None,
-        None,
+        [0x11ED4],
+        [0x233CB94],
         None,
         "PRINTS_STRUCT",
         "62*0x8\n\nNote: unverified, ported from Irdkwia's notes",
@@ -16331,8 +16355,8 @@ class JpOverlay1Data:
     )
 
     MAIN_MENU_WINDOW_PARAMS_1 = Symbol(
-        None,
-        None,
+        [0x120D8],
+        [0x233CD98],
         None,
         "MAIN_MENU_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16340,8 +16364,8 @@ class JpOverlay1Data:
     )
 
     MAIN_MENU_WINDOW_PARAMS_2 = Symbol(
-        None,
-        None,
+        [0x120E8],
+        [0x233CDA8],
         None,
         "MAIN_MENU_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16349,8 +16373,8 @@ class JpOverlay1Data:
     )
 
     MAIN_MENU_WINDOW_PARAMS_3 = Symbol(
-        None,
-        None,
+        [0x120F8],
+        [0x233CDB8],
         None,
         "MAIN_MENU_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16358,8 +16382,8 @@ class JpOverlay1Data:
     )
 
     MAIN_MENU_WINDOW_PARAMS_4 = Symbol(
-        None,
-        None,
+        [0x12108],
+        [0x233CDC8],
         None,
         "MAIN_MENU_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16373,8 +16397,8 @@ class JpOverlay1Data:
     MAIN_MENU = Symbol([0x12190], [0x233CE50], 0xA0, "MAIN_MENU", "", "")
 
     MAIN_MENU_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
+        [0x122D4],
+        [0x233CF94],
         None,
         "MAIN_MENU_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16382,8 +16406,8 @@ class JpOverlay1Data:
     )
 
     MAIN_MENU_WINDOW_PARAMS_6 = Symbol(
-        None,
-        None,
+        [0x122E4],
+        [0x233CFA4],
         None,
         "MAIN_MENU_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16391,8 +16415,8 @@ class JpOverlay1Data:
     )
 
     MAIN_MENU_WINDOW_PARAMS_7 = Symbol(
-        None,
-        None,
+        [0x122F4],
+        [0x233CFB4],
         None,
         "MAIN_MENU_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16400,12 +16424,17 @@ class JpOverlay1Data:
     )
 
     MAIN_MENU_ITEMS_CONFIRM = Symbol(
-        None, None, None, "MAIN_MENU_ITEMS_CONFIRM", "", "struct simple_menu_id_item[3]"
+        [0x12304],
+        [0x233CFC4],
+        None,
+        "MAIN_MENU_ITEMS_CONFIRM",
+        "",
+        "struct simple_menu_id_item[3]",
     )
 
     MAIN_MENU_WINDOW_PARAMS_8 = Symbol(
-        None,
-        None,
+        [0x12388],
+        [0x233D048],
         None,
         "MAIN_MENU_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16413,8 +16442,8 @@ class JpOverlay1Data:
     )
 
     MAIN_MENU_WINDOW_PARAMS_9 = Symbol(
-        None,
-        None,
+        [0x123A8],
+        [0x233D068],
         None,
         "MAIN_MENU_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16431,8 +16460,8 @@ class JpOverlay1Data:
     )
 
     MAIN_MENU_WINDOW_PARAMS_10 = Symbol(
-        None,
-        None,
+        [0x12428],
+        [0x233D0E8],
         None,
         "MAIN_MENU_WINDOW_PARAMS_10",
         "Note: unverified, ported from Irdkwia's notes",
@@ -16542,8 +16571,8 @@ class JpOverlay10Functions:
     )
 
     SprintfStatic = Symbol(
-        None,
-        None,
+        [0x9CC, 0x4D88],
+        [0x22BEBEC, 0x22C2FA8],
         None,
         "SprintfStatic",
         "Statically defined copy of sprintf(3) in overlay 10. See arm9.yml for more information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of characters printed, excluding the null-terminator",
@@ -16614,8 +16643,8 @@ class JpOverlay10Functions:
     )
 
     GetItemAnimation2 = Symbol(
-        [0x3484],
-        [0x22C16A4],
+        [0x3488],
+        [0x22C16A8],
         None,
         "GetItemAnimation2",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: item_id\nreturn: second field of the item animation info",
@@ -16632,8 +16661,8 @@ class JpOverlay10Functions:
     )
 
     DrawTeamStats = Symbol(
-        None,
-        None,
+        [0x3F6C],
+        [0x22C218C],
         None,
         "DrawTeamStats",
         "Handles creating the windows, sprites, etc. for the team stats top screen display.\n\nr0: undefined4\nr1: int\nr2: undefined4\nr3: uint32_t\nreturn: undefined4",
@@ -16668,8 +16697,8 @@ class JpOverlay10Functions:
     )
 
     ProcessTeamStatsLvHp = Symbol(
-        None,
-        None,
+        [0x4C7C],
+        [0x22C2E9C],
         None,
         "ProcessTeamStatsLvHp",
         "Appears to populate the Lv./HP row in the 'Team stats' top screen.\n\nr0: index of some kind",
@@ -16677,8 +16706,8 @@ class JpOverlay10Functions:
     )
 
     ProcessTeamStatsNameGender = Symbol(
-        None,
-        None,
+        [0x4DB0],
+        [0x22C2FD0],
         None,
         "ProcessTeamStatsNameGender",
         "Appears to populate the name/gender row in the 'Team stats' top screen.\n\nr0: index of some kind",
@@ -16716,8 +16745,8 @@ class JpOverlay10Functions:
 class JpOverlay10Data:
 
     INVENTORY_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x785C],
+        [0x22C5A7C],
         None,
         "INVENTORY_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an inventory_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateInventoryMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateInventoryMenu.",
@@ -16986,8 +17015,8 @@ class JpOverlay10Data:
     )
 
     BURN_DAMAGE = Symbol(
-        None,
-        None,
+        [0x799C],
+        [0x22C5BBC],
         None,
         "BURN_DAMAGE",
         "Damage dealt by the burn status condition.",
@@ -16995,8 +17024,8 @@ class JpOverlay10Data:
     )
 
     POISON_DAMAGE = Symbol(
-        None,
-        None,
+        [0x79A0],
+        [0x22C5BC0],
         None,
         "POISON_DAMAGE",
         "Damage dealt by the poison status condition.",
@@ -17211,8 +17240,8 @@ class JpOverlay10Data:
     )
 
     RAIN_ABILITY_BONUS_REGEN = Symbol(
-        None,
-        None,
+        [0x7A40],
+        [0x22C5C60],
         None,
         "RAIN_ABILITY_BONUS_REGEN",
         "The passive bonus health regen given when the weather is rain for the abilities rain dish and dry skin.",
@@ -17220,8 +17249,8 @@ class JpOverlay10Data:
     )
 
     LEECH_SEED_HP_DRAIN = Symbol(
-        None,
-        None,
+        [0x7A50],
+        [0x22C5C70],
         None,
         "LEECH_SEED_HP_DRAIN",
         "The amount of health drained by leech seed status.",
@@ -17350,8 +17379,8 @@ class JpOverlay10Data:
     )
 
     ICE_BODY_BONUS_REGEN = Symbol(
-        None,
-        None,
+        [0x7AF8],
+        [0x22C5D18],
         None,
         "ICE_BODY_BONUS_REGEN",
         "The passive bonus health regen given when the weather is hail for the ability ice body.",
@@ -17395,8 +17424,8 @@ class JpOverlay10Data:
     )
 
     WEATHER_MOVE_TURN_COUNT = Symbol(
-        None,
-        None,
+        [0x7B1C],
+        [0x22C5D3C],
         None,
         "WEATHER_MOVE_TURN_COUNT",
         "The number of turns the moves rain dance, hail, sandstorm, sunny day and defog change the weather for. (3000)",
@@ -17539,8 +17568,8 @@ class JpOverlay10Data:
     )
 
     LEECH_SEED_DAMAGE_COOLDOWN = Symbol(
-        None,
-        None,
+        [0x7B74],
+        [0x22C5D94],
         None,
         "LEECH_SEED_DAMAGE_COOLDOWN",
         "The number of turns between leech seed health drain.",
@@ -17548,8 +17577,8 @@ class JpOverlay10Data:
     )
 
     THROWN_ITEM_HIT_CHANCE = Symbol(
-        None,
-        None,
+        [0x7B78],
+        [0x22C5D98],
         0x2,
         "THROWN_ITEM_HIT_CHANCE",
         "Chance of a hurled item hitting the target (90%).",
@@ -17620,8 +17649,8 @@ class JpOverlay10Data:
     )
 
     WISH_BONUS_REGEN = Symbol(
-        None,
-        None,
+        [0x7B98],
+        [0x22C5DB8],
         None,
         "WISH_BONUS_REGEN",
         "The passive bonus regen given by the wish status condition.",
@@ -17701,8 +17730,8 @@ class JpOverlay10Data:
     )
 
     ME_FIRST_MULTIPLIER = Symbol(
-        [0x7BC8],
-        [0x22C5DE8],
+        [0x7BD8],
+        [0x22C5DF8],
         0x4,
         "ME_FIRST_MULTIPLIER",
         "The damage multiplier applied to attacks copied by Me First, as a fixed-point number with 8 fraction bits (1.5).",
@@ -17773,8 +17802,8 @@ class JpOverlay10Data:
     )
 
     MATCHUP_IMMUNE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x7C20],
+        [0x22C5E40],
         None,
         "MATCHUP_IMMUNE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_IMMUNE, as a fixed-point number with 8 fraction bits (0.5).",
@@ -18133,8 +18162,8 @@ class JpOverlay10Data:
     )
 
     EAT_ITEM_EFFECT_IGNORE_LIST = Symbol(
-        None,
-        None,
+        [0x803C],
+        [0x22C625C],
         None,
         "EAT_ITEM_EFFECT_IGNORE_LIST",
         "List of item IDs that should be ignored by the ShouldTryEatItem function. The last entry is null.",
@@ -18715,8 +18744,8 @@ class JpOverlay11Functions:
     )
 
     InitAnimDataFromOtherAnimDataVeneer = Symbol(
-        None,
-        None,
+        [0x1ACAC],
+        [0x22F858C],
         None,
         "InitAnimDataFromOtherAnimDataVeneer",
         "Likely a linker-generated veneer for InitAnimDataFromOtherAnimData.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: dst\nr1: src",
@@ -18724,8 +18753,8 @@ class JpOverlay11Functions:
     )
 
     AnimRelatedFunction = Symbol(
-        None,
-        None,
+        [0x1ACB8, 0x1AE08],
+        [0x22F8598, 0x22F86E8],
         None,
         "AnimRelatedFunction",
         "Does more stuff related to animations...probably?\n\nr0: animation pointer?\nothers: ?",
@@ -18954,8 +18983,8 @@ class JpOverlay11Data:
     )
 
     SCRIPT_COMMAND_PARSING_DATA = Symbol(
-        None,
-        None,
+        [0x3A75C],
+        [0x231803C],
         None,
         "SCRIPT_COMMAND_PARSING_DATA",
         "Used by ScriptCommandParsing somehow",
@@ -18963,8 +18992,8 @@ class JpOverlay11Data:
     )
 
     SCRIPT_OP_CODE_NAMES = Symbol(
-        None,
-        None,
+        [0x3A77C],
+        [0x231805C],
         None,
         "SCRIPT_OP_CODE_NAMES",
         "Opcode name strings pointed to by entries in SCRIPT_OP_CODES (script_opcode::name)",
@@ -18981,8 +19010,8 @@ class JpOverlay11Data:
     )
 
     OVERLAY11_DEBUG_STRINGS = Symbol(
-        None,
-        None,
+        [0x3CE8C],
+        [0x231A76C],
         None,
         "OVERLAY11_DEBUG_STRINGS",
         "Strings used with various debug printing functions throughout the overlay",
@@ -18990,8 +19019,8 @@ class JpOverlay11Data:
     )
 
     C_ROUTINE_NAMES = Symbol(
-        None,
-        None,
+        [0x3D770],
+        [0x231B050],
         None,
         "C_ROUTINE_NAMES",
         "Common routine name strings pointed to by entries in C_ROUTINES (common_routine::name)",
@@ -19008,8 +19037,8 @@ class JpOverlay11Data:
     )
 
     GROUND_WEATHER_TABLE = Symbol(
-        None,
-        None,
+        [0x41A94],
+        [0x231F374],
         None,
         "GROUND_WEATHER_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct ground_weather_entry[12]",
@@ -19017,8 +19046,8 @@ class JpOverlay11Data:
     )
 
     GROUND_WAN_FILES_TABLE = Symbol(
-        None,
-        None,
+        [0x41AC4],
+        [0x231F3A4],
         None,
         "GROUND_WAN_FILES_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: char[343][12]",
@@ -19071,8 +19100,8 @@ class JpOverlay11Data:
     )
 
     SETANIMATION_TABLE = Symbol(
-        None,
-        None,
+        [0x45550],
+        [0x2322E30],
         None,
         "SETANIMATION_TABLE",
         "Table that associates the parameter of the SetAnimation scripting opcode to animation data.\n\nThe first entry is unused and has a value of 0xFFFF.",
@@ -19080,8 +19109,8 @@ class JpOverlay11Data:
     )
 
     TEAM_INFO_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x460E0],
+        [0x23239C0],
         None,
         "TEAM_INFO_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a team_info_box.",
@@ -19089,8 +19118,8 @@ class JpOverlay11Data:
     )
 
     OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
-        None,
-        None,
+        [0x46D08],
+        [0x23245E8],
         None,
         "OVERLAY11_OVERLAY_LOAD_TABLE",
         "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16 bytes, consisting of:\n- overlay group ID (see arm9.yml or enum overlay_group_id in the C headers for a mapping between group ID and overlay number)\n- function pointer to entry point\n- function pointer to destructor\n- possibly function pointer to frame-update function?\n\ntype: struct overlay_load_entry[21]",
@@ -19124,7 +19153,12 @@ class JpOverlay11Data:
     )
 
     WORLD_MAP_MODE = Symbol(
-        None, None, None, "WORLD_MAP_MODE", "The current world map", "uint32_t"
+        [0x48A64],
+        [0x2326344],
+        None,
+        "WORLD_MAP_MODE",
+        "The current world map",
+        "uint32_t",
     )
 
 
@@ -19378,8 +19412,8 @@ class JpOverlay13Data:
     )
 
     OVERLAY13_UNKNOWN_POINTER__NA_238CEA0 = Symbol(
-        [0x2D68],
-        [0x238E408],
+        [0x2D60],
+        [0x238E400],
         0x4,
         "OVERLAY13_UNKNOWN_POINTER__NA_238CEA0",
         "Note: unverified, ported from Irdkwia's notes",
@@ -19387,8 +19421,8 @@ class JpOverlay13Data:
     )
 
     OVERLAY13_UNKNOWN_POINTER__NA_238CEA4 = Symbol(
-        [0x2D6C],
-        [0x238E40C],
+        [0x2D64],
+        [0x238E404],
         0x4,
         "OVERLAY13_UNKNOWN_POINTER__NA_238CEA4",
         "Note: unverified, ported from Irdkwia's notes",
@@ -19405,8 +19439,8 @@ class JpOverlay13Data:
     )
 
     QUIZ_WINDOW_PARAMS_5 = Symbol(
-        [0x2D74],
-        [0x238E414],
+        [0x2D6C],
+        [0x238E40C],
         0x10,
         "QUIZ_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -19414,8 +19448,8 @@ class JpOverlay13Data:
     )
 
     QUIZ_WINDOW_PARAMS_6 = Symbol(
-        [0x2D84],
-        [0x238E424],
+        [0x2D7C],
+        [0x238E41C],
         0x10,
         "QUIZ_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -19423,8 +19457,8 @@ class JpOverlay13Data:
     )
 
     QUIZ_DEBUG_MENU_ITEMS = Symbol(
-        [0x2D94],
-        [0x238E434],
+        [0x2D8C],
+        [0x238E42C],
         0x48,
         "QUIZ_DEBUG_MENU_ITEMS",
         "Note: unverified, ported from Irdkwia's notes",
@@ -19441,8 +19475,8 @@ class JpOverlay13Data:
     )
 
     QUIZ_QUESTION_ANSWER_ASSOCIATIONS = Symbol(
-        [0x2DEC],
-        [0x238E48C],
+        [0x2DE4],
+        [0x238E484],
         0x84,
         "QUIZ_QUESTION_ANSWER_ASSOCIATIONS",
         "0x2 * (66 questions)\n\nNote: unverified, ported from Irdkwia's notes",
@@ -19527,8 +19561,8 @@ class JpOverlay14Functions:
     )
 
     SentryStateExit = Symbol(
-        None,
-        None,
+        [0x229C],
+        [0x238D93C],
         None,
         "SentryStateExit",
         "State 0x5: Exit (wraps SentrySetExitingState).\n\nNo params.",
@@ -19910,8 +19944,8 @@ class JpOverlay14Data:
     )
 
     SENTRY_DUTY_PTR = Symbol(
-        None,
-        None,
+        [0x3A40],
+        [0x238F0E0],
         None,
         "SENTRY_DUTY_PTR",
         "Pointer to the SENTRY_DUTY_STRUCT.",
@@ -19919,8 +19953,8 @@ class JpOverlay14Data:
     )
 
     SENTRY_DUTY_STATE_HANDLER_TABLE = Symbol(
-        None,
-        None,
+        [0x3A54],
+        [0x238F0F4],
         None,
         "SENTRY_DUTY_STATE_HANDLER_TABLE",
         "Null-terminated table of handler functions for the different states in the state machine. See SentryRunState.\n\ntype: state_handler_fn_t[35]",
@@ -19963,8 +19997,8 @@ class JpOverlay15Data:
     )
 
     BANK_WINDOW_PARAMS_2 = Symbol(
-        None,
-        None,
+        [0xF64],
+        [0x238C604],
         None,
         "BANK_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
@@ -19972,8 +20006,8 @@ class JpOverlay15Data:
     )
 
     BANK_WINDOW_PARAMS_3 = Symbol(
-        None,
-        None,
+        [0xF74],
+        [0x238C614],
         None,
         "BANK_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
@@ -19981,8 +20015,8 @@ class JpOverlay15Data:
     )
 
     BANK_WINDOW_PARAMS_4 = Symbol(
-        None,
-        None,
+        [0xF84],
+        [0x238C624],
         None,
         "BANK_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20008,8 +20042,8 @@ class JpOverlay15Data:
     )
 
     OVERLAY15_UNKNOWN_POINTER__NA_238B180 = Symbol(
-        None,
-        None,
+        [0x1040],
+        [0x238C6E0],
         None,
         "OVERLAY15_UNKNOWN_POINTER__NA_238B180",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20097,8 +20131,8 @@ class JpOverlay16Data:
     )
 
     EVO_WINDOW_PARAMS_4 = Symbol(
-        None,
-        None,
+        [0x2CA4],
+        [0x238E344],
         None,
         "EVO_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20106,8 +20140,8 @@ class JpOverlay16Data:
     )
 
     EVO_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
+        [0x2CB4],
+        [0x238E354],
         None,
         "EVO_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20115,8 +20149,8 @@ class JpOverlay16Data:
     )
 
     EVO_WINDOW_PARAMS_6 = Symbol(
-        None,
-        None,
+        [0x2CC4],
+        [0x238E364],
         None,
         "EVO_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20142,8 +20176,8 @@ class JpOverlay16Data:
     )
 
     OVERLAY16_UNKNOWN_POINTER__NA_238CE40 = Symbol(
-        None,
-        None,
+        [0x2D20],
+        [0x238E3C0],
         None,
         "OVERLAY16_UNKNOWN_POINTER__NA_238CE40",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20177,8 +20211,8 @@ class JpOverlay17Functions:
 class JpOverlay17Data:
 
     ASSEMBLY_WINDOW_PARAMS_1 = Symbol(
-        None,
-        None,
+        [0x19F0],
+        [0x238D090],
         None,
         "ASSEMBLY_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20186,8 +20220,8 @@ class JpOverlay17Data:
     )
 
     ASSEMBLY_WINDOW_PARAMS_2 = Symbol(
-        None,
-        None,
+        [0x1A00],
+        [0x238D0A0],
         None,
         "ASSEMBLY_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20195,8 +20229,8 @@ class JpOverlay17Data:
     )
 
     ASSEMBLY_WINDOW_PARAMS_3 = Symbol(
-        None,
-        None,
+        [0x1A10],
+        [0x238D0B0],
         None,
         "ASSEMBLY_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20204,8 +20238,8 @@ class JpOverlay17Data:
     )
 
     ASSEMBLY_WINDOW_PARAMS_4 = Symbol(
-        None,
-        None,
+        [0x1A20],
+        [0x238D0C0],
         None,
         "ASSEMBLY_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20213,8 +20247,8 @@ class JpOverlay17Data:
     )
 
     ASSEMBLY_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
+        [0x1A30],
+        [0x238D0D0],
         None,
         "ASSEMBLY_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20312,8 +20346,8 @@ class JpOverlay17Data:
     )
 
     OVERLAY17_FUNCTION_POINTER_TABLE = Symbol(
-        None,
-        None,
+        [0x1C00],
+        [0x238D2A0],
         None,
         "OVERLAY17_FUNCTION_POINTER_TABLE",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20330,8 +20364,8 @@ class JpOverlay17Data:
     )
 
     OVERLAY17_UNKNOWN_POINTER__NA_238BE00 = Symbol(
-        None,
-        None,
+        [0x1CC0],
+        [0x238D360],
         None,
         "OVERLAY17_UNKNOWN_POINTER__NA_238BE00",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20374,8 +20408,8 @@ class JpOverlay18Functions:
 class JpOverlay18Data:
 
     LINK_SHOP_WINDOW_PARAMS_1 = Symbol(
-        None,
-        None,
+        [0x313C],
+        [0x238E7DC],
         None,
         "LINK_SHOP_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20383,8 +20417,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_2 = Symbol(
-        None,
-        None,
+        [0x314C],
+        [0x238E7EC],
         None,
         "LINK_SHOP_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20392,8 +20426,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_3 = Symbol(
-        None,
-        None,
+        [0x315C],
+        [0x238E7FC],
         None,
         "LINK_SHOP_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20401,8 +20435,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_4 = Symbol(
-        None,
-        None,
+        [0x316C],
+        [0x238E80C],
         None,
         "LINK_SHOP_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20410,8 +20444,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
+        [0x317C],
+        [0x238E81C],
         None,
         "LINK_SHOP_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20419,8 +20453,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_6 = Symbol(
-        None,
-        None,
+        [0x318C],
+        [0x238E82C],
         None,
         "LINK_SHOP_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20428,8 +20462,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_7 = Symbol(
-        None,
-        None,
+        [0x319C],
+        [0x238E83C],
         None,
         "LINK_SHOP_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20437,8 +20471,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_8 = Symbol(
-        None,
-        None,
+        [0x31AC],
+        [0x238E84C],
         None,
         "LINK_SHOP_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20446,8 +20480,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_9 = Symbol(
-        None,
-        None,
+        [0x31BC],
+        [0x238E85C],
         None,
         "LINK_SHOP_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20455,8 +20489,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_10 = Symbol(
-        None,
-        None,
+        [0x31CC],
+        [0x238E86C],
         None,
         "LINK_SHOP_WINDOW_PARAMS_10",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20464,8 +20498,8 @@ class JpOverlay18Data:
     )
 
     LINK_SHOP_WINDOW_PARAMS_11 = Symbol(
-        None,
-        None,
+        [0x31DC],
+        [0x238E87C],
         None,
         "LINK_SHOP_WINDOW_PARAMS_11",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20554,8 +20588,8 @@ class JpOverlay18Data:
     )
 
     OVERLAY18_FUNCTION_POINTER_TABLE = Symbol(
-        None,
-        None,
+        [0x3394],
+        [0x238EA34],
         None,
         "OVERLAY18_FUNCTION_POINTER_TABLE",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20572,8 +20606,8 @@ class JpOverlay18Data:
     )
 
     OVERLAY18_UNKNOWN_POINTER__NA_238D620 = Symbol(
-        None,
-        None,
+        [0x3500],
+        [0x238EBA0],
         None,
         "OVERLAY18_UNKNOWN_POINTER__NA_238D620",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20650,8 +20684,8 @@ class JpOverlay19Functions:
 class JpOverlay19Data:
 
     OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
-        None,
-        None,
+        [0x3998],
+        [0x238F038],
         None,
         "OVERLAY19_UNKNOWN_TABLE__NA_238DAE0",
         "4*0x2\n\nNote: unverified, ported from Irdkwia's notes",
@@ -20659,8 +20693,8 @@ class JpOverlay19Data:
     )
 
     BAR_UNLOCKABLE_DUNGEONS_TABLE = Symbol(
-        None,
-        None,
+        [0x39A0],
+        [0x238F040],
         None,
         "BAR_UNLOCKABLE_DUNGEONS_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct dungeon_id_16[6]",
@@ -20677,8 +20711,8 @@ class JpOverlay19Data:
     )
 
     BAR_AVAILABLE_ITEMS = Symbol(
-        None,
-        None,
+        [0x3A84],
+        [0x238F124],
         None,
         "BAR_AVAILABLE_ITEMS",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct bar_item[66]",
@@ -20686,8 +20720,8 @@ class JpOverlay19Data:
     )
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178 = Symbol(
-        None,
-        None,
+        [0x4030],
+        [0x238F6D0],
         None,
         "OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20695,8 +20729,8 @@ class JpOverlay19Data:
     )
 
     OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4 = Symbol(
-        None,
-        None,
+        [0x405C],
+        [0x238F6FC],
         None,
         "OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4",
         "5*0x8\n\nNote: unverified, ported from Irdkwia's notes",
@@ -20704,8 +20738,8 @@ class JpOverlay19Data:
     )
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC = Symbol(
-        None,
-        None,
+        [0x4084],
+        [0x238F724],
         None,
         "OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20713,8 +20747,8 @@ class JpOverlay19Data:
     )
 
     BAR_WINDOW_PARAMS_1 = Symbol(
-        None,
-        None,
+        [0x4090],
+        [0x238F730],
         None,
         "BAR_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20722,8 +20756,8 @@ class JpOverlay19Data:
     )
 
     BAR_WINDOW_PARAMS_2 = Symbol(
-        None,
-        None,
+        [0x40A0],
+        [0x238F740],
         None,
         "BAR_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20731,8 +20765,8 @@ class JpOverlay19Data:
     )
 
     BAR_WINDOW_PARAMS_3 = Symbol(
-        None,
-        None,
+        [0x40B0],
+        [0x238F750],
         None,
         "BAR_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20758,8 +20792,8 @@ class JpOverlay19Data:
     )
 
     OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
-        None,
-        None,
+        [0x40F0],
+        [0x238F790],
         None,
         "OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20803,8 +20837,8 @@ class JpOverlay19Data:
     )
 
     OVERLAY19_UNKNOWN_POINTER__NA_238E360 = Symbol(
-        None,
-        None,
+        [0x4200],
+        [0x238F8A0],
         None,
         "OVERLAY19_UNKNOWN_POINTER__NA_238E360",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20857,8 +20891,8 @@ class JpOverlay20Functions:
 class JpOverlay20Data:
 
     OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
-        None,
-        None,
+        [0x2E38],
+        [0x238E4D8],
         None,
         "OVERLAY20_UNKNOWN_POINTER__NA_238CF7C",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20911,8 +20945,8 @@ class JpOverlay20Data:
     )
 
     OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
-        None,
-        None,
+        [0x2ED0],
+        [0x238E570],
         None,
         "OVERLAY20_UNKNOWN_TABLE__NA_238D014",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20920,8 +20954,8 @@ class JpOverlay20Data:
     )
 
     RECYCLE_WINDOW_PARAMS_1 = Symbol(
-        None,
-        None,
+        [0x2EE4],
+        [0x238E584],
         None,
         "RECYCLE_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20929,8 +20963,8 @@ class JpOverlay20Data:
     )
 
     RECYCLE_WINDOW_PARAMS_2 = Symbol(
-        None,
-        None,
+        [0x2EF4],
+        [0x238E594],
         None,
         "RECYCLE_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20938,8 +20972,8 @@ class JpOverlay20Data:
     )
 
     RECYCLE_WINDOW_PARAMS_3 = Symbol(
-        None,
-        None,
+        [0x2F04],
+        [0x238E5A4],
         None,
         "RECYCLE_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20947,8 +20981,8 @@ class JpOverlay20Data:
     )
 
     RECYCLE_WINDOW_PARAMS_4 = Symbol(
-        None,
-        None,
+        [0x2F14],
+        [0x238E5B4],
         None,
         "RECYCLE_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20956,8 +20990,8 @@ class JpOverlay20Data:
     )
 
     RECYCLE_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
+        [0x2F24],
+        [0x238E5C4],
         None,
         "RECYCLE_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -20965,8 +20999,8 @@ class JpOverlay20Data:
     )
 
     RECYCLE_WINDOW_PARAMS_6 = Symbol(
-        None,
-        None,
+        [0x2F34],
+        [0x238E5D4],
         None,
         "RECYCLE_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21099,8 +21133,8 @@ class JpOverlay21Functions:
 class JpOverlay21Data:
 
     SWAP_SHOP_WINDOW_PARAMS_1 = Symbol(
-        None,
-        None,
+        [0x28F8],
+        [0x238DF98],
         None,
         "SWAP_SHOP_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21198,8 +21232,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
+        [0x2A38],
+        [0x238E0D8],
         None,
         "SWAP_SHOP_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21207,8 +21241,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_WINDOW_PARAMS_6 = Symbol(
-        None,
-        None,
+        [0x2A48],
+        [0x238E0E8],
         None,
         "SWAP_SHOP_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21216,8 +21250,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_WINDOW_PARAMS_7 = Symbol(
-        None,
-        None,
+        [0x2A58],
+        [0x238E0F8],
         None,
         "SWAP_SHOP_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21225,8 +21259,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_WINDOW_PARAMS_8 = Symbol(
-        None,
-        None,
+        [0x2A68],
+        [0x238E108],
         None,
         "SWAP_SHOP_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21234,15 +21268,17 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_WINDOW_PARAMS_9 = Symbol(
-        None,
-        None,
+        [0x2A78],
+        [0x238E118],
         None,
         "SWAP_SHOP_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
         "struct window_params",
     )
 
-    OVERLAY21_JP_STRING = Symbol(None, None, None, "OVERLAY21_JP_STRING", "合成：", "")
+    OVERLAY21_JP_STRING = Symbol(
+        [0x2DEC], [0x238E48C], None, "OVERLAY21_JP_STRING", "合成：", ""
+    )
 
     OVERLAY21_RESERVED_SPACE = Symbol(
         None,
@@ -21254,8 +21290,8 @@ class JpOverlay21Data:
     )
 
     OVERLAY21_UNKNOWN_POINTER__NA_238CF40 = Symbol(
-        None,
-        None,
+        [0x2E20],
+        [0x238E4C0],
         None,
         "OVERLAY21_UNKNOWN_POINTER__NA_238CF40",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21289,8 +21325,8 @@ class JpOverlay22Functions:
 class JpOverlay22Data:
 
     SHOP_WINDOW_PARAMS_1 = Symbol(
-        None,
-        None,
+        [0x46DC],
+        [0x238FD7C],
         None,
         "SHOP_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21298,8 +21334,8 @@ class JpOverlay22Data:
     )
 
     SHOP_WINDOW_PARAMS_2 = Symbol(
-        None,
-        None,
+        [0x46FC],
+        [0x238FD9C],
         None,
         "SHOP_WINDOW_PARAMS_2",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21307,8 +21343,8 @@ class JpOverlay22Data:
     )
 
     OVERLAY22_UNKNOWN_STRUCT__NA_238E85C = Symbol(
-        None,
-        None,
+        [0x471C],
+        [0x238FDBC],
         None,
         "OVERLAY22_UNKNOWN_STRUCT__NA_238E85C",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21352,8 +21388,8 @@ class JpOverlay22Data:
     )
 
     OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
-        None,
-        None,
+        [0x47B0],
+        [0x238FE50],
         None,
         "OVERLAY22_UNKNOWN_STRING_IDS",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21388,8 +21424,8 @@ class JpOverlay22Data:
     )
 
     SHOP_WINDOW_PARAMS_6 = Symbol(
-        None,
-        None,
+        [0x4840],
+        [0x238FEE0],
         None,
         "SHOP_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21397,8 +21433,8 @@ class JpOverlay22Data:
     )
 
     SHOP_WINDOW_PARAMS_7 = Symbol(
-        None,
-        None,
+        [0x4850],
+        [0x238FEF0],
         None,
         "SHOP_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21406,8 +21442,8 @@ class JpOverlay22Data:
     )
 
     SHOP_WINDOW_PARAMS_8 = Symbol(
-        None,
-        None,
+        [0x4860],
+        [0x238FF00],
         None,
         "SHOP_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21415,8 +21451,8 @@ class JpOverlay22Data:
     )
 
     SHOP_WINDOW_PARAMS_9 = Symbol(
-        None,
-        None,
+        [0x4870],
+        [0x238FF10],
         None,
         "SHOP_WINDOW_PARAMS_9",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21424,8 +21460,8 @@ class JpOverlay22Data:
     )
 
     SHOP_WINDOW_PARAMS_10 = Symbol(
-        None,
-        None,
+        [0x4880],
+        [0x238FF20],
         None,
         "SHOP_WINDOW_PARAMS_10",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21442,8 +21478,8 @@ class JpOverlay22Data:
     )
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC60 = Symbol(
-        None,
-        None,
+        [0x4B20],
+        [0x23901C0],
         None,
         "OVERLAY22_UNKNOWN_POINTER__NA_238EC60",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21460,8 +21496,8 @@ class JpOverlay22Data:
     )
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC68 = Symbol(
-        None,
-        None,
+        [0x4B28],
+        [0x23901C8],
         None,
         "OVERLAY22_UNKNOWN_POINTER__NA_238EC68",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21478,8 +21514,8 @@ class JpOverlay22Data:
     )
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC70 = Symbol(
-        None,
-        None,
+        [0x4B30],
+        [0x23901D0],
         None,
         "OVERLAY22_UNKNOWN_POINTER__NA_238EC70",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21504,8 +21540,8 @@ class JpOverlay23Functions:
 class JpOverlay23Data:
 
     OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
-        None,
-        None,
+        [0x3200],
+        [0x238E8A0],
         None,
         "OVERLAY23_UNKNOWN_VALUE__NA_238D2E8",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21513,8 +21549,8 @@ class JpOverlay23Data:
     )
 
     OVERLAY23_UNKNOWN_VALUE__NA_238D2EC = Symbol(
-        None,
-        None,
+        [0x3204],
+        [0x238E8A4],
         None,
         "OVERLAY23_UNKNOWN_VALUE__NA_238D2EC",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21522,8 +21558,8 @@ class JpOverlay23Data:
     )
 
     OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0 = Symbol(
-        None,
-        None,
+        [0x3208],
+        [0x238E8A8],
         None,
         "OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21612,8 +21648,8 @@ class JpOverlay23Data:
     )
 
     STORAGE_WINDOW_PARAMS_4 = Symbol(
-        None,
-        None,
+        [0x3310],
+        [0x238E9B0],
         None,
         "STORAGE_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21621,8 +21657,8 @@ class JpOverlay23Data:
     )
 
     STORAGE_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
+        [0x3320],
+        [0x238E9C0],
         None,
         "STORAGE_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21630,8 +21666,8 @@ class JpOverlay23Data:
     )
 
     STORAGE_WINDOW_PARAMS_6 = Symbol(
-        None,
-        None,
+        [0x3330],
+        [0x238E9D0],
         None,
         "STORAGE_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21639,8 +21675,8 @@ class JpOverlay23Data:
     )
 
     STORAGE_WINDOW_PARAMS_7 = Symbol(
-        None,
-        None,
+        [0x3340],
+        [0x238E9E0],
         None,
         "STORAGE_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21648,8 +21684,8 @@ class JpOverlay23Data:
     )
 
     STORAGE_WINDOW_PARAMS_8 = Symbol(
-        None,
-        None,
+        [0x3350],
+        [0x238E9F0],
         None,
         "STORAGE_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21666,8 +21702,8 @@ class JpOverlay23Data:
     )
 
     OVERLAY23_UNKNOWN_POINTER__NA_238D8A0 = Symbol(
-        None,
-        None,
+        [0x37C0],
+        [0x238EE60],
         None,
         "OVERLAY23_UNKNOWN_POINTER__NA_238D8A0",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21694,8 +21730,8 @@ class JpOverlay24Functions:
 class JpOverlay24Data:
 
     OVERLAY24_UNKNOWN_STRUCT__NA_238C508 = Symbol(
-        None,
-        None,
+        [0x23D0],
+        [0x238DA70],
         None,
         "OVERLAY24_UNKNOWN_STRUCT__NA_238C508",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21703,8 +21739,8 @@ class JpOverlay24Data:
     )
 
     OVERLAY24_UNKNOWN_STRUCT__NA_238C514 = Symbol(
-        None,
-        None,
+        [0x23DC],
+        [0x238DA7C],
         None,
         "OVERLAY24_UNKNOWN_STRUCT__NA_238C514",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21766,8 +21802,8 @@ class JpOverlay24Data:
     )
 
     DAYCARE_WINDOW_PARAMS_4 = Symbol(
-        None,
-        None,
+        [0x2488],
+        [0x238DB28],
         None,
         "DAYCARE_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21793,8 +21829,8 @@ class JpOverlay24Data:
     )
 
     OVERLAY24_UNKNOWN_POINTER__NA_238C600 = Symbol(
-        None,
-        None,
+        [0x24C0],
+        [0x238DB60],
         None,
         "OVERLAY24_UNKNOWN_POINTER__NA_238C600",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21819,8 +21855,8 @@ class JpOverlay25Functions:
 class JpOverlay25Data:
 
     OVERLAY25_UNKNOWN_STRUCT__NA_238B498 = Symbol(
-        None,
-        None,
+        [0x1358],
+        [0x238C9F8],
         None,
         "OVERLAY25_UNKNOWN_STRUCT__NA_238B498",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21828,8 +21864,8 @@ class JpOverlay25Data:
     )
 
     APPRAISAL_WINDOW_PARAMS_1 = Symbol(
-        None,
-        None,
+        [0x1364],
+        [0x238CA04],
         None,
         "APPRAISAL_WINDOW_PARAMS_1",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21900,8 +21936,8 @@ class JpOverlay25Data:
     )
 
     APPRAISAL_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
+        [0x1424],
+        [0x238CAC4],
         None,
         "APPRAISAL_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21909,8 +21945,8 @@ class JpOverlay25Data:
     )
 
     APPRAISAL_WINDOW_PARAMS_6 = Symbol(
-        None,
-        None,
+        [0x1434],
+        [0x238CAD4],
         None,
         "APPRAISAL_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21918,8 +21954,8 @@ class JpOverlay25Data:
     )
 
     APPRAISAL_WINDOW_PARAMS_7 = Symbol(
-        None,
-        None,
+        [0x1444],
+        [0x238CAE4],
         None,
         "APPRAISAL_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21927,8 +21963,8 @@ class JpOverlay25Data:
     )
 
     APPRAISAL_WINDOW_PARAMS_8 = Symbol(
-        None,
-        None,
+        [0x1454],
+        [0x238CAF4],
         None,
         "APPRAISAL_WINDOW_PARAMS_8",
         "Note: unverified, ported from Irdkwia's notes",
@@ -21945,8 +21981,8 @@ class JpOverlay25Data:
     )
 
     OVERLAY25_UNKNOWN_POINTER__NA_238B5E0 = Symbol(
-        None,
-        None,
+        [0x14A0],
+        [0x238CB40],
         None,
         "OVERLAY25_UNKNOWN_POINTER__NA_238B5E0",
         "Note: unverified, ported from Irdkwia's notes",
@@ -22051,8 +22087,8 @@ class JpOverlay27Functions:
 class JpOverlay27Data:
 
     OVERLAY27_UNKNOWN_VALUE__NA_238C948 = Symbol(
-        None,
-        None,
+        [0x2838],
+        [0x238DED8],
         None,
         "OVERLAY27_UNKNOWN_VALUE__NA_238C948",
         "Note: unverified, ported from Irdkwia's notes",
@@ -22060,8 +22096,8 @@ class JpOverlay27Data:
     )
 
     OVERLAY27_UNKNOWN_VALUE__NA_238C94C = Symbol(
-        None,
-        None,
+        [0x283C],
+        [0x238DEDC],
         None,
         "OVERLAY27_UNKNOWN_VALUE__NA_238C94C",
         "Note: unverified, ported from Irdkwia's notes",
@@ -22069,8 +22105,8 @@ class JpOverlay27Data:
     )
 
     OVERLAY27_UNKNOWN_STRUCT__NA_238C950 = Symbol(
-        None,
-        None,
+        [0x2840],
+        [0x238DEE0],
         None,
         "OVERLAY27_UNKNOWN_STRUCT__NA_238C950",
         "Note: unverified, ported from Irdkwia's notes",
@@ -22159,8 +22195,8 @@ class JpOverlay27Data:
     )
 
     DISCARD_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
+        [0x293C],
+        [0x238DFDC],
         None,
         "DISCARD_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
@@ -22168,8 +22204,8 @@ class JpOverlay27Data:
     )
 
     DISCARD_WINDOW_PARAMS_6 = Symbol(
-        None,
-        None,
+        [0x294C],
+        [0x238DFEC],
         None,
         "DISCARD_WINDOW_PARAMS_6",
         "Note: unverified, ported from Irdkwia's notes",
@@ -22177,8 +22213,8 @@ class JpOverlay27Data:
     )
 
     DISCARD_WINDOW_PARAMS_7 = Symbol(
-        None,
-        None,
+        [0x295C],
+        [0x238DFFC],
         None,
         "DISCARD_WINDOW_PARAMS_7",
         "Note: unverified, ported from Irdkwia's notes",
@@ -22204,8 +22240,8 @@ class JpOverlay27Data:
     )
 
     OVERLAY27_UNKNOWN_POINTER__NA_238CE80 = Symbol(
-        None,
-        None,
+        [0x2D80],
+        [0x238E420],
         None,
         "OVERLAY27_UNKNOWN_POINTER__NA_238CE80",
         "Note: unverified, ported from Irdkwia's notes",
@@ -22213,8 +22249,8 @@ class JpOverlay27Data:
     )
 
     OVERLAY27_UNKNOWN_POINTER__NA_238CE84 = Symbol(
-        None,
-        None,
+        [0x2D84],
+        [0x238E424],
         None,
         "OVERLAY27_UNKNOWN_POINTER__NA_238CE84",
         "Note: unverified, ported from Irdkwia's notes",
@@ -22271,8 +22307,8 @@ class JpOverlay29Functions:
     )
 
     GetDungeonPtrMaster = Symbol(
-        None,
-        None,
+        [0x2840],
+        [0x22E0120],
         None,
         "GetDungeonPtrMaster",
         "Returns the master dungeon pointer (a global, see DUNGEON_PTR_MASTER).\n\nreturn: pointer to a newly allocated dungeon struct",
@@ -22289,8 +22325,8 @@ class JpOverlay29Functions:
     )
 
     DungeonFree = Symbol(
-        None,
-        None,
+        [0x2870],
+        [0x22E0150],
         None,
         "DungeonFree",
         "Frees the dungeons struct pointer to by the master dungeon pointer, and nullifies the pointer.\n\nNo params.",
@@ -22307,8 +22343,108 @@ class JpOverlay29Functions:
     )
 
     EntityIsValid = Symbol(
-        [0x34C58, 0x354EC, 0x38D10, 0x58BE4],
-        [0x2312538, 0x2312DCC, 0x23165F0, 0x23364C4],
+        [
+            0x410C,
+            0x57CC,
+            0x7078,
+            0x7548,
+            0xD37C,
+            0x10390,
+            0x10B44,
+            0x120C4,
+            0x134C4,
+            0x142B4,
+            0x18FA4,
+            0x19FAC,
+            0x1B050,
+            0x204B0,
+            0x228A8,
+            0x23C34,
+            0x266A8,
+            0x28428,
+            0x291FC,
+            0x29874,
+            0x2BB4C,
+            0x2BED0,
+            0x2CC94,
+            0x3254C,
+            0x32C64,
+            0x34C58,
+            0x354EC,
+            0x38D10,
+            0x3C924,
+            0x3CA3C,
+            0x3DB7C,
+            0x3ED80,
+            0x407B4,
+            0x429A4,
+            0x4313C,
+            0x437C8,
+            0x43D48,
+            0x44330,
+            0x45004,
+            0x491CC,
+            0x5235C,
+            0x57AB8,
+            0x58BE4,
+            0x5B78C,
+            0x685DC,
+            0x6917C,
+            0x6D28C,
+            0x7177C,
+            0x725B8,
+        ],
+        [
+            0x22E19EC,
+            0x22E30AC,
+            0x22E4958,
+            0x22E4E28,
+            0x22EAC5C,
+            0x22EDC70,
+            0x22EE424,
+            0x22EF9A4,
+            0x22F0DA4,
+            0x22F1B94,
+            0x22F6884,
+            0x22F788C,
+            0x22F8930,
+            0x22FDD90,
+            0x2300188,
+            0x2301514,
+            0x2303F88,
+            0x2305D08,
+            0x2306ADC,
+            0x2307154,
+            0x230942C,
+            0x23097B0,
+            0x230A574,
+            0x230FE2C,
+            0x2310544,
+            0x2312538,
+            0x2312DCC,
+            0x23165F0,
+            0x231A204,
+            0x231A31C,
+            0x231B45C,
+            0x231C660,
+            0x231E094,
+            0x2320284,
+            0x2320A1C,
+            0x23210A8,
+            0x2321628,
+            0x2321C10,
+            0x23228E4,
+            0x2326AAC,
+            0x232FC3C,
+            0x2335398,
+            0x23364C4,
+            0x233906C,
+            0x2345EBC,
+            0x2346A5C,
+            0x234AB6C,
+            0x234F05C,
+            0x234FE98,
+        ],
         None,
         "EntityIsValid",
         "Checks if an entity pointer points to a valid entity (not entity type 0, which represents no entity).\n\nr0: entity pointer\nreturn: bool",
@@ -22361,8 +22497,8 @@ class JpOverlay29Functions:
     )
 
     FixedRoomIsSubstituteRoom = Symbol(
-        None,
-        None,
+        [0x467C],
+        [0x22E1F5C],
         None,
         "FixedRoomIsSubstituteRoom",
         "Checks if the current fixed room is the 'substitute room' (ID 0x6E).\n\nreturn: bool",
@@ -22379,8 +22515,8 @@ class JpOverlay29Functions:
     )
 
     GetScenarioBalanceVeneer = Symbol(
-        None,
-        None,
+        [0x470C],
+        [0x22E1FEC],
         None,
         "GetScenarioBalanceVeneer",
         "Likely a linker-generated veneer for GetScenarioBalance.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-",
@@ -22460,8 +22596,8 @@ class JpOverlay29Functions:
     )
 
     SpawnItemEntity = Symbol(
-        None,
-        None,
+        [0x60C4],
+        [0x22E39A4],
         None,
         "SpawnItemEntity",
         "Spawns a blank item entity on the floor. Fails if there are more than 64 items already on the floor.\n\nThis initializes a new entry in the entity table and points it to the corresponding slot in the item info list.\n\nr0: position\nreturn: entity pointer for the newly added item, or null on failure",
@@ -22487,8 +22623,8 @@ class JpOverlay29Functions:
     )
 
     ShouldDisplayEntityWrapper = Symbol(
-        None,
-        None,
+        [0x64E0],
+        [0x22E3DC0],
         None,
         "ShouldDisplayEntityWrapper",
         "Calls ShouldDisplayEntity with r1 = 0\n\nr0: Entity pointer\nreturn: True if the entity and its associated messages should be displayed, false if they shouldn't.",
@@ -22568,8 +22704,36 @@ class JpOverlay29Functions:
     )
 
     ItemIsActive = Symbol(
-        [0x233C8, 0x38D34],
-        [0x2300CA8, 0x2316614],
+        [
+            0x709C,
+            0x12094,
+            0x196B0,
+            0x233C8,
+            0x2633C,
+            0x2BB70,
+            0x2E678,
+            0x321D4,
+            0x3346C,
+            0x34C7C,
+            0x35824,
+            0x38D34,
+            0x6B620,
+        ],
+        [
+            0x22E497C,
+            0x22EF974,
+            0x22F6F90,
+            0x2300CA8,
+            0x2303C1C,
+            0x2309450,
+            0x230BF58,
+            0x230FAB4,
+            0x2310D4C,
+            0x231255C,
+            0x2313104,
+            0x2316614,
+            0x2348F00,
+        ],
         None,
         "ItemIsActive",
         "Checks if a monster is holding a certain item that isn't disabled by Klutz.\n\nr0: entity pointer\nr1: item ID\nreturn: bool",
@@ -22577,8 +22741,8 @@ class JpOverlay29Functions:
     )
 
     GetVisibilityRange = Symbol(
-        None,
-        None,
+        [0x70CC],
+        [0x22E49AC],
         None,
         "GetVisibilityRange",
         "Returns dungeon::display_data::visibility_range. If the visibility range is 0, returns 2 instead.\n\nreturn: Visibility range of the current floor, or 2 if the visibility is 0.",
@@ -22667,8 +22831,8 @@ class JpOverlay29Functions:
     )
 
     PlayEffectAnimation0x1A9 = Symbol(
-        None,
-        None,
+        [0x9EC0, 0x9F0C, 0x9F58, 0x9FA4, 0xA254, 0xA2A0],
+        [0x22E77A0, 0x22E77EC, 0x22E7838, 0x22E7884, 0x22E7B34, 0x22E7B80],
         None,
         "PlayEffectAnimation0x1A9",
         "Just a guess. Calls PlayEffectAnimation with data from animation ID 0x1A9.\n\nr0: entity pointer",
@@ -22874,8 +23038,8 @@ class JpOverlay29Functions:
     )
 
     FindClosestUnoccupiedTileWithin2 = Symbol(
-        None,
-        None,
+        [0xD778],
+        [0x22EB058],
         None,
         "FindClosestUnoccupiedTileWithin2",
         "Searches for the closest unoccupied tile within 2 steps of the given origin.\n\nCalls FindNearbyUnoccupiedTile with DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST.\n\nr0: [output] position\nr1: origin position\nr2: random room mode flag\nreturn: whether a tile was successfully found",
@@ -22883,8 +23047,8 @@ class JpOverlay29Functions:
     )
 
     FindFarthestUnoccupiedTileWithin2 = Symbol(
-        None,
-        None,
+        [0xD794],
+        [0x22EB074],
         None,
         "FindFarthestUnoccupiedTileWithin2",
         "Searches for the farthest unoccupied tile within 2 steps of the given origin.\n\nCalls FindNearbyUnoccupiedTile with DISPLACEMENTS_WITHIN_2_LARGEST_FIRST.\n\nr0: [output] position\nr1: origin position\nr2: random room mode flag\nreturn: whether a tile was successfully found",
@@ -23036,8 +23200,8 @@ class JpOverlay29Functions:
     )
 
     DungeonRngSetPrimary = Symbol(
-        None,
-        None,
+        [0xE9EC],
+        [0x22EC2CC],
         None,
         "DungeonRngSetPrimary",
         "Sets the dungeon PRNG to use the primary LCG for subsequent random number generation.\n\nNo params.",
@@ -23297,8 +23461,8 @@ class JpOverlay29Functions:
     )
 
     TryTriggerTrap = Symbol(
-        None,
-        None,
+        [0x11D24],
+        [0x22EF604],
         None,
         "TryTriggerTrap",
         "Called whenever a monster steps on a trap.\n\nThe function will try to trigger it. Nothing will happen if the pokémon has the same team as the trap. The attempt to trigger the trap can also fail due to IQ skills, due to the trap failing to work (random chance), etc.\n\nr0: Entity who stepped on the trap\nr1: Trap position\nr2: ?\nr3: ?",
@@ -23333,8 +23497,8 @@ class JpOverlay29Functions:
     )
 
     ApplyPitfallTrapEffect = Symbol(
-        None,
-        None,
+        [0x125A0],
+        [0x22EFE80],
         None,
         "ApplyPitfallTrapEffect",
         "If the defender is the leader, end the current floor unless it has a rescue point.\nOtherwise, make the entity faint and ignore reviver seeds. If not called by a random\ntrap, break the grate on the pitfall trap.\n\nr0: attacker entity pointer\nr1: defender entity pointer\nr2: tile pointer\nr3: bool caused by random trap",
@@ -23378,8 +23542,8 @@ class JpOverlay29Functions:
     )
 
     ApplyStealthRockTrapEffect = Symbol(
-        None,
-        None,
+        [0x12BC4],
+        [0x22F04A4],
         None,
         "ApplyStealthRockTrapEffect",
         "Tries to apply the damage from the stealth rock trap but does nothing if the defender is a rock type.\n\nr0: attacker entity pointer\nr1: defender entity pointer",
@@ -23396,8 +23560,8 @@ class JpOverlay29Functions:
     )
 
     ApplyRandomTrapEffect = Symbol(
-        None,
-        None,
+        [0x12C60],
+        [0x22F0540],
         None,
         "ApplyRandomTrapEffect",
         "Selects a random trap that isn't a wonder tile and isn't a random trap and calls\nApplyTrapEffect on all monsters that is different from the trap's team.\n\nr0: Triggered trap\nr1: User\nr2: Target, normally same as user\nr3: Tile that contains the trap\nstack[0]: position",
@@ -23405,8 +23569,8 @@ class JpOverlay29Functions:
     )
 
     ApplyGrudgeTrapEffect = Symbol(
-        None,
-        None,
+        [0x12D8C],
+        [0x22F066C],
         None,
         "ApplyGrudgeTrapEffect",
         "Spawns several monsters around the position and gives all monsters on the floor the\ngrudge status condition.\n\nr0: entity pointer\nr1: position",
@@ -23603,8 +23767,8 @@ class JpOverlay29Functions:
     )
 
     DungeonGetSpriteIndex = Symbol(
-        None,
-        None,
+        [0x1B074],
+        [0x22F8954],
         None,
         "DungeonGetSpriteIndex",
         "Gets the sprite index of the specified monster on this floor\n\nr0: Monster ID\nreturn: Sprite index of the specified monster ID",
@@ -23612,8 +23776,8 @@ class JpOverlay29Functions:
     )
 
     JoinedAtRangeCheck2Veneer = Symbol(
-        None,
-        None,
+        [0x1B090],
+        [0x22F8970],
         None,
         "JoinedAtRangeCheck2Veneer",
         "Likely a linker-generated veneer for arm9::JoinedAtRangeCheck2.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo params.",
@@ -23783,8 +23947,8 @@ class JpOverlay29Functions:
     )
 
     DefenderAbilityIsActive = Symbol(
-        [0x25694],
-        [0x2302F74],
+        [0x1D3AC, 0x25694, 0x2E5E4, 0x357C4, 0x4692C, 0x56520],
+        [0x22FAC8C, 0x2302F74, 0x230BEC4, 0x23130A4, 0x232420C, 0x2333E00],
         None,
         "DefenderAbilityIsActive",
         "Checks if a defender has an active ability that isn't disabled by an attacker's Mold Breaker.\n\nThere are two versions of this function, which share the same logic but have slightly different assembly. This is probably due to differences in compiler optimizations at different addresses.\n\nr0: attacker pointer\nr1: defender pointer\nr2: ability ID to check on the defender\nr3: flag for whether the attacker's ability is enabled\nreturn: bool",
@@ -23792,8 +23956,28 @@ class JpOverlay29Functions:
     )
 
     IsMonster = Symbol(
-        None,
-        None,
+        [
+            0x1D3F8,
+            0x256E0,
+            0x2E630,
+            0x335DC,
+            0x3C6A0,
+            0x3E5C4,
+            0x3EF04,
+            0x46978,
+            0x70E0C,
+        ],
+        [
+            0x22FACD8,
+            0x2302FC0,
+            0x230BF10,
+            0x2310EBC,
+            0x2319F80,
+            0x231BEA4,
+            0x231C7E4,
+            0x2324258,
+            0x234E6EC,
+        ],
         None,
         "IsMonster",
         "Checks if an entity is a monster (entity type 1).\n\nr0: entity pointer\nreturn: bool",
@@ -23828,8 +24012,8 @@ class JpOverlay29Functions:
     )
 
     RestorePpAllMovesSetFlags = Symbol(
-        None,
-        None,
+        [0x1D74C],
+        [0x22FB02C],
         None,
         "RestorePpAllMovesSetFlags",
         "Restores PP for all moves, clears flags move::f_consume_2_pp, move::flags2_unk5 and move::flags2_unk7, and sets flag move::f_consume_pp.\nCalled when a monster is revived.\n\nr0: pointer to entity whose moves will be restored",
@@ -23837,8 +24021,8 @@ class JpOverlay29Functions:
     )
 
     CheckTeamMemberIdxVeneer = Symbol(
-        None,
-        None,
+        [0x1D918],
+        [0x22FB1F8],
         None,
         "CheckTeamMemberIdxVeneer",
         "Likely a linker-generated veneer for CheckTeamMemberIdx.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: member index\nreturn: True if the value is equal to 0x55AA or 0x5AA5",
@@ -23846,8 +24030,8 @@ class JpOverlay29Functions:
     )
 
     IsMonsterIdInNormalRangeVeneer = Symbol(
-        None,
-        None,
+        [0x1D940],
+        [0x22FB220],
         None,
         "IsMonsterIdInNormalRangeVeneer",
         "Likely a linker-generated veneer for IsMonsterIdInNormalRange.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: monster ID\nreturn: bool",
@@ -23891,8 +24075,34 @@ class JpOverlay29Functions:
     )
 
     ExclusiveItemEffectIsActive = Symbol(
-        [0x383E0, 0x6BD58],
-        [0x2315CC0, 0x2349638],
+        [
+            0x1E944,
+            0x23A78,
+            0x2E654,
+            0x33508,
+            0x34CAC,
+            0x383E0,
+            0x3D398,
+            0x3E46C,
+            0x474D8,
+            0x564FC,
+            0x6B650,
+            0x6BD58,
+        ],
+        [
+            0x22FC224,
+            0x2301358,
+            0x230BF34,
+            0x2310DE8,
+            0x231258C,
+            0x2315CC0,
+            0x231AC78,
+            0x231BD4C,
+            0x2324DB8,
+            0x2333DDC,
+            0x2348F30,
+            0x2349638,
+        ],
         None,
         "ExclusiveItemEffectIsActive",
         "Checks if a monster is a team member under the effects of a certain exclusive item effect.\n\nr0: entity pointer\nr1: exclusive item effect ID\nreturn: bool",
@@ -23927,8 +24137,8 @@ class JpOverlay29Functions:
     )
 
     CountMovesOutOfPp = Symbol(
-        None,
-        None,
+        [0x1ED50],
+        [0x22FC630],
         None,
         "CountMovesOutOfPp",
         "Returns how many of a monster's move are out of PP.\n\nr0: entity pointer\nreturn: number of moves out of PP",
@@ -24197,8 +24407,8 @@ class JpOverlay29Functions:
     )
 
     CannotStandOnTile = Symbol(
-        [0x23274],
-        [0x2300B54],
+        [0x237CC],
+        [0x23010AC],
         None,
         "CannotStandOnTile",
         "Checks if a given monster cannot stand on a given tile.\n\nReasons include:\n- The coordinates of the tile are out of bounds\n- There's another monster on the tile\n- The monster does not have the required mobility to stand on the tile\n\nr0: Entity pointer\nr1: Tile pointer\nreturn: True if the monster cannot stand on the specified tile, false if it can",
@@ -24215,8 +24425,8 @@ class JpOverlay29Functions:
     )
 
     CalcSpeedStageWrapper = Symbol(
-        None,
-        None,
+        [0x23A9C],
+        [0x230137C],
         None,
         "CalcSpeedStageWrapper",
         "Calls CalcSpeedStage with a speed counter weight of 1.\n\nr0: pointer to entity\nreturn: speed stage",
@@ -24368,8 +24578,8 @@ class JpOverlay29Functions:
     )
 
     CanMonsterMoveInDirection = Symbol(
-        None,
-        None,
+        [0x2497C],
+        [0x230225C],
         None,
         "CanMonsterMoveInDirection",
         "Checks if the given monster can move in the specified direction\n\nReturns false if any monster is standing on the target tile\n\nr0: Monster entity pointer\nr1: Direction to check\nreturn: bool",
@@ -24584,8 +24794,8 @@ class JpOverlay29Functions:
     )
 
     UpdateStateFlags = Symbol(
-        None,
-        None,
+        [0x26030],
+        [0x2303910],
         None,
         "UpdateStateFlags",
         "Updates monster::state_flags and monster::prev_state_flags with new values.\n\nr0: monster pointer\nr1: bitmask for bits to update\nr2: whether to set the bits indicated by the mask to 1 or 0\nreturn: whether or not any of the masked bits changed from the previous state",
@@ -24908,8 +25118,8 @@ class JpOverlay29Functions:
     )
 
     RunMonsterAi = Symbol(
-        None,
-        None,
+        [0x2BF94],
+        [0x2309874],
         None,
         "RunMonsterAi",
         "Runs the AI for a single monster to determine whether the monster can act and which action it should perform if so\n\nr0: Pointer to monster\nr1: ?",
@@ -24989,8 +25199,8 @@ class JpOverlay29Functions:
     )
 
     CalcTypeBasedDamageEffects = Symbol(
-        None,
-        None,
+        [0x2E99C],
+        [0x230C27C],
         None,
         "CalcTypeBasedDamageEffects",
         "Calculates type-based effects on damage.\n\nLoosely, this includes type matchup effects (including modifications due to abilities, IQ skills, and exclusive items), STAB, pinch abilities like Overgrow, weather/floor condition effects on certain types, and miscellaneous effects like Charge.\n\nr0: [output] damage multiplier due to type effects.\nr1: attacker pointer\nr2: defender pointer\nr3: attack power\nstack[0]: attack type\nstack[1]: [output] struct containing info about the damage calculation (only the critical_hit, type_matchup, and field_0xF fields are modified)\nstack[2]: flag for whether Erratic Player and Technician effects should be excluded. CalcDamage only passes in true if the move is the regular attack or a projectile.\nreturn: whether or not the Type-Advantage Master IQ skill should activate if the attacker has it. In practice, this corresponds to when the attack is super-effective, but technically true is also returned when the defender is an invalid entity.",
@@ -25097,8 +25307,8 @@ class JpOverlay29Functions:
     )
 
     TryRecruit = Symbol(
-        None,
-        None,
+        [0x31CC4],
+        [0x230F5A4],
         None,
         "TryRecruit",
         "Asks the player if they would like to recruit the enemy that was just defeated and handles the recruitment if they accept.\n\nr0: user entity pointer\nr1: monster to recruit entity pointer\nreturn: True if the monster was recruited, false if it wasn't",
@@ -25133,8 +25343,8 @@ class JpOverlay29Functions:
     )
 
     ExclusiveItemOffenseBoost = Symbol(
-        None,
-        None,
+        [0x333D4],
+        [0x2310CB4],
         None,
         "ExclusiveItemOffenseBoost",
         "Gets the exclusive item boost for attack/special attack for a monster\n\nr0: entity pointer\nr1: move category index (0 for physical, 1 for special)\nreturn: boost",
@@ -25142,8 +25352,8 @@ class JpOverlay29Functions:
     )
 
     ExclusiveItemDefenseBoost = Symbol(
-        None,
-        None,
+        [0x333E4],
+        [0x2310CC4],
         None,
         "ExclusiveItemDefenseBoost",
         "Gets the exclusive item boost for defense/special defense for a monster\n\nr0: entity pointer\nr1: move category index (0 for physical, 1 for special)\nreturn: boost",
@@ -26285,8 +26495,8 @@ class JpOverlay29Functions:
     )
 
     ActivateMotorDrive = Symbol(
-        None,
-        None,
+        [0x3EC50],
+        [0x231C530],
         None,
         "ActivateMotorDrive",
         "Displays the message and applies the speed boost for the ability Motor Drive.\n\nr0: monster pointer",
@@ -26402,8 +26612,8 @@ class JpOverlay29Functions:
     )
 
     ApplyViolentSeedEffect = Symbol(
-        None,
-        None,
+        [0x40A08],
+        [0x231E2E8],
         None,
         "ApplyViolentSeedEffect",
         "Boosts the target's offensive stats stages to the max.\n\nr0: user entity pointer\nr1: target entity pointer",
@@ -26573,8 +26783,8 @@ class JpOverlay29Functions:
     )
 
     TryExplosion = Symbol(
-        None,
-        None,
+        [0x44014],
+        [0x23218F4],
         None,
         "TryExplosion",
         "Creates an explosion if possible.\n\nThe target monster is considered the source of the explosion.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: coordinates where the explosion should take place (center)\nr3: explosion radius (only works correctly with 1 and 2)\nstack[0]: damage type\nstack[1]: damage source",
@@ -26582,8 +26792,8 @@ class JpOverlay29Functions:
     )
 
     TryAftermathExplosion = Symbol(
-        None,
-        None,
+        [0x44354],
+        [0x2321C34],
         None,
         "TryAftermathExplosion",
         "Creates the explosion for the ability aftermath if possible.\n\nThe target monster is considered the source of the explosion.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: coordinates where the explosion should take place (center)\nr3: explosion radius (only works correctly with 1 and 2)\nstack[0]: damage type\nstack[1]: damage source (normally DAMAGE_SOURCE_EXPLOSION)",
@@ -26672,8 +26882,8 @@ class JpOverlay29Functions:
     )
 
     TwoTurnMoveForcedMiss = Symbol(
-        None,
-        None,
+        [0x48404],
+        [0x2325CE4],
         None,
         "TwoTurnMoveForcedMiss",
         "Checks if a move should miss a monster due to the monster being in the middle of Fly, Bounce, Dive, Dig, Shadow Force, or some other two-turn move that grants pseudo-invincibility.\n\nr0: entity pointer\nr1: move\nreturn: true if the move should miss",
@@ -26951,8 +27161,8 @@ class JpOverlay29Functions:
     )
 
     IsCurrentTilesetBackground = Symbol(
-        None,
-        None,
+        [0x59CF4],
+        [0x23375D4],
         None,
         "IsCurrentTilesetBackground",
         "Calls IsBackgroundTileset with the current tileset ID\n\nreturn: True if the current dungeon tileset is a background, false if it's a regular tileset.",
@@ -26978,8 +27188,8 @@ class JpOverlay29Functions:
     )
 
     GetStairsSpawnPosition = Symbol(
-        None,
-        None,
+        [0x59EB0],
+        [0x2337790],
         None,
         "GetStairsSpawnPosition",
         "Gets the spawn position for the stairs and stores it at the passed pointers.\n\nr0: [output] pointer to x coordinate\nr1: [output] pointer to y coordinate",
@@ -27005,8 +27215,8 @@ class JpOverlay29Functions:
     )
 
     GetDefaultTileTextureId = Symbol(
-        None,
-        None,
+        [0x59F40],
+        [0x2337820],
         None,
         "GetDefaultTileTextureId",
         "Returns the texture_id of the default tile?\n\nreturn: texture_id",
@@ -27095,8 +27305,8 @@ class JpOverlay29Functions:
     )
 
     IsWaterTileset = Symbol(
-        None,
-        None,
+        [0x5B978],
+        [0x2339258],
         None,
         "IsWaterTileset",
         "Returns flag tileset_property::is_water_tileset for the current tileset\n\nreturn: True if the current tileset is a water tileset",
@@ -27131,8 +27341,8 @@ class JpOverlay29Functions:
     )
 
     GravityIsActive = Symbol(
-        None,
-        None,
+        [0x5BE74],
+        [0x2339754],
         None,
         "GravityIsActive",
         "Checks if gravity is active on the floor.\n\nreturn: bool",
@@ -27149,8 +27359,8 @@ class JpOverlay29Functions:
     )
 
     ShouldBoostKecleonShopSpawnChance = Symbol(
-        None,
-        None,
+        [0x5BFA4],
+        [0x2339884],
         None,
         "ShouldBoostKecleonShopSpawnChance",
         "Gets the boost_kecleon_shop_spawn_chance field on the dungeon struct.\n\nreturn: bool",
@@ -27158,8 +27368,8 @@ class JpOverlay29Functions:
     )
 
     SetShouldBoostKecleonShopSpawnChance = Symbol(
-        None,
-        None,
+        [0x5BFBC],
+        [0x233989C],
         None,
         "SetShouldBoostKecleonShopSpawnChance",
         "Sets the boost_kecleon_shop_spawn_chance field on the dungeon struct to the given value.\n\nr0: bool to set the flag to",
@@ -27176,8 +27386,8 @@ class JpOverlay29Functions:
     )
 
     SetDoughSeedFlag = Symbol(
-        None,
-        None,
+        [0x5C02C],
+        [0x233990C],
         None,
         "SetDoughSeedFlag",
         "Sets the dough_seed_extra_money_flag field on the dungeon struct to the given value.\n\nr0: bool to set the flag to",
@@ -27194,8 +27404,8 @@ class JpOverlay29Functions:
     )
 
     IsSecretBazaar = Symbol(
-        None,
-        None,
+        [0x5C0A8],
+        [0x2339988],
         None,
         "IsSecretBazaar",
         "Checks if the current floor is the Secret Bazaar.\n\nreturn: bool",
@@ -27203,8 +27413,8 @@ class JpOverlay29Functions:
     )
 
     ShouldBoostHiddenStairsSpawnChance = Symbol(
-        None,
-        None,
+        [0x5C0D0],
+        [0x23399B0],
         None,
         "ShouldBoostHiddenStairsSpawnChance",
         "Gets the boost_hidden_stairs_spawn_chance field on the dungeon struct.\n\nreturn: bool",
@@ -27212,8 +27422,8 @@ class JpOverlay29Functions:
     )
 
     SetShouldBoostHiddenStairsSpawnChance = Symbol(
-        None,
-        None,
+        [0x5C0E8],
+        [0x23399C8],
         None,
         "SetShouldBoostHiddenStairsSpawnChance",
         "Sets the boost_hidden_stairs_spawn_chance field on the dungeon struct to the given value.\n\nr0: bool to set the flag to",
@@ -27230,8 +27440,8 @@ class JpOverlay29Functions:
     )
 
     IsSecretRoom = Symbol(
-        None,
-        None,
+        [0x5C140],
+        [0x2339A20],
         None,
         "IsSecretRoom",
         "Checks if the current floor is the Secret Room fixed floor (from hidden stairs).\n\nreturn: bool",
@@ -27275,8 +27485,8 @@ class JpOverlay29Functions:
     )
 
     GetDungeonGenInfoUnk0C = Symbol(
-        None,
-        None,
+        [0x5C364],
+        [0x2339C44],
         None,
         "GetDungeonGenInfoUnk0C",
         "return: dungeon_generation_info::field_0xc",
@@ -27284,8 +27494,8 @@ class JpOverlay29Functions:
     )
 
     GetMinimapData = Symbol(
-        None,
-        None,
+        [0x5CBFC],
+        [0x233A4DC],
         None,
         "GetMinimapData",
         "Returns a pointer to the minimap_display_data struct in the dungeon struct.\n\nreturn: minimap_display_data*",
@@ -27356,8 +27566,8 @@ class JpOverlay29Functions:
     )
 
     LoadFixedRoomDataVeneer = Symbol(
-        None,
-        None,
+        [0x5E108],
+        [0x233B9E8],
         None,
         "LoadFixedRoomDataVeneer",
         "Likely a linker-generated veneer for LoadFixedRoomData.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo params.",
@@ -27509,8 +27719,8 @@ class JpOverlay29Functions:
     )
 
     GenerateFixedRoom = Symbol(
-        None,
-        None,
+        [0x5FE10],
+        [0x233D6F0],
         None,
         "GenerateFixedRoom",
         "Handles fixed room generation if the floor contains a fixed room.\n\nr0: fixed room ID\nr1: floor properties\nreturn: bool",
@@ -27869,8 +28079,8 @@ class JpOverlay29Functions:
     )
 
     GetHiddenStairsType = Symbol(
-        None,
-        None,
+        [0x6687C],
+        [0x234415C],
         None,
         "GetHiddenStairsType",
         "Gets the hidden stairs type for a given floor.\n\nThis function reads the floor properties and resolves any randomness (such as HIDDEN_STAIRS_RANDOM_SECRET_BAZAAR_OR_SECRET_ROOM and the floor_properties::hidden_stairs_spawn_chance) into a concrete hidden stairs type.\n\nr0: dungeon generation info pointer\nr1: floor properties pointer\nreturn: enum hidden_stairs_type",
@@ -28058,8 +28268,8 @@ class JpOverlay29Functions:
     )
 
     IsSecretBazaarVeneer = Symbol(
-        None,
-        None,
+        [0x6801C],
+        [0x23458FC],
         None,
         "IsSecretBazaarVeneer",
         "Likely a linker-generated veneer for IsSecretBazaar.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nreturn: bool",
@@ -29123,8 +29333,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_MUZZLED = Symbol(
-        None,
-        None,
+        [0x74B5C],
+        [0x235243C],
         None,
         "STATUS_ICON_ARRAY_MUZZLED",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::muzzled * 8. See UpdateStatusIconFlags for details.",
@@ -29132,8 +29342,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_MAGNET_RISE = Symbol(
-        None,
-        None,
+        [0x74B6C],
+        [0x235244C],
         None,
         "STATUS_ICON_ARRAY_MAGNET_RISE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::magnet_rise * 8. See UpdateStatusIconFlags for details.",
@@ -29141,8 +29351,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_MIRACLE_EYE = Symbol(
-        None,
-        None,
+        [0x74B8C],
+        [0x235246C],
         None,
         "STATUS_ICON_ARRAY_MIRACLE_EYE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::miracle_eye * 8. See UpdateStatusIconFlags for details.",
@@ -29150,8 +29360,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_LEECH_SEED = Symbol(
-        None,
-        None,
+        [0x74B9C],
+        [0x235247C],
         None,
         "STATUS_ICON_ARRAY_LEECH_SEED",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::leech_seed * 8. See UpdateStatusIconFlags for details.",
@@ -29159,8 +29369,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_LONG_TOSS = Symbol(
-        None,
-        None,
+        [0x74BB4],
+        [0x2352494],
         None,
         "STATUS_ICON_ARRAY_LONG_TOSS",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::long_toss * 8. See UpdateStatusIconFlags for details.",
@@ -29168,8 +29378,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_BLINDED = Symbol(
-        None,
-        None,
+        [0x74C0C],
+        [0x23524EC],
         None,
         "STATUS_ICON_ARRAY_BLINDED",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::blinded * 8. See UpdateStatusIconFlags for details.",
@@ -29177,8 +29387,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_BURN = Symbol(
-        None,
-        None,
+        [0x74C34],
+        [0x2352514],
         None,
         "STATUS_ICON_ARRAY_BURN",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::burn * 8. See UpdateStatusIconFlags for details.",
@@ -29186,8 +29396,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_SURE_SHOT = Symbol(
-        None,
-        None,
+        [0x74C5C],
+        [0x235253C],
         None,
         "STATUS_ICON_ARRAY_SURE_SHOT",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::sure_shot * 8. See UpdateStatusIconFlags for details.",
@@ -29195,8 +29405,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_INVISIBLE = Symbol(
-        None,
-        None,
+        [0x74C84],
+        [0x2352564],
         None,
         "STATUS_ICON_ARRAY_INVISIBLE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::invisible * 8. See UpdateStatusIconFlags for details.",
@@ -29204,8 +29414,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_SLEEP = Symbol(
-        None,
-        None,
+        [0x74CAC],
+        [0x235258C],
         None,
         "STATUS_ICON_ARRAY_SLEEP",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::sleep * 8. See UpdateStatusIconFlags for details.",
@@ -29213,8 +29423,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_CURSE = Symbol(
-        None,
-        None,
+        [0x74CDC],
+        [0x23525BC],
         None,
         "STATUS_ICON_ARRAY_CURSE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::curse * 8. See UpdateStatusIconFlags for details.",
@@ -29222,8 +29432,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_FREEZE = Symbol(
-        None,
-        None,
+        [0x74D14],
+        [0x23525F4],
         None,
         "STATUS_ICON_ARRAY_FREEZE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::freeze * 8. See UpdateStatusIconFlags for details.",
@@ -29231,8 +29441,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_CRINGE = Symbol(
-        None,
-        None,
+        [0x74D54],
+        [0x2352634],
         None,
         "STATUS_ICON_ARRAY_CRINGE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::cringe * 8. See UpdateStatusIconFlags for details.",
@@ -29240,8 +29450,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_BIDE = Symbol(
-        None,
-        None,
+        [0x74D94],
+        [0x2352674],
         None,
         "STATUS_ICON_ARRAY_BIDE",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::bide * 8. See UpdateStatusIconFlags for details.",
@@ -29249,8 +29459,8 @@ class JpOverlay29Data:
     )
 
     STATUS_ICON_ARRAY_REFLECT = Symbol(
-        None,
-        None,
+        [0x74E94],
+        [0x2352774],
         None,
         "STATUS_ICON_ARRAY_REFLECT",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::reflect * 8. See UpdateStatusIconFlags for details.",
@@ -29258,8 +29468,8 @@ class JpOverlay29Data:
     )
 
     DIRECTIONS_XY = Symbol(
-        None,
-        None,
+        [0x750BC],
+        [0x235299C],
         None,
         "DIRECTIONS_XY",
         "An array mapping each direction index to its x and y displacements.\n\nDirections start with 0=down and proceed counterclockwise (see enum direction_id). Displacements for x and y are interleaved and encoded as 2-byte signed integers. For example, the first two integers are [0, 1], which correspond to the x and y displacements for the 'down' direction (positive y means down).",
@@ -29267,8 +29477,8 @@ class JpOverlay29Data:
     )
 
     DISPLACEMENTS_WITHIN_2_LARGEST_FIRST = Symbol(
-        None,
-        None,
+        [0x7517C],
+        [0x2352A5C],
         None,
         "DISPLACEMENTS_WITHIN_2_LARGEST_FIRST",
         "An array of displacement vectors with max norm <= 2, ordered in descending order by norm.\n\nThe last element, (99, 99), is invalid and used as an end marker.\n\ntype: position[26]",
@@ -29276,8 +29486,8 @@ class JpOverlay29Data:
     )
 
     DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST = Symbol(
-        None,
-        None,
+        [0x751E4],
+        [0x2352AC4],
         None,
         "DISPLACEMENTS_WITHIN_2_SMALLEST_FIRST",
         "An array of displacement vectors with max norm <= 2, ordered in ascending order by norm.\n\nThe last element, (99, 99), is invalid and used as an end marker.\n\ntype: position[26]",
@@ -29285,8 +29495,8 @@ class JpOverlay29Data:
     )
 
     DISPLACEMENTS_WITHIN_3 = Symbol(
-        None,
-        None,
+        [0x7524C],
+        [0x2352B2C],
         None,
         "DISPLACEMENTS_WITHIN_3",
         "An array of displacement vectors with max norm <= 3. The elements are vaguely in ascending order by norm, but not exactly.\n\nThe last element, (99, 99), is invalid and used as an end marker.\n\ntype: position[50]",
@@ -29294,8 +29504,8 @@ class JpOverlay29Data:
     )
 
     ITEM_CATEGORY_ACTIONS = Symbol(
-        None,
-        None,
+        [0x759B0],
+        [0x2353290],
         None,
         "ITEM_CATEGORY_ACTIONS",
         "Action ID associated with each item category. Used by GetItemAction.\n\nEach entry is 2 bytes long.",
@@ -29303,8 +29513,8 @@ class JpOverlay29Data:
     )
 
     FRACTIONAL_TURN_SEQUENCE = Symbol(
-        None,
-        None,
+        [0x75C24],
+        [0x2353504],
         None,
         "FRACTIONAL_TURN_SEQUENCE",
         "Read by certain functions that are called by RunFractionalTurn to see if they should be executed.\n\nArray is accessed via a pointer added to some multiple of fractional_turn, so that if the resulting memory location is zero, the function returns.",
@@ -29330,8 +29540,8 @@ class JpOverlay29Data:
     )
 
     DAMAGE_MULTIPLIER_0_5 = Symbol(
-        None,
-        None,
+        [0x761DC],
+        [0x2353ABC],
         None,
         "DAMAGE_MULTIPLIER_0_5",
         "A generic damage multiplier of 0.5 used in various places, as a 64-bit fixed-point number with 16 fraction bits.",
@@ -29339,8 +29549,8 @@ class JpOverlay29Data:
     )
 
     DAMAGE_MULTIPLIER_1_5 = Symbol(
-        None,
-        None,
+        [0x761E4],
+        [0x2353AC4],
         None,
         "DAMAGE_MULTIPLIER_1_5",
         "A generic damage multiplier of 1.5 used in various places, as a 64-bit fixed-point number with 16 fraction bits.",
@@ -29348,8 +29558,8 @@ class JpOverlay29Data:
     )
 
     DAMAGE_MULTIPLIER_2 = Symbol(
-        None,
-        None,
+        [0x761EC],
+        [0x2353ACC],
         None,
         "DAMAGE_MULTIPLIER_2",
         "A generic damage multiplier of 2 used in various places, as a 64-bit fixed-point number with 16 fraction bits.",
@@ -29357,8 +29567,8 @@ class JpOverlay29Data:
     )
 
     CLOUDY_DAMAGE_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x761FC],
+        [0x2353ADC],
         None,
         "CLOUDY_DAMAGE_MULTIPLIER",
         "The extra damage multiplier for non-Normal-type moves when the weather is Cloudy, as a 64-bit fixed-point number with 16 fraction bits (0.75).",
@@ -29366,8 +29576,8 @@ class JpOverlay29Data:
     )
 
     SOLID_ROCK_MULTIPLIER = Symbol(
-        None,
-        None,
+        [0x76204],
+        [0x2353AE4],
         None,
         "SOLID_ROCK_MULTIPLIER",
         "The extra damage multiplier for super-effective moves when Solid Rock or Filter is active, as a 64-bit fixed-point number with 16 fraction bits (0.75).",
@@ -29375,8 +29585,8 @@ class JpOverlay29Data:
     )
 
     DAMAGE_FORMULA_MAX_BASE = Symbol(
-        None,
-        None,
+        [0x7620C],
+        [0x2353AEC],
         None,
         "DAMAGE_FORMULA_MAX_BASE",
         "The maximum value of the base damage formula (after DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a 64-bit binary fixed-point number with 16 fraction bits (999).",
@@ -29393,8 +29603,8 @@ class JpOverlay29Data:
     )
 
     DAMAGE_FORMULA_MIN_BASE = Symbol(
-        None,
-        None,
+        [0x7621C],
+        [0x2353AFC],
         None,
         "DAMAGE_FORMULA_MIN_BASE",
         "The minimum value of the base damage formula (after DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a 64-bit binary fixed-point number with 16 fraction bits (1).",
@@ -29402,8 +29612,8 @@ class JpOverlay29Data:
     )
 
     TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS = Symbol(
-        None,
-        None,
+        [0x76244],
+        [0x2353B24],
         None,
         "TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS",
         "List of exclusive item effects that negate damage of a certain type, terminated by a TYPE_NEUTRAL entry.\n\ntype: struct damage_negating_exclusive_eff_entry[28]",
@@ -29411,8 +29621,8 @@ class JpOverlay29Data:
     )
 
     TWO_TURN_MOVES_AND_STATUSES = Symbol(
-        None,
-        None,
+        [0x7644C],
+        [0x2353D2C],
         None,
         "TWO_TURN_MOVES_AND_STATUSES",
         "List that matches two-turn move IDs to their corresponding status ID. The last entry is null.",
@@ -29420,8 +29630,8 @@ class JpOverlay29Data:
     )
 
     SPATK_STAT_IDX = Symbol(
-        None,
-        None,
+        [0x76488],
+        [0x2353D68],
         None,
         "SPATK_STAT_IDX",
         "The index (1) of the special attack entry in internal stat structs, such as the stat modifier array for a monster.",
@@ -29429,8 +29639,8 @@ class JpOverlay29Data:
     )
 
     ATK_STAT_IDX = Symbol(
-        None,
-        None,
+        [0x7648C],
+        [0x2353D6C],
         None,
         "ATK_STAT_IDX",
         "The index (0) of the attack entry in internal stat structs, such as the stat modifier array for a monster.",
@@ -29438,8 +29648,8 @@ class JpOverlay29Data:
     )
 
     ROLLOUT_DAMAGE_MULT_TABLE = Symbol(
-        None,
-        None,
+        [0x76490],
+        [0x2353D70],
         None,
         "ROLLOUT_DAMAGE_MULT_TABLE",
         "A table of damage multipliers for each successive hit of Rollout/Ice Ball. Each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int32_t[10]",
@@ -29447,8 +29657,8 @@ class JpOverlay29Data:
     )
 
     MAP_COLOR_TABLE = Symbol(
-        None,
-        None,
+        [0x76970],
+        [0x2354250],
         None,
         "MAP_COLOR_TABLE",
         "In order: white, black, red, green, blue, magenta, dark pink, chartreuse, light orange\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: struct rgba[9]",
@@ -29456,8 +29666,8 @@ class JpOverlay29Data:
     )
 
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN = Symbol(
-        None,
-        None,
+        [0x769B0],
+        [0x2354290],
         None,
         "CORNER_CARDINAL_NEIGHBOR_IS_OPEN",
         "An array mapping each (corner index, neighbor direction index) to whether or not that neighbor is expected to be open floor.\n\nCorners start with 0=top-left and proceed clockwise. Directions are enumerated as with DIRECTIONS_XY. The array is indexed by i=(corner_index * N_DIRECTIONS + direction). An element of 1 (0) means that starting from the specified corner of a room, moving in the specified direction should lead to an open floor tile (non-open terrain like a wall).\n\nNote that this array is only used for the cardinal directions. The elements at odd indexes are unused and unconditionally set to 0.\n\nThis array is used by the dungeon generation algorithm when generating room imperfections. See GenerateRoomImperfections.",
@@ -29465,8 +29675,8 @@ class JpOverlay29Data:
     )
 
     GUMMI_LIKE_STRING_IDS = Symbol(
-        None,
-        None,
+        [0x76C70],
+        [0x2354550],
         None,
         "GUMMI_LIKE_STRING_IDS",
         "List that holds the string IDs for how much a monster liked a gummi in decreasing order.",
@@ -29474,8 +29684,8 @@ class JpOverlay29Data:
     )
 
     GUMMI_IQ_STRING_IDS = Symbol(
-        None,
-        None,
+        [0x76CC4],
+        [0x23545A4],
         None,
         "GUMMI_IQ_STRING_IDS",
         "List that holds the string IDs for how much a monster's IQ was raised by in decreasing order.",
@@ -29483,8 +29693,8 @@ class JpOverlay29Data:
     )
 
     DAMAGE_STRING_IDS = Symbol(
-        None,
-        None,
+        [0x76CD0],
+        [0x23545B0],
         None,
         "DAMAGE_STRING_IDS",
         "List that matches the damage_message ID to their corresponding string ID. The null entry at 0xE in the middle is for hunger. The last entry is null.",
@@ -29510,8 +29720,8 @@ class JpOverlay29Data:
     )
 
     TOP_SCREEN_STATUS_PTR = Symbol(
-        None,
-        None,
+        [0x76EF4],
+        [0x23547D4],
         None,
         "TOP_SCREEN_STATUS_PTR",
         "[Runtime] Pointer for struct for handling the status of the top screen in dungeon mode.\n\ntype: struct top_screen_status",
@@ -29519,8 +29729,8 @@ class JpOverlay29Data:
     )
 
     LEADER_PTR = Symbol(
-        None,
-        None,
+        [0x76EFC],
+        [0x23547DC],
         None,
         "LEADER_PTR",
         "[Runtime] Pointer to the current leader of the team.\n\ntype: struct entity*",
@@ -29528,8 +29738,8 @@ class JpOverlay29Data:
     )
 
     DUNGEON_PRNG_STATE = Symbol(
-        None,
-        None,
+        [0x76F10],
+        [0x23547F0],
         None,
         "DUNGEON_PRNG_STATE",
         "[Runtime] The global PRNG state for dungeon mode, not including the current values in the secondary sequences.\n\nThis struct holds state for the primary LCG, as well as the current configuration controlling which LCG to use when generating random numbers. See DungeonRand16Bit for more information on how the dungeon PRNG works.\n\ntype: struct prng_state",
@@ -29537,8 +29747,8 @@ class JpOverlay29Data:
     )
 
     DUNGEON_PRNG_STATE_SECONDARY_VALUES = Symbol(
-        None,
-        None,
+        [0x76F24],
+        [0x2354804],
         None,
         "DUNGEON_PRNG_STATE_SECONDARY_VALUES",
         "[Runtime] An array of 5 integers corresponding to the last value generated for each secondary LCG sequence.\n\nBased on the assembly, this appears to be its own global array, separate from DUNGEON_PRNG_STATE.",
@@ -29546,8 +29756,8 @@ class JpOverlay29Data:
     )
 
     LOADED_ATTACK_SPRITE_FILE_INDEX = Symbol(
-        None,
-        None,
+        [0x76F4C],
+        [0x235482C],
         None,
         "LOADED_ATTACK_SPRITE_FILE_INDEX",
         "[Runtime] The file index of the currently loaded attack sprite.\n\ntype: uint16_t",
@@ -29564,8 +29774,8 @@ class JpOverlay29Data:
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_ATK_SPEED_BOOST = Symbol(
-        None,
-        None,
+        [0x76F50],
+        [0x2354830],
         None,
         "EXCL_ITEM_EFFECTS_WEATHER_ATK_SPEED_BOOST",
         "Array of IDs for exclusive item effects that increase attack speed with certain weather conditions.",
@@ -29573,8 +29783,8 @@ class JpOverlay29Data:
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_MOVE_SPEED_BOOST = Symbol(
-        None,
-        None,
+        [0x76F58],
+        [0x2354838],
         None,
         "EXCL_ITEM_EFFECTS_WEATHER_MOVE_SPEED_BOOST",
         "Array of IDs for exclusive item effects that increase movement speed with certain weather conditions.",
@@ -29582,8 +29792,8 @@ class JpOverlay29Data:
     )
 
     EXCL_ITEM_EFFECTS_WEATHER_NO_STATUS = Symbol(
-        None,
-        None,
+        [0x76F60],
+        [0x2354840],
         None,
         "EXCL_ITEM_EFFECTS_WEATHER_NO_STATUS",
         "Array of IDs for exclusive item effects that grant status immunity with certain weather conditions.",
@@ -29591,8 +29801,8 @@ class JpOverlay29Data:
     )
 
     EXCL_ITEM_EFFECTS_EVASION_BOOST = Symbol(
-        None,
-        None,
+        [0x770B0],
+        [0x2354990],
         None,
         "EXCL_ITEM_EFFECTS_EVASION_BOOST",
         "Array of IDs for exclusive item effects that grant an evasion boost with certain weather conditions.",
@@ -29600,8 +29810,8 @@ class JpOverlay29Data:
     )
 
     DEFAULT_TILE = Symbol(
-        None,
-        None,
+        [0x770BC],
+        [0x235499C],
         None,
         "DEFAULT_TILE",
         "The default tile struct.\n\nThis is just a struct full of zeroes, but is used as a fallback in various places where a 'default' tile is needed, such as when a grid index is out of range.\n\ntype: struct tile",
@@ -29609,8 +29819,8 @@ class JpOverlay29Data:
     )
 
     HIDDEN_STAIRS_SPAWN_BLOCKED = Symbol(
-        None,
-        None,
+        [0x77124],
+        [0x2354A04],
         None,
         "HIDDEN_STAIRS_SPAWN_BLOCKED",
         "[Runtime] A flag for when Hidden Stairs could normally have spawned on the floor but didn't.\n\nThis is set either when the Hidden Stairs just happen not to spawn by chance, or when the current floor is a rescue or mission destination floor.\n\nThis appears to be part of a larger (8-byte?) struct. It seems like this value is at least followed by 3 bytes of padding and a 4-byte integer field.",
@@ -29618,8 +29828,8 @@ class JpOverlay29Data:
     )
 
     FIXED_ROOM_DATA_PTR = Symbol(
-        None,
-        None,
+        [0x7712C],
+        [0x2354A0C],
         None,
         "FIXED_ROOM_DATA_PTR",
         "[Runtime] Pointer to decoded fixed room data loaded from the BALANCE/fixed.bin file.",
@@ -29627,8 +29837,8 @@ class JpOverlay29Data:
     )
 
     DUNGEON_FADES_PTR = Symbol(
-        None,
-        None,
+        [0x77178],
+        [0x2354A58],
         None,
         "DUNGEON_FADES_PTR",
         "[Runtime] Pointer to the dungeon fades struct that maintains the status of screen fades in dungeon mode.",
@@ -29676,8 +29886,8 @@ class JpOverlay3Section:
 class JpOverlay30Functions:
 
     WriteQuicksaveData = Symbol(
-        [0x43C],
-        [0x2383EDC],
+        [0x438],
+        [0x2383ED8],
         None,
         "WriteQuicksaveData",
         "Function responsible for writing dungeon data when quicksaving.\n\nAmong other things, it contains a loop that goes through all the monsters in the current dungeon, copying their data to the buffer. The data is not copied as-is though, the game uses a reduced version of the monster struct containing only the minimum required data to resume the game later.\n\nr0: Pointer to buffer where data should be written\nr1: Buffer size. Seems to be 0x5800 (22 KB) when the function is called.",
@@ -30233,8 +30443,8 @@ class JpOverlay31Data:
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A260 = Symbol(
-        [0x7A88],
-        [0x238B528],
+        [0x7A80],
+        [0x238B520],
         0x4,
         "OVERLAY31_UNKNOWN_POINTER__NA_238A260",
         "Note: unverified, ported from Irdkwia's notes",
@@ -30242,8 +30452,8 @@ class JpOverlay31Data:
     )
 
     OVERLAY31_UNKNOWN_VALUE__NA_238A264 = Symbol(
-        [0x7A8C],
-        [0x238B52C],
+        [0x7A84],
+        [0x238B524],
         0x4,
         "OVERLAY31_UNKNOWN_VALUE__NA_238A264",
         "Note: unverified, ported from Irdkwia's notes",
@@ -30251,8 +30461,8 @@ class JpOverlay31Data:
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A268 = Symbol(
-        [0x7A90],
-        [0x238B530],
+        [0x7A88],
+        [0x238B528],
         0x4,
         "OVERLAY31_UNKNOWN_POINTER__NA_238A268",
         "Note: unverified, ported from Irdkwia's notes",
@@ -30260,8 +30470,8 @@ class JpOverlay31Data:
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A26C = Symbol(
-        [0x7A94],
-        [0x238B534],
+        [0x7A8C],
+        [0x238B52C],
         0x4,
         "OVERLAY31_UNKNOWN_POINTER__NA_238A26C",
         "Note: unverified, ported from Irdkwia's notes",
@@ -30269,8 +30479,8 @@ class JpOverlay31Data:
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A270 = Symbol(
-        [0x7A98],
-        [0x238B538],
+        [0x7A90],
+        [0x238B530],
         0x4,
         "OVERLAY31_UNKNOWN_POINTER__NA_238A270",
         "Note: unverified, ported from Irdkwia's notes",
@@ -30391,8 +30601,8 @@ class JpOverlay33Section:
 class JpOverlay34Functions:
 
     ExplorersOfSkyMain = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x22DD8E0],
         None,
         "ExplorersOfSkyMain",
         "The main function for Explorers of Sky.\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: probably a game mode ID?\nreturn: probably a return code?",
@@ -30403,8 +30613,8 @@ class JpOverlay34Functions:
 class JpOverlay34Data:
 
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD014 = Symbol(
-        None,
-        None,
+        [0xD38],
+        [0x22DE618],
         None,
         "OVERLAY34_UNKNOWN_STRUCT__NA_22DD014",
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
@@ -30412,8 +30622,8 @@ class JpOverlay34Data:
     )
 
     START_MENU_ITEMS_CONFIRM = Symbol(
-        [0xD4C],
-        [0x22DE62C],
+        [0xD48],
+        [0x22DE628],
         0x18,
         "START_MENU_ITEMS_CONFIRM",
         "",
@@ -30421,8 +30631,8 @@ class JpOverlay34Data:
     )
 
     OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C = Symbol(
-        None,
-        None,
+        [0xD60],
+        [0x22DE640],
         None,
         "OVERLAY34_UNKNOWN_STRUCT__NA_22DD03C",
         "1*0x4 + 3*0x4\n\nNote: unverified, ported from Irdkwia's notes",
@@ -30430,8 +30640,8 @@ class JpOverlay34Data:
     )
 
     DUNGEON_DEBUG_MENU_ITEMS = Symbol(
-        [0xD74],
-        [0x22DE654],
+        [0xD70],
+        [0x22DE650],
         0x28,
         "DUNGEON_DEBUG_MENU_ITEMS",
         "",
@@ -30448,8 +30658,8 @@ class JpOverlay34Data:
     )
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD080 = Symbol(
-        None,
-        None,
+        [0xDA0],
+        [0x22DE680],
         None,
         "OVERLAY34_UNKNOWN_POINTER__NA_22DD080",
         "Note: unverified, ported from Irdkwia's notes",
@@ -30457,8 +30667,8 @@ class JpOverlay34Data:
     )
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD084 = Symbol(
-        None,
-        None,
+        [0xDA4],
+        [0x22DE684],
         None,
         "OVERLAY34_UNKNOWN_POINTER__NA_22DD084",
         "Note: unverified, ported from Irdkwia's notes",
@@ -30475,8 +30685,8 @@ class JpOverlay34Data:
     )
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD08C = Symbol(
-        None,
-        None,
+        [0xDAC],
+        [0x22DE68C],
         None,
         "OVERLAY34_UNKNOWN_POINTER__NA_22DD08C",
         "Note: unverified, ported from Irdkwia's notes",
@@ -30734,8 +30944,8 @@ class JpOverlay9Functions:
 class JpOverlay9Data:
 
     JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x2CC0],
+        [0x2340FC0],
         None,
         "JUKEBOX_TRACK_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a jukebox_track_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateJukeboxTrackMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateJukeboxTrackMenu.",
@@ -30743,8 +30953,8 @@ class JpOverlay9Data:
     )
 
     PLAYBACK_CONTROLS_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x2CD0],
+        [0x2340FD0],
         None,
         "PLAYBACK_CONTROLS_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for a playback_controls_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreatePlaybackControlsMenu.\n\nAdditionally, width and height are 0, and will be computed in CreatePlaybackControlsMenu.",
@@ -30752,8 +30962,8 @@ class JpOverlay9Data:
     )
 
     INPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x2CE0],
+        [0x2340FE0],
         None,
         "INPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an input_lock_box.",
@@ -31195,24 +31405,28 @@ class JpRamData:
         "struct team_member_table",
     )
 
-    DRIVER_WORK = Symbol(None, None, None, "DRIVER_WORK", "", "")
+    DRIVER_WORK = Symbol([0x2B8AE8], [0x22B8AE8], None, "DRIVER_WORK", "", "")
 
-    DISP_MODE = Symbol(None, None, None, "DISP_MODE", "", "uint16_t")
+    DISP_MODE = Symbol([0x2BAD40], [0x22BAD40], None, "DISP_MODE", "", "uint16_t")
 
-    GXI_VRAM_LOCK_ID = Symbol(None, None, None, "GXI_VRAM_LOCK_ID", "", "uint16_t")
+    GXI_VRAM_LOCK_ID = Symbol(
+        [0x2BAD42], [0x22BAD42], None, "GXI_VRAM_LOCK_ID", "", "uint16_t"
+    )
 
     ENABLED_VRAM_BANKS = Symbol(
-        None,
-        None,
+        [0x2BAD44],
+        [0x22BAD44],
         None,
         "ENABLED_VRAM_BANKS",
         "Bitset of enabled VRAM banks\n\ntype: vram_banks_set",
         "struct vram_banks_set",
     )
 
-    SUB_BG_EXT_PLTT = Symbol(None, None, None, "SUB_BG_EXT_PLTT", "", "undefined4")
+    SUB_BG_EXT_PLTT = Symbol(
+        [0x2BAD60], [0x22BAD60], None, "SUB_BG_EXT_PLTT", "", "undefined4"
+    )
 
-    CLR_IMG = Symbol(None, None, None, "CLR_IMG", "", "undefined4")
+    CLR_IMG = Symbol([0x2BAD7C], [0x22BAD7C], None, "CLR_IMG", "", "undefined4")
 
     THREAD_INFO_STRUCT = Symbol(
         None,
