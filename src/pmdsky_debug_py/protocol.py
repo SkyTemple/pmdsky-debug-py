@@ -4197,7 +4197,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetLowKickMultiplier: Symbol[
+    GetWeightMultiplier: Symbol[
         Optional[list[int]],
         None,
     ]

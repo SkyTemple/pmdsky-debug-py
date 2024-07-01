@@ -7431,12 +7431,12 @@ class EuItcmArm9Functions:
         None,
     )
 
-    GetLowKickMultiplier = Symbol(
+    GetWeightMultiplier = Symbol(
         None,
         None,
         None,
-        "GetLowKickMultiplier",
-        "Gets the Low Kick (and Grass Knot) damage multiplier (i.e., weight) for the given species.\n\nr0: monster ID\nreturn: multiplier as a binary fixed-point number with 8 fraction bits.",
+        "GetWeightMultiplier",
+        "Gets the weight multiplier value for the given species. This value is passed as the damage_mult_fp parameter to DealDamage when calculating the damage dealt by Low Kick and Grass Knot.\n\nr0: monster ID\nreturn: Monster weight multiplier, as a binary fixed-point number with 8 fraction bits.",
         None,
     )
 
@@ -8872,6 +8872,8 @@ class EuItcmArm9Functions:
     DirectoryFile_LoadDirectoryFile = _Deprecated(
         "DirectoryFile_LoadDirectoryFile", LoadFileInPack
     )
+
+    GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
 
 
 class EuItcmArm9Data:
