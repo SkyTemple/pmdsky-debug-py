@@ -9515,7 +9515,7 @@ class EuArm9Data:
         [0x209E924],
         0x2D0,
         "DUNGEON_DATA_LIST",
-        "Data about every dungeon in the game.\n\nThis is an array of 180 dungeon data list entry structs. Each entry is 4 bytes, and contains floor count information along with an index into the bulk of the dungeon's data in mappa_s.bin.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct dungeon_data_list_entry[180]",
+        "Data about every dungeon in the game.\n\nThis is an array of 180 dungeon data list entry structs. Each entry is 4 bytes, and contains floor count information along with an index into the bulk of the dungeon's data in mappa_s.bin.\n\nSee the struct definitions and Frostbyte's dungeon data document for more info.\n\ntype: struct dungeon_data_list_entry[180]",
         "struct dungeon_data_list_entry[180]",
     )
 
@@ -9623,7 +9623,7 @@ class EuArm9Data:
         [0x20A11E8],
         0xC00,
         "DUNGEON_RESTRICTIONS",
-        "Data related to dungeon restrictions for every dungeon in the game.\n\nThis is an array of 256 dungeon restriction structs. Each entry is 12 bytes, and contains information about restrictions within the given dungeon.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct dungeon_restriction[256]",
+        "Data related to dungeon restrictions for every dungeon in the game.\n\nThis is an array of 256 dungeon restriction structs. Each entry is 12 bytes, and contains information about restrictions within the given dungeon.\n\nSee the struct definitions and Frostbyte's dungeon data document for more info.\n\ntype: struct dungeon_restriction[256]",
         "struct dungeon_restriction[256]",
     )
 
@@ -10019,7 +10019,7 @@ class EuArm9Data:
         [0x20A2E40],
         0x288,
         "GUEST_MONSTER_DATA",
-        "Data for guest monsters that join you during certain story dungeons.\n\nArray of 18 36-byte entries.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct guest_monster[18]",
+        "Data for guest monsters that join you during certain story dungeons.\n\nArray of 18 36-byte entries.\n\nSee the struct definitions and Frostbyte's dungeon data document for more info.\n\ntype: struct guest_monster[18]",
         "struct guest_monster[18]",
     )
 
@@ -10410,7 +10410,7 @@ class EuArm9Data:
         [0x20A9D70],
         0x9B0,
         "MAP_MARKER_PLACEMENTS",
-        "The map marker position of each dungeon on the Wonder Map.\n\nThis is an array of 310 map marker structs. Each entry is 8 bytes, and contains positional information about a dungeon on the map.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct map_marker[310]",
+        "The map marker position of each dungeon on the Wonder Map.\n\nThis is an array of 310 map marker structs. Each entry is 8 bytes, and contains positional information about a dungeon on the map.\n\nSee the struct definitions and Frostbyte's dungeon data document for more info.\n\ntype: struct map_marker[310]",
         "struct map_marker[310]",
     )
 
@@ -18362,7 +18362,7 @@ class EuOverlay10Data:
         [0x22C75C8],
         0xC00,
         "FIXED_ROOM_PROPERTIES_TABLE",
-        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte entries containing properties for a given fixed room ID.\n\nSee the struct definitions and End45's dungeon data document for more info.\n\ntype: struct fixed_room_properties_entry[256]",
+        "Table of properties for fixed rooms.\n\nThis is an array of 256 12-byte entries containing properties for a given fixed room ID.\n\nSee the struct definitions and Frostbyte's dungeon data document for more info.\n\ntype: struct fixed_room_properties_entry[256]",
         "struct fixed_room_properties_entry[256]",
     )
 
