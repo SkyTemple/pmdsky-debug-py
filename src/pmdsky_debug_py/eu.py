@@ -10060,7 +10060,12 @@ class EuArm9Data:
     )
 
     MONSTER_SPRITE_DATA = Symbol(
-        [0xA332C], [0x20A332C], 0x4B0, "MONSTER_SPRITE_DATA", "", "undefined[1200]"
+        [0xA332C],
+        [0x20A332C],
+        0x4B0,
+        "MONSTER_SPRITE_DATA",
+        "Contains information about the sprite size and sprite file size of each monster",
+        "struct monster_sprite_data_entry[600]",
     )
 
     REMOTE_STRINGS = Symbol(

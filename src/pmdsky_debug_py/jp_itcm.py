@@ -10000,7 +10000,12 @@ class JpItcmArm9Data:
     )
 
     MONSTER_SPRITE_DATA = Symbol(
-        None, None, None, "MONSTER_SPRITE_DATA", "", "undefined[1200]"
+        None,
+        None,
+        None,
+        "MONSTER_SPRITE_DATA",
+        "Contains information about the sprite size and sprite file size of each monster",
+        "struct monster_sprite_data_entry[600]",
     )
 
     REMOTE_STRINGS = Symbol(
