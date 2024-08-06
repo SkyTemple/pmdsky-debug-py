@@ -23,7 +23,7 @@ class CliException(ClickException):
         super().__init__(message)
         self.print_source = print_source
 
-    def show(self, file: Optional[IO] = None) -> None:
+    def show(self, file: IO | None = None) -> None:
         if file is None:
             file = get_text_stderr()
 
@@ -36,7 +36,7 @@ class CliException(ClickException):
                 echo(style(traceback.format_exc(), bg='red'), file=file)
 
 
-def try_int(i: str, fallback: T) -> Union[int, T]:
+def try_int(i: str, fallback: T) -> int | T:
     try:
         return int(i)
     except (ValueError, TypeError):
@@ -44,7 +44,7 @@ def try_int(i: str, fallback: T) -> Union[int, T]:
     return fallback
 
 
-def version_tuple(a: str) -> tuple[Union[int, str], ...]:
+def version_tuple(a: str) -> tuple[int | str, ...]:
     if a.startswith('v'):
         a = a[1:]
     return tuple(try_int(i, i) for i in VERSION_SPLIT_RE.split(a))
@@ -111,7 +111,7 @@ def run(
     verbose: bool,
     out_path: str, in_path: str,
     package_name: str,
-    release: str, out_version: Optional[str] = None,
+    release: str, out_version: str | None = None,
 ):
     """Generator for pmdsky-debug-py."""
     global verbose_mode
