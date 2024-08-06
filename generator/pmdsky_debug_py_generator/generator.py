@@ -9,7 +9,7 @@ from jinja2 import Environment, PackageLoader
 from pmdsky_debug_py_generator.loader import Binary, Region
 
 
-def has_all_else_optional(value: dict[Region, Optional[Any]], typ: str):
+def has_all_else_optional(value: dict[Region, Any | None], typ: str):
     has_all = not any(x is None for x in value.values())
     has_none = all(x is None for x in value.values())
     if has_none:
@@ -19,7 +19,7 @@ def has_all_else_optional(value: dict[Region, Optional[Any]], typ: str):
     return f"Optional[{typ}]"
 
 
-def make_relative(value: Union[None, int, list[int]], based_on: Optional[int]) -> Union[None, int, list[int]]:
+def make_relative(value: None | int | list[int], based_on: int | None) -> None | int | list[int]:
     if value is None or based_on is None:
         return None
     if isinstance(value, int):
@@ -29,7 +29,7 @@ def make_relative(value: Union[None, int, list[int]], based_on: Optional[int]) -
     return [x - based_on for x in value]
 
 
-def as_hex(value: Union[None, int, list[int]]) -> str:
+def as_hex(value: None | int | list[int]) -> str:
     if value is None:
         return "None"
     if isinstance(value, int):
@@ -55,7 +55,7 @@ J2ENV.filters['escape_py'] = escape_py
 class File:
     template_name: str
     output_name: str
-    region: Optional[Region]
+    region: Region | None
 
 
 def generate(
