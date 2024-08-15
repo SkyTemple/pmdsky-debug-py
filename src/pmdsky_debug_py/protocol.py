@@ -10962,6 +10962,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    PERISH_SONG_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SHADOW_FORCE_DAMAGE_MULTIPLIER: Symbol[
         Optional[list[int]],
         Optional[int],

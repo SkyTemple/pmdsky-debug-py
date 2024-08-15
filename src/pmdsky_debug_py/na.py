@@ -17867,6 +17867,15 @@ class NaOverlay10Data:
         "int16_t[2]",
     )
 
+    PERISH_SONG_TURN_RANGE = Symbol(
+        [0x7D50],
+        [0x22C47D0],
+        0x4,
+        "PERISH_SONG_TURN_RANGE",
+        "The turn range for the status inflicted by Perish Song, [3, 3).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SHADOW_FORCE_DAMAGE_MULTIPLIER = Symbol(
         [0x7D5C],
         [0x22C47DC],
@@ -23173,7 +23182,7 @@ class NaOverlay29Functions:
         [0x22EAAC0],
         None,
         "DungeonRandRange",
-        "Compute a pseudorandom value between two integers using the dungeon PRNG.\n\nr0: x\nr1: y\nreturn: pseudorandom integer on the interval [min(x, y), max(x, y) - 1]",
+        "Compute a pseudorandom value between two integers using the dungeon PRNG.\n\nIf both input integers are the same, the first is returned.\n\nr0: x\nr1: y\nreturn: pseudorandom integer on the interval [min(x, y), max(x, y) - 1], or x if x == y.",
         None,
     )
 
