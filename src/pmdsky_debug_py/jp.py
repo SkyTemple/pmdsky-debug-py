@@ -29033,6 +29033,15 @@ class JpOverlay29Data:
         "uint32_t",
     )
 
+    ATTACK_SPRITE_BUFFER_SIZE = Symbol(
+        [0x1ABC8],
+        [0x22F84A8],
+        0x4,
+        "ATTACK_SPRITE_BUFFER_SIZE",
+        "Size of the buffer used to store the current attack sprite file.",
+        "int32_t",
+    )
+
     KECLEON_FEMALE_ID = Symbol(
         [0x1B0EC],
         [0x22F89CC],
@@ -29867,6 +29876,15 @@ class JpOverlay29Data:
         None,
         "NECTAR_IQ_BOOST",
         "IQ boost from ingesting Nectar.",
+        "struct data_processing_instruction",
+    )
+
+    COMPRESSED_SPRITE_BUFFER_SIZE = Symbol(
+        [0x6F8F0],
+        [0x234D1D0],
+        None,
+        "COMPRESSED_SPRITE_BUFFER_SIZE",
+        "Size of the buffer to store the current sprite to decompress.",
         "struct data_processing_instruction",
     )
 

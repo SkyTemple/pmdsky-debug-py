@@ -28462,6 +28462,15 @@ class JpItcmOverlay29Data:
         "uint32_t",
     )
 
+    ATTACK_SPRITE_BUFFER_SIZE = Symbol(
+        None,
+        None,
+        None,
+        "ATTACK_SPRITE_BUFFER_SIZE",
+        "Size of the buffer used to store the current attack sprite file.",
+        "int32_t",
+    )
+
     KECLEON_FEMALE_ID = Symbol(
         None,
         None,
@@ -29296,6 +29305,15 @@ class JpItcmOverlay29Data:
         None,
         "NECTAR_IQ_BOOST",
         "IQ boost from ingesting Nectar.",
+        "struct data_processing_instruction",
+    )
+
+    COMPRESSED_SPRITE_BUFFER_SIZE = Symbol(
+        None,
+        None,
+        None,
+        "COMPRESSED_SPRITE_BUFFER_SIZE",
+        "Size of the buffer to store the current sprite to decompress.",
         "struct data_processing_instruction",
     )
 

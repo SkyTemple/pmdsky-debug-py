@@ -29040,6 +29040,15 @@ class NaOverlay29Data:
         "uint32_t",
     )
 
+    ATTACK_SPRITE_BUFFER_SIZE = Symbol(
+        [0x1AC98],
+        [0x22F6ED8],
+        0x4,
+        "ATTACK_SPRITE_BUFFER_SIZE",
+        "Size of the buffer used to store the current attack sprite file.",
+        "int32_t",
+    )
+
     KECLEON_FEMALE_ID = Symbol(
         [0x1B1C4],
         [0x22F7404],
@@ -29972,6 +29981,15 @@ class NaOverlay29Data:
         None,
         "NECTAR_IQ_BOOST",
         "IQ boost from ingesting Nectar.",
+        "struct data_processing_instruction",
+    )
+
+    COMPRESSED_SPRITE_BUFFER_SIZE = Symbol(
+        [0x6FD2C],
+        [0x234BF6C],
+        None,
+        "COMPRESSED_SPRITE_BUFFER_SIZE",
+        "Size of the buffer to store the current sprite to decompress.",
         "struct data_processing_instruction",
     )
 

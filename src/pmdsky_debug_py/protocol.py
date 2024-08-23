@@ -17253,6 +17253,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    ATTACK_SPRITE_BUFFER_SIZE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     KECLEON_FEMALE_ID: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -17714,6 +17719,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     NECTAR_IQ_BOOST: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    COMPRESSED_SPRITE_BUFFER_SIZE: Symbol[
         Optional[list[int]],
         None,
     ]
