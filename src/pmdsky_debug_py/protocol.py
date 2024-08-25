@@ -14820,6 +14820,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetTreatmentBetweenMonsters: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SafeguardIsActive: Symbol[
         Optional[list[int]],
         None,
@@ -15971,6 +15976,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ApplyGracideaEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAiUseItemProbability: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsAdjacentToEnemy: Symbol[
         Optional[list[int]],
         None,
     ]

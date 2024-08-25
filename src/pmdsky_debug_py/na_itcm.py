@@ -24090,6 +24090,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    GetTreatmentBetweenMonsters = Symbol(
+        None,
+        None,
+        None,
+        "GetTreatmentBetweenMonsters",
+        "Called to check if a monster should treat another as an ally, enemy, or ignore it.\n(Examples of the 'ignore' case: target is a shopkeeper, there is a decoy on the floor, etc.)\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nr2: If false, return TREATMENT_IGNORE if entity 2 is invisible and entity 1 cannot see invisible monsters\nr3: If true, return TREATMENT_IGNORE if entity 1 is a team member and entity 2 has the STATUS_PETRIFIED status\nreturn: Treatment that monster 1 should apply to monster 2",
+        None,
+    )
+
     SafeguardIsActive = Symbol(
         None,
         None,
@@ -26166,6 +26175,24 @@ class NaItcmOverlay29Functions:
         None,
         "ApplyGracideaEffect",
         "If the target is Shaymin, attempt to change the target's form to Shaymin Sky Forme. Otherwise, do nothing.\n\nr0: user entity pointer\nr1: target entity pointer",
+        None,
+    )
+
+    GetAiUseItemProbability = Symbol(
+        None,
+        None,
+        None,
+        "GetAiUseItemProbability",
+        "Called to get the probability of an item being used or thrown by an AI on the current turn.\n\nr0: Pointer to either the user if it is an item used by the AI or the target if it is an item thrown by the AI\nr1: Pointer to item\nr2: Size-2 bitvector: if bit 0 is set, the AI is throwing the item. If bit 1 is set, it is targeting an ally with the item.\nreturn: Integer in range [0, 100]",
+        None,
+    )
+
+    IsAdjacentToEnemy = Symbol(
+        None,
+        None,
+        None,
+        "IsAdjacentToEnemy",
+        "Called to check if a hostile entity is present in any of the tiles adjacent to an entity.\n\nr0: Pointer to entity\nreturn: True if yes, false if no",
         None,
     )
 
