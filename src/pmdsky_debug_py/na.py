@@ -24664,8 +24664,8 @@ class NaOverlay29Functions:
     )
 
     GetTreatmentBetweenMonsters = Symbol(
-        [0x2533C],
-        [0x230157C],
+        [0x2551C],
+        [0x230175C],
         None,
         "GetTreatmentBetweenMonsters",
         "Called to check if a monster should treat another as an ally, enemy, or ignore it.\n(Examples of the 'ignore' case: target is a shopkeeper, there is a decoy on the floor, etc.)\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nr2: If false, return TREATMENT_IGNORE if entity 2 is invisible and entity 1 cannot see invisible monsters\nr3: If true, return TREATMENT_IGNORE if entity 1 is a team member and entity 2 has the STATUS_PETRIFIED status\nreturn: Treatment that monster 1 should apply to monster 2",
@@ -26752,8 +26752,8 @@ class NaOverlay29Functions:
     )
 
     GetAiUseItemProbability = Symbol(
-        [0x41C78],
-        [0x231DEB8],
+        [0x41E1C],
+        [0x231E05C],
         None,
         "GetAiUseItemProbability",
         "Called to get the probability of an item being used or thrown by an AI on the current turn.\n\nr0: Pointer to either the user if it is an item used by the AI or the target if it is an item thrown by the AI\nr1: Pointer to item\nr2: Size-2 bitvector: if bit 0 is set, the AI is throwing the item. If bit 1 is set, it is targeting an ally with the item.\nreturn: Integer in range [0, 100]",
@@ -26761,8 +26761,8 @@ class NaOverlay29Functions:
     )
 
     IsAdjacentToEnemy = Symbol(
-        [0x4250C],
-        [0x231E74C],
+        [0x426B0],
+        [0x231E8F0],
         None,
         "IsAdjacentToEnemy",
         "Called to check if a hostile entity is present in any of the tiles adjacent to an entity.\n\nr0: Pointer to entity\nreturn: True if yes, false if no",
