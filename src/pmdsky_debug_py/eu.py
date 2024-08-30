@@ -1785,7 +1785,7 @@ class EuArm9Functions:
         [0x200EB48],
         None,
         "TestItemAiFlag",
-        "Used to check the AI flags for an item. Tests bit 7 if r1 is 0, bit 6 if r1 is 1, bit\n5 otherwise.\n\nr0: item ID\nr1: bit_id\nreturn: bool",
+        "Returns a boolean indicating whether the item is consumable, throwable at an ally, or throwable at an enemy, depending on item_flag.\nThe table used for this is inaccessible in the code, as it is loaded from a file in the ROM at runtime.\nBit 7 in the table corresponds to ITEM_FLAG_CONSUMABLE, bit 6 to ITEM_FLAG_THROWABLE_AT_ALLY, and bit 5 to ITEM_FLAG_THROWABLE_AT_ENEMY.\n\nr0: item_id enum\nr1: item_flag enum. Function will test a different allowed AI action depending on the value.\nreturn: bool",
         None,
     )
 
@@ -24188,6 +24188,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    SetDecoyAiTracker = Symbol(
+        [0x1F3C4],
+        [0x22FBF44],
+        None,
+        "SetDecoyAiTracker",
+        "If there is a decoy on the floor that the entity can see, sets the entity's decoy_ai_tracker to 1 or 2,\ndepending on whether the attacker who caused the decoy status is on the team or not, respectively.\n\nr0: Entity pointer",
+        None,
+    )
+
     CheckSpawnThreshold = Symbol(
         [0x1F478],
         [0x22FBFF8],
@@ -24602,6 +24611,33 @@ class EuOverlay29Functions:
         None,
     )
 
+    CheckVariousStatuses2 = Symbol(
+        [0x246C4],
+        [0x2301244],
+        None,
+        "CheckVariousStatuses2",
+        "Returns 0 if none of these conditions holds for the given entity:\nblinded (checked only if blind_check == 1),\nasleep, paused, infatuated, wrapping, wrapped, biding, petrified, or terrified.\n\nr0: Entity pointer\nr1: If true, return 1 if entity is blinded\nreturn: bool",
+        None,
+    )
+
+    CheckVariousConditions = Symbol(
+        [0x249EC],
+        [0x230156C],
+        None,
+        "CheckVariousConditions",
+        "Returns 0 if none of these conditions holds for the given entity: is a rescue client,\ndoesn’t gain experience (a mission client/story teammate?), is a terrified non-team-leader,\nmeets any of the conditions in CheckVariousStatuses2 (with blind_check = 0), is charging a two-turn move.\n\nr0: Entity pointer\nreturn: bool",
+        None,
+    )
+
+    CheckVariousStatuses = Symbol(
+        [0x24B5C],
+        [0x23016DC],
+        None,
+        "CheckVariousStatuses",
+        "Returns 0 if none of these conditions holds for the given entity: asleep, frozen, petrified, biding.\n\nr0: Entity pointer\nreturn: bool",
+        None,
+    )
+
     CanMonsterMoveInDirection = Symbol(
         [0x24D24],
         [0x23018A4],
@@ -24824,6 +24860,15 @@ class EuOverlay29Functions:
         None,
         "GetMovePower",
         "Gets the power of a move, factoring in Ginseng/Space Globe boosts.\n\nr0: user pointer\nr1: move pointer\nreturn: move power",
+        None,
+    )
+
+    MonsterCanThrowItems = Symbol(
+        [0x26214],
+        [0x2302D94],
+        None,
+        "MonsterCanThrowItems",
+        "Returns a boolean indicating whether or not the given monster can throw items based on its monster id.\n\nr0: Monster pointer\nreturn: bool",
         None,
     )
 
@@ -25355,6 +25400,33 @@ class EuOverlay29Functions:
         None,
         "TrySpawnMonsterAndTickSpawnCounter",
         "First ticks up the spawn counter, and if it's equal or greater than the spawn cooldown, it will try to spawn an enemy if the number of enemies is below the spawn cap.\n\nIf the spawn counter is greater than 900, it will instead perform the special spawn caused by the ability Illuminate.\n\nNo params.",
+        None,
+    )
+
+    AiDecideUseItem = Symbol(
+        [0x32808],
+        [0x230F388],
+        None,
+        "AiDecideUseItem",
+        "Decides whether or not an AI should use its held item and updates its action_data fields accordingly.\n\nr0: Entity pointer",
+        None,
+    )
+
+    GetPossibleAiThrownItemDirections = Symbol(
+        [0x32CA4],
+        [0x230F824],
+        None,
+        "GetPossibleAiThrownItemDirections",
+        "If the entity can throw an item at a target in a certain direction,\nadds that direction to AI_THROWN_ITEM_DIRECTIONS and the probability of throwing it to AI_THROWN_ITEM_PROBABILITIES (if it is not already present).\nThe size of the arrays will be stored in AI_THROWN_ITEM_ACTION_CHOICE_COUNT.\nThe caller function will select the direction to throw the item by iterating through the array(s), rolling the probability, and then throwing in that direction if the roll succeeds.\nNothing will be thrown if all rolls fail.\n\nr0: Entity pointer\nr1: Integer in {1, 2}. If 1, target allies; if 2, target enemies.\nr2: Item struct pointer\nr3: If false, will call GetAiUseItemProbability to get the probability of throwing in a certain direction.\nIf true, the added probability will always be 100.",
+        None,
+    )
+
+    GetPossibleAiArcItemTargets = Symbol(
+        [0x32F20],
+        [0x230FAA0],
+        None,
+        "GetPossibleAiArcItemTargets",
+        "Gets the positions of all targets that an AI can hit with an item thrown in an arc, such as a Gravelerock.\nThe number of positions in the array will be stored in AI_THROWN_ITEM_ACTION_CHOICE_COUNT.\n\nr0: Entity pointer\nr1: Item struct pointer\nr2: [output] Array of size 20 for storing position structs\nr3: If false, will roll GetAiUseItemProbability every time a position is checked and not add it if it rolls false.",
         None,
     )
 
@@ -26921,6 +26993,15 @@ class EuOverlay29Functions:
         None,
         "IsChargingTwoTurnMove",
         "Checks if a monster is currently charging the specified two-turn move.\n\nr0: User entity pointer\nr1: Move pointer\nreturn: True if the user is charging the specified two-turn move, false otherwise.",
+        None,
+    )
+
+    IsChargingAnyTwoTurnMove = Symbol(
+        [0x48504],
+        [0x2325084],
+        None,
+        "IsChargingAnyTwoTurnMove",
+        "Returns a boolean indicating whether or not the given entity is charging any two-turn move.\n\nr0: Entity pointer\nr1: Unused boolean which was supposed to make function return true if the entity is under the effect of Charge (the Electric-type move).\n    However, the conditional which uses this boolean will never be activated, as the loop will always terminate before getting to it.\nreturn: bool",
         None,
     )
 
@@ -29959,6 +30040,15 @@ class EuOverlay29Data:
         "struct exclusive_item_effect_id_8[8]",
     )
 
+    AI_THROWN_ITEM_ACTION_CHOICE_COUNT = Symbol(
+        [0x7777C],
+        [0x23542FC],
+        0x4,
+        "AI_THROWN_ITEM_ACTION_CHOICE_COUNT",
+        "[Runtime] Used to store the number of positions output by GetPossibleAiArcItemTargets and the number of directions/probabilities output by GetPossibleAiThrownItemDirections.",
+        "uint32_t",
+    )
+
     EXCL_ITEM_EFFECTS_EVASION_BOOST = Symbol(
         [0x77790],
         [0x2354310],
@@ -31693,6 +31783,33 @@ class EuRamData:
         "LOADED_ATTACK_SPRITE_DATA",
         "[Runtime] Pointer to the dynamically allocated structure relating to the currently loaded attack sprite, in dungeon mode.\n\ntype: struct loaded_attack_sprite_data*",
         "struct loaded_attack_sprite_data*",
+    )
+
+    AI_THROWN_ITEM_DIRECTION_IS_USED = Symbol(
+        [0x37D5D0],
+        [0x237D5D0],
+        0x8,
+        "AI_THROWN_ITEM_DIRECTION_IS_USED",
+        "[Runtime] Used in GetPossibleAiThrownItemDirections to indicate whether a certain direction enum value is already being used or not.",
+        "bool[8]",
+    )
+
+    AI_THROWN_ITEM_DIRECTIONS = Symbol(
+        [0x37D5D8],
+        [0x237D5D8],
+        0x20,
+        "AI_THROWN_ITEM_DIRECTIONS",
+        "[Runtime] Used to store the directions output by GetPossibleAiThrownItemDirections.",
+        "uint32_t[8]",
+    )
+
+    AI_THROWN_ITEM_PROBABILITIES = Symbol(
+        [0x37D5F8],
+        [0x237D5F8],
+        0x20,
+        "AI_THROWN_ITEM_PROBABILITIES",
+        "[Runtime] Used to store the probabilities matching the directions in THROWN_ITEM_DIRECTIONS.",
+        "uint32_t[8]",
     )
 
     ROLLOUT_ICE_BALL_MISSED = Symbol(

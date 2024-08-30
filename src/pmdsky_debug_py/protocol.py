@@ -14555,6 +14555,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetDecoyAiTracker: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CheckSpawnThreshold: Symbol[
         Optional[list[int]],
         None,
@@ -14785,6 +14790,21 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CheckVariousStatuses2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckVariousConditions: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckVariousStatuses: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CanMonsterMoveInDirection: Symbol[
         Optional[list[int]],
         None,
@@ -14906,6 +14926,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetMovePower: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MonsterCanThrowItems: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15201,6 +15226,21 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TrySpawnMonsterAndTickSpawnCounter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AiDecideUseItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetPossibleAiThrownItemDirections: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetPossibleAiArcItemTargets: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16071,6 +16111,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsChargingTwoTurnMove: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsChargingAnyTwoTurnMove: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -17708,6 +17753,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    AI_THROWN_ITEM_ACTION_CHOICE_COUNT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     EXCL_ITEM_EFFECTS_EVASION_BOOST: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -18774,6 +18824,21 @@ class RamDataProtocol(Protocol):
     ]
 
     LOADED_ATTACK_SPRITE_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AI_THROWN_ITEM_DIRECTION_IS_USED: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AI_THROWN_ITEM_DIRECTIONS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AI_THROWN_ITEM_PROBABILITIES: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
