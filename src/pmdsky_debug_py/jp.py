@@ -25430,6 +25430,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    GetExclusiveItemWithEffectFromBag = Symbol(
+        [0x332B0],
+        [0x2310B90],
+        None,
+        "GetExclusiveItemWithEffectFromBag",
+        "If an exclusive item with a certain effect is present in the bag and works for the entity, returns true and copies the item struct to the address at item. Otherwise, returns false.\n\nr0: Entity pointer\nr1: exclusive_item_effect_id enum\nr2: [output] Item pointer\nreturn: bool",
+        None,
+    )
+
     AuraBowIsActive = Symbol(
         [0x33324],
         [0x2310C04],
@@ -27164,6 +27173,15 @@ class JpOverlay29Functions:
         None,
         "PerformDamageSequence",
         "Performs the 'damage sequence' given the results of the damage calculation. This includes running the accuracy roll with MoveHitCheck, calling ApplyDamageAndEffects, and some other miscellaneous bits of state bookkeeping (including handling the effects of Illuminate).\n\nThis is the last function called by DealDamage. The result of this call is the return value of DealDamage and its relatives.\n\nr0: Attacker pointer\nr1: Defender pointer\nr2: Move pointer\nr3: [output] struct containing info about the damage calculation\nstack[0]: Damage source\nreturn: Calculated damage",
+        None,
+    )
+
+    CanHitWithRegularAttack = Symbol(
+        [0x56AD4],
+        [0x23343B4],
+        None,
+        "CanHitWithRegularAttack",
+        "Returns true if the defender is adjacent to the attacker and can hit them with a regular attack.\nNotably, this check is what prevents ranged moves, moves that cut corners, etc. from being reflected by Magic Coat and Mirror Move.\n\nr0: Entity pointer (attacker)\nr1: Entity pointer (defender)\nreturn: bool",
         None,
     )
 

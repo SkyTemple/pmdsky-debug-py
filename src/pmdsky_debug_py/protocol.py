@@ -15250,6 +15250,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetExclusiveItemWithEffectFromBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AuraBowIsActive: Symbol[
         Optional[list[int]],
         None,
@@ -16211,6 +16216,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     PerformDamageSequence: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CanHitWithRegularAttack: Symbol[
         Optional[list[int]],
         None,
     ]
