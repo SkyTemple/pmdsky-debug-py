@@ -27626,6 +27626,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    PositionIsOnHiddenStairs = Symbol(
+        [0x5C758],
+        [0x23392D8],
+        None,
+        "PositionIsOnHiddenStairs",
+        "Checks if this location is on top of the hidden stairs.\n\nr0: position pointer\nreturn: bool",
+        None,
+    )
+
     HiddenStairsTrigger = Symbol(
         [0x5C7E4],
         [0x2339364],
@@ -27635,12 +27644,39 @@ class EuOverlay29Functions:
         None,
     )
 
-    GetDungeonGenInfoUnk0C = Symbol(
+    GetHiddenStairsField = Symbol(
+        [0x5C8A0],
+        [0x2339420],
+        None,
+        "GetHiddenStairsField",
+        "Gets the hidden_stairs_type variable from dungeon::dungeon_generation_info.\n\nreturn: enum hidden_stairs_type",
+        None,
+    )
+
+    SetHiddenStairsField = Symbol(
+        [0x5C8B8],
+        [0x2339438],
+        None,
+        "SetHiddenStairsField",
+        "Sets the hidden_stairs_type variable from dungeon::dungeon_generation_info to a certain value.\n\nr0: New value",
+        None,
+    )
+
+    GetHiddenFloorField = Symbol(
         [0x5C8D0],
         [0x2339450],
         None,
-        "GetDungeonGenInfoUnk0C",
-        "return: dungeon_generation_info::field_0xc",
+        "GetHiddenFloorField",
+        "Gets the hidden_floor_type variable from dungeon::dungeon_generation_info.\n\nreturn: enum hidden_stairs_type",
+        None,
+    )
+
+    SetHiddenFloorField = Symbol(
+        [0x5C8E8],
+        [0x2339468],
+        None,
+        "SetHiddenFloorField",
+        "Sets the hidden_floor_type variable from dungeon::dungeon_generation_info to a certain value.\n\nr0: New value",
         None,
     )
 

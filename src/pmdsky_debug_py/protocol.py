@@ -16465,12 +16465,32 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PositionIsOnHiddenStairs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     HiddenStairsTrigger: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetDungeonGenInfoUnk0C: Symbol[
+    GetHiddenStairsField: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetHiddenStairsField: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetHiddenFloorField: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetHiddenFloorField: Symbol[
         Optional[list[int]],
         None,
     ]
