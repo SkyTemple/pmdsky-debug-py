@@ -27618,8 +27618,8 @@ class JpOverlay29Functions:
     )
 
     PositionIsOnHiddenStairs = Symbol(
-        None,
-        None,
+        [0x5C1EC],
+        [0x2339ACC],
         None,
         "PositionIsOnHiddenStairs",
         "Checks if this location is on top of the hidden stairs.\n\nr0: position pointer\nreturn: bool",
@@ -27636,8 +27636,8 @@ class JpOverlay29Functions:
     )
 
     GetHiddenStairsField = Symbol(
-        None,
-        None,
+        [0x5C334],
+        [0x2339C14],
         None,
         "GetHiddenStairsField",
         "Gets the hidden_stairs_type variable from dungeon::dungeon_generation_info.\n\nreturn: enum hidden_stairs_type",
@@ -27645,8 +27645,8 @@ class JpOverlay29Functions:
     )
 
     SetHiddenStairsField = Symbol(
-        None,
-        None,
+        [0x5C34C],
+        [0x2339C2C],
         None,
         "SetHiddenStairsField",
         "Sets the hidden_stairs_type variable from dungeon::dungeon_generation_info to a certain value.\n\nr0: New value",
@@ -27663,8 +27663,8 @@ class JpOverlay29Functions:
     )
 
     SetHiddenFloorField = Symbol(
-        None,
-        None,
+        [0x5C37C],
+        [0x2339C5C],
         None,
         "SetHiddenFloorField",
         "Sets the hidden_floor_type variable from dungeon::dungeon_generation_info to a certain value.\n\nr0: New value",

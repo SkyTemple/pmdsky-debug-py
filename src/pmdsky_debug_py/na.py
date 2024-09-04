@@ -27625,8 +27625,8 @@ class NaOverlay29Functions:
     )
 
     PositionIsOnHiddenStairs = Symbol(
-        None,
-        None,
+        [0x5C4C8],
+        [0x2338708],
         None,
         "PositionIsOnHiddenStairs",
         "Checks if this location is on top of the hidden stairs.\n\nr0: position pointer\nreturn: bool",
@@ -27643,8 +27643,8 @@ class NaOverlay29Functions:
     )
 
     GetHiddenStairsField = Symbol(
-        None,
-        None,
+        [0x5C610],
+        [0x2338850],
         None,
         "GetHiddenStairsField",
         "Gets the hidden_stairs_type variable from dungeon::dungeon_generation_info.\n\nreturn: enum hidden_stairs_type",
@@ -27652,8 +27652,8 @@ class NaOverlay29Functions:
     )
 
     SetHiddenStairsField = Symbol(
-        None,
-        None,
+        [0x5C628],
+        [0x2338868],
         None,
         "SetHiddenStairsField",
         "Sets the hidden_stairs_type variable from dungeon::dungeon_generation_info to a certain value.\n\nr0: New value",
@@ -27670,8 +27670,8 @@ class NaOverlay29Functions:
     )
 
     SetHiddenFloorField = Symbol(
-        None,
-        None,
+        [0x5C658],
+        [0x2338898],
         None,
         "SetHiddenFloorField",
         "Sets the hidden_floor_type variable from dungeon::dungeon_generation_info to a certain value.\n\nr0: New value",
