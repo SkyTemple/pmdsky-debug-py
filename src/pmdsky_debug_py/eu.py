@@ -22683,6 +22683,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    PopulateActiveMonsterPtrs = Symbol(
+        [0x6738],
+        [0x22E32B8],
+        None,
+        "PopulateActiveMonsterPtrs",
+        "Populates active_monster_ptrs with all valid monsters in the monster_slot_headers array.\n\nNo params.",
+        None,
+    )
+
     GetTeamMemberIndex = Symbol(
         [0x67F8],
         [0x22E3378],
@@ -22888,6 +22897,15 @@ class EuOverlay29Functions:
         None,
         "GetItemIdToSpawn",
         "Randomly picks an item to spawn using one of the floor's item spawn lists and returns its ID.\n\nIf the function fails to properly choose an item (due to, for example, a corrupted item list), ITEM_POKE is returned.\n\nr0: Which item list to use\nreturn: Item ID",
+        None,
+    )
+
+    CopySpawnEntriesMaster = Symbol(
+        [0xBA18],
+        [0x22E8598],
+        None,
+        "CopySpawnEntriesMaster",
+        "Copies the array at spawn_entries_master, starting from offset, to spawn_entries and returns the number of elements copied.\n\nr0: [output] Size 16 monster_spawn_entry array\nr1: Offset (always 0 in practice)\nreturn: int",
         None,
     )
 

@@ -13760,6 +13760,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PopulateActiveMonsterPtrs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetTeamMemberIndex: Symbol[
         Optional[list[int]],
         None,
@@ -13856,6 +13861,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetItemIdToSpawn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopySpawnEntriesMaster: Symbol[
         Optional[list[int]],
         None,
     ]
