@@ -22675,8 +22675,8 @@ class JpOverlay29Functions:
     )
 
     PopulateActiveMonsterPtrs = Symbol(
-        None,
-        None,
+        [0x672C],
+        [0x22E400C],
         None,
         "PopulateActiveMonsterPtrs",
         "Populates active_monster_ptrs with all valid monsters in the monster_slot_headers array.\n\nNo params.",
@@ -22892,8 +22892,8 @@ class JpOverlay29Functions:
     )
 
     CopySpawnEntriesMaster = Symbol(
-        None,
-        None,
+        [0xB974],
+        [0x22E9254],
         None,
         "CopySpawnEntriesMaster",
         "Copies the array at spawn_entries_master, starting from offset, to spawn_entries and returns the number of elements copied.\n\nr0: [output] Size 16 monster_spawn_entry array\nr1: Offset (always 0 in practice)\nreturn: int",
