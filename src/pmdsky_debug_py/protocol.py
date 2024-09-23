@@ -11272,6 +11272,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DEFEAT_ITEM_LOSS_CHANCE: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
 
 Overlay10Protocol = SectionProtocol[
     Overlay10FunctionsProtocol,

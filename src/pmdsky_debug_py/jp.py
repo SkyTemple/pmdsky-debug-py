@@ -18420,6 +18420,15 @@ class JpOverlay10Data:
         "struct special_monster_move_animation[7422]",
     )
 
+    DEFEAT_ITEM_LOSS_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "DEFEAT_ITEM_LOSS_CHANCE",
+        "Chance of losing each individual bag item after being defeated in a dungeon (50%).",
+        "struct data_processing_instruction",
+    )
+
 
 class JpOverlay10Section:
     name = "overlay10"

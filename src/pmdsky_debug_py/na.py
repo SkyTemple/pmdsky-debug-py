@@ -18425,6 +18425,15 @@ class NaOverlay10Data:
         "struct special_monster_move_animation[7422]",
     )
 
+    DEFEAT_ITEM_LOSS_CHANCE = Symbol(
+        [0x6188],
+        [0x22C2C08],
+        None,
+        "DEFEAT_ITEM_LOSS_CHANCE",
+        "Chance of losing each individual bag item after being defeated in a dungeon (50%).",
+        "struct data_processing_instruction",
+    )
+
 
 class NaOverlay10Section:
     name = "overlay10"
