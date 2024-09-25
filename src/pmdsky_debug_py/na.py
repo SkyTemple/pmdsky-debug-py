@@ -16605,7 +16605,7 @@ class NaOverlay10Functions:
         [0x22BF904],
         None,
         "AnimationHasMoreFrames",
-        "Just a guess. This is called in a loop in PlayEffectAnimation, and the output controls whether or not AdvanceFrame continues to be called.\n\nr0: ?\nreturn: whether or not the animation still has more frames left?",
+        "Just a guess. This is called in a loop in PlayEffectAnimation, and the output controls whether or not AdvanceFrame continues to be called.\nIf the current effect animation's is_non_blocking field is set, the function will return false the very first time it is called.\n\nr0: ?\nreturn: whether or not the animation still has more frames left?",
         None,
     )
 
@@ -22871,6 +22871,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    ShouldDisplayEntityAdvanced = Symbol(
+        None,
+        None,
+        None,
+        "ShouldDisplayEntityAdvanced",
+        "Returns whether or not the entity should be displayed, using the same checks as ShouldDisplayEntity except also checking whether it is visible and whether the camera entity is blinded.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
     PlayEffectAnimation0x1A9 = Symbol(
         [0x9EF0, 0x9F3C, 0x9F88, 0x9FD4, 0xA284, 0xA2D0],
         [0x22E6130, 0x22E617C, 0x22E61C8, 0x22E6214, 0x22E64C4, 0x22E6510],
@@ -24641,7 +24650,7 @@ class NaOverlay29Functions:
         [0x2300818],
         None,
         "CheckVariousStatuses2",
-        "Returns 0 if none of these conditions holds for the given entity:\nblinded (checked only if blind_check == 1),\nasleep, paused, infatuated, wrapping, wrapped, biding, petrified, or terrified.\n\nr0: Entity pointer\nr1: If true, return 1 if entity is blinded\nreturn: bool",
+        "Returns 0 if none of these conditions holds for the given entity:\nblinded (checked only if blind_check == 1),\nasleep, frozen, paused, infatuated, wrapping, wrapped, biding, petrified, or terrified.\n\nr0: Entity pointer\nr1: If true, return 1 if entity is blinded\nreturn: bool",
         None,
     )
 

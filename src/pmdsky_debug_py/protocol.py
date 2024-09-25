@@ -13850,6 +13850,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ShouldDisplayEntityAdvanced: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlayEffectAnimation0x1A9: Symbol[
         Optional[list[int]],
         None,

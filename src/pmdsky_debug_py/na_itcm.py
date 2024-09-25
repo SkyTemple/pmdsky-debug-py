@@ -16354,7 +16354,7 @@ class NaItcmOverlay10Functions:
         None,
         None,
         "AnimationHasMoreFrames",
-        "Just a guess. This is called in a loop in PlayEffectAnimation, and the output controls whether or not AdvanceFrame continues to be called.\n\nr0: ?\nreturn: whether or not the animation still has more frames left?",
+        "Just a guess. This is called in a loop in PlayEffectAnimation, and the output controls whether or not AdvanceFrame continues to be called.\nIf the current effect animation's is_non_blocking field is set, the function will return false the very first time it is called.\n\nr0: ?\nreturn: whether or not the animation still has more frames left?",
         None,
     )
 
@@ -22344,6 +22344,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    ShouldDisplayEntityAdvanced = Symbol(
+        None,
+        None,
+        None,
+        "ShouldDisplayEntityAdvanced",
+        "Returns whether or not the entity should be displayed, using the same checks as ShouldDisplayEntity except also checking whether it is visible and whether the camera entity is blinded.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
     PlayEffectAnimation0x1A9 = Symbol(
         None,
         None,
@@ -24068,7 +24077,7 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "CheckVariousStatuses2",
-        "Returns 0 if none of these conditions holds for the given entity:\nblinded (checked only if blind_check == 1),\nasleep, paused, infatuated, wrapping, wrapped, biding, petrified, or terrified.\n\nr0: Entity pointer\nr1: If true, return 1 if entity is blinded\nreturn: bool",
+        "Returns 0 if none of these conditions holds for the given entity:\nblinded (checked only if blind_check == 1),\nasleep, frozen, paused, infatuated, wrapping, wrapped, biding, petrified, or terrified.\n\nr0: Entity pointer\nr1: If true, return 1 if entity is blinded\nreturn: bool",
         None,
     )
 
