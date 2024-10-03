@@ -22481,7 +22481,7 @@ class JpOverlay29Functions:
         [0x22E1A48],
         None,
         "GetFloorType",
-        "Get the current floor type.\n\nFloor types:\n  0 appears to mean the current floor is 'normal'\n  1 appears to mean the current floor is a fixed floor\n  2 means the current floor has a rescue point\n\nreturn: floor type",
+        "Get the current floor type.\n\nFloor types:\n  0 appears to mean the current floor is 'normal'\n  1 means the current floor is a fixed floor with warp zones enabled\n  2 means the current floor has a rescue point\n\nreturn: floor type",
         None,
     )
 
@@ -22865,8 +22865,8 @@ class JpOverlay29Functions:
     )
 
     ShouldDisplayEntityAdvanced = Symbol(
-        None,
-        None,
+        [0x9C60],
+        [0x22E7540],
         None,
         "ShouldDisplayEntityAdvanced",
         "Returns whether or not the entity should be displayed, using the same checks as ShouldDisplayEntity except also checking whether it is visible and whether the camera entity is blinded.\n\nr0: entity pointer\nreturn: bool",
@@ -30185,6 +30185,33 @@ class JpOverlay31Functions:
         None,
     )
 
+    CreateStairsMenuState = Symbol(
+        [0x6B4],
+        [0x2384154],
+        None,
+        "CreateStairsMenuState",
+        "Called when the leader steps on any stairs tile (regular, warp zone, rescue point, hidden stairs).\n\nAllocates a stairs_menu struct on the heap with information for HandleStairsMenu, which will be pointed to by STAIRS_MENU_PTR.\n\nr0: Entity pointer (in practice, always the leader)",
+        None,
+    )
+
+    StairsSubheadingCallback = Symbol(
+        [0x748],
+        [0x23841E8],
+        None,
+        "StairsSubheadingCallback",
+        "Callback function passed to CreateAdvancedTextBox for creating the subheading for the stairs menu.\n\nr0: window_id",
+        None,
+    )
+
+    HandleStairsMenu = Symbol(
+        [0x79C],
+        [0x238423C],
+        None,
+        "HandleStairsMenu",
+        "Handles displaying the stairs menu and is called on each frame while it is open, also updating the leader's action fields.\n\nUses a switch statement based on the state field in stairs_menu to determine what actions to take.\n\nreturn: int",
+        None,
+    )
+
     MovesMenu = Symbol(
         [0x2990],
         [0x2386430],
@@ -31869,6 +31896,15 @@ class JpRamData:
         "FLOOR_GENERATION_STATUS",
         "[Runtime] Status data related to generation of the current floor in a dungeon.\n\nThis data is populated as the dungeon floor is generated.\n\ntype: struct floor_generation_status",
         "struct floor_generation_status",
+    )
+
+    STAIRS_MENU_PTR = Symbol(
+        None,
+        None,
+        None,
+        "STAIRS_MENU_PTR",
+        "Pointer to the stairs_menu struct.",
+        "struct stairs_menu*",
     )
 
 

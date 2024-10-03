@@ -17913,6 +17913,21 @@ class Overlay31FunctionsProtocol(Protocol):
         None,
     ]
 
+    CreateStairsMenuState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StairsSubheadingCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleStairsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MovesMenu: Symbol[
         Optional[list[int]],
         None,
@@ -18934,6 +18949,11 @@ class RamDataProtocol(Protocol):
     ]
 
     FLOOR_GENERATION_STATUS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STAIRS_MENU_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

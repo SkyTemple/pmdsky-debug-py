@@ -21989,7 +21989,7 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "GetFloorType",
-        "Get the current floor type.\n\nFloor types:\n  0 appears to mean the current floor is 'normal'\n  1 appears to mean the current floor is a fixed floor\n  2 means the current floor has a rescue point\n\nreturn: floor type",
+        "Get the current floor type.\n\nFloor types:\n  0 appears to mean the current floor is 'normal'\n  1 means the current floor is a fixed floor with warp zones enabled\n  2 means the current floor has a rescue point\n\nreturn: floor type",
         None,
     )
 
@@ -29614,6 +29614,33 @@ class NaItcmOverlay31Functions:
         None,
     )
 
+    CreateStairsMenuState = Symbol(
+        None,
+        None,
+        None,
+        "CreateStairsMenuState",
+        "Called when the leader steps on any stairs tile (regular, warp zone, rescue point, hidden stairs).\n\nAllocates a stairs_menu struct on the heap with information for HandleStairsMenu, which will be pointed to by STAIRS_MENU_PTR.\n\nr0: Entity pointer (in practice, always the leader)",
+        None,
+    )
+
+    StairsSubheadingCallback = Symbol(
+        None,
+        None,
+        None,
+        "StairsSubheadingCallback",
+        "Callback function passed to CreateAdvancedTextBox for creating the subheading for the stairs menu.\n\nr0: window_id",
+        None,
+    )
+
+    HandleStairsMenu = Symbol(
+        None,
+        None,
+        None,
+        "HandleStairsMenu",
+        "Handles displaying the stairs menu and is called on each frame while it is open, also updating the leader's action fields.\n\nUses a switch statement based on the state field in stairs_menu to determine what actions to take.\n\nreturn: int",
+        None,
+    )
+
     MovesMenu = Symbol(
         None,
         None,
@@ -31259,6 +31286,15 @@ class NaItcmRamData:
         "FLOOR_GENERATION_STATUS",
         "[Runtime] Status data related to generation of the current floor in a dungeon.\n\nThis data is populated as the dungeon floor is generated.\n\ntype: struct floor_generation_status",
         "struct floor_generation_status",
+    )
+
+    STAIRS_MENU_PTR = Symbol(
+        None,
+        None,
+        None,
+        "STAIRS_MENU_PTR",
+        "Pointer to the stairs_menu struct.",
+        "struct stairs_menu*",
     )
 
 
