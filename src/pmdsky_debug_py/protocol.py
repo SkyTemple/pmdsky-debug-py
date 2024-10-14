@@ -2377,6 +2377,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetRankString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetCurrentTeamNameString: Symbol[
         Optional[list[int]],
         None,
@@ -2558,6 +2563,16 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     PrintClearMark: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PrintBadgeMark: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PrintMark: Symbol[
         Optional[list[int]],
         None,
     ]

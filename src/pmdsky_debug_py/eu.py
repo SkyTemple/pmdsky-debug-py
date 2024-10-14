@@ -4201,6 +4201,15 @@ class EuArm9Functions:
         None,
     )
 
+    GetRankString = Symbol(
+        [0x24D88],
+        [0x2024D88],
+        None,
+        "GetRankString",
+        "Gets the string corresponding to the player's current explorer rank.\n\nr0: [output] Pointer to the buffer where the string will be written\nr1: First 16 bits contain the rank, next 4 are some sort of bitflags\nreturn: r0 if flags are 0, pointer to some static address otherwise",
+        None,
+    )
+
     GetCurrentTeamNameString = Symbol(
         [0x24F00],
         [0x2024F00],
@@ -4531,6 +4540,24 @@ class EuArm9Functions:
         None,
         "PrintClearMark",
         "Prints the specified clear mark on the screen.\n\nClear marks are shown on the save file load screen. They are used to show which plot milestones have already been completed.\n\nr0: Clear mark ID\nr1: X pos (unknown units, usually ranges between 3 and 27)\nr2: Y pos (unknown units, normally 14)\nr3: ?",
+        None,
+    )
+
+    PrintBadgeMark = Symbol(
+        [0x2A728],
+        [0x202A728],
+        None,
+        "PrintBadgeMark",
+        "Prints the specified badge mark on the screen.\n\nThe badge mark is shown when opening the menu in the overworld.\n\nr0: Badge ID\nr1: X pos (unknown units, always 3)\nr2: Y pos (unknown units, always 18)\nr3: ? (always 3)",
+        None,
+    )
+
+    PrintMark = Symbol(
+        [0x2A750],
+        [0x202A750],
+        None,
+        "PrintMark",
+        "Prints a mark from one of the .w16 files in FONT.\n\nr0: 0 if file is clrmark1.w16, 1 if file is clrmark2.w16, 2 if file is rankmark.w16.\nr1: Mark ID in file\nr2: X pos (unknown units)\nr3: Y pos (unknown units)\nstack[0]: ?",
         None,
     )
 
