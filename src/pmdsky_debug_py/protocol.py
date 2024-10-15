@@ -13735,6 +13735,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetEntityPixelPosXY: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IncrementEntityPixelPosXY: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CreateEnemyEntity: Symbol[
         Optional[list[int]],
         None,

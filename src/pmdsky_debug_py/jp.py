@@ -4202,8 +4202,8 @@ class JpArm9Functions:
     )
 
     GetRankString = Symbol(
-        None,
-        None,
+        [0x24B44],
+        [0x2024B44],
         None,
         "GetRankString",
         "Gets the string corresponding to the player's current explorer rank.\n\nr0: [output] Pointer to the buffer where the string will be written\nr1: First 16 bits contain the rank, next 4 are some sort of bitflags\nreturn: r0 if flags are 0, pointer to some static address otherwise",
@@ -4544,8 +4544,8 @@ class JpArm9Functions:
     )
 
     PrintBadgeMark = Symbol(
-        None,
-        None,
+        [0x2A78C],
+        [0x202A78C],
         None,
         "PrintBadgeMark",
         "Prints the specified badge mark on the screen.\n\nThe badge mark is shown when opening the menu in the overworld.\n\nr0: Badge ID\nr1: X pos (unknown units, always 3)\nr2: Y pos (unknown units, always 18)\nr3: ? (always 3)",
@@ -4553,8 +4553,8 @@ class JpArm9Functions:
     )
 
     PrintMark = Symbol(
-        None,
-        None,
+        [0x2A7B4],
+        [0x202A7B4],
         None,
         "PrintMark",
         "Prints a mark from one of the .w16 files in FONT.\n\nr0: 0 if file is clrmark1.w16, 1 if file is clrmark2.w16, 2 if file is rankmark.w16.\nr1: Mark ID in file\nr2: X pos (unknown units)\nr3: Y pos (unknown units)\nstack[0]: ?",
@@ -22626,6 +22626,24 @@ class JpOverlay29Functions:
         None,
         "UpdateEntityPixelPos",
         "Updates an entity's pixel_pos field using the specified pixel_position struct, or its own pos field if it's null.\n\nr0: Entity pointer\nr1: Pixel position to use, or null to use the entity's own position",
+        None,
+    )
+
+    SetEntityPixelPosXY = Symbol(
+        [0x5834],
+        [0x22E3114],
+        None,
+        "SetEntityPixelPosXY",
+        "r0: Entity pointer\nr1: x\nr2: y",
+        None,
+    )
+
+    IncrementEntityPixelPosXY = Symbol(
+        [0x5840],
+        [0x22E3120],
+        None,
+        "IncrementEntityPixelPosXY",
+        "r0: Entity pointer\nr1: x\nr2: y",
         None,
     )
 

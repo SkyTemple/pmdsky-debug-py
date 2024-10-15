@@ -22137,6 +22137,24 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    SetEntityPixelPosXY = Symbol(
+        None,
+        None,
+        None,
+        "SetEntityPixelPosXY",
+        "r0: Entity pointer\nr1: x\nr2: y",
+        None,
+    )
+
+    IncrementEntityPixelPosXY = Symbol(
+        None,
+        None,
+        None,
+        "IncrementEntityPixelPosXY",
+        "r0: Entity pointer\nr1: x\nr2: y",
+        None,
+    )
+
     CreateEnemyEntity = Symbol(
         None,
         None,

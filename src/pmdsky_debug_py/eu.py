@@ -22638,6 +22638,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    SetEntityPixelPosXY = Symbol(
+        [0x5844],
+        [0x22E23C4],
+        None,
+        "SetEntityPixelPosXY",
+        "r0: Entity pointer\nr1: x\nr2: y",
+        None,
+    )
+
+    IncrementEntityPixelPosXY = Symbol(
+        [0x5850],
+        [0x22E23D0],
+        None,
+        "IncrementEntityPixelPosXY",
+        "r0: Entity pointer\nr1: x\nr2: y",
+        None,
+    )
+
     CreateEnemyEntity = Symbol(
         [0x5E80],
         [0x22E2A00],
