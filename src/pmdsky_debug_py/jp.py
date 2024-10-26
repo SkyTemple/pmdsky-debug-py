@@ -4327,6 +4327,15 @@ class JpArm9Functions:
         None,
     )
 
+    AllocateTemp1024ByteBufferFromPool = Symbol(
+        [0x25868],
+        [0x2025868],
+        None,
+        "AllocateTemp1024ByteBufferFromPool",
+        "return: Pointer to byte buffer",
+        None,
+    )
+
     GetStringFromFileVeneer = Symbol(
         [0x25898],
         [0x2025898],
@@ -10535,8 +10544,8 @@ class JpArm9Data:
     )
 
     PACK_FILES_OPENED = Symbol(
-        None,
-        None,
+        [0xB0ADC],
+        [0x20B0ADC],
         None,
         "PACK_FILES_OPENED",
         "[Runtime] A pointer to the 6 opened Pack files (listed at PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
@@ -10544,8 +10553,8 @@ class JpArm9Data:
     )
 
     PACK_FILE_PATHS_TABLE = Symbol(
-        None,
-        None,
+        [0xB0AE0],
+        [0x20B0AE0],
         None,
         "PACK_FILE_PATHS_TABLE",
         "List of pointers to path strings to all known pack files.\nThe game uses this table to load its resources when launching dungeon mode.\n\ntype: char*[6]",
@@ -27608,6 +27617,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    GetDoughSeedFlag = Symbol(
+        [0x5C014],
+        [0x23398F4],
+        None,
+        "GetDoughSeedFlag",
+        "Gets the dough_seed_extra_money_flag field on the dungeon struct.\n\nreturn: bool",
+        None,
+    )
+
     SetDoughSeedFlag = Symbol(
         [0x5C02C],
         [0x233990C],
@@ -30375,6 +30393,10 @@ class JpOverlay31Data:
         "DUNGEON_MAIN_MENU_ITEMS",
         "",
         "struct simple_menu_id_item[8]",
+    )
+
+    DUNGEON_MENU_SWITCH_STR1 = Symbol(
+        [0x763C], [0x238B0DC], 0xC, "DUNGEON_MENU_SWITCH_STR1", "", "char[12]"
     )
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(

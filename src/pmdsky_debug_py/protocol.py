@@ -2447,6 +2447,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    AllocateTemp1024ByteBufferFromPool: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetStringFromFileVeneer: Symbol[
         Optional[list[int]],
         None,
@@ -16460,6 +16465,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetDoughSeedFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetDoughSeedFlag: Symbol[
         Optional[list[int]],
         None,
@@ -18017,6 +18027,11 @@ class Overlay31DataProtocol(Protocol):
     ]
 
     DUNGEON_MAIN_MENU_ITEMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_MENU_SWITCH_STR1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

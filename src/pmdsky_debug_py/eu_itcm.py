@@ -4281,6 +4281,15 @@ class EuItcmArm9Functions:
         None,
     )
 
+    AllocateTemp1024ByteBufferFromPool = Symbol(
+        None,
+        None,
+        None,
+        "AllocateTemp1024ByteBufferFromPool",
+        "return: Pointer to byte buffer",
+        None,
+    )
+
     GetStringFromFileVeneer = Symbol(
         None,
         None,
@@ -27042,6 +27051,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    GetDoughSeedFlag = Symbol(
+        None,
+        None,
+        None,
+        "GetDoughSeedFlag",
+        "Gets the dough_seed_extra_money_flag field on the dungeon struct.\n\nreturn: bool",
+        None,
+    )
+
     SetDoughSeedFlag = Symbol(
         None,
         None,
@@ -29799,6 +29817,10 @@ class EuItcmOverlay31Data:
 
     DUNGEON_MAIN_MENU_ITEMS = Symbol(
         None, None, None, "DUNGEON_MAIN_MENU_ITEMS", "", "struct simple_menu_id_item[8]"
+    )
+
+    DUNGEON_MENU_SWITCH_STR1 = Symbol(
+        None, None, None, "DUNGEON_MENU_SWITCH_STR1", "", "char[12]"
     )
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(

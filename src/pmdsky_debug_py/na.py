@@ -4327,6 +4327,15 @@ class NaArm9Functions:
         None,
     )
 
+    AllocateTemp1024ByteBufferFromPool = Symbol(
+        [0x25888],
+        [0x2025888],
+        None,
+        "AllocateTemp1024ByteBufferFromPool",
+        "return: Pointer to byte buffer",
+        None,
+    )
+
     GetStringFromFileVeneer = Symbol(
         [0x258B8],
         [0x20258B8],
@@ -27615,6 +27624,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    GetDoughSeedFlag = Symbol(
+        [0x5C2F0],
+        [0x2338530],
+        None,
+        "GetDoughSeedFlag",
+        "Gets the dough_seed_extra_money_flag field on the dungeon struct.\n\nreturn: bool",
+        None,
+    )
+
     SetDoughSeedFlag = Symbol(
         [0x5C308],
         [0x2338548],
@@ -30480,6 +30498,10 @@ class NaOverlay31Data:
         "DUNGEON_MAIN_MENU_ITEMS",
         "",
         "struct simple_menu_id_item[8]",
+    )
+
+    DUNGEON_MENU_SWITCH_STR1 = Symbol(
+        [0x75F4], [0x2389E14], 0xC, "DUNGEON_MENU_SWITCH_STR1", "", "char[12]"
     )
 
     OVERLAY31_UNKNOWN_STRING_IDS = Symbol(
