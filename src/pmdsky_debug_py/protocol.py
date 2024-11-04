@@ -4472,6 +4472,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GendersNotEqualNotGenderless: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsMonsterOnTeam: Symbol[
         Optional[list[int]],
         None,
@@ -14236,6 +14241,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TrySpawnTrapperTrap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TryRemoveTrap: Symbol[
         Optional[list[int]],
         None,
     ]

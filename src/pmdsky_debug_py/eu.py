@@ -7972,6 +7972,15 @@ class EuArm9Functions:
         None,
     )
 
+    GendersNotEqualNotGenderless = Symbol(
+        None,
+        None,
+        None,
+        "GendersNotEqualNotGenderless",
+        "Checks if the genders for two monster IDs are not equal. Always returns false\nif either gender is GENDER_GENDERLESS.\n\nr0: id1\nr1: id2\nreturn: bool",
+        None,
+    )
+
     IsMonsterOnTeam = Symbol(
         [0x554C4],
         [0x20554C4],
@@ -23575,6 +23584,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    TryRemoveTrap = Symbol(
+        [0x11CAC],
+        [0x22EE82C],
+        None,
+        "TryRemoveTrap",
+        "Tries to remove a trap from the tile at the passed position. It does nothing\nif there is no trap on the tile at that position.\n\nr0: position\nr1: bool update trap visibility\nreturn: whether a trap was succesfully removed or not",
+        None,
+    )
+
     TryTriggerTrap = Symbol(
         [0x11DD0],
         [0x22EE950],
@@ -27037,7 +27055,7 @@ class EuOverlay29Functions:
         [0x2321B6C],
         None,
         "EnsureCanStandCurrentTile",
-        "Checks that the given monster is standing on a tile it can stand on given its movement type, and warps it to a random location if it's not.\n\nr0: Entity pointer",
+        "Checks that the given monster is standing on a tile it can stand on given its\nmovement type and warps it if not. If the monster is a non-leader ally, they\nwill be warped to the leader. Otherwise, the monster is warped randomly.\n\nr0: Entity pointer",
         None,
     )
 
@@ -32015,8 +32033,8 @@ class EuRamData:
     )
 
     TWINEEDLE_HIT_TRACKER = Symbol(
-        None,
-        None,
+        [0x37D66B],
+        [0x237D66B],
         None,
         "TWINEEDLE_HIT_TRACKER",
         "[Runtime] Appears to be set to true whenever Twineedle hits and deals damage. So that even if the second attack misses, it will still try to poison the target.",
@@ -32024,8 +32042,8 @@ class EuRamData:
     )
 
     RAPID_SPIN_BINDING_REMOVAL = Symbol(
-        None,
-        None,
+        [0x37D66D],
+        [0x237D66D],
         None,
         "RAPID_SPIN_BINDING_REMOVAL",
         "[Runtime] Appears to be set to true when using Rapid Spin to later remove any binding effects and Leech Seed.",
@@ -32042,8 +32060,8 @@ class EuRamData:
     )
 
     MULTIHIT_MOVE_SUCCESSIVE_HITS = Symbol(
-        None,
-        None,
+        [0x37D678],
+        [0x237D678],
         None,
         "MULTIHIT_MOVE_SUCCESSIVE_HITS",
         "[Runtime] Seems to count the number of successive hits for multihit moves. This is used by Twineedle to check to attempt to apply Poison after the second attack.",
@@ -32051,8 +32069,8 @@ class EuRamData:
     )
 
     TRIPLE_KICK_SUCCESSIVE_HITS = Symbol(
-        None,
-        None,
+        [0x37D67C],
+        [0x237D67C],
         None,
         "TRIPLE_KICK_SUCCESSIVE_HITS",
         "[Runtime] Seems to count the number of successive hits by Triple Kick.",

@@ -7972,6 +7972,15 @@ class JpArm9Functions:
         None,
     )
 
+    GendersNotEqualNotGenderless = Symbol(
+        None,
+        None,
+        None,
+        "GendersNotEqualNotGenderless",
+        "Checks if the genders for two monster IDs are not equal. Always returns false\nif either gender is GENDER_GENDERLESS.\n\nr0: id1\nr1: id2\nreturn: bool",
+        None,
+    )
+
     IsMonsterOnTeam = Symbol(
         [0x55480],
         [0x2055480],
@@ -23566,6 +23575,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    TryRemoveTrap = Symbol(
+        None,
+        None,
+        None,
+        "TryRemoveTrap",
+        "Tries to remove a trap from the tile at the passed position. It does nothing\nif there is no trap on the tile at that position.\n\nr0: position\nr1: bool update trap visibility\nreturn: whether a trap was succesfully removed or not",
+        None,
+    )
+
     TryTriggerTrap = Symbol(
         [0x11D24],
         [0x22EF604],
@@ -27028,7 +27046,7 @@ class JpOverlay29Functions:
         [0x23225B0],
         None,
         "EnsureCanStandCurrentTile",
-        "Checks that the given monster is standing on a tile it can stand on given its movement type, and warps it to a random location if it's not.\n\nr0: Entity pointer",
+        "Checks that the given monster is standing on a tile it can stand on given its\nmovement type and warps it if not. If the monster is a non-leader ally, they\nwill be warped to the leader. Otherwise, the monster is warped randomly.\n\nr0: Entity pointer",
         None,
     )
 
