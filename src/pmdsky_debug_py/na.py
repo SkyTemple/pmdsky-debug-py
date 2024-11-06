@@ -1008,6 +1008,15 @@ class NaArm9Functions:
         None,
     )
 
+    TransformPaletteDataWithFlushDivideFade = Symbol(
+        [0xAE38],
+        [0x200AE38],
+        None,
+        "TransformPaletteDataWithFlushDivideFade",
+        "r0: palette_data",
+        None,
+    )
+
     UpdateFadeStatus = Symbol(
         [0xB990],
         [0x200B990],

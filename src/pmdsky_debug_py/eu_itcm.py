@@ -996,6 +996,15 @@ class EuItcmArm9Functions:
         None,
     )
 
+    TransformPaletteDataWithFlushDivideFade = Symbol(
+        None,
+        None,
+        None,
+        "TransformPaletteDataWithFlushDivideFade",
+        "r0: palette_data",
+        None,
+    )
+
     UpdateFadeStatus = Symbol(
         None,
         None,

@@ -1008,6 +1008,15 @@ class EuArm9Functions:
         None,
     )
 
+    TransformPaletteDataWithFlushDivideFade = Symbol(
+        [0xAE38],
+        [0x200AE38],
+        None,
+        "TransformPaletteDataWithFlushDivideFade",
+        "r0: palette_data",
+        None,
+    )
+
     UpdateFadeStatus = Symbol(
         [0xBA18],
         [0x200BA18],
@@ -7973,8 +7982,8 @@ class EuArm9Functions:
     )
 
     GendersNotEqualNotGenderless = Symbol(
-        None,
-        None,
+        [0x55244],
+        [0x2055244],
         None,
         "GendersNotEqualNotGenderless",
         "Checks if the genders for two monster IDs are not equal. Always returns false\nif either gender is GENDER_GENDERLESS.\n\nr0: id1\nr1: id2\nreturn: bool",

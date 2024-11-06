@@ -622,6 +622,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    TransformPaletteDataWithFlushDivideFade: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateFadeStatus: Symbol[
         Optional[list[int]],
         None,

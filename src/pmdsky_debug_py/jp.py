@@ -1008,6 +1008,15 @@ class JpArm9Functions:
         None,
     )
 
+    TransformPaletteDataWithFlushDivideFade = Symbol(
+        [0xAE38],
+        [0x200AE38],
+        None,
+        "TransformPaletteDataWithFlushDivideFade",
+        "r0: palette_data",
+        None,
+    )
+
     UpdateFadeStatus = Symbol(
         [0xB990],
         [0x200B990],
@@ -7973,8 +7982,8 @@ class JpArm9Functions:
     )
 
     GendersNotEqualNotGenderless = Symbol(
-        None,
-        None,
+        [0x55200],
+        [0x2055200],
         None,
         "GendersNotEqualNotGenderless",
         "Checks if the genders for two monster IDs are not equal. Always returns false\nif either gender is GENDER_GENDERLESS.\n\nr0: id1\nr1: id2\nreturn: bool",
@@ -23576,8 +23585,8 @@ class JpOverlay29Functions:
     )
 
     TryRemoveTrap = Symbol(
-        None,
-        None,
+        [0x11C00],
+        [0x22EF4E0],
         None,
         "TryRemoveTrap",
         "Tries to remove a trap from the tile at the passed position. It does nothing\nif there is no trap on the tile at that position.\n\nr0: position\nr1: bool update trap visibility\nreturn: whether a trap was succesfully removed or not",
