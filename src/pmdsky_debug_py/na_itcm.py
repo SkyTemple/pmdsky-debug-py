@@ -24743,7 +24743,7 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "RunMonsterAi",
-        "Runs the AI for a single monster to determine whether the monster can act and which action it should perform if so\n\nr0: Pointer to monster\nr1: ?",
+        "Runs the AI for a single monster to determine whether the monster can act and which action it should perform if so\n\nr0: Pointer to monster\nr1: Unused",
         None,
     )
 
