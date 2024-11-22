@@ -43,7 +43,7 @@ class Region(Enum):
     JP_ITCM = "jp-itcm"
 
     @classmethod
-    def from_str(cls, region_str: str) -> Optional[Region]:
+    def from_str(cls, region_str: str) -> Region | None:
         region_str = region_str.lower()
         if region_str == "na":
             return Region.NA
@@ -156,9 +156,9 @@ class Loader:
     """
     pmdsky_debug_dir: str
     # Contains all loaded binaries. None if symbols weren't loaded yet.
-    _all_binaries: Optional[List[Binary]]
+    _all_binaries: list[Binary] | None
     # Contains all loaded symbols, indexed by name. None if symbols weren't loaded yet.
-    _all_symbols: Optional[Dict[str, Symbol]]
+    _all_symbols: dict[str, Symbol] | None
 
     def __init__(self, pmdsky_debug_dir: str):
         self.pmdsky_debug_dir = pmdsky_debug_dir
@@ -197,7 +197,7 @@ class Loader:
         self.add_types(data_headers_dir)
         return self._all_binaries
 
-    def get_binaries(self) -> List[Binary]:
+    def get_binaries(self) -> list[Binary]:
         """
         Gets all loaded binaries. If symbol information has not been laoded yet, it is loaded before returning
         the result.
@@ -206,7 +206,7 @@ class Loader:
             self.load()
         return self._all_binaries
 
-    def get_symbols(self) -> Dict[Symbol]:
+    def get_symbols(self) -> dict[Symbol]:
         """
         Gets all loaded symbols in a dict. The dict uses symbol names as the key. If symbol information has not been
         laoded yet, it is loaded before returning the result.
