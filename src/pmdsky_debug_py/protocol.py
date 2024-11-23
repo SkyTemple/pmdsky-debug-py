@@ -14215,6 +14215,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsDungeonEndReasonFailure: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetForcedLossReason: Symbol[
         Optional[list[int]],
         None,
@@ -14226,6 +14231,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     BindTrapToTile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AreLateGameTrapsEnabledWrapper: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -14546,6 +14556,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TryPointCameraToMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ReevaluateSnatchMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRandomExplorerMazeMonster: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15051,6 +15071,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetIdleAnimationId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DetermineAllMonsterShadow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DetermineMonsterShadow: Symbol[
         Optional[list[int]],
         None,
     ]

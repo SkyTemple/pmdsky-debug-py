@@ -23530,6 +23530,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    IsDungeonEndReasonFailure = Symbol(
+        [0x10D74],
+        [0x22ED8F4],
+        None,
+        "IsDungeonEndReasonFailure",
+        "Checks if the damage_source of the dungeon ending is because of a failure to complete the dungeon.\nSpecifically checks fainted_monster_dungeon_end_reason to be less than DAMAGE_SOURCE_ESCAPE.\n\nreturn: bool",
+        None,
+    )
+
     SetForcedLossReason = Symbol(
         [0x10E38],
         [0x22ED9B8],
@@ -23554,6 +23563,15 @@ class EuOverlay29Functions:
         None,
         "BindTrapToTile",
         "Sets the given tile's associated object to be the given trap, and sets the visibility of the trap.\n\nr0: tile pointer\nr1: entity pointer\nr2: visibility flag",
+        None,
+    )
+
+    AreLateGameTrapsEnabledWrapper = Symbol(
+        [0x11698],
+        [0x22EE218],
+        None,
+        "AreLateGameTrapsEnabledWrapper",
+        "A wrapper around AreLateGameTrapsEnabled that passes the fixed room for the floor.\n\nreturn: bool",
         None,
     )
 
@@ -24150,6 +24168,24 @@ class EuOverlay29Functions:
         None,
         "TryPointCameraToMonster",
         "Attempts to place the camera on top of the specified monster.\n\nIf the camera is already on top of the specified entity, the function does nothing.\n\nr0: Entity pointer. Must be a monster, otherwise the function does nothing.\nr1: ?\nr2: ?",
+        None,
+    )
+
+    ReevaluateSnatchMonster = Symbol(
+        [0x1D7FC],
+        [0x22FA37C],
+        None,
+        "ReevaluateSnatchMonster",
+        "Checks if any monster on the floor has the snatch status and stores the corresponding info\nonto the dungeon struct. This is only called when reinitalizing a dungeon from a quicksave.\nNormally, the game will try to prevent multiple monsters from having snatch, but will pick\nthe first one in the list if multiple have the status.\n\nNo params.",
+        None,
+    )
+
+    GetRandomExplorerMazeMonster = Symbol(
+        [0x1D878],
+        [0x22FA3F8],
+        None,
+        "GetRandomExplorerMazeMonster",
+        "Checks if any enemy monsters on the floor have the behavior BEHAVIOR_EXPLORER_MAZE_1, \nBEHAVIOR_EXPLORER_MAZE_2, BEHAVIOR_EXPLORER_MAZE_3 or BEHAVIOR_EXPLORER_MAZE_4 and returns\none at random. If none can be found, it returns NULL.\n\nreturn: monster entity pointer",
         None,
     )
 
@@ -25085,6 +25121,24 @@ class EuOverlay29Functions:
         None,
         "GetIdleAnimationId",
         "Returns the animation id to be applied to a monster that is currently idling.\n\nReturns a different animation for monsters with the sleep, napping, nightmare or bide status, as well as for sudowoodo and for monsters with infinite sleep turns (0x7F).\n\nr0: pointer to entity\nreturn: animation ID",
+        None,
+    )
+
+    DetermineAllMonsterShadow = Symbol(
+        [0x28A10],
+        [0x2305590],
+        None,
+        "DetermineAllMonsterShadow",
+        "Change all monsters' shadows to be appropriate for their sizes and the tile they're\nstanding on. It simply calls DetermineMontersShadow for all monsters in the dungeon.\n\nNo params.",
+        None,
+    )
+
+    DetermineMonsterShadow = Symbol(
+        [0x28A58],
+        [0x23055D8],
+        None,
+        "DetermineMonsterShadow",
+        "Changes the monster's shadow to be appropriate for its size and the tile it's standing on.\nIf the tile is a floor and it's a water tileset, it changes the monster to use the water\nshadows. If the tile is secondary terrain and secondary terrain is water, it also uses the\nwater shadows. If the tile is a chasm, it changes nothing and returns 6. Otherwise, use\nthe default land shadow.\n\nr0: monster entity pointer\nreturn: the type of shadow used?",
         None,
     )
 
