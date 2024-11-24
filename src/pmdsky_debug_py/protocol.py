@@ -14990,6 +14990,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsTacticSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     HasDropeyeStatus: Symbol[
         Optional[list[int]],
         None,

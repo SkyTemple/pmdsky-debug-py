@@ -24389,7 +24389,7 @@ class NaOverlay29Functions:
         [0x22FBAF0],
         None,
         "IsExperienceLocked",
-        "Checks if a monster does not gain experience.\n\nThis basically just inverts IsSpecialStoryAlly, with the exception of also checking for the 'Joined At' field being DUNGEON_CLIENT (is this set for mission clients?).\n\nr0: monster pointer\nreturn: bool",
+        "Checks if a monster does not gain experience.\n\nThis basically just inverts IsSpecialStoryAlly, with the exception of also checking for the 'Joined At' field being DUNGEON_CLIENT (set for mission clients).\n\nr0: monster pointer\nreturn: bool",
         None,
     )
 
@@ -24966,6 +24966,15 @@ class NaOverlay29Functions:
         None,
         "CanSeeInvisibleMonsters",
         "Returns whether a certain monster can see other invisible monsters.\nTo be precise, this function returns true if the monster is holding Goggle Specs or if it has the status status::STATUS_EYEDROPS.\n\nr0: Entity pointer\nreturn: True if the monster can see invisible monsters.",
+        None,
+    )
+
+    IsTacticSet = Symbol(
+        [0x25CE0],
+        [0x2301F20],
+        None,
+        "IsTacticSet",
+        "Returns whether a monster is set to use a specific tactic.\n\nr0: Entity pointer\nr1: Enum tactic_id\nreturn: True if the monster is set to the given tactic.",
         None,
     )
 
