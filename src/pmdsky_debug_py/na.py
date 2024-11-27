@@ -25964,7 +25964,7 @@ class NaOverlay29Functions:
         [0x231422C],
         None,
         "LowerHitChanceStat",
-        "Lowers the specified hit chance stat (accuracy or evasion) on the target monster.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: stat index\nr3: ? (Irdkwia's notes say this is the number of stages, but I'm pretty sure that's incorrect)",
+        "Lowers the specified hit chance stat (accuracy or evasion) on the target monster.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: stat index\nr3: flag to log a message on failure",
         None,
     )
 
