@@ -4371,6 +4371,15 @@ class NaItcmArm9Functions:
         None,
     )
 
+    GetColorCodePaletteOffset = Symbol(
+        None,
+        None,
+        None,
+        "GetColorCodePaletteOffset",
+        "Gets the offset of a text color symbol's 2-byte RGB5 color in the palette stored in VRAM at 0x6882000.\n\nThe offset minus 0x10 will also be the corresponding 4-byte RGBX color's position in FONT/text_pal.pal.\n\nr0: char\nreturn: offset",
+        None,
+    )
+
     GetWindow = Symbol(
         None,
         None,
@@ -10878,6 +10887,15 @@ class NaItcmArm9Section:
 
 class NaItcmItcmFunctions:
 
+    CopyAndInterleave = Symbol(
+        None,
+        None,
+        None,
+        "CopyAndInterleave",
+        "Copies data from src to dst, placing the last 4 bits of val after every 4 bits copied.\n\nIn total, the number of bytes copied from src will be 2 * len, while the number of bytes pasted will be 4 * len.\n\nr0: [output] dst\nr1: src\nr2: len (in words)\nr3: val",
+        None,
+    )
+
     Render3dSetTextureParams = Symbol(
         [0x130],
         [0x1FF8130],
@@ -11100,6 +11118,15 @@ class NaItcmItcmFunctions:
         None,
         "ReturnFromInterrupt",
         "The execution returns to this function after a hardware interrupt function is run.\n\nNo params.",
+        None,
+    )
+
+    InitDmaTransfer_Standard = Symbol(
+        None,
+        None,
+        None,
+        "InitDmaTransfer_Standard",
+        "Initiates a DMA transfer.\n\nSee https://problemkaputt.de/gbatek-gba-dma-transfers.htm and https://en.wikipedia.org/wiki/Direct_memory_access\n\nr0: channel id\nr1: source address\nr2: destination address\nr3: word count",
         None,
     )
 
@@ -22632,6 +22659,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    GetRandomTile = Symbol(
+        None,
+        None,
+        None,
+        "GetRandomTile",
+        "Gets a random valid tile. Used for warping as well as several other things.\n\nThe selection algorithm is as follows:\nFirst, try to randomly select a valid tile that is not a hallway and is at least 6 tiles away from the leader in either direction.\nIf none are found, try to randomly select a valid tile that is not a hallway.\nIf none are found, try to randomly select a valid tile.\nIf none are found, return 0.\n\nA valid tile is defined as a floor tile that has no object or monster on it and also does not have a key door (if r1 is true).\n\nr0: [output] position\nr1: boolean indicating whether or not to exclude key doors\nreturn: whether a tile was successfully found",
+        None,
+    )
+
     FindNearbyUnoccupiedTile = Symbol(
         None,
         None,
@@ -31450,7 +31486,7 @@ class NaItcmRamData:
         None,
         None,
         "STAIRS_MENU_PTR",
-        "Pointer to the stairs_menu struct.",
+        "Pointer to the stairs_menu struct during dungeon mode.",
         "struct stairs_menu*",
     )
 

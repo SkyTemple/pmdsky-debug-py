@@ -2497,6 +2497,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetColorCodePaletteOffset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetWindow: Symbol[
         Optional[list[int]],
         None,
@@ -6145,6 +6150,11 @@ Arm9Protocol = SectionProtocol[
 
 class ItcmFunctionsProtocol(Protocol):
 
+    CopyAndInterleave: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Render3dSetTextureParams: Symbol[
         list[int],
         None,
@@ -6267,6 +6277,11 @@ class ItcmFunctionsProtocol(Protocol):
 
     ReturnFromInterrupt: Symbol[
         list[int],
+        None,
+    ]
+
+    InitDmaTransfer_Standard: Symbol[
+        Optional[list[int]],
         None,
     ]
 
@@ -14006,6 +14021,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetLeaderMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRandomTile: Symbol[
         Optional[list[int]],
         None,
     ]
