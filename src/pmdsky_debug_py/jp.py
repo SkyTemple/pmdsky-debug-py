@@ -10949,8 +10949,8 @@ class JpArm9Section:
 class JpItcmFunctions:
 
     CopyAndInterleave = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x20B4BE0],
         None,
         "CopyAndInterleave",
         "Copies data from src to dst, placing the last 4 bits of val after every 4 bits copied.\n\nIn total, the number of bytes copied from src will be 2 * len, while the number of bytes pasted will be 4 * len.\n\nr0: [output] dst\nr1: src\nr2: len (in words)\nr3: val",
@@ -11012,8 +11012,8 @@ class JpItcmFunctions:
     )
 
     Render3dTextureInternal = Symbol(
-        None,
-        None,
+        [0xA10],
+        [0x20B55F0],
         None,
         "Render3dTextureInternal",
         "Implements most of the rendering logic for Render3dTexture.\n\nr0: render_3d_texture",
@@ -11030,8 +11030,8 @@ class JpItcmFunctions:
     )
 
     Render3dTextureNoSetup = Symbol(
-        None,
-        None,
+        [0xC60],
+        [0x20B5840],
         None,
         "Render3dTextureNoSetup",
         "Same as Render3dTexture except without calls to Render3dSetTextureParams and Render3dSetPaletteBase to set up geometry engine parameters.\n\nPresumably used to render multiple texture tiles with the same parameters without the extra setup overhead? But this function doesn't actually seem to be referenced anywhere.\n\nr0: render_3d_texture",
@@ -11183,8 +11183,8 @@ class JpItcmFunctions:
     )
 
     InitDmaTransfer_Standard = Symbol(
-        None,
-        None,
+        [0x1AD0],
+        [0x20B66B0],
         None,
         "InitDmaTransfer_Standard",
         "Initiates a DMA transfer.\n\nSee https://problemkaputt.de/gbatek-gba-dma-transfers.htm and https://en.wikipedia.org/wiki/Direct_memory_access\n\nr0: channel id\nr1: source address\nr2: destination address\nr3: word count",
@@ -23180,8 +23180,8 @@ class JpOverlay29Functions:
     )
 
     GetRandomTile = Symbol(
-        None,
-        None,
+        [0xD3B0],
+        [0x22EAC90],
         None,
         "GetRandomTile",
         "Gets a random valid tile. Used for warping as well as several other things.\n\nThe selection algorithm is as follows:\nFirst, try to randomly select a valid tile that is not a hallway and is at least 6 tiles away from the leader in either direction.\nIf none are found, try to randomly select a valid tile that is not a hallway.\nIf none are found, try to randomly select a valid tile.\nIf none are found, return 0.\n\nA valid tile is defined as a floor tile that has no object or monster on it and also does not have a key door (if r1 is true).\n\nr0: [output] position\nr1: boolean indicating whether or not to exclude key doors\nreturn: whether a tile was successfully found",

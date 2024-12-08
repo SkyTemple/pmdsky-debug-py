@@ -10888,8 +10888,8 @@ class NaItcmArm9Section:
 class NaItcmItcmFunctions:
 
     CopyAndInterleave = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x1FF8000],
         None,
         "CopyAndInterleave",
         "Copies data from src to dst, placing the last 4 bits of val after every 4 bits copied.\n\nIn total, the number of bytes copied from src will be 2 * len, while the number of bytes pasted will be 4 * len.\n\nr0: [output] dst\nr1: src\nr2: len (in words)\nr3: val",
@@ -11122,8 +11122,8 @@ class NaItcmItcmFunctions:
     )
 
     InitDmaTransfer_Standard = Symbol(
-        None,
-        None,
+        [0x1A68],
+        [0x1FF9A68],
         None,
         "InitDmaTransfer_Standard",
         "Initiates a DMA transfer.\n\nSee https://problemkaputt.de/gbatek-gba-dma-transfers.htm and https://en.wikipedia.org/wiki/Direct_memory_access\n\nr0: channel id\nr1: source address\nr2: destination address\nr3: word count",

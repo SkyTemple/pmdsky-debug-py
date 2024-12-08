@@ -6151,7 +6151,7 @@ Arm9Protocol = SectionProtocol[
 class ItcmFunctionsProtocol(Protocol):
 
     CopyAndInterleave: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
@@ -6186,7 +6186,7 @@ class ItcmFunctionsProtocol(Protocol):
     ]
 
     Render3dTextureInternal: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
@@ -6196,7 +6196,7 @@ class ItcmFunctionsProtocol(Protocol):
     ]
 
     Render3dTextureNoSetup: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
@@ -6281,7 +6281,7 @@ class ItcmFunctionsProtocol(Protocol):
     ]
 
     InitDmaTransfer_Standard: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 

@@ -10951,8 +10951,8 @@ class EuItcmItcmFunctions:
     )
 
     Render3dTextureInternal = Symbol(
-        None,
-        None,
+        [0xA10],
+        [0x1FF8A10],
         None,
         "Render3dTextureInternal",
         "Implements most of the rendering logic for Render3dTexture.\n\nr0: render_3d_texture",
@@ -10969,8 +10969,8 @@ class EuItcmItcmFunctions:
     )
 
     Render3dTextureNoSetup = Symbol(
-        None,
-        None,
+        [0xC60],
+        [0x1FF8C60],
         None,
         "Render3dTextureNoSetup",
         "Same as Render3dTexture except without calls to Render3dSetTextureParams and Render3dSetPaletteBase to set up geometry engine parameters.\n\nPresumably used to render multiple texture tiles with the same parameters without the extra setup overhead? But this function doesn't actually seem to be referenced anywhere.\n\nr0: render_3d_texture",
