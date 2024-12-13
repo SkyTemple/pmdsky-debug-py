@@ -22679,7 +22679,7 @@ class EuOverlay29Functions:
         [0x22E1F68],
         None,
         "GetTileAtEntity",
-        "Returns a pointer to the tile where an entity is located.\n\nr0: pointer to entity\nreturns: pointer to tile",
+        "Returns a pointer to the tile where an entity is located.\n\nr0: pointer to entity\nreturn: pointer to tile",
         None,
     )
 
@@ -24661,7 +24661,7 @@ class EuOverlay29Functions:
         [0x2300988],
         None,
         "GetNumberOfAttacks",
-        "Returns the number of attacks that a monster can do in one turn (1 or 2).\n\nChecks for the abilities Swift Swim, Chlorophyll, Unburden, and for exclusive items.\n\nr0: pointer to entity\nreturns: int",
+        "Returns the number of attacks that a monster can do in one turn (1 or 2).\n\nChecks for the abilities Swift Swim, Chlorophyll, Unburden, and for exclusive items.\n\nr0: pointer to entity\nreturn: int",
         None,
     )
 
@@ -25192,7 +25192,7 @@ class EuOverlay29Functions:
         [0x2305A0C],
         None,
         "DisplayActions",
-        "Graphically displays any pending actions that have happened but haven't been shown on screen yet. All actions are displayed at the same time. For example, this delayed display system is used to display multiple monsters moving at once even though they take turns sequentially.\n\nr0: Pointer to an entity. Can be null.\nreturns: Seems to be true if there were any pending actions to display.",
+        "Graphically displays any pending actions that have happened but haven't been shown on screen yet. All actions are displayed at the same time. For example, this delayed display system is used to display multiple monsters moving at once even though they take turns sequentially.\n\nr0: Pointer to an entity. Can be null.\nreturn: Seems to be true if there were any pending actions to display.",
         None,
     )
 
@@ -27199,7 +27199,7 @@ class EuOverlay29Functions:
         [0x23246B0],
         None,
         "MoveHitCheck",
-        "Determines if a move used hits or misses the target. It gets called twice per target, once with r3 = false and a second time with r3 = true.\n\nr0: Attacker\nr1: Defender\nr2: Pointer to move data\nr3: False if the move's first accuracy (accuracy1) should be used, true if its second accuracy (accuracy2) should be used instead.\nstack[0]: If true, always hit if the attacker and defender are the same. Otherwise, moves can miss no matter what the attacker and defender are.\nreturns: True if the move hits, false if it misses.",
+        "Determines if a move used hits or misses the target. It gets called twice per target, once with r3 = false and a second time with r3 = true.\n\nr0: Attacker\nr1: Defender\nr2: Pointer to move data\nr3: False if the move's first accuracy (accuracy1) should be used, true if its second accuracy (accuracy2) should be used instead.\nstack[0]: If true, always hit if the attacker and defender are the same. Otherwise, moves can miss no matter what the attacker and defender are.\nreturn: True if the move hits, false if it misses.",
         None,
     )
 
@@ -27253,7 +27253,7 @@ class EuOverlay29Functions:
         [0x232539C],
         None,
         "DungeonRandOutcomeUserTargetInteraction",
-        "Like DungeonRandOutcome, but specifically for user-target interactions.\n\nThis modifies the underlying random process depending on factors like Serene Grace, and whether or not either entity has fainted.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: base success percentage (100*p). 0 is treated specially and guarantees success.\nreturns: True if the random check passed, false otherwise.",
+        "Like DungeonRandOutcome, but specifically for user-target interactions.\n\nThis modifies the underlying random process depending on factors like Serene Grace, and whether or not either entity has fainted.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: base success percentage (100*p). 0 is treated specially and guarantees success.\nreturn: True if the random check passed, false otherwise.",
         None,
     )
 
@@ -27262,7 +27262,7 @@ class EuOverlay29Functions:
         [0x2325488],
         None,
         "DungeonRandOutcomeUserAction",
-        "Like DungeonRandOutcome, but specifically for user actions.\n\nThis modifies the underlying random process to factor in Serene Grace (and checks whether the user is a valid entity).\n\nr0: entity pointer\nr1: base success percentage (100*p). 0 is treated specially and guarantees success.\nreturns: True if the random check passed, false otherwise.",
+        "Like DungeonRandOutcome, but specifically for user actions.\n\nThis modifies the underlying random process to factor in Serene Grace (and checks whether the user is a valid entity).\n\nr0: entity pointer\nr1: base success percentage (100*p). 0 is treated specially and guarantees success.\nreturn: True if the random check passed, false otherwise.",
         None,
     )
 
