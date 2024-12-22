@@ -843,6 +843,15 @@ class EuItcmArm9Functions:
         None,
     )
 
+    GetDsFirmwareUserSettingsVeneer = Symbol(
+        None,
+        None,
+        None,
+        "GetDsFirmwareUserSettingsVeneer",
+        "Likely a linker-generated veneer for GetDsFirmwareUserSettings.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: user_settings pointer",
+        None,
+    )
+
     Rgb8ToRgb5 = Symbol(
         None,
         None,
@@ -903,6 +912,33 @@ class EuItcmArm9Functions:
         None,
         "KeyWaitInit",
         "Implements (most of?) SPECIAL_PROC_KEY_WAIT_INIT (see ScriptSpecialProcessCall).\n\nNo params.",
+        None,
+    )
+
+    DebugPrintSystemClock = Symbol(
+        None,
+        None,
+        None,
+        "DebugPrintSystemClock",
+        "This function prints the debug message 'Now date & time' followed by the current date and time of the DS system clock. Called on boot.\n\nNo params.",
+        None,
+    )
+
+    GetSystemClock = Symbol(
+        None,
+        None,
+        None,
+        "GetSystemClock",
+        "Gets information surrounding the DS system clock, such as the current month, day, etc.\n\nr0: system_clock pointer",
+        None,
+    )
+
+    SprintfSystemClock = Symbol(
+        None,
+        None,
+        None,
+        "SprintfSystemClock",
+        "Calls sprintf to format a string using the fields of the DS system clock as 'year/month/day hour:minute:second'. Used in DebugPrintSystemClock.\n\nr0: system_clock pointer\nr1: str",
         None,
     )
 
@@ -4371,12 +4407,30 @@ class EuItcmArm9Functions:
         None,
     )
 
+    GetCharWidth = Symbol(
+        None,
+        None,
+        None,
+        "GetCharWidth",
+        "Gets the width of a text char.\n\nr0: char\nreturn: char width",
+        None,
+    )
+
     GetColorCodePaletteOffset = Symbol(
         None,
         None,
         None,
         "GetColorCodePaletteOffset",
         "Gets the offset of a text color symbol's 2-byte RGB5 color in the palette stored in VRAM at 0x6882000.\n\nThe offset minus 0x10 will also be the corresponding 4-byte RGBX color's position in FONT/text_pal.pal.\n\nr0: char\nreturn: offset",
+        None,
+    )
+
+    DrawChar = Symbol(
+        None,
+        None,
+        None,
+        "DrawChar",
+        "Draws a single char within a window. This function is also responsible for drawing the shadows of a char.\n\nr0: window_id\nr1: x offset within window\nr2: y offset within window\nr3: char\nstack[0]: color offset\nreturn: char width",
         None,
     )
 
@@ -4925,7 +4979,7 @@ class EuItcmArm9Functions:
         None,
         None,
         "CreateOptionsMenu",
-        "Creates a window containing a menu controlling game options. Also see struct options_menu.\n\nThis is used for the options and window options menus, among other things.\n\nIf window_params is NULL, OPTIONS_MENU_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be copied onto the window, ignoring the update and contents fields. If window_params::width and/or window_params::height are 0, they will be computed based on the contained text.\n\nIf window_extra_info is non-NULL, it will be copied onto the window. Note that window_extra_info can only be NULL if there are no window_flags set that require extra info.\n\nr0: window_params\nr1: window_flags\nr2: window_extra_info pointer\nr3: options_menu_id_item struct array, terminated with an item with msg_id 0\nstack[0]: number of items\nstack[1]: ?\nreturn: window_id",
+        "Creates a window containing a menu controlling game options. Also see struct options_menu.\n\nThis is used for the options and window options menus, among other things.\n\nIf window_params is NULL, OPTIONS_MENU_DEFAULT_WINDOW_PARAMS will be used. Otherwise, it will be copied onto the window, ignoring the update and contents fields. If window_params::width and/or window_params::height are 0, they will be computed based on the contained text.\n\nIf window_extra_info is non-NULL, it will be copied onto the window. Note that window_extra_info can only be NULL if there are no window_flags set that require extra info.\n\nr0: window_params\nr1: window_flags\nr2: window_extra_info pointer\nr3: options_menu_id_item struct array, terminated with an item with msg_id 0\nstack[0]: number of items\nstack[1]: option_states pointer\nreturn: window_id",
         None,
     )
 
@@ -4953,6 +5007,24 @@ class EuItcmArm9Functions:
         None,
         "CheckOptionsMenuField0x1A4",
         "Checks if options_menu::field_0x1a4 is 0.\n\nr0: window_id\nreturn: bool",
+        None,
+    )
+
+    GetOptionsMenuStates = Symbol(
+        None,
+        None,
+        None,
+        "GetOptionsMenuStates",
+        "Gets all the option menu states; used to determine what options the user has selected in a menu. Each option state corresponds a options_menu_id_item.\n\nr0: window_id\nr1: option_states pointer",
+        None,
+    )
+
+    GetOptionsMenuResult = Symbol(
+        None,
+        None,
+        None,
+        "GetOptionsMenuResult",
+        "Returns whether or not the options menu was confirmed or canceled (e.g., by pressing the B button).\n\nr0: window_id\nreturn: bool",
         None,
     )
 
@@ -12507,6 +12579,15 @@ class EuItcmLibsFunctions:
         None,
         "GetProcessorMode",
         "Gets the processor's current operating mode.\n\nSee https://problemkaputt.de/gbatek.htm#armcpuflagsconditionfieldcond\n\nreturn: cpsr & 0x1f (the cpsr mode bits M4-M0)",
+        None,
+    )
+
+    GetDsFirmwareUserSettings = Symbol(
+        None,
+        None,
+        None,
+        "GetDsFirmwareUserSettings",
+        "Gets the user settings of the DS firmware.\n\nSee https://problemkaputt.de/gbatek.htm#dsfirmwareusersettings\n\nr0: user_settings pointer",
         None,
     )
 

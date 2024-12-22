@@ -537,6 +537,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetDsFirmwareUserSettingsVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Rgb8ToRgb5: Symbol[
         Optional[list[int]],
         None,
@@ -568,6 +573,21 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     KeyWaitInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DebugPrintSystemClock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetSystemClock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SprintfSystemClock: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2497,7 +2517,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetCharWidth: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetColorCodePaletteOffset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawChar: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2818,6 +2848,16 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     CheckOptionsMenuField0x1A4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetOptionsMenuStates: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetOptionsMenuResult: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8094,6 +8134,11 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     GetProcessorMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetDsFirmwareUserSettings: Symbol[
         Optional[list[int]],
         None,
     ]
