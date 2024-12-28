@@ -3661,6 +3661,15 @@ class EuArm9Functions:
         None,
     )
 
+    CopyAndInterleaveWrapper = Symbol(
+        [0x1C08C],
+        [0x201C08C],
+        None,
+        "CopyAndInterleaveWrapper",
+        "Calls CopyAndInterleave with the passed len divided by 2.\n\nr0: dst\nr1: src\nr2: len (in bytes, will be divided by 2 in the call to CopyAndInterleave)\nr3: val",
+        None,
+    )
+
     InitAnimationControl = Symbol(
         [0x1C0EC],
         [0x201C0EC],
@@ -4251,7 +4260,7 @@ class EuArm9Functions:
         [0x2024D88],
         None,
         "GetRankString",
-        "Gets the string corresponding to the player's current explorer rank.\n\nr0: [output] Pointer to the buffer where the string will be written\nr1: First 16 bits contain the rank, next 4 are some sort of bitflags\nreturn: r0 if flags are 0, pointer to some static address otherwise",
+        "Gets the string corresponding to the player's current explorer rank.\n\nr0: [output] Pointer to the buffer where the string will be written (if flags are 0)\nr1: First 16 bits contain the rank, next 4 are some sort of bitflags\nreturn: r0 if flags are 0, pointer to some static address otherwise",
         None,
     )
 
@@ -11030,7 +11039,7 @@ class EuItcmFunctions:
         [0x20B3CC0],
         None,
         "CopyAndInterleave",
-        "Copies data from src to dst, placing the last 4 bits of val after every 4 bits copied.\n\nIn total, the number of bytes copied from src will be 2 * len, while the number of bytes pasted will be 4 * len.\n\nr0: [output] dst\nr1: src\nr2: len (in words)\nr3: val",
+        "Copies data from src to dst, placing the last 4 bits of val after every 4 bits copied.\n\nIn total, the number of bytes copied from src will be len, while the number of bytes pasted will be 2 * len.\n\nr0: [output] dst\nr1: src\nr2: len (in bytes)\nr3: val",
         None,
     )
 
@@ -27986,6 +27995,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    LoadWeather3DFiles = Symbol(
+        [0x5C900],
+        [0x2339480],
+        None,
+        "LoadWeather3DFiles",
+        "Loads the 1001.wte, 1005.wte, and 1031.wte files in dungeon.bin, which are used for the 3D effects for the tileset weather as well as the Sandstorm/Fog weather conditions.\n\nNo params.",
+        None,
+    )
+
+    RenderWeather3D = Symbol(
+        [0x5CB14],
+        [0x2339694],
+        None,
+        "RenderWeather3D",
+        "Renders the 3D effects for the tileset weather as well as the Sandstorm/Fog weather conditions.\n\nNo params.",
+        None,
+    )
+
     GetMinimapData = Symbol(
         [0x5D168],
         [0x2339CE8],
@@ -28001,6 +28028,15 @@ class EuOverlay29Functions:
         None,
         "DrawMinimapTile",
         "Draws a single tile on the minimap.\n\nr0: X position\nr1: Y position",
+        None,
+    )
+
+    FlashLeaderIcon = Symbol(
+        [0x5DA74],
+        [0x233A5F4],
+        None,
+        "FlashLeaderIcon",
+        "Seems to control flashing the leader's icon on the minimap when r0 = 0? Doesn't seem to ever be called when r0 = 1.\n\nr0: ?",
         None,
     )
 

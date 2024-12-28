@@ -2077,6 +2077,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CopyAndInterleaveWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     InitAnimationControl: Symbol[
         Optional[list[int]],
         None,
@@ -16665,12 +16670,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    LoadWeather3DFiles: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RenderWeather3D: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetMinimapData: Symbol[
         Optional[list[int]],
         None,
     ]
 
     DrawMinimapTile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FlashLeaderIcon: Symbol[
         Optional[list[int]],
         None,
     ]
