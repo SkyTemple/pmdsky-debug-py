@@ -17873,6 +17873,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    TWO_TURN_STATUSES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     TWO_TURN_MOVES_AND_STATUSES: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -18878,6 +18883,16 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
+    SOUND_MEMORY_ARENA_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WINDOW_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     CURSOR_16_SPRITE_ID: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -18906,16 +18921,6 @@ class RamDataProtocol(Protocol):
     ALERT_ANIMATION_CONTROL: Symbol[
         Optional[list[int]],
         Optional[int],
-    ]
-
-    SOUND_MEMORY_ARENA_PTR: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    WINDOW_LIST: Symbol[
-        Optional[list[int]],
-        None,
     ]
 
     LAST_NEW_MOVE: Symbol[
@@ -19073,12 +19078,12 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
-    AI_THROWN_ITEM_DIRECTIONS: Symbol[
+    AI_THROWN_ITEM_PROBABILITIES: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    AI_THROWN_ITEM_PROBABILITIES: Symbol[
+    AI_THROWN_ITEM_DIRECTIONS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

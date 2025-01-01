@@ -3662,8 +3662,8 @@ class NaArm9Functions:
     )
 
     CopyAndInterleaveWrapper = Symbol(
-        None,
-        None,
+        [0x1BFF0],
+        [0x201BFF0],
         None,
         "CopyAndInterleaveWrapper",
         "Calls CopyAndInterleave with the passed len divided by 2.\n\nr0: dst\nr1: src\nr2: len (in bytes, will be divided by 2 in the call to CopyAndInterleave)\nr3: val",
@@ -27994,8 +27994,8 @@ class NaOverlay29Functions:
     )
 
     LoadWeather3DFiles = Symbol(
-        None,
-        None,
+        [0x5C670],
+        [0x23388B0],
         None,
         "LoadWeather3DFiles",
         "Loads the 1001.wte, 1005.wte, and 1031.wte files in dungeon.bin, which are used for the 3D effects for the tileset weather as well as the Sandstorm/Fog weather conditions.\n\nNo params.",
@@ -28003,8 +28003,8 @@ class NaOverlay29Functions:
     )
 
     RenderWeather3D = Symbol(
-        None,
-        None,
+        [0x5C884],
+        [0x2338AC4],
         None,
         "RenderWeather3D",
         "Renders the 3D effects for the tileset weather as well as the Sandstorm/Fog weather conditions.\n\nNo params.",
@@ -28030,8 +28030,8 @@ class NaOverlay29Functions:
     )
 
     FlashLeaderIcon = Symbol(
-        None,
-        None,
+        [0x5D7E4],
+        [0x2339A24],
         None,
         "FlashLeaderIcon",
         "Seems to control flashing the leader's icon on the minimap when r0 = 0? Doesn't seem to ever be called when r0 = 1.\n\nr0: ?",
@@ -30254,6 +30254,15 @@ class NaOverlay29Data:
         "struct damage_negating_exclusive_eff_entry[28]",
     )
 
+    TWO_TURN_STATUSES = Symbol(
+        [0x76820],
+        [0x2352A60],
+        0xB,
+        "TWO_TURN_STATUSES",
+        "Lists all status IDs that are for two-turn moves. The last entry is null.",
+        "struct status_two_turn_id_8[11]",
+    )
+
     TWO_TURN_MOVES_AND_STATUSES = Symbol(
         [0x7686C],
         [0x2352AAC],
@@ -31904,10 +31913,28 @@ class NaRamData:
         "struct audio_command[16]",
     )
 
+    SOUND_MEMORY_ARENA_PTR = Symbol(
+        [0x2A4E54],
+        [0x22A4E54],
+        0x4,
+        "SOUND_MEMORY_ARENA_PTR",
+        "Pointer to SOUND_MEMORY_ARENA.",
+        "struct mem_arena*",
+    )
+
+    WINDOW_LIST = Symbol(
+        [0x2A88DC],
+        [0x22A88DC],
+        0x1180,
+        "WINDOW_LIST",
+        "Array of all window structs. Newly created window structs are taken from slots in this array.\n\nNote that this array isn't strictly ordered in any way. A newly created window will occupy the first available slot. If a window in an early slot is destroyed, windows that are still active in later slots won't be shifted back unless destroyed and recreated.\n\ntype: struct window_list",
+        "struct window_list",
+    )
+
     CURSOR_16_SPRITE_ID = Symbol(
-        None,
-        None,
-        None,
+        [0x2AAC64],
+        [0x22AAC64],
+        0x2,
         "CURSOR_16_SPRITE_ID",
         "Id of the 'FONT/cursor_16.wan' sprite loaded in WAN_TABLE",
         "uint16_t",
@@ -31923,57 +31950,39 @@ class NaRamData:
     )
 
     CURSOR_ANIMATION_CONTROL = Symbol(
-        None,
-        None,
-        None,
+        [0x2AAC80],
+        [0x22AAC80],
+        0x7C,
         "CURSOR_ANIMATION_CONTROL",
         "animation_control of 'FONT/cursor.wan'",
         "struct animation_control*",
     )
 
     CURSOR_16_ANIMATION_CONTROL = Symbol(
-        None,
-        None,
-        None,
+        [0x2AACFC],
+        [0x22AACFC],
+        0x7C,
         "CURSOR_16_ANIMATION_CONTROL",
         "animation_control of 'FONT/cursor_16.wan'",
         "struct animation_control*",
     )
 
     ALERT_SPRITE_ID = Symbol(
-        None,
-        None,
-        None,
+        [0x2AAD78],
+        [0x22AAD78],
+        0x2,
         "ALERT_SPRITE_ID",
         "Id of the 'FONT/alert.wan' sprite loaded in WAN_TABLE",
         "uint16_t",
     )
 
     ALERT_ANIMATION_CONTROL = Symbol(
-        None,
-        None,
-        None,
+        [0x2AAD7C],
+        [0x22AAD7C],
+        0x7C,
         "ALERT_ANIMATION_CONTROL",
         "animation_control of 'FONT/alter.wan'",
         "struct animation_control*",
-    )
-
-    SOUND_MEMORY_ARENA_PTR = Symbol(
-        [0x2A4E54],
-        [0x22A4E54],
-        0x4,
-        "SOUND_MEMORY_ARENA_PTR",
-        "Pointer to SOUND_MEMORY_ARENA.",
-        "struct mem_arena*",
-    )
-
-    WINDOW_LIST = Symbol(
-        [0x2A88DC],
-        [0x22A88DC],
-        None,
-        "WINDOW_LIST",
-        "Array of all window structs. Newly created window structs are taken from slots in this array.\n\nNote that this array isn't strictly ordered in any way. A newly created window will occupy the first available slot. If a window in an early slot is destroyed, windows that are still active in later slots won't be shifted back unless destroyed and recreated.\n\ntype: struct window_list",
-        "struct window_list",
     )
 
     LAST_NEW_MOVE = Symbol(
@@ -32060,10 +32069,10 @@ class NaRamData:
     TEAM_NAME = Symbol(
         [0x2AB918],
         [0x22AB918],
-        0xC,
+        0xA,
         "TEAM_NAME",
-        "The team name.\n\nA null-terminated string, with a maximum length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game typically uses.\n\nThis is presumably part of a larger struct, together with other nearby data.",
-        "char[10]",
+        "The team name.\n\nA null-terminated string, with a maximum length of 10 (or 5 in JP). Presumably encoded with the ANSI/Shift JIS encoding the game typically uses.\n\nThis is presumably part of a larger struct, together with other nearby data.",
+        "",
     )
 
     LEVEL_UP_DATA_MONSTER_ID = Symbol(
@@ -32155,9 +32164,9 @@ class NaRamData:
     LOCK_NOTIFY_ARRAY = Symbol(
         [0x324EB4],
         [0x2324EB4],
-        0x14,
+        0x18,
         "LOCK_NOTIFY_ARRAY",
-        "Used to notify scripts waiting for a certain lock to unlock so they can resume their execution.\n\n1 byte per lock. Exact size isn't confirmed, it could potentially be longer.",
+        "Used to notify scripts waiting for a certain lock to unlock so they can resume their execution.\n\n1 byte per lock.",
         "bool[20]",
     )
 
@@ -32202,38 +32211,38 @@ class NaRamData:
     )
 
     LOADED_ATTACK_SPRITE_DATA = Symbol(
-        None,
-        None,
-        None,
+        [0x37C9AC],
+        [0x237C9AC],
+        0x4,
         "LOADED_ATTACK_SPRITE_DATA",
         "[Runtime] Pointer to the dynamically allocated structure relating to the currently loaded attack sprite, in dungeon mode.\n\ntype: struct loaded_attack_sprite_data*",
         "struct loaded_attack_sprite_data*",
     )
 
     AI_THROWN_ITEM_DIRECTION_IS_USED = Symbol(
-        None,
-        None,
-        None,
+        [0x37C9D0],
+        [0x237C9D0],
+        0x8,
         "AI_THROWN_ITEM_DIRECTION_IS_USED",
         "[Runtime] Used in GetPossibleAiThrownItemDirections to indicate whether a certain direction enum value is already being used or not.",
         "bool[8]",
     )
 
-    AI_THROWN_ITEM_DIRECTIONS = Symbol(
-        None,
-        None,
-        None,
-        "AI_THROWN_ITEM_DIRECTIONS",
-        "[Runtime] Used to store the directions output by GetPossibleAiThrownItemDirections.",
+    AI_THROWN_ITEM_PROBABILITIES = Symbol(
+        [0x37C9D8],
+        [0x237C9D8],
+        0x20,
+        "AI_THROWN_ITEM_PROBABILITIES",
+        "[Runtime] Used to store the probabilities matching the directions in THROWN_ITEM_DIRECTIONS.",
         "uint32_t[8]",
     )
 
-    AI_THROWN_ITEM_PROBABILITIES = Symbol(
-        None,
-        None,
-        None,
-        "AI_THROWN_ITEM_PROBABILITIES",
-        "[Runtime] Used to store the probabilities matching the directions in THROWN_ITEM_DIRECTIONS.",
+    AI_THROWN_ITEM_DIRECTIONS = Symbol(
+        [0x37C9F8],
+        [0x237C9F8],
+        0x20,
+        "AI_THROWN_ITEM_DIRECTIONS",
+        "[Runtime] Used to store the directions output by GetPossibleAiThrownItemDirections.",
         "uint32_t[8]",
     )
 

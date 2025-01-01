@@ -30256,6 +30256,15 @@ class EuOverlay29Data:
         "struct damage_negating_exclusive_eff_entry[28]",
     )
 
+    TWO_TURN_STATUSES = Symbol(
+        [0x76AEC],
+        [0x235366C],
+        0xB,
+        "TWO_TURN_STATUSES",
+        "Lists all status IDs that are for two-turn moves. The last entry is null.",
+        "struct status_two_turn_id_8[11]",
+    )
+
     TWO_TURN_MOVES_AND_STATUSES = Symbol(
         [0x76B38],
         [0x23536B8],
@@ -31682,9 +31691,9 @@ class EuRamFunctions:
 class EuRamData:
 
     DEFAULT_MEMORY_ARENA_MEMORY = Symbol(
-        None,
-        None,
-        None,
+        [0xB5500],
+        [0x20B5500],
+        0x1E6400,
         "DEFAULT_MEMORY_ARENA_MEMORY",
         "The memory region for the default memory arena.\n\nThe length is defined by DEFAULT_MEMORY_ARENA_SIZE.\n\nOne mode that uses this region for heap allocations is dungeon mode.",
         "uint8_t[1991680]",
@@ -31898,12 +31907,30 @@ class EuRamData:
     )
 
     AUDIO_COMMANDS_BUFFER = Symbol(
-        [0x2A5599],
-        [0x22A5599],
+        [0x2A5590],
+        [0x22A5590],
         0x200,
         "AUDIO_COMMANDS_BUFFER",
         "Buffer used to store audio commands. 16 entries in total. Seems like entries are removed at some point (maybe after the commands are read or after they finish executing).",
         "struct audio_command[16]",
+    )
+
+    SOUND_MEMORY_ARENA_PTR = Symbol(
+        None,
+        None,
+        None,
+        "SOUND_MEMORY_ARENA_PTR",
+        "Pointer to SOUND_MEMORY_ARENA.",
+        "struct mem_arena*",
+    )
+
+    WINDOW_LIST = Symbol(
+        [0x2A921C],
+        [0x22A921C],
+        0x1180,
+        "WINDOW_LIST",
+        "Array of all window structs. Newly created window structs are taken from slots in this array.\n\nNote that this array isn't strictly ordered in any way. A newly created window will occupy the first available slot. If a window in an early slot is destroyed, windows that are still active in later slots won't be shifted back unless destroyed and recreated.\n\ntype: struct window_list",
+        "struct window_list",
     )
 
     CURSOR_16_SPRITE_ID = Symbol(
@@ -31960,24 +31987,6 @@ class EuRamData:
         "struct animation_control*",
     )
 
-    SOUND_MEMORY_ARENA_PTR = Symbol(
-        None,
-        None,
-        None,
-        "SOUND_MEMORY_ARENA_PTR",
-        "Pointer to SOUND_MEMORY_ARENA.",
-        "struct mem_arena*",
-    )
-
-    WINDOW_LIST = Symbol(
-        None,
-        None,
-        None,
-        "WINDOW_LIST",
-        "Array of all window structs. Newly created window structs are taken from slots in this array.\n\nNote that this array isn't strictly ordered in any way. A newly created window will occupy the first available slot. If a window in an early slot is destroyed, windows that are still active in later slots won't be shifted back unless destroyed and recreated.\n\ntype: struct window_list",
-        "struct window_list",
-    )
-
     LAST_NEW_MOVE = Symbol(
         [0x2AB78C],
         [0x22AB78C],
@@ -32015,9 +32024,9 @@ class EuRamData:
     )
 
     KAOMADO_STREAM = Symbol(
-        None,
-        None,
-        None,
+        [0x2ABDF0],
+        [0x22ABDF0],
+        0x48,
         "KAOMADO_STREAM",
         "The file stream utilized for all Kaomado portrait loads.\n\ntype: struct file_stream",
         "struct file_stream",
@@ -32062,10 +32071,10 @@ class EuRamData:
     TEAM_NAME = Symbol(
         [0x2AC258],
         [0x22AC258],
-        0xC,
+        0xA,
         "TEAM_NAME",
-        "The team name.\n\nA null-terminated string, with a maximum length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game typically uses.\n\nThis is presumably part of a larger struct, together with other nearby data.",
-        "char[10]",
+        "The team name.\n\nA null-terminated string, with a maximum length of 10 (or 5 in JP). Presumably encoded with the ANSI/Shift JIS encoding the game typically uses.\n\nThis is presumably part of a larger struct, together with other nearby data.",
+        "",
     )
 
     LEVEL_UP_DATA_MONSTER_ID = Symbol(
@@ -32157,16 +32166,16 @@ class EuRamData:
     LOCK_NOTIFY_ARRAY = Symbol(
         [0x3259F4],
         [0x23259F4],
-        0x14,
+        0x18,
         "LOCK_NOTIFY_ARRAY",
-        "Used to notify scripts waiting for a certain lock to unlock so they can resume their execution.\n\n1 byte per lock. Exact size isn't confirmed, it could potentially be longer.",
+        "Used to notify scripts waiting for a certain lock to unlock so they can resume their execution.\n\n1 byte per lock.",
         "bool[20]",
     )
 
     GROUND_MEMORY_ARENA_1 = Symbol(
-        None,
-        None,
-        None,
+        [0x325B00],
+        [0x2325B00],
+        0x1C,
         "GROUND_MEMORY_ARENA_1",
         "This is a top-level memory arena used for some things in ground mode.\n\nIt's used for user_flags 8, 15, and 16.\n\nIncluding the allocator metadata, this arena occupies 0x64000 bytes of space.\n\ntype: struct mem_arena",
         "struct mem_arena",
@@ -32221,37 +32230,37 @@ class EuRamData:
         "bool[8]",
     )
 
-    AI_THROWN_ITEM_DIRECTIONS = Symbol(
+    AI_THROWN_ITEM_PROBABILITIES = Symbol(
         [0x37D5D8],
         [0x237D5D8],
-        0x20,
-        "AI_THROWN_ITEM_DIRECTIONS",
-        "[Runtime] Used to store the directions output by GetPossibleAiThrownItemDirections.",
-        "uint32_t[8]",
-    )
-
-    AI_THROWN_ITEM_PROBABILITIES = Symbol(
-        [0x37D5F8],
-        [0x237D5F8],
         0x20,
         "AI_THROWN_ITEM_PROBABILITIES",
         "[Runtime] Used to store the probabilities matching the directions in THROWN_ITEM_DIRECTIONS.",
         "uint32_t[8]",
     )
 
+    AI_THROWN_ITEM_DIRECTIONS = Symbol(
+        [0x37D5F8],
+        [0x237D5F8],
+        0x20,
+        "AI_THROWN_ITEM_DIRECTIONS",
+        "[Runtime] Used to store the directions output by GetPossibleAiThrownItemDirections.",
+        "uint32_t[8]",
+    )
+
     ROLLOUT_ICE_BALL_MISSED = Symbol(
-        None,
-        None,
-        None,
+        [0x37D669],
+        [0x237D669],
+        0x1,
         "ROLLOUT_ICE_BALL_MISSED",
         "[Runtime] Appears to be set to true whenever a hit from Rollout or Ice Ball fails to deal damage.",
         "bool",
     )
 
     MULTIHIT_FATIGUE_MOVE_USED = Symbol(
-        None,
-        None,
-        None,
+        [0x37D66A],
+        [0x237D66A],
+        0x1,
         "MULTIHIT_FATIGUE_MOVE_USED",
         "[Runtime] Appears to be set to true whenever a multihit fatigue move deals damage.",
         "bool",
@@ -32260,7 +32269,7 @@ class EuRamData:
     TWINEEDLE_HIT_TRACKER = Symbol(
         [0x37D66B],
         [0x237D66B],
-        None,
+        0x1,
         "TWINEEDLE_HIT_TRACKER",
         "[Runtime] Appears to be set to true whenever Twineedle hits and deals damage. So that even if the second attack misses, it will still try to poison the target.",
         "bool",
@@ -32269,16 +32278,16 @@ class EuRamData:
     RAPID_SPIN_BINDING_REMOVAL = Symbol(
         [0x37D66D],
         [0x237D66D],
-        None,
+        0x1,
         "RAPID_SPIN_BINDING_REMOVAL",
         "[Runtime] Appears to be set to true when using Rapid Spin to later remove any binding effects and Leech Seed.",
         "bool",
     )
 
     ROLLOUT_ICE_BALL_SUCCESSIVE_HITS = Symbol(
-        None,
-        None,
-        None,
+        [0x37D670],
+        [0x237D670],
+        0x4,
         "ROLLOUT_ICE_BALL_SUCCESSIVE_HITS",
         "[Runtime] Seems to count the number of successive hits by Rollout or Ice Ball.",
         "int",
@@ -32287,7 +32296,7 @@ class EuRamData:
     MULTIHIT_MOVE_SUCCESSIVE_HITS = Symbol(
         [0x37D678],
         [0x237D678],
-        None,
+        0x4,
         "MULTIHIT_MOVE_SUCCESSIVE_HITS",
         "[Runtime] Seems to count the number of successive hits for multihit moves. This is used by Twineedle to check to attempt to apply Poison after the second attack.",
         "int",
@@ -32296,16 +32305,16 @@ class EuRamData:
     TRIPLE_KICK_SUCCESSIVE_HITS = Symbol(
         [0x37D67C],
         [0x237D67C],
-        None,
+        0x4,
         "TRIPLE_KICK_SUCCESSIVE_HITS",
         "[Runtime] Seems to count the number of successive hits by Triple Kick.",
         "int",
     )
 
     METRONOME_NEXT_INDEX = Symbol(
-        None,
-        None,
-        None,
+        [0x37D688],
+        [0x237D688],
+        0x4,
         "METRONOME_NEXT_INDEX",
         "[Runtime] The index into METRONOME_TABLE for the next usage of Metronome.",
         "int",

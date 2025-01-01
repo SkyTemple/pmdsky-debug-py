@@ -29578,6 +29578,15 @@ class EuItcmOverlay29Data:
         "struct damage_negating_exclusive_eff_entry[28]",
     )
 
+    TWO_TURN_STATUSES = Symbol(
+        None,
+        None,
+        None,
+        "TWO_TURN_STATUSES",
+        "Lists all status IDs that are for two-turn moves. The last entry is null.",
+        "struct status_two_turn_id_8[11]",
+    )
+
     TWO_TURN_MOVES_AND_STATUSES = Symbol(
         None,
         None,
@@ -31188,6 +31197,24 @@ class EuItcmRamData:
         "struct audio_command[16]",
     )
 
+    SOUND_MEMORY_ARENA_PTR = Symbol(
+        None,
+        None,
+        None,
+        "SOUND_MEMORY_ARENA_PTR",
+        "Pointer to SOUND_MEMORY_ARENA.",
+        "struct mem_arena*",
+    )
+
+    WINDOW_LIST = Symbol(
+        None,
+        None,
+        None,
+        "WINDOW_LIST",
+        "Array of all window structs. Newly created window structs are taken from slots in this array.\n\nNote that this array isn't strictly ordered in any way. A newly created window will occupy the first available slot. If a window in an early slot is destroyed, windows that are still active in later slots won't be shifted back unless destroyed and recreated.\n\ntype: struct window_list",
+        "struct window_list",
+    )
+
     CURSOR_16_SPRITE_ID = Symbol(
         None,
         None,
@@ -31240,24 +31267,6 @@ class EuItcmRamData:
         "ALERT_ANIMATION_CONTROL",
         "animation_control of 'FONT/alter.wan'",
         "struct animation_control*",
-    )
-
-    SOUND_MEMORY_ARENA_PTR = Symbol(
-        None,
-        None,
-        None,
-        "SOUND_MEMORY_ARENA_PTR",
-        "Pointer to SOUND_MEMORY_ARENA.",
-        "struct mem_arena*",
-    )
-
-    WINDOW_LIST = Symbol(
-        None,
-        None,
-        None,
-        "WINDOW_LIST",
-        "Array of all window structs. Newly created window structs are taken from slots in this array.\n\nNote that this array isn't strictly ordered in any way. A newly created window will occupy the first available slot. If a window in an early slot is destroyed, windows that are still active in later slots won't be shifted back unless destroyed and recreated.\n\ntype: struct window_list",
-        "struct window_list",
     )
 
     LAST_NEW_MOVE = Symbol(
@@ -31346,8 +31355,8 @@ class EuItcmRamData:
         None,
         None,
         "TEAM_NAME",
-        "The team name.\n\nA null-terminated string, with a maximum length of 10. Presumably encoded with the ANSI/Shift JIS encoding the game typically uses.\n\nThis is presumably part of a larger struct, together with other nearby data.",
-        "char[10]",
+        "The team name.\n\nA null-terminated string, with a maximum length of 10 (or 5 in JP). Presumably encoded with the ANSI/Shift JIS encoding the game typically uses.\n\nThis is presumably part of a larger struct, together with other nearby data.",
+        "",
     )
 
     LEVEL_UP_DATA_MONSTER_ID = Symbol(
@@ -31437,7 +31446,7 @@ class EuItcmRamData:
         None,
         None,
         "LOCK_NOTIFY_ARRAY",
-        "Used to notify scripts waiting for a certain lock to unlock so they can resume their execution.\n\n1 byte per lock. Exact size isn't confirmed, it could potentially be longer.",
+        "Used to notify scripts waiting for a certain lock to unlock so they can resume their execution.\n\n1 byte per lock.",
         "bool[20]",
     )
 
@@ -31499,21 +31508,21 @@ class EuItcmRamData:
         "bool[8]",
     )
 
-    AI_THROWN_ITEM_DIRECTIONS = Symbol(
-        None,
-        None,
-        None,
-        "AI_THROWN_ITEM_DIRECTIONS",
-        "[Runtime] Used to store the directions output by GetPossibleAiThrownItemDirections.",
-        "uint32_t[8]",
-    )
-
     AI_THROWN_ITEM_PROBABILITIES = Symbol(
         None,
         None,
         None,
         "AI_THROWN_ITEM_PROBABILITIES",
         "[Runtime] Used to store the probabilities matching the directions in THROWN_ITEM_DIRECTIONS.",
+        "uint32_t[8]",
+    )
+
+    AI_THROWN_ITEM_DIRECTIONS = Symbol(
+        None,
+        None,
+        None,
+        "AI_THROWN_ITEM_DIRECTIONS",
+        "[Runtime] Used to store the directions output by GetPossibleAiThrownItemDirections.",
         "uint32_t[8]",
     )
 
