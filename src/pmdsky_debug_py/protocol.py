@@ -3222,6 +3222,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetupAndShowKeyboard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShowKeyboard: Symbol[
         Optional[list[int]],
         None,
@@ -4382,6 +4387,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetBaseStatsMovesGroundMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     StrcmpMonsterName: Symbol[
         Optional[list[int]],
         None,
@@ -4453,6 +4463,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetMonsterLevelFromSpawnEntry: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyLevelUpBoostsToGroundMonster: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11382,6 +11397,26 @@ Overlay10Protocol = SectionProtocol[
 
 class Overlay11FunctionsProtocol(Protocol):
 
+    InitScriptRoutineState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitScriptRoutine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LockRoutine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnlockRoutine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UnlockScriptingLock: Symbol[
         Optional[list[int]],
         None,
@@ -11397,7 +11432,17 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetSsbString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     HandleUnlocks: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ScriptCaseProcess: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11587,6 +11632,11 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    UnlockMainRoutine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AllocAndInitPartnerFollowDataAndLiveActorList: Symbol[
         Optional[list[int]],
         None,
@@ -11597,7 +11647,32 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetLiveActorIdxFromScriptEntityId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DeleteLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAttributeBitfieldLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetAttributeBitfieldLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnlockActorRoutines: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCollidingActorId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11607,7 +11682,47 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
-    InitPartnerFollowData: Symbol[
+    SetPositionLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetIdLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCollisionBoxLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionInitialLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMovementRangeLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCollisionBoxCenterLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionLiveActorVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetHeightLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetHeightLiveActor: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11618,6 +11733,311 @@ class Overlay11FunctionsProtocol(Protocol):
     ]
 
     SetDirectionLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAnimationLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetEffectLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAnimationStatusLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetEffectStatusLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAttributeBitfieldLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAttributeBitfieldLiveActorWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetAttributeBitfieldLiveActorWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetBlinkLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionOffsetLiveActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitPartnerFollowData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DeleteLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAttributeBitfieldLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetAttributeBitfieldLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnlockObjectRoutines: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCollidingObjectId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetIdLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCollisionBoxLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionInitialLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMovementRangeLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCollisionBoxCenterLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionLiveObjectVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetHeightLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetHeightLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetDirectionLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetDirectionLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAnimationLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetEffectLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAnimationStatusLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetEffectStatusLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAttributeBitfieldLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAttributeBitfieldLiveObjectWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetAttributeBitfieldLiveObjectWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetBlinkLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionOffsetLiveObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DeleteLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAttributeBitfieldLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetAttributeBitfieldLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnlockPerformerRoutines: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetIdLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCollisionBoxLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionInitialLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMovementRangeLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCollisionBoxCenterLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionLivePerformerVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetHeightLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetHeightLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetDirectionLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetDirectionLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAnimationLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetEffectLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAnimationStatusLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetEffectStatusLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAttributeBitfieldLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAttributeBitfieldLivePerformerWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetAttributeBitfieldLivePerformerWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetBlinkLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPositionOffsetLivePerformer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DeleteLiveEvent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCollidingEventId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11775,7 +12195,22 @@ class Overlay11DataProtocol(Protocol):
         Optional[int],
     ]
 
+    ACTOR_FUNCTION_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SETANIMATION_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OBJECT_FUNCTION_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PERFORMER_FUNCTION_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

@@ -5722,12 +5722,21 @@ class JpArm9Functions:
         None,
     )
 
+    SetupAndShowKeyboard = Symbol(
+        [0x36ACC],
+        [0x2036ACC],
+        None,
+        "SetupAndShowKeyboard",
+        "Calls a function that seems to set up info for the keyboard menu before ending with a call to ShowKeyboard.\n\nr0: menu type\nr1: buffer1\nr2: buffer2\nreturn: ?",
+        None,
+    )
+
     ShowKeyboard = Symbol(
         [0x36B08],
         [0x2036B08],
         None,
         "ShowKeyboard",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: string ID\nr1: buffer1\nr2: ???\nr3: buffer2\nreturn: ?",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: menu type\nr1: buffer1\nr2: ???\nr3: buffer2\nreturn: ?",
         None,
     )
 
@@ -7810,6 +7819,15 @@ class JpArm9Functions:
         None,
     )
 
+    SetBaseStatsMovesGroundMonster = Symbol(
+        [0x53234],
+        [0x2053234],
+        None,
+        "SetBaseStatsMovesGroundMonster",
+        "Sets a ground monster to have the base stats and Level 1 moves of its species, along with 1 IQ.\n\nr0: ground monster pointer",
+        None,
+    )
+
     StrcmpMonsterName = Symbol(
         [0x532E8],
         [0x20532E8],
@@ -7942,6 +7960,15 @@ class JpArm9Functions:
         None,
         "GetMonsterLevelFromSpawnEntry",
         "Returns the level of the specified monster spawn entry.\n\nr0: pointer to the monster spawn entry\nreturn: uint8_t",
+        None,
+    )
+
+    ApplyLevelUpBoostsToGroundMonster = Symbol(
+        [0x54800],
+        [0x2054800],
+        None,
+        "ApplyLevelUpBoostsToGroundMonster",
+        "Applies the level up boosts to stats and moves (until moveset is full) to a target monster.\n\nr0: ground monster pointer\nr1: level\nr2: flag that enables further editing of the monster",
         None,
     )
 
@@ -18612,6 +18639,42 @@ class JpOverlay10Section:
 
 class JpOverlay11Functions:
 
+    InitScriptRoutineState = Symbol(
+        [0x5F0],
+        [0x22DDED0],
+        None,
+        "InitScriptRoutineState",
+        "Initializes the various fields of script_routine_state, a struct that seems relevant when handling script opcode operations.\n\nr0: script_routine_state pointer",
+        None,
+    )
+
+    InitScriptRoutine = Symbol(
+        [0x6A8],
+        [0x22DDF88],
+        None,
+        "InitScriptRoutine",
+        "Initializes the various fields of script_routine.\n\nr0: routine pointer\nr1: ground entity function table pointer\nr2: live entity pointer",
+        None,
+    )
+
+    LockRoutine = Symbol(
+        [0xCAC],
+        [0x22DE58C],
+        None,
+        "LockRoutine",
+        "Sets a routine to be locked via the Lock opcode.\n\nr0: script routine pointer\nr1: lock id\nreturn: Always 1, but this does seem to get checked in RunNextOpcode for some reason",
+        None,
+    )
+
+    UnlockRoutine = Symbol(
+        [0xEAC],
+        [0x22DE78C],
+        None,
+        "UnlockRoutine",
+        "Attempts to unlock a script routine via the Unlock opcode.\n\nr0: script routine pointer\nr1: lock id\nreturn: True if the script routine was successfully unlocked",
+        None,
+    )
+
     UnlockScriptingLock = Symbol(
         [0xEF0],
         [0x22DE7D0],
@@ -18626,7 +18689,7 @@ class JpOverlay11Functions:
         [0x22DE804],
         None,
         "FuncThatCallsRunNextOpcode",
-        "Called up to 16 times per frame. Exact purpose unknown.\n\nr0: Looks like a pointer to some struct containing data about the current state of scripting engine",
+        "Called up to 16 times per frame. Exact purpose unknown.\n\nr0: script routine pointer",
         None,
     )
 
@@ -18635,7 +18698,16 @@ class JpOverlay11Functions:
         [0x22DF404],
         None,
         "RunNextOpcode",
-        "Runs the next scripting opcode.\n\nContains a switch statement based on the opcode ([r0+1C]).\n\nr0: Looks like a pointer to some struct containing data about the current state of scripting engine",
+        "Runs the next scripting opcode.\n\nContains a switch statement based on the routine's next opcode to run.\n\nr0: script routine pointer\nreturn: status",
+        None,
+    )
+
+    GetSsbString = Symbol(
+        [0x7F94],
+        [0x22E5874],
+        None,
+        "GetSsbString",
+        "Returns a string from a given SSB runtime struct.\n\nr0: ssb runtime info pointer\nr1: idx",
         None,
     )
 
@@ -18645,6 +18717,15 @@ class JpOverlay11Functions:
         None,
         "HandleUnlocks",
         "Checks if a script unlock happened by reading entries from LOCK_NOTIFY_ARRAY and handles the ones that were set.\n\nIf the global unlock flag is not set, returns immediately. If it is, the function loops LOCK_NOTIFY_ARRAY, checking for true values. If it finds one, resets it back to 0 and handles the unlock.\n\nNo params.",
+        None,
+    )
+
+    ScriptCaseProcess = Symbol(
+        [0x8134],
+        [0x22E5A14],
+        None,
+        "ScriptCaseProcess",
+        "Calculates the next opcode address for a script routine as the result of a switch-statement.\n\nr0: script routine pointer\nr1: case id\nreturn: Next opcode address for the routine to execute",
         None,
     )
 
@@ -18957,6 +19038,15 @@ class JpOverlay11Functions:
         None,
     )
 
+    UnlockMainRoutine = Symbol(
+        [0x1B3F4],
+        [0x22F8CD4],
+        None,
+        "UnlockMainRoutine",
+        "Unlocks the main routine of the current script, as specified in GROUND_STATE_PTRS::main_routine.\n\nr0: lock id\nreturn: True if the script routine was successfully unlocked",
+        None,
+    )
+
     AllocAndInitPartnerFollowDataAndLiveActorList = Symbol(
         [0x1BA60],
         [0x22F9340],
@@ -18971,7 +19061,16 @@ class JpOverlay11Functions:
         [0x22F939C],
         None,
         "InitPartnerFollowDataAndLiveActorList",
-        "Initialize the partner follow data and the live actor list (in GROUND_STATE_PTRS, doesn’t perform the allocation of the structures)\n\nNo params.",
+        "Initialize the partner follow data and the live actor list (in GROUND_STATE_PTRS, doesn't perform the allocation of the structures)\n\nNo params.",
+        None,
+    )
+
+    GetLiveActorIdxFromScriptEntityId = Symbol(
+        [0x1BBB4],
+        [0x22F9494],
+        None,
+        "GetLiveActorIdxFromScriptEntityId",
+        "Searches through the live actor list to find the first matching actor who has an ID matching that of a script_entity_id.\n\nr0: script_entity_id\nreturn: index of the live actor, or -1 if the specified actor could not be found",
         None,
     )
 
@@ -18980,7 +19079,43 @@ class JpOverlay11Functions:
         [0x22F9BFC],
         None,
         "DeleteLiveActor",
-        "Remove the actor from the overworld actor list (in GROUND_STATE_PTRS)\n\nr0: the index of the actor in the live actor list",
+        "Remove the actor from the actor list (in GROUND_STATE_PTRS)\n\nr0: the index of the actor in the live actor list",
+        None,
+    )
+
+    SetAttributeBitfieldLiveActor = Symbol(
+        [0x1C4D0],
+        [0x22F9DB0],
+        None,
+        "SetAttributeBitfieldLiveActor",
+        "Sets bits of the attribute bitfield of a currently loaded actor.\n\nr0: live actor id\nr1: attribute bitfield",
+        None,
+    )
+
+    ResetAttributeBitfieldLiveActor = Symbol(
+        [0x1C55C],
+        [0x22F9E3C],
+        None,
+        "ResetAttributeBitfieldLiveActor",
+        "Clears bits of the attribute bitfield of a currently loaded actor.\n\nr0: live actor id\nr1: attribute bitfield",
+        None,
+    )
+
+    UnlockActorRoutines = Symbol(
+        [0x1CDBC],
+        [0x22FA69C],
+        None,
+        "UnlockActorRoutines",
+        "Attempts to unlock all live actor routines of the current script.\n\nr0: lock id\nreturn: True if any script routine was successfully unlocked",
+        None,
+    )
+
+    GetCollidingActorId = Symbol(
+        [0x1CF24],
+        [0x22FA804],
+        None,
+        "GetCollidingActorId",
+        "Returns the first colliding actor given a series of vector coordinates.\n\nr0: live actor id (used only to ignore an actor colliding with itself)\nr1: attribute bitfield to test actors against\nr2: pointer to coord_min\nr3: pointer to coord_max\nreturn: The first colliding actor's id, or -1 if no is collision detected",
         None,
     )
 
@@ -18989,7 +19124,187 @@ class JpOverlay11Functions:
         [0x22FAA4C],
         None,
         "ChangeActorAnimation",
-        "Used by the SetAnimation opcode to change the animation of an actor.\n\nIt's responsible for breaking down the SetAnimation parameter and determining which animation to play and which flags to set.\n\nr0: ?\nr1: SetAnimation parameter",
+        "Used by the SetAnimation opcode to change the animation of an actor.\n\nIt's responsible for breaking down the SetAnimation parameter and determining which animation to play and which flags to set.\n\nr0: live actor\nr1: SetAnimation parameter",
+        None,
+    )
+
+    SetPositionLiveActor = Symbol(
+        [0x1D2CC],
+        [0x22FABAC],
+        None,
+        "SetPositionLiveActor",
+        "Sets the position for a currently loaded actor.\n\nr0: live actor\nr1: pointer to a position vector",
+        None,
+    )
+
+    GetIdLiveActor = Symbol(
+        [0x1E7A8],
+        [0x22FC088],
+        None,
+        "GetIdLiveActor",
+        "Returns the ID of a currently loaded actor. This ID can then be used to index GROUND_STATE_PTRS::actors.\n\nr0: live actor\nreturn: id",
+        None,
+    )
+
+    GetCollisionBoxLiveActor = Symbol(
+        [0x1E7B0],
+        [0x22FC090],
+        None,
+        "GetCollisionBoxLiveActor",
+        "Gets the collision box of a currently loaded actor.\n\nr0: live actor\nr1: [output] collision box buffer",
+        None,
+    )
+
+    SetPositionInitialLiveActor = Symbol(
+        [0x1E7C4],
+        [0x22FC0A4],
+        None,
+        "SetPositionInitialLiveActor",
+        "Sets a currently loaded actor to return to its initial position.\n\nr0: live actor\nr1: pointer to an position vector; if null, actor will return to its initial position",
+        None,
+    )
+
+    SetMovementRangeLiveActor = Symbol(
+        [0x1E880],
+        [0x22FC160],
+        None,
+        "SetMovementRangeLiveActor",
+        "Sets a currently loaded actor's random movement range.\n\nr0: live actor\nr1: pointer to limit_min_pos\nr2: pointer to limit_max_pos",
+        None,
+    )
+
+    GetCollisionBoxCenterLiveActor = Symbol(
+        [0x1E8A4],
+        [0x22FC184],
+        None,
+        "GetCollisionBoxCenterLiveActor",
+        "Gets the center of a collision box of a currently loaded actor.\n\nThis simply adds the actor's minimum coordinates by half the size of the actor's collision box.\n\nr0: live actor\nr1: [output] collision box center buffer",
+        None,
+    )
+
+    SetPositionLiveActorVeneer = Symbol(
+        [0x1E8C8],
+        [0x22FC1A8],
+        None,
+        "SetPositionLiveActorVeneer",
+        "Likely a linker-generated veneer for SetPositionLiveActor.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: live actor\nr1: pointer to a position vector",
+        None,
+    )
+
+    GetHeightLiveActor = Symbol(
+        [0x1E8D4],
+        [0x22FC1B4],
+        None,
+        "GetHeightLiveActor",
+        "Gets the two height values of a currently loaded actor.\n\nr0: live actor\nr1: [output] pointer to first height value\nr2: [output] pointer to second height value, which is curiously not referenced by SetHeightLiveActor",
+        None,
+    )
+
+    SetHeightLiveActor = Symbol(
+        [0x1E8E8],
+        [0x22FC1C8],
+        None,
+        "SetHeightLiveActor",
+        "Sets the height of a currently loaded actor.\n\nr0: live actor\nr1: height",
+        None,
+    )
+
+    GetDirectionLiveActor = Symbol(
+        [0x1E8F0],
+        [0x22FC1D0],
+        None,
+        "GetDirectionLiveActor",
+        "Gets the direction of a currently loaded actor.\n\nr0: live actor\nr1: [output] pointer to direction",
+        None,
+    )
+
+    SetDirectionLiveActor = Symbol(
+        [0x1E900],
+        [0x22FC1E0],
+        None,
+        "SetDirectionLiveActor",
+        "Sets the direction of a currently loaded actor. Does nothing if the direction value passed is -1.\n\nr0: live actor\nr1: direction",
+        None,
+    )
+
+    SetAnimationLiveActor = Symbol(
+        [0x1E928],
+        [0x22FC208],
+        None,
+        "SetAnimationLiveActor",
+        "Sets the animation of a currently loaded actor. Leads up to a final ChangeActorAnimation call.\n\nIncludes a check for if live_actor::id is less than 3 and if live_actor::field_0xa is equal to 0x119, which ultimately may perform ((SetAnimation parameter) & 0x1f00 | 0x53).\n\nr0: live actor\nr1: SetAnimation parameter",
+        None,
+    )
+
+    SetEffectLiveActor = Symbol(
+        [0x1E974],
+        [0x22FC254],
+        None,
+        "SetEffectLiveActor",
+        "Sets the effect of a currently loaded actor.\n\nr0: live actor\nr1: flag (true if effect id is 0?)\nr2: effect id\nr3: effect position marker",
+        None,
+    )
+
+    GetAnimationStatusLiveActor = Symbol(
+        [0x1E988],
+        [0x22FC268],
+        None,
+        "GetAnimationStatusLiveActor",
+        "Gets the animation status of a currently loaded actor.\n\nUsed to determine if the animation has finished via script opcodes like WaitAnimation and WaitEndAnimation.\n\nr0: live actor\nreturn: status",
+        None,
+    )
+
+    GetEffectStatusLiveActor = Symbol(
+        [0x1E9A8],
+        [0x22FC288],
+        None,
+        "GetEffectStatusLiveActor",
+        "Gets the effect status of a currently loaded actor.\n\nUsed to determine if an effect has finished via the script opcode WaitEffect.\n\nr0: live actor\nreturn: status",
+        None,
+    )
+
+    GetAttributeBitfieldLiveActor = Symbol(
+        [0x1E9CC],
+        [0x22FC2AC],
+        None,
+        "GetAttributeBitfieldLiveActor",
+        "Gets the attribute bitfield of a currently loaded actor.\n\nr0: live actor\nr1: [output] pointer to attribute bitfield",
+        None,
+    )
+
+    SetAttributeBitfieldLiveActorWrapper = Symbol(
+        [0x1E9D8],
+        [0x22FC2B8],
+        None,
+        "SetAttributeBitfieldLiveActorWrapper",
+        "Sets bits of the attribute bitfield of a currently loaded actor.\n\nIs a wrapper around SetAttributeBitfieldLiveActor, meaning this calls SetAttributeBitfieldLiveActor with a first parameter of live_actor::id.\n\nr0: live actor\nr1: attribute bitfield",
+        None,
+    )
+
+    ResetAttributeBitfieldLiveActorWrapper = Symbol(
+        [0x1E9E8],
+        [0x22FC2C8],
+        None,
+        "ResetAttributeBitfieldLiveActorWrapper",
+        "Clears bits of the attribute bitfield of a currently loaded actor.\n\nIs a wrapper around ResetAttributeBitfieldLiveActor, meaning this calls ResetAttributeBitfieldLiveActor with a first parameter of live_actor::id.\n\nr0: live actor\nr1: attribute bitfield",
+        None,
+    )
+
+    SetBlinkLiveActor = Symbol(
+        [0x1E9F8],
+        [0x22FC2D8],
+        None,
+        "SetBlinkLiveActor",
+        "Sets the actor to blink in and out of sight at certain intervals.\n\nr0: live actor\nr1: frame interval for blinking in\nr2: frame interval for blinking out",
+        None,
+    )
+
+    SetPositionOffsetLiveActor = Symbol(
+        [0x1EA08],
+        [0x22FC2E8],
+        None,
+        "SetPositionOffsetLiveActor",
+        "Offsets a currently loaded actor's position.\n\nr0: live actor\nr1: pointer to an position offset vector",
         None,
     )
 
@@ -19002,21 +19317,462 @@ class JpOverlay11Functions:
         None,
     )
 
-    GetDirectionLiveActor = Symbol(
-        [0x20F40],
-        [0x22FE820],
+    DeleteLiveObject = Symbol(
+        [0x201E4],
+        [0x22FDAC4],
         None,
-        "GetDirectionLiveActor",
-        "Put the direction of the actor in the destination\n\nr0: live actor\nr1: destination address (1 byte)",
+        "DeleteLiveObject",
+        "Remove the object from the object list (in GROUND_STATE_PTRS)\n\nr0: the index of the object in the live object list",
         None,
     )
 
-    SetDirectionLiveActor = Symbol(
+    SetAttributeBitfieldLiveObject = Symbol(
+        [0x20390],
+        [0x22FDC70],
+        None,
+        "SetAttributeBitfieldLiveObject",
+        "Sets bits of the attribute bitfield of a currently loaded object.\n\nr0: live object id\nr1: attribute bitfield",
+        None,
+    )
+
+    ResetAttributeBitfieldLiveObject = Symbol(
+        [0x203D0],
+        [0x22FDCB0],
+        None,
+        "ResetAttributeBitfieldLiveObject",
+        "Clears bits of the attribute bitfield of a currently loaded object.\n\nr0: live object id\nr1: attribute bitfield",
+        None,
+    )
+
+    UnlockObjectRoutines = Symbol(
+        [0x209DC],
+        [0x22FE2BC],
+        None,
+        "UnlockObjectRoutines",
+        "Attempts to unlock all live object routines of the current script.\n\nr0: lock id\nreturn: True if any script routine was successfully unlocked",
+        None,
+    )
+
+    GetCollidingObjectId = Symbol(
+        [0x20AB0],
+        [0x22FE390],
+        None,
+        "GetCollidingObjectId",
+        "Returns the first colliding object given a series of vector coordinates.\n\nr0: attribute bitfield to test objects against\nr1: pointer to coord_min\nr2: pointer to coord_max\nreturn: The first colliding object's id, or -1 if no is collision detected",
+        None,
+    )
+
+    SetPositionLiveObject = Symbol(
+        [0x20D08],
+        [0x22FE5E8],
+        None,
+        "SetPositionLiveObject",
+        "Sets the position for a currently loaded object.\n\nr0: live object\nr1: pointer to a position vector",
+        None,
+    )
+
+    GetIdLiveObject = Symbol(
+        [0x20DF8],
+        [0x22FE6D8],
+        None,
+        "GetIdLiveObject",
+        "Returns the ID of a currently loaded object. This ID can then be used to index GROUND_STATE_PTRS::objects.\n\nr0: live object\nreturn: id",
+        None,
+    )
+
+    GetCollisionBoxLiveObject = Symbol(
+        [0x20E00],
+        [0x22FE6E0],
+        None,
+        "GetCollisionBoxLiveObject",
+        "Gets the collision box of a currently loaded object.\n\nr0: live object\nr1: [output] collision box buffer",
+        None,
+    )
+
+    SetPositionInitialLiveObject = Symbol(
+        [0x20E14],
+        [0x22FE6F4],
+        None,
+        "SetPositionInitialLiveObject",
+        "Sets a currently loaded object to return to its initial position.\n\nr0: live object\nr1: pointer to an position vector; if null, object will return to its initial position",
+        None,
+    )
+
+    SetMovementRangeLiveObject = Symbol(
+        [0x20ED0],
+        [0x22FE7B0],
+        None,
+        "SetMovementRangeLiveObject",
+        "Sets a currently loaded object's random movement range.\n\nr0: live object\nr1: pointer to limit_min_pos\nr2: pointer to limit_max_pos",
+        None,
+    )
+
+    GetCollisionBoxCenterLiveObject = Symbol(
+        [0x20EF4],
+        [0x22FE7D4],
+        None,
+        "GetCollisionBoxCenterLiveObject",
+        "Gets the center of a collision box of a currently loaded object.\n\nThis simply adds the object's minimum coordinates by half the size of the object's collision box.\n\nr0: live object\nr1: [output] collision box center buffer",
+        None,
+    )
+
+    SetPositionLiveObjectVeneer = Symbol(
+        [0x20F18],
+        [0x22FE7F8],
+        None,
+        "SetPositionLiveObjectVeneer",
+        "Likely a linker-generated veneer for SetPositionLiveObject.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: live object\nr1: pointer to a position vector",
+        None,
+    )
+
+    GetHeightLiveObject = Symbol(
+        [0x20F24],
+        [0x22FE804],
+        None,
+        "GetHeightLiveObject",
+        "Gets the two height values of a currently loaded object.\n\nr0: live object\nr1: [output] pointer to first height value\nr2: [output] pointer to second height value, which is curiously not referenced by SetHeightLiveObject",
+        None,
+    )
+
+    SetHeightLiveObject = Symbol(
+        [0x20F38],
+        [0x22FE818],
+        None,
+        "SetHeightLiveObject",
+        "Sets the height of a currently loaded object.\n\nr0: live object\nr1: height",
+        None,
+    )
+
+    GetDirectionLiveObject = Symbol(
+        [0x20F40],
+        [0x22FE820],
+        None,
+        "GetDirectionLiveObject",
+        "Gets the direction of a currently loaded object.\n\nr0: live object\nr1: [output] pointer to direction",
+        None,
+    )
+
+    SetDirectionLiveObject = Symbol(
         [0x20F50],
         [0x22FE830],
         None,
-        "SetDirectionLiveActor",
-        "Store the direction in the actor structure\n-1 input is ignored\nUnsure if this change the animation\n\nr0: live actor\nr1: direction",
+        "SetDirectionLiveObject",
+        "Sets the direction of a currently loaded object. Does nothing if the direction value passed is -1.\n\nr0: live object\nr1: direction",
+        None,
+    )
+
+    SetAnimationLiveObject = Symbol(
+        [0x20F60],
+        [0x22FE840],
+        None,
+        "SetAnimationLiveObject",
+        "Sets the animation of a currently loaded object.\n\nr0: live object\nr1: SetAnimation parameter",
+        None,
+    )
+
+    SetEffectLiveObject = Symbol(
+        [0x21020],
+        [0x22FE900],
+        None,
+        "SetEffectLiveObject",
+        "Sets the effect of a currently loaded object.\n\nr0: live object\nr1: flag (true if effect id is 0?)\nr2: effect id",
+        None,
+    )
+
+    GetAnimationStatusLiveObject = Symbol(
+        [0x21030],
+        [0x22FE910],
+        None,
+        "GetAnimationStatusLiveObject",
+        "Gets the animation status of a currently loaded object.\n\nUsed to determine if the animation has finished via script opcodes like WaitAnimation and WaitEndAnimation.\n\nr0: live object\nreturn: status",
+        None,
+    )
+
+    GetEffectStatusLiveObject = Symbol(
+        [0x21050],
+        [0x22FE930],
+        None,
+        "GetEffectStatusLiveObject",
+        "Gets the effect status of a currently loaded object.\n\nUsed to determine if an effect has finished via the script opcode WaitEffect.\n\nr0: live object\nreturn: status",
+        None,
+    )
+
+    GetAttributeBitfieldLiveObject = Symbol(
+        [0x21074],
+        [0x22FE954],
+        None,
+        "GetAttributeBitfieldLiveObject",
+        "Gets the attribute bitfield of a currently loaded object.\n\nr0: live object\nr1: [output] pointer to attribute bitfield",
+        None,
+    )
+
+    SetAttributeBitfieldLiveObjectWrapper = Symbol(
+        [0x21080],
+        [0x22FE960],
+        None,
+        "SetAttributeBitfieldLiveObjectWrapper",
+        "Sets bits of the attribute bitfield of a currently loaded object.\n\nIs a wrapper around SetAttributeBitfieldLiveObject, meaning this calls SetAttributeBitfieldLiveObject with a first parameter of live_object::id.\n\nr0: live object\nr1: attribute bitfield",
+        None,
+    )
+
+    ResetAttributeBitfieldLiveObjectWrapper = Symbol(
+        [0x21090],
+        [0x22FE970],
+        None,
+        "ResetAttributeBitfieldLiveObjectWrapper",
+        "Clears bits of the attribute bitfield of a currently loaded object.\n\nIs a wrapper around ResetAttributeBitfieldLiveObject, meaning this calls ResetAttributeBitfieldLiveObject with a first parameter of live_object::id.\n\nr0: live object\nr1: attribute bitfield",
+        None,
+    )
+
+    SetBlinkLiveObject = Symbol(
+        [0x210A0],
+        [0x22FE980],
+        None,
+        "SetBlinkLiveObject",
+        "Sets the object to blink in and out of sight at certain intervals.\n\nr0: live object\nr1: frame interval for blinking in\nr2: frame interval for blinking out",
+        None,
+    )
+
+    SetPositionOffsetLiveObject = Symbol(
+        [0x210B0],
+        [0x22FE990],
+        None,
+        "SetPositionOffsetLiveObject",
+        "Offsets a currently loaded object's position.\n\nr0: live object\nr1: pointer to an position offset vector",
+        None,
+    )
+
+    DeleteLivePerformer = Symbol(
+        [0x2197C],
+        [0x22FF25C],
+        None,
+        "DeleteLivePerformer",
+        "Remove the performer from the performer list (in GROUND_STATE_PTRS)\n\nr0: the index of the performer in the live performer list",
+        None,
+    )
+
+    SetAttributeBitfieldLivePerformer = Symbol(
+        [0x21B28],
+        [0x22FF408],
+        None,
+        "SetAttributeBitfieldLivePerformer",
+        "Sets bits of the attribute bitfield of a currently loaded performer.\n\nr0: live performer id\nr1: attribute bitfield",
+        None,
+    )
+
+    ResetAttributeBitfieldLivePerformer = Symbol(
+        [0x21B68],
+        [0x22FF448],
+        None,
+        "ResetAttributeBitfieldLivePerformer",
+        "Clears bits of the attribute bitfield of a currently loaded performer.\n\nr0: live performer id\nr1: attribute bitfield",
+        None,
+    )
+
+    UnlockPerformerRoutines = Symbol(
+        [0x220E4],
+        [0x22FF9C4],
+        None,
+        "UnlockPerformerRoutines",
+        "Attempts to unlock all live performer routines of the current script.\n\nr0: lock id\nreturn: True if any script routine was successfully unlocked",
+        None,
+    )
+
+    SetPositionLivePerformer = Symbol(
+        [0x22194],
+        [0x22FFA74],
+        None,
+        "SetPositionLivePerformer",
+        "Sets the position for a currently loaded performer.\n\nr0: live performer\nr1: pointer to a position vector",
+        None,
+    )
+
+    GetIdLivePerformer = Symbol(
+        [0x22220],
+        [0x22FFB00],
+        None,
+        "GetIdLivePerformer",
+        "Returns the ID of a currently loaded performer. This ID can then be used to index GROUND_STATE_PTRS::performers.\n\nr0: live performer\nreturn: id",
+        None,
+    )
+
+    GetCollisionBoxLivePerformer = Symbol(
+        [0x22228],
+        [0x22FFB08],
+        None,
+        "GetCollisionBoxLivePerformer",
+        "Gets the collision box of a currently loaded performer.\n\nr0: live performer\nr1: [output] collision box buffer",
+        None,
+    )
+
+    SetPositionInitialLivePerformer = Symbol(
+        [0x2223C],
+        [0x22FFB1C],
+        None,
+        "SetPositionInitialLivePerformer",
+        "Sets a currently loaded performer to return to its initial position.\n\nr0: live performer\nr1: pointer to an position vector; if null, performer will return to its initial position",
+        None,
+    )
+
+    SetMovementRangeLivePerformer = Symbol(
+        [0x222F8],
+        [0x22FFBD8],
+        None,
+        "SetMovementRangeLivePerformer",
+        "Sets a currently loaded performer's random movement range.\n\nr0: live performer\nr1: pointer to limit_min_pos\nr2: pointer to limit_max_pos",
+        None,
+    )
+
+    GetCollisionBoxCenterLivePerformer = Symbol(
+        [0x2231C],
+        [0x22FFBFC],
+        None,
+        "GetCollisionBoxCenterLivePerformer",
+        "Gets the center of a collision box of a currently loaded performer.\n\nThis simply adds the performer's minimum coordinates by half the size of the performer's collision box.\n\nr0: live performer\nr1: [output] collision box center buffer",
+        None,
+    )
+
+    SetPositionLivePerformerVeneer = Symbol(
+        [0x22340],
+        [0x22FFC20],
+        None,
+        "SetPositionLivePerformerVeneer",
+        "Likely a linker-generated veneer for SetPositionLivePerformer.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: live performer\nr1: pointer to a position vector",
+        None,
+    )
+
+    GetHeightLivePerformer = Symbol(
+        [0x2234C],
+        [0x22FFC2C],
+        None,
+        "GetHeightLivePerformer",
+        "Gets the two height values of a currently loaded performer.\n\nr0: live performer\nr1: [output] pointer to first height value\nr2: [output] pointer to second height value, which is curiously not referenced by SetHeightLivePerformer",
+        None,
+    )
+
+    SetHeightLivePerformer = Symbol(
+        [0x22360],
+        [0x22FFC40],
+        None,
+        "SetHeightLivePerformer",
+        "Sets the height of a currently loaded performer.\n\nr0: live performer\nr1: height",
+        None,
+    )
+
+    GetDirectionLivePerformer = Symbol(
+        [0x22368],
+        [0x22FFC48],
+        None,
+        "GetDirectionLivePerformer",
+        "Gets the direction of a currently loaded performer.\n\nr0: live performer\nr1: [output] pointer to direction",
+        None,
+    )
+
+    SetDirectionLivePerformer = Symbol(
+        [0x22378],
+        [0x22FFC58],
+        None,
+        "SetDirectionLivePerformer",
+        "Sets the direction of a currently loaded performer. Does nothing if the direction value passed is -1.\n\nr0: live performer\nr1: direction",
+        None,
+    )
+
+    SetAnimationLivePerformer = Symbol(
+        [0x22388],
+        [0x22FFC68],
+        None,
+        "SetAnimationLivePerformer",
+        "Sets the animation of a currently loaded performer.\n\nr0: live performer\nr1: SetAnimation parameter",
+        None,
+    )
+
+    SetEffectLivePerformer = Symbol(
+        [0x22448],
+        [0x22FFD28],
+        None,
+        "SetEffectLivePerformer",
+        "Sets the effect of a currently loaded performer.\n\nr0: live performer\nr1: flag (true if effect id is 0?)\nr2: effect id",
+        None,
+    )
+
+    GetAnimationStatusLivePerformer = Symbol(
+        [0x22458],
+        [0x22FFD38],
+        None,
+        "GetAnimationStatusLivePerformer",
+        "Gets the animation status of a currently loaded performer.\n\nUsed to determine if the animation has finished via script opcodes like WaitAnimation and WaitEndAnimation.\n\nr0: live performer\nreturn: status",
+        None,
+    )
+
+    GetEffectStatusLivePerformer = Symbol(
+        [0x22478],
+        [0x22FFD58],
+        None,
+        "GetEffectStatusLivePerformer",
+        "Gets the effect status of a currently loaded performer.\n\nUsed to determine if an effect has finished via the script opcode WaitEffect.\n\nr0: live performer\nreturn: status",
+        None,
+    )
+
+    GetAttributeBitfieldLivePerformer = Symbol(
+        [0x224B0],
+        [0x22FFD90],
+        None,
+        "GetAttributeBitfieldLivePerformer",
+        "Gets the attribute bitfield of a currently loaded performer.\n\nr0: live performer\nr1: [output] pointer to attribute bitfield",
+        None,
+    )
+
+    SetAttributeBitfieldLivePerformerWrapper = Symbol(
+        [0x224BC],
+        [0x22FFD9C],
+        None,
+        "SetAttributeBitfieldLivePerformerWrapper",
+        "Sets bits of the attribute bitfield of a currently loaded performer.\n\nIs a wrapper around SetAttributeBitfieldLivePerformer, meaning this calls SetAttributeBitfieldLivePerformer with a first parameter of live_performer::id.\n\nr0: live performer\nr1: attribute bitfield",
+        None,
+    )
+
+    ResetAttributeBitfieldLivePerformerWrapper = Symbol(
+        [0x224CC],
+        [0x22FFDAC],
+        None,
+        "ResetAttributeBitfieldLivePerformerWrapper",
+        "Clears bits of the attribute bitfield of a currently loaded performer.\n\nIs a wrapper around ResetAttributeBitfieldLivePerformer, meaning this calls ResetAttributeBitfieldLivePerformer with a first parameter of live_performer::id.\n\nr0: live performer\nr1: attribute bitfield",
+        None,
+    )
+
+    SetBlinkLivePerformer = Symbol(
+        [0x224DC],
+        [0x22FFDBC],
+        None,
+        "SetBlinkLivePerformer",
+        "Sets the performer to blink in and out of sight at certain intervals.\n\nr0: live performer\nr1: frame interval for blinking in\nr2: frame interval for blinking out",
+        None,
+    )
+
+    SetPositionOffsetLivePerformer = Symbol(
+        [0x224EC],
+        [0x22FFDCC],
+        None,
+        "SetPositionOffsetLivePerformer",
+        "Offsets a currently loaded performer's position.\n\nr0: live performer\nr1: pointer to an position offset vector",
+        None,
+    )
+
+    DeleteLiveEvent = Symbol(
+        [0x229F0],
+        [0x23002D0],
+        None,
+        "DeleteLiveEvent",
+        "Remove the event from the event list (in GROUND_STATE_PTRS)\n\nr0: the index of the event in the live event list",
+        None,
+    )
+
+    GetCollidingEventId = Symbol(
+        [0x22B80],
+        [0x2300460],
+        None,
+        "GetCollidingEventId",
+        "Returns the first colliding event given a series of vector coordinates.\n\nr0: attribute bitfield to test events against\nr1: pointer to coord_min\nr2: pointer to coord_max\nreturn: The first colliding event's id, or -1 if no is collision detected",
         None,
     )
 
@@ -19295,6 +20051,15 @@ class JpOverlay11Data:
         "struct level_tilemap_list_entry[81]",
     )
 
+    ACTOR_FUNCTION_TABLE = Symbol(
+        [0x45500],
+        [0x2322DE0],
+        0x50,
+        "ACTOR_FUNCTION_TABLE",
+        "A function pointer table accessed when performing script opcodes on actors.",
+        "struct ground_entity_function_table",
+    )
+
     SETANIMATION_TABLE = Symbol(
         [0x45550],
         [0x2322E30],
@@ -19302,6 +20067,24 @@ class JpOverlay11Data:
         "SETANIMATION_TABLE",
         "Table that associates the parameter of the SetAnimation scripting opcode to animation data.\n\nThe first entry is unused and has a value of 0xFFFF.",
         "struct animation_data[84]",
+    )
+
+    OBJECT_FUNCTION_TABLE = Symbol(
+        [0x45A80],
+        [0x2323360],
+        0x50,
+        "OBJECT_FUNCTION_TABLE",
+        "A function pointer table accessed when performing script opcodes on objects.",
+        "struct ground_entity_function_table",
+    )
+
+    PERFORMER_FUNCTION_TABLE = Symbol(
+        [0x45D94],
+        [0x2323674],
+        0x50,
+        "PERFORMER_FUNCTION_TABLE",
+        "A function pointer table accessed when performing script opcodes on performers.",
+        "struct ground_entity_function_table",
     )
 
     TEAM_INFO_BOX_DEFAULT_WINDOW_PARAMS = Symbol(
