@@ -2482,6 +2482,15 @@ class EuArm9Functions:
         None,
     )
 
+    RemoveItemFromKecleonShop1 = Symbol(
+        [0x10914],
+        [0x2010914],
+        None,
+        "RemoveItemFromKecleonShop1",
+        "Removes an item from the first Kecleon Shop at a specific slot in the shop list.\n\nr0: item slot (0-7)",
+        None,
+    )
+
     SortKecleonItems1 = Symbol(
         [0x109FC],
         [0x20109FC],
@@ -2500,6 +2509,24 @@ class EuArm9Functions:
         None,
     )
 
+    AddItemToKecleonShop1 = Symbol(
+        [0x10B70],
+        [0x2010B70],
+        None,
+        "AddItemToKecleonShop1",
+        "Tries to add the item to the first Kecleon shop. If there is no space, no item is added.\n\nr0: item ID\nreturn: whether the item was added succesfully",
+        None,
+    )
+
+    RemoveItemFromKecleonShop2 = Symbol(
+        [0x10C20],
+        [0x2010C20],
+        None,
+        "RemoveItemFromKecleonShop2",
+        "Removes an item from the second Kecleon Shop at a specific slot in the shop list.\n\nr0: item slot (0-4)",
+        None,
+    )
+
     SortKecleonItems2 = Symbol(
         [0x10D08],
         [0x2010D08],
@@ -2515,6 +2542,15 @@ class EuArm9Functions:
         None,
         "GenerateKecleonItems2",
         "Generates the Kecleon Shop items for the TMs/Orbs shop in Treasure Town.\n\nr0: kecleon_shop_version to use",
+        None,
+    )
+
+    AddItemToKecleonShop2 = Symbol(
+        [0x10E74],
+        [0x2010E74],
+        None,
+        "AddItemToKecleonShop2",
+        "Tries to add the item to the second Kecleon shop. If there is no space, no item is added.\n\nr0: item ID\nreturn: whether the item was added succesfully",
         None,
     )
 
@@ -30251,6 +30287,15 @@ class EuOverlay29Functions:
         None,
         "OpenMenu",
         "Opens a menu. The menu to open depends on the specified parameter.\n\nIt looks like the function takes a parameter in r0, but doesn't use it. r1 doesn't even get set when this function is called.\n\nr0: (?) Unused by the function. Seems to be 1 byte long.\nr1: (?) Unused by the function. Seems to be 1 byte long.\nr2: True to open the bag menu, false to open the main dungeon menu",
+        None,
+    )
+
+    DungeonModeSetupAndShowNameKeyboard = Symbol(
+        [0x73094],
+        [0x234FC14],
+        None,
+        "DungeonModeSetupAndShowNameKeyboard",
+        "Sets up and opens the naming keyboard in dungeon mode.\n\nr0: [output] keyboard result, also the inital string\nr1: buffer?\nr2: ?\nreturn: ?",
         None,
     )
 

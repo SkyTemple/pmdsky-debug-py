@@ -1422,6 +1422,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    RemoveItemFromKecleonShop1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SortKecleonItems1: Symbol[
         Optional[list[int]],
         None,
@@ -1432,12 +1437,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    AddItemToKecleonShop1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveItemFromKecleonShop2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SortKecleonItems2: Symbol[
         Optional[list[int]],
         None,
     ]
 
     GenerateKecleonItems2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AddItemToKecleonShop2: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -17921,6 +17941,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     OpenMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DungeonModeSetupAndShowNameKeyboard: Symbol[
         Optional[list[int]],
         None,
     ]
