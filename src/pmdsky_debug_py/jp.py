@@ -2483,8 +2483,8 @@ class JpArm9Functions:
     )
 
     RemoveItemFromKecleonShop1 = Symbol(
-        None,
-        None,
+        [0x1083C],
+        [0x201083C],
         None,
         "RemoveItemFromKecleonShop1",
         "Removes an item from the first Kecleon Shop at a specific slot in the shop list.\n\nr0: item slot (0-7)",
@@ -2510,8 +2510,8 @@ class JpArm9Functions:
     )
 
     AddItemToKecleonShop1 = Symbol(
-        None,
-        None,
+        [0x10A98],
+        [0x2010A98],
         None,
         "AddItemToKecleonShop1",
         "Tries to add the item to the first Kecleon shop. If there is no space, no item is added.\n\nr0: item ID\nreturn: whether the item was added succesfully",
@@ -2519,8 +2519,8 @@ class JpArm9Functions:
     )
 
     RemoveItemFromKecleonShop2 = Symbol(
-        None,
-        None,
+        [0x10B48],
+        [0x2010B48],
         None,
         "RemoveItemFromKecleonShop2",
         "Removes an item from the second Kecleon Shop at a specific slot in the shop list.\n\nr0: item slot (0-4)",
@@ -2546,8 +2546,8 @@ class JpArm9Functions:
     )
 
     AddItemToKecleonShop2 = Symbol(
-        None,
-        None,
+        [0x10D9C],
+        [0x2010D9C],
         None,
         "AddItemToKecleonShop2",
         "Tries to add the item to the second Kecleon shop. If there is no space, no item is added.\n\nr0: item ID\nreturn: whether the item was added succesfully",
@@ -30282,8 +30282,8 @@ class JpOverlay29Functions:
     )
 
     DungeonModeSetupAndShowNameKeyboard = Symbol(
-        None,
-        None,
+        [0x729AC],
+        [0x235028C],
         None,
         "DungeonModeSetupAndShowNameKeyboard",
         "Sets up and opens the naming keyboard in dungeon mode.\n\nr0: [output] keyboard result, also the inital string\nr1: buffer?\nr2: ?\nreturn: ?",

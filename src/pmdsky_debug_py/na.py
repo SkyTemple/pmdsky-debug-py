@@ -2483,8 +2483,8 @@ class NaArm9Functions:
     )
 
     RemoveItemFromKecleonShop1 = Symbol(
-        None,
-        None,
+        [0x1086C],
+        [0x201086C],
         None,
         "RemoveItemFromKecleonShop1",
         "Removes an item from the first Kecleon Shop at a specific slot in the shop list.\n\nr0: item slot (0-7)",
@@ -2510,8 +2510,8 @@ class NaArm9Functions:
     )
 
     AddItemToKecleonShop1 = Symbol(
-        None,
-        None,
+        [0x10AC8],
+        [0x2010AC8],
         None,
         "AddItemToKecleonShop1",
         "Tries to add the item to the first Kecleon shop. If there is no space, no item is added.\n\nr0: item ID\nreturn: whether the item was added succesfully",
@@ -2519,8 +2519,8 @@ class NaArm9Functions:
     )
 
     RemoveItemFromKecleonShop2 = Symbol(
-        None,
-        None,
+        [0x10B78],
+        [0x2010B78],
         None,
         "RemoveItemFromKecleonShop2",
         "Removes an item from the second Kecleon Shop at a specific slot in the shop list.\n\nr0: item slot (0-4)",
@@ -2546,8 +2546,8 @@ class NaArm9Functions:
     )
 
     AddItemToKecleonShop2 = Symbol(
-        None,
-        None,
+        [0x10DCC],
+        [0x2010DCC],
         None,
         "AddItemToKecleonShop2",
         "Tries to add the item to the second Kecleon shop. If there is no space, no item is added.\n\nr0: item ID\nreturn: whether the item was added succesfully",
@@ -30289,8 +30289,8 @@ class NaOverlay29Functions:
     )
 
     DungeonModeSetupAndShowNameKeyboard = Symbol(
-        None,
-        None,
+        [0x72DC8],
+        [0x234F008],
         None,
         "DungeonModeSetupAndShowNameKeyboard",
         "Sets up and opens the naming keyboard in dungeon mode.\n\nr0: [output] keyboard result, also the inital string\nr1: buffer?\nr2: ?\nreturn: ?",
