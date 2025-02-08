@@ -6464,7 +6464,16 @@ class JpItcmArm9Functions:
         None,
         None,
         "WonderMailPasswordToMission",
-        "Tries to convert a Wonder Mail S password to a mission struct.\n\nReturns whether the conversion was successful. This function does not include any checks if the mission itself is valid, only if the code is valid.\n\nr0: string\nr1: Pointer to the struct where the data of the converted mission will be written to\nreturn: successful conversion",
+        "Tries to convert a Wonder Mail S password to a mission struct.\n\nReturns whether the conversion was successful. This function does not include any checks if the mission itself is valid, only if the code is valid.\n\nr0: string\nr1: [output] Pointer to the struct where the data of the converted mission will be written to\nreturn: successful conversion",
+        None,
+    )
+
+    MissionToWonderMailPassword = Symbol(
+        None,
+        None,
+        None,
+        "MissionToWonderMailPassword",
+        "Converts a mission struct to a Wonder Mail S password.\n\nr0: [output] Pointer to the buffer where the string will be written\nr1: mission struct pointer",
         None,
     )
 
@@ -8741,7 +8750,7 @@ class JpItcmArm9Functions:
         None,
         None,
         "GetAcceptedMission",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: mission_id\nreturn: mission",
+        "Gets the mission struct corresponding to a certain mission number in the player's job list.\n\nr0: mission id in player's job list\nreturn: mission struct pointer",
         None,
     )
 
@@ -8831,7 +8840,25 @@ class JpItcmArm9Functions:
         None,
         None,
         "ClearMissionData",
-        "Given a mission struct, clears some of it fields.\n\nIn particular, mission::status is set to mission_status::MISSION_STATUS_INVALID, mission::dungeon_id is set to -1, mission::floor is set to 0 and mission::reward_type is set to mission_reward_type::MISSION_REWARD_MONEY.\n\nr0: Pointer to the mission to clear",
+        "Given a mission struct, clears some of its fields.\n\nIn particular, mission::status is set to mission_status::MISSION_STATUS_INVALID, mission::dungeon_id is set to -1, mission::floor is set to 0 and mission::reward_type is set to mission_reward_type::MISSION_REWARD_MONEY.\n\nr0: Pointer to the mission to clear",
+        None,
+    )
+
+    ValidateNormalChallengeMission = Symbol(
+        None,
+        None,
+        None,
+        "ValidateNormalChallengeMission",
+        "Validates a normal (non-legendary) challenge letter mission by checking whether its client (leader), target (second member), and outlaw_backup_species (third member) match those of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_rescue_bin struct pointer\nr1: mission struct pointer\nreturn: bool",
+        None,
+    )
+
+    ValidateLegendaryChallengeMission = Symbol(
+        None,
+        None,
+        None,
+        "ValidateLegendaryChallengeMission",
+        "Validates a legendary challenge letter mission by checking whether its dungeon matches the restricted dungeon of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_rescue_bin struct pointer\nr1: mission struct pointer\nreturn: bool",
         None,
     )
 
@@ -24261,6 +24288,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    GetPlayerGender = Symbol(
+        None,
+        None,
+        None,
+        "GetPlayerGender",
+        "Gets the gender of the player.\n\nreturn: monster_gender",
+        None,
+    )
+
     UseSingleUseItemWrapper = Symbol(
         None,
         None,
@@ -29202,6 +29238,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    FillMissionDestinationInfo = Symbol(
+        None,
+        None,
+        None,
+        "FillMissionDestinationInfo",
+        "Fills the dungeon::mission_destination_info field with information from the currently active mission on the floor, if one is present.\n\nNo params.",
+        None,
+    )
+
     CheckActiveChallengeRequest = Symbol(
         None,
         None,
@@ -29433,6 +29478,15 @@ class JpItcmOverlay29Functions:
         None,
         "FloorHasMissionMonster",
         "Checks if a given floor is a mission destination with a special monster, either a target to rescue or an enemy to defeat.\n\nMission types with a monster on the destination floor:\n- Rescue client\n- Rescue target\n- Escort to target\n- Deliver item\n- Search for target\n- Take item from outlaw\n- Arrest outlaw\n- Challenge Request\n\nr0: mission destination info pointer\nreturn: bool",
+        None,
+    )
+
+    GetMissionIfActiveOnFloor = Symbol(
+        None,
+        None,
+        None,
+        "GetMissionIfActiveOnFloor",
+        "If the current dungeon floor has the mission corresponding to the mission number active on it, returns its mission struct.\n\nr0: dungeon_floor_pair struct pointer\nr1: mission id in player's job list\nreturn: mission struct pointer",
         None,
     )
 

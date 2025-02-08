@@ -3662,6 +3662,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    MissionToWonderMailPassword: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetEnterDungeon: Symbol[
         Optional[list[int]],
         None,
@@ -4973,6 +4978,16 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     ClearMissionData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ValidateNormalChallengeMission: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ValidateLegendaryChallengeMission: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -14915,6 +14930,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetPlayerGender: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UseSingleUseItemWrapper: Symbol[
         Optional[list[int]],
         None,
@@ -17660,6 +17680,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    FillMissionDestinationInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CheckActiveChallengeRequest: Symbol[
         Optional[list[int]],
         None,
@@ -17786,6 +17811,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     FloorHasMissionMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetMissionIfActiveOnFloor: Symbol[
         Optional[list[int]],
         None,
     ]
