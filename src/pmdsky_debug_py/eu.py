@@ -20467,22 +20467,22 @@ class EuOverlay13Data:
         "",
     )
 
-    OVERLAY13_UNKNOWN_POINTER__NA_238CEA4 = Symbol(
+    PARTNER_SELECT_MENU_OPTION_TRACKER = Symbol(
         [0x2D64],
         [0x238D9E4],
         0x4,
-        "OVERLAY13_UNKNOWN_POINTER__NA_238CEA4",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "PARTNER_SELECT_MENU_OPTION_TRACKER",
+        "Keeps track of the currently hovered option in the partner menu to change\nthe portrait when the another option is hovered.",
+        "uint32_t",
     )
 
-    OVERLAY13_UNKNOWN_POINTER__NA_238CEA8 = Symbol(
+    PARTNER_SELECT_MENU_OPTION_TIMER = Symbol(
         [0x2D68],
         [0x238D9E8],
         0x4,
-        "OVERLAY13_UNKNOWN_POINTER__NA_238CEA8",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "PARTNER_SELECT_MENU_OPTION_TIMER",
+        "Keeps track of how long the currently hovered option in the partner menu\nhas been hovered over. Used to change the portrait to happy after some time\nhas elapsed.",
+        "uint32_t",
     )
 
     QUIZ_WINDOW_PARAMS_5 = Symbol(

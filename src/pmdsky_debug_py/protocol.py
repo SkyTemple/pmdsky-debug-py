@@ -12440,12 +12440,12 @@ class Overlay13DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY13_UNKNOWN_POINTER__NA_238CEA4: Symbol[
+    PARTNER_SELECT_MENU_OPTION_TRACKER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY13_UNKNOWN_POINTER__NA_238CEA8: Symbol[
+    PARTNER_SELECT_MENU_OPTION_TIMER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
