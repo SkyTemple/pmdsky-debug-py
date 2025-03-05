@@ -17121,7 +17121,7 @@ class NaOverlay10Data:
         [0x22C444C],
         0x2,
         "ROCK_SLIDE_CRINGE_CHANCE",
-        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the cringe status, as a percentage (30%)",
+        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the cringe status, as a percentage (30%).",
         "int16_t",
     )
 
@@ -17131,6 +17131,15 @@ class NaOverlay10Data:
         0x2,
         "CRUNCH_LOWER_DEFENSE_CHANCE",
         "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering defense, as a percentage (20%).",
+        "int16_t",
+    )
+
+    TRAP_BUSTER_ACTIVATION_CHANCE = Symbol(
+        [0x79DC],
+        [0x22C445C],
+        0x2,
+        "TRAP_BUSTER_ACTIVATION_CHANCE",
+        "The chance of Trap Buster activating (30%).",
         "int16_t",
     )
 
@@ -31377,6 +31386,24 @@ class NaOverlay29Data:
         "DUNGEON_FADES_PTR",
         "[Runtime] Pointer to the dungeon fades struct that maintains the status of screen fades in dungeon mode.",
         "struct dungeon_fades*",
+    )
+
+    VISIBLE_TRAP_FAIL_CHANCE = Symbol(
+        [0x11EAC],
+        [0x22EE0EC],
+        None,
+        "VISIBLE_TRAP_FAIL_CHANCE",
+        "Chance of visible traps failing to work (0%)",
+        "struct data_processing_instruction",
+    )
+
+    HIDDEN_TRAP_FAIL_CHANCE = Symbol(
+        [0x11EC0],
+        [0x22EE100],
+        None,
+        "HIDDEN_TRAP_FAIL_CHANCE",
+        "Chance of hidden traps failing to work (15%)",
+        "struct data_processing_instruction",
     )
 
     NECTAR_IQ_BOOST = Symbol(

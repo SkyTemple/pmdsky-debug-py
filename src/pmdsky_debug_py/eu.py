@@ -17121,7 +17121,7 @@ class EuOverlay10Data:
         [0x22C4DA4],
         None,
         "ROCK_SLIDE_CRINGE_CHANCE",
-        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the cringe status, as a percentage (30%)",
+        "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the cringe status, as a percentage (30%).",
         "int16_t",
     )
 
@@ -17131,6 +17131,15 @@ class EuOverlay10Data:
         None,
         "CRUNCH_LOWER_DEFENSE_CHANCE",
         "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering defense, as a percentage (20%).",
+        "int16_t",
+    )
+
+    TRAP_BUSTER_ACTIVATION_CHANCE = Symbol(
+        [0x79F4],
+        [0x22C4DB4],
+        None,
+        "TRAP_BUSTER_ACTIVATION_CHANCE",
+        "The chance of Trap Buster activating (30%).",
         "int16_t",
     )
 
@@ -31379,6 +31388,24 @@ class EuOverlay29Data:
         "DUNGEON_FADES_PTR",
         "[Runtime] Pointer to the dungeon fades struct that maintains the status of screen fades in dungeon mode.",
         "struct dungeon_fades*",
+    )
+
+    VISIBLE_TRAP_FAIL_CHANCE = Symbol(
+        [0x11F1C],
+        [0x22EEA9C],
+        None,
+        "VISIBLE_TRAP_FAIL_CHANCE",
+        "Chance of visible traps failing to work (0%)",
+        "struct data_processing_instruction",
+    )
+
+    HIDDEN_TRAP_FAIL_CHANCE = Symbol(
+        [0x11F30],
+        [0x22EEAB0],
+        None,
+        "HIDDEN_TRAP_FAIL_CHANCE",
+        "Chance of hidden traps failing to work (15%)",
+        "struct data_processing_instruction",
     )
 
     NECTAR_IQ_BOOST = Symbol(

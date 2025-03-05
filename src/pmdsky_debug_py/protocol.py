@@ -10552,6 +10552,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    TRAP_BUSTER_ACTIVATION_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     FOREWARN_FORCED_MISS_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -18496,6 +18501,16 @@ class Overlay29DataProtocol(Protocol):
     DUNGEON_FADES_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
+    ]
+
+    VISIBLE_TRAP_FAIL_CHANCE: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HIDDEN_TRAP_FAIL_CHANCE: Symbol[
+        Optional[list[int]],
+        None,
     ]
 
     NECTAR_IQ_BOOST: Symbol[
