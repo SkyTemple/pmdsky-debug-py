@@ -18323,6 +18323,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MONSTER_TREATMENT_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     DAMAGE_MULTIPLIER_0_5: Symbol[
         Optional[list[int]],
         Optional[int],

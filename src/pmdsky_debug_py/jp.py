@@ -6515,8 +6515,8 @@ class JpArm9Functions:
     )
 
     MissionToWonderMailPassword = Symbol(
-        None,
-        None,
+        [0x4E1DC],
+        [0x204E1DC],
         None,
         "MissionToWonderMailPassword",
         "Converts a mission struct to a Wonder Mail S password.\n\nr0: [output] Pointer to the buffer where the string will be written\nr1: mission struct pointer",
@@ -8891,8 +8891,8 @@ class JpArm9Functions:
     )
 
     ValidateNormalChallengeMission = Symbol(
-        None,
-        None,
+        [0x60AF4],
+        [0x2060AF4],
         None,
         "ValidateNormalChallengeMission",
         "Validates a normal (non-legendary) challenge letter mission by checking whether its client (leader), target (second member), and outlaw_backup_species (third member) match those of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_rescue_bin struct pointer\nr1: mission struct pointer\nreturn: bool",
@@ -8900,8 +8900,8 @@ class JpArm9Functions:
     )
 
     ValidateLegendaryChallengeMission = Symbol(
-        None,
-        None,
+        [0x60BF4],
+        [0x2060BF4],
         None,
         "ValidateLegendaryChallengeMission",
         "Validates a legendary challenge letter mission by checking whether its dungeon matches the restricted dungeon of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_rescue_bin struct pointer\nr1: mission struct pointer\nreturn: bool",
@@ -17130,8 +17130,8 @@ class JpOverlay10Data:
     )
 
     TRAP_BUSTER_ACTIVATION_CHANCE = Symbol(
-        None,
-        None,
+        [0x7924],
+        [0x22C5B44],
         0x2,
         "TRAP_BUSTER_ACTIVATION_CHANCE",
         "The chance of Trap Buster activating (30%).",
@@ -24818,8 +24818,8 @@ class JpOverlay29Functions:
     )
 
     GetPlayerGender = Symbol(
-        None,
-        None,
+        [0x17FF0],
+        [0x22F58D0],
         None,
         "GetPlayerGender",
         "Gets the gender of the player.\n\nreturn: monster_gender",
@@ -29814,8 +29814,8 @@ class JpOverlay29Functions:
     )
 
     FillMissionDestinationInfo = Symbol(
-        None,
-        None,
+        [0x6BF48],
+        [0x2349828],
         None,
         "FillMissionDestinationInfo",
         "Fills the dungeon::mission_destination_info field with information from the currently active mission on the floor, if one is present.\n\nNo params.",
@@ -30959,6 +30959,15 @@ class JpOverlay29Data:
         "uint16_t",
     )
 
+    MONSTER_TREATMENT_DATA = Symbol(
+        [0x76140],
+        [0x2353A20],
+        0x20,
+        "MONSTER_TREATMENT_DATA",
+        "A 4D array of monster_treatment enum values. Used by GetTreatmentBetweenMonsters to determine treatment based on several parameters.\nThe parameters are (in order of how the array is indexed):\n1. Value from 0-3 based on entity1's decoy_ai_tracker value.\n  If decoy_ai_tracker is 0 and the entity is the leader, this value is 0. Otherwise it is decoy_ai_tracker + 1\n2. Boolean value for whether entity1 is a wild Pokémon.\n3. Boolean value for whether entity2 is a wild Pokémon.\n4. Boolean value for whether entity2 is a decoy.",
+        "enum monster_treatment[4][2][2][2]",
+    )
+
     DAMAGE_MULTIPLIER_0_5 = Symbol(
         [0x761DC],
         [0x2353ABC],
@@ -31284,8 +31293,8 @@ class JpOverlay29Data:
     )
 
     VISIBLE_TRAP_FAIL_CHANCE = Symbol(
-        None,
-        None,
+        [0x11E70],
+        [0x22EF750],
         None,
         "VISIBLE_TRAP_FAIL_CHANCE",
         "Chance of visible traps failing to work (0%)",
@@ -31293,8 +31302,8 @@ class JpOverlay29Data:
     )
 
     HIDDEN_TRAP_FAIL_CHANCE = Symbol(
-        None,
-        None,
+        [0x11E84],
+        [0x22EF764],
         None,
         "HIDDEN_TRAP_FAIL_CHANCE",
         "Chance of hidden traps failing to work (15%)",

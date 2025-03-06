@@ -31066,6 +31066,15 @@ class EuOverlay29Data:
         "uint16_t",
     )
 
+    MONSTER_TREATMENT_DATA = Symbol(
+        [0x7682C],
+        [0x23533AC],
+        0x20,
+        "MONSTER_TREATMENT_DATA",
+        "A 4D array of monster_treatment enum values. Used by GetTreatmentBetweenMonsters to determine treatment based on several parameters.\nThe parameters are (in order of how the array is indexed):\n1. Value from 0-3 based on entity1's decoy_ai_tracker value.\n  If decoy_ai_tracker is 0 and the entity is the leader, this value is 0. Otherwise it is decoy_ai_tracker + 1\n2. Boolean value for whether entity1 is a wild Pokémon.\n3. Boolean value for whether entity2 is a wild Pokémon.\n4. Boolean value for whether entity2 is a decoy.",
+        "enum monster_treatment[4][2][2][2]",
+    )
+
     DAMAGE_MULTIPLIER_0_5 = Symbol(
         [0x768C8],
         [0x2353448],

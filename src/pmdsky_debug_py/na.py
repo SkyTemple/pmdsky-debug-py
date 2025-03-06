@@ -6515,8 +6515,8 @@ class NaArm9Functions:
     )
 
     MissionToWonderMailPassword = Symbol(
-        None,
-        None,
+        [0x4DE7C],
+        [0x204DE7C],
         None,
         "MissionToWonderMailPassword",
         "Converts a mission struct to a Wonder Mail S password.\n\nr0: [output] Pointer to the buffer where the string will be written\nr1: mission struct pointer",
@@ -8891,8 +8891,8 @@ class NaArm9Functions:
     )
 
     ValidateNormalChallengeMission = Symbol(
-        None,
-        None,
+        [0x60804],
+        [0x2060804],
         None,
         "ValidateNormalChallengeMission",
         "Validates a normal (non-legendary) challenge letter mission by checking whether its client (leader), target (second member), and outlaw_backup_species (third member) match those of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_rescue_bin struct pointer\nr1: mission struct pointer\nreturn: bool",
@@ -8900,8 +8900,8 @@ class NaArm9Functions:
     )
 
     ValidateLegendaryChallengeMission = Symbol(
-        None,
-        None,
+        [0x60904],
+        [0x2060904],
         None,
         "ValidateLegendaryChallengeMission",
         "Validates a legendary challenge letter mission by checking whether its dungeon matches the restricted dungeon of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_rescue_bin struct pointer\nr1: mission struct pointer\nreturn: bool",
@@ -24825,8 +24825,8 @@ class NaOverlay29Functions:
     )
 
     GetPlayerGender = Symbol(
-        None,
-        None,
+        [0x18098],
+        [0x22F42D8],
         None,
         "GetPlayerGender",
         "Gets the gender of the player.\n\nreturn: monster_gender",
@@ -29821,8 +29821,8 @@ class NaOverlay29Functions:
     )
 
     FillMissionDestinationInfo = Symbol(
-        None,
-        None,
+        [0x6C260],
+        [0x23484A0],
         None,
         "FillMissionDestinationInfo",
         "Fills the dungeon::mission_destination_info field with information from the currently active mission on the floor, if one is present.\n\nNo params.",
@@ -30064,8 +30064,8 @@ class NaOverlay29Functions:
     )
 
     GetMissionIfActiveOnFloor = Symbol(
-        None,
-        None,
+        [0x6D550],
+        [0x2349790],
         None,
         "GetMissionIfActiveOnFloor",
         "If the current dungeon floor has the mission corresponding to the mission number active on it, returns its mission struct.\n\nr0: dungeon_floor_pair struct pointer\nr1: mission id in player's job list\nreturn: mission struct pointer",
@@ -31062,6 +31062,15 @@ class NaOverlay29Data:
         "BELLY_DRAIN_IN_WALLS_THOUSANDTHS",
         "The additional amount by which belly is decreased every turn when inside walls (fractional thousandths)",
         "uint16_t",
+    )
+
+    MONSTER_TREATMENT_DATA = Symbol(
+        [0x76560],
+        [0x23527A0],
+        0x20,
+        "MONSTER_TREATMENT_DATA",
+        "A 4D array of monster_treatment enum values. Used by GetTreatmentBetweenMonsters to determine treatment based on several parameters.\nThe parameters are (in order of how the array is indexed):\n1. Value from 0-3 based on entity1's decoy_ai_tracker value.\n  If decoy_ai_tracker is 0 and the entity is the leader, this value is 0. Otherwise it is decoy_ai_tracker + 1\n2. Boolean value for whether entity1 is a wild Pokémon.\n3. Boolean value for whether entity2 is a wild Pokémon.\n4. Boolean value for whether entity2 is a decoy.",
+        "enum monster_treatment[4][2][2][2]",
     )
 
     DAMAGE_MULTIPLIER_0_5 = Symbol(
