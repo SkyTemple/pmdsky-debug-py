@@ -2097,6 +2097,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ExecuteCopyToFlatVramCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DecodeFragmentByteAssemblyTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CopyAndInterleaveWrapper: Symbol[
         Optional[list[int]],
         None,
@@ -2238,6 +2248,26 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     ProcessWte: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DelayWteFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetPlannedVramTransfer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlanCopyTextureToTextureVram: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PerformPlannedTextureVramTransfer: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6247,6 +6277,11 @@ class ItcmFunctionsProtocol(Protocol):
 
     CopyAndInterleave: Symbol[
         list[int],
+        None,
+    ]
+
+    CopyAndInterleave0: Symbol[
+        Optional[list[int]],
         None,
     ]
 

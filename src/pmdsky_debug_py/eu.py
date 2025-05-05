@@ -752,7 +752,7 @@ class EuArm9Functions:
         [0x2003328],
         None,
         "TaskProcBoot",
-        "Probably related to booting the game?\n\nThis function prints the debug message 'task proc boot'.\n\nNo params.",
+        "Boot the game and run the main loop. Use dynamic code dispatch to run code depending on the context (like dungeon mode, ground mode, menu mode, etc.).\n\nThis function prints the debug message 'task proc boot'.\n\nNo params.",
         None,
     )
 
@@ -3697,6 +3697,24 @@ class EuArm9Functions:
         None,
     )
 
+    ExecuteCopyToFlatVramCommand = Symbol(
+        [0x1ABA8],
+        [0x201ABA8],
+        None,
+        "ExecuteCopyToFlatVramCommand",
+        "Immediately execute the command contained in a copy_to_obj_vram_order struct, copying content as described.\n\nr0: command",
+        None,
+    )
+
+    DecodeFragmentByteAssemblyTable = Symbol(
+        [0x1AC48],
+        [0x201AC48],
+        None,
+        "DecodeFragmentByteAssemblyTable",
+        "Decode the sprite texture stored in each fragment byte assembly entry into the dst output, until the final one is reached.\n\nr0: pointer to array of fragment byte assembly entry, final (otherwise unused) one should have byte_amount = 0\nr1: dst\nreturn: number of decoded bytes",
+        None,
+    )
+
     CopyAndInterleaveWrapper = Symbol(
         [0x1C08C],
         [0x201C08C],
@@ -3954,7 +3972,43 @@ class EuArm9Functions:
         [0x201E14C],
         None,
         "ProcessWte",
-        "Prepare a WTE data to be loaded into VRAM. Seems to need to be called with another undocumented function (at 0x0201e1d8 (EU))\nIt skips the texture and/or the palette if missing from the file. The texture VRAM has 128KiB of space, and palette has 16KiB.\nThe true palette VRAM offset will be upper_part*0x100+lower_part\n\nThis may or may not be the function that adds to the queue so it can be added during VBlank.\n\nr0: pointer to the WTE file header loaded in memory\nr1: where the WTE texture will be loaded in the VRAM (from 0 to 0x1FFFF)\nr2: upper part of the palette VRAM\nr3: lower part of the palette VRAM",
+        "Prepare and plan a WTE data to be loaded into VRAM.\nIt skips the texture and/or the palette if missing from the file. The texture VRAM has 128KiB of space, and palette has 16KiB.\nThe true palette VRAM offset will be upper_part*0x100+lower_part.\nWill ensure it gets copied next time PerformPlannedTextureVramTransfer is called by the game.\nWill not automatically free the data once done. That can be done with DelayWteFree, which seems systematically called in the game’s code.\n\nr0: pointer to the WTE file header loaded in memory\nr1: where the WTE texture will be loaded in the VRAM (from 0 to 0x1FFFF)\nr2: upper part of the palette VRAM\nr3: lower part of the palette VRAM",
+        None,
+    )
+
+    DelayWteFree = Symbol(
+        [0x1E1D8],
+        [0x201E1D8],
+        None,
+        "DelayWteFree",
+        "Add a command to free the input WTE handle once all previously registered commands that would edit the texture VRAM have been executed.\nAlso nullify the structure’s two pointers.\nThe error caused by the lack of place to store the command is ignored.\n\nr0: wte handle to eventually free",
+        None,
+    )
+
+    ResetPlannedVramTransfer = Symbol(
+        [0x1E270],
+        [0x201E270],
+        None,
+        "ResetPlannedVramTransfer",
+        "Reset the command array of input container\nDoes not reset its other field\n\nr0: the container to reset",
+        None,
+    )
+
+    PlanCopyTextureToTextureVram = Symbol(
+        [0x1E27C],
+        [0x201E27C],
+        None,
+        "PlanCopyTextureToTextureVram",
+        "Add a command in the container (r1) that will be executed later by PerformPlannedTextureVramTransfer to copy part of the RAM into the texture VRAM (or free the source allocated memory depending of the specified type of command).\nCheck for overflow. If an overflow would occur, do not add the command to the container, and return -1 instead.\n\nr0: Container that contain the command list to add to\nr1: pointer to the bytes to be copied in CPU-accessible RAM\nr2: offset to copy too in texture VRAM\nr3: number of bytes to copy\nstack[0]: type of command to perform",
+        None,
+    )
+
+    PerformPlannedTextureVramTransfer = Symbol(
+        [0x1E2CC],
+        [0x201E2CC],
+        None,
+        "PerformPlannedTextureVramTransfer",
+        "Execute the texture VRAM edition command of the input container. Does not reset it, or alter its state in any way.\n\nr0: container that contains the command list to execute",
         None,
     )
 
@@ -11129,7 +11183,16 @@ class EuItcmFunctions:
         [0x20B3CC0],
         None,
         "CopyAndInterleave",
-        "Copies data from src to dst, placing the last 4 bits of val after every 4 bits copied.\n\nIn total, the number of bytes copied from src will be len, while the number of bytes pasted will be 2 * len.\n\nr0: [output] dst\nr1: src\nr2: len (in bytes)\nr3: val",
+        "Copies data from src to dst, interleaving the lower 4 bits of val with every 4 bits copied (if the copied bits are nonzero).\n\nIn total, the number of bytes copied from src will be len, while the number of bytes pasted will be 2 * len.\n\nFor example, for arbitrary inputs (assuming little-endian byte order)\n  src[i] = {76543210 fedcba98}\n      {3210} != 0\n      {7654} != 0\n      {ba98} != 0\n      {fedc} != 0\n  val & 0xF = {vwxy}\nThe output written to dst will be:\n  dst[2*i] = {vwxy7654 vwxy3210}\n  dst[2*i+1] = {vwxyfedc vwxyba98}\n\nIf any 4-bit nibble is 0, the corresponding byte written to dst is interleaved with 0 rather than the low bits of val. For example, if 'z' represents a 0 bit, given the inputs:\n  src[i] = {zzzz3210 fedczzzz}\n  val & 0xF = {vwxy}\nThe output written to dst will be:\n  dst[2*i] = {zzzzzzzz vwxy3210}\n  dst[2*i+1] = {vwxyfedc zzzzzzzz}\n\nr0: [output] dst (2 * len bytes long)\nr1: src (len bytes long)\nr2: len (in bytes, must be even)\nr3: val",
+        None,
+    )
+
+    CopyAndInterleave0 = Symbol(
+        [0xB0],
+        [0x20B3D70],
+        None,
+        "CopyAndInterleave0",
+        "Equivalent to CopyAndInterleave with an interleaved value of 0.\n\nIn total, the number of bytes copied from src will be len, while the number of bytes pasted will be 2 * len.\n\nFor example, for arbitrary input (assuming little-endian byte order):\n  src[i] = {76543210 fedcba98}\nThen the output written to dst will be (where 'z' is a 0 bit):\n  dst[2*i] = {zzzz7654 zzzz3210}\n  dst[2*i+1] = {zzzzfedc zzzzba98}\n\nr0: [output] dst (2 * len bytes long)\nr1: src (len bytes long)\nr2: len (in bytes, must be even)",
         None,
     )
 
