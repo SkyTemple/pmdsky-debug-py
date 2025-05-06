@@ -3698,8 +3698,8 @@ class NaArm9Functions:
     )
 
     ExecuteCopyToFlatVramCommand = Symbol(
-        None,
-        None,
+        [0x1AB0C],
+        [0x201AB0C],
         None,
         "ExecuteCopyToFlatVramCommand",
         "Immediately execute the command contained in a copy_to_obj_vram_order struct, copying content as described.\n\nr0: command",
@@ -3707,8 +3707,8 @@ class NaArm9Functions:
     )
 
     DecodeFragmentByteAssemblyTable = Symbol(
-        None,
-        None,
+        [0x1ABAC],
+        [0x201ABAC],
         None,
         "DecodeFragmentByteAssemblyTable",
         "Decode the sprite texture stored in each fragment byte assembly entry into the dst output, until the final one is reached.\n\nr0: pointer to array of fragment byte assembly entry, final (otherwise unused) one should have byte_amount = 0\nr1: dst\nreturn: number of decoded bytes",
@@ -3986,8 +3986,8 @@ class NaArm9Functions:
     )
 
     ResetPlannedVramTransfer = Symbol(
-        None,
-        None,
+        [0x1E1D4],
+        [0x201E1D4],
         None,
         "ResetPlannedVramTransfer",
         "Reset the command array of input container\nDoes not reset its other field\n\nr0: the container to reset",
@@ -3995,8 +3995,8 @@ class NaArm9Functions:
     )
 
     PlanCopyTextureToTextureVram = Symbol(
-        None,
-        None,
+        [0x1E1E0],
+        [0x201E1E0],
         None,
         "PlanCopyTextureToTextureVram",
         "Add a command in the container (r1) that will be executed later by PerformPlannedTextureVramTransfer to copy part of the RAM into the texture VRAM (or free the source allocated memory depending of the specified type of command).\nCheck for overflow. If an overflow would occur, do not add the command to the container, and return -1 instead.\n\nr0: Container that contain the command list to add to\nr1: pointer to the bytes to be copied in CPU-accessible RAM\nr2: offset to copy too in texture VRAM\nr3: number of bytes to copy\nstack[0]: type of command to perform",
@@ -4004,8 +4004,8 @@ class NaArm9Functions:
     )
 
     PerformPlannedTextureVramTransfer = Symbol(
-        None,
-        None,
+        [0x1E230],
+        [0x201E230],
         None,
         "PerformPlannedTextureVramTransfer",
         "Execute the texture VRAM edition command of the input container. Does not reset it, or alter its state in any way.\n\nr0: container that contains the command list to execute",
@@ -11444,7 +11444,7 @@ class NaItcmFunctions:
         [0x20B5744],
         None,
         "AiMovement",
-        "Used by the AI to determine the direction in which a monster should move\n\nr0: Entity pointer\nr1: ?",
+        "Used by the AI to determine the direction in which a monster should move\n\nr0: Entity pointer\nr1: Boolean value. If the monster becomes terrified, this flag determines whether the 'poof' visual effect will show.",
         None,
     )
 
@@ -25946,7 +25946,7 @@ class NaOverlay29Functions:
         [0x2301CDC],
         None,
         "NoGastroAcidStatus",
-        "Checks if a monster does not have the Gastro Acid status.\n\nr0: entity pointer\nreturn: bool",
+        "Checks if a monster does not have the Gastro Acid status.\n\nr0: entity pointer\nr1: ability ID (unused)\nreturn: bool",
         None,
     )
 
@@ -28218,6 +28218,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    BuildMoveTargetList = Symbol(
+        [0x47DF0],
+        [0x2324030],
+        None,
+        "BuildMoveTargetList",
+        "Builds the list of targets of a given move for a given user\n\nr0: [output] Buffer where the resulting list should be stored\nr1: Pointer to entity using the move\nr2: Pointer to move data",
+        None,
+    )
+
     IsHyperBeamVariant = Symbol(
         [0x482F4],
         [0x2324534],
@@ -28358,7 +28367,7 @@ class NaOverlay29Functions:
         [0x232E864],
         None,
         "ExecuteMoveEffect",
-        "Handles the effects that happen after a move is used. Includes a loop that is run for each target, mutiple ability checks and the giant switch statement that executes the effect of the move used given its ID.\n\nr0: pointer to some struct\nr1: attacker pointer\nr2: pointer to move data\nr3: ?\nstack[0]: ?",
+        "Handles the effects that happen after a move is used. Includes a loop that is run for each target, mutiple ability checks and the giant switch statement that executes the effect of the move used given its ID.\n\nr0: pointer to list of targets\nr1: attacker pointer\nr2: pointer to move data\nr3: ?\nstack[0]: ?",
         None,
     )
 

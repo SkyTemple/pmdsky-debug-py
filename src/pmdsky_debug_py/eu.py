@@ -11444,7 +11444,7 @@ class EuItcmFunctions:
         [0x20B6084],
         None,
         "AiMovement",
-        "Used by the AI to determine the direction in which a monster should move\n\nr0: Entity pointer\nr1: ?",
+        "Used by the AI to determine the direction in which a monster should move\n\nr0: Entity pointer\nr1: Boolean value. If the monster becomes terrified, this flag determines whether the 'poof' visual effect will show.",
         None,
     )
 
@@ -25948,7 +25948,7 @@ class EuOverlay29Functions:
         [0x2302708],
         None,
         "NoGastroAcidStatus",
-        "Checks if a monster does not have the Gastro Acid status.\n\nr0: entity pointer\nreturn: bool",
+        "Checks if a monster does not have the Gastro Acid status.\n\nr0: entity pointer\nr1: ability ID (unused)\nreturn: bool",
         None,
     )
 
@@ -28220,6 +28220,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    BuildMoveTargetList = Symbol(
+        [0x47F18],
+        [0x2324A98],
+        None,
+        "BuildMoveTargetList",
+        "Builds the list of targets of a given move for a given user\n\nr0: [output] Buffer where the resulting list should be stored\nr1: Pointer to entity using the move\nr2: Pointer to move data",
+        None,
+    )
+
     IsHyperBeamVariant = Symbol(
         [0x4841C],
         [0x2324F9C],
@@ -28360,7 +28369,7 @@ class EuOverlay29Functions:
         [0x232F2A4],
         None,
         "ExecuteMoveEffect",
-        "Handles the effects that happen after a move is used. Includes a loop that is run for each target, mutiple ability checks and the giant switch statement that executes the effect of the move used given its ID.\n\nr0: pointer to some struct\nr1: attacker pointer\nr2: pointer to move data\nr3: ?\nstack[0]: ?",
+        "Handles the effects that happen after a move is used. Includes a loop that is run for each target, mutiple ability checks and the giant switch statement that executes the effect of the move used given its ID.\n\nr0: pointer to list of targets\nr1: attacker pointer\nr2: pointer to move data\nr3: ?\nstack[0]: ?",
         None,
     )
 

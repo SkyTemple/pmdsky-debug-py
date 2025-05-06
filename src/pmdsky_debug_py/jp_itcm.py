@@ -11122,8 +11122,8 @@ class JpItcmItcmFunctions:
     )
 
     CopyAndInterleave0 = Symbol(
-        None,
-        None,
+        [0xB0],
+        [0x1FF80B0],
         None,
         "CopyAndInterleave0",
         "Equivalent to CopyAndInterleave with an interleaved value of 0.\n\nIn total, the number of bytes copied from src will be len, while the number of bytes pasted will be 2 * len.\n\nFor example, for arbitrary input (assuming little-endian byte order):\n  src[i] = {76543210 fedcba98}\nThen the output written to dst will be (where 'z' is a 0 bit):\n  dst[2*i] = {zzzz7654 zzzz3210}\n  dst[2*i+1] = {zzzzfedc zzzzba98}\n\nr0: [output] dst (2 * len bytes long)\nr1: src (len bytes long)\nr2: len (in bytes, must be even)",
@@ -11378,7 +11378,7 @@ class JpItcmItcmFunctions:
         [0x1FFA42C],
         None,
         "AiMovement",
-        "Used by the AI to determine the direction in which a monster should move\n\nr0: Entity pointer\nr1: ?",
+        "Used by the AI to determine the direction in which a monster should move\n\nr0: Entity pointer\nr1: Boolean value. If the monster becomes terrified, this flag determines whether the 'poof' visual effect will show.",
         None,
     )
 
@@ -25373,7 +25373,7 @@ class JpItcmOverlay29Functions:
         None,
         None,
         "NoGastroAcidStatus",
-        "Checks if a monster does not have the Gastro Acid status.\n\nr0: entity pointer\nreturn: bool",
+        "Checks if a monster does not have the Gastro Acid status.\n\nr0: entity pointer\nr1: ability ID (unused)\nreturn: bool",
         None,
     )
 
@@ -27645,6 +27645,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    BuildMoveTargetList = Symbol(
+        None,
+        None,
+        None,
+        "BuildMoveTargetList",
+        "Builds the list of targets of a given move for a given user\n\nr0: [output] Buffer where the resulting list should be stored\nr1: Pointer to entity using the move\nr2: Pointer to move data",
+        None,
+    )
+
     IsHyperBeamVariant = Symbol(
         None,
         None,
@@ -27785,7 +27794,7 @@ class JpItcmOverlay29Functions:
         None,
         None,
         "ExecuteMoveEffect",
-        "Handles the effects that happen after a move is used. Includes a loop that is run for each target, mutiple ability checks and the giant switch statement that executes the effect of the move used given its ID.\n\nr0: pointer to some struct\nr1: attacker pointer\nr2: pointer to move data\nr3: ?\nstack[0]: ?",
+        "Handles the effects that happen after a move is used. Includes a loop that is run for each target, mutiple ability checks and the giant switch statement that executes the effect of the move used given its ID.\n\nr0: pointer to list of targets\nr1: attacker pointer\nr2: pointer to move data\nr3: ?\nstack[0]: ?",
         None,
     )
 

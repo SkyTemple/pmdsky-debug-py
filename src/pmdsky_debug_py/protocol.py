@@ -6281,7 +6281,7 @@ class ItcmFunctionsProtocol(Protocol):
     ]
 
     CopyAndInterleave0: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
@@ -16791,6 +16791,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     MoveHitCheck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BuildMoveTargetList: Symbol[
         Optional[list[int]],
         None,
     ]
