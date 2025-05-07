@@ -28212,8 +28212,8 @@ class JpOverlay29Functions:
     )
 
     BuildMoveTargetList = Symbol(
-        None,
-        None,
+        [0x47BE0],
+        [0x23254C0],
         None,
         "BuildMoveTargetList",
         "Builds the list of targets of a given move for a given user\n\nr0: [output] Buffer where the resulting list should be stored\nr1: Pointer to entity using the move\nr2: Pointer to move data",
