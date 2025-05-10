@@ -9869,6 +9869,15 @@ class JpItcmArm9Data:
         "int16_t",
     )
 
+    UNKNOWN_PP_BOOST_AMOUNT = Symbol(
+        None,
+        None,
+        None,
+        "UNKNOWN_PP_BOOST_AMOUNT",
+        "PP boost value for an unknown effect. Corresponds to the flag f_unknown_pp_boost in struct move.",
+        "int16_t",
+    )
+
     MUNCH_BELT_STAT_BOOST = Symbol(
         None,
         None,
@@ -9911,6 +9920,15 @@ class JpItcmArm9Data:
         None,
         "AURA_BOW_STAT_BOOST",
         "Stat boost value for the aura bows.",
+        "int16_t",
+    )
+
+    MULTITALENT_PP_BOOST_AMOUNT = Symbol(
+        None,
+        None,
+        None,
+        "MULTITALENT_PP_BOOST_AMOUNT",
+        "PP boost value for the Multitalent IQ skill.",
         "int16_t",
     )
 
@@ -9974,6 +9992,15 @@ class JpItcmArm9Data:
         None,
         "EVOLUTION_HP_BONUS",
         "Note: unverified, ported from Irdkwia's notes",
+        "int16_t",
+    )
+
+    EXCLUSIVE_ITEM_PP_BOOST_AMOUNT = Symbol(
+        None,
+        None,
+        None,
+        "EXCLUSIVE_ITEM_PP_BOOST_AMOUNT",
+        "PP boost value for exclusive items that boost move PP.",
         "int16_t",
     )
 

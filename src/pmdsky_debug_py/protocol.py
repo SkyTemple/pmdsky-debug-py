@@ -5560,6 +5560,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    UNKNOWN_PP_BOOST_AMOUNT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     MUNCH_BELT_STAT_BOOST: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -5581,6 +5586,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     AURA_BOW_STAT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MULTITALENT_PP_BOOST_AMOUNT: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -5616,6 +5626,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     EVOLUTION_HP_BONUS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_PP_BOOST_AMOUNT: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

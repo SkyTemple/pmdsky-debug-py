@@ -9924,6 +9924,15 @@ class NaArm9Data:
         "int16_t",
     )
 
+    UNKNOWN_PP_BOOST_AMOUNT = Symbol(
+        [0xA1874],
+        [0x20A1874],
+        0x2,
+        "UNKNOWN_PP_BOOST_AMOUNT",
+        "PP boost value for an unknown effect. Corresponds to the flag f_unknown_pp_boost in struct move.",
+        "int16_t",
+    )
+
     MUNCH_BELT_STAT_BOOST = Symbol(
         [0xA187C],
         [0x20A187C],
@@ -9966,6 +9975,15 @@ class NaArm9Data:
         0x2,
         "AURA_BOW_STAT_BOOST",
         "Stat boost value for the aura bows.",
+        "int16_t",
+    )
+
+    MULTITALENT_PP_BOOST_AMOUNT = Symbol(
+        [0xA18A0],
+        [0x20A18A0],
+        0x2,
+        "MULTITALENT_PP_BOOST_AMOUNT",
+        "PP boost value for the Multitalent IQ skill.",
         "int16_t",
     )
 
@@ -10029,6 +10047,15 @@ class NaArm9Data:
         0x2,
         "EVOLUTION_HP_BONUS",
         "Note: unverified, ported from Irdkwia's notes",
+        "int16_t",
+    )
+
+    EXCLUSIVE_ITEM_PP_BOOST_AMOUNT = Symbol(
+        [0xA18C8],
+        [0x20A18C8],
+        0x2,
+        "EXCLUSIVE_ITEM_PP_BOOST_AMOUNT",
+        "PP boost value for exclusive items that boost move PP.",
         "int16_t",
     )
 
