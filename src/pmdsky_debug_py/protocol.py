@@ -4772,6 +4772,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    RevertGiratinaAndShaymin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetIqSkillStringId: Symbol[
         Optional[list[int]],
         None,
@@ -5038,6 +5043,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     IsMonsterMissionAllowedStory: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsMonsterIllegalForMissions: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -10251,7 +10261,10 @@ Move_effectsProtocol = SectionProtocol[
 
 class Overlay0FunctionsProtocol(Protocol):
 
-    pass
+    SelectRandomBackground: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay0DataProtocol(Protocol):
@@ -14465,12 +14478,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayQuestionMarkEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayExclamationPointEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlayEffectAnimation0x171Full: Symbol[
         Optional[list[int]],
         None,
     ]
 
     PlayEffectAnimation0x171: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayEffectAnimationEntityStandard: Symbol[
         Optional[list[int]],
         None,
     ]

@@ -8512,6 +8512,15 @@ class JpArm9Functions:
         None,
     )
 
+    RevertGiratinaAndShaymin = Symbol(
+        None,
+        None,
+        None,
+        "RevertGiratinaAndShaymin",
+        "Reverts Giratina and Shaymin party members to their standard forms.\n\nr0: team member index in party\nr1: ?",
+        None,
+    )
+
     GetIqSkillStringId = Symbol(
         [0x58F18],
         [0x2058F18],
@@ -8995,6 +9004,15 @@ class JpArm9Functions:
         None,
         "IsMonsterMissionAllowedStory",
         "Checks if the specified monster should be allowed to be part of a mission (probably as the client or the target), accounting for the progress on the story.\n\nIf PERFOMANCE_PROGRESS_FLAG[9] is true, the function returns true.\nIf it isn't, the function checks if the specified monster is contained in the MISSION_BANNED_STORY_MONSTERS array, or if it corresponds to the ID of the player or the partner.\n\nThe function converts the ID by calling GetBaseForm and FemaleToMaleForm first.\n\nr0: Monster ID\nreturn: True if PERFOMANCE_PROGRESS_FLAG[9] is true, false if it isn't and the monster ID (after converting it) is contained in MISSION_BANNED_STORY_MONSTERS or if it's the ID of the player or the partner, true otherwise.",
+        None,
+    )
+
+    IsMonsterIllegalForMissions = Symbol(
+        None,
+        None,
+        None,
+        "IsMonsterIllegalForMissions",
+        "Checks if the monster index is illegal to be used for any mission.\n\nIllegal indexes include Shaymin-Sky, Giratina-Origin, Purple Kecleon, Shiny Celebi, Primal Dialga, and all the unused Arceus forms.\n\nr0: Monster ID\nreturn: True if the specified monster is illegal for missions",
         None,
     )
 
@@ -16629,7 +16647,14 @@ class JpMove_effectsSection:
 
 class JpOverlay0Functions:
 
-    pass
+    SelectRandomBackground = Symbol(
+        None,
+        None,
+        None,
+        "SelectRandomBackground",
+        "Selects a random background from the BACK/s09p04-10a.bgp files to be used as the background for the top menu.\n  \nNo params.",
+        None,
+    )
 
 
 class JpOverlay0Data:
@@ -23971,6 +23996,24 @@ class JpOverlay29Functions:
         None,
     )
 
+    PlayQuestionMarkEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayQuestionMarkEffect",
+        "Plays the question mark effect (id = 0x144) on an entity.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayExclamationPointEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayExclamationPointEffect",
+        "Plays the exclamation point effect (id = 0x143) on an entity.\n\nr0: entity pointer",
+        None,
+    )
+
     PlayEffectAnimation0x171Full = Symbol(
         [0x7DA8],
         [0x22E5688],
@@ -23986,6 +24029,15 @@ class JpOverlay29Functions:
         None,
         "PlayEffectAnimation0x171",
         "Just a guess. Calls PlayEffectAnimation with data from animation ID 0x171.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayEffectAnimationEntityStandard = Symbol(
+        None,
+        None,
+        None,
+        "PlayEffectAnimationEntityStandard",
+        "Calls PlayEffectAnimationEntity with standard parameters used in various functions throughout the game.\n\nr0: entity pointer\nr1: effect id",
         None,
     )
 
