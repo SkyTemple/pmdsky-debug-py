@@ -10949,6 +10949,15 @@ class EuItcmArm9Data:
         "void*[26]",
     )
 
+    MONSTER_DATA_TABLE_PTR = Symbol(
+        None,
+        None,
+        None,
+        "MONSTER_DATA_TABLE_PTR",
+        "[Runtime] Points to data about monster species.",
+        "undefined*",
+    )
+
     UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE = Symbol(
         None,
         None,
@@ -30465,6 +30474,15 @@ class EuItcmOverlay29Data:
         "STATUS_ICON_ARRAY_REFLECT",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::reflect * 8. See UpdateStatusIconFlags for details.",
         "struct status_icon_flags[18]",
+    )
+
+    POSITION_DISPLACEMENT_TO_DIRECTION = Symbol(
+        None,
+        None,
+        None,
+        "POSITION_DISPLACEMENT_TO_DIRECTION",
+        "An array mapping position displacements (y, then x) to directions. Used by GetDirectionTowardsPosition.\n\nGiven two positions, displacements are either 0, 1, or 2 depending on whether the second position's x/y coordinate is less than, equal, or greater\nthan the first position's corresponding coordinates. For example, POSITION_DISPLACEMENT_TO_DIRECTION[0][2] (DIR_UP_RIGHT)\nindicates that the second y coordinate is less than the first, and the second x coordinate is greater than the first.",
+        "enum direction_id[3][3]",
     )
 
     DIRECTIONS_XY = Symbol(

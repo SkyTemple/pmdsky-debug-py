@@ -6180,6 +6180,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MONSTER_DATA_TABLE_PTR: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -18362,6 +18367,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     STATUS_ICON_ARRAY_REFLECT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    POSITION_DISPLACEMENT_TO_DIRECTION: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

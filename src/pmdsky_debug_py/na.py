@@ -9008,8 +9008,8 @@ class NaArm9Functions:
     )
 
     IsMonsterIllegalForMissions = Symbol(
-        None,
-        None,
+        [0x62B64],
+        [0x2062B64],
         None,
         "IsMonsterIllegalForMissions",
         "Checks if the monster index is illegal to be used for any mission.\n\nIllegal indexes include Shaymin-Sky, Giratina-Origin, Purple Kecleon, Shiny Celebi, Primal Dialga, and all the unused Arceus forms.\n\nr0: Monster ID\nreturn: True if the specified monster is illegal for missions",
@@ -11013,6 +11013,15 @@ class NaArm9Data:
         "ITEM_TABLES_PTRS_1",
         "Irdkwia's notes: 26*0x4, uses MISSION_FLOOR_RANKS_AND_ITEM_LISTS",
         "void*[26]",
+    )
+
+    MONSTER_DATA_TABLE_PTR = Symbol(
+        [0xB09B4],
+        [0x20B09B4],
+        None,
+        "MONSTER_DATA_TABLE_PTR",
+        "[Runtime] Points to data about monster species.",
+        "undefined*",
     )
 
     UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE = Symbol(
@@ -16653,8 +16662,8 @@ class NaMove_effectsSection:
 class NaOverlay0Functions:
 
     SelectRandomBackground = Symbol(
-        None,
-        None,
+        [0x1E98],
+        [0x22BE918],
         None,
         "SelectRandomBackground",
         "Selects a random background from the BACK/s09p04-10a.bgp files to be used as the background for the top menu.\n  \nNo params.",
@@ -24004,8 +24013,8 @@ class NaOverlay29Functions:
     )
 
     PlayQuestionMarkEffect = Symbol(
-        None,
-        None,
+        [0x7B98],
+        [0x22E3DD8],
         None,
         "PlayQuestionMarkEffect",
         "Plays the question mark effect (id = 0x144) on an entity.\n\nr0: entity pointer",
@@ -24013,8 +24022,8 @@ class NaOverlay29Functions:
     )
 
     PlayExclamationPointEffect = Symbol(
-        None,
-        None,
+        [0x7BE4, 0x7C90, 0x915C],
+        [0x22E3E24, 0x22E3ED0, 0x22E539C],
         None,
         "PlayExclamationPointEffect",
         "Plays the exclamation point effect (id = 0x143) on an entity.\n\nr0: entity pointer",
@@ -24040,8 +24049,8 @@ class NaOverlay29Functions:
     )
 
     PlayEffectAnimationEntityStandard = Symbol(
-        None,
-        None,
+        [0x80A8],
+        [0x22E42E8],
         None,
         "PlayEffectAnimationEntityStandard",
         "Calls PlayEffectAnimationEntity with standard parameters used in various functions throughout the game.\n\nr0: entity pointer\nr1: effect id",
@@ -31141,6 +31150,15 @@ class NaOverlay29Data:
         "STATUS_ICON_ARRAY_REFLECT",
         "Array of bit masks used to set monster::status_icon. Indexed by monster::statuses::reflect * 8. See UpdateStatusIconFlags for details.",
         "struct status_icon_flags[18]",
+    )
+
+    POSITION_DISPLACEMENT_TO_DIRECTION = Symbol(
+        [0x753C4],
+        [0x2351604],
+        0x24,
+        "POSITION_DISPLACEMENT_TO_DIRECTION",
+        "An array mapping position displacements (y, then x) to directions. Used by GetDirectionTowardsPosition.\n\nGiven two positions, displacements are either 0, 1, or 2 depending on whether the second position's x/y coordinate is less than, equal, or greater\nthan the first position's corresponding coordinates. For example, POSITION_DISPLACEMENT_TO_DIRECTION[0][2] (DIR_UP_RIGHT)\nindicates that the second y coordinate is less than the first, and the second x coordinate is greater than the first.",
+        "enum direction_id[3][3]",
     )
 
     DIRECTIONS_XY = Symbol(
