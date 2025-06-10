@@ -5017,12 +5017,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GenerateMissionDetailsStruct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ValidateNormalChallengeMission: Symbol[
         Optional[list[int]],
         None,
     ]
 
     ValidateLegendaryChallengeMission: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AppendMissionTitle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AppendMissionSummary: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5865,17 +5880,22 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    ARM9_UNKNOWN_TABLE__NA_20A3CC8: Symbol[
+    CAFE_MISSION_REWARD_TYPE_WEIGHTS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ARM9_UNKNOWN_TABLE__NA_20A3CE4: Symbol[
+    OUTLAW_MISSION_REWARD_TYPE_WEIGHTS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4: Symbol[
+    DEFAULT_MISSION_REWARD_TYPE_WEIGHTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_VALIDATION_FUNCTION_LIST: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

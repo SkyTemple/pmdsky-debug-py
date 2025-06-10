@@ -8907,12 +8907,21 @@ class EuItcmArm9Functions:
         None,
     )
 
+    GenerateMissionDetailsStruct = Symbol(
+        None,
+        None,
+        None,
+        "GenerateMissionDetailsStruct",
+        "Generates a mission_details struct, to be used for printing mission details such as the title, summary, and objective.\n\nr0: mission struct pointer\nr1: [output] mission_details struct pointer\nr2: ?\nr3: ?",
+        None,
+    )
+
     ValidateNormalChallengeMission = Symbol(
         None,
         None,
         None,
         "ValidateNormalChallengeMission",
-        "Validates a normal (non-legendary) challenge letter mission by checking whether its client (leader), target (second member), and outlaw_backup_species (third member) match those of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_rescue_bin struct pointer\nr1: mission struct pointer\nreturn: bool",
+        "Validates a normal (non-legendary) challenge letter mission by checking whether its client (leader), target (second member), and outlaw_backup_species (third member) match those of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_template struct pointer\nr1: mission struct pointer\nreturn: bool",
         None,
     )
 
@@ -8921,7 +8930,25 @@ class EuItcmArm9Functions:
         None,
         None,
         "ValidateLegendaryChallengeMission",
-        "Validates a legendary challenge letter mission by checking whether its dungeon matches the restricted dungeon of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_rescue_bin struct pointer\nr1: mission struct pointer\nreturn: bool",
+        "Validates a legendary challenge letter mission by checking whether its dungeon matches the restricted dungeon of some mission_rescue_bin struct (alongside some other conditions).\n\nr0: mission_template struct pointer\nr1: mission struct pointer\nreturn: bool",
+        None,
+    )
+
+    AppendMissionTitle = Symbol(
+        None,
+        None,
+        None,
+        "AppendMissionTitle",
+        "Generates the mission title of a mission, and appends it to the string location.\n\nr0: [output] output buffer\nr1: intermediate buffer, filled then concatenated to output buffer\nr2: pointer to preprocessor args\nr3: pointer to mission_details struct",
+        None,
+    )
+
+    AppendMissionSummary = Symbol(
+        None,
+        None,
+        None,
+        "AppendMissionSummary",
+        "Generates the mission title of a mission, and appends it to the string location.\n\nr0: [output] main string location\nr1: temporary string buffer, concatenated to main string\nr2: window_id for DrawTextInWindow\nr3: y offset for DrawTextInWindow\nstack[0]: pointer to preprocessor args\nstack[1]: pointer to mission_details struct",
         None,
     )
 
@@ -10413,31 +10440,40 @@ class EuItcmArm9Data:
         "struct item_id_16[3]",
     )
 
-    ARM9_UNKNOWN_TABLE__NA_20A3CC8 = Symbol(
+    CAFE_MISSION_REWARD_TYPE_WEIGHTS = Symbol(
         None,
         None,
         None,
-        "ARM9_UNKNOWN_TABLE__NA_20A3CC8",
-        "14*0x2\nLinked to ARM9_UNKNOWN_TABLE__NA_20A3CE4\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "CAFE_MISSION_REWARD_TYPE_WEIGHTS",
+        "Weights for each possible mission_reward_type, used only by cafe mission generation.\nSeems identical to DEFAULT_MISSION_REWARD_TYPE_WEIGHTS.",
+        "uint16_t[7]",
     )
 
-    ARM9_UNKNOWN_TABLE__NA_20A3CE4 = Symbol(
+    OUTLAW_MISSION_REWARD_TYPE_WEIGHTS = Symbol(
         None,
         None,
         None,
-        "ARM9_UNKNOWN_TABLE__NA_20A3CE4",
-        "8*0x2\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "OUTLAW_MISSION_REWARD_TYPE_WEIGHTS",
+        "Weights for each possible mission_reward_type, exclusively for the ARREST_OUTLAW mission type.\nTakes priority over CAFE_MISSION_REWARD_TYPE_WEIGHTS and CAFE_MISSION_REWARD_TYPE_WEIGHTS.",
+        "uint16_t[7]",
     )
 
-    ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4 = Symbol(
+    DEFAULT_MISSION_REWARD_TYPE_WEIGHTS = Symbol(
         None,
         None,
         None,
-        "ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4",
-        "Could be related to missions\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "DEFAULT_MISSION_REWARD_TYPE_WEIGHTS",
+        "Weights for each possible mission_reward_type, used for non-cafe missions.\nSeems identical to CAFE_MISSION_REWARD_TYPE_WEIGHTS.",
+        "uint16_t[7]",
+    )
+
+    MISSION_VALIDATION_FUNCTION_LIST = Symbol(
+        None,
+        None,
+        None,
+        "MISSION_VALIDATION_FUNCTION_LIST",
+        "A list of functions used to validate missions of different types at 02060CEC [EU].",
+        "undefined*[8]",
     )
 
     MISSION_BANNED_STORY_MONSTERS = Symbol(
@@ -10481,7 +10517,7 @@ class EuItcmArm9Data:
         None,
         None,
         "MISSION_STRING_IDS",
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[964]",
+        "String IDs for mission title and summary flavor-text.\nUsed by GenerateMissionTitle and GenerateMissionSummary.\n\ntype: int16_t[964]",
         "int16_t[964]",
     )
 
