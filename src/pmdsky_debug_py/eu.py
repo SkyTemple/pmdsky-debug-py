@@ -17690,6 +17690,15 @@ class EuOverlay10Data:
         "int16_t",
     )
 
+    AI_CONFUSED_NO_ATTACK_CHANCE = Symbol(
+        [0x7B18],
+        [0x22C4ED8],
+        0x2,
+        "AI_CONFUSED_NO_ATTACK_CHANCE",
+        "The percentage chance of the AI not attacking when it is confused.",
+        "int16_t",
+    )
+
     LEECH_SEED_HP_DRAIN = Symbol(
         [0x7B20],
         [0x22C4EE0],
@@ -18520,6 +18529,15 @@ class EuOverlay10Data:
         "WEATHER_BALL_TYPE_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding Weather Ball type.\n\ntype: struct type_id_8[8]",
         "struct type_id_8[8]",
+    )
+
+    AI_REGULAR_ATTACK_WEIGHTS = Symbol(
+        [0x7E98],
+        [0x22C5258],
+        0xA,
+        "AI_REGULAR_ATTACK_WEIGHTS",
+        "The weight of the regular attack in the weighted random when the AI is deciding which move to use, depending on how many other attacks the AI can currently use.\nEach index in the array corresponds to the number of attacks (0-4) the AI can use (i.e., is enabled and has PP remaining).\n\ntype: uint16_t[5]",
+        "int16_t[5]",
     )
 
     LAST_RESORT_DAMAGE_MULT_TABLE = Symbol(
@@ -24635,6 +24653,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    SetActionStruggle = Symbol(
+        [0xFAA4],
+        [0x22EC624],
+        None,
+        "SetActionStruggle",
+        "Sets a monster's action to action::ACTION_STRUGGLE, with a specified direction.\n\nr0: Pointer to the monster's action field\nr1: Direction in which to use the move. Gets stored in monster::action::direction.",
+        None,
+    )
+
     SetActionUseMovePlayer = Symbol(
         [0xFAC8],
         [0x22EC648],
@@ -25965,6 +25992,15 @@ class EuOverlay29Functions:
         None,
         "CheckVariousStatuses",
         "Returns 0 if none of these conditions holds for the given entity: asleep, frozen, petrified, biding.\n\nr0: Entity pointer\nreturn: bool",
+        None,
+    )
+
+    MonsterCannotAttack = Symbol(
+        [0x24C78],
+        [0x23017F8],
+        None,
+        "MonsterCannotAttack",
+        "Returns 0 if the entity has any of these conditions: sleep, nightmare, napping, frozen, wrapped/wrapping, petrified, cringe, paused, infatuated, paralysis. Also returns 0 if ShouldMonsterRunAway returns 1.\n\nr0: Entity pointer\nr1: If true, ignore sleep conditions (sleep, nightmare, napping) when checking if the entity cannot attack.\nreturn: bool",
         None,
     )
 
@@ -27918,6 +27954,15 @@ class EuOverlay29Functions:
         None,
         "IsAiTargetEligible",
         "Checks if a given target is eligible to be targeted by the AI with a certain move\n\nr0: Move's AI range field\nr1: User entity pointer\nr2: Target entity pointer\nr3: Move pointer\nstack[0]: True to check all the possible move_ai_condition values, false to only check for move_ai_condition::AI_CONDITION_RANDOM (if the move has a different ai condition, the result will be false).\nreturn: True if the target is eligible, false otherwise",
+        None,
+    )
+
+    TargetRegularAttack = Symbol(
+        [0x3E340],
+        [0x231AEC0],
+        None,
+        "TargetRegularAttack",
+        "Decides which direction the AI will use its regular attack in.\n\nr0: User entity pointer\nr1: [output] direction that the regular attack should be targeted at.\nr2: If true, the AI will ignore enemies that are petrified. If false, the AI will include petrified enemies when targeting.\nreturn: True if there is a target for the regular attack, false if there is no target.",
         None,
     )
 
@@ -31271,6 +31316,15 @@ class EuOverlay29Data:
         "uint16_t",
     )
 
+    DIRECTIONAL_BIT_MASKS = Symbol(
+        [0x76824],
+        [0x23533A4],
+        0x8,
+        "DIRECTIONAL_BIT_MASKS",
+        "An array of one-hot bit masks corresponding to each direction_id. Used alongside tile->walkable_neighbor_flags to determine whether it's possible to move to a tile.",
+        "uint8_t[8]",
+    )
+
     MONSTER_TREATMENT_DATA = Symbol(
         [0x7682C],
         [0x23533AC],
@@ -33342,6 +33396,15 @@ class EuRamData:
         "LOADED_ATTACK_SPRITE_DATA",
         "[Runtime] Pointer to the dynamically allocated structure relating to the currently loaded attack sprite, in dungeon mode.\n\ntype: struct loaded_attack_sprite_data*",
         "struct loaded_attack_sprite_data*",
+    )
+
+    MOBILITY_TYPE_TO_DUNGEON_MOBILITY_TYPE = Symbol(
+        [0x37D5B8],
+        [0x237D5B8],
+        0x8,
+        "MOBILITY_TYPE_TO_DUNGEON_MOBILITY_TYPE",
+        "[Runtime] Used by GetMobilityTypeCheckSlip to determine if a monster with a mobility type of MOBILITY_WATER or MOBILITY_LAVA can cross the current dungeon's liquid (lava or water). Only the values at indexes 4 (MOBILITY_LAVA) and 5 (MOBILITY_WATER) are used. If the mobility type can cross the liquid in the current dungeon, the array value at the mobility type's index is MOBILITY_WATER. If not, the array value is MOBILITY_NORMAL.",
+        "enum mobility_type[8]",
     )
 
     AI_THROWN_ITEM_DIRECTION_IS_USED = Symbol(

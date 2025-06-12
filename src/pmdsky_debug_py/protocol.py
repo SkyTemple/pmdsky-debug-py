@@ -6509,7 +6509,7 @@ class ItcmDataProtocol(Protocol):
     ]
 
     RENDER_3D_FUNCTIONS: Symbol[
-        Optional[list[int]],
+        list[int],
         None,
     ]
 
@@ -10860,6 +10860,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    AI_CONFUSED_NO_ATTACK_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     LEECH_SEED_HP_DRAIN: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11321,6 +11326,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     WEATHER_BALL_TYPE_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AI_REGULAR_ATTACK_WEIGHTS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14828,6 +14838,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetActionStruggle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetActionUseMovePlayer: Symbol[
         Optional[list[int]],
         None,
@@ -15539,6 +15554,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     CheckVariousStatuses: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MonsterCannotAttack: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16624,6 +16644,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsAiTargetEligible: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TargetRegularAttack: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -18436,6 +18461,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DIRECTIONAL_BIT_MASKS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     MONSTER_TREATMENT_DATA: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -19692,6 +19722,11 @@ class RamDataProtocol(Protocol):
     ]
 
     LOADED_ATTACK_SPRITE_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MOBILITY_TYPE_TO_DUNGEON_MOBILITY_TYPE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

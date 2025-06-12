@@ -8954,8 +8954,8 @@ class JpArm9Functions:
     )
 
     GenerateMissionDetailsStruct = Symbol(
-        None,
-        None,
+        [0x60440],
+        [0x2060440],
         None,
         "GenerateMissionDetailsStruct",
         "Generates a mission_details struct, to be used for printing mission details such as the title, summary, and objective.\n\nr0: mission struct pointer\nr1: [output] mission_details struct pointer\nr2: ?\nr3: ?",
@@ -8981,8 +8981,8 @@ class JpArm9Functions:
     )
 
     AppendMissionTitle = Symbol(
-        None,
-        None,
+        [0x60D00],
+        [0x2060D00],
         None,
         "AppendMissionTitle",
         "Generates the mission title of a mission, and appends it to the string location.\n\nr0: [output] output buffer\nr1: intermediate buffer, filled then concatenated to output buffer\nr2: pointer to preprocessor args\nr3: pointer to mission_details struct",
@@ -8990,8 +8990,8 @@ class JpArm9Functions:
     )
 
     AppendMissionSummary = Symbol(
-        None,
-        None,
+        [0x611A0],
+        [0x20611A0],
         None,
         "AppendMissionSummary",
         "Generates the mission title of a mission, and appends it to the string location.\n\nr0: [output] main string location\nr1: temporary string buffer, concatenated to main string\nr2: window_id for DrawTextInWindow\nr3: y offset for DrawTextInWindow\nstack[0]: pointer to preprocessor args\nstack[1]: pointer to mission_details struct",
@@ -11591,8 +11591,8 @@ class JpItcmData:
     )
 
     RENDER_3D_FUNCTIONS = Symbol(
-        None,
-        None,
+        [0x120],
+        [0x20B4D00],
         None,
         "RENDER_3D_FUNCTIONS",
         "Pointers to the 4 functions available for rendering a render_3d_element (in ITCM)\n\ntype: render_3d_element_fn_t[4]",
@@ -17685,6 +17685,15 @@ class JpOverlay10Data:
         "int16_t",
     )
 
+    AI_CONFUSED_NO_ATTACK_CHANCE = Symbol(
+        [0x7A48],
+        [0x22C5C68],
+        0x2,
+        "AI_CONFUSED_NO_ATTACK_CHANCE",
+        "The percentage chance of the AI not attacking when it is confused.",
+        "int16_t",
+    )
+
     LEECH_SEED_HP_DRAIN = Symbol(
         [0x7A50],
         [0x22C5C70],
@@ -18515,6 +18524,15 @@ class JpOverlay10Data:
         "WEATHER_BALL_TYPE_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding Weather Ball type.\n\ntype: struct type_id_8[8]",
         "struct type_id_8[8]",
+    )
+
+    AI_REGULAR_ATTACK_WEIGHTS = Symbol(
+        [0x7DC8],
+        [0x22C5FE8],
+        0xA,
+        "AI_REGULAR_ATTACK_WEIGHTS",
+        "The weight of the regular attack in the weighted random when the AI is deciding which move to use, depending on how many other attacks the AI can currently use.\nEach index in the array corresponds to the number of attacks (0-4) the AI can use (i.e., is enabled and has PP remaining).\n\ntype: uint16_t[5]",
+        "int16_t[5]",
     )
 
     LAST_RESORT_DAMAGE_MULT_TABLE = Symbol(
@@ -24626,6 +24644,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    SetActionStruggle = Symbol(
+        [0xF9FC],
+        [0x22ED2DC],
+        None,
+        "SetActionStruggle",
+        "Sets a monster's action to action::ACTION_STRUGGLE, with a specified direction.\n\nr0: Pointer to the monster's action field\nr1: Direction in which to use the move. Gets stored in monster::action::direction.",
+        None,
+    )
+
     SetActionUseMovePlayer = Symbol(
         [0xFA20],
         [0x22ED300],
@@ -25956,6 +25983,15 @@ class JpOverlay29Functions:
         None,
         "CheckVariousStatuses",
         "Returns 0 if none of these conditions holds for the given entity: asleep, frozen, petrified, biding.\n\nr0: Entity pointer\nreturn: bool",
+        None,
+    )
+
+    MonsterCannotAttack = Symbol(
+        [0x248D0],
+        [0x23021B0],
+        None,
+        "MonsterCannotAttack",
+        "Returns 0 if the entity has any of these conditions: sleep, nightmare, napping, frozen, wrapped/wrapping, petrified, cringe, paused, infatuated, paralysis. Also returns 0 if ShouldMonsterRunAway returns 1.\n\nr0: Entity pointer\nr1: If true, ignore sleep conditions (sleep, nightmare, napping) when checking if the entity cannot attack.\nreturn: bool",
         None,
     )
 
@@ -27909,6 +27945,15 @@ class JpOverlay29Functions:
         None,
         "IsAiTargetEligible",
         "Checks if a given target is eligible to be targeted by the AI with a certain move\n\nr0: Move's AI range field\nr1: User entity pointer\nr2: Target entity pointer\nr3: Move pointer\nstack[0]: True to check all the possible move_ai_condition values, false to only check for move_ai_condition::AI_CONDITION_RANDOM (if the move has a different ai condition, the result will be false).\nreturn: True if the target is eligible, false otherwise",
+        None,
+    )
+
+    TargetRegularAttack = Symbol(
+        [0x3E050],
+        [0x231B930],
+        None,
+        "TargetRegularAttack",
+        "Decides which direction the AI will use its regular attack in.\n\nr0: User entity pointer\nr1: [output] direction that the regular attack should be targeted at.\nr2: If true, the AI will ignore enemies that are petrified. If false, the AI will include petrified enemies when targeting.\nreturn: True if there is a target for the regular attack, false if there is no target.",
         None,
     )
 
@@ -31164,6 +31209,15 @@ class JpOverlay29Data:
         "uint16_t",
     )
 
+    DIRECTIONAL_BIT_MASKS = Symbol(
+        [0x76138],
+        [0x2353A18],
+        0x8,
+        "DIRECTIONAL_BIT_MASKS",
+        "An array of one-hot bit masks corresponding to each direction_id. Used alongside tile->walkable_neighbor_flags to determine whether it's possible to move to a tile.",
+        "uint8_t[8]",
+    )
+
     MONSTER_TREATMENT_DATA = Symbol(
         [0x76140],
         [0x2353A20],
@@ -33230,6 +33284,15 @@ class JpRamData:
         "LOADED_ATTACK_SPRITE_DATA",
         "[Runtime] Pointer to the dynamically allocated structure relating to the currently loaded attack sprite, in dungeon mode.\n\ntype: struct loaded_attack_sprite_data*",
         "struct loaded_attack_sprite_data*",
+    )
+
+    MOBILITY_TYPE_TO_DUNGEON_MOBILITY_TYPE = Symbol(
+        [0x37DC38],
+        [0x237DC38],
+        0x8,
+        "MOBILITY_TYPE_TO_DUNGEON_MOBILITY_TYPE",
+        "[Runtime] Used by GetMobilityTypeCheckSlip to determine if a monster with a mobility type of MOBILITY_WATER or MOBILITY_LAVA can cross the current dungeon's liquid (lava or water). Only the values at indexes 4 (MOBILITY_LAVA) and 5 (MOBILITY_WATER) are used. If the mobility type can cross the liquid in the current dungeon, the array value at the mobility type's index is MOBILITY_WATER. If not, the array value is MOBILITY_NORMAL.",
+        "enum mobility_type[8]",
     )
 
     AI_THROWN_ITEM_DIRECTION_IS_USED = Symbol(
