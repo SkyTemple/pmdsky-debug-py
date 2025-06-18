@@ -3402,6 +3402,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsGameModeRescue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     InitScriptVariableValues: Symbol[
         Optional[list[int]],
         None,
@@ -6465,7 +6470,7 @@ class ItcmFunctionsProtocol(Protocol):
         None,
     ]
 
-    ShouldMonsterRunAwayVariationOutlawCheck: Symbol[
+    ShouldMonsterRunAwayAndShowEffectOutlawCheck: Symbol[
         list[int],
         None,
     ]
@@ -14553,6 +14558,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayEffectAnimation0x29: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlayEffectAnimation0x18E: Symbol[
         Optional[list[int]],
         None,
@@ -15593,7 +15603,12 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    ShouldMonsterRunAwayVariation: Symbol[
+    ShouldMonsterRunAwayAndShowEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisplayRunAwayIfTriggered: Symbol[
         Optional[list[int]],
         None,
     ]

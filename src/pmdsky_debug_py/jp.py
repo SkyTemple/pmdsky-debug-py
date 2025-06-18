@@ -6046,6 +6046,15 @@ class JpArm9Functions:
         None,
     )
 
+    IsGameModeRescue = Symbol(
+        [0x4B360],
+        [0x204B360],
+        None,
+        "IsGameModeRescue",
+        "Returns true if the value of GAME_MODE is GAME_MODE_RESCUE.\n\nreturn: True if GAME_MODE is GAME_MODE_RESCUE.",
+        None,
+    )
+
     InitScriptVariableValues = Symbol(
         [0x4B3B4],
         [0x204B3B4],
@@ -11515,12 +11524,12 @@ class JpItcmFunctions:
         None,
     )
 
-    ShouldMonsterRunAwayVariationOutlawCheck = Symbol(
+    ShouldMonsterRunAwayAndShowEffectOutlawCheck = Symbol(
         [0x23F8],
         [0x20B6FD8],
         None,
-        "ShouldMonsterRunAwayVariationOutlawCheck",
-        "Calls ShouldMonsterRunAwayVariation. If the result is true, returns true. Otherwise, returns true only if the monster's behavior field is equal to monster_behavior::BEHAVIOR_FLEEING_OUTLAW.\n\nr0: Entity pointer\nr1: ?\nreturn: True if ShouldMonsterRunAway returns true or the monster is a fleeing outlaw",
+        "ShouldMonsterRunAwayAndShowEffectOutlawCheck",
+        "Calls ShouldMonsterRunAwayAndShowEffect. If the result is true, returns true. Otherwise, returns true only if the monster's behavior field is equal to monster_behavior::BEHAVIOR_FLEEING_OUTLAW.\n\nr0: Entity pointer\nr1: Boolean value. If true, display a visual 'poof' effect if the Run Away ability caused the monster to run away.\nreturn: True if ShouldMonsterRunAway returns true or the monster is a fleeing outlaw",
         None,
     )
 
@@ -11558,6 +11567,11 @@ class JpItcmFunctions:
         "LightningRodStormDrainCheck",
         "Appears to check whether LightningRod or Storm Drain should draw in a move.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move pointer\nr3: true if checking for Storm Drain, false if checking for LightningRod\nreturn: whether the move should be drawn in",
         None,
+    )
+
+    ShouldMonsterRunAwayVariationOutlawCheck = _Deprecated(
+        "ShouldMonsterRunAwayVariationOutlawCheck",
+        ShouldMonsterRunAwayAndShowEffectOutlawCheck,
     )
 
 
@@ -24131,6 +24145,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    PlayEffectAnimation0x29 = Symbol(
+        [0xA038],
+        [0x22E7918],
+        None,
+        "PlayEffectAnimation0x29",
+        "Calls PlayEffectAnimation with data from animation ID 0x29.\n\nr0: entity pointer",
+        None,
+    )
+
     PlayEffectAnimation0x18E = Symbol(
         [0xA168],
         [0x22E7A48],
@@ -26049,12 +26072,21 @@ class JpOverlay29Functions:
         None,
     )
 
-    ShouldMonsterRunAwayVariation = Symbol(
+    ShouldMonsterRunAwayAndShowEffect = Symbol(
         [0x25338],
         [0x2302C18],
         None,
-        "ShouldMonsterRunAwayVariation",
-        "Calls ShouldMonsterRunAway and returns its result. It also calls another function if the result was true.\n\nr0: Entity pointer\nr1: ?\nreturn: Result of the call to ShouldMonsterRunAway",
+        "ShouldMonsterRunAwayAndShowEffect",
+        "Calls ShouldMonsterRunAway and returns its result. It also calls DisplayRunAwayIfTriggered if the result was true.\n\nr0: Entity pointer\nr1: Boolean value. If true, display a visual 'poof' effect if the Run Away ability caused the monster to run away.\nreturn: Result of the call to ShouldMonsterRunAway",
+        None,
+    )
+
+    DisplayRunAwayIfTriggered = Symbol(
+        [0x25368],
+        [0x2302C48],
+        None,
+        "DisplayRunAwayIfTriggered",
+        "If the Run Away ability has triggered on the entity and r1 is true, displays the visual 'poof' effect indicating Run Away.\n\nr0: Entity pointer\nr1: Boolean value. If true, display a visual 'poof' effect if the Run Away ability caused the monster to run away.",
         None,
     )
 
@@ -30610,6 +30642,10 @@ class JpOverlay29Functions:
         "OthersMenu",
         "Called when the in-dungeon 'others' menu is open. Does not return until the menu is closed.\n\nreturn: Always 0",
         None,
+    )
+
+    ShouldMonsterRunAwayVariation = _Deprecated(
+        "ShouldMonsterRunAwayVariation", ShouldMonsterRunAwayAndShowEffect
     )
 
 
