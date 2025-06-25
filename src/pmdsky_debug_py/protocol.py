@@ -1737,7 +1737,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    IsMoveRangeString19: Symbol[
+    IsMoveRangeStringUser: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15588,6 +15588,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CanMonsterMoveOrSwapWithAllyInDirection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CanAttackInDirection: Symbol[
         Optional[list[int]],
         None,
@@ -16648,6 +16653,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ResetAiCanAttackInDirection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AiConsiderMove: Symbol[
         Optional[list[int]],
         None,
@@ -16659,6 +16669,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsAiTargetEligible: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WeightMoveWithIqSkills: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19757,6 +19772,26 @@ class RamDataProtocol(Protocol):
     ]
 
     AI_THROWN_ITEM_DIRECTIONS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AI_CAN_ATTACK_IN_DIRECTION: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AI_POTENTIAL_ATTACK_TARGET_DIRECTIONS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AI_POTENTIAL_ATTACK_TARGET_WEIGHTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AI_POTENTIAL_ATTACK_TARGETS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

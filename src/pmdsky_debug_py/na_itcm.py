@@ -3003,11 +3003,11 @@ class NaItcmArm9Functions:
         None,
     )
 
-    IsMoveRangeString19 = Symbol(
+    IsMoveRangeStringUser = Symbol(
         None,
         None,
         None,
-        "IsMoveRangeString19",
+        "IsMoveRangeStringUser",
         "Returns whether a move's range string is 19 ('User').\n\nr0: Move pointer\nreturn: True if the move's range string field has a value of 19.",
         None,
     )
@@ -9214,6 +9214,8 @@ class NaItcmArm9Functions:
     DirectoryFile_LoadDirectoryFile = _Deprecated(
         "DirectoryFile_LoadDirectoryFile", LoadFileInPack
     )
+
+    IsMoveRangeString19 = _Deprecated("IsMoveRangeString19", IsMoveRangeStringUser)
 
     GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
 
@@ -25479,6 +25481,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    CanMonsterMoveOrSwapWithAllyInDirection = Symbol(
+        None,
+        None,
+        None,
+        "CanMonsterMoveOrSwapWithAllyInDirection",
+        "Checks if the given monster can move in the specified direction. Includes if an allied or neutral monster is standing on an adjacent tile, as the monsters can swap places.\n\nReturns false if an enemy monster is standing on the target tile\n\nr0: Monster entity pointer\nr1: Direction to check\nreturn: bool",
+        None,
+    )
+
     CanAttackInDirection = Symbol(
         None,
         None,
@@ -27387,12 +27398,21 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    ResetAiCanAttackInDirection = Symbol(
+        None,
+        None,
+        None,
+        "ResetAiCanAttackInDirection",
+        "Resets all entries in AI_CAN_ATTACK_IN_DIRECTION to false.\n\nNo params.",
+        None,
+    )
+
     AiConsiderMove = Symbol(
         None,
         None,
         None,
         "AiConsiderMove",
-        "The AI uses this function to check if a move has any potential targets, to calculate the list of potential targets and to calculate the move's special weight.\nThis weight will be higher if the pokémon has weak-type picker and the target is weak to the move (allies only, enemies always get a result of 1 even if the move is super effective). More things could affect the result.\nThis function also sets the flag can_be_used on the ai_possible_move struct if it makes sense to use it.\nMore research is needed. There's more documentation about this special weight. Does all the documented behavior happen in this function?\n\nr0: ai_possible_move struct for this move\nr1: Entity pointer\nr2: Move pointer\nreturn: Move's calculated special weight",
+        "The AI uses this function to check if a move has any potential targets, to calculate the list of potential targets and to calculate the move's special weight. The weight is calculated using WeightMoveWithIqSkills.\nThis function also sets the flag can_be_used on the ai_possible_move struct if it makes sense to use it.\n\nThe weight returned by this function is not the same as GetMoveAiWeight. If the AI does not have Weak-Type Picker, AiConsiderMove is called after the AI has selected which move it will use (using GetMoveAiWeight). It determines whether it makes sense for the AI to actually use the chosen move (i.e., whether targets are in range), and which direction the AI will use the move in if so. The return value of this function is not used anywhere in this case.\n\nIf the AI has Weak-Type Picker, the AI calls this function earlier in the AI logic to determine which move to use, using the returned special weight to find which move has the most advantageous type matchups.\n\nr0: ai_possible_move struct for this move\nr1: Entity pointer\nr2: Move pointer\nreturn: Move's calculated special weight",
         None,
     )
 
@@ -27411,6 +27431,15 @@ class NaItcmOverlay29Functions:
         None,
         "IsAiTargetEligible",
         "Checks if a given target is eligible to be targeted by the AI with a certain move\n\nr0: Move's AI range field\nr1: User entity pointer\nr2: Target entity pointer\nr3: Move pointer\nstack[0]: True to check all the possible move_ai_condition values, false to only check for move_ai_condition::AI_CONDITION_RANDOM (if the move has a different ai condition, the result will be false).\nreturn: True if the target is eligible, false otherwise",
+        None,
+    )
+
+    WeightMoveWithIqSkills = Symbol(
+        None,
+        None,
+        None,
+        "WeightMoveWithIqSkills",
+        "Calculates a move weight used for deciding which target the move should be used on. If the user is an ally, the target is an enemy Pokémon, and the user has Exp. Go-Getter, Efficiency Expert, or Weak-Type Picker enabled, this function calculates a move weight based on that IQ skill's functionality. Otherwise, this function returns a weight of 1.\n\nr0: User entity pointer\nr1: Move's AI range field\nr2: Target entity pointer\nr3: Move type\nreturn: Move weight for deciding move targeting.",
         None,
     )
 
@@ -32746,6 +32775,42 @@ class NaItcmRamData:
         "AI_THROWN_ITEM_DIRECTIONS",
         "[Runtime] Used to store the directions output by GetPossibleAiThrownItemDirections.",
         "uint32_t[8]",
+    )
+
+    AI_CAN_ATTACK_IN_DIRECTION = Symbol(
+        None,
+        None,
+        None,
+        "AI_CAN_ATTACK_IN_DIRECTION",
+        "[Runtime] Stores whether the AI can use an attack in each direction.",
+        "bool[8]",
+    )
+
+    AI_POTENTIAL_ATTACK_TARGET_DIRECTIONS = Symbol(
+        None,
+        None,
+        None,
+        "AI_POTENTIAL_ATTACK_TARGET_DIRECTIONS",
+        "[Runtime] Stores the directions that the AI can use an attack in. Parallel to AI_POTENTIAL_ATTACK_TARGET_WEIGHTS and AI_POTENTIAL_ATTACK_TARGETS.",
+        "struct direction_id_8[8]",
+    )
+
+    AI_POTENTIAL_ATTACK_TARGET_WEIGHTS = Symbol(
+        None,
+        None,
+        None,
+        "AI_POTENTIAL_ATTACK_TARGET_WEIGHTS",
+        "[Runtime] Stores the targeting weights for each direction the AI can use an attack in. Parallel to AI_POTENTIAL_ATTACK_TARGET_DIRECTIONS and AI_POTENTIAL_ATTACK_TARGETS.",
+        "uint32_t[8]",
+    )
+
+    AI_POTENTIAL_ATTACK_TARGETS = Symbol(
+        None,
+        None,
+        None,
+        "AI_POTENTIAL_ATTACK_TARGETS",
+        "[Runtime] Stores the target entity for each direction the AI can use an attack in. Parallel to AI_POTENTIAL_ATTACK_TARGET_DIRECTIONS and AI_POTENTIAL_ATTACK_TARGET_DIRECTIONS.",
+        "struct entity*[8]",
     )
 
     ROLLOUT_ICE_BALL_MISSED = Symbol(
