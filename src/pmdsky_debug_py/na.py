@@ -25861,7 +25861,7 @@ class NaOverlay29Functions:
         [0x2300108],
         None,
         "GetMonsterDisplayNameType",
-        "Determines how the name of a monster should be displayed.\n\nr0: Entity pointer\nreturn: Display name type",
+        "Determines how the name of a monster should be displayed.\n\nr0: Monster pointer\nreturn: Display name type",
         None,
     )
 
