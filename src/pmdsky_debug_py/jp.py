@@ -3013,12 +3013,12 @@ class JpArm9Functions:
         None,
     )
 
-    IsAffectedByTaunt = Symbol(
+    IsUsableWhileTaunted = Symbol(
         [0x13B20],
         [0x2013B20],
         None,
-        "IsAffectedByTaunt",
-        "Note: unverified, ported from Irdkwia's notes\n\nBased on struct move_data, maybe this should be IsUsableWhileTaunted?\n\nr0: move\nreturn: bool",
+        "IsUsableWhileTaunted",
+        "Returns true if the given move can be used while the user is affected by Taunt, or false if the move cannot be used while taunted.\n\nr0: move\nreturn: bool whether the move can be used while taunted.",
         None,
     )
 
@@ -9260,6 +9260,8 @@ class JpArm9Functions:
     DirectoryFile_LoadDirectoryFile = _Deprecated(
         "DirectoryFile_LoadDirectoryFile", LoadFileInPack
     )
+
+    IsAffectedByTaunt = _Deprecated("IsAffectedByTaunt", IsUsableWhileTaunted)
 
     IsMoveRangeString19 = _Deprecated("IsMoveRangeString19", IsMoveRangeStringUser)
 
@@ -17885,6 +17887,15 @@ class JpOverlay10Data:
         "int16_t",
     )
 
+    CHATOT_SCARF_BOUNCE_CHANCE = Symbol(
+        [0x7B10],
+        [0x22C5D30],
+        0x2,
+        "CHATOT_SCARF_BOUNCE_CHANCE",
+        "The chance of the Chatot Scarf bouncing back a move, as a percentage (20%).",
+        "int16_t",
+    )
+
     WEATHER_MOVE_TURN_COUNT = Symbol(
         [0x7B1C],
         [0x22C5D3C],
@@ -24804,6 +24815,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    CanLayTrap = Symbol(
+        [0x119B4],
+        [0x22EF294],
+        None,
+        "CanLayTrap",
+        "Checks if a trap can be placed on the tile.\n\nr0: position\nreturn: true if a trap can be spawned at the given position.",
+        None,
+    )
+
     TrySpawnTrap = Symbol(
         [0x11A40],
         [0x22EF320],
@@ -28915,6 +28935,15 @@ class JpOverlay29Functions:
         None,
         "TrySmashWall",
         "Checks if the tile at the position is a wall. If so, smash it (turn it into a floor tile), play an animation\n\nr0: Wall position to smash\nreturn: bool",
+        None,
+    )
+
+    IsTileGround = Symbol(
+        [0x5B910],
+        [0x23391F0],
+        None,
+        "IsTileGround",
+        "Returns true if the given position is a ground tile, meaning that Dig can be used and Dive cannot be used.\nThis depends on the terrain type of the position and the dungeon tileset.\n\nr0: Position\nreturn: True if the current tile is a ground tile.",
         None,
     )
 

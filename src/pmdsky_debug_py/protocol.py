@@ -1717,7 +1717,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    IsAffectedByTaunt: Symbol[
+    IsUsableWhileTaunted: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -10970,6 +10970,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    CHATOT_SCARF_BOUNCE_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     WEATHER_MOVE_TURN_COUNT: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -14923,6 +14928,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CanLayTrap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TrySpawnTrap: Symbol[
         Optional[list[int]],
         None,
@@ -17179,6 +17189,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TrySmashWall: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsTileGround: Symbol[
         Optional[list[int]],
         None,
     ]
