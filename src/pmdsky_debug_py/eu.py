@@ -3454,6 +3454,15 @@ class EuArm9Functions:
         None,
     )
 
+    PlaySeByIdVolumeWrapper = Symbol(
+        [0x17D1C],
+        [0x2017D1C],
+        None,
+        "PlaySeByIdVolumeWrapper",
+        "Wrapper for PlaySeByIdVolume with 0x100 as the volume.\n\nr0: Index",
+        None,
+    )
+
     PlaySeVolumeWrapper = Symbol(
         [0x17D68],
         [0x2017D68],
@@ -4378,6 +4387,15 @@ class EuArm9Functions:
         None,
         "GetDungeonResultString",
         "Returns a string containing some information to be used when displaying the dungeon results screen.\n\nThe exact string returned depends on the value of r0:\n0: Name of the move that fainted the leader. Empty string if the leader didn't faint.\n1-3: Seems to always result in an empty string.\n4: Name of the pokémon that fainted the leader, or name of the leader if the leader didn't faint.\n5: Name of the fainted leader. Empty string if the leader didn't faint.\n\nr0: String to return\nreturn: Pointer to resulting string",
+        None,
+    )
+
+    SubstitutePlaceholderItemTags = Symbol(
+        [0x252B4],
+        [0x20252B4],
+        None,
+        "SubstitutePlaceholderItemTags",
+        "Sets what item's name should be displayed in place of the [item:r0] tag when printing a string.\n\nIs almost always accompanied by a SetPreprocessorArgsIdVal(0, tag id | 0x40000) call in dungeon mode.\n\nr0: tag id\nr1: item struct pointer\nr2: some static address related to storing the item (always the same throughout the code)",
         None,
     )
 
@@ -13246,6 +13264,15 @@ class EuLibsFunctions:
         None,
     )
 
+    PM_ForceToPowerOff = Symbol(
+        [0x15F34],
+        [0x20823A4],
+        None,
+        "PM_ForceToPowerOff",
+        "Powers off the system.\n\nreturn: ?",
+        None,
+    )
+
     abs = Symbol(
         [0x1A484],
         [0x20868F4],
@@ -17591,6 +17618,15 @@ class EuOverlay10Data:
         "int16_t",
     )
 
+    CUTE_CHARM_INFATUATE_CHANCE = Symbol(
+        [0x7ABC],
+        [0x22C4E7C],
+        None,
+        "CUTE_CHARM_INFATUATE_CHANCE",
+        "The chance of Cute Charm infatuating, as a percentage (12%).",
+        "int16_t",
+    )
+
     LICK_PARALYZE_CHANCE = Symbol(
         [0x7AC0],
         [0x22C4E80],
@@ -18252,6 +18288,15 @@ class EuOverlay10Data:
         "int16_t[2]",
     )
 
+    REFLECT_LIGHT_SCREEN_TURN_RANGE = Symbol(
+        [0x7CC4],
+        [0x22C5084],
+        None,
+        "REFLECT_LIGHT_SCREEN_TURN_RANGE",
+        "The turn range for the Reflect and Light Screen statuses, [10, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     BURN_DAMAGE_MULTIPLIER = Symbol(
         [0x7CDC],
         [0x22C509C],
@@ -18286,6 +18331,15 @@ class EuOverlay10Data:
         "MATCHUP_IMMUNE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_IMMUNE, as a fixed-point number with 8 fraction bits (0.5).",
         "fx32_8",
+    )
+
+    GASTRO_ACID_TURN_RANGE = Symbol(
+        [0x7D04],
+        [0x22C50C4],
+        None,
+        "GASTRO_ACID_TURN_RANGE",
+        "The turn range for the Gastro Acid status, [4, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     SPORT_CONDITION_TURN_RANGE = Symbol(
@@ -25094,6 +25148,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    HandleHeldItemSwaps = Symbol(
+        [0x18408],
+        [0x22F4F88],
+        None,
+        "HandleHeldItemSwaps",
+        "Handles giving/taking held items to/from a party member (and likely other things).\n\nr0: entity pointer",
+        None,
+    )
+
     UseSingleUseItemWrapper = Symbol(
         [0x19108],
         [0x22F5C88],
@@ -30000,6 +30063,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    PrepareItemForPrinting = Symbol(
+        [0x68BA8, 0x68BD4],
+        [0x2345728, 0x2345754],
+        None,
+        "PrepareItemForPrinting",
+        "Calls functions to prepare an item to be printed in place of the [item:r0] tag.\n\nr0: tag id\nr1: item struct pointer",
+        None,
+    )
+
     GenerateStandardItem = Symbol(
         [0x68C34],
         [0x23457B4],
@@ -30411,6 +30483,15 @@ class EuOverlay29Functions:
         None,
         "GenerateMissionEggMonster",
         "Generates the monster ID in the egg from the given mission. Uses the base form of the monster.\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: mission struct",
+        None,
+    )
+
+    SetPreprocessorArgsIdVal = Symbol(
+        [0x6F104],
+        [0x234BC84],
+        None,
+        "SetPreprocessorArgsIdVal",
+        "Sets an id_vals element in the global preprocessor_args struct passed throughout the code to PreprocessString to a specified value.\n\nr0: position in id_vals array\nr1: value",
         None,
     )
 

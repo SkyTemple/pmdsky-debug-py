@@ -3408,6 +3408,15 @@ class JpItcmArm9Functions:
         None,
     )
 
+    PlaySeByIdVolumeWrapper = Symbol(
+        None,
+        None,
+        None,
+        "PlaySeByIdVolumeWrapper",
+        "Wrapper for PlaySeByIdVolume with 0x100 as the volume.\n\nr0: Index",
+        None,
+    )
+
     PlaySeVolumeWrapper = Symbol(
         None,
         None,
@@ -4332,6 +4341,15 @@ class JpItcmArm9Functions:
         None,
         "GetDungeonResultString",
         "Returns a string containing some information to be used when displaying the dungeon results screen.\n\nThe exact string returned depends on the value of r0:\n0: Name of the move that fainted the leader. Empty string if the leader didn't faint.\n1-3: Seems to always result in an empty string.\n4: Name of the pokémon that fainted the leader, or name of the leader if the leader didn't faint.\n5: Name of the fainted leader. Empty string if the leader didn't faint.\n\nr0: String to return\nreturn: Pointer to resulting string",
+        None,
+    )
+
+    SubstitutePlaceholderItemTags = Symbol(
+        None,
+        None,
+        None,
+        "SubstitutePlaceholderItemTags",
+        "Sets what item's name should be displayed in place of the [item:r0] tag when printing a string.\n\nIs almost always accompanied by a SetPreprocessorArgsIdVal(0, tag id | 0x40000) call in dungeon mode.\n\nr0: tag id\nr1: item struct pointer\nr2: some static address related to storing the item (always the same throughout the code)",
         None,
     )
 
@@ -13005,6 +13023,15 @@ class JpItcmLibsFunctions:
         None,
     )
 
+    PM_ForceToPowerOff = Symbol(
+        None,
+        None,
+        None,
+        "PM_ForceToPowerOff",
+        "Powers off the system.\n\nreturn: ?",
+        None,
+    )
+
     abs = Symbol(
         None,
         None,
@@ -17340,6 +17367,15 @@ class JpItcmOverlay10Data:
         "int16_t",
     )
 
+    CUTE_CHARM_INFATUATE_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "CUTE_CHARM_INFATUATE_CHANCE",
+        "The chance of Cute Charm infatuating, as a percentage (12%).",
+        "int16_t",
+    )
+
     LICK_PARALYZE_CHANCE = Symbol(
         None,
         None,
@@ -17986,6 +18022,15 @@ class JpItcmOverlay10Data:
         "int16_t[2]",
     )
 
+    REFLECT_LIGHT_SCREEN_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "REFLECT_LIGHT_SCREEN_TURN_RANGE",
+        "The turn range for the Reflect and Light Screen statuses, [10, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     BURN_DAMAGE_MULTIPLIER = Symbol(
         None,
         None,
@@ -18020,6 +18065,15 @@ class JpItcmOverlay10Data:
         "MATCHUP_IMMUNE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_IMMUNE, as a fixed-point number with 8 fraction bits (0.5).",
         "fx32_8",
+    )
+
+    GASTRO_ACID_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "GASTRO_ACID_TURN_RANGE",
+        "The turn range for the Gastro Acid status, [4, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     SPORT_CONDITION_TURN_RANGE = Symbol(
@@ -24565,6 +24619,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    HandleHeldItemSwaps = Symbol(
+        None,
+        None,
+        None,
+        "HandleHeldItemSwaps",
+        "Handles giving/taking held items to/from a party member (and likely other things).\n\nr0: entity pointer",
+        None,
+    )
+
     UseSingleUseItemWrapper = Symbol(
         None,
         None,
@@ -29425,6 +29488,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    PrepareItemForPrinting = Symbol(
+        None,
+        None,
+        None,
+        "PrepareItemForPrinting",
+        "Calls functions to prepare an item to be printed in place of the [item:r0] tag.\n\nr0: tag id\nr1: item struct pointer",
+        None,
+    )
+
     GenerateStandardItem = Symbol(
         None,
         None,
@@ -29836,6 +29908,15 @@ class JpItcmOverlay29Functions:
         None,
         "GenerateMissionEggMonster",
         "Generates the monster ID in the egg from the given mission. Uses the base form of the monster.\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: mission struct",
+        None,
+    )
+
+    SetPreprocessorArgsIdVal = Symbol(
+        None,
+        None,
+        None,
+        "SetPreprocessorArgsIdVal",
+        "Sets an id_vals element in the global preprocessor_args struct passed throughout the code to PreprocessString to a specified value.\n\nr0: position in id_vals array\nr1: value",
         None,
     )
 

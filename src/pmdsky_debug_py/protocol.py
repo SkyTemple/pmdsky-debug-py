@@ -1962,6 +1962,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlaySeByIdVolumeWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlaySeVolumeWrapper: Symbol[
         Optional[list[int]],
         None,
@@ -2473,6 +2478,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetDungeonResultString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SubstitutePlaceholderItemTags: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8368,6 +8378,11 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    PM_ForceToPowerOff: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     abs: Symbol[
         Optional[list[int]],
         None,
@@ -10800,6 +10815,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    CUTE_CHARM_INFATUATE_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     LICK_PARALYZE_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11170,6 +11190,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    REFLECT_LIGHT_SCREEN_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     BURN_DAMAGE_MULTIPLIER: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11186,6 +11211,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     MATCHUP_IMMUNE_MULTIPLIER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GASTRO_ACID_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15078,6 +15108,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    HandleHeldItemSwaps: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UseSingleUseItemWrapper: Symbol[
         Optional[list[int]],
         None,
@@ -17778,6 +17813,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PrepareItemForPrinting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GenerateStandardItem: Symbol[
         Optional[list[int]],
         None,
@@ -18004,6 +18044,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GenerateMissionEggMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPreprocessorArgsIdVal: Symbol[
         Optional[list[int]],
         None,
     ]
