@@ -405,6 +405,15 @@ class EuArm9Functions:
         None,
     )
 
+    SinAbs4096 = Symbol(
+        [0x18D0],
+        [0x20018D0],
+        None,
+        "SinAbs4096",
+        "This function computes the sine of the absolute value of r0 using a lookup table. The period of the function is 4096, and the range is [-256, 256].\n\nr0: The value to get the sine of.\nreturn: floor(256 * sin(pi * abs(x) / 2048)) as a signed 32-bit integer.",
+        None,
+    )
+
     UFixedPoint64CmpLt = Symbol(
         [0x1A30],
         [0x2001A30],
@@ -13606,12 +13615,12 @@ class EuLibsFunctions:
         None,
     )
 
-    _dgeq = Symbol(
+    _dgr = Symbol(
         [0x22E04],
         [0x208F274],
         None,
-        "_dgeq",
-        "Implements the >= operator for IEEE 754 double-precision floating-point numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn: a >= b",
+        "_dgr",
+        "Implements the > operator for IEEE 754 double-precision floating-point numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn: a > b",
         None,
     )
 
@@ -26670,6 +26679,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    TryEndPetrifiedOrSleepStatus = Symbol(
+        [0x2BA88],
+        [0x2308608],
+        None,
+        "TryEndPetrifiedOrSleepStatus",
+        "Ends the target's petrified status unconditionally, and the target's sleep status if the status turns have run out.\n\nr0: user entity who attacked the target\nr1: target entity to try ending a status for.\nreturn: Whether or not the target's status ended.",
+        None,
+    )
+
     EndFrozenStatus = Symbol(
         [0x2BB24],
         [0x23086A4],
@@ -28754,7 +28772,16 @@ class EuOverlay29Functions:
         [0x2333AB4],
         None,
         "StatusCheckerCheck",
-        "Determines if using a given move against its intended targets would be redundant because all of them already have the effect caused by said move.\n\nr0: Pointer to the entity that is considering using the move\nr1: Move pointer\nreturn: True if it makes sense to use the move, false if it would be redundant given the effects it causes and the effects that all the targets already have.",
+        "Determines if using a given move against its intended targets would be redundant because all of them already have the effect caused by said move. Used for moves that affect the user or allies.\n\nr0: Pointer to the entity that is considering using the move\nr1: Move pointer\nreturn: True if it makes sense to use the move, false if it would be redundant given the effects it causes and the effects that all the targets already have.",
+        None,
+    )
+
+    StatusCheckerCheckOnTarget = Symbol(
+        [0x57E90],
+        [0x2334A10],
+        None,
+        "StatusCheckerCheckOnTarget",
+        "Determines if using a given move against its intended target would be redundant because all of them already have the effect caused by said move. Used for moves that affect enemies.\n\nr0: Pointer to the entity that is considering using the move\nr2: Pointer to the entity being targeted by the move\nr1: Move pointer\nreturn: True if it makes sense to use the move, false if it would be redundant given the effects it causes and the effects that the target already has.",
         None,
     )
 
@@ -30195,6 +30222,15 @@ class EuOverlay29Functions:
         None,
         "GenerateItem",
         "Initializes an item struct with the given information.\n\nThis wraps InitItem, but with extra logic to resolve the item's stickiness. It also calls GenerateMoneyQuantity for Poké.\n\nr0: pointer to item to initialize\nr1: item ID\nr2: quantity\nr3: stickiness type (enum gen_item_stickiness)",
+        None,
+    )
+
+    HandleCurvedProjectileThrow = Symbol(
+        [0x6BC48],
+        [0x23487C8],
+        None,
+        "HandleCurvedProjectileThrow",
+        "Throws an item in a curved arc, like a Gravelerock.\n\nr0: monster entity throwing the item\nr1: item being thrown\nr2: position to start throwing the item from\nr3: position to throw the item to\nstack[0]: Metadata about the item being thrown",
         None,
     )
 
@@ -31986,6 +32022,15 @@ class EuOverlay31Functions:
         None,
     )
 
+    EntityIsValidOverlay31 = Symbol(
+        [0xE38],
+        [0x2384258],
+        None,
+        "EntityIsValidOverlay31",
+        "See overlay29.yml::EntityIsValid",
+        None,
+    )
+
     MovesMenu = Symbol(
         [0x29A0],
         [0x2385DC0],
@@ -33715,6 +33760,15 @@ class EuRamData:
         "METRONOME_NEXT_INDEX",
         "[Runtime] The index into METRONOME_TABLE for the next usage of Metronome.",
         "int",
+    )
+
+    DEFAULT_TILE_COPY = Symbol(
+        [0x37D6B8],
+        [0x237D6B8],
+        0x14,
+        "DEFAULT_TILE_COPY",
+        "A copy of DEFAULT_TILE. Used to hold the default tile returned from GetTileSafe.",
+        "struct tile",
     )
 
     FLOOR_GENERATION_STATUS = Symbol(

@@ -287,6 +287,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SinAbs4096: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UFixedPoint64CmpLt: Symbol[
         Optional[list[int]],
         None,
@@ -8568,7 +8573,7 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    _dgeq: Symbol[
+    _dgr: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15928,6 +15933,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryEndPetrifiedOrSleepStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     EndFrozenStatus: Symbol[
         Optional[list[int]],
         None,
@@ -17088,6 +17098,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    StatusCheckerCheckOnTarget: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetApparentWeather: Symbol[
         Optional[list[int]],
         None,
@@ -17884,6 +17899,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GenerateItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleCurvedProjectileThrow: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -18842,6 +18862,11 @@ class Overlay31FunctionsProtocol(Protocol):
     ]
 
     HandleStairsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EntityIsValidOverlay31: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19892,6 +19917,11 @@ class RamDataProtocol(Protocol):
     ]
 
     METRONOME_NEXT_INDEX: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEFAULT_TILE_COPY: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

@@ -405,6 +405,15 @@ class JpArm9Functions:
         None,
     )
 
+    SinAbs4096 = Symbol(
+        [0x18D0],
+        [0x20018D0],
+        None,
+        "SinAbs4096",
+        "This function computes the sine of the absolute value of r0 using a lookup table. The period of the function is 4096, and the range is [-256, 256].\n\nr0: The value to get the sine of.\nreturn: floor(256 * sin(pi * abs(x) / 2048)) as a signed 32-bit integer.",
+        None,
+    )
+
     UFixedPoint64CmpLt = Symbol(
         [0x1A30],
         [0x2001A30],
@@ -3455,8 +3464,8 @@ class JpArm9Functions:
     )
 
     PlaySeByIdVolumeWrapper = Symbol(
-        None,
-        None,
+        [0x17CD8],
+        [0x2017CD8],
         None,
         "PlaySeByIdVolumeWrapper",
         "Wrapper for PlaySeByIdVolume with 0x100 as the volume.\n\nr0: Index",
@@ -4391,8 +4400,8 @@ class JpArm9Functions:
     )
 
     SubstitutePlaceholderItemTags = Symbol(
-        None,
-        None,
+        [0x25038],
+        [0x2025038],
         None,
         "SubstitutePlaceholderItemTags",
         "Sets what item's name should be displayed in place of the [item:r0] tag when printing a string.\n\nIs almost always accompanied by a SetPreprocessorArgsIdVal(0, tag id | 0x40000) call in dungeon mode.\n\nr0: tag id\nr1: item struct pointer\nr2: some static address related to storing the item (always the same throughout the code)",
@@ -13601,12 +13610,12 @@ class JpLibsFunctions:
         None,
     )
 
-    _dgeq = Symbol(
+    _dgr = Symbol(
         [0x22E04],
         [0x208F1C4],
         None,
-        "_dgeq",
-        "Implements the >= operator for IEEE 754 double-precision floating-point numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn: a >= b",
+        "_dgr",
+        "Implements the > operator for IEEE 754 double-precision floating-point numbers.\n\nr0: a (low bits)\nr1: a (high bits)\nr2: b (low bits)\nr3: b (high bits)\nreturn: a > b",
         None,
     )
 
@@ -17614,8 +17623,8 @@ class JpOverlay10Data:
     )
 
     CUTE_CHARM_INFATUATE_CHANCE = Symbol(
-        None,
-        None,
+        [0x79EC],
+        [0x22C5C0C],
         0x2,
         "CUTE_CHARM_INFATUATE_CHANCE",
         "The chance of Cute Charm infatuating, as a percentage (12%).",
@@ -18284,8 +18293,8 @@ class JpOverlay10Data:
     )
 
     REFLECT_LIGHT_SCREEN_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7BF4],
+        [0x22C5E14],
         0x4,
         "REFLECT_LIGHT_SCREEN_TURN_RANGE",
         "The turn range for the Reflect and Light Screen statuses, [10, 12).\n\ntype: int16_t[2]",
@@ -18329,8 +18338,8 @@ class JpOverlay10Data:
     )
 
     GASTRO_ACID_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7C34],
+        [0x22C5E54],
         0x4,
         "GASTRO_ACID_TURN_RANGE",
         "The turn range for the Gastro Acid status, [4, 10).\n\ntype: int16_t[2]",
@@ -25140,8 +25149,8 @@ class JpOverlay29Functions:
     )
 
     HandleHeldItemSwaps = Symbol(
-        None,
-        None,
+        [0x182E4],
+        [0x22F5BC4],
         None,
         "HandleHeldItemSwaps",
         "Handles giving/taking held items to/from a party member (and likely other things).\n\nr0: entity pointer",
@@ -26658,6 +26667,15 @@ class JpOverlay29Functions:
         None,
         "TransferNegativeBlinkerClassStatus",
         "Tries to transfer the negative blinker class status conditions from the user to\nthe target.\n\nr0: user entity pointer\nr1: target entity pointer\nreturn: Whether or not the status could be transferred",
+        None,
+    )
+
+    TryEndPetrifiedOrSleepStatus = Symbol(
+        [0x2B82C],
+        [0x230910C],
+        None,
+        "TryEndPetrifiedOrSleepStatus",
+        "Ends the target's petrified status unconditionally, and the target's sleep status if the status turns have run out.\n\nr0: user entity who attacked the target\nr1: target entity to try ending a status for.\nreturn: Whether or not the target's status ended.",
         None,
     )
 
@@ -28745,7 +28763,16 @@ class JpOverlay29Functions:
         [0x2334460],
         None,
         "StatusCheckerCheck",
-        "Determines if using a given move against its intended targets would be redundant because all of them already have the effect caused by said move.\n\nr0: Pointer to the entity that is considering using the move\nr1: Move pointer\nreturn: True if it makes sense to use the move, false if it would be redundant given the effects it causes and the effects that all the targets already have.",
+        "Determines if using a given move against its intended targets would be redundant because all of them already have the effect caused by said move. Used for moves that affect the user or allies.\n\nr0: Pointer to the entity that is considering using the move\nr1: Move pointer\nreturn: True if it makes sense to use the move, false if it would be redundant given the effects it causes and the effects that all the targets already have.",
+        None,
+    )
+
+    StatusCheckerCheckOnTarget = Symbol(
+        [0x57ADC],
+        [0x23353BC],
+        None,
+        "StatusCheckerCheckOnTarget",
+        "Determines if using a given move against its intended target would be redundant because all of them already have the effect caused by said move. Used for moves that affect enemies.\n\nr0: Pointer to the entity that is considering using the move\nr2: Pointer to the entity being targeted by the move\nr1: Move pointer\nreturn: True if it makes sense to use the move, false if it would be redundant given the effects it causes and the effects that the target already has.",
         None,
     )
 
@@ -30055,8 +30082,8 @@ class JpOverlay29Functions:
     )
 
     PrepareItemForPrinting = Symbol(
-        None,
-        None,
+        [0x68628, 0x68654],
+        [0x2345F08, 0x2345F34],
         None,
         "PrepareItemForPrinting",
         "Calls functions to prepare an item to be printed in place of the [item:r0] tag.\n\nr0: tag id\nr1: item struct pointer",
@@ -30186,6 +30213,15 @@ class JpOverlay29Functions:
         None,
         "GenerateItem",
         "Initializes an item struct with the given information.\n\nThis wraps InitItem, but with extra logic to resolve the item's stickiness. It also calls GenerateMoneyQuantity for Poké.\n\nr0: pointer to item to initialize\nr1: item ID\nr2: quantity\nr3: stickiness type (enum gen_item_stickiness)",
+        None,
+    )
+
+    HandleCurvedProjectileThrow = Symbol(
+        [0x6B674],
+        [0x2348F54],
+        None,
+        "HandleCurvedProjectileThrow",
+        "Throws an item in a curved arc, like a Gravelerock.\n\nr0: monster entity throwing the item\nr1: item being thrown\nr2: position to start throwing the item from\nr3: position to throw the item to\nstack[0]: Metadata about the item being thrown",
         None,
     )
 
@@ -30478,8 +30514,8 @@ class JpOverlay29Functions:
     )
 
     SetPreprocessorArgsIdVal = Symbol(
-        None,
-        None,
+        [0x6EA14],
+        [0x234C2F4],
         None,
         "SetPreprocessorArgsIdVal",
         "Sets an id_vals element in the global preprocessor_args struct passed throughout the code to PreprocessString to a specified value.\n\nr0: position in id_vals array\nr1: value",
@@ -31693,7 +31729,7 @@ class JpOverlay29Data:
     DEFAULT_TILE = Symbol(
         [0x770BC],
         [0x235499C],
-        None,
+        0x14,
         "DEFAULT_TILE",
         "The default tile struct.\n\nThis is just a struct full of zeroes, but is used as a fallback in various places where a 'default' tile is needed, such as when a grid index is out of range.\n\ntype: struct tile",
         "struct tile",
@@ -31876,6 +31912,15 @@ class JpOverlay31Functions:
         None,
         "HandleStairsMenu",
         "Handles displaying the stairs menu and is called on each frame while it is open, also updating the leader's action fields.\n\nUses a switch statement based on the state field in stairs_menu to determine what actions to take.\n\nreturn: int",
+        None,
+    )
+
+    EntityIsValidOverlay31 = Symbol(
+        [0xE38],
+        [0x23848D8],
+        None,
+        "EntityIsValidOverlay31",
+        "See overlay29.yml::EntityIsValid",
         None,
     )
 
@@ -33603,6 +33648,15 @@ class JpRamData:
         "METRONOME_NEXT_INDEX",
         "[Runtime] The index into METRONOME_TABLE for the next usage of Metronome.",
         "int",
+    )
+
+    DEFAULT_TILE_COPY = Symbol(
+        [0x37DD38],
+        [0x237DD38],
+        0x14,
+        "DEFAULT_TILE_COPY",
+        "A copy of DEFAULT_TILE. Used to hold the default tile returned from GetTileSafe.",
+        "struct tile",
     )
 
     FLOOR_GENERATION_STATUS = Symbol(
