@@ -4404,7 +4404,7 @@ class NaArm9Functions:
         [0x2024FE8],
         None,
         "SubstitutePlaceholderItemTags",
-        "Sets what item's name should be displayed in place of the [item:r0] tag when printing a string.\n\nIs almost always accompanied by a SetPreprocessorArgsIdVal(0, tag id | 0x40000) call in dungeon mode.\n\nr0: tag id\nr1: item struct pointer\nr2: some static address related to storing the item (always the same throughout the code)",
+        "Sets what item's name should be displayed in place of the [item:r0] tag when printing a string.\n\nIs almost always accompanied by a SetPreprocessorArgsIdVal(tag id, tag id | 0x40000) call in dungeon mode.\n\nr0: tag id\nr1: item struct pointer\nr2: some static address related to storing the item (always the same throughout the code)",
         None,
     )
 
@@ -8868,7 +8868,7 @@ class NaArm9Functions:
         [0x205EE10],
         None,
         "DungeonRequestsDoneWrapper",
-        "Calls DungeonRequestsDone with the second argument set to false.\n\nr0: ?\nreturn: number of mission completed",
+        "Calls DungeonRequestsDone with the second argument set to false.\n\nr0: ?\nreturn: number of missions completed",
         None,
     )
 
@@ -8886,7 +8886,7 @@ class NaArm9Functions:
         [0x205F0B8],
         None,
         "AddMissionToJobList",
-        "Adds a mission to the Job List.\n\nr0: mission to add",
+        "Adds a mission to the Job List.\n\nr0: mission to add\nreturn: bool (0 if mission was successfully added)",
         None,
     )
 
@@ -11097,7 +11097,7 @@ class NaArm9Data:
         None,
         "MONSTER_DATA_TABLE_PTR",
         "[Runtime] Points to data about monster species.",
-        "undefined*",
+        "struct monster_data_table*",
     )
 
     UNOWN_SPECIES_ADDITIONAL_CHAR_PTR_TABLE = Symbol(
