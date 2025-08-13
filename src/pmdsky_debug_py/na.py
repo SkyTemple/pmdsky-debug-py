@@ -1861,6 +1861,15 @@ class NaArm9Functions:
         None,
     )
 
+    ReturnEggExclusiveItem = Symbol(
+        None,
+        None,
+        None,
+        "ReturnEggExclusiveItem",
+        "Checks if a species has an egg exclusive item, for the purposes of the Croagunk Swap Shop.\nPulls from BABY_EXCLUSIVE_ITEM_PAIRS, so Pichu/Thundershard is not correctly accounted for by this function.\nr0: monster ID\nreturn: Exclusive item_id for that monster, 0 if none found.",
+        None,
+    )
+
     SetActiveInventoryToMain = Symbol(
         [0xEBCC],
         [0x200EBCC],
@@ -2779,12 +2788,30 @@ class NaArm9Functions:
         None,
     )
 
+    GenerateCroagunkItems = Symbol(
+        None,
+        None,
+        None,
+        "GenerateCroagunkItems",
+        "Generates the Croagunk Swap Shop items for Croagunk in Wigglytuff's Guild.\nreturn: 1 if at least one item generated, 0 otherwise.",
+        None,
+    )
+
     GetSynthItem = Symbol(
         [0x13250],
         [0x2013250],
         None,
         "GetSynthItem",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Searches synth_template in SYNTH/synth.bin for a matching exclusive item.\nr0: item_id of an exclusive item.\nreturn: pointer to synth_template containing that item. 0 if no match was found.",
+        None,
+    )
+
+    GetValidSynthsForSpecies = Symbol(
+        None,
+        None,
+        None,
+        "GetValidSynthsForSpecies",
+        "Fills out monster_synth_data for the specified monster, containing the synth templates that apply to said monster.\nr0: monster_id of the monster\nr1: [output] Pointer to an empty monster_synth_data, to be filled by the function.\nr2: Pointer to a type_synth_data, so the monster's types can be enabled in the bitfield.\nreturn: 1 if at least one synth_template matches the species, and 0 if not.",
         None,
     )
 
@@ -9514,13 +9541,13 @@ class NaArm9Data:
         "",
     )
 
-    ARM9_UNKNOWN_TABLE__NA_2097FF8 = Symbol(
+    BABY_EXCLUSIVE_ITEM_PAIRS = Symbol(
         [0x97FF8],
         [0x2097FF8],
         0x40,
-        "ARM9_UNKNOWN_TABLE__NA_2097FF8",
-        "16*0x4 (0x2+0x2)\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "BABY_EXCLUSIVE_ITEM_PAIRS",
+        "Stores the IDs of each baby Pokemon (and Phione), as well as the exclusive item they hatch with.",
+        "struct baby_exclusive_item_pair[16]",
     )
 
     KECLEON_SHOP_ITEM_TABLE_LISTS_1 = Symbol(

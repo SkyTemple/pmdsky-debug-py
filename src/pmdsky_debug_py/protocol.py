@@ -1077,6 +1077,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ReturnEggExclusiveItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetActiveInventoryToMain: Symbol[
         Optional[list[int]],
         None,
@@ -1587,7 +1592,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GenerateCroagunkItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetSynthItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetValidSynthsForSpecies: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5330,7 +5345,7 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    ARM9_UNKNOWN_TABLE__NA_2097FF8: Symbol[
+    BABY_EXCLUSIVE_ITEM_PAIRS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
