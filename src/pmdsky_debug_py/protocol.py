@@ -5122,7 +5122,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetActorMatchingStorageId: Symbol[
+    GetScriptEntityMonsterId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetScriptEntityMatchingStorageId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -17114,6 +17119,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     StatusCheckerCheckOnTarget: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HasLastUsedMove: Symbol[
         Optional[list[int]],
         None,
     ]

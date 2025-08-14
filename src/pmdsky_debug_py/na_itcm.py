@@ -4538,7 +4538,7 @@ class NaItcmArm9Functions:
         None,
         None,
         "GetTalkLine",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: personality_index\nr1: group_id\nr2: restrictions\nreturn: ?",
+        "Gets the string id to be displayed for dialogue with a team member.\n\nr0: personality_index (either a monster id or some constant)\nr1: talk type\nr2: restrictions\nreturn: string id",
         None,
     )
 
@@ -9096,12 +9096,21 @@ class NaItcmArm9Functions:
         None,
     )
 
-    GetActorMatchingStorageId = Symbol(
+    GetScriptEntityMonsterId = Symbol(
         None,
         None,
         None,
-        "GetActorMatchingStorageId",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: actor_id\nreturn: storage ID",
+        "GetScriptEntityMonsterId",
+        "Returns the monster id of the script entity given by the id.\n\nr0: script_entity_id\nreturn: monster id",
+        None,
+    )
+
+    GetScriptEntityMatchingStorageId = Symbol(
+        None,
+        None,
+        None,
+        "GetScriptEntityMatchingStorageId",
+        "Returns the storage id matching the script entity given by the id.\n\nr0: script_entity_id\nreturn: storage ID",
         None,
     )
 
@@ -9110,7 +9119,7 @@ class NaItcmArm9Functions:
         None,
         None,
         "SetActorTalkMainAndActorTalkSub",
-        "Sets ACTOR_TALK_MAIN and ACTOR_TALK_SUB to given actor IDs.\n\nr0: actor_id for ACTOR_TALK_MAIN\nr1: actor_id for ACTOR_TALK_SUB",
+        "Sets ACTOR_TALK_MAIN and ACTOR_TALK_SUB to given actor IDs.\n\nr0: script_entity_id for ACTOR_TALK_MAIN\nr1: script_entity_id for ACTOR_TALK_SUB",
         None,
     )
 
@@ -9119,7 +9128,7 @@ class NaItcmArm9Functions:
         None,
         None,
         "SetActorTalkMain",
-        "Sets ACTOR_TALK_MAIN to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_MAIN (see ScriptSpecialProcessCall).\n\nr0: actor_id",
+        "Sets ACTOR_TALK_MAIN to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_MAIN (see ScriptSpecialProcessCall).\n\nr0: script_entity_id",
         None,
     )
 
@@ -9128,7 +9137,7 @@ class NaItcmArm9Functions:
         None,
         None,
         "SetActorTalkSub",
-        "Sets ACTOR_TALK_SUB to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_SUB (see ScriptSpecialProcessCall).\n\nr0: actor_id",
+        "Sets ACTOR_TALK_SUB to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_SUB (see ScriptSpecialProcessCall).\n\nr0: script_entity_id",
         None,
     )
 
@@ -9274,6 +9283,10 @@ class NaItcmArm9Functions:
     IsMoveRangeString19 = _Deprecated("IsMoveRangeString19", IsMoveRangeStringUser)
 
     GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
+
+    GetActorMatchingStorageId = _Deprecated(
+        "GetActorMatchingStorageId", GetScriptEntityMatchingStorageId
+    )
 
 
 class NaItcmArm9Data:
@@ -28234,6 +28247,15 @@ class NaItcmOverlay29Functions:
         None,
         "StatusCheckerCheckOnTarget",
         "Determines if using a given move against its intended target would be redundant because all of them already have the effect caused by said move. Used for moves that affect enemies.\n\nr0: Pointer to the entity that is considering using the move\nr2: Pointer to the entity being targeted by the move\nr1: Move pointer\nreturn: True if it makes sense to use the move, false if it would be redundant given the effects it causes and the effects that the target already has.",
+        None,
+    )
+
+    HasLastUsedMove = Symbol(
+        None,
+        None,
+        None,
+        "HasLastUsedMove",
+        "Determines whether a monster has used any of its moves on this floor.\nThis function takes in the monster's move list and checks if any moves have the f_last_used flag set.\n\nr0: Pointer to the monster's moves.\nreturn: True if the move list has any moves with the f_last_used flag set, false otherwise.",
         None,
     )
 

@@ -1862,8 +1862,8 @@ class JpArm9Functions:
     )
 
     ReturnEggExclusiveItem = Symbol(
-        None,
-        None,
+        [0xEBC0],
+        [0x200EBC0],
         None,
         "ReturnEggExclusiveItem",
         "Checks if a species has an egg exclusive item, for the purposes of the Croagunk Swap Shop.\nPulls from BABY_EXCLUSIVE_ITEM_PAIRS, so Pichu/Thundershard is not correctly accounted for by this function.\nr0: monster ID\nreturn: Exclusive item_id for that monster, 0 if none found.",
@@ -2789,8 +2789,8 @@ class JpArm9Functions:
     )
 
     GenerateCroagunkItems = Symbol(
-        None,
-        None,
+        [0x12B4C],
+        [0x2012B4C],
         None,
         "GenerateCroagunkItems",
         "Generates the Croagunk Swap Shop items for Croagunk in Wigglytuff's Guild.\nreturn: 1 if at least one item generated, 0 otherwise.",
@@ -2807,8 +2807,8 @@ class JpArm9Functions:
     )
 
     GetValidSynthsForSpecies = Symbol(
-        None,
-        None,
+        [0x13274],
+        [0x2013274],
         None,
         "GetValidSynthsForSpecies",
         "Fills out monster_synth_data for the specified monster, containing the synth templates that apply to said monster.\nr0: monster_id of the monster\nr1: [output] Pointer to an empty monster_synth_data, to be filled by the function.\nr2: Pointer to a type_synth_data, so the monster's types can be enabled in the bitfield.\nreturn: 1 if at least one synth_template matches the species, and 0 if not.",
@@ -4584,7 +4584,7 @@ class JpArm9Functions:
         [0x202596C],
         None,
         "GetTalkLine",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: personality_index\nr1: group_id\nr2: restrictions\nreturn: ?",
+        "Gets the string id to be displayed for dialogue with a team member.\n\nr0: personality_index (either a monster id or some constant)\nr1: talk type\nr2: restrictions\nreturn: string id",
         None,
     )
 
@@ -9142,12 +9142,21 @@ class JpArm9Functions:
         None,
     )
 
-    GetActorMatchingStorageId = Symbol(
+    GetScriptEntityMonsterId = Symbol(
+        [0x65C5C],
+        [0x2065C5C],
+        None,
+        "GetScriptEntityMonsterId",
+        "Returns the monster id of the script entity given by the id.\n\nr0: script_entity_id\nreturn: monster id",
+        None,
+    )
+
+    GetScriptEntityMatchingStorageId = Symbol(
         [0x65C80],
         [0x2065C80],
         None,
-        "GetActorMatchingStorageId",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: actor_id\nreturn: storage ID",
+        "GetScriptEntityMatchingStorageId",
+        "Returns the storage id matching the script entity given by the id.\n\nr0: script_entity_id\nreturn: storage ID",
         None,
     )
 
@@ -9156,7 +9165,7 @@ class JpArm9Functions:
         [0x2065E24],
         None,
         "SetActorTalkMainAndActorTalkSub",
-        "Sets ACTOR_TALK_MAIN and ACTOR_TALK_SUB to given actor IDs.\n\nr0: actor_id for ACTOR_TALK_MAIN\nr1: actor_id for ACTOR_TALK_SUB",
+        "Sets ACTOR_TALK_MAIN and ACTOR_TALK_SUB to given actor IDs.\n\nr0: script_entity_id for ACTOR_TALK_MAIN\nr1: script_entity_id for ACTOR_TALK_SUB",
         None,
     )
 
@@ -9165,7 +9174,7 @@ class JpArm9Functions:
         [0x2065E38],
         None,
         "SetActorTalkMain",
-        "Sets ACTOR_TALK_MAIN to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_MAIN (see ScriptSpecialProcessCall).\n\nr0: actor_id",
+        "Sets ACTOR_TALK_MAIN to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_MAIN (see ScriptSpecialProcessCall).\n\nr0: script_entity_id",
         None,
     )
 
@@ -9174,7 +9183,7 @@ class JpArm9Functions:
         [0x2065E48],
         None,
         "SetActorTalkSub",
-        "Sets ACTOR_TALK_SUB to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_SUB (see ScriptSpecialProcessCall).\n\nr0: actor_id",
+        "Sets ACTOR_TALK_SUB to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_SUB (see ScriptSpecialProcessCall).\n\nr0: script_entity_id",
         None,
     )
 
@@ -9320,6 +9329,10 @@ class JpArm9Functions:
     IsMoveRangeString19 = _Deprecated("IsMoveRangeString19", IsMoveRangeStringUser)
 
     GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
+
+    GetActorMatchingStorageId = _Deprecated(
+        "GetActorMatchingStorageId", GetScriptEntityMatchingStorageId
+    )
 
 
 class JpArm9Data:
@@ -28800,6 +28813,15 @@ class JpOverlay29Functions:
         None,
         "StatusCheckerCheckOnTarget",
         "Determines if using a given move against its intended target would be redundant because all of them already have the effect caused by said move. Used for moves that affect enemies.\n\nr0: Pointer to the entity that is considering using the move\nr2: Pointer to the entity being targeted by the move\nr1: Move pointer\nreturn: True if it makes sense to use the move, false if it would be redundant given the effects it causes and the effects that the target already has.",
+        None,
+    )
+
+    HasLastUsedMove = Symbol(
+        [0x587B8],
+        [0x2336098],
+        None,
+        "HasLastUsedMove",
+        "Determines whether a monster has used any of its moves on this floor.\nThis function takes in the monster's move list and checks if any moves have the f_last_used flag set.\n\nr0: Pointer to the monster's moves.\nreturn: True if the move list has any moves with the f_last_used flag set, false otherwise.",
         None,
     )
 
