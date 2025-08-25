@@ -19981,6 +19981,15 @@ class NaItcmOverlay11Functions:
         None,
     )
 
+    SwapShopInventoryManager = Symbol(
+        None,
+        None,
+        None,
+        "SwapShopInventoryManager",
+        "Called primarily handle the display and preparation of the swap shop inventory list, exclusive items list, and the item trade list. \nCreates a swap_shop_inventory_data struct if one does not already exist.  \nIs the child function to SwapShopDialogueManager.\n\nr0: switch case index for the function: 0 = Swap List Inventory, 1 = Unknown, 2 = Species Exclusive Item List, 3 = Item Trade Away Selection List.\nr1: Depends on r0. If case 2: ID of the monster to retrieve an exclusive item list for. If case 3: Number of Exclusive Items the player owns.",
+        None,
+    )
+
     HandleControlsTopScreenGround = Symbol(
         None,
         None,
@@ -20242,6 +20251,15 @@ class NaItcmOverlay11Data:
         "GROUND_STATE_PTRS",
         "Host pointers to multiple structure used for performing an overworld scene\n\ntype: struct main_ground_data",
         "struct main_ground_data",
+    )
+
+    SWAP_SHOP_INVENTORY_PTRS = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_INVENTORY_PTRS",
+        "Host pointers to multiple structures used for performing internal Swap Shop checks.",
+        "struct swap_shop_inventory_ptrs",
     )
 
     WORLD_MAP_MODE = Symbol(
@@ -22126,7 +22144,68 @@ class NaItcmOverlay20Section:
 
 class NaItcmOverlay21Functions:
 
-    pass
+    SwapShopDialogueManager = Symbol(
+        None,
+        None,
+        None,
+        "SwapShopDialogueManager",
+        "Called primarily to fill dialogue boxes or display portraits, this function exists to print the next portrait, dialogue, or input for the Swap Shop. \nConsistently writes the provided input to shared_switch_case, and occasionally writes to next_switch_case.  \nOften calls SwapShopInventoryManager, and is often called by SwapShopMainManager.\n\nr0: New current_switch_case value.",
+        None,
+    )
+
+    GetFirstExclusivePrerequisite = Symbol(
+        None,
+        None,
+        None,
+        "GetFirstExclusivePrerequisite",
+        "Retrieves the item ID of the first item needed to trade for the specified item. There are hardcoded exceptions for the Eeveelution/Hitmontrio items,\nbut outside of that, the output will be as follows.\n  output_id = input_id - ((input_id - 0x1FA) % 4)\n\nr0: item ID of the exclusive item to be checked.\nreturn: item ID of the first exclusive item required to trade for the input.",
+        None,
+    )
+
+    SwapShopEntryPoint = Symbol(
+        None,
+        None,
+        None,
+        "SwapShopEntryPoint",
+        "Is the entrypoint of the overlay_load_entry, and seems to run once to initiate the Swap Shop. Is not called anywhere else.\nAllocates space for swap_shop_menu_data, and initializes many of its fields.\n\nreturn: Always returns 1.",
+        None,
+    )
+
+    SwapShopDestructor = Symbol(
+        None,
+        None,
+        None,
+        "SwapShopDestructor",
+        "Is the destructor of the overlay_load_entry, and seems to run once on closing the Swap Shop. Is not called anywhere else.\nFrees up the allocated space for swap_shop_menu_data if it is not already empty.\n\nNo params.",
+        None,
+    )
+
+    SwapShopMainManager = Symbol(
+        None,
+        None,
+        None,
+        "SwapShopMainManager",
+        "Called every frame the Croagunk Swap Shop is open, acting as a parent function for the various processes the Swap Shop is responsible for. \nPrimarily handles displaying dialogue boxes, retrieving menu selections, and contributing updates to the various switch case indices.\nOften calls SwapShopDialogueManager, either with an immediate or with the designated next_switch_case value. \n\nreturn: Typically returns 1, but seems to return 4 to exit the Swap Shop. Possibly related to the explorerscript output?",
+        None,
+    )
+
+    CloseTextboxAndSimpleMenu = Symbol(
+        None,
+        None,
+        None,
+        "CloseTextboxAndSimpleMenu",
+        "Checks both the text_window_id and menu_window_id for -2. If either are not -2, close the textbox/simple menu, and assign the id to -2.\n\nNo params.",
+        None,
+    )
+
+    SwapShopPrintCurrentGold = Symbol(
+        None,
+        None,
+        None,
+        "SwapShopPrintCurrentGold",
+        "A text box callback function containing the player's current gold using SWAP_SHOP_GOLD_STRING, as seen on the Swap Shop main menu.\n\nr0: window_id of the textbox",
+        None,
+    )
 
 
 class NaItcmOverlay21Data:
@@ -22136,7 +22215,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_WINDOW_PARAMS_1",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Used with SwapShopPrintCurrentGold for a simple textbox.",
         "struct window_params",
     )
 
@@ -22145,7 +22224,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_MENU_ITEMS_CONFIRM",
-        "",
+        "Used with SWAP_SHOP_WINDOW_PARAMS_7.",
         "struct simple_menu_id_item[3]",
     )
 
@@ -22154,7 +22233,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_SUBMENU_ITEMS_1",
-        "",
+        "Used with SWAP_SHOP_WINDOW_PARAMS_6.",
         "struct simple_menu_id_item[3]",
     )
 
@@ -22163,7 +22242,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_SUBMENU_ITEMS_2",
-        "",
+        "Used with SWAP_SHOP_WINDOW_PARAMS_7.",
         "struct simple_menu_id_item[4]",
     )
 
@@ -22172,7 +22251,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_MAIN_MENU_ITEMS_1",
-        "",
+        "Used with SWAP_SHOP_WINDOW_PARAMS_6.",
         "struct simple_menu_id_item[4]",
     )
 
@@ -22181,7 +22260,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_MAIN_MENU_ITEMS_2",
-        "",
+        "Used alongside SWAP_SHOP_WINDOW_PARAMS_5.",
         "struct simple_menu_id_item[5]",
     )
 
@@ -22190,7 +22269,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_SUBMENU_ITEMS_3",
-        "",
+        "Used alongside SWAP_SHOP_WINDOW_PARAMS_9.",
         "struct simple_menu_id_item[6]",
     )
 
@@ -22199,8 +22278,8 @@ class NaItcmOverlay21Data:
         None,
         None,
         "OVERLAY21_UNKNOWN_STRING_IDS",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "Seem to be completely unused by the Swap Shop, but the strings are 1:1 for the ones that are in use elsewhere in the shop.",
+        "int16_t[24]",
     )
 
     SWAP_SHOP_WINDOW_PARAMS_2 = Symbol(
@@ -22208,7 +22287,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_WINDOW_PARAMS_2",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Seem to be completely unused by the Swap Shop.",
         "struct window_params",
     )
 
@@ -22217,7 +22296,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_WINDOW_PARAMS_3",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Seem to be completely unused by the Swap Shop.",
         "struct window_params",
     )
 
@@ -22226,7 +22305,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_WINDOW_PARAMS_4",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Seem to be completely unused by the Swap Shop.",
         "struct window_params",
     )
 
@@ -22235,7 +22314,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_WINDOW_PARAMS_5",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Used alongside SWAP_SHOP_MAIN_MENU_ITEMS_2.",
         "struct window_params",
     )
 
@@ -22244,7 +22323,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_WINDOW_PARAMS_6",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Used alongside both SWAP_SHOP_MAIN_MENU_ITEMS_1 and SWAP_SHOP_SUBMENU_ITEMS_1.",
         "struct window_params",
     )
 
@@ -22253,7 +22332,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_WINDOW_PARAMS_7",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Used alongside both SWAP_SHOP_MENU_ITEMS_CONFIRM and SWAP_SHOP_SUBMENU_ITEMS_2.",
         "struct window_params",
     )
 
@@ -22262,7 +22341,7 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_WINDOW_PARAMS_8",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Used alone, seemingly for the exclusive item description window.",
         "struct window_params",
     )
 
@@ -22271,11 +22350,242 @@ class NaItcmOverlay21Data:
         None,
         None,
         "SWAP_SHOP_WINDOW_PARAMS_9",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Used alongside SWAP_SHOP_SUBMENU_ITEMS_3.",
         "struct window_params",
     )
 
-    OVERLAY21_JP_STRING = Symbol(None, None, None, "OVERLAY21_JP_STRING", "合成：", "")
+    SWAP_SHOP_TALK_WELCOME_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_WELCOME_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_START:\n",
+        "char[28]",
+    )
+
+    SWAP_SHOP_MAIN_MENU_OPTIONS_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_MAIN_MENU_OPTIONS_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECTMENU:\n",
+        "char[33]",
+    )
+
+    SWAP_SHOP_TALK_CONTINUE_SWAP_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_CONTINUE_SWAP_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_RESTART:\n",
+        "char[30]",
+    )
+
+    SWAP_SHOP_TALK_SUBINFO_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_SUBINFO_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_EXPLANATION:\n",
+        "char[34]",
+    )
+
+    SWAP_SHOP_TALK_COME_AGAIN_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_COME_AGAIN_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_THANKS:\n",
+        "char[29]",
+    )
+
+    SWAP_SHOP_TALK_LACKING_SWAP_ITEMS_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_LACKING_SWAP_ITEMS_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_ITEM_NON:\n",
+        "char[31]",
+    )
+
+    SWAP_SHOP_TALK_SWAP_BROKE_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_SWAP_BROKE_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_GOLD_NON\n",
+        "char[30]",
+    )
+
+    SWAP_SHOP_TALK_SWAP_POOR_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_SWAP_POOR_DEBUG_STRING",
+        "MENU_SYNTHESIS_GOLD",
+        "char[19]",
+    )
+
+    SWAP_SHOP_UNK_8_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_UNK_8_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_FULL:\n",
+        "char[34]",
+    )
+
+    SWAP_SHOP_CLOSE_SHOP_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_CLOSE_SHOP_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_QUIT\n",
+        "char[26]",
+    )
+
+    SWAP_SHOP_TALK_WHAT_ITEMS_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_WHAT_ITEMS_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_START:\n",
+        "char[35]",
+    )
+
+    SWAP_SHOP_TALK_VALUABLE_SWAP_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_VALUABLE_SWAP_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE__RESTART:\n",
+        "char[31]",
+    )
+
+    SWAP_SHOP_INIT_SWAP_ITEMS_MENU_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_INIT_SWAP_ITEMS_MENU_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_INIT:\n",
+        "char[34]",
+    )
+
+    SWAP_SHOP_SWAP_ITEMS_MENU_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_SWAP_ITEMS_MENU_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_SELECT:\n",
+        "char[36]",
+    )
+
+    SWAP_SHOP_RETURN_SWAP_ITEMS_MENU_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_RETURN_SWAP_ITEMS_MENU_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_RESELECT:\n",
+        "char[38]",
+    )
+
+    SWAP_SHOP_SELECT_SWAP_ITEM_OPTIONS_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_SELECT_SWAP_ITEM_OPTIONS_DEBUG_STRING",
+        "\tMENU_SYNTHESIS_MODE_SELECT_SUB_MENU:\n",
+        "char[40]",
+    )
+
+    SWAP_SHOP_SWAP_ITEM_GET_INFO_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_SWAP_ITEM_GET_INFO_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_EXPLA\n",
+        "char[34]",
+    )
+
+    SWAP_SHOP_ITEM_ZERO_STRING = Symbol(
+        None, None, None, "SWAP_SHOP_ITEM_ZERO_STRING", "[item:0]", "char[8]"
+    )
+
+    SWAP_SHOP_TALK_CONFIRM_SWAP_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TALK_CONFIRM_SWAP_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_CONFIRM_1:\n",
+        "char[39]",
+    )
+
+    SWAP_SHOP_CONFIRM_CHOICE_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_CONFIRM_CHOICE_DEBUG_STRING",
+        "_SELL_CONFIRM NEW_1\n",
+        "char[21]",
+    )
+
+    SWAP_SHOP_INIT_SCRIPT_ACTION_1_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_INIT_SCRIPT_ACTION_1_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_THANKS_ACTION:\n",
+        "char[43]",
+    )
+
+    SWAP_SHOP_INIT_SCRIPT_ACTION_2_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_INIT_SCRIPT_ACTION_2_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_THANKS_ACTION2:\n",
+        "char[44]",
+    )
+
+    SWAP_SHOP_INIT_SCRIPT_ACTION_3_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_INIT_SCRIPT_ACTION_3_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_THANKS_ACTION3:\n",
+        "char[44]",
+    )
+
+    SWAP_SHOP_TEXT_PUT_IN_CAULDRON_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_TEXT_PUT_IN_CAULDRON_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_THANKS_1:\n",
+        "char[38]",
+    )
+
+    SWAP_SHOP_DO_SWAP_THEN_TALK_DEBUG_STRING = Symbol(
+        None,
+        None,
+        None,
+        "SWAP_SHOP_DO_SWAP_THEN_TALK_DEBUG_STRING",
+        "MENU_SYNTHESIS_MODE_SELECT_THANKS:\n",
+        "char[36]",
+    )
+
+    OVERLAY21_JP_STRING = Symbol(
+        None,
+        None,
+        None,
+        "OVERLAY21_JP_STRING",
+        "合成：(synthesis in Japanese)",
+        "wchar_t[3]",
+    )
+
+    SWAP_SHOP_GOLD_STRING = Symbol(
+        None, None, None, "SWAP_SHOP_GOLD_STRING", "[CS:V][gold:0][CR]", "char[18]"
+    )
 
     OVERLAY21_RESERVED_SPACE = Symbol(
         None,
@@ -22283,16 +22593,16 @@ class NaItcmOverlay21Data:
         None,
         "OVERLAY21_RESERVED_SPACE",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "undefined[8]",
     )
 
-    OVERLAY21_UNKNOWN_POINTER__NA_238CF40 = Symbol(
+    SWAP_SHOP_MENU_DATA_PTR = Symbol(
         None,
         None,
         None,
-        "OVERLAY21_UNKNOWN_POINTER__NA_238CF40",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "SWAP_SHOP_MENU_DATA_PTR",
+        "Pointer to the swap_shop_menu_data that governs the operations of most overlay_21 functions.",
+        "struct swap_shop_menu_data*",
     )
 
     OVERLAY21_UNKNOWN_POINTER__NA_238CF44 = Symbol(
@@ -22301,7 +22611,7 @@ class NaItcmOverlay21Data:
         None,
         "OVERLAY21_UNKNOWN_POINTER__NA_238CF44",
         "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "undefined*",
     )
 
 

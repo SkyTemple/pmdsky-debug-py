@@ -12295,6 +12295,11 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    SwapShopInventoryManager: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     HandleControlsTopScreenGround: Symbol[
         Optional[list[int]],
         None,
@@ -12444,6 +12449,11 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     GROUND_STATE_PTRS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_INVENTORY_PTRS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -13656,7 +13666,40 @@ Overlay20Protocol = SectionProtocol[
 
 class Overlay21FunctionsProtocol(Protocol):
 
-    pass
+    SwapShopDialogueManager: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetFirstExclusivePrerequisite: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapShopEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapShopDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapShopMainManager: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseTextboxAndSimpleMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapShopPrintCurrentGold: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay21DataProtocol(Protocol):
@@ -13741,7 +13784,137 @@ class Overlay21DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SWAP_SHOP_TALK_WELCOME_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_MAIN_MENU_OPTIONS_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TALK_CONTINUE_SWAP_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TALK_SUBINFO_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TALK_COME_AGAIN_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TALK_LACKING_SWAP_ITEMS_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TALK_SWAP_BROKE_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TALK_SWAP_POOR_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_UNK_8_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_CLOSE_SHOP_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TALK_WHAT_ITEMS_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TALK_VALUABLE_SWAP_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_INIT_SWAP_ITEMS_MENU_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_SWAP_ITEMS_MENU_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_RETURN_SWAP_ITEMS_MENU_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_SELECT_SWAP_ITEM_OPTIONS_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_SWAP_ITEM_GET_INFO_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_ITEM_ZERO_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TALK_CONFIRM_SWAP_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_CONFIRM_CHOICE_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_INIT_SCRIPT_ACTION_1_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_INIT_SCRIPT_ACTION_2_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_INIT_SCRIPT_ACTION_3_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TEXT_PUT_IN_CAULDRON_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_DO_SWAP_THEN_TALK_DEBUG_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     OVERLAY21_JP_STRING: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_GOLD_STRING: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -13751,7 +13924,7 @@ class Overlay21DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY21_UNKNOWN_POINTER__NA_238CF40: Symbol[
+    SWAP_SHOP_MENU_DATA_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
