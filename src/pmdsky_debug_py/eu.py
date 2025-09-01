@@ -19324,6 +19324,33 @@ class EuOverlay11Functions:
         None,
     )
 
+    GroundBgInit = Symbol(
+        [0xF9D8],
+        [0x22EC558],
+        None,
+        "GroundBgInit",
+        "Initializes the ground_bg struct by setting most fields to 0 and allocating memory for sub-structs.\n\nr0: ground_bg struct pointer\nr1: Unknown sub-struct of ground_bg (offset 0x52C)",
+        None,
+    )
+
+    GroundBgFreeAll = Symbol(
+        [0xFC6C],
+        [0x22EC7EC],
+        None,
+        "GroundBgFreeAll",
+        "Frees memory and closes any open files in the ground_bg struct.\n\nr0: ground_bg struct pointer",
+        None,
+    )
+
+    GroundBgCloseOpenedFiles = Symbol(
+        [0xFD88],
+        [0x22EC908],
+        None,
+        "GroundBgCloseOpenedFiles",
+        "Closes any open files in the ground_bg struct.\n\nr0: ground_bg struct pointer",
+        None,
+    )
+
     LoadMapType10 = Symbol(
         [0x10AE4],
         [0x22ED664],
@@ -19339,6 +19366,15 @@ class EuOverlay11Functions:
         None,
         "LoadMapType11",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] buffer_ptr\nr1: map_id\nr2: dungeon_info_str\nr3: additional_info",
+        None,
+    )
+
+    BmaLayerNrlDecompressor = Symbol(
+        [0x12094],
+        [0x22EEC14],
+        None,
+        "BmaLayerNrlDecompressor",
+        "Decompresses the NRL-compressed data in a .bma file.\n\nr0: [output] Array to hold the decompressed data\nr1: Pointer to the start of the compressed .bma data to decompress\nr2: Unknown ground_bg sub-struct (offset 0x52C)\nr3: .bma file header\nreturn: Pointer at the end of the .bma data",
         None,
     )
 
@@ -20434,6 +20470,15 @@ class EuOverlay11Data:
         "RECRUITMENT_TABLE_SPECIES",
         "Table of Pokémon recruited at special locations, such as at the ends of certain dungeons (e.g., Dialga or the Seven Treasures legendaries) or during a cutscene (e.g., Cresselia and Manaphy).\n\nInterestingly, this includes both Heatran genders. It also includes Darkrai for some reason?\n\ntype: struct monster_id_16[22]",
         "struct monster_id_16[22]",
+    )
+
+    POSITION_ZERO = Symbol(
+        [0x44BA8],
+        [0x2321728],
+        0x8,
+        "POSITION_ZERO",
+        "A pixel_position struct initialized at position (0, 0). Used to initialize the camera_pixel_position field in the ground_bg struct.\n\ntype: struct pixel_position",
+        "struct pixel_position",
     )
 
     LEVEL_TILEMAP_LIST = Symbol(

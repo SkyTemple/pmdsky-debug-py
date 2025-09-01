@@ -19324,6 +19324,33 @@ class NaOverlay11Functions:
         None,
     )
 
+    GroundBgInit = Symbol(
+        [0xF9D8],
+        [0x22EBC18],
+        None,
+        "GroundBgInit",
+        "Initializes the ground_bg struct by setting most fields to 0 and allocating memory for sub-structs.\n\nr0: ground_bg struct pointer\nr1: Unknown sub-struct of ground_bg (offset 0x52C)",
+        None,
+    )
+
+    GroundBgFreeAll = Symbol(
+        [0xFC6C],
+        [0x22EBEAC],
+        None,
+        "GroundBgFreeAll",
+        "Frees memory and closes any open files in the ground_bg struct.\n\nr0: ground_bg struct pointer",
+        None,
+    )
+
+    GroundBgCloseOpenedFiles = Symbol(
+        [0xFD88],
+        [0x22EBFC8],
+        None,
+        "GroundBgCloseOpenedFiles",
+        "Closes any open files in the ground_bg struct.\n\nr0: ground_bg struct pointer",
+        None,
+    )
+
     LoadMapType10 = Symbol(
         [0x10AE4],
         [0x22ECD24],
@@ -19339,6 +19366,15 @@ class NaOverlay11Functions:
         None,
         "LoadMapType11",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] buffer_ptr\nr1: map_id\nr2: dungeon_info_str\nr3: additional_info",
+        None,
+    )
+
+    BmaLayerNrlDecompressor = Symbol(
+        [0x12094],
+        [0x22EE2D4],
+        None,
+        "BmaLayerNrlDecompressor",
+        "Decompresses the NRL-compressed data in a .bma file.\n\nr0: [output] Array to hold the decompressed data\nr1: Pointer to the start of the compressed .bma data to decompress\nr2: Unknown ground_bg sub-struct (offset 0x52C)\nr3: .bma file header\nreturn: Pointer at the end of the .bma data",
         None,
     )
 
@@ -20252,8 +20288,8 @@ class NaOverlay11Functions:
     )
 
     SwapShopInventoryManager = Symbol(
-        None,
-        None,
+        [0x2EFCC],
+        [0x230B20C],
         None,
         "SwapShopInventoryManager",
         "Called primarily handle the display and preparation of the swap shop inventory list, exclusive items list, and the item trade list. \nCreates a swap_shop_inventory_data struct if one does not already exist.  \nIs the child function to SwapShopDialogueManager.\n\nr0: switch case index for the function: 0 = Swap List Inventory, 1 = Unknown, 2 = Species Exclusive Item List, 3 = Item Trade Away Selection List.\nr1: Depends on r0. If case 2: ID of the monster to retrieve an exclusive item list for. If case 3: Number of Exclusive Items the player owns.",
@@ -20436,6 +20472,15 @@ class NaOverlay11Data:
         "struct monster_id_16[22]",
     )
 
+    POSITION_ZERO = Symbol(
+        [0x449B8],
+        [0x2320BF8],
+        0x8,
+        "POSITION_ZERO",
+        "A pixel_position struct initialized at position (0, 0). Used to initialize the camera_pixel_position field in the ground_bg struct.\n\ntype: struct pixel_position",
+        "struct pixel_position",
+    )
+
     LEVEL_TILEMAP_LIST = Symbol(
         [0x44AEC],
         [0x2320D2C],
@@ -20526,8 +20571,8 @@ class NaOverlay11Data:
     )
 
     SWAP_SHOP_INVENTORY_PTRS = Symbol(
-        None,
-        None,
+        [0x48B64],
+        [0x2324DA4],
         None,
         "SWAP_SHOP_INVENTORY_PTRS",
         "Host pointers to multiple structures used for performing internal Swap Shop checks.",
@@ -22510,8 +22555,8 @@ class NaOverlay20Section:
 class NaOverlay21Functions:
 
     SwapShopDialogueManager = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x238A140],
         None,
         "SwapShopDialogueManager",
         "Called primarily to fill dialogue boxes or display portraits, this function exists to print the next portrait, dialogue, or input for the Swap Shop. \nConsistently writes the provided input to shared_switch_case, and occasionally writes to next_switch_case.  \nOften calls SwapShopInventoryManager, and is often called by SwapShopMainManager.\n\nr0: New current_switch_case value.",
@@ -22519,8 +22564,8 @@ class NaOverlay21Functions:
     )
 
     GetFirstExclusivePrerequisite = Symbol(
-        None,
-        None,
+        [0x16A0],
+        [0x238B7E0],
         None,
         "GetFirstExclusivePrerequisite",
         "Retrieves the item ID of the first item needed to trade for the specified item. There are hardcoded exceptions for the Eeveelution/Hitmontrio items,\nbut outside of that, the output will be as follows.\n  output_id = input_id - ((input_id - 0x1FA) % 4)\n\nr0: item ID of the exclusive item to be checked.\nreturn: item ID of the first exclusive item required to trade for the input.",
@@ -22528,8 +22573,8 @@ class NaOverlay21Functions:
     )
 
     SwapShopEntryPoint = Symbol(
-        None,
-        None,
+        [0x1708],
+        [0x238B848],
         None,
         "SwapShopEntryPoint",
         "Is the entrypoint of the overlay_load_entry, and seems to run once to initiate the Swap Shop. Is not called anywhere else.\nAllocates space for swap_shop_menu_data, and initializes many of its fields.\n\nreturn: Always returns 1.",
@@ -22537,8 +22582,8 @@ class NaOverlay21Functions:
     )
 
     SwapShopDestructor = Symbol(
-        None,
-        None,
+        [0x17BC],
+        [0x238B8FC],
         None,
         "SwapShopDestructor",
         "Is the destructor of the overlay_load_entry, and seems to run once on closing the Swap Shop. Is not called anywhere else.\nFrees up the allocated space for swap_shop_menu_data if it is not already empty.\n\nNo params.",
@@ -22546,8 +22591,8 @@ class NaOverlay21Functions:
     )
 
     SwapShopMainManager = Symbol(
-        None,
-        None,
+        [0x17E8],
+        [0x238B928],
         None,
         "SwapShopMainManager",
         "Called every frame the Croagunk Swap Shop is open, acting as a parent function for the various processes the Swap Shop is responsible for. \nPrimarily handles displaying dialogue boxes, retrieving menu selections, and contributing updates to the various switch case indices.\nOften calls SwapShopDialogueManager, either with an immediate or with the designated next_switch_case value. \n\nreturn: Typically returns 1, but seems to return 4 to exit the Swap Shop. Possibly related to the explorerscript output?",
@@ -22555,8 +22600,8 @@ class NaOverlay21Functions:
     )
 
     CloseTextboxAndSimpleMenu = Symbol(
-        None,
-        None,
+        [0x27E0],
+        [0x238C920],
         None,
         "CloseTextboxAndSimpleMenu",
         "Checks both the text_window_id and menu_window_id for -2. If either are not -2, close the textbox/simple menu, and assign the id to -2.\n\nNo params.",
@@ -22564,8 +22609,8 @@ class NaOverlay21Functions:
     )
 
     SwapShopPrintCurrentGold = Symbol(
-        None,
-        None,
+        [0x2864],
+        [0x238C9A4],
         None,
         "SwapShopPrintCurrentGold",
         "A text box callback function containing the player's current gold using SWAP_SHOP_GOLD_STRING, as seen on the Swap Shop main menu.\n\nr0: window_id of the textbox",
@@ -22720,8 +22765,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TALK_WELCOME_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2A78],
+        [0x238CBB8],
         None,
         "SWAP_SHOP_TALK_WELCOME_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_START:\n",
@@ -22729,8 +22774,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_MAIN_MENU_OPTIONS_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2A94],
+        [0x238CBD4],
         None,
         "SWAP_SHOP_MAIN_MENU_OPTIONS_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECTMENU:\n",
@@ -22738,8 +22783,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TALK_CONTINUE_SWAP_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2AB8],
+        [0x238CBF8],
         None,
         "SWAP_SHOP_TALK_CONTINUE_SWAP_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_RESTART:\n",
@@ -22747,8 +22792,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TALK_SUBINFO_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2AD8],
+        [0x238CC18],
         None,
         "SWAP_SHOP_TALK_SUBINFO_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_EXPLANATION:\n",
@@ -22756,8 +22801,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TALK_COME_AGAIN_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2AFC],
+        [0x238CC3C],
         None,
         "SWAP_SHOP_TALK_COME_AGAIN_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_THANKS:\n",
@@ -22765,8 +22810,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TALK_LACKING_SWAP_ITEMS_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2B1C],
+        [0x238CC5C],
         None,
         "SWAP_SHOP_TALK_LACKING_SWAP_ITEMS_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_ITEM_NON:\n",
@@ -22774,8 +22819,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TALK_SWAP_BROKE_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2B3C],
+        [0x238CC7C],
         None,
         "SWAP_SHOP_TALK_SWAP_BROKE_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_GOLD_NON\n",
@@ -22783,8 +22828,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TALK_SWAP_POOR_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2B5C],
+        [0x238CC9C],
         None,
         "SWAP_SHOP_TALK_SWAP_POOR_DEBUG_STRING",
         "MENU_SYNTHESIS_GOLD",
@@ -22792,8 +22837,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_UNK_8_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2B80],
+        [0x238CCC0],
         None,
         "SWAP_SHOP_UNK_8_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_FULL:\n",
@@ -22801,8 +22846,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_CLOSE_SHOP_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2BA4],
+        [0x238CCE4],
         None,
         "SWAP_SHOP_CLOSE_SHOP_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_QUIT\n",
@@ -22810,8 +22855,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TALK_WHAT_ITEMS_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2BC0],
+        [0x238CD00],
         None,
         "SWAP_SHOP_TALK_WHAT_ITEMS_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_START:\n",
@@ -22819,8 +22864,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TALK_VALUABLE_SWAP_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2BE4],
+        [0x238CD24],
         None,
         "SWAP_SHOP_TALK_VALUABLE_SWAP_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE__RESTART:\n",
@@ -22828,8 +22873,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_INIT_SWAP_ITEMS_MENU_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2C04],
+        [0x238CD44],
         None,
         "SWAP_SHOP_INIT_SWAP_ITEMS_MENU_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_INIT:\n",
@@ -22837,8 +22882,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_SWAP_ITEMS_MENU_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2C28],
+        [0x238CD68],
         None,
         "SWAP_SHOP_SWAP_ITEMS_MENU_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_SELECT:\n",
@@ -22846,8 +22891,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_RETURN_SWAP_ITEMS_MENU_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2C4C],
+        [0x238CD8C],
         None,
         "SWAP_SHOP_RETURN_SWAP_ITEMS_MENU_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_RESELECT:\n",
@@ -22855,8 +22900,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_SELECT_SWAP_ITEM_OPTIONS_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2C74],
+        [0x238CDB4],
         None,
         "SWAP_SHOP_SELECT_SWAP_ITEM_OPTIONS_DEBUG_STRING",
         "\tMENU_SYNTHESIS_MODE_SELECT_SUB_MENU:\n",
@@ -22864,8 +22909,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_SWAP_ITEM_GET_INFO_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2C9C],
+        [0x238CDDC],
         None,
         "SWAP_SHOP_SWAP_ITEM_GET_INFO_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_EXPLA\n",
@@ -22873,12 +22918,12 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_ITEM_ZERO_STRING = Symbol(
-        None, None, None, "SWAP_SHOP_ITEM_ZERO_STRING", "[item:0]", "char[8]"
+        [0x2CC0], [0x238CE00], None, "SWAP_SHOP_ITEM_ZERO_STRING", "[item:0]", "char[8]"
     )
 
     SWAP_SHOP_TALK_CONFIRM_SWAP_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2CCC],
+        [0x238CE0C],
         None,
         "SWAP_SHOP_TALK_CONFIRM_SWAP_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_CONFIRM_1:\n",
@@ -22886,8 +22931,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_CONFIRM_CHOICE_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2CF4],
+        [0x238CE34],
         None,
         "SWAP_SHOP_CONFIRM_CHOICE_DEBUG_STRING",
         "_SELL_CONFIRM NEW_1\n",
@@ -22895,8 +22940,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_INIT_SCRIPT_ACTION_1_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2D0C],
+        [0x238CE4C],
         None,
         "SWAP_SHOP_INIT_SCRIPT_ACTION_1_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS_ACTION:\n",
@@ -22904,8 +22949,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_INIT_SCRIPT_ACTION_2_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2D38],
+        [0x238CE78],
         None,
         "SWAP_SHOP_INIT_SCRIPT_ACTION_2_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS_ACTION2:\n",
@@ -22913,8 +22958,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_INIT_SCRIPT_ACTION_3_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2D64],
+        [0x238CEA4],
         None,
         "SWAP_SHOP_INIT_SCRIPT_ACTION_3_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS_ACTION3:\n",
@@ -22922,8 +22967,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_TEXT_PUT_IN_CAULDRON_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2D90],
+        [0x238CED0],
         None,
         "SWAP_SHOP_TEXT_PUT_IN_CAULDRON_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS_1:\n",
@@ -22931,8 +22976,8 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_DO_SWAP_THEN_TALK_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2DB8],
+        [0x238CEF8],
         None,
         "SWAP_SHOP_DO_SWAP_THEN_TALK_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS:\n",
@@ -22949,7 +22994,12 @@ class NaOverlay21Data:
     )
 
     SWAP_SHOP_GOLD_STRING = Symbol(
-        None, None, None, "SWAP_SHOP_GOLD_STRING", "[CS:V][gold:0][CR]", "char[18]"
+        [0x2DE4],
+        [0x238CF24],
+        None,
+        "SWAP_SHOP_GOLD_STRING",
+        "[CS:V][gold:0][CR]",
+        "char[18]",
     )
 
     OVERLAY21_RESERVED_SPACE = Symbol(

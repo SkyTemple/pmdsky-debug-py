@@ -11780,12 +11780,32 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    GroundBgInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GroundBgFreeAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GroundBgCloseOpenedFiles: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     LoadMapType10: Symbol[
         Optional[list[int]],
         None,
     ]
 
     LoadMapType11: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BmaLayerNrlDecompressor: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -12394,6 +12414,11 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     RECRUITMENT_TABLE_SPECIES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    POSITION_ZERO: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

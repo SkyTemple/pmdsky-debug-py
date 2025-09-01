@@ -19319,6 +19319,33 @@ class JpOverlay11Functions:
         None,
     )
 
+    GroundBgInit = Symbol(
+        [0xF96C],
+        [0x22ED24C],
+        None,
+        "GroundBgInit",
+        "Initializes the ground_bg struct by setting most fields to 0 and allocating memory for sub-structs.\n\nr0: ground_bg struct pointer\nr1: Unknown sub-struct of ground_bg (offset 0x52C)",
+        None,
+    )
+
+    GroundBgFreeAll = Symbol(
+        [0xFC00],
+        [0x22ED4E0],
+        None,
+        "GroundBgFreeAll",
+        "Frees memory and closes any open files in the ground_bg struct.\n\nr0: ground_bg struct pointer",
+        None,
+    )
+
+    GroundBgCloseOpenedFiles = Symbol(
+        [0xFD1C],
+        [0x22ED5FC],
+        None,
+        "GroundBgCloseOpenedFiles",
+        "Closes any open files in the ground_bg struct.\n\nr0: ground_bg struct pointer",
+        None,
+    )
+
     LoadMapType10 = Symbol(
         [0x10A78],
         [0x22EE358],
@@ -19334,6 +19361,15 @@ class JpOverlay11Functions:
         None,
         "LoadMapType11",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: [output] buffer_ptr\nr1: map_id\nr2: dungeon_info_str\nr3: additional_info",
+        None,
+    )
+
+    BmaLayerNrlDecompressor = Symbol(
+        [0x12028],
+        [0x22EF908],
+        None,
+        "BmaLayerNrlDecompressor",
+        "Decompresses the NRL-compressed data in a .bma file.\n\nr0: [output] Array to hold the decompressed data\nr1: Pointer to the start of the compressed .bma data to decompress\nr2: Unknown ground_bg sub-struct (offset 0x52C)\nr3: .bma file header\nreturn: Pointer at the end of the .bma data",
         None,
     )
 
@@ -20247,8 +20283,8 @@ class JpOverlay11Functions:
     )
 
     SwapShopInventoryManager = Symbol(
-        None,
-        None,
+        [0x2EED0],
+        [0x230C7B0],
         None,
         "SwapShopInventoryManager",
         "Called primarily handle the display and preparation of the swap shop inventory list, exclusive items list, and the item trade list. \nCreates a swap_shop_inventory_data struct if one does not already exist.  \nIs the child function to SwapShopDialogueManager.\n\nr0: switch case index for the function: 0 = Swap List Inventory, 1 = Unknown, 2 = Species Exclusive Item List, 3 = Item Trade Away Selection List.\nr1: Depends on r0. If case 2: ID of the monster to retrieve an exclusive item list for. If case 3: Number of Exclusive Items the player owns.",
@@ -20431,6 +20467,15 @@ class JpOverlay11Data:
         "struct monster_id_16[22]",
     )
 
+    POSITION_ZERO = Symbol(
+        [0x4487C],
+        [0x232215C],
+        0x8,
+        "POSITION_ZERO",
+        "A pixel_position struct initialized at position (0, 0). Used to initialize the camera_pixel_position field in the ground_bg struct.\n\ntype: struct pixel_position",
+        "struct pixel_position",
+    )
+
     LEVEL_TILEMAP_LIST = Symbol(
         [0x449B0],
         [0x2322290],
@@ -20521,8 +20566,8 @@ class JpOverlay11Data:
     )
 
     SWAP_SHOP_INVENTORY_PTRS = Symbol(
-        None,
-        None,
+        [0x48A24],
+        [0x2326304],
         None,
         "SWAP_SHOP_INVENTORY_PTRS",
         "Host pointers to multiple structures used for performing internal Swap Shop checks.",
@@ -22505,8 +22550,8 @@ class JpOverlay20Section:
 class JpOverlay21Functions:
 
     SwapShopDialogueManager = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x238B6A0],
         None,
         "SwapShopDialogueManager",
         "Called primarily to fill dialogue boxes or display portraits, this function exists to print the next portrait, dialogue, or input for the Swap Shop. \nConsistently writes the provided input to shared_switch_case, and occasionally writes to next_switch_case.  \nOften calls SwapShopInventoryManager, and is often called by SwapShopMainManager.\n\nr0: New current_switch_case value.",
@@ -22514,8 +22559,8 @@ class JpOverlay21Functions:
     )
 
     GetFirstExclusivePrerequisite = Symbol(
-        None,
-        None,
+        [0x16B8],
+        [0x238CD58],
         None,
         "GetFirstExclusivePrerequisite",
         "Retrieves the item ID of the first item needed to trade for the specified item. There are hardcoded exceptions for the Eeveelution/Hitmontrio items,\nbut outside of that, the output will be as follows.\n  output_id = input_id - ((input_id - 0x1FA) % 4)\n\nr0: item ID of the exclusive item to be checked.\nreturn: item ID of the first exclusive item required to trade for the input.",
@@ -22523,8 +22568,8 @@ class JpOverlay21Functions:
     )
 
     SwapShopEntryPoint = Symbol(
-        None,
-        None,
+        [0x1720],
+        [0x238CDC0],
         None,
         "SwapShopEntryPoint",
         "Is the entrypoint of the overlay_load_entry, and seems to run once to initiate the Swap Shop. Is not called anywhere else.\nAllocates space for swap_shop_menu_data, and initializes many of its fields.\n\nreturn: Always returns 1.",
@@ -22532,8 +22577,8 @@ class JpOverlay21Functions:
     )
 
     SwapShopDestructor = Symbol(
-        None,
-        None,
+        [0x17D4],
+        [0x238CE74],
         None,
         "SwapShopDestructor",
         "Is the destructor of the overlay_load_entry, and seems to run once on closing the Swap Shop. Is not called anywhere else.\nFrees up the allocated space for swap_shop_menu_data if it is not already empty.\n\nNo params.",
@@ -22541,8 +22586,8 @@ class JpOverlay21Functions:
     )
 
     SwapShopMainManager = Symbol(
-        None,
-        None,
+        [0x1800],
+        [0x238CEA0],
         None,
         "SwapShopMainManager",
         "Called every frame the Croagunk Swap Shop is open, acting as a parent function for the various processes the Swap Shop is responsible for. \nPrimarily handles displaying dialogue boxes, retrieving menu selections, and contributing updates to the various switch case indices.\nOften calls SwapShopDialogueManager, either with an immediate or with the designated next_switch_case value. \n\nreturn: Typically returns 1, but seems to return 4 to exit the Swap Shop. Possibly related to the explorerscript output?",
@@ -22550,8 +22595,8 @@ class JpOverlay21Functions:
     )
 
     CloseTextboxAndSimpleMenu = Symbol(
-        None,
-        None,
+        [0x27F4],
+        [0x238DE94],
         None,
         "CloseTextboxAndSimpleMenu",
         "Checks both the text_window_id and menu_window_id for -2. If either are not -2, close the textbox/simple menu, and assign the id to -2.\n\nNo params.",
@@ -22559,8 +22604,8 @@ class JpOverlay21Functions:
     )
 
     SwapShopPrintCurrentGold = Symbol(
-        None,
-        None,
+        [0x2878],
+        [0x238DF18],
         None,
         "SwapShopPrintCurrentGold",
         "A text box callback function containing the player's current gold using SWAP_SHOP_GOLD_STRING, as seen on the Swap Shop main menu.\n\nr0: window_id of the textbox",
@@ -22715,8 +22760,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TALK_WELCOME_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2A88],
+        [0x238E128],
         None,
         "SWAP_SHOP_TALK_WELCOME_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_START:\n",
@@ -22724,8 +22769,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_MAIN_MENU_OPTIONS_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2AA4],
+        [0x238E144],
         None,
         "SWAP_SHOP_MAIN_MENU_OPTIONS_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECTMENU:\n",
@@ -22733,8 +22778,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TALK_CONTINUE_SWAP_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2AC8],
+        [0x238E168],
         None,
         "SWAP_SHOP_TALK_CONTINUE_SWAP_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_RESTART:\n",
@@ -22742,8 +22787,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TALK_SUBINFO_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2AE8],
+        [0x238E188],
         None,
         "SWAP_SHOP_TALK_SUBINFO_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_EXPLANATION:\n",
@@ -22751,8 +22796,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TALK_COME_AGAIN_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2B0C],
+        [0x238E1AC],
         None,
         "SWAP_SHOP_TALK_COME_AGAIN_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_THANKS:\n",
@@ -22760,8 +22805,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TALK_LACKING_SWAP_ITEMS_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2B2C],
+        [0x238E1CC],
         None,
         "SWAP_SHOP_TALK_LACKING_SWAP_ITEMS_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_ITEM_NON:\n",
@@ -22769,8 +22814,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TALK_SWAP_BROKE_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2B4C],
+        [0x238E1EC],
         None,
         "SWAP_SHOP_TALK_SWAP_BROKE_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_GOLD_NON\n",
@@ -22778,8 +22823,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TALK_SWAP_POOR_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2B6C],
+        [0x238E20C],
         None,
         "SWAP_SHOP_TALK_SWAP_POOR_DEBUG_STRING",
         "MENU_SYNTHESIS_GOLD",
@@ -22787,8 +22832,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_UNK_8_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2B90],
+        [0x238E230],
         None,
         "SWAP_SHOP_UNK_8_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_FULL:\n",
@@ -22796,8 +22841,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_CLOSE_SHOP_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2BB4],
+        [0x238E254],
         None,
         "SWAP_SHOP_CLOSE_SHOP_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_QUIT\n",
@@ -22805,8 +22850,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TALK_WHAT_ITEMS_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2BD0],
+        [0x238E270],
         None,
         "SWAP_SHOP_TALK_WHAT_ITEMS_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_START:\n",
@@ -22814,8 +22859,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TALK_VALUABLE_SWAP_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2BF4],
+        [0x238E294],
         None,
         "SWAP_SHOP_TALK_VALUABLE_SWAP_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE__RESTART:\n",
@@ -22823,8 +22868,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_INIT_SWAP_ITEMS_MENU_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2C14],
+        [0x238E2B4],
         None,
         "SWAP_SHOP_INIT_SWAP_ITEMS_MENU_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_INIT:\n",
@@ -22832,8 +22877,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_SWAP_ITEMS_MENU_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2C38],
+        [0x238E2D8],
         None,
         "SWAP_SHOP_SWAP_ITEMS_MENU_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_SELECT:\n",
@@ -22841,8 +22886,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_RETURN_SWAP_ITEMS_MENU_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2C5C],
+        [0x238E2FC],
         None,
         "SWAP_SHOP_RETURN_SWAP_ITEMS_MENU_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_RESELECT:\n",
@@ -22850,8 +22895,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_SELECT_SWAP_ITEM_OPTIONS_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2C84],
+        [0x238E324],
         None,
         "SWAP_SHOP_SELECT_SWAP_ITEM_OPTIONS_DEBUG_STRING",
         "\tMENU_SYNTHESIS_MODE_SELECT_SUB_MENU:\n",
@@ -22859,8 +22904,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_SWAP_ITEM_GET_INFO_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2CAC],
+        [0x238E34C],
         None,
         "SWAP_SHOP_SWAP_ITEM_GET_INFO_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_EXPLA\n",
@@ -22868,12 +22913,12 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_ITEM_ZERO_STRING = Symbol(
-        None, None, None, "SWAP_SHOP_ITEM_ZERO_STRING", "[item:0]", "char[8]"
+        [0x2CD0], [0x238E370], None, "SWAP_SHOP_ITEM_ZERO_STRING", "[item:0]", "char[8]"
     )
 
     SWAP_SHOP_TALK_CONFIRM_SWAP_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2CDC],
+        [0x238E37C],
         None,
         "SWAP_SHOP_TALK_CONFIRM_SWAP_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_CONFIRM_1:\n",
@@ -22881,8 +22926,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_CONFIRM_CHOICE_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2D04],
+        [0x238E3A4],
         None,
         "SWAP_SHOP_CONFIRM_CHOICE_DEBUG_STRING",
         "_SELL_CONFIRM NEW_1\n",
@@ -22890,8 +22935,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_INIT_SCRIPT_ACTION_1_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2D1C],
+        [0x238E3BC],
         None,
         "SWAP_SHOP_INIT_SCRIPT_ACTION_1_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS_ACTION:\n",
@@ -22899,8 +22944,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_INIT_SCRIPT_ACTION_2_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2D48],
+        [0x238E3E8],
         None,
         "SWAP_SHOP_INIT_SCRIPT_ACTION_2_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS_ACTION2:\n",
@@ -22908,8 +22953,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_INIT_SCRIPT_ACTION_3_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2D74],
+        [0x238E414],
         None,
         "SWAP_SHOP_INIT_SCRIPT_ACTION_3_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS_ACTION3:\n",
@@ -22917,8 +22962,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_TEXT_PUT_IN_CAULDRON_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2DA0],
+        [0x238E440],
         None,
         "SWAP_SHOP_TEXT_PUT_IN_CAULDRON_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS_1:\n",
@@ -22926,8 +22971,8 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_DO_SWAP_THEN_TALK_DEBUG_STRING = Symbol(
-        None,
-        None,
+        [0x2DC8],
+        [0x238E468],
         None,
         "SWAP_SHOP_DO_SWAP_THEN_TALK_DEBUG_STRING",
         "MENU_SYNTHESIS_MODE_SELECT_THANKS:\n",
@@ -22944,7 +22989,12 @@ class JpOverlay21Data:
     )
 
     SWAP_SHOP_GOLD_STRING = Symbol(
-        None, None, None, "SWAP_SHOP_GOLD_STRING", "[CS:V][gold:0][CR]", "char[18]"
+        [0x2DF4],
+        [0x238E494],
+        None,
+        "SWAP_SHOP_GOLD_STRING",
+        "[CS:V][gold:0][CR]",
+        "char[18]",
     )
 
     OVERLAY21_RESERVED_SPACE = Symbol(
