@@ -5065,6 +5065,15 @@ class JpArm9Functions:
         None,
     )
 
+    HandleCheckIqMenu = Symbol(
+        None,
+        None,
+        None,
+        "HandleCheckIqMenu",
+        "Handles displaying the Check IQ menu in both dungeon and ground mode.\n\nr0: window pointer",
+        None,
+    )
+
     CreateCollectionMenu = Symbol(
         [0x2C700],
         [0x202C700],
@@ -5731,6 +5740,15 @@ class JpArm9Functions:
         None,
     )
 
+    GetWindowIdPageStart = Symbol(
+        None,
+        None,
+        None,
+        "GetWindowIdPageStart",
+        "Gets the item the current menu page of a given window id starts on (the current page id times the maximum number of items on one page).\n\nr0: window id\nreturn: first item on page",
+        None,
+    )
+
     GetAdvancedTextBoxFlags2 = Symbol(
         [0x30D60],
         [0x2030D60],
@@ -5845,6 +5863,33 @@ class JpArm9Functions:
         None,
         "IsMenuOptionActive",
         "Called whenever a menu option is selected. Returns whether the option is active or not.\n\nr0: ?\nreturn: True if the menu option is enabled, false otherwise.",
+        None,
+    )
+
+    GetPageStart = Symbol(
+        None,
+        None,
+        None,
+        "GetPageStart",
+        "Gets the item the current menu page starts on (the current page id times the maximum number of items on one page).\n\nr0: window_input_ctx struct pointer\nreturn: first item on page",
+        None,
+    )
+
+    GetNumItemsOnPage = Symbol(
+        None,
+        None,
+        None,
+        "GetNumItemsOnPage",
+        "Gets the number of items on the current menu page.\n\nr0: window_input_ctx struct pointer\nreturn: number of items on page",
+        None,
+    )
+
+    GetPageItemYOffset = Symbol(
+        None,
+        None,
+        None,
+        "GetPageItemYOffset",
+        "Gets the y-offset of a given item on the current menu page.\n\nr0: window_input_ctx struct pointer\nr1: item\nreturn: y-offset",
         None,
     )
 
@@ -26087,6 +26132,24 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsHero = Symbol(
+        None,
+        None,
+        None,
+        "IsHero",
+        "Checks if an entity is the hero, returning true if the 'Joined At' field of its monster struct is DUNGEON_JOINED_AT_QUESTION_MARKS (reserved for the hero).\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
+    IsSpecialStoryAllyOrClient = Symbol(
+        None,
+        None,
+        None,
+        "IsSpecialStoryAllyOrClient",
+        "Same as IsSpecialStoryAlly, except taking an entity pointer and also checking if it is a client.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
     IsSpecialStoryAlly = Symbol(
         [0x1F6C4],
         [0x22FCFA4],
@@ -32391,6 +32454,15 @@ class JpOverlay31Functions:
         None,
         "RecruitmentSearchMenuLoop",
         "Called on each frame while the in-dungeon 'recruitment search' menu is open.\n\nreturn: int (Actually, this is probably some sort of enum shared by all the MenuLoop functions)",
+        None,
+    )
+
+    DrawDungeonHintContents = Symbol(
+        None,
+        None,
+        None,
+        "DrawDungeonHintContents",
+        "Draws the contents of the current dungeon hint that is to be displayed in the Dungeon Hints menu.\n\nr0: window id",
         None,
     )
 

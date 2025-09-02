@@ -2857,6 +2857,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    HandleCheckIqMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CreateCollectionMenu: Symbol[
         Optional[list[int]],
         None,
@@ -3227,6 +3232,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetWindowIdPageStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetAdvancedTextBoxFlags2: Symbol[
         Optional[list[int]],
         None,
@@ -3288,6 +3298,21 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     IsMenuOptionActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetPageStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetNumItemsOnPage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetPageItemYOffset: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15606,6 +15631,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsHero: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSpecialStoryAllyOrClient: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsSpecialStoryAlly: Symbol[
         Optional[list[int]],
         None,
@@ -19125,6 +19160,11 @@ class Overlay31FunctionsProtocol(Protocol):
     ]
 
     RecruitmentSearchMenuLoop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawDungeonHintContents: Symbol[
         Optional[list[int]],
         None,
     ]

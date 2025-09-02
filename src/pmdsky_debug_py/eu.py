@@ -5065,6 +5065,15 @@ class EuArm9Functions:
         None,
     )
 
+    HandleCheckIqMenu = Symbol(
+        [0x2C554],
+        [0x202C554],
+        None,
+        "HandleCheckIqMenu",
+        "Handles displaying the Check IQ menu in both dungeon and ground mode.\n\nr0: window pointer",
+        None,
+    )
+
     CreateCollectionMenu = Symbol(
         [0x2C69C],
         [0x202C69C],
@@ -5731,6 +5740,15 @@ class EuArm9Functions:
         None,
     )
 
+    GetWindowIdPageStart = Symbol(
+        [0x30D0C],
+        [0x2030D0C],
+        None,
+        "GetWindowIdPageStart",
+        "Gets the item the current menu page of a given window id starts on (the current page id times the maximum number of items on one page).\n\nr0: window id\nreturn: first item on page",
+        None,
+    )
+
     GetAdvancedTextBoxFlags2 = Symbol(
         [0x30D34],
         [0x2030D34],
@@ -5845,6 +5863,33 @@ class EuArm9Functions:
         None,
         "IsMenuOptionActive",
         "Called whenever a menu option is selected. Returns whether the option is active or not.\n\nr0: ?\nreturn: True if the menu option is enabled, false otherwise.",
+        None,
+    )
+
+    GetPageStart = Symbol(
+        [0x3285C],
+        [0x203285C],
+        None,
+        "GetPageStart",
+        "Gets the item the current menu page starts on (the current page id times the maximum number of items on one page).\n\nr0: window_input_ctx struct pointer\nreturn: first item on page",
+        None,
+    )
+
+    GetNumItemsOnPage = Symbol(
+        [0x32888],
+        [0x2032888],
+        None,
+        "GetNumItemsOnPage",
+        "Gets the number of items on the current menu page.\n\nr0: window_input_ctx struct pointer\nreturn: number of items on page",
+        None,
+    )
+
+    GetPageItemYOffset = Symbol(
+        [0x32BCC],
+        [0x2032BCC],
+        None,
+        "GetPageItemYOffset",
+        "Gets the y-offset of a given item on the current menu page.\n\nr0: window_input_ctx struct pointer\nr1: item\nreturn: y-offset",
         None,
     )
 
@@ -26096,6 +26141,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    IsHero = Symbol(
+        [0x1F570],
+        [0x22FC0F0],
+        None,
+        "IsHero",
+        "Checks if an entity is the hero, returning true if the 'Joined At' field of its monster struct is DUNGEON_JOINED_AT_QUESTION_MARKS (reserved for the hero).\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
+    IsSpecialStoryAllyOrClient = Symbol(
+        [0x1F8EC],
+        [0x22FC46C],
+        None,
+        "IsSpecialStoryAllyOrClient",
+        "Same as IsSpecialStoryAlly, except taking an entity pointer and also checking if it is a client.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
     IsSpecialStoryAlly = Symbol(
         [0x1F94C],
         [0x22FC4CC],
@@ -32498,6 +32561,15 @@ class EuOverlay31Functions:
         None,
         "RecruitmentSearchMenuLoop",
         "Called on each frame while the in-dungeon 'recruitment search' menu is open.\n\nreturn: int (Actually, this is probably some sort of enum shared by all the MenuLoop functions)",
+        None,
+    )
+
+    DrawDungeonHintContents = Symbol(
+        [0x69AC],
+        [0x2389DCC],
+        None,
+        "DrawDungeonHintContents",
+        "Draws the contents of the current dungeon hint that is to be displayed in the Dungeon Hints menu.\n\nr0: window id",
         None,
     )
 
