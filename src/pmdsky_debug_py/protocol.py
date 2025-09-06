@@ -2857,7 +2857,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    HandleCheckIqMenu: Symbol[
+    DrawAdvancedMenu: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3358,6 +3358,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     PrintIqSkillsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCheckIqMenuSkillString: Symbol[
         Optional[list[int]],
         None,
     ]

@@ -5065,12 +5065,12 @@ class NaArm9Functions:
         None,
     )
 
-    HandleCheckIqMenu = Symbol(
+    DrawAdvancedMenu = Symbol(
         None,
         None,
         None,
-        "HandleCheckIqMenu",
-        "Handles displaying the Check IQ menu in both dungeon and ground mode.\n\nr0: window pointer",
+        "DrawAdvancedMenu",
+        "Draws the contents of an advanced menu on the screen.\n\nr0: window pointer",
         None,
     )
 
@@ -5871,7 +5871,7 @@ class NaArm9Functions:
         None,
         None,
         "GetPageStart",
-        "Gets the item the current menu page starts on (the current page id times the maximum number of items on one page).\n\nr0: window_input_ctx struct pointer\nreturn: first item on page",
+        "Gets the index of the item the current menu page starts on (the current page index times the maximum number of items on one page).\n\nr0: window_input_ctx struct pointer\nreturn: index of first item on page",
         None,
     )
 
@@ -5889,7 +5889,7 @@ class NaArm9Functions:
         None,
         None,
         "GetPageItemYOffset",
-        "Gets the y-offset of a given item on the current menu page.\n\nr0: window_input_ctx struct pointer\nr1: item\nreturn: y-offset",
+        "Gets the y-offset of a given item on the current menu page.\n\nr0: window_input_ctx struct pointer\nr1: item index on page, in range [0, n_items_on_page)\nreturn: y-offset",
         None,
     )
 
@@ -5971,6 +5971,15 @@ class NaArm9Functions:
         None,
         "PrintIqSkillsMenu",
         "Draws the IQ skills menu for a certain monster.\n\nr0: Monster species\nr1: Pointer to bitarray where the enabled skills will be written when enabling or disabling them in the menu\nr2: Monster IQ\nr3: True if the monster is blinded",
+        None,
+    )
+
+    GetCheckIqMenuSkillString = Symbol(
+        None,
+        None,
+        None,
+        "GetCheckIqMenuSkillString",
+        "Gets the string for a team member's IQ skill to be displayed in the Check IQ menu.\n\nIs stored as an advanced_menu_entry_fn_t in the advanced_menu struct.\n\nr0: [output] buffer\nr1: id in team member's IQ skill list\nreturn: input buffer",
         None,
     )
 
