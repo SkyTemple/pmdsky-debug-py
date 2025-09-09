@@ -5066,8 +5066,8 @@ class NaArm9Functions:
     )
 
     DrawAdvancedMenu = Symbol(
-        None,
-        None,
+        [0x2C260],
+        [0x202C260],
         None,
         "DrawAdvancedMenu",
         "Draws the contents of an advanced menu on the screen.\n\nr0: window pointer",
@@ -5741,8 +5741,8 @@ class NaArm9Functions:
     )
 
     GetWindowIdPageStart = Symbol(
-        None,
-        None,
+        [0x30A18],
+        [0x2030A18],
         None,
         "GetWindowIdPageStart",
         "Gets the item the current menu page of a given window id starts on (the current page id times the maximum number of items on one page).\n\nr0: window id\nreturn: first item on page",
@@ -5867,8 +5867,8 @@ class NaArm9Functions:
     )
 
     GetPageStart = Symbol(
-        None,
-        None,
+        [0x32568],
+        [0x2032568],
         None,
         "GetPageStart",
         "Gets the index of the item the current menu page starts on (the current page index times the maximum number of items on one page).\n\nr0: window_input_ctx struct pointer\nreturn: index of first item on page",
@@ -5876,8 +5876,8 @@ class NaArm9Functions:
     )
 
     GetNumItemsOnPage = Symbol(
-        None,
-        None,
+        [0x32594],
+        [0x2032594],
         None,
         "GetNumItemsOnPage",
         "Gets the number of items on the current menu page.\n\nr0: window_input_ctx struct pointer\nreturn: number of items on page",
@@ -5885,8 +5885,8 @@ class NaArm9Functions:
     )
 
     GetPageItemYOffset = Symbol(
-        None,
-        None,
+        [0x328D8],
+        [0x20328D8],
         None,
         "GetPageItemYOffset",
         "Gets the y-offset of a given item on the current menu page.\n\nr0: window_input_ctx struct pointer\nr1: item index on page, in range [0, n_items_on_page)\nreturn: y-offset",
@@ -5975,8 +5975,8 @@ class NaArm9Functions:
     )
 
     GetCheckIqMenuSkillString = Symbol(
-        None,
-        None,
+        [0x4213C],
+        [0x204213C],
         None,
         "GetCheckIqMenuSkillString",
         "Gets the string for a team member's IQ skill to be displayed in the Check IQ menu.\n\nIs stored as an advanced_menu_entry_fn_t in the advanced_menu struct.\n\nr0: [output] buffer\nr1: id in team member's IQ skill list\nreturn: input buffer",
@@ -26149,8 +26149,8 @@ class NaOverlay29Functions:
     )
 
     IsHero = Symbol(
-        None,
-        None,
+        [0x1F4A4],
+        [0x22FB6E4],
         None,
         "IsHero",
         "Checks if an entity is the hero, returning true if the 'Joined At' field of its monster struct is DUNGEON_JOINED_AT_QUESTION_MARKS (reserved for the hero).\n\nr0: entity pointer\nreturn: bool",
@@ -26158,8 +26158,8 @@ class NaOverlay29Functions:
     )
 
     IsSpecialStoryAllyOrClient = Symbol(
-        None,
-        None,
+        [0x1F830],
+        [0x22FBA70],
         None,
         "IsSpecialStoryAllyOrClient",
         "Same as IsSpecialStoryAlly, except taking an entity pointer and also checking if it is a client.\n\nr0: entity pointer\nreturn: bool",
@@ -26550,6 +26550,15 @@ class NaOverlay29Functions:
         None,
         "IsMonsterSleeping",
         "Checks if a monster has the sleep, nightmare, or napping status.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
+    MonsterHasQuarterHp = Symbol(
+        [0x2459C],
+        [0x23007DC],
+        None,
+        "MonsterHasQuarterHp",
+        "Checks if a monster has a quarter or less HP remaining.\n\nr0: entity pointer\nreturn: bool",
         None,
     )
 
@@ -32572,8 +32581,8 @@ class NaOverlay31Functions:
     )
 
     DrawDungeonHintContents = Symbol(
-        None,
-        None,
+        [0x6988],
+        [0x23891A8],
         None,
         "DrawDungeonHintContents",
         "Draws the contents of the current dungeon hint that is to be displayed in the Dungeon Hints menu.\n\nr0: window id",

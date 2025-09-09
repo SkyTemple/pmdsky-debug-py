@@ -26555,6 +26555,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    MonsterHasQuarterHp = Symbol(
+        [0x24688],
+        [0x2301208],
+        None,
+        "MonsterHasQuarterHp",
+        "Checks if a monster has a quarter or less HP remaining.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
     CheckVariousStatuses2 = Symbol(
         [0x246C4],
         [0x2301244],

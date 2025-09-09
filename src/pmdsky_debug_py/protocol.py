@@ -15861,6 +15861,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    MonsterHasQuarterHp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CheckVariousStatuses2: Symbol[
         Optional[list[int]],
         None,

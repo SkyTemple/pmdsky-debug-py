@@ -25977,6 +25977,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    MonsterHasQuarterHp = Symbol(
+        None,
+        None,
+        None,
+        "MonsterHasQuarterHp",
+        "Checks if a monster has a quarter or less HP remaining.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
     CheckVariousStatuses2 = Symbol(
         None,
         None,
