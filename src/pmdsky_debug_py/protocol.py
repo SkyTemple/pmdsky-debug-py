@@ -15476,7 +15476,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    CreateMonsterSummaryFromMonster: Symbol[
+    CreateMonsterSummaryFromEntity: Symbol[
         Optional[list[int]],
         None,
     ]

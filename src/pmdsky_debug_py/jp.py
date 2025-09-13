@@ -25807,12 +25807,12 @@ class JpOverlay29Functions:
         None,
     )
 
-    CreateMonsterSummaryFromMonster = Symbol(
+    CreateMonsterSummaryFromEntity = Symbol(
         [0x1C6B0],
         [0x22F9F90],
         None,
-        "CreateMonsterSummaryFromMonster",
-        "Creates a snapshot of the condition of a monster struct in a monster_summary struct.\n\nr0: [output] monster_summary\nr1: monster",
+        "CreateMonsterSummaryFromEntity",
+        "Creates a snapshot of the condition of a monster struct in a monster_summary struct.\n\nr0: [output] monster_summary\nr1: monster_entity",
         None,
     )
 
@@ -31305,6 +31305,10 @@ class JpOverlay29Functions:
         "OthersMenu",
         "Called when the in-dungeon 'others' menu is open. Does not return until the menu is closed.\n\nreturn: Always 0",
         None,
+    )
+
+    CreateMonsterSummaryFromMonster = _Deprecated(
+        "CreateMonsterSummaryFromMonster", CreateMonsterSummaryFromEntity
     )
 
     ShouldMonsterRunAwayVariation = _Deprecated(
