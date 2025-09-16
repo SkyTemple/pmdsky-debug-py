@@ -10825,6 +10825,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    PITFALL_TRAP_DAMAGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],

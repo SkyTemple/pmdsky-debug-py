@@ -17640,6 +17640,15 @@ class NaOverlay10Data:
         "int16_t",
     )
 
+    PITFALL_TRAP_DAMAGE = Symbol(
+        [0x7A64],
+        [0x22C44E4],
+        0x2,
+        "PITFALL_TRAP_DAMAGE",
+        "Damage dealt by pitfall traps (5).",
+        "int16_t",
+    )
+
     CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
         [0x7A70],
         [0x22C44F0],
@@ -30509,7 +30518,7 @@ class NaOverlay29Functions:
         [0x2344148],
         None,
         "AreLateGameTrapsEnabled",
-        "Check if late-game traps (Summon, Pitfall, and Pokémon traps) work in the given fixed room.\n\nOr disabled? This function, which Irdkwia's notes label as a disable check, check the struct field labeled in End's notes as an enable flag.\n\nr0: fixed room ID\nreturn: bool",
+        "Check if late-game traps (Summon, Pitfall, and Pokémon traps) work in the given fixed room.\n\nr0: fixed room ID\nreturn: True if late-game traps are enabled, false if they are disabled.",
         None,
     )
 
