@@ -2497,6 +2497,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetSize0x80Buffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetSize0x80Buffer2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetDungeonResultString: Symbol[
         Optional[list[int]],
         None,
@@ -15236,6 +15246,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryRevealAttackedTrap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SubstitutePlaceholderTrapTags: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TryTriggerTrap: Symbol[
         Optional[list[int]],
         None,
@@ -15651,6 +15671,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ResetTriggerFlags: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsSpecialStoryAlly: Symbol[
         Optional[list[int]],
         None,
@@ -15802,6 +15827,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SprintfStatic: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPreprocessorArgsStringToName: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -17551,6 +17581,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    RevealAttackedTile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShouldBoostKecleonShopSpawnChance: Symbol[
         Optional[list[int]],
         None,
@@ -18106,6 +18141,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PrepareItemForPrinting2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GenerateStandardItem: Symbol[
         Optional[list[int]],
         None,
@@ -18341,12 +18381,67 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    SetPreprocessorArgsIdVal: Symbol[
+    InitAlertBoxInfo: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    LogMessageByIdWithPopupCheckParticipants: Symbol[
+    FreeAlertBoxInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMessageLogGroupStartFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetMessageLogPreprocessorArgs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitMessageLogPreprocessorArgs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMessageLogPreprocessorArgsFlagVal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMessageLogPreprocessorArgsIdVal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMessageLogPreprocessorArgsNumberVal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMessageLogPreprocessorArgsString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMessageLogPreprocessorArgsStringToName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMessageLogPreprocessorArgsSpeakerId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetMessageLogPreprocessorArgsSpeakerId0x30000: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LogMessageByIdWithPopupAndAbility: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19025,6 +19120,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     FIXED_ROOM_DATA_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MESSAGE_LOG_INFO: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

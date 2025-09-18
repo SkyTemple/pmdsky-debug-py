@@ -4417,6 +4417,24 @@ class EuArm9Functions:
         None,
     )
 
+    GetSize0x80Buffer = Symbol(
+        [0x25284],
+        [0x2025284],
+        None,
+        "GetSize0x80Buffer",
+        "Returns a pointer to a buffer of size 0x80.\n\nr0: index in a global list of buffers\nreturn: buffer pointer",
+        None,
+    )
+
+    GetSize0x80Buffer2 = Symbol(
+        [0x25294],
+        [0x2025294],
+        None,
+        "GetSize0x80Buffer2",
+        "Same as GetSize0x80Buffer, except the buffer is from a separate list.\n\nr0: index in a global list of buffers\nreturn: buffer pointer",
+        None,
+    )
+
     GetDungeonResultString = Symbol(
         [0x252A4],
         [0x20252A4],
@@ -4431,7 +4449,7 @@ class EuArm9Functions:
         [0x20252B4],
         None,
         "SubstitutePlaceholderItemTags",
-        "Sets what item's name should be displayed in place of the [item:r0] tag when printing a string.\n\nIs almost always accompanied by a SetPreprocessorArgsIdVal(tag id, tag id | 0x40000) call in dungeon mode.\n\nr0: tag id\nr1: item struct pointer\nr2: some static address related to storing the item (always the same throughout the code)",
+        "Sets what item's name should be displayed in place of the [item:r0] tag when printing a string to the message log.\n\nIs almost always accompanied by a SetMessageLogPreprocessorArgsIdVal(tag id, tag id | 0x40000) call.\n\nr0: tag id\nr1: item struct pointer\nr2: some static address related to storing the item (always the same throughout the code)",
         None,
     )
 
@@ -24488,7 +24506,7 @@ class EuOverlay29Functions:
         [0x22E3418],
         None,
         "SubstitutePlaceholderStringTags",
-        "Replaces instances of a given placeholder tag by the string representation of the given entity.\n\nFrom the eos-move-effects docs (which are somewhat nebulous): 'Replaces the string at StringID [r0] by the string representation of the target [r1] (aka its name). Any message with the string manipulator '[string:StringID]' will use that string'.\n\nThe game uses various placeholder tags in its strings, which you can read about here: https://textbox.skytemple.org/.\n\nr0: string ID (unclear what this means)\nr1: entity pointer\nr2: ?",
+        "Replaces instances of a given placeholder tag by the string representation of the given entity.\n\nFrom the eos-move-effects docs (which are somewhat nebulous): 'Replaces the string at StringID [r0] by the string representation of the target [r1] (aka its name). Any message with the string manipulator '[string:StringID]' will use that string'.\n\nThe game uses various placeholder tags in its strings, which you can read about here: https://textbox.skytemple.org/.\n\nr0: string ID (unclear what this means)\nr1: entity pointer\nr2: unused",
         None,
     )
 
@@ -25384,6 +25402,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    TryRevealAttackedTrap = Symbol(
+        [0x11D0C],
+        [0x22EE88C],
+        None,
+        "TryRevealAttackedTrap",
+        "Reveals the trap given by the position if the dungeon struct's regular_attack_reveal_traps field is true.\n\nIs also activated on a tile if a fainted monster drops an item on it.\n\nr0: position struct pointer\nr1: boolean for whether to update trap visibility afterwards (always 1 in practice)\nreturn: true if there is a trap on the position",
+        None,
+    )
+
+    SubstitutePlaceholderTrapTags = Symbol(
+        [0x11DAC],
+        [0x22EE92C],
+        None,
+        "SubstitutePlaceholderTrapTags",
+        "Used in SubstitutePlaceholderStringTags. Substitutes a [trap:r1] tag in a message log message for the name of a trap.\n\nr0: preprocessor_args pointer (in practice, always the global struct used for the message log)\nr1: tag id\nr2: trap id",
+        None,
+    )
+
     TryTriggerTrap = Symbol(
         [0x11DD0],
         [0x22EE950],
@@ -26177,6 +26213,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    ResetTriggerFlags = Symbol(
+        [0x1F930],
+        [0x22FC4B0],
+        None,
+        "ResetTriggerFlags",
+        "Resets a monster's contact_ability_trigger_bitflags and exclusive_item_trigger_bitflags fields to 0.\n\nr0: entity pointer",
+        None,
+    )
+
     IsSpecialStoryAlly = Symbol(
         [0x1F94C],
         [0x22FC4CC],
@@ -26453,6 +26498,15 @@ class EuOverlay29Functions:
         None,
         "SprintfStatic",
         "Statically defined copy of sprintf(3) in overlay 29. See arm9.yml for more information.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of characters printed, excluding the null-terminator",
+        None,
+    )
+
+    SetPreprocessorArgsStringToName = Symbol(
+        [0x242B8],
+        [0x2300E38],
+        None,
+        "SetPreprocessorArgsStringToName",
+        "Sets a strings element in a preprocessor_args struct to the name of a monster.\n\nr0: preprocessor_args pointer (if this is null, will use the global message log preprocessor_args struct)\nr1: position in strings array\nr2: monster pointer\nr3: unused\nstack[0]: if 0, will call GetMonsterName; if 1, will call GetMonsterNameWithGender; the 2 case is unknown and seemingly unused.",
         None,
     )
 
@@ -29597,6 +29651,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    RevealAttackedTile = Symbol(
+        [0x5C480],
+        [0x2339000],
+        None,
+        "RevealAttackedTile",
+        "Reveals the tile given by the position.\n\nIs also activated on a tile if a fainted monster drops an item on it.\n\nr0: position struct pointer",
+        None,
+    )
+
     ShouldBoostKecleonShopSpawnChance = Symbol(
         [0x5C510],
         [0x2339090],
@@ -30592,7 +30655,16 @@ class EuOverlay29Functions:
         [0x2345728, 0x2345754],
         None,
         "PrepareItemForPrinting",
-        "Calls functions to prepare an item to be printed in place of the [item:r0] tag.\n\nr0: tag id\nr1: item struct pointer",
+        "Calls functions to prepare an item to be printed in place of the [item:r0] tag in a message log message.\n\nr0: tag id\nr1: item struct pointer",
+        None,
+    )
+
+    PrepareItemForPrinting2 = Symbol(
+        [0x68C0C],
+        [0x234578C],
+        None,
+        "PrepareItemForPrinting2",
+        "Used in SubstitutePlaceholderStringTags. Has the same functionality as PrepareItemForPrinting, except the message log preprocessor_args struct is passed as a parameter.\n\nr0: preprocessor_args pointer (in practice, always the global struct used for the message log)\nr1: tag id\nr2: item pointer",
         None,
     )
 
@@ -31019,21 +31091,120 @@ class EuOverlay29Functions:
         None,
     )
 
-    SetPreprocessorArgsIdVal = Symbol(
-        [0x6F104],
-        [0x234BC84],
+    InitAlertBoxInfo = Symbol(
+        [0x6F024],
+        [0x234BBA4],
         None,
-        "SetPreprocessorArgsIdVal",
-        "Sets an id_vals element in the global preprocessor_args struct passed throughout the code to PreprocessString to a specified value.\n\nr0: position in id_vals array\nr1: value",
+        "InitAlertBoxInfo",
+        "Initializes the heap-allocated alert_box_info struct in MESSAGE_LOG_INFO.\n\nNo params.",
         None,
     )
 
-    LogMessageByIdWithPopupCheckParticipants = Symbol(
+    FreeAlertBoxInfo = Symbol(
+        [0x6F050],
+        [0x234BBD0],
+        None,
+        "FreeAlertBoxInfo",
+        "Frees the heap-allocated alert_box_info struct in MESSAGE_LOG_INFO.\n\nNo params.",
+        None,
+    )
+
+    SetMessageLogGroupStartFlag = Symbol(
+        [0x6F0A4],
+        [0x234BC24],
+        None,
+        "SetMessageLogGroupStartFlag",
+        "Sets whether the next message in the message log should be the start of a new group separated by a horizontal line.\n\nr0: bool",
+        None,
+    )
+
+    GetMessageLogPreprocessorArgs = Symbol(
+        [0x6F0B4],
+        [0x234BC34],
+        None,
+        "GetMessageLogPreprocessorArgs",
+        "Gets a pointer to the global preprocessor_args struct used for the message log.\n\nreturn: preprocessor_args pointer",
+        None,
+    )
+
+    InitMessageLogPreprocessorArgs = Symbol(
+        [0x6F0CC],
+        [0x234BC4C],
+        None,
+        "InitMessageLogPreprocessorArgs",
+        "Initializes the global preprocessor_args struct used for the message log.\n\nNo params.",
+        None,
+    )
+
+    SetMessageLogPreprocessorArgsFlagVal = Symbol(
+        [0x6F0EC],
+        [0x234BC6C],
+        None,
+        "SetMessageLogPreprocessorArgsFlagVal",
+        "Sets a flag_vals element in the global preprocessor_args struct used for the message log to a specified value.\n\nr0: position in flag_vals array\nr1: value",
+        None,
+    )
+
+    SetMessageLogPreprocessorArgsIdVal = Symbol(
+        [0x6F104],
+        [0x234BC84],
+        None,
+        "SetMessageLogPreprocessorArgsIdVal",
+        "Sets an id_vals element in the global preprocessor_args struct used for the message log to a specified value.\n\nr0: position in id_vals array\nr1: value",
+        None,
+    )
+
+    SetMessageLogPreprocessorArgsNumberVal = Symbol(
+        [0x6F11C],
+        [0x234BC9C],
+        None,
+        "SetMessageLogPreprocessorArgsNumberVal",
+        "Sets a number_vals element in the global preprocessor_args struct used for the message log to a specified value.\n\nr0: position in number_vals array\nr1: value",
+        None,
+    )
+
+    SetMessageLogPreprocessorArgsString = Symbol(
+        [0x6F134],
+        [0x234BCB4],
+        None,
+        "SetMessageLogPreprocessorArgsString",
+        "Sets a strings element in the global preprocessor_args struct used for the message log to a specified string.\n\nr0: position in strings array\nr1: string pointer",
+        None,
+    )
+
+    SetMessageLogPreprocessorArgsStringToName = Symbol(
+        [0x6F14C],
+        [0x234BCCC],
+        None,
+        "SetMessageLogPreprocessorArgsStringToName",
+        "Sets a strings element in the global preprocessor_args struct used for the message log to the name of a monster.\n\nr0: position in strings array\nr1: monster_id",
+        None,
+    )
+
+    SetMessageLogPreprocessorArgsSpeakerId = Symbol(
+        [0x6F184],
+        [0x234BD04],
+        None,
+        "SetMessageLogPreprocessorArgsSpeakerId",
+        "Sets the speaker_id in the global preprocessor_args struct used for the message log to the id of a monster.\n\nr0: monster_id",
+        None,
+    )
+
+    SetMessageLogPreprocessorArgsSpeakerId0x30000 = Symbol(
+        [0x6F198],
+        [0x234BD18],
+        None,
+        "SetMessageLogPreprocessorArgsSpeakerId0x30000",
+        "Sets the speaker_id in the global preprocessor_args struct used for the message log to a monster's team index, ORed with 0x30000.\n\nr0: team_index",
+        None,
+    )
+
+    LogMessageByIdWithPopupAndAbility = Symbol(
         [0x6F2D0],
         [0x234BE50],
         None,
-        "LogMessageByIdWithPopupCheckParticipants",
-        "Logs the appropriate message based on the participating entites; this function calls LogMessageByIdWithPopupCheckUserTarget is both the user and target pointers are non-null, otherwise it calls LogMessageByIdWithPopupCheckUser if the user pointer is non-null, otherwise doesn't log anything.\n\nThis function also seems to set some global table entry to some value?\n\nr0: user entity pointer\nr1: target entity pointer\nr2: message ID\nr3: index into some table?\nstack[0]: value to set at the table index specified by r3?",
+        "LogMessageByIdWithPopupAndAbility",
+        "Logs the appropriate message based on the participating entites; this function calls LogMessageByIdWithPopupCheckUserTarget is both the user and target pointers are non-null, otherwise it calls LogMessageByIdWithPopupCheckUser if the user pointer is non-null, otherwise doesn't log anything.\n\nThis function also replaces the [c_i:r3] tag by setting an id_vals element in the global preprocessor_args struct used for the message log to an ability.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: message ID\nr3: position in id_vals array\nstack[0]: value (in practice, always the ability, although could be used for any other text tag that uses id_vals)",
         None,
     )
 
@@ -31331,6 +31502,14 @@ class EuOverlay29Functions:
 
     ShouldMonsterRunAwayVariation = _Deprecated(
         "ShouldMonsterRunAwayVariation", ShouldMonsterRunAwayAndShowEffect
+    )
+
+    SetPreprocessorArgsIdVal = _Deprecated(
+        "SetPreprocessorArgsIdVal", SetMessageLogPreprocessorArgsIdVal
+    )
+
+    LogMessageByIdWithPopupCheckParticipants = _Deprecated(
+        "LogMessageByIdWithPopupCheckParticipants", LogMessageByIdWithPopupAndAbility
     )
 
 
@@ -32359,6 +32538,15 @@ class EuOverlay29Data:
         "FIXED_ROOM_DATA_PTR",
         "[Runtime] Pointer to decoded fixed room data loaded from the BALANCE/fixed.bin file.",
         "void*",
+    )
+
+    MESSAGE_LOG_INFO = Symbol(
+        [0x77864],
+        [0x23543E4],
+        0xC,
+        "MESSAGE_LOG_INFO",
+        "[Runtime] Struct containing information and state for logged messages.",
+        "struct message_log_info",
     )
 
     DUNGEON_FADES_PTR = Symbol(
