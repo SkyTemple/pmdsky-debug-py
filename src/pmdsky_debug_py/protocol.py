@@ -16311,6 +16311,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    WeightWeakTypePicker: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CalcDamage: Symbol[
         Optional[list[int]],
         None,
@@ -18985,6 +18990,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     DAMAGE_FORMULA_MIN_BASE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WEAK_TYPE_PICKER_MATCHUP_MULTIPLIERS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

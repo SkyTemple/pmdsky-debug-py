@@ -27365,6 +27365,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    WeightWeakTypePicker = Symbol(
+        [0x2F6C8],
+        [0x230C248],
+        None,
+        "WeightWeakTypePicker",
+        "Calculates a move weight used for deciding which target the move should be used on.\nThis function is used to calculate move weight when the attacker has the IQ skill Weak-Type Picker,\nwhich weights moves higher depending on type effectiveness.\n\nr0: attacker pointer\nr2: defender pointer\nr3: attack type\nreturn: Move weight for deciding move targeting.",
+        None,
+    )
+
     CalcDamage = Symbol(
         [0x2FAA0],
         [0x230C620],
@@ -32295,6 +32304,15 @@ class EuOverlay29Data:
         "DAMAGE_FORMULA_MIN_BASE",
         "The minimum value of the base damage formula (after DAMAGE_FORMULA_NON_TEAM_MEMBER_MODIFIER application, if relevant), as a 64-bit binary fixed-point number with 16 fraction bits (1).",
         "struct fx64_16",
+    )
+
+    WEAK_TYPE_PICKER_MATCHUP_MULTIPLIERS = Symbol(
+        [0x76910],
+        [0x2353490],
+        0x10,
+        "WEAK_TYPE_PICKER_MATCHUP_MULTIPLIERS",
+        "Array of multipliers to a move's AI weight when Weak-Type Picker is in effect, based on the move's type matchup against its target. Array indexes correspond to enum type_matchup.",
+        "int[4]",
     )
 
     TYPE_DAMAGE_NEGATING_EXCLUSIVE_ITEM_EFFECTS = Symbol(
