@@ -412,6 +412,15 @@ class EuItcmArm9Functions:
         None,
     )
 
+    CosAbs4096 = Symbol(
+        None,
+        None,
+        None,
+        "CosAbs4096",
+        "This function computes the cosine of the absolute value of r0 using a lookup table. The period of the function is 4096, and the range is [-256, 256].\n\nr0: The value to get the cosine of.\nreturn: floor(256 * cos(pi * abs(x) / 2048)) as a signed 32-bit integer.",
+        None,
+    )
+
     UFixedPoint64CmpLt = Symbol(
         None,
         None,
@@ -9491,6 +9500,15 @@ class EuItcmArm9Data:
         "MAX_RECRUITABLE_TEAM_MEMBERS",
         "555, appears to be the maximum number of members recruited to an exploration team, at least for the purposes of some checks that need to iterate over all team members.",
         "uint32_t",
+    )
+
+    SINE_VALUE_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "SINE_VALUE_TABLE",
+        "A lookup table for the values of sine. The table contains 1024 values evenly distributed in the range [sin(0) * 256, sin(pi / 2) * 256); i.e., the first quarter of the unit circle. The rest of sine (and cosine) is derived by reusing these values.",
+        "int16_t[1024]",
     )
 
     NATURAL_LOG_VALUE_TABLE = Symbol(
@@ -27003,6 +27021,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    FindDirectionOfAdjacentMonsterWithItem = Symbol(
+        None,
+        None,
+        None,
+        "FindDirectionOfAdjacentMonsterWithItem",
+        "Given a monster, looks for an adjacent monster with the specified held item and returns the direction of that monster. Returns DIR_NONE if no monster is found. If there are multiple monsters with the specified held item, start in the direction the monster is facing and rotate in the order of DIRECTIONS_XY, picking the first direction with an eligible monster.\n\nr0: entity to look for an adjacent monster around it\nr1: held item to search for on adjacent monsters\nreturn: direction of an adjacent monster with the specified held item, or DIR_NONE if there are none.",
+        None,
+    )
+
     TrySpawnEnemyItemDrop = Symbol(
         None,
         None,
@@ -28385,7 +28412,7 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "IsAdjacentToEnemy",
-        "Called to check if a hostile entity is present in any of the tiles adjacent to an entity.\n\nr0: Pointer to entity\nreturn: True if yes, false if no",
+        "Called to check if a hostile entity is present in any of the tiles adjacent to an entity. This function uses GetTreatmentBetweenMonsters to determine whether an adjacent entity is hostile, which has special handling for the decoy, petrified, and invisible statuses.\n\nr0: Pointer to entity\nreturn: True if yes, false if no",
         None,
     )
 
@@ -29052,6 +29079,24 @@ class EuItcmOverlay29Functions:
         None,
         "NearbyAllyIqSkillIsEnabled",
         "Appears to check whether or not the given monster has any allies nearby (within 1 tile) that have the given IQ skill active.\n\nr0: entity pointer\nr1: IQ skill ID\nreturn: bool",
+        None,
+    )
+
+    FindAdjacentEnemy = Symbol(
+        None,
+        None,
+        None,
+        "FindAdjacentEnemy",
+        "Finds a hostile entity adjacent to the given entity. Hostility is based on whether the monster->is_not_team_member flag does not match. If there are multiple adjacent hostile enemies, the first one is returned based on the order of directions in DIRECTION_XY.\n\nr0: Pointer to entity\nreturn: A hostile entity adjacent to the given entity, or null if there aren't any.",
+        None,
+    )
+
+    IsAdjacentToEnemyIgnoreTreatment = Symbol(
+        None,
+        None,
+        None,
+        "IsAdjacentToEnemyIgnoreTreatment",
+        "Called to check if a hostile entity is present in any of the tiles adjacent to an entity. Unlike IsAdjacentToEnemy, this function uses monster->is_not_team_member to determine if an adjacent enemy is hostile rather than GetTreatmentBetweenMonsters, which means it doesn't take decoy, petrified, and invisible statuses into account.\n\nr0: Pointer to entity\nreturn: True if yes, false if no",
         None,
     )
 

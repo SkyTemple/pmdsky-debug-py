@@ -292,6 +292,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CosAbs4096: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UFixedPoint64CmpLt: Symbol[
         Optional[list[int]],
         None,
@@ -5296,6 +5301,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     MAX_RECRUITABLE_TEAM_MEMBERS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SINE_VALUE_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -16431,6 +16441,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    FindDirectionOfAdjacentMonsterWithItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TrySpawnEnemyItemDrop: Symbol[
         Optional[list[int]],
         None,
@@ -17567,6 +17582,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     NearbyAllyIqSkillIsEnabled: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FindAdjacentEnemy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsAdjacentToEnemyIgnoreTreatment: Symbol[
         Optional[list[int]],
         None,
     ]
