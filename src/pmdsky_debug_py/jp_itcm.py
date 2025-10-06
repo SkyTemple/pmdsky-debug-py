@@ -17128,12 +17128,30 @@ class JpItcmOverlay10Data:
         "struct dungeon_id_8",
     )
 
+    FIERY_DRUM_RECRUIT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "FIERY_DRUM_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Fiery Drum.",
+        "int16_t",
+    )
+
     BAD_POISON_DAMAGE_COOLDOWN = Symbol(
         None,
         None,
         None,
         "BAD_POISON_DAMAGE_COOLDOWN",
         "The number of turns between passive bad poison (toxic) damage.",
+        "int16_t",
+    )
+
+    ICY_FLUTE_RECRUIT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "ICY_FLUTE_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding an Icy Flute.",
         "int16_t",
     )
 
@@ -17179,6 +17197,15 @@ class JpItcmOverlay10Data:
         None,
         "OREN_BERRY_DAMAGE",
         "Damage dealt by eating an Oren Berry.",
+        "int16_t",
+    )
+
+    GOLDEN_MASK_RECRUIT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "GOLDEN_MASK_RECRUIT_BOOST",
+        "The amount added to the recruit rate when holding a Golden Mask.",
         "int16_t",
     )
 
@@ -17260,6 +17287,15 @@ class JpItcmOverlay10Data:
         None,
         "SITRUS_BERRY_HP_RESTORATION",
         "The amount of HP restored by eating a Sitrus Berry.",
+        "int16_t",
+    )
+
+    AMBER_TEAR_RECRUIT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "AMBER_TEAR_RECRUIT_BOOST",
+        "The amount added to the recruit rate when holding an Amber Tear.",
         "int16_t",
     )
 
@@ -17458,6 +17494,15 @@ class JpItcmOverlay10Data:
         None,
         "LIFE_SEED_HP_BOOST",
         "The permanent HP boost from eating a Life Seed.",
+        "int16_t",
+    )
+
+    FRIEND_BOW_FAST_FRIEND_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "FRIEND_BOW_FAST_FRIEND_BOOST",
+        "The amount added to the recruit rate when holding a Friend Bow or with the Fast Friend IQ skill.",
         "int16_t",
     )
 
@@ -18122,6 +18167,51 @@ class JpItcmOverlay10Data:
         None,
         "HEALING_WISH_HP_RESTORATION",
         "The amount of HP restored by Healing Wish (999). This also applies to Lunar Dance.",
+        "int16_t",
+    )
+
+    SKY_MELODICA_RECRUIT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "SKY_MELODICA_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Sky Melodica.",
+        "int16_t",
+    )
+
+    GRASS_CORNET_RECRUIT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "GRASS_CORNET_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Grass Cornet.",
+        "int16_t",
+    )
+
+    ROCK_HORN_RECRUIT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "ROCK_HORN_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Rock Horn.",
+        "int16_t",
+    )
+
+    AQUA_MONICA_RECRUIT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "AQUA_MONICA_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Aqua Monica.",
+        "int16_t",
+    )
+
+    TERRA_CYMBAL_RECRUIT_BOOST = Symbol(
+        None,
+        None,
+        None,
+        "TERRA_CYMBAL_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Terra Cymbal.",
         "int16_t",
     )
 
@@ -24384,6 +24474,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    IsPositionWithinTwoTiles = Symbol(
+        None,
+        None,
+        None,
+        "IsPositionWithinTwoTiles",
+        "Checks if a given target position is within two tiles of a given origin position.\n\nr0: Origin position\nr1: Target position\nreturn: True if the target position within two tiles of the origin position.",
+        None,
+    )
+
     GetLeader = Symbol(
         None,
         None,
@@ -25878,6 +25977,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    CanMoveThroughWalls = Symbol(
+        None,
+        None,
+        None,
+        "CanMoveThroughWalls",
+        "Checks if a given monster can move through walls, including both the innate ability of Ghost types and outside modifiers like Mobile Scarf/Orb.\n\nr0: Entity pointer\nreturn: True if the monster can move through walls.",
+        None,
+    )
+
     CannotStandOnTile = Symbol(
         None,
         None,
@@ -26157,6 +26265,24 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    IsAtJunction = Symbol(
+        None,
+        None,
+        None,
+        "IsAtJunction",
+        "Checks if the tile the given monster is on is considered a junction for the purposes of AI movement. This is affected by what types of terrain the monster can cross.\n\nr0: Entity pointer\nreturn: True if tile the monster is on is a junction.",
+        None,
+    )
+
+    ShouldAvoidFirstHit = Symbol(
+        None,
+        None,
+        None,
+        "ShouldAvoidFirstHit",
+        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If true, this function always returns true.\nreturn: True if the monster should try to avoid the first hit in battle.",
+        None,
+    )
+
     ShouldMonsterRunAway = Symbol(
         None,
         None,
@@ -26334,6 +26460,15 @@ class JpItcmOverlay29Functions:
         None,
         "UpdateIqSkills",
         "Updates the IQ skill flags of a monster.\n\nIf the monster is a team member, copies monster::iq_skill_menu_flags to monster::iq_skill_flags. If the monster is an enemy, enables all the IQ skills it can learn (except a few that are only enabled in enemies that have a certain amount of IQ).\nIf the monster is an enemy, it also sets its tactic to TACTIC_GO_AFTER_FOES.\nCalled after exiting the IQ skills menu or after an enemy spawns.\n\nr0: monster pointer",
+        None,
+    )
+
+    CanSeeTeammate = Symbol(
+        None,
+        None,
+        None,
+        "CanSeeTeammate",
+        "Checks if an allied monster can see any other teammate (via CanSeeTarget). Always returns false for enemy monsters.\n\nr0: monster pointer\nreturn: True if the monster is an allied monster that can see another teammate.",
         None,
     )
 
@@ -26712,6 +26847,15 @@ class JpItcmOverlay29Functions:
         None,
         "ShouldMonsterFollowLeader",
         "Checks if the monster should follow the leader. Always returns false for enemy monsters.\nThis function may actually be should monster target leader position.\n\nr0: Pointer to monster\nreturn: bool",
+        None,
+    )
+
+    GetLeaderIfVisible = Symbol(
+        None,
+        None,
+        None,
+        "GetLeaderIfVisible",
+        "For allied monsters, gets the leader monster if they are visible to the ally. Always returns null for enemy monsters.\n\nr0: Pointer to monster\nreturn: Pointer to the leader monster if visible, null otherwise.",
         None,
     )
 
@@ -31515,6 +31659,15 @@ class JpItcmOverlay29Data:
         "DIRECTIONS_XY",
         "An array mapping each direction index to its x and y displacements.\n\nDirections start with 0=down and proceed counterclockwise (see enum direction_id). Displacements for x and y are interleaved and encoded as 2-byte signed integers. For example, the first two integers are [0, 1], which correspond to the x and y displacements for the 'down' direction (positive y means down).",
         "int16_t[8][2]",
+    )
+
+    FACING_DIRECTION_INCREMENTS = Symbol(
+        None,
+        None,
+        None,
+        "FACING_DIRECTION_INCREMENTS",
+        "An array of direction offsets from a monster's current facing direction, each increasingly farther away from the current direction.\n\nFor example, the array starts with [0, 1, -1, 2...]. If the monster's current direction is DIR_UP, the first four array elements\nare each added to the current direction, corresponding to DIR_UP, DIR_UP_LEFT, DIR_UP_RIGHT, DIR_LEFT.",
+        "int[8]",
     )
 
     DISPLACEMENTS_WITHIN_2_LARGEST_FIRST = Symbol(

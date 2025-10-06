@@ -10680,7 +10680,17 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    FIERY_DRUM_RECRUIT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     BAD_POISON_DAMAGE_COOLDOWN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ICY_FLUTE_RECRUIT_BOOST: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10706,6 +10716,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     OREN_BERRY_DAMAGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GOLDEN_MASK_RECRUIT_BOOST: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10751,6 +10766,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     SITRUS_BERRY_HP_RESTORATION: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AMBER_TEAR_RECRUIT_BOOST: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10861,6 +10881,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     LIFE_SEED_HP_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    FRIEND_BOW_FAST_FRIEND_BOOST: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -11241,6 +11266,31 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     HEALING_WISH_HP_RESTORATION: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SKY_MELODICA_RECRUIT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GRASS_CORNET_RECRUIT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ROCK_HORN_RECRUIT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AQUA_MONICA_RECRUIT_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TERRA_CYMBAL_RECRUIT_BOOST: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14976,6 +15026,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsPositionWithinTwoTiles: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetLeader: Symbol[
         Optional[list[int]],
         None,
@@ -15806,6 +15861,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CanMoveThroughWalls: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CannotStandOnTile: Symbol[
         Optional[list[int]],
         None,
@@ -15961,6 +16021,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsAtJunction: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ShouldAvoidFirstHit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShouldMonsterRunAway: Symbol[
         Optional[list[int]],
         None,
@@ -16057,6 +16127,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     UpdateIqSkills: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CanSeeTeammate: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16267,6 +16342,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ShouldMonsterFollowLeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetLeaderIfVisible: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -18930,6 +19010,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     DIRECTIONS_XY: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    FACING_DIRECTION_INCREMENTS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

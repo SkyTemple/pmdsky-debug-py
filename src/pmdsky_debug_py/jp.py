@@ -17374,12 +17374,30 @@ class JpOverlay10Data:
         "struct dungeon_id_8",
     )
 
+    FIERY_DRUM_RECRUIT_BOOST = Symbol(
+        [0x78D8],
+        [0x22C5AF8],
+        0x2,
+        "FIERY_DRUM_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Fiery Drum.",
+        "int16_t",
+    )
+
     BAD_POISON_DAMAGE_COOLDOWN = Symbol(
         [0x78DC],
         [0x22C5AFC],
         0x2,
         "BAD_POISON_DAMAGE_COOLDOWN",
         "The number of turns between passive bad poison (toxic) damage.",
+        "int16_t",
+    )
+
+    ICY_FLUTE_RECRUIT_BOOST = Symbol(
+        [0x78E4],
+        [0x22C5B04],
+        0x2,
+        "ICY_FLUTE_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding an Icy Flute.",
         "int16_t",
     )
 
@@ -17425,6 +17443,15 @@ class JpOverlay10Data:
         0x2,
         "OREN_BERRY_DAMAGE",
         "Damage dealt by eating an Oren Berry.",
+        "int16_t",
+    )
+
+    GOLDEN_MASK_RECRUIT_BOOST = Symbol(
+        [0x7904],
+        [0x22C5B24],
+        0x2,
+        "GOLDEN_MASK_RECRUIT_BOOST",
+        "The amount added to the recruit rate when holding a Golden Mask.",
         "int16_t",
     )
 
@@ -17506,6 +17533,15 @@ class JpOverlay10Data:
         0x2,
         "SITRUS_BERRY_HP_RESTORATION",
         "The amount of HP restored by eating a Sitrus Berry.",
+        "int16_t",
+    )
+
+    AMBER_TEAR_RECRUIT_BOOST = Symbol(
+        [0x7944],
+        [0x22C5B64],
+        0x2,
+        "AMBER_TEAR_RECRUIT_BOOST",
+        "The amount added to the recruit rate when holding an Amber Tear.",
         "int16_t",
     )
 
@@ -17704,6 +17740,15 @@ class JpOverlay10Data:
         0x2,
         "LIFE_SEED_HP_BOOST",
         "The permanent HP boost from eating a Life Seed.",
+        "int16_t",
+    )
+
+    FRIEND_BOW_FAST_FRIEND_BOOST = Symbol(
+        [0x79C4],
+        [0x22C5BE4],
+        0x2,
+        "FRIEND_BOW_FAST_FRIEND_BOOST",
+        "The amount added to the recruit rate when holding a Friend Bow or with the Fast Friend IQ skill.",
         "int16_t",
     )
 
@@ -18383,6 +18428,51 @@ class JpOverlay10Data:
         0x2,
         "HEALING_WISH_HP_RESTORATION",
         "The amount of HP restored by Healing Wish (999). This also applies to Lunar Dance.",
+        "int16_t",
+    )
+
+    SKY_MELODICA_RECRUIT_BOOST = Symbol(
+        [0x7BC4],
+        [0x22C5DE4],
+        0x2,
+        "SKY_MELODICA_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Sky Melodica.",
+        "int16_t",
+    )
+
+    GRASS_CORNET_RECRUIT_BOOST = Symbol(
+        [0x7BC8],
+        [0x22C5DE8],
+        0x2,
+        "GRASS_CORNET_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Grass Cornet.",
+        "int16_t",
+    )
+
+    ROCK_HORN_RECRUIT_BOOST = Symbol(
+        [0x7BCC],
+        [0x22C5DEC],
+        0x2,
+        "ROCK_HORN_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Rock Horn.",
+        "int16_t",
+    )
+
+    AQUA_MONICA_RECRUIT_BOOST = Symbol(
+        [0x7BD0],
+        [0x22C5DF0],
+        0x2,
+        "AQUA_MONICA_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Aqua Monica.",
+        "int16_t",
+    )
+
+    TERRA_CYMBAL_RECRUIT_BOOST = Symbol(
+        [0x7BD4],
+        [0x22C5DF4],
+        0x2,
+        "TERRA_CYMBAL_RECRUIT_BOOST",
+        "The amount added to the recruit rate with compatible species when holding a Terra Cymbal.",
         "int16_t",
     )
 
@@ -24907,6 +24997,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsPositionWithinTwoTiles = Symbol(
+        [0xD0E4],
+        [0x22EA9C4],
+        None,
+        "IsPositionWithinTwoTiles",
+        "Checks if a given target position is within two tiles of a given origin position.\n\nr0: Origin position\nr1: Target position\nreturn: True if the target position within two tiles of the origin position.",
+        None,
+    )
+
     GetLeader = Symbol(
         [0xD308],
         [0x22EABE8],
@@ -26447,6 +26546,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    CanMoveThroughWalls = Symbol(
+        [0x233F8],
+        [0x2300CD8],
+        None,
+        "CanMoveThroughWalls",
+        "Checks if a given monster can move through walls, including both the innate ability of Ghost types and outside modifiers like Mobile Scarf/Orb.\n\nr0: Entity pointer\nreturn: True if the monster can move through walls.",
+        None,
+    )
+
     CannotStandOnTile = Symbol(
         [0x237CC],
         [0x23010AC],
@@ -26726,6 +26834,24 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsAtJunction = Symbol(
+        [0x250D4],
+        [0x23029B4],
+        None,
+        "IsAtJunction",
+        "Checks if the tile the given monster is on is considered a junction for the purposes of AI movement. This is affected by what types of terrain the monster can cross.\n\nr0: Entity pointer\nreturn: True if tile the monster is on is a junction.",
+        None,
+    )
+
+    ShouldAvoidFirstHit = Symbol(
+        [0x25224],
+        [0x2302B04],
+        None,
+        "ShouldAvoidFirstHit",
+        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If true, this function always returns true.\nreturn: True if the monster should try to avoid the first hit in battle.",
+        None,
+    )
+
     ShouldMonsterRunAway = Symbol(
         [0x25248],
         [0x2302B28],
@@ -26903,6 +27029,15 @@ class JpOverlay29Functions:
         None,
         "UpdateIqSkills",
         "Updates the IQ skill flags of a monster.\n\nIf the monster is a team member, copies monster::iq_skill_menu_flags to monster::iq_skill_flags. If the monster is an enemy, enables all the IQ skills it can learn (except a few that are only enabled in enemies that have a certain amount of IQ).\nIf the monster is an enemy, it also sets its tactic to TACTIC_GO_AFTER_FOES.\nCalled after exiting the IQ skills menu or after an enemy spawns.\n\nr0: monster pointer",
+        None,
+    )
+
+    CanSeeTeammate = Symbol(
+        [0x25E70],
+        [0x2303750],
+        None,
+        "CanSeeTeammate",
+        "Checks if an allied monster can see any other teammate (via CanSeeTarget). Always returns false for enemy monsters.\n\nr0: monster pointer\nreturn: True if the monster is an allied monster that can see another teammate.",
         None,
     )
 
@@ -27281,6 +27416,15 @@ class JpOverlay29Functions:
         None,
         "ShouldMonsterFollowLeader",
         "Checks if the monster should follow the leader. Always returns false for enemy monsters.\nThis function may actually be should monster target leader position.\n\nr0: Pointer to monster\nreturn: bool",
+        None,
+    )
+
+    GetLeaderIfVisible = Symbol(
+        [0x2BF18],
+        [0x23097F8],
+        None,
+        "GetLeaderIfVisible",
+        "For allied monsters, gets the leader monster if they are visible to the ally. Always returns null for enemy monsters.\n\nr0: Pointer to monster\nreturn: Pointer to the leader monster if visible, null otherwise.",
         None,
     )
 
@@ -32085,10 +32229,19 @@ class JpOverlay29Data:
     DIRECTIONS_XY = Symbol(
         [0x750BC],
         [0x235299C],
-        None,
+        0x20,
         "DIRECTIONS_XY",
         "An array mapping each direction index to its x and y displacements.\n\nDirections start with 0=down and proceed counterclockwise (see enum direction_id). Displacements for x and y are interleaved and encoded as 2-byte signed integers. For example, the first two integers are [0, 1], which correspond to the x and y displacements for the 'down' direction (positive y means down).",
         "int16_t[8][2]",
+    )
+
+    FACING_DIRECTION_INCREMENTS = Symbol(
+        [0x7511C],
+        [0x23529FC],
+        0x20,
+        "FACING_DIRECTION_INCREMENTS",
+        "An array of direction offsets from a monster's current facing direction, each increasingly farther away from the current direction.\n\nFor example, the array starts with [0, 1, -1, 2...]. If the monster's current direction is DIR_UP, the first four array elements\nare each added to the current direction, corresponding to DIR_UP, DIR_UP_LEFT, DIR_UP_RIGHT, DIR_LEFT.",
+        "int[8]",
     )
 
     DISPLACEMENTS_WITHIN_2_LARGEST_FIRST = Symbol(
