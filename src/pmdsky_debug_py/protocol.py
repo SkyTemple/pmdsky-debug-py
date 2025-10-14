@@ -2012,6 +2012,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayMeById: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlaySeByIdVolume: Symbol[
         Optional[list[int]],
         None,
@@ -2772,6 +2777,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetWindowIdSelectedItemOnPage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetSimpleMenuResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateParentMenu: Symbol[
         Optional[list[int]],
         None,
@@ -2813,11 +2828,6 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetSimpleMenuField0x1A4: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    GetSimpleMenuResult: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3187,6 +3197,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    AddMessageToAlertBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsAlertBoxActive: Symbol[
         Optional[list[int]],
         None,
@@ -3317,12 +3332,42 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetSelectedItemOnPage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCurrentPage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetPageStart: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    GetSelectedMenuItemIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetTotalNumMenuItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetNumItemsOnPage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetMaxItemsOnPage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetTotalNumPages: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3338,6 +3383,36 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     InitInventoryMenuInput: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OverlayLoadEntriesEqual: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeActiveMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitMenuWithWindowExtraInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyMenuControlWindowExtraInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleMenus: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5550,6 +5625,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    NULL_OVERLAY_LOAD_ENTRY: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     PARTNER_TALK_KIND_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -6246,6 +6326,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     TBL_TALK_GROUP_STRING_ID_START: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MENU_CONTROL_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -10835,6 +10920,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    CURSE_DAMAGE_COOLDOWN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     STEEL_WING_BOOST_DEFENSE_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11005,6 +11095,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    INGRAIN_BONUS_REGEN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     AFTERMATH_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11020,12 +11115,27 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    WRAP_DAMAGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     TYPE_ADVANTAGE_MASTER_CRIT_RATE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
+    INGRAIN_BONUS_REGEN_COOLDOWN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     ORAN_BERRY_HP_RESTORATION: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WRAP_DAMAGE_COOLDOWN: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -11061,6 +11171,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     STICK_POWER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AQUA_RING_BONUS_REGEN: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -11256,6 +11371,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     IRON_THORN_POWER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BAD_WEATHER_DAMAGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14911,6 +15031,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlaySeByIdIfShouldDisplayEntity: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShouldDisplayEntityAdvanced: Symbol[
         Optional[list[int]],
         None,
@@ -14932,6 +15057,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     LoadMappaFileAttributes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRandomTrapId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15146,6 +15276,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlaySeByIdIfNotSilence: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MusicTableIdxToMusicId: Symbol[
         Optional[list[int]],
         None,
@@ -15157,6 +15292,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TrySwitchPlace: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetLeaderActionFields: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15281,6 +15421,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SpawnTraps: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SpawnEnemyTrapAtPos: Symbol[
         Optional[list[int]],
         None,
@@ -15312,6 +15457,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TryRevealAttackedTrap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SubstitutePlaceholderTrapTags2: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15417,6 +15567,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetLeaderAction: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetLeaderActionId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -17026,6 +17181,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetReflectStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TryInflictSafeguardStatus: Symbol[
         Optional[list[int]],
         None,
@@ -17312,6 +17472,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     CategoryIsNotPhysical: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeFloorOneRoom: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -18556,6 +18721,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    WaitUntilAlertBoxTextIsLoadedWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     LogMessageByIdWithPopupCheckUser: Symbol[
         Optional[list[int]],
         None,
@@ -18612,6 +18782,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     LogMessageById: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AlertBoxIsScrolling: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WaitUntilAlertBoxTextIsLoaded: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -18697,6 +18877,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     OpenMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StairsMenuAfterStep: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19329,7 +19514,7 @@ Overlay30Protocol = SectionProtocol[
 
 class Overlay31FunctionsProtocol(Protocol):
 
-    EntryOverlay31: Symbol[
+    InitDungeonMenu: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19344,7 +19529,22 @@ class Overlay31FunctionsProtocol(Protocol):
         None,
     ]
 
-    CreateStairsMenuState: Symbol[
+    DungeonMenuLoop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeDungeonMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StairsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitStairsMenu: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19354,12 +19554,27 @@ class Overlay31FunctionsProtocol(Protocol):
         None,
     ]
 
-    HandleStairsMenu: Symbol[
+    StairsMenuLoop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseMainStairsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeStairsMenu: Symbol[
         Optional[list[int]],
         None,
     ]
 
     EntityIsValidOverlay31: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ItemsMenu: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19467,22 +19682,22 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_ITEMS_1: Symbol[
+    STAIRS_MENU_ITEMS_NORMAL: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_ITEMS_2: Symbol[
+    STAIRS_MENU_ITEMS_WARP_ZONE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_ITEMS_3: Symbol[
+    STAIRS_MENU_ITEMS_RESCUE_POINT: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    DUNGEON_SUBMENU_ITEMS_4: Symbol[
+    STAIRS_MENU_ITEMS_HIDDEN_STAIRS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

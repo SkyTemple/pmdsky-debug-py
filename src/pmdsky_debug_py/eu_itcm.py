@@ -3458,7 +3458,7 @@ class EuItcmArm9Functions:
         None,
         None,
         "PlaySeByIdVolumeWrapper",
-        "Wrapper for PlaySeByIdVolume with 0x100 as the volume.\n\nr0: Index",
+        "Wrapper for PlaySeByIdVolume with 0x100 as the volume.\n\nr0: Sound effect ID",
         None,
     )
 
@@ -3495,6 +3495,15 @@ class EuItcmArm9Functions:
         None,
         "StopBgmCommand",
         "Stops the BGM that is being currently played by calling SendAudioCommand.\n\nNo params.",
+        None,
+    )
+
+    PlayMeById = Symbol(
+        None,
+        None,
+        None,
+        "PlayMeById",
+        "Initializes some values and then calls SendAudioCommand to play a ME track (musical sound effect).\n\nFor a list of tracks, see https://wiki.skytemple.org/index.php?title=List_of_Sound_Effects#ME\n\nChecks for DEBUG_FLAG_BGM_OFF. The volume is set to either 0 or 255 depending on the flag before calling SendAudioCommand.\n\nr0: ME ID",
         None,
     )
 
@@ -4866,6 +4875,24 @@ class EuItcmArm9Functions:
         None,
     )
 
+    GetWindowIdSelectedItemOnPage = Symbol(
+        None,
+        None,
+        None,
+        "GetWindowIdSelectedItemOnPage",
+        "Gets the index on the page of the current item the user has selected on the menu given by the window_id.\n\nr0: window id\nreturn: index of current selected item on the page",
+        None,
+    )
+
+    GetSimpleMenuResult = Symbol(
+        None,
+        None,
+        None,
+        "GetSimpleMenuResult",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: ?",
+        None,
+    )
+
     UpdateParentMenu = Symbol(
         None,
         None,
@@ -4944,15 +4971,6 @@ class EuItcmArm9Functions:
         None,
         "GetSimpleMenuField0x1A4",
         "Gets the value of simple_menu::field_0x1a4.\n\nr0: window_id\nreturn: field_0x1a4",
-        None,
-    )
-
-    GetSimpleMenuResult = Symbol(
-        None,
-        None,
-        None,
-        "GetSimpleMenuResult",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: ?",
         None,
     )
 
@@ -5613,6 +5631,15 @@ class EuItcmArm9Functions:
         None,
     )
 
+    AddMessageToAlertBox = Symbol(
+        None,
+        None,
+        None,
+        "AddMessageToAlertBox",
+        "Adds a message to the dungeon alert box.\n\nr0: window_id\nr1: preprocessor flags\nr2: message string pointer\nr3: preprocessor_args struct pointer\nstack[0]: whether the message is the start of a new group (meaning it should be preceded by a horizontal line)\nreturn: whether the message was successfully added",
+        None,
+    )
+
     IsAlertBoxActive = Symbol(
         None,
         None,
@@ -5843,7 +5870,25 @@ class EuItcmArm9Functions:
         None,
         None,
         "IsMenuOptionActive",
-        "Called whenever a menu option is selected. Returns whether the option is active or not.\n\nr0: ?\nreturn: True if the menu option is enabled, false otherwise.",
+        "Called whenever a menu option is selected. Returns whether the option is active or not.\n\nr0: window_input_ctx struct pointer\nreturn: True if the menu option is enabled, false otherwise.",
+        None,
+    )
+
+    GetSelectedItemOnPage = Symbol(
+        None,
+        None,
+        None,
+        "GetSelectedItemOnPage",
+        "Gets the index on the page of the current item the user has selected.\n\nr0: window_input_ctx struct pointer\nreturn: index of current selected item on the page",
+        None,
+    )
+
+    GetCurrentPage = Symbol(
+        None,
+        None,
+        None,
+        "GetCurrentPage",
+        "Gets the index of the current menu page the user is on.\n\nr0: window_input_ctx struct pointer\nreturn: current page",
         None,
     )
 
@@ -5856,12 +5901,48 @@ class EuItcmArm9Functions:
         None,
     )
 
+    GetSelectedMenuItemIdx = Symbol(
+        None,
+        None,
+        None,
+        "GetSelectedMenuItemIdx",
+        "Gets the index of the current menu item the user has selected.\n\nr0: window_input_ctx struct pointer\nreturn: index of current selected item",
+        None,
+    )
+
+    GetTotalNumMenuItems = Symbol(
+        None,
+        None,
+        None,
+        "GetTotalNumMenuItems",
+        "Gets the total number of items in the menu.\n\nr0: window_input_ctx struct pointer\nreturn: number of menu items",
+        None,
+    )
+
     GetNumItemsOnPage = Symbol(
         None,
         None,
         None,
         "GetNumItemsOnPage",
         "Gets the number of items on the current menu page.\n\nr0: window_input_ctx struct pointer\nreturn: number of items on page",
+        None,
+    )
+
+    GetMaxItemsOnPage = Symbol(
+        None,
+        None,
+        None,
+        "GetMaxItemsOnPage",
+        "Gets the maximum possible number of items the menu can hold on one of its pages.\n\nr0: window_input_ctx struct pointer\nreturn: number of menu pages",
+        None,
+    )
+
+    GetTotalNumPages = Symbol(
+        None,
+        None,
+        None,
+        "GetTotalNumPages",
+        "Gets the total number of pages in the menu.\n\nr0: window_input_ctx struct pointer\nreturn: number of menu pages",
         None,
     )
 
@@ -5889,6 +5970,60 @@ class EuItcmArm9Functions:
         None,
         "InitInventoryMenuInput",
         "Almost exactly the same as InitWindowInput, except two differences in field assignments on the window input context, one of which uses an extra parameter.\n\nr0: inventory_menu_input_ctx pointer\nr1: window_flags\nr2: window_extra_info pointer\nr3: window rectangle\nstack[0]: total number of selectable items\nstack[1]: number of selectable items per page\nstack[2]: ?",
+        None,
+    )
+
+    OverlayLoadEntriesEqual = Symbol(
+        None,
+        None,
+        None,
+        "OverlayLoadEntriesEqual",
+        "Checks if two overlay_load_entries have the same values for all of their fields.\n\nr0: overlay_load_entry pointer\nr1: overlay_load_entry pointer\nreturn: bool",
+        None,
+    )
+
+    FreeActiveMenu = Symbol(
+        None,
+        None,
+        None,
+        "FreeActiveMenu",
+        "Frees the currently active menu by calling the destructor function of the active entry in menu_control.\n\nNo params.",
+        None,
+    )
+
+    InitMenu = Symbol(
+        None,
+        None,
+        None,
+        "InitMenu",
+        "Initializes a menu by setting the incoming_entry field of menu_control to the given overlay_load_entry.\n\nr0: overlay_load_entry pointer\nreturn: whether the menu was successfully initialized",
+        None,
+    )
+
+    InitMenuWithWindowExtraInfo = Symbol(
+        None,
+        None,
+        None,
+        "InitMenuWithWindowExtraInfo",
+        "Has the same functionality as InitMenu except also tries to initialize menu_control's window_extra_info struct.\n\nr0: overlay_load_entry pointer\nr1: whether there is a window_extra_info struct\nr2: window_extra_info pointer\nreturn: whether the menu was successfully initialized",
+        None,
+    )
+
+    CopyMenuControlWindowExtraInfo = Symbol(
+        None,
+        None,
+        None,
+        "CopyMenuControlWindowExtraInfo",
+        "Copies menu_control's window_extra_info to the given address.\n\nr0: [output] window_extra_info pointer\nreturn: whether the window extra info was successfully copied",
+        None,
+    )
+
+    HandleMenus = Symbol(
+        None,
+        None,
+        None,
+        "HandleMenus",
+        "Master function called on every frame for handling the game's menus (seemingly the vast majority with the exception of some in dungeon mode). \n\nThis includes updating them, freeing them, and entering and exiting their respective overlays if applicable.\n\nNo params.",
         None,
     )
 
@@ -9859,6 +9994,15 @@ class EuItcmArm9Data:
         "struct window_params",
     )
 
+    NULL_OVERLAY_LOAD_ENTRY = Symbol(
+        None,
+        None,
+        None,
+        "NULL_OVERLAY_LOAD_ENTRY",
+        "An overlay_load_entry whose values are all zeroes.\n\ntype: overlay_load_entry",
+        "struct overlay_load_entry",
+    )
+
     PARTNER_TALK_KIND_TABLE = Symbol(
         None,
         None,
@@ -11081,6 +11225,15 @@ class EuItcmArm9Data:
         "TBL_TALK_GROUP_STRING_ID_START",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
         "int16_t[6]",
+    )
+
+    MENU_CONTROL_PTR = Symbol(
+        None,
+        None,
+        None,
+        "MENU_CONTROL_PTR",
+        "Pointer to the master struct used for handling menus.\n\ntype: menu_control*",
+        "struct menu_control*",
     )
 
     KEYBOARD_STRING_IDS = Symbol(
@@ -17407,6 +17560,15 @@ class EuItcmOverlay10Data:
         "int16_t",
     )
 
+    CURSE_DAMAGE_COOLDOWN = Symbol(
+        None,
+        None,
+        None,
+        "CURSE_DAMAGE_COOLDOWN",
+        "The number of turns between passive curse damage (3).",
+        "int16_t",
+    )
+
     STEEL_WING_BOOST_DEFENSE_CHANCE = Symbol(
         None,
         None,
@@ -17713,6 +17875,15 @@ class EuItcmOverlay10Data:
         "int16_t",
     )
 
+    INGRAIN_BONUS_REGEN = Symbol(
+        None,
+        None,
+        None,
+        "INGRAIN_BONUS_REGEN",
+        "The passive bonus regen given by the Ingrain status condition (10).",
+        "int16_t",
+    )
+
     AFTERMATH_CHANCE = Symbol(
         None,
         None,
@@ -17740,6 +17911,15 @@ class EuItcmOverlay10Data:
         "int16_t",
     )
 
+    WRAP_DAMAGE = Symbol(
+        None,
+        None,
+        None,
+        "WRAP_DAMAGE",
+        "Damage dealt by the wrap status condition (6).",
+        "int16_t",
+    )
+
     TYPE_ADVANTAGE_MASTER_CRIT_RATE = Symbol(
         None,
         None,
@@ -17749,12 +17929,30 @@ class EuItcmOverlay10Data:
         "int16_t",
     )
 
+    INGRAIN_BONUS_REGEN_COOLDOWN = Symbol(
+        None,
+        None,
+        None,
+        "INGRAIN_BONUS_REGEN_COOLDOWN",
+        "The number of turns between ingrain health regeneration (5).",
+        "int16_t",
+    )
+
     ORAN_BERRY_HP_RESTORATION = Symbol(
         None,
         None,
         None,
         "ORAN_BERRY_HP_RESTORATION",
         "The amount of HP restored by eating a Oran Berry.",
+        "int16_t",
+    )
+
+    WRAP_DAMAGE_COOLDOWN = Symbol(
+        None,
+        None,
+        None,
+        "WRAP_DAMAGE_COOLDOWN",
+        "The number of turns between passive wrap damage (2).",
         "int16_t",
     )
 
@@ -17814,6 +18012,15 @@ class EuItcmOverlay10Data:
 
     STICK_POWER = Symbol(
         None, None, None, "STICK_POWER", "Attack power for Sticks.", "int16_t"
+    )
+
+    AQUA_RING_BONUS_REGEN = Symbol(
+        None,
+        None,
+        None,
+        "AQUA_RING_BONUS_REGEN",
+        "The passive bonus regen given by the Aqua Ring status condition (8).",
+        "int16_t",
     )
 
     BUBBLE_LOWER_SPEED_CHANCE = Symbol(
@@ -18150,6 +18357,15 @@ class EuItcmOverlay10Data:
 
     IRON_THORN_POWER = Symbol(
         None, None, None, "IRON_THORN_POWER", "Attack power for Iron Thorns.", "int16_t"
+    )
+
+    BAD_WEATHER_DAMAGE = Symbol(
+        None,
+        None,
+        None,
+        "BAD_WEATHER_DAMAGE",
+        "Damage dealt by the Sandstorm and Hail weather conditions (3).",
+        "int16_t",
     )
 
     SCOPE_LENS_CRIT_RATE_BOOST = Symbol(
@@ -24267,6 +24483,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    PlaySeByIdIfShouldDisplayEntity = Symbol(
+        None,
+        None,
+        None,
+        "PlaySeByIdIfShouldDisplayEntity",
+        "Plays the specified sound effect if ShouldDisplayEntityAdvanced returns true for the entity (or if the entity pointer is null).\n\nr0: entity pointer\nr1: Sound effect ID",
+        None,
+    )
+
     ShouldDisplayEntityAdvanced = Symbol(
         None,
         None,
@@ -24309,6 +24534,15 @@ class EuItcmOverlay29Functions:
         None,
         "LoadMappaFileAttributes",
         "Note: unverified, ported from Irdkwia's notes\n\nThis function processes the monster spawn list of the current floor, checking which species can spawn, capping the amount of spawnable species on the floor to 14, randomly choosing which 14 species will spawn and ensuring that the sprite size of all the species combined does not exceed the maximum of 0x58000 bytes (352 KB). Kecleon and the Decoy are always included in the random selection.\nThe function also processes the floor's item spawn lists. When loading fixed rooms from the hidden staircase, the game forces the number of spawnable species to 0.\n\nr0: quick_saved\nr1: disable_monsters\nr2: special_process",
+        None,
+    )
+
+    GetRandomTrapId = Symbol(
+        None,
+        None,
+        None,
+        "GetRandomTrapId",
+        "Gets the id of the trap to be used as the effect of a Random Trap.\n\nreturn: trap id",
         None,
     )
 
@@ -24690,6 +24924,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    PlaySeByIdIfNotSilence = Symbol(
+        None,
+        None,
+        None,
+        "PlaySeByIdIfNotSilence",
+        "Plays the specified sound effect if it is not the designated silence value (0x3F00).\n\nr0: Sound effect ID",
+        None,
+    )
+
     MusicTableIdxToMusicId = Symbol(
         None,
         None,
@@ -24714,6 +24957,15 @@ class EuItcmOverlay29Functions:
         None,
         "TrySwitchPlace",
         "The user entity attempts to switch places with the target entity (i.e. by the effect of the Switcher Orb). \n\nThe function checks for the Suction Cups ability for both the user and the target, and for the Mold Breaker ability on the user.\n\nr0: pointer to user entity\nr1: pointer to target entity",
+        None,
+    )
+
+    ResetLeaderActionFields = Symbol(
+        None,
+        None,
+        None,
+        "ResetLeaderActionFields",
+        "Resets the leader monster's action_id fields to 0.\n\nr0: whether to also set the action_use_idx fields of the action_parameters structs and the arc_item_target_pos fields to 0",
         None,
     )
 
@@ -24933,6 +25185,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    SpawnTraps = Symbol(
+        None,
+        None,
+        None,
+        "SpawnTraps",
+        "Spawns a new dungeon floor's traps.\n\nNo params.",
+        None,
+    )
+
     SpawnEnemyTrapAtPos = Symbol(
         None,
         None,
@@ -24993,6 +25254,15 @@ class EuItcmOverlay29Functions:
         None,
         "TryRevealAttackedTrap",
         "Reveals the trap given by the position if the dungeon struct's regular_attack_reveal_traps field is true.\n\nIs also activated on a tile if a fainted monster drops an item on it.\n\nr0: position struct pointer\nr1: boolean for whether to update trap visibility afterwards (always 1 in practice)\nreturn: true if there is a trap on the position",
+        None,
+    )
+
+    SubstitutePlaceholderTrapTags2 = Symbol(
+        None,
+        None,
+        None,
+        "SubstitutePlaceholderTrapTags2",
+        "Used in TryTriggerTrap. Has the same functionality as SubstitutePlaceholderTrapTags.\n\nr1: tag id\nr2: trap id",
         None,
     )
 
@@ -25182,6 +25452,15 @@ class EuItcmOverlay29Functions:
         None,
         "GetLeaderAction",
         "Returns a pointer to the action data of the current leader (field 0x4A on its monster struct).\n\nNo params.",
+        None,
+    )
+
+    GetLeaderActionId = Symbol(
+        None,
+        None,
+        None,
+        "GetLeaderActionId",
+        "Gets the current action id of the leader monster's action data.\n\nreturn: action_id",
         None,
     )
 
@@ -27269,7 +27548,7 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "TryInflictPausedStatus",
-        "Inflicts the Paused status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: ?\nr3: number of turns\nstack[0]: flag to log a message on failure\nstack[1]: flag to only perform the check for inflicting without actually inflicting\nreturn: Whether or not the status could be inflicted",
+        "Inflicts the Paused status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: bool for whether status should not be inflicted if Safeguard is active\nr3: number of turns\nstack[0]: flag to log a message on failure\nstack[1]: flag to only perform the check for inflicting without actually inflicting\nreturn: Whether or not the status could be inflicted",
         None,
     )
 
@@ -27836,7 +28115,7 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "TryInflictBlinkerStatus",
-        "Inflicts the Blinker status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to only perform the check for inflicting without actually inflicting\nr3: flag to log a message on failure\nreturn: Whether or not the status could be inflicted",
+        "Inflicts the Blinker status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to only perform the check for inflicting without actually inflicting\nr3: flag to make the status permanent (always 0 in the base game)\nreturn: Whether or not the status could be inflicted",
         None,
     )
 
@@ -28071,6 +28350,15 @@ class EuItcmOverlay29Functions:
         None,
         "IsFloating",
         "Checks if a monster is currently floating for reasons other than its typing or ability.\n\nIn particular, this checks for Gravity and Magnet Rise.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
+    SetReflectStatus = Symbol(
+        None,
+        None,
+        None,
+        "SetReflectStatus",
+        "Sets a target monster's reflect status to the specified value. \n\nIf it already has the Counter, Mini Counter or Metal Burst status, its remaining turn counter will remain the same.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: reflect status",
         None,
     )
 
@@ -28593,6 +28881,15 @@ class EuItcmOverlay29Functions:
         None,
         "CategoryIsNotPhysical",
         "Checks that a move category is not CATEGORY_PHYSICAL.\n\nr0: move category ID\nreturn: bool",
+        None,
+    )
+
+    MakeFloorOneRoom = Symbol(
+        None,
+        None,
+        None,
+        "MakeFloorOneRoom",
+        "Removes all walls to make the floor one room.\n\nr0: user entity pointer",
         None,
     )
 
@@ -30828,6 +31125,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    WaitUntilAlertBoxTextIsLoadedWrapper = Symbol(
+        None,
+        None,
+        None,
+        "WaitUntilAlertBoxTextIsLoadedWrapper",
+        "Calls WaitUntilAlertBoxTextIsLoaded with r0 = 0x50.\n\nNo params.",
+        None,
+    )
+
     LogMessageByIdWithPopupCheckUser = Symbol(
         None,
         None,
@@ -30933,6 +31239,24 @@ class EuItcmOverlay29Functions:
         None,
         "LogMessageById",
         "Logs a message in the message log.\n\nr0: user entity pointer\nr1: message ID\nr2: bool, whether or not to present a message popup",
+        None,
+    )
+
+    AlertBoxIsScrolling = Symbol(
+        None,
+        None,
+        None,
+        "AlertBoxIsScrolling",
+        "Returns true if the alert box is currently scrolling (i.e. a message is being loaded).\n\nreturn: bool",
+        None,
+    )
+
+    WaitUntilAlertBoxTextIsLoaded = Symbol(
+        None,
+        None,
+        None,
+        "WaitUntilAlertBoxTextIsLoaded",
+        "Calls AdvanceFrame in a loop until the dungeon alert box has finished scrolling.\n\nr0: value to pass to AdvanceFrame (unused by the function)",
         None,
     )
 
@@ -31081,6 +31405,15 @@ class EuItcmOverlay29Functions:
         None,
         "OpenMenu",
         "Opens a menu. The menu to open depends on the specified parameter.\n\nIt looks like the function takes a parameter in r0, but doesn't use it. r1 doesn't even get set when this function is called.\n\nr0: (?) Unused by the function. Seems to be 1 byte long.\nr1: (?) Unused by the function. Seems to be 1 byte long.\nr2: True to open the bag menu, false to open the main dungeon menu",
+        None,
+    )
+
+    StairsMenuAfterStep = Symbol(
+        None,
+        None,
+        None,
+        "StairsMenuAfterStep",
+        "Opens the stairs menu after stepping on a stairs tile.\n\nr0: Entity pointer (in practice, always the leader)\nr1: whether to not open minimap upon menu close",
         None,
     )
 
@@ -32192,12 +32525,12 @@ class EuItcmOverlay30Section:
 
 class EuItcmOverlay31Functions:
 
-    EntryOverlay31 = Symbol(
+    InitDungeonMenu = Symbol(
         None,
         None,
         None,
-        "EntryOverlay31",
-        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+        "InitDungeonMenu",
+        "Initializes the main dungeon menu and allocates a struct on the heap with information for HandleDungeonMenu.\n\nNo params.",
         None,
     )
 
@@ -32219,12 +32552,39 @@ class EuItcmOverlay31Functions:
         None,
     )
 
-    CreateStairsMenuState = Symbol(
+    DungeonMenuLoop = Symbol(
         None,
         None,
         None,
-        "CreateStairsMenuState",
-        "Called when the leader steps on any stairs tile (regular, warp zone, rescue point, hidden stairs).\n\nAllocates a stairs_menu struct on the heap with information for HandleStairsMenu, which will be pointed to by STAIRS_MENU_PTR.\n\nr0: Entity pointer (in practice, always the leader)",
+        "DungeonMenuLoop",
+        "Handles displaying the main dungeon menu and is called on each frame while it is open.\n\nUses a switch statement based on a state field of the struct allocated in InitDungeonMenu to determine what actions to take.\n\nreturn: 4 if should close main dungeon menu (including when switching menus), 1 otherwise",
+        None,
+    )
+
+    FreeDungeonMenu = Symbol(
+        None,
+        None,
+        None,
+        "FreeDungeonMenu",
+        "Closes the main dungeon menu and frees the heap-allocated struct initialized in InitDungeonMenu.\n\nNo params.",
+        None,
+    )
+
+    StairsMenu = Symbol(
+        None,
+        None,
+        None,
+        "StairsMenu",
+        "Called when the stairs menu is open. Does not return until the menu is closed.\n\nr0: Entity pointer (in practice, always the leader)\nr1: whether to not open minimap upon menu close",
+        None,
+    )
+
+    InitStairsMenu = Symbol(
+        None,
+        None,
+        None,
+        "InitStairsMenu",
+        "Called when the leader steps on any stairs tile (regular, warp zone, rescue point, hidden stairs).\n\nInitializes the stairs menu and allocates a stairs_menu struct on the heap with information for HandleStairsMenu, which will be pointed to by STAIRS_MENU_PTR.\n\nr0: Entity pointer (in practice, always the leader)",
         None,
     )
 
@@ -32237,12 +32597,30 @@ class EuItcmOverlay31Functions:
         None,
     )
 
-    HandleStairsMenu = Symbol(
+    StairsMenuLoop = Symbol(
         None,
         None,
         None,
-        "HandleStairsMenu",
-        "Handles displaying the stairs menu and is called on each frame while it is open, also updating the leader's action fields.\n\nUses a switch statement based on the state field in stairs_menu to determine what actions to take.\n\nreturn: int",
+        "StairsMenuLoop",
+        "Handles displaying the stairs menu and is called on each frame while it is open, also updating the leader's action fields.\n\nUses a switch statement based on the state field in stairs_menu to determine what actions to take.\n\nreturn: 4 if should close stairs menu entirely, 1 otherwise (including when switching between main/info menus)",
+        None,
+    )
+
+    CloseMainStairsMenu = Symbol(
+        None,
+        None,
+        None,
+        "CloseMainStairsMenu",
+        "Closes the main stairs menu. Used both when closing it entirely as well as when switching to the info menu.\n\nNo params.",
+        None,
+    )
+
+    FreeStairsMenu = Symbol(
+        None,
+        None,
+        None,
+        "FreeStairsMenu",
+        "Closes the main stairs menu and frees the heap-allocated stairs_menu struct pointed to by STAIRS_MENU_PTR.\n\nNo params.",
         None,
     )
 
@@ -32252,6 +32630,15 @@ class EuItcmOverlay31Functions:
         None,
         "EntityIsValidOverlay31",
         "See overlay29.yml::EntityIsValid",
+        None,
+    )
+
+    ItemsMenu = Symbol(
+        None,
+        None,
+        None,
+        "ItemsMenu",
+        "Called when the in-dungeon 'items' menu is open. Does not return until the menu is closed.\n\nr0: Pointer to the leader's entity struct\nr1: ?\nreturn: ?",
         None,
     )
 
@@ -32335,6 +32722,12 @@ class EuItcmOverlay31Functions:
         "Called on each frame while the in-dungeon 'help' menu is open.\n\nThe menu is still considered open while one of the help pages is being viewed, so this function keeps being called even after choosing an option.\n\nreturn: int (Actually, this is probably some sort of enum shared by all the MenuLoop functions)",
         None,
     )
+
+    EntryOverlay31 = _Deprecated("EntryOverlay31", InitDungeonMenu)
+
+    CreateStairsMenuState = _Deprecated("CreateStairsMenuState", InitStairsMenu)
+
+    HandleStairsMenu = _Deprecated("HandleStairsMenu", StairsMenuLoop)
 
 
 class EuItcmOverlay31Data:
@@ -32428,20 +32821,40 @@ class EuItcmOverlay31Data:
         "struct window_params",
     )
 
-    DUNGEON_SUBMENU_ITEMS_1 = Symbol(
-        None, None, None, "DUNGEON_SUBMENU_ITEMS_1", "", "struct simple_menu_id_item[4]"
+    STAIRS_MENU_ITEMS_NORMAL = Symbol(
+        None,
+        None,
+        None,
+        "STAIRS_MENU_ITEMS_NORMAL",
+        "List of 4 simple_menu_id_items for the normal stairs menu.",
+        "struct simple_menu_id_item[4]",
     )
 
-    DUNGEON_SUBMENU_ITEMS_2 = Symbol(
-        None, None, None, "DUNGEON_SUBMENU_ITEMS_2", "", "struct simple_menu_id_item[4]"
+    STAIRS_MENU_ITEMS_WARP_ZONE = Symbol(
+        None,
+        None,
+        None,
+        "STAIRS_MENU_ITEMS_WARP_ZONE",
+        "List of 4 simple_menu_id_items for the Warp Zone stairs menu.",
+        "struct simple_menu_id_item[4]",
     )
 
-    DUNGEON_SUBMENU_ITEMS_3 = Symbol(
-        None, None, None, "DUNGEON_SUBMENU_ITEMS_3", "", "struct simple_menu_id_item[4]"
+    STAIRS_MENU_ITEMS_RESCUE_POINT = Symbol(
+        None,
+        None,
+        None,
+        "STAIRS_MENU_ITEMS_RESCUE_POINT",
+        "List of 4 simple_menu_id_items for the Rescue Point stairs menu.",
+        "struct simple_menu_id_item[4]",
     )
 
-    DUNGEON_SUBMENU_ITEMS_4 = Symbol(
-        None, None, None, "DUNGEON_SUBMENU_ITEMS_4", "", "struct simple_menu_id_item[4]"
+    STAIRS_MENU_ITEMS_HIDDEN_STAIRS = Symbol(
+        None,
+        None,
+        None,
+        "STAIRS_MENU_ITEMS_HIDDEN_STAIRS",
+        "List of 4 simple_menu_id_items for the hidden stairs menu.",
+        "struct simple_menu_id_item[4]",
     )
 
     OVERLAY31_UNKNOWN_STRUCT__NA_2389EF0 = Symbol(
@@ -32837,6 +33250,22 @@ class EuItcmOverlay31Data:
         "OVERLAY31_UNKNOWN_POINTER__NA_238A28C",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    DUNGEON_SUBMENU_ITEMS_1 = _Deprecated(
+        "DUNGEON_SUBMENU_ITEMS_1", STAIRS_MENU_ITEMS_NORMAL
+    )
+
+    DUNGEON_SUBMENU_ITEMS_2 = _Deprecated(
+        "DUNGEON_SUBMENU_ITEMS_2", STAIRS_MENU_ITEMS_WARP_ZONE
+    )
+
+    DUNGEON_SUBMENU_ITEMS_3 = _Deprecated(
+        "DUNGEON_SUBMENU_ITEMS_3", STAIRS_MENU_ITEMS_RESCUE_POINT
+    )
+
+    DUNGEON_SUBMENU_ITEMS_4 = _Deprecated(
+        "DUNGEON_SUBMENU_ITEMS_4", STAIRS_MENU_ITEMS_HIDDEN_STAIRS
     )
 
 
