@@ -3545,8 +3545,8 @@ class JpArm9Functions:
     )
 
     PlayMeById = Symbol(
-        None,
-        None,
+        [0x18264],
+        [0x2018264],
         None,
         "PlayMeById",
         "Initializes some values and then calls SendAudioCommand to play a ME track (musical sound effect).\n\nFor a list of tracks, see https://wiki.skytemple.org/index.php?title=List_of_Sound_Effects#ME\n\nChecks for DEBUG_FLAG_BGM_OFF. The volume is set to either 0 or 255 depending on the flag before calling SendAudioCommand.\n\nr0: ME ID",
@@ -4922,8 +4922,8 @@ class JpArm9Functions:
     )
 
     GetWindowIdSelectedItemOnPage = Symbol(
-        None,
-        None,
+        [0x2AED8],
+        [0x202AED8],
         None,
         "GetWindowIdSelectedItemOnPage",
         "Gets the index on the page of the current item the user has selected on the menu given by the window_id.\n\nr0: window id\nreturn: index of current selected item on the page",
@@ -4931,8 +4931,8 @@ class JpArm9Functions:
     )
 
     GetSimpleMenuResult = Symbol(
-        [0x2B8D4],
-        [0x202B8D4],
+        [0x2AF08, 0x2B8D4],
+        [0x202AF08, 0x202B8D4],
         None,
         "GetSimpleMenuResult",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: ?",
@@ -5678,8 +5678,8 @@ class JpArm9Functions:
     )
 
     AddMessageToAlertBox = Symbol(
-        None,
-        None,
+        [0x30450],
+        [0x2030450],
         None,
         "AddMessageToAlertBox",
         "Adds a message to the dungeon alert box.\n\nr0: window_id\nr1: preprocessor flags\nr2: message string pointer\nr3: preprocessor_args struct pointer\nstack[0]: whether the message is the start of a new group (meaning it should be preceded by a horizontal line)\nreturn: whether the message was successfully added",
@@ -5921,8 +5921,8 @@ class JpArm9Functions:
     )
 
     GetSelectedItemOnPage = Symbol(
-        None,
-        None,
+        [0x32878],
+        [0x2032878],
         None,
         "GetSelectedItemOnPage",
         "Gets the index on the page of the current item the user has selected.\n\nr0: window_input_ctx struct pointer\nreturn: index of current selected item on the page",
@@ -5930,8 +5930,8 @@ class JpArm9Functions:
     )
 
     GetCurrentPage = Symbol(
-        None,
-        None,
+        [0x32880],
+        [0x2032880],
         None,
         "GetCurrentPage",
         "Gets the index of the current menu page the user is on.\n\nr0: window_input_ctx struct pointer\nreturn: current page",
@@ -5948,8 +5948,8 @@ class JpArm9Functions:
     )
 
     GetSelectedMenuItemIdx = Symbol(
-        None,
-        None,
+        [0x32898],
+        [0x2032898],
         None,
         "GetSelectedMenuItemIdx",
         "Gets the index of the current menu item the user has selected.\n\nr0: window_input_ctx struct pointer\nreturn: index of current selected item",
@@ -5957,8 +5957,8 @@ class JpArm9Functions:
     )
 
     GetTotalNumMenuItems = Symbol(
-        None,
-        None,
+        [0x328AC],
+        [0x20328AC],
         None,
         "GetTotalNumMenuItems",
         "Gets the total number of items in the menu.\n\nr0: window_input_ctx struct pointer\nreturn: number of menu items",
@@ -5975,8 +5975,8 @@ class JpArm9Functions:
     )
 
     GetMaxItemsOnPage = Symbol(
-        None,
-        None,
+        [0x328BC],
+        [0x20328BC],
         None,
         "GetMaxItemsOnPage",
         "Gets the maximum possible number of items the menu can hold on one of its pages.\n\nr0: window_input_ctx struct pointer\nreturn: number of menu pages",
@@ -5984,8 +5984,8 @@ class JpArm9Functions:
     )
 
     GetTotalNumPages = Symbol(
-        None,
-        None,
+        [0x328C4],
+        [0x20328C4],
         None,
         "GetTotalNumPages",
         "Gets the total number of pages in the menu.\n\nr0: window_input_ctx struct pointer\nreturn: number of menu pages",
@@ -6020,8 +6020,8 @@ class JpArm9Functions:
     )
 
     OverlayLoadEntriesEqual = Symbol(
-        None,
-        None,
+        [0x34AC0],
+        [0x2034AC0],
         None,
         "OverlayLoadEntriesEqual",
         "Checks if two overlay_load_entries have the same values for all of their fields.\n\nr0: overlay_load_entry pointer\nr1: overlay_load_entry pointer\nreturn: bool",
@@ -6029,8 +6029,8 @@ class JpArm9Functions:
     )
 
     FreeActiveMenu = Symbol(
-        None,
-        None,
+        [0x34B10],
+        [0x2034B10],
         None,
         "FreeActiveMenu",
         "Frees the currently active menu by calling the destructor function of the active entry in menu_control.\n\nNo params.",
@@ -6038,8 +6038,8 @@ class JpArm9Functions:
     )
 
     InitMenu = Symbol(
-        None,
-        None,
+        [0x34C04],
+        [0x2034C04],
         None,
         "InitMenu",
         "Initializes a menu by setting the incoming_entry field of menu_control to the given overlay_load_entry.\n\nr0: overlay_load_entry pointer\nreturn: whether the menu was successfully initialized",
@@ -6047,8 +6047,8 @@ class JpArm9Functions:
     )
 
     InitMenuWithWindowExtraInfo = Symbol(
-        None,
-        None,
+        [0x34C94],
+        [0x2034C94],
         None,
         "InitMenuWithWindowExtraInfo",
         "Has the same functionality as InitMenu except also tries to initialize menu_control's window_extra_info struct.\n\nr0: overlay_load_entry pointer\nr1: whether there is a window_extra_info struct\nr2: window_extra_info pointer\nreturn: whether the menu was successfully initialized",
@@ -6056,8 +6056,8 @@ class JpArm9Functions:
     )
 
     CopyMenuControlWindowExtraInfo = Symbol(
-        None,
-        None,
+        [0x34D58],
+        [0x2034D58],
         None,
         "CopyMenuControlWindowExtraInfo",
         "Copies menu_control's window_extra_info to the given address.\n\nr0: [output] window_extra_info pointer\nreturn: whether the window extra info was successfully copied",
@@ -6065,8 +6065,8 @@ class JpArm9Functions:
     )
 
     HandleMenus = Symbol(
-        None,
-        None,
+        [0x34DA0],
+        [0x2034DA0],
         None,
         "HandleMenus",
         "Master function called on every frame for handling the game's menus (seemingly the vast majority with the exception of some in dungeon mode). \n\nThis includes updating them, freeing them, and entering and exiting their respective overlays if applicable.\n\nNo params.",
@@ -10045,8 +10045,8 @@ class JpArm9Data:
     )
 
     NULL_OVERLAY_LOAD_ENTRY = Symbol(
-        None,
-        None,
+        [0x9B9E0],
+        [0x209B9E0],
         None,
         "NULL_OVERLAY_LOAD_ENTRY",
         "An overlay_load_entry whose values are all zeroes.\n\ntype: overlay_load_entry",
@@ -10510,6 +10510,15 @@ class JpArm9Data:
         "DAMAGE_FORMULA_LN_ARG_PREFACTOR",
         "The prefactor to the argument of ClampedLn in the damage formula (FLV + DAMAGE_FORMULA_FLV_SHIFT), as a binary fixed-point number with 8 fraction bits (10).",
         "fx32_8",
+    )
+
+    TACTICS_FOLLOW_LEADER = Symbol(
+        [0xA2CE0],
+        [0x20A2CE0],
+        0xC,
+        "TACTICS_FOLLOW_LEADER",
+        "Array of boolean values corresponding to each tactic_id enum, determining whether the tactic makes party members follow the leader.",
+        "bool[12]",
     )
 
     FORBIDDEN_FORGOT_MOVE_LIST = Symbol(
@@ -11289,8 +11298,8 @@ class JpArm9Data:
     )
 
     MENU_CONTROL_PTR = Symbol(
-        None,
-        None,
+        [0xB11D8],
+        [0x20B11D8],
         None,
         "MENU_CONTROL_PTR",
         "Pointer to the master struct used for handling menus.\n\ntype: menu_control*",
@@ -17807,8 +17816,8 @@ class JpOverlay10Data:
     )
 
     CURSE_DAMAGE_COOLDOWN = Symbol(
-        None,
-        None,
+        [0x7984],
+        [0x22C5BA4],
         None,
         "CURSE_DAMAGE_COOLDOWN",
         "The number of turns between passive curse damage (3).",
@@ -18122,8 +18131,8 @@ class JpOverlay10Data:
     )
 
     INGRAIN_BONUS_REGEN = Symbol(
-        None,
-        None,
+        [0x7A58],
+        [0x22C5C78],
         None,
         "INGRAIN_BONUS_REGEN",
         "The passive bonus regen given by the Ingrain status condition (10).",
@@ -18158,8 +18167,8 @@ class JpOverlay10Data:
     )
 
     WRAP_DAMAGE = Symbol(
-        None,
-        None,
+        [0x7A98],
+        [0x22C5CB8],
         None,
         "WRAP_DAMAGE",
         "Damage dealt by the wrap status condition (6).",
@@ -18176,8 +18185,8 @@ class JpOverlay10Data:
     )
 
     INGRAIN_BONUS_REGEN_COOLDOWN = Symbol(
-        None,
-        None,
+        [0x7AB0],
+        [0x22C5CD0],
         None,
         "INGRAIN_BONUS_REGEN_COOLDOWN",
         "The number of turns between ingrain health regeneration (5).",
@@ -18194,8 +18203,8 @@ class JpOverlay10Data:
     )
 
     WRAP_DAMAGE_COOLDOWN = Symbol(
-        None,
-        None,
+        [0x7AB8],
+        [0x22C5CD8],
         None,
         "WRAP_DAMAGE_COOLDOWN",
         "The number of turns between passive wrap damage (2).",
@@ -18261,8 +18270,8 @@ class JpOverlay10Data:
     )
 
     AQUA_RING_BONUS_REGEN = Symbol(
-        None,
-        None,
+        [0x7AF0],
+        [0x22C5D10],
         None,
         "AQUA_RING_BONUS_REGEN",
         "The passive bonus regen given by the Aqua Ring status condition (8).",
@@ -18621,8 +18630,8 @@ class JpOverlay10Data:
     )
 
     BAD_WEATHER_DAMAGE = Symbol(
-        None,
-        None,
+        [0x7BB4],
+        [0x22C5DD4],
         None,
         "BAD_WEATHER_DAMAGE",
         "Damage dealt by the Sandstorm and Hail weather conditions (3).",
@@ -25007,8 +25016,8 @@ class JpOverlay29Functions:
     )
 
     PlaySeByIdIfShouldDisplayEntity = Symbol(
-        None,
-        None,
+        [0x9430],
+        [0x22E6D10],
         None,
         "PlaySeByIdIfShouldDisplayEntity",
         "Plays the specified sound effect if ShouldDisplayEntityAdvanced returns true for the entity (or if the entity pointer is null).\n\nr0: entity pointer\nr1: Sound effect ID",
@@ -25061,8 +25070,8 @@ class JpOverlay29Functions:
     )
 
     GetRandomTrapId = Symbol(
-        None,
-        None,
+        [0xB818],
+        [0x22E90F8],
         None,
         "GetRandomTrapId",
         "Gets the id of the trap to be used as the effect of a Random Trap.\n\nreturn: trap id",
@@ -25448,8 +25457,8 @@ class JpOverlay29Functions:
     )
 
     PlaySeByIdIfNotSilence = Symbol(
-        None,
-        None,
+        [0xEA54],
+        [0x22EC334],
         None,
         "PlaySeByIdIfNotSilence",
         "Plays the specified sound effect if it is not the designated silence value (0x3F00).\n\nr0: Sound effect ID",
@@ -25484,8 +25493,8 @@ class JpOverlay29Functions:
     )
 
     ResetLeaderActionFields = Symbol(
-        None,
-        None,
+        [0xF120],
+        [0x22ECA00],
         None,
         "ResetLeaderActionFields",
         "Resets the leader monster's action_id fields to 0.\n\nr0: whether to also set the action_use_idx fields of the action_parameters structs and the arc_item_target_pos fields to 0",
@@ -25709,8 +25718,8 @@ class JpOverlay29Functions:
     )
 
     SpawnTraps = Symbol(
-        None,
-        None,
+        [0x1160C],
+        [0x22EEEEC],
         None,
         "SpawnTraps",
         "Spawns a new dungeon floor's traps.\n\nNo params.",
@@ -25781,8 +25790,8 @@ class JpOverlay29Functions:
     )
 
     SubstitutePlaceholderTrapTags2 = Symbol(
-        None,
-        None,
+        [0x11CE0],
+        [0x22EF5C0],
         None,
         "SubstitutePlaceholderTrapTags2",
         "Used in TryTriggerTrap. Has the same functionality as SubstitutePlaceholderTrapTags.\n\nr1: tag id\nr2: trap id",
@@ -25960,6 +25969,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsBehaviorLoneOutlaw = Symbol(
+        [0x1380C],
+        [0x22F10EC],
+        None,
+        "IsBehaviorLoneOutlaw",
+        "Checks if a behavior ID corresponds to one of the outlaw types that are not from an outlaw team. I.e., BEHAVIOR_OUTLAW, BEHAVIOR_HIDDEN_OUTLAW, or BEHAVIOR_FLEEING_OUTLAW.\n\nr0: monster behavior ID\nreturn: bool",
+        None,
+    )
+
     IsSecretBazaarNpcBehavior = Symbol(
         [0x13828],
         [0x22F1108],
@@ -25979,8 +25997,8 @@ class JpOverlay29Functions:
     )
 
     GetLeaderActionId = Symbol(
-        None,
-        None,
+        [0x148BC],
+        [0x22F219C],
         None,
         "GetLeaderActionId",
         "Gets the current action id of the leader monster's action data.\n\nreturn: action_id",
@@ -26627,6 +26645,24 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsMonsterLoneOutlaw = Symbol(
+        [0x1F8F0],
+        [0x22FD1D0],
+        None,
+        "IsMonsterLoneOutlaw",
+        "Checks if a monster's behavior corresponds to one of the outlaw types that are not from an outlaw team. I.e., BEHAVIOR_OUTLAW, BEHAVIOR_HIDDEN_OUTLAW, or BEHAVIOR_FLEEING_OUTLAW.\n\nr0: monster pointer\nreturn: bool",
+        None,
+    )
+
+    IsSecretBazaarNpc = Symbol(
+        [0x1F900],
+        [0x22FD1E0],
+        None,
+        "IsSecretBazaarNpc",
+        "Checks if an entity is a Secret Bazaar NPCs.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
     InitOtherMonsterData = Symbol(
         [0x1F968],
         [0x22FD248],
@@ -27024,8 +27060,8 @@ class JpOverlay29Functions:
     )
 
     CheckVariousStatuses2 = Symbol(
-        [0x2431C],
-        [0x2301BFC],
+        [0x2431C, 0x243E0],
+        [0x2301BFC, 0x2301CC0],
         None,
         "CheckVariousStatuses2",
         "Returns 0 if none of these conditions holds for the given entity:\nblinded (checked only if blind_check == 1),\nasleep, frozen, paused, infatuated, wrapping, wrapped, biding, petrified, or terrified.\n\nr0: Entity pointer\nr1: If true, return 1 if entity is blinded\nreturn: bool",
@@ -27033,8 +27069,8 @@ class JpOverlay29Functions:
     )
 
     CheckVariousConditions = Symbol(
-        [0x24644],
-        [0x2301F24],
+        [0x24644, 0x246FC],
+        [0x2301F24, 0x2301FDC],
         None,
         "CheckVariousConditions",
         "Returns 0 if none of these conditions holds for the given entity: is a rescue client,\ndoesn’t gain experience (a mission client/story teammate?), is a terrified non-team-leader,\nmeets any of the conditions in CheckVariousStatuses2 (with blind_check = 0), is charging a two-turn move.\n\nr0: Entity pointer\nreturn: bool",
@@ -27042,8 +27078,8 @@ class JpOverlay29Functions:
     )
 
     CheckVariousStatuses = Symbol(
-        [0x247B4],
-        [0x2302094],
+        [0x247B4, 0x24804],
+        [0x2302094, 0x23020E4],
         None,
         "CheckVariousStatuses",
         "Returns 0 if none of these conditions holds for the given entity: asleep, frozen, petrified, biding.\n\nr0: Entity pointer\nreturn: bool",
@@ -27164,6 +27200,15 @@ class JpOverlay29Functions:
         None,
         "GetTreatmentBetweenMonsters",
         "Called to check if a monster should treat another as an ally, enemy, or ignore it.\n(Examples of the 'ignore' case: target is a shopkeeper, there is a decoy on the floor, etc.)\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nr2: If false, return TREATMENT_IGNORE if entity 2 is invisible and entity 1 cannot see invisible monsters\nr3: If true, return TREATMENT_IGNORE if entity 1 is a team member and entity 2 has the STATUS_PETRIFIED status\nreturn: Treatment that monster 1 should apply to monster 2",
+        None,
+    )
+
+    GetTreatmentBetweenMonstersIgnoreStatus = Symbol(
+        [0x2553C],
+        [0x2302E1C],
+        None,
+        "GetTreatmentBetweenMonstersIgnoreStatus",
+        "Called to check if a monster should treat another as an ally, enemy, or ignore it. Similar to GetTreatmentBetweenMonsters, except temporary statuses (decoy, invisible, petrified) are ignored.\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nreturn: Treatment that monster 1 should apply to monster 2",
         None,
     )
 
@@ -28923,8 +28968,8 @@ class JpOverlay29Functions:
     )
 
     SetReflectStatus = Symbol(
-        None,
-        None,
+        [0x3C988],
+        [0x231A268],
         None,
         "SetReflectStatus",
         "Sets a target monster's reflect status to the specified value. \n\nIf it already has the Counter, Mini Counter or Metal Burst status, its remaining turn counter will remain the same.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: reflect status",
@@ -29454,8 +29499,8 @@ class JpOverlay29Functions:
     )
 
     MakeFloorOneRoom = Symbol(
-        None,
-        None,
+        [0x4260C],
+        [0x231FEEC],
         None,
         "MakeFloorOneRoom",
         "Removes all walls to make the floor one room.\n\nr0: user entity pointer",
@@ -31325,6 +31370,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsItemUnkMissionItem2 = Symbol(
+        [0x6C748],
+        [0x234A028],
+        None,
+        "IsItemUnkMissionItem2",
+        "Checks if an item is a special target item with flag item::f_unk_mission_item2 set.\n\nr0: item pointer\nreturn: True if the item is a special target item with flag item::f_unk_mission_item2 set.",
+        None,
+    )
+
     CheckActiveChallengeRequest = Symbol(
         [0x6CB94],
         [0x234A474],
@@ -31695,8 +31749,8 @@ class JpOverlay29Functions:
     )
 
     WaitUntilAlertBoxTextIsLoadedWrapper = Symbol(
-        None,
-        None,
+        [0x6EC24],
+        [0x234C504],
         None,
         "WaitUntilAlertBoxTextIsLoadedWrapper",
         "Calls WaitUntilAlertBoxTextIsLoaded with r0 = 0x50.\n\nNo params.",
@@ -31812,8 +31866,8 @@ class JpOverlay29Functions:
     )
 
     AlertBoxIsScrolling = Symbol(
-        None,
-        None,
+        [0x6F17C],
+        [0x234CA5C],
         None,
         "AlertBoxIsScrolling",
         "Returns true if the alert box is currently scrolling (i.e. a message is being loaded).\n\nreturn: bool",
@@ -31821,8 +31875,8 @@ class JpOverlay29Functions:
     )
 
     WaitUntilAlertBoxTextIsLoaded = Symbol(
-        None,
-        None,
+        [0x6F39C],
+        [0x234CC7C],
         None,
         "WaitUntilAlertBoxTextIsLoaded",
         "Calls AdvanceFrame in a loop until the dungeon alert box has finished scrolling.\n\nr0: value to pass to AdvanceFrame (unused by the function)",
@@ -31983,8 +32037,8 @@ class JpOverlay29Functions:
     )
 
     StairsMenuAfterStep = Symbol(
-        None,
-        None,
+        [0x722A0],
+        [0x234FB80],
         None,
         "StairsMenuAfterStep",
         "Opens the stairs menu after stepping on a stairs tile.\n\nr0: Entity pointer (in practice, always the leader)\nr1: whether to not open minimap upon menu close",
@@ -33127,8 +33181,8 @@ class JpOverlay31Functions:
     )
 
     DungeonMenuLoop = Symbol(
-        None,
-        None,
+        [0x334],
+        [0x2383DD4],
         None,
         "DungeonMenuLoop",
         "Handles displaying the main dungeon menu and is called on each frame while it is open.\n\nUses a switch statement based on a state field of the struct allocated in InitDungeonMenu to determine what actions to take.\n\nreturn: 4 if should close main dungeon menu (including when switching menus), 1 otherwise",
@@ -33136,8 +33190,8 @@ class JpOverlay31Functions:
     )
 
     FreeDungeonMenu = Symbol(
-        None,
-        None,
+        [0x58C],
+        [0x238402C],
         None,
         "FreeDungeonMenu",
         "Closes the main dungeon menu and frees the heap-allocated struct initialized in InitDungeonMenu.\n\nNo params.",
@@ -33145,8 +33199,8 @@ class JpOverlay31Functions:
     )
 
     StairsMenu = Symbol(
-        None,
-        None,
+        [0x5F8],
+        [0x2384098],
         None,
         "StairsMenu",
         "Called when the stairs menu is open. Does not return until the menu is closed.\n\nr0: Entity pointer (in practice, always the leader)\nr1: whether to not open minimap upon menu close",
@@ -33181,8 +33235,8 @@ class JpOverlay31Functions:
     )
 
     CloseMainStairsMenu = Symbol(
-        None,
-        None,
+        [0xA6C],
+        [0x238450C],
         None,
         "CloseMainStairsMenu",
         "Closes the main stairs menu. Used both when closing it entirely as well as when switching to the info menu.\n\nNo params.",
@@ -33190,8 +33244,8 @@ class JpOverlay31Functions:
     )
 
     FreeStairsMenu = Symbol(
-        None,
-        None,
+        [0xAD0],
+        [0x2384570],
         None,
         "FreeStairsMenu",
         "Closes the main stairs menu and frees the heap-allocated stairs_menu struct pointed to by STAIRS_MENU_PTR.\n\nNo params.",
@@ -33208,8 +33262,8 @@ class JpOverlay31Functions:
     )
 
     ItemsMenu = Symbol(
-        None,
-        None,
+        [0x10C4],
+        [0x2384B64],
         None,
         "ItemsMenu",
         "Called when the in-dungeon 'items' menu is open. Does not return until the menu is closed.\n\nr0: Pointer to the leader's entity struct\nr1: ?\nreturn: ?",

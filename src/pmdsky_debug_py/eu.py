@@ -10517,6 +10517,15 @@ class EuArm9Data:
         "fx32_8",
     )
 
+    TACTICS_FOLLOW_LEADER = Symbol(
+        [0xA1E90],
+        [0x20A1E90],
+        0xC,
+        "TACTICS_FOLLOW_LEADER",
+        "Array of boolean values corresponding to each tactic_id enum, determining whether the tactic makes party members follow the leader.",
+        "bool[12]",
+    )
+
     FORBIDDEN_FORGOT_MOVE_LIST = Symbol(
         [0xA1E9C],
         [0x20A1E9C],
@@ -25969,6 +25978,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    IsBehaviorLoneOutlaw = Symbol(
+        [0x1391C],
+        [0x22F049C],
+        None,
+        "IsBehaviorLoneOutlaw",
+        "Checks if a behavior ID corresponds to one of the outlaw types that are not from an outlaw team. I.e., BEHAVIOR_OUTLAW, BEHAVIOR_HIDDEN_OUTLAW, or BEHAVIOR_FLEEING_OUTLAW.\n\nr0: monster behavior ID\nreturn: bool",
+        None,
+    )
+
     IsSecretBazaarNpcBehavior = Symbol(
         [0x13938],
         [0x22F04B8],
@@ -26636,6 +26654,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    IsMonsterLoneOutlaw = Symbol(
+        [0x1FC5C],
+        [0x22FC7DC],
+        None,
+        "IsMonsterLoneOutlaw",
+        "Checks if a monster's behavior corresponds to one of the outlaw types that are not from an outlaw team. I.e., BEHAVIOR_OUTLAW, BEHAVIOR_HIDDEN_OUTLAW, or BEHAVIOR_FLEEING_OUTLAW.\n\nr0: monster pointer\nreturn: bool",
+        None,
+    )
+
+    IsSecretBazaarNpc = Symbol(
+        [0x1FC6C],
+        [0x22FC7EC],
+        None,
+        "IsSecretBazaarNpc",
+        "Checks if an entity is a Secret Bazaar NPCs.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
     InitOtherMonsterData = Symbol(
         [0x1FCD4],
         [0x22FC854],
@@ -27173,6 +27209,15 @@ class EuOverlay29Functions:
         None,
         "GetTreatmentBetweenMonsters",
         "Called to check if a monster should treat another as an ally, enemy, or ignore it.\n(Examples of the 'ignore' case: target is a shopkeeper, there is a decoy on the floor, etc.)\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nr2: If false, return TREATMENT_IGNORE if entity 2 is invisible and entity 1 cannot see invisible monsters\nr3: If true, return TREATMENT_IGNORE if entity 1 is a team member and entity 2 has the STATUS_PETRIFIED status\nreturn: Treatment that monster 1 should apply to monster 2",
+        None,
+    )
+
+    GetTreatmentBetweenMonstersIgnoreStatus = Symbol(
+        [0x25758],
+        [0x23022D8],
+        None,
+        "GetTreatmentBetweenMonstersIgnoreStatus",
+        "Called to check if a monster should treat another as an ally, enemy, or ignore it. Similar to GetTreatmentBetweenMonsters, except temporary statuses (decoy, invisible, petrified) are ignored.\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nreturn: Treatment that monster 1 should apply to monster 2",
         None,
     )
 
@@ -31331,6 +31376,15 @@ class EuOverlay29Functions:
         None,
         "FillMissionDestinationInfo",
         "Fills the dungeon::mission_destination_info field with information from the currently active mission on the floor, if one is present.\n\nNo params.",
+        None,
+    )
+
+    IsItemUnkMissionItem2 = Symbol(
+        [0x6CD80],
+        [0x2349900],
+        None,
+        "IsItemUnkMissionItem2",
+        "Checks if an item is a special target item with flag item::f_unk_mission_item2 set.\n\nr0: item pointer\nreturn: True if the item is a special target item with flag item::f_unk_mission_item2 set.",
         None,
     )
 

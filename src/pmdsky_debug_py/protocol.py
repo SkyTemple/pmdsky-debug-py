@@ -5885,6 +5885,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    TACTICS_FOLLOW_LEADER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     FORBIDDEN_FORGOT_MOVE_LIST: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -15561,6 +15566,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsBehaviorLoneOutlaw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsSecretBazaarNpcBehavior: Symbol[
         Optional[list[int]],
         None,
@@ -15906,6 +15916,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsMonsterLoneOutlaw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSecretBazaarNpc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     InitOtherMonsterData: Symbol[
         Optional[list[int]],
         None,
@@ -16202,6 +16222,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetTreatmentBetweenMonsters: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetTreatmentBetweenMonstersIgnoreStatus: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -18512,6 +18537,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     FillMissionDestinationInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsItemUnkMissionItem2: Symbol[
         Optional[list[int]],
         None,
     ]

@@ -3545,8 +3545,8 @@ class NaArm9Functions:
     )
 
     PlayMeById = Symbol(
-        None,
-        None,
+        [0x1820C],
+        [0x201820C],
         None,
         "PlayMeById",
         "Initializes some values and then calls SendAudioCommand to play a ME track (musical sound effect).\n\nFor a list of tracks, see https://wiki.skytemple.org/index.php?title=List_of_Sound_Effects#ME\n\nChecks for DEBUG_FLAG_BGM_OFF. The volume is set to either 0 or 255 depending on the flag before calling SendAudioCommand.\n\nr0: ME ID",
@@ -4922,8 +4922,8 @@ class NaArm9Functions:
     )
 
     GetWindowIdSelectedItemOnPage = Symbol(
-        None,
-        None,
+        [0x2AB80],
+        [0x202AB80],
         None,
         "GetWindowIdSelectedItemOnPage",
         "Gets the index on the page of the current item the user has selected on the menu given by the window_id.\n\nr0: window id\nreturn: index of current selected item on the page",
@@ -4931,8 +4931,8 @@ class NaArm9Functions:
     )
 
     GetSimpleMenuResult = Symbol(
-        [0x2B57C],
-        [0x202B57C],
+        [0x2ABB0, 0x2B57C],
+        [0x202ABB0, 0x202B57C],
         None,
         "GetSimpleMenuResult",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: window_id\nreturn: ?",
@@ -5678,8 +5678,8 @@ class NaArm9Functions:
     )
 
     AddMessageToAlertBox = Symbol(
-        None,
-        None,
+        [0x3010C],
+        [0x203010C],
         None,
         "AddMessageToAlertBox",
         "Adds a message to the dungeon alert box.\n\nr0: window_id\nr1: preprocessor flags\nr2: message string pointer\nr3: preprocessor_args struct pointer\nstack[0]: whether the message is the start of a new group (meaning it should be preceded by a horizontal line)\nreturn: whether the message was successfully added",
@@ -5921,8 +5921,8 @@ class NaArm9Functions:
     )
 
     GetSelectedItemOnPage = Symbol(
-        None,
-        None,
+        [0x32558],
+        [0x2032558],
         None,
         "GetSelectedItemOnPage",
         "Gets the index on the page of the current item the user has selected.\n\nr0: window_input_ctx struct pointer\nreturn: index of current selected item on the page",
@@ -5930,8 +5930,8 @@ class NaArm9Functions:
     )
 
     GetCurrentPage = Symbol(
-        None,
-        None,
+        [0x32560],
+        [0x2032560],
         None,
         "GetCurrentPage",
         "Gets the index of the current menu page the user is on.\n\nr0: window_input_ctx struct pointer\nreturn: current page",
@@ -5948,8 +5948,8 @@ class NaArm9Functions:
     )
 
     GetSelectedMenuItemIdx = Symbol(
-        None,
-        None,
+        [0x32578],
+        [0x2032578],
         None,
         "GetSelectedMenuItemIdx",
         "Gets the index of the current menu item the user has selected.\n\nr0: window_input_ctx struct pointer\nreturn: index of current selected item",
@@ -5957,8 +5957,8 @@ class NaArm9Functions:
     )
 
     GetTotalNumMenuItems = Symbol(
-        None,
-        None,
+        [0x3258C],
+        [0x203258C],
         None,
         "GetTotalNumMenuItems",
         "Gets the total number of items in the menu.\n\nr0: window_input_ctx struct pointer\nreturn: number of menu items",
@@ -5975,8 +5975,8 @@ class NaArm9Functions:
     )
 
     GetMaxItemsOnPage = Symbol(
-        None,
-        None,
+        [0x3259C],
+        [0x203259C],
         None,
         "GetMaxItemsOnPage",
         "Gets the maximum possible number of items the menu can hold on one of its pages.\n\nr0: window_input_ctx struct pointer\nreturn: number of menu pages",
@@ -5984,8 +5984,8 @@ class NaArm9Functions:
     )
 
     GetTotalNumPages = Symbol(
-        None,
-        None,
+        [0x325A4],
+        [0x20325A4],
         None,
         "GetTotalNumPages",
         "Gets the total number of pages in the menu.\n\nr0: window_input_ctx struct pointer\nreturn: number of menu pages",
@@ -6020,8 +6020,8 @@ class NaArm9Functions:
     )
 
     OverlayLoadEntriesEqual = Symbol(
-        None,
-        None,
+        [0x347A0],
+        [0x20347A0],
         None,
         "OverlayLoadEntriesEqual",
         "Checks if two overlay_load_entries have the same values for all of their fields.\n\nr0: overlay_load_entry pointer\nr1: overlay_load_entry pointer\nreturn: bool",
@@ -6029,8 +6029,8 @@ class NaArm9Functions:
     )
 
     FreeActiveMenu = Symbol(
-        None,
-        None,
+        [0x347F0],
+        [0x20347F0],
         None,
         "FreeActiveMenu",
         "Frees the currently active menu by calling the destructor function of the active entry in menu_control.\n\nNo params.",
@@ -6038,8 +6038,8 @@ class NaArm9Functions:
     )
 
     InitMenu = Symbol(
-        None,
-        None,
+        [0x348E4],
+        [0x20348E4],
         None,
         "InitMenu",
         "Initializes a menu by setting the incoming_entry field of menu_control to the given overlay_load_entry.\n\nr0: overlay_load_entry pointer\nreturn: whether the menu was successfully initialized",
@@ -6047,8 +6047,8 @@ class NaArm9Functions:
     )
 
     InitMenuWithWindowExtraInfo = Symbol(
-        None,
-        None,
+        [0x34974],
+        [0x2034974],
         None,
         "InitMenuWithWindowExtraInfo",
         "Has the same functionality as InitMenu except also tries to initialize menu_control's window_extra_info struct.\n\nr0: overlay_load_entry pointer\nr1: whether there is a window_extra_info struct\nr2: window_extra_info pointer\nreturn: whether the menu was successfully initialized",
@@ -6056,8 +6056,8 @@ class NaArm9Functions:
     )
 
     CopyMenuControlWindowExtraInfo = Symbol(
-        None,
-        None,
+        [0x34A38],
+        [0x2034A38],
         None,
         "CopyMenuControlWindowExtraInfo",
         "Copies menu_control's window_extra_info to the given address.\n\nr0: [output] window_extra_info pointer\nreturn: whether the window extra info was successfully copied",
@@ -6065,8 +6065,8 @@ class NaArm9Functions:
     )
 
     HandleMenus = Symbol(
-        None,
-        None,
+        [0x34A80],
+        [0x2034A80],
         None,
         "HandleMenus",
         "Master function called on every frame for handling the game's menus (seemingly the vast majority with the exception of some in dungeon mode). \n\nThis includes updating them, freeing them, and entering and exiting their respective overlays if applicable.\n\nNo params.",
@@ -10050,8 +10050,8 @@ class NaArm9Data:
     )
 
     NULL_OVERLAY_LOAD_ENTRY = Symbol(
-        None,
-        None,
+        [0x9B08C],
+        [0x209B08C],
         None,
         "NULL_OVERLAY_LOAD_ENTRY",
         "An overlay_load_entry whose values are all zeroes.\n\ntype: overlay_load_entry",
@@ -10515,6 +10515,15 @@ class NaArm9Data:
         "DAMAGE_FORMULA_LN_ARG_PREFACTOR",
         "The prefactor to the argument of ClampedLn in the damage formula (FLV + DAMAGE_FORMULA_FLV_SHIFT), as a binary fixed-point number with 8 fraction bits (10).",
         "fx32_8",
+    )
+
+    TACTICS_FOLLOW_LEADER = Symbol(
+        [0xA190C],
+        [0x20A190C],
+        0xC,
+        "TACTICS_FOLLOW_LEADER",
+        "Array of boolean values corresponding to each tactic_id enum, determining whether the tactic makes party members follow the leader.",
+        "bool[12]",
     )
 
     FORBIDDEN_FORGOT_MOVE_LIST = Symbol(
@@ -11294,8 +11303,8 @@ class NaArm9Data:
     )
 
     MENU_CONTROL_PTR = Symbol(
-        None,
-        None,
+        [0xAFD98],
+        [0x20AFD98],
         None,
         "MENU_CONTROL_PTR",
         "Pointer to the master struct used for handling menus.\n\ntype: menu_control*",
@@ -17812,8 +17821,8 @@ class NaOverlay10Data:
     )
 
     CURSE_DAMAGE_COOLDOWN = Symbol(
-        None,
-        None,
+        [0x7A3C],
+        [0x22C44BC],
         None,
         "CURSE_DAMAGE_COOLDOWN",
         "The number of turns between passive curse damage (3).",
@@ -18127,8 +18136,8 @@ class NaOverlay10Data:
     )
 
     INGRAIN_BONUS_REGEN = Symbol(
-        None,
-        None,
+        [0x7B10],
+        [0x22C4590],
         None,
         "INGRAIN_BONUS_REGEN",
         "The passive bonus regen given by the Ingrain status condition (10).",
@@ -18163,8 +18172,8 @@ class NaOverlay10Data:
     )
 
     WRAP_DAMAGE = Symbol(
-        None,
-        None,
+        [0x7B50],
+        [0x22C45D0],
         None,
         "WRAP_DAMAGE",
         "Damage dealt by the wrap status condition (6).",
@@ -18181,8 +18190,8 @@ class NaOverlay10Data:
     )
 
     INGRAIN_BONUS_REGEN_COOLDOWN = Symbol(
-        None,
-        None,
+        [0x7B68],
+        [0x22C45E8],
         None,
         "INGRAIN_BONUS_REGEN_COOLDOWN",
         "The number of turns between ingrain health regeneration (5).",
@@ -18199,8 +18208,8 @@ class NaOverlay10Data:
     )
 
     WRAP_DAMAGE_COOLDOWN = Symbol(
-        None,
-        None,
+        [0x7B70],
+        [0x22C45F0],
         None,
         "WRAP_DAMAGE_COOLDOWN",
         "The number of turns between passive wrap damage (2).",
@@ -18266,8 +18275,8 @@ class NaOverlay10Data:
     )
 
     AQUA_RING_BONUS_REGEN = Symbol(
-        None,
-        None,
+        [0x7BA8],
+        [0x22C4628],
         None,
         "AQUA_RING_BONUS_REGEN",
         "The passive bonus regen given by the Aqua Ring status condition (8).",
@@ -18626,8 +18635,8 @@ class NaOverlay10Data:
     )
 
     BAD_WEATHER_DAMAGE = Symbol(
-        None,
-        None,
+        [0x7C6C],
+        [0x22C46EC],
         None,
         "BAD_WEATHER_DAMAGE",
         "Damage dealt by the Sandstorm and Hail weather conditions (3).",
@@ -25014,8 +25023,8 @@ class NaOverlay29Functions:
     )
 
     PlaySeByIdIfShouldDisplayEntity = Symbol(
-        None,
-        None,
+        [0x9460],
+        [0x22E56A0],
         None,
         "PlaySeByIdIfShouldDisplayEntity",
         "Plays the specified sound effect if ShouldDisplayEntityAdvanced returns true for the entity (or if the entity pointer is null).\n\nr0: entity pointer\nr1: Sound effect ID",
@@ -25068,8 +25077,8 @@ class NaOverlay29Functions:
     )
 
     GetRandomTrapId = Symbol(
-        None,
-        None,
+        [0xB84C],
+        [0x22E7A8C],
         None,
         "GetRandomTrapId",
         "Gets the id of the trap to be used as the effect of a Random Trap.\n\nreturn: trap id",
@@ -25455,8 +25464,8 @@ class NaOverlay29Functions:
     )
 
     PlaySeByIdIfNotSilence = Symbol(
-        None,
-        None,
+        [0xEA8C],
+        [0x22EACCC],
         None,
         "PlaySeByIdIfNotSilence",
         "Plays the specified sound effect if it is not the designated silence value (0x3F00).\n\nr0: Sound effect ID",
@@ -25491,8 +25500,8 @@ class NaOverlay29Functions:
     )
 
     ResetLeaderActionFields = Symbol(
-        None,
-        None,
+        [0xF158],
+        [0x22EB398],
         None,
         "ResetLeaderActionFields",
         "Resets the leader monster's action_id fields to 0.\n\nr0: whether to also set the action_use_idx fields of the action_parameters structs and the arc_item_target_pos fields to 0",
@@ -25716,8 +25725,8 @@ class NaOverlay29Functions:
     )
 
     SpawnTraps = Symbol(
-        None,
-        None,
+        [0x11648],
+        [0x22ED888],
         None,
         "SpawnTraps",
         "Spawns a new dungeon floor's traps.\n\nNo params.",
@@ -25788,8 +25797,8 @@ class NaOverlay29Functions:
     )
 
     SubstitutePlaceholderTrapTags2 = Symbol(
-        None,
-        None,
+        [0x11D1C],
+        [0x22EDF5C],
         None,
         "SubstitutePlaceholderTrapTags2",
         "Used in TryTriggerTrap. Has the same functionality as SubstitutePlaceholderTrapTags.\n\nr1: tag id\nr2: trap id",
@@ -25967,6 +25976,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    IsBehaviorLoneOutlaw = Symbol(
+        [0x138A8],
+        [0x22EFAE8],
+        None,
+        "IsBehaviorLoneOutlaw",
+        "Checks if a behavior ID corresponds to one of the outlaw types that are not from an outlaw team. I.e., BEHAVIOR_OUTLAW, BEHAVIOR_HIDDEN_OUTLAW, or BEHAVIOR_FLEEING_OUTLAW.\n\nr0: monster behavior ID\nreturn: bool",
+        None,
+    )
+
     IsSecretBazaarNpcBehavior = Symbol(
         [0x138C4],
         [0x22EFB04],
@@ -25986,8 +26004,8 @@ class NaOverlay29Functions:
     )
 
     GetLeaderActionId = Symbol(
-        None,
-        None,
+        [0x1495C],
+        [0x22F0B9C],
         None,
         "GetLeaderActionId",
         "Gets the current action id of the leader monster's action data.\n\nreturn: action_id",
@@ -26634,6 +26652,24 @@ class NaOverlay29Functions:
         None,
     )
 
+    IsMonsterLoneOutlaw = Symbol(
+        [0x1FBA0],
+        [0x22FBDE0],
+        None,
+        "IsMonsterLoneOutlaw",
+        "Checks if a monster's behavior corresponds to one of the outlaw types that are not from an outlaw team. I.e., BEHAVIOR_OUTLAW, BEHAVIOR_HIDDEN_OUTLAW, or BEHAVIOR_FLEEING_OUTLAW.\n\nr0: monster pointer\nreturn: bool",
+        None,
+    )
+
+    IsSecretBazaarNpc = Symbol(
+        [0x1FBB0],
+        [0x22FBDF0],
+        None,
+        "IsSecretBazaarNpc",
+        "Checks if an entity is a Secret Bazaar NPCs.\n\nr0: entity pointer\nreturn: bool",
+        None,
+    )
+
     InitOtherMonsterData = Symbol(
         [0x1FC18],
         [0x22FBE58],
@@ -27031,8 +27067,8 @@ class NaOverlay29Functions:
     )
 
     CheckVariousStatuses2 = Symbol(
-        [0x245D8],
-        [0x2300818],
+        [0x245D8, 0x2469C],
+        [0x2300818, 0x23008DC],
         None,
         "CheckVariousStatuses2",
         "Returns 0 if none of these conditions holds for the given entity:\nblinded (checked only if blind_check == 1),\nasleep, frozen, paused, infatuated, wrapping, wrapped, biding, petrified, or terrified.\n\nr0: Entity pointer\nr1: If true, return 1 if entity is blinded\nreturn: bool",
@@ -27040,8 +27076,8 @@ class NaOverlay29Functions:
     )
 
     CheckVariousConditions = Symbol(
-        [0x24900],
-        [0x2300B40],
+        [0x24900, 0x249B8],
+        [0x2300B40, 0x2300BF8],
         None,
         "CheckVariousConditions",
         "Returns 0 if none of these conditions holds for the given entity: is a rescue client,\ndoesn’t gain experience (a mission client/story teammate?), is a terrified non-team-leader,\nmeets any of the conditions in CheckVariousStatuses2 (with blind_check = 0), is charging a two-turn move.\n\nr0: Entity pointer\nreturn: bool",
@@ -27049,8 +27085,8 @@ class NaOverlay29Functions:
     )
 
     CheckVariousStatuses = Symbol(
-        [0x24A70],
-        [0x2300CB0],
+        [0x24A70, 0x24AC0],
+        [0x2300CB0, 0x2300D00],
         None,
         "CheckVariousStatuses",
         "Returns 0 if none of these conditions holds for the given entity: asleep, frozen, petrified, biding.\n\nr0: Entity pointer\nreturn: bool",
@@ -27171,6 +27207,15 @@ class NaOverlay29Functions:
         None,
         "GetTreatmentBetweenMonsters",
         "Called to check if a monster should treat another as an ally, enemy, or ignore it.\n(Examples of the 'ignore' case: target is a shopkeeper, there is a decoy on the floor, etc.)\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nr2: If false, return TREATMENT_IGNORE if entity 2 is invisible and entity 1 cannot see invisible monsters\nr3: If true, return TREATMENT_IGNORE if entity 1 is a team member and entity 2 has the STATUS_PETRIFIED status\nreturn: Treatment that monster 1 should apply to monster 2",
+        None,
+    )
+
+    GetTreatmentBetweenMonstersIgnoreStatus = Symbol(
+        [0x2566C],
+        [0x23018AC],
+        None,
+        "GetTreatmentBetweenMonstersIgnoreStatus",
+        "Called to check if a monster should treat another as an ally, enemy, or ignore it. Similar to GetTreatmentBetweenMonsters, except temporary statuses (decoy, invisible, petrified) are ignored.\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nreturn: Treatment that monster 1 should apply to monster 2",
         None,
     )
 
@@ -28930,8 +28975,8 @@ class NaOverlay29Functions:
     )
 
     SetReflectStatus = Symbol(
-        None,
-        None,
+        [0x3CB58],
+        [0x2318D98],
         None,
         "SetReflectStatus",
         "Sets a target monster's reflect status to the specified value. \n\nIf it already has the Counter, Mini Counter or Metal Burst status, its remaining turn counter will remain the same.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: reflect status",
@@ -29461,8 +29506,8 @@ class NaOverlay29Functions:
     )
 
     MakeFloorOneRoom = Symbol(
-        None,
-        None,
+        [0x42800],
+        [0x231EA40],
         None,
         "MakeFloorOneRoom",
         "Removes all walls to make the floor one room.\n\nr0: user entity pointer",
@@ -31332,6 +31377,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    IsItemUnkMissionItem2 = Symbol(
+        [0x6CAC0],
+        [0x2348D00],
+        None,
+        "IsItemUnkMissionItem2",
+        "Checks if an item is a special target item with flag item::f_unk_mission_item2 set.\n\nr0: item pointer\nreturn: True if the item is a special target item with flag item::f_unk_mission_item2 set.",
+        None,
+    )
+
     CheckActiveChallengeRequest = Symbol(
         [0x6CF0C],
         [0x234914C],
@@ -31702,8 +31756,8 @@ class NaOverlay29Functions:
     )
 
     WaitUntilAlertBoxTextIsLoadedWrapper = Symbol(
-        None,
-        None,
+        [0x6F054],
+        [0x234B294],
         None,
         "WaitUntilAlertBoxTextIsLoadedWrapper",
         "Calls WaitUntilAlertBoxTextIsLoaded with r0 = 0x50.\n\nNo params.",
@@ -31819,8 +31873,8 @@ class NaOverlay29Functions:
     )
 
     AlertBoxIsScrolling = Symbol(
-        None,
-        None,
+        [0x6F5AC],
+        [0x234B7EC],
         None,
         "AlertBoxIsScrolling",
         "Returns true if the alert box is currently scrolling (i.e. a message is being loaded).\n\nreturn: bool",
@@ -31828,8 +31882,8 @@ class NaOverlay29Functions:
     )
 
     WaitUntilAlertBoxTextIsLoaded = Symbol(
-        None,
-        None,
+        [0x6F7D8],
+        [0x234BA18],
         None,
         "WaitUntilAlertBoxTextIsLoaded",
         "Calls AdvanceFrame in a loop until the dungeon alert box has finished scrolling.\n\nr0: value to pass to AdvanceFrame (unused by the function)",
@@ -31990,8 +32044,8 @@ class NaOverlay29Functions:
     )
 
     StairsMenuAfterStep = Symbol(
-        None,
-        None,
+        [0x726B8],
+        [0x234E8F8],
         None,
         "StairsMenuAfterStep",
         "Opens the stairs menu after stepping on a stairs tile.\n\nr0: Entity pointer (in practice, always the leader)\nr1: whether to not open minimap upon menu close",
@@ -33232,8 +33286,8 @@ class NaOverlay31Functions:
     )
 
     DungeonMenuLoop = Symbol(
-        None,
-        None,
+        [0x334],
+        [0x2382B54],
         None,
         "DungeonMenuLoop",
         "Handles displaying the main dungeon menu and is called on each frame while it is open.\n\nUses a switch statement based on a state field of the struct allocated in InitDungeonMenu to determine what actions to take.\n\nreturn: 4 if should close main dungeon menu (including when switching menus), 1 otherwise",
@@ -33241,8 +33295,8 @@ class NaOverlay31Functions:
     )
 
     FreeDungeonMenu = Symbol(
-        None,
-        None,
+        [0x58C],
+        [0x2382DAC],
         None,
         "FreeDungeonMenu",
         "Closes the main dungeon menu and frees the heap-allocated struct initialized in InitDungeonMenu.\n\nNo params.",
@@ -33250,8 +33304,8 @@ class NaOverlay31Functions:
     )
 
     StairsMenu = Symbol(
-        None,
-        None,
+        [0x5F8],
+        [0x2382E18],
         None,
         "StairsMenu",
         "Called when the stairs menu is open. Does not return until the menu is closed.\n\nr0: Entity pointer (in practice, always the leader)\nr1: whether to not open minimap upon menu close",
@@ -33286,8 +33340,8 @@ class NaOverlay31Functions:
     )
 
     CloseMainStairsMenu = Symbol(
-        None,
-        None,
+        [0xA6C],
+        [0x238328C],
         None,
         "CloseMainStairsMenu",
         "Closes the main stairs menu. Used both when closing it entirely as well as when switching to the info menu.\n\nNo params.",
@@ -33295,8 +33349,8 @@ class NaOverlay31Functions:
     )
 
     FreeStairsMenu = Symbol(
-        None,
-        None,
+        [0xAD0],
+        [0x23832F0],
         None,
         "FreeStairsMenu",
         "Closes the main stairs menu and frees the heap-allocated stairs_menu struct pointed to by STAIRS_MENU_PTR.\n\nNo params.",
@@ -33313,8 +33367,8 @@ class NaOverlay31Functions:
     )
 
     ItemsMenu = Symbol(
-        None,
-        None,
+        [0x10C4],
+        [0x23838E4],
         None,
         "ItemsMenu",
         "Called when the in-dungeon 'items' menu is open. Does not return until the menu is closed.\n\nr0: Pointer to the leader's entity struct\nr1: ?\nreturn: ?",
