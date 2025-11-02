@@ -2883,7 +2883,7 @@ class EuArm9Functions:
         [0x2013860],
         None,
         "InitMove",
-        "Initializes a move info struct.\n\nThis sets f_exists and f_enabled_for_ai on the flags, the ID to the given ID, the PP to the max PP for the move ID, and the ginseng boost to 0.\n\nr0: pointer to move to initialize\nr1: move ID",
+        "Initializes a move info struct.\n\nThis sets f_exists and f_enabled_for_ai on the flags, the ID to the given ID, the PP to the max PP for the move ID, and the ginseng boost to 0.\n\nr0: [output] pointer to move to initialize\nr1: move ID",
         None,
     )
 
@@ -18751,6 +18751,15 @@ class EuOverlay10Data:
         "int16_t[2]",
     )
 
+    SLEEPLESSNESS_TURN_RANGE = Symbol(
+        [0x7CC0],
+        [0x22C5080],
+        0x4,
+        "SLEEPLESSNESS_TURN_RANGE",
+        "The turn range for the Sleepless status, [0x7F, 0x7F] (infinite).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     REFLECT_LIGHT_SCREEN_TURN_RANGE = Symbol(
         [0x7CC4],
         [0x22C5084],
@@ -18965,6 +18974,15 @@ class EuOverlay10Data:
         "MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_NEUTRAL when Erratic Player is active, as a fixed-point number with 8 fraction bits (1).",
         "fx32_8",
+    )
+
+    MIRROR_MOVE_TURN_RANGE = Symbol(
+        [0x7DD8],
+        [0x22C5198],
+        0x4,
+        "MIRROR_MOVE_TURN_RANGE",
+        "The turn range for the Mirror Move status, [1, 3).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     AIR_BLADE_DAMAGE_MULTIPLIER = Symbol(
@@ -24672,6 +24690,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    SetDungeonEscapeFields = Symbol(
+        [0x47A8],
+        [0x22E1328],
+        None,
+        "SetDungeonEscapeFields",
+        "Sets the successful_exit_tracker and end_floor_no_death_check_flag fields of the dungeon struct.\n\nr0: new successful_exit_tracker\nr1: new end_floor_no_death_check_flag",
+        None,
+    )
+
+    GetSuccessfulExitTracker = Symbol(
+        [0x47C4],
+        [0x22E1344],
+        None,
+        "GetSuccessfulExitTracker",
+        "Returns the successful_exit_tracker field of the dungeon struct.\n\nreturn: successful_exit_tracker",
+        None,
+    )
+
     CheckTouchscreenArea = Symbol(
         [0x4A78],
         [0x22E15F8],
@@ -27464,6 +27500,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    DungeonTmLearnMove = Symbol(
+        [0x27780],
+        [0x2304300],
+        None,
+        "DungeonTmLearnMove",
+        "Makes a team member learn a given move, or prompts them to forget one first if their move list is full. Used when activating a TM in dungeon mode.\n\nr0: user entity pointer\nr1: move id\nreturn: whether the move was successfully learned",
+        None,
+    )
+
     GetMonsterMoves = Symbol(
         [0x279C4],
         [0x2304544],
@@ -28423,7 +28468,7 @@ class EuOverlay29Functions:
         [0x231551C],
         None,
         "TrySealMove",
-        "Seals one of the target monster's moves. The move to be sealed is randomly selected.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to log a message on failure\nreturn: Whether or not a move was sealed",
+        "Seals one of the target monster's moves. The move to be sealed is randomly selected.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to only perform the check for inflicting without actually inflicting\nreturn: Whether or not a move was sealed",
         None,
     )
 
@@ -28567,7 +28612,7 @@ class EuOverlay29Functions:
         [0x23165D0],
         None,
         "TryInflictSureShotStatus",
-        "Inflicts the Sure Shot status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer",
+        "Inflicts the Sure Shot status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: number of turns the status will last for",
         None,
     )
 
@@ -28576,7 +28621,7 @@ class EuOverlay29Functions:
         [0x2316660],
         None,
         "TryInflictWhifferStatus",
-        "Inflicts the Whiffer status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer",
+        "Inflicts the Whiffer status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: number of turns the status will last for\nr3: flag to only perform the check for inflicting without actually inflicting",
         None,
     )
 
@@ -28630,7 +28675,7 @@ class EuOverlay29Functions:
         [0x2316E08],
         None,
         "TryInflictTauntStatus",
-        "Inflicts the Taunt status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nreturn: Whether or not the status could be inflicted",
+        "Inflicts the Taunt status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to only perform the check for inflicting without actually inflicting\nreturn: Whether or not the status could be inflicted",
         None,
     )
 
@@ -29489,6 +29534,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    InitMoveWrapper = Symbol(
+        [0x428EC],
+        [0x231F46C],
+        None,
+        "InitMoveWrapper",
+        "Wrapper for InitMove which takes a superfluous parameter.\n\nr0: unused\nr1: [output] pointer to move to initialize\nr2: move ID",
+        None,
+    )
+
     MoveIsNotPhysical = Symbol(
         [0x42900],
         [0x231F480],
@@ -29522,6 +29576,15 @@ class EuOverlay29Functions:
         None,
         "TryDrought",
         "Attempts to drain all water from the current floor.\n\nFails if orbs are disabled on the floor or if the current tileset has the is_water_tileset flag set.\n\nr0: user pointer",
+        None,
+    )
+
+    TryTrawl = Symbol(
+        [0x435CC],
+        [0x232014C],
+        None,
+        "TryTrawl",
+        "Attempts to pull all items on the floor towards the user.\n\nFails if the floor is a fixed room on which Trawl Orbs are disabled.\n\nr0: user entity pointer",
         None,
     )
 

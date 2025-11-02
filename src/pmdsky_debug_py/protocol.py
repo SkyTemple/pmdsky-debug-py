@@ -11445,6 +11445,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SLEEPLESSNESS_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     REFLECT_LIGHT_SCREEN_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11561,6 +11566,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MIRROR_MOVE_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14856,6 +14866,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetDungeonEscapeFields: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetSuccessfulExitTracker: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CheckTouchscreenArea: Symbol[
         Optional[list[int]],
         None,
@@ -16366,6 +16386,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DungeonTmLearnMove: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetMonsterMoves: Symbol[
         Optional[list[int]],
         None,
@@ -17491,6 +17516,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitMoveWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MoveIsNotPhysical: Symbol[
         Optional[list[int]],
         None,
@@ -17507,6 +17537,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TryDrought: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TryTrawl: Symbol[
         Optional[list[int]],
         None,
     ]
