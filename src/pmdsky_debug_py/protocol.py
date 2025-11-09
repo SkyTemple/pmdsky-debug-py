@@ -3872,6 +3872,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    TilesetSecondaryTerrainIsChasm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetNbFloors: Symbol[
         Optional[list[int]],
         None,
@@ -10840,6 +10845,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    HURL_DAMAGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     TRAP_BUSTER_ACTIVATION_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -11450,7 +11460,27 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
-    REFLECT_LIGHT_SCREEN_TURN_RANGE: Symbol[
+    REFLECT_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LIGHT_SCREEN_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SAFEGUARD_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MIST_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MAGIC_COAT_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -11466,6 +11496,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SET_REFLECT_STATUS_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -11491,6 +11526,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     DETECT_BAND_MOVE_ACCURACY_DROP: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DECOY_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14821,6 +14861,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    FloorSecondaryTerrainIsChasm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetFloorType: Symbol[
         Optional[list[int]],
         None,
@@ -15562,6 +15607,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ApplyTrapEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SpawnMonstersAroundPos: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -17532,6 +17582,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     MakeFloorOneRoom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TryHurl: Symbol[
         Optional[list[int]],
         None,
     ]

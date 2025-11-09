@@ -6892,6 +6892,15 @@ class EuArm9Functions:
         None,
     )
 
+    TilesetSecondaryTerrainIsChasm = Symbol(
+        [0x4F894],
+        [0x204F894],
+        None,
+        "TilesetSecondaryTerrainIsChasm",
+        "Returns true if the given tileset has a chasm secondary terrain.\n\nr0: tileset id\nreturn: bool",
+        None,
+    )
+
     GetNbFloors = Symbol(
         [0x4F8B4],
         [0x204F8B4],
@@ -10603,7 +10612,7 @@ class EuArm9Data:
         [0x20A206C],
         0xC8,
         "SECONDARY_TERRAIN_TYPES",
-        "The type of secondary terrain for each dungeon in the game.\n\nThis is an array of 200 bytes. Each byte is an enum corresponding to one dungeon.\n\ntype: struct secondary_terrain_type_8[200]",
+        "The type of secondary terrain for each tileset in the game.\n\nThis is an array of 200 bytes. Each byte is an enum corresponding to one tileset.\n\ntype: struct secondary_terrain_type_8[200]",
         "struct secondary_terrain_type_8[200]",
     )
 
@@ -17667,6 +17676,15 @@ class EuOverlay10Data:
         "int16_t",
     )
 
+    HURL_DAMAGE = Symbol(
+        [0x79F0],
+        [0x22C4DB0],
+        0x2,
+        "HURL_DAMAGE",
+        "Damage dealt from hurling a monster at another monster (10).",
+        "int16_t",
+    )
+
     TRAP_BUSTER_ACTIVATION_CHANCE = Symbol(
         [0x79F4],
         [0x22C4DB4],
@@ -18760,12 +18778,48 @@ class EuOverlay10Data:
         "int16_t[2]",
     )
 
-    REFLECT_LIGHT_SCREEN_TURN_RANGE = Symbol(
+    REFLECT_TURN_RANGE = Symbol(
         [0x7CC4],
         [0x22C5084],
-        None,
-        "REFLECT_LIGHT_SCREEN_TURN_RANGE",
-        "The turn range for the Reflect and Light Screen statuses, [10, 12).\n\ntype: int16_t[2]",
+        0x4,
+        "REFLECT_TURN_RANGE",
+        "The turn range for the Reflect status, [10, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    LIGHT_SCREEN_TURN_RANGE = Symbol(
+        [0x7CC8],
+        [0x22C5088],
+        0x4,
+        "LIGHT_SCREEN_TURN_RANGE",
+        "The turn range for the Light Screen status, [10, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    SAFEGUARD_TURN_RANGE = Symbol(
+        [0x7CCC],
+        [0x22C508C],
+        0x4,
+        "SAFEGUARD_TURN_RANGE",
+        "The turn range for the Safeguard status, [15, 20).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    MIST_TURN_RANGE = Symbol(
+        [0x7CD0],
+        [0x22C5090],
+        0x4,
+        "MIST_TURN_RANGE",
+        "The turn range for the Mist status, [10, 14).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    MAGIC_COAT_TURN_RANGE = Symbol(
+        [0x7CD8],
+        [0x22C5098],
+        0x4,
+        "MAGIC_COAT_TURN_RANGE",
+        "The turn range for the Magic Coat status, [10, 14).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -18794,6 +18848,15 @@ class EuOverlay10Data:
         "MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE when Erratic Player is active, as a fixed-point number with 8 fraction bits (the raw value is 0x1B3, the closest possible representation of 1.7).",
         "fx32_8",
+    )
+
+    SET_REFLECT_STATUS_TURN_RANGE = Symbol(
+        [0x7CE8],
+        [0x22C50A8],
+        0x4,
+        "SET_REFLECT_STATUS_TURN_RANGE",
+        "The turn range for the statuses (Counter, Mini Counter, Metal Burst) set by SetReflectStatus, [6, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     MATCHUP_IMMUNE_MULTIPLIER = Symbol(
@@ -18839,6 +18902,15 @@ class EuOverlay10Data:
         "DETECT_BAND_MOVE_ACCURACY_DROP",
         "The (subtractive) move accuracy drop induced on an attacker if the defender is wearing a Detect Band (30).",
         "int",
+    )
+
+    DECOY_TURN_RANGE = Symbol(
+        [0x7D4C],
+        [0x22C510C],
+        0x4,
+        "DECOY_TURN_RANGE",
+        "The turn range for the Decoy status, [20, 50).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     TINTED_LENS_MULTIPLIER = Symbol(
@@ -19442,6 +19514,10 @@ class EuOverlay10Data:
         "DEFEAT_ITEM_LOSS_CHANCE",
         "Chance of losing each individual bag item after being defeated in a dungeon (50%).",
         "struct data_processing_instruction",
+    )
+
+    REFLECT_LIGHT_SCREEN_TURN_RANGE = _Deprecated(
+        "REFLECT_LIGHT_SCREEN_TURN_RANGE", REFLECT_TURN_RANGE
     )
 
 
@@ -24609,6 +24685,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    FloorSecondaryTerrainIsChasm = Symbol(
+        [0x4138],
+        [0x22E0CB8],
+        None,
+        "FloorSecondaryTerrainIsChasm",
+        "Returns true if the current floor has a chasm secondary terrain, checking first if floor_generation_status::has_chasms_as_secondary_terrain is true\nand if not, whether the tileset's entry in SECONDARY_TERRAIN_TYPES is SECONDARY_TERRAIN_CHASM.\n\nr0: tileset id\nreturn: bool",
+        None,
+    )
+
     GetFloorType = Symbol(
         [0x4170],
         [0x22E0CF0],
@@ -25975,6 +26060,15 @@ class EuOverlay29Functions:
         None,
         "ApplyTrapEffect",
         "Performs the effect of a triggered trap.\n\nThe trap's animation happens before this function is called.\n\nr0: Triggered trap\nr1: User\nr2: Target, normally same as user\nr3: Tile that contains the trap\nstack[0]: position\nstack[1]: trap ID\nstack[2]: bool caused by random trap\nreturn: True if the trap should be destroyed after the effect is applied",
+        None,
+    )
+
+    SpawnMonstersAroundPos = Symbol(
+        [0x132E8],
+        [0x22EFE68],
+        None,
+        "SpawnMonstersAroundPos",
+        "Spawns a given number of monsters around a position. Used by the Summon Trap and Grudge Trap.\n\nr0: entity pointer (unused)\nr1: position\nr2: number of enemies to spawn\nreturn: number of enemies that have actually been spawned",
         None,
     )
 
@@ -28648,7 +28742,7 @@ class EuOverlay29Functions:
         [0x2316884],
         None,
         "TryInflictDecoyStatus",
-        "Inflicts the Decoy status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nreturn: Whether or not the status could be inflicted",
+        "Inflicts the Decoy status condition on a target monster if possible.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: value to set the target monster's unk_decoy_tracker field to\nr3: flag to log a message\nstack[0]: flag to only perform the check for inflicting without actually inflicting\nreturn: Whether or not the status could be inflicted",
         None,
     )
 
@@ -29567,6 +29661,15 @@ class EuOverlay29Functions:
         None,
         "MakeFloorOneRoom",
         "Removes all walls to make the floor one room.\n\nr0: user entity pointer",
+        None,
+    )
+
+    TryHurl = Symbol(
+        [0x42CE4],
+        [0x231F864],
+        None,
+        "TryHurl",
+        "Attempts to hurl the target monster at another monster, or to an unoccupied tile if there is no valid one in range.\n\nr0: user entity pointer\nr1: target entity pointer",
         None,
     )
 
