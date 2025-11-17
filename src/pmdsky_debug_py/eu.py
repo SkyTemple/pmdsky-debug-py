@@ -6415,6 +6415,15 @@ class EuArm9Functions:
         None,
     )
 
+    LoadScriptVariableValueString = Symbol(
+        [0x4BEE8],
+        [0x204BEE8],
+        None,
+        "LoadScriptVariableValueString",
+        "Loads a string from the value of a given script variable. Adds a trailing null terminator in the output.\n\nr0: script variable ID\nr1: [output] script variable value string\nr2: number of characters to load",
+        None,
+    )
+
     SaveScriptVariableValueBytes = Symbol(
         [0x4BF04],
         [0x204BF04],
@@ -6430,6 +6439,15 @@ class EuArm9Functions:
         None,
         "ScriptVariablesEqual",
         "Checks if two script variables have equal values. For arrays, compares elementwise for the length of the first variable.\n\nr0: pointer to the local variable table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID 1\nr2: script variable ID 2\nreturn: true if values are equal, false otherwise",
+        None,
+    )
+
+    CalcScriptVariables = Symbol(
+        [0x4BFE4],
+        [0x204BFE4],
+        None,
+        "CalcScriptVariables",
+        "Performs a calculation on two loaded script variables.\n\nr0: script variable 1\nr1: script variable 2\nr2: calculation to perform on the script variables\nreturn: calculation result",
         None,
     )
 
@@ -10076,6 +10094,15 @@ class EuArm9Data:
         "struct partner_talk_kind_table_entry[11]",
     )
 
+    EVENT_FLAG_PROG_POS_INFO = Symbol(
+        [0x9D430],
+        [0x209D430],
+        0x8,
+        "EVENT_FLAG_PROG_POS_INFO",
+        "Debug information used to log an error with an unrecognized operation in CalcScriptVariables.",
+        "struct prog_pos_info",
+    )
+
     SCRIPT_VARS_LOCALS = Symbol(
         [0x9D450],
         [0x209D450],
@@ -10083,6 +10110,15 @@ class EuArm9Data:
         "SCRIPT_VARS_LOCALS",
         "List of special 'local' variables available to the script engine. There are 4 16-byte entries.\n\nEach entry has the same structure as an entry in SCRIPT_VARS.\n\ntype: struct script_local_var_table",
         "struct script_local_var_table",
+    )
+
+    EVENT_FLAG_EXPANSION_ERROR = Symbol(
+        [0x9D4AC],
+        [0x209D4AC],
+        0x20,
+        "EVENT_FLAG_EXPANSION_ERROR",
+        "Error log message for an unrecognized operation in CalcScriptVariables.",
+        "",
     )
 
     SCRIPT_VARS = Symbol(
@@ -19093,12 +19129,39 @@ class EuOverlay10Data:
         "int16_t[2]",
     )
 
+    CRINGE_TURN_RANGE = Symbol(
+        [0x7E1C],
+        [0x22C51DC],
+        0x4,
+        "CRINGE_TURN_RANGE",
+        "The turn range for the Cringe status, [1, 1].\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SPEED_BOOST_TURN_RANGE = Symbol(
         [0x7E20],
         [0x22C51E0],
         0x4,
         "SPEED_BOOST_TURN_RANGE",
         "Appears to control the range of turns for which a speed boost can last.\n\nThe first two bytes are the low value of the range, and the later two bytes are the high value.",
+        "int16_t[2]",
+    )
+
+    SPEED_LOWER_TURN_RANGE = Symbol(
+        [0x7E24],
+        [0x22C51E4],
+        None,
+        "SPEED_LOWER_TURN_RANGE",
+        "The turn range for lowered speed, [6, 8].\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    PARALYSIS_TURN_RANGE = Symbol(
+        [0x7E2C],
+        [0x22C51EC],
+        None,
+        "PARALYSIS_TURN_RANGE",
+        "The turn range for the Paralysis status, [1, 2].\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -25127,6 +25190,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    PlayParalysisEffect = Symbol(
+        [0x8070],
+        [0x22E4BF0],
+        None,
+        "PlayParalysisEffect",
+        "Displays the graphical effect on a monster that just became paralyzed.\n\nr0: entity pointer",
+        None,
+    )
+
     PlayEffectAnimationEntityStandard = Symbol(
         [0x8118],
         [0x22E4C98],
@@ -25136,12 +25208,120 @@ class EuOverlay29Functions:
         None,
     )
 
+    PlaySpeedUpEffect = Symbol(
+        [0x82FC],
+        [0x22E4E7C],
+        None,
+        "PlaySpeedUpEffect",
+        "Displays the graphical effect on a monster that just raised movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlaySpeedDownEffect = Symbol(
+        [0x834C],
+        [0x22E4ECC],
+        None,
+        "PlaySpeedDownEffect",
+        "Displays the graphical effect on a monster that just lowered movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
     ShowPpRestoreEffect = Symbol(
         [0x8794],
         [0x22E5314],
         None,
         "ShowPpRestoreEffect",
         "Displays the graphical effect on a monster that just recovered PP.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayOffensiveStatDownEffect = Symbol(
+        [0x8B58],
+        [0x22E56D8],
+        None,
+        "PlayOffensiveStatDownEffect",
+        "Displays the graphical effect on a monster that just lowered an offensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatDownEffect = Symbol(
+        [0x8BFC],
+        [0x22E577C],
+        None,
+        "PlayDefensiveStatDownEffect",
+        "Displays the graphical effect on a monster that just lowered a defensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatUpEffect = Symbol(
+        [0x8CA4],
+        [0x22E5824],
+        None,
+        "PlayOffensiveStatUpEffect",
+        "Displays the graphical effect on a monster that just raised an offensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatUpEffect = Symbol(
+        [0x8D4C],
+        [0x22E58CC],
+        None,
+        "PlayDefensiveStatUpEffect",
+        "Displays the graphical effect on a monster that just raised a defensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatMultiplierUpEffect = Symbol(
+        [0x8DF0],
+        [0x22E5970],
+        None,
+        "PlayOffensiveStatMultiplierUpEffect",
+        "Displays the graphical effect on a monster that just raised an offensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatMultiplierDownEffect = Symbol(
+        [0x8E98],
+        [0x22E5A18],
+        None,
+        "PlayOffensiveStatMultiplierDownEffect",
+        "Displays the graphical effect on a monster that just lowered an offensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatMultiplierUpEffect = Symbol(
+        [0x8F3C],
+        [0x22E5ABC],
+        None,
+        "PlayDefensiveStatMultiplierUpEffect",
+        "Displays the graphical effect on a monster that just raised a defensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatMultiplierDownEffect = Symbol(
+        [0x8FE0],
+        [0x22E5B60],
+        None,
+        "PlayDefensiveStatMultiplierDownEffect",
+        "Displays the graphical effect on a monster that just lowered a defensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayHitChanceUpEffect = Symbol(
+        [0x9088],
+        [0x22E5C08],
+        None,
+        "PlayHitChanceUpEffect",
+        "Displays the graphical effect on a monster that just raised a hit chance stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayHitChanceDownEffect = Symbol(
+        [0x9128],
+        [0x22E5CA8],
+        None,
+        "PlayHitChanceDownEffect",
+        "Displays the graphical effect on a monster that just lowered a hit chance stat.\n\nr0: entity pointer\nr1: stat index",
         None,
     )
 
@@ -26802,6 +26982,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    IsTeamMemberOnFirstTurnInFixedRoom = Symbol(
+        [0x1FC80],
+        [0x22FC800],
+        None,
+        "IsTeamMemberOnFirstTurnInFixedRoom",
+        "Returns true if a monster is a team member, it is the first turn of the current floor, and the floor is a fixed room.\n\nr0: monster pointer\nreturn: bool",
+        None,
+    )
+
     InitOtherMonsterData = Symbol(
         [0x1FCD4],
         [0x22FC854],
@@ -27302,7 +27491,7 @@ class EuOverlay29Functions:
         [0x2301FC0],
         None,
         "ShouldAvoidFirstHit",
-        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If true, this function always returns true.\nreturn: True if the monster should try to avoid the first hit in battle.",
+        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If false, this function always returns false.\nreturn: True if the monster should try to avoid the first hit in battle.",
         None,
     )
 
@@ -32254,6 +32443,8 @@ class EuOverlay29Functions:
     ShouldMonsterRunAwayVariation = _Deprecated(
         "ShouldMonsterRunAwayVariation", ShouldMonsterRunAwayAndShowEffect
     )
+
+    GetFlashFireStatus = _Deprecated("GetFlashFireStatus", FlashFireShouldActivate)
 
     SetPreprocessorArgsIdVal = _Deprecated(
         "SetPreprocessorArgsIdVal", SetMessageLogPreprocessorArgsIdVal

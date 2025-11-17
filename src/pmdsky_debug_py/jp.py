@@ -6415,6 +6415,15 @@ class JpArm9Functions:
         None,
     )
 
+    LoadScriptVariableValueString = Symbol(
+        [0x4BF10],
+        [0x204BF10],
+        None,
+        "LoadScriptVariableValueString",
+        "Loads a string from the value of a given script variable. Adds a trailing null terminator in the output.\n\nr0: script variable ID\nr1: [output] script variable value string\nr2: number of characters to load",
+        None,
+    )
+
     SaveScriptVariableValueBytes = Symbol(
         [0x4BF2C],
         [0x204BF2C],
@@ -6430,6 +6439,15 @@ class JpArm9Functions:
         None,
         "ScriptVariablesEqual",
         "Checks if two script variables have equal values. For arrays, compares elementwise for the length of the first variable.\n\nr0: pointer to the local variable table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID 1\nr2: script variable ID 2\nreturn: true if values are equal, false otherwise",
+        None,
+    )
+
+    CalcScriptVariables = Symbol(
+        [0x4C00C],
+        [0x204C00C],
+        None,
+        "CalcScriptVariables",
+        "Performs a calculation on two loaded script variables.\n\nr0: script variable 1\nr1: script variable 2\nr2: calculation to perform on the script variables\nreturn: calculation result",
         None,
     )
 
@@ -6893,8 +6911,8 @@ class JpArm9Functions:
     )
 
     TilesetSecondaryTerrainIsChasm = Symbol(
-        None,
-        None,
+        [0x4F8B4],
+        [0x204F8B4],
         None,
         "TilesetSecondaryTerrainIsChasm",
         "Returns true if the given tileset has a chasm secondary terrain.\n\nr0: tileset id\nreturn: bool",
@@ -10071,6 +10089,15 @@ class JpArm9Data:
         "struct partner_talk_kind_table_entry[11]",
     )
 
+    EVENT_FLAG_PROG_POS_INFO = Symbol(
+        [0x9E280],
+        [0x209E280],
+        0x8,
+        "EVENT_FLAG_PROG_POS_INFO",
+        "Debug information used to log an error with an unrecognized operation in CalcScriptVariables.",
+        "struct prog_pos_info",
+    )
+
     SCRIPT_VARS_LOCALS = Symbol(
         [0x9E2A0],
         [0x209E2A0],
@@ -10078,6 +10105,15 @@ class JpArm9Data:
         "SCRIPT_VARS_LOCALS",
         "List of special 'local' variables available to the script engine. There are 4 16-byte entries.\n\nEach entry has the same structure as an entry in SCRIPT_VARS.\n\ntype: struct script_local_var_table",
         "struct script_local_var_table",
+    )
+
+    EVENT_FLAG_EXPANSION_ERROR = Symbol(
+        [0x9E2FC],
+        [0x209E2FC],
+        0x20,
+        "EVENT_FLAG_EXPANSION_ERROR",
+        "Error log message for an unrecognized operation in CalcScriptVariables.",
+        "",
     )
 
     SCRIPT_VARS = Symbol(
@@ -17672,8 +17708,8 @@ class JpOverlay10Data:
     )
 
     HURL_DAMAGE = Symbol(
-        None,
-        None,
+        [0x7920],
+        [0x22C5B40],
         0x2,
         "HURL_DAMAGE",
         "Damage dealt from hurling a monster at another monster (10).",
@@ -18765,8 +18801,8 @@ class JpOverlay10Data:
     )
 
     SLEEPLESSNESS_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7BF0],
+        [0x22C5E10],
         0x4,
         "SLEEPLESSNESS_TURN_RANGE",
         "The turn range for the Sleepless status, [0x7F, 0x7F] (infinite).\n\ntype: int16_t[2]",
@@ -18783,8 +18819,8 @@ class JpOverlay10Data:
     )
 
     LIGHT_SCREEN_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7BF8],
+        [0x22C5E18],
         0x4,
         "LIGHT_SCREEN_TURN_RANGE",
         "The turn range for the Light Screen status, [10, 12).\n\ntype: int16_t[2]",
@@ -18792,8 +18828,8 @@ class JpOverlay10Data:
     )
 
     SAFEGUARD_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7BFC],
+        [0x22C5E1C],
         0x4,
         "SAFEGUARD_TURN_RANGE",
         "The turn range for the Safeguard status, [15, 20).\n\ntype: int16_t[2]",
@@ -18801,8 +18837,8 @@ class JpOverlay10Data:
     )
 
     MIST_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7C00],
+        [0x22C5E20],
         0x4,
         "MIST_TURN_RANGE",
         "The turn range for the Mist status, [10, 14).\n\ntype: int16_t[2]",
@@ -18810,8 +18846,8 @@ class JpOverlay10Data:
     )
 
     MAGIC_COAT_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7C08],
+        [0x22C5E28],
         0x4,
         "MAGIC_COAT_TURN_RANGE",
         "The turn range for the Magic Coat status, [10, 14).\n\ntype: int16_t[2]",
@@ -18846,8 +18882,8 @@ class JpOverlay10Data:
     )
 
     SET_REFLECT_STATUS_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7C18],
+        [0x22C5E38],
         0x4,
         "SET_REFLECT_STATUS_TURN_RANGE",
         "The turn range for the statuses (Counter, Mini Counter, Metal Burst) set by SetReflectStatus, [6, 12).\n\ntype: int16_t[2]",
@@ -18900,8 +18936,8 @@ class JpOverlay10Data:
     )
 
     DECOY_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7C7C],
+        [0x22C5E9C],
         0x4,
         "DECOY_TURN_RANGE",
         "The turn range for the Decoy status, [20, 50).\n\ntype: int16_t[2]",
@@ -19044,8 +19080,8 @@ class JpOverlay10Data:
     )
 
     MIRROR_MOVE_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7D08],
+        [0x22C5F28],
         0x4,
         "MIRROR_MOVE_TURN_RANGE",
         "The turn range for the Mirror Move status, [1, 3).\n\ntype: int16_t[2]",
@@ -19088,12 +19124,39 @@ class JpOverlay10Data:
         "int16_t[2]",
     )
 
+    CRINGE_TURN_RANGE = Symbol(
+        [0x7D4C],
+        [0x22C5F6C],
+        0x4,
+        "CRINGE_TURN_RANGE",
+        "The turn range for the Cringe status, [1, 1].\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SPEED_BOOST_TURN_RANGE = Symbol(
         [0x7D50],
         [0x22C5F70],
         0x4,
         "SPEED_BOOST_TURN_RANGE",
         "Appears to control the range of turns for which a speed boost can last.\n\nThe first two bytes are the low value of the range, and the later two bytes are the high value.",
+        "int16_t[2]",
+    )
+
+    SPEED_LOWER_TURN_RANGE = Symbol(
+        [0x7D54],
+        [0x22C5F74],
+        None,
+        "SPEED_LOWER_TURN_RANGE",
+        "The turn range for lowered speed, [6, 8].\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    PARALYSIS_TURN_RANGE = Symbol(
+        [0x7D5C],
+        [0x22C5F7C],
+        None,
+        "PARALYSIS_TURN_RANGE",
+        "The turn range for the Paralysis status, [1, 2].\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -24677,8 +24740,8 @@ class JpOverlay29Functions:
     )
 
     FloorSecondaryTerrainIsChasm = Symbol(
-        None,
-        None,
+        [0x4130],
+        [0x22E1A10],
         None,
         "FloorSecondaryTerrainIsChasm",
         "Returns true if the current floor has a chasm secondary terrain, checking first if floor_generation_status::has_chasms_as_secondary_terrain is true\nand if not, whether the tileset's entry in SECONDARY_TERRAIN_TYPES is SECONDARY_TERRAIN_CHASM.\n\nr0: tileset id\nreturn: bool",
@@ -24767,8 +24830,8 @@ class JpOverlay29Functions:
     )
 
     SetDungeonEscapeFields = Symbol(
-        None,
-        None,
+        [0x4798],
+        [0x22E2078],
         None,
         "SetDungeonEscapeFields",
         "Sets the successful_exit_tracker and end_floor_no_death_check_flag fields of the dungeon struct.\n\nr0: new successful_exit_tracker\nr1: new end_floor_no_death_check_flag",
@@ -24776,8 +24839,8 @@ class JpOverlay29Functions:
     )
 
     GetSuccessfulExitTracker = Symbol(
-        None,
-        None,
+        [0x47B4],
+        [0x22E2094],
         None,
         "GetSuccessfulExitTracker",
         "Returns the successful_exit_tracker field of the dungeon struct.\n\nreturn: successful_exit_tracker",
@@ -25118,6 +25181,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    PlayParalysisEffect = Symbol(
+        [0x7FD0],
+        [0x22E58B0],
+        None,
+        "PlayParalysisEffect",
+        "Displays the graphical effect on a monster that just became paralyzed.\n\nr0: entity pointer",
+        None,
+    )
+
     PlayEffectAnimationEntityStandard = Symbol(
         [0x8078],
         [0x22E5958],
@@ -25127,12 +25199,120 @@ class JpOverlay29Functions:
         None,
     )
 
+    PlaySpeedUpEffect = Symbol(
+        [0x825C],
+        [0x22E5B3C],
+        None,
+        "PlaySpeedUpEffect",
+        "Displays the graphical effect on a monster that just raised movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlaySpeedDownEffect = Symbol(
+        [0x82AC],
+        [0x22E5B8C],
+        None,
+        "PlaySpeedDownEffect",
+        "Displays the graphical effect on a monster that just lowered movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
     ShowPpRestoreEffect = Symbol(
         [0x86F4],
         [0x22E5FD4],
         None,
         "ShowPpRestoreEffect",
         "Displays the graphical effect on a monster that just recovered PP.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayOffensiveStatDownEffect = Symbol(
+        [0x8AB8],
+        [0x22E6398],
+        None,
+        "PlayOffensiveStatDownEffect",
+        "Displays the graphical effect on a monster that just lowered an offensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatDownEffect = Symbol(
+        [0x8B5C],
+        [0x22E643C],
+        None,
+        "PlayDefensiveStatDownEffect",
+        "Displays the graphical effect on a monster that just lowered a defensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatUpEffect = Symbol(
+        [0x8C04],
+        [0x22E64E4],
+        None,
+        "PlayOffensiveStatUpEffect",
+        "Displays the graphical effect on a monster that just raised an offensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatUpEffect = Symbol(
+        [0x8CAC],
+        [0x22E658C],
+        None,
+        "PlayDefensiveStatUpEffect",
+        "Displays the graphical effect on a monster that just raised a defensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatMultiplierUpEffect = Symbol(
+        [0x8D50],
+        [0x22E6630],
+        None,
+        "PlayOffensiveStatMultiplierUpEffect",
+        "Displays the graphical effect on a monster that just raised an offensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatMultiplierDownEffect = Symbol(
+        [0x8DF8],
+        [0x22E66D8],
+        None,
+        "PlayOffensiveStatMultiplierDownEffect",
+        "Displays the graphical effect on a monster that just lowered an offensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatMultiplierUpEffect = Symbol(
+        [0x8E9C],
+        [0x22E677C],
+        None,
+        "PlayDefensiveStatMultiplierUpEffect",
+        "Displays the graphical effect on a monster that just raised a defensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatMultiplierDownEffect = Symbol(
+        [0x8F40],
+        [0x22E6820],
+        None,
+        "PlayDefensiveStatMultiplierDownEffect",
+        "Displays the graphical effect on a monster that just lowered a defensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayHitChanceUpEffect = Symbol(
+        [0x8FE8],
+        [0x22E68C8],
+        None,
+        "PlayHitChanceUpEffect",
+        "Displays the graphical effect on a monster that just raised a hit chance stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayHitChanceDownEffect = Symbol(
+        [0x9088],
+        [0x22E6968],
+        None,
+        "PlayHitChanceDownEffect",
+        "Displays the graphical effect on a monster that just lowered a hit chance stat.\n\nr0: entity pointer\nr1: stat index",
         None,
     )
 
@@ -26055,8 +26235,8 @@ class JpOverlay29Functions:
     )
 
     SpawnMonstersAroundPos = Symbol(
-        None,
-        None,
+        [0x131D8],
+        [0x22F0AB8],
         None,
         "SpawnMonstersAroundPos",
         "Spawns a given number of monsters around a position. Used by the Summon Trap and Grudge Trap.\n\nr0: entity pointer (unused)\nr1: position\nr2: number of enemies to spawn\nreturn: number of enemies that have actually been spawned",
@@ -26793,6 +26973,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsTeamMemberOnFirstTurnInFixedRoom = Symbol(
+        [0x1F914],
+        [0x22FD1F4],
+        None,
+        "IsTeamMemberOnFirstTurnInFixedRoom",
+        "Returns true if a monster is a team member, it is the first turn of the current floor, and the floor is a fixed room.\n\nr0: monster pointer\nreturn: bool",
+        None,
+    )
+
     InitOtherMonsterData = Symbol(
         [0x1F968],
         [0x22FD248],
@@ -27293,7 +27482,7 @@ class JpOverlay29Functions:
         [0x2302B04],
         None,
         "ShouldAvoidFirstHit",
-        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If true, this function always returns true.\nreturn: True if the monster should try to avoid the first hit in battle.",
+        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If false, this function always returns false.\nreturn: True if the monster should try to avoid the first hit in battle.",
         None,
     )
 
@@ -27586,8 +27775,8 @@ class JpOverlay29Functions:
     )
 
     DungeonTmLearnMove = Symbol(
-        None,
-        None,
+        [0x27544],
+        [0x2304E24],
         None,
         "DungeonTmLearnMove",
         "Makes a team member learn a given move, or prompts them to forget one first if their move list is full. Used when activating a TM in dungeon mode.\n\nr0: user entity pointer\nr1: move id\nreturn: whether the move was successfully learned",
@@ -29620,8 +29809,8 @@ class JpOverlay29Functions:
     )
 
     InitMoveWrapper = Symbol(
-        None,
-        None,
+        [0x425D0],
+        [0x231FEB0],
         None,
         "InitMoveWrapper",
         "Wrapper for InitMove which takes a superfluous parameter.\n\nr0: unused\nr1: [output] pointer to move to initialize\nr2: move ID",
@@ -29656,8 +29845,8 @@ class JpOverlay29Functions:
     )
 
     TryHurl = Symbol(
-        None,
-        None,
+        [0x429C8],
+        [0x23202A8],
         None,
         "TryHurl",
         "Attempts to hurl the target monster at another monster, or to an unoccupied tile if there is no valid one in range.\n\nr0: user entity pointer\nr1: target entity pointer",
@@ -29674,8 +29863,8 @@ class JpOverlay29Functions:
     )
 
     TryTrawl = Symbol(
-        None,
-        None,
+        [0x432B0],
+        [0x2320B90],
         None,
         "TryTrawl",
         "Attempts to pull all items on the floor towards the user.\n\nFails if the floor is a fixed room on which Trawl Orbs are disabled.\n\nr0: user entity pointer",
@@ -32245,6 +32434,8 @@ class JpOverlay29Functions:
     ShouldMonsterRunAwayVariation = _Deprecated(
         "ShouldMonsterRunAwayVariation", ShouldMonsterRunAwayAndShowEffect
     )
+
+    GetFlashFireStatus = _Deprecated("GetFlashFireStatus", FlashFireShouldActivate)
 
     SetPreprocessorArgsIdVal = _Deprecated(
         "SetPreprocessorArgsIdVal", SetMessageLogPreprocessorArgsIdVal

@@ -6369,6 +6369,15 @@ class NaItcmArm9Functions:
         None,
     )
 
+    LoadScriptVariableValueString = Symbol(
+        None,
+        None,
+        None,
+        "LoadScriptVariableValueString",
+        "Loads a string from the value of a given script variable. Adds a trailing null terminator in the output.\n\nr0: script variable ID\nr1: [output] script variable value string\nr2: number of characters to load",
+        None,
+    )
+
     SaveScriptVariableValueBytes = Symbol(
         None,
         None,
@@ -6384,6 +6393,15 @@ class NaItcmArm9Functions:
         None,
         "ScriptVariablesEqual",
         "Checks if two script variables have equal values. For arrays, compares elementwise for the length of the first variable.\n\nr0: pointer to the local variable table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID 1\nr2: script variable ID 2\nreturn: true if values are equal, false otherwise",
+        None,
+    )
+
+    CalcScriptVariables = Symbol(
+        None,
+        None,
+        None,
+        "CalcScriptVariables",
+        "Performs a calculation on two loaded script variables.\n\nr0: script variable 1\nr1: script variable 2\nr2: calculation to perform on the script variables\nreturn: calculation result",
         None,
     )
 
@@ -10021,6 +10039,15 @@ class NaItcmArm9Data:
         "struct partner_talk_kind_table_entry[11]",
     )
 
+    EVENT_FLAG_PROG_POS_INFO = Symbol(
+        None,
+        None,
+        None,
+        "EVENT_FLAG_PROG_POS_INFO",
+        "Debug information used to log an error with an unrecognized operation in CalcScriptVariables.",
+        "struct prog_pos_info",
+    )
+
     SCRIPT_VARS_LOCALS = Symbol(
         None,
         None,
@@ -10028,6 +10055,15 @@ class NaItcmArm9Data:
         "SCRIPT_VARS_LOCALS",
         "List of special 'local' variables available to the script engine. There are 4 16-byte entries.\n\nEach entry has the same structure as an entry in SCRIPT_VARS.\n\ntype: struct script_local_var_table",
         "struct script_local_var_table",
+    )
+
+    EVENT_FLAG_EXPANSION_ERROR = Symbol(
+        None,
+        None,
+        None,
+        "EVENT_FLAG_EXPANSION_ERROR",
+        "Error log message for an unrecognized operation in CalcScriptVariables.",
+        "",
     )
 
     SCRIPT_VARS = Symbol(
@@ -18827,12 +18863,39 @@ class NaItcmOverlay10Data:
         "int16_t[2]",
     )
 
+    CRINGE_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "CRINGE_TURN_RANGE",
+        "The turn range for the Cringe status, [1, 1].\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SPEED_BOOST_TURN_RANGE = Symbol(
         None,
         None,
         None,
         "SPEED_BOOST_TURN_RANGE",
         "Appears to control the range of turns for which a speed boost can last.\n\nThe first two bytes are the low value of the range, and the later two bytes are the high value.",
+        "int16_t[2]",
+    )
+
+    SPEED_LOWER_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "SPEED_LOWER_TURN_RANGE",
+        "The turn range for lowered speed, [6, 8].\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    PARALYSIS_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "PARALYSIS_TURN_RANGE",
+        "The turn range for the Paralysis status, [1, 2].\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -24595,6 +24658,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    PlayParalysisEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayParalysisEffect",
+        "Displays the graphical effect on a monster that just became paralyzed.\n\nr0: entity pointer",
+        None,
+    )
+
     PlayEffectAnimationEntityStandard = Symbol(
         None,
         None,
@@ -24604,12 +24676,120 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    PlaySpeedUpEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlaySpeedUpEffect",
+        "Displays the graphical effect on a monster that just raised movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlaySpeedDownEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlaySpeedDownEffect",
+        "Displays the graphical effect on a monster that just lowered movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
     ShowPpRestoreEffect = Symbol(
         None,
         None,
         None,
         "ShowPpRestoreEffect",
         "Displays the graphical effect on a monster that just recovered PP.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayOffensiveStatDownEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayOffensiveStatDownEffect",
+        "Displays the graphical effect on a monster that just lowered an offensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatDownEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayDefensiveStatDownEffect",
+        "Displays the graphical effect on a monster that just lowered a defensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatUpEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayOffensiveStatUpEffect",
+        "Displays the graphical effect on a monster that just raised an offensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatUpEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayDefensiveStatUpEffect",
+        "Displays the graphical effect on a monster that just raised a defensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatMultiplierUpEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayOffensiveStatMultiplierUpEffect",
+        "Displays the graphical effect on a monster that just raised an offensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatMultiplierDownEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayOffensiveStatMultiplierDownEffect",
+        "Displays the graphical effect on a monster that just lowered an offensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatMultiplierUpEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayDefensiveStatMultiplierUpEffect",
+        "Displays the graphical effect on a monster that just raised a defensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatMultiplierDownEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayDefensiveStatMultiplierDownEffect",
+        "Displays the graphical effect on a monster that just lowered a defensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayHitChanceUpEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayHitChanceUpEffect",
+        "Displays the graphical effect on a monster that just raised a hit chance stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayHitChanceDownEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayHitChanceDownEffect",
+        "Displays the graphical effect on a monster that just lowered a hit chance stat.\n\nr0: entity pointer\nr1: stat index",
         None,
     )
 
@@ -26224,6 +26404,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    IsTeamMemberOnFirstTurnInFixedRoom = Symbol(
+        None,
+        None,
+        None,
+        "IsTeamMemberOnFirstTurnInFixedRoom",
+        "Returns true if a monster is a team member, it is the first turn of the current floor, and the floor is a fixed room.\n\nr0: monster pointer\nreturn: bool",
+        None,
+    )
+
     InitOtherMonsterData = Symbol(
         None,
         None,
@@ -26724,7 +26913,7 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "ShouldAvoidFirstHit",
-        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If true, this function always returns true.\nreturn: True if the monster should try to avoid the first hit in battle.",
+        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If false, this function always returns false.\nreturn: True if the monster should try to avoid the first hit in battle.",
         None,
     )
 
@@ -31671,6 +31860,8 @@ class NaItcmOverlay29Functions:
     ShouldMonsterRunAwayVariation = _Deprecated(
         "ShouldMonsterRunAwayVariation", ShouldMonsterRunAwayAndShowEffect
     )
+
+    GetFlashFireStatus = _Deprecated("GetFlashFireStatus", FlashFireShouldActivate)
 
     SetPreprocessorArgsIdVal = _Deprecated(
         "SetPreprocessorArgsIdVal", SetMessageLogPreprocessorArgsIdVal

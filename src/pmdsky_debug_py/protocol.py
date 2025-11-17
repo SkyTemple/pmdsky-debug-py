@@ -3607,12 +3607,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    LoadScriptVariableValueString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SaveScriptVariableValueBytes: Symbol[
         Optional[list[int]],
         None,
     ]
 
     ScriptVariablesEqual: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CalcScriptVariables: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5640,7 +5650,17 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    EVENT_FLAG_PROG_POS_INFO: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SCRIPT_VARS_LOCALS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EVENT_FLAG_EXPANSION_ERROR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -11635,9 +11655,24 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    CRINGE_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SPEED_BOOST_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
+    ]
+
+    SPEED_LOWER_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PARALYSIS_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        None,
     ]
 
     SOLARBEAM_DAMAGE_MULTIPLIER: Symbol[
@@ -15091,12 +15126,77 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayParalysisEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlayEffectAnimationEntityStandard: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    PlaySpeedUpEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlaySpeedDownEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShowPpRestoreEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayOffensiveStatDownEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayDefensiveStatDownEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayOffensiveStatUpEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayDefensiveStatUpEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayOffensiveStatMultiplierUpEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayOffensiveStatMultiplierDownEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayDefensiveStatMultiplierUpEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayDefensiveStatMultiplierDownEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayHitChanceUpEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayHitChanceDownEffect: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15992,6 +16092,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsSecretBazaarNpc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsTeamMemberOnFirstTurnInFixedRoom: Symbol[
         Optional[list[int]],
         None,
     ]

@@ -6415,6 +6415,15 @@ class NaArm9Functions:
         None,
     )
 
+    LoadScriptVariableValueString = Symbol(
+        [0x4BBB0],
+        [0x204BBB0],
+        None,
+        "LoadScriptVariableValueString",
+        "Loads a string from the value of a given script variable. Adds a trailing null terminator in the output.\n\nr0: script variable ID\nr1: [output] script variable value string\nr2: number of characters to load",
+        None,
+    )
+
     SaveScriptVariableValueBytes = Symbol(
         [0x4BBCC],
         [0x204BBCC],
@@ -6430,6 +6439,15 @@ class NaArm9Functions:
         None,
         "ScriptVariablesEqual",
         "Checks if two script variables have equal values. For arrays, compares elementwise for the length of the first variable.\n\nr0: pointer to the local variable table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID 1\nr2: script variable ID 2\nreturn: true if values are equal, false otherwise",
+        None,
+    )
+
+    CalcScriptVariables = Symbol(
+        [0x4BCAC],
+        [0x204BCAC],
+        None,
+        "CalcScriptVariables",
+        "Performs a calculation on two loaded script variables.\n\nr0: script variable 1\nr1: script variable 2\nr2: calculation to perform on the script variables\nreturn: calculation result",
         None,
     )
 
@@ -6893,8 +6911,8 @@ class NaArm9Functions:
     )
 
     TilesetSecondaryTerrainIsChasm = Symbol(
-        None,
-        None,
+        [0x4F55C],
+        [0x204F55C],
         None,
         "TilesetSecondaryTerrainIsChasm",
         "Returns true if the given tileset has a chasm secondary terrain.\n\nr0: tileset id\nreturn: bool",
@@ -10076,6 +10094,15 @@ class NaArm9Data:
         "struct partner_talk_kind_table_entry[11]",
     )
 
+    EVENT_FLAG_PROG_POS_INFO = Symbol(
+        [0x9CEAC],
+        [0x209CEAC],
+        0x8,
+        "EVENT_FLAG_PROG_POS_INFO",
+        "Debug information used to log an error with an unrecognized operation in CalcScriptVariables.",
+        "struct prog_pos_info",
+    )
+
     SCRIPT_VARS_LOCALS = Symbol(
         [0x9CECC],
         [0x209CECC],
@@ -10083,6 +10110,15 @@ class NaArm9Data:
         "SCRIPT_VARS_LOCALS",
         "List of special 'local' variables available to the script engine. There are 4 16-byte entries.\n\nEach entry has the same structure as an entry in SCRIPT_VARS.\n\ntype: struct script_local_var_table",
         "struct script_local_var_table",
+    )
+
+    EVENT_FLAG_EXPANSION_ERROR = Symbol(
+        [0x9CF28],
+        [0x209CF28],
+        0x20,
+        "EVENT_FLAG_EXPANSION_ERROR",
+        "Error log message for an unrecognized operation in CalcScriptVariables.",
+        "",
     )
 
     SCRIPT_VARS = Symbol(
@@ -17677,8 +17713,8 @@ class NaOverlay10Data:
     )
 
     HURL_DAMAGE = Symbol(
-        None,
-        None,
+        [0x79D8],
+        [0x22C4458],
         0x2,
         "HURL_DAMAGE",
         "Damage dealt from hurling a monster at another monster (10).",
@@ -18770,8 +18806,8 @@ class NaOverlay10Data:
     )
 
     SLEEPLESSNESS_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7CA8],
+        [0x22C4728],
         0x4,
         "SLEEPLESSNESS_TURN_RANGE",
         "The turn range for the Sleepless status, [0x7F, 0x7F] (infinite).\n\ntype: int16_t[2]",
@@ -18788,8 +18824,8 @@ class NaOverlay10Data:
     )
 
     LIGHT_SCREEN_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7CB0],
+        [0x22C4730],
         0x4,
         "LIGHT_SCREEN_TURN_RANGE",
         "The turn range for the Light Screen status, [10, 12).\n\ntype: int16_t[2]",
@@ -18797,8 +18833,8 @@ class NaOverlay10Data:
     )
 
     SAFEGUARD_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7CB4],
+        [0x22C4734],
         0x4,
         "SAFEGUARD_TURN_RANGE",
         "The turn range for the Safeguard status, [15, 20).\n\ntype: int16_t[2]",
@@ -18806,8 +18842,8 @@ class NaOverlay10Data:
     )
 
     MIST_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7CB8],
+        [0x22C4738],
         0x4,
         "MIST_TURN_RANGE",
         "The turn range for the Mist status, [10, 14).\n\ntype: int16_t[2]",
@@ -18815,8 +18851,8 @@ class NaOverlay10Data:
     )
 
     MAGIC_COAT_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7CC0],
+        [0x22C4740],
         0x4,
         "MAGIC_COAT_TURN_RANGE",
         "The turn range for the Magic Coat status, [10, 14).\n\ntype: int16_t[2]",
@@ -18851,8 +18887,8 @@ class NaOverlay10Data:
     )
 
     SET_REFLECT_STATUS_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7CD0],
+        [0x22C4750],
         0x4,
         "SET_REFLECT_STATUS_TURN_RANGE",
         "The turn range for the statuses (Counter, Mini Counter, Metal Burst) set by SetReflectStatus, [6, 12).\n\ntype: int16_t[2]",
@@ -18905,8 +18941,8 @@ class NaOverlay10Data:
     )
 
     DECOY_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7D34],
+        [0x22C47B4],
         0x4,
         "DECOY_TURN_RANGE",
         "The turn range for the Decoy status, [20, 50).\n\ntype: int16_t[2]",
@@ -19049,8 +19085,8 @@ class NaOverlay10Data:
     )
 
     MIRROR_MOVE_TURN_RANGE = Symbol(
-        None,
-        None,
+        [0x7DC0],
+        [0x22C4840],
         0x4,
         "MIRROR_MOVE_TURN_RANGE",
         "The turn range for the Mirror Move status, [1, 3).\n\ntype: int16_t[2]",
@@ -19093,12 +19129,39 @@ class NaOverlay10Data:
         "int16_t[2]",
     )
 
+    CRINGE_TURN_RANGE = Symbol(
+        [0x7E04],
+        [0x22C4884],
+        0x4,
+        "CRINGE_TURN_RANGE",
+        "The turn range for the Cringe status, [1, 1].\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SPEED_BOOST_TURN_RANGE = Symbol(
         [0x7E08],
         [0x22C4888],
         0x4,
         "SPEED_BOOST_TURN_RANGE",
         "Appears to control the range of turns for which a speed boost can last.\n\nThe first two bytes are the low value of the range, and the later two bytes are the high value.",
+        "int16_t[2]",
+    )
+
+    SPEED_LOWER_TURN_RANGE = Symbol(
+        [0x7E0C],
+        [0x22C488C],
+        None,
+        "SPEED_LOWER_TURN_RANGE",
+        "The turn range for lowered speed, [6, 8].\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    PARALYSIS_TURN_RANGE = Symbol(
+        [0x7E14],
+        [0x22C4894],
+        None,
+        "PARALYSIS_TURN_RANGE",
+        "The turn range for the Paralysis status, [1, 2].\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -24684,8 +24747,8 @@ class NaOverlay29Functions:
     )
 
     FloorSecondaryTerrainIsChasm = Symbol(
-        None,
-        None,
+        [0x4138],
+        [0x22E0378],
         None,
         "FloorSecondaryTerrainIsChasm",
         "Returns true if the current floor has a chasm secondary terrain, checking first if floor_generation_status::has_chasms_as_secondary_terrain is true\nand if not, whether the tileset's entry in SECONDARY_TERRAIN_TYPES is SECONDARY_TERRAIN_CHASM.\n\nr0: tileset id\nreturn: bool",
@@ -24774,8 +24837,8 @@ class NaOverlay29Functions:
     )
 
     SetDungeonEscapeFields = Symbol(
-        None,
-        None,
+        [0x47A8],
+        [0x22E09E8],
         None,
         "SetDungeonEscapeFields",
         "Sets the successful_exit_tracker and end_floor_no_death_check_flag fields of the dungeon struct.\n\nr0: new successful_exit_tracker\nr1: new end_floor_no_death_check_flag",
@@ -24783,8 +24846,8 @@ class NaOverlay29Functions:
     )
 
     GetSuccessfulExitTracker = Symbol(
-        None,
-        None,
+        [0x47C4],
+        [0x22E0A04],
         None,
         "GetSuccessfulExitTracker",
         "Returns the successful_exit_tracker field of the dungeon struct.\n\nreturn: successful_exit_tracker",
@@ -25125,6 +25188,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    PlayParalysisEffect = Symbol(
+        [0x8000],
+        [0x22E4240],
+        None,
+        "PlayParalysisEffect",
+        "Displays the graphical effect on a monster that just became paralyzed.\n\nr0: entity pointer",
+        None,
+    )
+
     PlayEffectAnimationEntityStandard = Symbol(
         [0x80A8],
         [0x22E42E8],
@@ -25134,12 +25206,120 @@ class NaOverlay29Functions:
         None,
     )
 
+    PlaySpeedUpEffect = Symbol(
+        [0x828C],
+        [0x22E44CC],
+        None,
+        "PlaySpeedUpEffect",
+        "Displays the graphical effect on a monster that just raised movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlaySpeedDownEffect = Symbol(
+        [0x82DC],
+        [0x22E451C],
+        None,
+        "PlaySpeedDownEffect",
+        "Displays the graphical effect on a monster that just lowered movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
     ShowPpRestoreEffect = Symbol(
         [0x8724],
         [0x22E4964],
         None,
         "ShowPpRestoreEffect",
         "Displays the graphical effect on a monster that just recovered PP.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayOffensiveStatDownEffect = Symbol(
+        [0x8AE8],
+        [0x22E4D28],
+        None,
+        "PlayOffensiveStatDownEffect",
+        "Displays the graphical effect on a monster that just lowered an offensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatDownEffect = Symbol(
+        [0x8B8C],
+        [0x22E4DCC],
+        None,
+        "PlayDefensiveStatDownEffect",
+        "Displays the graphical effect on a monster that just lowered a defensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatUpEffect = Symbol(
+        [0x8C34],
+        [0x22E4E74],
+        None,
+        "PlayOffensiveStatUpEffect",
+        "Displays the graphical effect on a monster that just raised an offensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatUpEffect = Symbol(
+        [0x8CDC],
+        [0x22E4F1C],
+        None,
+        "PlayDefensiveStatUpEffect",
+        "Displays the graphical effect on a monster that just raised a defensive stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatMultiplierUpEffect = Symbol(
+        [0x8D80],
+        [0x22E4FC0],
+        None,
+        "PlayOffensiveStatMultiplierUpEffect",
+        "Displays the graphical effect on a monster that just raised an offensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayOffensiveStatMultiplierDownEffect = Symbol(
+        [0x8E28],
+        [0x22E5068],
+        None,
+        "PlayOffensiveStatMultiplierDownEffect",
+        "Displays the graphical effect on a monster that just lowered an offensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatMultiplierUpEffect = Symbol(
+        [0x8ECC],
+        [0x22E510C],
+        None,
+        "PlayDefensiveStatMultiplierUpEffect",
+        "Displays the graphical effect on a monster that just raised a defensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayDefensiveStatMultiplierDownEffect = Symbol(
+        [0x8F70],
+        [0x22E51B0],
+        None,
+        "PlayDefensiveStatMultiplierDownEffect",
+        "Displays the graphical effect on a monster that just lowered a defensive stat multiplier.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayHitChanceUpEffect = Symbol(
+        [0x9018],
+        [0x22E5258],
+        None,
+        "PlayHitChanceUpEffect",
+        "Displays the graphical effect on a monster that just raised a hit chance stat.\n\nr0: entity pointer\nr1: stat index",
+        None,
+    )
+
+    PlayHitChanceDownEffect = Symbol(
+        [0x90B8],
+        [0x22E52F8],
+        None,
+        "PlayHitChanceDownEffect",
+        "Displays the graphical effect on a monster that just lowered a hit chance stat.\n\nr0: entity pointer\nr1: stat index",
         None,
     )
 
@@ -26062,8 +26242,8 @@ class NaOverlay29Functions:
     )
 
     SpawnMonstersAroundPos = Symbol(
-        None,
-        None,
+        [0x13274],
+        [0x22EF4B4],
         None,
         "SpawnMonstersAroundPos",
         "Spawns a given number of monsters around a position. Used by the Summon Trap and Grudge Trap.\n\nr0: entity pointer (unused)\nr1: position\nr2: number of enemies to spawn\nreturn: number of enemies that have actually been spawned",
@@ -26800,6 +26980,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    IsTeamMemberOnFirstTurnInFixedRoom = Symbol(
+        [0x1FBC4],
+        [0x22FBE04],
+        None,
+        "IsTeamMemberOnFirstTurnInFixedRoom",
+        "Returns true if a monster is a team member, it is the first turn of the current floor, and the floor is a fixed room.\n\nr0: monster pointer\nreturn: bool",
+        None,
+    )
+
     InitOtherMonsterData = Symbol(
         [0x1FC18],
         [0x22FBE58],
@@ -27300,7 +27489,7 @@ class NaOverlay29Functions:
         [0x2301594],
         None,
         "ShouldAvoidFirstHit",
-        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If true, this function always returns true.\nreturn: True if the monster should try to avoid the first hit in battle.",
+        "Checks whether an AI-controlled monster should try to avoid the first hit in battle.\n\nr0: Entity pointer\nr1: If false, this function always returns false.\nreturn: True if the monster should try to avoid the first hit in battle.",
         None,
     )
 
@@ -27593,8 +27782,8 @@ class NaOverlay29Functions:
     )
 
     DungeonTmLearnMove = Symbol(
-        None,
-        None,
+        [0x27694],
+        [0x23038D4],
         None,
         "DungeonTmLearnMove",
         "Makes a team member learn a given move, or prompts them to forget one first if their move list is full. Used when activating a TM in dungeon mode.\n\nr0: user entity pointer\nr1: move id\nreturn: whether the move was successfully learned",
@@ -29627,8 +29816,8 @@ class NaOverlay29Functions:
     )
 
     InitMoveWrapper = Symbol(
-        None,
-        None,
+        [0x427C4],
+        [0x231EA04],
         None,
         "InitMoveWrapper",
         "Wrapper for InitMove which takes a superfluous parameter.\n\nr0: unused\nr1: [output] pointer to move to initialize\nr2: move ID",
@@ -29663,8 +29852,8 @@ class NaOverlay29Functions:
     )
 
     TryHurl = Symbol(
-        None,
-        None,
+        [0x42BBC],
+        [0x231EDFC],
         None,
         "TryHurl",
         "Attempts to hurl the target monster at another monster, or to an unoccupied tile if there is no valid one in range.\n\nr0: user entity pointer\nr1: target entity pointer",
@@ -29681,8 +29870,8 @@ class NaOverlay29Functions:
     )
 
     TryTrawl = Symbol(
-        None,
-        None,
+        [0x434A4],
+        [0x231F6E4],
         None,
         "TryTrawl",
         "Attempts to pull all items on the floor towards the user.\n\nFails if the floor is a fixed room on which Trawl Orbs are disabled.\n\nr0: user entity pointer",
@@ -32252,6 +32441,8 @@ class NaOverlay29Functions:
     ShouldMonsterRunAwayVariation = _Deprecated(
         "ShouldMonsterRunAwayVariation", ShouldMonsterRunAwayAndShowEffect
     )
+
+    GetFlashFireStatus = _Deprecated("GetFlashFireStatus", FlashFireShouldActivate)
 
     SetPreprocessorArgsIdVal = _Deprecated(
         "SetPreprocessorArgsIdVal", SetMessageLogPreprocessorArgsIdVal
