@@ -6447,7 +6447,70 @@ class JpArm9Functions:
         [0x204C00C],
         None,
         "CalcScriptVariables",
-        "Performs a calculation on two loaded script variables.\n\nr0: script variable 1\nr1: script variable 2\nr2: calculation to perform on the script variables\nreturn: calculation result",
+        "Performs a calculation on two loaded script variables.\n\nr0: script variable value 1\nr1: script variable value 2\nr2: calculation to perform on the script variables\nreturn: calculation result",
+        None,
+    )
+
+    CompareScriptVariables = Symbol(
+        [0x4C0F8],
+        [0x204C0F8],
+        None,
+        "CompareScriptVariables",
+        "Compares two loaded script variables and returns the comparison result.\n\nr0: script variable value 1\nr1: script variable value 2\nr2: comparison to perform on the script variables\nreturn: comparison result",
+        None,
+    )
+
+    CalcScriptVariablesVeneer = Symbol(
+        [0x4C22C],
+        [0x204C22C],
+        None,
+        "CalcScriptVariablesVeneer",
+        "Likely a linker-generated veneer for CalcScriptVariables.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: script variable value 1\nr1: script variable value 2\nr2: calculation to perform on the script variables\nreturn: calculation result",
+        None,
+    )
+
+    CalcAndUpdateScriptVarWithOtherValue = Symbol(
+        [0x4C238],
+        [0x204C238],
+        None,
+        "CalcAndUpdateScriptVarWithOtherValue",
+        "Runs a calculation on a script variable, then sets the script variable to the calculation result.\n\nr0: pointer to the local variable table\nr1: script variable ID\nr2: other value to use in the calculation\nr3: calculation to perform on the script variables",
+        None,
+    )
+
+    CalcAndUpdateScriptVarWithOtherScriptVar = Symbol(
+        [0x4C270],
+        [0x204C270],
+        None,
+        "CalcAndUpdateScriptVarWithOtherScriptVar",
+        "Runs a calculation on a script variable, then sets the script variable to the calculation result.\n\nr0: pointer to the local variable table\nr1: script variable ID\nr2: other script variable to use in the calculation\nr3: calculation to perform on the script variables",
+        None,
+    )
+
+    CompareScriptVariablesVeneer = Symbol(
+        [0x4C2BC],
+        [0x204C2BC],
+        None,
+        "CompareScriptVariablesVeneer",
+        "Likely a linker-generated veneer for CompareScriptVariables.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: script variable value 1\nr1: script variable value 2\nr2: comparison to perform on the script variables\nreturn: comparison result",
+        None,
+    )
+
+    LoadAndCompareScriptVarAndValue = Symbol(
+        [0x4C2C8],
+        [0x204C2C8],
+        None,
+        "LoadAndCompareScriptVarAndValue",
+        "Runs a comparison on a script variable and another value, then returns the comparison result.\n\nr0: pointer to the local variable table\nr1: script variable ID\nr2: other script variable to use in the comparison\nr3: comparison to perform on the script variables\nreturn: comparison result",
+        None,
+    )
+
+    LoadAndCompareScriptVars = Symbol(
+        [0x4C2E8],
+        [0x204C2E8],
+        None,
+        "LoadAndCompareScriptVars",
+        "Runs a comparison on two script variables, then returns the comparison result.\n\nr0: pointer to the local variable table\nr1: script variable ID\nr2: other script variable to use in the comparison\nr3: comparison to perform on the script variables\nreturn: comparison result",
         None,
     )
 
@@ -10089,13 +10152,31 @@ class JpArm9Data:
         "struct partner_talk_kind_table_entry[11]",
     )
 
-    EVENT_FLAG_PROG_POS_INFO = Symbol(
+    EVENT_FLAG_PROG_POS_INFO_CALC_SCRIPT_VARIABLES = Symbol(
         [0x9E280],
         [0x209E280],
         0x8,
-        "EVENT_FLAG_PROG_POS_INFO",
+        "EVENT_FLAG_PROG_POS_INFO_CALC_SCRIPT_VARIABLES",
         "Debug information used to log an error with an unrecognized operation in CalcScriptVariables.",
         "struct prog_pos_info",
+    )
+
+    EVENT_FLAG_PROG_POS_INFO_COMPARE_SCRIPT_VARIABLES = Symbol(
+        [0x9E288],
+        [0x209E288],
+        0x8,
+        "EVENT_FLAG_PROG_POS_INFO_COMPARE_SCRIPT_VARIABLES",
+        "Debug information used to log an error with an unrecognized operation in CompareScriptVariables.",
+        "struct prog_pos_info",
+    )
+
+    EVENT_FLAG_FILE_NAME = Symbol(
+        [0x9E290],
+        [0x209E290],
+        0x10,
+        "EVENT_FLAG_FILE_NAME",
+        "The file name 'event_flag.c', used for debug logging.",
+        "",
     )
 
     SCRIPT_VARS_LOCALS = Symbol(
@@ -10107,12 +10188,21 @@ class JpArm9Data:
         "struct script_local_var_table",
     )
 
-    EVENT_FLAG_EXPANSION_ERROR = Symbol(
+    EVENT_FLAG_CALC_SCRIPT_VARIABLES_ERROR = Symbol(
         [0x9E2FC],
         [0x209E2FC],
         0x20,
-        "EVENT_FLAG_EXPANSION_ERROR",
+        "EVENT_FLAG_CALC_SCRIPT_VARIABLES_ERROR",
         "Error log message for an unrecognized operation in CalcScriptVariables.",
+        "",
+    )
+
+    EVENT_FLAG_COMPARE_SCRIPT_VARIABLES_ERROR = Symbol(
+        [0x9E31C],
+        [0x209E31C],
+        0x1C,
+        "EVENT_FLAG_COMPARE_SCRIPT_VARIABLES_ERROR",
+        "Error log message for an unrecognized operation in CompareScriptVariables.",
         "",
     )
 
@@ -11618,6 +11708,14 @@ class JpArm9Data:
 
     EXCLUSIVE_ITEM_ATTACK_BOOSTS = _Deprecated(
         "EXCLUSIVE_ITEM_ATTACK_BOOSTS", EXCLUSIVE_ITEM_STAT_BOOST_DATA
+    )
+
+    EVENT_FLAG_PROG_POS_INFO = _Deprecated(
+        "EVENT_FLAG_PROG_POS_INFO", EVENT_FLAG_PROG_POS_INFO_CALC_SCRIPT_VARIABLES
+    )
+
+    EVENT_FLAG_EXPANSION_ERROR = _Deprecated(
+        "EVENT_FLAG_EXPANSION_ERROR", EVENT_FLAG_CALC_SCRIPT_VARIABLES_ERROR
     )
 
     DIRECTORY_FILES_EXTRACTED = _Deprecated(

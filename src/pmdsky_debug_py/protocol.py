@@ -3627,6 +3627,41 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CompareScriptVariables: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CalcScriptVariablesVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CalcAndUpdateScriptVarWithOtherValue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CalcAndUpdateScriptVarWithOtherScriptVar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CompareScriptVariablesVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadAndCompareScriptVarAndValue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadAndCompareScriptVars: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     EventFlagResume: Symbol[
         Optional[list[int]],
         None,
@@ -5650,7 +5685,17 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    EVENT_FLAG_PROG_POS_INFO: Symbol[
+    EVENT_FLAG_PROG_POS_INFO_CALC_SCRIPT_VARIABLES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EVENT_FLAG_PROG_POS_INFO_COMPARE_SCRIPT_VARIABLES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EVENT_FLAG_FILE_NAME: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -5660,7 +5705,12 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    EVENT_FLAG_EXPANSION_ERROR: Symbol[
+    EVENT_FLAG_CALC_SCRIPT_VARIABLES_ERROR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EVENT_FLAG_COMPARE_SCRIPT_VARIABLES_ERROR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
