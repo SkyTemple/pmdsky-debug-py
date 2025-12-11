@@ -6559,12 +6559,66 @@ class NaArm9Functions:
         None,
     )
 
+    LoadScriptVarValuePair = Symbol(
+        [0x4C5DC],
+        [0x204C5DC],
+        None,
+        "LoadScriptVarValuePair",
+        "Loads values [val0, val1] from a script variable.\n\nr0: script variable ID\nr1: Pointer to store index 0 of the script variable.\nr2: Pointer to store index 1 of the script variable.",
+        None,
+    )
+
     SetScenarioScriptVar = Symbol(
         [0x4C618],
         [0x204C618],
         None,
         "SetScenarioScriptVar",
         "Sets the given SCENARIO_* script variable with a given pair of values [val0, val1].\n\nIn the special case when the ID is VAR_SCENARIO_MAIN, and the set value is different from the old one, the REQUEST_CLEAR_COUNT script variable will be set to 0.\n\nr0: script variable ID\nr1: val0\nr2: val1",
+        None,
+    )
+
+    IsStoryBeforePoint = Symbol(
+        [0x4C6C8],
+        [0x204C6C8],
+        None,
+        "IsStoryBeforePoint",
+        "Checks if the current story progress is before a certain point in the story.\n\nr0: script variable ID\nr1: story chapter to compare to\nr2: story chapter subsection to compare to\nreturn: whether the story progress is before the given chapter and subsection.",
+        None,
+    )
+
+    IsStoryBeforeOrAtPoint = Symbol(
+        [0x4C734],
+        [0x204C734],
+        None,
+        "IsStoryBeforeOrAtPoint",
+        "Checks if the current story progress is before or at a certain point in the story.\n\nr0: script variable ID\nr1: story chapter to compare to\nr2: story chapter subsection to compare to\nreturn: whether the story progress is before or at the given chapter and subsection.",
+        None,
+    )
+
+    IsStoryAtPoint = Symbol(
+        [0x4C7AC],
+        [0x204C7AC],
+        None,
+        "IsStoryAtPoint",
+        "Checks if the current story progress is at a certain point in the story.\n\nr0: script variable ID\nr1: story chapter to compare to\nr2: story chapter subsection to compare to\nreturn: whether the story progress is at the given chapter and subsection.",
+        None,
+    )
+
+    IsStoryAtOrAfterPoint = Symbol(
+        [0x4C808],
+        [0x204C808],
+        None,
+        "IsStoryAtOrAfterPoint",
+        "Checks if the current story progress is at or after a certain point in the story.\n\nr0: script variable ID\nr1: story chapter to compare to\nr2: story chapter subsection to compare to\nreturn: whether the story progress is at or after the given chapter and subsection.",
+        None,
+    )
+
+    IsStoryAfterPoint = Symbol(
+        [0x4C880],
+        [0x204C880],
+        None,
+        "IsStoryAfterPoint",
+        "Checks if the current story progress is after a certain point in the story.\n\nr0: script variable ID\nr1: story chapter to compare to\nr2: story chapter subsection to compare to\nreturn: whether the story progress is after the given chapter and subsection.",
         None,
     )
 
@@ -6586,6 +6640,24 @@ class NaArm9Functions:
         None,
     )
 
+    GetDebugSpecialEpisodeNumber = Symbol(
+        [0x4C918],
+        [0x204C918],
+        None,
+        "GetDebugSpecialEpisodeNumber",
+        "Gets the value of DEBUG_SPECIAL_EPISODE_NUMBER.\n\nreturn: value of DEBUG_SPECIAL_EPISODE_NUMBER",
+        None,
+    )
+
+    SetDebugSpecialEpisodeNumber = Symbol(
+        [0x4C928],
+        [0x204C928],
+        None,
+        "SetDebugSpecialEpisodeNumber",
+        "Sets the value of DEBUG_SPECIAL_EPISODE_NUMBER.\n\nr0: new value of DEBUG_SPECIAL_EPISODE_NUMBER",
+        None,
+    )
+
     GetExecuteSpecialEpisodeType = Symbol(
         [0x4C938],
         [0x204C938],
@@ -6604,6 +6676,60 @@ class NaArm9Functions:
         None,
     )
 
+    SetSpecialEpisodeOpen = Symbol(
+        [0x4C978],
+        [0x204C978],
+        None,
+        "SetSpecialEpisodeOpen",
+        "Sets the value of the script variable SPECIAL_EPISODE_OPEN, which indicates if a special episode is unlocked.\n\nr0: special episode type\nr1: new SPECIAL_EPISODE_OPEN value",
+        None,
+    )
+
+    IsSpecialEpisodeOpenMismatch = Symbol(
+        [0x4C9A0],
+        [0x204C9A0],
+        None,
+        "IsSpecialEpisodeOpenMismatch",
+        "Checks if there is a mismatch between the values of the script variables SPECIAL_EPISODE_OPEN and VAR_SPECIAL_EPISODE_OPEN_OLD.\nThis checks for all special episodes at once.\n\nreturn: bool",
+        None,
+    )
+
+    IsSpecialEpisodeOpenOld = Symbol(
+        [0x4C9C8],
+        [0x204C9C8],
+        None,
+        "IsSpecialEpisodeOpenOld",
+        "Checks if the SPECIAL_EPISODE_OPEN_OLD script variable is set to true.\n\nr0: special episode type\nreturn: bool",
+        None,
+    )
+
+    SetSpecialEpisodeOpenOld = Symbol(
+        [0x4C9F4],
+        [0x204C9F4],
+        None,
+        "SetSpecialEpisodeOpenOld",
+        "Sets the value of the script variable SPECIAL_EPISODE_OPEN_OLD.\n\nr0: special episode type\nr1: new SPECIAL_EPISODE_OPEN_OLD value",
+        None,
+    )
+
+    IsSpecialEpisodeBeaten = Symbol(
+        [0x4CA1C],
+        [0x204CA1C],
+        None,
+        "IsSpecialEpisodeBeaten",
+        "Checks if a special episode is beaten from the SPECIAL_EPISODE_CONQUEST script variable.\n\nr0: special episode type\nreturn: bool",
+        None,
+    )
+
+    SetSpecialEpisodeBeaten = Symbol(
+        [0x4CA48],
+        [0x204CA48],
+        None,
+        "SetSpecialEpisodeBeaten",
+        "Sets the value of the script variable SPECIAL_EPISODE_CONQUEST, which indicates if a special episode is beaten.\n\nr0: special episode type\nr1: new SPECIAL_EPISODE_CONQUEST value",
+        None,
+    )
+
     HasPlayedOldGame = Symbol(
         [0x4CA70],
         [0x204CA70],
@@ -6619,6 +6745,15 @@ class NaArm9Functions:
         None,
         "GetPerformanceFlagWithChecks",
         "Returns the value of one of the flags in VAR_PERFORMANCE_PROGRESS_LIST, with some edge cases.\n\nList of cases where the function behaves differently:\n- If the requested flag is 0, returns true if and only if SCENARIO_MAIN == 0x35\n- If the requested flag is 1 or 2 and GAME_MODE == GAME_MODE_SPECIAL_EPISODE, returns true\n- If the requested flag is between 3 and 7 (both included) and GAME_MODE == GAME_MODE_SPECIAL_EPISODE, returns false\n\nr0: ID of the flag to get\nreturn: Value of the flag",
+        None,
+    )
+
+    SetPerformanceFlagWithChecks = Symbol(
+        [0x4CB2C],
+        [0x204CB2C],
+        None,
+        "SetPerformanceFlagWithChecks",
+        "Sets the value of one of the flags in VAR_PERFORMANCE_PROGRESS_LIST, with some edge cases.\n\nList of cases where the function behaves differently:\n- If the requested flag is 0, sets the flag to false if the new value is 0, and true otherwise\n- If the requested flag is 7 and GAME_MODE == GAME_MODE_SPECIAL_EPISODE, the flag is not set\n\nr0: ID of the flag to get\nr1: Value to set the flag to.",
         None,
     )
 
@@ -9634,6 +9769,22 @@ class NaArm9Functions:
 
     IsMoveRangeString19 = _Deprecated("IsMoveRangeString19", IsMoveRangeStringUser)
 
+    InitScenarioProgressScriptVars = _Deprecated(
+        "InitScenarioProgressScriptVars", InitScenarioScriptVars
+    )
+
+    SetScenarioProgressScriptVar = _Deprecated(
+        "SetScenarioProgressScriptVar", SetScenarioScriptVar
+    )
+
+    GetResolvedPerformanceProgressFlag = _Deprecated(
+        "GetResolvedPerformanceProgressFlag", GetPerformanceFlagWithChecks
+    )
+
+    SetResolvedPerformanceProgressFlag = _Deprecated(
+        "SetResolvedPerformanceProgressFlag", SetPerformanceFlagWithChecks
+    )
+
     GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
 
     GetActorMatchingStorageId = _Deprecated(
@@ -10211,6 +10362,24 @@ class NaArm9Data:
         "",
     )
 
+    EVENT_FLAG_GAME_MODE_DEBUG_MSG = Symbol(
+        [0x9CF64],
+        [0x209CF64],
+        0x20,
+        "EVENT_FLAG_GAME_MODE_DEBUG_MSG",
+        "Debug log message when EventFlagResume runs.",
+        "",
+    )
+
+    EVENT_FLAG_BACKUP_DEBUG_MSG = Symbol(
+        [0x9CF84],
+        [0x209CF84],
+        0x20,
+        "EVENT_FLAG_BACKUP_DEBUG_MSG",
+        "Debug log message when EventFlagBackup runs.",
+        "",
+    )
+
     SCRIPT_VARS = Symbol(
         [0x9D870],
         [0x209D870],
@@ -10218,6 +10387,15 @@ class NaArm9Data:
         "SCRIPT_VARS",
         "List of predefined global variables that track game state, which are available to the script engine. There are 115 16-byte entries.\n\nThese variables underpin the various ExplorerScript global variables you can use in the SkyTemple SSB debugger.\n\ntype: struct script_var_table",
         "struct script_var_table",
+    )
+
+    SCENARIO_CALC_DEBUG_MSG = Symbol(
+        [0x9DFA0],
+        [0x209DFA0],
+        0x28,
+        "SCENARIO_CALC_DEBUG_MSG",
+        "Debug log message with the old and new scenario values when SetScenarioScriptVar runs.",
+        "",
     )
 
     PORTRAIT_LAYOUTS = Symbol(

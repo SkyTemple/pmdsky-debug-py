@@ -3687,7 +3687,37 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    LoadScriptVarValuePair: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetScenarioScriptVar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsStoryBeforePoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsStoryBeforeOrAtPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsStoryAtPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsStoryAtOrAfterPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsStoryAfterPoint: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3702,6 +3732,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetDebugSpecialEpisodeNumber: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetDebugSpecialEpisodeNumber: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetExecuteSpecialEpisodeType: Symbol[
         Optional[list[int]],
         None,
@@ -3712,12 +3752,47 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetSpecialEpisodeOpen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSpecialEpisodeOpenMismatch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSpecialEpisodeOpenOld: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetSpecialEpisodeOpenOld: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSpecialEpisodeBeaten: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetSpecialEpisodeBeaten: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     HasPlayedOldGame: Symbol[
         Optional[list[int]],
         None,
     ]
 
     GetPerformanceFlagWithChecks: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPerformanceFlagWithChecks: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5715,7 +5790,22 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    EVENT_FLAG_GAME_MODE_DEBUG_MSG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EVENT_FLAG_BACKUP_DEBUG_MSG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SCRIPT_VARS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SCENARIO_CALC_DEBUG_MSG: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
