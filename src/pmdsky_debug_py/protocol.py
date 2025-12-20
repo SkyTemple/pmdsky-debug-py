@@ -20774,6 +20774,11 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
+    OPTIONS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SCRIPT_VARS_VALUES: Symbol[
         Optional[list[int]],
         Optional[int],

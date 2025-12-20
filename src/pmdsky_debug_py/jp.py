@@ -35291,6 +35291,15 @@ class JpRamData:
         "struct move",
     )
 
+    OPTIONS = Symbol(
+        [0x2AC85C],
+        [0x22AC85C],
+        0x9,
+        "OPTIONS",
+        "The game's options as controlled by the player through the Others -> Options menu\n\nThe option for 'Grids On/Off' is not stored here.\n\ntype: struct options",
+        "struct options",
+    )
+
     SCRIPT_VARS_VALUES = Symbol(
         [0x2AC868],
         [0x22AC868],
