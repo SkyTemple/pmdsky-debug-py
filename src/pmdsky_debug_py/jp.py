@@ -35296,7 +35296,7 @@ class JpRamData:
         [0x22AC85C],
         0x9,
         "OPTIONS",
-        "The game's options as controlled by the player through the Others -> Options menu\n\nThe option for 'Grids On/Off' is not stored here.\n\ntype: struct options",
+        "The game's options as controlled by the player through the Others -> Options menu,\nand the Window Frame Type.\n\ntype: struct options",
         "struct options",
     )
 
