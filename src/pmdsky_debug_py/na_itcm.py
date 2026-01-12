@@ -6261,6 +6261,204 @@ class NaItcmArm9Functions:
         None,
     )
 
+    InitOptionsVeneer = Symbol(
+        None,
+        None,
+        None,
+        "InitOptionsVeneer",
+        "Likely a linker-generated veneer for InitOptions.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo params.",
+        None,
+    )
+
+    InitOptions = Symbol(
+        None,
+        None,
+        None,
+        "InitOptions",
+        "Initializes the game options struct (OPTIONS) with its default values.\n\nNo params.",
+        None,
+    )
+
+    GetOptions = Symbol(
+        None,
+        None,
+        None,
+        "GetOptions",
+        "Copies the game options from OPTIONS to the given options struct.\n\nr0: options struct pointer to copy to.",
+        None,
+    )
+
+    SetOptions = Symbol(
+        None,
+        None,
+        None,
+        "SetOptions",
+        "Copies the game options from the given options struct to OPTIONS.\n\nr0: options struct pointer to copy from.",
+        None,
+    )
+
+    SaveOptionsToCtx = Symbol(
+        None,
+        None,
+        None,
+        "SaveOptionsToCtx",
+        "Saves the game options to the save file.\n\nr0: save file pointer to save the game options to.",
+        None,
+    )
+
+    LoadOptionsFromCtx = Symbol(
+        None,
+        None,
+        None,
+        "LoadOptionsFromCtx",
+        "Loads the game options from the save file.\n\nr0: save file pointer to load the game options from.",
+        None,
+    )
+
+    IsTouchScreenNotOff = Symbol(
+        None,
+        None,
+        None,
+        "IsTouchScreenNotOff",
+        "Returns false if the 'Touch Screen' option is set to 'Off', and true otherwise.\n\nreturn: bool",
+        None,
+    )
+
+    IsTouchScreenUseAnywhere = Symbol(
+        None,
+        None,
+        None,
+        "IsTouchScreenUseAnywhere",
+        "Returns whether the 'Touch Screen' option is set to 'Use anywhere'.\n\nreturn: bool",
+        None,
+    )
+
+    GetTopScreenOption = Symbol(
+        None,
+        None,
+        None,
+        "GetTopScreenOption",
+        "Returns the value of the 'Top screen' option.\n\nreturn: uint8_t",
+        None,
+    )
+
+    SetTopScreenOption = Symbol(
+        None,
+        None,
+        None,
+        "SetTopScreenOption",
+        "Sets the value of the 'Top screen' option.\n\nr0: value to set 'Top screen' option to.",
+        None,
+    )
+
+    GetBottomScreenOption = Symbol(
+        None,
+        None,
+        None,
+        "GetBottomScreenOption",
+        "Returns the value of the 'Bottom screen' option.\n\nreturn: uint8_t",
+        None,
+    )
+
+    GetGridsOption = Symbol(
+        None,
+        None,
+        None,
+        "GetGridsOption",
+        "Returns whether the 'Grids' option is enabled.\n\nreturn: bool",
+        None,
+    )
+
+    GetSpeedOption = Symbol(
+        None,
+        None,
+        None,
+        "GetSpeedOption",
+        "Returns the value of the 'Speed' option.\n\nreturn: uint8_t",
+        None,
+    )
+
+    GetFarOffPalsOption = Symbol(
+        None,
+        None,
+        None,
+        "GetFarOffPalsOption",
+        "Returns the value of the 'Far-off pals' option.\n\nreturn: uint8_t",
+        None,
+    )
+
+    GetDamageTurnOption = Symbol(
+        None,
+        None,
+        None,
+        "GetDamageTurnOption",
+        "Returns whether the 'Damage turn' option is enabled.\n\nreturn: bool",
+        None,
+    )
+
+    GetDPadAttackOption = Symbol(
+        None,
+        None,
+        None,
+        "GetDPadAttackOption",
+        "Returns whether the 'D-pad attack' option is enabled.\n\nreturn: bool",
+        None,
+    )
+
+    GetCheckDirectionOption = Symbol(
+        None,
+        None,
+        None,
+        "GetCheckDirectionOption",
+        "Returns whether the 'Check direction' option is enabled.\n\nreturn: bool",
+        None,
+    )
+
+    IsMapShownOnEitherScreen = Symbol(
+        None,
+        None,
+        None,
+        "IsMapShownOnEitherScreen",
+        "Returns true if the map is configured in the options to show on either the top or bottom screen.\nThis includes 'Clear map' or 'Shaded map' on the bottom screen, and 'Map and team' on the top screen.\n\nreturn: bool",
+        None,
+    )
+
+    IsTeamStatsOnTopScreen = Symbol(
+        None,
+        None,
+        None,
+        "IsTeamStatsOnTopScreen",
+        "Returns true if the top screen is configured in the options to show 'Team stats'.\n\nreturn: bool",
+        None,
+    )
+
+    IsTextLogOnTopScreen = Symbol(
+        None,
+        None,
+        None,
+        "IsTextLogOnTopScreen",
+        "Returns true if the top screen is configured in the options to show 'Text log'.\n\nreturn: bool",
+        None,
+    )
+
+    CopyFrameTypeOption = Symbol(
+        None,
+        None,
+        None,
+        "CopyFrameTypeOption",
+        "Copies the 'Frame Type' option from OPTIONS to the given pointer.\n\nr0: destination pointer for the 'Frame Type' option.",
+        None,
+    )
+
+    SetFrameTypeOption = Symbol(
+        None,
+        None,
+        None,
+        "SetFrameTypeOption",
+        "Copies the 'Frame Type' option from the given pointer to OPTIONS.\n\nr0: source pointer for the 'Frame Type' option.",
+        None,
+    )
+
     GetGameMode = Symbol(
         None,
         None,
@@ -6279,6 +6477,24 @@ class NaItcmArm9Functions:
         None,
     )
 
+    SetGameMode = Symbol(
+        None,
+        None,
+        None,
+        "SetGameMode",
+        "Sets the value of GAME_MODE.\n\nr0: value to set GAME_MODE to.",
+        None,
+    )
+
+    DebugPrintEventFlagSize = Symbol(
+        None,
+        None,
+        None,
+        "DebugPrintEventFlagSize",
+        "Prints a debug message with values related to event flag size.\n\nNo params.",
+        None,
+    )
+
     InitScriptVariableValues = Symbol(
         None,
         None,
@@ -6294,6 +6510,15 @@ class NaItcmArm9Functions:
         None,
         "InitEventFlagScriptVars",
         "Initializes an assortment of event flag script variables (see the code for an exhaustive list).\n\nNo params.",
+        None,
+    )
+
+    DefaultInitScriptVariable = Symbol(
+        None,
+        None,
+        None,
+        "DefaultInitScriptVariable",
+        "Initialize the values of the given script variable to the variable's default value, as defined in SCRIPT_VARS.\n\nr0: pointer to the local variable table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID",
         None,
     )
 
@@ -6717,6 +6942,15 @@ class NaItcmArm9Functions:
         None,
         "GetScenarioBalance",
         "Returns the current SCENARIO_BALANCE value.\n\nThe exact value returned depends on multiple factors:\n- If the first special episode is active, returns 1\n- If a different special episode is active, returns 3\n- If the SCENARIO_BALANCE_DEBUG variable is >= 0, returns its value\n- In all other cases, the value of the SCENARIO_BALANCE_FLAG variable is returned\n\nreturn: Current SCENARIO_BALANCE value.",
+        None,
+    )
+
+    ScenarioFlagRestore = Symbol(
+        None,
+        None,
+        None,
+        "ScenarioFlagRestore",
+        "Loads scenario flag script variables (SCENARIO_SELECT, SCENARIO_MAIN_BIT_FLAG) from their respective BACKUP script variables, but only in certain game modes.\n\nThis function prints the debug string 'ScenarioFlag ResumeGameMode %d' with the game mode.\n\nNo params.",
         None,
     )
 
@@ -9723,6 +9957,8 @@ class NaItcmArm9Functions:
 
     IsMoveRangeString19 = _Deprecated("IsMoveRangeString19", IsMoveRangeStringUser)
 
+    ZeroInitScriptVariable = _Deprecated("ZeroInitScriptVariable", ZinitScriptVariable)
+
     InitScenarioProgressScriptVars = _Deprecated(
         "InitScenarioProgressScriptVars", InitScenarioScriptVars
     )
@@ -9972,6 +10208,42 @@ class NaItcmArm9Data:
         "BABY_EXCLUSIVE_ITEM_PAIRS",
         "Stores the IDs of each baby Pokemon (and Phione), as well as the exclusive item they hatch with.",
         "struct baby_exclusive_item_pair[16]",
+    )
+
+    ITEM_NAME_FORMAT_YELLOW = Symbol(
+        None,
+        None,
+        None,
+        "ITEM_NAME_FORMAT_YELLOW",
+        "Format string for items with a yellow name, like boxes",
+        "char[16]",
+    )
+
+    ITEM_NAME_FORMAT_INDIGO = Symbol(
+        None,
+        None,
+        None,
+        "ITEM_NAME_FORMAT_INDIGO",
+        "Format string for items with an indigo name, like exclusive items",
+        "char[16]",
+    )
+
+    ITEM_NAME_FORMAT_PLAIN = Symbol(
+        None,
+        None,
+        None,
+        "ITEM_NAME_FORMAT_PLAIN",
+        "Format string for items with no color formatting",
+        "char[4]",
+    )
+
+    ITEM_NAME_FORMAT_CREAM = Symbol(
+        None,
+        None,
+        None,
+        "ITEM_NAME_FORMAT_CREAM",
+        "Format string for items with a cream pink name, the usual text color for items",
+        "char[16]",
     )
 
     KECLEON_SHOP_ITEM_TABLE_LISTS_1 = Symbol(
@@ -10289,6 +10561,15 @@ class NaItcmArm9Data:
         "struct script_local_var_table",
     )
 
+    EVENT_FLAG_SIZE_DEBUG_MSG = Symbol(
+        None,
+        None,
+        None,
+        "EVENT_FLAG_SIZE_DEBUG_MSG",
+        "Debug log message that says 'EventFlagSize'",
+        "",
+    )
+
     EVENT_FLAG_CALC_SCRIPT_VARIABLES_ERROR = Symbol(
         None,
         None,
@@ -10325,6 +10606,28 @@ class NaItcmArm9Data:
         "",
     )
 
+    SUM_MSG = Symbol(
+        None, None, None, "SUM_MSG", "Debug log message that says 'SUM'", ""
+    )
+
+    SUB30_PROJECTP_MSG = Symbol(
+        None,
+        None,
+        None,
+        "SUB30_PROJECTP_MSG",
+        "Debug log message that says 'SUB30_PROJECTP'",
+        "",
+    )
+
+    NOTE_MODIFY_FLAG_MSG = Symbol(
+        None,
+        None,
+        None,
+        "NOTE_MODIFY_FLAG_MSG",
+        "Debug log message that says 'NOTE_MODIFY_FLAG'",
+        "",
+    )
+
     SCRIPT_VARS = Symbol(
         None,
         None,
@@ -10340,6 +10643,24 @@ class NaItcmArm9Data:
         None,
         "SCENARIO_CALC_DEBUG_MSG",
         "Debug log message with the old and new scenario values when SetScenarioScriptVar runs.",
+        "",
+    )
+
+    SCENARIO_FLAG_RESUME_DEBUG_MSG = Symbol(
+        None,
+        None,
+        None,
+        "SCENARIO_FLAG_RESUME_DEBUG_MSG",
+        "Debug log message that prints the current game mode when ScenarioFlagRestore is invoked.",
+        "",
+    )
+
+    SCENARIO_FLAG_BACKUP_DEBUG_MSG = Symbol(
+        None,
+        None,
+        None,
+        "SCENARIO_FLAG_BACKUP_DEBUG_MSG",
+        "Debug log message that prints the current game mode when ScenarioFlagBackup is invoked.",
         "",
     )
 
@@ -10962,6 +11283,168 @@ class NaItcmArm9Data:
         "GUEST_MONSTER_DATA",
         "Data for guest monsters that join you during certain story dungeons.\n\nArray of 18 36-byte entries.\n\nSee the struct definitions and Frostbyte's dungeon data document for more info.\n\ntype: struct guest_monster[18]",
         "struct guest_monster[18]",
+    )
+
+    GUEST_MONSTER_BANETTE = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_BANETTE",
+        "Guest monster data for Banette in Murky Cave during Igglybuff the Prodigy.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SKORUPI = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_SKORUPI",
+        "Guest monster data for Skorupi in Murky Cave during Igglybuff the Prodigy.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_BIDOOF = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_BIDOOF",
+        "Guest monster data for Bidoof in Craggy Coast during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SNOVER = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_SNOVER",
+        "Guest monster data for Snover in Deep Star Cave during Bidoof's Wish.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_BIDOOF_2 = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_BIDOOF_2",
+        "Guest monster data for Bidoof in Rock Path during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_GROVYLE = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_GROVYLE",
+        "Guest monster data for Grovyle in Dusk Forest during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_LOUDRED = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_LOUDRED",
+        "Guest monster data for Loudred in Spring Cave Pit during Today's 'Oh My Gosh'.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_DUSKNOIR = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_DUSKNOIR",
+        "Guest monster data for Dusknoir during In the Future of Darkness.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_GROVYLE_2 = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_GROVYLE_2",
+        "Guest monster data for Grovyle in Treeshroud Forest during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_CHATOT = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_CHATOT",
+        "Guest monster data for Chatot in Brine Cave during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SHINY_CELEBI = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_SHINY_CELEBI",
+        "Guest monster data for Celebi in Deep Dusk Forest during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_GROVYLE_3 = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_GROVYLE_3",
+        "Guest monster data for Grovyle in Deep Dusk Forest during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_GROVYLE_4 = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_GROVYLE_4",
+        "Guest monster data for Grovyle in Hidden Land, Hidden Highland, and the Old Ruins during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_CRESSELIA = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_CRESSELIA",
+        "Guest monster data for Cresselia in Dark Crater, Deep Dark Crater, and Dark Crater Pit during the postgame story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_BIDOOF_3 = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_BIDOOF_3",
+        "Guest monster data for Bidoof in Mt. Horn during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_BIDOOF_4 = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_BIDOOF_4",
+        "Guest monster data for Bidoof in Side Path during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SHAYMIN_LAND = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_SHAYMIN_LAND",
+        "Guest monster data for Shaymin in Sky Peak during the postgame story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SNOVER_2 = Symbol(
+        None,
+        None,
+        None,
+        "GUEST_MONSTER_SNOVER_2",
+        "Guest monster data for Snover in Star Cave during Bidoof's Wish.",
+        "struct guest_monster",
     )
 
     RANK_UP_TABLE = Symbol(

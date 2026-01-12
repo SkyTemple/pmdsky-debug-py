@@ -6307,6 +6307,204 @@ class JpArm9Functions:
         None,
     )
 
+    InitOptionsVeneer = Symbol(
+        [0x4AE80],
+        [0x204AE80],
+        None,
+        "InitOptionsVeneer",
+        "Likely a linker-generated veneer for InitOptions.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nNo params.",
+        None,
+    )
+
+    InitOptions = Symbol(
+        [0x4AE8C],
+        [0x204AE8C],
+        None,
+        "InitOptions",
+        "Initializes the game options struct (OPTIONS) with its default values.\n\nNo params.",
+        None,
+    )
+
+    GetOptions = Symbol(
+        [0x4AEE0],
+        [0x204AEE0],
+        None,
+        "GetOptions",
+        "Copies the game options from OPTIONS to the given options struct.\n\nr0: options struct pointer to copy to.",
+        None,
+    )
+
+    SetOptions = Symbol(
+        [0x4AF00],
+        [0x204AF00],
+        None,
+        "SetOptions",
+        "Copies the game options from the given options struct to OPTIONS.\n\nr0: options struct pointer to copy from.",
+        None,
+    )
+
+    SaveOptionsToCtx = Symbol(
+        [0x4AF20],
+        [0x204AF20],
+        None,
+        "SaveOptionsToCtx",
+        "Saves the game options to the save file.\n\nr0: save file pointer to save the game options to.",
+        None,
+    )
+
+    LoadOptionsFromCtx = Symbol(
+        [0x4B044],
+        [0x204B044],
+        None,
+        "LoadOptionsFromCtx",
+        "Loads the game options from the save file.\n\nr0: save file pointer to load the game options from.",
+        None,
+    )
+
+    IsTouchScreenNotOff = Symbol(
+        [0x4B1C8],
+        [0x204B1C8],
+        None,
+        "IsTouchScreenNotOff",
+        "Returns false if the 'Touch Screen' option is set to 'Off', and true otherwise.\n\nreturn: bool",
+        None,
+    )
+
+    IsTouchScreenUseAnywhere = Symbol(
+        [0x4B1E8],
+        [0x204B1E8],
+        None,
+        "IsTouchScreenUseAnywhere",
+        "Returns whether the 'Touch Screen' option is set to 'Use anywhere'.\n\nreturn: bool",
+        None,
+    )
+
+    GetTopScreenOption = Symbol(
+        [0x4B208],
+        [0x204B208],
+        None,
+        "GetTopScreenOption",
+        "Returns the value of the 'Top screen' option.\n\nreturn: uint8_t",
+        None,
+    )
+
+    SetTopScreenOption = Symbol(
+        [0x4B218],
+        [0x204B218],
+        None,
+        "SetTopScreenOption",
+        "Sets the value of the 'Top screen' option.\n\nr0: value to set 'Top screen' option to.",
+        None,
+    )
+
+    GetBottomScreenOption = Symbol(
+        [0x4B228],
+        [0x204B228],
+        None,
+        "GetBottomScreenOption",
+        "Returns the value of the 'Bottom screen' option.\n\nreturn: uint8_t",
+        None,
+    )
+
+    GetGridsOption = Symbol(
+        [0x4B238],
+        [0x204B238],
+        None,
+        "GetGridsOption",
+        "Returns whether the 'Grids' option is enabled.\n\nreturn: bool",
+        None,
+    )
+
+    GetSpeedOption = Symbol(
+        [0x4B248],
+        [0x204B248],
+        None,
+        "GetSpeedOption",
+        "Returns the value of the 'Speed' option.\n\nreturn: uint8_t",
+        None,
+    )
+
+    GetFarOffPalsOption = Symbol(
+        [0x4B258],
+        [0x204B258],
+        None,
+        "GetFarOffPalsOption",
+        "Returns the value of the 'Far-off pals' option.\n\nreturn: uint8_t",
+        None,
+    )
+
+    GetDamageTurnOption = Symbol(
+        [0x4B268],
+        [0x204B268],
+        None,
+        "GetDamageTurnOption",
+        "Returns whether the 'Damage turn' option is enabled.\n\nreturn: bool",
+        None,
+    )
+
+    GetDPadAttackOption = Symbol(
+        [0x4B278],
+        [0x204B278],
+        None,
+        "GetDPadAttackOption",
+        "Returns whether the 'D-pad attack' option is enabled.\n\nreturn: bool",
+        None,
+    )
+
+    GetCheckDirectionOption = Symbol(
+        [0x4B288],
+        [0x204B288],
+        None,
+        "GetCheckDirectionOption",
+        "Returns whether the 'Check direction' option is enabled.\n\nreturn: bool",
+        None,
+    )
+
+    IsMapShownOnEitherScreen = Symbol(
+        [0x4B298],
+        [0x204B298],
+        None,
+        "IsMapShownOnEitherScreen",
+        "Returns true if the map is configured in the options to show on either the top or bottom screen.\nThis includes 'Clear map' or 'Shaded map' on the bottom screen, and 'Map and team' on the top screen.\n\nreturn: bool",
+        None,
+    )
+
+    IsTeamStatsOnTopScreen = Symbol(
+        [0x4B2C0],
+        [0x204B2C0],
+        None,
+        "IsTeamStatsOnTopScreen",
+        "Returns true if the top screen is configured in the options to show 'Team stats'.\n\nreturn: bool",
+        None,
+    )
+
+    IsTextLogOnTopScreen = Symbol(
+        [0x4B2E0],
+        [0x204B2E0],
+        None,
+        "IsTextLogOnTopScreen",
+        "Returns true if the top screen is configured in the options to show 'Text log'.\n\nreturn: bool",
+        None,
+    )
+
+    CopyFrameTypeOption = Symbol(
+        [0x4B300],
+        [0x204B300],
+        None,
+        "CopyFrameTypeOption",
+        "Copies the 'Frame Type' option from OPTIONS to the given pointer.\n\nr0: destination pointer for the 'Frame Type' option.",
+        None,
+    )
+
+    SetFrameTypeOption = Symbol(
+        [0x4B314],
+        [0x204B314],
+        None,
+        "SetFrameTypeOption",
+        "Copies the 'Frame Type' option from the given pointer to OPTIONS.\n\nr0: source pointer for the 'Frame Type' option.",
+        None,
+    )
+
     GetGameMode = Symbol(
         [0x4B328],
         [0x204B328],
@@ -6325,6 +6523,24 @@ class JpArm9Functions:
         None,
     )
 
+    SetGameMode = Symbol(
+        [0x4B380],
+        [0x204B380],
+        None,
+        "SetGameMode",
+        "Sets the value of GAME_MODE.\n\nr0: value to set GAME_MODE to.",
+        None,
+    )
+
+    DebugPrintEventFlagSize = Symbol(
+        [0x4B390],
+        [0x204B390],
+        None,
+        "DebugPrintEventFlagSize",
+        "Prints a debug message with values related to event flag size.\n\nNo params.",
+        None,
+    )
+
     InitScriptVariableValues = Symbol(
         [0x4B3B4],
         [0x204B3B4],
@@ -6340,6 +6556,15 @@ class JpArm9Functions:
         None,
         "InitEventFlagScriptVars",
         "Initializes an assortment of event flag script variables (see the code for an exhaustive list).\n\nNo params.",
+        None,
+    )
+
+    DefaultInitScriptVariable = Symbol(
+        [0x4B730],
+        [0x204B730],
+        None,
+        "DefaultInitScriptVariable",
+        "Initialize the values of the given script variable to the variable's default value, as defined in SCRIPT_VARS.\n\nr0: pointer to the local variable table (only needed if id >= VAR_LOCAL0)\nr1: script variable ID",
         None,
     )
 
@@ -6763,6 +6988,15 @@ class JpArm9Functions:
         None,
         "GetScenarioBalance",
         "Returns the current SCENARIO_BALANCE value.\n\nThe exact value returned depends on multiple factors:\n- If the first special episode is active, returns 1\n- If a different special episode is active, returns 3\n- If the SCENARIO_BALANCE_DEBUG variable is >= 0, returns its value\n- In all other cases, the value of the SCENARIO_BALANCE_FLAG variable is returned\n\nreturn: Current SCENARIO_BALANCE value.",
+        None,
+    )
+
+    ScenarioFlagRestore = Symbol(
+        [0x4CF48],
+        [0x204CF48],
+        None,
+        "ScenarioFlagRestore",
+        "Loads scenario flag script variables (SCENARIO_SELECT, SCENARIO_MAIN_BIT_FLAG) from their respective BACKUP script variables, but only in certain game modes.\n\nThis function prints the debug string 'ScenarioFlag ResumeGameMode %d' with the game mode.\n\nNo params.",
         None,
     )
 
@@ -9769,6 +10003,8 @@ class JpArm9Functions:
 
     IsMoveRangeString19 = _Deprecated("IsMoveRangeString19", IsMoveRangeStringUser)
 
+    ZeroInitScriptVariable = _Deprecated("ZeroInitScriptVariable", ZinitScriptVariable)
+
     InitScenarioProgressScriptVars = _Deprecated(
         "InitScenarioProgressScriptVars", InitScenarioScriptVars
     )
@@ -10022,6 +10258,42 @@ class JpArm9Data:
         "BABY_EXCLUSIVE_ITEM_PAIRS",
         "Stores the IDs of each baby Pokemon (and Phione), as well as the exclusive item they hatch with.",
         "struct baby_exclusive_item_pair[16]",
+    )
+
+    ITEM_NAME_FORMAT_YELLOW = Symbol(
+        [0x98380],
+        [0x2098380],
+        0x10,
+        "ITEM_NAME_FORMAT_YELLOW",
+        "Format string for items with a yellow name, like boxes",
+        "char[16]",
+    )
+
+    ITEM_NAME_FORMAT_INDIGO = Symbol(
+        [0x98390],
+        [0x2098390],
+        0x10,
+        "ITEM_NAME_FORMAT_INDIGO",
+        "Format string for items with an indigo name, like exclusive items",
+        "char[16]",
+    )
+
+    ITEM_NAME_FORMAT_PLAIN = Symbol(
+        [0x983A0],
+        [0x20983A0],
+        0x4,
+        "ITEM_NAME_FORMAT_PLAIN",
+        "Format string for items with no color formatting",
+        "char[4]",
+    )
+
+    ITEM_NAME_FORMAT_CREAM = Symbol(
+        [0x983A4],
+        [0x20983A4],
+        0x10,
+        "ITEM_NAME_FORMAT_CREAM",
+        "Format string for items with a cream pink name, the usual text color for items",
+        "char[16]",
     )
 
     KECLEON_SHOP_ITEM_TABLE_LISTS_1 = Symbol(
@@ -10339,6 +10611,15 @@ class JpArm9Data:
         "struct script_local_var_table",
     )
 
+    EVENT_FLAG_SIZE_DEBUG_MSG = Symbol(
+        [0x9E2E0],
+        [0x209E2E0],
+        0x1C,
+        "EVENT_FLAG_SIZE_DEBUG_MSG",
+        "Debug log message that says 'EventFlagSize'",
+        "",
+    )
+
     EVENT_FLAG_CALC_SCRIPT_VARIABLES_ERROR = Symbol(
         [0x9E2FC],
         [0x209E2FC],
@@ -10375,6 +10656,28 @@ class JpArm9Data:
         "",
     )
 
+    SUM_MSG = Symbol(
+        [0x9E378], [0x209E378], 0x4, "SUM_MSG", "Debug log message that says 'SUM'", ""
+    )
+
+    SUB30_PROJECTP_MSG = Symbol(
+        [0x9E56C],
+        [0x209E56C],
+        0x10,
+        "SUB30_PROJECTP_MSG",
+        "Debug log message that says 'SUB30_PROJECTP'",
+        "",
+    )
+
+    NOTE_MODIFY_FLAG_MSG = Symbol(
+        [0x9E6A0],
+        [0x209E6A0],
+        0x14,
+        "NOTE_MODIFY_FLAG_MSG",
+        "Debug log message that says 'NOTE_MODIFY_FLAG'",
+        "",
+    )
+
     SCRIPT_VARS = Symbol(
         [0x9EC44],
         [0x209EC44],
@@ -10390,6 +10693,24 @@ class JpArm9Data:
         0x28,
         "SCENARIO_CALC_DEBUG_MSG",
         "Debug log message with the old and new scenario values when SetScenarioScriptVar runs.",
+        "",
+    )
+
+    SCENARIO_FLAG_RESUME_DEBUG_MSG = Symbol(
+        [0x9F39C],
+        [0x209F39C],
+        0x20,
+        "SCENARIO_FLAG_RESUME_DEBUG_MSG",
+        "Debug log message that prints the current game mode when ScenarioFlagRestore is invoked.",
+        "",
+    )
+
+    SCENARIO_FLAG_BACKUP_DEBUG_MSG = Symbol(
+        [0x9F3BC],
+        [0x209F3BC],
+        0x20,
+        "SCENARIO_FLAG_BACKUP_DEBUG_MSG",
+        "Debug log message that prints the current game mode when ScenarioFlagBackup is invoked.",
         "",
     )
 
@@ -11012,6 +11333,168 @@ class JpArm9Data:
         "GUEST_MONSTER_DATA",
         "Data for guest monsters that join you during certain story dungeons.\n\nArray of 18 36-byte entries.\n\nSee the struct definitions and Frostbyte's dungeon data document for more info.\n\ntype: struct guest_monster[18]",
         "struct guest_monster[18]",
+    )
+
+    GUEST_MONSTER_BANETTE = Symbol(
+        [0xA3C90],
+        [0x20A3C90],
+        0x24,
+        "GUEST_MONSTER_BANETTE",
+        "Guest monster data for Banette in Murky Cave during Igglybuff the Prodigy.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SKORUPI = Symbol(
+        [0xA3CB4],
+        [0x20A3CB4],
+        0x24,
+        "GUEST_MONSTER_SKORUPI",
+        "Guest monster data for Skorupi in Murky Cave during Igglybuff the Prodigy.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_BIDOOF = Symbol(
+        [0xA3CD8],
+        [0x20A3CD8],
+        0x24,
+        "GUEST_MONSTER_BIDOOF",
+        "Guest monster data for Bidoof in Craggy Coast during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SNOVER = Symbol(
+        [0xA3CFC],
+        [0x20A3CFC],
+        0x24,
+        "GUEST_MONSTER_SNOVER",
+        "Guest monster data for Snover in Deep Star Cave during Bidoof's Wish.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_BIDOOF_2 = Symbol(
+        [0xA3D20],
+        [0x20A3D20],
+        None,
+        "GUEST_MONSTER_BIDOOF_2",
+        "Guest monster data for Bidoof in Rock Path during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_GROVYLE = Symbol(
+        [0xA3D44],
+        [0x20A3D44],
+        0x24,
+        "GUEST_MONSTER_GROVYLE",
+        "Guest monster data for Grovyle in Dusk Forest during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_LOUDRED = Symbol(
+        [0xA3D68],
+        [0x20A3D68],
+        0x24,
+        "GUEST_MONSTER_LOUDRED",
+        "Guest monster data for Loudred in Spring Cave Pit during Today's 'Oh My Gosh'.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_DUSKNOIR = Symbol(
+        [0xA3D8C],
+        [0x20A3D8C],
+        0x24,
+        "GUEST_MONSTER_DUSKNOIR",
+        "Guest monster data for Dusknoir during In the Future of Darkness.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_GROVYLE_2 = Symbol(
+        [0xA3DB0],
+        [0x20A3DB0],
+        0x24,
+        "GUEST_MONSTER_GROVYLE_2",
+        "Guest monster data for Grovyle in Treeshroud Forest during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_CHATOT = Symbol(
+        [0xA3DD4],
+        [0x20A3DD4],
+        0x24,
+        "GUEST_MONSTER_CHATOT",
+        "Guest monster data for Chatot in Brine Cave during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SHINY_CELEBI = Symbol(
+        [0xA3DF8],
+        [0x20A3DF8],
+        0x24,
+        "GUEST_MONSTER_SHINY_CELEBI",
+        "Guest monster data for Celebi in Deep Dusk Forest during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_GROVYLE_3 = Symbol(
+        [0xA3E1C],
+        [0x20A3E1C],
+        None,
+        "GUEST_MONSTER_GROVYLE_3",
+        "Guest monster data for Grovyle in Deep Dusk Forest during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_GROVYLE_4 = Symbol(
+        [0xA3E40],
+        [0x20A3E40],
+        0x24,
+        "GUEST_MONSTER_GROVYLE_4",
+        "Guest monster data for Grovyle in Hidden Land, Hidden Highland, and the Old Ruins during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_CRESSELIA = Symbol(
+        [0xA3E64],
+        [0x20A3E64],
+        0x24,
+        "GUEST_MONSTER_CRESSELIA",
+        "Guest monster data for Cresselia in Dark Crater, Deep Dark Crater, and Dark Crater Pit during the postgame story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_BIDOOF_3 = Symbol(
+        [0xA3E88],
+        [0x20A3E88],
+        0x24,
+        "GUEST_MONSTER_BIDOOF_3",
+        "Guest monster data for Bidoof in Mt. Horn during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_BIDOOF_4 = Symbol(
+        [0xA3EAC],
+        [0x20A3EAC],
+        0x24,
+        "GUEST_MONSTER_BIDOOF_4",
+        "Guest monster data for Bidoof in Side Path during the main story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SHAYMIN_LAND = Symbol(
+        [0xA3ED0],
+        [0x20A3ED0],
+        0x24,
+        "GUEST_MONSTER_SHAYMIN_LAND",
+        "Guest monster data for Shaymin in Sky Peak during the postgame story.",
+        "struct guest_monster",
+    )
+
+    GUEST_MONSTER_SNOVER_2 = Symbol(
+        [0xA3EF4],
+        [0x20A3EF4],
+        0x24,
+        "GUEST_MONSTER_SNOVER_2",
+        "Guest monster data for Snover in Star Cave during Bidoof's Wish.",
+        "struct guest_monster",
     )
 
     RANK_UP_TABLE = Symbol(

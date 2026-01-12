@@ -3547,6 +3547,116 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitOptionsVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitOptions: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetOptions: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetOptions: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SaveOptionsToCtx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadOptionsFromCtx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsTouchScreenNotOff: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsTouchScreenUseAnywhere: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetTopScreenOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetTopScreenOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetBottomScreenOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetGridsOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetSpeedOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetFarOffPalsOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetDamageTurnOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetDPadAttackOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCheckDirectionOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsMapShownOnEitherScreen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsTeamStatsOnTopScreen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsTextLogOnTopScreen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyFrameTypeOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetFrameTypeOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetGameMode: Symbol[
         Optional[list[int]],
         None,
@@ -3557,12 +3667,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetGameMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DebugPrintEventFlagSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     InitScriptVariableValues: Symbol[
         Optional[list[int]],
         None,
     ]
 
     InitEventFlagScriptVars: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DefaultInitScriptVariable: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3798,6 +3923,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetScenarioBalance: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ScenarioFlagRestore: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5605,6 +5735,26 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    ITEM_NAME_FORMAT_YELLOW: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_NAME_FORMAT_INDIGO: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_NAME_FORMAT_PLAIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_NAME_FORMAT_CREAM: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     KECLEON_SHOP_ITEM_TABLE_LISTS_1: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -5780,6 +5930,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    EVENT_FLAG_SIZE_DEBUG_MSG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     EVENT_FLAG_CALC_SCRIPT_VARIABLES_ERROR: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -5800,12 +5955,37 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SUM_MSG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SUB30_PROJECTP_MSG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    NOTE_MODIFY_FLAG_MSG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SCRIPT_VARS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
     SCENARIO_CALC_DEBUG_MSG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SCENARIO_FLAG_RESUME_DEBUG_MSG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SCENARIO_FLAG_BACKUP_DEBUG_MSG: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -6151,6 +6331,96 @@ class Arm9DataProtocol(Protocol):
     ]
 
     GUEST_MONSTER_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_BANETTE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_SKORUPI: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_BIDOOF: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_SNOVER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_BIDOOF_2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GUEST_MONSTER_GROVYLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_LOUDRED: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_DUSKNOIR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_GROVYLE_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_CHATOT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_SHINY_CELEBI: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_GROVYLE_3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GUEST_MONSTER_GROVYLE_4: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_CRESSELIA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_BIDOOF_3: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_BIDOOF_4: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_SHAYMIN_LAND: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GUEST_MONSTER_SNOVER_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
