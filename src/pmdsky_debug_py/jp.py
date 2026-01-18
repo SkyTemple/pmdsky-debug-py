@@ -13694,7 +13694,23 @@ class JpLibsFunctions:
         None,
     )
 
-    Crypto_RC4Init = Symbol([0x9648], [0x2075A08], None, "Crypto_RC4Init", "", None)
+    Crypto_RC4Init = Symbol(
+        [0x9648],
+        [0x2075A08],
+        None,
+        "Crypto_RC4Init",
+        "Initializes an RC4 context.\n\nr0: context\nr1: key\nr2: key length (clamped down to a maximum of 16)",
+        None,
+    )
+
+    Crypto_RC4Encrypt = Symbol(
+        [0x96D8],
+        [0x2075A98],
+        None,
+        "Crypto_RC4Encrypt",
+        "Encrypts/decrypts a buffer using an RC4 context.\n\nr0: context\nr1: src\nr2: size\nr3: dest",
+        None,
+    )
 
     Mtx_LookAt = Symbol([0x9750], [0x2075B10], None, "Mtx_LookAt", "", None)
 
@@ -14361,6 +14377,33 @@ class JpLibsFunctions:
         None,
         "InitOverlay",
         "Performs overlay initialization right after loading an overlay with LoadOverlayInternal.\n\nThis function is responsible for jumping to all the pointers located in the overlay's static init array, among other things.\n\nr0: Overlay info struct",
+        None,
+    )
+
+    MD5_Init = Symbol(
+        [0x14024],
+        [0x20803E4],
+        None,
+        "MD5_Init",
+        "Initializes an MD5 context.\n\nr0: context",
+        None,
+    )
+
+    MD5_Update = Symbol(
+        [0x14064],
+        [0x2080424],
+        None,
+        "MD5_Update",
+        "Updates an MD5 context using a buffer's bytes.\n\nr0: context\nr1: buffer\nr2: size of buffer",
+        None,
+    )
+
+    MD5_Digest = Symbol(
+        [0x1412C],
+        [0x20804EC],
+        None,
+        "MD5_Digest",
+        "Calculates and stores an MD5 hash into a destination buffer. The MD5 context is zeroed-out after this operation.\n\nr0: [output] hash buffer (16 bytes)\nr1: context",
         None,
     )
 
@@ -17851,6 +17894,249 @@ class JpOverlay0Functions:
         None,
     )
 
+    close = Symbol(
+        [0x11E60],
+        [0x22D0080],
+        None,
+        "close",
+        "Closes a file descriptor.\n\nr0: file descriptor\nreturn: 0 on success, or a negative value representing an error",
+        None,
+    )
+
+    socket = Symbol(
+        [0x12738],
+        [0x22D0958],
+        None,
+        "socket",
+        "Creates a socket file descriptor for network activity.\n\nr0: domain\nr1: family\nr2: protocol\nreturn: socket file descriptor on success, negative value indicating error otherwise",
+        None,
+    )
+
+    bind = Symbol(
+        [0x12764],
+        [0x22D0984],
+        None,
+        "bind",
+        "Binds a socket to an address.\n\nr0: socket file descriptor\nr1: address\nreturn: 0 on success, or a negative value representing an error",
+        None,
+    )
+
+    connect = Symbol(
+        [0x12790],
+        [0x22D09B0],
+        None,
+        "connect",
+        "Connects a socket to an address.\n\nr0: socket file descriptor\nr1: address\nreturn: 0 on success, or a negative value representing an error",
+        None,
+    )
+
+    recv = Symbol(
+        [0x127EC],
+        [0x22D0A0C],
+        None,
+        "recv",
+        "Receives a message from a connected socket.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes read, or a negative value representing an error",
+        None,
+    )
+
+    recvfrom = Symbol(
+        [0x12810],
+        [0x22D0A30],
+        None,
+        "recvfrom",
+        "Receives a message from a connectionless socket, also returning the source address that sent data.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nstack[0]: destination address; can be NULL\nstack[1]: length of destination address\nreturn: number of bytes read, or a negative value representing an error",
+        None,
+    )
+
+    send = Symbol(
+        [0x128A0],
+        [0x22D0AC0],
+        None,
+        "send",
+        "Sends a message to a connected socket.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes sent, or a negative value representing an error",
+        None,
+    )
+
+    sendto = Symbol(
+        [0x128C4],
+        [0x22D0AE4],
+        None,
+        "sendto",
+        "Sends a message to a connectionless socket.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nstack[0]: target address\nstack[1]: length of target address\nreturn: number of bytes sent, or a negative value representing an error",
+        None,
+    )
+
+    CloseVeneer = Symbol(
+        [0x12954],
+        [0x22D0B74],
+        None,
+        "CloseVeneer",
+        "Likely a linker-generated veneer for close.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: file descriptor\nreturn: 0 on success, or a negative value representing an error",
+        None,
+    )
+
+    fcntl = Symbol(
+        [0x12B58],
+        [0x22D0D78],
+        None,
+        "fcntl",
+        "Performs an operation on a file descriptor.\n\nr0: file descriptor\nr1: operation\nr2: operation-specific argument\nreturn: operation-specific value",
+        None,
+    )
+
+    InitWfc = Symbol(
+        [0x1AD20],
+        [0x22D8F40],
+        None,
+        "InitWfc",
+        "Just a guess. Repeatedly calling this eventually results in a DNS query for conntest.nintendowifi.net and allows for use of the socket functions.\n\nreturn: status?",
+        None,
+    )
+
+    SocketCastError = Symbol(
+        [0x38514],
+        [0x22F6734],
+        None,
+        "SocketCastError",
+        "Casts a value to a new value, if it is negative. Mostly used in socket functions to cast any potential errors to -1.\n\nr0: original value\nr1: new value to cast an error as, if original value is negative\nreturn: original value if non-negative, new value otherwise",
+        None,
+    )
+
+    SocketCreate = Symbol(
+        [0x3852C],
+        [0x22F674C],
+        None,
+        "SocketCreate",
+        "A wrapper for socket, casting any errors to -1.\n\nr0: domain\nr1: family\nr2: protocol\nreturn: socket file descriptor on success, -1 on an error",
+        None,
+    )
+
+    SocketClose = Symbol(
+        [0x38540],
+        [0x22F6760],
+        None,
+        "SocketClose",
+        "A wrapper for close, casting any errors to -1.\n\nr0: file descriptor\nreturn: 0 on success, -1 on an error",
+        None,
+    )
+
+    SocketBind = Symbol(
+        [0x38568],
+        [0x22F6788],
+        None,
+        "SocketBind",
+        "A wrapper for bind, casting any errors to -1.\n\nr0: socket file descriptor\nr1: address\nr2: length of address\nreturn: 0 on success, -1 on an error",
+        None,
+    )
+
+    SocketConnect = Symbol(
+        [0x385C8],
+        [0x22F67E8],
+        None,
+        "SocketConnect",
+        "A wrapper for connect, casting any errors to -1.\n\nr0: socket file descriptor\nr1: address\nr2: length of address\nreturn: 0 on success, -1 on an error",
+        None,
+    )
+
+    SocketRecv = Symbol(
+        [0x38614],
+        [0x22F6834],
+        None,
+        "SocketRecv",
+        "A wrapper for recv, casting any errors to -1.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes read, or -1 on an error",
+        None,
+    )
+
+    SocketRecvFrom = Symbol(
+        [0x38628],
+        [0x22F6848],
+        None,
+        "SocketRecvFrom",
+        "A wrapper for recvfrom, casting any errors to -1.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nstack[0]: destination address; can be NULL\nstack[1]: length of destination address\nreturn: number of bytes read, or -1 on an error",
+        None,
+    )
+
+    SocketSend = Symbol(
+        [0x38658],
+        [0x22F6878],
+        None,
+        "SocketSend",
+        "A wrapper for send, casting any errors to -1.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes sent, or -1 on an error",
+        None,
+    )
+
+    SocketSendTo = Symbol(
+        [0x3866C],
+        [0x22F688C],
+        None,
+        "SocketSendTo",
+        "A wrapper for sendto, casting any errors to -1.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nstack[0]: target address\nstack[1]: length of target address\nreturn: number of bytes sent, or -1 on an error",
+        None,
+    )
+
+    SocketSetBlocking = Symbol(
+        [0x38828],
+        [0x22F6A48],
+        None,
+        "SocketSetBlocking",
+        "Sets a socket to be blocking or non-blocking.\n\nr0: socket file descriptor\nr1: blocking flag\nreturn: success",
+        None,
+    )
+
+    DoRand = Symbol(
+        [0x38B84],
+        [0x22F6DA4],
+        None,
+        "DoRand",
+        "Generates a pseudorandom integer provided a parameter.\n\nr0: ctx\nreturn: pseudorandom integer",
+        None,
+    )
+
+    rand = Symbol(
+        [0x38BD0],
+        [0x22F6DF0],
+        None,
+        "rand",
+        "Generates a new pseudorandom integer from the current PRNG sequence number and updates it.\n\nreturn: psuedorandom integer",
+        None,
+    )
+
+    srand = Symbol(
+        [0x38BF0],
+        [0x22F6E10],
+        None,
+        "srand",
+        "Seeds a PRNG sequence number used by rand.\n\nr0: seed",
+        None,
+    )
+
+    RandRangeOverlay0 = Symbol(
+        [0x38C0C],
+        [0x22F6E2C],
+        None,
+        "RandRangeOverlay0",
+        "Generates a new pseudorandom integer by performing (rand() % (y - x) + x).\n\nr0: x\nr1: y\nreturn: pseudorandom integer on the interval [x, y - 1]",
+        None,
+    )
+
+    ResolveAvailableNintendoWifi = Symbol(
+        [0x39184],
+        [0x22F73A4],
+        None,
+        "ResolveAvailableNintendoWifi",
+        "Seemingly resolves the IP of 'pokedungeonds.available.gs.nintendowifi.net', in which 'pokedungeonds' is provided as the first parameter.\n\nr0: string",
+        None,
+    )
+
+    PasswordEncryptString = Symbol(
+        [0x4F26C],
+        [0x230D48C],
+        None,
+        "PasswordEncryptString",
+        "Performs XOR encryption/decryption on a string, the keystream derived from srand(0x79707367) and repeatedly calling randrange(0x0, 0xFF).\n\nSeemingly called mostly for the 'passenc' field in DWC messages.\n\nr0: src\nr1: dest",
+        None,
+    )
+
 
 class JpOverlay0Data:
 
@@ -17866,7 +18152,7 @@ class JpOverlay0Data:
 
 class JpOverlay0Section:
     name = "overlay0"
-    description = "Likely contains supporting data and code related to the top menu.\n\nThis is loaded together with overlay 1 while in the top menu. Since it's in overlay group 2 (together with overlay 10, which is another 'data' overlay), this overlay probably plays a similar role. It mentions several files from the BACK folder that are known backgrounds for the top menu."
+    description = "Contains supporting data and code related to the Top Menu, as well as core networking functions.\n\nThis is loaded together with overlay 1 while in the Top Menu. Since it's in overlay group 2 (together with overlay 10, which is another 'data' overlay), this overlay probably plays a similar role. It mentions several files from the BACK folder that are known backgrounds for the Top Menu."
     loadaddress = 0x22BE220
     length = 0x609A0
     functions = JpOverlay0Functions

@@ -13512,7 +13512,23 @@ class EuItcmLibsFunctions:
         None,
     )
 
-    Crypto_RC4Init = Symbol(None, None, None, "Crypto_RC4Init", "", None)
+    Crypto_RC4Init = Symbol(
+        None,
+        None,
+        None,
+        "Crypto_RC4Init",
+        "Initializes an RC4 context.\n\nr0: context\nr1: key\nr2: key length (clamped down to a maximum of 16)",
+        None,
+    )
+
+    Crypto_RC4Encrypt = Symbol(
+        None,
+        None,
+        None,
+        "Crypto_RC4Encrypt",
+        "Encrypts/decrypts a buffer using an RC4 context.\n\nr0: context\nr1: src\nr2: size\nr3: dest",
+        None,
+    )
 
     Mtx_LookAt = Symbol(None, None, None, "Mtx_LookAt", "", None)
 
@@ -14125,6 +14141,28 @@ class EuItcmLibsFunctions:
         None,
         "InitOverlay",
         "Performs overlay initialization right after loading an overlay with LoadOverlayInternal.\n\nThis function is responsible for jumping to all the pointers located in the overlay's static init array, among other things.\n\nr0: Overlay info struct",
+        None,
+    )
+
+    MD5_Init = Symbol(
+        None, None, None, "MD5_Init", "Initializes an MD5 context.\n\nr0: context", None
+    )
+
+    MD5_Update = Symbol(
+        None,
+        None,
+        None,
+        "MD5_Update",
+        "Updates an MD5 context using a buffer's bytes.\n\nr0: context\nr1: buffer\nr2: size of buffer",
+        None,
+    )
+
+    MD5_Digest = Symbol(
+        None,
+        None,
+        None,
+        "MD5_Digest",
+        "Calculates and stores an MD5 hash into a destination buffer. The MD5 context is zeroed-out after this operation.\n\nr0: [output] hash buffer (16 bytes)\nr1: context",
         None,
     )
 
@@ -17615,6 +17653,249 @@ class EuItcmOverlay0Functions:
         None,
     )
 
+    close = Symbol(
+        None,
+        None,
+        None,
+        "close",
+        "Closes a file descriptor.\n\nr0: file descriptor\nreturn: 0 on success, or a negative value representing an error",
+        None,
+    )
+
+    socket = Symbol(
+        None,
+        None,
+        None,
+        "socket",
+        "Creates a socket file descriptor for network activity.\n\nr0: domain\nr1: family\nr2: protocol\nreturn: socket file descriptor on success, negative value indicating error otherwise",
+        None,
+    )
+
+    bind = Symbol(
+        None,
+        None,
+        None,
+        "bind",
+        "Binds a socket to an address.\n\nr0: socket file descriptor\nr1: address\nreturn: 0 on success, or a negative value representing an error",
+        None,
+    )
+
+    connect = Symbol(
+        None,
+        None,
+        None,
+        "connect",
+        "Connects a socket to an address.\n\nr0: socket file descriptor\nr1: address\nreturn: 0 on success, or a negative value representing an error",
+        None,
+    )
+
+    recv = Symbol(
+        None,
+        None,
+        None,
+        "recv",
+        "Receives a message from a connected socket.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes read, or a negative value representing an error",
+        None,
+    )
+
+    recvfrom = Symbol(
+        None,
+        None,
+        None,
+        "recvfrom",
+        "Receives a message from a connectionless socket, also returning the source address that sent data.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nstack[0]: destination address; can be NULL\nstack[1]: length of destination address\nreturn: number of bytes read, or a negative value representing an error",
+        None,
+    )
+
+    send = Symbol(
+        None,
+        None,
+        None,
+        "send",
+        "Sends a message to a connected socket.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes sent, or a negative value representing an error",
+        None,
+    )
+
+    sendto = Symbol(
+        None,
+        None,
+        None,
+        "sendto",
+        "Sends a message to a connectionless socket.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nstack[0]: target address\nstack[1]: length of target address\nreturn: number of bytes sent, or a negative value representing an error",
+        None,
+    )
+
+    CloseVeneer = Symbol(
+        None,
+        None,
+        None,
+        "CloseVeneer",
+        "Likely a linker-generated veneer for close.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: file descriptor\nreturn: 0 on success, or a negative value representing an error",
+        None,
+    )
+
+    fcntl = Symbol(
+        None,
+        None,
+        None,
+        "fcntl",
+        "Performs an operation on a file descriptor.\n\nr0: file descriptor\nr1: operation\nr2: operation-specific argument\nreturn: operation-specific value",
+        None,
+    )
+
+    InitWfc = Symbol(
+        None,
+        None,
+        None,
+        "InitWfc",
+        "Just a guess. Repeatedly calling this eventually results in a DNS query for conntest.nintendowifi.net and allows for use of the socket functions.\n\nreturn: status?",
+        None,
+    )
+
+    SocketCastError = Symbol(
+        None,
+        None,
+        None,
+        "SocketCastError",
+        "Casts a value to a new value, if it is negative. Mostly used in socket functions to cast any potential errors to -1.\n\nr0: original value\nr1: new value to cast an error as, if original value is negative\nreturn: original value if non-negative, new value otherwise",
+        None,
+    )
+
+    SocketCreate = Symbol(
+        None,
+        None,
+        None,
+        "SocketCreate",
+        "A wrapper for socket, casting any errors to -1.\n\nr0: domain\nr1: family\nr2: protocol\nreturn: socket file descriptor on success, -1 on an error",
+        None,
+    )
+
+    SocketClose = Symbol(
+        None,
+        None,
+        None,
+        "SocketClose",
+        "A wrapper for close, casting any errors to -1.\n\nr0: file descriptor\nreturn: 0 on success, -1 on an error",
+        None,
+    )
+
+    SocketBind = Symbol(
+        None,
+        None,
+        None,
+        "SocketBind",
+        "A wrapper for bind, casting any errors to -1.\n\nr0: socket file descriptor\nr1: address\nr2: length of address\nreturn: 0 on success, -1 on an error",
+        None,
+    )
+
+    SocketConnect = Symbol(
+        None,
+        None,
+        None,
+        "SocketConnect",
+        "A wrapper for connect, casting any errors to -1.\n\nr0: socket file descriptor\nr1: address\nr2: length of address\nreturn: 0 on success, -1 on an error",
+        None,
+    )
+
+    SocketRecv = Symbol(
+        None,
+        None,
+        None,
+        "SocketRecv",
+        "A wrapper for recv, casting any errors to -1.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes read, or -1 on an error",
+        None,
+    )
+
+    SocketRecvFrom = Symbol(
+        None,
+        None,
+        None,
+        "SocketRecvFrom",
+        "A wrapper for recvfrom, casting any errors to -1.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nstack[0]: destination address; can be NULL\nstack[1]: length of destination address\nreturn: number of bytes read, or -1 on an error",
+        None,
+    )
+
+    SocketSend = Symbol(
+        None,
+        None,
+        None,
+        "SocketSend",
+        "A wrapper for send, casting any errors to -1.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes sent, or -1 on an error",
+        None,
+    )
+
+    SocketSendTo = Symbol(
+        None,
+        None,
+        None,
+        "SocketSendTo",
+        "A wrapper for sendto, casting any errors to -1.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nstack[0]: target address\nstack[1]: length of target address\nreturn: number of bytes sent, or -1 on an error",
+        None,
+    )
+
+    SocketSetBlocking = Symbol(
+        None,
+        None,
+        None,
+        "SocketSetBlocking",
+        "Sets a socket to be blocking or non-blocking.\n\nr0: socket file descriptor\nr1: blocking flag\nreturn: success",
+        None,
+    )
+
+    DoRand = Symbol(
+        None,
+        None,
+        None,
+        "DoRand",
+        "Generates a pseudorandom integer provided a parameter.\n\nr0: ctx\nreturn: pseudorandom integer",
+        None,
+    )
+
+    rand = Symbol(
+        None,
+        None,
+        None,
+        "rand",
+        "Generates a new pseudorandom integer from the current PRNG sequence number and updates it.\n\nreturn: psuedorandom integer",
+        None,
+    )
+
+    srand = Symbol(
+        None,
+        None,
+        None,
+        "srand",
+        "Seeds a PRNG sequence number used by rand.\n\nr0: seed",
+        None,
+    )
+
+    RandRangeOverlay0 = Symbol(
+        None,
+        None,
+        None,
+        "RandRangeOverlay0",
+        "Generates a new pseudorandom integer by performing (rand() % (y - x) + x).\n\nr0: x\nr1: y\nreturn: pseudorandom integer on the interval [x, y - 1]",
+        None,
+    )
+
+    ResolveAvailableNintendoWifi = Symbol(
+        None,
+        None,
+        None,
+        "ResolveAvailableNintendoWifi",
+        "Seemingly resolves the IP of 'pokedungeonds.available.gs.nintendowifi.net', in which 'pokedungeonds' is provided as the first parameter.\n\nr0: string",
+        None,
+    )
+
+    PasswordEncryptString = Symbol(
+        None,
+        None,
+        None,
+        "PasswordEncryptString",
+        "Performs XOR encryption/decryption on a string, the keystream derived from srand(0x79707367) and repeatedly calling randrange(0x0, 0xFF).\n\nSeemingly called mostly for the 'passenc' field in DWC messages.\n\nr0: src\nr1: dest",
+        None,
+    )
+
 
 class EuItcmOverlay0Data:
 
@@ -17630,7 +17911,7 @@ class EuItcmOverlay0Data:
 
 class EuItcmOverlay0Section:
     name = "overlay0"
-    description = "Likely contains supporting data and code related to the top menu.\n\nThis is loaded together with overlay 1 while in the top menu. Since it's in overlay group 2 (together with overlay 10, which is another 'data' overlay), this overlay probably plays a similar role. It mentions several files from the BACK folder that are known backgrounds for the top menu."
+    description = "Contains supporting data and code related to the Top Menu, as well as core networking functions.\n\nThis is loaded together with overlay 1 while in the Top Menu. Since it's in overlay group 2 (together with overlay 10, which is another 'data' overlay), this overlay probably plays a similar role. It mentions several files from the BACK folder that are known backgrounds for the Top Menu."
     loadaddress = None
     length = None
     functions = EuItcmOverlay0Functions

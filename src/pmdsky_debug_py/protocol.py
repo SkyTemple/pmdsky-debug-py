@@ -8203,6 +8203,11 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    Crypto_RC4Encrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Mtx_LookAt: Symbol[
         Optional[list[int]],
         None,
@@ -8974,6 +8979,21 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     InitOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5_Update: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5_Digest: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -10907,6 +10927,141 @@ Move_effectsProtocol = SectionProtocol[
 class Overlay0FunctionsProtocol(Protocol):
 
     SelectRandomBackground: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    close: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    socket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    bind: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    connect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    recv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    recvfrom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    sendto: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    fcntl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitWfc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketCastError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketCreate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketClose: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketBind: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketRecv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketRecvFrom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketSend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketSendTo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketSetBlocking: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DoRand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    rand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    srand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RandRangeOverlay0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResolveAvailableNintendoWifi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PasswordEncryptString: Symbol[
         Optional[list[int]],
         None,
     ]
