@@ -10251,6 +10251,51 @@ class JpArm9Data:
         "",
     )
 
+    ST_I2N_I_BIN_FILE_NAME = Symbol(
+        None,
+        None,
+        None,
+        "ST_I2N_I_BIN_FILE_NAME",
+        "Name of the file st_i2n_i.bin",
+        "char[12]",
+    )
+
+    ST_I2N_E_BIN_FILE_NAME = Symbol(
+        None,
+        None,
+        None,
+        "ST_I2N_E_BIN_FILE_NAME",
+        "Name of the file st_i2n_e.bin",
+        "char[12]",
+    )
+
+    ST_I2N_S_BIN_FILE_NAME = Symbol(
+        None,
+        None,
+        None,
+        "ST_I2N_S_BIN_FILE_NAME",
+        "Name of the file st_i2n_s.bin",
+        "char[12]",
+    )
+
+    ST_I2N_G_BIN_FILE_NAME = Symbol(
+        None,
+        None,
+        None,
+        "ST_I2N_G_BIN_FILE_NAME",
+        "Name of the file st_i2n_g.bin",
+        "char[12]",
+    )
+
+    ST_I2N_F_BIN_FILE_NAME = Symbol(
+        None,
+        None,
+        None,
+        "ST_I2N_F_BIN_FILE_NAME",
+        "Name of the file st_i2n_f.bin",
+        "char[12]",
+    )
+
     BABY_EXCLUSIVE_ITEM_PAIRS = Symbol(
         [0x982EC],
         [0x20982EC],
@@ -10258,6 +10303,33 @@ class JpArm9Data:
         "BABY_EXCLUSIVE_ITEM_PAIRS",
         "Stores the IDs of each baby Pokemon (and Phione), as well as the exclusive item they hatch with.",
         "struct baby_exclusive_item_pair[16]",
+    )
+
+    ITEM_P_BIN_FILE_PATH = Symbol(
+        [0x9832C],
+        [0x209832C],
+        0x18,
+        "ITEM_P_BIN_FILE_PATH",
+        "File path of the file item_p.bin",
+        "char[24]",
+    )
+
+    ITEM_S_P_BIN_FILE_PATH = Symbol(
+        [0x98348],
+        [0x2098348],
+        0x1A,
+        "ITEM_S_P_BIN_FILE_PATH",
+        "File path of the file item_s_p.bin",
+        "char[26]",
+    )
+
+    ITEM_ST_I2N_BIN_FORMAT = Symbol(
+        [0x98364],
+        [0x2098364],
+        0x1A,
+        "ITEM_ST_I2N_BIN_FORMAT",
+        "File path for language files. In EU, this is a format string where each of the language files can be inserted in. In NA/JP, this is just the file path of the file st_i2n_j.bin",
+        "",
     )
 
     ITEM_NAME_FORMAT_YELLOW = Symbol(
@@ -12033,6 +12105,15 @@ class JpArm9Data:
         "ITEM_DATA_TABLE_PTRS",
         "[Runtime] List of pointers to various item data tables.\n\nThe first two pointers are definitely item-related (although the order appears to be flipped between EU/NA?). Not sure about the third pointer.",
         "void*[3]",
+    )
+
+    ITEM_LANG_FILE_ARRAY = Symbol(
+        None,
+        None,
+        None,
+        "ITEM_LANG_FILE_ARRAY",
+        "An array containing the names of each language file. Only exists in EU.",
+        "char*[5]",
     )
 
     DUNGEON_MOVE_TABLES = Symbol(

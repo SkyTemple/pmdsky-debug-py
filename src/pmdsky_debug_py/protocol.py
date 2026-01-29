@@ -5730,7 +5730,47 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    ST_I2N_I_BIN_FILE_NAME: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ST_I2N_E_BIN_FILE_NAME: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ST_I2N_S_BIN_FILE_NAME: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ST_I2N_G_BIN_FILE_NAME: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ST_I2N_F_BIN_FILE_NAME: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     BABY_EXCLUSIVE_ITEM_PAIRS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_P_BIN_FILE_PATH: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_S_P_BIN_FILE_PATH: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_ST_I2N_BIN_FORMAT: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -6731,6 +6771,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     ITEM_DATA_TABLE_PTRS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ITEM_LANG_FILE_ARRAY: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
