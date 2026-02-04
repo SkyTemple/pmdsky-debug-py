@@ -28052,6 +28052,24 @@ class NaOverlay29Functions:
         None,
     )
 
+    FindMoveOnMonster = Symbol(
+        [0x1F7A0],
+        [0x22FB9E0],
+        None,
+        "FindMoveOnMonster",
+        "Searches for a move in an entity's moveset by move ID, and returns the moveset index of the move if found. Returns -1 if the move is not found.\n\nr0: entity pointer\nr1: move ID to search for\nreturn: the moveset index of the move if found, or -1 if not found",
+        None,
+    )
+
+    DoesMonsterHaveMove = Symbol(
+        [0x1F814],
+        [0x22FBA54],
+        None,
+        "DoesMonsterHaveMove",
+        "Checks if an entity has a specific move (move ID) in their moveset.\n\nr0: entity pointer\nr1: move ID to search for\nreturn: true if the entity has the given move ID, or false otherwise",
+        None,
+    )
+
     IsSpecialStoryAllyOrClient = Symbol(
         [0x1F830],
         [0x22FBA70],
@@ -28085,6 +28103,15 @@ class NaOverlay29Functions:
         None,
         "IsExperienceLocked",
         "Checks if a monster does not gain experience.\n\nThis basically just inverts IsSpecialStoryAlly, with the exception of also checking for the 'Joined At' field being DUNGEON_CLIENT (set for mission clients).\n\nr0: monster pointer\nreturn: bool",
+        None,
+    )
+
+    FindMonsterWithBehavior = Symbol(
+        [0x1F9AC],
+        [0x22FBBEC],
+        None,
+        "FindMonsterWithBehavior",
+        "Searches the dungeon for a monster with a certain monster behavior, and returns the first matching entity.\n\nr0: monster behavior to search for\nreturn: the first entity in the dungeon with the given monster behavior, or null if not found",
         None,
     )
 
@@ -28565,12 +28592,12 @@ class NaOverlay29Functions:
         None,
     )
 
-    IsMonsterCornered = Symbol(
+    CanMonsterMoveOrSwapWithAllyInAnyDirection = Symbol(
         [0x24ED8],
         [0x2301118],
         None,
-        "IsMonsterCornered",
-        "True if the given monster is cornered (it can't move in any direction)\n\nr0: Entity pointer\nreturn: True if the monster can't move in any direction, false otherwise.",
+        "CanMonsterMoveOrSwapWithAllyInAnyDirection",
+        "True if the given monster can move in any direction.\n\nr0: Entity pointer\nreturn: True if the monster can move in any direction, false otherwise.",
         None,
     )
 
@@ -30680,6 +30707,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    UseMoveByMoveId = Symbol(
+        [0x3ECE4],
+        [0x231AF24],
+        None,
+        "UseMoveByMoveId",
+        "Makes the entity use a specific move by its move ID. If the entity doesn't have the specified move and add_move_if_not_exists is true,\noverwrites the first move in the entity's moveset with the specified move.\n\nr0: entity pointer\nr1: move ID\nr2: if true and the entity doesn't have the specified move, the entity's first move is overwritten with the specified move",
+        None,
+    )
+
     ActivateMotorDrive = Symbol(
         [0x3EE20],
         [0x231B060],
@@ -31055,6 +31091,15 @@ class NaOverlay29Functions:
         None,
         "EnsureCanStandCurrentTile",
         "Checks that the given monster is standing on a tile it can stand on given its\nmovement type and warps it if not. If the monster is a non-leader ally, they\nwill be warped to the leader. Otherwise, the monster is warped randomly.\n\nr0: Entity pointer",
+        None,
+    )
+
+    UseMove = Symbol(
+        [0x4521C],
+        [0x232145C],
+        None,
+        "UseMove",
+        "Makes the given entity use a move at the given index in the entity's moveset.\n\nr0: Entity pointer\nr1: Moveset index\nr2: ?\nr3: ?\nstack[0]: ?",
         None,
     )
 
@@ -33119,6 +33164,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    TeleportFleeingOutlaw = Symbol(
+        [0x6EC64],
+        [0x234AEA4],
+        None,
+        "TeleportFleeingOutlaw",
+        "If there is a fleeing outlaw on the floor with the move Teleport, makes that outlaw use Teleport.\n\nNo params.",
+        None,
+    )
+
     InitAlertBoxInfo = Symbol(
         [0x6ED64],
         [0x234AFA4],
@@ -33562,6 +33616,10 @@ class NaOverlay29Functions:
 
     CreateMonsterSummaryFromMonster = _Deprecated(
         "CreateMonsterSummaryFromMonster", CreateMonsterSummaryFromEntity
+    )
+
+    IsMonsterCornered = _Deprecated(
+        "IsMonsterCornered", CanMonsterMoveOrSwapWithAllyInAnyDirection
     )
 
     ShouldMonsterRunAwayVariation = _Deprecated(

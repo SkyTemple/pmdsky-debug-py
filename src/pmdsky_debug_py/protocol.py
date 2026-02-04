@@ -16676,6 +16676,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    FindMoveOnMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DoesMonsterHaveMove: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsSpecialStoryAllyOrClient: Symbol[
         Optional[list[int]],
         None,
@@ -16692,6 +16702,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsExperienceLocked: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FindMonsterWithBehavior: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16961,7 +16976,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    IsMonsterCornered: Symbol[
+    CanMonsterMoveOrSwapWithAllyInAnyDirection: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -18136,6 +18151,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    UseMoveByMoveId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ActivateMotorDrive: Symbol[
         Optional[list[int]],
         None,
@@ -18342,6 +18362,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     EnsureCanStandCurrentTile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UseMove: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19487,6 +19512,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GenerateMissionEggMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TeleportFleeingOutlaw: Symbol[
         Optional[list[int]],
         None,
     ]

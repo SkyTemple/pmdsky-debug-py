@@ -27471,6 +27471,24 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    FindMoveOnMonster = Symbol(
+        None,
+        None,
+        None,
+        "FindMoveOnMonster",
+        "Searches for a move in an entity's moveset by move ID, and returns the moveset index of the move if found. Returns -1 if the move is not found.\n\nr0: entity pointer\nr1: move ID to search for\nreturn: the moveset index of the move if found, or -1 if not found",
+        None,
+    )
+
+    DoesMonsterHaveMove = Symbol(
+        None,
+        None,
+        None,
+        "DoesMonsterHaveMove",
+        "Checks if an entity has a specific move (move ID) in their moveset.\n\nr0: entity pointer\nr1: move ID to search for\nreturn: true if the entity has the given move ID, or false otherwise",
+        None,
+    )
+
     IsSpecialStoryAllyOrClient = Symbol(
         None,
         None,
@@ -27504,6 +27522,15 @@ class JpItcmOverlay29Functions:
         None,
         "IsExperienceLocked",
         "Checks if a monster does not gain experience.\n\nThis basically just inverts IsSpecialStoryAlly, with the exception of also checking for the 'Joined At' field being DUNGEON_CLIENT (set for mission clients).\n\nr0: monster pointer\nreturn: bool",
+        None,
+    )
+
+    FindMonsterWithBehavior = Symbol(
+        None,
+        None,
+        None,
+        "FindMonsterWithBehavior",
+        "Searches the dungeon for a monster with a certain monster behavior, and returns the first matching entity.\n\nr0: monster behavior to search for\nreturn: the first entity in the dungeon with the given monster behavior, or null if not found",
         None,
     )
 
@@ -27984,12 +28011,12 @@ class JpItcmOverlay29Functions:
         None,
     )
 
-    IsMonsterCornered = Symbol(
+    CanMonsterMoveOrSwapWithAllyInAnyDirection = Symbol(
         None,
         None,
         None,
-        "IsMonsterCornered",
-        "True if the given monster is cornered (it can't move in any direction)\n\nr0: Entity pointer\nreturn: True if the monster can't move in any direction, false otherwise.",
+        "CanMonsterMoveOrSwapWithAllyInAnyDirection",
+        "True if the given monster can move in any direction.\n\nr0: Entity pointer\nreturn: True if the monster can move in any direction, false otherwise.",
         None,
     )
 
@@ -30099,6 +30126,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    UseMoveByMoveId = Symbol(
+        None,
+        None,
+        None,
+        "UseMoveByMoveId",
+        "Makes the entity use a specific move by its move ID. If the entity doesn't have the specified move and add_move_if_not_exists is true,\noverwrites the first move in the entity's moveset with the specified move.\n\nr0: entity pointer\nr1: move ID\nr2: if true and the entity doesn't have the specified move, the entity's first move is overwritten with the specified move",
+        None,
+    )
+
     ActivateMotorDrive = Symbol(
         None,
         None,
@@ -30474,6 +30510,15 @@ class JpItcmOverlay29Functions:
         None,
         "EnsureCanStandCurrentTile",
         "Checks that the given monster is standing on a tile it can stand on given its\nmovement type and warps it if not. If the monster is a non-leader ally, they\nwill be warped to the leader. Otherwise, the monster is warped randomly.\n\nr0: Entity pointer",
+        None,
+    )
+
+    UseMove = Symbol(
+        None,
+        None,
+        None,
+        "UseMove",
+        "Makes the given entity use a move at the given index in the entity's moveset.\n\nr0: Entity pointer\nr1: Moveset index\nr2: ?\nr3: ?\nstack[0]: ?",
         None,
     )
 
@@ -32538,6 +32583,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    TeleportFleeingOutlaw = Symbol(
+        None,
+        None,
+        None,
+        "TeleportFleeingOutlaw",
+        "If there is a fleeing outlaw on the floor with the move Teleport, makes that outlaw use Teleport.\n\nNo params.",
+        None,
+    )
+
     InitAlertBoxInfo = Symbol(
         None,
         None,
@@ -32976,6 +33030,10 @@ class JpItcmOverlay29Functions:
 
     CreateMonsterSummaryFromMonster = _Deprecated(
         "CreateMonsterSummaryFromMonster", CreateMonsterSummaryFromEntity
+    )
+
+    IsMonsterCornered = _Deprecated(
+        "IsMonsterCornered", CanMonsterMoveOrSwapWithAllyInAnyDirection
     )
 
     ShouldMonsterRunAwayVariation = _Deprecated(
