@@ -13944,6 +13944,36 @@ class EuItcmLibsFunctions:
 
     GX_SendFifo64B = Symbol(None, None, None, "GX_SendFifo64B", "", None)
 
+    OS_InitIrqTable = Symbol(None, None, None, "OS_InitIrqTable", "", None)
+
+    OS_SetIrqFunction = Symbol(None, None, None, "OS_SetIrqFunction", "", None)
+
+    OS_SetIrqMask = Symbol(None, None, None, "OS_SetIrqMask", "", None)
+
+    OS_EnableIrqMask = Symbol(None, None, None, "OS_EnableIrqMask", "", None)
+
+    OS_DisableIrqMask = Symbol(None, None, None, "OS_DisableIrqMask", "", None)
+
+    OS_ResetRequestIrqMask = Symbol(
+        None, None, None, "OS_ResetRequestIrqMask", "", None
+    )
+
+    OS_SetIrqStackChecker = Symbol(None, None, None, "OS_SetIrqStackChecker", "", None)
+
+    OS_InitLock = Symbol(None, None, None, "OS_InitLock", "", None)
+
+    OS_LockByWord = Symbol(None, None, None, "OS_LockByWord", "", None)
+
+    OSi_DoUnlockByWord = Symbol(None, None, None, "OSi_DoUnlockByWord", "", None)
+
+    OS_UnlockByWord = Symbol(None, None, None, "OS_UnlockByWord", "", None)
+
+    OS_UnlockCartridge = Symbol(None, None, None, "OS_UnlockCartridge", "", None)
+
+    OS_UnLockCartridge = Symbol(None, None, None, "OS_UnLockCartridge", "", None)
+
+    OSi_FreeCartridgeBus = Symbol(None, None, None, "OSi_FreeCartridgeBus", "", None)
+
     OS_GetLockID = Symbol(None, None, None, "OS_GetLockID", "", None)
 
     IncrementThreadCount = Symbol(
@@ -13955,6 +13985,8 @@ class EuItcmLibsFunctions:
         None,
     )
 
+    OSi_InsertLinkToQueue = Symbol(None, None, None, "OSi_InsertLinkToQueue", "", None)
+
     InsertThreadIntoList = Symbol(
         None,
         None,
@@ -13963,6 +13995,10 @@ class EuItcmLibsFunctions:
         "Inserts a new thread into the linked thread list (see thread_info::thread_list_head).\n\nThe thread is inserted in sorted order.\n\nr0: Thread to insert",
         None,
     )
+
+    OS_RescheduleThread = Symbol(None, None, None, "OS_RescheduleThread", "", None)
+
+    OS_InitThread = Symbol(None, None, None, "OS_InitThread", "", None)
 
     StartThread = Symbol(
         None,
@@ -13982,6 +14018,18 @@ class EuItcmLibsFunctions:
         None,
     )
 
+    OS_SleepThread = Symbol(None, None, None, "OS_SleepThread", "", None)
+
+    OS_WakeupThreadDirect = Symbol(None, None, None, "OS_WakeupThreadDirect", "", None)
+
+    OS_SelectThread = Symbol(None, None, None, "OS_SelectThread", "", None)
+
+    OS_SetSwitchThreadCallback = Symbol(
+        None, None, None, "OS_SetSwitchThreadCallback", "", None
+    )
+
+    OSi_IdleThreadProc = Symbol(None, None, None, "OSi_IdleThreadProc", "", None)
+
     SetThreadField0xB4 = Symbol(
         None,
         None,
@@ -14000,6 +14048,46 @@ class EuItcmLibsFunctions:
         None,
     )
 
+    OS_SaveContext = Symbol(None, None, None, "OS_SaveContext", "", None)
+
+    OS_LoadContext = Symbol(None, None, None, "OS_LoadContext", "", None)
+
+    OS_InitMutex = Symbol(None, None, None, "OS_InitMutex", "", None)
+
+    DC_FlushAll = Symbol(None, None, None, "DC_FlushAll", "", None)
+
+    DC_InvalidateRange = Symbol(None, None, None, "DC_InvalidateRange", "", None)
+
+    DC_FlushRange = Symbol(None, None, None, "DC_FlushRange", "", None)
+
+    OSi_WaitVCount0 = Symbol(None, None, None, "OSi_WaitVCount0", "", None)
+
+    OS_Init = Symbol(None, None, None, "OS_Init", "", None)
+
+    OS_InitArena = Symbol(None, None, None, "OS_InitArena", "", None)
+
+    OS_InitArenaEx = Symbol(None, None, None, "OS_InitArenaEx", "", None)
+
+    OS_GetInitArenaHi = Symbol(None, None, None, "OS_GetInitArenaHi", "", None)
+
+    OS_GetInitArenaLo = Symbol(None, None, None, "OS_GetInitArenaLo", "", None)
+
+    OS_SetArenaHi = Symbol(None, None, None, "OS_SetArenaHi", "", None)
+
+    OS_SetArenaLo = Symbol(None, None, None, "OS_SetArenaLo", "", None)
+
+    OS_SetProtectionRegion1 = Symbol(
+        None, None, None, "OS_SetProtectionRegion1", "", None
+    )
+
+    OS_SetProtectionRegion2 = Symbol(
+        None, None, None, "OS_SetProtectionRegion2", "", None
+    )
+
+    OS_InitException = Symbol(None, None, None, "OS_InitException", "", None)
+
+    OSi_ExceptionHandler = Symbol(None, None, None, "OSi_ExceptionHandler", "", None)
+
     GetTimer0Control = Symbol(
         None,
         None,
@@ -14008,6 +14096,8 @@ class EuItcmLibsFunctions:
         "Returns the value of the control register for hardware timer 0\n\nreturn: Value of the control register",
         None,
     )
+
+    OS_InitVAlarm = Symbol(None, None, None, "OS_InitVAlarm", "", None)
 
     ClearIrqFlag = Symbol(
         None,
@@ -14072,6 +14162,8 @@ class EuItcmLibsFunctions:
         None,
     )
 
+    OS_InitReset = Symbol(None, None, None, "OS_InitReset", "", None)
+
     GetDsFirmwareUserSettings = Symbol(
         None,
         None,
@@ -14090,6 +14182,8 @@ class EuItcmLibsFunctions:
         None,
     )
 
+    OSi_InitVramExclusive = Symbol(None, None, None, "OSi_InitVramExclusive", "", None)
+
     WaitForever2 = Symbol(
         None,
         None,
@@ -14106,6 +14200,16 @@ class EuItcmLibsFunctions:
         "WaitForInterrupt",
         "Presumably blocks until the program receives an interrupt.\n\nThis just calls (in Ghidra terminology) coproc_moveto_Wait_for_interrupt(0). See https://en.wikipedia.org/wiki/ARM_architecture_family#Coprocessors.\n\nNo params.",
         None,
+    )
+
+    MI_SetWramBank = Symbol(None, None, None, "MI_SetWramBank", "", None)
+
+    MI_DmaCopy16 = Symbol(None, None, None, "MI_DmaCopy16", "", None)
+
+    MI_StopDma = Symbol(None, None, None, "MI_StopDma", "", None)
+
+    MIi_CheckDma0SourceAddress = Symbol(
+        None, None, None, "MIi_CheckDma0SourceAddress", "", None
     )
 
     ArrayFill16 = Symbol(
@@ -14189,6 +14293,24 @@ class EuItcmLibsFunctions:
         None,
     )
 
+    MI_Init = Symbol(None, None, None, "MI_Init", "", None)
+
+    Pxi_Init = Symbol(None, None, None, "Pxi_Init", "", None)
+
+    Pxi_InitFifo = Symbol(None, None, None, "Pxi_InitFifo", "", None)
+
+    Pxi_SetFifoRecvCallback = Symbol(
+        None, None, None, "Pxi_SetFifoRecvCallback", "", None
+    )
+
+    Pxi_IsCallbackReady = Symbol(None, None, None, "Pxi_IsCallbackReady", "", None)
+
+    Pxi_SendWordByFifo = Symbol(None, None, None, "Pxi_SendWordByFifo", "", None)
+
+    Pxii_HandlerRecvFifoNotEmpty = Symbol(
+        None, None, None, "Pxii_HandlerRecvFifoNotEmpty", "", None
+    )
+
     FileInit = Symbol(
         None,
         None,
@@ -14247,6 +14369,14 @@ class EuItcmLibsFunctions:
         None,
     )
 
+    PMi_CallCallbackAndUnlock = Symbol(
+        None, None, None, "PMi_CallCallbackAndUnlock", "", None
+    )
+
+    PM_Init = Symbol(None, None, None, "PM_Init", "", None)
+
+    PMi_CommonCallback = Symbol(None, None, None, "PMi_CommonCallback", "", None)
+
     PM_ForceToPowerOff = Symbol(
         None,
         None,
@@ -14254,6 +14384,68 @@ class EuItcmLibsFunctions:
         "PM_ForceToPowerOff",
         "Powers off the system.\n\nreturn: ?",
         None,
+    )
+
+    Cardi_InitCommon = Symbol(None, None, None, "Cardi_InitCommon", "", None)
+
+    Card_Enable = Symbol(None, None, None, "Card_Enable", "", None)
+
+    Cardi_ReadFromCache = Symbol(None, None, None, "Cardi_ReadFromCache", "", None)
+
+    Cardi_SetRomOp = Symbol(None, None, None, "Cardi_SetRomOp", "", None)
+
+    Cardi_ReadCard = Symbol(None, None, None, "Cardi_ReadCard", "", None)
+
+    Card_Init = Symbol(None, None, None, "Card_Init", "", None)
+
+    Cardi_GetRomAccessor = Symbol(None, None, None, "Cardi_GetRomAccessor", "", None)
+
+    Cardi_OnFifoRecv = Symbol(None, None, None, "Cardi_OnFifoRecv", "", None)
+
+    Cardi_TaskThread = Symbol(None, None, None, "Cardi_TaskThread", "", None)
+
+    Card_InitPulledOutCallback = Symbol(
+        None, None, None, "Card_InitPulledOutCallback", "", None
+    )
+
+    Cardi_PulledOutCallback = Symbol(
+        None, None, None, "Cardi_PulledOutCallback", "", None
+    )
+
+    Ctrdgi_InitCommon = Symbol(None, None, None, "Ctrdgi_InitCommon", "", None)
+
+    Ctrdgi_ChangeLatestAccessCycle = Symbol(
+        None, None, None, "Ctrdgi_ChangeLatestAccessCycle", "", None
+    )
+
+    Ctrdgi_RestoreAccessCycle = Symbol(
+        None, None, None, "Ctrdgi_RestoreAccessCycle", "", None
+    )
+
+    Ctrdgi_LockByProcessor = Symbol(
+        None, None, None, "Ctrdgi_LockByProcessor", "", None
+    )
+
+    Ctrdgi_UnlockByProcessor = Symbol(
+        None, None, None, "Ctrdgi_UnlockByProcessor", "", None
+    )
+
+    Ctrdgi_SendtoPxi = Symbol(None, None, None, "Ctrdgi_SendtoPxi", "", None)
+
+    Ctrdg_Init = Symbol(None, None, None, "Ctrdg_Init", "", None)
+
+    Ctrdgi_InitModuleInfo = Symbol(None, None, None, "Ctrdgi_InitModuleInfo", "", None)
+
+    Ctrdgi_CallbackForInitModuleInfo = Symbol(
+        None, None, None, "Ctrdgi_CallbackForInitModuleInfo", "", None
+    )
+
+    Ctrdgi_PulledOutCallback = Symbol(
+        None, None, None, "Ctrdgi_PulledOutCallback", "", None
+    )
+
+    Ctrdg_TerminateForPulledOut = Symbol(
+        None, None, None, "Ctrdg_TerminateForPulledOut", "", None
     )
 
     abs = Symbol(

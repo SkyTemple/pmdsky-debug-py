@@ -8868,6 +8868,76 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_InitIrqTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetIrqFunction: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetIrqMask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_EnableIrqMask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_DisableIrqMask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_ResetRequestIrqMask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetIrqStackChecker: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitLock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_LockByWord: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_DoUnlockByWord: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_UnlockByWord: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_UnlockCartridge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_UnLockCartridge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_FreeCartridgeBus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OS_GetLockID: Symbol[
         Optional[list[int]],
         None,
@@ -8878,7 +8948,22 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OSi_InsertLinkToQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     InsertThreadIntoList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_RescheduleThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitThread: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8893,6 +8978,31 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_SleepThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_WakeupThreadDirect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SelectThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetSwitchThreadCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IdleThreadProc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetThreadField0xB4: Symbol[
         Optional[list[int]],
         None,
@@ -8903,7 +9013,102 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_SaveContext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_LoadContext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitMutex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DC_FlushAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DC_InvalidateRange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DC_FlushRange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_WaitVCount0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitArena: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitArenaEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetInitArenaHi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetInitArenaLo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetArenaHi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetArenaLo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetProtectionRegion1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetProtectionRegion2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitException: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_ExceptionHandler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetTimer0Control: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitVAlarm: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8943,6 +9148,11 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_InitReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetDsFirmwareUserSettings: Symbol[
         Optional[list[int]],
         None,
@@ -8953,12 +9163,37 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OSi_InitVramExclusive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     WaitForever2: Symbol[
         Optional[list[int]],
         None,
     ]
 
     WaitForInterrupt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_SetWramBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_DmaCopy16: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_StopDma: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MIi_CheckDma0SourceAddress: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9008,6 +9243,41 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    MI_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Pxi_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Pxi_InitFifo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Pxi_SetFifoRecvCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Pxi_IsCallbackReady: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Pxi_SendWordByFifo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Pxii_HandlerRecvFifoNotEmpty: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     FileInit: Symbol[
         Optional[list[int]],
         None,
@@ -9043,7 +9313,132 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    PMi_CallCallbackAndUnlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_CommonCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PM_ForceToPowerOff: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_InitCommon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_Enable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_ReadFromCache: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_SetRomOp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_ReadCard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_GetRomAccessor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_OnFifoRecv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_TaskThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_InitPulledOutCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_PulledOutCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_InitCommon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_ChangeLatestAccessCycle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_RestoreAccessCycle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_LockByProcessor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_UnlockByProcessor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_SendtoPxi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdg_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_InitModuleInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_CallbackForInitModuleInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_PulledOutCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdg_TerminateForPulledOut: Symbol[
         Optional[list[int]],
         None,
     ]

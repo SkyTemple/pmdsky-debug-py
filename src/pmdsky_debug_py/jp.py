@@ -14180,6 +14180,50 @@ class JpLibsFunctions:
 
     GX_SendFifo64B = Symbol([0xC80C], [0x2078BCC], None, "GX_SendFifo64B", "", None)
 
+    OS_InitIrqTable = Symbol([0xC9A8], [0x2078D68], None, "OS_InitIrqTable", "", None)
+
+    OS_SetIrqFunction = Symbol(
+        [0xC9C0], [0x2078D80], None, "OS_SetIrqFunction", "", None
+    )
+
+    OS_SetIrqMask = Symbol([0xCB64], [0x2078F24], None, "OS_SetIrqMask", "", None)
+
+    OS_EnableIrqMask = Symbol([0xCB90], [0x2078F50], None, "OS_EnableIrqMask", "", None)
+
+    OS_DisableIrqMask = Symbol(
+        [0xCBC0], [0x2078F80], None, "OS_DisableIrqMask", "", None
+    )
+
+    OS_ResetRequestIrqMask = Symbol(
+        [0xCBF0], [0x2078FB0], None, "OS_ResetRequestIrqMask", "", None
+    )
+
+    OS_SetIrqStackChecker = Symbol(
+        [0xCC1C], [0x2078FDC], None, "OS_SetIrqStackChecker", "", None
+    )
+
+    OS_InitLock = Symbol([0xCC50], [0x2079010], None, "OS_InitLock", "", None)
+
+    OS_LockByWord = Symbol([0xCD68], [0x2079128], None, "OS_LockByWord", "", None)
+
+    OSi_DoUnlockByWord = Symbol(
+        [0xCD78], [0x2079138], None, "OSi_DoUnlockByWord", "", None
+    )
+
+    OS_UnlockByWord = Symbol([0xCDEC], [0x20791AC], None, "OS_UnlockByWord", "", None)
+
+    OS_UnlockCartridge = Symbol(
+        [0xCE68], [0x2079228], None, "OS_UnlockCartridge", "", None
+    )
+
+    OS_UnLockCartridge = Symbol(
+        [0xCE88], [0x2079248], None, "OS_UnLockCartridge", "", None
+    )
+
+    OSi_FreeCartridgeBus = Symbol(
+        [0xCECC], [0x207928C], None, "OSi_FreeCartridgeBus", "", None
+    )
+
     OS_GetLockID = Symbol([0xCF54], [0x2079314], None, "OS_GetLockID", "", None)
 
     IncrementThreadCount = Symbol(
@@ -14191,6 +14235,10 @@ class JpLibsFunctions:
         None,
     )
 
+    OSi_InsertLinkToQueue = Symbol(
+        [0xD090], [0x2079450], None, "OSi_InsertLinkToQueue", "", None
+    )
+
     InsertThreadIntoList = Symbol(
         [0xD1C0],
         [0x2079580],
@@ -14199,6 +14247,12 @@ class JpLibsFunctions:
         "Inserts a new thread into the linked thread list (see thread_info::thread_list_head).\n\nThe thread is inserted in sorted order.\n\nr0: Thread to insert",
         None,
     )
+
+    OS_RescheduleThread = Symbol(
+        [0xD268], [0x2079628], None, "OS_RescheduleThread", "", None
+    )
+
+    OS_InitThread = Symbol([0xD330], [0x20796F0], None, "OS_InitThread", "", None)
 
     StartThread = Symbol(
         [0xD488],
@@ -14216,6 +14270,22 @@ class JpLibsFunctions:
         "ThreadExit",
         "Function called by threads on exit.\n\nBase functions that contain an infinite loop that is not supposed to return and that have their stacks in main RAM have this function as their return address.\n\nNo params.",
         None,
+    )
+
+    OS_SleepThread = Symbol([0xD7B0], [0x2079B70], None, "OS_SleepThread", "", None)
+
+    OS_WakeupThreadDirect = Symbol(
+        [0xD868], [0x2079C28], None, "OS_WakeupThreadDirect", "", None
+    )
+
+    OS_SelectThread = Symbol([0xD890], [0x2079C50], None, "OS_SelectThread", "", None)
+
+    OS_SetSwitchThreadCallback = Symbol(
+        [0xDB04], [0x2079EC4], None, "OS_SetSwitchThreadCallback", "", None
+    )
+
+    OSi_IdleThreadProc = Symbol(
+        [0xDB2C], [0x2079EEC], None, "OSi_IdleThreadProc", "", None
     )
 
     SetThreadField0xB4 = Symbol(
@@ -14236,6 +14306,54 @@ class JpLibsFunctions:
         None,
     )
 
+    OS_SaveContext = Symbol([0xDC30], [0x2079FF0], None, "OS_SaveContext", "", None)
+
+    OS_LoadContext = Symbol([0xDC7C], [0x207A03C], None, "OS_LoadContext", "", None)
+
+    OS_InitMutex = Symbol([0xDF58], [0x207A318], None, "OS_InitMutex", "", None)
+
+    DC_FlushAll = Symbol([0xE198], [0x207A558], None, "DC_FlushAll", "", None)
+
+    DC_InvalidateRange = Symbol(
+        [0xE1CC], [0x207A58C], None, "DC_InvalidateRange", "", None
+    )
+
+    DC_FlushRange = Symbol([0xE204], [0x207A5C4], None, "DC_FlushRange", "", None)
+
+    OSi_WaitVCount0 = Symbol([0xE274], [0x207A634], None, "OSi_WaitVCount0", "", None)
+
+    OS_Init = Symbol([0xE294], [0x207A654], None, "OS_Init", "", None)
+
+    OS_InitArena = Symbol([0xE2DC], [0x207A69C], None, "OS_InitArena", "", None)
+
+    OS_InitArenaEx = Symbol([0xE3E0], [0x207A7A0], None, "OS_InitArenaEx", "", None)
+
+    OS_GetInitArenaHi = Symbol(
+        [0xE474], [0x207A834], None, "OS_GetInitArenaHi", "", None
+    )
+
+    OS_GetInitArenaLo = Symbol(
+        [0xE558], [0x207A918], None, "OS_GetInitArenaLo", "", None
+    )
+
+    OS_SetArenaHi = Symbol([0xE600], [0x207A9C0], None, "OS_SetArenaHi", "", None)
+
+    OS_SetArenaLo = Symbol([0xE614], [0x207A9D4], None, "OS_SetArenaLo", "", None)
+
+    OS_SetProtectionRegion1 = Symbol(
+        [0xEA3C], [0x207ADFC], None, "OS_SetProtectionRegion1", "", None
+    )
+
+    OS_SetProtectionRegion2 = Symbol(
+        [0xEA44], [0x207AE04], None, "OS_SetProtectionRegion2", "", None
+    )
+
+    OS_InitException = Symbol([0xEA4C], [0x207AE0C], None, "OS_InitException", "", None)
+
+    OSi_ExceptionHandler = Symbol(
+        [0xEABC], [0x207AE7C], None, "OSi_ExceptionHandler", "", None
+    )
+
     GetTimer0Control = Symbol(
         [0xEE0C],
         [0x207B1CC],
@@ -14244,6 +14362,8 @@ class JpLibsFunctions:
         "Returns the value of the control register for hardware timer 0\n\nreturn: Value of the control register",
         None,
     )
+
+    OS_InitVAlarm = Symbol([0xF298], [0x207B658], None, "OS_InitVAlarm", "", None)
 
     ClearIrqFlag = Symbol(
         [0xF6F8],
@@ -14308,6 +14428,8 @@ class JpLibsFunctions:
         None,
     )
 
+    OS_InitReset = Symbol([0xF7A4], [0x207BB64], None, "OS_InitReset", "", None)
+
     GetDsFirmwareUserSettings = Symbol(
         [0xF930],
         [0x207BCF0],
@@ -14326,6 +14448,10 @@ class JpLibsFunctions:
         None,
     )
 
+    OSi_InitVramExclusive = Symbol(
+        [0xF9BC], [0x207BD7C], None, "OSi_InitVramExclusive", "", None
+    )
+
     WaitForever2 = Symbol(
         [0xFB48],
         [0x207BF08],
@@ -14342,6 +14468,16 @@ class JpLibsFunctions:
         "WaitForInterrupt",
         "Presumably blocks until the program receives an interrupt.\n\nThis just calls (in Ghidra terminology) coproc_moveto_Wait_for_interrupt(0). See https://en.wikipedia.org/wiki/ARM_architecture_family#Coprocessors.\n\nNo params.",
         None,
+    )
+
+    MI_SetWramBank = Symbol([0xFB64], [0x207BF24], None, "MI_SetWramBank", "", None)
+
+    MI_DmaCopy16 = Symbol([0xFC64], [0x207C024], None, "MI_DmaCopy16", "", None)
+
+    MI_StopDma = Symbol([0x1008C], [0x207C44C], None, "MI_StopDma", "", None)
+
+    MIi_CheckDma0SourceAddress = Symbol(
+        [0x1018C], [0x207C54C], None, "MIi_CheckDma0SourceAddress", "", None
     )
 
     ArrayFill16 = Symbol(
@@ -14425,6 +14561,28 @@ class JpLibsFunctions:
         None,
     )
 
+    MI_Init = Symbol([0x106EC], [0x207CAAC], None, "MI_Init", "", None)
+
+    Pxi_Init = Symbol([0x118CC], [0x207DC8C], None, "Pxi_Init", "", None)
+
+    Pxi_InitFifo = Symbol([0x118D8], [0x207DC98], None, "Pxi_InitFifo", "", None)
+
+    Pxi_SetFifoRecvCallback = Symbol(
+        [0x119D8], [0x207DD98], None, "Pxi_SetFifoRecvCallback", "", None
+    )
+
+    Pxi_IsCallbackReady = Symbol(
+        [0x11A24], [0x207DDE4], None, "Pxi_IsCallbackReady", "", None
+    )
+
+    Pxi_SendWordByFifo = Symbol(
+        [0x11A48], [0x207DE08], None, "Pxi_SendWordByFifo", "", None
+    )
+
+    Pxii_HandlerRecvFifoNotEmpty = Symbol(
+        [0x11AD0], [0x207DE90], None, "Pxii_HandlerRecvFifoNotEmpty", "", None
+    )
+
     FileInit = Symbol(
         [0x1330C],
         [0x207F6CC],
@@ -14488,6 +14646,16 @@ class JpLibsFunctions:
         None,
     )
 
+    PMi_CallCallbackAndUnlock = Symbol(
+        [0x159AC], [0x2081D6C], None, "PMi_CallCallbackAndUnlock", "", None
+    )
+
+    PM_Init = Symbol([0x159EC], [0x2081DAC], None, "PM_Init", "", None)
+
+    PMi_CommonCallback = Symbol(
+        [0x15A90], [0x2081E50], None, "PMi_CommonCallback", "", None
+    )
+
     PM_ForceToPowerOff = Symbol(
         [0x15F34],
         [0x20822F4],
@@ -14495,6 +14663,84 @@ class JpLibsFunctions:
         "PM_ForceToPowerOff",
         "Powers off the system.\n\nreturn: ?",
         None,
+    )
+
+    Cardi_InitCommon = Symbol(
+        [0x17170], [0x2083530], None, "Cardi_InitCommon", "", None
+    )
+
+    Card_Enable = Symbol([0x172A8], [0x2083668], None, "Card_Enable", "", None)
+
+    Cardi_ReadFromCache = Symbol(
+        [0x17BB4], [0x2083F74], None, "Cardi_ReadFromCache", "", None
+    )
+
+    Cardi_SetRomOp = Symbol([0x17C40], [0x2084000], None, "Cardi_SetRomOp", "", None)
+
+    Cardi_ReadCard = Symbol([0x17F50], [0x2084310], None, "Cardi_ReadCard", "", None)
+
+    Card_Init = Symbol([0x1822C], [0x20845EC], None, "Card_Init", "", None)
+
+    Cardi_GetRomAccessor = Symbol(
+        [0x1829C], [0x208465C], None, "Cardi_GetRomAccessor", "", None
+    )
+
+    Cardi_OnFifoRecv = Symbol(
+        [0x182A8], [0x2084668], None, "Cardi_OnFifoRecv", "", None
+    )
+
+    Cardi_TaskThread = Symbol(
+        [0x182DC], [0x208469C], None, "Cardi_TaskThread", "", None
+    )
+
+    Card_InitPulledOutCallback = Symbol(
+        [0x18480], [0x2084840], None, "Card_InitPulledOutCallback", "", None
+    )
+
+    Cardi_PulledOutCallback = Symbol(
+        [0x184AC], [0x208486C], None, "Cardi_PulledOutCallback", "", None
+    )
+
+    Ctrdgi_InitCommon = Symbol(
+        [0x1865C], [0x2084A1C], None, "Ctrdgi_InitCommon", "", None
+    )
+
+    Ctrdgi_ChangeLatestAccessCycle = Symbol(
+        [0x187E0], [0x2084BA0], None, "Ctrdgi_ChangeLatestAccessCycle", "", None
+    )
+
+    Ctrdgi_RestoreAccessCycle = Symbol(
+        [0x18828], [0x2084BE8], None, "Ctrdgi_RestoreAccessCycle", "", None
+    )
+
+    Ctrdgi_LockByProcessor = Symbol(
+        [0x1885C], [0x2084C1C], None, "Ctrdgi_LockByProcessor", "", None
+    )
+
+    Ctrdgi_UnlockByProcessor = Symbol(
+        [0x188B8], [0x2084C78], None, "Ctrdgi_UnlockByProcessor", "", None
+    )
+
+    Ctrdgi_SendtoPxi = Symbol(
+        [0x188DC], [0x2084C9C], None, "Ctrdgi_SendtoPxi", "", None
+    )
+
+    Ctrdg_Init = Symbol([0x18974], [0x2084D34], None, "Ctrdg_Init", "", None)
+
+    Ctrdgi_InitModuleInfo = Symbol(
+        [0x18A28], [0x2084DE8], None, "Ctrdgi_InitModuleInfo", "", None
+    )
+
+    Ctrdgi_CallbackForInitModuleInfo = Symbol(
+        [0x18C1C], [0x2084FDC], None, "Ctrdgi_CallbackForInitModuleInfo", "", None
+    )
+
+    Ctrdgi_PulledOutCallback = Symbol(
+        [0x18C48], [0x2085008], None, "Ctrdgi_PulledOutCallback", "", None
+    )
+
+    Ctrdg_TerminateForPulledOut = Symbol(
+        [0x18CA4], [0x2085064], None, "Ctrdg_TerminateForPulledOut", "", None
     )
 
     abs = Symbol(
