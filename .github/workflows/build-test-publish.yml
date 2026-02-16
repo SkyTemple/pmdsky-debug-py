@@ -13,7 +13,7 @@ jobs:
     name: Build the Python wheel
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Build Python wheels
         run: |
           python3 -m pip install --upgrade build
@@ -31,7 +31,7 @@ jobs:
     name: Deploy wheels to PyPI if tag
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Check if on tag
         id: check
         run: |
