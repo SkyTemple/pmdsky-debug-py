@@ -14216,8 +14216,8 @@ class JpLibsFunctions:
         [0xCE68], [0x2079228], None, "OS_UnlockCartridge", "", None
     )
 
-    OS_UnLockCartridge = Symbol(
-        [0xCE88], [0x2079248], None, "OS_UnLockCartridge", "", None
+    OS_UnlockCartridgeVeneer = Symbol(
+        [0xCE88], [0x2079248], None, "OS_UnlockCartridgeVeneer", "", None
     )
 
     OSi_FreeCartridgeBus = Symbol(

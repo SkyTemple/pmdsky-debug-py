@@ -14221,8 +14221,8 @@ class NaLibsFunctions:
         [0xCE68], [0x2078F40], None, "OS_UnlockCartridge", "", None
     )
 
-    OS_UnLockCartridge = Symbol(
-        [0xCE88], [0x2078F60], None, "OS_UnLockCartridge", "", None
+    OS_UnlockCartridgeVeneer = Symbol(
+        [0xCE88], [0x2078F60], None, "OS_UnlockCartridgeVeneer", "", None
     )
 
     OSi_FreeCartridgeBus = Symbol(

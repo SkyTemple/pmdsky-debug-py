@@ -14221,8 +14221,8 @@ class EuLibsFunctions:
         [0xCE68], [0x20792D8], None, "OS_UnlockCartridge", "", None
     )
 
-    OS_UnLockCartridge = Symbol(
-        [0xCE88], [0x20792F8], None, "OS_UnLockCartridge", "", None
+    OS_UnlockCartridgeVeneer = Symbol(
+        [0xCE88], [0x20792F8], None, "OS_UnlockCartridgeVeneer", "", None
     )
 
     OSi_FreeCartridgeBus = Symbol(

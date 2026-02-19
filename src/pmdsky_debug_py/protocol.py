@@ -8928,7 +8928,7 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    OS_UnLockCartridge: Symbol[
+    OS_UnlockCartridgeVeneer: Symbol[
         Optional[list[int]],
         None,
     ]

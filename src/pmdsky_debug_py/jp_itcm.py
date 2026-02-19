@@ -13970,7 +13970,9 @@ class JpItcmLibsFunctions:
 
     OS_UnlockCartridge = Symbol(None, None, None, "OS_UnlockCartridge", "", None)
 
-    OS_UnLockCartridge = Symbol(None, None, None, "OS_UnLockCartridge", "", None)
+    OS_UnlockCartridgeVeneer = Symbol(
+        None, None, None, "OS_UnlockCartridgeVeneer", "", None
+    )
 
     OSi_FreeCartridgeBus = Symbol(None, None, None, "OSi_FreeCartridgeBus", "", None)
 
