@@ -11509,6 +11509,11 @@ class Overlay0FunctionsProtocol(Protocol):
 
 class Overlay0DataProtocol(Protocol):
 
+    OV0_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     TOP_MENU_MUSIC_ID: Symbol[
         Optional[list[int]],
         None,
@@ -11633,6 +11638,11 @@ class Overlay1DataProtocol(Protocol):
     ]
 
     MAIN_DEBUG_MENU_ITEMS_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OV1_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -12905,6 +12915,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OV10_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     DEFEAT_ITEM_LOSS_CHANCE: Symbol[
         Optional[list[int]],
         None,
@@ -13778,6 +13793,11 @@ class Overlay11DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OV11_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     UNIONALL_RAM_ADDRESS: Symbol[
         Optional[list[int]],
         None,
@@ -13823,7 +13843,10 @@ class Overlay12FunctionsProtocol(Protocol):
 
 class Overlay12DataProtocol(Protocol):
 
-    pass
+    OV12_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay12Protocol = SectionProtocol[
@@ -13953,7 +13976,7 @@ class Overlay13DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY13_RESERVED_SPACE: Symbol[
+    OV13_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14311,6 +14334,11 @@ class Overlay14DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OV14_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SENTRY_DUTY_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -14366,7 +14394,7 @@ class Overlay15DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY15_RESERVED_SPACE: Symbol[
+    OV15_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14446,7 +14474,7 @@ class Overlay16DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY16_RESERVED_SPACE: Symbol[
+    OV16_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14556,7 +14584,7 @@ class Overlay17DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY17_RESERVED_SPACE: Symbol[
+    OV17_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14696,7 +14724,7 @@ class Overlay18DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY18_RESERVED_SPACE: Symbol[
+    OV18_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14829,7 +14857,7 @@ class Overlay19DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY19_RESERVED_SPACE: Symbol[
+    OV19_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14859,7 +14887,10 @@ class Overlay2FunctionsProtocol(Protocol):
 
 class Overlay2DataProtocol(Protocol):
 
-    pass
+    OV2_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay2Protocol = SectionProtocol[
@@ -14976,7 +15007,7 @@ class Overlay20DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY20_RESERVED_SPACE: Symbol[
+    OV20_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15264,7 +15295,7 @@ class Overlay21DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY21_RESERVED_SPACE: Symbol[
+    OV21_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15374,7 +15405,7 @@ class Overlay22DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY22_RESERVED_SPACE: Symbol[
+    OV22_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15504,7 +15535,7 @@ class Overlay23DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY23_RESERVED_SPACE: Symbol[
+    OV23_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15579,7 +15610,7 @@ class Overlay24DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY24_RESERVED_SPACE: Symbol[
+    OV24_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15669,7 +15700,7 @@ class Overlay25DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY25_RESERVED_SPACE: Symbol[
+    OV25_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15699,7 +15730,7 @@ class Overlay26DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY26_RESERVED_SPACE: Symbol[
+    OV26_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15824,7 +15855,7 @@ class Overlay27DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY27_RESERVED_SPACE: Symbol[
+    OV27_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -15854,7 +15885,10 @@ class Overlay28FunctionsProtocol(Protocol):
 
 class Overlay28DataProtocol(Protocol):
 
-    pass
+    OV28_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay28Protocol = SectionProtocol[
@@ -20609,6 +20643,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OV29_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     DUNGEON_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -20734,7 +20773,10 @@ class Overlay3FunctionsProtocol(Protocol):
 
 class Overlay3DataProtocol(Protocol):
 
-    pass
+    OV3_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay3Protocol = SectionProtocol[
@@ -20760,6 +20802,11 @@ class Overlay30DataProtocol(Protocol):
     ]
 
     OVERLAY30_JP_STRING_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OV30_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -21122,7 +21169,7 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY31_RESERVED_SPACE: Symbol[
+    OV31_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -21202,7 +21249,10 @@ class Overlay32FunctionsProtocol(Protocol):
 
 class Overlay32DataProtocol(Protocol):
 
-    pass
+    OV32_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay32Protocol = SectionProtocol[
@@ -21219,7 +21269,10 @@ class Overlay33FunctionsProtocol(Protocol):
 
 class Overlay33DataProtocol(Protocol):
 
-    pass
+    OV33_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay33Protocol = SectionProtocol[
@@ -21259,7 +21312,7 @@ class Overlay34DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY34_RESERVED_SPACE: Symbol[
+    OV34_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -21304,7 +21357,10 @@ class Overlay35FunctionsProtocol(Protocol):
 
 class Overlay35DataProtocol(Protocol):
 
-    pass
+    OV35_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay35Protocol = SectionProtocol[
@@ -21321,7 +21377,10 @@ class Overlay4FunctionsProtocol(Protocol):
 
 class Overlay4DataProtocol(Protocol):
 
-    pass
+    OV4_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay4Protocol = SectionProtocol[
@@ -21338,7 +21397,10 @@ class Overlay5FunctionsProtocol(Protocol):
 
 class Overlay5DataProtocol(Protocol):
 
-    pass
+    OV5_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay5Protocol = SectionProtocol[
@@ -21355,7 +21417,10 @@ class Overlay6FunctionsProtocol(Protocol):
 
 class Overlay6DataProtocol(Protocol):
 
-    pass
+    OV6_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay6Protocol = SectionProtocol[
@@ -21372,7 +21437,10 @@ class Overlay7FunctionsProtocol(Protocol):
 
 class Overlay7DataProtocol(Protocol):
 
-    pass
+    OV7_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay7Protocol = SectionProtocol[
@@ -21389,7 +21457,10 @@ class Overlay8FunctionsProtocol(Protocol):
 
 class Overlay8DataProtocol(Protocol):
 
-    pass
+    OV8_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
 
 
 Overlay8Protocol = SectionProtocol[
@@ -21475,6 +21546,11 @@ class Overlay9DataProtocol(Protocol):
     ]
 
     INPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OV9_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

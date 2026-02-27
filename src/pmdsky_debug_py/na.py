@@ -18472,6 +18472,15 @@ class NaOverlay0Functions:
 
 class NaOverlay0Data:
 
+    OV0_STATIC_INITIALIZER = Symbol(
+        [0x5BCF0],
+        [0x2318770],
+        0x4,
+        "OV0_STATIC_INITIALIZER",
+        "Static initializer for overlay 0.",
+        "undefined4",
+    )
+
     TOP_MENU_MUSIC_ID = Symbol(
         [0x1720],
         [0x22BE1A0],
@@ -18671,6 +18680,15 @@ class NaOverlay1Data:
         "MAIN_DEBUG_MENU_ITEMS_2",
         "",
         "struct simple_menu_id_item[7]",
+    )
+
+    OV1_STATIC_INITIALIZER = Symbol(
+        [0x12B94],
+        [0x233C0B4],
+        0x4,
+        "OV1_STATIC_INITIALIZER",
+        "Static initializer for overlay 1.",
+        "undefined4",
     )
 
 
@@ -20942,6 +20960,15 @@ class NaOverlay10Data:
         "struct special_monster_move_animation[7422]",
     )
 
+    OV10_STATIC_INITIALIZER = Symbol(
+        [0x1F728],
+        [0x22DC1A8],
+        0x4,
+        "OV10_STATIC_INITIALIZER",
+        "Static initializer for overlay 10.",
+        "undefined4",
+    )
+
     DEFEAT_ITEM_LOSS_CHANCE = Symbol(
         [0x6188],
         [0x22C2C08],
@@ -22487,6 +22514,15 @@ class NaOverlay11Data:
         "struct overlay_load_entry[21]",
     )
 
+    OV11_STATIC_INITIALIZER = Symbol(
+        [0x48A00],
+        [0x2324C40],
+        0x4,
+        "OV11_STATIC_INITIALIZER",
+        "Static initializer for overlay 11.",
+        "undefined4",
+    )
+
     UNIONALL_RAM_ADDRESS = Symbol(
         [0x48A64], [0x2324CA4], None, "UNIONALL_RAM_ADDRESS", "[Runtime]", ""
     )
@@ -22548,7 +22584,14 @@ class NaOverlay12Functions:
 
 class NaOverlay12Data:
 
-    pass
+    OV12_STATIC_INITIALIZER = Symbol(
+        [0x0],
+        [0x238A140],
+        0x4,
+        "OV12_STATIC_INITIALIZER",
+        "Static initializer for overlay 12.",
+        "undefined4",
+    )
 
 
 class NaOverlay12Section:
@@ -22772,13 +22815,13 @@ class NaOverlay13Data:
         "struct quiz_answer_points_entry[174]",
     )
 
-    OVERLAY13_RESERVED_SPACE = Symbol(
+    OV13_STATIC_INITIALIZER = Symbol(
         [0x2D50],
         [0x238CE90],
-        0x10,
-        "OVERLAY13_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV13_STATIC_INITIALIZER",
+        "Static initializer for overlay 13.",
+        "undefined4",
     )
 
     OVERLAY13_UNKNOWN_POINTER__NA_238CEA0 = Symbol(
@@ -22851,6 +22894,10 @@ class NaOverlay13Data:
         "QUIZ_QUESTION_ANSWER_ASSOCIATIONS",
         "0x2 * (66 questions)\n\nNote: unverified, ported from Irdkwia's notes",
         "uint16_t[66]",
+    )
+
+    OVERLAY13_RESERVED_SPACE = _Deprecated(
+        "OVERLAY13_RESERVED_SPACE", OV13_STATIC_INITIALIZER
     )
 
 
@@ -23313,6 +23360,15 @@ class NaOverlay14Data:
         "struct simple_menu_id_item[9]",
     )
 
+    OV14_STATIC_INITIALIZER = Symbol(
+        [0x3A2C],
+        [0x238DB6C],
+        0x4,
+        "OV14_STATIC_INITIALIZER",
+        "Static initializer for overlay 14.",
+        "undefined4",
+    )
+
     SENTRY_DUTY_PTR = Symbol(
         [0x3A40],
         [0x238DB80],
@@ -23402,13 +23458,13 @@ class NaOverlay15Data:
         "struct window_params",
     )
 
-    OVERLAY15_RESERVED_SPACE = Symbol(
+    OV15_STATIC_INITIALIZER = Symbol(
         [0x1024],
         [0x238B164],
-        0x1C,
-        "OVERLAY15_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV15_STATIC_INITIALIZER",
+        "Static initializer for overlay 15.",
+        "undefined4",
     )
 
     OVERLAY15_UNKNOWN_POINTER__NA_238B180 = Symbol(
@@ -23418,6 +23474,10 @@ class NaOverlay15Data:
         "OVERLAY15_UNKNOWN_POINTER__NA_238B180",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY15_RESERVED_SPACE = _Deprecated(
+        "OVERLAY15_RESERVED_SPACE", OV15_STATIC_INITIALIZER
     )
 
 
@@ -23536,13 +23596,13 @@ class NaOverlay16Data:
         "struct window_params",
     )
 
-    OVERLAY16_RESERVED_SPACE = Symbol(
+    OV16_STATIC_INITIALIZER = Symbol(
         [0x2CF4],
         [0x238CE34],
-        0xC,
-        "OVERLAY16_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV16_STATIC_INITIALIZER",
+        "Static initializer for overlay 16.",
+        "undefined4",
     )
 
     OVERLAY16_UNKNOWN_POINTER__NA_238CE40 = Symbol(
@@ -23561,6 +23621,10 @@ class NaOverlay16Data:
         "OVERLAY16_UNKNOWN_POINTER__NA_238CE58",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY16_RESERVED_SPACE = _Deprecated(
+        "OVERLAY16_RESERVED_SPACE", OV16_STATIC_INITIALIZER
     )
 
 
@@ -23724,13 +23788,13 @@ class NaOverlay17Data:
         "void*[42]",
     )
 
-    OVERLAY17_RESERVED_SPACE = Symbol(
+    OV17_STATIC_INITIALIZER = Symbol(
         [0x1CAC],
         [0x238BDEC],
-        0x14,
-        "OVERLAY17_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV17_STATIC_INITIALIZER",
+        "Static initializer for overlay 17.",
+        "undefined4",
     )
 
     OVERLAY17_UNKNOWN_POINTER__NA_238BE00 = Symbol(
@@ -23758,6 +23822,10 @@ class NaOverlay17Data:
         "OVERLAY17_UNKNOWN_POINTER__NA_238BE08",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY17_RESERVED_SPACE = _Deprecated(
+        "OVERLAY17_RESERVED_SPACE", OV17_STATIC_INITIALIZER
     )
 
 
@@ -23966,13 +24034,13 @@ class NaOverlay18Data:
         "void*[76]",
     )
 
-    OVERLAY18_RESERVED_SPACE = Symbol(
+    OV18_STATIC_INITIALIZER = Symbol(
         [0x34DC],
         [0x238D61C],
         0x4,
-        "OVERLAY18_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "OV18_STATIC_INITIALIZER",
+        "Static initializer for overlay 18.",
+        "undefined4",
     )
 
     OVERLAY18_UNKNOWN_POINTER__NA_238D620 = Symbol(
@@ -24000,6 +24068,10 @@ class NaOverlay18Data:
         "OVERLAY18_UNKNOWN_POINTER__NA_238D628",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY18_RESERVED_SPACE = _Deprecated(
+        "OVERLAY18_RESERVED_SPACE", OV18_STATIC_INITIALIZER
     )
 
 
@@ -24197,13 +24269,13 @@ class NaOverlay19Data:
         "struct simple_menu_id_item[6]",
     )
 
-    OVERLAY19_RESERVED_SPACE = Symbol(
+    OV19_STATIC_INITIALIZER = Symbol(
         [0x4204],
         [0x238E344],
-        0x1C,
-        "OVERLAY19_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV19_STATIC_INITIALIZER",
+        "Static initializer for overlay 19.",
+        "undefined4",
     )
 
     OVERLAY19_UNKNOWN_POINTER__NA_238E360 = Symbol(
@@ -24224,6 +24296,10 @@ class NaOverlay19Data:
         "",
     )
 
+    OVERLAY19_RESERVED_SPACE = _Deprecated(
+        "OVERLAY19_RESERVED_SPACE", OV19_STATIC_INITIALIZER
+    )
+
 
 class NaOverlay19Section:
     name = "overlay19"
@@ -24241,7 +24317,14 @@ class NaOverlay2Functions:
 
 class NaOverlay2Data:
 
-    pass
+    OV2_STATIC_INITIALIZER = Symbol(
+        [0x29A20],
+        [0x2352F40],
+        0x4,
+        "OV2_STATIC_INITIALIZER",
+        "Static initializer for overlay 2.",
+        "undefined4",
+    )
 
 
 class NaOverlay2Section:
@@ -24440,13 +24523,13 @@ class NaOverlay20Data:
         "struct simple_menu_id_item[3]",
     )
 
-    OVERLAY20_RESERVED_SPACE = Symbol(
+    OV20_STATIC_INITIALIZER = Symbol(
         [0x2FD0],
         [0x238D110],
-        0x10,
-        "OVERLAY20_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV20_STATIC_INITIALIZER",
+        "Static initializer for overlay 20.",
+        "undefined4",
     )
 
     OVERLAY20_UNKNOWN_POINTER__NA_238D120 = Symbol(
@@ -24483,6 +24566,10 @@ class NaOverlay20Data:
         "OVERLAY20_UNKNOWN_POINTER__NA_238D12C",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY20_RESERVED_SPACE = _Deprecated(
+        "OVERLAY20_RESERVED_SPACE", OV20_STATIC_INITIALIZER
     )
 
 
@@ -24945,13 +25032,13 @@ class NaOverlay21Data:
         "char[18]",
     )
 
-    OVERLAY21_RESERVED_SPACE = Symbol(
+    OV21_STATIC_INITIALIZER = Symbol(
         [0x2DF8],
         [0x238CF38],
-        0x8,
-        "OVERLAY21_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "undefined[8]",
+        0x4,
+        "OV21_STATIC_INITIALIZER",
+        "Static initializer for overlay 21.",
+        "undefined4",
     )
 
     SWAP_SHOP_MENU_DATA_PTR = Symbol(
@@ -24970,6 +25057,10 @@ class NaOverlay21Data:
         "OVERLAY21_UNKNOWN_POINTER__NA_238CF44",
         "Note: unverified, ported from Irdkwia's notes",
         "undefined*",
+    )
+
+    OVERLAY21_RESERVED_SPACE = _Deprecated(
+        "OVERLAY21_RESERVED_SPACE", OV21_STATIC_INITIALIZER
     )
 
 
@@ -25133,13 +25224,13 @@ class NaOverlay22Data:
         "struct window_params",
     )
 
-    OVERLAY22_RESERVED_SPACE = Symbol(
+    OV22_STATIC_INITIALIZER = Symbol(
         [0x4B18],
         [0x238EC58],
-        0x8,
-        "OVERLAY22_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV22_STATIC_INITIALIZER",
+        "Static initializer for overlay 22.",
+        "undefined4",
     )
 
     OVERLAY22_UNKNOWN_POINTER__NA_238EC60 = Symbol(
@@ -25185,6 +25276,10 @@ class NaOverlay22Data:
         "OVERLAY22_UNKNOWN_POINTER__NA_238EC70",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY22_RESERVED_SPACE = _Deprecated(
+        "OVERLAY22_RESERVED_SPACE", OV22_STATIC_INITIALIZER
     )
 
 
@@ -25357,13 +25452,13 @@ class NaOverlay23Data:
         "struct window_params",
     )
 
-    OVERLAY23_RESERVED_SPACE = Symbol(
+    OV23_STATIC_INITIALIZER = Symbol(
         [0x3748],
         [0x238D888],
-        0x18,
-        "OVERLAY23_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV23_STATIC_INITIALIZER",
+        "Static initializer for overlay 23.",
+        "undefined4",
     )
 
     OVERLAY23_UNKNOWN_POINTER__NA_238D8A0 = Symbol(
@@ -25373,6 +25468,10 @@ class NaOverlay23Data:
         "OVERLAY23_UNKNOWN_POINTER__NA_238D8A0",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY23_RESERVED_SPACE = _Deprecated(
+        "OVERLAY23_RESERVED_SPACE", OV23_STATIC_INITIALIZER
     )
 
 
@@ -25484,13 +25583,13 @@ class NaOverlay24Data:
         "struct window_params",
     )
 
-    OVERLAY24_RESERVED_SPACE = Symbol(
+    OV24_STATIC_INITIALIZER = Symbol(
         [0x24A0],
         [0x238C5E0],
-        0x20,
-        "OVERLAY24_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV24_STATIC_INITIALIZER",
+        "Static initializer for overlay 24.",
+        "undefined4",
     )
 
     OVERLAY24_UNKNOWN_POINTER__NA_238C600 = Symbol(
@@ -25500,6 +25599,10 @@ class NaOverlay24Data:
         "OVERLAY24_UNKNOWN_POINTER__NA_238C600",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY24_RESERVED_SPACE = _Deprecated(
+        "OVERLAY24_RESERVED_SPACE", OV24_STATIC_INITIALIZER
     )
 
 
@@ -25636,13 +25739,13 @@ class NaOverlay25Data:
         "struct window_params",
     )
 
-    OVERLAY25_RESERVED_SPACE = Symbol(
+    OV25_STATIC_INITIALIZER = Symbol(
         [0x1484],
         [0x238B5C4],
-        0x1C,
-        "OVERLAY25_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV25_STATIC_INITIALIZER",
+        "Static initializer for overlay 25.",
+        "undefined4",
     )
 
     OVERLAY25_UNKNOWN_POINTER__NA_238B5E0 = Symbol(
@@ -25652,6 +25755,10 @@ class NaOverlay25Data:
         "OVERLAY25_UNKNOWN_POINTER__NA_238B5E0",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY25_RESERVED_SPACE = _Deprecated(
+        "OVERLAY25_RESERVED_SPACE", OV25_STATIC_INITIALIZER
     )
 
 
@@ -25680,13 +25787,13 @@ class NaOverlay26Data:
         "",
     )
 
-    OVERLAY26_RESERVED_SPACE = Symbol(
+    OV26_STATIC_INITIALIZER = Symbol(
         [0xE08],
         [0x238AF48],
-        0x18,
-        "OVERLAY26_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV26_STATIC_INITIALIZER",
+        "Static initializer for overlay 26.",
+        "undefined4",
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF60 = Symbol(
@@ -25732,6 +25839,10 @@ class NaOverlay26Data:
         "OVERLAY26_UNKNOWN_POINTER5__NA_238AF70",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    OVERLAY26_RESERVED_SPACE = _Deprecated(
+        "OVERLAY26_RESERVED_SPACE", OV26_STATIC_INITIALIZER
     )
 
 
@@ -25895,13 +26006,13 @@ class NaOverlay27Data:
         "struct window_params",
     )
 
-    OVERLAY27_RESERVED_SPACE = Symbol(
+    OV27_STATIC_INITIALIZER = Symbol(
         [0x2D30],
         [0x238CE70],
-        0x10,
-        "OVERLAY27_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV27_STATIC_INITIALIZER",
+        "Static initializer for overlay 27.",
+        "undefined4",
     )
 
     OVERLAY27_UNKNOWN_POINTER__NA_238CE80 = Symbol(
@@ -25922,6 +26033,10 @@ class NaOverlay27Data:
         "",
     )
 
+    OVERLAY27_RESERVED_SPACE = _Deprecated(
+        "OVERLAY27_RESERVED_SPACE", OV27_STATIC_INITIALIZER
+    )
+
 
 class NaOverlay27Section:
     name = "overlay27"
@@ -25939,7 +26054,14 @@ class NaOverlay28Functions:
 
 class NaOverlay28Data:
 
-    pass
+    OV28_STATIC_INITIALIZER = Symbol(
+        [0xC2C],
+        [0x238AD6C],
+        0x4,
+        "OV28_STATIC_INITIALIZER",
+        "Static initializer for overlay 28.",
+        "undefined4",
+    )
 
 
 class NaOverlay28Section:
@@ -34784,6 +34906,15 @@ class NaOverlay29Data:
         "int16_t[27]",
     )
 
+    OV29_STATIC_INITIALIZER = Symbol(
+        [0x77284],
+        [0x23534C4],
+        0x4,
+        "OV29_STATIC_INITIALIZER",
+        "Static initializer for overlay 29.",
+        "undefined4",
+    )
+
     DUNGEON_PTR = Symbol(
         [0x772F8],
         [0x2353538],
@@ -34999,7 +35130,14 @@ class NaOverlay3Functions:
 
 class NaOverlay3Data:
 
-    pass
+    OV3_STATIC_INITIALIZER = Symbol(
+        [0xA08C],
+        [0x2346B0C],
+        0x4,
+        "OV3_STATIC_INITIALIZER",
+        "Static initializer for overlay 3.",
+        "undefined4",
+    )
 
 
 class NaOverlay3Section:
@@ -35031,6 +35169,15 @@ class NaOverlay30Data:
 
     OVERLAY30_JP_STRING_2 = Symbol(
         [0x386C], [0x238608C], 0xC, "OVERLAY30_JP_STRING_2", "やよい様", ""
+    )
+
+    OV30_STATIC_INITIALIZER = Symbol(
+        [0x3878],
+        [0x2386098],
+        0x4,
+        "OV30_STATIC_INITIALIZER",
+        "Static initializer for overlay 30.",
+        "undefined4",
     )
 
 
@@ -35670,13 +35817,13 @@ class NaOverlay31Data:
         "struct window_params",
     )
 
-    OVERLAY31_RESERVED_SPACE = Symbol(
+    OV31_STATIC_INITIALIZER = Symbol(
         [0x7A30],
         [0x238A250],
-        0x10,
-        "OVERLAY31_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV31_STATIC_INITIALIZER",
+        "Static initializer for overlay 31.",
+        "undefined4",
     )
 
     OVERLAY31_UNKNOWN_POINTER__NA_238A260 = Symbol(
@@ -35803,6 +35950,10 @@ class NaOverlay31Data:
         "DUNGEON_SUBMENU_ITEMS_4", STAIRS_MENU_ITEMS_HIDDEN_STAIRS
     )
 
+    OVERLAY31_RESERVED_SPACE = _Deprecated(
+        "OVERLAY31_RESERVED_SPACE", OV31_STATIC_INITIALIZER
+    )
+
 
 class NaOverlay31Section:
     name = "overlay31"
@@ -35820,7 +35971,14 @@ class NaOverlay32Functions:
 
 class NaOverlay32Data:
 
-    pass
+    OV32_STATIC_INITIALIZER = Symbol(
+        [0x0],
+        [0x2382820],
+        0x4,
+        "OV32_STATIC_INITIALIZER",
+        "Static initializer for overlay 32.",
+        "undefined4",
+    )
 
 
 class NaOverlay32Section:
@@ -35839,7 +35997,14 @@ class NaOverlay33Functions:
 
 class NaOverlay33Data:
 
-    pass
+    OV33_STATIC_INITIALIZER = Symbol(
+        [0x0],
+        [0x2382820],
+        0x4,
+        "OV33_STATIC_INITIALIZER",
+        "Static initializer for overlay 33.",
+        "undefined4",
+    )
 
 
 class NaOverlay33Section:
@@ -35901,13 +36066,13 @@ class NaOverlay34Data:
         "struct simple_menu_id_item[5]",
     )
 
-    OVERLAY34_RESERVED_SPACE = Symbol(
+    OV34_STATIC_INITIALIZER = Symbol(
         [0xE34],
         [0x22DD074],
-        0xC,
-        "OVERLAY34_RESERVED_SPACE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "OV34_STATIC_INITIALIZER",
+        "Static initializer for overlay 34.",
+        "undefined4",
     )
 
     OVERLAY34_UNKNOWN_POINTER__NA_22DD080 = Symbol(
@@ -35955,6 +36120,10 @@ class NaOverlay34Data:
         "",
     )
 
+    OVERLAY34_RESERVED_SPACE = _Deprecated(
+        "OVERLAY34_RESERVED_SPACE", OV34_STATIC_INITIALIZER
+    )
+
 
 class NaOverlay34Section:
     name = "overlay34"
@@ -35972,7 +36141,14 @@ class NaOverlay35Functions:
 
 class NaOverlay35Data:
 
-    pass
+    OV35_STATIC_INITIALIZER = Symbol(
+        [0x0],
+        [0x22BCA80],
+        0x4,
+        "OV35_STATIC_INITIALIZER",
+        "Static initializer for overlay 35.",
+        "undefined4",
+    )
 
 
 class NaOverlay35Section:
@@ -35991,7 +36167,14 @@ class NaOverlay4Functions:
 
 class NaOverlay4Data:
 
-    pass
+    OV4_STATIC_INITIALIZER = Symbol(
+        [0x2BB8],
+        [0x233F638],
+        0x4,
+        "OV4_STATIC_INITIALIZER",
+        "Static initializer for overlay 4.",
+        "undefined4",
+    )
 
 
 class NaOverlay4Section:
@@ -36010,7 +36193,14 @@ class NaOverlay5Functions:
 
 class NaOverlay5Data:
 
-    pass
+    OV5_STATIC_INITIALIZER = Symbol(
+        [0x3218],
+        [0x233FC98],
+        0x4,
+        "OV5_STATIC_INITIALIZER",
+        "Static initializer for overlay 5.",
+        "undefined4",
+    )
 
 
 class NaOverlay5Section:
@@ -36029,7 +36219,14 @@ class NaOverlay6Functions:
 
 class NaOverlay6Data:
 
-    pass
+    OV6_STATIC_INITIALIZER = Symbol(
+        [0x2424],
+        [0x233EEA4],
+        0x4,
+        "OV6_STATIC_INITIALIZER",
+        "Static initializer for overlay 6.",
+        "undefined4",
+    )
 
 
 class NaOverlay6Section:
@@ -36048,7 +36245,14 @@ class NaOverlay7Functions:
 
 class NaOverlay7Data:
 
-    pass
+    OV7_STATIC_INITIALIZER = Symbol(
+        [0x50D0],
+        [0x2341B50],
+        0x4,
+        "OV7_STATIC_INITIALIZER",
+        "Static initializer for overlay 7.",
+        "undefined4",
+    )
 
 
 class NaOverlay7Section:
@@ -36069,7 +36273,14 @@ class NaOverlay8Functions:
 
 class NaOverlay8Data:
 
-    pass
+    OV8_STATIC_INITIALIZER = Symbol(
+        [0x2190],
+        [0x233EC10],
+        0x4,
+        "OV8_STATIC_INITIALIZER",
+        "Static initializer for overlay 8.",
+        "undefined4",
+    )
 
 
 class NaOverlay8Section:
@@ -36221,6 +36432,15 @@ class NaOverlay9Data:
         "INPUT_LOCK_BOX_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an input_lock_box.",
         "struct window_params",
+    )
+
+    OV9_STATIC_INITIALIZER = Symbol(
+        [0x2D44],
+        [0x233F7C4],
+        0x4,
+        "OV9_STATIC_INITIALIZER",
+        "Static initializer for overlay 9.",
+        "undefined4",
     )
 
     TOP_MENU_RETURN_MUSIC_ID = Symbol(
