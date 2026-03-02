@@ -14614,7 +14614,20 @@ Overlay17Protocol = SectionProtocol[
 
 class Overlay18FunctionsProtocol(Protocol):
 
-    pass
+    LinkShopEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LinkShopDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LinkShopMainManager: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay18DataProtocol(Protocol):
@@ -14729,7 +14742,7 @@ class Overlay18DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY18_UNKNOWN_POINTER__NA_238D620: Symbol[
+    LINK_SHOP_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

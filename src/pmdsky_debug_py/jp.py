@@ -23835,7 +23835,32 @@ class JpOverlay17Section:
 
 class JpOverlay18Functions:
 
-    pass
+    LinkShopEntryPoint = Symbol(
+        [0x0],
+        [0x238B6A0],
+        None,
+        "LinkShopEntryPoint",
+        "Is the entrypoint of the overlay_load_entry, and seems to run once to initiate the Link Shop. Is not called anywhere else.\nAllocates space for link_shop, and initializes many of its fields.\n\nreturn: Always returns 1.",
+        None,
+    )
+
+    LinkShopDestructor = Symbol(
+        [0xE90],
+        [0x238C530],
+        None,
+        "LinkShopDestructor",
+        "Is the destructor of the overlay_load_entry, and seems to run once on closing the Link Shop. Is not called anywhere else.\nFrees up the allocated space for link_shop if it is not already empty.\n\nNo params.",
+        None,
+    )
+
+    LinkShopMainManager = Symbol(
+        [0xED8],
+        [0x238C578],
+        None,
+        "LinkShopMainManager",
+        "Called every frame the Electivire Link Shop is open. Handles the majority of the menu.\n\nreturn: Usually returns 1. Returns 4 when exiting the Link Shop.",
+        None,
+    )
 
 
 class JpOverlay18Data:
@@ -24038,13 +24063,13 @@ class JpOverlay18Data:
         "undefined4",
     )
 
-    OVERLAY18_UNKNOWN_POINTER__NA_238D620 = Symbol(
+    LINK_SHOP_PTR = Symbol(
         [0x3500],
         [0x238EBA0],
-        None,
-        "OVERLAY18_UNKNOWN_POINTER__NA_238D620",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "LINK_SHOP_PTR",
+        "Pointer to the heap-allocated link_shop struct.",
+        "struct link_shop*",
     )
 
     OVERLAY18_UNKNOWN_POINTER__NA_238D624 = Symbol(

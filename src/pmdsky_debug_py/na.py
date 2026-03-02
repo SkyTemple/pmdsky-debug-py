@@ -23840,7 +23840,32 @@ class NaOverlay17Section:
 
 class NaOverlay18Functions:
 
-    pass
+    LinkShopEntryPoint = Symbol(
+        [0x0],
+        [0x238A140],
+        None,
+        "LinkShopEntryPoint",
+        "Is the entrypoint of the overlay_load_entry, and seems to run once to initiate the Link Shop. Is not called anywhere else.\nAllocates space for link_shop, and initializes many of its fields.\n\nreturn: Always returns 1.",
+        None,
+    )
+
+    LinkShopDestructor = Symbol(
+        [0xE94],
+        [0x238AFD4],
+        None,
+        "LinkShopDestructor",
+        "Is the destructor of the overlay_load_entry, and seems to run once on closing the Link Shop. Is not called anywhere else.\nFrees up the allocated space for link_shop if it is not already empty.\n\nNo params.",
+        None,
+    )
+
+    LinkShopMainManager = Symbol(
+        [0xEDC],
+        [0x238B01C],
+        None,
+        "LinkShopMainManager",
+        "Called every frame the Electivire Link Shop is open. Handles the majority of the menu.\n\nreturn: Usually returns 1. Returns 4 when exiting the Link Shop.",
+        None,
+    )
 
 
 class NaOverlay18Data:
@@ -24043,13 +24068,13 @@ class NaOverlay18Data:
         "undefined4",
     )
 
-    OVERLAY18_UNKNOWN_POINTER__NA_238D620 = Symbol(
+    LINK_SHOP_PTR = Symbol(
         [0x34E0],
         [0x238D620],
         0x4,
-        "OVERLAY18_UNKNOWN_POINTER__NA_238D620",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "LINK_SHOP_PTR",
+        "Pointer to the heap-allocated link_shop struct.",
+        "struct link_shop*",
     )
 
     OVERLAY18_UNKNOWN_POINTER__NA_238D624 = Symbol(
