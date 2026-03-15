@@ -16008,6 +16008,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetAndStoreButtonInput: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CheckTouchscreenArea: Symbol[
         Optional[list[int]],
         None,
@@ -18998,6 +19003,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetPaletteBaseAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DisplayNumberTextureUi: Symbol[
         Optional[list[int]],
         None,
@@ -21879,6 +21889,11 @@ class RamDataProtocol(Protocol):
     ]
 
     GROUND_MEMORY_ARENA_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_BUTTON_INPUT: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

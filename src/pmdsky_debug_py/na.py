@@ -914,7 +914,7 @@ class NaArm9Functions:
         [0x20061EC],
         None,
         "GetHeldButtons",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: controller\nr1: btn_ptr\nreturn: any_activated",
+        "Gets the currently held buttons.\n\nr0: controller\nr1: btn_ptr\nreturn: any_activated",
         None,
     )
 
@@ -923,7 +923,7 @@ class NaArm9Functions:
         [0x200625C],
         None,
         "GetPressedButtons",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: controller\nr1: btn_ptr\nreturn: any_activated",
+        "Gets the currently pressed buttons.\n\nr0: controller\nr1: btn_ptr\nreturn: any_activated",
         None,
     )
 
@@ -26373,6 +26373,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    GetAndStoreButtonInput = Symbol(
+        None,
+        None,
+        None,
+        "GetAndStoreButtonInput",
+        "Gets and stores the button input for the current frame in DUNGEON_BUTTON_INPUT.\n\nNo params.",
+        None,
+    )
+
     CheckTouchscreenArea = Symbol(
         [0x4A78],
         [0x22E0CB8],
@@ -31829,6 +31838,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    GetPaletteBaseAddress = Symbol(
+        None,
+        None,
+        None,
+        "GetPaletteBaseAddress",
+        "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
+        None,
+    )
+
     DisplayNumberTextureUi = Symbol(
         [0x59640],
         [0x2335880],
@@ -36992,6 +37010,15 @@ class NaRamData:
         "GROUND_MEMORY_ARENA_1",
         "This is a top-level memory arena used for some things in ground mode.\n\nIt's used for user_flags 8, 15, and 16.\n\nIncluding the allocator metadata, this arena occupies 0x64000 bytes of space.\n\ntype: struct mem_arena",
         "struct mem_arena",
+    )
+
+    DUNGEON_BUTTON_INPUT = Symbol(
+        None,
+        None,
+        None,
+        "DUNGEON_BUTTON_INPUT",
+        "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
+        "struct dungeon_button_input",
     )
 
     GROUND_MEMORY_ARENA_1_BLOCKS = Symbol(
