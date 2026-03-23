@@ -4597,6 +4597,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    Copy16BitsTo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Copy16BitsFrom: Symbol[
         Optional[list[int]],
         None,
@@ -5252,6 +5257,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ExplorerMazeMonsterExists: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetExplorerMazeTeamName: Symbol[
         Optional[list[int]],
         None,
@@ -5288,6 +5298,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetMonsterEvoStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleShedinjaEvolution: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -21893,11 +21908,6 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_BUTTON_INPUT: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
     GROUND_MEMORY_ARENA_1_BLOCKS: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -21909,6 +21919,11 @@ class RamDataProtocol(Protocol):
     ]
 
     SENTRY_DUTY_STRUCT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_BUTTON_INPUT: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

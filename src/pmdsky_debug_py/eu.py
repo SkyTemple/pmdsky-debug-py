@@ -8197,6 +8197,15 @@ class EuArm9Functions:
         None,
     )
 
+    Copy16BitsTo = Symbol(
+        [0x518FC],
+        [0x20518FC],
+        None,
+        "Copy16BitsTo",
+        "Writes 16 bits of data from buffer_write to write_info.\n\nr0: write_info\nr1: buffer_write",
+        None,
+    )
+
     Copy16BitsFrom = Symbol(
         [0x51924],
         [0x2051924],
@@ -9376,6 +9385,15 @@ class EuArm9Functions:
         None,
     )
 
+    ExplorerMazeMonsterExists = Symbol(
+        [0x59320],
+        [0x2059320],
+        None,
+        "ExplorerMazeMonsterExists",
+        "Returns true if there is Explorer Maze monster data in TEAM_MEMBER_TABLE_PTR->explorer_maze_monsters.\n\nreturn: True if there is Explorer Maze monster data in TEAM_MEMBER_TABLE_PTR->explorer_maze_monsters, false otherwise.",
+        None,
+    )
+
     GetExplorerMazeTeamName = Symbol(
         [0x593DC],
         [0x20593DC],
@@ -9445,6 +9463,15 @@ class EuArm9Functions:
         None,
         "GetMonsterEvoStatus",
         "evo_status = 0: Not possible now\nevo_status = 1: Possible now\nevo_status = 2: No further\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: ground_monster\nreturn: evo_status",
+        None,
+    )
+
+    HandleShedinjaEvolution = Symbol(
+        [0x5A604],
+        [0x205A604],
+        None,
+        "HandleShedinjaEvolution",
+        "Checks to see if the player just evolved a Nincada into Ninjask. If so, adds a Shedinja to the player's team.\n\nr0: pointer to current team member index\nr1: monster_id\nreturn: true",
         None,
     )
 
@@ -37014,15 +37041,6 @@ class EuRamData:
         "struct mem_arena",
     )
 
-    DUNGEON_BUTTON_INPUT = Symbol(
-        [0x37D294],
-        [0x237D294],
-        0xE,
-        "DUNGEON_BUTTON_INPUT",
-        "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
-        "struct dungeon_button_input",
-    )
-
     GROUND_MEMORY_ARENA_1_BLOCKS = Symbol(
         None,
         None,
@@ -37043,6 +37061,15 @@ class EuRamData:
 
     SENTRY_DUTY_STRUCT = Symbol(
         None, None, None, "SENTRY_DUTY_STRUCT", "", "struct sentry_duty"
+    )
+
+    DUNGEON_BUTTON_INPUT = Symbol(
+        [0x37D294],
+        [0x237D294],
+        0xE,
+        "DUNGEON_BUTTON_INPUT",
+        "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
+        "struct dungeon_button_input",
     )
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(

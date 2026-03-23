@@ -8151,6 +8151,15 @@ class JpItcmArm9Functions:
         None,
     )
 
+    Copy16BitsTo = Symbol(
+        None,
+        None,
+        None,
+        "Copy16BitsTo",
+        "Writes 16 bits of data from buffer_write to write_info.\n\nr0: write_info\nr1: buffer_write",
+        None,
+    )
+
     Copy16BitsFrom = Symbol(
         None,
         None,
@@ -9330,6 +9339,15 @@ class JpItcmArm9Functions:
         None,
     )
 
+    ExplorerMazeMonsterExists = Symbol(
+        None,
+        None,
+        None,
+        "ExplorerMazeMonsterExists",
+        "Returns true if there is Explorer Maze monster data in TEAM_MEMBER_TABLE_PTR->explorer_maze_monsters.\n\nreturn: True if there is Explorer Maze monster data in TEAM_MEMBER_TABLE_PTR->explorer_maze_monsters, false otherwise.",
+        None,
+    )
+
     GetExplorerMazeTeamName = Symbol(
         None,
         None,
@@ -9399,6 +9417,15 @@ class JpItcmArm9Functions:
         None,
         "GetMonsterEvoStatus",
         "evo_status = 0: Not possible now\nevo_status = 1: Possible now\nevo_status = 2: No further\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: ground_monster\nreturn: evo_status",
+        None,
+    )
+
+    HandleShedinjaEvolution = Symbol(
+        None,
+        None,
+        None,
+        "HandleShedinjaEvolution",
+        "Checks to see if the player just evolved a Nincada into Ninjask. If so, adds a Shedinja to the player's team.\n\nr0: pointer to current team member index\nr1: monster_id\nreturn: true",
         None,
     )
 
@@ -36252,15 +36279,6 @@ class JpItcmRamData:
         "struct mem_arena",
     )
 
-    DUNGEON_BUTTON_INPUT = Symbol(
-        None,
-        None,
-        None,
-        "DUNGEON_BUTTON_INPUT",
-        "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
-        "struct dungeon_button_input",
-    )
-
     GROUND_MEMORY_ARENA_1_BLOCKS = Symbol(
         None,
         None,
@@ -36281,6 +36299,15 @@ class JpItcmRamData:
 
     SENTRY_DUTY_STRUCT = Symbol(
         None, None, None, "SENTRY_DUTY_STRUCT", "", "struct sentry_duty"
+    )
+
+    DUNGEON_BUTTON_INPUT = Symbol(
+        None,
+        None,
+        None,
+        "DUNGEON_BUTTON_INPUT",
+        "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
+        "struct dungeon_button_input",
     )
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(

@@ -8197,6 +8197,15 @@ class NaArm9Functions:
         None,
     )
 
+    Copy16BitsTo = Symbol(
+        [0x515C4],
+        [0x20515C4],
+        None,
+        "Copy16BitsTo",
+        "Writes 16 bits of data from buffer_write to write_info.\n\nr0: write_info\nr1: buffer_write",
+        None,
+    )
+
     Copy16BitsFrom = Symbol(
         [0x515EC],
         [0x20515EC],
@@ -9376,6 +9385,15 @@ class NaArm9Functions:
         None,
     )
 
+    ExplorerMazeMonsterExists = Symbol(
+        [0x58FA4],
+        [0x2058FA4],
+        None,
+        "ExplorerMazeMonsterExists",
+        "Returns true if there is Explorer Maze monster data in TEAM_MEMBER_TABLE_PTR->explorer_maze_monsters.\n\nreturn: True if there is Explorer Maze monster data in TEAM_MEMBER_TABLE_PTR->explorer_maze_monsters, false otherwise.",
+        None,
+    )
+
     GetExplorerMazeTeamName = Symbol(
         [0x59060],
         [0x2059060],
@@ -9445,6 +9463,15 @@ class NaArm9Functions:
         None,
         "GetMonsterEvoStatus",
         "evo_status = 0: Not possible now\nevo_status = 1: Possible now\nevo_status = 2: No further\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: ground_monster\nreturn: evo_status",
+        None,
+    )
+
+    HandleShedinjaEvolution = Symbol(
+        [0x5A288],
+        [0x205A288],
+        None,
+        "HandleShedinjaEvolution",
+        "Checks to see if the player just evolved a Nincada into Ninjask. If so, adds a Shedinja to the player's team.\n\nr0: pointer to current team member index\nr1: monster_id\nreturn: true",
         None,
     )
 
@@ -26374,8 +26401,8 @@ class NaOverlay29Functions:
     )
 
     GetAndStoreButtonInput = Symbol(
-        None,
-        None,
+        [0x4824],
+        [0x22E0A64],
         None,
         "GetAndStoreButtonInput",
         "Gets and stores the button input for the current frame in DUNGEON_BUTTON_INPUT.\n\nNo params.",
@@ -31839,8 +31866,8 @@ class NaOverlay29Functions:
     )
 
     GetPaletteBaseAddress = Symbol(
-        None,
-        None,
+        [0x59624],
+        [0x2335864],
         None,
         "GetPaletteBaseAddress",
         "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
@@ -37012,15 +37039,6 @@ class NaRamData:
         "struct mem_arena",
     )
 
-    DUNGEON_BUTTON_INPUT = Symbol(
-        None,
-        None,
-        None,
-        "DUNGEON_BUTTON_INPUT",
-        "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
-        "struct dungeon_button_input",
-    )
-
     GROUND_MEMORY_ARENA_1_BLOCKS = Symbol(
         [0x324FDC],
         [0x2324FDC],
@@ -37041,6 +37059,15 @@ class NaRamData:
 
     SENTRY_DUTY_STRUCT = Symbol(
         [0x37A5D0], [0x237A5D0], 0x38D4, "SENTRY_DUTY_STRUCT", "", "struct sentry_duty"
+    )
+
+    DUNGEON_BUTTON_INPUT = Symbol(
+        [0x37C694],
+        [0x237C694],
+        0xE,
+        "DUNGEON_BUTTON_INPUT",
+        "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
+        "struct dungeon_button_input",
     )
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(

@@ -8197,6 +8197,15 @@ class JpArm9Functions:
         None,
     )
 
+    Copy16BitsTo = Symbol(
+        [0x51914],
+        [0x2051914],
+        None,
+        "Copy16BitsTo",
+        "Writes 16 bits of data from buffer_write to write_info.\n\nr0: write_info\nr1: buffer_write",
+        None,
+    )
+
     Copy16BitsFrom = Symbol(
         [0x5193C],
         [0x205193C],
@@ -9376,6 +9385,15 @@ class JpArm9Functions:
         None,
     )
 
+    ExplorerMazeMonsterExists = Symbol(
+        [0x592A0],
+        [0x20592A0],
+        None,
+        "ExplorerMazeMonsterExists",
+        "Returns true if there is Explorer Maze monster data in TEAM_MEMBER_TABLE_PTR->explorer_maze_monsters.\n\nreturn: True if there is Explorer Maze monster data in TEAM_MEMBER_TABLE_PTR->explorer_maze_monsters, false otherwise.",
+        None,
+    )
+
     GetExplorerMazeTeamName = Symbol(
         [0x5935C],
         [0x205935C],
@@ -9445,6 +9463,15 @@ class JpArm9Functions:
         None,
         "GetMonsterEvoStatus",
         "evo_status = 0: Not possible now\nevo_status = 1: Possible now\nevo_status = 2: No further\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: ground_monster\nreturn: evo_status",
+        None,
+    )
+
+    HandleShedinjaEvolution = Symbol(
+        [0x5A584],
+        [0x205A584],
+        None,
+        "HandleShedinjaEvolution",
+        "Checks to see if the player just evolved a Nincada into Ninjask. If so, adds a Shedinja to the player's team.\n\nr0: pointer to current team member index\nr1: monster_id\nreturn: true",
         None,
     )
 
@@ -25799,8 +25826,8 @@ class JpOverlay26Functions:
 class JpOverlay26Data:
 
     OVERLAY26_UNKNOWN_TABLE__NA_238AE20 = Symbol(
-        None,
-        None,
+        [0xCE0],
+        [0x238C380],
         None,
         "OVERLAY26_UNKNOWN_TABLE__NA_238AE20",
         "0x6 + 11*0xC + 0x2\n\nNote: unverified, ported from Irdkwia's notes",
@@ -25817,8 +25844,8 @@ class JpOverlay26Data:
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF60 = Symbol(
-        None,
-        None,
+        [0xE20],
+        [0x238C4C0],
         None,
         "OVERLAY26_UNKNOWN_POINTER__NA_238AF60",
         "Note: unverified, ported from Irdkwia's notes",
@@ -25826,8 +25853,8 @@ class JpOverlay26Data:
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF64 = Symbol(
-        None,
-        None,
+        [0xE24],
+        [0x238C4C4],
         None,
         "OVERLAY26_UNKNOWN_POINTER__NA_238AF64",
         "Note: unverified, ported from Irdkwia's notes",
@@ -25835,8 +25862,8 @@ class JpOverlay26Data:
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF68 = Symbol(
-        None,
-        None,
+        [0xE28],
+        [0x238C4C8],
         None,
         "OVERLAY26_UNKNOWN_POINTER__NA_238AF68",
         "Note: unverified, ported from Irdkwia's notes",
@@ -25844,8 +25871,8 @@ class JpOverlay26Data:
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF6C = Symbol(
-        None,
-        None,
+        [0xE2C],
+        [0x238C4CC],
         None,
         "OVERLAY26_UNKNOWN_POINTER__NA_238AF6C",
         "Note: unverified, ported from Irdkwia's notes",
@@ -25853,8 +25880,8 @@ class JpOverlay26Data:
     )
 
     OVERLAY26_UNKNOWN_POINTER5__NA_238AF70 = Symbol(
-        None,
-        None,
+        [0xE30],
+        [0x238C4D0],
         None,
         "OVERLAY26_UNKNOWN_POINTER5__NA_238AF70",
         "Note: unverified, ported from Irdkwia's notes",
@@ -26367,8 +26394,8 @@ class JpOverlay29Functions:
     )
 
     GetAndStoreButtonInput = Symbol(
-        None,
-        None,
+        [0x4814],
+        [0x22E20F4],
         None,
         "GetAndStoreButtonInput",
         "Gets and stores the button input for the current frame in DUNGEON_BUTTON_INPUT.\n\nNo params.",
@@ -31832,8 +31859,8 @@ class JpOverlay29Functions:
     )
 
     GetPaletteBaseAddress = Symbol(
-        None,
-        None,
+        [0x59354],
+        [0x2336C34],
         None,
         "GetPaletteBaseAddress",
         "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
@@ -36902,15 +36929,6 @@ class JpRamData:
         "struct mem_arena",
     )
 
-    DUNGEON_BUTTON_INPUT = Symbol(
-        None,
-        None,
-        None,
-        "DUNGEON_BUTTON_INPUT",
-        "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
-        "struct dungeon_button_input",
-    )
-
     GROUND_MEMORY_ARENA_1_BLOCKS = Symbol(
         None,
         None,
@@ -36931,6 +36949,15 @@ class JpRamData:
 
     SENTRY_DUTY_STRUCT = Symbol(
         None, None, None, "SENTRY_DUTY_STRUCT", "", "struct sentry_duty"
+    )
+
+    DUNGEON_BUTTON_INPUT = Symbol(
+        [0x37D914],
+        [0x237D914],
+        0xE,
+        "DUNGEON_BUTTON_INPUT",
+        "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
+        "struct dungeon_button_input",
     )
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(
