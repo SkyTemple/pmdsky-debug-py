@@ -22632,39 +22632,39 @@ class EuOverlay12Section:
 
 class EuOverlay13Functions:
 
-    EntryOverlay13 = Symbol(
+    PersonalityTestEntryPoint = Symbol(
         [0x0],
         [0x238AC80],
         None,
-        "EntryOverlay13",
-        "Main function of this overlay.\n\nNote: unverified, ported from Irdkwia's notes\n\nNo params.",
+        "PersonalityTestEntryPoint",
+        "Called when this overlay is loaded. Allocates and initializes the personality_test struct, and updates PERSONALITY_TEST_PTR.\n\nNo params.",
         None,
     )
 
-    ExitOverlay13 = Symbol(
+    PersonalityTestDestructor = Symbol(
         [0x50],
         [0x238ACD0],
         None,
-        "ExitOverlay13",
-        "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+        "PersonalityTestDestructor",
+        "Called before unloading the overlay. Frees the allocated personality_test struct, and clears PERSONALITY_TEST_PTR.\n\nNo params.",
         None,
     )
 
-    Overlay13SwitchFunctionNa238A1C8 = Symbol(
+    PersonalityTestFrameUpdate = Symbol(
         [0x88],
         [0x238AD08],
         None,
-        "Overlay13SwitchFunctionNa238A1C8",
-        "Handles the 'return' value from MENU_PERSONALITY_TEST called by scripts. \n\nreturn: int?",
+        "PersonalityTestFrameUpdate",
+        "Called every frame while the overlay is loaded. Uses a switch case with PERSONALITY_TEST_PTR->outer_state, where an outer_state of 0xD will call PersonalityTestMainManager. Most outer_states seem to try to head towards this state. Handles the 'return' value from MENU_PERSONALITY_TEST called by scripts. \n\nreturn: int?",
         None,
     )
 
-    Overlay13SwitchFunctionNa238A574 = Symbol(
+    PersonalityTestMainManager = Symbol(
         [0x434],
         [0x238B0B4],
         None,
-        "Overlay13SwitchFunctionNa238A574",
-        "Handles the menus and dialogue boxes associated with the personality quiz.\n\nNo params.",
+        "PersonalityTestMainManager",
+        "Handles the majority of the logic for the entire personality test, including picking/answering questions, determining aura color, touching the aura bow, choosing the partner species, and more. Uses a switch case with PERSONALITY_TEST_PTR->state to track where we are in the overall test sequence.\n\nNo params.",
         None,
     )
 
@@ -22673,16 +22673,16 @@ class EuOverlay13Functions:
         [0x238C8E8],
         None,
         "GetPersonality",
-        "Returns the personality obtained after answering all the questions.\n\nThe value to return is determined by checking the points obtained for each the personalities and returning the one with the highest amount of points.\n\nreturn: Personality (0-15)",
+        "Returns the personality obtained after answering all the questions.\n\nThe value to return is determined by checking the points obtained for each the personalities and returning the one with the highest amount of points. This is where the 'tiebreaker bonus points' are applied.\n\nIn the case that there is still a tie after applying the tiebreaker bonus points, the first personality in the list of tying personalities takes priority.\n\nreturn: Personality (0-15)",
         None,
     )
 
-    GetOptionStringFromID = Symbol(
+    GetPartnerOptionString = Symbol(
         [0x1CB0],
         [0x238C930],
         None,
-        "GetOptionStringFromID",
-        "Note: unverified, ported from Irdkwia's notes. The first parameter and the return value point to the same string (which is passed directly into PreprocessString as the first argument), so I'm not sure why they're named differently... Seems like a mistake?\n\nr0: menu_id\nr1: option_id\nreturn: process",
+        "GetPartnerOptionString",
+        "Gets the string for a partner option (gender symbol + name) and puts it in the provided buffer. Returns the same buffer pointer that was passed in (for some reason).\n\nr0: [output] buffer\nr1: Index in PERSONALITY_TEST_PTR->partner_options\nreturn: buffer",
         None,
     )
 
@@ -22691,9 +22691,24 @@ class EuOverlay13Functions:
         [0x238C98C],
         None,
         "WaitForNextStep",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: switch_case",
+        "Sets the current state in PERSONALITY_TEST_PTR to WAIT_NEXT_STEP, and sets the future state to the provided state.\n\nr0: Next state for after the WAIT_NEXT_STEP state finishes",
         None,
     )
+
+    DrawPersonalityTestDebug = Symbol(
+        [0x1D2C],
+        [0x238C9AC],
+        None,
+        "DrawPersonalityTestDebug",
+        "Updates and draws the text for the personality test debug window that shows the scores for each personality. Assumes that the window exists.\n\nr0: Window ID for the debug window",
+        None,
+    )
+
+    EntryOverlay13 = _Deprecated("EntryOverlay13", PersonalityTestEntryPoint)
+
+    ExitOverlay13 = _Deprecated("ExitOverlay13", PersonalityTestDestructor)
+
+    GetOptionStringFromID = _Deprecated("GetOptionStringFromID", GetPartnerOptionString)
 
 
 class EuOverlay13Data:
@@ -22703,80 +22718,80 @@ class EuOverlay13Data:
         [0x238CB50],
         0x4,
         "QUIZ_BORDER_COLOR_TABLE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "Value to be passed into SetBothScreensWindowsColor. Indexed using gender.\n\ntype: uint8_t[2]",
+        "uint8_t[2]",
     )
 
-    PORTRAIT_ATTRIBUTES = Symbol(
+    PARTNER_PORTRAIT_OFFSET = Symbol(
         [0x1ED4],
         [0x238CB54],
         0x8,
-        "PORTRAIT_ATTRIBUTES",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "PARTNER_PORTRAIT_OFFSET",
+        "Offset passed into SetPortraitOffset for the partner portrait.\n\ntype: vec2",
+        "struct vec2",
     )
 
-    QUIZ_MALE_FEMALE_BOOST_TABLE = Symbol(
+    PLAY_OLD_GAME_BOOST = Symbol(
         [0x1EDC],
         [0x238CB5C],
         0x8,
-        "QUIZ_MALE_FEMALE_BOOST_TABLE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "PLAY_OLD_GAME_BOOST",
+        "Which personalities will receive a 4 point bonus if 'Yes' was answered to the Explorers of Time/Darkness question, by gender. 16 is used as a terminator.\n\ntype: uint8_t[2][4]",
+        "uint8_t[2][4]",
     )
 
-    OVERLAY13_UNKNOWN_STRUCT__NA_238C024 = Symbol(
+    OVERLAY13_LOAD_ENTRY = Symbol(
         [0x1EE4],
         [0x238CB64],
         0x10,
-        "OVERLAY13_UNKNOWN_STRUCT__NA_238C024",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "OVERLAY13_LOAD_ENTRY",
+        "Information about the overlay: the ID, the frame update function, and the destructor function.\n\nThe entrypoint function is NOT specified here, as overlay 11 directly calls PersonalityTestEntryPoint after loading the overlay.\n\ntype: overlay_load_entry",
+        "struct overlay_load_entry",
     )
 
-    QUIZ_WINDOW_PARAMS_1 = Symbol(
+    MAIN_DBOX_WINDOW_PARAMS = Symbol(
         [0x1EF4],
         [0x238CB74],
         0x10,
-        "QUIZ_WINDOW_PARAMS_1",
-        "Note: unverified, ported from Irdkwia's notes",
+        "MAIN_DBOX_WINDOW_PARAMS",
+        "Window params for the main dialogue box used throughout the personality test.\n\ntype: window_params",
         "struct window_params",
     )
 
-    QUIZ_WINDOW_PARAMS_2 = Symbol(
+    AURA_BOW_DBOX_WINDOW_PARAMS = Symbol(
         [0x1F04],
         [0x238CB84],
         0x10,
-        "QUIZ_WINDOW_PARAMS_2",
-        "Note: unverified, ported from Irdkwia's notes",
+        "AURA_BOW_DBOX_WINDOW_PARAMS",
+        "Window params for the dialogue box shown on the top screen during the aura bow segment.\n\ntype: window_params",
         "struct window_params",
     )
 
-    QUIZ_WINDOW_PARAMS_3 = Symbol(
+    DEBUG_WINDOW_PARAMS = Symbol(
         [0x1F14],
         [0x238CB94],
         0x10,
-        "QUIZ_WINDOW_PARAMS_3",
-        "Note: unverified, ported from Irdkwia's notes",
+        "DEBUG_WINDOW_PARAMS",
+        "Window params for the personality test debug window.\n\ntype: window_params",
         "struct window_params",
     )
 
-    QUIZ_WINDOW_PARAMS_4 = Symbol(
+    QUIZ_INTRO_WINDOW_PARAMS = Symbol(
         [0x1F24],
         [0x238CBA4],
         0x10,
-        "QUIZ_WINDOW_PARAMS_4",
-        "Note: unverified, ported from Irdkwia's notes",
+        "QUIZ_INTRO_WINDOW_PARAMS",
+        "Window params for the personality test introduction.\n\ntype: window_params",
         "struct window_params",
     )
 
-    QUIZ_MENU_ITEMS_1 = Symbol(
+    CONFIRM_PARTNER_MENU_ITEMS = Symbol(
         [0x1F34],
         [0x238CBB4],
         0x18,
-        "QUIZ_MENU_ITEMS_1",
-        "Note: unverified, ported from Irdkwia's notes",
-        "struct simple_menu_id_item[3]",
+        "CONFIRM_PARTNER_MENU_ITEMS",
+        "Items for the menu for confirming partner species.\n\ntype: simple_menu_id_item[2]",
+        "struct simple_menu_id_item[2]",
     )
 
     STARTERS_PARTNER_IDS = Symbol(
@@ -22784,7 +22799,7 @@ class EuOverlay13Data:
         [0x238CBCC],
         0x2A,
         "STARTERS_PARTNER_IDS",
-        "type: struct monster_id_16[21]",
+        "Potential partner species.\n\ntype: struct monster_id_16[21]",
         "struct monster_id_16[21]",
     )
 
@@ -22793,8 +22808,8 @@ class EuOverlay13Data:
         [0x238CBF8],
         0x40,
         "STARTERS_HERO_IDS",
-        "type: struct monster_id_16[32]",
-        "struct monster_id_16[32]",
+        "The possible hero species by personality and gender.\n\ntype: struct monster_id_16[16][2]'",
+        "struct monster_id_16[16][2]",
     )
 
     STARTERS_TYPE_INCOMPATIBILITY_TABLE = Symbol(
@@ -22802,8 +22817,8 @@ class EuOverlay13Data:
         [0x238CC38],
         0x54,
         "STARTERS_TYPE_INCOMPATIBILITY_TABLE",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "An array representing each type as different bits.\n\n[type_id] = 1 << (type_id - 1), so 0b0 = None, 0b1 = Normal, 0b10 = Fire, etc...\n\nA 'bitflag' integer is created for the hero species' types and each potential partner species' types, using this table with bitwise OR. If any bits are shared between the hero bitflag and a partner's bitflag (if the result of a bitwise AND != 0), the hero shares a type with the potential partner, and the partner is invalid.\n\ntype: uint32_t[18]",
+        "uint32_t[18]",
     )
 
     STARTERS_STRINGS = Symbol(
@@ -22811,8 +22826,8 @@ class EuOverlay13Data:
         [0x238CC8C],
         0x60,
         "STARTERS_STRINGS",
-        "Irdkwia's notes: InsightsStringIDs",
-        "uint16_t[48]",
+        "String IDs for the explanation of each personality type.\n\nThese strings come in sets of 3, where the first string is the explanation of the personality, the second string is the male species, and the third string is the female\n\ntype: uint16_t[16][3]",
+        "uint16_t[16][3]",
     )
 
     QUIZ_QUESTION_STRINGS = Symbol(
@@ -22820,26 +22835,26 @@ class EuOverlay13Data:
         [0x238CCEC],
         0x84,
         "QUIZ_QUESTION_STRINGS",
-        "0x2 * (66 questions)",
+        "String IDs for each of the 66 quiz questions.\n\ntype: uint16_t[66]",
         "uint16_t[66]",
     )
 
     QUIZ_ANSWER_STRINGS = Symbol(
         [0x20F0],
         [0x238CD70],
-        0x160,
+        0x15E,
         "QUIZ_ANSWER_STRINGS",
-        "0x2 * (175 answers + null-terminator)",
-        "uint16_t[176]",
+        "String IDs for each of the 175 answers to the quiz questions.\n\ntype: uint16_t[175]",
+        "uint16_t[175]",
     )
 
     QUIZ_ANSWER_POINTS = Symbol(
         [0x2250],
         [0x238CED0],
-        0xAE0,
+        0xAB0,
         "QUIZ_ANSWER_POINTS",
-        "0x10 * (174 answers?)\n\nNote: unverified, ported from Irdkwia's notes",
-        "struct quiz_answer_points_entry[174]",
+        "Points for each of the 16 personalities for each of the 171 answers in the quiz that do NOT have special behavior.\n\nThis excludes the answers to the Explorers of Time/Darkness question and gender question, as these answers have special behavior; the former sets not_play_old_game, and the latter uses PLAY_OLD_GAME_BOOST if not_play_old_game is false.\n\ntype: uint8_t[171][16]",
+        "uint8_t[171][16]",
     )
 
     OV13_STATIC_INITIALIZER = Symbol(
@@ -22851,13 +22866,13 @@ class EuOverlay13Data:
         "undefined4",
     )
 
-    OVERLAY13_UNKNOWN_POINTER__NA_238CEA0 = Symbol(
+    PERSONALITY_TEST_PTR = Symbol(
         [0x2D60],
         [0x238D9E0],
         0x4,
-        "OVERLAY13_UNKNOWN_POINTER__NA_238CEA0",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "PERSONALITY_TEST_PTR",
+        "[Runtime] Pointer to the struct holding all information about the personality test.\n\ntype: struct personality_test*",
+        "struct personality_test*",
     )
 
     PARTNER_SELECT_MENU_OPTION_TRACKER = Symbol(
@@ -22878,30 +22893,30 @@ class EuOverlay13Data:
         "uint32_t",
     )
 
-    QUIZ_WINDOW_PARAMS_5 = Symbol(
+    QUESTION_ANSWER_WINDOW_PARAMS = Symbol(
         [0x2D6C],
         [0x238D9EC],
         0x10,
-        "QUIZ_WINDOW_PARAMS_5",
-        "Note: unverified, ported from Irdkwia's notes",
+        "QUESTION_ANSWER_WINDOW_PARAMS",
+        "Window params for answers to questions in the personality test. Also used for confirming partner species.\n\ntype: window_params",
         "struct window_params",
     )
 
-    QUIZ_WINDOW_PARAMS_6 = Symbol(
+    CHOOSE_PARTNER_WINDOW_PARAMS = Symbol(
         [0x2D7C],
         [0x238D9FC],
         0x10,
-        "QUIZ_WINDOW_PARAMS_6",
-        "Note: unverified, ported from Irdkwia's notes",
+        "CHOOSE_PARTNER_WINDOW_PARAMS",
+        "Window params for choosing the partner species.\n\ntype: window_params",
         "struct window_params",
     )
 
-    QUIZ_DEBUG_MENU_ITEMS = Symbol(
+    QUIZ_QUESTION_MENU_ITEMS = Symbol(
         [0x2D8C],
         [0x238DA0C],
         0x48,
-        "QUIZ_DEBUG_MENU_ITEMS",
-        "Note: unverified, ported from Irdkwia's notes",
+        "QUIZ_QUESTION_MENU_ITEMS",
+        "A sort of menu item buffer for quiz answers. The result_values are static, but the string_ids are changed for each question to its corresponding answers, with a string_id of 0 being used as a terminator.\n\nThe exact size on this is strange. There are 8 filled entries, with the 9th seemingly acting as a terminator, yet CreateSimpleMenuFromStringIds is called with n_items = 10. Additionally, multiple other parts of the personality_test struct expect there to be a maximum of 4 answers to any given question.\n\nMaybe earlier in development there were plans to support more questions? Alternatively, maybe this was/is additionally used for some debug menu that has more options; This would explain why Irdkwia's notes called it QUIZ_DEBUG_MENU_ITEMS, at least.\n\ntype: simple_menu_id_item[9]",
         "struct simple_menu_id_item[9]",
     )
 
@@ -22914,17 +22929,51 @@ class EuOverlay13Data:
         "",
     )
 
-    QUIZ_QUESTION_ANSWER_ASSOCIATIONS = Symbol(
+    QUIZ_ANSWER_ASSOCIATIONS = Symbol(
         [0x2DE4],
         [0x238DA64],
         0x84,
-        "QUIZ_QUESTION_ANSWER_ASSOCIATIONS",
-        "0x2 * (66 questions)\n\nNote: unverified, ported from Irdkwia's notes",
-        "uint16_t[66]",
+        "QUIZ_ANSWER_ASSOCIATIONS",
+        "Holds information about the answers for each of the 66 possible questions in the quiz. Specifically, each entry for a question contains the number of answers for the question, and the index for the first answer to the question in QUIZ_ANSWER_STRINGS and QUIZ_ANSWER_POINTS. This allows PersonalityTestMainManager to get the necessary info for the answers to the current question.\n\ntype: quiz_answer_association[66]",
+        "struct quiz_answer_association[66]",
     )
+
+    PORTRAIT_ATTRIBUTES = _Deprecated("PORTRAIT_ATTRIBUTES", PARTNER_PORTRAIT_OFFSET)
+
+    QUIZ_MALE_FEMALE_BOOST_TABLE = _Deprecated(
+        "QUIZ_MALE_FEMALE_BOOST_TABLE", PLAY_OLD_GAME_BOOST
+    )
+
+    QUIZ_WINDOW_PARAMS_1 = _Deprecated("QUIZ_WINDOW_PARAMS_1", MAIN_DBOX_WINDOW_PARAMS)
+
+    QUIZ_WINDOW_PARAMS_2 = _Deprecated(
+        "QUIZ_WINDOW_PARAMS_2", AURA_BOW_DBOX_WINDOW_PARAMS
+    )
+
+    QUIZ_WINDOW_PARAMS_3 = _Deprecated("QUIZ_WINDOW_PARAMS_3", DEBUG_WINDOW_PARAMS)
+
+    QUIZ_WINDOW_PARAMS_4 = _Deprecated("QUIZ_WINDOW_PARAMS_4", QUIZ_INTRO_WINDOW_PARAMS)
+
+    QUIZ_MENU_ITEMS_1 = _Deprecated("QUIZ_MENU_ITEMS_1", CONFIRM_PARTNER_MENU_ITEMS)
 
     OVERLAY13_RESERVED_SPACE = _Deprecated(
         "OVERLAY13_RESERVED_SPACE", OV13_STATIC_INITIALIZER
+    )
+
+    QUIZ_WINDOW_PARAMS_5 = _Deprecated(
+        "QUIZ_WINDOW_PARAMS_5", QUESTION_ANSWER_WINDOW_PARAMS
+    )
+
+    QUIZ_WINDOW_PARAMS_6 = _Deprecated(
+        "QUIZ_WINDOW_PARAMS_6", CHOOSE_PARTNER_WINDOW_PARAMS
+    )
+
+    QUIZ_DEBUG_MENU_ITEMS = _Deprecated(
+        "QUIZ_DEBUG_MENU_ITEMS", QUIZ_QUESTION_MENU_ITEMS
+    )
+
+    QUIZ_QUESTION_ANSWER_ASSOCIATIONS = _Deprecated(
+        "QUIZ_QUESTION_ANSWER_ASSOCIATIONS", QUIZ_ANSWER_ASSOCIATIONS
     )
 
 

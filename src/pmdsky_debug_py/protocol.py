@@ -13873,22 +13873,22 @@ Overlay12Protocol = SectionProtocol[
 
 class Overlay13FunctionsProtocol(Protocol):
 
-    EntryOverlay13: Symbol[
+    PersonalityTestEntryPoint: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ExitOverlay13: Symbol[
+    PersonalityTestDestructor: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Overlay13SwitchFunctionNa238A1C8: Symbol[
+    PersonalityTestFrameUpdate: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Overlay13SwitchFunctionNa238A574: Symbol[
+    PersonalityTestMainManager: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -13898,12 +13898,17 @@ class Overlay13FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetOptionStringFromID: Symbol[
+    GetPartnerOptionString: Symbol[
         Optional[list[int]],
         None,
     ]
 
     WaitForNextStep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawPersonalityTestDebug: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -13916,42 +13921,42 @@ class Overlay13DataProtocol(Protocol):
         Optional[int],
     ]
 
-    PORTRAIT_ATTRIBUTES: Symbol[
+    PARTNER_PORTRAIT_OFFSET: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_MALE_FEMALE_BOOST_TABLE: Symbol[
+    PLAY_OLD_GAME_BOOST: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY13_UNKNOWN_STRUCT__NA_238C024: Symbol[
+    OVERLAY13_LOAD_ENTRY: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_WINDOW_PARAMS_1: Symbol[
+    MAIN_DBOX_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_WINDOW_PARAMS_2: Symbol[
+    AURA_BOW_DBOX_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_WINDOW_PARAMS_3: Symbol[
+    DEBUG_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_WINDOW_PARAMS_4: Symbol[
+    QUIZ_INTRO_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_MENU_ITEMS_1: Symbol[
+    CONFIRM_PARTNER_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -13996,7 +14001,7 @@ class Overlay13DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY13_UNKNOWN_POINTER__NA_238CEA0: Symbol[
+    PERSONALITY_TEST_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14011,17 +14016,17 @@ class Overlay13DataProtocol(Protocol):
         Optional[int],
     ]
 
-    QUIZ_WINDOW_PARAMS_5: Symbol[
+    QUESTION_ANSWER_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_WINDOW_PARAMS_6: Symbol[
+    CHOOSE_PARTNER_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    QUIZ_DEBUG_MENU_ITEMS: Symbol[
+    QUIZ_QUESTION_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -14031,7 +14036,7 @@ class Overlay13DataProtocol(Protocol):
         Optional[int],
     ]
 
-    QUIZ_QUESTION_ANSWER_ASSOCIATIONS: Symbol[
+    QUIZ_ANSWER_ASSOCIATIONS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
