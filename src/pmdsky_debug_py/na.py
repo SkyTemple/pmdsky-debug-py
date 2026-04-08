@@ -1636,12 +1636,12 @@ class NaArm9Functions:
         None,
     )
 
-    WriteItemsToSave = Symbol(
+    GetItemsForSave = Symbol(
         [0xD95C],
         [0x200D95C],
         None,
-        "WriteItemsToSave",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: start_address\nr1: total_length\nreturn: ?",
+        "GetItemsForSave",
+        "Reads item data from BAG_ITEMS_PTR_MIRROR and compresses it using bitstreams.\n\nRead equivalent of ReadItemsFromSave.\n\nr0: Destination for compressed item data\nr1: Data length\nreturn: ?",
         None,
     )
 
@@ -1650,7 +1650,7 @@ class NaArm9Functions:
         [0x200DC44],
         None,
         "ReadItemsFromSave",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: start_address\nr1: total_length\nreturn: ?",
+        "Takes compressed item data and decompresses it using bitstreams, putting the decompressed item data in BAG_ITEMS_PTR_MIRROR.\n\nWrite equivalent of GetItemsForSave.\n\nr0: Pointer to compressed item data to read from\nr1: Data length\nreturn: ?",
         None,
     )
 
@@ -3283,39 +3283,39 @@ class NaArm9Functions:
         None,
     )
 
-    CopyMoveTo = Symbol(
+    CopyMoveToStream = Symbol(
         [0x14A4C],
         [0x2014A4C],
         None,
-        "CopyMoveTo",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: write_info\nr1: buffer_write",
+        "CopyMoveToStream",
+        "Reads the provided ground_move and compresses it using the provided bitstream.\n\nRead equivalent of CopyMoveFromStream.\n\nr0: bitstream\nr1: Source move",
         None,
     )
 
-    CopyMoveFrom = Symbol(
+    CopyMoveFromStream = Symbol(
         [0x14A84],
         [0x2014A84],
         None,
-        "CopyMoveFrom",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: read_info\nr1: buffer_read",
+        "CopyMoveFromStream",
+        "Decompresses a ground_move from the provided bitstream.\n\nWrite equivalent of CopyMoveToStream.\n\nr0: bitstream\nr1: [output] move",
         None,
     )
 
-    CopyMovesetTo = Symbol(
+    CopyMovesetToStream = Symbol(
         [0x14ABC],
         [0x2014ABC],
         None,
-        "CopyMovesetTo",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: write_info\nr1: buffer_write",
+        "CopyMovesetToStream",
+        "Reads the provided ground_moves and compresses it using the provided bitstream.\n\nRead equivalent of CopyMovesetFromStream.\n\nr0: bitstream\nr1: moveset",
         None,
     )
 
-    CopyMovesetFrom = Symbol(
+    CopyMovesetFromStream = Symbol(
         [0x14AEC],
         [0x2014AEC],
         None,
-        "CopyMovesetFrom",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: read_info\nr1: buffer_read",
+        "CopyMovesetFromStream",
+        "Decompresses 4 ground_moves from the provided bitstream.\n\nWrite equivalent of CopyMovesetFromStream.\n\nr0: bitstream\nr1: [output] moveset",
         None,
     )
 
@@ -7171,39 +7171,39 @@ class NaArm9Functions:
         None,
     )
 
-    CopyProgressInfoTo = Symbol(
+    CopyProgressInfoToStream = Symbol(
         [0x4D3C0],
         [0x204D3C0],
         None,
-        "CopyProgressInfoTo",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: write_info\nothers: ?",
+        "CopyProgressInfoToStream",
+        "Reads progress data from the global_progress struct and compresses it using bitstreams.\n\nRead equivalent of CopyProgressInfoFromStream.\n\nr0: bitstream",
         None,
     )
 
-    CopyProgressInfoFromScratchTo = Symbol(
+    GetProgressInfoForSave = Symbol(
         [0x4D548],
         [0x204D548],
         None,
-        "CopyProgressInfoFromScratchTo",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: start_address\nr1: total_length\nreturn: ?",
+        "GetProgressInfoForSave",
+        "Compresses progress info using CopyProgressInfoToStream, writing the compressed data to the provided destination.\n\nRead equivalent of ReadProgressInfoFromSave.\n\nr0: [output] Destination for compressed progress data\nr1: Data length\nreturn: Final bit_idx of the bitstream used",
         None,
     )
 
-    CopyProgressInfoFrom = Symbol(
+    CopyProgressInfoFromStream = Symbol(
         [0x4D580],
         [0x204D580],
         None,
-        "CopyProgressInfoFrom",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: read_info",
+        "CopyProgressInfoFromStream",
+        "Decompresses progress data using the provided bitstream and populates the global_progress struct.\n\nWrite equivalent of CopyProgressInfoToStream.\n\nr0: bitstream",
         None,
     )
 
-    CopyProgressInfoFromScratchFrom = Symbol(
+    ReadProgressInfoFromSave = Symbol(
         [0x4D748],
         [0x204D748],
         None,
-        "CopyProgressInfoFromScratchFrom",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: start_address\nr1: total_length",
+        "ReadProgressInfoFromSave",
+        "Decompresses progress data from the source address to populate the global_progress struct using CopyProgressInfoFromStream.\n\nWrite equivalent of GetProgressInfoForSave.\n\nr0: Location of source compressed progress data\nr1: Data length\nreturn: Final bit_idx of the bitstream used",
         None,
     )
 
@@ -7819,21 +7819,21 @@ class NaArm9Functions:
         None,
     )
 
-    CopyLogTo = Symbol(
+    CopyLogToStream = Symbol(
         [0x5054C],
         [0x205054C],
         None,
-        "CopyLogTo",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: write_info",
+        "CopyLogToStream",
+        "Reads adventure log data from ADVENTURE_LOG_PTR and compresses it using bitstreams.\n\nRead equivalent of CopyLogFromStream.\n\nr0: bitstream",
         None,
     )
 
-    CopyLogFrom = Symbol(
+    CopyLogFromStream = Symbol(
         [0x50738],
         [0x2050738],
         None,
-        "CopyLogFrom",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: read_info",
+        "CopyLogFromStream",
+        "Decompresses adventure log data from a bitstream, putting the decompressed data in ADVENTURE_LOG_PTR.\n\nWrite equivalent of CopyLogToStream.\n\nr0: bitstream",
         None,
     )
 
@@ -7873,21 +7873,48 @@ class NaArm9Functions:
         None,
     )
 
-    CopyBitsTo = Symbol(
-        [0x509C0],
-        [0x20509C0],
+    InitBitstreamForWrite = Symbol(
+        [0x50974],
+        [0x2050974],
         None,
-        "CopyBitsTo",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: write_info\nr1: buffer_write\nr2: nb_bits",
+        "InitBitstreamForWrite",
+        "Initializes a bitstream at addr, preserving the contents of the region. For using the bitstream to write somewhere else.\n\nUsed with CopyBitsFromStream.\n\nr0: [Output] Pointer to bitstream to initialize\nr1: Pointer to where the bitstream should read from. This is the source, so bits will be written from somewhere else into here.\nr2: Length of data to read (in bytes)",
         None,
     )
 
-    CopyBitsFrom = Symbol(
+    InitBitstreamForRead = Symbol(
+        [0x50990],
+        [0x2050990],
+        None,
+        "InitBitstreamForRead",
+        "Initializes a bitstream at addr, and zeroes out the region it uses (dst to dst+len). For writing from somewhere else into the bitstream.\n\nUsed with CopyBitsToStream.\n\nr0: [Output] bitstream to initialize\nr1: Pointer to where the bitstream should write to. This is the destination, so bits will be read from somewhere else into here.\nr2: Length of data to read (in bytes)",
+        None,
+    )
+
+    BitstreamDebug = Symbol(
+        [0x509BC],
+        [0x20509BC],
+        None,
+        "BitstreamDebug",
+        "Potentially a debug function. Gets called by many functions that use bitstreams.\n\nLikely a debug function, but does nothing in the final release.\n\nr0: Bitstream",
+        None,
+    )
+
+    CopyBitsToStream = Symbol(
+        [0x509C0],
+        [0x20509C0],
+        None,
+        "CopyBitsToStream",
+        "Copies n bits from src into the provided bitstream.\n\nr0: bitstream\nr1: Source to read from\nr2: Number of bits to read from source",
+        None,
+    )
+
+    CopyBitsFromStream = Symbol(
         [0x50A40],
         [0x2050A40],
         None,
-        "CopyBitsFrom",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: read_info\nr1: buffer_read\nr2: nb_bits",
+        "CopyBitsFromStream",
+        "Copies n bits from the provided bitstream into the destination.\n\nr0: bitstream\nr1: [output] Destination to write to\nr2: Number of bits to read from stream",
         None,
     )
 
@@ -8197,21 +8224,21 @@ class NaArm9Functions:
         None,
     )
 
-    Copy16BitsTo = Symbol(
+    Copy16BitsToStream = Symbol(
         [0x515C4],
         [0x20515C4],
         None,
-        "Copy16BitsTo",
-        "Writes 16 bits of data from buffer_write to write_info.\n\nr0: write_info\nr1: buffer_write",
+        "Copy16BitsToStream",
+        "Copies a halfword from src into the provided bitstream.\n\nr0: bitstream\nr1: src",
         None,
     )
 
-    Copy16BitsFrom = Symbol(
+    Copy16BitsFromStream = Symbol(
         [0x515EC],
         [0x20515EC],
         None,
-        "Copy16BitsFrom",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: read_info\nr1: buffer_read",
+        "Copy16BitsFromStream",
+        "Copies a halfword from the provided bitstream into dst.\n\nr0: bitstream\nr1: [output] dst",
         None,
     )
 
@@ -9412,12 +9439,12 @@ class NaArm9Functions:
         None,
     )
 
-    WriteMonsterInfoToSave = Symbol(
+    GetMonsterInfoForSave = Symbol(
         [0x59118],
         [0x2059118],
         None,
-        "WriteMonsterInfoToSave",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: start_address\nr1: total_length\nreturn: ?",
+        "GetMonsterInfoForSave",
+        "Compresses monster info from the team_member_table struct using CopyMonsterToStream, writing the compressed data to the provided destination.\n\nRead equivalent of ReadMonsterInfoFromSave.\n\nr0: [output] Destination for compressed monster info\nr1: Data length\nreturn: Final bit_idx of the bitstream used",
         None,
     )
 
@@ -9426,25 +9453,25 @@ class NaArm9Functions:
         [0x2059224],
         None,
         "ReadMonsterInfoFromSave",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: start_address\nr1: total_length",
+        "Decompresses monster info from the source address to populate the team_member_table struct using CopyMonsterFromStream.\n\nWrite equivalent of GetMonsterInfoForSave.\n\nr0: Location of source monster info\nr1: Data length\nreturn: Final bit_idx of the bitstream used",
         None,
     )
 
-    WriteMonsterToSave = Symbol(
+    CopyMonsterToStream = Symbol(
         [0x59334],
         [0x2059334],
         None,
-        "WriteMonsterToSave",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: write_info\nr1: ground_monster",
+        "CopyMonsterToStream",
+        "Compresses the provided ground_monster struct using the provided bitstream.\n\nRead equivalent of CopyMonsterFromStream.\n\nr0: bitstream\nr1: Ground monster",
         None,
     )
 
-    ReadMonsterFromSave = Symbol(
+    CopyMonsterFromStream = Symbol(
         [0x59444],
         [0x2059444],
         None,
-        "ReadMonsterFromSave",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: read_info\nr1: ground_monster",
+        "CopyMonsterFromStream",
+        "Decompresses from the provided bitstream to create a ground_monster struct.\n\nWrite equivalent of CopyMonsterToStream.\n\nr0: bitstream\nr1: [output] Ground monster",
         None,
     )
 
@@ -10026,9 +10053,19 @@ class NaArm9Functions:
         "DirectoryFile_LoadDirectoryFile", LoadFileInPack
     )
 
+    WriteItemsToSave = _Deprecated("WriteItemsToSave", GetItemsForSave)
+
     IsAffectedByTaunt = _Deprecated("IsAffectedByTaunt", IsUsableWhileTaunted)
 
     IsMoveRangeString19 = _Deprecated("IsMoveRangeString19", IsMoveRangeStringUser)
+
+    CopyMoveTo = _Deprecated("CopyMoveTo", CopyMoveToStream)
+
+    CopyMoveFrom = _Deprecated("CopyMoveFrom", CopyMoveFromStream)
+
+    CopyMovesetTo = _Deprecated("CopyMovesetTo", CopyMovesetToStream)
+
+    CopyMovesetFrom = _Deprecated("CopyMovesetFrom", CopyMovesetFromStream)
 
     ZeroInitScriptVariable = _Deprecated("ZeroInitScriptVariable", ZinitScriptVariable)
 
@@ -10048,7 +10085,41 @@ class NaArm9Functions:
         "SetResolvedPerformanceProgressFlag", SetPerformanceFlagWithChecks
     )
 
+    CopyProgressInfoTo = _Deprecated("CopyProgressInfoTo", CopyProgressInfoToStream)
+
+    CopyProgressInfoFromScratchTo = _Deprecated(
+        "CopyProgressInfoFromScratchTo", GetProgressInfoForSave
+    )
+
+    CopyProgressInfoFrom = _Deprecated(
+        "CopyProgressInfoFrom", CopyProgressInfoFromStream
+    )
+
+    CopyProgressInfoFromScratchFrom = _Deprecated(
+        "CopyProgressInfoFromScratchFrom", ReadProgressInfoFromSave
+    )
+
+    CopyLogTo = _Deprecated("CopyLogTo", CopyLogToStream)
+
+    CopyLogFrom = _Deprecated("CopyLogFrom", CopyLogFromStream)
+
+    CopyBitsTo = _Deprecated("CopyBitsTo", CopyBitsToStream)
+
+    CopyBitsFrom = _Deprecated("CopyBitsFrom", CopyBitsFromStream)
+
+    Copy16BitsTo = _Deprecated("Copy16BitsTo", Copy16BitsToStream)
+
+    Copy16BitsFrom = _Deprecated("Copy16BitsFrom", Copy16BitsFromStream)
+
     GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
+
+    WriteMonsterInfoToSave = _Deprecated(
+        "WriteMonsterInfoToSave", GetMonsterInfoForSave
+    )
+
+    WriteMonsterToSave = _Deprecated("WriteMonsterToSave", CopyMonsterToStream)
+
+    ReadMonsterFromSave = _Deprecated("ReadMonsterFromSave", CopyMonsterFromStream)
 
     GetActorMatchingStorageId = _Deprecated(
         "GetActorMatchingStorageId", GetScriptEntityMatchingStorageId

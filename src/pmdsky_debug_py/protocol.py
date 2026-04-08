@@ -952,7 +952,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    WriteItemsToSave: Symbol[
+    GetItemsForSave: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -1867,22 +1867,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CopyMoveTo: Symbol[
+    CopyMoveToStream: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyMoveFrom: Symbol[
+    CopyMoveFromStream: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyMovesetTo: Symbol[
+    CopyMovesetToStream: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyMovesetFrom: Symbol[
+    CopyMovesetFromStream: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4027,22 +4027,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CopyProgressInfoTo: Symbol[
+    CopyProgressInfoToStream: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyProgressInfoFromScratchTo: Symbol[
+    GetProgressInfoForSave: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyProgressInfoFrom: Symbol[
+    CopyProgressInfoFromStream: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyProgressInfoFromScratchFrom: Symbol[
+    ReadProgressInfoFromSave: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4387,12 +4387,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CopyLogTo: Symbol[
+    CopyLogToStream: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyLogFrom: Symbol[
+    CopyLogFromStream: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4417,12 +4417,27 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    CopyBitsTo: Symbol[
+    InitBitstreamForWrite: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CopyBitsFrom: Symbol[
+    InitBitstreamForRead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BitstreamDebug: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyBitsToStream: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyBitsFromStream: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4597,12 +4612,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    Copy16BitsTo: Symbol[
+    Copy16BitsToStream: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Copy16BitsFrom: Symbol[
+    Copy16BitsFromStream: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5272,7 +5287,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    WriteMonsterInfoToSave: Symbol[
+    GetMonsterInfoForSave: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5282,12 +5297,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    WriteMonsterToSave: Symbol[
+    CopyMonsterToStream: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ReadMonsterFromSave: Symbol[
+    CopyMonsterFromStream: Symbol[
         Optional[list[int]],
         None,
     ]
