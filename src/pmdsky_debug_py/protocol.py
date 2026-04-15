@@ -19203,6 +19203,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ResetVictoryCounter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShouldBoostKecleonShopSpawnChance: Symbol[
         Optional[list[int]],
         None,

@@ -30642,7 +30642,7 @@ class EuOverlay29Functions:
         [0x2316B3C],
         None,
         "TryInflictCurseStatus",
-        "Inflicts the Curse status condition on a target monster if possible and if the user is\na ghost type. Otherwise, just boost the user's defense and attack then lower the user's\nspeed.\n\nr0: user entity pointer\nr1: target entity pointer",
+        "Inflicts the Curse status condition on a target monster if possible and if the user is\na ghost type. Otherwise, just boost the user's defense and attack then lower the user's\nspeed.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: flag to log a message",
         None,
     )
 
@@ -32284,6 +32284,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    ResetVictoryCounter = Symbol(
+        [0x5C4AC],
+        [0x233902C],
+        None,
+        "ResetVictoryCounter",
+        "Resets the dungeon struct's victory_counter to 0.\n\nNo params.",
+        None,
+    )
+
     ShouldBoostKecleonShopSpawnChance = Symbol(
         [0x5C510],
         [0x2339090],
@@ -33108,7 +33117,7 @@ class EuOverlay29Functions:
         [0x2343B14],
         None,
         "PlaceFixedRoomTile",
-        "Used to spawn a single tile when generating a fixed room. The tile might contain an item or a monster.\n\nr0: Pointer to the tile to spawn\nr1: Fixed room action to perform. Controls what exactly will be spawned. The action is actually 12 bits long, the highest 4 bits are used as a parameter that represents a direction (for example, when spawning a monster).\nr2: Tile X position\nr3: Tile Y position",
+        "Used to spawn a single tile when generating a fixed room. The tile might contain an item, trap, or monster.\n\nr0: Pointer to the tile to spawn\nr1: Fixed room action to perform. Controls what exactly will be spawned. The action is actually 12 bits long, the highest 4 bits are used as a parameter that represents a direction (for example, when spawning a monster).\nr2: Tile X position\nr3: Tile Y position\nstack[0]: Whether to place an item or trap, if one is present",
         None,
     )
 
