@@ -3822,6 +3822,15 @@ class EuItcmArm9Functions:
         None,
     )
 
+    FillOamAttributeInfo = Symbol(
+        None,
+        None,
+        None,
+        "FillOamAttributeInfo",
+        "Copies an array of values into an animation_control struct's oam_attribute_info.\n\nr0: animation_control\nr1: source array (length 6)",
+        None,
+    )
+
     AnimationControlGetAllocForMaxFrame = Symbol(
         None,
         None,
@@ -19126,6 +19135,15 @@ class EuItcmOverlay10Data:
         "int16_t",
     )
 
+    EATEN_BLAST_SEED_DAMAGE_NORMAL = Symbol(
+        None,
+        None,
+        None,
+        "EATEN_BLAST_SEED_DAMAGE_NORMAL",
+        "Damage normally dealt by an eaten blast seed (35).",
+        "int16_t",
+    )
+
     CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
         None,
         None,
@@ -19414,6 +19432,33 @@ class EuItcmOverlay10Data:
         "int16_t",
     )
 
+    THROWN_BLAST_SEED_DAMAGE_NORMAL = Symbol(
+        None,
+        None,
+        None,
+        "THROWN_BLAST_SEED_DAMAGE_NORMAL",
+        "Damage normally dealt by a thrown blast seed (25).",
+        "int16_t",
+    )
+
+    THROWN_BLAST_SEED_DAMAGE_BOSS = Symbol(
+        None,
+        None,
+        None,
+        "THROWN_BLAST_SEED_DAMAGE_BOSS",
+        "Damage dealt by a thrown blast seed during boss fights (25).",
+        "int16_t",
+    )
+
+    EATEN_BLAST_SEED_DAMAGE_BOSS = Symbol(
+        None,
+        None,
+        None,
+        "EATEN_BLAST_SEED_DAMAGE_BOSS",
+        "Damage dealt by an eaten blast seed during boss fights (35).",
+        "int16_t",
+    )
+
     TYPE_ADVANTAGE_MASTER_CRIT_RATE = Symbol(
         None,
         None,
@@ -19501,6 +19546,15 @@ class EuItcmOverlay10Data:
         None,
         "SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE",
         "The chance of Shadow Ball lowering special defense, as a percentage (20%).",
+        "int16_t",
+    )
+
+    AQUA_RING_HEALING_COUNTDOWN = Symbol(
+        None,
+        None,
+        None,
+        "AQUA_RING_HEALING_COUNTDOWN",
+        "The countdown in turns between healing from Aqua Ring (4).",
         "int16_t",
     )
 
@@ -20317,7 +20371,7 @@ class EuItcmOverlay10Data:
         None,
         None,
         "SPEED_LOWER_TURN_RANGE",
-        "The turn range for lowered speed, [6, 8].\n\ntype: int16_t[2]",
+        "The turn range for lowered speed, [6, 8).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -20326,7 +20380,7 @@ class EuItcmOverlay10Data:
         None,
         None,
         "PARALYSIS_TURN_RANGE",
-        "The turn range for the Paralysis status, [1, 2].\n\ntype: int16_t[2]",
+        "The turn range for the Paralysis status, [1, 2).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -20348,6 +20402,15 @@ class EuItcmOverlay10Data:
         "fx32_8",
     )
 
+    WRAP_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "WRAP_TURN_RANGE",
+        "The turn range for the Wrap status, [2, 5).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     RAZOR_WIND_DAMAGE_MULTIPLIER = Symbol(
         None,
         None,
@@ -20364,6 +20427,15 @@ class EuItcmOverlay10Data:
         "FOCUS_PUNCH_DAMAGE_MULTIPLIER",
         "The damage multiplier for Focus Punch, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
+    )
+
+    INGRAIN_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "INGRAIN_TURN_RANGE",
+        "The turn range for the Ingrain status, [15, 30).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     SKULL_BASH_DAMAGE_MULTIPLIER = Symbol(
@@ -26105,6 +26177,24 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    IsValidTargetEntity = Symbol(
+        None,
+        None,
+        None,
+        "IsValidTargetEntity",
+        "Checks if an entity is a valid target for another entity. Checks if both entities are valid and then calls IsPositionActuallyInSight.\n\nThis logic is identical to CanSeeTarget, except without its additional checks involving the monster structs of the entities (for invisibility, etc.)\n\nr0: User entity pointer\nr1: Target entity pointer\nreturn: True if the specified monster can see the target monster, false otherwise.",
+        None,
+    )
+
+    CanSeePosition = Symbol(
+        None,
+        None,
+        None,
+        "CanSeePosition",
+        "Checks if a monster can see a position. Same as CanTargetPosition, but calls IsPositionActuallyInSight instead.\n\nr0: Entity pointer\nr1: Target position\nreturn: True if the specified monster can see the target position, false otherwise.",
+        None,
+    )
+
     CanTargetPosition = Symbol(
         None,
         None,
@@ -26573,6 +26663,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    DisplayTeamStatsSprite = Symbol(
+        None,
+        None,
+        None,
+        "DisplayTeamStatsSprite",
+        "Displays a party member's sprite on the team stats menu.\n\nr0: Team member entity pointer\nr1: ?\nr2: ?",
+        None,
+    )
+
     AssignTopScreenHandlers = Symbol(
         None,
         None,
@@ -26723,6 +26822,15 @@ class EuItcmOverlay29Functions:
         None,
         "AdvanceFrame",
         "Advances one frame. Does not return until the next frame starts.\n\nr0: ? - Unused by the function",
+        None,
+    )
+
+    UnkMapRelatedFunc = Symbol(
+        None,
+        None,
+        None,
+        "UnkMapRelatedFunc",
+        "Calling this function with r0 = 6 (or its duplicates in the switch statement) will normally close the minimap, while r0 = 0 will reopen it.\n\nWhen called in certain places, the function will crash the game instead?\n\nAlso does nothing if the passed case is the same as the last case used (or 0 if the last case was 0xd).\n\nr0: Which case to use for the switch statement\nr1: unused",
         None,
     )
 
@@ -36437,6 +36545,15 @@ class EuItcmRamData:
         "DUNGEON_BUTTON_INPUT",
         "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
         "struct dungeon_button_input",
+    )
+
+    DUNGEON_FRAMES_PASSED = Symbol(
+        None,
+        None,
+        None,
+        "DUNGEON_FRAMES_PASSED",
+        "[Runtime] Stores the number of frames that have passed since the beginning of dungeon mode. \n\nSeems to also be the beginning of some struct, where the value right after is the last case of UnkMapRelatedFunc.\n\ntype: uint32_t",
+        "uint32_t",
     )
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(

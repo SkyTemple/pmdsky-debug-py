@@ -3868,6 +3868,15 @@ class JpArm9Functions:
         None,
     )
 
+    FillOamAttributeInfo = Symbol(
+        [0x1D168],
+        [0x201D168],
+        None,
+        "FillOamAttributeInfo",
+        "Copies an array of values into an animation_control struct's oam_attribute_info.\n\nr0: animation_control\nr1: source array (length 6)",
+        None,
+    )
+
     AnimationControlGetAllocForMaxFrame = Symbol(
         [0x1D1C8],
         [0x201D1C8],
@@ -19054,7 +19063,7 @@ class JpOverlay10Data:
     INVENTORY_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
         [0x785C],
         [0x22C5A7C],
-        None,
+        0x10,
         "INVENTORY_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an inventory_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateInventoryMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateInventoryMenu.",
         "struct window_params",
@@ -19252,7 +19261,7 @@ class JpOverlay10Data:
     MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
         [0x794C],
         [0x22C5B6C],
-        None,
+        0x2,
         "MUDDY_WATER_LOWER_ACCURACY_CHANCE",
         "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40) lowering accuracy, as a percentage (40%).",
         "int16_t",
@@ -19360,7 +19369,7 @@ class JpOverlay10Data:
     CURSE_DAMAGE_COOLDOWN = Symbol(
         [0x7984],
         [0x22C5BA4],
-        None,
+        0x2,
         "CURSE_DAMAGE_COOLDOWN",
         "The number of turns between passive curse damage (3).",
         "int16_t",
@@ -19387,7 +19396,7 @@ class JpOverlay10Data:
     BURN_DAMAGE = Symbol(
         [0x799C],
         [0x22C5BBC],
-        None,
+        0x2,
         "BURN_DAMAGE",
         "Damage dealt by the burn status condition.",
         "int16_t",
@@ -19396,7 +19405,7 @@ class JpOverlay10Data:
     POISON_DAMAGE = Symbol(
         [0x79A0],
         [0x22C5BC0],
-        None,
+        0x2,
         "POISON_DAMAGE",
         "Damage dealt by the poison status condition.",
         "int16_t",
@@ -19426,6 +19435,15 @@ class JpOverlay10Data:
         0x2,
         "PITFALL_TRAP_DAMAGE",
         "Damage dealt by pitfall traps (5).",
+        "int16_t",
+    )
+
+    EATEN_BLAST_SEED_DAMAGE_NORMAL = Symbol(
+        [0x79B0],
+        [0x22C5BD0],
+        0x2,
+        "EATEN_BLAST_SEED_DAMAGE_NORMAL",
+        "Damage normally dealt by an eaten blast seed (35).",
         "int16_t",
     )
 
@@ -19639,7 +19657,7 @@ class JpOverlay10Data:
     RAIN_ABILITY_BONUS_REGEN = Symbol(
         [0x7A40],
         [0x22C5C60],
-        None,
+        0x2,
         "RAIN_ABILITY_BONUS_REGEN",
         "The passive bonus health regen given when the weather is rain for the abilities rain dish and dry skin.",
         "int16_t",
@@ -19657,7 +19675,7 @@ class JpOverlay10Data:
     LEECH_SEED_HP_DRAIN = Symbol(
         [0x7A50],
         [0x22C5C70],
-        None,
+        0x2,
         "LEECH_SEED_HP_DRAIN",
         "The amount of health drained by leech seed status.",
         "int16_t",
@@ -19675,7 +19693,7 @@ class JpOverlay10Data:
     INGRAIN_BONUS_REGEN = Symbol(
         [0x7A58],
         [0x22C5C78],
-        None,
+        0x2,
         "INGRAIN_BONUS_REGEN",
         "The passive bonus regen given by the Ingrain status condition (10).",
         "int16_t",
@@ -19711,9 +19729,36 @@ class JpOverlay10Data:
     WRAP_DAMAGE = Symbol(
         [0x7A98],
         [0x22C5CB8],
-        None,
+        0x2,
         "WRAP_DAMAGE",
         "Damage dealt by the wrap status condition (6).",
+        "int16_t",
+    )
+
+    THROWN_BLAST_SEED_DAMAGE_NORMAL = Symbol(
+        [0x7A9C],
+        [0x22C5CBC],
+        0x2,
+        "THROWN_BLAST_SEED_DAMAGE_NORMAL",
+        "Damage normally dealt by a thrown blast seed (25).",
+        "int16_t",
+    )
+
+    THROWN_BLAST_SEED_DAMAGE_BOSS = Symbol(
+        [0x7AA0],
+        [0x22C5CC0],
+        0x2,
+        "THROWN_BLAST_SEED_DAMAGE_BOSS",
+        "Damage dealt by a thrown blast seed during boss fights (25).",
+        "int16_t",
+    )
+
+    EATEN_BLAST_SEED_DAMAGE_BOSS = Symbol(
+        [0x7AA4],
+        [0x22C5CC4],
+        0x2,
+        "EATEN_BLAST_SEED_DAMAGE_BOSS",
+        "Damage dealt by an eaten blast seed during boss fights (35).",
         "int16_t",
     )
 
@@ -19729,7 +19774,7 @@ class JpOverlay10Data:
     INGRAIN_BONUS_REGEN_COOLDOWN = Symbol(
         [0x7AB0],
         [0x22C5CD0],
-        None,
+        0x2,
         "INGRAIN_BONUS_REGEN_COOLDOWN",
         "The number of turns between ingrain health regeneration (5).",
         "int16_t",
@@ -19747,7 +19792,7 @@ class JpOverlay10Data:
     WRAP_DAMAGE_COOLDOWN = Symbol(
         [0x7AB8],
         [0x22C5CD8],
-        None,
+        0x2,
         "WRAP_DAMAGE_COOLDOWN",
         "The number of turns between passive wrap damage (2).",
         "int16_t",
@@ -19807,6 +19852,15 @@ class JpOverlay10Data:
         "int16_t",
     )
 
+    AQUA_RING_HEALING_COUNTDOWN = Symbol(
+        [0x7AE8],
+        [0x22C5D08],
+        0x2,
+        "AQUA_RING_HEALING_COUNTDOWN",
+        "The countdown in turns between healing from Aqua Ring (4).",
+        "int16_t",
+    )
+
     STICK_POWER = Symbol(
         [0x7AEC], [0x22C5D0C], 0x2, "STICK_POWER", "Attack power for Sticks.", "int16_t"
     )
@@ -19814,7 +19868,7 @@ class JpOverlay10Data:
     AQUA_RING_BONUS_REGEN = Symbol(
         [0x7AF0],
         [0x22C5D10],
-        None,
+        0x2,
         "AQUA_RING_BONUS_REGEN",
         "The passive bonus regen given by the Aqua Ring status condition (8).",
         "int16_t",
@@ -19832,7 +19886,7 @@ class JpOverlay10Data:
     ICE_BODY_BONUS_REGEN = Symbol(
         [0x7AF8],
         [0x22C5D18],
-        None,
+        0x2,
         "ICE_BODY_BONUS_REGEN",
         "The passive bonus health regen given when the weather is hail for the ability ice body.",
         "int16_t",
@@ -19886,7 +19940,7 @@ class JpOverlay10Data:
     WEATHER_MOVE_TURN_COUNT = Symbol(
         [0x7B1C],
         [0x22C5D3C],
-        None,
+        0x2,
         "WEATHER_MOVE_TURN_COUNT",
         "The number of turns the moves rain dance, hail, sandstorm, sunny day and defog change the weather for. (3000)",
         "int16_t",
@@ -20030,7 +20084,7 @@ class JpOverlay10Data:
     LEECH_SEED_DAMAGE_COOLDOWN = Symbol(
         [0x7B74],
         [0x22C5D94],
-        None,
+        0x2,
         "LEECH_SEED_DAMAGE_COOLDOWN",
         "The number of turns between leech seed health drain.",
         "int16_t",
@@ -20111,7 +20165,7 @@ class JpOverlay10Data:
     WISH_BONUS_REGEN = Symbol(
         [0x7B98],
         [0x22C5DB8],
-        None,
+        0x2,
         "WISH_BONUS_REGEN",
         "The passive bonus regen given by the wish status condition.",
         "int16_t",
@@ -20174,7 +20228,7 @@ class JpOverlay10Data:
     BAD_WEATHER_DAMAGE = Symbol(
         [0x7BB4],
         [0x22C5DD4],
-        None,
+        0x2,
         "BAD_WEATHER_DAMAGE",
         "Damage dealt by the Sandstorm and Hail weather conditions (3).",
         "int16_t",
@@ -20381,7 +20435,7 @@ class JpOverlay10Data:
     MATCHUP_IMMUNE_MULTIPLIER = Symbol(
         [0x7C20],
         [0x22C5E40],
-        None,
+        0x4,
         "MATCHUP_IMMUNE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_IMMUNE, as a fixed-point number with 8 fraction bits (0.5).",
         "fx32_8",
@@ -20633,18 +20687,18 @@ class JpOverlay10Data:
     SPEED_LOWER_TURN_RANGE = Symbol(
         [0x7D54],
         [0x22C5F74],
-        None,
+        0x4,
         "SPEED_LOWER_TURN_RANGE",
-        "The turn range for lowered speed, [6, 8].\n\ntype: int16_t[2]",
+        "The turn range for lowered speed, [6, 8).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
     PARALYSIS_TURN_RANGE = Symbol(
         [0x7D5C],
         [0x22C5F7C],
-        None,
+        0x4,
         "PARALYSIS_TURN_RANGE",
-        "The turn range for the Paralysis status, [1, 2].\n\ntype: int16_t[2]",
+        "The turn range for the Paralysis status, [1, 2).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -20666,6 +20720,15 @@ class JpOverlay10Data:
         "fx32_8",
     )
 
+    WRAP_TURN_RANGE = Symbol(
+        [0x7D74],
+        [0x22C5F94],
+        0x4,
+        "WRAP_TURN_RANGE",
+        "The turn range for the Wrap status, [2, 5).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     RAZOR_WIND_DAMAGE_MULTIPLIER = Symbol(
         [0x7D78],
         [0x22C5F98],
@@ -20678,10 +20741,19 @@ class JpOverlay10Data:
     FOCUS_PUNCH_DAMAGE_MULTIPLIER = Symbol(
         [0x7D7C],
         [0x22C5F9C],
-        None,
+        0x4,
         "FOCUS_PUNCH_DAMAGE_MULTIPLIER",
         "The damage multiplier for Focus Punch, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
+    )
+
+    INGRAIN_TURN_RANGE = Symbol(
+        [0x7D80],
+        [0x22C5FA0],
+        0x4,
+        "INGRAIN_TURN_RANGE",
+        "The turn range for the Ingrain status, [15, 30).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     SKULL_BASH_DAMAGE_MULTIPLIER = Symbol(
@@ -20813,7 +20885,7 @@ class JpOverlay10Data:
     EAT_ITEM_EFFECT_IGNORE_LIST = Symbol(
         [0x803C],
         [0x22C625C],
-        None,
+        0x48,
         "EAT_ITEM_EFFECT_IGNORE_LIST",
         "List of item IDs that should be ignored by the ShouldTryEatItem function. The last entry is null.",
         "struct item_id_16[36]",
@@ -20831,7 +20903,7 @@ class JpOverlay10Data:
     BAD_POISON_DAMAGE_TABLE = Symbol(
         [0x8164],
         [0x22C6384],
-        None,
+        0x3C,
         "BAD_POISON_DAMAGE_TABLE",
         "Table for how much damage each tick of badly poisoned should deal. The table is filled with 0x0006, but could use different values for each entry.",
         "int16_t[30]",
@@ -26657,6 +26729,24 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsValidTargetEntity = Symbol(
+        [0x6688],
+        [0x22E3F68],
+        None,
+        "IsValidTargetEntity",
+        "Checks if an entity is a valid target for another entity. Checks if both entities are valid and then calls IsPositionActuallyInSight.\n\nThis logic is identical to CanSeeTarget, except without its additional checks involving the monster structs of the entities (for invisibility, etc.)\n\nr0: User entity pointer\nr1: Target entity pointer\nreturn: True if the specified monster can see the target monster, false otherwise.",
+        None,
+    )
+
+    CanSeePosition = Symbol(
+        [0x66E4],
+        [0x22E3FC4],
+        None,
+        "CanSeePosition",
+        "Checks if a monster can see a position. Same as CanTargetPosition, but calls IsPositionActuallyInSight instead.\n\nr0: Entity pointer\nr1: Target position\nreturn: True if the specified monster can see the target position, false otherwise.",
+        None,
+    )
+
     CanTargetPosition = Symbol(
         [0x6708],
         [0x22E3FE8],
@@ -27153,6 +27243,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    DisplayTeamStatsSprite = Symbol(
+        [0xBFF8],
+        [0x22E98D8],
+        None,
+        "DisplayTeamStatsSprite",
+        "Displays a party member's sprite on the team stats menu.\n\nr0: Team member entity pointer\nr1: ?\nr2: ?",
+        None,
+    )
+
     AssignTopScreenHandlers = Symbol(
         [0xC450],
         [0x22E9D30],
@@ -27303,6 +27402,15 @@ class JpOverlay29Functions:
         None,
         "AdvanceFrame",
         "Advances one frame. Does not return until the next frame starts.\n\nr0: ? - Unused by the function",
+        None,
+    )
+
+    UnkMapRelatedFunc = Symbol(
+        [0xE1B0],
+        [0x22EBA90],
+        None,
+        "UnkMapRelatedFunc",
+        "Calling this function with r0 = 6 (or its duplicates in the switch statement) will normally close the minimap, while r0 = 0 will reopen it.\n\nWhen called in certain places, the function will crash the game instead?\n\nAlso does nothing if the passed case is the same as the last case used (or 0 if the last case was 0xd).\n\nr0: Which case to use for the switch statement\nr1: unused",
         None,
     )
 
@@ -37087,6 +37195,15 @@ class JpRamData:
         "DUNGEON_BUTTON_INPUT",
         "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
         "struct dungeon_button_input",
+    )
+
+    DUNGEON_FRAMES_PASSED = Symbol(
+        [0x37DAD0],
+        [0x237DAD0],
+        None,
+        "DUNGEON_FRAMES_PASSED",
+        "[Runtime] Stores the number of frames that have passed since the beginning of dungeon mode. \n\nSeems to also be the beginning of some struct, where the value right after is the last case of UnkMapRelatedFunc.\n\ntype: uint32_t",
+        "uint32_t",
     )
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(

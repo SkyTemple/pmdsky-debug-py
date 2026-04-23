@@ -3868,6 +3868,15 @@ class EuArm9Functions:
         None,
     )
 
+    FillOamAttributeInfo = Symbol(
+        [0x1D1AC],
+        [0x201D1AC],
+        None,
+        "FillOamAttributeInfo",
+        "Copies an array of values into an animation_control struct's oam_attribute_info.\n\nr0: animation_control\nr1: source array (length 6)",
+        None,
+    )
+
     AnimationControlGetAllocForMaxFrame = Symbol(
         [0x1D20C],
         [0x201D20C],
@@ -19059,7 +19068,7 @@ class EuOverlay10Data:
     INVENTORY_MENU_DEFAULT_WINDOW_PARAMS = Symbol(
         [0x792C],
         [0x22C4CEC],
-        None,
+        0x10,
         "INVENTORY_MENU_DEFAULT_WINDOW_PARAMS",
         "Default window_params for an inventory_menu.\n\nNote that x_offset and y_offset refer to the right and bottom edges, since they will be paired with the x_offset_end and y_offset_end window flags in CreateInventoryMenu.\n\nAdditionally, width and height are 0, and will be computed in CreateInventoryMenu.",
         "struct window_params",
@@ -19113,7 +19122,7 @@ class EuOverlay10Data:
     WATERFALL_CRINGE_CHANCE = Symbol(
         [0x79BC],
         [0x22C4D7C],
-        None,
+        0x2,
         "WATERFALL_CRINGE_CHANCE",
         "The chance of Waterfall inflicting the cringe status, as a percentage (30%).",
         "int16_t",
@@ -19122,7 +19131,7 @@ class EuOverlay10Data:
     AURORA_BEAM_LOWER_ATTACK_CHANCE = Symbol(
         [0x79C0],
         [0x22C4D80],
-        None,
+        0x2,
         "AURORA_BEAM_LOWER_ATTACK_CHANCE",
         "The chance of Aurora Beam halving attack, as a percentage (60%).",
         "int16_t",
@@ -19158,7 +19167,7 @@ class EuOverlay10Data:
     IRON_TAIL_LOWER_DEFENSE_CHANCE = Symbol(
         [0x79D8],
         [0x22C4D98],
-        None,
+        0x2,
         "IRON_TAIL_LOWER_DEFENSE_CHANCE",
         "The chance of Iron Tail lowering defense, as a percentage (30%).",
         "int16_t",
@@ -19167,7 +19176,7 @@ class EuOverlay10Data:
     TWINEEDLE_POISON_CHANCE = Symbol(
         [0x79DC],
         [0x22C4D9C],
-        None,
+        0x2,
         "TWINEEDLE_POISON_CHANCE",
         "The chance of Twineedle poisoning, as a percentage (20%).",
         "int16_t",
@@ -19176,7 +19185,7 @@ class EuOverlay10Data:
     EXTRASENSORY_CRINGE_CHANCE = Symbol(
         [0x79E0],
         [0x22C4DA0],
-        None,
+        0x2,
         "EXTRASENSORY_CRINGE_CHANCE",
         "The chance of Extrasensory (and others, see DoMoveDamageCringe10) inflicting the cringe status, as a percentage (10%).",
         "int16_t",
@@ -19185,7 +19194,7 @@ class EuOverlay10Data:
     ROCK_SLIDE_CRINGE_CHANCE = Symbol(
         [0x79E4],
         [0x22C4DA4],
-        None,
+        0x2,
         "ROCK_SLIDE_CRINGE_CHANCE",
         "The chance of Rock Slide (and others, see DoMoveDamageCringe30) inflicting the cringe status, as a percentage (30%).",
         "int16_t",
@@ -19194,7 +19203,7 @@ class EuOverlay10Data:
     CRUNCH_LOWER_DEFENSE_CHANCE = Symbol(
         [0x79E8],
         [0x22C4DA8],
-        None,
+        0x2,
         "CRUNCH_LOWER_DEFENSE_CHANCE",
         "The chance of Crunch (and others, see DoMoveDamageLowerDef20) lowering defense, as a percentage (20%).",
         "int16_t",
@@ -19212,7 +19221,7 @@ class EuOverlay10Data:
     TRAP_BUSTER_ACTIVATION_CHANCE = Symbol(
         [0x79F4],
         [0x22C4DB4],
-        None,
+        0x2,
         "TRAP_BUSTER_ACTIVATION_CHANCE",
         "The chance of Trap Buster activating (30%).",
         "int16_t",
@@ -19221,7 +19230,7 @@ class EuOverlay10Data:
     FOREWARN_FORCED_MISS_CHANCE = Symbol(
         [0x7A00],
         [0x22C4DC0],
-        None,
+        0x2,
         "FOREWARN_FORCED_MISS_CHANCE",
         "The chance of Forewarn forcing a move to miss, as a percentage (20%).",
         "int16_t",
@@ -19257,7 +19266,7 @@ class EuOverlay10Data:
     MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
         [0x7A1C],
         [0x22C4DDC],
-        None,
+        0x2,
         "MUDDY_WATER_LOWER_ACCURACY_CHANCE",
         "The chance of Muddy Water (and others, see DoMoveDamageLowerAccuracy40) lowering accuracy, as a percentage (40%).",
         "int16_t",
@@ -19266,7 +19275,7 @@ class EuOverlay10Data:
     SILVER_WIND_BOOST_CHANCE = Symbol(
         [0x7A20],
         [0x22C4DE0],
-        None,
+        0x2,
         "SILVER_WIND_BOOST_CHANCE",
         "The chance of Silver Wind (and others, see DoMoveDamageBoostAllStats) boosting all stats, as a percentage (20%).",
         "int16_t",
@@ -19275,7 +19284,7 @@ class EuOverlay10Data:
     POISON_TAIL_POISON_CHANCE = Symbol(
         [0x7A24],
         [0x22C4DE4],
-        None,
+        0x2,
         "POISON_TAIL_POISON_CHANCE",
         "The chance of Poison Tail poisoning, as a percentage (10%).",
         "int16_t",
@@ -19284,7 +19293,7 @@ class EuOverlay10Data:
     THUNDERSHOCK_PARALYZE_CHANCE = Symbol(
         [0x7A28],
         [0x22C4DE8],
-        None,
+        0x2,
         "THUNDERSHOCK_PARALYZE_CHANCE",
         "The chance of Thundershock paralyzing, as a percentage (10%).",
         "int16_t",
@@ -19293,7 +19302,7 @@ class EuOverlay10Data:
     BOUNCE_PARALYZE_CHANCE = Symbol(
         [0x7A2C],
         [0x22C4DEC],
-        None,
+        0x2,
         "BOUNCE_PARALYZE_CHANCE",
         "The chance of Bounce paralyzing, as a percentage (30%)",
         "int16_t",
@@ -19302,7 +19311,7 @@ class EuOverlay10Data:
     HEADBUTT_CRINGE_CHANCE = Symbol(
         [0x7A30],
         [0x22C4DF0],
-        None,
+        0x2,
         "HEADBUTT_CRINGE_CHANCE",
         "The chance of Headbutt inflicting the cringe status, as a percentage (25%).",
         "int16_t",
@@ -19311,7 +19320,7 @@ class EuOverlay10Data:
     FIRE_FANG_CRINGE_CHANCE = Symbol(
         [0x7A34],
         [0x22C4DF4],
-        None,
+        0x2,
         "FIRE_FANG_CRINGE_CHANCE",
         "The chance of Fire Fang inflicting the cringe status, as a percentage (25%).",
         "int16_t",
@@ -19320,7 +19329,7 @@ class EuOverlay10Data:
     SACRED_FIRE_BURN_CHANCE = Symbol(
         [0x7A38],
         [0x22C4DF8],
-        None,
+        0x2,
         "SACRED_FIRE_BURN_CHANCE",
         "The chance of Sacred Fire burning, as a percentage (50%).",
         "int16_t",
@@ -19329,7 +19338,7 @@ class EuOverlay10Data:
     WHIRLPOOL_CONSTRICTION_CHANCE = Symbol(
         [0x7A3C],
         [0x22C4DFC],
-        None,
+        0x2,
         "WHIRLPOOL_CONSTRICTION_CHANCE",
         "The chance of Whirlpool inflicting the constriction status, as a percentage (10%).",
         "int16_t",
@@ -19356,7 +19365,7 @@ class EuOverlay10Data:
     HEAL_ORDER_HP_RESTORATION = Symbol(
         [0x7A50],
         [0x22C4E10],
-        None,
+        0x2,
         "HEAL_ORDER_HP_RESTORATION",
         "The amount of HP restored by Heal Order (40).",
         "int16_t",
@@ -19374,7 +19383,7 @@ class EuOverlay10Data:
     STEEL_WING_BOOST_DEFENSE_CHANCE = Symbol(
         [0x7A5C],
         [0x22C4E1C],
-        None,
+        0x2,
         "STEEL_WING_BOOST_DEFENSE_CHANCE",
         "The chance of Steel Wing boosting defense, as a percentage (20%).",
         "int16_t",
@@ -19392,7 +19401,7 @@ class EuOverlay10Data:
     BURN_DAMAGE = Symbol(
         [0x7A6C],
         [0x22C4E2C],
-        None,
+        0x2,
         "BURN_DAMAGE",
         "Damage dealt by the burn status condition.",
         "int16_t",
@@ -19401,7 +19410,7 @@ class EuOverlay10Data:
     POISON_DAMAGE = Symbol(
         [0x7A70],
         [0x22C4E30],
-        None,
+        0x2,
         "POISON_DAMAGE",
         "Damage dealt by the poison status condition.",
         "int16_t",
@@ -19419,7 +19428,7 @@ class EuOverlay10Data:
     MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE = Symbol(
         [0x7A78],
         [0x22C4E38],
-        None,
+        0x2,
         "MIST_BALL_LOWER_SPECIAL_ATTACK_CHANCE",
         "The chance of Mist Ball lowering special attack, as a percentage (50%).",
         "int16_t",
@@ -19434,10 +19443,19 @@ class EuOverlay10Data:
         "int16_t",
     )
 
+    EATEN_BLAST_SEED_DAMAGE_NORMAL = Symbol(
+        [0x7A80],
+        [0x22C4E40],
+        0x2,
+        "EATEN_BLAST_SEED_DAMAGE_NORMAL",
+        "Damage normally dealt by an eaten blast seed (35).",
+        "int16_t",
+    )
+
     CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE = Symbol(
         [0x7A88],
         [0x22C4E48],
-        None,
+        0x2,
         "CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE",
         "The chance of Charge Beam boosting special attack, as a percentage (40%).",
         "int16_t",
@@ -19473,7 +19491,7 @@ class EuOverlay10Data:
     OCTAZOOKA_LOWER_ACCURACY_CHANCE = Symbol(
         [0x7A98],
         [0x22C4E58],
-        None,
+        0x2,
         "OCTAZOOKA_LOWER_ACCURACY_CHANCE",
         "The chance of Octazooka lowering accuracy, as a percentage (60%).",
         "int16_t",
@@ -19482,7 +19500,7 @@ class EuOverlay10Data:
     LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
         [0x7AA4],
         [0x22C4E64],
-        None,
+        0x2,
         "LUSTER_PURGE_LOWER_SPECIAL_DEFENSE_CHANCE",
         "The chance of Luster Purge (and others, see DoMoveDamageLowerSpecialDefense50) lowering special defense, as a percentage (50%).",
         "int16_t",
@@ -19491,7 +19509,7 @@ class EuOverlay10Data:
     SUPER_LUCK_CRIT_RATE_BOOST = Symbol(
         [0x7AA8],
         [0x22C4E68],
-        None,
+        0x2,
         "SUPER_LUCK_CRIT_RATE_BOOST",
         "The critical hit rate (additive) boost from Super Luck, 10%.",
         "int16_t",
@@ -19500,7 +19518,7 @@ class EuOverlay10Data:
     CONSTRICT_LOWER_SPEED_CHANCE = Symbol(
         [0x7AAC],
         [0x22C4E6C],
-        None,
+        0x2,
         "CONSTRICT_LOWER_SPEED_CHANCE",
         "The chance of Constrict (and others, see DoMoveDamageLowerSpeed20) lowering speed, as a percentage (20%).",
         "int16_t",
@@ -19509,7 +19527,7 @@ class EuOverlay10Data:
     ICE_FANG_FREEZE_CHANCE = Symbol(
         [0x7AB0],
         [0x22C4E70],
-        None,
+        0x2,
         "ICE_FANG_FREEZE_CHANCE",
         "The chance of Ice Fang freezing, as a percentage (15%).",
         "int16_t",
@@ -19518,7 +19536,7 @@ class EuOverlay10Data:
     SMOG_POISON_CHANCE = Symbol(
         [0x7AB4],
         [0x22C4E74],
-        None,
+        0x2,
         "SMOG_POISON_CHANCE",
         "The chance of Smog (and others, see DoMoveDamagePoison40) poisoning, as a percentage (40%).",
         "int16_t",
@@ -19527,7 +19545,7 @@ class EuOverlay10Data:
     CUTE_CHARM_INFATUATE_CHANCE = Symbol(
         [0x7ABC],
         [0x22C4E7C],
-        None,
+        0x2,
         "CUTE_CHARM_INFATUATE_CHANCE",
         "The chance of Cute Charm infatuating, as a percentage (12%).",
         "int16_t",
@@ -19536,7 +19554,7 @@ class EuOverlay10Data:
     LICK_PARALYZE_CHANCE = Symbol(
         [0x7AC0],
         [0x22C4E80],
-        None,
+        0x2,
         "LICK_PARALYZE_CHANCE",
         "The chance of Lick (and others, see DoMoveDamageParalyze10) paralyzing, as a percentage (10%).",
         "int16_t",
@@ -19545,7 +19563,7 @@ class EuOverlay10Data:
     THUNDER_FANG_PARALYZE_CHANCE = Symbol(
         [0x7AC4],
         [0x22C4E84],
-        None,
+        0x2,
         "THUNDER_FANG_PARALYZE_CHANCE",
         "The chance of Thunder Fang paralyzing, as a percentage (10%).",
         "int16_t",
@@ -19554,7 +19572,7 @@ class EuOverlay10Data:
     BITE_CRINGE_CHANCE = Symbol(
         [0x7ACC],
         [0x22C4E8C],
-        None,
+        0x2,
         "BITE_CRINGE_CHANCE",
         "The chance of Bite (and others, see DoMoveDamageCringe20) inflicting the cringe status, as a percentage (20%)",
         "int16_t",
@@ -19563,7 +19581,7 @@ class EuOverlay10Data:
     SKY_ATTACK_CRINGE_CHANCE = Symbol(
         [0x7AD0],
         [0x22C4E90],
-        None,
+        0x2,
         "SKY_ATTACK_CRINGE_CHANCE",
         "The chance of Sky Attack inflicting the cringe status, as a percentage (25%).",
         "int16_t",
@@ -19572,7 +19590,7 @@ class EuOverlay10Data:
     ICE_FANG_CRINGE_CHANCE = Symbol(
         [0x7AD4],
         [0x22C4E94],
-        None,
+        0x2,
         "ICE_FANG_CRINGE_CHANCE",
         "The chance of Ice Fang inflicting the cringe status, as a percentage (25%).",
         "int16_t",
@@ -19581,7 +19599,7 @@ class EuOverlay10Data:
     BLAZE_KICK_BURN_CHANCE = Symbol(
         [0x7AD8],
         [0x22C4E98],
-        None,
+        0x2,
         "BLAZE_KICK_BURN_CHANCE",
         "The chance of Blaze Kick burning, as a percentage (10%).",
         "int16_t",
@@ -19590,7 +19608,7 @@ class EuOverlay10Data:
     FLAMETHROWER_BURN_CHANCE = Symbol(
         [0x7ADC],
         [0x22C4E9C],
-        None,
+        0x2,
         "FLAMETHROWER_BURN_CHANCE",
         "The chance of Flamethrower (and others, see DoMoveDamageBurn10) burning, as a percentage (10%).",
         "int16_t",
@@ -19599,7 +19617,7 @@ class EuOverlay10Data:
     DIZZY_PUNCH_CONFUSE_CHANCE = Symbol(
         [0x7AE0],
         [0x22C4EA0],
-        None,
+        0x2,
         "DIZZY_PUNCH_CONFUSE_CHANCE",
         "The chance of Dizzy Punch (and others, see DoMoveDamageConfuse30) confusing, as a percentage (30%).",
         "int16_t",
@@ -19608,7 +19626,7 @@ class EuOverlay10Data:
     SECRET_POWER_EFFECT_CHANCE = Symbol(
         [0x7AE4],
         [0x22C4EA4],
-        None,
+        0x2,
         "SECRET_POWER_EFFECT_CHANCE",
         "The chance of Secret Power inflicting an effect, as a percentage (30%).",
         "int16_t",
@@ -19617,7 +19635,7 @@ class EuOverlay10Data:
     METAL_CLAW_BOOST_ATTACK_CHANCE = Symbol(
         [0x7AEC],
         [0x22C4EAC],
-        None,
+        0x2,
         "METAL_CLAW_BOOST_ATTACK_CHANCE",
         "The chance of Metal Claw boosting attack, as a percentage (20%).",
         "int16_t",
@@ -19626,7 +19644,7 @@ class EuOverlay10Data:
     TECHNICIAN_MOVE_POWER_THRESHOLD = Symbol(
         [0x7AF4],
         [0x22C4EB4],
-        None,
+        0x2,
         "TECHNICIAN_MOVE_POWER_THRESHOLD",
         "The move power threshold for Technician (4). Moves whose base power doesn't exceed this value will receive a 50% damage boost.",
         "int16_t",
@@ -19635,7 +19653,7 @@ class EuOverlay10Data:
     SONICBOOM_FIXED_DAMAGE = Symbol(
         [0x7B00],
         [0x22C4EC0],
-        None,
+        0x2,
         "SONICBOOM_FIXED_DAMAGE",
         "The amount of fixed damage dealt by SonicBoom (20).",
         "int16_t",
@@ -19644,7 +19662,7 @@ class EuOverlay10Data:
     RAIN_ABILITY_BONUS_REGEN = Symbol(
         [0x7B10],
         [0x22C4ED0],
-        None,
+        0x2,
         "RAIN_ABILITY_BONUS_REGEN",
         "The passive bonus health regen given when the weather is rain for the abilities rain dish and dry skin.",
         "int16_t",
@@ -19662,7 +19680,7 @@ class EuOverlay10Data:
     LEECH_SEED_HP_DRAIN = Symbol(
         [0x7B20],
         [0x22C4EE0],
-        None,
+        0x2,
         "LEECH_SEED_HP_DRAIN",
         "The amount of health drained by leech seed status.",
         "int16_t",
@@ -19698,7 +19716,7 @@ class EuOverlay10Data:
     SET_DAMAGE_STATUS_DAMAGE = Symbol(
         [0x7B30],
         [0x22C4EF0],
-        None,
+        0x2,
         "SET_DAMAGE_STATUS_DAMAGE",
         "The fixed amount of damage dealt when the Set Damage status condition is active (30).",
         "int16_t",
@@ -19722,10 +19740,37 @@ class EuOverlay10Data:
         "int16_t",
     )
 
+    THROWN_BLAST_SEED_DAMAGE_NORMAL = Symbol(
+        [0x7B6C],
+        [0x22C4F2C],
+        0x2,
+        "THROWN_BLAST_SEED_DAMAGE_NORMAL",
+        "Damage normally dealt by a thrown blast seed (25).",
+        "int16_t",
+    )
+
+    THROWN_BLAST_SEED_DAMAGE_BOSS = Symbol(
+        [0x7B70],
+        [0x22C4F30],
+        0x2,
+        "THROWN_BLAST_SEED_DAMAGE_BOSS",
+        "Damage dealt by a thrown blast seed during boss fights (25).",
+        "int16_t",
+    )
+
+    EATEN_BLAST_SEED_DAMAGE_BOSS = Symbol(
+        [0x7B74],
+        [0x22C4F34],
+        0x2,
+        "EATEN_BLAST_SEED_DAMAGE_BOSS",
+        "Damage dealt by an eaten blast seed during boss fights (35).",
+        "int16_t",
+    )
+
     TYPE_ADVANTAGE_MASTER_CRIT_RATE = Symbol(
         [0x7B78],
         [0x22C4F38],
-        None,
+        0x2,
         "TYPE_ADVANTAGE_MASTER_CRIT_RATE",
         "The flat critical hit rate with Type-Advantage Master, 40%.",
         "int16_t",
@@ -19770,7 +19815,7 @@ class EuOverlay10Data:
     SNORE_CRINGE_CHANCE = Symbol(
         [0x7B98],
         [0x22C4F58],
-        None,
+        0x2,
         "SNORE_CRINGE_CHANCE",
         "The chance of Snore inflicting the cringe status, as a percentage (30%).",
         "int16_t",
@@ -19779,7 +19824,7 @@ class EuOverlay10Data:
     METEOR_MASH_BOOST_ATTACK_CHANCE = Symbol(
         [0x7B9C],
         [0x22C4F5C],
-        None,
+        0x2,
         "METEOR_MASH_BOOST_ATTACK_CHANCE",
         "The chance of Meteor Mash boosting attack, as a percentage (20%).",
         "int16_t",
@@ -19788,7 +19833,7 @@ class EuOverlay10Data:
     CRUSH_CLAW_LOWER_DEFENSE_CHANCE = Symbol(
         [0x7BA0],
         [0x22C4F60],
-        None,
+        0x2,
         "CRUSH_CLAW_LOWER_DEFENSE_CHANCE",
         "The chance of Crush Claw lowering defense, as a percentage (50%).",
         "int16_t",
@@ -19806,9 +19851,18 @@ class EuOverlay10Data:
     SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
         [0x7BB4],
         [0x22C4F74],
-        None,
+        0x2,
         "SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE",
         "The chance of Shadow Ball lowering special defense, as a percentage (20%).",
+        "int16_t",
+    )
+
+    AQUA_RING_HEALING_COUNTDOWN = Symbol(
+        [0x7BB8],
+        [0x22C4F78],
+        0x2,
+        "AQUA_RING_HEALING_COUNTDOWN",
+        "The countdown in turns between healing from Aqua Ring (4).",
         "int16_t",
     )
 
@@ -19828,7 +19882,7 @@ class EuOverlay10Data:
     BUBBLE_LOWER_SPEED_CHANCE = Symbol(
         [0x7BC4],
         [0x22C4F84],
-        None,
+        0x2,
         "BUBBLE_LOWER_SPEED_CHANCE",
         "The chance of Bubble lowering speed, as a percentage (10%).",
         "int16_t",
@@ -19846,7 +19900,7 @@ class EuOverlay10Data:
     POWDER_SNOW_FREEZE_CHANCE = Symbol(
         [0x7BCC],
         [0x22C4F8C],
-        None,
+        0x2,
         "POWDER_SNOW_FREEZE_CHANCE",
         "The chance of Powder Snow (and others, see DoMoveDamageFreeze15) freezing, as a percentage (15%).",
         "int16_t",
@@ -19855,7 +19909,7 @@ class EuOverlay10Data:
     POISON_STING_POISON_CHANCE = Symbol(
         [0x7BD4],
         [0x22C4F94],
-        None,
+        0x2,
         "POISON_STING_POISON_CHANCE",
         "The chance of Poison Sting (and others, see DoMoveDamagePoison18) poisoning, as a percentage (18%).",
         "int16_t",
@@ -19873,7 +19927,7 @@ class EuOverlay10Data:
     POISON_FANG_POISON_CHANCE = Symbol(
         [0x7BDC],
         [0x22C4F9C],
-        None,
+        0x2,
         "POISON_FANG_POISON_CHANCE",
         "The chance of Poison Fang poisoning, as a percentage (30%).",
         "int16_t",
@@ -19891,7 +19945,7 @@ class EuOverlay10Data:
     WEATHER_MOVE_TURN_COUNT = Symbol(
         [0x7BEC],
         [0x22C4FAC],
-        None,
+        0x2,
         "WEATHER_MOVE_TURN_COUNT",
         "The number of turns the moves rain dance, hail, sandstorm, sunny day and defog change the weather for. (3000)",
         "int16_t",
@@ -19900,7 +19954,7 @@ class EuOverlay10Data:
     THUNDER_PARALYZE_CHANCE = Symbol(
         [0x7BF0],
         [0x22C4FB0],
-        None,
+        0x2,
         "THUNDER_PARALYZE_CHANCE",
         "The chance of Thunder (and others, see DoMoveDamageParalyze20) paralyzing, as a percentage (20%)",
         "int16_t",
@@ -19909,7 +19963,7 @@ class EuOverlay10Data:
     THUNDERBOLT_PARALYZE_CHANCE = Symbol(
         [0x7BF4],
         [0x22C4FB4],
-        None,
+        0x2,
         "THUNDERBOLT_PARALYZE_CHANCE",
         "The chance of Thunderbolt paralyzing, as a percentage (15%).",
         "int16_t",
@@ -19927,7 +19981,7 @@ class EuOverlay10Data:
     TWISTER_CRINGE_CHANCE = Symbol(
         [0x7C00],
         [0x22C4FC0],
-        None,
+        0x2,
         "TWISTER_CRINGE_CHANCE",
         "The chance of Twister inflicting the cringe status, as a percentage (10%).",
         "int16_t",
@@ -19945,7 +19999,7 @@ class EuOverlay10Data:
     FAKE_OUT_CRINGE_CHANCE = Symbol(
         [0x7C08],
         [0x22C4FC8],
-        None,
+        0x2,
         "FAKE_OUT_CRINGE_CHANCE",
         "The chance of Fake Out inflicting the cringe status, as a percentage (35%).",
         "int16_t",
@@ -19954,7 +20008,7 @@ class EuOverlay10Data:
     THUNDER_FANG_CRINGE_CHANCE = Symbol(
         [0x7C10],
         [0x22C4FD0],
-        None,
+        0x2,
         "THUNDER_FANG_CRINGE_CHANCE",
         "The chance of Thunder Fang inflicting the cringe status, as a percentage (25%).",
         "int16_t",
@@ -19963,7 +20017,7 @@ class EuOverlay10Data:
     FLARE_BLITZ_BURN_CHANCE = Symbol(
         [0x7C1C],
         [0x22C4FDC],
-        None,
+        0x2,
         "FLARE_BLITZ_BURN_CHANCE",
         "The chance of Flare Blitz burning, as a percentage (25%). This value is also used for the Fire Fang burn chance.",
         "int16_t",
@@ -19972,7 +20026,7 @@ class EuOverlay10Data:
     FLAME_WHEEL_BURN_CHANCE = Symbol(
         [0x7C20],
         [0x22C4FE0],
-        None,
+        0x2,
         "FLAME_WHEEL_BURN_CHANCE",
         "The chance of Flame Wheel (and others, see DoMoveDamageBurn10FlameWheel) burning, as a percentage (10%).",
         "int16_t",
@@ -19981,7 +20035,7 @@ class EuOverlay10Data:
     PSYBEAM_CONFUSE_CHANCE = Symbol(
         [0x7C28],
         [0x22C4FE8],
-        None,
+        0x2,
         "PSYBEAM_CONFUSE_CHANCE",
         "The chance of Psybeam (and others, see DoMoveDamageConfuse10) confusing, as a percentage (10%).",
         "int16_t",
@@ -19990,7 +20044,7 @@ class EuOverlay10Data:
     TRI_ATTACK_STATUS_CHANCE = Symbol(
         [0x7C2C],
         [0x22C4FEC],
-        None,
+        0x2,
         "TRI_ATTACK_STATUS_CHANCE",
         "The chance of Tri Attack inflicting any status condition, as a percentage (20%).",
         "int16_t",
@@ -20035,7 +20089,7 @@ class EuOverlay10Data:
     LEECH_SEED_DAMAGE_COOLDOWN = Symbol(
         [0x7C44],
         [0x22C5004],
-        None,
+        0x2,
         "LEECH_SEED_DAMAGE_COOLDOWN",
         "The number of turns between leech seed health drain.",
         "int16_t",
@@ -20116,7 +20170,7 @@ class EuOverlay10Data:
     WISH_BONUS_REGEN = Symbol(
         [0x7C68],
         [0x22C5028],
-        None,
+        0x2,
         "WISH_BONUS_REGEN",
         "The passive bonus regen given by the wish status condition.",
         "int16_t",
@@ -20125,7 +20179,7 @@ class EuOverlay10Data:
     DRAGON_RAGE_FIXED_DAMAGE = Symbol(
         [0x7C6C],
         [0x22C502C],
-        None,
+        0x2,
         "DRAGON_RAGE_FIXED_DAMAGE",
         "The amount of fixed damage dealt by Dragon Rage (30).",
         "int16_t",
@@ -20188,7 +20242,7 @@ class EuOverlay10Data:
     SCOPE_LENS_CRIT_RATE_BOOST = Symbol(
         [0x7C88],
         [0x22C5048],
-        None,
+        0x2,
         "SCOPE_LENS_CRIT_RATE_BOOST",
         "The critical hit rate (additive) boost from the Scope Lens/Patsy Band items and the Sharpshooter IQ skill, 15%.",
         "int16_t",
@@ -20197,7 +20251,7 @@ class EuOverlay10Data:
     HEALING_WISH_HP_RESTORATION = Symbol(
         [0x7C8C],
         [0x22C504C],
-        None,
+        0x2,
         "HEALING_WISH_HP_RESTORATION",
         "The amount of HP restored by Healing Wish (999). This also applies to Lunar Dance.",
         "int16_t",
@@ -20251,7 +20305,7 @@ class EuOverlay10Data:
     ME_FIRST_MULTIPLIER = Symbol(
         [0x7CA8],
         [0x22C5068],
-        None,
+        0x4,
         "ME_FIRST_MULTIPLIER",
         "The damage multiplier applied to attacks copied by Me First, as a fixed-point number with 8 fraction bits (1.5).",
         "fx32_8",
@@ -20260,7 +20314,7 @@ class EuOverlay10Data:
     FACADE_DAMAGE_MULTIPLIER = Symbol(
         [0x7CB0],
         [0x22C5070],
-        None,
+        0x4,
         "FACADE_DAMAGE_MULTIPLIER",
         "The Facade damage multiplier for users with a status condition, as a binary fixed-point number with 8 fraction bits (0x200 -> 2x).",
         "fx32_8",
@@ -20269,7 +20323,7 @@ class EuOverlay10Data:
     IMPRISON_TURN_RANGE = Symbol(
         [0x7CB4],
         [0x22C5074],
-        None,
+        0x4,
         "IMPRISON_TURN_RANGE",
         "The turn range for the Paused status inflicted by Imprison, [3, 6).\n\ntype: int16_t[2]",
         "int16_t[2]",
@@ -20287,7 +20341,7 @@ class EuOverlay10Data:
     NIGHTMARE_TURN_RANGE = Symbol(
         [0x7CBC],
         [0x22C507C],
-        None,
+        0x4,
         "NIGHTMARE_TURN_RANGE",
         "The turn range for the Nightmare status inflicted by Nightmare, [4, 8).\n\ntype: int16_t[2]",
         "int16_t[2]",
@@ -20350,7 +20404,7 @@ class EuOverlay10Data:
     BURN_DAMAGE_MULTIPLIER = Symbol(
         [0x7CDC],
         [0x22C509C],
-        None,
+        0x4,
         "BURN_DAMAGE_MULTIPLIER",
         "The extra damage multiplier for moves when the attacker is burned, as a fixed-point number with 8 fraction bits (the raw value is 0xCC, which is close to 0.8).\n\nUnlike in the main series, this multiplier is applied regardless of whether the move being used is physical or special.",
         "fx32_8",
@@ -20359,7 +20413,7 @@ class EuOverlay10Data:
     REST_TURN_RANGE = Symbol(
         [0x7CE0],
         [0x22C50A0],
-        None,
+        0x4,
         "REST_TURN_RANGE",
         "The turn range for the Napping status inflicted by Rest, [1, 4).\n\ntype: int16_t[2]",
         "int16_t[2]",
@@ -20368,7 +20422,7 @@ class EuOverlay10Data:
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
         [0x7CE4],
         [0x22C50A4],
-        None,
+        0x4,
         "MATCHUP_SUPER_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE when Erratic Player is active, as a fixed-point number with 8 fraction bits (the raw value is 0x1B3, the closest possible representation of 1.7).",
         "fx32_8",
@@ -20386,7 +20440,7 @@ class EuOverlay10Data:
     MATCHUP_IMMUNE_MULTIPLIER = Symbol(
         [0x7CF0],
         [0x22C50B0],
-        None,
+        0x4,
         "MATCHUP_IMMUNE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_IMMUNE, as a fixed-point number with 8 fraction bits (0.5).",
         "fx32_8",
@@ -20395,7 +20449,7 @@ class EuOverlay10Data:
     GASTRO_ACID_TURN_RANGE = Symbol(
         [0x7D04],
         [0x22C50C4],
-        None,
+        0x4,
         "GASTRO_ACID_TURN_RANGE",
         "The turn range for the Gastro Acid status, [4, 10).\n\ntype: int16_t[2]",
         "int16_t[2]",
@@ -20404,7 +20458,7 @@ class EuOverlay10Data:
     SPORT_CONDITION_TURN_RANGE = Symbol(
         [0x7D24],
         [0x22C50E4],
-        None,
+        0x4,
         "SPORT_CONDITION_TURN_RANGE",
         "The turn range for the sport conditions activated by Mud Sport and Water Sport, [10, 12).\n\ntype: int16_t[2]",
         "int16_t[2]",
@@ -20413,7 +20467,7 @@ class EuOverlay10Data:
     SURE_SHOT_TURN_RANGE = Symbol(
         [0x7D30],
         [0x22C50F0],
-        None,
+        0x4,
         "SURE_SHOT_TURN_RANGE",
         "The turn range for the Sure Shot status inflicted by Mind Reader and Lock-On, [10, 12).\n\ntype: int16_t[2]",
         "int16_t[2]",
@@ -20422,7 +20476,7 @@ class EuOverlay10Data:
     DETECT_BAND_MOVE_ACCURACY_DROP = Symbol(
         [0x7D40],
         [0x22C5100],
-        None,
+        0x4,
         "DETECT_BAND_MOVE_ACCURACY_DROP",
         "The (subtractive) move accuracy drop induced on an attacker if the defender is wearing a Detect Band (30).",
         "int",
@@ -20440,7 +20494,7 @@ class EuOverlay10Data:
     TINTED_LENS_MULTIPLIER = Symbol(
         [0x7D58],
         [0x22C5118],
-        None,
+        0x4,
         "TINTED_LENS_MULTIPLIER",
         "The extra damage multiplier for not-very-effective moves when Tinted Lens is active, as a fixed-point number with 8 fraction bits (the raw value is 0x133, the closest possible representation of 1.2).",
         "fx32_8",
@@ -20449,7 +20503,7 @@ class EuOverlay10Data:
     SMOKESCREEN_TURN_RANGE = Symbol(
         [0x7D5C],
         [0x22C511C],
-        None,
+        0x4,
         "SMOKESCREEN_TURN_RANGE",
         "The turn range for the Whiffer status inflicted by Smokescreen, [1, 4).\n\ntype: int16_t[2]",
         "int16_t[2]",
@@ -20467,7 +20521,7 @@ class EuOverlay10Data:
     SHADOW_FORCE_DAMAGE_MULTIPLIER = Symbol(
         [0x7D74],
         [0x22C5134],
-        None,
+        0x4,
         "SHADOW_FORCE_DAMAGE_MULTIPLIER",
         "The damage multiplier for Shadow Force, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
@@ -20476,7 +20530,7 @@ class EuOverlay10Data:
     DIG_DAMAGE_MULTIPLIER = Symbol(
         [0x7D7C],
         [0x22C513C],
-        None,
+        0x4,
         "DIG_DAMAGE_MULTIPLIER",
         "The damage multiplier for Dig, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
@@ -20485,7 +20539,7 @@ class EuOverlay10Data:
     DIVE_DAMAGE_MULTIPLIER = Symbol(
         [0x7D80],
         [0x22C5140],
-        None,
+        0x4,
         "DIVE_DAMAGE_MULTIPLIER",
         "The damage multiplier for Dive, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
@@ -20494,7 +20548,7 @@ class EuOverlay10Data:
     BOUNCE_DAMAGE_MULTIPLIER = Symbol(
         [0x7D84],
         [0x22C5144],
-        None,
+        0x4,
         "BOUNCE_DAMAGE_MULTIPLIER",
         "The damage multiplier for Bounce, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
@@ -20512,7 +20566,7 @@ class EuOverlay10Data:
     QUICK_DODGER_MOVE_ACCURACY_DROP = Symbol(
         [0x7DA0],
         [0x22C5160],
-        None,
+        0x4,
         "QUICK_DODGER_MOVE_ACCURACY_DROP",
         "The (subtractive) move accuracy drop induced on an attacker if the defender has the Quick Dodger IQ skill (10).",
         "int",
@@ -20521,7 +20575,7 @@ class EuOverlay10Data:
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER = Symbol(
         [0x7DA8],
         [0x22C5168],
-        None,
+        0x4,
         "MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE, as a fixed-point number with 8 fraction bits (the raw value is 0x1B4, the closest possible representation of 1/√2).",
         "fx32_8",
@@ -20530,7 +20584,7 @@ class EuOverlay10Data:
     MATCHUP_SUPER_EFFECTIVE_MULTIPLIER = Symbol(
         [0x7DB0],
         [0x22C5170],
-        None,
+        0x4,
         "MATCHUP_SUPER_EFFECTIVE_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_SUPER_EFFECTIVE, as a fixed-point number with 8 fraction bits (the raw value is 0x166, the closest possible representation of 1.4).",
         "fx32_8",
@@ -20539,7 +20593,7 @@ class EuOverlay10Data:
     MATCHUP_NEUTRAL_MULTIPLIER = Symbol(
         [0x7DB4],
         [0x22C5174],
-        None,
+        0x4,
         "MATCHUP_NEUTRAL_MULTIPLIER",
         "The damage multiplier corresponding to MATCHUP_NEUTRAL, as a fixed-point number with 8 fraction bits (1).",
         "fx32_8",
@@ -20548,7 +20602,7 @@ class EuOverlay10Data:
     MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
         [0x7DB8],
         [0x22C5178],
-        None,
+        0x4,
         "MATCHUP_IMMUNE_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_IMMUNE when Erratic Player is active, as a fixed-point number with 8 fraction bits (0.25).",
         "fx32_8",
@@ -20557,7 +20611,7 @@ class EuOverlay10Data:
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER = Symbol(
         [0x7DBC],
         [0x22C517C],
-        None,
+        0x4,
         "MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_NOT_VERY_EFFECTIVE when Erratic Player is active, as a fixed-point number with 8 fraction bits (0.5).",
         "fx32_8",
@@ -20566,7 +20620,7 @@ class EuOverlay10Data:
     MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER = Symbol(
         [0x7DC4],
         [0x22C5184],
-        None,
+        0x4,
         "MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_NEUTRAL when Erratic Player is active, as a fixed-point number with 8 fraction bits (1).",
         "fx32_8",
@@ -20593,7 +20647,7 @@ class EuOverlay10Data:
     KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER = Symbol(
         [0x7DE4],
         [0x22C51A4],
-        None,
+        0x4,
         "KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER",
         "The boosted kecleon shop spawn chance multiplier (~1.2) as a binary fixed-point number (8 fraction bits).",
         "fx32_8",
@@ -20611,7 +20665,7 @@ class EuOverlay10Data:
     YAWN_TURN_RANGE = Symbol(
         [0x7DF8],
         [0x22C51B8],
-        None,
+        0x4,
         "YAWN_TURN_RANGE",
         "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype: int16_t[2]",
         "int16_t[2]",
@@ -20638,25 +20692,25 @@ class EuOverlay10Data:
     SPEED_LOWER_TURN_RANGE = Symbol(
         [0x7E24],
         [0x22C51E4],
-        None,
+        0x4,
         "SPEED_LOWER_TURN_RANGE",
-        "The turn range for lowered speed, [6, 8].\n\ntype: int16_t[2]",
+        "The turn range for lowered speed, [6, 8).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
     PARALYSIS_TURN_RANGE = Symbol(
         [0x7E2C],
         [0x22C51EC],
-        None,
+        0x4,
         "PARALYSIS_TURN_RANGE",
-        "The turn range for the Paralysis status, [1, 2].\n\ntype: int16_t[2]",
+        "The turn range for the Paralysis status, [1, 2).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
     SOLARBEAM_DAMAGE_MULTIPLIER = Symbol(
         [0x7E3C],
         [0x22C51FC],
-        None,
+        0x4,
         "SOLARBEAM_DAMAGE_MULTIPLIER",
         "The default damage multiplier for SolarBeam, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
@@ -20665,16 +20719,25 @@ class EuOverlay10Data:
     SKY_ATTACK_DAMAGE_MULTIPLIER = Symbol(
         [0x7E40],
         [0x22C5200],
-        None,
+        0x4,
         "SKY_ATTACK_DAMAGE_MULTIPLIER",
         "The damage multiplier for Sky Attack, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
     )
 
+    WRAP_TURN_RANGE = Symbol(
+        [0x7E44],
+        [0x22C5204],
+        0x4,
+        "WRAP_TURN_RANGE",
+        "The turn range for the Wrap status, [2, 5).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     RAZOR_WIND_DAMAGE_MULTIPLIER = Symbol(
         [0x7E48],
         [0x22C5208],
-        None,
+        0x4,
         "RAZOR_WIND_DAMAGE_MULTIPLIER",
         "The damage multiplier for Razor Wind, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
@@ -20683,16 +20746,25 @@ class EuOverlay10Data:
     FOCUS_PUNCH_DAMAGE_MULTIPLIER = Symbol(
         [0x7E4C],
         [0x22C520C],
-        None,
+        0x4,
         "FOCUS_PUNCH_DAMAGE_MULTIPLIER",
         "The damage multiplier for Focus Punch, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
     )
 
+    INGRAIN_TURN_RANGE = Symbol(
+        [0x7E50],
+        [0x22C5210],
+        0x4,
+        "INGRAIN_TURN_RANGE",
+        "The turn range for the Ingrain status, [15, 30).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SKULL_BASH_DAMAGE_MULTIPLIER = Symbol(
         [0x7E54],
         [0x22C5214],
-        None,
+        0x4,
         "SKULL_BASH_DAMAGE_MULTIPLIER",
         "The damage multiplier for Skull Bash, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
@@ -20701,7 +20773,7 @@ class EuOverlay10Data:
     FLY_DAMAGE_MULTIPLIER = Symbol(
         [0x7E58],
         [0x22C5218],
-        None,
+        0x4,
         "FLY_DAMAGE_MULTIPLIER",
         "The damage multiplier for Fly, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
@@ -20710,7 +20782,7 @@ class EuOverlay10Data:
     WEATHER_BALL_TYPE_TABLE = Symbol(
         [0x7E74],
         [0x22C5234],
-        None,
+        0x8,
         "WEATHER_BALL_TYPE_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding Weather Ball type.\n\ntype: struct type_id_8[8]",
         "struct type_id_8[8]",
@@ -20728,7 +20800,7 @@ class EuOverlay10Data:
     LAST_RESORT_DAMAGE_MULT_TABLE = Symbol(
         [0x7EDC],
         [0x22C529C],
-        None,
+        0x10,
         "LAST_RESORT_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Last Resort for different numbers of moves out of PP, where each entry is a binary fixed-point number with 8 fraction bits.\n\nIf n is the number of moves out of PP not counting Last Resort itself, the table is indexed by (n - 1).\n\ntype: int[4]",
         "fx32_8[4]",
@@ -20737,7 +20809,7 @@ class EuOverlay10Data:
     SYNTHESIS_HP_RESTORATION_TABLE = Symbol(
         [0x7EEC],
         [0x22C52AC],
-        None,
+        0x10,
         "SYNTHESIS_HP_RESTORATION_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP restoration value for Synthesis.\n\ntype: int16_t[8]",
         "int16_t[8]",
@@ -20746,7 +20818,7 @@ class EuOverlay10Data:
     ROOST_HP_RESTORATION_TABLE = Symbol(
         [0x7EFC],
         [0x22C52BC],
-        None,
+        0x10,
         "ROOST_HP_RESTORATION_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP restoration value for Roost.\n\nEvery entry in this table is 40.\n\ntype: int16_t[8]",
         "int16_t[8]",
@@ -20755,7 +20827,7 @@ class EuOverlay10Data:
     MOONLIGHT_HP_RESTORATION_TABLE = Symbol(
         [0x7F0C],
         [0x22C52CC],
-        None,
+        0x10,
         "MOONLIGHT_HP_RESTORATION_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP restoration value for Moonlight.\n\ntype: int16_t[8]",
         "int16_t[8]",
@@ -20764,7 +20836,7 @@ class EuOverlay10Data:
     MORNING_SUN_HP_RESTORATION_TABLE = Symbol(
         [0x7F1C],
         [0x22C52DC],
-        None,
+        0x10,
         "MORNING_SUN_HP_RESTORATION_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding HP restoration value for Morning Sun.\n\ntype: int16_t[8]",
         "int16_t[8]",
@@ -20773,7 +20845,7 @@ class EuOverlay10Data:
     REVERSAL_DAMAGE_MULT_TABLE = Symbol(
         [0x7F2C],
         [0x22C52EC],
-        None,
+        0x10,
         "REVERSAL_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Reversal/Flail at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
         "fx32_8[4]",
@@ -20782,7 +20854,7 @@ class EuOverlay10Data:
     WATER_SPOUT_DAMAGE_MULT_TABLE = Symbol(
         [0x7F3C],
         [0x22C52FC],
-        None,
+        0x10,
         "WATER_SPOUT_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Water Spout at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
         "fx32_8[4]",
@@ -20791,7 +20863,7 @@ class EuOverlay10Data:
     WRING_OUT_DAMAGE_MULT_TABLE = Symbol(
         [0x7F4C],
         [0x22C530C],
-        None,
+        0x10,
         "WRING_OUT_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Wring Out/Crush Grip at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
         "fx32_8[4]",
@@ -20800,7 +20872,7 @@ class EuOverlay10Data:
     ERUPTION_DAMAGE_MULT_TABLE = Symbol(
         [0x7F5C],
         [0x22C531C],
-        None,
+        0x10,
         "ERUPTION_DAMAGE_MULT_TABLE",
         "Table of damage multipliers for Eruption at different HP ranges, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[4]",
         "fx32_8[4]",
@@ -20809,7 +20881,7 @@ class EuOverlay10Data:
     WEATHER_BALL_DAMAGE_MULT_TABLE = Symbol(
         [0x80EC],
         [0x22C54AC],
-        None,
+        0x20,
         "WEATHER_BALL_DAMAGE_MULT_TABLE",
         "Maps each weather type (by index, see enum weather_id) to the corresponding Weather Ball damage multiplier, where each entry is a binary fixed-point number with 8 fraction bits.\n\ntype: int[8]",
         "fx32_8[8]",
@@ -20836,7 +20908,7 @@ class EuOverlay10Data:
     BAD_POISON_DAMAGE_TABLE = Symbol(
         [0x8234],
         [0x22C55F4],
-        None,
+        0x3C,
         "BAD_POISON_DAMAGE_TABLE",
         "Table for how much damage each tick of badly poisoned should deal. The table is filled with 0x0006, but could use different values for each entry.",
         "int16_t[30]",
@@ -20845,7 +20917,7 @@ class EuOverlay10Data:
     TYPE_MATCHUP_COMBINATOR_TABLE = Symbol(
         [0x82AC],
         [0x22C566C],
-        None,
+        0x40,
         "TYPE_MATCHUP_COMBINATOR_TABLE",
         "Table of type matchup combinations.\n\nEach row corresponds to a single type matchup that results from combining two individual type matchups together. For example, combining MATCHUP_NOT_VERY_EFFECTIVE with MATCHUP_SUPER_EFFECTIVE results in MATCHUP_NEUTRAL.\n\ntype: struct type_matchup_combinator_table",
         "struct type_matchup_combinator_table",
@@ -26666,6 +26738,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    IsValidTargetEntity = Symbol(
+        [0x6694],
+        [0x22E3214],
+        None,
+        "IsValidTargetEntity",
+        "Checks if an entity is a valid target for another entity. Checks if both entities are valid and then calls IsPositionActuallyInSight.\n\nThis logic is identical to CanSeeTarget, except without its additional checks involving the monster structs of the entities (for invisibility, etc.)\n\nr0: User entity pointer\nr1: Target entity pointer\nreturn: True if the specified monster can see the target monster, false otherwise.",
+        None,
+    )
+
+    CanSeePosition = Symbol(
+        [0x66F0],
+        [0x22E3270],
+        None,
+        "CanSeePosition",
+        "Checks if a monster can see a position. Same as CanTargetPosition, but calls IsPositionActuallyInSight instead.\n\nr0: Entity pointer\nr1: Target position\nreturn: True if the specified monster can see the target position, false otherwise.",
+        None,
+    )
+
     CanTargetPosition = Symbol(
         [0x6714],
         [0x22E3294],
@@ -27162,6 +27252,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    DisplayTeamStatsSprite = Symbol(
+        [0xC0A0],
+        [0x22E8C20],
+        None,
+        "DisplayTeamStatsSprite",
+        "Displays a party member's sprite on the team stats menu.\n\nr0: Team member entity pointer\nr1: ?\nr2: ?",
+        None,
+    )
+
     AssignTopScreenHandlers = Symbol(
         [0xC4F8],
         [0x22E9078],
@@ -27312,6 +27411,15 @@ class EuOverlay29Functions:
         None,
         "AdvanceFrame",
         "Advances one frame. Does not return until the next frame starts.\n\nr0: ? - Unused by the function",
+        None,
+    )
+
+    UnkMapRelatedFunc = Symbol(
+        [0xE258],
+        [0x22EADD8],
+        None,
+        "UnkMapRelatedFunc",
+        "Calling this function with r0 = 6 (or its duplicates in the switch statement) will normally close the minimap, while r0 = 0 will reopen it.\n\nWhen called in certain places, the function will crash the game instead?\n\nAlso does nothing if the passed case is the same as the last case used (or 0 if the last case was 0xd).\n\nr0: Which case to use for the switch statement\nr1: unused",
         None,
     )
 
@@ -37199,6 +37307,15 @@ class EuRamData:
         "DUNGEON_BUTTON_INPUT",
         "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
         "struct dungeon_button_input",
+    )
+
+    DUNGEON_FRAMES_PASSED = Symbol(
+        [0x37D450],
+        [0x237D450],
+        0x4,
+        "DUNGEON_FRAMES_PASSED",
+        "[Runtime] Stores the number of frames that have passed since the beginning of dungeon mode. \n\nSeems to also be the beginning of some struct, where the value right after is the last case of UnkMapRelatedFunc.\n\ntype: uint32_t",
+        "uint32_t",
     )
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(

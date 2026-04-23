@@ -2192,6 +2192,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    FillOamAttributeInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AnimationControlGetAllocForMaxFrame: Symbol[
         Optional[list[int]],
         None,
@@ -12040,6 +12045,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    EATEN_BLAST_SEED_DAMAGE_NORMAL: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     CHARGE_BEAM_BOOST_SPECIAL_ATTACK_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -12200,6 +12210,21 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    THROWN_BLAST_SEED_DAMAGE_NORMAL: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    THROWN_BLAST_SEED_DAMAGE_BOSS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EATEN_BLAST_SEED_DAMAGE_BOSS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     TYPE_ADVANTAGE_MASTER_CRIT_RATE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -12246,6 +12271,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     SHADOW_BALL_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    AQUA_RING_HEALING_COUNTDOWN: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -12712,12 +12742,12 @@ class Overlay10DataProtocol(Protocol):
 
     SPEED_LOWER_TURN_RANGE: Symbol[
         Optional[list[int]],
-        None,
+        Optional[int],
     ]
 
     PARALYSIS_TURN_RANGE: Symbol[
         Optional[list[int]],
-        None,
+        Optional[int],
     ]
 
     SOLARBEAM_DAMAGE_MULTIPLIER: Symbol[
@@ -12730,12 +12760,22 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    WRAP_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     RAZOR_WIND_DAMAGE_MULTIPLIER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
     FOCUS_PUNCH_DAMAGE_MULTIPLIER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    INGRAIN_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -16123,6 +16163,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsValidTargetEntity: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CanSeePosition: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CanTargetPosition: Symbol[
         Optional[list[int]],
         None,
@@ -16383,6 +16433,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DisplayTeamStatsSprite: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AssignTopScreenHandlers: Symbol[
         Optional[list[int]],
         None,
@@ -16464,6 +16519,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     AdvanceFrame: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnkMapRelatedFunc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -21949,6 +22009,11 @@ class RamDataProtocol(Protocol):
     ]
 
     DUNGEON_BUTTON_INPUT: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_FRAMES_PASSED: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

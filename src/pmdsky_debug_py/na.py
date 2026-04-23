@@ -3868,6 +3868,15 @@ class NaArm9Functions:
         None,
     )
 
+    FillOamAttributeInfo = Symbol(
+        [0x1D110],
+        [0x201D110],
+        None,
+        "FillOamAttributeInfo",
+        "Copies an array of values into an animation_control struct's oam_attribute_info.\n\nr0: animation_control\nr1: source array (length 6)",
+        None,
+    )
+
     AnimationControlGetAllocForMaxFrame = Symbol(
         [0x1D170],
         [0x201D170],
@@ -19365,7 +19374,7 @@ class NaOverlay10Data:
     CURSE_DAMAGE_COOLDOWN = Symbol(
         [0x7A3C],
         [0x22C44BC],
-        None,
+        0x2,
         "CURSE_DAMAGE_COOLDOWN",
         "The number of turns between passive curse damage (3).",
         "int16_t",
@@ -19431,6 +19440,15 @@ class NaOverlay10Data:
         0x2,
         "PITFALL_TRAP_DAMAGE",
         "Damage dealt by pitfall traps (5).",
+        "int16_t",
+    )
+
+    EATEN_BLAST_SEED_DAMAGE_NORMAL = Symbol(
+        [0x7A68],
+        [0x22C44E8],
+        0x2,
+        "EATEN_BLAST_SEED_DAMAGE_NORMAL",
+        "Damage normally dealt by an eaten blast seed (35).",
         "int16_t",
     )
 
@@ -19680,7 +19698,7 @@ class NaOverlay10Data:
     INGRAIN_BONUS_REGEN = Symbol(
         [0x7B10],
         [0x22C4590],
-        None,
+        0x2,
         "INGRAIN_BONUS_REGEN",
         "The passive bonus regen given by the Ingrain status condition (10).",
         "int16_t",
@@ -19716,9 +19734,36 @@ class NaOverlay10Data:
     WRAP_DAMAGE = Symbol(
         [0x7B50],
         [0x22C45D0],
-        None,
+        0x2,
         "WRAP_DAMAGE",
         "Damage dealt by the wrap status condition (6).",
+        "int16_t",
+    )
+
+    THROWN_BLAST_SEED_DAMAGE_NORMAL = Symbol(
+        [0x7B54],
+        [0x22C45D4],
+        0x2,
+        "THROWN_BLAST_SEED_DAMAGE_NORMAL",
+        "Damage normally dealt by a thrown blast seed (25).",
+        "int16_t",
+    )
+
+    THROWN_BLAST_SEED_DAMAGE_BOSS = Symbol(
+        [0x7B58],
+        [0x22C45D8],
+        0x2,
+        "THROWN_BLAST_SEED_DAMAGE_BOSS",
+        "Damage dealt by a thrown blast seed during boss fights (25).",
+        "int16_t",
+    )
+
+    EATEN_BLAST_SEED_DAMAGE_BOSS = Symbol(
+        [0x7B5C],
+        [0x22C45DC],
+        0x2,
+        "EATEN_BLAST_SEED_DAMAGE_BOSS",
+        "Damage dealt by an eaten blast seed during boss fights (35).",
         "int16_t",
     )
 
@@ -19734,7 +19779,7 @@ class NaOverlay10Data:
     INGRAIN_BONUS_REGEN_COOLDOWN = Symbol(
         [0x7B68],
         [0x22C45E8],
-        None,
+        0x2,
         "INGRAIN_BONUS_REGEN_COOLDOWN",
         "The number of turns between ingrain health regeneration (5).",
         "int16_t",
@@ -19752,7 +19797,7 @@ class NaOverlay10Data:
     WRAP_DAMAGE_COOLDOWN = Symbol(
         [0x7B70],
         [0x22C45F0],
-        None,
+        0x2,
         "WRAP_DAMAGE_COOLDOWN",
         "The number of turns between passive wrap damage (2).",
         "int16_t",
@@ -19812,6 +19857,15 @@ class NaOverlay10Data:
         "int16_t",
     )
 
+    AQUA_RING_HEALING_COUNTDOWN = Symbol(
+        [0x7BA0],
+        [0x22C4620],
+        0x2,
+        "AQUA_RING_HEALING_COUNTDOWN",
+        "The countdown in turns between healing from Aqua Ring (4).",
+        "int16_t",
+    )
+
     STICK_POWER = Symbol(
         [0x7BA4], [0x22C4624], 0x2, "STICK_POWER", "Attack power for Sticks.", "int16_t"
     )
@@ -19819,7 +19873,7 @@ class NaOverlay10Data:
     AQUA_RING_BONUS_REGEN = Symbol(
         [0x7BA8],
         [0x22C4628],
-        None,
+        0x2,
         "AQUA_RING_BONUS_REGEN",
         "The passive bonus regen given by the Aqua Ring status condition (8).",
         "int16_t",
@@ -19837,7 +19891,7 @@ class NaOverlay10Data:
     ICE_BODY_BONUS_REGEN = Symbol(
         [0x7BB0],
         [0x22C4630],
-        None,
+        0x2,
         "ICE_BODY_BONUS_REGEN",
         "The passive bonus health regen given when the weather is hail for the ability ice body.",
         "int16_t",
@@ -20179,7 +20233,7 @@ class NaOverlay10Data:
     BAD_WEATHER_DAMAGE = Symbol(
         [0x7C6C],
         [0x22C46EC],
-        None,
+        0x2,
         "BAD_WEATHER_DAMAGE",
         "Damage dealt by the Sandstorm and Hail weather conditions (3).",
         "int16_t",
@@ -20638,18 +20692,18 @@ class NaOverlay10Data:
     SPEED_LOWER_TURN_RANGE = Symbol(
         [0x7E0C],
         [0x22C488C],
-        None,
+        0x4,
         "SPEED_LOWER_TURN_RANGE",
-        "The turn range for lowered speed, [6, 8].\n\ntype: int16_t[2]",
+        "The turn range for lowered speed, [6, 8).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
     PARALYSIS_TURN_RANGE = Symbol(
         [0x7E14],
         [0x22C4894],
-        None,
+        0x4,
         "PARALYSIS_TURN_RANGE",
-        "The turn range for the Paralysis status, [1, 2].\n\ntype: int16_t[2]",
+        "The turn range for the Paralysis status, [1, 2).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -20671,6 +20725,15 @@ class NaOverlay10Data:
         "fx32_8",
     )
 
+    WRAP_TURN_RANGE = Symbol(
+        [0x7E2C],
+        [0x22C48AC],
+        0x4,
+        "WRAP_TURN_RANGE",
+        "The turn range for the Wrap status, [2, 5).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     RAZOR_WIND_DAMAGE_MULTIPLIER = Symbol(
         [0x7E30],
         [0x22C48B0],
@@ -20687,6 +20750,15 @@ class NaOverlay10Data:
         "FOCUS_PUNCH_DAMAGE_MULTIPLIER",
         "The damage multiplier for Focus Punch, as a fixed-point number with 8 fraction bits (2).",
         "fx32_8",
+    )
+
+    INGRAIN_TURN_RANGE = Symbol(
+        [0x7E38],
+        [0x22C48B8],
+        0x4,
+        "INGRAIN_TURN_RANGE",
+        "The turn range for the Ingrain status, [15, 30).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     SKULL_BASH_DAMAGE_MULTIPLIER = Symbol(
@@ -26664,6 +26736,24 @@ class NaOverlay29Functions:
         None,
     )
 
+    IsValidTargetEntity = Symbol(
+        [0x6694],
+        [0x22E28D4],
+        None,
+        "IsValidTargetEntity",
+        "Checks if an entity is a valid target for another entity. Checks if both entities are valid and then calls IsPositionActuallyInSight.\n\nThis logic is identical to CanSeeTarget, except without its additional checks involving the monster structs of the entities (for invisibility, etc.)\n\nr0: User entity pointer\nr1: Target entity pointer\nreturn: True if the specified monster can see the target monster, false otherwise.",
+        None,
+    )
+
+    CanSeePosition = Symbol(
+        [0x66F0],
+        [0x22E2930],
+        None,
+        "CanSeePosition",
+        "Checks if a monster can see a position. Same as CanTargetPosition, but calls IsPositionActuallyInSight instead.\n\nr0: Entity pointer\nr1: Target position\nreturn: True if the specified monster can see the target position, false otherwise.",
+        None,
+    )
+
     CanTargetPosition = Symbol(
         [0x6714],
         [0x22E2954],
@@ -27160,6 +27250,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    DisplayTeamStatsSprite = Symbol(
+        [0xC030],
+        [0x22E8270],
+        None,
+        "DisplayTeamStatsSprite",
+        "Displays a party member's sprite on the team stats menu.\n\nr0: Team member entity pointer\nr1: ?\nr2: ?",
+        None,
+    )
+
     AssignTopScreenHandlers = Symbol(
         [0xC488],
         [0x22E86C8],
@@ -27310,6 +27409,15 @@ class NaOverlay29Functions:
         None,
         "AdvanceFrame",
         "Advances one frame. Does not return until the next frame starts.\n\nr0: ? - Unused by the function",
+        None,
+    )
+
+    UnkMapRelatedFunc = Symbol(
+        [0xE1E8],
+        [0x22EA428],
+        None,
+        "UnkMapRelatedFunc",
+        "Calling this function with r0 = 6 (or its duplicates in the switch statement) will normally close the minimap, while r0 = 0 will reopen it.\n\nWhen called in certain places, the function will crash the game instead?\n\nAlso does nothing if the passed case is the same as the last case used (or 0 if the last case was 0xd).\n\nr0: Which case to use for the switch statement\nr1: unused",
         None,
     )
 
@@ -37197,6 +37305,15 @@ class NaRamData:
         "DUNGEON_BUTTON_INPUT",
         "[Runtime] Stores information about the user's current button input in dungeon mode.\n\ntype: struct dungeon_button_input",
         "struct dungeon_button_input",
+    )
+
+    DUNGEON_FRAMES_PASSED = Symbol(
+        [0x37C850],
+        [0x237C850],
+        None,
+        "DUNGEON_FRAMES_PASSED",
+        "[Runtime] Stores the number of frames that have passed since the beginning of dungeon mode. \n\nSeems to also be the beginning of some struct, where the value right after is the last case of UnkMapRelatedFunc.\n\ntype: uint32_t",
+        "uint32_t",
     )
 
     TURNING_ON_THE_SPOT_FLAG = Symbol(
