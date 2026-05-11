@@ -1089,6 +1089,15 @@ class NaArm9Functions:
         None,
     )
 
+    HandleFadesVeneer = Symbol(
+        [0xBC54],
+        [0x200BC54],
+        None,
+        "HandleFadesVeneer",
+        "Likely a linker-generated veneer for HandleFades.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: screen_fade\nreturn: bool",
+        None,
+    )
+
     GetFadeStatus = Symbol(
         [0xBD2C],
         [0x200BD2C],
@@ -14424,13 +14433,31 @@ class NaLibsFunctions:
 
     OS_InitMutex = Symbol([0xDF58], [0x207A030], None, "OS_InitMutex", "", None)
 
+    DC_InvalidateAll = Symbol([0xE160], [0x207A238], None, "DC_InvalidateAll", "", None)
+
+    DC_StoreAll = Symbol([0xE16C], [0x207A244], None, "DC_StoreAll", "", None)
+
     DC_FlushAll = Symbol([0xE198], [0x207A270], None, "DC_FlushAll", "", None)
 
     DC_InvalidateRange = Symbol(
         [0xE1CC], [0x207A2A4], None, "DC_InvalidateRange", "", None
     )
 
+    DC_StoreRange = Symbol([0xE1E8], [0x207A2C0], None, "DC_StoreRange", "", None)
+
     DC_FlushRange = Symbol([0xE204], [0x207A2DC], None, "DC_FlushRange", "", None)
+
+    DC_WaitWriteBufferEmpty = Symbol(
+        [0xE228], [0x207A300], None, "DC_WaitWriteBufferEmpty", "", None
+    )
+
+    IC_Enable = Symbol([0xE234], [0x207A30C], None, "IC_Enable", "", None)
+
+    IC_InvalidateAll = Symbol([0xE24C], [0x207A324], None, "IC_InvalidateAll", "", None)
+
+    IC_InvalidateRange = Symbol(
+        [0xE258], [0x207A330], None, "IC_InvalidateRange", "", None
+    )
 
     OSi_WaitVCount0 = Symbol([0xE274], [0x207A34C], None, "OSi_WaitVCount0", "", None)
 
@@ -14452,6 +14479,22 @@ class NaLibsFunctions:
 
     OS_SetArenaLo = Symbol([0xE614], [0x207A6EC], None, "OS_SetArenaLo", "", None)
 
+    OS_GetDtcmAddress = Symbol(
+        [0xE9F4], [0x207AACC], None, "OS_GetDtcmAddress", "", None
+    )
+
+    OS_EnableProtectionUnit = Symbol(
+        [0xEA08], [0x207AAE0], None, "OS_EnableProtectionUnit", "", None
+    )
+
+    OS_DisableProtectionUnit = Symbol(
+        [0xEA18], [0x207AAF0], None, "OS_DisableProtectionUnit", "", None
+    )
+
+    OS_SetDPermissionsForProtectionRegion = Symbol(
+        [0xEA28], [0x207AB00], None, "OS_SetDPermissionsForProtectionRegion", "", None
+    )
+
     OS_SetProtectionRegion1 = Symbol(
         [0xEA3C], [0x207AB14], None, "OS_SetProtectionRegion1", "", None
     )
@@ -14466,6 +14509,30 @@ class NaLibsFunctions:
         [0xEABC], [0x207AB94], None, "OSi_ExceptionHandler", "", None
     )
 
+    OSi_GetAndDisplayContext = Symbol(
+        [0xEB40], [0x207AC18], None, "OSi_GetAndDisplayContext", "", None
+    )
+
+    OSi_SetExContext = Symbol([0xEB54], [0x207AC2C], None, "OSi_SetExContext", "", None)
+
+    OSi_DisplayExContent = Symbol(
+        [0xEBE4], [0x207ACBC], None, "OSi_DisplayExContent", "", None
+    )
+
+    OSi_SetTimerReserved = Symbol(
+        [0xEC60], [0x207AD38], None, "OSi_SetTimerReserved", "", None
+    )
+
+    OS_InitTick = Symbol([0xEC7C], [0x207AD54], None, "OS_InitTick", "", None)
+
+    OS_IsTickAvailable = Symbol(
+        [0xECF4], [0x207ADCC], None, "OS_IsTickAvailable", "", None
+    )
+
+    OSi_CountUpTick = Symbol([0xED04], [0x207ADDC], None, "OSi_CountUpTick", "", None)
+
+    OS_GetTick = Symbol([0xED6C], [0x207AE44], None, "OS_GetTick", "", None)
+
     GetTimer0Control = Symbol(
         [0xEE0C],
         [0x207AEE4],
@@ -14474,6 +14541,26 @@ class NaLibsFunctions:
         "Returns the value of the control register for hardware timer 0\n\nreturn: Value of the control register",
         None,
     )
+
+    OS_SetTick = Symbol([0xEE1C], [0x207AEF4], None, "OS_SetTick", "", None)
+
+    OSi_SetTimer = Symbol([0xEE8C], [0x207AF64], None, "OSi_SetTimer", "", None)
+
+    OS_InitAlarm = Symbol([0xEF18], [0x207AFF0], None, "OS_InitAlarm", "", None)
+
+    OS_IsAlarmAvailable = Symbol(
+        [0xEF58], [0x207B030], None, "OS_IsAlarmAvailable", "", None
+    )
+
+    OS_CreateAlarm = Symbol([0xEF68], [0x207B040], None, "OS_CreateAlarm", "", None)
+
+    OS_InsertAlarm = Symbol([0xEF78], [0x207B050], None, "OS_InsertAlarm", "", None)
+
+    OS_SetAlarm = Symbol([0xF0A4], [0x207B17C], None, "OS_SetAlarm", "", None)
+
+    OSi_AlarmHandler = Symbol([0xF198], [0x207B270], None, "OSi_AlarmHandler", "", None)
+
+    OSi_ArrangeTimer = Symbol([0xF1A8], [0x207B280], None, "OSi_ArrangeTimer", "", None)
 
     OS_InitVAlarm = Symbol([0xF298], [0x207B370], None, "OS_InitVAlarm", "", None)
 
@@ -14542,6 +14629,16 @@ class NaLibsFunctions:
 
     OS_InitReset = Symbol([0xF7A4], [0x207B87C], None, "OS_InitReset", "", None)
 
+    OSi_CommonCallback = Symbol(
+        [0xF7F8], [0x207B8D0], None, "OSi_CommonCallback", "", None
+    )
+
+    OSi_SendToPxi = Symbol([0xF82C], [0x207B904], None, "OSi_SendToPxi", "", None)
+
+    OS_ResetSystem = Symbol([0xF858], [0x207B930], None, "OS_ResetSystem", "", None)
+
+    OS_GetMacAddress = Symbol([0xF914], [0x207B9EC], None, "OS_GetMacAddress", "", None)
+
     GetDsFirmwareUserSettings = Symbol(
         [0xF930],
         [0x207BA08],
@@ -14563,6 +14660,8 @@ class NaLibsFunctions:
     OSi_InitVramExclusive = Symbol(
         [0xF9BC], [0x207BA94], None, "OSi_InitVramExclusive", "", None
     )
+
+    OSi_UnlockVram = Symbol([0xF9F0], [0x207BAC8], None, "OSi_UnlockVram", "", None)
 
     WaitForever2 = Symbol(
         [0xFB48],
@@ -14673,7 +14772,19 @@ class NaLibsFunctions:
         None,
     )
 
+    MTi_CardDmaCopy32 = Symbol(
+        [0x10678], [0x207C750], None, "MTi_CardDmaCopy32", "", None
+    )
+
     MI_Init = Symbol([0x106EC], [0x207C7C4], None, "MI_Init", "", None)
+
+    PushCommand_Impl = Symbol(
+        [0x10AF4], [0x207CBCC], None, "PushCommand_Impl", "", None
+    )
+
+    Snd_Init = Symbol([0x10B38], [0x207CC10], None, "Snd_Init", "", None)
+
+    Snd_CommandInit = Symbol([0x10B98], [0x207CC70], None, "Snd_CommandInit", "", None)
 
     Pxi_Init = Symbol([0x118CC], [0x207D9A4], None, "Pxi_Init", "", None)
 
@@ -15416,6 +15527,28 @@ class NaLibsFunctions:
     DseUtil_GetRandomNumber = _Deprecated(
         "DseUtil_GetRandomNumber", SoundUtil_GetRandomNumber
     )
+
+    GX_SendFifo48B = _Deprecated("GX_SendFifo48B", GeomGxFifoSendMtx4x3)
+
+    OS_GetTickLo = _Deprecated("OS_GetTickLo", GetTimer0Control)
+
+    OsCountZeroBits = _Deprecated("OsCountZeroBits", CountLeadingZeros)
+
+    MTi_CpuClear16 = _Deprecated("MTi_CpuClear16", ArrayFill16)
+
+    MTi_CpuCopy16 = _Deprecated("MTi_CpuCopy16", ArrayCopy16)
+
+    MTi_CpuClear32 = _Deprecated("MTi_CpuClear32", ArrayFill32)
+
+    MTi_CpuCopy32 = _Deprecated("MTi_CpuCopy32", ArrayCopy32)
+
+    MTi_CpuClearFast = _Deprecated("MTi_CpuClearFast", ArrayFill32Fast)
+
+    MTi_CpuCopy32Fast = _Deprecated("MTi_CpuCopy32Fast", ArrayCopy32Fast)
+
+    MI_CpuFill8 = _Deprecated("MI_CpuFill8", MemsetFast)
+
+    MI_CpuCopy8 = _Deprecated("MI_CpuCopy8", MemcpyFast)
 
     __addsf3 = _Deprecated("__addsf3", _fadd)
 
@@ -18333,6 +18466,8 @@ class NaOverlay0Functions:
         None,
     )
 
+    Socl_Startup = Symbol([0x10310], [0x22CCD90], None, "Socl_Startup", "", None)
+
     close = Symbol(
         [0x11E54],
         [0x22CE8D4],
@@ -18422,6 +18557,8 @@ class NaOverlay0Functions:
         "Performs an operation on a file descriptor.\n\nr0: file descriptor\nr1: operation\nr2: operation-specific argument\nreturn: operation-specific value",
         None,
     )
+
+    Soc_Startup = Symbol([0x12BF4], [0x22CF674], None, "Soc_Startup", "", None)
 
     InitWfc = Symbol(
         [0x1AD14],
@@ -37231,6 +37368,16 @@ class NaRamData:
         "struct thread_info",
     )
 
+    OSI_TIMER_RESERVED = Symbol(
+        [0x2B999C], [0x22B999C], 0x4, "OSI_TIMER_RESERVED", "", "uint16_t"
+    )
+
+    OSI_USE_TICK = Symbol([0x2B99A0], [0x22B99A0], 0x8, "OSI_USE_TICK", "", "undefined")
+
+    OSI_USE_ALARM = Symbol(
+        [0x2B99B0], [0x22B99B0], 0xC, "OSI_USE_ALARM", "", "undefined"
+    )
+
     FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
         [0x2B99C4],
         [0x22B99C4],
@@ -37238,6 +37385,14 @@ class NaRamData:
         "FRAMES_SINCE_LAUNCH_TIMES_THREE",
         "Starts at 0 when the game is first launched, and ticks up by 3 per frame while the game is running.",
         "uint32_t",
+    )
+
+    OSI_VRAM_EXCLUSIVE = Symbol(
+        [0x2B99D4], [0x22B99D4], 0x4, "OSI_VRAM_EXCLUSIVE", "", "uint32_t"
+    )
+
+    OSI_VRAM_LOCK_ID = Symbol(
+        [0x2B99D8], [0x22B99D8], 0x14, "OSI_VRAM_LOCK_ID", "", "uint16_t[9]"
     )
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(

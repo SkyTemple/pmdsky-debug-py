@@ -667,6 +667,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    HandleFadesVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetFadeStatus: Symbol[
         Optional[list[int]],
         None,
@@ -9063,6 +9068,16 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    DC_InvalidateAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DC_StoreAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DC_FlushAll: Symbol[
         Optional[list[int]],
         None,
@@ -9073,7 +9088,32 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    DC_StoreRange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DC_FlushRange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DC_WaitWriteBufferEmpty: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IC_Enable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IC_InvalidateAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IC_InvalidateRange: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9118,6 +9158,26 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_GetDtcmAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_EnableProtectionUnit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_DisableProtectionUnit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetDPermissionsForProtectionRegion: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OS_SetProtectionRegion1: Symbol[
         Optional[list[int]],
         None,
@@ -9138,7 +9198,92 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OSi_GetAndDisplayContext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_SetExContext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_DisplayExContent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_SetTimerReserved: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitTick: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_IsTickAvailable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_CountUpTick: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetTick: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetTimer0Control: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetTick: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_SetTimer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_IsAlarmAvailable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_CreateAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InsertAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_AlarmHandler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_ArrangeTimer: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9188,6 +9333,26 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OSi_CommonCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_SendToPxi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_ResetSystem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetMacAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetDsFirmwareUserSettings: Symbol[
         Optional[list[int]],
         None,
@@ -9199,6 +9364,11 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     OSi_InitVramExclusive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_UnlockVram: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9278,7 +9448,27 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    MTi_CardDmaCopy32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MI_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PushCommand_Impl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_CommandInit: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11406,6 +11596,11 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    Socl_Startup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     close: Symbol[
         Optional[list[int]],
         None,
@@ -11452,6 +11647,11 @@ class Overlay0FunctionsProtocol(Protocol):
     ]
 
     fcntl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_Startup: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -21968,7 +22168,32 @@ class RamDataProtocol(Protocol):
         None,
     ]
 
+    OSI_TIMER_RESERVED: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OSI_USE_TICK: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OSI_USE_ALARM: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     FRAMES_SINCE_LAUNCH_TIMES_THREE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OSI_VRAM_EXCLUSIVE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    OSI_VRAM_LOCK_ID: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

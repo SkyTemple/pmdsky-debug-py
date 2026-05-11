@@ -1077,6 +1077,15 @@ class JpItcmArm9Functions:
         None,
     )
 
+    HandleFadesVeneer = Symbol(
+        None,
+        None,
+        None,
+        "HandleFadesVeneer",
+        "Likely a linker-generated veneer for HandleFades.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: screen_fade\nreturn: bool",
+        None,
+    )
+
     GetFadeStatus = Symbol(
         None,
         None,
@@ -14163,11 +14172,27 @@ class JpItcmLibsFunctions:
 
     OS_InitMutex = Symbol(None, None, None, "OS_InitMutex", "", None)
 
+    DC_InvalidateAll = Symbol(None, None, None, "DC_InvalidateAll", "", None)
+
+    DC_StoreAll = Symbol(None, None, None, "DC_StoreAll", "", None)
+
     DC_FlushAll = Symbol(None, None, None, "DC_FlushAll", "", None)
 
     DC_InvalidateRange = Symbol(None, None, None, "DC_InvalidateRange", "", None)
 
+    DC_StoreRange = Symbol(None, None, None, "DC_StoreRange", "", None)
+
     DC_FlushRange = Symbol(None, None, None, "DC_FlushRange", "", None)
+
+    DC_WaitWriteBufferEmpty = Symbol(
+        None, None, None, "DC_WaitWriteBufferEmpty", "", None
+    )
+
+    IC_Enable = Symbol(None, None, None, "IC_Enable", "", None)
+
+    IC_InvalidateAll = Symbol(None, None, None, "IC_InvalidateAll", "", None)
+
+    IC_InvalidateRange = Symbol(None, None, None, "IC_InvalidateRange", "", None)
 
     OSi_WaitVCount0 = Symbol(None, None, None, "OSi_WaitVCount0", "", None)
 
@@ -14185,6 +14210,20 @@ class JpItcmLibsFunctions:
 
     OS_SetArenaLo = Symbol(None, None, None, "OS_SetArenaLo", "", None)
 
+    OS_GetDtcmAddress = Symbol(None, None, None, "OS_GetDtcmAddress", "", None)
+
+    OS_EnableProtectionUnit = Symbol(
+        None, None, None, "OS_EnableProtectionUnit", "", None
+    )
+
+    OS_DisableProtectionUnit = Symbol(
+        None, None, None, "OS_DisableProtectionUnit", "", None
+    )
+
+    OS_SetDPermissionsForProtectionRegion = Symbol(
+        None, None, None, "OS_SetDPermissionsForProtectionRegion", "", None
+    )
+
     OS_SetProtectionRegion1 = Symbol(
         None, None, None, "OS_SetProtectionRegion1", "", None
     )
@@ -14197,6 +14236,24 @@ class JpItcmLibsFunctions:
 
     OSi_ExceptionHandler = Symbol(None, None, None, "OSi_ExceptionHandler", "", None)
 
+    OSi_GetAndDisplayContext = Symbol(
+        None, None, None, "OSi_GetAndDisplayContext", "", None
+    )
+
+    OSi_SetExContext = Symbol(None, None, None, "OSi_SetExContext", "", None)
+
+    OSi_DisplayExContent = Symbol(None, None, None, "OSi_DisplayExContent", "", None)
+
+    OSi_SetTimerReserved = Symbol(None, None, None, "OSi_SetTimerReserved", "", None)
+
+    OS_InitTick = Symbol(None, None, None, "OS_InitTick", "", None)
+
+    OS_IsTickAvailable = Symbol(None, None, None, "OS_IsTickAvailable", "", None)
+
+    OSi_CountUpTick = Symbol(None, None, None, "OSi_CountUpTick", "", None)
+
+    OS_GetTick = Symbol(None, None, None, "OS_GetTick", "", None)
+
     GetTimer0Control = Symbol(
         None,
         None,
@@ -14205,6 +14262,24 @@ class JpItcmLibsFunctions:
         "Returns the value of the control register for hardware timer 0\n\nreturn: Value of the control register",
         None,
     )
+
+    OS_SetTick = Symbol(None, None, None, "OS_SetTick", "", None)
+
+    OSi_SetTimer = Symbol(None, None, None, "OSi_SetTimer", "", None)
+
+    OS_InitAlarm = Symbol(None, None, None, "OS_InitAlarm", "", None)
+
+    OS_IsAlarmAvailable = Symbol(None, None, None, "OS_IsAlarmAvailable", "", None)
+
+    OS_CreateAlarm = Symbol(None, None, None, "OS_CreateAlarm", "", None)
+
+    OS_InsertAlarm = Symbol(None, None, None, "OS_InsertAlarm", "", None)
+
+    OS_SetAlarm = Symbol(None, None, None, "OS_SetAlarm", "", None)
+
+    OSi_AlarmHandler = Symbol(None, None, None, "OSi_AlarmHandler", "", None)
+
+    OSi_ArrangeTimer = Symbol(None, None, None, "OSi_ArrangeTimer", "", None)
 
     OS_InitVAlarm = Symbol(None, None, None, "OS_InitVAlarm", "", None)
 
@@ -14273,6 +14348,14 @@ class JpItcmLibsFunctions:
 
     OS_InitReset = Symbol(None, None, None, "OS_InitReset", "", None)
 
+    OSi_CommonCallback = Symbol(None, None, None, "OSi_CommonCallback", "", None)
+
+    OSi_SendToPxi = Symbol(None, None, None, "OSi_SendToPxi", "", None)
+
+    OS_ResetSystem = Symbol(None, None, None, "OS_ResetSystem", "", None)
+
+    OS_GetMacAddress = Symbol(None, None, None, "OS_GetMacAddress", "", None)
+
     GetDsFirmwareUserSettings = Symbol(
         None,
         None,
@@ -14292,6 +14375,8 @@ class JpItcmLibsFunctions:
     )
 
     OSi_InitVramExclusive = Symbol(None, None, None, "OSi_InitVramExclusive", "", None)
+
+    OSi_UnlockVram = Symbol(None, None, None, "OSi_UnlockVram", "", None)
 
     WaitForever2 = Symbol(
         None,
@@ -14402,7 +14487,15 @@ class JpItcmLibsFunctions:
         None,
     )
 
+    MTi_CardDmaCopy32 = Symbol(None, None, None, "MTi_CardDmaCopy32", "", None)
+
     MI_Init = Symbol(None, None, None, "MI_Init", "", None)
+
+    PushCommand_Impl = Symbol(None, None, None, "PushCommand_Impl", "", None)
+
+    Snd_Init = Symbol(None, None, None, "Snd_Init", "", None)
+
+    Snd_CommandInit = Symbol(None, None, None, "Snd_CommandInit", "", None)
 
     Pxi_Init = Symbol(None, None, None, "Pxi_Init", "", None)
 
@@ -15118,6 +15211,28 @@ class JpItcmLibsFunctions:
     DseUtil_GetRandomNumber = _Deprecated(
         "DseUtil_GetRandomNumber", SoundUtil_GetRandomNumber
     )
+
+    GX_SendFifo48B = _Deprecated("GX_SendFifo48B", GeomGxFifoSendMtx4x3)
+
+    OS_GetTickLo = _Deprecated("OS_GetTickLo", GetTimer0Control)
+
+    OsCountZeroBits = _Deprecated("OsCountZeroBits", CountLeadingZeros)
+
+    MTi_CpuClear16 = _Deprecated("MTi_CpuClear16", ArrayFill16)
+
+    MTi_CpuCopy16 = _Deprecated("MTi_CpuCopy16", ArrayCopy16)
+
+    MTi_CpuClear32 = _Deprecated("MTi_CpuClear32", ArrayFill32)
+
+    MTi_CpuCopy32 = _Deprecated("MTi_CpuCopy32", ArrayCopy32)
+
+    MTi_CpuClearFast = _Deprecated("MTi_CpuClearFast", ArrayFill32Fast)
+
+    MTi_CpuCopy32Fast = _Deprecated("MTi_CpuCopy32Fast", ArrayCopy32Fast)
+
+    MI_CpuFill8 = _Deprecated("MI_CpuFill8", MemsetFast)
+
+    MI_CpuCopy8 = _Deprecated("MI_CpuCopy8", MemcpyFast)
 
     __addsf3 = _Deprecated("__addsf3", _fadd)
 
@@ -18035,6 +18150,8 @@ class JpItcmOverlay0Functions:
         None,
     )
 
+    Socl_Startup = Symbol(None, None, None, "Socl_Startup", "", None)
+
     close = Symbol(
         None,
         None,
@@ -18124,6 +18241,8 @@ class JpItcmOverlay0Functions:
         "Performs an operation on a file descriptor.\n\nr0: file descriptor\nr1: operation\nr2: operation-specific argument\nreturn: operation-specific value",
         None,
     )
+
+    Soc_Startup = Symbol(None, None, None, "Soc_Startup", "", None)
 
     InitWfc = Symbol(
         None,
@@ -36471,6 +36590,12 @@ class JpItcmRamData:
         "struct thread_info",
     )
 
+    OSI_TIMER_RESERVED = Symbol(None, None, None, "OSI_TIMER_RESERVED", "", "uint16_t")
+
+    OSI_USE_TICK = Symbol(None, None, None, "OSI_USE_TICK", "", "undefined")
+
+    OSI_USE_ALARM = Symbol(None, None, None, "OSI_USE_ALARM", "", "undefined")
+
     FRAMES_SINCE_LAUNCH_TIMES_THREE = Symbol(
         None,
         None,
@@ -36479,6 +36604,10 @@ class JpItcmRamData:
         "Starts at 0 when the game is first launched, and ticks up by 3 per frame while the game is running.",
         "uint32_t",
     )
+
+    OSI_VRAM_EXCLUSIVE = Symbol(None, None, None, "OSI_VRAM_EXCLUSIVE", "", "uint32_t")
+
+    OSI_VRAM_LOCK_ID = Symbol(None, None, None, "OSI_VRAM_LOCK_ID", "", "uint16_t[9]")
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
         None,
