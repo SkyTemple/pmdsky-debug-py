@@ -20587,6 +20587,15 @@ class JpOverlay10Data:
         "int16_t[2]",
     )
 
+    HEAL_BLOCK_TURN_RANGE = Symbol(
+        [0x7C3C],
+        [0x22C5E5C],
+        0x4,
+        "HEAL_BLOCK_TURN_RANGE",
+        "The turn range for the Heal Block status, [4, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SPORT_CONDITION_TURN_RANGE = Symbol(
         [0x7C54],
         [0x22C5E74],

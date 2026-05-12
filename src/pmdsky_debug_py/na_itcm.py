@@ -20251,6 +20251,15 @@ class NaItcmOverlay10Data:
         "int16_t[2]",
     )
 
+    HEAL_BLOCK_TURN_RANGE = Symbol(
+        None,
+        None,
+        None,
+        "HEAL_BLOCK_TURN_RANGE",
+        "The turn range for the Heal Block status, [4, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SPORT_CONDITION_TURN_RANGE = Symbol(
         None,
         None,

@@ -12810,6 +12810,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    HEAL_BLOCK_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SPORT_CONDITION_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],

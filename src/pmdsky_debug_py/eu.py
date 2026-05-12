@@ -20592,6 +20592,15 @@ class EuOverlay10Data:
         "int16_t[2]",
     )
 
+    HEAL_BLOCK_TURN_RANGE = Symbol(
+        [0x7D0C],
+        [0x22C50CC],
+        0x4,
+        "HEAL_BLOCK_TURN_RANGE",
+        "The turn range for the Heal Block status, [4, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SPORT_CONDITION_TURN_RANGE = Symbol(
         [0x7D24],
         [0x22C50E4],
