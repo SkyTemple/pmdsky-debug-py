@@ -4827,7 +4827,16 @@ class EuArm9Functions:
         [0x202A6D8],
         None,
         "PrintClearMark",
-        "Prints the specified clear mark on the screen.\n\nClear marks are shown on the save file load screen. They are used to show which plot milestones have already been completed.\n\nr0: Clear mark ID\nr1: X pos (unknown units, usually ranges between 3 and 27)\nr2: Y pos (unknown units, normally 14)\nr3: ?",
+        "Prints the specified clear mark on the screen.\n\nClear marks are shown on the save file load screen. They are used to show which plot milestones have already been completed.\n\nr0: Clear mark ID\nr1: X pos (unknown units, usually ranges between 3 and 27)\nr2: Y pos (unknown units, normally 14)\nr3: ?\nreturn: window_id",
+        None,
+    )
+
+    PrintSpecialEpisodeClearMark = Symbol(
+        [0x2A700],
+        [0x202A700],
+        None,
+        "PrintSpecialEpisodeClearMark",
+        "Prints the specified special episode clear mark on the screen.\n\nThese clear marks are shown on the special episode load screen. They are used to show which special episodes have already been completed.\n\nr0: Special episode ID\nr1: X pos (unknown units, usually ranges between 3 and 27)\nr2: Y pos (unknown units, normally 14)\nr3: ?\nreturn: window_id",
         None,
     )
 
@@ -4836,7 +4845,7 @@ class EuArm9Functions:
         [0x202A728],
         None,
         "PrintBadgeMark",
-        "Prints the specified badge mark on the screen.\n\nThe badge mark is shown when opening the menu in the overworld.\n\nr0: Badge ID\nr1: X pos (unknown units, always 3)\nr2: Y pos (unknown units, always 18)\nr3: ? (always 3)",
+        "Prints the specified badge mark on the screen.\n\nThe badge mark is shown when opening the menu in the overworld.\n\nr0: Badge ID\nr1: X pos (unknown units, always 3)\nr2: Y pos (unknown units, always 18)\nr3: ? (always 3)\nreturn: window_id",
         None,
     )
 
@@ -4845,7 +4854,7 @@ class EuArm9Functions:
         [0x202A750],
         None,
         "PrintMark",
-        "Prints a mark from one of the .w16 files in FONT.\n\nr0: 0 if file is clrmark1.w16, 1 if file is clrmark2.w16, 2 if file is rankmark.w16.\nr1: Mark ID in file\nr2: X pos (unknown units)\nr3: Y pos (unknown units)\nstack[0]: ?",
+        "Prints a mark from one of the .w16 files in FONT.\n\nr0: 0 if file is clrmark1.w16, 1 if file is clrmark2.w16, 2 if file is rankmark.w16.\nr1: Mark ID in file\nr2: X pos (unknown units)\nr3: Y pos (unknown units)\nstack[0]: ?\nreturn: window_id",
         None,
     )
 
@@ -11355,6 +11364,15 @@ class EuArm9Data:
         "FORBIDDEN_FORGOT_MOVE_LIST",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct forbidden_forgot_move_entry[3]",
         "struct forbidden_forgot_move_entry[3]",
+    )
+
+    CONVERSION2_TYPE_TABLE = Symbol(
+        [0xA1EB0],
+        [0x20A1EB0],
+        0x12,
+        "CONVERSION2_TYPE_TABLE",
+        "A lookup table which takes a type as an index to get the type for Conversion2.\n\ntype: struct type_id_8[18]",
+        "struct type_id_8[18]",
     )
 
     TACTICS_UNLOCK_LEVEL_TABLE = Symbol(
@@ -18881,6 +18899,15 @@ class EuOverlay1Data:
         "struct simple_menu_id_item[3]",
     )
 
+    CLEAR_MARK_PERFORMANCE_PROGRESS_FLAGS = Symbol(
+        [0x12170],
+        [0x233BEB0],
+        0x34,
+        "CLEAR_MARK_PERFORMANCE_PROGRESS_FLAGS",
+        "List of the 13 performance progress flags corresponding to clear marks on the save file load screen.",
+        "int[13]",
+    )
+
     MAIN_MENU_WINDOW_PARAMS_8 = Symbol(
         [0x121DC],
         [0x233BF1C],
@@ -19364,6 +19391,15 @@ class EuOverlay10Data:
         "int16_t",
     )
 
+    MAGNET_PULL_ACTIVATION_CHANCE = Symbol(
+        [0x79F8],
+        [0x22C4DB8],
+        0x2,
+        "MAGNET_PULL_ACTIVATION_CHANCE",
+        "The chance of Magnet Pull inflicting immobilization, as a percentage (12%).",
+        "int16_t",
+    )
+
     FOREWARN_FORCED_MISS_CHANCE = Symbol(
         [0x7A00],
         [0x22C4DC0],
@@ -19787,6 +19823,15 @@ class EuOverlay10Data:
         "int16_t",
     )
 
+    ARENA_TRAP_ACTIVATION_CHANCE = Symbol(
+        [0x7AFC],
+        [0x22C4EBC],
+        0x2,
+        "ARENA_TRAP_ACTIVATION_CHANCE",
+        "The chance of Arena Trap inflicting immobilization, as a percentage (12%).",
+        "int16_t",
+    )
+
     SONICBOOM_FIXED_DAMAGE = Symbol(
         [0x7B00],
         [0x22C4EC0],
@@ -20169,6 +20214,15 @@ class EuOverlay10Data:
         "int16_t",
     )
 
+    SHADOW_TAG_ACTIVATION_CHANCE = Symbol(
+        [0x7C24],
+        [0x22C4FE4],
+        0x2,
+        "SHADOW_TAG_ACTIVATION_CHANCE",
+        "The chance of Shadow Tag inflicting immobilization, as a percentage (12%).",
+        "int16_t",
+    )
+
     PSYBEAM_CONFUSE_CHANCE = Symbol(
         [0x7C28],
         [0x22C4FE8],
@@ -20202,6 +20256,15 @@ class EuOverlay10Data:
         0x2,
         "WONDER_CHEST_EXP_BOOST",
         "The percentage increase in experience from the Wonder Chest item",
+        "int16_t",
+    )
+
+    SHED_SKIN_ACTIVATION_CHANCE = Symbol(
+        [0x7C38],
+        [0x22C4FF8],
+        0x2,
+        "SHED_SKIN_ACTIVATION_CHANCE",
+        "The chance of Shed Skin curing a monster's statuses on any given turn, as a percentage (50%).",
         "int16_t",
     )
 
@@ -30378,6 +30441,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    ActivateEndOfTurnEffects = Symbol(
+        [0x33B18],
+        [0x2310698],
+        None,
+        "ActivateEndOfTurnEffects",
+        "Triggers many different effects that happen at the end of a turn, such as Warp Scarf warping, belly loss, weather damage, etc.\n\nr0: pointer to entity",
+        None,
+    )
+
     TickStatusAndHealthRegen = Symbol(
         [0x34F68],
         [0x2311AE8],
@@ -33987,6 +34059,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    GetFirstExperienceLockedTeamMember = Symbol(
+        [0x6DAF0],
+        [0x234A670],
+        None,
+        "GetFirstExperienceLockedTeamMember",
+        "Returns the entity pointer to the first experience-locked member on the team (so a client or a special story ally).\n\nReturns a null pointer instead if none are present.\n\nreturn: entity pointer",
+        None,
+    )
+
     TeleportFleeingOutlaw = Symbol(
         [0x6EF24],
         [0x234BAA4],
@@ -34389,6 +34470,15 @@ class EuOverlay29Functions:
         None,
         "DisplayMessageInternal",
         "Called by DisplayMessage. Seems to be the function that handles the display of the dialogue box. It won't return until all the characters have been written and after the player manually closes the dialogue box (if the corresponding parameter was set).\n\nr0: ID of the string to display\nr1: True to wait for player input before closing the dialogue box, false to close it automatically once all the characters get printed.\nr2: pointer to the structure representing the desired state of the portrait\nr3: ?\nstack[0]: ?\nstack[1]: ?",
+        None,
+    )
+
+    InitSecretBazaarDialogueInfo = Symbol(
+        [0x71BD8],
+        [0x234E758],
+        None,
+        "InitSecretBazaarDialogueInfo",
+        "Initializes the struct pointed to by SECRET_BAZAAR_DIALOGUE_INFO_PTR.\n\nNo params.",
         None,
     )
 
@@ -37660,6 +37750,15 @@ class EuRamData:
         "FLOOR_GENERATION_STATUS",
         "[Runtime] Status data related to generation of the current floor in a dungeon.\n\nThis data is populated as the dungeon floor is generated.\n\ntype: struct floor_generation_status",
         "struct floor_generation_status",
+    )
+
+    SECRET_BAZAAR_DIALOGUE_INFO_PTR = Symbol(
+        [0x383400],
+        [0x2383400],
+        0x4,
+        "SECRET_BAZAAR_DIALOGUE_INFO_PTR",
+        "[Runtime] Pointer to the secret_bazaar_dialogue_info struct during dungeon mode.",
+        "struct secret_bazaar_dialogue_info*",
     )
 
     STAIRS_MENU_PTR = Symbol(

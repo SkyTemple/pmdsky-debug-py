@@ -4781,7 +4781,16 @@ class JpItcmArm9Functions:
         None,
         None,
         "PrintClearMark",
-        "Prints the specified clear mark on the screen.\n\nClear marks are shown on the save file load screen. They are used to show which plot milestones have already been completed.\n\nr0: Clear mark ID\nr1: X pos (unknown units, usually ranges between 3 and 27)\nr2: Y pos (unknown units, normally 14)\nr3: ?",
+        "Prints the specified clear mark on the screen.\n\nClear marks are shown on the save file load screen. They are used to show which plot milestones have already been completed.\n\nr0: Clear mark ID\nr1: X pos (unknown units, usually ranges between 3 and 27)\nr2: Y pos (unknown units, normally 14)\nr3: ?\nreturn: window_id",
+        None,
+    )
+
+    PrintSpecialEpisodeClearMark = Symbol(
+        None,
+        None,
+        None,
+        "PrintSpecialEpisodeClearMark",
+        "Prints the specified special episode clear mark on the screen.\n\nThese clear marks are shown on the special episode load screen. They are used to show which special episodes have already been completed.\n\nr0: Special episode ID\nr1: X pos (unknown units, usually ranges between 3 and 27)\nr2: Y pos (unknown units, normally 14)\nr3: ?\nreturn: window_id",
         None,
     )
 
@@ -4790,7 +4799,7 @@ class JpItcmArm9Functions:
         None,
         None,
         "PrintBadgeMark",
-        "Prints the specified badge mark on the screen.\n\nThe badge mark is shown when opening the menu in the overworld.\n\nr0: Badge ID\nr1: X pos (unknown units, always 3)\nr2: Y pos (unknown units, always 18)\nr3: ? (always 3)",
+        "Prints the specified badge mark on the screen.\n\nThe badge mark is shown when opening the menu in the overworld.\n\nr0: Badge ID\nr1: X pos (unknown units, always 3)\nr2: Y pos (unknown units, always 18)\nr3: ? (always 3)\nreturn: window_id",
         None,
     )
 
@@ -4799,7 +4808,7 @@ class JpItcmArm9Functions:
         None,
         None,
         "PrintMark",
-        "Prints a mark from one of the .w16 files in FONT.\n\nr0: 0 if file is clrmark1.w16, 1 if file is clrmark2.w16, 2 if file is rankmark.w16.\nr1: Mark ID in file\nr2: X pos (unknown units)\nr3: Y pos (unknown units)\nstack[0]: ?",
+        "Prints a mark from one of the .w16 files in FONT.\n\nr0: 0 if file is clrmark1.w16, 1 if file is clrmark2.w16, 2 if file is rankmark.w16.\nr1: Mark ID in file\nr2: X pos (unknown units)\nr3: Y pos (unknown units)\nstack[0]: ?\nreturn: window_id",
         None,
     )
 
@@ -11300,6 +11309,15 @@ class JpItcmArm9Data:
         "FORBIDDEN_FORGOT_MOVE_LIST",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: struct forbidden_forgot_move_entry[3]",
         "struct forbidden_forgot_move_entry[3]",
+    )
+
+    CONVERSION2_TYPE_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "CONVERSION2_TYPE_TABLE",
+        "A lookup table which takes a type as an index to get the type for Conversion2.\n\ntype: struct type_id_8[18]",
+        "struct type_id_8[18]",
     )
 
     TACTICS_UNLOCK_LEVEL_TABLE = Symbol(
@@ -18560,6 +18578,15 @@ class JpItcmOverlay1Data:
         None, None, None, "MAIN_MENU_ITEMS_CONFIRM", "", "struct simple_menu_id_item[3]"
     )
 
+    CLEAR_MARK_PERFORMANCE_PROGRESS_FLAGS = Symbol(
+        None,
+        None,
+        None,
+        "CLEAR_MARK_PERFORMANCE_PROGRESS_FLAGS",
+        "List of the 13 performance progress flags corresponding to clear marks on the save file load screen.",
+        "int[13]",
+    )
+
     MAIN_MENU_WINDOW_PARAMS_8 = Symbol(
         None,
         None,
@@ -19038,6 +19065,15 @@ class JpItcmOverlay10Data:
         "int16_t",
     )
 
+    MAGNET_PULL_ACTIVATION_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "MAGNET_PULL_ACTIVATION_CHANCE",
+        "The chance of Magnet Pull inflicting immobilization, as a percentage (12%).",
+        "int16_t",
+    )
+
     FOREWARN_FORCED_MISS_CHANCE = Symbol(
         None,
         None,
@@ -19461,6 +19497,15 @@ class JpItcmOverlay10Data:
         "int16_t",
     )
 
+    ARENA_TRAP_ACTIVATION_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "ARENA_TRAP_ACTIVATION_CHANCE",
+        "The chance of Arena Trap inflicting immobilization, as a percentage (12%).",
+        "int16_t",
+    )
+
     SONICBOOM_FIXED_DAMAGE = Symbol(
         None,
         None,
@@ -19843,6 +19888,15 @@ class JpItcmOverlay10Data:
         "int16_t",
     )
 
+    SHADOW_TAG_ACTIVATION_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "SHADOW_TAG_ACTIVATION_CHANCE",
+        "The chance of Shadow Tag inflicting immobilization, as a percentage (12%).",
+        "int16_t",
+    )
+
     PSYBEAM_CONFUSE_CHANCE = Symbol(
         None,
         None,
@@ -19876,6 +19930,15 @@ class JpItcmOverlay10Data:
         None,
         "WONDER_CHEST_EXP_BOOST",
         "The percentage increase in experience from the Wonder Chest item",
+        "int16_t",
+    )
+
+    SHED_SKIN_ACTIVATION_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "SHED_SKIN_ACTIVATION_CHANCE",
+        "The chance of Shed Skin curing a monster's statuses on any given turn, as a percentage (50%).",
         "int16_t",
     )
 
@@ -29725,6 +29788,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    ActivateEndOfTurnEffects = Symbol(
+        None,
+        None,
+        None,
+        "ActivateEndOfTurnEffects",
+        "Triggers many different effects that happen at the end of a turn, such as Warp Scarf warping, belly loss, weather damage, etc.\n\nr0: pointer to entity",
+        None,
+    )
+
     TickStatusAndHealthRegen = Symbol(
         None,
         None,
@@ -33334,6 +33406,15 @@ class JpItcmOverlay29Functions:
         None,
     )
 
+    GetFirstExperienceLockedTeamMember = Symbol(
+        None,
+        None,
+        None,
+        "GetFirstExperienceLockedTeamMember",
+        "Returns the entity pointer to the first experience-locked member on the team (so a client or a special story ally).\n\nReturns a null pointer instead if none are present.\n\nreturn: entity pointer",
+        None,
+    )
+
     TeleportFleeingOutlaw = Symbol(
         None,
         None,
@@ -33731,6 +33812,15 @@ class JpItcmOverlay29Functions:
         None,
         "DisplayMessageInternal",
         "Called by DisplayMessage. Seems to be the function that handles the display of the dialogue box. It won't return until all the characters have been written and after the player manually closes the dialogue box (if the corresponding parameter was set).\n\nr0: ID of the string to display\nr1: True to wait for player input before closing the dialogue box, false to close it automatically once all the characters get printed.\nr2: pointer to the structure representing the desired state of the portrait\nr3: ?\nstack[0]: ?\nstack[1]: ?",
+        None,
+    )
+
+    InitSecretBazaarDialogueInfo = Symbol(
+        None,
+        None,
+        None,
+        "InitSecretBazaarDialogueInfo",
+        "Initializes the struct pointed to by SECRET_BAZAAR_DIALOGUE_INFO_PTR.\n\nNo params.",
         None,
     )
 
@@ -36872,6 +36962,15 @@ class JpItcmRamData:
         "FLOOR_GENERATION_STATUS",
         "[Runtime] Status data related to generation of the current floor in a dungeon.\n\nThis data is populated as the dungeon floor is generated.\n\ntype: struct floor_generation_status",
         "struct floor_generation_status",
+    )
+
+    SECRET_BAZAAR_DIALOGUE_INFO_PTR = Symbol(
+        None,
+        None,
+        None,
+        "SECRET_BAZAAR_DIALOGUE_INFO_PTR",
+        "[Runtime] Pointer to the secret_bazaar_dialogue_info struct during dungeon mode.",
+        "struct secret_bazaar_dialogue_info*",
     )
 
     STAIRS_MENU_PTR = Symbol(

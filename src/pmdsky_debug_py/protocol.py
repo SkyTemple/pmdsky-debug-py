@@ -2727,6 +2727,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    PrintSpecialEpisodeClearMark: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PrintBadgeMark: Symbol[
         Optional[list[int]],
         None,
@@ -6316,6 +6321,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     FORBIDDEN_FORGOT_MOVE_LIST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CONVERSION2_TYPE_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -11852,6 +11862,11 @@ class Overlay1DataProtocol(Protocol):
         Optional[int],
     ]
 
+    CLEAR_MARK_PERFORMANCE_PROGRESS_FLAGS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     MAIN_MENU_WINDOW_PARAMS_8: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -12125,6 +12140,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MAGNET_PULL_ACTIVATION_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     FOREWARN_FORCED_MISS_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -12360,6 +12380,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    ARENA_TRAP_ACTIVATION_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SONICBOOM_FIXED_DAMAGE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -12575,6 +12600,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SHADOW_TAG_ACTIVATION_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     PSYBEAM_CONFUSE_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -12591,6 +12621,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     WONDER_CHEST_EXP_BOOST: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SHED_SKIN_ACTIVATION_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -18268,6 +18303,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ActivateEndOfTurnEffects: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TickStatusAndHealthRegen: Symbol[
         Optional[list[int]],
         None,
@@ -20273,6 +20313,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetFirstExperienceLockedTeamMember: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TeleportFleeingOutlaw: Symbol[
         Optional[list[int]],
         None,
@@ -20494,6 +20539,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DisplayMessageInternal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitSecretBazaarDialogueInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -22344,6 +22394,11 @@ class RamDataProtocol(Protocol):
     ]
 
     FLOOR_GENERATION_STATUS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SECRET_BAZAAR_DIALOGUE_INFO_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
