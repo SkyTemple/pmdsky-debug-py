@@ -7160,18 +7160,53 @@ class ItcmFunctionsProtocol(Protocol):
         None,
     ]
 
-    HardwareInterrupt: Symbol[
+    OS_IrqHandler: Symbol[
         list[int],
         None,
     ]
 
-    ReturnFromInterrupt: Symbol[
+    OS_IrqHandler_ThreadSwitch: Symbol[
         list[int],
         None,
     ]
 
-    InitDmaTransfer_Standard: Symbol[
+    OSi_DoResetSystem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_DoBoot: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_CpuClear32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_ReloadRomData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_ReadCardRom32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MIi_DmaSetParams: Symbol[
         list[int],
+        None,
+    ]
+
+    MIi_DmaSetParams_Wait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MIi_DmaSetParams_NoInt: Symbol[
+        Optional[list[int]],
         None,
     ]
 
@@ -8918,12 +8953,82 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_WaitIrq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_IrqDummy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IrqCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IrqDma0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IrqDma1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IrqDma2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IrqDma3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IrqTimer0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IrqTimer1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IrqTimer2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_IrqTimer3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OS_InitIrqTable: Symbol[
         Optional[list[int]],
         None,
     ]
 
     OS_SetIrqFunction: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetIrqFunction: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_EnterDmaCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_EnterTimerCallback: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8958,6 +9063,11 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OSi_DoLockByWord: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OS_LockByWord: Symbol[
         Optional[list[int]],
         None,
@@ -8973,6 +9083,11 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OSi_DoTryLockByWord: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OS_UnlockCartridge: Symbol[
         Optional[list[int]],
         None,
@@ -8983,7 +9098,42 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_TryLockCartridge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_AllocateCartridgeBus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OSi_FreeCartridgeBus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_LockCard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_UnlockCard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_AllocateCardBus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_FreeCardBus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_ReadOwnerOfLockWord: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -8993,7 +9143,32 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    IncrementThreadCount: Symbol[
+    OS_ReleaseLockId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_VsPrintf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_VsNPrintf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SnPrintf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_VsNPrintfExStub: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_GetUnusedThreadId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9003,7 +9178,27 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    InsertThreadIntoList: Symbol[
+    OSi_RemoveLinkFromQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_RemoveSpecifiedLinkFromQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_RemoveMutexLinkFromQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_InsertThreadToList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_RemoveThreadFromList: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9018,17 +9213,67 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    StartThread: Symbol[
+    OS_IsThreadAvailable: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ThreadExit: Symbol[
+    OS_CreateThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_ExitThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_ExitThread_ArgSpecified: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_ExitThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_ExitThread_Destroy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_DestroyThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_CancelThreadAlarmForSleep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_JoinThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_IsThreadTerminated: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SleepThreadDirect: Symbol[
         Optional[list[int]],
         None,
     ]
 
     OS_SleepThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_WakeupThread: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9043,6 +9288,31 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_YieldThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetThreadPriority: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetThreadPriority: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_Sleep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_SleepAlarmCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OS_SetSwitchThreadCallback: Symbol[
         Optional[list[int]],
         None,
@@ -9053,12 +9323,22 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    SetThreadField0xB4: Symbol[
+    OS_DisableScheduler: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitThread: Symbol[
+    OS_EnableScheduler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SetThreadDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitContext: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9073,7 +9353,77 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_IsRunOnEmulator: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetConsoleType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_InitMessageQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SendMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_ReceiveMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_JamMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_ReadMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OS_InitMutex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_LockMutex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_UnlockMutex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_UnlockAllMutex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_TryLockMutex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_EnqueueTail: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_DequeueItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DC_Enable: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9148,6 +9498,16 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_GetArenaHi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetArenaLo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OS_GetInitArenaHi: Symbol[
         Optional[list[int]],
         None,
@@ -9164,6 +9524,11 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     OS_SetArenaLo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_AllocFromArenaLo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9218,7 +9583,12 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    OSi_DisplayExContent: Symbol[
+    OSi_DisplayExContext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_DisplayExContext_Helper: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9248,7 +9618,7 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    GetTimer0Control: Symbol[
+    OS_GetTickLo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9288,6 +9658,11 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    OS_CancelAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OSi_AlarmHandler: Symbol[
         Optional[list[int]],
         None,
@@ -9303,37 +9678,97 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    ClearIrqFlag: Symbol[
+    OSi_InsertVAlarm: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    EnableIrqFlag: Symbol[
+    OSi_AppendVAlarm: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SetIrqFlag: Symbol[
+    OSi_DetachVAlarm: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    EnableIrqFiqFlags: Symbol[
+    OS_CreateVAlarm: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SetIrqFiqFlags: Symbol[
+    OS_SetPeriodicVAlarm: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetIrqFlag: Symbol[
+    OSi_SetNextVAlarm: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetProcessorMode: Symbol[
+    OS_CancelVAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_VAlarmHandler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_CompareVCount: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSi_GetVFrame: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_EnableInterrupts: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_DisableInterrupts: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_RestoreInterrupts: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_EnableInterrupts_IrqAndFiq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_RestoreInterrupts_IrqAndFiq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetCpsrIrq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_GetProcMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_SpinWait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_WaitVBlankIntr: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9363,7 +9798,7 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    GetDsFirmwareUserSettings: Symbol[
+    OS_GetOwnerInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9383,12 +9818,17 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    WaitForever2: Symbol[
+    OS_GetLowEntropyData: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    WaitForInterrupt: Symbol[
+    OS_Panic: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_Halt: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9398,12 +9838,62 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    MI_DmaFill32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_DmaCopy32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MI_DmaCopy16: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    MI_DmaFill32Async: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_DmaCopy32Async: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_DmaSend32Async: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_DmaCopy16Async: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_DmaSend16Async: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_IsDmaBusy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MI_WaitDma: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MI_StopDma: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MIi_CheckAnotherAutoDma: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9458,12 +9948,137 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    MI_UncompressLZ8: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MTi_CardDmaCopy32: Symbol[
         Optional[list[int]],
         None,
     ]
 
     MI_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_StopSeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_PrepareSeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_StartPreparedSeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetPlayerTempoRatio: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetPlayerVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetTrackPan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetTrackAllocatableChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_StartTimer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_StopTimer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetupCapture: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetupAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_LockChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_UnlockChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetChannelTimer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetChannelVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetChannelPan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetupChannelPcm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetupChannelPsg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetupChannelNoise: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_InvalidateSeqData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_InvalidateBankData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetOutputSelector: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sndi_SetPlayerParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sndi_SetTrackParam: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9478,7 +10093,177 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    Sndi_LockMutex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sndi_UnlockMutex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Snd_CommandInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_RecvCommandReply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_AllocCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_PushCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_FlushCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_WaitForCommandProc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_GetCurrentCommandTag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_IsFinishedCommandTag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_CountFreeCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_CountReservedCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_CountWaitingCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PxiFifoCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitPxi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RequestCommandProc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllocCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsCommandAvailable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_AlarmInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sndi_IncAlarmId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sndi_SetAlarmHandler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sndi_CallAlarmHandler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_GetPlayerStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_GetChannelStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sndi_GetFinishedCommandTag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sndi_InitSharedWork: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_CalcChannelVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_AssignWaveArc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_DestroyBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_DestroyWaveArc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_GetFirstInstDataPos: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_GetNextInstData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_GetWaveDataCount: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_SetWaveDataAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Snd_GetWaveDataAddress: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9513,22 +10298,332 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    FileInit: Symbol[
+    FSi_ReleaseCommand: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetOverlayInfo: Symbol[
+    FSi_TranslateCommand: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    LoadOverlayInternal: Symbol[
+    FSi_StrNiCmp: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitOverlay: Symbol[
+    FSi_ReadTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_SeekDirDirect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_ReadFileCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_WriteFileCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_SeekDirCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_ReadDirCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_FindPathCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_GetPathCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_OpenFileFastCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_OpenFileDirectCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_CloseFileCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_GetPackedName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_ReadMemCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_WriteMemCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_ReadMemoryCore: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_NextCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_ExecuteAsyncCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_ExecuteSyncCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_SendCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_InitArchive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_FindArchive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_RegisterArchiveName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_ReleaseArchiveName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_LoadArchive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_UnloadArchive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_LoadArchiveTables: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_UnloadArchiveTables: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_SuspendArchive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_ResumeArchive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_SetArchiveProc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_NotifyArchiveAsyncEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_InitFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_FindPath: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_ReadFileCore: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_ConvertPathToFileID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_OpenFileDirect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_OpenFileFast: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_OpenFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_CloseFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_WaitAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_ReadFileAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_ReadFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_SeekFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_ChangeDir: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_OnRomReadDone: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_ReadRomCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_WriteDummyCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_RomArchiveProc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_ReadDummyCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_EmptyArchiveProc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_InitRom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_GetOverlayBinarySize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_ClearOverlayImage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_GetOverlayFileID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_LoadOverlayInfoCore: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_GetOverlayInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_LoadOverlayImageAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSi_CompareDigest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_StartOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_EndOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_UnloadOverlayImage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FS_UnloadOverlay: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9548,6 +10643,131 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    MD5_Transform: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dgt_Hash2Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dgt_Hash2Update: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dgt_Hash2GetHash: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dgt_Hash2CalcHmac: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dgti_CalcHmac: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dgt_Hash2Transform: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CP_SaveContext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CPi_RestoreContext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TPi_TpCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_GetUserInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_SetCalibrateParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_RequestSamplingAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_GetCalibratedResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_WaitCalibratedResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_RequestAutoSamplingStartAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_GetLatestIndexInAuto: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_CalcCalibrateParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_GetCalibratedPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_WaitBusy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TP_CheckBusy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_Lock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_WaitBusy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_DummyCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PMi_CallCallbackAndUnlock: Symbol[
         Optional[list[int]],
         None,
@@ -9563,7 +10783,267 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    PMi_SendSleepStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_SendUtilityCommandAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_ReadRegisterAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_ReadRegister: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_WriteRegisterAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_WriteRegister: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_SetLedAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_SetLed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_SetBackLightAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_SetBackLight: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_ForceToPowerOffAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PM_ForceToPowerOff: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_SetAmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_GetBackLight: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_SendPxiData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_SetLcdPower: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_SetLcdPower: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_GetLcdPower: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_SendLedPatternCommandAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_SendLedPatternCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_GetLedPatternAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_GetLedPattern: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_PrependList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_AppendList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_DeleteList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PMi_ExecuteList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_PrependPreSleepCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_AppendPostSleepCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_DeletePreSleepCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PM_DeletePostSleepCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_GetDateAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_GetDate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_GetTimeAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_GetTime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_GetDateTimeAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_GetDateTime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RtcCommonCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RtcBcd2Hex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RtcGetResultCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RtcWaitBusy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtci_ReadRawDateTimeAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtci_ReadRawDateAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtci_ReadRawTimeAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtci_WriteRawStatus2Async: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RtcSendPxiCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_ConvertDateToDay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtci_ConvertTimeToSecond: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_ConvertDateTimeToSecond: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rtc_GetDayOfWeek: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_SetTask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_LockResource: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_UnlockResource: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9573,7 +11053,97 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    Card_IsEnabled: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_CheckEnabled: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Card_Enable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_WaitAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_TryWaitAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_SetThreadPriority: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_LockRom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_UnlockRom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_LockBackup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_UnlockBackup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_IdentifyBackupCore: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_RequestStreamCommandCore: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_RequestStreamCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_GetCurrentBackupType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_GetBackupTotalSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_GetBackupSectorSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_IdentifyBackup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_WaitBackupAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_TryWaitBackupAsync: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9588,12 +11158,32 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    Cardi_TryReadCardDma: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Cardi_ReadCard: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    Cardi_ReadRomSyncCore: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_ReadRom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Card_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_WaitRomAsync: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9613,6 +11203,11 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    Cardi_Request: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Card_InitPulledOutCallback: Symbol[
         Optional[list[int]],
         None,
@@ -9623,7 +11218,47 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    Card_SetPulledOutCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_IsPulledOut: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Card_TerminateForPulledOut: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_CheckPulledOutCore: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cardi_SendtoPxi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Ctrdgi_InitCommon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdg_IsOptionCartridge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_IsAgbCartridgeAtInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdg_IsExisting: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9653,6 +11288,11 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    Ctrdg_Enable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Ctrdg_Init: Symbol[
         Optional[list[int]],
         None,
@@ -9674,6 +11314,141 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     Ctrdg_TerminateForPulledOut: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_CallbackForSetPhi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_InitTaskThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_InitTaskInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Ctrdgi_TaskThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Math_CountPopulation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Mathi_Crc8InitTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Mathi_Crc8Update: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Mathi_Crc16InitTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Mathi_Crc16Update: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Mathi_Crc32InitTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Mathi_Crc32Update: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Math_CalcCrc8: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Math_CalcCrc16: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Math_CalcCrc32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Std_CopyLString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Std_GetStringLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Std_CompareStringVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Std_CompareString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Std_CompareNString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Std_TsScanf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Stdi_IsSpace: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Stdi_FillBitset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Std_TvsScanf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    string_put_char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    string_fill_char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    string_put_string: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_VsNPrintfEx: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9809,6 +11584,16 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     strstr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    strtol: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    atoi: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11606,12 +13391,1277 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    WM_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmInitCore: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_Finish: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_SetCallbackTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmGetCommandBuffer4Arm7: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_SendCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_SendCommandDirect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_GetSystemWork: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_CheckInitialized: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_CheckIdle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_CheckState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmReceiveFifo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmClearFifoRecvFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_GetStatusAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetAid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetConnectedAids: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetIndCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetPortCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_ReadStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetMpSendBufferSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetMpReceiveBufferSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_ReadMpData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetAllowedChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetLinkLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetDispersionBeaconPeriod: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetDispersionScanPeriod: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetOtherElements: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetNextTgid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_Enable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_EnableEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_Disable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_PowerOn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_PowerOff: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_InitializeEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_InitializeForListening: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_InitializeEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_Reset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_End: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetParentParameter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmCheckParentParameter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_StartParentEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StartParent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_EndParent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StartScan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StartScanEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_EndScan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StartConnectEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_Disconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WMi_StartMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StartMpEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StartMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetMpDataToPortEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_EndMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StartDcf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetDcfData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_EndDcf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StartDataSharing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_EndDataSharing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StepDataSharing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmDataSharingSetDataCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmDataSharingReceiveCallback_Parent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmDataSharingReceiveCallback_Child: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmDataSharingReceiveData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmDataSharingSendDataSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_GetSharedDataAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WmGetSharedDataAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_StartKeySharing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetWepKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetWepKeyEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetGameInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetBeaconIndication: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_SetLifeTime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_MeasureChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WM_InitWirelessCounter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    reset_network_vars: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OS_YieldThread2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    default_link_is_on: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_Startup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_CalmDown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SetScavengerCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_Cleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SetThreadPriority: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    calc_checksum_do: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    invert_checksum: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    calc_checksum: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    check_tcpudpsum: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ip_islocal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    get_targetip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    is_broadcast: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    is_multicast: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ip_isme: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    maccmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_packet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    put_in_buffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_RecvCallbackFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    receive_packet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    throw_packet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    inq_arpcache: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_arprequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    arprequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    reg_arpcache: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_ether: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_ip_frag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_ip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_ping: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_udp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_tcp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    reply_arp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dispatch_arp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    reply_icmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    process_icmp_reply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    valid_ip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dispatch_icmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    check_listener: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    check_socket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    find_socket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    parse_mss: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    no_need_inq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    tcp_send_handshake: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    tcp_send_ack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    tcp_send_finack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    tcp_send_rst: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dt_syn_listen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    find_specific_socket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dt_syn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dt_synack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dt_ack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dt_fin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dt_rst: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dispatch_tcp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dispatch_udp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    check_frag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dispatch_ip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    tcpip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocGetEport: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    get_seqno: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocRegister: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocUnRegister: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocDatagramMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocBind: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocUse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocDup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SetUdpCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_TcpConnectRaw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_TcpConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_TcpShutdownRaw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_TcpShutdown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_TcpClose: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    udp_read_raw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_TcpReadRaw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocRead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SocConsumeRaw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocConsume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    tcp_write_do: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    tcp_write_do2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_TcpWrite2Raw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SocWrite2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocWrite: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocGetLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SocFlush: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    set_fixed_ip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    scavenger: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dhcp_setcommon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    pad_mem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dhcp_send_discover: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dhcp_send_request: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dhcp_analyze_response: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dhcp_discover_server: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dhcp_request_server: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dhcp_release_server: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    dns_skipname: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    resolve_common: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    strtol10: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    rawip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    resolve_sub: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_Resolve: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Socl_Startup: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    Socli_StartupSocl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_StartupCps: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SetMyIP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_DhcpTimeout: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_LinkIsOn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_StartupCommandPacketQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_CleanupCommandPacketQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_AllocCommandPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_CreateCommandPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_FreeCommandPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_GetCtrlPipe: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SendCommandPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SendCommandPacketToCtrlPipe: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ExecCommandPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ExecCommandPacketInRecvPipe: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ExecCommandPacketInSendPipe: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ExecCommandPacketInCtrlPipe: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_CommandPacketHandler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_CreateSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_CreateSocketCallBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_StartupSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_GetSizeSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_GetSizeCommandPipe: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_InitSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_InitSocketBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_InitCommandPipe: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_Bind: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_Connect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ExecBindCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_BindCallBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_ReadFrom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ReadAndConsumeBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ReadBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_CopyCpsBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ReadCpsBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ExecReadCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ReadCallBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ConsumeBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ConsumeCallBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ConsumeCpsBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ReadUdpBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_UdpRecvCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_WriteTo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_WriteBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_AllocWriteBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_GetWriteBufferFreeSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ExecWriteCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_WriteCallBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_GetOptimumSendBufLen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_MemCpy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_Shutdown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ShutdownCallBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_IsClosed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     close: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_CloseCallBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_CleanupSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_FreeCommandPipe: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_TrashSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_Cleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_CloseAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_CalmDown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_Resolve: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_InetAtoH: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_SetResolver: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_GetHostID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_GetStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_GetReadBufferOccpiedSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_RoundUp4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SocketRegister: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SocketRegisterList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SocketRegisterTrash: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SocketUnregister: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SocketUnregisterList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SocketGetNextPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_SocketUnregisterTrash: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_SocketIsInvalid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_SocketIsInTrash: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11651,12 +14701,47 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    CloseVeneer: Symbol[
+    Soc_Shutdown: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    fcntl: Symbol[
+    Soc_Close: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_GetHostByName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_GetSockName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_GetHostID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_SetResolver: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_Fcntl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllocFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeFunc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11666,7 +14751,2182 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    InitWfc: Symbol[
+    Soc_InetNtoA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_InetAtoN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_InetNtoP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_U32to4U8: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Soc_Poll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socl_EnableSsl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_ExecEnableSslCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Socli_EnableSslCallBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    find_session_from_id: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    find_session_from_ip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    cache_session: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    purge_session: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    date2sec: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_GetSslLowThreadPriority: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SetSslLowThreadPriority: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    enter_computebound: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    exit_computebound: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SetRootCa: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Get_RootCA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    cert_item_len: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    make_dn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    parse_time: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    cert_item: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    validate_signature: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    auth_cert: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    chars_till_end: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    compare_fqdn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    rcv_certificate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    rcv_server_hello: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    has_method: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    select_method: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    version_ok: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    client_hello_v2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    decrypt_premaster_secret: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    create_ms_sub: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    create_master_secret: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    create_key_block: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    rcv_client_key_exchange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    finished_md5: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    finished_sha1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    rcv_finished: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    add1_be8: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    decrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    make_plaintext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    make_ciphertext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    tcp_read_raw_nbytes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    update_digest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    parse_record_in_buf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    parse_record: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    set_random: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SslAddRandomSeed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_change_cipher_spec_and_finished: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_client_hello: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_client_key_exchange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    mustget_change_cipher_spec_and_finished: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ssl_listen_try: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SslConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SslRead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SslConsume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    try_fill_record: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SslGetLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SslWrite2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SslShutdown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SslClose: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cps_SetSsl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SslPeriodical: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_SslCleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    char_from_long_md5: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    long_from_char_md5: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Md5_Block: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Md5_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Md5_Calc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Md5_Result: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Sha1_Block_Helper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    char_from_long_sha1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    long_from_char_sha1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Sha1_Block: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Sha1_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Sha1_Calc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Sha1_Result: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Sha1_Result_Prng: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Rc4_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Rc4_Crypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    count_digits: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Sign: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Add: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Add_Small: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Negate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Sub: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Sub_Small: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Compare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Add_Part: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Mult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Mult_Small: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Sqr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    get48bits_1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    get48bits_2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    get48bits_3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    get64bits: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Div: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Power: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Modinv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Montmult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_Montpower: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Big_From_Char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Cpsi_Char_From_Big: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5_InitVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5_UpdateVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5_DigestVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_Finish: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_StartupAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_CleanupAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_SearchAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_BeginSearchAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_EndSearchAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_ConnectAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_DisconnectAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_TerminateAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_GetPhase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_UpdateOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcmi_GetSystemWork: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmConfigure: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmEditScanExParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmInitOption: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmGetNextScanChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmNotify: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmNotifyEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmSetPhase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcmi_ResetKeepAliveAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmKeepAliveAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmCountBits: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmCountLeadingZero: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmcbIndication: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmcbCommon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmcbScanEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmcbEndScan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmcbConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmcbDisconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmcbStartDcf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmcbEndDcf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmWmcbReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_ClearApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_CountApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_LockApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_PointApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcmi_EntryApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmAllocApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmGetOldestApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmSearchApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmSearchIndexedApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmAppendApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcmi_InitCpsif: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcmi_CpsifRecvCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcmi_CpsifSendNullPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_GetApMacAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_GetApEssid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_SetRecvDcfCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_SendDcfData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmCpsifWmCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmCpsifKaCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmCpsifTryLockMutexInIrq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmCpsifUnlockMutexInIrq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_CompareBssID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcm_GetLinkLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcmi_GetRssiAverage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WcmGetLinkLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wcmi_ShelterRssi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_Create: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_Process: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_GetStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_GetApType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_GetApData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_Destroy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_SetSpecifyAp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_CheckWiFiStation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_InsertApInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_Alloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_Free: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_FreeAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_GetMemPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_SetPhase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_GetPhase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_SetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_GetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_SetApType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ConvConnectApType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Free_Disused: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckDuplicate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_GetBeacon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_CheckNintendoSsid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CompareList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CompareListDiff: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AddList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetDataListTail: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpDateList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SortList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_CallBackWcm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_ConnectAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConnectStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConnectAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetConnectType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetPowerMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAuthMode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetWepKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_CloseNetwork: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisConnectAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_Error: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_GetResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetProgramaError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetIrregularError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetNotFoundAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetNotFoundInet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_MakeSearchList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_CheckFreespot: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeAroundList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeStealthList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeUserList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeDifferChannelList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckDifferChannelStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_ConnectRetryAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_SearchAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_SetStealthChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_GetStealthChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_SearchReStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SearchStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SearchAround: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SearchAround2ndLap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SearchDifferChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SearchStealth: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NextSearchCheck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SearchEndCheck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckStartStealthSearch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ScanStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_Start: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_ConnectTest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConnectTestStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetIpAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConnectTestCreate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConnectTestProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConnectTestEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConnectTestRetry: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeSocConfig: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConvAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConvNetMask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckSetDns: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_CheckNintendoShopAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_GetNintendoShopWepKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_GetPostalCode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_CheckNintendoUsbAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AC_GetNintendoUsbWepKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DecodeSsid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeShopWepKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeUsbWepKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    eb64: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    db64: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_StartupGetWdsInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_ProcessGetWdsInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_CancelGetWdsInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AC_CleanupGetWdsInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_SetMaskBits: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_GetUserId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_GetPlayerId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_GetFriendKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_GetGsProfileId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_SetUserId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_SetPlayerId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_SetFriendKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_SetGsProfileId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_GetFlags: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_GetFlag_DataType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_IsBuddyFriendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IsBuddyFriendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IsReverseBuddyFriendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IsBuddyMsgAlreadySent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetFriendDataType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_SetFlags: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_SetFlag_DataType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetBuddyFriendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetReverseBuddyFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetExpIsBuddyFriendFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetSentBuddyReqFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Acc_CreateFriendKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CheckFriendKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Acc_CheckFriendKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Acc_FriendKeyToGsProfileId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_FriendKeyToString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_U64ToString32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_LoginIdToUserName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_CreateUserData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_CreateTempLoginId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_CheckConsoleUserId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_IsValidLoginId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_IsAuthentic: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_IsValidFriendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_IsValidFriendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CreateUserData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CheckUserData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CheckHasProfile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CheckValidConsole: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_SetLoginIdToUserData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CheckDirtyFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_IsDirty: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ClearDirtyFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Acc_ClearDirty: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetFriendKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetGsProfileId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CreateFriendKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CreateFriendKeyToken: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CreateExchangeToken: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_SetGsProfileId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_LoginIdToUserName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_IsEqualFriendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ReportFriendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ReportUserData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_SetCustomNas: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_Create: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_StartThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_Abort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_Destroy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_Join: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_GetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_GetResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_Start: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_Thread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_ParseHttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_FillResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_Prepare_FirstPost: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_SetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_SetCalInfoToHttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_Create: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_FinishHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_StartThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_Abort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_GetRecvProgress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_InitCpsSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_Resolve: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_Thread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_Destroy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_WriteBasicHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_Add_HeaderItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_Add_PostBase64Item: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_Add_Body: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_CpsCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_AllocBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_FreeBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_ReallocBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_SetHostinfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_AddResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_ParseResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_GetResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_GetBase64DecodedResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_GetRawResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Http_Disconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Netcheck_Create: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Netcheck_Destroy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Netcheck_Abort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Netcheck_GetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Netcheck_GetReturnCode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Netcheck_StartThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Netcheck_Thread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Netcheck_SetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_SetNasTimeDiff: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Svl_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Svl_Cleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Svl_GetTokenAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Svl_Process: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Svl_ParseHttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Util_Base64Encode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Util_Base64Decode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CleanupInet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetAllocateHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetAllocateHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetAllocateSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_SetMemFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Alloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AllocEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Free: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Realloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ReallocEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GsMalloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GsRealloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GsFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GsMemalign: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_InitInetEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_InitInet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_SetAuthServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ConnectInetAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_DebugConnectInetAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CheckInet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ProcessInet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetInetStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CleanupInetAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CheckDisconnected: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetLinkLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetApInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_UpdateConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetIngamesnCheckResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_SvlGetTokenAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_SvlProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_SvlAbort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_NasLoginAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_NasLoginProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BM_GetApInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BM_GetWiFiInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BM_SetWiFiInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BackuplInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BackuplRead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BackuplWritePage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BackuplWriteAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BackuplSetWiFi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BackuplConvMaskCidr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BackuplConvMaskAddr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_BackuplCheckSsid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_BackuplCheckIp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_BackuplCheckAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NVramm_ExecuteCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ReadNvram: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WriteNvram: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    verify: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WriteDisable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Callback_NVram: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BackuplConvWifiInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BackuplGetWifi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_BM_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckAp_Dwc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Init_Dwc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitPage_Dwc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Util_WiFiId_ScrambleUid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_GetNewWiFiInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_MakeWiFiID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_UpDateWiFiID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Auth_RemakeWiFiID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_GetId: Symbol[
         Optional[list[int]],
         None,
     ]

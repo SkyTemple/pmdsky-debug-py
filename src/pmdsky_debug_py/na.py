@@ -12844,31 +12844,55 @@ class NaItcmFunctions:
         None,
     )
 
-    HardwareInterrupt = Symbol(
+    OS_IrqHandler = Symbol(
         [0x15E8],
         [0x20B4968],
         None,
-        "HardwareInterrupt",
+        "OS_IrqHandler",
         "Called whenever a hardware interrupt takes place.\n\nReturns immediately if the IME flag is 0 or if none of the devices that requested an interrupt has the corresponding Interrupt Enable flag set.\nIt searches for the first device that requested an interrupt, clears its Interrupt Request flag, then jumps to the start of the corresponding interrupt function. The return address is manually set to ReturnFromInterrupt.\nThe address of the function to jump to is read from the interrupt vector at the start of the DTCM region (0x27E0000).\nThis function does not return.\n\nNo params.",
         None,
     )
 
-    ReturnFromInterrupt = Symbol(
+    OS_IrqHandler_ThreadSwitch = Symbol(
         [0x1650],
         [0x20B49D0],
         None,
-        "ReturnFromInterrupt",
-        "The execution returns to this function after a hardware interrupt function is run.\n\nNo params.",
+        "OS_IrqHandler_ThreadSwitch",
+        "The execution returns to this function after a hardware interrupt function is run.\nGhidra will fail to decompile one instruction in this function, 'fc7fe0e9'. Changing it to 'fc7fa0e9' will fix decompilation.\n\nNo params.",
         None,
     )
 
-    InitDmaTransfer_Standard = Symbol(
+    OSi_DoResetSystem = Symbol(
+        [0x17CC], [0x20B4B4C], None, "OSi_DoResetSystem", "", None
+    )
+
+    OSi_DoBoot = Symbol([0x1800], [0x20B4B80], None, "OSi_DoBoot", "", None)
+
+    OSi_CpuClear32 = Symbol([0x18CC], [0x20B4C4C], None, "OSi_CpuClear32", "", None)
+
+    OSi_ReloadRomData = Symbol(
+        [0x18E8], [0x20B4C68], None, "OSi_ReloadRomData", "", None
+    )
+
+    OSi_ReadCardRom32 = Symbol(
+        [0x1990], [0x20B4D10], None, "OSi_ReadCardRom32", "", None
+    )
+
+    MIi_DmaSetParams = Symbol(
         [0x1A68],
         [0x20B4DE8],
         None,
-        "InitDmaTransfer_Standard",
+        "MIi_DmaSetParams",
         "Initiates a DMA transfer.\n\nSee https://problemkaputt.de/gbatek-gba-dma-transfers.htm and https://en.wikipedia.org/wiki/Direct_memory_access\n\nr0: channel id\nr1: source address\nr2: destination address\nr3: word count",
         None,
+    )
+
+    MIi_DmaSetParams_Wait = Symbol(
+        [0x1AA8], [0x20B4E28], None, "MIi_DmaSetParams_Wait", "", None
+    )
+
+    MIi_DmaSetParams_NoInt = Symbol(
+        [0x1B18], [0x20B4E98], None, "MIi_DmaSetParams_NoInt", "", None
     )
 
     ShouldMonsterRunAwayAndShowEffectOutlawCheck = Symbol(
@@ -12915,6 +12939,12 @@ class NaItcmFunctions:
         "Appears to check whether LightningRod or Storm Drain should draw in a move.\n\nr0: attacker pointer\nr1: defender pointer\nr2: move pointer\nr3: true if checking for Storm Drain, false if checking for LightningRod\nreturn: whether the move should be drawn in",
         None,
     )
+
+    HardwareInterrupt = _Deprecated("HardwareInterrupt", OS_IrqHandler)
+
+    ReturnFromInterrupt = _Deprecated("ReturnFromInterrupt", OS_IrqHandler_ThreadSwitch)
+
+    InitDmaTransfer_Standard = _Deprecated("InitDmaTransfer_Standard", MIi_DmaSetParams)
 
     ShouldMonsterRunAwayVariationOutlawCheck = _Deprecated(
         "ShouldMonsterRunAwayVariationOutlawCheck",
@@ -14319,10 +14349,44 @@ class NaLibsFunctions:
 
     GX_SendFifo64B = Symbol([0xC80C], [0x20788E4], None, "GX_SendFifo64B", "", None)
 
+    OS_WaitIrq = Symbol([0xC828], [0x2078900], None, "OS_WaitIrq", "", None)
+
+    OS_IrqDummy = Symbol([0xC89C], [0x2078974], None, "OS_IrqDummy", "", None)
+
+    OSi_IrqCallback = Symbol([0xC8A0], [0x2078978], None, "OSi_IrqCallback", "", None)
+
+    OSi_IrqDma0 = Symbol([0xC928], [0x2078A00], None, "OSi_IrqDma0", "", None)
+
+    OSi_IrqDma1 = Symbol([0xC938], [0x2078A10], None, "OSi_IrqDma1", "", None)
+
+    OSi_IrqDma2 = Symbol([0xC948], [0x2078A20], None, "OSi_IrqDma2", "", None)
+
+    OSi_IrqDma3 = Symbol([0xC958], [0x2078A30], None, "OSi_IrqDma3", "", None)
+
+    OSi_IrqTimer0 = Symbol([0xC968], [0x2078A40], None, "OSi_IrqTimer0", "", None)
+
+    OSi_IrqTimer1 = Symbol([0xC978], [0x2078A50], None, "OSi_IrqTimer1", "", None)
+
+    OSi_IrqTimer2 = Symbol([0xC988], [0x2078A60], None, "OSi_IrqTimer2", "", None)
+
+    OSi_IrqTimer3 = Symbol([0xC998], [0x2078A70], None, "OSi_IrqTimer3", "", None)
+
     OS_InitIrqTable = Symbol([0xC9A8], [0x2078A80], None, "OS_InitIrqTable", "", None)
 
     OS_SetIrqFunction = Symbol(
         [0xC9C0], [0x2078A98], None, "OS_SetIrqFunction", "", None
+    )
+
+    OS_GetIrqFunction = Symbol(
+        [0xCA48], [0x2078B20], None, "OS_GetIrqFunction", "", None
+    )
+
+    OSi_EnterDmaCallback = Symbol(
+        [0xCAD4], [0x2078BAC], None, "OSi_EnterDmaCallback", "", None
+    )
+
+    OSi_EnterTimerCallback = Symbol(
+        [0xCB1C], [0x2078BF4], None, "OSi_EnterTimerCallback", "", None
     )
 
     OS_SetIrqMask = Symbol([0xCB64], [0x2078C3C], None, "OS_SetIrqMask", "", None)
@@ -14343,6 +14407,8 @@ class NaLibsFunctions:
 
     OS_InitLock = Symbol([0xCC50], [0x2078D28], None, "OS_InitLock", "", None)
 
+    OSi_DoLockByWord = Symbol([0xCD1C], [0x2078DF4], None, "OSi_DoLockByWord", "", None)
+
     OS_LockByWord = Symbol([0xCD68], [0x2078E40], None, "OS_LockByWord", "", None)
 
     OSi_DoUnlockByWord = Symbol(
@@ -14350,6 +14416,10 @@ class NaLibsFunctions:
     )
 
     OS_UnlockByWord = Symbol([0xCDEC], [0x2078EC4], None, "OS_UnlockByWord", "", None)
+
+    OSi_DoTryLockByWord = Symbol(
+        [0xCDFC], [0x2078ED4], None, "OSi_DoTryLockByWord", "", None
+    )
 
     OS_UnlockCartridge = Symbol(
         [0xCE68], [0x2078F40], None, "OS_UnlockCartridge", "", None
@@ -14359,17 +14429,51 @@ class NaLibsFunctions:
         [0xCE88], [0x2078F60], None, "OS_UnlockCartridgeVeneer", "", None
     )
 
+    OS_TryLockCartridge = Symbol(
+        [0xCE94], [0x2078F6C], None, "OS_TryLockCartridge", "", None
+    )
+
+    OSi_AllocateCartridgeBus = Symbol(
+        [0xCEB4], [0x2078F8C], None, "OSi_AllocateCartridgeBus", "", None
+    )
+
     OSi_FreeCartridgeBus = Symbol(
         [0xCECC], [0x2078FA4], None, "OSi_FreeCartridgeBus", "", None
     )
 
+    OS_LockCard = Symbol([0xCEE4], [0x2078FBC], None, "OS_LockCard", "", None)
+
+    OS_UnlockCard = Symbol([0xCF00], [0x2078FD8], None, "OS_UnlockCard", "", None)
+
+    OSi_AllocateCardBus = Symbol(
+        [0xCF1C], [0x2078FF4], None, "OSi_AllocateCardBus", "", None
+    )
+
+    OSi_FreeCardBus = Symbol([0xCF34], [0x207900C], None, "OSi_FreeCardBus", "", None)
+
+    OS_ReadOwnerOfLockWord = Symbol(
+        [0xCF4C], [0x2079024], None, "OS_ReadOwnerOfLockWord", "", None
+    )
+
     OS_GetLockID = Symbol([0xCF54], [0x207902C], None, "OS_GetLockID", "", None)
 
-    IncrementThreadCount = Symbol(
+    OS_ReleaseLockId = Symbol([0xCFBC], [0x2079094], None, "OS_ReleaseLockId", "", None)
+
+    OS_VsPrintf = Symbol([0xD004], [0x20790DC], None, "OS_VsPrintf", "", None)
+
+    OS_VsNPrintf = Symbol([0xD02C], [0x2079104], None, "OS_VsNPrintf", "", None)
+
+    OS_SnPrintf = Symbol([0xD044], [0x207911C], None, "OS_SnPrintf", "", None)
+
+    OS_VsNPrintfExStub = Symbol(
+        [0xD06C], [0x2079144], None, "OS_VsNPrintfExStub", "", None
+    )
+
+    OSi_GetUnusedThreadId = Symbol(
         [0xD078],
         [0x2079150],
         None,
-        "IncrementThreadCount",
+        "OSi_GetUnusedThreadId",
         "Increments thread_info::thread_count by 1 and returns the new value.\n\nreturn: New thread count",
         None,
     )
@@ -14378,13 +14482,29 @@ class NaLibsFunctions:
         [0xD090], [0x2079168], None, "OSi_InsertLinkToQueue", "", None
     )
 
-    InsertThreadIntoList = Symbol(
+    OSi_RemoveLinkFromQueue = Symbol(
+        [0xD108], [0x20791E0], None, "OSi_RemoveLinkFromQueue", "", None
+    )
+
+    OSi_RemoveSpecifiedLinkFromQueue = Symbol(
+        [0xD13C], [0x2079214], None, "OSi_RemoveSpecifiedLinkFromQueue", "", None
+    )
+
+    OSi_RemoveMutexLinkFromQueue = Symbol(
+        [0xD190], [0x2079268], None, "OSi_RemoveMutexLinkFromQueue", "", None
+    )
+
+    OSi_InsertThreadToList = Symbol(
         [0xD1C0],
         [0x2079298],
         None,
-        "InsertThreadIntoList",
+        "OSi_InsertThreadToList",
         "Inserts a new thread into the linked thread list (see thread_info::thread_list_head).\n\nThe thread is inserted in sorted order.\n\nr0: Thread to insert",
         None,
+    )
+
+    OSi_RemoveThreadFromList = Symbol(
+        [0xD220], [0x20792F8], None, "OSi_RemoveThreadFromList", "", None
     )
 
     OS_RescheduleThread = Symbol(
@@ -14393,31 +14513,79 @@ class NaLibsFunctions:
 
     OS_InitThread = Symbol([0xD330], [0x2079408], None, "OS_InitThread", "", None)
 
-    StartThread = Symbol(
+    OS_IsThreadAvailable = Symbol(
+        [0xD478], [0x2079550], None, "OS_IsThreadAvailable", "", None
+    )
+
+    OS_CreateThread = Symbol(
         [0xD488],
         [0x2079560],
         None,
-        "StartThread",
+        "OS_CreateThread",
         "Called to start a new thread.\n\nInitializes the specified thread struct and some values on its stack area.\n\nr0: Struct of the thread to init\nr1: Pointer to the function to run on this thread\nr2: Pointer to a thread struct. Sometimes equal to r0. Sometimes null.\nr3: Pointer to the stack area for this thread. Not all the space is usable. See thread::usable_stack_pointer for more info.\nstack[0]: Stack size\nstack[1]: (?) Used to sort threads on a list",
         None,
     )
 
-    ThreadExit = Symbol(
+    OS_ExitThread = Symbol(
         [0xD584],
         [0x207965C],
         None,
-        "ThreadExit",
+        "OS_ExitThread",
         "Function called by threads on exit.\n\nBase functions that contain an infinite loop that is not supposed to return and that have their stacks in main RAM have this function as their return address.\n\nNo params.",
         None,
     )
 
+    OSi_ExitThread_ArgSpecified = Symbol(
+        [0xD5A4], [0x207967C], None, "OSi_ExitThread_ArgSpecified", "", None
+    )
+
+    OSi_ExitThread = Symbol([0xD600], [0x20796D8], None, "OSi_ExitThread", "", None)
+
+    OSi_ExitThread_Destroy = Symbol(
+        [0xD638], [0x2079710], None, "OSi_ExitThread_Destroy", "", None
+    )
+
+    OS_DestroyThread = Symbol([0xD694], [0x207976C], None, "OS_DestroyThread", "", None)
+
+    OSi_CancelThreadAlarmForSleep = Symbol(
+        [0xD710], [0x20797E8], None, "OSi_CancelThreadAlarmForSleep", "", None
+    )
+
+    OS_JoinThread = Symbol([0xD728], [0x2079800], None, "OS_JoinThread", "", None)
+
+    OS_IsThreadTerminated = Symbol(
+        [0xD758], [0x2079830], None, "OS_IsThreadTerminated", "", None
+    )
+
+    OS_SleepThreadDirect = Symbol(
+        [0xD76C], [0x2079844], None, "OS_SleepThreadDirect", "", None
+    )
+
     OS_SleepThread = Symbol([0xD7B0], [0x2079888], None, "OS_SleepThread", "", None)
+
+    OS_WakeupThread = Symbol([0xD800], [0x20798D8], None, "OS_WakeupThread", "", None)
 
     OS_WakeupThreadDirect = Symbol(
         [0xD868], [0x2079940], None, "OS_WakeupThreadDirect", "", None
     )
 
     OS_SelectThread = Symbol([0xD890], [0x2079968], None, "OS_SelectThread", "", None)
+
+    OS_YieldThread = Symbol([0xD8D4], [0x20799AC], None, "OS_YieldThread", "", None)
+
+    OS_SetThreadPriority = Symbol(
+        [0xD98C], [0x2079A64], None, "OS_SetThreadPriority", "", None
+    )
+
+    OS_GetThreadPriority = Symbol(
+        [0xDA34], [0x2079B0C], None, "OS_GetThreadPriority", "", None
+    )
+
+    OS_Sleep = Symbol([0xDA3C], [0x2079B14], None, "OS_Sleep", "", None)
+
+    OSi_SleepAlarmCallback = Symbol(
+        [0xDAE4], [0x2079BBC], None, "OSi_SleepAlarmCallback", "", None
+    )
 
     OS_SetSwitchThreadCallback = Symbol(
         [0xDB04], [0x2079BDC], None, "OS_SetSwitchThreadCallback", "", None
@@ -14427,20 +14595,28 @@ class NaLibsFunctions:
         [0xDB2C], [0x2079C04], None, "OSi_IdleThreadProc", "", None
     )
 
-    SetThreadField0xB4 = Symbol(
+    OS_DisableScheduler = Symbol(
+        [0xDB3C], [0x2079C14], None, "OS_DisableScheduler", "", None
+    )
+
+    OS_EnableScheduler = Symbol(
+        [0xDB70], [0x2079C48], None, "OS_EnableScheduler", "", None
+    )
+
+    OS_SetThreadDestructor = Symbol(
         [0xDBA4],
         [0x2079C7C],
         None,
-        "SetThreadField0xB4",
+        "OS_SetThreadDestructor",
         "Sets the given thread's field_0xB4 to the specified value.\n\nr0: Thread\nr1: Value to set",
         None,
     )
 
-    InitThread = Symbol(
+    OS_InitContext = Symbol(
         [0xDBAC],
         [0x2079C84],
         None,
-        "InitThread",
+        "OS_InitContext",
         "Initializes some fields of the given thread struct.\n\nMost notably, thread::flags, thread::function_address_plus_4, thread::stack_pointer_minus_4 and thread::usable_stack_pointer. Also initializes a few more fields with a value of 0.\nthread::flags is initialized to 0x1F, unless the address of the function is odd (???), in which case it's initialized to 0x3F.\n\nr0: Pointer to the thread to initialize\nr1: Pointer to the function the thread will run\nr2: Pointer to the start of the thread's stack area - 4",
         None,
     )
@@ -14449,7 +14625,45 @@ class NaLibsFunctions:
 
     OS_LoadContext = Symbol([0xDC7C], [0x2079D54], None, "OS_LoadContext", "", None)
 
+    OS_IsRunOnEmulator = Symbol(
+        [0xDCC0], [0x2079D98], None, "OS_IsRunOnEmulator", "", None
+    )
+
+    OS_GetConsoleType = Symbol(
+        [0xDCC8], [0x2079DA0], None, "OS_GetConsoleType", "", None
+    )
+
+    OS_InitMessageQueue = Symbol(
+        [0xDCE0], [0x2079DB8], None, "OS_InitMessageQueue", "", None
+    )
+
+    OS_SendMessage = Symbol([0xDD08], [0x2079DE0], None, "OS_SendMessage", "", None)
+
+    OS_ReceiveMessage = Symbol(
+        [0xDD9C], [0x2079E74], None, "OS_ReceiveMessage", "", None
+    )
+
+    OS_JamMessage = Symbol([0xDE40], [0x2079F18], None, "OS_JamMessage", "", None)
+
+    OS_ReadMessage = Symbol([0xDEDC], [0x2079FB4], None, "OS_ReadMessage", "", None)
+
     OS_InitMutex = Symbol([0xDF58], [0x207A030], None, "OS_InitMutex", "", None)
+
+    OS_LockMutex = Symbol([0xDF70], [0x207A048], None, "OS_LockMutex", "", None)
+
+    OS_UnlockMutex = Symbol([0xDFF4], [0x207A0CC], None, "OS_UnlockMutex", "", None)
+
+    OSi_UnlockAllMutex = Symbol(
+        [0xE050], [0x207A128], None, "OSi_UnlockAllMutex", "", None
+    )
+
+    OS_TryLockMutex = Symbol([0xE08C], [0x207A164], None, "OS_TryLockMutex", "", None)
+
+    OSi_EnqueueTail = Symbol([0xE100], [0x207A1D8], None, "OSi_EnqueueTail", "", None)
+
+    OSi_DequeueItem = Symbol([0xE124], [0x207A1FC], None, "OSi_DequeueItem", "", None)
+
+    DC_Enable = Symbol([0xE148], [0x207A220], None, "DC_Enable", "", None)
 
     DC_InvalidateAll = Symbol([0xE160], [0x207A238], None, "DC_InvalidateAll", "", None)
 
@@ -14485,6 +14699,10 @@ class NaLibsFunctions:
 
     OS_InitArenaEx = Symbol([0xE3E0], [0x207A4B8], None, "OS_InitArenaEx", "", None)
 
+    OS_GetArenaHi = Symbol([0xE44C], [0x207A524], None, "OS_GetArenaHi", "", None)
+
+    OS_GetArenaLo = Symbol([0xE460], [0x207A538], None, "OS_GetArenaLo", "", None)
+
     OS_GetInitArenaHi = Symbol(
         [0xE474], [0x207A54C], None, "OS_GetInitArenaHi", "", None
     )
@@ -14496,6 +14714,10 @@ class NaLibsFunctions:
     OS_SetArenaHi = Symbol([0xE600], [0x207A6D8], None, "OS_SetArenaHi", "", None)
 
     OS_SetArenaLo = Symbol([0xE614], [0x207A6EC], None, "OS_SetArenaLo", "", None)
+
+    OS_AllocFromArenaLo = Symbol(
+        [0xE644], [0x207A71C], None, "OS_AllocFromArenaLo", "", None
+    )
 
     OS_GetDtcmAddress = Symbol(
         [0xE9F4], [0x207AACC], None, "OS_GetDtcmAddress", "", None
@@ -14533,8 +14755,12 @@ class NaLibsFunctions:
 
     OSi_SetExContext = Symbol([0xEB54], [0x207AC2C], None, "OSi_SetExContext", "", None)
 
-    OSi_DisplayExContent = Symbol(
-        [0xEBE4], [0x207ACBC], None, "OSi_DisplayExContent", "", None
+    OSi_DisplayExContext = Symbol(
+        [0xEBE4], [0x207ACBC], None, "OSi_DisplayExContext", "", None
+    )
+
+    OSi_DisplayExContext_Helper = Symbol(
+        [0xEC34], [0x207AD0C], None, "OSi_DisplayExContext_Helper", "", None
     )
 
     OSi_SetTimerReserved = Symbol(
@@ -14551,11 +14777,11 @@ class NaLibsFunctions:
 
     OS_GetTick = Symbol([0xED6C], [0x207AE44], None, "OS_GetTick", "", None)
 
-    GetTimer0Control = Symbol(
+    OS_GetTickLo = Symbol(
         [0xEE0C],
         [0x207AEE4],
         None,
-        "GetTimer0Control",
+        "OS_GetTickLo",
         "Returns the value of the control register for hardware timer 0\n\nreturn: Value of the control register",
         None,
     )
@@ -14576,73 +14802,109 @@ class NaLibsFunctions:
 
     OS_SetAlarm = Symbol([0xF0A4], [0x207B17C], None, "OS_SetAlarm", "", None)
 
+    OS_CancelAlarm = Symbol([0xF110], [0x207B1E8], None, "OS_CancelAlarm", "", None)
+
     OSi_AlarmHandler = Symbol([0xF198], [0x207B270], None, "OSi_AlarmHandler", "", None)
 
     OSi_ArrangeTimer = Symbol([0xF1A8], [0x207B280], None, "OSi_ArrangeTimer", "", None)
 
     OS_InitVAlarm = Symbol([0xF298], [0x207B370], None, "OS_InitVAlarm", "", None)
 
-    ClearIrqFlag = Symbol(
+    OSi_InsertVAlarm = Symbol([0xF2E0], [0x207B3B8], None, "OSi_InsertVAlarm", "", None)
+
+    OSi_AppendVAlarm = Symbol([0xF35C], [0x207B434], None, "OSi_AppendVAlarm", "", None)
+
+    OSi_DetachVAlarm = Symbol([0xF394], [0x207B46C], None, "OSi_DetachVAlarm", "", None)
+
+    OS_CreateVAlarm = Symbol([0xF3CC], [0x207B4A4], None, "OS_CreateVAlarm", "", None)
+
+    OS_SetPeriodicVAlarm = Symbol(
+        [0xF3E0], [0x207B4B8], None, "OS_SetPeriodicVAlarm", "", None
+    )
+
+    OSi_SetNextVAlarm = Symbol(
+        [0xF46C], [0x207B544], None, "OSi_SetNextVAlarm", "", None
+    )
+
+    OS_CancelVAlarm = Symbol([0xF4AC], [0x207B584], None, "OS_CancelVAlarm", "", None)
+
+    OSi_VAlarmHandler = Symbol(
+        [0xF4F4], [0x207B5CC], None, "OSi_VAlarmHandler", "", None
+    )
+
+    OSi_CompareVCount = Symbol(
+        [0xF66C], [0x207B744], None, "OSi_CompareVCount", "", None
+    )
+
+    OSi_GetVFrame = Symbol([0xF6B8], [0x207B790], None, "OSi_GetVFrame", "", None)
+
+    OS_EnableInterrupts = Symbol(
         [0xF6F8],
         [0x207B7D0],
         None,
-        "ClearIrqFlag",
+        "OS_EnableInterrupts",
         "Enables processor interrupts by clearing the i flag in the program status register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were already enabled)",
         None,
     )
 
-    EnableIrqFlag = Symbol(
+    OS_DisableInterrupts = Symbol(
         [0xF70C],
         [0x207B7E4],
         None,
-        "EnableIrqFlag",
+        "OS_DisableInterrupts",
         "Disables processor interrupts by setting the i flag in the program status register (cpsr).\n\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were already disabled, 0x0 if they were enabled)",
         None,
     )
 
-    SetIrqFlag = Symbol(
+    OS_RestoreInterrupts = Symbol(
         [0xF720],
         [0x207B7F8],
         None,
-        "SetIrqFlag",
+        "OS_RestoreInterrupts",
         "Sets the value of the processor's interrupt flag according to the specified parameter.\n\nr0: Value to set the flag to (0x80 to set it, which disables interrupts; 0x0 to unset it, which enables interrupts)\nreturn: Old value of cpsr & 0x80 (0x80 if interrupts were disabled, 0x0 if they were enabled)",
         None,
     )
 
-    EnableIrqFiqFlags = Symbol(
+    OS_EnableInterrupts_IrqAndFiq = Symbol(
         [0xF738],
         [0x207B810],
         None,
-        "EnableIrqFiqFlags",
+        "OS_EnableInterrupts_IrqAndFiq",
         "Disables processor all interrupts (both standard and fast) by setting the i and f flags in the program status register (cpsr).\n\nreturn: Old value of cpsr & 0xC0 (contains the previous values of the i and f flags)",
         None,
     )
 
-    SetIrqFiqFlags = Symbol(
+    OS_RestoreInterrupts_IrqAndFiq = Symbol(
         [0xF74C],
         [0x207B824],
         None,
-        "SetIrqFiqFlags",
+        "OS_RestoreInterrupts_IrqAndFiq",
         "Sets the value of the processor's interrupt flags (i and f) according to the specified parameter.\n\nr0: Value to set the flags to (0xC0 to set both flags, 0x80 to set the i flag and clear the f flag, 0x40 to set the f flag and clear the i flag and 0x0 to clear both flags)\nreturn: Old value of cpsr & 0xC0 (contains the previous values of the i and f flags)",
         None,
     )
 
-    GetIrqFlag = Symbol(
+    OS_GetCpsrIrq = Symbol(
         [0xF764],
         [0x207B83C],
         None,
-        "GetIrqFlag",
+        "OS_GetCpsrIrq",
         "Gets the current value of the processor's interrupt request (i) flag\n\nreturn: cpsr & 0x80 (0x80 if interrupts are disabled, 0x0 if they are enabled)",
         None,
     )
 
-    GetProcessorMode = Symbol(
+    OS_GetProcMode = Symbol(
         [0xF770],
         [0x207B848],
         None,
-        "GetProcessorMode",
+        "OS_GetProcMode",
         "Gets the processor's current operating mode.\n\nSee https://problemkaputt.de/gbatek.htm#armcpuflagsconditionfieldcond\n\nreturn: cpsr & 0x1f (the cpsr mode bits M4-M0)",
         None,
+    )
+
+    OS_SpinWait = Symbol([0xF77C], [0x207B854], None, "OS_SpinWait", "", None)
+
+    OS_WaitVBlankIntr = Symbol(
+        [0xF788], [0x207B860], None, "OS_WaitVBlankIntr", "", None
     )
 
     OS_InitReset = Symbol([0xF7A4], [0x207B87C], None, "OS_InitReset", "", None)
@@ -14657,11 +14919,11 @@ class NaLibsFunctions:
 
     OS_GetMacAddress = Symbol([0xF914], [0x207B9EC], None, "OS_GetMacAddress", "", None)
 
-    GetDsFirmwareUserSettings = Symbol(
+    OS_GetOwnerInfo = Symbol(
         [0xF930],
         [0x207BA08],
         None,
-        "GetDsFirmwareUserSettings",
+        "OS_GetOwnerInfo",
         "Gets the user settings of the DS firmware.\n\nSee https://problemkaputt.de/gbatek.htm#dsfirmwareusersettings\n\nr0: user_settings pointer",
         None,
     )
@@ -14681,29 +14943,65 @@ class NaLibsFunctions:
 
     OSi_UnlockVram = Symbol([0xF9F0], [0x207BAC8], None, "OSi_UnlockVram", "", None)
 
-    WaitForever2 = Symbol(
+    OS_GetLowEntropyData = Symbol(
+        [0xFA78], [0x207BB50], None, "OS_GetLowEntropyData", "", None
+    )
+
+    OS_Panic = Symbol(
         [0xFB48],
         [0x207BC20],
         None,
-        "WaitForever2",
+        "OS_Panic",
         "Calls EnableIrqFlag and WaitForInterrupt in an infinite loop.\n\nThis is called on fatal errors to hang the program indefinitely.\n\nNo params.",
         None,
     )
 
-    WaitForInterrupt = Symbol(
+    OS_Halt = Symbol(
         [0xFB58],
         [0x207BC30],
         None,
-        "WaitForInterrupt",
+        "OS_Halt",
         "Presumably blocks until the program receives an interrupt.\n\nThis just calls (in Ghidra terminology) coproc_moveto_Wait_for_interrupt(0). See https://en.wikipedia.org/wiki/ARM_architecture_family#Coprocessors.\n\nNo params.",
         None,
     )
 
     MI_SetWramBank = Symbol([0xFB64], [0x207BC3C], None, "MI_SetWramBank", "", None)
 
+    MI_DmaFill32 = Symbol([0xFB74], [0x207BC4C], None, "MI_DmaFill32", "", None)
+
+    MI_DmaCopy32 = Symbol([0xFBF4], [0x207BCCC], None, "MI_DmaCopy32", "", None)
+
     MI_DmaCopy16 = Symbol([0xFC64], [0x207BD3C], None, "MI_DmaCopy16", "", None)
 
+    MI_DmaFill32Async = Symbol(
+        [0xFCD0], [0x207BDA8], None, "MI_DmaFill32Async", "", None
+    )
+
+    MI_DmaCopy32Async = Symbol(
+        [0xFD94], [0x207BE6C], None, "MI_DmaCopy32Async", "", None
+    )
+
+    MI_DmaSend32Async = Symbol(
+        [0xFE2C], [0x207BF04], None, "MI_DmaSend32Async", "", None
+    )
+
+    MI_DmaCopy16Async = Symbol(
+        [0xFECC], [0x207BFA4], None, "MI_DmaCopy16Async", "", None
+    )
+
+    MI_DmaSend16Async = Symbol(
+        [0xFF64], [0x207C03C], None, "MI_DmaSend16Async", "", None
+    )
+
+    MI_IsDmaBusy = Symbol([0x10004], [0x207C0DC], None, "MI_IsDmaBusy", "", None)
+
+    MI_WaitDma = Symbol([0x10024], [0x207C0FC], None, "MI_WaitDma", "", None)
+
     MI_StopDma = Symbol([0x1008C], [0x207C164], None, "MI_StopDma", "", None)
+
+    MIi_CheckAnotherAutoDma = Symbol(
+        [0x10108], [0x207C1E0], None, "MIi_CheckAnotherAutoDma", "", None
+    )
 
     MIi_CheckDma0SourceAddress = Symbol(
         [0x1018C], [0x207C264], None, "MIi_CheckDma0SourceAddress", "", None
@@ -14790,11 +15088,97 @@ class NaLibsFunctions:
         None,
     )
 
+    MI_UncompressLZ8 = Symbol(
+        [0x10578], [0x207C650], None, "MI_UncompressLZ8", "", None
+    )
+
     MTi_CardDmaCopy32 = Symbol(
         [0x10678], [0x207C750], None, "MTi_CardDmaCopy32", "", None
     )
 
     MI_Init = Symbol([0x106EC], [0x207C7C4], None, "MI_Init", "", None)
+
+    Snd_StopSeq = Symbol([0x10704], [0x207C7DC], None, "Snd_StopSeq", "", None)
+
+    Snd_PrepareSeq = Symbol([0x10724], [0x207C7FC], None, "Snd_PrepareSeq", "", None)
+
+    Snd_StartPreparedSeq = Symbol(
+        [0x1074C], [0x207C824], None, "Snd_StartPreparedSeq", "", None
+    )
+
+    Snd_SetPlayerTempoRatio = Symbol(
+        [0x1076C], [0x207C844], None, "Snd_SetPlayerTempoRatio", "", None
+    )
+
+    Snd_SetPlayerVolume = Symbol(
+        [0x10784], [0x207C85C], None, "Snd_SetPlayerVolume", "", None
+    )
+
+    Snd_SetTrackPan = Symbol([0x1079C], [0x207C874], None, "Snd_SetTrackPan", "", None)
+
+    Snd_SetTrackAllocatableChannel = Symbol(
+        [0x107B8], [0x207C890], None, "Snd_SetTrackAllocatableChannel", "", None
+    )
+
+    Snd_StartTimer = Symbol([0x107E0], [0x207C8B8], None, "Snd_StartTimer", "", None)
+
+    Snd_StopTimer = Symbol([0x10808], [0x207C8E0], None, "Snd_StopTimer", "", None)
+
+    Snd_SetupCapture = Symbol(
+        [0x1086C], [0x207C944], None, "Snd_SetupCapture", "", None
+    )
+
+    Snd_SetupAlarm = Symbol([0x108AC], [0x207C984], None, "Snd_SetupAlarm", "", None)
+
+    Snd_LockChannel = Symbol([0x108EC], [0x207C9C4], None, "Snd_LockChannel", "", None)
+
+    Snd_UnlockChannel = Symbol(
+        [0x1090C], [0x207C9E4], None, "Snd_UnlockChannel", "", None
+    )
+
+    Snd_SetChannelTimer = Symbol(
+        [0x1092C], [0x207CA04], None, "Snd_SetChannelTimer", "", None
+    )
+
+    Snd_SetChannelVolume = Symbol(
+        [0x1094C], [0x207CA24], None, "Snd_SetChannelVolume", "", None
+    )
+
+    Snd_SetChannelPan = Symbol(
+        [0x10974], [0x207CA4C], None, "Snd_SetChannelPan", "", None
+    )
+
+    Snd_SetupChannelPcm = Symbol(
+        [0x10994], [0x207CA6C], None, "Snd_SetupChannelPcm", "", None
+    )
+
+    Snd_SetupChannelPsg = Symbol(
+        [0x109E0], [0x207CAB8], None, "Snd_SetupChannelPsg", "", None
+    )
+
+    Snd_SetupChannelNoise = Symbol(
+        [0x10A08], [0x207CAE0], None, "Snd_SetupChannelNoise", "", None
+    )
+
+    Snd_InvalidateSeqData = Symbol(
+        [0x10A3C], [0x207CB14], None, "Snd_InvalidateSeqData", "", None
+    )
+
+    Snd_InvalidateBankData = Symbol(
+        [0x10A5C], [0x207CB34], None, "Snd_InvalidateBankData", "", None
+    )
+
+    Snd_SetOutputSelector = Symbol(
+        [0x10A7C], [0x207CB54], None, "Snd_SetOutputSelector", "", None
+    )
+
+    Sndi_SetPlayerParam = Symbol(
+        [0x10AA4], [0x207CB7C], None, "Sndi_SetPlayerParam", "", None
+    )
+
+    Sndi_SetTrackParam = Symbol(
+        [0x10ACC], [0x207CBA4], None, "Sndi_SetTrackParam", "", None
+    )
 
     PushCommand_Impl = Symbol(
         [0x10AF4], [0x207CBCC], None, "PushCommand_Impl", "", None
@@ -14802,7 +15186,127 @@ class NaLibsFunctions:
 
     Snd_Init = Symbol([0x10B38], [0x207CC10], None, "Snd_Init", "", None)
 
+    Sndi_LockMutex = Symbol([0x10B70], [0x207CC48], None, "Sndi_LockMutex", "", None)
+
+    Sndi_UnlockMutex = Symbol(
+        [0x10B84], [0x207CC5C], None, "Sndi_UnlockMutex", "", None
+    )
+
     Snd_CommandInit = Symbol([0x10B98], [0x207CC70], None, "Snd_CommandInit", "", None)
+
+    Snd_RecvCommandReply = Symbol(
+        [0x10C6C], [0x207CD44], None, "Snd_RecvCommandReply", "", None
+    )
+
+    Snd_AllocCommand = Symbol(
+        [0x10D7C], [0x207CE54], None, "Snd_AllocCommand", "", None
+    )
+
+    Snd_PushCommand = Symbol([0x10E04], [0x207CEDC], None, "Snd_PushCommand", "", None)
+
+    Snd_FlushCommand = Symbol(
+        [0x10E3C], [0x207CF14], None, "Snd_FlushCommand", "", None
+    )
+
+    Snd_WaitForCommandProc = Symbol(
+        [0x10FF8], [0x207D0D0], None, "Snd_WaitForCommandProc", "", None
+    )
+
+    Snd_GetCurrentCommandTag = Symbol(
+        [0x11064], [0x207D13C], None, "Snd_GetCurrentCommandTag", "", None
+    )
+
+    Snd_IsFinishedCommandTag = Symbol(
+        [0x11090], [0x207D168], None, "Snd_IsFinishedCommandTag", "", None
+    )
+
+    Snd_CountFreeCommand = Symbol(
+        [0x110E0], [0x207D1B8], None, "Snd_CountFreeCommand", "", None
+    )
+
+    Snd_CountReservedCommand = Symbol(
+        [0x1111C], [0x207D1F4], None, "Snd_CountReservedCommand", "", None
+    )
+
+    Snd_CountWaitingCommand = Symbol(
+        [0x11158], [0x207D230], None, "Snd_CountWaitingCommand", "", None
+    )
+
+    PxiFifoCallback = Symbol([0x11174], [0x207D24C], None, "PxiFifoCallback", "", None)
+
+    InitPxi = Symbol([0x11198], [0x207D270], None, "InitPxi", "", None)
+
+    RequestCommandProc = Symbol(
+        [0x111F8], [0x207D2D0], None, "RequestCommandProc", "", None
+    )
+
+    AllocCommand = Symbol([0x11220], [0x207D2F8], None, "AllocCommand", "", None)
+
+    IsCommandAvailable = Symbol(
+        [0x11268], [0x207D340], None, "IsCommandAvailable", "", None
+    )
+
+    Snd_AlarmInit = Symbol([0x112A8], [0x207D380], None, "Snd_AlarmInit", "", None)
+
+    Sndi_IncAlarmId = Symbol([0x112D8], [0x207D3B0], None, "Sndi_IncAlarmId", "", None)
+
+    Sndi_SetAlarmHandler = Symbol(
+        [0x112F8], [0x207D3D0], None, "Sndi_SetAlarmHandler", "", None
+    )
+
+    Sndi_CallAlarmHandler = Symbol(
+        [0x11328], [0x207D400], None, "Sndi_CallAlarmHandler", "", None
+    )
+
+    Snd_GetPlayerStatus = Symbol(
+        [0x1136C], [0x207D444], None, "Snd_GetPlayerStatus", "", None
+    )
+
+    Snd_GetChannelStatus = Symbol(
+        [0x11398], [0x207D470], None, "Snd_GetChannelStatus", "", None
+    )
+
+    Sndi_GetFinishedCommandTag = Symbol(
+        [0x113C4], [0x207D49C], None, "Sndi_GetFinishedCommandTag", "", None
+    )
+
+    Sndi_InitSharedWork = Symbol(
+        [0x113EC], [0x207D4C4], None, "Sndi_InitSharedWork", "", None
+    )
+
+    Snd_CalcChannelVolume = Symbol(
+        [0x11468], [0x207D540], None, "Snd_CalcChannelVolume", "", None
+    )
+
+    Snd_AssignWaveArc = Symbol(
+        [0x114D8], [0x207D5B0], None, "Snd_AssignWaveArc", "", None
+    )
+
+    Snd_DestroyBank = Symbol([0x115A4], [0x207D67C], None, "Snd_DestroyBank", "", None)
+
+    Snd_DestroyWaveArc = Symbol(
+        [0x1163C], [0x207D714], None, "Snd_DestroyWaveArc", "", None
+    )
+
+    Snd_GetFirstInstDataPos = Symbol(
+        [0x11684], [0x207D75C], None, "Snd_GetFirstInstDataPos", "", None
+    )
+
+    Snd_GetNextInstData = Symbol(
+        [0x116A4], [0x207D77C], None, "Snd_GetNextInstData", "", None
+    )
+
+    Snd_GetWaveDataCount = Symbol(
+        [0x11854], [0x207D92C], None, "Snd_GetWaveDataCount", "", None
+    )
+
+    Snd_SetWaveDataAddress = Symbol(
+        [0x1185C], [0x207D934], None, "Snd_SetWaveDataAddress", "", None
+    )
+
+    Snd_GetWaveDataAddress = Symbol(
+        [0x11890], [0x207D968], None, "Snd_GetWaveDataAddress", "", None
+    )
 
     Pxi_Init = Symbol([0x118CC], [0x207D9A4], None, "Pxi_Init", "", None)
 
@@ -14824,40 +15328,252 @@ class NaLibsFunctions:
         [0x11AD0], [0x207DBA8], None, "Pxii_HandlerRecvFifoNotEmpty", "", None
     )
 
-    FileInit = Symbol(
+    FSi_ReleaseCommand = Symbol(
+        [0x11BE8], [0x207DCC0], None, "FSi_ReleaseCommand", "", None
+    )
+
+    FSi_TranslateCommand = Symbol(
+        [0x11C44], [0x207DD1C], None, "FSi_TranslateCommand", "", None
+    )
+
+    FSi_StrNiCmp = Symbol([0x11DD4], [0x207DEAC], None, "FSi_StrNiCmp", "", None)
+
+    FSi_ReadTable = Symbol([0x11E24], [0x207DEFC], None, "FSi_ReadTable", "", None)
+
+    FSi_SeekDirDirect = Symbol(
+        [0x11EE4], [0x207DFBC], None, "FSi_SeekDirDirect", "", None
+    )
+
+    FSi_ReadFileCommand = Symbol(
+        [0x11F18], [0x207DFF0], None, "FSi_ReadFileCommand", "", None
+    )
+
+    FSi_WriteFileCommand = Symbol(
+        [0x11F44], [0x207E01C], None, "FSi_WriteFileCommand", "", None
+    )
+
+    FSi_SeekDirCommand = Symbol(
+        [0x11F70], [0x207E048], None, "FSi_SeekDirCommand", "", None
+    )
+
+    FSi_ReadDirCommand = Symbol(
+        [0x12008], [0x207E0E0], None, "FSi_ReadDirCommand", "", None
+    )
+
+    FSi_FindPathCommand = Symbol(
+        [0x12134], [0x207E20C], None, "FSi_FindPathCommand", "", None
+    )
+
+    FSi_GetPathCommand = Symbol(
+        [0x12318], [0x207E3F0], None, "FSi_GetPathCommand", "", None
+    )
+
+    FSi_OpenFileFastCommand = Symbol(
+        [0x126C4], [0x207E79C], None, "FSi_OpenFileFastCommand", "", None
+    )
+
+    FSi_OpenFileDirectCommand = Symbol(
+        [0x12744], [0x207E81C], None, "FSi_OpenFileDirectCommand", "", None
+    )
+
+    FSi_CloseFileCommand = Symbol(
+        [0x1276C], [0x207E844], None, "FSi_CloseFileCommand", "", None
+    )
+
+    FSi_GetPackedName = Symbol(
+        [0x12774], [0x207E84C], None, "FSi_GetPackedName", "", None
+    )
+
+    FSi_ReadMemCallback = Symbol(
+        [0x127CC], [0x207E8A4], None, "FSi_ReadMemCallback", "", None
+    )
+
+    FSi_WriteMemCallback = Symbol(
+        [0x127E8], [0x207E8C0], None, "FSi_WriteMemCallback", "", None
+    )
+
+    FSi_ReadMemoryCore = Symbol(
+        [0x12808], [0x207E8E0], None, "FSi_ReadMemoryCore", "", None
+    )
+
+    FSi_NextCommand = Symbol([0x12820], [0x207E8F8], None, "FSi_NextCommand", "", None)
+
+    FSi_ExecuteAsyncCommand = Symbol(
+        [0x12A34], [0x207EB0C], None, "FSi_ExecuteAsyncCommand", "", None
+    )
+
+    FSi_ExecuteSyncCommand = Symbol(
+        [0x12AC8], [0x207EBA0], None, "FSi_ExecuteSyncCommand", "", None
+    )
+
+    FSi_SendCommand = Symbol([0x12B0C], [0x207EBE4], None, "FSi_SendCommand", "", None)
+
+    FS_InitArchive = Symbol([0x12CB0], [0x207ED88], None, "FS_InitArchive", "", None)
+
+    FS_FindArchive = Symbol([0x12CDC], [0x207EDB4], None, "FS_FindArchive", "", None)
+
+    FS_RegisterArchiveName = Symbol(
+        [0x12D1C], [0x207EDF4], None, "FS_RegisterArchiveName", "", None
+    )
+
+    FS_ReleaseArchiveName = Symbol(
+        [0x12DD0], [0x207EEA8], None, "FS_ReleaseArchiveName", "", None
+    )
+
+    FS_LoadArchive = Symbol([0x12E54], [0x207EF2C], None, "FS_LoadArchive", "", None)
+
+    FS_UnloadArchive = Symbol(
+        [0x12EC4], [0x207EF9C], None, "FS_UnloadArchive", "", None
+    )
+
+    FS_LoadArchiveTables = Symbol(
+        [0x12F84], [0x207F05C], None, "FS_LoadArchiveTables", "", None
+    )
+
+    FS_UnloadArchiveTables = Symbol(
+        [0x130A8], [0x207F180], None, "FS_UnloadArchiveTables", "", None
+    )
+
+    FS_SuspendArchive = Symbol(
+        [0x13134], [0x207F20C], None, "FS_SuspendArchive", "", None
+    )
+
+    FS_ResumeArchive = Symbol(
+        [0x131D0], [0x207F2A8], None, "FS_ResumeArchive", "", None
+    )
+
+    FS_SetArchiveProc = Symbol(
+        [0x13240], [0x207F318], None, "FS_SetArchiveProc", "", None
+    )
+
+    FS_NotifyArchiveAsyncEnd = Symbol(
+        [0x13260], [0x207F338], None, "FS_NotifyArchiveAsyncEnd", "", None
+    )
+
+    FS_Init = Symbol([0x132E4], [0x207F3BC], None, "FS_Init", "", None)
+
+    FS_InitFile = Symbol(
         [0x1330C],
         [0x207F3E4],
         None,
-        "FileInit",
+        "FS_InitFile",
         "Initializes a file_stream structure for file I/O.\n\nThis function must always be called before opening a file.\n\nr0: file_stream pointer",
         None,
     )
 
-    GetOverlayInfo = Symbol(
+    FSi_FindPath = Symbol([0x13334], [0x207F40C], None, "FSi_FindPath", "", None)
+
+    FSi_ReadFileCore = Symbol(
+        [0x13478], [0x207F550], None, "FSi_ReadFileCore", "", None
+    )
+
+    FS_ConvertPathToFileID = Symbol(
+        [0x134F4], [0x207F5CC], None, "FS_ConvertPathToFileID", "", None
+    )
+
+    FS_OpenFileDirect = Symbol(
+        [0x13534], [0x207F60C], None, "FS_OpenFileDirect", "", None
+    )
+
+    FS_OpenFileFast = Symbol([0x1357C], [0x207F654], None, "FS_OpenFileFast", "", None)
+
+    FS_OpenFile = Symbol([0x135EC], [0x207F6C4], None, "FS_OpenFile", "", None)
+
+    FS_CloseFile = Symbol([0x13634], [0x207F70C], None, "FS_CloseFile", "", None)
+
+    FS_WaitAsync = Symbol([0x13670], [0x207F748], None, "FS_WaitAsync", "", None)
+
+    FS_ReadFileAsync = Symbol(
+        [0x13730], [0x207F808], None, "FS_ReadFileAsync", "", None
+    )
+
+    FS_ReadFile = Symbol([0x13740], [0x207F818], None, "FS_ReadFile", "", None)
+
+    FS_SeekFile = Symbol([0x13750], [0x207F828], None, "FS_SeekFile", "", None)
+
+    FS_ChangeDir = Symbol([0x137BC], [0x207F894], None, "FS_ChangeDir", "", None)
+
+    FSi_OnRomReadDone = Symbol(
+        [0x13814], [0x207F8EC], None, "FSi_OnRomReadDone", "", None
+    )
+
+    FSi_ReadRomCallback = Symbol(
+        [0x13838], [0x207F910], None, "FSi_ReadRomCallback", "", None
+    )
+
+    FSi_WriteDummyCallback = Symbol(
+        [0x13880], [0x207F958], None, "FSi_WriteDummyCallback", "", None
+    )
+
+    FSi_RomArchiveProc = Symbol(
+        [0x13888], [0x207F960], None, "FSi_RomArchiveProc", "", None
+    )
+
+    FSi_ReadDummyCallback = Symbol(
+        [0x138F4], [0x207F9CC], None, "FSi_ReadDummyCallback", "", None
+    )
+
+    FSi_EmptyArchiveProc = Symbol(
+        [0x138FC], [0x207F9D4], None, "FSi_EmptyArchiveProc", "", None
+    )
+
+    FSi_InitRom = Symbol([0x13904], [0x207F9DC], None, "FSi_InitRom", "", None)
+
+    FSi_GetOverlayBinarySize = Symbol(
+        [0x13A4C], [0x207FB24], None, "FSi_GetOverlayBinarySize", "", None
+    )
+
+    FS_ClearOverlayImage = Symbol(
+        [0x13A68], [0x207FB40], None, "FS_ClearOverlayImage", "", None
+    )
+
+    FS_GetOverlayFileID = Symbol(
+        [0x13AA4], [0x207FB7C], None, "FS_GetOverlayFileID", "", None
+    )
+
+    FSi_LoadOverlayInfoCore = Symbol(
+        [0x13ACC], [0x207FBA4], None, "FSi_LoadOverlayInfoCore", "", None
+    )
+
+    FS_GetOverlayInfo = Symbol(
         [0x13BC4],
         [0x207FC9C],
         None,
-        "GetOverlayInfo",
+        "FS_GetOverlayInfo",
         "Returns the y9.bin entry for the specified overlay\n\nr0: [output] Overlay info struct\nr1: ?\nr2: Overlay ID\nreturn: True if the entry could be loaded successfully?",
         None,
     )
 
-    LoadOverlayInternal = Symbol(
+    FS_LoadOverlayImageAsync = Symbol(
         [0x13CC0],
         [0x207FD98],
         None,
-        "LoadOverlayInternal",
+        "FS_LoadOverlayImageAsync",
         "Called by LoadOverlay to load an overlay into RAM given its info struct\n\nr0: Overlay info struct\nReturn: True if the overlay was loaded successfully?",
         None,
     )
 
-    InitOverlay = Symbol(
+    FSi_CompareDigest = Symbol(
+        [0x13D50], [0x207FE28], None, "FSi_CompareDigest", "", None
+    )
+
+    FS_StartOverlay = Symbol(
         [0x13DE4],
         [0x207FEBC],
         None,
-        "InitOverlay",
+        "FS_StartOverlay",
         "Performs overlay initialization right after loading an overlay with LoadOverlayInternal.\n\nThis function is responsible for jumping to all the pointers located in the overlay's static init array, among other things.\n\nr0: Overlay info struct",
         None,
+    )
+
+    FS_EndOverlay = Symbol([0x13ED8], [0x207FFB0], None, "FS_EndOverlay", "", None)
+
+    FS_UnloadOverlayImage = Symbol(
+        [0x13FC8], [0x20800A0], None, "FS_UnloadOverlayImage", "", None
+    )
+
+    FS_UnloadOverlay = Symbol(
+        [0x13FD8], [0x20800B0], None, "FS_UnloadOverlay", "", None
     )
 
     MD5_Init = Symbol(
@@ -14887,6 +15603,82 @@ class NaLibsFunctions:
         None,
     )
 
+    MD5_Transform = Symbol([0x141E4], [0x20802BC], None, "MD5_Transform", "", None)
+
+    Dgt_Hash2Init = Symbol([0x14598], [0x2080670], None, "Dgt_Hash2Init", "", None)
+
+    Dgt_Hash2Update = Symbol([0x145E8], [0x20806C0], None, "Dgt_Hash2Update", "", None)
+
+    Dgt_Hash2GetHash = Symbol(
+        [0x1473C], [0x2080814], None, "Dgt_Hash2GetHash", "", None
+    )
+
+    Dgt_Hash2CalcHmac = Symbol(
+        [0x14938], [0x2080A10], None, "Dgt_Hash2CalcHmac", "", None
+    )
+
+    Dgti_CalcHmac = Symbol([0x149CC], [0x2080AA4], None, "Dgti_CalcHmac", "", None)
+
+    Dgt_Hash2Transform = Symbol(
+        [0x14B98], [0x2080C70], None, "Dgt_Hash2Transform", "", None
+    )
+
+    CP_SaveContext = Symbol([0x14E18], [0x2080EF0], None, "CP_SaveContext", "", None)
+
+    CPi_RestoreContext = Symbol(
+        [0x14E58], [0x2080F30], None, "CPi_RestoreContext", "", None
+    )
+
+    TPi_TpCallback = Symbol([0x14E94], [0x2080F6C], None, "TPi_TpCallback", "", None)
+
+    TP_Init = Symbol([0x15114], [0x20811EC], None, "TP_Init", "", None)
+
+    TP_GetUserInfo = Symbol([0x1518C], [0x2081264], None, "TP_GetUserInfo", "", None)
+
+    TP_SetCalibrateParam = Symbol(
+        [0x15220], [0x20812F8], None, "TP_SetCalibrateParam", "", None
+    )
+
+    TP_RequestSamplingAsync = Symbol(
+        [0x15348], [0x2081420], None, "TP_RequestSamplingAsync", "", None
+    )
+
+    TP_GetCalibratedResult = Symbol(
+        [0x153DC], [0x20814B4], None, "TP_GetCalibratedResult", "", None
+    )
+
+    TP_WaitCalibratedResult = Symbol(
+        [0x15428], [0x2081500], None, "TP_WaitCalibratedResult", "", None
+    )
+
+    TP_RequestAutoSamplingStartAsync = Symbol(
+        [0x15444], [0x208151C], None, "TP_RequestAutoSamplingStartAsync", "", None
+    )
+
+    TP_GetLatestIndexInAuto = Symbol(
+        [0x155DC], [0x20816B4], None, "TP_GetLatestIndexInAuto", "", None
+    )
+
+    TP_CalcCalibrateParam = Symbol(
+        [0x155EC], [0x20816C4], None, "TP_CalcCalibrateParam", "", None
+    )
+
+    TP_GetCalibratedPoint = Symbol(
+        [0x157D8], [0x20818B0], None, "TP_GetCalibratedPoint", "", None
+    )
+
+    TP_WaitBusy = Symbol([0x158FC], [0x20819D4], None, "TP_WaitBusy", "", None)
+
+    TP_CheckBusy = Symbol([0x15914], [0x20819EC], None, "TP_CheckBusy", "", None)
+
+    PMi_Lock = Symbol([0x15928], [0x2081A00], None, "PMi_Lock", "", None)
+
+    PMi_WaitBusy = Symbol([0x15964], [0x2081A3C], None, "PMi_WaitBusy", "", None)
+
+    PMi_DummyCallback = Symbol(
+        [0x159A4], [0x2081A7C], None, "PMi_DummyCallback", "", None
+    )
+
     PMi_CallCallbackAndUnlock = Symbol(
         [0x159AC], [0x2081A84], None, "PMi_CallCallbackAndUnlock", "", None
     )
@@ -14895,6 +15687,44 @@ class NaLibsFunctions:
 
     PMi_CommonCallback = Symbol(
         [0x15A90], [0x2081B68], None, "PMi_CommonCallback", "", None
+    )
+
+    PMi_SendSleepStart = Symbol(
+        [0x15B58], [0x2081C30], None, "PMi_SendSleepStart", "", None
+    )
+
+    PM_SendUtilityCommandAsync = Symbol(
+        [0x15BEC], [0x2081CC4], None, "PM_SendUtilityCommandAsync", "", None
+    )
+
+    PMi_ReadRegisterAsync = Symbol(
+        [0x15C4C], [0x2081D24], None, "PMi_ReadRegisterAsync", "", None
+    )
+
+    PMi_ReadRegister = Symbol(
+        [0x15CB8], [0x2081D90], None, "PMi_ReadRegister", "", None
+    )
+
+    PMi_WriteRegisterAsync = Symbol(
+        [0x15CE0], [0x2081DB8], None, "PMi_WriteRegisterAsync", "", None
+    )
+
+    PMi_WriteRegister = Symbol(
+        [0x15D40], [0x2081E18], None, "PMi_WriteRegister", "", None
+    )
+
+    PMi_SetLedAsync = Symbol([0x15D68], [0x2081E40], None, "PMi_SetLedAsync", "", None)
+
+    PMi_SetLed = Symbol([0x15DBC], [0x2081E94], None, "PMi_SetLed", "", None)
+
+    PM_SetBackLightAsync = Symbol(
+        [0x15DE4], [0x2081EBC], None, "PM_SetBackLightAsync", "", None
+    )
+
+    PM_SetBackLight = Symbol([0x15E60], [0x2081F38], None, "PM_SetBackLight", "", None)
+
+    PM_ForceToPowerOffAsync = Symbol(
+        [0x15E88], [0x2081F60], None, "PM_ForceToPowerOffAsync", "", None
     )
 
     PM_ForceToPowerOff = Symbol(
@@ -14906,11 +15736,203 @@ class NaLibsFunctions:
         None,
     )
 
+    PMi_SetAmp = Symbol([0x15F5C], [0x2082034], None, "PMi_SetAmp", "", None)
+
+    PM_GetBackLight = Symbol([0x15F88], [0x2082060], None, "PM_GetBackLight", "", None)
+
+    PMi_SendPxiData = Symbol([0x15FE4], [0x20820BC], None, "PMi_SendPxiData", "", None)
+
+    PMi_SetLcdPower = Symbol([0x16250], [0x2082328], None, "PMi_SetLcdPower", "", None)
+
+    PM_SetLcdPower = Symbol([0x16348], [0x2082420], None, "PM_SetLcdPower", "", None)
+
+    PM_GetLcdPower = Symbol([0x16368], [0x2082440], None, "PM_GetLcdPower", "", None)
+
+    PMi_SendLedPatternCommandAsync = Symbol(
+        [0x16384], [0x208245C], None, "PMi_SendLedPatternCommandAsync", "", None
+    )
+
+    PMi_SendLedPatternCommand = Symbol(
+        [0x163CC], [0x20824A4], None, "PMi_SendLedPatternCommand", "", None
+    )
+
+    PM_GetLedPatternAsync = Symbol(
+        [0x163F4], [0x20824CC], None, "PM_GetLedPatternAsync", "", None
+    )
+
+    PM_GetLedPattern = Symbol(
+        [0x1643C], [0x2082514], None, "PM_GetLedPattern", "", None
+    )
+
+    PMi_PrependList = Symbol([0x16464], [0x208253C], None, "PMi_PrependList", "", None)
+
+    PMi_AppendList = Symbol([0x16478], [0x2082550], None, "PMi_AppendList", "", None)
+
+    PMi_DeleteList = Symbol([0x164C4], [0x208259C], None, "PMi_DeleteList", "", None)
+
+    PMi_ExecuteList = Symbol([0x1650C], [0x20825E4], None, "PMi_ExecuteList", "", None)
+
+    PM_PrependPreSleepCallback = Symbol(
+        [0x16534], [0x208260C], None, "PM_PrependPreSleepCallback", "", None
+    )
+
+    PM_AppendPostSleepCallback = Symbol(
+        [0x1654C], [0x2082624], None, "PM_AppendPostSleepCallback", "", None
+    )
+
+    PM_DeletePreSleepCallback = Symbol(
+        [0x16564], [0x208263C], None, "PM_DeletePreSleepCallback", "", None
+    )
+
+    PM_DeletePostSleepCallback = Symbol(
+        [0x1657C], [0x2082654], None, "PM_DeletePostSleepCallback", "", None
+    )
+
+    Rtc_Init = Symbol([0x16594], [0x208266C], None, "Rtc_Init", "", None)
+
+    Rtc_GetDateAsync = Symbol(
+        [0x16600], [0x20826D8], None, "Rtc_GetDateAsync", "", None
+    )
+
+    Rtc_GetDate = Symbol([0x16670], [0x2082748], None, "Rtc_GetDate", "", None)
+
+    Rtc_GetTimeAsync = Symbol(
+        [0x166A8], [0x2082780], None, "Rtc_GetTimeAsync", "", None
+    )
+
+    Rtc_GetTime = Symbol([0x1671C], [0x20827F4], None, "Rtc_GetTime", "", None)
+
+    Rtc_GetDateTimeAsync = Symbol(
+        [0x16754], [0x208282C], None, "Rtc_GetDateTimeAsync", "", None
+    )
+
+    Rtc_GetDateTime = Symbol([0x167D0], [0x20828A8], None, "Rtc_GetDateTime", "", None)
+
+    RtcCommonCallback = Symbol(
+        [0x16808], [0x20828E0], None, "RtcCommonCallback", "", None
+    )
+
+    RtcBcd2Hex = Symbol([0x16D58], [0x2082E30], None, "RtcBcd2Hex", "", None)
+
+    RtcGetResultCallback = Symbol(
+        [0x16DC8], [0x2082EA0], None, "RtcGetResultCallback", "", None
+    )
+
+    RtcWaitBusy = Symbol([0x16DD8], [0x2082EB0], None, "RtcWaitBusy", "", None)
+
+    Rtci_ReadRawDateTimeAsync = Symbol(
+        [0x16DF0], [0x2082EC8], None, "Rtci_ReadRawDateTimeAsync", "", None
+    )
+
+    Rtci_ReadRawDateAsync = Symbol(
+        [0x16E00], [0x2082ED8], None, "Rtci_ReadRawDateAsync", "", None
+    )
+
+    Rtci_ReadRawTimeAsync = Symbol(
+        [0x16E10], [0x2082EE8], None, "Rtci_ReadRawTimeAsync", "", None
+    )
+
+    Rtci_WriteRawStatus2Async = Symbol(
+        [0x16E20], [0x2082EF8], None, "Rtci_WriteRawStatus2Async", "", None
+    )
+
+    RtcSendPxiCommand = Symbol(
+        [0x16E30], [0x2082F08], None, "RtcSendPxiCommand", "", None
+    )
+
+    Rtc_ConvertDateToDay = Symbol(
+        [0x16E58], [0x2082F30], None, "Rtc_ConvertDateToDay", "", None
+    )
+
+    Rtci_ConvertTimeToSecond = Symbol(
+        [0x16EEC], [0x2082FC4], None, "Rtci_ConvertTimeToSecond", "", None
+    )
+
+    Rtc_ConvertDateTimeToSecond = Symbol(
+        [0x16F04], [0x2082FDC], None, "Rtc_ConvertDateTimeToSecond", "", None
+    )
+
+    Rtc_GetDayOfWeek = Symbol(
+        [0x16F68], [0x2083040], None, "Rtc_GetDayOfWeek", "", None
+    )
+
+    Cardi_SetTask = Symbol([0x17024], [0x20830FC], None, "Cardi_SetTask", "", None)
+
+    Cardi_LockResource = Symbol(
+        [0x17060], [0x2083138], None, "Cardi_LockResource", "", None
+    )
+
+    Cardi_UnlockResource = Symbol(
+        [0x170E4], [0x20831BC], None, "Cardi_UnlockResource", "", None
+    )
+
     Cardi_InitCommon = Symbol(
         [0x17170], [0x2083248], None, "Cardi_InitCommon", "", None
     )
 
+    Card_IsEnabled = Symbol([0x17280], [0x2083358], None, "Card_IsEnabled", "", None)
+
+    Card_CheckEnabled = Symbol(
+        [0x17290], [0x2083368], None, "Card_CheckEnabled", "", None
+    )
+
     Card_Enable = Symbol([0x172A8], [0x2083380], None, "Card_Enable", "", None)
+
+    Cardi_WaitAsync = Symbol([0x172B8], [0x2083390], None, "Cardi_WaitAsync", "", None)
+
+    Cardi_TryWaitAsync = Symbol(
+        [0x17304], [0x20833DC], None, "Cardi_TryWaitAsync", "", None
+    )
+
+    Card_SetThreadPriority = Symbol(
+        [0x17320], [0x20833F8], None, "Card_SetThreadPriority", "", None
+    )
+
+    Card_LockRom = Symbol([0x1735C], [0x2083434], None, "Card_LockRom", "", None)
+
+    Card_UnlockRom = Symbol([0x17378], [0x2083450], None, "Card_UnlockRom", "", None)
+
+    Card_LockBackup = Symbol([0x17394], [0x208346C], None, "Card_LockBackup", "", None)
+
+    Card_UnlockBackup = Symbol(
+        [0x173A4], [0x208347C], None, "Card_UnlockBackup", "", None
+    )
+
+    Cardi_IdentifyBackupCore = Symbol(
+        [0x173CC], [0x20834A4], None, "Cardi_IdentifyBackupCore", "", None
+    )
+
+    Cardi_RequestStreamCommandCore = Symbol(
+        [0x17750], [0x2083828], None, "Cardi_RequestStreamCommandCore", "", None
+    )
+
+    Cardi_RequestStreamCommand = Symbol(
+        [0x17940], [0x2083A18], None, "Cardi_RequestStreamCommand", "", None
+    )
+
+    Card_GetCurrentBackupType = Symbol(
+        [0x17A28], [0x2083B00], None, "Card_GetCurrentBackupType", "", None
+    )
+
+    Card_GetBackupTotalSize = Symbol(
+        [0x17A3C], [0x2083B14], None, "Card_GetBackupTotalSize", "", None
+    )
+
+    Card_GetBackupSectorSize = Symbol(
+        [0x17A50], [0x2083B28], None, "Card_GetBackupSectorSize", "", None
+    )
+
+    Card_IdentifyBackup = Symbol(
+        [0x17A64], [0x2083B3C], None, "Card_IdentifyBackup", "", None
+    )
+
+    Card_WaitBackupAsync = Symbol(
+        [0x17B9C], [0x2083C74], None, "Card_WaitBackupAsync", "", None
+    )
+
+    Card_TryWaitBackupAsync = Symbol(
+        [0x17BA8], [0x2083C80], None, "Card_TryWaitBackupAsync", "", None
+    )
 
     Cardi_ReadFromCache = Symbol(
         [0x17BB4], [0x2083C8C], None, "Cardi_ReadFromCache", "", None
@@ -14918,9 +15940,23 @@ class NaLibsFunctions:
 
     Cardi_SetRomOp = Symbol([0x17C40], [0x2083D18], None, "Cardi_SetRomOp", "", None)
 
+    Cardi_TryReadCardDma = Symbol(
+        [0x17DC4], [0x2083E9C], None, "Cardi_TryReadCardDma", "", None
+    )
+
     Cardi_ReadCard = Symbol([0x17F50], [0x2084028], None, "Cardi_ReadCard", "", None)
 
+    Cardi_ReadRomSyncCore = Symbol(
+        [0x1809C], [0x2084174], None, "Cardi_ReadRomSyncCore", "", None
+    )
+
+    Cardi_ReadRom = Symbol([0x18134], [0x208420C], None, "Cardi_ReadRom", "", None)
+
     Card_Init = Symbol([0x1822C], [0x2084304], None, "Card_Init", "", None)
+
+    Card_WaitRomAsync = Symbol(
+        [0x18290], [0x2084368], None, "Card_WaitRomAsync", "", None
+    )
 
     Cardi_GetRomAccessor = Symbol(
         [0x1829C], [0x2084374], None, "Cardi_GetRomAccessor", "", None
@@ -14934,6 +15970,8 @@ class NaLibsFunctions:
         [0x182DC], [0x20843B4], None, "Cardi_TaskThread", "", None
     )
 
+    Cardi_Request = Symbol([0x1832C], [0x2084404], None, "Cardi_Request", "", None)
+
     Card_InitPulledOutCallback = Symbol(
         [0x18480], [0x2084558], None, "Card_InitPulledOutCallback", "", None
     )
@@ -14942,8 +15980,38 @@ class NaLibsFunctions:
         [0x184AC], [0x2084584], None, "Cardi_PulledOutCallback", "", None
     )
 
+    Card_SetPulledOutCallback = Symbol(
+        [0x18500], [0x20845D8], None, "Card_SetPulledOutCallback", "", None
+    )
+
+    Card_IsPulledOut = Symbol(
+        [0x18510], [0x20845E8], None, "Card_IsPulledOut", "", None
+    )
+
+    Card_TerminateForPulledOut = Symbol(
+        [0x18520], [0x20845F8], None, "Card_TerminateForPulledOut", "", None
+    )
+
+    Cardi_CheckPulledOutCore = Symbol(
+        [0x185AC], [0x2084684], None, "Cardi_CheckPulledOutCore", "", None
+    )
+
+    Cardi_SendtoPxi = Symbol([0x1860C], [0x20846E4], None, "Cardi_SendtoPxi", "", None)
+
     Ctrdgi_InitCommon = Symbol(
         [0x1865C], [0x2084734], None, "Ctrdgi_InitCommon", "", None
+    )
+
+    Ctrdg_IsOptionCartridge = Symbol(
+        [0x18694], [0x208476C], None, "Ctrdg_IsOptionCartridge", "", None
+    )
+
+    Ctrdgi_IsAgbCartridgeAtInit = Symbol(
+        [0x186BC], [0x2084794], None, "Ctrdgi_IsAgbCartridgeAtInit", "", None
+    )
+
+    Ctrdg_IsExisting = Symbol(
+        [0x186D4], [0x20847AC], None, "Ctrdg_IsExisting", "", None
     )
 
     Ctrdgi_ChangeLatestAccessCycle = Symbol(
@@ -14966,6 +16034,8 @@ class NaLibsFunctions:
         [0x188DC], [0x20849B4], None, "Ctrdgi_SendtoPxi", "", None
     )
 
+    Ctrdg_Enable = Symbol([0x1892C], [0x2084A04], None, "Ctrdg_Enable", "", None)
+
     Ctrdg_Init = Symbol([0x18974], [0x2084A4C], None, "Ctrdg_Init", "", None)
 
     Ctrdgi_InitModuleInfo = Symbol(
@@ -14983,6 +16053,92 @@ class NaLibsFunctions:
     Ctrdg_TerminateForPulledOut = Symbol(
         [0x18CA4], [0x2084D7C], None, "Ctrdg_TerminateForPulledOut", "", None
     )
+
+    Ctrdgi_CallbackForSetPhi = Symbol(
+        [0x18CB8], [0x2084D90], None, "Ctrdgi_CallbackForSetPhi", "", None
+    )
+
+    Ctrdgi_InitTaskThread = Symbol(
+        [0x18CCC], [0x2084DA4], None, "Ctrdgi_InitTaskThread", "", None
+    )
+
+    Ctrdgi_InitTaskInfo = Symbol(
+        [0x18D58], [0x2084E30], None, "Ctrdgi_InitTaskInfo", "", None
+    )
+
+    Ctrdgi_TaskThread = Symbol(
+        [0x18D6C], [0x2084E44], None, "Ctrdgi_TaskThread", "", None
+    )
+
+    Math_CountPopulation = Symbol(
+        [0x18E5C], [0x2084F34], None, "Math_CountPopulation", "", None
+    )
+
+    Mathi_Crc8InitTable = Symbol(
+        [0x18EE0], [0x2084FB8], None, "Mathi_Crc8InitTable", "", None
+    )
+
+    Mathi_Crc8Update = Symbol(
+        [0x18F20], [0x2084FF8], None, "Mathi_Crc8Update", "", None
+    )
+
+    Mathi_Crc16InitTable = Symbol(
+        [0x18F58], [0x2085030], None, "Mathi_Crc16InitTable", "", None
+    )
+
+    Mathi_Crc16Update = Symbol(
+        [0x18F9C], [0x2085074], None, "Mathi_Crc16Update", "", None
+    )
+
+    Mathi_Crc32InitTable = Symbol(
+        [0x18FDC], [0x20850B4], None, "Mathi_Crc32InitTable", "", None
+    )
+
+    Mathi_Crc32Update = Symbol(
+        [0x1901C], [0x20850F4], None, "Mathi_Crc32Update", "", None
+    )
+
+    Math_CalcCrc8 = Symbol([0x19058], [0x2085130], None, "Math_CalcCrc8", "", None)
+
+    Math_CalcCrc16 = Symbol([0x19080], [0x2085158], None, "Math_CalcCrc16", "", None)
+
+    Math_CalcCrc32 = Symbol([0x190A8], [0x2085180], None, "Math_CalcCrc32", "", None)
+
+    Std_CopyLString = Symbol([0x1916C], [0x2085244], None, "Std_CopyLString", "", None)
+
+    Std_GetStringLength = Symbol(
+        [0x191CC], [0x20852A4], None, "Std_GetStringLength", "", None
+    )
+
+    Std_CompareStringVeneer = Symbol(
+        [0x191F4], [0x20852CC], None, "Std_CompareStringVeneer", "", None
+    )
+
+    Std_CompareString = Symbol(None, None, None, "Std_CompareString", "", None)
+
+    Std_CompareNString = Symbol(
+        [0x19220], [0x20852F8], None, "Std_CompareNString", "", None
+    )
+
+    Std_TsScanf = Symbol([0x19260], [0x2085338], None, "Std_TsScanf", "", None)
+
+    Stdi_IsSpace = Symbol([0x19288], [0x2085360], None, "Stdi_IsSpace", "", None)
+
+    Stdi_FillBitset = Symbol([0x192B0], [0x2085388], None, "Stdi_FillBitset", "", None)
+
+    Std_TvsScanf = Symbol([0x19304], [0x20853DC], None, "Std_TvsScanf", "", None)
+
+    string_put_char = Symbol([0x19A20], [0x2085AF8], None, "string_put_char", "", None)
+
+    string_fill_char = Symbol(
+        [0x19A50], [0x2085B28], None, "string_fill_char", "", None
+    )
+
+    string_put_string = Symbol(
+        [0x19AA4], [0x2085B7C], None, "string_put_string", "", None
+    )
+
+    OS_VsNPrintfEx = Symbol([0x19AFC], [0x2085BD4], None, "OS_VsNPrintfEx", "", None)
 
     abs = Symbol(
         [0x1A484],
@@ -15226,6 +16382,10 @@ class NaLibsFunctions:
         "The strstr(3) C library function.\n\nr0: haystack\nr1: needle\nreturn: pointer into haystack where needle starts, or null pointer if no match",
         None,
     )
+
+    strtol = Symbol([0x1F1C0], [0x208B298], None, "strtol", "", None)
+
+    atoi = Symbol([0x1F288], [0x208B360], None, "atoi", "", None)
 
     wcslen = Symbol(
         [0x1F310],
@@ -15548,9 +16708,45 @@ class NaLibsFunctions:
 
     GX_SendFifo48B = _Deprecated("GX_SendFifo48B", GeomGxFifoSendMtx4x3)
 
-    OS_GetTickLo = _Deprecated("OS_GetTickLo", GetTimer0Control)
+    IncrementThreadCount = _Deprecated("IncrementThreadCount", OSi_GetUnusedThreadId)
+
+    InsertThreadIntoList = _Deprecated("InsertThreadIntoList", OSi_InsertThreadToList)
+
+    StartThread = _Deprecated("StartThread", OS_CreateThread)
+
+    ThreadExit = _Deprecated("ThreadExit", OS_ExitThread)
+
+    SetThreadField0xB4 = _Deprecated("SetThreadField0xB4", OS_SetThreadDestructor)
+
+    InitThread = _Deprecated("InitThread", OS_InitContext)
+
+    OSi_DisplayExContent = _Deprecated("OSi_DisplayExContent", OSi_DisplayExContext)
+
+    GetTimer0Control = _Deprecated("GetTimer0Control", OS_GetTickLo)
+
+    ClearIrqFlag = _Deprecated("ClearIrqFlag", OS_EnableInterrupts)
+
+    EnableIrqFlag = _Deprecated("EnableIrqFlag", OS_DisableInterrupts)
+
+    SetIrqFlag = _Deprecated("SetIrqFlag", OS_RestoreInterrupts)
+
+    EnableIrqFiqFlags = _Deprecated("EnableIrqFiqFlags", OS_EnableInterrupts_IrqAndFiq)
+
+    SetIrqFiqFlags = _Deprecated("SetIrqFiqFlags", OS_RestoreInterrupts_IrqAndFiq)
+
+    GetIrqFlag = _Deprecated("GetIrqFlag", OS_GetCpsrIrq)
+
+    GetProcessorMode = _Deprecated("GetProcessorMode", OS_GetProcMode)
+
+    GetDsFirmwareUserSettings = _Deprecated(
+        "GetDsFirmwareUserSettings", OS_GetOwnerInfo
+    )
 
     OsCountZeroBits = _Deprecated("OsCountZeroBits", CountLeadingZeros)
+
+    WaitForever2 = _Deprecated("WaitForever2", OS_Panic)
+
+    WaitForInterrupt = _Deprecated("WaitForInterrupt", OS_Halt)
 
     MTi_CpuClear16 = _Deprecated("MTi_CpuClear16", ArrayFill16)
 
@@ -15567,6 +16763,14 @@ class NaLibsFunctions:
     MI_CpuFill8 = _Deprecated("MI_CpuFill8", MemsetFast)
 
     MI_CpuCopy8 = _Deprecated("MI_CpuCopy8", MemcpyFast)
+
+    FileInit = _Deprecated("FileInit", FS_InitFile)
+
+    GetOverlayInfo = _Deprecated("GetOverlayInfo", FS_GetOverlayInfo)
+
+    LoadOverlayInternal = _Deprecated("LoadOverlayInternal", FS_LoadOverlayImageAsync)
+
+    InitOverlay = _Deprecated("InitOverlay", FS_StartOverlay)
 
     __addsf3 = _Deprecated("__addsf3", _fadd)
 
@@ -18484,7 +19688,669 @@ class NaOverlay0Functions:
         None,
     )
 
+    WM_Init = Symbol([0x1EE4], [0x22BE964], None, "WM_Init", "", None)
+
+    WmInitCore = Symbol([0x1F10], [0x22BE990], None, "WmInitCore", "", None)
+
+    WM_Finish = Symbol([0x20F4], [0x22BEB74], None, "WM_Finish", "", None)
+
+    WMi_SetCallbackTable = Symbol(
+        [0x2164], [0x22BEBE4], None, "WMi_SetCallbackTable", "", None
+    )
+
+    WmGetCommandBuffer4Arm7 = Symbol(
+        [0x217C], [0x22BEBFC], None, "WmGetCommandBuffer4Arm7", "", None
+    )
+
+    WMi_SendCommand = Symbol([0x21D4], [0x22BEC54], None, "WMi_SendCommand", "", None)
+
+    WMi_SendCommandDirect = Symbol(
+        [0x2280], [0x22BED00], None, "WMi_SendCommandDirect", "", None
+    )
+
+    WMi_GetSystemWork = Symbol(
+        [0x22F0], [0x22BED70], None, "WMi_GetSystemWork", "", None
+    )
+
+    WMi_CheckInitialized = Symbol(
+        [0x2300], [0x22BED80], None, "WMi_CheckInitialized", "", None
+    )
+
+    WMi_CheckIdle = Symbol([0x231C], [0x22BED9C], None, "WMi_CheckIdle", "", None)
+
+    WMi_CheckState = Symbol([0x2364], [0x22BEDE4], None, "WMi_CheckState", "", None)
+
+    WmReceiveFifo = Symbol([0x23F8], [0x22BEE78], None, "WmReceiveFifo", "", None)
+
+    WmClearFifoRecvFlag = Symbol(
+        [0x27A4], [0x22BF224], None, "WmClearFifoRecvFlag", "", None
+    )
+
+    WMi_GetStatusAddress = Symbol(
+        [0x27C0], [0x22BF240], None, "WMi_GetStatusAddress", "", None
+    )
+
+    WM_GetAid = Symbol([0x27E4], [0x22BF264], None, "WM_GetAid", "", None)
+
+    WM_GetConnectedAids = Symbol(
+        [0x2814], [0x22BF294], None, "WM_GetConnectedAids", "", None
+    )
+
+    WM_SetIndCallback = Symbol(
+        [0x2844], [0x22BF2C4], None, "WM_SetIndCallback", "", None
+    )
+
+    WM_SetPortCallback = Symbol(
+        [0x2888], [0x22BF308], None, "WM_SetPortCallback", "", None
+    )
+
+    WM_ReadStatus = Symbol([0x2960], [0x22BF3E0], None, "WM_ReadStatus", "", None)
+
+    WM_GetMpSendBufferSize = Symbol(
+        [0x29AC], [0x22BF42C], None, "WM_GetMpSendBufferSize", "", None
+    )
+
+    WM_GetMpReceiveBufferSize = Symbol(
+        [0x2A18], [0x22BF498], None, "WM_GetMpReceiveBufferSize", "", None
+    )
+
+    WM_ReadMpData = Symbol([0x2ADC], [0x22BF55C], None, "WM_ReadMpData", "", None)
+
+    WM_GetAllowedChannel = Symbol(
+        [0x2BC0], [0x22BF640], None, "WM_GetAllowedChannel", "", None
+    )
+
+    WM_GetLinkLevel = Symbol([0x2BE0], [0x22BF660], None, "WM_GetLinkLevel", "", None)
+
+    WM_GetDispersionBeaconPeriod = Symbol(
+        [0x2C70], [0x22BF6F0], None, "WM_GetDispersionBeaconPeriod", "", None
+    )
+
+    WM_GetDispersionScanPeriod = Symbol(
+        [0x2D00], [0x22BF780], None, "WM_GetDispersionScanPeriod", "", None
+    )
+
+    WM_GetOtherElements = Symbol(
+        [0x2D94], [0x22BF814], None, "WM_GetOtherElements", "", None
+    )
+
+    WM_GetNextTgid = Symbol([0x2EEC], [0x22BF96C], None, "WM_GetNextTgid", "", None)
+
+    WM_Enable = Symbol([0x2F60], [0x22BF9E0], None, "WM_Enable", "", None)
+
+    WMi_EnableEx = Symbol([0x2F70], [0x22BF9F0], None, "WMi_EnableEx", "", None)
+
+    WM_Disable = Symbol([0x2FD4], [0x22BFA54], None, "WM_Disable", "", None)
+
+    WM_PowerOn = Symbol([0x3014], [0x22BFA94], None, "WM_PowerOn", "", None)
+
+    WM_PowerOff = Symbol([0x3054], [0x22BFAD4], None, "WM_PowerOff", "", None)
+
+    WM_InitializeEx = Symbol([0x3094], [0x22BFB14], None, "WM_InitializeEx", "", None)
+
+    WM_InitializeForListening = Symbol(
+        [0x30A4], [0x22BFB24], None, "WM_InitializeForListening", "", None
+    )
+
+    WMi_InitializeEx = Symbol([0x30BC], [0x22BFB3C], None, "WMi_InitializeEx", "", None)
+
+    WM_Reset = Symbol([0x311C], [0x22BFB9C], None, "WM_Reset", "", None)
+
+    WM_End = Symbol([0x3154], [0x22BFBD4], None, "WM_End", "", None)
+
+    WM_SetParentParameter = Symbol(
+        [0x3194], [0x22BFC14], None, "WM_SetParentParameter", "", None
+    )
+
+    WmCheckParentParameter = Symbol(
+        [0x3270], [0x22BFCF0], None, "WmCheckParentParameter", "", None
+    )
+
+    WMi_StartParentEx = Symbol(
+        [0x32C0], [0x22BFD40], None, "WMi_StartParentEx", "", None
+    )
+
+    WM_StartParent = Symbol([0x331C], [0x22BFD9C], None, "WM_StartParent", "", None)
+
+    WM_EndParent = Symbol([0x332C], [0x22BFDAC], None, "WM_EndParent", "", None)
+
+    WM_StartScan = Symbol([0x336C], [0x22BFDEC], None, "WM_StartScan", "", None)
+
+    WM_StartScanEx = Symbol([0x3458], [0x22BFED8], None, "WM_StartScanEx", "", None)
+
+    WM_EndScan = Symbol([0x35A8], [0x22C0028], None, "WM_EndScan", "", None)
+
+    WM_StartConnectEx = Symbol(
+        [0x35E8], [0x22C0068], None, "WM_StartConnectEx", "", None
+    )
+
+    WM_Disconnect = Symbol([0x36B4], [0x22C0134], None, "WM_Disconnect", "", None)
+
+    WMi_StartMP = Symbol([0x379C], [0x22C021C], None, "WMi_StartMP", "", None)
+
+    WM_StartMpEx = Symbol([0x390C], [0x22C038C], None, "WM_StartMpEx", "", None)
+
+    WM_StartMP = Symbol([0x39B0], [0x22C0430], None, "WM_StartMP", "", None)
+
+    WM_SetMpDataToPortEx = Symbol(
+        [0x3A18], [0x22C0498], None, "WM_SetMpDataToPortEx", "", None
+    )
+
+    WM_EndMP = Symbol([0x3B48], [0x22C05C8], None, "WM_EndMP", "", None)
+
+    WM_StartDcf = Symbol([0x3BB8], [0x22C0638], None, "WM_StartDcf", "", None)
+
+    WM_SetDcfData = Symbol([0x3C58], [0x22C06D8], None, "WM_SetDcfData", "", None)
+
+    WM_EndDcf = Symbol([0x3D24], [0x22C07A4], None, "WM_EndDcf", "", None)
+
+    WM_StartDataSharing = Symbol(
+        [0x3D90], [0x22C0810], None, "WM_StartDataSharing", "", None
+    )
+
+    WM_EndDataSharing = Symbol(
+        [0x3FE4, 0x492C], [0x22C0A64, 0x22C13AC], None, "WM_EndDataSharing", "", None
+    )
+
+    WM_StepDataSharing = Symbol(
+        [0x402C], [0x22C0AAC], None, "WM_StepDataSharing", "", None
+    )
+
+    WmDataSharingSetDataCallback = Symbol(
+        [0x4374], [0x22C0DF4], None, "WmDataSharingSetDataCallback", "", None
+    )
+
+    WmDataSharingReceiveCallback_Parent = Symbol(
+        [0x444C], [0x22C0ECC], None, "WmDataSharingReceiveCallback_Parent", "", None
+    )
+
+    WmDataSharingReceiveCallback_Child = Symbol(
+        [0x4578], [0x22C0FF8], None, "WmDataSharingReceiveCallback_Child", "", None
+    )
+
+    WmDataSharingReceiveData = Symbol(
+        [0x466C], [0x22C10EC], None, "WmDataSharingReceiveData", "", None
+    )
+
+    WmDataSharingSendDataSet = Symbol(
+        [0x4738], [0x22C11B8], None, "WmDataSharingSendDataSet", "", None
+    )
+
+    WM_GetSharedDataAddress = Symbol(
+        [0x488C], [0x22C130C], None, "WM_GetSharedDataAddress", "", None
+    )
+
+    WmGetSharedDataAddress = Symbol(
+        [0x48E0], [0x22C1360], None, "WmGetSharedDataAddress", "", None
+    )
+
+    WM_StartKeySharing = Symbol(
+        [0x4910], [0x22C1390], None, "WM_StartKeySharing", "", None
+    )
+
+    WM_SetWepKey = Symbol([0x4938], [0x22C13B8], None, "WM_SetWepKey", "", None)
+
+    WM_SetWepKeyEx = Symbol([0x49AC], [0x22C142C], None, "WM_SetWepKeyEx", "", None)
+
+    WM_SetGameInfo = Symbol([0x4A28], [0x22C14A8], None, "WM_SetGameInfo", "", None)
+
+    WM_SetBeaconIndication = Symbol(
+        [0x4AE0], [0x22C1560], None, "WM_SetBeaconIndication", "", None
+    )
+
+    WM_SetLifeTime = Symbol([0x4B30], [0x22C15B0], None, "WM_SetLifeTime", "", None)
+
+    WM_MeasureChannel = Symbol(
+        [0x4B90], [0x22C1610], None, "WM_MeasureChannel", "", None
+    )
+
+    WM_InitWirelessCounter = Symbol(
+        [0x4C08], [0x22C1688], None, "WM_InitWirelessCounter", "", None
+    )
+
+    reset_network_vars = Symbol(
+        [0xB6B4], [0x22C8134], None, "reset_network_vars", "", None
+    )
+
+    OS_YieldThread2 = Symbol([0xB7B8], [0x22C8238], None, "OS_YieldThread2", "", None)
+
+    default_link_is_on = Symbol(
+        [0xB7E4], [0x22C8264], None, "default_link_is_on", "", None
+    )
+
+    Cps_Startup = Symbol([0xB7EC], [0x22C826C], None, "Cps_Startup", "", None)
+
+    Cps_CalmDown = Symbol([0xBA28], [0x22C84A8], None, "Cps_CalmDown", "", None)
+
+    Cps_SetScavengerCallback = Symbol(
+        [0xBA78], [0x22C84F8], None, "Cps_SetScavengerCallback", "", None
+    )
+
+    Cps_Cleanup = Symbol([0xBA88], [0x22C8508], None, "Cps_Cleanup", "", None)
+
+    Cps_SetThreadPriority = Symbol(
+        [0xBAD0], [0x22C8550], None, "Cps_SetThreadPriority", "", None
+    )
+
+    calc_checksum_do = Symbol([0xBB08], [0x22C8588], None, "calc_checksum_do", "", None)
+
+    invert_checksum = Symbol([0xBBBC], [0x22C863C], None, "invert_checksum", "", None)
+
+    calc_checksum = Symbol([0xBBD8], [0x22C8658], None, "calc_checksum", "", None)
+
+    check_tcpudpsum = Symbol([0xBBF4], [0x22C8674], None, "check_tcpudpsum", "", None)
+
+    ip_islocal = Symbol([0xBC44], [0x22C86C4], None, "ip_islocal", "", None)
+
+    get_targetip = Symbol([0xBC84], [0x22C8704], None, "get_targetip", "", None)
+
+    is_broadcast = Symbol([0xBCA8], [0x22C8728], None, "is_broadcast", "", None)
+
+    is_multicast = Symbol([0xBCE4], [0x22C8764], None, "is_multicast", "", None)
+
+    ip_isme = Symbol([0xBCF8], [0x22C8778], None, "ip_isme", "", None)
+
+    maccmp = Symbol([0xBD78], [0x22C87F8], None, "maccmp", "", None)
+
+    send_packet = Symbol([0xBDA4], [0x22C8824], None, "send_packet", "", None)
+
+    put_in_buffer = Symbol([0xBE00], [0x22C8880], None, "put_in_buffer", "", None)
+
+    Cpsi_RecvCallbackFunc = Symbol(
+        [0xBFF4], [0x22C8A74], None, "Cpsi_RecvCallbackFunc", "", None
+    )
+
+    receive_packet = Symbol([0xC04C], [0x22C8ACC], None, "receive_packet", "", None)
+
+    throw_packet = Symbol([0xC10C], [0x22C8B8C], None, "throw_packet", "", None)
+
+    inq_arpcache = Symbol([0xC150], [0x22C8BD0], None, "inq_arpcache", "", None)
+
+    send_arprequest = Symbol([0xC220], [0x22C8CA0], None, "send_arprequest", "", None)
+
+    arprequest = Symbol([0xC31C], [0x22C8D9C], None, "arprequest", "", None)
+
+    reg_arpcache = Symbol([0xC38C], [0x22C8E0C], None, "reg_arpcache", "", None)
+
+    send_ether = Symbol([0xC4C8], [0x22C8F48], None, "send_ether", "", None)
+
+    send_ip_frag = Symbol([0xC598], [0x22C9018], None, "send_ip_frag", "", None)
+
+    send_ip = Symbol([0xC6C0], [0x22C9140], None, "send_ip", "", None)
+
+    send_ping = Symbol([0xC8B8], [0x22C9338], None, "send_ping", "", None)
+
+    send_udp = Symbol([0xC968], [0x22C93E8], None, "send_udp", "", None)
+
+    send_tcp = Symbol([0xCAA4], [0x22C9524], None, "send_tcp", "", None)
+
+    reply_arp = Symbol([0xCD18], [0x22C9798], None, "reply_arp", "", None)
+
+    dispatch_arp = Symbol([0xCDC0], [0x22C9840], None, "dispatch_arp", "", None)
+
+    reply_icmp = Symbol([0xCF04], [0x22C9984], None, "reply_icmp", "", None)
+
+    process_icmp_reply = Symbol(
+        [0xCFE8], [0x22C9A68], None, "process_icmp_reply", "", None
+    )
+
+    valid_ip = Symbol([0xD0E8], [0x22C9B68], None, "valid_ip", "", None)
+
+    dispatch_icmp = Symbol([0xD108], [0x22C9B88], None, "dispatch_icmp", "", None)
+
+    check_listener = Symbol([0xD1D8], [0x22C9C58], None, "check_listener", "", None)
+
+    check_socket = Symbol([0xD2AC], [0x22C9D2C], None, "check_socket", "", None)
+
+    find_socket = Symbol([0xD360], [0x22C9DE0], None, "find_socket", "", None)
+
+    parse_mss = Symbol([0xD3C4], [0x22C9E44], None, "parse_mss", "", None)
+
+    no_need_inq = Symbol([0xD448], [0x22C9EC8], None, "no_need_inq", "", None)
+
+    tcp_send_handshake = Symbol(
+        [0xD464], [0x22C9EE4], None, "tcp_send_handshake", "", None
+    )
+
+    tcp_send_ack = Symbol([0xD4D8], [0x22C9F58], None, "tcp_send_ack", "", None)
+
+    tcp_send_finack = Symbol([0xD4EC], [0x22C9F6C], None, "tcp_send_finack", "", None)
+
+    tcp_send_rst = Symbol([0xD500], [0x22C9F80], None, "tcp_send_rst", "", None)
+
+    dt_syn_listen = Symbol([0xD63C], [0x22CA0BC], None, "dt_syn_listen", "", None)
+
+    find_specific_socket = Symbol(
+        [0xD728], [0x22CA1A8], None, "find_specific_socket", "", None
+    )
+
+    dt_syn = Symbol([0xD7B0], [0x22CA230], None, "dt_syn", "", None)
+
+    dt_synack = Symbol([0xD888], [0x22CA308], None, "dt_synack", "", None)
+
+    dt_ack = Symbol([0xD980], [0x22CA400], None, "dt_ack", "", None)
+
+    dt_fin = Symbol([0xDC98], [0x22CA718], None, "dt_fin", "", None)
+
+    dt_rst = Symbol([0xDD64], [0x22CA7E4], None, "dt_rst", "", None)
+
+    dispatch_tcp = Symbol([0xDDA0], [0x22CA820], None, "dispatch_tcp", "", None)
+
+    dispatch_udp = Symbol([0xDEC0], [0x22CA940], None, "dispatch_udp", "", None)
+
+    check_frag = Symbol([0xE0CC], [0x22CAB4C], None, "check_frag", "", None)
+
+    dispatch_ip = Symbol([0xE398], [0x22CAE18], None, "dispatch_ip", "", None)
+
+    tcpip = Symbol([0xE55C], [0x22CAFDC], None, "tcpip", "", None)
+
+    Cps_SocGetEport = Symbol([0xE5CC], [0x22CB04C], None, "Cps_SocGetEport", "", None)
+
+    get_seqno = Symbol([0xE674], [0x22CB0F4], None, "get_seqno", "", None)
+
+    Cps_SocRegister = Symbol([0xE6B8], [0x22CB138], None, "Cps_SocRegister", "", None)
+
+    Cps_SocUnRegister = Symbol(
+        [0xE6CC], [0x22CB14C], None, "Cps_SocUnRegister", "", None
+    )
+
+    Cps_SocDatagramMode = Symbol(
+        [0xE6E4], [0x22CB164], None, "Cps_SocDatagramMode", "", None
+    )
+
+    Cps_SocBind = Symbol([0xE710], [0x22CB190], None, "Cps_SocBind", "", None)
+
+    Cps_SocUse = Symbol([0xE770], [0x22CB1F0], None, "Cps_SocUse", "", None)
+
+    Cps_SocRelease = Symbol([0xE7A4], [0x22CB224], None, "Cps_SocRelease", "", None)
+
+    Cps_SocDup = Symbol([0xE7C4], [0x22CB244], None, "Cps_SocDup", "", None)
+
+    Cps_SetUdpCallback = Symbol(
+        [0xE7DC], [0x22CB25C], None, "Cps_SetUdpCallback", "", None
+    )
+
+    Cpsi_TcpConnectRaw = Symbol(
+        [0xE7F8], [0x22CB278], None, "Cpsi_TcpConnectRaw", "", None
+    )
+
+    Cps_TcpConnect = Symbol([0xE8AC], [0x22CB32C], None, "Cps_TcpConnect", "", None)
+
+    Cpsi_TcpShutdownRaw = Symbol(
+        [0xE8EC], [0x22CB36C], None, "Cpsi_TcpShutdownRaw", "", None
+    )
+
+    Cps_TcpShutdown = Symbol([0xE93C], [0x22CB3BC], None, "Cps_TcpShutdown", "", None)
+
+    Cps_TcpClose = Symbol([0xE978], [0x22CB3F8], None, "Cps_TcpClose", "", None)
+
+    udp_read_raw = Symbol([0xEA00], [0x22CB480], None, "udp_read_raw", "", None)
+
+    Cpsi_TcpReadRaw = Symbol([0xEA54], [0x22CB4D4], None, "Cpsi_TcpReadRaw", "", None)
+
+    Cps_SocRead = Symbol([0xEAD0], [0x22CB550], None, "Cps_SocRead", "", None)
+
+    Cpsi_SocConsumeRaw = Symbol(
+        [0xEB34], [0x22CB5B4], None, "Cpsi_SocConsumeRaw", "", None
+    )
+
+    Cps_SocConsume = Symbol([0xEBC4], [0x22CB644], None, "Cps_SocConsume", "", None)
+
+    tcp_write_do = Symbol([0xEBFC], [0x22CB67C], None, "tcp_write_do", "", None)
+
+    tcp_write_do2 = Symbol([0xECC0], [0x22CB740], None, "tcp_write_do2", "", None)
+
+    Cpsi_TcpWrite2Raw = Symbol(
+        [0xECFC], [0x22CB77C], None, "Cpsi_TcpWrite2Raw", "", None
+    )
+
+    Cpsi_SocWrite2 = Symbol([0xEF04], [0x22CB984], None, "Cpsi_SocWrite2", "", None)
+
+    Cps_SocWrite = Symbol([0xEFD8], [0x22CBA58], None, "Cps_SocWrite", "", None)
+
+    Cps_SocGetLength = Symbol([0xF070], [0x22CBAF0], None, "Cps_SocGetLength", "", None)
+
+    Cps_SocFlush = Symbol([0xF0E0], [0x22CBB60], None, "Cps_SocFlush", "", None)
+
+    set_fixed_ip = Symbol([0xF120], [0x22CBBA0], None, "set_fixed_ip", "", None)
+
+    scavenger = Symbol([0xF1C0], [0x22CBC40], None, "scavenger", "", None)
+
+    dhcp_setcommon = Symbol([0xF530], [0x22CBFB0], None, "dhcp_setcommon", "", None)
+
+    pad_mem = Symbol([0xF6BC], [0x22CC13C], None, "pad_mem", "", None)
+
+    dhcp_send_discover = Symbol(
+        [0xF6F0], [0x22CC170], None, "dhcp_send_discover", "", None
+    )
+
+    dhcp_send_request = Symbol(
+        [0xF7B4], [0x22CC234], None, "dhcp_send_request", "", None
+    )
+
+    dhcp_analyze_response = Symbol(
+        [0xF8BC], [0x22CC33C], None, "dhcp_analyze_response", "", None
+    )
+
+    dhcp_discover_server = Symbol(
+        [0xFC0C], [0x22CC68C], None, "dhcp_discover_server", "", None
+    )
+
+    dhcp_request_server = Symbol(
+        [0xFC64], [0x22CC6E4], None, "dhcp_request_server", "", None
+    )
+
+    dhcp_release_server = Symbol(
+        [0xFD60], [0x22CC7E0], None, "dhcp_release_server", "", None
+    )
+
+    dns_skipname = Symbol([0xFDCC], [0x22CC84C], None, "dns_skipname", "", None)
+
+    resolve_common = Symbol([0xFDFC], [0x22CC87C], None, "resolve_common", "", None)
+
+    strtol10 = Symbol([0x100A4], [0x22CCB24], None, "strtol10", "", None)
+
+    rawip = Symbol([0x100D8], [0x22CCB58], None, "rawip", "", None)
+
+    resolve_sub = Symbol([0x10174], [0x22CCBF4], None, "resolve_sub", "", None)
+
+    Cps_Resolve = Symbol([0x101D8], [0x22CCC58], None, "Cps_Resolve", "", None)
+
     Socl_Startup = Symbol([0x10310], [0x22CCD90], None, "Socl_Startup", "", None)
+
+    Socli_StartupSocl = Symbol(
+        [0x1034C], [0x22CCDCC], None, "Socli_StartupSocl", "", None
+    )
+
+    Socli_StartupCps = Symbol(
+        [0x1038C], [0x22CCE0C], None, "Socli_StartupCps", "", None
+    )
+
+    Socli_SetMyIP = Symbol([0x104E8], [0x22CCF68], None, "Socli_SetMyIP", "", None)
+
+    Socli_DhcpTimeout = Symbol(
+        [0x10554], [0x22CCFD4], None, "Socli_DhcpTimeout", "", None
+    )
+
+    Socl_LinkIsOn = Symbol([0x1056C], [0x22CCFEC], None, "Socl_LinkIsOn", "", None)
+
+    Socli_StartupCommandPacketQueue = Symbol(
+        [0x10584], [0x22CD004], None, "Socli_StartupCommandPacketQueue", "", None
+    )
+
+    Socli_CleanupCommandPacketQueue = Symbol(
+        [0x10618], [0x22CD098], None, "Socli_CleanupCommandPacketQueue", "", None
+    )
+
+    Socli_AllocCommandPacket = Symbol(
+        [0x10660], [0x22CD0E0], None, "Socli_AllocCommandPacket", "", None
+    )
+
+    Socli_CreateCommandPacket = Symbol(
+        [0x10688], [0x22CD108], None, "Socli_CreateCommandPacket", "", None
+    )
+
+    Socli_FreeCommandPacket = Symbol(
+        [0x106C8], [0x22CD148], None, "Socli_FreeCommandPacket", "", None
+    )
+
+    Socli_GetCtrlPipe = Symbol(
+        [0x106E8], [0x22CD168], None, "Socli_GetCtrlPipe", "", None
+    )
+
+    Socli_SendCommandPacket = Symbol(
+        [0x106FC], [0x22CD17C], None, "Socli_SendCommandPacket", "", None
+    )
+
+    Socli_SendCommandPacketToCtrlPipe = Symbol(
+        [0x10748], [0x22CD1C8], None, "Socli_SendCommandPacketToCtrlPipe", "", None
+    )
+
+    Socli_ExecCommandPacket = Symbol(
+        [0x10760], [0x22CD1E0], None, "Socli_ExecCommandPacket", "", None
+    )
+
+    Socli_ExecCommandPacketInRecvPipe = Symbol(
+        [0x107D0], [0x22CD250], None, "Socli_ExecCommandPacketInRecvPipe", "", None
+    )
+
+    Socli_ExecCommandPacketInSendPipe = Symbol(
+        [0x107E0], [0x22CD260], None, "Socli_ExecCommandPacketInSendPipe", "", None
+    )
+
+    Socli_ExecCommandPacketInCtrlPipe = Symbol(
+        [0x107F0], [0x22CD270], None, "Socli_ExecCommandPacketInCtrlPipe", "", None
+    )
+
+    Socli_CommandPacketHandler = Symbol(
+        [0x10808], [0x22CD288], None, "Socli_CommandPacketHandler", "", None
+    )
+
+    Socl_CreateSocket = Symbol(
+        [0x108B8], [0x22CD338], None, "Socl_CreateSocket", "", None
+    )
+
+    Socli_CreateSocketCallBack = Symbol(
+        [0x108F4], [0x22CD374], None, "Socli_CreateSocketCallBack", "", None
+    )
+
+    Socli_StartupSocket = Symbol(
+        [0x10968], [0x22CD3E8], None, "Socli_StartupSocket", "", None
+    )
+
+    Socli_GetSizeSocket = Symbol(
+        [0x109D0], [0x22CD450], None, "Socli_GetSizeSocket", "", None
+    )
+
+    Socli_GetSizeCommandPipe = Symbol(
+        [0x10A50], [0x22CD4D0], None, "Socli_GetSizeCommandPipe", "", None
+    )
+
+    Socli_InitSocket = Symbol(
+        [0x10A78], [0x22CD4F8], None, "Socli_InitSocket", "", None
+    )
+
+    Socli_InitSocketBuffer = Symbol(
+        [0x10B74], [0x22CD5F4], None, "Socli_InitSocketBuffer", "", None
+    )
+
+    Socli_InitCommandPipe = Symbol(
+        [0x10B9C], [0x22CD61C], None, "Socli_InitCommandPipe", "", None
+    )
+
+    Socl_Bind = Symbol([0x10C10], [0x22CD690], None, "Socl_Bind", "", None)
+
+    Socl_Connect = Symbol([0x10C80], [0x22CD700], None, "Socl_Connect", "", None)
+
+    Socli_ExecBindCommand = Symbol(
+        [0x10D68], [0x22CD7E8], None, "Socli_ExecBindCommand", "", None
+    )
+
+    Socli_BindCallBack = Symbol(
+        [0x10DC0], [0x22CD840], None, "Socli_BindCallBack", "", None
+    )
+
+    Socl_ReadFrom = Symbol([0x10E44], [0x22CD8C4], None, "Socl_ReadFrom", "", None)
+
+    Socli_ReadAndConsumeBuffer = Symbol(
+        [0x10F8C], [0x22CDA0C], None, "Socli_ReadAndConsumeBuffer", "", None
+    )
+
+    Socli_ReadBuffer = Symbol(
+        [0x11028], [0x22CDAA8], None, "Socli_ReadBuffer", "", None
+    )
+
+    Socli_CopyCpsBuffer = Symbol(
+        [0x1109C], [0x22CDB1C], None, "Socli_CopyCpsBuffer", "", None
+    )
+
+    Socli_ReadCpsBuffer = Symbol(
+        [0x111A4], [0x22CDC24], None, "Socli_ReadCpsBuffer", "", None
+    )
+
+    Socli_ExecReadCommand = Symbol(
+        [0x11218], [0x22CDC98], None, "Socli_ExecReadCommand", "", None
+    )
+
+    Socli_ReadCallBack = Symbol(
+        [0x11264], [0x22CDCE4], None, "Socli_ReadCallBack", "", None
+    )
+
+    Socli_ConsumeBuffer = Symbol(
+        [0x113B4], [0x22CDE34], None, "Socli_ConsumeBuffer", "", None
+    )
+
+    Socli_ConsumeCallBack = Symbol(
+        [0x11400], [0x22CDE80], None, "Socli_ConsumeCallBack", "", None
+    )
+
+    Socli_ConsumeCpsBuffer = Symbol(
+        [0x11410], [0x22CDE90], None, "Socli_ConsumeCpsBuffer", "", None
+    )
+
+    Socli_ReadUdpBuffer = Symbol(
+        [0x1144C], [0x22CDECC], None, "Socli_ReadUdpBuffer", "", None
+    )
+
+    Socli_UdpRecvCallback = Symbol(
+        [0x11590], [0x22CE010], None, "Socli_UdpRecvCallback", "", None
+    )
+
+    Socl_WriteTo = Symbol([0x116A4], [0x22CE124], None, "Socl_WriteTo", "", None)
+
+    Socli_WriteBuffer = Symbol(
+        [0x117B8], [0x22CE238], None, "Socli_WriteBuffer", "", None
+    )
+
+    Socli_AllocWriteBuffer = Symbol(
+        [0x118BC], [0x22CE33C], None, "Socli_AllocWriteBuffer", "", None
+    )
+
+    Socli_GetWriteBufferFreeSize = Symbol(
+        [0x11940], [0x22CE3C0], None, "Socli_GetWriteBufferFreeSize", "", None
+    )
+
+    Socli_ExecWriteCommand = Symbol(
+        [0x11964], [0x22CE3E4], None, "Socli_ExecWriteCommand", "", None
+    )
+
+    Socli_WriteCallBack = Symbol(
+        [0x11AD8], [0x22CE558], None, "Socli_WriteCallBack", "", None
+    )
+
+    Socli_GetOptimumSendBufLen = Symbol(
+        [0x11C08], [0x22CE688], None, "Socli_GetOptimumSendBufLen", "", None
+    )
+
+    Socli_MemCpy = Symbol([0x11CAC], [0x22CE72C], None, "Socli_MemCpy", "", None)
+
+    Socl_Shutdown = Symbol([0x11D44], [0x22CE7C4], None, "Socl_Shutdown", "", None)
+
+    Socli_ShutdownCallBack = Symbol(
+        [0x11DF0], [0x22CE870], None, "Socli_ShutdownCallBack", "", None
+    )
+
+    Socl_IsClosed = Symbol([0x11E20], [0x22CE8A0], None, "Socl_IsClosed", "", None)
 
     close = Symbol(
         [0x11E54],
@@ -18493,6 +20359,82 @@ class NaOverlay0Functions:
         "close",
         "Closes a file descriptor.\n\nr0: file descriptor\nreturn: 0 on success, or a negative value representing an error",
         None,
+    )
+
+    Socli_CloseCallBack = Symbol(
+        [0x11F24], [0x22CE9A4], None, "Socli_CloseCallBack", "", None
+    )
+
+    Socli_CleanupSocket = Symbol(
+        [0x11FBC], [0x22CEA3C], None, "Socli_CleanupSocket", "", None
+    )
+
+    Socli_FreeCommandPipe = Symbol(
+        [0x120BC], [0x22CEB3C], None, "Socli_FreeCommandPipe", "", None
+    )
+
+    Socli_TrashSocket = Symbol(
+        [0x1215C], [0x22CEBDC], None, "Socli_TrashSocket", "", None
+    )
+
+    Soc_Cleanup = Symbol([0x12198], [0x22CEC18], None, "Soc_Cleanup", "", None)
+
+    Socl_CloseAll = Symbol([0x1223C], [0x22CECBC], None, "Socl_CloseAll", "", None)
+
+    Socl_CalmDown = Symbol([0x122E4], [0x22CED64], None, "Socl_CalmDown", "", None)
+
+    Socl_Resolve = Symbol([0x12360], [0x22CEDE0], None, "Socl_Resolve", "", None)
+
+    Socl_InetAtoH = Symbol([0x12410], [0x22CEE90], None, "Socl_InetAtoH", "", None)
+
+    Socl_SetResolver = Symbol(
+        [0x1245C], [0x22CEEDC], None, "Socl_SetResolver", "", None
+    )
+
+    Socl_GetHostID = Symbol([0x12490], [0x22CEF10], None, "Socl_GetHostID", "", None)
+
+    Socl_GetStatus = Symbol([0x124F8], [0x22CEF78], None, "Socl_GetStatus", "", None)
+
+    Socli_GetReadBufferOccpiedSize = Symbol(
+        [0x125C8], [0x22CF048], None, "Socli_GetReadBufferOccpiedSize", "", None
+    )
+
+    Socli_RoundUp4 = Symbol([0x12610], [0x22CF090], None, "Socli_RoundUp4", "", None)
+
+    Socli_SocketRegister = Symbol(
+        [0x1261C], [0x22CF09C], None, "Socli_SocketRegister", "", None
+    )
+
+    Socli_SocketRegisterList = Symbol(
+        [0x12634], [0x22CF0B4], None, "Socli_SocketRegisterList", "", None
+    )
+
+    Socli_SocketRegisterTrash = Symbol(
+        [0x12644], [0x22CF0C4], None, "Socli_SocketRegisterTrash", "", None
+    )
+
+    Socli_SocketUnregister = Symbol(
+        [0x1265C], [0x22CF0DC], None, "Socli_SocketUnregister", "", None
+    )
+
+    Socli_SocketUnregisterList = Symbol(
+        [0x12674], [0x22CF0F4], None, "Socli_SocketUnregisterList", "", None
+    )
+
+    Socli_SocketGetNextPtr = Symbol(
+        [0x12690], [0x22CF110], None, "Socli_SocketGetNextPtr", "", None
+    )
+
+    Socli_SocketUnregisterTrash = Symbol(
+        [0x126BC], [0x22CF13C], None, "Socli_SocketUnregisterTrash", "", None
+    )
+
+    Socl_SocketIsInvalid = Symbol(
+        [0x126D4], [0x22CF154], None, "Socl_SocketIsInvalid", "", None
+    )
+
+    Socl_SocketIsInTrash = Symbol(
+        [0x12708], [0x22CF188], None, "Socl_SocketIsInTrash", "", None
     )
 
     socket = Symbol(
@@ -18558,34 +20500,1441 @@ class NaOverlay0Functions:
         None,
     )
 
-    CloseVeneer = Symbol(
+    Soc_Shutdown = Symbol([0x1293C], [0x22CF3BC], None, "Soc_Shutdown", "", None)
+
+    Soc_Close = Symbol(
         [0x12948],
         [0x22CF3C8],
         None,
-        "CloseVeneer",
+        "Soc_Close",
         "Likely a linker-generated veneer for close.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: file descriptor\nreturn: 0 on success, or a negative value representing an error",
         None,
     )
 
-    fcntl = Symbol(
+    Soc_GetHostByName = Symbol(
+        [0x12954], [0x22CF3D4], None, "Soc_GetHostByName", "", None
+    )
+
+    Soc_GetSockName = Symbol([0x12A14], [0x22CF494], None, "Soc_GetSockName", "", None)
+
+    Soc_GetHostID = Symbol([0x12AA8], [0x22CF528], None, "Soc_GetHostID", "", None)
+
+    Soc_SetResolver = Symbol([0x12AE0], [0x22CF560], None, "Soc_SetResolver", "", None)
+
+    Soc_Fcntl = Symbol(
         [0x12B4C],
         [0x22CF5CC],
         None,
-        "fcntl",
+        "Soc_Fcntl",
         "Performs an operation on a file descriptor.\n\nr0: file descriptor\nr1: operation\nr2: operation-specific argument\nreturn: operation-specific value",
         None,
     )
 
+    AllocFunc = Symbol([0x12B9C], [0x22CF61C], None, "AllocFunc", "", None)
+
+    FreeFunc = Symbol([0x12BC8], [0x22CF648], None, "FreeFunc", "", None)
+
     Soc_Startup = Symbol([0x12BF4], [0x22CF674], None, "Soc_Startup", "", None)
 
-    InitWfc = Symbol(
+    Soc_InetNtoA = Symbol([0x12D74], [0x22CF7F4], None, "Soc_InetNtoA", "", None)
+
+    Soc_InetAtoN = Symbol([0x12DA4], [0x22CF824], None, "Soc_InetAtoN", "", None)
+
+    Soc_InetNtoP = Symbol([0x12DF4], [0x22CF874], None, "Soc_InetNtoP", "", None)
+
+    Soc_U32to4U8 = Symbol([0x12E78], [0x22CF8F8], None, "Soc_U32to4U8", "", None)
+
+    Soc_Poll = Symbol([0x12E98], [0x22CF918], None, "Soc_Poll", "", None)
+
+    Socl_EnableSsl = Symbol([0x12F4C], [0x22CF9CC], None, "Socl_EnableSsl", "", None)
+
+    Socli_ExecEnableSslCommand = Symbol(
+        [0x12FCC], [0x22CFA4C], None, "Socli_ExecEnableSslCommand", "", None
+    )
+
+    Socli_EnableSslCallBack = Symbol(
+        [0x13008], [0x22CFA88], None, "Socli_EnableSslCallBack", "", None
+    )
+
+    find_session_from_id = Symbol(
+        [0x1306C], [0x22CFAEC], None, "find_session_from_id", "", None
+    )
+
+    find_session_from_ip = Symbol(
+        [0x13100], [0x22CFB80], None, "find_session_from_ip", "", None
+    )
+
+    cache_session = Symbol([0x131A0], [0x22CFC20], None, "cache_session", "", None)
+
+    purge_session = Symbol([0x1328C], [0x22CFD0C], None, "purge_session", "", None)
+
+    date2sec = Symbol([0x132F4], [0x22CFD74], None, "date2sec", "", None)
+
+    Cps_GetSslLowThreadPriority = Symbol(
+        [0x1332C], [0x22CFDAC], None, "Cps_GetSslLowThreadPriority", "", None
+    )
+
+    Cps_SetSslLowThreadPriority = Symbol(
+        [0x1333C], [0x22CFDBC], None, "Cps_SetSslLowThreadPriority", "", None
+    )
+
+    enter_computebound = Symbol(
+        [0x1334C], [0x22CFDCC], None, "enter_computebound", "", None
+    )
+
+    exit_computebound = Symbol(
+        [0x13398], [0x22CFE18], None, "exit_computebound", "", None
+    )
+
+    Cps_SetRootCa = Symbol([0x133BC], [0x22CFE3C], None, "Cps_SetRootCa", "", None)
+
+    Get_RootCA = Symbol([0x133E4], [0x22CFE64], None, "Get_RootCA", "", None)
+
+    cert_item_len = Symbol([0x13430], [0x22CFEB0], None, "cert_item_len", "", None)
+
+    make_dn = Symbol([0x13480], [0x22CFF00], None, "make_dn", "", None)
+
+    parse_time = Symbol([0x134EC], [0x22CFF6C], None, "parse_time", "", None)
+
+    cert_item = Symbol([0x1356C], [0x22CFFEC], None, "cert_item", "", None)
+
+    validate_signature = Symbol(
+        [0x13A5C], [0x22D04DC], None, "validate_signature", "", None
+    )
+
+    auth_cert = Symbol([0x13C04], [0x22D0684], None, "auth_cert", "", None)
+
+    chars_till_end = Symbol([0x13CE8], [0x22D0768], None, "chars_till_end", "", None)
+
+    compare_fqdn = Symbol([0x13D0C], [0x22D078C], None, "compare_fqdn", "", None)
+
+    rcv_certificate = Symbol([0x13D78], [0x22D07F8], None, "rcv_certificate", "", None)
+
+    rcv_server_hello = Symbol(
+        [0x13F9C], [0x22D0A1C], None, "rcv_server_hello", "", None
+    )
+
+    has_method = Symbol([0x14050], [0x22D0AD0], None, "has_method", "", None)
+
+    select_method = Symbol([0x1409C], [0x22D0B1C], None, "select_method", "", None)
+
+    version_ok = Symbol([0x140FC], [0x22D0B7C], None, "version_ok", "", None)
+
+    client_hello_v2 = Symbol([0x1410C], [0x22D0B8C], None, "client_hello_v2", "", None)
+
+    decrypt_premaster_secret = Symbol(
+        [0x14270], [0x22D0CF0], None, "decrypt_premaster_secret", "", None
+    )
+
+    create_ms_sub = Symbol([0x144B0], [0x22D0F30], None, "create_ms_sub", "", None)
+
+    create_master_secret = Symbol(
+        [0x1454C], [0x22D0FCC], None, "create_master_secret", "", None
+    )
+
+    create_key_block = Symbol(
+        [0x145AC], [0x22D102C], None, "create_key_block", "", None
+    )
+
+    rcv_client_key_exchange = Symbol(
+        [0x14778], [0x22D11F8], None, "rcv_client_key_exchange", "", None
+    )
+
+    finished_md5 = Symbol([0x147B4], [0x22D1234], None, "finished_md5", "", None)
+
+    finished_sha1 = Symbol([0x14890], [0x22D1310], None, "finished_sha1", "", None)
+
+    rcv_finished = Symbol([0x1496C], [0x22D13EC], None, "rcv_finished", "", None)
+
+    add1_be8 = Symbol([0x14A2C], [0x22D14AC], None, "add1_be8", "", None)
+
+    decrypt = Symbol([0x14A50], [0x22D14D0], None, "decrypt", "", None)
+
+    make_plaintext = Symbol([0x14A68], [0x22D14E8], None, "make_plaintext", "", None)
+
+    make_ciphertext = Symbol([0x14C98], [0x22D1718], None, "make_ciphertext", "", None)
+
+    tcp_read_raw_nbytes = Symbol(
+        [0x14E9C], [0x22D191C], None, "tcp_read_raw_nbytes", "", None
+    )
+
+    update_digest = Symbol([0x14F08], [0x22D1988], None, "update_digest", "", None)
+
+    parse_record_in_buf = Symbol(
+        [0x14F34], [0x22D19B4], None, "parse_record_in_buf", "", None
+    )
+
+    parse_record = Symbol([0x151B4], [0x22D1C34], None, "parse_record", "", None)
+
+    set_random = Symbol([0x15354], [0x22D1DD4], None, "set_random", "", None)
+
+    Cps_SslAddRandomSeed = Symbol(
+        [0x15484], [0x22D1F04], None, "Cps_SslAddRandomSeed", "", None
+    )
+
+    send_change_cipher_spec_and_finished = Symbol(
+        [0x154F4], [0x22D1F74], None, "send_change_cipher_spec_and_finished", "", None
+    )
+
+    send_client_hello = Symbol(
+        [0x1564C], [0x22D20CC], None, "send_client_hello", "", None
+    )
+
+    send_client_key_exchange = Symbol(
+        [0x157E0], [0x22D2260], None, "send_client_key_exchange", "", None
+    )
+
+    mustget_change_cipher_spec_and_finished = Symbol(
+        [0x15AA0],
+        [0x22D2520],
+        None,
+        "mustget_change_cipher_spec_and_finished",
+        "",
+        None,
+    )
+
+    ssl_listen_try = Symbol([0x15AD0], [0x22D2550], None, "ssl_listen_try", "", None)
+
+    Cpsi_SslConnect = Symbol([0x15B9C], [0x22D261C], None, "Cpsi_SslConnect", "", None)
+
+    Cpsi_SslRead = Symbol([0x15BF0], [0x22D2670], None, "Cpsi_SslRead", "", None)
+
+    Cpsi_SslConsume = Symbol([0x15CC8], [0x22D2748], None, "Cpsi_SslConsume", "", None)
+
+    try_fill_record = Symbol([0x15D18], [0x22D2798], None, "try_fill_record", "", None)
+
+    Cpsi_SslGetLength = Symbol(
+        [0x15E5C], [0x22D28DC], None, "Cpsi_SslGetLength", "", None
+    )
+
+    Cpsi_SslWrite2 = Symbol([0x15ED8], [0x22D2958], None, "Cpsi_SslWrite2", "", None)
+
+    Cpsi_SslShutdown = Symbol(
+        [0x1600C], [0x22D2A8C], None, "Cpsi_SslShutdown", "", None
+    )
+
+    Cpsi_SslClose = Symbol([0x1608C], [0x22D2B0C], None, "Cpsi_SslClose", "", None)
+
+    Cps_SetSsl = Symbol([0x160C4], [0x22D2B44], None, "Cps_SetSsl", "", None)
+
+    Cpsi_SslPeriodical = Symbol(
+        [0x160F4], [0x22D2B74], None, "Cpsi_SslPeriodical", "", None
+    )
+
+    Cpsi_SslCleanup = Symbol([0x161D4], [0x22D2C54], None, "Cpsi_SslCleanup", "", None)
+
+    char_from_long_md5 = Symbol(
+        [0x161F0], [0x22D2C70], None, "char_from_long_md5", "", None
+    )
+
+    long_from_char_md5 = Symbol(
+        [0x16208], [0x22D2C88], None, "long_from_char_md5", "", None
+    )
+
+    Cpsi_Md5_Block = Symbol([0x16220], [0x22D2CA0], None, "Cpsi_Md5_Block", "", None)
+
+    Cpsi_Md5_Init = Symbol([0x1663C], [0x22D30BC], None, "Cpsi_Md5_Init", "", None)
+
+    Cpsi_Md5_Calc = Symbol([0x16684], [0x22D3104], None, "Cpsi_Md5_Calc", "", None)
+
+    Cpsi_Md5_Result = Symbol([0x1673C], [0x22D31BC], None, "Cpsi_Md5_Result", "", None)
+
+    Cpsi_Sha1_Block_Helper = Symbol(
+        [0x167A4], [0x22D3224], None, "Cpsi_Sha1_Block_Helper", "Also known as R.", None
+    )
+
+    char_from_long_sha1 = Symbol(
+        [0x167E8], [0x22D3268], None, "char_from_long_sha1", "", None
+    )
+
+    long_from_char_sha1 = Symbol(
+        [0x1682C], [0x22D32AC], None, "long_from_char_sha1", "", None
+    )
+
+    Cpsi_Sha1_Block = Symbol([0x16874], [0x22D32F4], None, "Cpsi_Sha1_Block", "", None)
+
+    Cpsi_Sha1_Init = Symbol([0x16EFC], [0x22D397C], None, "Cpsi_Sha1_Init", "", None)
+
+    Cpsi_Sha1_Calc = Symbol([0x16F50], [0x22D39D0], None, "Cpsi_Sha1_Calc", "", None)
+
+    Cpsi_Sha1_Result = Symbol(
+        [0x17008], [0x22D3A88], None, "Cpsi_Sha1_Result", "", None
+    )
+
+    Cpsi_Sha1_Result_Prng = Symbol(
+        [0x17070], [0x22D3AF0], None, "Cpsi_Sha1_Result_Prng", "", None
+    )
+
+    Cpsi_Rc4_Init = Symbol([0x170A0], [0x22D3B20], None, "Cpsi_Rc4_Init", "", None)
+
+    Cpsi_Rc4_Crypt = Symbol([0x17114], [0x22D3B94], None, "Cpsi_Rc4_Crypt", "", None)
+
+    count_digits = Symbol([0x17180], [0x22D3C00], None, "count_digits", "", None)
+
+    Cpsi_Big_Sign = Symbol([0x171A8], [0x22D3C28], None, "Cpsi_Big_Sign", "", None)
+
+    Cpsi_Big_Add = Symbol([0x171D8], [0x22D3C58], None, "Cpsi_Big_Add", "", None)
+
+    Cpsi_Big_Add_Small = Symbol(
+        [0x17274], [0x22D3CF4], None, "Cpsi_Big_Add_Small", "", None
+    )
+
+    Cpsi_Big_Negate = Symbol([0x172D8], [0x22D3D58], None, "Cpsi_Big_Negate", "", None)
+
+    Cpsi_Big_Sub = Symbol([0x17318], [0x22D3D98], None, "Cpsi_Big_Sub", "", None)
+
+    Cpsi_Big_Sub_Small = Symbol(
+        [0x173C0], [0x22D3E40], None, "Cpsi_Big_Sub_Small", "", None
+    )
+
+    Cpsi_Big_Compare = Symbol(
+        [0x17428], [0x22D3EA8], None, "Cpsi_Big_Compare", "", None
+    )
+
+    Cpsi_Big_Add_Part = Symbol(
+        [0x17460], [0x22D3EE0], None, "Cpsi_Big_Add_Part", "", None
+    )
+
+    Cpsi_Big_Mult = Symbol([0x17494], [0x22D3F14], None, "Cpsi_Big_Mult", "", None)
+
+    Cpsi_Big_Mult_Small = Symbol(
+        [0x17540], [0x22D3FC0], None, "Cpsi_Big_Mult_Small", "", None
+    )
+
+    Cpsi_Big_Sqr = Symbol([0x175B8], [0x22D4038], None, "Cpsi_Big_Sqr", "", None)
+
+    get48bits_1 = Symbol([0x176EC], [0x22D416C], None, "get48bits_1", "", None)
+
+    get48bits_2 = Symbol([0x176F8], [0x22D4178], None, "get48bits_2", "", None)
+
+    get48bits_3 = Symbol([0x17708], [0x22D4188], None, "get48bits_3", "", None)
+
+    get64bits = Symbol([0x1771C], [0x22D419C], None, "get64bits", "", None)
+
+    Cpsi_Big_Div = Symbol([0x17738], [0x22D41B8], None, "Cpsi_Big_Div", "", None)
+
+    Cpsi_Big_Power = Symbol([0x17918], [0x22D4398], None, "Cpsi_Big_Power", "", None)
+
+    Cpsi_Big_Modinv = Symbol([0x17AAC], [0x22D452C], None, "Cpsi_Big_Modinv", "", None)
+
+    Cpsi_Big_Montmult = Symbol(
+        [0x17BF8], [0x22D4678], None, "Cpsi_Big_Montmult", "", None
+    )
+
+    Cpsi_Big_Montpower = Symbol(
+        [0x17D20], [0x22D47A0], None, "Cpsi_Big_Montpower", "", None
+    )
+
+    Cpsi_Big_From_Char = Symbol(
+        [0x17F2C], [0x22D49AC], None, "Cpsi_Big_From_Char", "", None
+    )
+
+    Cpsi_Char_From_Big = Symbol(
+        [0x17F88], [0x22D4A08], None, "Cpsi_Char_From_Big", "", None
+    )
+
+    MD5_InitVeneer = Symbol([0x17FCC], [0x22D4A4C], None, "MD5_InitVeneer", "", None)
+
+    MD5_UpdateVeneer = Symbol(
+        [0x17FD8], [0x22D4A58], None, "MD5_UpdateVeneer", "", None
+    )
+
+    MD5_DigestVeneer = Symbol(
+        [0x17FE4], [0x22D4A64], None, "MD5_DigestVeneer", "", None
+    )
+
+    Wcm_Init = Symbol([0x17FF0], [0x22D4A70], None, "Wcm_Init", "", None)
+
+    Wcm_Finish = Symbol([0x18108], [0x22D4B88], None, "Wcm_Finish", "", None)
+
+    Wcm_StartupAsync = Symbol(
+        [0x18160], [0x22D4BE0], None, "Wcm_StartupAsync", "", None
+    )
+
+    Wcm_CleanupAsync = Symbol(
+        [0x18364], [0x22D4DE4], None, "Wcm_CleanupAsync", "", None
+    )
+
+    Wcm_SearchAsync = Symbol([0x18454], [0x22D4ED4], None, "Wcm_SearchAsync", "", None)
+
+    Wcm_BeginSearchAsync = Symbol(
+        [0x18474], [0x22D4EF4], None, "Wcm_BeginSearchAsync", "", None
+    )
+
+    Wcm_EndSearchAsync = Symbol(
+        [0x185EC], [0x22D506C], None, "Wcm_EndSearchAsync", "", None
+    )
+
+    Wcm_ConnectAsync = Symbol(
+        [0x18690], [0x22D5110], None, "Wcm_ConnectAsync", "", None
+    )
+
+    Wcm_DisconnectAsync = Symbol(
+        [0x18894], [0x22D5314], None, "Wcm_DisconnectAsync", "", None
+    )
+
+    Wcm_TerminateAsync = Symbol(
+        [0x189B0], [0x22D5430], None, "Wcm_TerminateAsync", "", None
+    )
+
+    Wcm_GetPhase = Symbol([0x18BC0], [0x22D5640], None, "Wcm_GetPhase", "", None)
+
+    Wcm_UpdateOption = Symbol(
+        [0x18BF0], [0x22D5670], None, "Wcm_UpdateOption", "", None
+    )
+
+    Wcmi_GetSystemWork = Symbol(
+        [0x18C8C], [0x22D570C], None, "Wcmi_GetSystemWork", "", None
+    )
+
+    WcmConfigure = Symbol([0x18C9C], [0x22D571C], None, "WcmConfigure", "", None)
+
+    WcmEditScanExParam = Symbol(
+        [0x18DBC], [0x22D583C], None, "WcmEditScanExParam", "", None
+    )
+
+    WcmInitOption = Symbol([0x18F54], [0x22D59D4], None, "WcmInitOption", "", None)
+
+    WcmGetNextScanChannel = Symbol(
+        [0x18F74], [0x22D59F4], None, "WcmGetNextScanChannel", "", None
+    )
+
+    WcmNotify = Symbol([0x19004], [0x22D5A84], None, "WcmNotify", "", None)
+
+    WcmNotifyEx = Symbol([0x19048], [0x22D5AC8], None, "WcmNotifyEx", "", None)
+
+    WcmSetPhase = Symbol([0x1909C], [0x22D5B1C], None, "WcmSetPhase", "", None)
+
+    Wcmi_ResetKeepAliveAlarm = Symbol(
+        [0x19134], [0x22D5BB4], None, "Wcmi_ResetKeepAliveAlarm", "", None
+    )
+
+    WcmKeepAliveAlarm = Symbol(
+        [0x191A8], [0x22D5C28], None, "WcmKeepAliveAlarm", "", None
+    )
+
+    WcmCountBits = Symbol([0x191B8], [0x22D5C38], None, "WcmCountBits", "", None)
+
+    WcmCountLeadingZero = Symbol(
+        [0x191E4], [0x22D5C64], None, "WcmCountLeadingZero", "", None
+    )
+
+    WcmWmReset = Symbol([0x191EC], [0x22D5C6C], None, "WcmWmReset", "", None)
+
+    WcmWmcbIndication = Symbol(
+        [0x19248], [0x22D5CC8], None, "WcmWmcbIndication", "", None
+    )
+
+    WcmWmcbCommon = Symbol([0x192C0], [0x22D5D40], None, "WcmWmcbCommon", "", None)
+
+    WcmWmcbScanEx = Symbol([0x1957C], [0x22D5FFC], None, "WcmWmcbScanEx", "", None)
+
+    WcmWmcbEndScan = Symbol([0x19860], [0x22D62E0], None, "WcmWmcbEndScan", "", None)
+
+    WcmWmcbConnect = Symbol([0x198D8], [0x22D6358], None, "WcmWmcbConnect", "", None)
+
+    WcmWmcbDisconnect = Symbol(
+        [0x19B3C], [0x22D65BC], None, "WcmWmcbDisconnect", "", None
+    )
+
+    WcmWmcbStartDcf = Symbol([0x19C04], [0x22D6684], None, "WcmWmcbStartDcf", "", None)
+
+    WcmWmcbEndDcf = Symbol([0x19D14], [0x22D6794], None, "WcmWmcbEndDcf", "", None)
+
+    WcmWmcbReset = Symbol([0x19E30], [0x22D68B0], None, "WcmWmcbReset", "", None)
+
+    Wcm_ClearApList = Symbol([0x1A15C], [0x22D6BDC], None, "Wcm_ClearApList", "", None)
+
+    Wcm_CountApList = Symbol([0x1A1B0], [0x22D6C30], None, "Wcm_CountApList", "", None)
+
+    Wcm_LockApList = Symbol([0x1A208], [0x22D6C88], None, "Wcm_LockApList", "", None)
+
+    Wcm_PointApList = Symbol([0x1A284], [0x22D6D04], None, "Wcm_PointApList", "", None)
+
+    Wcmi_EntryApList = Symbol(
+        [0x1A2DC], [0x22D6D5C], None, "Wcmi_EntryApList", "", None
+    )
+
+    WcmAllocApList = Symbol([0x1A368], [0x22D6DE8], None, "WcmAllocApList", "", None)
+
+    WcmGetOldestApList = Symbol(
+        [0x1A434], [0x22D6EB4], None, "WcmGetOldestApList", "", None
+    )
+
+    WcmSearchApList = Symbol([0x1A464], [0x22D6EE4], None, "WcmSearchApList", "", None)
+
+    WcmSearchIndexedApList = Symbol(
+        [0x1A4D0], [0x22D6F50], None, "WcmSearchIndexedApList", "", None
+    )
+
+    WcmAppendApList = Symbol([0x1A520], [0x22D6FA0], None, "WcmAppendApList", "", None)
+
+    Wcmi_InitCpsif = Symbol([0x1A5DC], [0x22D705C], None, "Wcmi_InitCpsif", "", None)
+
+    Wcmi_CpsifRecvCallback = Symbol(
+        [0x1A61C], [0x22D709C], None, "Wcmi_CpsifRecvCallback", "", None
+    )
+
+    Wcmi_CpsifSendNullPacket = Symbol(
+        [0x1A650], [0x22D70D0], None, "Wcmi_CpsifSendNullPacket", "", None
+    )
+
+    Wcm_GetApMacAddress = Symbol(
+        [0x1A6C0], [0x22D7140], None, "Wcm_GetApMacAddress", "", None
+    )
+
+    Wcm_GetApEssid = Symbol([0x1A704], [0x22D7184], None, "Wcm_GetApEssid", "", None)
+
+    Wcm_SetRecvDcfCallback = Symbol(
+        [0x1A764], [0x22D71E4], None, "Wcm_SetRecvDcfCallback", "", None
+    )
+
+    Wcm_SendDcfData = Symbol([0x1A784], [0x22D7204], None, "Wcm_SendDcfData", "", None)
+
+    WcmCpsifWmCallback = Symbol(
+        [0x1A90C], [0x22D738C], None, "WcmCpsifWmCallback", "", None
+    )
+
+    WcmCpsifKaCallback = Symbol(
+        [0x1A94C], [0x22D73CC], None, "WcmCpsifKaCallback", "", None
+    )
+
+    WcmCpsifTryLockMutexInIrq = Symbol(
+        [0x1A960], [0x22D73E0], None, "WcmCpsifTryLockMutexInIrq", "", None
+    )
+
+    WcmCpsifUnlockMutexInIrq = Symbol(
+        [0x1A9B0], [0x22D7430], None, "WcmCpsifUnlockMutexInIrq", "", None
+    )
+
+    Wcm_CompareBssID = Symbol(
+        [0x1A9E8], [0x22D7468], None, "Wcm_CompareBssID", "", None
+    )
+
+    Wcm_GetLinkLevel = Symbol(
+        [0x1AA14], [0x22D7494], None, "Wcm_GetLinkLevel", "", None
+    )
+
+    Wcmi_GetRssiAverage = Symbol(
+        [0x1AA58], [0x22D74D8], None, "Wcmi_GetRssiAverage", "", None
+    )
+
+    WcmGetLinkLevel = Symbol([0x1AAD8], [0x22D7558], None, "WcmGetLinkLevel", "", None)
+
+    Wcmi_ShelterRssi = Symbol(
+        [0x1AB0C], [0x22D758C], None, "Wcmi_ShelterRssi", "", None
+    )
+
+    Dwc_AC_Create = Symbol([0x1AB6C], [0x22D75EC], None, "Dwc_AC_Create", "", None)
+
+    Dwc_AC_Process = Symbol(
         [0x1AD14],
         [0x22D7794],
         None,
-        "InitWfc",
+        "Dwc_AC_Process",
         "Just a guess. Repeatedly calling this eventually results in a DNS query for conntest.nintendowifi.net and allows for use of the socket functions.\n\nreturn: status?",
         None,
     )
+
+    Dwc_AC_GetStatus = Symbol(
+        [0x1ADE4], [0x22D7864], None, "Dwc_AC_GetStatus", "", None
+    )
+
+    Dwc_AC_GetApType = Symbol(
+        [0x1AE50], [0x22D78D0], None, "Dwc_AC_GetApType", "", None
+    )
+
+    Dwc_AC_GetApData = Symbol(
+        [0x1AE80], [0x22D7900], None, "Dwc_AC_GetApData", "", None
+    )
+
+    Dwc_AC_Destroy = Symbol([0x1AED8], [0x22D7958], None, "Dwc_AC_Destroy", "", None)
+
+    Dwc_AC_SetSpecifyAp = Symbol(
+        [0x1AF14], [0x22D7994], None, "Dwc_AC_SetSpecifyAp", "", None
+    )
+
+    Dwc_AC_CheckWiFiStation = Symbol(
+        [0x1AF78], [0x22D79F8], None, "Dwc_AC_CheckWiFiStation", "", None
+    )
+
+    Dwci_AC_InsertApInfo = Symbol(
+        [0x1B030], [0x22D7AB0], None, "Dwci_AC_InsertApInfo", "", None
+    )
+
+    Dwci_AC_Alloc = Symbol([0x1B05C], [0x22D7ADC], None, "Dwci_AC_Alloc", "", None)
+
+    Dwci_AC_Free = Symbol([0x1B09C], [0x22D7B1C], None, "Dwci_AC_Free", "", None)
+
+    Dwci_AC_FreeAll = Symbol([0x1B100], [0x22D7B80], None, "Dwci_AC_FreeAll", "", None)
+
+    Dwci_AC_GetMemPtr = Symbol(
+        [0x1B224], [0x22D7CA4], None, "Dwci_AC_GetMemPtr", "", None
+    )
+
+    Dwci_AC_SetPhase = Symbol(
+        [0x1B27C], [0x22D7CFC], None, "Dwci_AC_SetPhase", "", None
+    )
+
+    Dwci_AC_GetPhase = Symbol(
+        [0x1B2DC], [0x22D7D5C], None, "Dwci_AC_GetPhase", "", None
+    )
+
+    Dwci_AC_SetError = Symbol(
+        [0x1B2F8], [0x22D7D78], None, "Dwci_AC_SetError", "", None
+    )
+
+    Dwci_AC_GetError = Symbol(
+        [0x1B31C], [0x22D7D9C], None, "Dwci_AC_GetError", "", None
+    )
+
+    Dwci_AC_SetApType = Symbol(
+        [0x1B330], [0x22D7DB0], None, "Dwci_AC_SetApType", "", None
+    )
+
+    Dwci_ConvConnectApType = Symbol(
+        [0x1B3D8], [0x22D7E58], None, "Dwci_ConvConnectApType", "", None
+    )
+
+    Free_Disused = Symbol([0x1B3E8], [0x22D7E68], None, "Free_Disused", "", None)
+
+    CheckDuplicate = Symbol([0x1B420], [0x22D7EA0], None, "CheckDuplicate", "", None)
+
+    Dwci_AC_GetBeacon = Symbol(
+        [0x1B4C0], [0x22D7F40], None, "Dwci_AC_GetBeacon", "", None
+    )
+
+    Dwci_AC_CheckNintendoSsid = Symbol(
+        [0x1B62C], [0x22D80AC], None, "Dwci_AC_CheckNintendoSsid", "", None
+    )
+
+    CompareList = Symbol([0x1B6C0], [0x22D8140], None, "CompareList", "", None)
+
+    CompareListDiff = Symbol([0x1B73C], [0x22D81BC], None, "CompareListDiff", "", None)
+
+    AddList = Symbol([0x1B7CC], [0x22D824C], None, "AddList", "", None)
+
+    SetDataListTail = Symbol([0x1B894], [0x22D8314], None, "SetDataListTail", "", None)
+
+    UpDateList = Symbol([0x1B8E0], [0x22D8360], None, "UpDateList", "", None)
+
+    SortList = Symbol([0x1B94C], [0x22D83CC], None, "SortList", "", None)
+
+    Dwci_AC_CallBackWcm = Symbol(
+        [0x1BA3C], [0x22D84BC], None, "Dwci_AC_CallBackWcm", "", None
+    )
+
+    Dwci_AC_ConnectAP = Symbol(
+        [0x1BAC8], [0x22D8548], None, "Dwci_AC_ConnectAP", "", None
+    )
+
+    ConnectStart = Symbol([0x1BB0C], [0x22D858C], None, "ConnectStart", "", None)
+
+    ConnectAP = Symbol([0x1BC04], [0x22D8684], None, "ConnectAP", "", None)
+
+    GetConnectType = Symbol([0x1BD40], [0x22D87C0], None, "GetConnectType", "", None)
+
+    GetPowerMode = Symbol([0x1BEDC], [0x22D895C], None, "GetPowerMode", "", None)
+
+    GetAuthMode = Symbol([0x1BEF8], [0x22D8978], None, "GetAuthMode", "", None)
+
+    GetWepKey = Symbol([0x1BF14], [0x22D8994], None, "GetWepKey", "", None)
+
+    Dwci_AC_CloseNetwork = Symbol(
+        [0x1C000], [0x22D8A80], None, "Dwci_AC_CloseNetwork", "", None
+    )
+
+    DisConnectAP = Symbol([0x1C088], [0x22D8B08], None, "DisConnectAP", "", None)
+
+    CloseSocket = Symbol([0x1C118], [0x22D8B98], None, "CloseSocket", "", None)
+
+    Dwci_AC_Error = Symbol([0x1C160], [0x22D8BE0], None, "Dwci_AC_Error", "", None)
+
+    Dwci_AC_GetResult = Symbol(
+        [0x1C184], [0x22D8C04], None, "Dwci_AC_GetResult", "", None
+    )
+
+    GetProgramaError = Symbol(
+        [0x1C1D4], [0x22D8C54], None, "GetProgramaError", "", None
+    )
+
+    GetIrregularError = Symbol(
+        [0x1C218], [0x22D8C98], None, "GetIrregularError", "", None
+    )
+
+    GetNotFoundAP = Symbol([0x1C220], [0x22D8CA0], None, "GetNotFoundAP", "", None)
+
+    GetNotFoundInet = Symbol([0x1C23C], [0x22D8CBC], None, "GetNotFoundInet", "", None)
+
+    Dwci_AC_MakeSearchList = Symbol(
+        [0x1C34C], [0x22D8DCC], None, "Dwci_AC_MakeSearchList", "", None
+    )
+
+    Dwci_AC_CheckFreespot = Symbol(
+        [0x1C3E0], [0x22D8E60], None, "Dwci_AC_CheckFreespot", "", None
+    )
+
+    MakeAroundList = Symbol([0x1C42C], [0x22D8EAC], None, "MakeAroundList", "", None)
+
+    MakeStealthList = Symbol([0x1C48C], [0x22D8F0C], None, "MakeStealthList", "", None)
+
+    MakeUserList = Symbol([0x1C578], [0x22D8FF8], None, "MakeUserList", "", None)
+
+    MakeDifferChannelList = Symbol(
+        [0x1C680], [0x22D9100], None, "MakeDifferChannelList", "", None
+    )
+
+    CheckDifferChannelStart = Symbol(
+        [0x1C710], [0x22D9190], None, "CheckDifferChannelStart", "", None
+    )
+
+    Dwci_AC_ConnectRetryAP = Symbol(
+        [0x1C754], [0x22D91D4], None, "Dwci_AC_ConnectRetryAP", "", None
+    )
+
+    Dwci_AC_SearchAP = Symbol(
+        [0x1C830], [0x22D92B0], None, "Dwci_AC_SearchAP", "", None
+    )
+
+    Dwci_AC_SetStealthChannel = Symbol(
+        [0x1C8F4], [0x22D9374], None, "Dwci_AC_SetStealthChannel", "", None
+    )
+
+    Dwci_AC_GetStealthChannel = Symbol(
+        [0x1C928], [0x22D93A8], None, "Dwci_AC_GetStealthChannel", "", None
+    )
+
+    Dwci_AC_SearchReStart = Symbol(
+        [0x1C990], [0x22D9410], None, "Dwci_AC_SearchReStart", "", None
+    )
+
+    SearchStart = Symbol([0x1CA70], [0x22D94F0], None, "SearchStart", "", None)
+
+    SearchAround = Symbol([0x1CAC0], [0x22D9540], None, "SearchAround", "", None)
+
+    SearchAround2ndLap = Symbol(
+        [0x1CB64], [0x22D95E4], None, "SearchAround2ndLap", "", None
+    )
+
+    SearchDifferChannel = Symbol(
+        [0x1CBAC], [0x22D962C], None, "SearchDifferChannel", "", None
+    )
+
+    SearchStealth = Symbol([0x1CCD4], [0x22D9754], None, "SearchStealth", "", None)
+
+    NextSearchCheck = Symbol([0x1CDF4], [0x22D9874], None, "NextSearchCheck", "", None)
+
+    SearchEndCheck = Symbol([0x1CEB8], [0x22D9938], None, "SearchEndCheck", "", None)
+
+    CheckStartStealthSearch = Symbol(
+        [0x1CF7C], [0x22D99FC], None, "CheckStartStealthSearch", "", None
+    )
+
+    ScanStart = Symbol([0x1CFDC], [0x22D9A5C], None, "ScanStart", "", None)
+
+    Dwci_AC_Start = Symbol([0x1D000], [0x22D9A80], None, "Dwci_AC_Start", "", None)
+
+    Dwci_AC_ConnectTest = Symbol(
+        [0x1D088], [0x22D9B08], None, "Dwci_AC_ConnectTest", "", None
+    )
+
+    ConnectTestStart = Symbol(
+        [0x1D184], [0x22D9C04], None, "ConnectTestStart", "", None
+    )
+
+    GetIpAddress = Symbol([0x1D1E8], [0x22D9C68], None, "GetIpAddress", "", None)
+
+    ConnectTestCreate = Symbol(
+        [0x1D278], [0x22D9CF8], None, "ConnectTestCreate", "", None
+    )
+
+    ConnectTestProcess = Symbol(
+        [0x1D2A4], [0x22D9D24], None, "ConnectTestProcess", "", None
+    )
+
+    ConnectTestEnd = Symbol([0x1D310], [0x22D9D90], None, "ConnectTestEnd", "", None)
+
+    ConnectTestRetry = Symbol(
+        [0x1D324], [0x22D9DA4], None, "ConnectTestRetry", "", None
+    )
+
+    MakeSocConfig = Symbol([0x1D354], [0x22D9DD4], None, "MakeSocConfig", "", None)
+
+    ConvAddress = Symbol([0x1D414], [0x22D9E94], None, "ConvAddress", "", None)
+
+    ConvNetMask = Symbol([0x1D468], [0x22D9EE8], None, "ConvNetMask", "", None)
+
+    CheckSetDns = Symbol([0x1D4BC], [0x22D9F3C], None, "CheckSetDns", "", None)
+
+    Dwci_AC_CheckNintendoShopAP = Symbol(
+        [0x1D544], [0x22D9FC4], None, "Dwci_AC_CheckNintendoShopAP", "", None
+    )
+
+    Dwci_AC_GetNintendoShopWepKey = Symbol(
+        [0x1D57C], [0x22D9FFC], None, "Dwci_AC_GetNintendoShopWepKey", "", None
+    )
+
+    Dwci_AC_GetPostalCode = Symbol(
+        [0x1D5A4], [0x22DA024], None, "Dwci_AC_GetPostalCode", "", None
+    )
+
+    Dwci_AC_CheckNintendoUsbAP = Symbol(
+        [0x1D5F0], [0x22DA070], None, "Dwci_AC_CheckNintendoUsbAP", "", None
+    )
+
+    Dwci_AC_GetNintendoUsbWepKey = Symbol(
+        [0x1D614], [0x22DA094], None, "Dwci_AC_GetNintendoUsbWepKey", "", None
+    )
+
+    DecodeSsid = Symbol([0x1D624], [0x22DA0A4], None, "DecodeSsid", "", None)
+
+    MakeShopWepKey = Symbol([0x1D728], [0x22DA1A8], None, "MakeShopWepKey", "", None)
+
+    MakeUsbWepKey = Symbol([0x1D774], [0x22DA1F4], None, "MakeUsbWepKey", "", None)
+
+    eb64 = Symbol([0x1D920], [0x22DA3A0], None, "eb64", "", None)
+
+    db64 = Symbol([0x1D990], [0x22DA410], None, "db64", "", None)
+
+    Dwc_AC_StartupGetWdsInfo = Symbol(
+        [0x1E11C], [0x22DAB9C], None, "Dwc_AC_StartupGetWdsInfo", "", None
+    )
+
+    Dwc_AC_ProcessGetWdsInfo = Symbol(
+        [0x1E18C], [0x22DAC0C], None, "Dwc_AC_ProcessGetWdsInfo", "", None
+    )
+
+    Dwc_AC_CancelGetWdsInfo = Symbol(
+        [0x1E4C4], [0x22DAF44], None, "Dwc_AC_CancelGetWdsInfo", "", None
+    )
+
+    Dwc_AC_CleanupGetWdsInfo = Symbol(
+        [0x1E4E0], [0x22DAF60], None, "Dwc_AC_CleanupGetWdsInfo", "", None
+    )
+
+    Dwci_Acc_SetMaskBits = Symbol(
+        [0x1E660], [0x22DB0E0], None, "Dwci_Acc_SetMaskBits", "", None
+    )
+
+    Dwci_Acc_GetUserId = Symbol(
+        [0x1E68C], [0x22DB10C], None, "Dwci_Acc_GetUserId", "", None
+    )
+
+    Dwci_Acc_GetPlayerId = Symbol(
+        [0x1E6AC], [0x22DB12C], None, "Dwci_Acc_GetPlayerId", "", None
+    )
+
+    Dwci_Acc_GetFriendKey = Symbol(
+        [0x1E6B4], [0x22DB134], None, "Dwci_Acc_GetFriendKey", "", None
+    )
+
+    Dwci_Acc_GetGsProfileId = Symbol(
+        [0x1E6C8], [0x22DB148], None, "Dwci_Acc_GetGsProfileId", "", None
+    )
+
+    Dwci_Acc_SetUserId = Symbol(
+        [0x1E6D0], [0x22DB150], None, "Dwci_Acc_SetUserId", "", None
+    )
+
+    Dwci_Acc_SetPlayerId = Symbol(
+        [0x1E6F8], [0x22DB178], None, "Dwci_Acc_SetPlayerId", "", None
+    )
+
+    Dwci_Acc_SetFriendKey = Symbol(
+        [0x1E700], [0x22DB180], None, "Dwci_Acc_SetFriendKey", "", None
+    )
+
+    Dwci_Acc_SetGsProfileId = Symbol(
+        [0x1E708], [0x22DB188], None, "Dwci_Acc_SetGsProfileId", "", None
+    )
+
+    Dwci_Acc_GetFlags = Symbol(
+        [0x1E710], [0x22DB190], None, "Dwci_Acc_GetFlags", "", None
+    )
+
+    Dwci_Acc_GetFlag_DataType = Symbol(
+        [0x1E724], [0x22DB1A4], None, "Dwci_Acc_GetFlag_DataType", "", None
+    )
+
+    Dwc_IsBuddyFriendData = Symbol(
+        [0x1E734], [0x22DB1B4], None, "Dwc_IsBuddyFriendData", "", None
+    )
+
+    Dwci_IsBuddyFriendData = Symbol(
+        [0x1E764], [0x22DB1E4], None, "Dwci_IsBuddyFriendData", "", None
+    )
+
+    Dwci_IsReverseBuddyFriendData = Symbol(
+        [0x1E79C], [0x22DB21C], None, "Dwci_IsReverseBuddyFriendData", "", None
+    )
+
+    Dwci_IsBuddyMsgAlreadySent = Symbol(
+        [0x1E7B8], [0x22DB238], None, "Dwci_IsBuddyMsgAlreadySent", "", None
+    )
+
+    Dwc_GetFriendDataType = Symbol(
+        [0x1E7D4], [0x22DB254], None, "Dwc_GetFriendDataType", "", None
+    )
+
+    Dwci_Acc_SetFlags = Symbol(
+        [0x1E7E0], [0x22DB260], None, "Dwci_Acc_SetFlags", "", None
+    )
+
+    Dwci_Acc_SetFlag_DataType = Symbol(
+        [0x1E7F8], [0x22DB278], None, "Dwci_Acc_SetFlag_DataType", "", None
+    )
+
+    Dwci_SetBuddyFriendData = Symbol(
+        [0x1E81C], [0x22DB29C], None, "Dwci_SetBuddyFriendData", "", None
+    )
+
+    Dwci_SetReverseBuddyFlag = Symbol(
+        [0x1E848], [0x22DB2C8], None, "Dwci_SetReverseBuddyFlag", "", None
+    )
+
+    Dwci_SetExpIsBuddyFriendFlag = Symbol(
+        [0x1E878], [0x22DB2F8], None, "Dwci_SetExpIsBuddyFriendFlag", "", None
+    )
+
+    Dwci_SetSentBuddyReqFlag = Symbol(
+        [0x1E8A8], [0x22DB328], None, "Dwci_SetSentBuddyReqFlag", "", None
+    )
+
+    Dwc_Acc_CreateFriendKey = Symbol(
+        [0x1E8D8], [0x22DB358], None, "Dwc_Acc_CreateFriendKey", "", None
+    )
+
+    Dwc_CheckFriendKey = Symbol(
+        [0x1E960], [0x22DB3E0], None, "Dwc_CheckFriendKey", "", None
+    )
+
+    Dwc_Acc_CheckFriendKey = Symbol(
+        [0x1E980], [0x22DB400], None, "Dwc_Acc_CheckFriendKey", "", None
+    )
+
+    Dwc_Acc_FriendKeyToGsProfileId = Symbol(
+        [0x1E9C4], [0x22DB444], None, "Dwc_Acc_FriendKeyToGsProfileId", "", None
+    )
+
+    Dwc_FriendKeyToString = Symbol(
+        [0x1EA18], [0x22DB498], None, "Dwc_FriendKeyToString", "", None
+    )
+
+    Dwci_Acc_U64ToString32 = Symbol(
+        [0x1EA38], [0x22DB4B8], None, "Dwci_Acc_U64ToString32", "", None
+    )
+
+    Dwci_Acc_LoginIdToUserName = Symbol(
+        [0x1EAA8], [0x22DB528], None, "Dwci_Acc_LoginIdToUserName", "", None
+    )
+
+    Dwci_Acc_CreateUserData = Symbol(
+        [0x1EB38], [0x22DB5B8], None, "Dwci_Acc_CreateUserData", "", None
+    )
+
+    Dwci_Acc_CreateTempLoginId = Symbol(
+        [0x1EBB4], [0x22DB634], None, "Dwci_Acc_CreateTempLoginId", "", None
+    )
+
+    Dwci_Acc_CheckConsoleUserId = Symbol(
+        [0x1EC78], [0x22DB6F8], None, "Dwci_Acc_CheckConsoleUserId", "", None
+    )
+
+    Dwci_Acc_IsValidLoginId = Symbol(
+        [0x1ECE4], [0x22DB764], None, "Dwci_Acc_IsValidLoginId", "", None
+    )
+
+    Dwci_Acc_IsAuthentic = Symbol(
+        [0x1ECFC], [0x22DB77C], None, "Dwci_Acc_IsAuthentic", "", None
+    )
+
+    Dwc_IsValidFriendData = Symbol(
+        [0x1ED0C], [0x22DB78C], None, "Dwc_IsValidFriendData", "", None
+    )
+
+    Dwci_Acc_IsValidFriendData = Symbol(
+        [0x1ED24], [0x22DB7A4], None, "Dwci_Acc_IsValidFriendData", "", None
+    )
+
+    Dwc_CreateUserData = Symbol(
+        [0x1ED30], [0x22DB7B0], None, "Dwc_CreateUserData", "", None
+    )
+
+    Dwc_CheckUserData = Symbol(
+        [0x1ED3C], [0x22DB7BC], None, "Dwc_CheckUserData", "", None
+    )
+
+    Dwc_CheckHasProfile = Symbol(
+        [0x1ED80], [0x22DB800], None, "Dwc_CheckHasProfile", "", None
+    )
+
+    Dwc_CheckValidConsole = Symbol(
+        [0x1EDB0], [0x22DB830], None, "Dwc_CheckValidConsole", "", None
+    )
+
+    Dwci_Acc_SetLoginIdToUserData = Symbol(
+        [0x1EE18], [0x22DB898], None, "Dwci_Acc_SetLoginIdToUserData", "", None
+    )
+
+    Dwc_CheckDirtyFlag = Symbol(
+        [0x1EE70], [0x22DB8F0], None, "Dwc_CheckDirtyFlag", "", None
+    )
+
+    Dwci_Acc_IsDirty = Symbol(
+        [0x1EE7C], [0x22DB8FC], None, "Dwci_Acc_IsDirty", "", None
+    )
+
+    Dwc_ClearDirtyFlag = Symbol(
+        [0x1EE94], [0x22DB914], None, "Dwc_ClearDirtyFlag", "", None
+    )
+
+    Dwci_Acc_ClearDirty = Symbol(
+        [0x1EEA0], [0x22DB920], None, "Dwci_Acc_ClearDirty", "", None
+    )
+
+    Dwc_GetFriendKey = Symbol(
+        [0x1EEE4], [0x22DB964], None, "Dwc_GetFriendKey", "", None
+    )
+
+    Dwc_GetGsProfileId = Symbol(
+        [0x1EF0C], [0x22DB98C], None, "Dwc_GetGsProfileId", "", None
+    )
+
+    Dwc_CreateFriendKey = Symbol(
+        [0x1EF6C], [0x22DB9EC], None, "Dwc_CreateFriendKey", "", None
+    )
+
+    Dwc_CreateFriendKeyToken = Symbol(
+        [0x1EF9C], [0x22DBA1C], None, "Dwc_CreateFriendKeyToken", "", None
+    )
+
+    Dwc_CreateExchangeToken = Symbol(
+        [0x1EFD8], [0x22DBA58], None, "Dwc_CreateExchangeToken", "", None
+    )
+
+    Dwc_SetGsProfileId = Symbol(
+        [0x1F02C], [0x22DBAAC], None, "Dwc_SetGsProfileId", "", None
+    )
+
+    Dwc_LoginIdToUserName = Symbol(
+        [0x1F060], [0x22DBAE0], None, "Dwc_LoginIdToUserName", "", None
+    )
+
+    Dwc_IsEqualFriendData = Symbol(
+        [0x1F078], [0x22DBAF8], None, "Dwc_IsEqualFriendData", "", None
+    )
+
+    Dwc_ReportFriendData = Symbol(
+        [0x1F15C], [0x22DBBDC], None, "Dwc_ReportFriendData", "", None
+    )
+
+    Dwc_ReportUserData = Symbol(
+        [0x1F1E4], [0x22DBC64], None, "Dwc_ReportUserData", "", None
+    )
+
+    Dwc_Auth_SetCustomNas = Symbol(
+        [0x1F204], [0x22DBC84], None, "Dwc_Auth_SetCustomNas", "", None
+    )
+
+    Dwc_Auth_Create = Symbol([0x1F224], [0x22DBCA4], None, "Dwc_Auth_Create", "", None)
+
+    Dwci_Auth_StartThread = Symbol(
+        [0x1F348], [0x22DBDC8], None, "Dwci_Auth_StartThread", "", None
+    )
+
+    Dwc_Auth_Abort = Symbol([0x1F3FC], [0x22DBE7C], None, "Dwc_Auth_Abort", "", None)
+
+    Dwc_Auth_Destroy = Symbol(
+        [0x1F488], [0x22DBF08], None, "Dwc_Auth_Destroy", "", None
+    )
+
+    Dwc_Auth_Join = Symbol([0x1F4E0], [0x22DBF60], None, "Dwc_Auth_Join", "", None)
+
+    Dwc_Auth_GetError = Symbol(
+        [0x1F510], [0x22DBF90], None, "Dwc_Auth_GetError", "", None
+    )
+
+    Dwc_Auth_GetResult = Symbol(
+        [0x1F55C], [0x22DBFDC], None, "Dwc_Auth_GetResult", "", None
+    )
+
+    Dwci_Auth_Start = Symbol([0x1F5EC], [0x22DC06C], None, "Dwci_Auth_Start", "", None)
+
+    Dwci_Auth_Thread = Symbol(
+        [0x1F6FC], [0x22DC17C], None, "Dwci_Auth_Thread", "", None
+    )
+
+    Dwci_Auth_ParseHttp = Symbol(
+        [0x1F9B0], [0x22DC430], None, "Dwci_Auth_ParseHttp", "", None
+    )
+
+    Dwci_Auth_FillResult = Symbol(
+        [0x1FB88], [0x22DC608], None, "Dwci_Auth_FillResult", "", None
+    )
+
+    Dwc_Auth_Prepare_FirstPost = Symbol(
+        [0x1FE50], [0x22DC8D0], None, "Dwc_Auth_Prepare_FirstPost", "", None
+    )
+
+    Dwci_Auth_SetError = Symbol(
+        [0x1FFF4], [0x22DCA74], None, "Dwci_Auth_SetError", "", None
+    )
+
+    Dwc_Auth_SetCalInfoToHttp = Symbol(
+        [0x20060], [0x22DCAE0], None, "Dwc_Auth_SetCalInfoToHttp", "", None
+    )
+
+    Dwc_Http_Create = Symbol([0x2065C], [0x22DD0DC], None, "Dwc_Http_Create", "", None)
+
+    Dwc_Http_FinishHeader = Symbol(
+        [0x20778], [0x22DD1F8], None, "Dwc_Http_FinishHeader", "", None
+    )
+
+    Dwc_Http_StartThread = Symbol(
+        [0x20810], [0x22DD290], None, "Dwc_Http_StartThread", "", None
+    )
+
+    Dwc_Http_Abort = Symbol([0x208CC], [0x22DD34C], None, "Dwc_Http_Abort", "", None)
+
+    Dwc_Http_GetRecvProgress = Symbol(
+        [0x20928], [0x22DD3A8], None, "Dwc_Http_GetRecvProgress", "", None
+    )
+
+    Dwci_Http_InitCpsSocket = Symbol(
+        [0x209A0], [0x22DD420], None, "Dwci_Http_InitCpsSocket", "", None
+    )
+
+    Dwci_Http_Resolve = Symbol(
+        [0x209F8], [0x22DD478], None, "Dwci_Http_Resolve", "", None
+    )
+
+    Dwci_Http_Thread = Symbol(
+        [0x20AF4], [0x22DD574], None, "Dwci_Http_Thread", "", None
+    )
+
+    Dwc_Http_Destroy = Symbol(
+        [0x20E10], [0x22DD890], None, "Dwc_Http_Destroy", "", None
+    )
+
+    Dwci_Http_WriteBasicHeader = Symbol(
+        [0x20EC4], [0x22DD944], None, "Dwci_Http_WriteBasicHeader", "", None
+    )
+
+    Dwc_Http_Add_HeaderItem = Symbol(
+        [0x20F84], [0x22DDA04], None, "Dwc_Http_Add_HeaderItem", "", None
+    )
+
+    Dwc_Http_Add_PostBase64Item = Symbol(
+        [0x21060], [0x22DDAE0], None, "Dwc_Http_Add_PostBase64Item", "", None
+    )
+
+    Dwc_Http_Add_Body = Symbol(
+        [0x2116C], [0x22DDBEC], None, "Dwc_Http_Add_Body", "", None
+    )
+
+    Dwci_Http_CpsCallback = Symbol(
+        [0x211F4], [0x22DDC74], None, "Dwci_Http_CpsCallback", "", None
+    )
+
+    Dwci_Http_AllocBuffer = Symbol(
+        [0x21200], [0x22DDC80], None, "Dwci_Http_AllocBuffer", "", None
+    )
+
+    Dwci_Http_FreeBuffer = Symbol(
+        [0x21258], [0x22DDCD8], None, "Dwci_Http_FreeBuffer", "", None
+    )
+
+    Dwci_Http_ReallocBuffer = Symbol(
+        [0x21298], [0x22DDD18], None, "Dwci_Http_ReallocBuffer", "", None
+    )
+
+    Dwci_Http_SetHostinfo = Symbol(
+        [0x21340], [0x22DDDC0], None, "Dwci_Http_SetHostinfo", "", None
+    )
+
+    Dwc_Http_AddResult = Symbol(
+        [0x21494], [0x22DDF14], None, "Dwc_Http_AddResult", "", None
+    )
+
+    Dwc_Http_ParseResult = Symbol(
+        [0x215E8], [0x22DE068], None, "Dwc_Http_ParseResult", "", None
+    )
+
+    Dwc_Http_GetResult = Symbol(
+        [0x21888], [0x22DE308], None, "Dwc_Http_GetResult", "", None
+    )
+
+    Dwc_Http_GetBase64DecodedResult = Symbol(
+        [0x218E0], [0x22DE360], None, "Dwc_Http_GetBase64DecodedResult", "", None
+    )
+
+    Dwc_Http_GetRawResult = Symbol(
+        [0x21934], [0x22DE3B4], None, "Dwc_Http_GetRawResult", "", None
+    )
+
+    Dwc_Http_Disconnect = Symbol(
+        [0x21974], [0x22DE3F4], None, "Dwc_Http_Disconnect", "", None
+    )
+
+    Dwc_Netcheck_Create = Symbol(
+        [0x219FC], [0x22DE47C], None, "Dwc_Netcheck_Create", "", None
+    )
+
+    Dwc_Netcheck_Destroy = Symbol(
+        [0x21ADC], [0x22DE55C], None, "Dwc_Netcheck_Destroy", "", None
+    )
+
+    Dwc_Netcheck_Abort = Symbol(
+        [0x21BD4], [0x22DE654], None, "Dwc_Netcheck_Abort", "", None
+    )
+
+    Dwc_Netcheck_GetError = Symbol(
+        [0x21C3C], [0x22DE6BC], None, "Dwc_Netcheck_GetError", "", None
+    )
+
+    Dwc_Netcheck_GetReturnCode = Symbol(
+        [0x21C7C], [0x22DE6FC], None, "Dwc_Netcheck_GetReturnCode", "", None
+    )
+
+    Dwci_Netcheck_StartThread = Symbol(
+        [0x21C94], [0x22DE714], None, "Dwci_Netcheck_StartThread", "", None
+    )
+
+    Dwci_Netcheck_Thread = Symbol(
+        [0x21D1C], [0x22DE79C], None, "Dwci_Netcheck_Thread", "", None
+    )
+
+    Dwci_Netcheck_SetError = Symbol(
+        [0x22C30], [0x22DF6B0], None, "Dwci_Netcheck_SetError", "", None
+    )
+
+    Dwc_Auth_SetNasTimeDiff = Symbol(
+        [0x22C74], [0x22DF6F4], None, "Dwc_Auth_SetNasTimeDiff", "", None
+    )
+
+    Dwc_Svl_Init = Symbol([0x22E90], [0x22DF910], None, "Dwc_Svl_Init", "", None)
+
+    Dwc_Svl_Cleanup = Symbol([0x22F28], [0x22DF9A8], None, "Dwc_Svl_Cleanup", "", None)
+
+    Dwc_Svl_GetTokenAsync = Symbol(
+        [0x22F74], [0x22DF9F4], None, "Dwc_Svl_GetTokenAsync", "", None
+    )
+
+    Dwc_Svl_Process = Symbol([0x231DC], [0x22DFC5C], None, "Dwc_Svl_Process", "", None)
+
+    Dwci_Svl_ParseHttp = Symbol(
+        [0x232B0], [0x22DFD30], None, "Dwci_Svl_ParseHttp", "", None
+    )
+
+    Dwc_Util_Base64Encode = Symbol(
+        [0x234CC], [0x22DFF4C], None, "Dwc_Util_Base64Encode", "", None
+    )
+
+    Dwc_Util_Base64Decode = Symbol(
+        [0x23654], [0x22E00D4], None, "Dwc_Util_Base64Decode", "", None
+    )
+
+    Dwc_CleanupInet = Symbol(
+        [0x23914, 0x23FF0], [0x22E0394, 0x22E0A70], None, "Dwc_CleanupInet", "", None
+    )
+
+    Dwci_GetAllocateHeader = Symbol(
+        [0x2392C], [0x22E03AC], None, "Dwci_GetAllocateHeader", "", None
+    )
+
+    Dwci_SetAllocateHeader = Symbol(
+        [0x23934], [0x22E03B4], None, "Dwci_SetAllocateHeader", "", None
+    )
+
+    Dwci_GetAllocateSize = Symbol(
+        [0x2394C], [0x22E03CC], None, "Dwci_GetAllocateSize", "", None
+    )
+
+    Dwc_SetMemFunc = Symbol([0x2395C], [0x22E03DC], None, "Dwc_SetMemFunc", "", None)
+
+    Dwc_Alloc = Symbol([0x23970], [0x22E03F0], None, "Dwc_Alloc", "", None)
+
+    Dwc_AllocEx = Symbol([0x23980], [0x22E0400], None, "Dwc_AllocEx", "", None)
+
+    Dwc_Free = Symbol([0x239B4], [0x22E0434], None, "Dwc_Free", "", None)
+
+    Dwc_Realloc = Symbol([0x239F0], [0x22E0470], None, "Dwc_Realloc", "", None)
+
+    Dwc_ReallocEx = Symbol([0x23A04], [0x22E0484], None, "Dwc_ReallocEx", "", None)
+
+    Dwci_GsMalloc = Symbol([0x23A70], [0x22E04F0], None, "Dwci_GsMalloc", "", None)
+
+    Dwci_GsRealloc = Symbol([0x23A84], [0x22E0504], None, "Dwci_GsRealloc", "", None)
+
+    Dwci_GsFree = Symbol([0x23AA0], [0x22E0520], None, "Dwci_GsFree", "", None)
+
+    Dwci_GsMemalign = Symbol([0x23AB8], [0x22E0538], None, "Dwci_GsMemalign", "", None)
+
+    Dwc_InitInetEx = Symbol([0x23ACC], [0x22E054C], None, "Dwc_InitInetEx", "", None)
+
+    Dwc_InitInet = Symbol([0x23B30], [0x22E05B0], None, "Dwc_InitInet", "", None)
+
+    Dwc_SetAuthServer = Symbol(
+        [0x23B48], [0x22E05C8], None, "Dwc_SetAuthServer", "", None
+    )
+
+    Dwc_ConnectInetAsync = Symbol(
+        [0x23B98], [0x22E0618], None, "Dwc_ConnectInetAsync", "", None
+    )
+
+    Dwc_DebugConnectInetAsync = Symbol(
+        [0x23C4C], [0x22E06CC], None, "Dwc_DebugConnectInetAsync", "", None
+    )
+
+    Dwc_CheckInet = Symbol([0x23CA8], [0x22E0728], None, "Dwc_CheckInet", "", None)
+
+    Dwc_ProcessInet = Symbol([0x23D00], [0x22E0780], None, "Dwc_ProcessInet", "", None)
+
+    Dwc_GetInetStatus = Symbol(
+        [0x23E1C], [0x22E089C], None, "Dwc_GetInetStatus", "", None
+    )
+
+    Dwc_CleanupInetAsync = Symbol(
+        [0x2407C], [0x22E0AFC], None, "Dwc_CleanupInetAsync", "", None
+    )
+
+    Dwci_CheckDisconnected = Symbol(
+        [0x24140], [0x22E0BC0], None, "Dwci_CheckDisconnected", "", None
+    )
+
+    Dwc_GetLinkLevel = Symbol(
+        [0x2416C], [0x22E0BEC], None, "Dwc_GetLinkLevel", "", None
+    )
+
+    Dwc_GetApInfo = Symbol([0x24178], [0x22E0BF8], None, "Dwc_GetApInfo", "", None)
+
+    Dwc_UpdateConnection = Symbol(
+        [0x242D8], [0x22E0D58], None, "Dwc_UpdateConnection", "", None
+    )
+
+    Dwc_GetIngamesnCheckResult = Symbol(
+        [0x2432C], [0x22E0DAC], None, "Dwc_GetIngamesnCheckResult", "", None
+    )
+
+    Dwc_SvlGetTokenAsync = Symbol(
+        [0x2433C], [0x22E0DBC], None, "Dwc_SvlGetTokenAsync", "", None
+    )
+
+    Dwc_SvlProcess = Symbol([0x243B0], [0x22E0E30], None, "Dwc_SvlProcess", "", None)
+
+    Dwc_SvlAbort = Symbol([0x243D4], [0x22E0E54], None, "Dwc_SvlAbort", "", None)
+
+    Dwc_NasLoginAsync = Symbol(
+        [0x243EC], [0x22E0E6C], None, "Dwc_NasLoginAsync", "", None
+    )
+
+    Dwc_NasLoginProcess = Symbol(
+        [0x24404], [0x22E0E84], None, "Dwc_NasLoginProcess", "", None
+    )
+
+    Dwci_BM_GetApInfo = Symbol(
+        [0x309BC], [0x22ED43C], None, "Dwci_BM_GetApInfo", "", None
+    )
+
+    Dwci_BM_GetWiFiInfo = Symbol(
+        [0x309E8], [0x22ED468], None, "Dwci_BM_GetWiFiInfo", "", None
+    )
+
+    Dwci_BM_SetWiFiInfo = Symbol(
+        [0x30AC0], [0x22ED540], None, "Dwci_BM_SetWiFiInfo", "", None
+    )
+
+    Dwci_BackuplInit = Symbol(
+        [0x30B9C], [0x22ED61C], None, "Dwci_BackuplInit", "", None
+    )
+
+    Dwci_BackuplRead = Symbol(
+        [0x30BE0], [0x22ED660], None, "Dwci_BackuplRead", "", None
+    )
+
+    Dwci_BackuplWritePage = Symbol(
+        [0x30C0C], [0x22ED68C], None, "Dwci_BackuplWritePage", "", None
+    )
+
+    Dwci_BackuplWriteAll = Symbol(
+        [0x30C94], [0x22ED714], None, "Dwci_BackuplWriteAll", "", None
+    )
+
+    Dwci_BackuplSetWiFi = Symbol(
+        [0x30D28], [0x22ED7A8], None, "Dwci_BackuplSetWiFi", "", None
+    )
+
+    Dwci_BackuplConvMaskCidr = Symbol(
+        [0x30D40], [0x22ED7C0], None, "Dwci_BackuplConvMaskCidr", "", None
+    )
+
+    Dwci_BackuplConvMaskAddr = Symbol(
+        [0x30D84], [0x22ED804], None, "Dwci_BackuplConvMaskAddr", "", None
+    )
+
+    Dwc_BackuplCheckSsid = Symbol(
+        [0x30DB4], [0x22ED834], None, "Dwc_BackuplCheckSsid", "", None
+    )
+
+    Dwc_BackuplCheckIp = Symbol(
+        [0x30DDC], [0x22ED85C], None, "Dwc_BackuplCheckIp", "", None
+    )
+
+    Dwc_BackuplCheckAddress = Symbol(
+        [0x30E40], [0x22ED8C0], None, "Dwc_BackuplCheckAddress", "", None
+    )
+
+    NVramm_ExecuteCommand = Symbol(
+        [0x30E6C], [0x22ED8EC], None, "NVramm_ExecuteCommand", "", None
+    )
+
+    ReadNvram = Symbol([0x312D8], [0x22EDD58], None, "ReadNvram", "", None)
+
+    WriteNvram = Symbol([0x31368], [0x22EDDE8], None, "WriteNvram", "", None)
+
+    verify = Symbol([0x313E4], [0x22EDE64], None, "verify", "", None)
+
+    WriteDisable = Symbol([0x31430], [0x22EDEB0], None, "WriteDisable", "", None)
+
+    Callback_NVram = Symbol([0x3149C], [0x22EDF1C], None, "Callback_NVram", "", None)
+
+    Dwci_BackuplConvWifiInfo = Symbol(
+        [0x314CC], [0x22EDF4C], None, "Dwci_BackuplConvWifiInfo", "", None
+    )
+
+    Dwci_BackuplGetWifi = Symbol(
+        [0x3158C], [0x22EE00C], None, "Dwci_BackuplGetWifi", "", None
+    )
+
+    Dwc_BM_Init = Symbol([0x31598], [0x22EE018], None, "Dwc_BM_Init", "", None)
+
+    CheckAp_Dwc = Symbol([0x318A0], [0x22EE320], None, "CheckAp_Dwc", "", None)
+
+    Init_Dwc = Symbol([0x319A0], [0x22EE420], None, "Init_Dwc", "", None)
+
+    InitPage_Dwc = Symbol([0x31A20], [0x22EE4A0], None, "InitPage_Dwc", "", None)
+
+    Dwci_Util_WiFiId_ScrambleUid = Symbol(
+        [0x31A4C], [0x22EE4CC], None, "Dwci_Util_WiFiId_ScrambleUid", "", None
+    )
+
+    Dwci_Auth_GetNewWiFiInfo = Symbol(
+        [0x31BD0], [0x22EE650], None, "Dwci_Auth_GetNewWiFiInfo", "", None
+    )
+
+    Dwci_Auth_MakeWiFiID = Symbol(
+        [0x31DAC], [0x22EE82C], None, "Dwci_Auth_MakeWiFiID", "", None
+    )
+
+    Dwci_Auth_UpDateWiFiID = Symbol(
+        [0x31DF0], [0x22EE870], None, "Dwci_Auth_UpDateWiFiID", "", None
+    )
+
+    Dwci_Auth_RemakeWiFiID = Symbol(
+        [0x31E40], [0x22EE8C0], None, "Dwci_Auth_RemakeWiFiID", "", None
+    )
+
+    Dwc_Auth_GetId = Symbol([0x31FE0], [0x22EEA60], None, "Dwc_Auth_GetId", "", None)
 
     SocketCastError = Symbol(
         [0x38508],
@@ -18730,6 +22079,12 @@ class NaOverlay0Functions:
         "Performs XOR encryption/decryption on a string, the keystream derived from srand(0x79707367) and repeatedly calling randrange(0x0, 0xFF).\n\nSeemingly called mostly for the 'passenc' field in DWC messages.\n\nr0: src\nr1: dest",
         None,
     )
+
+    CloseVeneer = _Deprecated("CloseVeneer", Soc_Close)
+
+    fcntl = _Deprecated("fcntl", Soc_Fcntl)
+
+    InitWfc = _Deprecated("InitWfc", Dwc_AC_Process)
 
 
 class NaOverlay0Data:
