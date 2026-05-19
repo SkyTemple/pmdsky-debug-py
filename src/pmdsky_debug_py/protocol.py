@@ -13761,12 +13761,637 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    Wbti_InitBitmap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbti_MergeBitmapIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbti_FindBitmapIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbti_GetPacketBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbti_SwitchNextCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbti_NotifySystemCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbti_TryCreateResponse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbti_CheckRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbti_CheckBlockResponse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_CallPacketSendHook: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbti_NotifyCompletionCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_CallPacketRecvHook: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_InitContext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_ResetContext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_PostCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_CancelCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_GetBitmapLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_RegisterBlockInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_UnregisterBlockInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_GetRegisteredCount: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_PrintBtList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_AidbitmapToAid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_InitParent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_InitChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_End: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_SetOwnAid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_MpParentSendHook: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_MpChildSendHook: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_MpParentRecvHook: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_MpChildRecvHook: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_RegisterBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_UnregisterBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_RequestSync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_GetBlockInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_GetBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_PutUserData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wbt_CancelCurrentCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_CommSetParentStateCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_CommGetParentState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_CommGetChildUser: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_CommIsBootable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_CommResponseRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommChangeParentState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommChangeParentStateCallbackOnly: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommParentCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommParentRecvDataPerChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommParentRecvData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommParentSendMsg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommParentSendDlFileInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ReloadCache: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommParentSendBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommParentSendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_Calc_SendBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_Calc_NextSendBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsChildAidValid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommCallParentError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_GetSegmentLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_ReadSegment: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ReadSegmentHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_RegisterFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_MakeDownloadFileInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SetSegmentInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_MakeBlockInfoTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_Get_BlockInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_IsAbleToRecv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsAbleToLoad: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_BlockHeaderEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_Calc_Cksum: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_MakeGameInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ReadIconInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_UpdateGameInfoMember: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Mystrlen_MB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_AddGameInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_InitSendGameInfoStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ClearSendStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_SendGameInfoBeacon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ReadyBeaconSendStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_InitSendFixedBeacon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SendFixedBeacon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_InitSendVolatBeacon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SendVolatBeacon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ChangeScanChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_IsSendEnabled: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_OnInitializeDone: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_EndCommon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ParentCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ChildPortCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ChildCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_GetBeaconPeriodDispersion: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_IsCommSizeValid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_SetParentCommParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_StartCommon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_StartParentCore: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_StartParentFromIdle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CallReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_OnReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CommEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_EndToIdle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MB_DisconnectChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SetMaxScanTime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SetMpData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SendMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_GetGgid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_GetTgid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_GetAttribute: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_IsStarted: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_CheckWmErrcode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_InitCache: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_AttachCacheBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_MakeParentSendBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_TaskThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_InitTaskThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_IsTaskAvailable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_InitTaskInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ReadFromCache: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SetTask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_EndTaskThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SetChildMpMaxSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SetParentPieceBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ClearParentPieceBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_SetRecvBufferFromChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MBi_ReceiveRequestDataPiece: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsGetAllRequestData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     reset_network_vars: Symbol[
         Optional[list[int]],
         None,
     ]
 
     OS_YieldThread2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Empty_Func_Cps: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -14666,37 +15291,37 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    socket: Symbol[
+    Soc_Socket: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    bind: Symbol[
+    Soc_Bind: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    connect: Symbol[
+    Soc_Connect: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    recv: Symbol[
+    Soc_Recv: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    recvfrom: Symbol[
+    Soc_RecvFrom: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    send: Symbol[
+    Soc_Send: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    sendto: Symbol[
+    Soc_SendTo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -14736,12 +15361,12 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    AllocFunc: Symbol[
+    AllocFunc_Socl: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    FreeFunc: Symbol[
+    FreeFunc_Socl: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15616,7 +16241,7 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    Dwc_AC_GetApData: Symbol[
+    Dwc_AC_GetApSpotInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15631,7 +16256,7 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    Dwc_AC_CheckWiFiStation: Symbol[
+    Dwc_AC_SetSpecifyApEx: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15691,12 +16316,12 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    Free_Disused: Symbol[
+    Free_Disused_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CheckDuplicate: Symbol[
+    CheckDuplicate_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15711,32 +16336,32 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    CompareList: Symbol[
+    CompareList_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CompareListDiff: Symbol[
+    CompareListDiff_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    AddList: Symbol[
+    AddList_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SetDataListTail: Symbol[
+    SetDataListTail_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    UpDateList: Symbol[
+    UpDateList_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SortList: Symbol[
+    SortList_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15751,32 +16376,32 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    ConnectStart: Symbol[
+    ConnectStart_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ConnectAP: Symbol[
+    ConnectAP_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetConnectType: Symbol[
+    GetConnectType_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetPowerMode: Symbol[
+    GetPowerMode_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetAuthMode: Symbol[
+    GetAuthMode_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetWepKey: Symbol[
+    GetWepKey_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15786,12 +16411,12 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    DisConnectAP: Symbol[
+    DisConnectAP_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CloseSocket: Symbol[
+    CloseSocket_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15806,22 +16431,22 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetProgramaError: Symbol[
+    GetProgramaError_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetIrregularError: Symbol[
+    GetIrregularError_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetNotFoundAP: Symbol[
+    GetNotFoundAP_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetNotFoundInet: Symbol[
+    GetNotFoundInet_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15836,27 +16461,27 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    MakeAroundList: Symbol[
+    MakeAroundList_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    MakeStealthList: Symbol[
+    MakeStealthList_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    MakeUserList: Symbol[
+    MakeUserList_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    MakeDifferChannelList: Symbol[
+    MakeDifferChannelList_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CheckDifferChannelStart: Symbol[
+    CheckDifferChannelStart_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15886,47 +16511,47 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    SearchStart: Symbol[
+    SearchStart_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SearchAround: Symbol[
+    SearchAround_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SearchAround2ndLap: Symbol[
+    SearchAround2ndLap_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SearchDifferChannel: Symbol[
+    SearchDifferChannel_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SearchStealth: Symbol[
+    SearchStealth_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    NextSearchCheck: Symbol[
+    NextSearchCheck_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SearchEndCheck: Symbol[
+    SearchEndCheck_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CheckStartStealthSearch: Symbol[
+    CheckStartStealthSearch_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ScanStart: Symbol[
+    ScanStart_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15941,52 +16566,52 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    ConnectTestStart: Symbol[
+    ConnectTestStart_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetIpAddress: Symbol[
+    GetIpAddress_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ConnectTestCreate: Symbol[
+    ConnectTestCreate_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ConnectTestProcess: Symbol[
+    ConnectTestProcess_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ConnectTestEnd: Symbol[
+    ConnectTestEnd_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ConnectTestRetry: Symbol[
+    ConnectTestRetry_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    MakeSocConfig: Symbol[
+    MakeSocConfig_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ConvAddress: Symbol[
+    ConvAddress_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ConvNetMask: Symbol[
+    ConvNetMask_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    CheckSetDns: Symbol[
+    CheckSetDns_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16016,27 +16641,72 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    DecodeSsid: Symbol[
+    DecodeSsid_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    MakeShopWepKey: Symbol[
+    MakeShopWepKey_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    MakeUsbWepKey: Symbol[
+    MakeUsbWepKey_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    eb64: Symbol[
+    CodeToValue_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    db64: Symbol[
+    Db64_Dwc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WdsGetRssi8: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WdsScanCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_GetWorkAreaSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_Initialize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_End: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_StartScan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_EndScan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_GetApInfoByIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_GetApInfoAll: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16057,6 +16727,41 @@ class Overlay0FunctionsProtocol(Protocol):
     ]
 
     Dwc_AC_CleanupGetWdsInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsValidApnum: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_Initialize_CB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_StartScan_CB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_EndScan_CB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_End_CB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Wds_Error_End_CB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Init: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16341,6 +17046,11 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    Dwc_Auth_GetCustomNas: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Dwc_Auth_Create: Symbol[
         Optional[list[int]],
         None,
@@ -16396,12 +17106,22 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    Dwc_Auth_Prepare_FirstPost: Symbol[
+    Dwci_Auth_Prepare_FirstPost: Symbol[
         Optional[list[int]],
         None,
     ]
 
     Dwci_Auth_SetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_GetCalInfoFromNVram: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_Auth_GetCalInfoFromWiFiInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16431,7 +17151,7 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    Dwc_Http_GetRecvProgress: Symbol[
+    Dwci_Http_Yield: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16442,6 +17162,11 @@ class Overlay0FunctionsProtocol(Protocol):
     ]
 
     Dwci_Http_Resolve: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Http_CheckHeaderReceived: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16601,17 +17326,37 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    Dwc_Util_Base64Encode: Symbol[
+    Dwc_Auth_Base64Encode: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Dwc_Util_Base64Decode: Symbol[
+    Dwc_Auth_Base64Decode: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Dwc_CleanupInet: Symbol[
+    Dwc_GetLastError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetLastErrorEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ClearError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IsError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetError: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16721,6 +17466,11 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    Dwc_CleanupInet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Dwc_CleanupInetAsync: Symbol[
         Optional[list[int]],
         None,
@@ -16761,17 +17511,1147 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    Dwc_SvlAbort: Symbol[
+    Dwci_NdAlloc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Dwc_NasLoginAsync: Symbol[
+    Dwci_NdFree: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Dwc_NasLoginProcess: Symbol[
+    Dwci_NdCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NdCleanupCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SvlTokenWaitThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_NdInitAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_NdCleanupAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_NdSetAttr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_NdGetFileListNumAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_NdGetFileListAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_NdGetFileAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_NdCancelAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_SetCommonKeyValueString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_AddCommonKeyValueString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetCommonValueString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetMathRand32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_WStrLen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_InitFriendsMatch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ShutdownFriendsMatch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ProcessFriendsMatch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_LoginAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_UpdateServersAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CloseConnectionHard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetMyAid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetAidList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_IsValidAid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GT2Startup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetGT2Connection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetConnectionAid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetConnectionIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GT2GetConnectionListIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ClearGT2ConnectionList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetGT2ConnectionByIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetGT2ConnectionByProfileID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetConnectionInfoByIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IsValidAid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ResetMyAid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_ForceShutdown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_DeleteAid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleGpError_Common: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleGT2Error: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LoginCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_UpdateServersCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpErrorCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpRecvBuddyMessageCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GT2ReceivedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GT2ClosedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GT2PingCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GT2SocketErrorCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LoginInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LoginAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LoginProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetUserData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_StopLogin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ShutdownLogin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CloseLogin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleGpError_Login: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpConnectCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RemoteAuthCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RemoteLogin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RemoteLoginProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpGetInfoCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CheckLogin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetFriendStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetFriendStatusSC: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_DeleteBuddyFriendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_SetBuddyFriendCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FriendInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FriendProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_UpdateServersAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_StopFriendProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpRecvBuddyRequestCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpRecvBuddyAuthCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpRecvBuddyStatusCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetProfileIdFromList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetFriendListIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_InitGpProcessCount: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetGpStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetGpStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ShutdownFriend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CloseFriendProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_UpdateFriendReq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_EndUpdateServers: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_DeleteFriendFromList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RefreshFriendListForth: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RefreshFriendListAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpSendBuddyRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetFriendBuddyStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleGpError_Friend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpProfileSearchCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpGetInfoCallback_RecvBuddyRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpGetInfoCallback_RecvAuthMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetPersCallbackLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BeginCloseStatsConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_EndCloseStatsConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetReverseBuddiesCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NnFreeNegotiateList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MatchInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2Startup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SendStateChanged: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MatchProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GT2UnrecognizedMessageCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GT2ConnectAttemptCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GT2ConnectedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MatchGpRecvBuddyMsgCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_StopResendingMatchCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_StopMatching: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ClearQR2Key: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessMatchSynPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessMatchClosing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessMatchScClosing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_DeleteHostByProfileID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_DeleteHostByIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetNumValidConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetAllAidList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetValidAidList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GpSetServerStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ShutdownMatch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IsShutdownMatch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ResetMatchParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CloseMatching: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SbUpdateAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetDefaultMatchFilter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NnStartupAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_DoNatNegotiationAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SendMatchCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SendSbMsgCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SendGpBuddyMsgCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetGpBuddyAdditionalMsg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessRecvMatchCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CheckResvCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessResvOK: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MakeBackupServerData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleMatchCommandError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SendResvCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SendResvCommandToFriend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RetryReserving: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CancelReservation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CancelPreConnectedServerProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CancelPreConnectedClientProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ChangeToClient: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_PostProcessConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AreAllBuddies: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FinishCancelMatching: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_InvalidateReservation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RestartFromCancel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RestartFromTimeout: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ResumeMatching: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CloseCancelHostAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CloseAllConnectionsByTimeout: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CloseShutdownClientSC: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SendMatchSynPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessMatchSynTimeout: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SendCancelMatchSynCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessCancelMatchSynCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessCancelMatchSynTimeout: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ClearGameMatchKeys: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetAidFromList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IsFriendByIdxList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetAidFromProfileID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetAidBitmask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_InitClWaitTimeout: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_InitOptMinCompParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessOptMinComp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleGpError_Match: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleSbError_Match: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleQR2Error: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleNnError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleNnResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleGT2Error_Match: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2ServerKeyCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2PlayerKeyCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2TeamKeyCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2KeyListCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2CountCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2AddErrorCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2PublicAddrCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2NatnegCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QR2ClientMsgCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NnProgressCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NnCompletedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessNnFailure: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetMatchCnt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetMatchCnt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetMatchStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_InitReliableQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CleanupReliableQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IsReliableQueueFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessReliableQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ProcessReliableQueueEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_InsertReliableQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_IsSendableReliable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SendReliable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_EncodeHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_DecodeHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_GetRequiredHeaderSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_InitTransport: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RecvCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_PingCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TransportProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ClearTransConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ShutdownTransport: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_GetTransConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_GetSendState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_GetRecvState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_Send: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_HandleReliableMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_HandleUnreliableMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_RecvDataHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_RecvDataBody: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_RecvSystemDataBody: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwcs_GetOutgoingBufferFreeSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_InitGhttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ShutdownGhttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_ProcessGhttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpCompletedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpProgressCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GhttpGetEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_GetGhttpDataEx2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_CancelGhttpRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HandleGhttpError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AppendDwcGhttpParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RemoveDwcGHttpParamEntry: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FindDwcGhttpParamEntryByReq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RemoveAllDwcGhttpParamEntry: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16846,22 +18726,22 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    ReadNvram: Symbol[
+    ReadNvram_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    WriteNvram: Symbol[
+    WriteNvram_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    verify: Symbol[
+    Verify_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    WriteDisable: Symbol[
+    WriteDisable_Dwc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -16931,6 +18811,596 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    Dwc_Auth_CheckWiFiIdNeedCreate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_FreeAttr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAttr_Dwc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NdSetAttr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetNChar_Dwc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DecodeChar_Dwc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_GetDecodeLenBase64: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_GetEncodeLenBase64: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_EncodeBase64: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_EecodeBase64: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StrAlloc_Dwc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NdStartup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NhttpCleanupCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NdCleanupAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NdCancelAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_GetApInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_GetDSdesc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_GetUserAgent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Req_Callback_Dwc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeHttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetupHttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RunHttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NdGetFileListNumAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NdGetFileListAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_NdGetFileAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_Response_Count: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_Response_Contents: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_Response_List: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_InitLockGlobal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_ExitLockGlobal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_LockGlobal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_UnlockGlobal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_InitHttpCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_ExitHttpCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_PrepareHttpCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_UnprepareHttpCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_KickThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_GetMacAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_Strlen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_Strncmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_Memclr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_Memcpy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_StrToInt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_IntToStr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_IntToStrFigure: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Ndi_HexToStrFigure: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_Startup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_CleanupAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_CleanupThreadProc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AddHdrList_Nhttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_GetHdrFromList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IncAscii_Nhttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckTagPost_Nhttp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_AddHeaderField: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_AddPostDataAscii: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_SetCaChain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SetReqQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_FindReqQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_FreeReqQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_AllFreeReqQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_GetReqFromReqQueue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_InitLockReqList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_ExitLockReqList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_LockReqList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_UnlockReqList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_CreateCommThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_DestroyCommThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_IdleCommThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_KickCommThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetupGetcharFromHdrRecvBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetcharFromHdrRecvBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_FindNextLineHdrRecvBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SkipSpaceHdrRecvBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_CompareTokenN_HdrRecvBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_LoadFromHdrRecvBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_IsRecvBufFull: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_RecvBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_RecvBufN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_CreateRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_DestroyRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DeleteStrList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_DestroyRequestObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_SendRequestAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_CancelRequestAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_CancelAllRequests: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_ResolveHostname: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_DestroyResponse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_GetHeaderValue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_GetHeaderField: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttp_GetBodyAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SslAuthCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SetSslseed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SocOpen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SocClose: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SocCloseWait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SocConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SocRecv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SocSend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_SocCancel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_Strcmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_Strnicmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_Strlen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_Memclr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_Memcpy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SaveBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SkipLineBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeSslConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PutSocketToCloseQue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearCloseQue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_CommThreadProc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_GetUrlEncodedSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_EncodeUrlChar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_StrToHex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_StrToInt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_IntToStr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_CompareToken: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_StrToNum: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nhttpi_MemFind: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SocketCastError: Symbol[
         Optional[list[int]],
         None,
@@ -16976,6 +19446,11 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    GoaGetLastError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SocketSetBlocking: Symbol[
         Optional[list[int]],
         None,
@@ -17006,7 +19481,377 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    GsiAvailableCheckThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpStartup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpCleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GHttpGetExA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GHttpCancelRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpInitialize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpDestroy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpSetCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpConnectPreAuthenticatedA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpDisconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpProfileSearchA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpGetInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpSendBuddyRequestA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpAuthBuddyRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpDenyBuddyRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpGetNumBuddies: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpGetBuddyStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpGetBuddyIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpIsBuddy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpDeleteBuddy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpSetStatusA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpSendBuddyMessageA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpGetReversBuddiesList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PasswordEncryptString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseStatsConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsStatsConnected: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PersistThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2Reject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2CreateSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2CloseSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2Think: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2Listen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2Accept: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2Connect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2Send: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2CloseConnectionHard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2CloseAllConnectionsHard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2GetLocalPort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2GetOutgoingBufferFreeSpace: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2GetSocketSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2SetUnrecognizedMessageCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2SetConnectionData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2GetConnectionData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2AddressToString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NnFreeNegotiateList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NnCancel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NnThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NnProcessData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_init_socketa: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_register_natneg_callback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_register_clientmessage_callback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_register_publicaddress_callback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_think: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_send_statechanged: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_shutdown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_keybuffer_add: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_buffer_add_int: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_parse_querya: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerGetIntValueA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerGetPublicInetAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerGetPublicQueryPort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerHasPrivateAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerGetPrivateInetAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerGetPrivateQueryPort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserLimitUpdateA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserSendMessageToServerA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserSendNatNegotiateCookieToServerA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserClear: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserGetServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserGetMyPublicIpAddr: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -20470,7 +23315,6245 @@ Overlay19Protocol = SectionProtocol[
 
 class Overlay2FunctionsProtocol(Protocol):
 
-    pass
+    InitWfcSettingsOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndInitList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetFirstObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndAppendListObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndPrependListObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndInsertListObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndRemoveListObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndGetNextListObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndGetPrevListObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FindContainHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FindListContainHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_FndInitHeapHead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_FndFinalizeHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRegionOfMBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveMBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InsertMBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitMBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitExpHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllocUsedBlockFromFreeBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ExpHeap_AllocFromHead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ExpHeap_AllocFromTail: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleRegion: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndCreateExpHeapEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndDestroyExpHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndAllocFromExpHeapEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndFreeToExpHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitFrameHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FrmHeap_AllocFromHead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FrmHeap_AllocFromTail: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FrmHeap_FreeHead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FrmHeap_FreeTail: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndCreateFrmHeapEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndDestroyFrmHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndAllocFromFrmHeapEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_FndFreeToFrmHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dFindBinaryBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetGlyphIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dFontInitUtf16: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dFontFindGlyphIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dFontGetCharWidthsFromIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dFontGetStringWidth: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dFontGetTextHeight: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dFontGetTextWidth: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCharIndex1D: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ObjSizeToShape: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearChar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LetterChar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawGlyphLine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawGlyph1D: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearContinuous: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearLine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearAreaLine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearArea1D: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitCharCanvas: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dCharCanvasDrawChar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dCharCanvasInitForBG: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dCharCanvasInitForObj1D: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dMapScrToCharText: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dMapScrToChar256x16Pltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dCalcRequiredObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_G2dArrangeObj1D: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dTextCanvasDrawString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dTextCanvasDrawTextAlign: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dTextCanvasDrawText: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dTextCanvasDrawTextRect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dGetUnpackedFont: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dUnpackNft: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dBitReaderRead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_G2dSplitCharUtf16: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BeginSleep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EndSleep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndUnlockChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndUnlockCapture: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndFreeAlarm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndInitResourceMgr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndPlayerSetPlayableSeqCount: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndPlayerSetAllocatableChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndPlayerCreateHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndPlayerStopSeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndHandleInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndHandleReleaseSeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndPlayerSetInitialVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndPlayerSetChannelPriority: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndPlayerSetTrackPitch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndPlayerSetSeqArcNo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndPlayerInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndPlayerMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndPlayerAllocSeqPlayer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndPlayerFreeSeqPlayer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndPlayerStartSeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndPlayerStopSeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndPlayerAllocHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitPlayer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InsertPlayerList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InsertPrioList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ForceStopSeq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllocSeqPlayer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ShutdownPlayer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayerHeapDisposeCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPlayerPriority: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndStrmFreeChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndStrmStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndStrmStop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndStrmSetVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ForceStopStrm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ShutdownStrm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndCaptureInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndCaptureMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndCaptureStop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndCaptureBeginSleep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndCaptureEndSleep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcInitOnMemory: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcSetCurrent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcGetCurrent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcGetSeqArcInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcGetBankInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcGetWaveArcInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcGetPlayerInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcGetFileSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcReadFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcGetFileAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcSetFileAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndHeapCreate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndHeapDestroy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndHeapClear: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndHeapAlloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitHeapSection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitHeap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NewSection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EraseSync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndArcLoadBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndArcLoadWaveArc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndArcLoadFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadBank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadWaveArc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadWaveArcTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisposeCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BankDisposeCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WaveArcDisposeCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WaveArcTableDisposeCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SingleWaveDisposeCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadSingleWave: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadSingleWaves: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcPlayerSetup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nns_SndArcPlayerStartSeqArc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StartSeqArc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndArcStrmMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreePlayer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ForceStopStrm_Arc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveCommandByPlayer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeCommandBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndSeqArcGetSeqInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndFaderInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndFaderSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndFaderGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndFaderUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Nnsi_SndFaderIsFinished: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Malloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Free: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aossi_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Init_Old: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aoss_ip_sta: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aoss_release: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aoss_data_init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aoss_set_error: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aoss_get_error: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aoss_seq_data_copy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aoss_check_str: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckAP_Aoss: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Set_ApInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeSendSeqID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_StatusExclusion: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecvMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AstsSetInitRes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AstsSetSecureRes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AstsRestartRes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DecodePacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckSeqID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckRecvSeqID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetProductInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aoss_get_bin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetWepData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetWpaData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetBssidData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetSecurityData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetSecurityType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AstsSetInitReq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AstsSetSecureReq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AstsRestartReq: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetStaData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PacketDataSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetPacketHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendPacketUdp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EncodeRC4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DecodeRC4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RC4init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RC4encrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    arcfour_byte: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    crc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    update_crc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    make_crc_table: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CryptSeqNo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AddKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Rotate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_SetIpAddr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Disconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Memcmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Memcpy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Memset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Recvfrom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Select: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Sendto: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Setsockopt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Socket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Bind: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Close: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Htonl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Htons: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Ntohl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Ntohs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Strlen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_Rand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_FD_Zero: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aoss_FD_Set: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Set_Wlla_Bss_Info: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Get_Wlla_Ssid_Param: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Set_Wlla_Link_Stat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aoss_apc_callback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AlarmCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aossi_InitLocal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aossi_EndLocal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aossi_Disconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aossi_WlanGetBssList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aossi_WlanConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aossi_Sleep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Aossi_Status: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apci_Notify: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apci_MoveIdleState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apc_GetApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apc_SearchStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apc_SearchEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apc_Disconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apc_End: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apc_Connect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apc_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Apc_GetState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoAlloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SoFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AtermApc_InitEventBuf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AtermApc_GetEvent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AtermApc_Callback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitAtermApcNetwork: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeAtermApcNetwork: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConnectAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisconnectAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckAccessPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ScanAP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendFrameViaInterface: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendBroadcast: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendFrame: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetFrameData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetElementData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetFirstElement: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetFrameData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetElementData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetSingleElement: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSearchCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCommandElement: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetSearchRes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetAdapterMac: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetMacEncKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetWLanSetElement: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AsciiToHex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StoreNetParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AutoConfigThreadEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AutoConfigThread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    keywrap_encrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    keywrap_decrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    aeskw_xor64: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RijndaelKeySetupEnc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RijndaelKeySetupDec: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RijndaelEncrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RijndaelDecrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MY_MD5Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MY_MD5Update: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MY_MD5Final: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5Transform: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Encode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Decode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5_Memcpy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5_Memset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5Encode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetTickCount: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Calloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Free: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PutHex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PutMac: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Atermi_ApConfigStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Atermi_ApConfigEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Atermi_ApConfigGetState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Atermi_ApConfigGetResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendNotify: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AnimelInitEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AnimelEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TaskAnime: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BtnlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BtnlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BtnlGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BtnlSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BtnlSetForce: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BtnlIsEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BtnlEnable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_BtnlDisable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Button_Disp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Button_TaskStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Button_TaskStart1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Button_TaskMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Button_TaskEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Button_TaskEnd1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Button_TaskRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CommentlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CommentlDispEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CommentlDelete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Char: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CmnlLoadResource: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CmnlStep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CmnlButton: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CmnlMsgDraw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CmnlMsgNameDraw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CmnlFontFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FocuslInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FocuslEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FocuslDisp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FocuslDisp4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FocuslDelete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HLlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HLlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HLlLoad: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HLlLoadSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HLlLoadList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Headline_TaskLoad: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IconlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IconlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Icon_TaskRenew: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KBlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KBlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KBlGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KBlSetErase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KBlSetInput: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KBlIsInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskStart0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskStart1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskStart2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskStart3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskStart4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TouchTriger: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TouchRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_PushCaps: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_PushShift: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_Touch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_ExchangeBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_Key: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_Disp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_ChangePage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_ChangeColor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_DispFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_MoveFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskEnd0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskEnd1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskEnd2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskEnd3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskEnd4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard_TaskEnd5: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KB10lInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KB10lEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KB10lGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KB10lSetErase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KB10lSetInput: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KB10lSetShift: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_KB10lIsInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskStart0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskStart1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskStart2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskStart3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskStart4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TouchTriger: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TouchRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_Touch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_ExchangeBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_Key: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_Disp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_ChangeColor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_DispFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_MoveFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskEnd0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskEnd1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskEnd2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskEnd3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskEnd4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Keyboard10_TaskEnd5: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AosslInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AosslEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_AosslStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AossAlloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AossFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwc_StartUtility: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Main_CheckParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Main_InitGame: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Main_InitGraph: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Main_ProcEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ChangeScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetParam2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetParam2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Language: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Entry: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Flag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_EndUtility: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MsglInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MsglEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MsglRead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MsglRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MsglGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MsglGetEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Move_TaskEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovlIsEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovlChangeCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovlAdmitChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovlGetChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Move_TaskFramework: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RakulInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RakulEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RakulGetState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RakulSetResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RakuRaku_MemAlloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RakuRaku_MemFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RakuRaku_CbConfig: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneEnd_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneInit_ProcFade: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneInit_ProcWait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_MoveFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneMenu_DispPushButton: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptErase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_ProcConfirm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase_ProcConfirm1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptErase1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptErase1_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_DrawInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptInfo_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_MoveFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMenu_DispPush: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptMovComm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComm_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComm_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComm_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComm_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComm_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComm_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComm_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComm_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMoveComm_CbMov: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptMovComplete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovComplete_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptMovConfirm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptMovConfirm1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovConfirm1_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptMovDisconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovDisconnect_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovDisconnect_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovDisconnect_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovDisconnect_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovDisconnect_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovDisconnect_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovDisconnect_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovDisconnect_Wait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptMovFailure: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovFailure_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptMovUser: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovUser_CbMov: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IsFold: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneOptMovWait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneOptMovWait_CbMov: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetAossButton: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_TaskVBlank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_ProcError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_ProcError1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_ProcWait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossButton_ProcCancel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetAossComplete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossComplete_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossComplete_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossComplete_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossComplete_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossComplete_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossComplete_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossComplete_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetAossComplete_Wait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetApList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitScrollBar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCharName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawApInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawAp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrapApObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_SetOffset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_TaskUp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_TaskDown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_TaskVBlank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_DispFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_MoveFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ScrollUp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ScrollDown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_DispPushButton: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_ProcError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetApList_ProcError1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetEdit32: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_EndScene3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawSsid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_DispCaret: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_ProcWin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_ProcWin1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_IsCorrect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_ProcError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEdit32_ProcError1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetEditAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsOver: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_EndScene3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_DrawAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_DispCaret: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_ProcWin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_ProcWin1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ArrangeAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_IsCorrect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_ProcError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetEditAddress_ProcError1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DrawMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetError_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetErrorCode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CalcParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InputWinButton: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PushWinButton: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_PushIpAuto: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_PushDnsAuto: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_DrawWindow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_DrawColumnChar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_DrawColumnObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_IsEnablePush: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_DispObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_DrawString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_DrawAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_SetOffset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_IsPush: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_CalcColumnIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_CalcIdxColumn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_TaskUp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_TaskDown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_TaskVBlank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_DispFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_ApplyForcus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_ApplyForcus1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_MoveFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_DispPushButton: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_TaskPushCount: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_PushButtonYesNo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_IsCorrect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_ProcError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetList_ProcError1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetListReturn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetListSave: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetListSave_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetListSave_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetListSave_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetListSave_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetListSave_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetListSave_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetListSave_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetListSave_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetRakuButton: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_CheckRaku: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_ProcError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton_ProcError1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetRakuButton1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_CheckRaku: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_ProcError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuButton1_ProcError1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetRakuComplete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuComplete_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuComplete_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuComplete_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuComplete_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuComplete_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuComplete_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuComplete_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuComplete_Wait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetRakuReady: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_CheckRaku: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_ProcError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetRakuReady_ProcError1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetSearch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_IsEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_ProcError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSearch_ProcError1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetSelectAp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_InitObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_DispFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_MoveFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_DispPushClear: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_ProcErase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_ProcErase1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectAp_DispPush: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetSelectWay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_MoveFocus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetSelectWay_DispPush: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetTest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_InitAc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTest_TaskAc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AcAlloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AcFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetTestCompletet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestCompletet_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestCompletet_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestCompletet_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestCompletet_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestCompletet_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestCompletet_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestCompletet_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestCompletet_Wait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetTestConfirm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestConfirm_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestConfirm_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestConfirm_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestConfirm_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestConfirm_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestConfirm_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestConfirm_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetTestConfirm_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetUsbComplete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbComplete_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbComplete_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbComplete_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbComplete_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbComplete_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbComplete_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbComplete_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbComplete_Wait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetUsbReady: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SceneSetUsbReady1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_InitGraphics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_ProcInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_ProcInit1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_ProcInit2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_ProcScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_Input: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_Draw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_Button: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_EndScene: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_EndScene1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_EndScene2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_CbUsb: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_ProcNotFound: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_ProcNotFound1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SceneSetUsbReady1_ProcBoth: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ScreenlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ScreenlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ScreenlRenew: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ScreenlCopy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Screen_TaskLoad: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ScreenlCopyPalette: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Screen_TaskCopyPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ScreenlSetPalette: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Screen_TaskSetPltt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SBlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SBlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SBlGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SBlGetState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Scrollbar_Disp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SBlEnable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SBlDisable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Scrollbar_TaskMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Scrollbar_MoveBar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Scrollbar_PlaySound: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Scrollbar_StepBar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Scrollbar_SetBar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Scrollbar_IsTrigger: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Scrollbar_IsTouch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Scrollbar_CalcRect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SearchlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SearchlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SearchlBegin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Search_StartScan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SearchlStop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SearchlGetApInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Search_Callback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Search_RenewInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettignlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettignlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettignlGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetIpAuto: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetDnsAuto: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetSsid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetWep: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetIp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetNetMask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetGateway: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetDnsP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglGetSsid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglGetIp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglGetNetMask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglGetGateway: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglGetDnsP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglGetDnsS: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglGetSetType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetSetting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetRaku: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglSetAoss: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglGetMemMap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglErasePage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglEraseAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Setting_Write: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SettinglConvAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Setting_Ascii2Hex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SndlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SndlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SndlPlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SndlSetVolume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SndlSetPitch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SndlStop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sound_TaskSound: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SteplBegin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskBegin0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskBegin1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskBegin2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskBegin3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskBegin4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskBegin5: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SteplEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SteplChange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SteplGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskEnd0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskEnd1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskEnd2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskEnd3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskEnd4: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SteplIsEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SteplChangeScr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Step_TaskChange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_UsbaplBegin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UsbAc_StartScan: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_UsbaplEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_UsbaplSetCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UsbAc_CbWm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UsbAc_ScanFirst: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UsbAc_ScanWait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UsbAc_TaskFirst: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_WinlInitEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_WinlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_WinlGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_WinlIsInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_TaskV: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_TaskMove: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_TaskMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_TaskMain1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_Disp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_DispCell: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_PushButton: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_TaskEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_TaskEnd1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WindowTaskEnd2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Window_TaskEnd3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_MemInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_Init: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_Start: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_RegistFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_AcceptChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_KickChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_StartDownload: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_StartDownloadAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_IsBootableAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_StartRebootAll: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_Cancel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ParentStateCallback_Helper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ParentStateCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_ChangeState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_GetState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_GetChildBmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_GetChildState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_GetChildInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_Mbp_GetPlayerNo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_MemInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_ChangeSysState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_SetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInSetParentParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutSetParentParam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInStartParent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutSetParentWepKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInSetParentWepKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutStartParent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInStartParentMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutStartParentMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInStartParentKeyShare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInEndParentKeyShare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInEndParentMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutEndParentMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInEndParent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutEndParent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInEndChildKeyShare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInEndChildMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutEndChildMP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInEndChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutEndChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_SetGgid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_GetBitmap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_GetSystemState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StartMeasureChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInMeasureChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutMeasureChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WHi_MeasureChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_GetMeasureChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SelectChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_Initialize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_IndicateHandler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateInInitialize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StateOutInitialize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_ParentConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_SetJudgeAcceptFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_GetSharedDataAdr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_StepDS: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_Reset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_Finalize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WH_End: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovFinalize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovPrepare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovStartAdmitChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovStartDownloadandBootChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovFramework: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovGetStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GetChildInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovSearchChannel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovStartWaitChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_WaitandDownloadandBoot_Child: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_ReadyMovUserID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_MovUserID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Mov_EraseFlashData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_MovEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    JudgeConnectableChild: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Parent_InitDataShare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Parent_StepDataShare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Parent_Data_Receive_Progress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Parent_Get_Child_Data_Kind: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ArclInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ArclEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UserProc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CbRead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CbReadRom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CbWrite: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ArclReadEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ArclRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CmpBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllForm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllDelete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllGetObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllGetObjNum: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllSetEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllSetPalette: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllSetPosition: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllSetPriority: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CelllGetPosition: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CeinlRead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CeinlRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CeinlSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CeinlSetExObj: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_CeinlSetExCell: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QuelForm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QuelFormEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QuelDelete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QuelPushBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_QuelPopBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_EfflInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_EfflEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_EfflCheck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_EfflFade: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Effect_TaskFade: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_EfflWait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Effect_TaskWait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlFormEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlDelete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlFormBgEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Font_TaskLoad: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlDeleteBg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlDeleteBgLcd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlDraw: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlDrawCharEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlDrawStringEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlDrawRect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlClear: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlDisp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_FntlRenewBg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_InputCoord: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_InputRect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_Coord2Rect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GXlVisible: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GXlInvisible: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GXlSetWndPosition: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_GXlSetWndPlane: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HeaplInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HeaplEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HeaplAlloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HeaplAllocEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HeaplFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_HeaplFree2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IptlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IptlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IptlRead: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Input_ReadKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Input_ReadTouch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IptlCheckTrigger: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IptlCheckRepeat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IptlCheckRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TPlCheck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TPlCheckTrigger: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TPlCheckRepeat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TPlCheckRelease: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TPlCheckATrigger: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TPlGet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_IptlCheckFold: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ItrlIntr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ItrlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IntrVBlank: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LstlForm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LstlDelete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LstlErase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LstlInsert: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LstlPushBack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_LstlPushFront: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ObjlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Obj_TaskTransfer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ObjlEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ObjlFormGx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ObjlDelete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ObjlGetOam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_OvrlInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_OvrlAlloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_OvrlFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_StrlNLen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    swprintf_subroutine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_ClearVram: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RepairVram: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sub_ClearVram: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetLedWireless: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_SetLedNormal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TsklInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TsklEnd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TsklAct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TsklForm: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Task_FormTask: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TsklChangeFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TsklDelete: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TsklDeleteEx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Task_DeleteTcb: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_TsklOperate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay2DataProtocol(Protocol):
