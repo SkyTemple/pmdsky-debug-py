@@ -7000,6 +7000,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    RAND_SEQUENCE_NUM: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     JUICE_BAR_NECTAR_IQ_GAIN: Symbol[
         Optional[list[int]],
         None,
@@ -8008,6 +8013,46 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    RetEu0x02073300: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RetEu0x02073304: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RetEu0x02073308: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RetEu0x0207333c: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RetEu0x02073340: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RetEu0x02073594: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RetEu0x02073598: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RetEu0x0207359c: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DseSynth_Reset: Symbol[
         Optional[list[int]],
         None,
@@ -8404,6 +8449,11 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     FX_Atan2Idx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FX_Init: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -10593,7 +10643,7 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    FS_GetOverlayInfo: Symbol[
+    FS_LoadOverlayInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11343,6 +11393,11 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    Math_CalcSha1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Mathi_Crc8InitTable: Symbol[
         Optional[list[int]],
         None,
@@ -11398,11 +11453,6 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    Std_CompareStringVeneer: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
     Std_CompareString: Symbol[
         Optional[list[int]],
         None,
@@ -11453,22 +11503,112 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    NotANumber: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _flush_line_buffered_output_files: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _flush_all: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     abs: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    mbtowc: Symbol[
+    _convert_from_newlines: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    TryAssignByte: Symbol[
+    _convert_to_newlines: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    TryAssignByteWrapper: Symbol[
+    _prep_buffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _load_buffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _flush_buffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    fread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _fread: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    fclose: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    fflush: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _msl_strnicmp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _ftell: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ftell: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _fseek: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    fseek: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    rewind: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _mbtowc_noconv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _wctomb_noconv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    wctomb: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11503,7 +11643,37 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    memset_internal: Symbol[
+    _fill_mem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    parse_format: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    long2str: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    longlong2str: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    double2hex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    round_decimal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    float2str: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11534,6 +11704,16 @@ class LibsFunctionsProtocol(Protocol):
     ]
 
     sprintf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    rand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    srand: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11588,6 +11768,31 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    _strtold: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    strtold: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    atof: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _strtoul: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    strtoul: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     strtol: Symbol[
         Optional[list[int]],
         None,
@@ -11598,7 +11803,32 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    fwide: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     wcslen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    fabs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _num2dec: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    _dec2num: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    strcasecmp: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -11773,10 +12003,23 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
+    _call_static_initializers: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
 
 class LibsDataProtocol(Protocol):
 
-    pass
+    ANSI_C_LCG_MULTIPLIER: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RAND_MAX: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 LibsProtocol = SectionProtocol[
@@ -13756,7 +13999,7 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    WM_InitWirelessCounter: Symbol[
+    WM_SetEntry: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -15906,17 +16149,17 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    MD5_InitVeneer: Symbol[
+    MD5Init_Ghi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    MD5_UpdateVeneer: Symbol[
+    MD5Update_Ghi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    MD5_DigestVeneer: Symbol[
+    MD5Final_Ghi: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -18816,6 +19059,81 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    b64size: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    my_randinit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    my_rand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingValidateKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionCompleteCallback_Helper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionProgressCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionCompleteCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionEncrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionInitialize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionCancel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionShutdown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionGetResponse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionPutAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Dwci_RankingSessionGetAsync: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Dwci_Ndi_FreeAttr: Symbol[
         Optional[list[int]],
         None,
@@ -19401,47 +19719,217 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    SocketCastError: Symbol[
+    FreeElement_Gsi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SocketCreate: Symbol[
+    ArrayGrow_Gsi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SocketClose: Symbol[
+    SetElement_Gsi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SocketBind: Symbol[
+    ArrayNew_Gsi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SocketConnect: Symbol[
+    ArrayFree_Gsi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SocketRecv: Symbol[
+    ArrayLength_Gsi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SocketRecvFrom: Symbol[
+    ArrayNth_Gsi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SocketSend: Symbol[
+    ArrayAppend_Gsi: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    SocketSendTo: Symbol[
+    ArrayInsertAt_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ArrayInsertSorted_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ArrayRemoveAt_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ArrayDeleteAt_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ArrayReplaceAt_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ArraySearch_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ArrayMap_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ArrayMapBackwards_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ArrayClear_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    mylsearch_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    mybsearch_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TableNew_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TableNew2_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TableFree_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TableCount_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TableEnter_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TableRemove_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TableLookup_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TableMap_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TableMapSafe2_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5Print_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MD5Digest_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckRCode_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    socket_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    closesocket_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    shutdown_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    bind_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    connect_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    recv_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    recvfrom_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    sendto_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    setsockopt_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    getsockname_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    inet_addr_gsi: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19451,37 +19939,682 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    SocketSetBlocking: Symbol[
+    GsiSocketSelect: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    DoRand: Symbol[
+    SetSockBlocking: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    rand: Symbol[
+    SetReceiveBufferSize: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    srand: Symbol[
+    CanReceiveOnSocket: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    RandRangeOverlay0: Symbol[
+    CanSendOnSocket: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    ResolveAvailableNintendoWifi: Symbol[
+    getlocalhost_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsPrivateIP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    time_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiStartResolvingHostname: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiCancelResolvingHostname: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiGetResolvedIP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    goastrdup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    strlwr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketStartUp_Ghi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketShutDown_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    current_time_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    current_time_hires_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    msleep_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    nextlongrand_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    longrand_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Util_RandSeed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Util_RandInt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    QuartToTrip: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TripToQuart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    B64Decode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    B64Encode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsDebugAssert: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiMemoryCallbacksSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    gsimalloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    gsirealloc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    gsifree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    get_sockaddrin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendPacket_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiStartAvailableCheckA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandlePacket: Symbol[
         Optional[list[int]],
         None,
     ]
 
     GsiAvailableCheckThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiCryptRsaGeneratePad: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsCryptRsaEncryptBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsCryptRsaPkcs1EncryptBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntTimerEnter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntTimerExit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntCompare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntStripLeadingZeroes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntAdd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntSub: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntMult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsLargeIntDiv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntDiv: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntSubDivide: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsLargeIntSquareMod: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsLargeIntPowerMod: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntMultM: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsiLargeIntInverseMod: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsLargeIntReverseBytes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsLargeIntSetFromMemoryStream: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsLargeIntWriteToMemoryStream: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    swap_byte_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RC4Init_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RC4Encrypt_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sha1Reset_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sha1Result_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sha1Input_Ghi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sha1ProcessMessageBlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Sha1PadMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineGetEngine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpMsgHandlerFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpMsgHandlerCompare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpMsgHandlerCompare2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpRemotePeerCompare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpRemotePeerCompare2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpSocketError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpClosedRoutingCB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpConnectedRoutingCB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpPingRoutingCB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpReceivedRoutingCB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpUnrecognizedMsgCB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpConnAttemptCB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineIsInitialized: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineInitialize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineGetPeerState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineStartTalkingToPeer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineSendMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineShutdown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineGetLocalPort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineAddMsgHandler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineRemoveMsgHandler: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineNoMoreMsgHandlers: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineNoApp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsUdpEngineGetPeerOutBufferFreeSpace: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsXmlWriterGetData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GsXmlWriterGetDataLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiResizeBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiInitBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiInitFixedBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiInitReadOnlyBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiFreeBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiAppendDataToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiEncryptDataToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiAppendHeaderToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiAppendCharToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiAppendIntToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiResetBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiSendBufferedData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiReadDataFromBufferFixed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiCallCompletedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiCallProgressCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiCallPostCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiCreateLock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiFreeLock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiLock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiUnlock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDecryptReceivedData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoReceive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoSend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiTrySendThenBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiFindFreeSlot: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiNewConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiFreeConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiRequestToConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiEnumConnections: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiRedirectConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiCleanupConnections: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpSetRequestEncryptionEngine: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiEncryptorWriteNboLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiEncryptorReadNboLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiEncryptorParseAsn1Sequence: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpEncryptorGenerateEncryptionKeys: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpEncryptorSslInitFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpEncryptorSslCleanupFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpEncryptorSslEncryptFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpEncryptorSslDecryptFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiCertificateChainIsValid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhttpEncryptorProcessSslHandshake: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiHandleStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiProcessConnection: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19507,6 +20640,171 @@ class Overlay0FunctionsProtocol(Protocol):
     ]
 
     GHttpCancelRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiIsPostAutoFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiFreePost: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostGetContentType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostGetNoFilesContentLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostGetHasFilesContentLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostGetContentLength: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostStateInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostStateCleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostInitState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostCleanupState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostStringStateDoPosting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostXmlStateDoPosting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostFileDiskStateDoPosting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostFileMemoryStateDoPosting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostStateDoPosting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiPostDoPosting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiParseUrl: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoSocketInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoHostLookup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoLookupPending: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoConnecting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoSecuringSession: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoSendingRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoPosting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoWaiting: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiParseStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoReceivingStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDeliverIncomingFileData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiParseChunkSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiAppendToChunkHeaderBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiProcessIncomingFileData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoReceivingHeaders: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GhiDoReceivingFile: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19547,6 +20845,11 @@ class Overlay0FunctionsProtocol(Protocol):
     ]
 
     GpGetInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpGetInfoNoWait: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19606,7 +20909,732 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    PasswordEncryptString: Symbol[
+    GpiInitialize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiDestroy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiResetProfile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessConnectionManager: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcess: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendAuthBuddyRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessRecvBuddyMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessRecvBuddyStatusInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendServerBuddyMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendBuddyMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiBuddyHandleKeyRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiBuddyHandleKeyReply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiAuthBuddyRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiFixBuddyIndices: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiDeleteBuddy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiAppendCharToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiAppendStringToBufferLen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiAppendStringToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiAppendIntToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendOrBufferChar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendOrBufferStringLenToPeer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendOrBufferString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiRecvToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendFromBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendBufferToPeer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiReadMessageFromBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiClipBufferToPosition: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiCallErrorCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiAddCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiCallCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessCallbacks: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RandomString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStartConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendLogin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendNewuser: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiCheckConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiDisconnectCleanupProfile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiDisconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiIsValidDate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiDateToInt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiInfoCacheToArg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessGetInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiAddLocalInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendLocalInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendUserInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSetInfoi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSetInfos: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendGetInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiGetInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSetInfoCache: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiFreeInfoCache: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStatusInfoKeyFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStatusInfoKeysInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStatusInfoKeysDestroy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStatusInfoKeyCompFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStatusInfoAddKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStatusInfoSetKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStatusInfoCheckKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSaveKeysToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiFailedOpCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiAddOperation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiDestroyOperation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiRemoveOperation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiFindOperationByID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiOperationsAreBlocking: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessOperation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessPeerInitiatingConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessPeerAcceptingConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerSendMessages: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessPeerConnected: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiCheckTimedOutPeerOperations: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessPeer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiDestroyPeer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiRemovePeer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessPeers: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiGetPeerByProfile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiGetPeerByAddr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiFreeMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiAddPeer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerGetSig: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerStartConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerAddMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerStartTransferMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerFinishTransferMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerLeftCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerMessageCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerAcceptedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerPingReplyCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerAddOp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiPeerRemoveOp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProfilesTableHash: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProfilesTableCompare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProfilesTableFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiInitProfiles: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessNewProfile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProfileListAdd: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiGetProfile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessDeleteProfle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiRemoveProfileByID: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiRemoveProfile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiCheckProfileForUser: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiFindProfileByUser: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProfileMapCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProfileMap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiCheckForBuddy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiFindBuddy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiRemoveBuddyStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiRemoveBuddyStatusInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiCanFreeProfile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStartProfileSearch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiInitSearchData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiStartSearch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProfileSearch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiOthersBuddyList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessSearch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessSearches: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSendTransferReply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiHandleTransferMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessRegisterUniqueNick: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiProcessRegisterCdKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    strzcpy_gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiCheckForError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiValueForKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiCheckSocketConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiReadKeyAndValue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSetError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiSetErrorString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GpiEncodeString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BucketNew: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BucketSet: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BucketAdd_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BucketSub_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BucketMult_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BucketDiv_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BucketConcat_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BucketAvg_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    bint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    bfloat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DumpMap_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DoSet_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DoGet_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DoFind_Gsi: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19626,7 +21654,297 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
-    Gt2Reject: Symbol[
+    xcode_buf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    value_for_key: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    value_for_key_safe: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SocketReadable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FindFinal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FindRequest: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessPlayerAuth: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessGetPid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessGetData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessSetData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessStatement: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessInBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CallReqCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClosePendingCallbacks: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetTeamIndex_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetPlayerIndex_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerOpInt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerOpFloat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerOpString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TeamOpInt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TeamOpFloat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TeamOpString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayerOpInt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayerOpFloat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayerOpString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2VerifyChallenge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2GetChallenge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2GetResponse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2CheckResponse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2AllocateBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2GetBufferFreeSpace: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2BufferWriteByte: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2BufferWriteUShort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2BufferWriteData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2BufferShorten: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SocketErrorCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectAttemptCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ReceivedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ClosedCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2PingCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendFilterCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ReceiveFilterCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2DumpCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2UnrecognizedMessageCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2NewOutgoingConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2NewIncomingConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2StartConnectionAttempt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2AcceptConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2RejectConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionSendData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2CheckTimeout: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendRetries: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2CheckPendingAck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2CheckKeepAlive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2CloseConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionClosed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionCleanup: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19656,6 +21974,11 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    Gt2Reject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Gt2Connect: Symbol[
         Optional[list[int]],
         None,
@@ -19671,12 +21994,42 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    Gti2CloseAllConnectionsHardMap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Gt2CloseAllConnectionsHard: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    Gt2GetConnectionState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2GetRemoteIP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2GetRemotePort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2GetLocalIP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Gt2GetLocalPort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2GetOutgoingBufferSize: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19706,7 +22059,392 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    Gti2UShortFromBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2UShortToBuffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SnDiff: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionCommunicationError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionMemoryError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleEsn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleAppUnreliable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleAppReliable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleClientChallenge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleServerChallenge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleClientResponse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleAccept: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleReject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleClose: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2DeliverReliableMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2IncomingBufferMessageCompare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2BufferIncomingMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2RemoveHoldMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2DeliverHoldMessages: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SetPendingAck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleReliableMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleAck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleNack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandlePing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandlePong: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleClosed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleUnreliableMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleConnectionReset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2HandleHostUnreachable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ReceiveMessages: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2StoreOutgoingReliableMessageInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2BeginReliableMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2EndReliableMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendAppReliable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendClientChallenge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendServerChallenge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendClientResponse: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendAccept: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendReject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendClose: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendKeepAlive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendAppUnreliable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendAck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendNack: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendPong: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendClosed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SendClosedOnSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ResendMessage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2Send: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionHash: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionCompare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2ConnectionFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SocketFindConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2CreateSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2CloseSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2Listen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2CreateConnectionObject: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2NewSocketConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2FreeSocketConnection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SocketSend: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SocketConnectionsThinkMap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SocketConnectionsThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2FreeClosedConnections: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2SocketError: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     Gt2AddressToString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gt2StringToAddress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Gti2MessageCheck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetLocalIP_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetLocalPort_Gsi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OutputMapping: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    Think_NN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NatifyThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DetermineNatType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FindNegotiatorForCookie: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AddNegotiator: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveNegotiator: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19716,12 +22454,102 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    CheckMagic_NN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendPacket_NN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetLocalIP_NN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetLocalPort_NN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendReportPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StartReport: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendInitPackets: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendPingPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckNatifyStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NameToIp_NN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResolveServer_NN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResolveServers_NN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NnBeginNegotiationWithSocket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     NnCancel: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    NegotiateThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     NnThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendConnectAck: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessConnectPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessPingPacket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessInitPacket: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19756,6 +22584,16 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    qr2_check_queries: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_check_send_heartbeat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     qr2_send_statechanged: Symbol[
         Optional[list[int]],
         None,
@@ -19776,7 +22614,257 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    Qr2_Buffer_AddA: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    enum_local_ips: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    swap_byte_qr2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    encode_ct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    gs_encode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    gs_encrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr_add_packet_header: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    compute_challenge_response: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    handle_public_address: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr_build_partial_query_reply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr_build_query_reply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr_build_split_query_reply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr_process_query: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr_process_client_message: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr_got_recent_message: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_process_ip_verify: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_check_ip_verify: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_expire_ip_verify: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     qr2_parse_querya: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_keepalive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    send_heartbeat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    qr2_internal_is_master_only_key: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    keyrand_goa: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GoaHashInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GoaCryptInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GoaEncryptByte: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GoaEncrypt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FifoAddRear: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FifoAddFront: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FifoRemove: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FifoClear: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    QeStartQuery: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbEngineHaltUpdates: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbEngineCleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ParseSingleQR2Reply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ParseSingleGoaReply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ParseSingleIcmpReply: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessIncomingReplies: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TimeoutOldQueries: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    QueueNextQueries: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbQueryEngineThink: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbQueryEngineAddQueryKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RefStringHash: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RefStringCompare: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RefStringFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbRefStrHash: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbRefStrHashCleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerAddKeyValue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerAddIntKeyValue: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerGetStringValueA: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19796,6 +22884,11 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    SbServerGetPublicQueryPortNbo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SbServerHasPrivateAddress: Symbol[
         Optional[list[int]],
         None,
@@ -19811,7 +22904,107 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    SbServerSetNext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerGetNext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckValidKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    mytok: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerParseKeyVals: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerParseQR2FullKeysSingle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerParseQR2FullKeysSplit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StringHash: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KeyValFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KeyValHashKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KeyValCompareKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerGetPing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbAllocServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerSetFlags: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerSetPublicAddr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerSetIcmpIp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerSetState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerGetState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbIsNullServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ServerBrowserFree: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerBrowserBeginUpdate2: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -19836,6 +23029,11 @@ class Overlay0FunctionsProtocol(Protocol):
         None,
     ]
 
+    ServerBrowserHalt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ServerBrowserClear: Symbol[
         Optional[list[int]],
         None,
@@ -19852,6 +23050,231 @@ class Overlay0FunctionsProtocol(Protocol):
     ]
 
     ServerBrowserGetMyPublicIpAddr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerListAppendServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerListFindServerByIP: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AddServerToDeadlist: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerListRemoveAt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerListNth: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbFreeDeadList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerListClear: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbRefStr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbReleaseStr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    NtsLengthSB: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ErrorDisconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    StringHash_Sb: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerListConnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BufferAddNtS: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BufferAddByte: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BufferAddInt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BufferAddIntLE: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BufferAddData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetupListChallenge: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SendWithRetry: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerListConnectAndQuery: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreePopularValues: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeKeyList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerListDisconnect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbServerListCleanup: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitCryptKey: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ServerSizeForFlags: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FullRulesPresent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllKeysPresent: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ParseServerIpPort: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ParseServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IncomingListParseServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbSetLastListErrorPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessMainListData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessPushKeyList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessPlayerSearch: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessMaploop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessDeleteServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessPushServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessAdHocData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessIncomingData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbSendMessageToServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbSendNatNegotiateCookieToServer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ProcessLanData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SbListThink: Symbol[
         Optional[list[int]],
         None,
     ]

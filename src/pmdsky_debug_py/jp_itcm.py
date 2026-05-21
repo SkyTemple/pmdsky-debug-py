@@ -12476,6 +12476,15 @@ class JpItcmArm9Data:
 
     GXI_DMA_ID = Symbol(None, None, None, "GXI_DMA_ID", "", "uint32_t")
 
+    RAND_SEQUENCE_NUM = Symbol(
+        None,
+        None,
+        None,
+        "RAND_SEQUENCE_NUM",
+        "[Runtime] The current PRNG sequence number for the system PRNG. See rand for more information on how the system PRNG works.",
+        "uint32_t",
+    )
+
     JUICE_BAR_NECTAR_IQ_GAIN = Symbol(
         None,
         None,
@@ -13448,6 +13457,78 @@ class JpItcmLibsFunctions:
         None, None, None, "DseTrackEvent_Dummy2Bytes2", "", None
     )
 
+    RetEu0x02073300 = Symbol(
+        None,
+        None,
+        None,
+        "RetEu0x02073300",
+        "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
+        None,
+    )
+
+    RetEu0x02073304 = Symbol(
+        None,
+        None,
+        None,
+        "RetEu0x02073304",
+        "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
+        None,
+    )
+
+    RetEu0x02073308 = Symbol(
+        None,
+        None,
+        None,
+        "RetEu0x02073308",
+        "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
+        None,
+    )
+
+    RetEu0x0207333c = Symbol(
+        None,
+        None,
+        None,
+        "RetEu0x0207333c",
+        "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
+        None,
+    )
+
+    RetEu0x02073340 = Symbol(
+        None,
+        None,
+        None,
+        "RetEu0x02073340",
+        "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
+        None,
+    )
+
+    RetEu0x02073594 = Symbol(
+        None,
+        None,
+        None,
+        "RetEu0x02073594",
+        "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
+        None,
+    )
+
+    RetEu0x02073598 = Symbol(
+        None,
+        None,
+        None,
+        "RetEu0x02073598",
+        "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
+        None,
+    )
+
+    RetEu0x0207359c = Symbol(
+        None,
+        None,
+        None,
+        "RetEu0x0207359c",
+        "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
+        None,
+    )
+
     DseSynth_Reset = Symbol(None, None, None, "DseSynth_Reset", "", None)
 
     DseSynth_AllocateNew = Symbol(None, None, None, "DseSynth_AllocateNew", "", None)
@@ -13802,6 +13883,8 @@ class JpItcmLibsFunctions:
     Vec_Distance = Symbol(None, None, None, "Vec_Distance", "", None)
 
     FX_Atan2Idx = Symbol(None, None, None, "FX_Atan2Idx", "", None)
+
+    FX_Init = Symbol(None, None, None, "FX_Init", "", None)
 
     GX_Init = Symbol(None, None, None, "GX_Init", "", None)
 
@@ -15058,11 +15141,11 @@ class JpItcmLibsFunctions:
         None, None, None, "FSi_LoadOverlayInfoCore", "", None
     )
 
-    FS_GetOverlayInfo = Symbol(
+    FS_LoadOverlayInfo = Symbol(
         None,
         None,
         None,
-        "FS_GetOverlayInfo",
+        "FS_LoadOverlayInfo",
         "Returns the y9.bin entry for the specified overlay\n\nr0: [output] Overlay info struct\nr1: ?\nr2: Overlay ID\nreturn: True if the entry could be loaded successfully?",
         None,
     )
@@ -15486,6 +15569,8 @@ class JpItcmLibsFunctions:
 
     Math_CountPopulation = Symbol(None, None, None, "Math_CountPopulation", "", None)
 
+    Math_CalcSha1 = Symbol(None, None, None, "Math_CalcSha1", "", None)
+
     Mathi_Crc8InitTable = Symbol(None, None, None, "Mathi_Crc8InitTable", "", None)
 
     Mathi_Crc8Update = Symbol(None, None, None, "Mathi_Crc8Update", "", None)
@@ -15508,10 +15593,6 @@ class JpItcmLibsFunctions:
 
     Std_GetStringLength = Symbol(None, None, None, "Std_GetStringLength", "", None)
 
-    Std_CompareStringVeneer = Symbol(
-        None, None, None, "Std_CompareStringVeneer", "", None
-    )
-
     Std_CompareString = Symbol(None, None, None, "Std_CompareString", "", None)
 
     Std_CompareNString = Symbol(None, None, None, "Std_CompareNString", "", None)
@@ -15532,6 +15613,21 @@ class JpItcmLibsFunctions:
 
     OS_VsNPrintfEx = Symbol(None, None, None, "OS_VsNPrintfEx", "", None)
 
+    NotANumber = Symbol(
+        None,
+        None,
+        None,
+        "NotANumber",
+        "The original name for this function is 'nan'.",
+        None,
+    )
+
+    _flush_line_buffered_output_files = Symbol(
+        None, None, None, "_flush_line_buffered_output_files", "", None
+    )
+
+    _flush_all = Symbol(None, None, None, "_flush_all", "", None)
+
     abs = Symbol(
         None,
         None,
@@ -15541,29 +15637,61 @@ class JpItcmLibsFunctions:
         None,
     )
 
-    mbtowc = Symbol(
+    _convert_from_newlines = Symbol(
+        None, None, None, "_convert_from_newlines", "", None
+    )
+
+    _convert_to_newlines = Symbol(None, None, None, "_convert_to_newlines", "", None)
+
+    _prep_buffer = Symbol(None, None, None, "_prep_buffer", "", None)
+
+    _load_buffer = Symbol(None, None, None, "_load_buffer", "", None)
+
+    _flush_buffer = Symbol(None, None, None, "_flush_buffer", "", None)
+
+    fread = Symbol(None, None, None, "fread", "", None)
+
+    _fread = Symbol(None, None, None, "_fread", "", None)
+
+    fclose = Symbol(None, None, None, "fclose", "", None)
+
+    fflush = Symbol(None, None, None, "fflush", "", None)
+
+    _msl_strnicmp = Symbol(None, None, None, "_msl_strnicmp", "", None)
+
+    _ftell = Symbol(None, None, None, "_ftell", "", None)
+
+    ftell = Symbol(None, None, None, "ftell", "", None)
+
+    _fseek = Symbol(None, None, None, "_fseek", "", None)
+
+    fseek = Symbol(None, None, None, "fseek", "", None)
+
+    rewind = Symbol(None, None, None, "rewind", "", None)
+
+    _mbtowc_noconv = Symbol(
         None,
         None,
         None,
-        "mbtowc",
+        "_mbtowc_noconv",
         "The mbtowc(3) C library function.\n\nr0: pwc\nr1: s\nr2: n\nreturn: number of consumed bytes, or -1 on failure",
         None,
     )
 
-    TryAssignByte = Symbol(
+    _wctomb_noconv = Symbol(
         None,
         None,
         None,
-        "TryAssignByte",
+        "_wctomb_noconv",
         "Assign a byte to the target of a pointer if the pointer is non-null.\n\nr0: pointer\nr1: value\nreturn: true on success, false on failure",
         None,
     )
 
-    TryAssignByteWrapper = Symbol(
+    wctomb = Symbol(
         None,
         None,
         None,
-        "TryAssignByteWrapper",
+        "wctomb",
         "Wrapper around TryAssignByte.\n\nAccesses the TryAssignByte function with a weird chain of pointer dereferences.\n\nr0: pointer\nr1: value\nreturn: true on success, false on failure",
         None,
     )
@@ -15622,14 +15750,26 @@ class JpItcmLibsFunctions:
         None,
     )
 
-    memset_internal = Symbol(
+    _fill_mem = Symbol(
         None,
         None,
         None,
-        "memset_internal",
+        "_fill_mem",
         "The actual memory-setting implementation for the memset(3) C library function.\n\nThis function is optimized to set bytes in 4-byte chunks for n >= 32, correctly handling any unaligned bytes at the front/back. In this case, it also further optimizes by unrolling a for loop to set 8 4-byte values at once (effectively a 32-byte chunk).\n\nr0: s\nr1: c (int, but must be a single-byte value)\nr2: n",
         None,
     )
+
+    parse_format = Symbol(None, None, None, "parse_format", "", None)
+
+    long2str = Symbol(None, None, None, "long2str", "", None)
+
+    longlong2str = Symbol(None, None, None, "longlong2str", "", None)
+
+    double2hex = Symbol(None, None, None, "double2hex", "", None)
+
+    round_decimal = Symbol(None, None, None, "round_decimal", "", None)
+
+    float2str = Symbol(None, None, None, "float2str", "", None)
 
     __vsprintf_internal_slice = Symbol(
         None,
@@ -15682,6 +15822,24 @@ class JpItcmLibsFunctions:
         None,
         "sprintf",
         "The sprintf(3) C library function.\n\nThis calls __vsprintf_internal directly, so it's presumably the real sprintf.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of characters printed, excluding the null-terminator",
+        None,
+    )
+
+    rand = Symbol(
+        None,
+        None,
+        None,
+        "rand",
+        "The rand(3) C library function.\n\nComputes a pseudorandom 15-bit integer using the classical ANSI C linear congruential generator (LCG), which uses a modulus of 2^32, a multiplier of 1103515245, and an increment of 12345. I.e., the recurrence relation is `x = (1103515245*x_prev + 12345)`, where x is a 32-bit unsigned integer. Only the upper 16 bits, excluding the most significant bit, are used as output.\n\nThe LCG has a hard-coded seed of 1, but can be seeded with a call to srand.\n\nreturn: psuedorandom integer on the interval [0, 32767]",
+        None,
+    )
+
+    srand = Symbol(
+        None,
+        None,
+        None,
+        "srand",
+        "The srand(3) C library function.\n\nSeed RAND_SEQUENCE_NUM to a given value.\n\nr0: seed",
         None,
     )
 
@@ -15775,9 +15933,21 @@ class JpItcmLibsFunctions:
         None,
     )
 
+    _strtold = Symbol(None, None, None, "_strtold", "", None)
+
+    strtold = Symbol(None, None, None, "strtold", "", None)
+
+    atof = Symbol(None, None, None, "atof", "", None)
+
+    _strtoul = Symbol(None, None, None, "_strtoul", "", None)
+
+    strtoul = Symbol(None, None, None, "strtoul", "", None)
+
     strtol = Symbol(None, None, None, "strtol", "", None)
 
     atoi = Symbol(None, None, None, "atoi", "", None)
+
+    fwide = Symbol(None, None, None, "fwide", "", None)
 
     wcslen = Symbol(
         None,
@@ -15787,6 +15957,14 @@ class JpItcmLibsFunctions:
         "The wcslen(3) C library function.\n\nr0: ws\nreturn: length of ws",
         None,
     )
+
+    fabs = Symbol(None, None, None, "fabs", "", None)
+
+    _num2dec = Symbol(None, None, None, "_num2dec", "", None)
+
+    _dec2num = Symbol(None, None, None, "_dec2num", "", None)
+
+    strcasecmp = Symbol(None, None, None, "strcasecmp", "", None)
 
     _dadd = Symbol(
         None,
@@ -16094,6 +16272,10 @@ class JpItcmLibsFunctions:
         None,
     )
 
+    _call_static_initializers = Symbol(
+        None, None, None, "_call_static_initializers", "", None
+    )
+
     DseUtil_GetRandomNumber = _Deprecated(
         "DseUtil_GetRandomNumber", SoundUtil_GetRandomNumber
     )
@@ -16156,11 +16338,27 @@ class JpItcmLibsFunctions:
 
     FileInit = _Deprecated("FileInit", FS_InitFile)
 
-    GetOverlayInfo = _Deprecated("GetOverlayInfo", FS_GetOverlayInfo)
+    GetOverlayInfo = _Deprecated("GetOverlayInfo", FS_LoadOverlayInfo)
 
     LoadOverlayInternal = _Deprecated("LoadOverlayInternal", FS_LoadOverlayImageAsync)
 
     InitOverlay = _Deprecated("InitOverlay", FS_StartOverlay)
+
+    Math_MD5Init = _Deprecated("Math_MD5Init", MD5_Init)
+
+    Math_MD5Update = _Deprecated("Math_MD5Update", MD5_Update)
+
+    Math_MD5Digest = _Deprecated("Math_MD5Digest", MD5_Digest)
+
+    Math_MD5Transform = _Deprecated("Math_MD5Transform", MD5_Transform)
+
+    mbtowc = _Deprecated("mbtowc", _mbtowc_noconv)
+
+    TryAssignByte = _Deprecated("TryAssignByte", _wctomb_noconv)
+
+    TryAssignByteWrapper = _Deprecated("TryAssignByteWrapper", wctomb)
+
+    memset_internal = _Deprecated("memset_internal", _fill_mem)
 
     __addsf3 = _Deprecated("__addsf3", _fadd)
 
@@ -16187,7 +16385,23 @@ class JpItcmLibsFunctions:
 
 class JpItcmLibsData:
 
-    pass
+    ANSI_C_LCG_MULTIPLIER = Symbol(
+        None,
+        None,
+        None,
+        "ANSI_C_LCG_MULTIPLIER",
+        "The ANSI C LCG multiplier, 1103515245, used by the system PRNG.",
+        "uint32_t",
+    )
+
+    RAND_MAX = Symbol(
+        None,
+        None,
+        None,
+        "RAND_MAX",
+        "Mask applied to the output of rand (0x7fff), so that the return value falls in the range [0, RAND_MAX] per the ANSI C standard.",
+        "uint32_t",
+    )
 
 
 class JpItcmLibsSection:
@@ -19254,9 +19468,7 @@ class JpItcmOverlay0Functions:
 
     WM_MeasureChannel = Symbol(None, None, None, "WM_MeasureChannel", "", None)
 
-    WM_InitWirelessCounter = Symbol(
-        None, None, None, "WM_InitWirelessCounter", "", None
-    )
+    WM_SetEntry = Symbol(None, None, None, "WM_SetEntry", "", None)
 
     Wbti_InitBitmap = Symbol(None, None, None, "Wbti_InitBitmap", "", None)
 
@@ -20338,11 +20550,11 @@ class JpItcmOverlay0Functions:
 
     Cpsi_Char_From_Big = Symbol(None, None, None, "Cpsi_Char_From_Big", "", None)
 
-    MD5_InitVeneer = Symbol(None, None, None, "MD5_InitVeneer", "", None)
+    MD5Init_Ghi = Symbol(None, None, None, "MD5Init_Ghi", "", None)
 
-    MD5_UpdateVeneer = Symbol(None, None, None, "MD5_UpdateVeneer", "", None)
+    MD5Update_Ghi = Symbol(None, None, None, "MD5Update_Ghi", "", None)
 
-    MD5_DigestVeneer = Symbol(None, None, None, "MD5_DigestVeneer", "", None)
+    MD5Final_Ghi = Symbol(None, None, None, "MD5Final_Ghi", "", None)
 
     Wcm_Init = Symbol(None, None, None, "Wcm_Init", "", None)
 
@@ -21927,6 +22139,60 @@ class JpItcmOverlay0Functions:
         None, None, None, "Dwc_Auth_CheckWiFiIdNeedCreate", "", None
     )
 
+    b64size = Symbol(None, None, None, "b64size", "", None)
+
+    my_randinit = Symbol(None, None, None, "my_randinit", "", None)
+
+    my_rand = Symbol(None, None, None, "my_rand", "", None)
+
+    Dwci_RankingValidateKey = Symbol(
+        None, None, None, "Dwci_RankingValidateKey", "", None
+    )
+
+    Dwci_RankingSessionCompleteCallback_Helper = Symbol(
+        None, None, None, "Dwci_RankingSessionCompleteCallback_Helper", "", None
+    )
+
+    Dwci_RankingSessionProgressCallback = Symbol(
+        None, None, None, "Dwci_RankingSessionProgressCallback", "", None
+    )
+
+    Dwci_RankingSessionCompleteCallback = Symbol(
+        None, None, None, "Dwci_RankingSessionCompleteCallback", "", None
+    )
+
+    Dwci_RankingSessionEncrypt = Symbol(
+        None, None, None, "Dwci_RankingSessionEncrypt", "", None
+    )
+
+    Dwci_RankingSessionInitialize = Symbol(
+        None, None, None, "Dwci_RankingSessionInitialize", "", None
+    )
+
+    Dwci_RankingSessionProcess = Symbol(
+        None, None, None, "Dwci_RankingSessionProcess", "", None
+    )
+
+    Dwci_RankingSessionCancel = Symbol(
+        None, None, None, "Dwci_RankingSessionCancel", "", None
+    )
+
+    Dwci_RankingSessionShutdown = Symbol(
+        None, None, None, "Dwci_RankingSessionShutdown", "", None
+    )
+
+    Dwci_RankingSessionGetResponse = Symbol(
+        None, None, None, "Dwci_RankingSessionGetResponse", "", None
+    )
+
+    Dwci_RankingSessionPutAsync = Symbol(
+        None, None, None, "Dwci_RankingSessionPutAsync", "", None
+    )
+
+    Dwci_RankingSessionGetAsync = Symbol(
+        None, None, None, "Dwci_RankingSessionGetAsync", "", None
+    )
+
     Dwci_Ndi_FreeAttr = Symbol(None, None, None, "Dwci_Ndi_FreeAttr", "", None)
 
     SetAttr_Dwc = Symbol(None, None, None, "SetAttr_Dwc", "", None)
@@ -22231,146 +22497,564 @@ class JpItcmOverlay0Functions:
 
     Nhttpi_MemFind = Symbol(None, None, None, "Nhttpi_MemFind", "", None)
 
-    SocketCastError = Symbol(
+    FreeElement_Gsi = Symbol(None, None, None, "FreeElement_Gsi", "", None)
+
+    ArrayGrow_Gsi = Symbol(None, None, None, "ArrayGrow_Gsi", "", None)
+
+    SetElement_Gsi = Symbol(None, None, None, "SetElement_Gsi", "", None)
+
+    ArrayNew_Gsi = Symbol(None, None, None, "ArrayNew_Gsi", "", None)
+
+    ArrayFree_Gsi = Symbol(None, None, None, "ArrayFree_Gsi", "", None)
+
+    ArrayLength_Gsi = Symbol(None, None, None, "ArrayLength_Gsi", "", None)
+
+    ArrayNth_Gsi = Symbol(None, None, None, "ArrayNth_Gsi", "", None)
+
+    ArrayAppend_Gsi = Symbol(None, None, None, "ArrayAppend_Gsi", "", None)
+
+    ArrayInsertAt_Gsi = Symbol(None, None, None, "ArrayInsertAt_Gsi", "", None)
+
+    ArrayInsertSorted_Gsi = Symbol(None, None, None, "ArrayInsertSorted_Gsi", "", None)
+
+    ArrayRemoveAt_Gsi = Symbol(None, None, None, "ArrayRemoveAt_Gsi", "", None)
+
+    ArrayDeleteAt_Gsi = Symbol(None, None, None, "ArrayDeleteAt_Gsi", "", None)
+
+    ArrayReplaceAt_Gsi = Symbol(None, None, None, "ArrayReplaceAt_Gsi", "", None)
+
+    ArraySearch_Gsi = Symbol(None, None, None, "ArraySearch_Gsi", "", None)
+
+    ArrayMap_Gsi = Symbol(None, None, None, "ArrayMap_Gsi", "", None)
+
+    ArrayMapBackwards_Gsi = Symbol(None, None, None, "ArrayMapBackwards_Gsi", "", None)
+
+    ArrayClear_Gsi = Symbol(None, None, None, "ArrayClear_Gsi", "", None)
+
+    mylsearch_gsi = Symbol(None, None, None, "mylsearch_gsi", "", None)
+
+    mybsearch_gsi = Symbol(None, None, None, "mybsearch_gsi", "", None)
+
+    TableNew_Gsi = Symbol(None, None, None, "TableNew_Gsi", "", None)
+
+    TableNew2_Gsi = Symbol(None, None, None, "TableNew2_Gsi", "", None)
+
+    TableFree_Gsi = Symbol(None, None, None, "TableFree_Gsi", "", None)
+
+    TableCount_Gsi = Symbol(None, None, None, "TableCount_Gsi", "", None)
+
+    TableEnter_Gsi = Symbol(None, None, None, "TableEnter_Gsi", "", None)
+
+    TableRemove_Gsi = Symbol(None, None, None, "TableRemove_Gsi", "", None)
+
+    TableLookup_Gsi = Symbol(None, None, None, "TableLookup_Gsi", "", None)
+
+    TableMap_Gsi = Symbol(None, None, None, "TableMap_Gsi", "", None)
+
+    TableMapSafe2_Gsi = Symbol(None, None, None, "TableMapSafe2_Gsi", "", None)
+
+    MD5Print_Gsi = Symbol(None, None, None, "MD5Print_Gsi", "", None)
+
+    MD5Digest_Gsi = Symbol(None, None, None, "MD5Digest_Gsi", "", None)
+
+    CheckRCode_Gsi = Symbol(
         None,
         None,
         None,
-        "SocketCastError",
+        "CheckRCode_Gsi",
         "Casts a value to a new value, if it is negative. Mostly used in socket functions to cast any potential errors to -1.\n\nr0: original value\nr1: new value to cast an error as, if original value is negative\nreturn: original value if non-negative, new value otherwise",
         None,
     )
 
-    SocketCreate = Symbol(
+    socket_gsi = Symbol(
         None,
         None,
         None,
-        "SocketCreate",
+        "socket_gsi",
         "A wrapper for socket, casting any errors to -1.\n\nr0: domain\nr1: family\nr2: protocol\nreturn: socket file descriptor on success, -1 on an error",
         None,
     )
 
-    SocketClose = Symbol(
+    closesocket_gsi = Symbol(
         None,
         None,
         None,
-        "SocketClose",
+        "closesocket_gsi",
         "A wrapper for close, casting any errors to -1.\n\nr0: file descriptor\nreturn: 0 on success, -1 on an error",
         None,
     )
 
-    SocketBind = Symbol(
+    shutdown_gsi = Symbol(None, None, None, "shutdown_gsi", "", None)
+
+    bind_gsi = Symbol(
         None,
         None,
         None,
-        "SocketBind",
+        "bind_gsi",
         "A wrapper for bind, casting any errors to -1.\n\nr0: socket file descriptor\nr1: address\nr2: length of address\nreturn: 0 on success, -1 on an error",
         None,
     )
 
-    SocketConnect = Symbol(
+    connect_gsi = Symbol(
         None,
         None,
         None,
-        "SocketConnect",
+        "connect_gsi",
         "A wrapper for connect, casting any errors to -1.\n\nr0: socket file descriptor\nr1: address\nr2: length of address\nreturn: 0 on success, -1 on an error",
         None,
     )
 
-    SocketRecv = Symbol(
+    recv_gsi = Symbol(
         None,
         None,
         None,
-        "SocketRecv",
+        "recv_gsi",
         "A wrapper for recv, casting any errors to -1.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes read, or -1 on an error",
         None,
     )
 
-    SocketRecvFrom = Symbol(
+    recvfrom_gsi = Symbol(
         None,
         None,
         None,
-        "SocketRecvFrom",
+        "recvfrom_gsi",
         "A wrapper for recvfrom, casting any errors to -1.\n\nr0: socket file descriptor\nr1: destination buffer\nr2: size of buffer\nr3: flags\nstack[0]: destination address; can be NULL\nstack[1]: length of destination address\nreturn: number of bytes read, or -1 on an error",
         None,
     )
 
-    SocketSend = Symbol(
+    send_gsi = Symbol(
         None,
         None,
         None,
-        "SocketSend",
+        "send_gsi",
         "A wrapper for send, casting any errors to -1.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nreturn: number of bytes sent, or -1 on an error",
         None,
     )
 
-    SocketSendTo = Symbol(
+    sendto_gsi = Symbol(
         None,
         None,
         None,
-        "SocketSendTo",
+        "sendto_gsi",
         "A wrapper for sendto, casting any errors to -1.\n\nr0: socket file descriptor\nr1: source buffer\nr2: size of buffer\nr3: flags\nstack[0]: target address\nstack[1]: length of target address\nreturn: number of bytes sent, or -1 on an error",
         None,
     )
 
+    setsockopt_gsi = Symbol(None, None, None, "setsockopt_gsi", "", None)
+
+    getsockname_gsi = Symbol(None, None, None, "getsockname_gsi", "", None)
+
+    inet_addr_gsi = Symbol(None, None, None, "inet_addr_gsi", "", None)
+
     GoaGetLastError = Symbol(None, None, None, "GoaGetLastError", "", None)
 
-    SocketSetBlocking = Symbol(
+    GsiSocketSelect = Symbol(None, None, None, "GsiSocketSelect", "", None)
+
+    SetSockBlocking = Symbol(
         None,
         None,
         None,
-        "SocketSetBlocking",
+        "SetSockBlocking",
         "Sets a socket to be blocking or non-blocking.\n\nr0: socket file descriptor\nr1: blocking flag\nreturn: success",
         None,
     )
 
-    DoRand = Symbol(
+    SetReceiveBufferSize = Symbol(None, None, None, "SetReceiveBufferSize", "", None)
+
+    CanReceiveOnSocket = Symbol(None, None, None, "CanReceiveOnSocket", "", None)
+
+    CanSendOnSocket = Symbol(None, None, None, "CanSendOnSocket", "", None)
+
+    getlocalhost_gsi = Symbol(None, None, None, "getlocalhost_gsi", "", None)
+
+    IsPrivateIP = Symbol(None, None, None, "IsPrivateIP", "", None)
+
+    time_gsi = Symbol(None, None, None, "time_gsi", "", None)
+
+    GsiStartResolvingHostname = Symbol(
+        None, None, None, "GsiStartResolvingHostname", "", None
+    )
+
+    GsiCancelResolvingHostname = Symbol(
+        None, None, None, "GsiCancelResolvingHostname", "", None
+    )
+
+    GsiGetResolvedIP = Symbol(None, None, None, "GsiGetResolvedIP", "", None)
+
+    goastrdup = Symbol(None, None, None, "goastrdup", "", None)
+
+    strlwr = Symbol(None, None, None, "strlwr", "", None)
+
+    SocketStartUp_Ghi = Symbol(None, None, None, "SocketStartUp_Ghi", "", None)
+
+    SocketShutDown_Gsi = Symbol(None, None, None, "SocketShutDown_Gsi", "", None)
+
+    current_time_gsi = Symbol(None, None, None, "current_time_gsi", "", None)
+
+    current_time_hires_gsi = Symbol(
+        None, None, None, "current_time_hires_gsi", "", None
+    )
+
+    msleep_gsi = Symbol(None, None, None, "msleep_gsi", "", None)
+
+    nextlongrand_gsi = Symbol(
         None,
         None,
         None,
-        "DoRand",
+        "nextlongrand_gsi",
         "Generates a pseudorandom integer provided a parameter.\n\nr0: ctx\nreturn: pseudorandom integer",
         None,
     )
 
-    rand = Symbol(
+    longrand_gsi = Symbol(
         None,
         None,
         None,
-        "rand",
+        "longrand_gsi",
         "Generates a new pseudorandom integer from the current PRNG sequence number and updates it.\n\nreturn: psuedorandom integer",
         None,
     )
 
-    srand = Symbol(
+    Util_RandSeed = Symbol(
         None,
         None,
         None,
-        "srand",
-        "Seeds a PRNG sequence number used by rand.\n\nr0: seed",
+        "Util_RandSeed",
+        "Seeds a PRNG sequence number used by longrand_gsi.\n\nr0: seed",
         None,
     )
 
-    RandRangeOverlay0 = Symbol(
+    Util_RandInt = Symbol(
         None,
         None,
         None,
-        "RandRangeOverlay0",
+        "Util_RandInt",
         "Generates a new pseudorandom integer by performing (rand() % (y - x) + x).\n\nr0: x\nr1: y\nreturn: pseudorandom integer on the interval [x, y - 1]",
         None,
     )
 
-    ResolveAvailableNintendoWifi = Symbol(
+    QuartToTrip = Symbol(None, None, None, "QuartToTrip", "", None)
+
+    TripToQuart = Symbol(None, None, None, "TripToQuart", "", None)
+
+    B64Decode = Symbol(None, None, None, "B64Decode", "", None)
+
+    B64Encode = Symbol(None, None, None, "B64Encode", "", None)
+
+    GsDebugAssert = Symbol(None, None, None, "GsDebugAssert", "", None)
+
+    GsiMemoryCallbacksSet = Symbol(None, None, None, "GsiMemoryCallbacksSet", "", None)
+
+    gsimalloc = Symbol(None, None, None, "gsimalloc", "", None)
+
+    gsirealloc = Symbol(None, None, None, "gsirealloc", "", None)
+
+    gsifree = Symbol(None, None, None, "gsifree", "", None)
+
+    get_sockaddrin = Symbol(None, None, None, "get_sockaddrin", "", None)
+
+    SendPacket_Gsi = Symbol(None, None, None, "SendPacket_Gsi", "", None)
+
+    GsiStartAvailableCheckA = Symbol(
         None,
         None,
         None,
-        "ResolveAvailableNintendoWifi",
+        "GsiStartAvailableCheckA",
         "Seemingly resolves the IP of 'pokedungeonds.available.gs.nintendowifi.net', in which 'pokedungeonds' is provided as the first parameter.\n\nr0: string",
         None,
     )
 
+    HandlePacket = Symbol(None, None, None, "HandlePacket", "", None)
+
     GsiAvailableCheckThink = Symbol(
         None, None, None, "GsiAvailableCheckThink", "", None
     )
+
+    GsiCryptRsaGeneratePad = Symbol(
+        None, None, None, "GsiCryptRsaGeneratePad", "", None
+    )
+
+    GsCryptRsaEncryptBuffer = Symbol(
+        None, None, None, "GsCryptRsaEncryptBuffer", "", None
+    )
+
+    GsCryptRsaPkcs1EncryptBuffer = Symbol(
+        None, None, None, "GsCryptRsaPkcs1EncryptBuffer", "", None
+    )
+
+    GsiLargeIntTimerEnter = Symbol(None, None, None, "GsiLargeIntTimerEnter", "", None)
+
+    GsiLargeIntTimerExit = Symbol(None, None, None, "GsiLargeIntTimerExit", "", None)
+
+    GsiLargeIntCompare = Symbol(None, None, None, "GsiLargeIntCompare", "", None)
+
+    GsiLargeIntStripLeadingZeroes = Symbol(
+        None, None, None, "GsiLargeIntStripLeadingZeroes", "", None
+    )
+
+    GsiLargeIntAdd = Symbol(None, None, None, "GsiLargeIntAdd", "", None)
+
+    GsiLargeIntSub = Symbol(None, None, None, "GsiLargeIntSub", "", None)
+
+    GsiLargeIntMult = Symbol(None, None, None, "GsiLargeIntMult", "", None)
+
+    GsLargeIntDiv = Symbol(None, None, None, "GsLargeIntDiv", "", None)
+
+    GsiLargeIntDiv = Symbol(None, None, None, "GsiLargeIntDiv", "", None)
+
+    GsiLargeIntSubDivide = Symbol(None, None, None, "GsiLargeIntSubDivide", "", None)
+
+    GsLargeIntSquareMod = Symbol(None, None, None, "GsLargeIntSquareMod", "", None)
+
+    GsLargeIntPowerMod = Symbol(None, None, None, "GsLargeIntPowerMod", "", None)
+
+    GsiLargeIntMultM = Symbol(None, None, None, "GsiLargeIntMultM", "", None)
+
+    GsiLargeIntInverseMod = Symbol(None, None, None, "GsiLargeIntInverseMod", "", None)
+
+    GsLargeIntReverseBytes = Symbol(
+        None, None, None, "GsLargeIntReverseBytes", "", None
+    )
+
+    GsLargeIntSetFromMemoryStream = Symbol(
+        None, None, None, "GsLargeIntSetFromMemoryStream", "", None
+    )
+
+    GsLargeIntWriteToMemoryStream = Symbol(
+        None, None, None, "GsLargeIntWriteToMemoryStream", "", None
+    )
+
+    swap_byte_gsi = Symbol(None, None, None, "swap_byte_gsi", "", None)
+
+    RC4Init_Gsi = Symbol(None, None, None, "RC4Init_Gsi", "", None)
+
+    RC4Encrypt_Gsi = Symbol(None, None, None, "RC4Encrypt_Gsi", "", None)
+
+    Sha1Reset_Gsi = Symbol(None, None, None, "Sha1Reset_Gsi", "", None)
+
+    Sha1Result_Gsi = Symbol(None, None, None, "Sha1Result_Gsi", "", None)
+
+    Sha1Input_Ghi = Symbol(None, None, None, "Sha1Input_Ghi", "", None)
+
+    Sha1ProcessMessageBlock = Symbol(
+        None, None, None, "Sha1ProcessMessageBlock", "", None
+    )
+
+    Sha1PadMessage = Symbol(None, None, None, "Sha1PadMessage", "", None)
+
+    GsUdpEngineGetEngine = Symbol(None, None, None, "GsUdpEngineGetEngine", "", None)
+
+    GsUdpMsgHandlerFree = Symbol(None, None, None, "GsUdpMsgHandlerFree", "", None)
+
+    GsUdpMsgHandlerCompare = Symbol(
+        None, None, None, "GsUdpMsgHandlerCompare", "", None
+    )
+
+    GsUdpMsgHandlerCompare2 = Symbol(
+        None, None, None, "GsUdpMsgHandlerCompare2", "", None
+    )
+
+    GsUdpRemotePeerCompare = Symbol(
+        None, None, None, "GsUdpRemotePeerCompare", "", None
+    )
+
+    GsUdpRemotePeerCompare2 = Symbol(
+        None, None, None, "GsUdpRemotePeerCompare2", "", None
+    )
+
+    GsUdpSocketError = Symbol(None, None, None, "GsUdpSocketError", "", None)
+
+    GsUdpClosedRoutingCB = Symbol(None, None, None, "GsUdpClosedRoutingCB", "", None)
+
+    GsUdpConnectedRoutingCB = Symbol(
+        None, None, None, "GsUdpConnectedRoutingCB", "", None
+    )
+
+    GsUdpPingRoutingCB = Symbol(None, None, None, "GsUdpPingRoutingCB", "", None)
+
+    GsUdpReceivedRoutingCB = Symbol(
+        None, None, None, "GsUdpReceivedRoutingCB", "", None
+    )
+
+    GsUdpUnrecognizedMsgCB = Symbol(
+        None, None, None, "GsUdpUnrecognizedMsgCB", "", None
+    )
+
+    GsUdpConnAttemptCB = Symbol(None, None, None, "GsUdpConnAttemptCB", "", None)
+
+    GsUdpEngineIsInitialized = Symbol(
+        None, None, None, "GsUdpEngineIsInitialized", "", None
+    )
+
+    GsUdpEngineInitialize = Symbol(None, None, None, "GsUdpEngineInitialize", "", None)
+
+    GsUdpEngineGetPeerState = Symbol(
+        None, None, None, "GsUdpEngineGetPeerState", "", None
+    )
+
+    GsUdpEngineStartTalkingToPeer = Symbol(
+        None, None, None, "GsUdpEngineStartTalkingToPeer", "", None
+    )
+
+    GsUdpEngineSendMessage = Symbol(
+        None, None, None, "GsUdpEngineSendMessage", "", None
+    )
+
+    GsUdpEngineThink = Symbol(None, None, None, "GsUdpEngineThink", "", None)
+
+    GsUdpEngineShutdown = Symbol(None, None, None, "GsUdpEngineShutdown", "", None)
+
+    GsUdpEngineGetLocalPort = Symbol(
+        None, None, None, "GsUdpEngineGetLocalPort", "", None
+    )
+
+    GsUdpEngineAddMsgHandler = Symbol(
+        None, None, None, "GsUdpEngineAddMsgHandler", "", None
+    )
+
+    GsUdpEngineRemoveMsgHandler = Symbol(
+        None, None, None, "GsUdpEngineRemoveMsgHandler", "", None
+    )
+
+    GsUdpEngineNoMoreMsgHandlers = Symbol(
+        None, None, None, "GsUdpEngineNoMoreMsgHandlers", "", None
+    )
+
+    GsUdpEngineNoApp = Symbol(None, None, None, "GsUdpEngineNoApp", "", None)
+
+    GsUdpEngineGetPeerOutBufferFreeSpace = Symbol(
+        None, None, None, "GsUdpEngineGetPeerOutBufferFreeSpace", "", None
+    )
+
+    GsXmlWriterGetData = Symbol(None, None, None, "GsXmlWriterGetData", "", None)
+
+    GsXmlWriterGetDataLength = Symbol(
+        None, None, None, "GsXmlWriterGetDataLength", "", None
+    )
+
+    GhiResizeBuffer = Symbol(None, None, None, "GhiResizeBuffer", "", None)
+
+    GhiInitBuffer = Symbol(None, None, None, "GhiInitBuffer", "", None)
+
+    GhiInitFixedBuffer = Symbol(None, None, None, "GhiInitFixedBuffer", "", None)
+
+    GhiInitReadOnlyBuffer = Symbol(None, None, None, "GhiInitReadOnlyBuffer", "", None)
+
+    GhiFreeBuffer = Symbol(None, None, None, "GhiFreeBuffer", "", None)
+
+    GhiAppendDataToBuffer = Symbol(None, None, None, "GhiAppendDataToBuffer", "", None)
+
+    GhiEncryptDataToBuffer = Symbol(
+        None, None, None, "GhiEncryptDataToBuffer", "", None
+    )
+
+    GhiAppendHeaderToBuffer = Symbol(
+        None, None, None, "GhiAppendHeaderToBuffer", "", None
+    )
+
+    GhiAppendCharToBuffer = Symbol(None, None, None, "GhiAppendCharToBuffer", "", None)
+
+    GhiAppendIntToBuffer = Symbol(None, None, None, "GhiAppendIntToBuffer", "", None)
+
+    GhiResetBuffer = Symbol(None, None, None, "GhiResetBuffer", "", None)
+
+    GhiSendBufferedData = Symbol(None, None, None, "GhiSendBufferedData", "", None)
+
+    GhiReadDataFromBufferFixed = Symbol(
+        None, None, None, "GhiReadDataFromBufferFixed", "", None
+    )
+
+    GhiCallCompletedCallback = Symbol(
+        None, None, None, "GhiCallCompletedCallback", "", None
+    )
+
+    GhiCallProgressCallback = Symbol(
+        None, None, None, "GhiCallProgressCallback", "", None
+    )
+
+    GhiCallPostCallback = Symbol(None, None, None, "GhiCallPostCallback", "", None)
+
+    GhiCreateLock = Symbol(None, None, None, "GhiCreateLock", "", None)
+
+    GhiFreeLock = Symbol(None, None, None, "GhiFreeLock", "", None)
+
+    GhiLock = Symbol(None, None, None, "GhiLock", "", None)
+
+    GhiUnlock = Symbol(None, None, None, "GhiUnlock", "", None)
+
+    GhiDecryptReceivedData = Symbol(
+        None, None, None, "GhiDecryptReceivedData", "", None
+    )
+
+    GhiDoReceive = Symbol(None, None, None, "GhiDoReceive", "", None)
+
+    GhiDoSend = Symbol(None, None, None, "GhiDoSend", "", None)
+
+    GhiTrySendThenBuffer = Symbol(None, None, None, "GhiTrySendThenBuffer", "", None)
+
+    GhiFindFreeSlot = Symbol(None, None, None, "GhiFindFreeSlot", "", None)
+
+    GhiNewConnection = Symbol(None, None, None, "GhiNewConnection", "", None)
+
+    GhiFreeConnection = Symbol(None, None, None, "GhiFreeConnection", "", None)
+
+    GhiRequestToConnection = Symbol(
+        None, None, None, "GhiRequestToConnection", "", None
+    )
+
+    GhiEnumConnections = Symbol(None, None, None, "GhiEnumConnections", "", None)
+
+    GhiRedirectConnection = Symbol(None, None, None, "GhiRedirectConnection", "", None)
+
+    GhiCleanupConnections = Symbol(None, None, None, "GhiCleanupConnections", "", None)
+
+    GhttpSetRequestEncryptionEngine = Symbol(
+        None, None, None, "GhttpSetRequestEncryptionEngine", "", None
+    )
+
+    GhiEncryptorWriteNboLength = Symbol(
+        None, None, None, "GhiEncryptorWriteNboLength", "", None
+    )
+
+    GhiEncryptorReadNboLength = Symbol(
+        None, None, None, "GhiEncryptorReadNboLength", "", None
+    )
+
+    GhiEncryptorParseAsn1Sequence = Symbol(
+        None, None, None, "GhiEncryptorParseAsn1Sequence", "", None
+    )
+
+    GhttpEncryptorGenerateEncryptionKeys = Symbol(
+        None, None, None, "GhttpEncryptorGenerateEncryptionKeys", "", None
+    )
+
+    GhttpEncryptorSslInitFunc = Symbol(
+        None, None, None, "GhttpEncryptorSslInitFunc", "", None
+    )
+
+    GhttpEncryptorSslCleanupFunc = Symbol(
+        None, None, None, "GhttpEncryptorSslCleanupFunc", "", None
+    )
+
+    GhttpEncryptorSslEncryptFunc = Symbol(
+        None, None, None, "GhttpEncryptorSslEncryptFunc", "", None
+    )
+
+    GhttpEncryptorSslDecryptFunc = Symbol(
+        None, None, None, "GhttpEncryptorSslDecryptFunc", "", None
+    )
+
+    GhiCertificateChainIsValid = Symbol(
+        None, None, None, "GhiCertificateChainIsValid", "", None
+    )
+
+    GhttpEncryptorProcessSslHandshake = Symbol(
+        None, None, None, "GhttpEncryptorProcessSslHandshake", "", None
+    )
+
+    GhiHandleStatus = Symbol(None, None, None, "GhiHandleStatus", "", None)
+
+    GhiProcessConnection = Symbol(None, None, None, "GhiProcessConnection", "", None)
 
     GhttpStartup = Symbol(None, None, None, "GhttpStartup", "", None)
 
@@ -22381,6 +23065,92 @@ class JpItcmOverlay0Functions:
     GhttpThink = Symbol(None, None, None, "GhttpThink", "", None)
 
     GHttpCancelRequest = Symbol(None, None, None, "GHttpCancelRequest", "", None)
+
+    GhiIsPostAutoFree = Symbol(None, None, None, "GhiIsPostAutoFree", "", None)
+
+    GhiFreePost = Symbol(None, None, None, "GhiFreePost", "", None)
+
+    GhiPostGetContentType = Symbol(None, None, None, "GhiPostGetContentType", "", None)
+
+    GhiPostGetNoFilesContentLength = Symbol(
+        None, None, None, "GhiPostGetNoFilesContentLength", "", None
+    )
+
+    GhiPostGetHasFilesContentLength = Symbol(
+        None, None, None, "GhiPostGetHasFilesContentLength", "", None
+    )
+
+    GhiPostGetContentLength = Symbol(
+        None, None, None, "GhiPostGetContentLength", "", None
+    )
+
+    GhiPostStateInit = Symbol(None, None, None, "GhiPostStateInit", "", None)
+
+    GhiPostStateCleanup = Symbol(None, None, None, "GhiPostStateCleanup", "", None)
+
+    GhiPostInitState = Symbol(None, None, None, "GhiPostInitState", "", None)
+
+    GhiPostCleanupState = Symbol(None, None, None, "GhiPostCleanupState", "", None)
+
+    GhiPostStringStateDoPosting = Symbol(
+        None, None, None, "GhiPostStringStateDoPosting", "", None
+    )
+
+    GhiPostXmlStateDoPosting = Symbol(
+        None, None, None, "GhiPostXmlStateDoPosting", "", None
+    )
+
+    GhiPostFileDiskStateDoPosting = Symbol(
+        None, None, None, "GhiPostFileDiskStateDoPosting", "", None
+    )
+
+    GhiPostFileMemoryStateDoPosting = Symbol(
+        None, None, None, "GhiPostFileMemoryStateDoPosting", "", None
+    )
+
+    GhiPostStateDoPosting = Symbol(None, None, None, "GhiPostStateDoPosting", "", None)
+
+    GhiPostDoPosting = Symbol(None, None, None, "GhiPostDoPosting", "", None)
+
+    GhiParseUrl = Symbol(None, None, None, "GhiParseUrl", "", None)
+
+    GhiDoSocketInit = Symbol(None, None, None, "GhiDoSocketInit", "", None)
+
+    GhiDoHostLookup = Symbol(None, None, None, "GhiDoHostLookup", "", None)
+
+    GhiDoLookupPending = Symbol(None, None, None, "GhiDoLookupPending", "", None)
+
+    GhiDoConnecting = Symbol(None, None, None, "GhiDoConnecting", "", None)
+
+    GhiDoSecuringSession = Symbol(None, None, None, "GhiDoSecuringSession", "", None)
+
+    GhiDoSendingRequest = Symbol(None, None, None, "GhiDoSendingRequest", "", None)
+
+    GhiDoPosting = Symbol(None, None, None, "GhiDoPosting", "", None)
+
+    GhiDoWaiting = Symbol(None, None, None, "GhiDoWaiting", "", None)
+
+    GhiParseStatus = Symbol(None, None, None, "GhiParseStatus", "", None)
+
+    GhiDoReceivingStatus = Symbol(None, None, None, "GhiDoReceivingStatus", "", None)
+
+    GhiDeliverIncomingFileData = Symbol(
+        None, None, None, "GhiDeliverIncomingFileData", "", None
+    )
+
+    GhiParseChunkSize = Symbol(None, None, None, "GhiParseChunkSize", "", None)
+
+    GhiAppendToChunkHeaderBuffer = Symbol(
+        None, None, None, "GhiAppendToChunkHeaderBuffer", "", None
+    )
+
+    GhiProcessIncomingFileData = Symbol(
+        None, None, None, "GhiProcessIncomingFileData", "", None
+    )
+
+    GhiDoReceivingHeaders = Symbol(None, None, None, "GhiDoReceivingHeaders", "", None)
+
+    GhiDoReceivingFile = Symbol(None, None, None, "GhiDoReceivingFile", "", None)
 
     GpInitialize = Symbol(None, None, None, "GpInitialize", "", None)
 
@@ -22399,6 +23169,8 @@ class JpItcmOverlay0Functions:
     GpProfileSearchA = Symbol(None, None, None, "GpProfileSearchA", "", None)
 
     GpGetInfo = Symbol(None, None, None, "GpGetInfo", "", None)
+
+    GpGetInfoNoWait = Symbol(None, None, None, "GpGetInfoNoWait", "", None)
 
     GpSendBuddyRequestA = Symbol(None, None, None, "GpSendBuddyRequestA", "", None)
 
@@ -22424,14 +23196,368 @@ class JpItcmOverlay0Functions:
         None, None, None, "GpGetReversBuddiesList", "", None
     )
 
-    PasswordEncryptString = Symbol(
+    GpiInitialize = Symbol(None, None, None, "GpiInitialize", "", None)
+
+    GpiDestroy = Symbol(None, None, None, "GpiDestroy", "", None)
+
+    GpiResetProfile = Symbol(None, None, None, "GpiResetProfile", "", None)
+
+    GpiReset = Symbol(None, None, None, "GpiReset", "", None)
+
+    GpiProcessConnectionManager = Symbol(
+        None, None, None, "GpiProcessConnectionManager", "", None
+    )
+
+    GpiProcess = Symbol(None, None, None, "GpiProcess", "", None)
+
+    GpiSendAuthBuddyRequest = Symbol(
+        None, None, None, "GpiSendAuthBuddyRequest", "", None
+    )
+
+    GpiProcessRecvBuddyMessage = Symbol(
+        None, None, None, "GpiProcessRecvBuddyMessage", "", None
+    )
+
+    GpiProcessRecvBuddyStatusInfo = Symbol(
+        None, None, None, "GpiProcessRecvBuddyStatusInfo", "", None
+    )
+
+    GpiSendServerBuddyMessage = Symbol(
+        None, None, None, "GpiSendServerBuddyMessage", "", None
+    )
+
+    GpiSendBuddyMessage = Symbol(None, None, None, "GpiSendBuddyMessage", "", None)
+
+    GpiBuddyHandleKeyRequest = Symbol(
+        None, None, None, "GpiBuddyHandleKeyRequest", "", None
+    )
+
+    GpiBuddyHandleKeyReply = Symbol(
+        None, None, None, "GpiBuddyHandleKeyReply", "", None
+    )
+
+    GpiAuthBuddyRequest = Symbol(None, None, None, "GpiAuthBuddyRequest", "", None)
+
+    GpiFixBuddyIndices = Symbol(None, None, None, "GpiFixBuddyIndices", "", None)
+
+    GpiDeleteBuddy = Symbol(None, None, None, "GpiDeleteBuddy", "", None)
+
+    GpiAppendCharToBuffer = Symbol(None, None, None, "GpiAppendCharToBuffer", "", None)
+
+    GpiAppendStringToBufferLen = Symbol(
+        None, None, None, "GpiAppendStringToBufferLen", "", None
+    )
+
+    GpiAppendStringToBuffer = Symbol(
+        None, None, None, "GpiAppendStringToBuffer", "", None
+    )
+
+    GpiAppendIntToBuffer = Symbol(None, None, None, "GpiAppendIntToBuffer", "", None)
+
+    GpiSendData = Symbol(None, None, None, "GpiSendData", "", None)
+
+    GpiSendOrBufferChar = Symbol(None, None, None, "GpiSendOrBufferChar", "", None)
+
+    GpiSendOrBufferStringLenToPeer = Symbol(
+        None, None, None, "GpiSendOrBufferStringLenToPeer", "", None
+    )
+
+    GpiSendOrBufferString = Symbol(None, None, None, "GpiSendOrBufferString", "", None)
+
+    GpiRecvToBuffer = Symbol(None, None, None, "GpiRecvToBuffer", "", None)
+
+    GpiSendFromBuffer = Symbol(None, None, None, "GpiSendFromBuffer", "", None)
+
+    GpiSendBufferToPeer = Symbol(None, None, None, "GpiSendBufferToPeer", "", None)
+
+    GpiReadMessageFromBuffer = Symbol(
+        None, None, None, "GpiReadMessageFromBuffer", "", None
+    )
+
+    GpiClipBufferToPosition = Symbol(
+        None, None, None, "GpiClipBufferToPosition", "", None
+    )
+
+    GpiCallErrorCallback = Symbol(None, None, None, "GpiCallErrorCallback", "", None)
+
+    GpiAddCallback = Symbol(None, None, None, "GpiAddCallback", "", None)
+
+    GpiCallCallback = Symbol(None, None, None, "GpiCallCallback", "", None)
+
+    GpiProcessCallbacks = Symbol(None, None, None, "GpiProcessCallbacks", "", None)
+
+    RandomString = Symbol(None, None, None, "RandomString", "", None)
+
+    GpiStartConnect = Symbol(None, None, None, "GpiStartConnect", "", None)
+
+    GpiConnect = Symbol(None, None, None, "GpiConnect", "", None)
+
+    GpiSendLogin = Symbol(None, None, None, "GpiSendLogin", "", None)
+
+    GpiSendNewuser = Symbol(None, None, None, "GpiSendNewuser", "", None)
+
+    GpiProcessConnect = Symbol(None, None, None, "GpiProcessConnect", "", None)
+
+    GpiCheckConnect = Symbol(None, None, None, "GpiCheckConnect", "", None)
+
+    GpiDisconnectCleanupProfile = Symbol(
+        None, None, None, "GpiDisconnectCleanupProfile", "", None
+    )
+
+    GpiDisconnect = Symbol(None, None, None, "GpiDisconnect", "", None)
+
+    GpiIsValidDate = Symbol(None, None, None, "GpiIsValidDate", "", None)
+
+    GpiDateToInt = Symbol(None, None, None, "GpiDateToInt", "", None)
+
+    GpiInfoCacheToArg = Symbol(None, None, None, "GpiInfoCacheToArg", "", None)
+
+    GpiProcessGetInfo = Symbol(None, None, None, "GpiProcessGetInfo", "", None)
+
+    GpiAddLocalInfo = Symbol(None, None, None, "GpiAddLocalInfo", "", None)
+
+    GpiSendLocalInfo = Symbol(None, None, None, "GpiSendLocalInfo", "", None)
+
+    GpiSendUserInfo = Symbol(None, None, None, "GpiSendUserInfo", "", None)
+
+    GpiSetInfoi = Symbol(None, None, None, "GpiSetInfoi", "", None)
+
+    GpiSetInfos = Symbol(None, None, None, "GpiSetInfos", "", None)
+
+    GpiSendGetInfo = Symbol(None, None, None, "GpiSendGetInfo", "", None)
+
+    GpiGetInfo = Symbol(None, None, None, "GpiGetInfo", "", None)
+
+    GpiSetInfoCache = Symbol(None, None, None, "GpiSetInfoCache", "", None)
+
+    GpiFreeInfoCache = Symbol(None, None, None, "GpiFreeInfoCache", "", None)
+
+    GpiStatusInfoKeyFree = Symbol(None, None, None, "GpiStatusInfoKeyFree", "", None)
+
+    GpiStatusInfoKeysInit = Symbol(None, None, None, "GpiStatusInfoKeysInit", "", None)
+
+    GpiStatusInfoKeysDestroy = Symbol(
+        None, None, None, "GpiStatusInfoKeysDestroy", "", None
+    )
+
+    GpiStatusInfoKeyCompFunc = Symbol(
+        None, None, None, "GpiStatusInfoKeyCompFunc", "", None
+    )
+
+    GpiStatusInfoAddKey = Symbol(None, None, None, "GpiStatusInfoAddKey", "", None)
+
+    GpiStatusInfoSetKey = Symbol(None, None, None, "GpiStatusInfoSetKey", "", None)
+
+    GpiStatusInfoCheckKey = Symbol(None, None, None, "GpiStatusInfoCheckKey", "", None)
+
+    GpiSaveKeysToBuffer = Symbol(None, None, None, "GpiSaveKeysToBuffer", "", None)
+
+    GpiFailedOpCallback = Symbol(None, None, None, "GpiFailedOpCallback", "", None)
+
+    GpiAddOperation = Symbol(None, None, None, "GpiAddOperation", "", None)
+
+    GpiDestroyOperation = Symbol(None, None, None, "GpiDestroyOperation", "", None)
+
+    GpiRemoveOperation = Symbol(None, None, None, "GpiRemoveOperation", "", None)
+
+    GpiFindOperationByID = Symbol(None, None, None, "GpiFindOperationByID", "", None)
+
+    GpiOperationsAreBlocking = Symbol(
+        None, None, None, "GpiOperationsAreBlocking", "", None
+    )
+
+    GpiProcessOperation = Symbol(None, None, None, "GpiProcessOperation", "", None)
+
+    GpiProcessPeerInitiatingConnection = Symbol(
+        None, None, None, "GpiProcessPeerInitiatingConnection", "", None
+    )
+
+    GpiProcessPeerAcceptingConnection = Symbol(
+        None, None, None, "GpiProcessPeerAcceptingConnection", "", None
+    )
+
+    GpiPeerSendMessages = Symbol(None, None, None, "GpiPeerSendMessages", "", None)
+
+    GpiProcessPeerConnected = Symbol(
+        None, None, None, "GpiProcessPeerConnected", "", None
+    )
+
+    GpiCheckTimedOutPeerOperations = Symbol(
+        None, None, None, "GpiCheckTimedOutPeerOperations", "", None
+    )
+
+    GpiProcessPeer = Symbol(None, None, None, "GpiProcessPeer", "", None)
+
+    GpiDestroyPeer = Symbol(None, None, None, "GpiDestroyPeer", "", None)
+
+    GpiRemovePeer = Symbol(None, None, None, "GpiRemovePeer", "", None)
+
+    GpiProcessPeers = Symbol(None, None, None, "GpiProcessPeers", "", None)
+
+    GpiGetPeerByProfile = Symbol(None, None, None, "GpiGetPeerByProfile", "", None)
+
+    GpiGetPeerByAddr = Symbol(None, None, None, "GpiGetPeerByAddr", "", None)
+
+    GpiFreeMessage = Symbol(None, None, None, "GpiFreeMessage", "", None)
+
+    GpiAddPeer = Symbol(None, None, None, "GpiAddPeer", "", None)
+
+    GpiPeerGetSig = Symbol(None, None, None, "GpiPeerGetSig", "", None)
+
+    GpiPeerStartConnect = Symbol(None, None, None, "GpiPeerStartConnect", "", None)
+
+    GpiPeerAddMessage = Symbol(None, None, None, "GpiPeerAddMessage", "", None)
+
+    GpiPeerStartTransferMessage = Symbol(
+        None, None, None, "GpiPeerStartTransferMessage", "", None
+    )
+
+    GpiPeerFinishTransferMessage = Symbol(
+        None, None, None, "GpiPeerFinishTransferMessage", "", None
+    )
+
+    GpiPeerLeftCallback = Symbol(None, None, None, "GpiPeerLeftCallback", "", None)
+
+    GpiPeerMessageCallback = Symbol(
+        None, None, None, "GpiPeerMessageCallback", "", None
+    )
+
+    GpiPeerAcceptedCallback = Symbol(
+        None, None, None, "GpiPeerAcceptedCallback", "", None
+    )
+
+    GpiPeerPingReplyCallback = Symbol(
+        None, None, None, "GpiPeerPingReplyCallback", "", None
+    )
+
+    GpiPeerAddOp = Symbol(None, None, None, "GpiPeerAddOp", "", None)
+
+    GpiPeerRemoveOp = Symbol(None, None, None, "GpiPeerRemoveOp", "", None)
+
+    GpiProfilesTableHash = Symbol(None, None, None, "GpiProfilesTableHash", "", None)
+
+    GpiProfilesTableCompare = Symbol(
+        None, None, None, "GpiProfilesTableCompare", "", None
+    )
+
+    GpiProfilesTableFree = Symbol(None, None, None, "GpiProfilesTableFree", "", None)
+
+    GpiInitProfiles = Symbol(None, None, None, "GpiInitProfiles", "", None)
+
+    GpiProcessNewProfile = Symbol(None, None, None, "GpiProcessNewProfile", "", None)
+
+    GpiProfileListAdd = Symbol(None, None, None, "GpiProfileListAdd", "", None)
+
+    GpiGetProfile = Symbol(None, None, None, "GpiGetProfile", "", None)
+
+    GpiProcessDeleteProfle = Symbol(
+        None, None, None, "GpiProcessDeleteProfle", "", None
+    )
+
+    GpiRemoveProfileByID = Symbol(None, None, None, "GpiRemoveProfileByID", "", None)
+
+    GpiRemoveProfile = Symbol(None, None, None, "GpiRemoveProfile", "", None)
+
+    GpiCheckProfileForUser = Symbol(
+        None, None, None, "GpiCheckProfileForUser", "", None
+    )
+
+    GpiFindProfileByUser = Symbol(None, None, None, "GpiFindProfileByUser", "", None)
+
+    GpiProfileMapCallback = Symbol(None, None, None, "GpiProfileMapCallback", "", None)
+
+    GpiProfileMap = Symbol(None, None, None, "GpiProfileMap", "", None)
+
+    GpiCheckForBuddy = Symbol(None, None, None, "GpiCheckForBuddy", "", None)
+
+    GpiFindBuddy = Symbol(None, None, None, "GpiFindBuddy", "", None)
+
+    GpiRemoveBuddyStatus = Symbol(None, None, None, "GpiRemoveBuddyStatus", "", None)
+
+    GpiRemoveBuddyStatusInfo = Symbol(
+        None, None, None, "GpiRemoveBuddyStatusInfo", "", None
+    )
+
+    GpiCanFreeProfile = Symbol(None, None, None, "GpiCanFreeProfile", "", None)
+
+    GpiStartProfileSearch = Symbol(None, None, None, "GpiStartProfileSearch", "", None)
+
+    GpiInitSearchData = Symbol(None, None, None, "GpiInitSearchData", "", None)
+
+    GpiStartSearch = Symbol(None, None, None, "GpiStartSearch", "", None)
+
+    GpiProfileSearch = Symbol(None, None, None, "GpiProfileSearch", "", None)
+
+    GpiOthersBuddyList = Symbol(None, None, None, "GpiOthersBuddyList", "", None)
+
+    GpiProcessSearch = Symbol(None, None, None, "GpiProcessSearch", "", None)
+
+    GpiProcessSearches = Symbol(None, None, None, "GpiProcessSearches", "", None)
+
+    GpiSendTransferReply = Symbol(None, None, None, "GpiSendTransferReply", "", None)
+
+    GpiHandleTransferMessage = Symbol(
+        None, None, None, "GpiHandleTransferMessage", "", None
+    )
+
+    GpiProcessRegisterUniqueNick = Symbol(
+        None, None, None, "GpiProcessRegisterUniqueNick", "", None
+    )
+
+    GpiProcessRegisterCdKey = Symbol(
+        None, None, None, "GpiProcessRegisterCdKey", "", None
+    )
+
+    strzcpy_gsi = Symbol(None, None, None, "strzcpy_gsi", "", None)
+
+    GpiCheckForError = Symbol(None, None, None, "GpiCheckForError", "", None)
+
+    GpiValueForKey = Symbol(None, None, None, "GpiValueForKey", "", None)
+
+    GpiCheckSocketConnect = Symbol(None, None, None, "GpiCheckSocketConnect", "", None)
+
+    GpiReadKeyAndValue = Symbol(None, None, None, "GpiReadKeyAndValue", "", None)
+
+    GpiSetError = Symbol(None, None, None, "GpiSetError", "", None)
+
+    GpiSetErrorString = Symbol(None, None, None, "GpiSetErrorString", "", None)
+
+    GpiEncodeString = Symbol(
         None,
         None,
         None,
-        "PasswordEncryptString",
+        "GpiEncodeString",
         "Performs XOR encryption/decryption on a string, the keystream derived from srand(0x79707367) and repeatedly calling randrange(0x0, 0xFF).\n\nSeemingly called mostly for the 'passenc' field in Dwc messages.\n\nr0: src\nr1: dest",
         None,
     )
+
+    BucketNew = Symbol(None, None, None, "BucketNew", "", None)
+
+    BucketSet = Symbol(None, None, None, "BucketSet", "", None)
+
+    BucketAdd_Gsi = Symbol(None, None, None, "BucketAdd_Gsi", "", None)
+
+    BucketSub_Gsi = Symbol(None, None, None, "BucketSub_Gsi", "", None)
+
+    BucketMult_Gsi = Symbol(None, None, None, "BucketMult_Gsi", "", None)
+
+    BucketDiv_Gsi = Symbol(None, None, None, "BucketDiv_Gsi", "", None)
+
+    BucketConcat_Gsi = Symbol(None, None, None, "BucketConcat_Gsi", "", None)
+
+    BucketAvg_Gsi = Symbol(None, None, None, "BucketAvg_Gsi", "", None)
+
+    bint = Symbol(None, None, None, "bint", "", None)
+
+    bfloat = Symbol(None, None, None, "bfloat", "", None)
+
+    DumpMap_Gsi = Symbol(None, None, None, "DumpMap_Gsi", "", None)
+
+    DoSet_Gsi = Symbol(None, None, None, "DoSet_Gsi", "", None)
+
+    DoGet_Gsi = Symbol(None, None, None, "DoGet_Gsi", "", None)
+
+    DoFind_Gsi = Symbol(None, None, None, "DoFind_Gsi", "", None)
 
     CloseStatsConnection = Symbol(None, None, None, "CloseStatsConnection", "", None)
 
@@ -22439,7 +23565,143 @@ class JpItcmOverlay0Functions:
 
     PersistThink = Symbol(None, None, None, "PersistThink", "", None)
 
-    Gt2Reject = Symbol(None, None, None, "Gt2Reject", "", None)
+    xcode_buf = Symbol(None, None, None, "xcode_buf", "", None)
+
+    value_for_key = Symbol(None, None, None, "value_for_key", "", None)
+
+    value_for_key_safe = Symbol(None, None, None, "value_for_key_safe", "", None)
+
+    SocketReadable = Symbol(None, None, None, "SocketReadable", "", None)
+
+    FindFinal = Symbol(None, None, None, "FindFinal", "", None)
+
+    FindRequest = Symbol(None, None, None, "FindRequest", "", None)
+
+    ProcessPlayerAuth = Symbol(None, None, None, "ProcessPlayerAuth", "", None)
+
+    ProcessGetPid = Symbol(None, None, None, "ProcessGetPid", "", None)
+
+    ProcessGetData = Symbol(None, None, None, "ProcessGetData", "", None)
+
+    ProcessSetData = Symbol(None, None, None, "ProcessSetData", "", None)
+
+    ProcessStatement = Symbol(None, None, None, "ProcessStatement", "", None)
+
+    ProcessInBuffer = Symbol(None, None, None, "ProcessInBuffer", "", None)
+
+    CallReqCallback = Symbol(None, None, None, "CallReqCallback", "", None)
+
+    ClosePendingCallbacks = Symbol(None, None, None, "ClosePendingCallbacks", "", None)
+
+    GetTeamIndex_Gsi = Symbol(None, None, None, "GetTeamIndex_Gsi", "", None)
+
+    GetPlayerIndex_Gsi = Symbol(None, None, None, "GetPlayerIndex_Gsi", "", None)
+
+    ServerOpInt = Symbol(None, None, None, "ServerOpInt", "", None)
+
+    ServerOpFloat = Symbol(None, None, None, "ServerOpFloat", "", None)
+
+    ServerOpString = Symbol(None, None, None, "ServerOpString", "", None)
+
+    TeamOpInt = Symbol(None, None, None, "TeamOpInt", "", None)
+
+    TeamOpFloat = Symbol(None, None, None, "TeamOpFloat", "", None)
+
+    TeamOpString = Symbol(None, None, None, "TeamOpString", "", None)
+
+    PlayerOpInt = Symbol(None, None, None, "PlayerOpInt", "", None)
+
+    PlayerOpFloat = Symbol(None, None, None, "PlayerOpFloat", "", None)
+
+    PlayerOpString = Symbol(None, None, None, "PlayerOpString", "", None)
+
+    Gti2VerifyChallenge = Symbol(None, None, None, "Gti2VerifyChallenge", "", None)
+
+    Gti2GetChallenge = Symbol(None, None, None, "Gti2GetChallenge", "", None)
+
+    Gti2GetResponse = Symbol(None, None, None, "Gti2GetResponse", "", None)
+
+    Gti2CheckResponse = Symbol(None, None, None, "Gti2CheckResponse", "", None)
+
+    Gti2AllocateBuffer = Symbol(None, None, None, "Gti2AllocateBuffer", "", None)
+
+    Gti2GetBufferFreeSpace = Symbol(
+        None, None, None, "Gti2GetBufferFreeSpace", "", None
+    )
+
+    Gti2BufferWriteByte = Symbol(None, None, None, "Gti2BufferWriteByte", "", None)
+
+    Gti2BufferWriteUShort = Symbol(None, None, None, "Gti2BufferWriteUShort", "", None)
+
+    Gti2BufferWriteData = Symbol(None, None, None, "Gti2BufferWriteData", "", None)
+
+    Gti2BufferShorten = Symbol(None, None, None, "Gti2BufferShorten", "", None)
+
+    Gti2SocketErrorCallback = Symbol(
+        None, None, None, "Gti2SocketErrorCallback", "", None
+    )
+
+    Gti2ConnectAttemptCallback = Symbol(
+        None, None, None, "Gti2ConnectAttemptCallback", "", None
+    )
+
+    Gti2ConnectedCallback = Symbol(None, None, None, "Gti2ConnectedCallback", "", None)
+
+    Gti2ReceivedCallback = Symbol(None, None, None, "Gti2ReceivedCallback", "", None)
+
+    Gti2ClosedCallback = Symbol(None, None, None, "Gti2ClosedCallback", "", None)
+
+    Gti2PingCallback = Symbol(None, None, None, "Gti2PingCallback", "", None)
+
+    Gti2SendFilterCallback = Symbol(
+        None, None, None, "Gti2SendFilterCallback", "", None
+    )
+
+    Gti2ReceiveFilterCallback = Symbol(
+        None, None, None, "Gti2ReceiveFilterCallback", "", None
+    )
+
+    Gti2DumpCallback = Symbol(None, None, None, "Gti2DumpCallback", "", None)
+
+    Gti2UnrecognizedMessageCallback = Symbol(
+        None, None, None, "Gti2UnrecognizedMessageCallback", "", None
+    )
+
+    Gti2NewOutgoingConnection = Symbol(
+        None, None, None, "Gti2NewOutgoingConnection", "", None
+    )
+
+    Gti2NewIncomingConnection = Symbol(
+        None, None, None, "Gti2NewIncomingConnection", "", None
+    )
+
+    Gti2StartConnectionAttempt = Symbol(
+        None, None, None, "Gti2StartConnectionAttempt", "", None
+    )
+
+    Gti2AcceptConnection = Symbol(None, None, None, "Gti2AcceptConnection", "", None)
+
+    Gti2RejectConnection = Symbol(None, None, None, "Gti2RejectConnection", "", None)
+
+    Gti2ConnectionSendData = Symbol(
+        None, None, None, "Gti2ConnectionSendData", "", None
+    )
+
+    Gti2CheckTimeout = Symbol(None, None, None, "Gti2CheckTimeout", "", None)
+
+    Gti2SendRetries = Symbol(None, None, None, "Gti2SendRetries", "", None)
+
+    Gti2CheckPendingAck = Symbol(None, None, None, "Gti2CheckPendingAck", "", None)
+
+    Gti2CheckKeepAlive = Symbol(None, None, None, "Gti2CheckKeepAlive", "", None)
+
+    Gti2ConnectionThink = Symbol(None, None, None, "Gti2ConnectionThink", "", None)
+
+    Gti2CloseConnection = Symbol(None, None, None, "Gti2CloseConnection", "", None)
+
+    Gti2ConnectionClosed = Symbol(None, None, None, "Gti2ConnectionClosed", "", None)
+
+    Gti2ConnectionCleanup = Symbol(None, None, None, "Gti2ConnectionCleanup", "", None)
 
     Gt2CreateSocket = Symbol(None, None, None, "Gt2CreateSocket", "", None)
 
@@ -22451,6 +23713,8 @@ class JpItcmOverlay0Functions:
 
     Gt2Accept = Symbol(None, None, None, "Gt2Accept", "", None)
 
+    Gt2Reject = Symbol(None, None, None, "Gt2Reject", "", None)
+
     Gt2Connect = Symbol(None, None, None, "Gt2Connect", "", None)
 
     Gt2Send = Symbol(None, None, None, "Gt2Send", "", None)
@@ -22459,11 +23723,27 @@ class JpItcmOverlay0Functions:
         None, None, None, "Gt2CloseConnectionHard", "", None
     )
 
+    Gti2CloseAllConnectionsHardMap = Symbol(
+        None, None, None, "Gti2CloseAllConnectionsHardMap", "", None
+    )
+
     Gt2CloseAllConnectionsHard = Symbol(
         None, None, None, "Gt2CloseAllConnectionsHard", "", None
     )
 
+    Gt2GetConnectionState = Symbol(None, None, None, "Gt2GetConnectionState", "", None)
+
+    Gt2GetRemoteIP = Symbol(None, None, None, "Gt2GetRemoteIP", "", None)
+
+    Gt2GetRemotePort = Symbol(None, None, None, "Gt2GetRemotePort", "", None)
+
+    Gt2GetLocalIP = Symbol(None, None, None, "Gt2GetLocalIP", "", None)
+
     Gt2GetLocalPort = Symbol(None, None, None, "Gt2GetLocalPort", "", None)
+
+    Gt2GetOutgoingBufferSize = Symbol(
+        None, None, None, "Gt2GetOutgoingBufferSize", "", None
+    )
 
     Gt2GetOutgoingBufferFreeSpace = Symbol(
         None, None, None, "Gt2GetOutgoingBufferFreeSpace", "", None
@@ -22479,13 +23759,263 @@ class JpItcmOverlay0Functions:
 
     Gt2GetConnectionData = Symbol(None, None, None, "Gt2GetConnectionData", "", None)
 
+    Gti2UShortFromBuffer = Symbol(None, None, None, "Gti2UShortFromBuffer", "", None)
+
+    Gti2UShortToBuffer = Symbol(None, None, None, "Gti2UShortToBuffer", "", None)
+
+    Gti2SnDiff = Symbol(None, None, None, "Gti2SnDiff", "", None)
+
+    Gti2ConnectionError = Symbol(None, None, None, "Gti2ConnectionError", "", None)
+
+    Gti2ConnectionCommunicationError = Symbol(
+        None, None, None, "Gti2ConnectionCommunicationError", "", None
+    )
+
+    Gti2ConnectionMemoryError = Symbol(
+        None, None, None, "Gti2ConnectionMemoryError", "", None
+    )
+
+    Gti2HandleEsn = Symbol(None, None, None, "Gti2HandleEsn", "", None)
+
+    Gti2HandleAppUnreliable = Symbol(
+        None, None, None, "Gti2HandleAppUnreliable", "", None
+    )
+
+    Gti2HandleAppReliable = Symbol(None, None, None, "Gti2HandleAppReliable", "", None)
+
+    Gti2HandleClientChallenge = Symbol(
+        None, None, None, "Gti2HandleClientChallenge", "", None
+    )
+
+    Gti2HandleServerChallenge = Symbol(
+        None, None, None, "Gti2HandleServerChallenge", "", None
+    )
+
+    Gti2HandleClientResponse = Symbol(
+        None, None, None, "Gti2HandleClientResponse", "", None
+    )
+
+    Gti2HandleAccept = Symbol(None, None, None, "Gti2HandleAccept", "", None)
+
+    Gti2HandleReject = Symbol(None, None, None, "Gti2HandleReject", "", None)
+
+    Gti2HandleClose = Symbol(None, None, None, "Gti2HandleClose", "", None)
+
+    Gti2DeliverReliableMessage = Symbol(
+        None, None, None, "Gti2DeliverReliableMessage", "", None
+    )
+
+    Gti2IncomingBufferMessageCompare = Symbol(
+        None, None, None, "Gti2IncomingBufferMessageCompare", "", None
+    )
+
+    Gti2BufferIncomingMessage = Symbol(
+        None, None, None, "Gti2BufferIncomingMessage", "", None
+    )
+
+    Gti2RemoveHoldMessage = Symbol(None, None, None, "Gti2RemoveHoldMessage", "", None)
+
+    Gti2DeliverHoldMessages = Symbol(
+        None, None, None, "Gti2DeliverHoldMessages", "", None
+    )
+
+    Gti2SetPendingAck = Symbol(None, None, None, "Gti2SetPendingAck", "", None)
+
+    Gti2HandleReliableMessage = Symbol(
+        None, None, None, "Gti2HandleReliableMessage", "", None
+    )
+
+    Gti2HandleAck = Symbol(None, None, None, "Gti2HandleAck", "", None)
+
+    Gti2HandleNack = Symbol(None, None, None, "Gti2HandleNack", "", None)
+
+    Gti2HandlePing = Symbol(None, None, None, "Gti2HandlePing", "", None)
+
+    Gti2HandlePong = Symbol(None, None, None, "Gti2HandlePong", "", None)
+
+    Gti2HandleClosed = Symbol(None, None, None, "Gti2HandleClosed", "", None)
+
+    Gti2HandleUnreliableMessage = Symbol(
+        None, None, None, "Gti2HandleUnreliableMessage", "", None
+    )
+
+    Gti2HandleMessage = Symbol(None, None, None, "Gti2HandleMessage", "", None)
+
+    Gti2HandleConnectionReset = Symbol(
+        None, None, None, "Gti2HandleConnectionReset", "", None
+    )
+
+    Gti2HandleHostUnreachable = Symbol(
+        None, None, None, "Gti2HandleHostUnreachable", "", None
+    )
+
+    Gti2ReceiveMessages = Symbol(None, None, None, "Gti2ReceiveMessages", "", None)
+
+    Gti2StoreOutgoingReliableMessageInfo = Symbol(
+        None, None, None, "Gti2StoreOutgoingReliableMessageInfo", "", None
+    )
+
+    Gti2BeginReliableMessage = Symbol(
+        None, None, None, "Gti2BeginReliableMessage", "", None
+    )
+
+    Gti2EndReliableMessage = Symbol(
+        None, None, None, "Gti2EndReliableMessage", "", None
+    )
+
+    Gti2SendAppReliable = Symbol(None, None, None, "Gti2SendAppReliable", "", None)
+
+    Gti2SendClientChallenge = Symbol(
+        None, None, None, "Gti2SendClientChallenge", "", None
+    )
+
+    Gti2SendServerChallenge = Symbol(
+        None, None, None, "Gti2SendServerChallenge", "", None
+    )
+
+    Gti2SendClientResponse = Symbol(
+        None, None, None, "Gti2SendClientResponse", "", None
+    )
+
+    Gti2SendAccept = Symbol(None, None, None, "Gti2SendAccept", "", None)
+
+    Gti2SendReject = Symbol(None, None, None, "Gti2SendReject", "", None)
+
+    Gti2SendClose = Symbol(None, None, None, "Gti2SendClose", "", None)
+
+    Gti2SendKeepAlive = Symbol(None, None, None, "Gti2SendKeepAlive", "", None)
+
+    Gti2SendAppUnreliable = Symbol(None, None, None, "Gti2SendAppUnreliable", "", None)
+
+    Gti2SendAck = Symbol(None, None, None, "Gti2SendAck", "", None)
+
+    Gti2SendNack = Symbol(None, None, None, "Gti2SendNack", "", None)
+
+    Gti2SendPong = Symbol(None, None, None, "Gti2SendPong", "", None)
+
+    Gti2SendClosed = Symbol(None, None, None, "Gti2SendClosed", "", None)
+
+    Gti2SendClosedOnSocket = Symbol(
+        None, None, None, "Gti2SendClosedOnSocket", "", None
+    )
+
+    Gti2ResendMessage = Symbol(None, None, None, "Gti2ResendMessage", "", None)
+
+    Gti2Send = Symbol(None, None, None, "Gti2Send", "", None)
+
+    Gti2ConnectionHash = Symbol(None, None, None, "Gti2ConnectionHash", "", None)
+
+    Gti2ConnectionCompare = Symbol(None, None, None, "Gti2ConnectionCompare", "", None)
+
+    Gti2ConnectionFree = Symbol(None, None, None, "Gti2ConnectionFree", "", None)
+
+    Gti2SocketFindConnection = Symbol(
+        None, None, None, "Gti2SocketFindConnection", "", None
+    )
+
+    Gti2CreateSocket = Symbol(None, None, None, "Gti2CreateSocket", "", None)
+
+    Gti2CloseSocket = Symbol(None, None, None, "Gti2CloseSocket", "", None)
+
+    Gti2Listen = Symbol(None, None, None, "Gti2Listen", "", None)
+
+    Gti2CreateConnectionObject = Symbol(
+        None, None, None, "Gti2CreateConnectionObject", "", None
+    )
+
+    Gti2NewSocketConnection = Symbol(
+        None, None, None, "Gti2NewSocketConnection", "", None
+    )
+
+    Gti2FreeSocketConnection = Symbol(
+        None, None, None, "Gti2FreeSocketConnection", "", None
+    )
+
+    Gti2SocketSend = Symbol(None, None, None, "Gti2SocketSend", "", None)
+
+    Gti2SocketConnectionsThinkMap = Symbol(
+        None, None, None, "Gti2SocketConnectionsThinkMap", "", None
+    )
+
+    Gti2SocketConnectionsThink = Symbol(
+        None, None, None, "Gti2SocketConnectionsThink", "", None
+    )
+
+    Gti2FreeClosedConnections = Symbol(
+        None, None, None, "Gti2FreeClosedConnections", "", None
+    )
+
+    Gti2SocketError = Symbol(None, None, None, "Gti2SocketError", "", None)
+
     Gt2AddressToString = Symbol(None, None, None, "Gt2AddressToString", "", None)
+
+    Gt2StringToAddress = Symbol(None, None, None, "Gt2StringToAddress", "", None)
+
+    Gti2MessageCheck = Symbol(None, None, None, "Gti2MessageCheck", "", None)
+
+    GetLocalIP_Gsi = Symbol(None, None, None, "GetLocalIP_Gsi", "", None)
+
+    GetLocalPort_Gsi = Symbol(None, None, None, "GetLocalPort_Gsi", "", None)
+
+    OutputMapping = Symbol(None, None, None, "OutputMapping", "", None)
+
+    Think_NN = Symbol(None, None, None, "Think_NN", "", None)
+
+    NatifyThink = Symbol(None, None, None, "NatifyThink", "", None)
+
+    DetermineNatType = Symbol(None, None, None, "DetermineNatType", "", None)
+
+    FindNegotiatorForCookie = Symbol(
+        None, None, None, "FindNegotiatorForCookie", "", None
+    )
+
+    AddNegotiator = Symbol(None, None, None, "AddNegotiator", "", None)
+
+    RemoveNegotiator = Symbol(None, None, None, "RemoveNegotiator", "", None)
 
     NnFreeNegotiateList = Symbol(None, None, None, "NnFreeNegotiateList", "", None)
 
+    CheckMagic_NN = Symbol(None, None, None, "CheckMagic_NN", "", None)
+
+    SendPacket_NN = Symbol(None, None, None, "SendPacket_NN", "", None)
+
+    GetLocalIP_NN = Symbol(None, None, None, "GetLocalIP_NN", "", None)
+
+    GetLocalPort_NN = Symbol(None, None, None, "GetLocalPort_NN", "", None)
+
+    SendReportPacket = Symbol(None, None, None, "SendReportPacket", "", None)
+
+    StartReport = Symbol(None, None, None, "StartReport", "", None)
+
+    SendInitPackets = Symbol(None, None, None, "SendInitPackets", "", None)
+
+    SendPingPacket = Symbol(None, None, None, "SendPingPacket", "", None)
+
+    CheckNatifyStatus = Symbol(None, None, None, "CheckNatifyStatus", "", None)
+
+    NameToIp_NN = Symbol(None, None, None, "NameToIp_NN", "", None)
+
+    ResolveServer_NN = Symbol(None, None, None, "ResolveServer_NN", "", None)
+
+    ResolveServers_NN = Symbol(None, None, None, "ResolveServers_NN", "", None)
+
+    NnBeginNegotiationWithSocket = Symbol(
+        None, None, None, "NnBeginNegotiationWithSocket", "", None
+    )
+
     NnCancel = Symbol(None, None, None, "NnCancel", "", None)
 
+    NegotiateThink = Symbol(None, None, None, "NegotiateThink", "", None)
+
     NnThink = Symbol(None, None, None, "NnThink", "", None)
+
+    SendConnectAck = Symbol(None, None, None, "SendConnectAck", "", None)
+
+    ProcessConnectPacket = Symbol(None, None, None, "ProcessConnectPacket", "", None)
+
+    ProcessPingPacket = Symbol(None, None, None, "ProcessPingPacket", "", None)
+
+    ProcessInitPacket = Symbol(None, None, None, "ProcessInitPacket", "", None)
 
     NnProcessData = Symbol(None, None, None, "NnProcessData", "", None)
 
@@ -22505,6 +24035,12 @@ class JpItcmOverlay0Functions:
 
     qr2_think = Symbol(None, None, None, "qr2_think", "", None)
 
+    qr2_check_queries = Symbol(None, None, None, "qr2_check_queries", "", None)
+
+    qr2_check_send_heartbeat = Symbol(
+        None, None, None, "qr2_check_send_heartbeat", "", None
+    )
+
     qr2_send_statechanged = Symbol(None, None, None, "qr2_send_statechanged", "", None)
 
     qr2_shutdown = Symbol(None, None, None, "qr2_shutdown", "", None)
@@ -22513,7 +24049,125 @@ class JpItcmOverlay0Functions:
 
     qr2_buffer_add_int = Symbol(None, None, None, "qr2_buffer_add_int", "", None)
 
+    Qr2_Buffer_AddA = Symbol(None, None, None, "Qr2_Buffer_AddA", "", None)
+
+    enum_local_ips = Symbol(None, None, None, "enum_local_ips", "", None)
+
+    swap_byte_qr2 = Symbol(None, None, None, "swap_byte_qr2", "", None)
+
+    encode_ct = Symbol(None, None, None, "encode_ct", "", None)
+
+    gs_encode = Symbol(None, None, None, "gs_encode", "", None)
+
+    gs_encrypt = Symbol(None, None, None, "gs_encrypt", "", None)
+
+    qr_add_packet_header = Symbol(None, None, None, "qr_add_packet_header", "", None)
+
+    compute_challenge_response = Symbol(
+        None, None, None, "compute_challenge_response", "", None
+    )
+
+    handle_public_address = Symbol(None, None, None, "handle_public_address", "", None)
+
+    qr_build_partial_query_reply = Symbol(
+        None, None, None, "qr_build_partial_query_reply", "", None
+    )
+
+    qr_build_query_reply = Symbol(None, None, None, "qr_build_query_reply", "", None)
+
+    qr_build_split_query_reply = Symbol(
+        None, None, None, "qr_build_split_query_reply", "", None
+    )
+
+    qr_process_query = Symbol(None, None, None, "qr_process_query", "", None)
+
+    qr_process_client_message = Symbol(
+        None, None, None, "qr_process_client_message", "", None
+    )
+
+    qr_got_recent_message = Symbol(None, None, None, "qr_got_recent_message", "", None)
+
+    qr2_process_ip_verify = Symbol(None, None, None, "qr2_process_ip_verify", "", None)
+
+    qr2_check_ip_verify = Symbol(None, None, None, "qr2_check_ip_verify", "", None)
+
+    qr2_expire_ip_verify = Symbol(None, None, None, "qr2_expire_ip_verify", "", None)
+
     qr2_parse_querya = Symbol(None, None, None, "qr2_parse_querya", "", None)
+
+    send_keepalive = Symbol(None, None, None, "send_keepalive", "", None)
+
+    send_heartbeat = Symbol(None, None, None, "send_heartbeat", "", None)
+
+    qr2_internal_is_master_only_key = Symbol(
+        None, None, None, "qr2_internal_is_master_only_key", "", None
+    )
+
+    keyrand_goa = Symbol(None, None, None, "keyrand_goa", "", None)
+
+    GoaHashInit = Symbol(None, None, None, "GoaHashInit", "", None)
+
+    GoaCryptInit = Symbol(None, None, None, "GoaCryptInit", "", None)
+
+    GoaEncryptByte = Symbol(None, None, None, "GoaEncryptByte", "", None)
+
+    GoaEncrypt = Symbol(None, None, None, "GoaEncrypt", "", None)
+
+    FifoAddRear = Symbol(None, None, None, "FifoAddRear", "", None)
+
+    FifoAddFront = Symbol(None, None, None, "FifoAddFront", "", None)
+
+    FifoRemove = Symbol(None, None, None, "FifoRemove", "", None)
+
+    FifoClear = Symbol(None, None, None, "FifoClear", "", None)
+
+    QeStartQuery = Symbol(None, None, None, "QeStartQuery", "", None)
+
+    SbEngineHaltUpdates = Symbol(None, None, None, "SbEngineHaltUpdates", "", None)
+
+    SbEngineCleanup = Symbol(None, None, None, "SbEngineCleanup", "", None)
+
+    ParseSingleQR2Reply = Symbol(None, None, None, "ParseSingleQR2Reply", "", None)
+
+    ParseSingleGoaReply = Symbol(None, None, None, "ParseSingleGoaReply", "", None)
+
+    ParseSingleIcmpReply = Symbol(None, None, None, "ParseSingleIcmpReply", "", None)
+
+    ProcessIncomingReplies = Symbol(
+        None, None, None, "ProcessIncomingReplies", "", None
+    )
+
+    TimeoutOldQueries = Symbol(None, None, None, "TimeoutOldQueries", "", None)
+
+    QueueNextQueries = Symbol(None, None, None, "QueueNextQueries", "", None)
+
+    SbQueryEngineThink = Symbol(None, None, None, "SbQueryEngineThink", "", None)
+
+    SbQueryEngineAddQueryKey = Symbol(
+        None, None, None, "SbQueryEngineAddQueryKey", "", None
+    )
+
+    RefStringHash = Symbol(None, None, None, "RefStringHash", "", None)
+
+    RefStringCompare = Symbol(None, None, None, "RefStringCompare", "", None)
+
+    RefStringFree = Symbol(None, None, None, "RefStringFree", "", None)
+
+    SbRefStrHash = Symbol(None, None, None, "SbRefStrHash", "", None)
+
+    SbRefStrHashCleanup = Symbol(None, None, None, "SbRefStrHashCleanup", "", None)
+
+    SbServerFree = Symbol(None, None, None, "SbServerFree", "", None)
+
+    SbServerAddKeyValue = Symbol(None, None, None, "SbServerAddKeyValue", "", None)
+
+    SbServerAddIntKeyValue = Symbol(
+        None, None, None, "SbServerAddIntKeyValue", "", None
+    )
+
+    SbServerGetStringValueA = Symbol(
+        None, None, None, "SbServerGetStringValueA", "", None
+    )
 
     SbServerGetIntValueA = Symbol(None, None, None, "SbServerGetIntValueA", "", None)
 
@@ -22523,6 +24177,10 @@ class JpItcmOverlay0Functions:
 
     SbServerGetPublicQueryPort = Symbol(
         None, None, None, "SbServerGetPublicQueryPort", "", None
+    )
+
+    SbServerGetPublicQueryPortNbo = Symbol(
+        None, None, None, "SbServerGetPublicQueryPortNbo", "", None
     )
 
     SbServerHasPrivateAddress = Symbol(
@@ -22537,7 +24195,53 @@ class JpItcmOverlay0Functions:
         None, None, None, "SbServerGetPrivateQueryPort", "", None
     )
 
+    SbServerSetNext = Symbol(None, None, None, "SbServerSetNext", "", None)
+
+    SbServerGetNext = Symbol(None, None, None, "SbServerGetNext", "", None)
+
+    CheckValidKey = Symbol(None, None, None, "CheckValidKey", "", None)
+
+    mytok = Symbol(None, None, None, "mytok", "", None)
+
+    SbServerParseKeyVals = Symbol(None, None, None, "SbServerParseKeyVals", "", None)
+
+    SbServerParseQR2FullKeysSingle = Symbol(
+        None, None, None, "SbServerParseQR2FullKeysSingle", "", None
+    )
+
+    SbServerParseQR2FullKeysSplit = Symbol(
+        None, None, None, "SbServerParseQR2FullKeysSplit", "", None
+    )
+
+    StringHash = Symbol(None, None, None, "StringHash", "", None)
+
+    KeyValFree = Symbol(None, None, None, "KeyValFree", "", None)
+
+    KeyValHashKey = Symbol(None, None, None, "KeyValHashKey", "", None)
+
+    KeyValCompareKey = Symbol(None, None, None, "KeyValCompareKey", "", None)
+
+    SbServerGetPing = Symbol(None, None, None, "SbServerGetPing", "", None)
+
+    SbAllocServer = Symbol(None, None, None, "SbAllocServer", "", None)
+
+    SbServerSetFlags = Symbol(None, None, None, "SbServerSetFlags", "", None)
+
+    SbServerSetPublicAddr = Symbol(None, None, None, "SbServerSetPublicAddr", "", None)
+
+    SbServerSetIcmpIp = Symbol(None, None, None, "SbServerSetIcmpIp", "", None)
+
+    SbServerSetState = Symbol(None, None, None, "SbServerSetState", "", None)
+
+    SbServerGetState = Symbol(None, None, None, "SbServerGetState", "", None)
+
+    SbIsNullServer = Symbol(None, None, None, "SbIsNullServer", "", None)
+
     ServerBrowserFree = Symbol(None, None, None, "ServerBrowserFree", "", None)
+
+    ServerBrowserBeginUpdate2 = Symbol(
+        None, None, None, "ServerBrowserBeginUpdate2", "", None
+    )
 
     ServerBrowserLimitUpdateA = Symbol(
         None, None, None, "ServerBrowserLimitUpdateA", "", None
@@ -22553,6 +24257,8 @@ class JpItcmOverlay0Functions:
 
     ServerBrowserThink = Symbol(None, None, None, "ServerBrowserThink", "", None)
 
+    ServerBrowserHalt = Symbol(None, None, None, "ServerBrowserHalt", "", None)
+
     ServerBrowserClear = Symbol(None, None, None, "ServerBrowserClear", "", None)
 
     ServerBrowserState = Symbol(None, None, None, "ServerBrowserState", "", None)
@@ -22564,6 +24270,108 @@ class JpItcmOverlay0Functions:
     ServerBrowserGetMyPublicIpAddr = Symbol(
         None, None, None, "ServerBrowserGetMyPublicIpAddr", "", None
     )
+
+    SbServerListAppendServer = Symbol(
+        None, None, None, "SbServerListAppendServer", "", None
+    )
+
+    SbServerListFindServerByIP = Symbol(
+        None, None, None, "SbServerListFindServerByIP", "", None
+    )
+
+    AddServerToDeadlist = Symbol(None, None, None, "AddServerToDeadlist", "", None)
+
+    SbServerListRemoveAt = Symbol(None, None, None, "SbServerListRemoveAt", "", None)
+
+    SbServerListNth = Symbol(None, None, None, "SbServerListNth", "", None)
+
+    SbFreeDeadList = Symbol(None, None, None, "SbFreeDeadList", "", None)
+
+    SbServerListClear = Symbol(None, None, None, "SbServerListClear", "", None)
+
+    SbRefStr = Symbol(None, None, None, "SbRefStr", "", None)
+
+    SbReleaseStr = Symbol(None, None, None, "SbReleaseStr", "", None)
+
+    NtsLengthSB = Symbol(None, None, None, "NtsLengthSB", "", None)
+
+    ErrorDisconnect = Symbol(None, None, None, "ErrorDisconnect", "", None)
+
+    StringHash_Sb = Symbol(None, None, None, "StringHash_Sb", "", None)
+
+    ServerListConnect = Symbol(None, None, None, "ServerListConnect", "", None)
+
+    BufferAddNtS = Symbol(None, None, None, "BufferAddNtS", "", None)
+
+    BufferAddByte = Symbol(None, None, None, "BufferAddByte", "", None)
+
+    BufferAddInt = Symbol(None, None, None, "BufferAddInt", "", None)
+
+    BufferAddIntLE = Symbol(None, None, None, "BufferAddIntLE", "", None)
+
+    BufferAddData = Symbol(None, None, None, "BufferAddData", "", None)
+
+    SetupListChallenge = Symbol(None, None, None, "SetupListChallenge", "", None)
+
+    SendWithRetry = Symbol(None, None, None, "SendWithRetry", "", None)
+
+    SbServerListConnectAndQuery = Symbol(
+        None, None, None, "SbServerListConnectAndQuery", "", None
+    )
+
+    FreePopularValues = Symbol(None, None, None, "FreePopularValues", "", None)
+
+    FreeKeyList = Symbol(None, None, None, "FreeKeyList", "", None)
+
+    SbServerListDisconnect = Symbol(
+        None, None, None, "SbServerListDisconnect", "", None
+    )
+
+    SbServerListCleanup = Symbol(None, None, None, "SbServerListCleanup", "", None)
+
+    InitCryptKey = Symbol(None, None, None, "InitCryptKey", "", None)
+
+    ServerSizeForFlags = Symbol(None, None, None, "ServerSizeForFlags", "", None)
+
+    FullRulesPresent = Symbol(None, None, None, "FullRulesPresent", "", None)
+
+    AllKeysPresent = Symbol(None, None, None, "AllKeysPresent", "", None)
+
+    ParseServerIpPort = Symbol(None, None, None, "ParseServerIpPort", "", None)
+
+    ParseServer = Symbol(None, None, None, "ParseServer", "", None)
+
+    IncomingListParseServer = Symbol(
+        None, None, None, "IncomingListParseServer", "", None
+    )
+
+    SbSetLastListErrorPtr = Symbol(None, None, None, "SbSetLastListErrorPtr", "", None)
+
+    ProcessMainListData = Symbol(None, None, None, "ProcessMainListData", "", None)
+
+    ProcessPushKeyList = Symbol(None, None, None, "ProcessPushKeyList", "", None)
+
+    ProcessPlayerSearch = Symbol(None, None, None, "ProcessPlayerSearch", "", None)
+
+    ProcessMaploop = Symbol(None, None, None, "ProcessMaploop", "", None)
+
+    ProcessDeleteServer = Symbol(None, None, None, "ProcessDeleteServer", "", None)
+
+    ProcessPushServer = Symbol(None, None, None, "ProcessPushServer", "", None)
+
+    ProcessAdHocData = Symbol(None, None, None, "ProcessAdHocData", "", None)
+
+    ProcessIncomingData = Symbol(None, None, None, "ProcessIncomingData", "", None)
+
+    SbSendMessageToServer = Symbol(None, None, None, "SbSendMessageToServer", "", None)
+
+    SbSendNatNegotiateCookieToServer = Symbol(
+        None, None, None, "SbSendNatNegotiateCookieToServer", "", None
+    )
+
+    ProcessLanData = Symbol(None, None, None, "ProcessLanData", "", None)
+
+    SbListThink = Symbol(None, None, None, "SbListThink", "", None)
 
     socket = _Deprecated("socket", Soc_Socket)
 
@@ -22584,6 +24392,36 @@ class JpItcmOverlay0Functions:
     fcntl = _Deprecated("fcntl", Soc_Fcntl)
 
     InitWfc = _Deprecated("InitWfc", Dwc_AC_Process)
+
+    SocketCastError = _Deprecated("SocketCastError", CheckRCode_Gsi)
+
+    SocketCreate = _Deprecated("SocketCreate", socket_gsi)
+
+    SocketClose = _Deprecated("SocketClose", closesocket_gsi)
+
+    SocketBind = _Deprecated("SocketBind", bind_gsi)
+
+    SocketConnect = _Deprecated("SocketConnect", connect_gsi)
+
+    SocketRecv = _Deprecated("SocketRecv", recv_gsi)
+
+    SocketRecvFrom = _Deprecated("SocketRecvFrom", recvfrom_gsi)
+
+    SocketSend = _Deprecated("SocketSend", send_gsi)
+
+    SocketSendTo = _Deprecated("SocketSendTo", sendto_gsi)
+
+    SocketSetBlocking = _Deprecated("SocketSetBlocking", SetSockBlocking)
+
+    DoRand = _Deprecated("DoRand", nextlongrand_gsi)
+
+    RandRangeOverlay0 = _Deprecated("RandRangeOverlay0", Util_RandInt)
+
+    ResolveAvailableNintendoWifi = _Deprecated(
+        "ResolveAvailableNintendoWifi", GsiStartAvailableCheckA
+    )
+
+    PasswordEncryptString = _Deprecated("PasswordEncryptString", GpiEncodeString)
 
 
 class JpItcmOverlay0Data:
