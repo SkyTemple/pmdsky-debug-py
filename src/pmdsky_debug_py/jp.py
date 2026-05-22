@@ -41702,6 +41702,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    SetTwoTurnInvincibility = Symbol(
+        None,
+        None,
+        None,
+        "SetTwoTurnInvincibility",
+        "Sets two-turn invincibility to a specified value on a target monster entity.\n\nUsed for the 'flying up/down' effects (similar to Fly/Bounce) in Seismic Toss' animation.\n\nr0: target entity pointer\nr1: two_turn_move_invincible value",
+        None,
+    )
+
     SetReflectStatus = Symbol(
         [0x3C988],
         [0x231A268],

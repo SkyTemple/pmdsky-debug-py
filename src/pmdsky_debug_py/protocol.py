@@ -36564,6 +36564,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetTwoTurnInvincibility: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetReflectStatus: Symbol[
         Optional[list[int]],
         None,

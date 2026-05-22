@@ -41709,6 +41709,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    SetTwoTurnInvincibility = Symbol(
+        [0x3C850],
+        [0x2318A90],
+        None,
+        "SetTwoTurnInvincibility",
+        "Sets two-turn invincibility to a specified value on a target monster entity.\n\nUsed for the 'flying up/down' effects (similar to Fly/Bounce) in Seismic Toss' animation.\n\nr0: target entity pointer\nr1: two_turn_move_invincible value",
+        None,
+    )
+
     SetReflectStatus = Symbol(
         [0x3CB58],
         [0x2318D98],
