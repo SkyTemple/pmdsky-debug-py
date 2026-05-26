@@ -1071,6 +1071,55 @@ class EuArm9Functions:
         None,
     )
 
+    InitOamInfo = Symbol(
+        [0xB508],
+        [0x200B508],
+        None,
+        "InitOamInfo",
+        "Initializes an oam_info struct.\n\nr0: oam_info\nr1: max_num_objs\nr2: max_num_groups\nr3: oam_base_address\nstack[0]: MemAlloc flags",
+        None,
+    )
+
+    SetShouldCopyToOam = Symbol(
+        [0xB570], [0x200B570], None, "SetShouldCopyToOam", "r0: oam_info", None
+    )
+
+    GroupOamObjs = Symbol(
+        [0xB57C],
+        [0x200B57C],
+        None,
+        "GroupOamObjs",
+        "Fills oam_info's grouped_oam_objs by going backwards through each group in ungrouped_oam_objs.\n\nr0: oam_info",
+        None,
+    )
+
+    CopyAttributesToOam = Symbol(
+        [0xB630],
+        [0x200B630],
+        None,
+        "CopyAttributesToOam",
+        "Copies oam_info's grouped_oam_objs to oam_info's oam_base_address.\n\nr0: oam_info",
+        None,
+    )
+
+    ClearGroupedOamObjsAndGroups = Symbol(
+        [0xB67C],
+        [0x200B67C],
+        None,
+        "ClearGroupedOamObjsAndGroups",
+        "Clears oam_info's grouped_oam_objs and prev_obj_idx_in_group arrays.\n\nr0: oam_info",
+        None,
+    )
+
+    AddObjToUngroupedOamObjs = Symbol(
+        [0xB6F0],
+        [0x200B6F0],
+        None,
+        "AddObjToUngroupedOamObjs",
+        "Adds an object to oam_info's ungrouped_oam_objs, while also updating the necessary values to group it later.\n\nr0: oam_info\nr1: oam_attributes\nr2: group",
+        None,
+    )
+
     UpdateFadeStatus = Symbol(
         [0xBA18],
         [0x200BA18],
@@ -12273,6 +12322,15 @@ class EuArm9Data:
         "struct move_data_table*",
     )
 
+    OBJ_GRAPHICS_CONTROLS_PTR = Symbol(
+        [0xB0508],
+        [0x20B0508],
+        0x4,
+        "OBJ_GRAPHICS_CONTROLS_PTR",
+        "[Runtime] Points to the collection of master structs responsible for displaying objects.\n\ntype: struct obj_graphics_controls*",
+        "struct obj_graphics_controls*",
+    )
+
     WAN_TABLE = Symbol(
         [0xB0524],
         [0x20B0524],
@@ -12543,8 +12601,8 @@ class EuArm9Data:
     GXI_DMA_ID = Symbol([0xB34DC], [0x20B34DC], 0x4, "GXI_DMA_ID", "", "uint32_t")
 
     RAND_SEQUENCE_NUM = Symbol(
-        None,
-        None,
+        [0xB3B68],
+        [0x20B3B68],
         None,
         "RAND_SEQUENCE_NUM",
         "[Runtime] The current PRNG sequence number for the system PRNG. See rand for more information on how the system PRNG works.",
@@ -13587,74 +13645,74 @@ class EuLibsFunctions:
         [0x68C4], [0x2072D34], None, "DseTrackEvent_Dummy2Bytes2", "", None
     )
 
-    RetEu0x02073300 = Symbol(
+    RetNa0x02072f68 = Symbol(
         [0x6E90],
         [0x2073300],
         None,
-        "RetEu0x02073300",
+        "RetNa0x02072f68",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073304 = Symbol(
+    RetNa0x02072f6c = Symbol(
         [0x6E94],
         [0x2073304],
         None,
-        "RetEu0x02073304",
+        "RetNa0x02072f6c",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073308 = Symbol(
+    RetNa0x02072f70 = Symbol(
         [0x6E98],
         [0x2073308],
         None,
-        "RetEu0x02073308",
+        "RetNa0x02072f70",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x0207333c = Symbol(
+    RetNa0x02072fa4 = Symbol(
         [0x6ECC],
         [0x207333C],
         None,
-        "RetEu0x0207333c",
+        "RetNa0x02072fa4",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073340 = Symbol(
+    RetNa0x02072fa8 = Symbol(
         [0x6ED0],
         [0x2073340],
         None,
-        "RetEu0x02073340",
+        "RetNa0x02072fa8",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073594 = Symbol(
+    RetNa0x020731fc = Symbol(
         [0x7124],
         [0x2073594],
         None,
-        "RetEu0x02073594",
+        "RetNa0x020731fc",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073598 = Symbol(
+    RetNa0x02073200 = Symbol(
         [0x7128],
         [0x2073598],
         None,
-        "RetEu0x02073598",
+        "RetNa0x02073200",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x0207359c = Symbol(
+    RetNa0x02073204 = Symbol(
         [0x712C],
         [0x207359C],
         None,
-        "RetEu0x0207359c",
+        "RetNa0x02073204",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
@@ -43260,8 +43318,8 @@ class EuOverlay29Functions:
     )
 
     SetTwoTurnInvincibility = Symbol(
-        None,
-        None,
+        [0x3C970],
+        [0x23194F0],
         None,
         "SetTwoTurnInvincibility",
         "Sets two-turn invincibility to a specified value on a target monster entity.\n\nUsed for the 'flying up/down' effects (similar to Fly/Bounce) in Seismic Toss' animation.\n\nr0: target entity pointer\nr1: two_turn_move_invincible value",

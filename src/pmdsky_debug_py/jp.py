@@ -1071,6 +1071,55 @@ class JpArm9Functions:
         None,
     )
 
+    InitOamInfo = Symbol(
+        [0xB508],
+        [0x200B508],
+        None,
+        "InitOamInfo",
+        "Initializes an oam_info struct.\n\nr0: oam_info\nr1: max_num_objs\nr2: max_num_groups\nr3: oam_base_address\nstack[0]: MemAlloc flags",
+        None,
+    )
+
+    SetShouldCopyToOam = Symbol(
+        [0xB570], [0x200B570], None, "SetShouldCopyToOam", "r0: oam_info", None
+    )
+
+    GroupOamObjs = Symbol(
+        [0xB57C],
+        [0x200B57C],
+        None,
+        "GroupOamObjs",
+        "Fills oam_info's grouped_oam_objs by going backwards through each group in ungrouped_oam_objs.\n\nr0: oam_info",
+        None,
+    )
+
+    CopyAttributesToOam = Symbol(
+        [0xB630],
+        [0x200B630],
+        None,
+        "CopyAttributesToOam",
+        "Copies oam_info's grouped_oam_objs to oam_info's oam_base_address.\n\nr0: oam_info",
+        None,
+    )
+
+    ClearGroupedOamObjsAndGroups = Symbol(
+        [0xB67C],
+        [0x200B67C],
+        None,
+        "ClearGroupedOamObjsAndGroups",
+        "Clears oam_info's grouped_oam_objs and prev_obj_idx_in_group arrays.\n\nr0: oam_info",
+        None,
+    )
+
+    AddObjToUngroupedOamObjs = Symbol(
+        [0xB6F0],
+        [0x200B6F0],
+        None,
+        "AddObjToUngroupedOamObjs",
+        "Adds an object to oam_info's ungrouped_oam_objs, while also updating the necessary values to group it later.\n\nr0: oam_info\nr1: oam_attributes\nr2: group",
+        None,
+    )
+
     UpdateFadeStatus = Symbol(
         [0xB990],
         [0x200B990],
@@ -12268,6 +12317,15 @@ class JpArm9Data:
         "struct move_data_table*",
     )
 
+    OBJ_GRAPHICS_CONTROLS_PTR = Symbol(
+        [0xB108C],
+        [0x20B108C],
+        None,
+        "OBJ_GRAPHICS_CONTROLS_PTR",
+        "[Runtime] Points to the collection of master structs responsible for displaying objects.\n\ntype: struct obj_graphics_controls*",
+        "struct obj_graphics_controls*",
+    )
+
     WAN_TABLE = Symbol(
         [0xB10A8],
         [0x20B10A8],
@@ -12538,8 +12596,8 @@ class JpArm9Data:
     GXI_DMA_ID = Symbol([0xB440C], [0x20B440C], None, "GXI_DMA_ID", "", "uint32_t")
 
     RAND_SEQUENCE_NUM = Symbol(
-        None,
-        None,
+        [0xB4A98],
+        [0x20B4A98],
         None,
         "RAND_SEQUENCE_NUM",
         "[Runtime] The current PRNG sequence number for the system PRNG. See rand for more information on how the system PRNG works.",
@@ -13590,74 +13648,74 @@ class JpLibsFunctions:
         [0x68C4], [0x2072C84], None, "DseTrackEvent_Dummy2Bytes2", "", None
     )
 
-    RetEu0x02073300 = Symbol(
+    RetNa0x02072f68 = Symbol(
+        [0x6E90],
+        [0x2073250],
         None,
-        None,
-        None,
-        "RetEu0x02073300",
+        "RetNa0x02072f68",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073304 = Symbol(
+    RetNa0x02072f6c = Symbol(
+        [0x6E94],
+        [0x2073254],
         None,
-        None,
-        None,
-        "RetEu0x02073304",
+        "RetNa0x02072f6c",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073308 = Symbol(
+    RetNa0x02072f70 = Symbol(
+        [0x6E98],
+        [0x2073258],
         None,
-        None,
-        None,
-        "RetEu0x02073308",
+        "RetNa0x02072f70",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x0207333c = Symbol(
+    RetNa0x02072fa4 = Symbol(
+        [0x6ECC],
+        [0x207328C],
         None,
-        None,
-        None,
-        "RetEu0x0207333c",
+        "RetNa0x02072fa4",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073340 = Symbol(
+    RetNa0x02072fa8 = Symbol(
+        [0x6ED0],
+        [0x2073290],
         None,
-        None,
-        None,
-        "RetEu0x02073340",
+        "RetNa0x02072fa8",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073594 = Symbol(
+    RetNa0x020731fc = Symbol(
+        [0x7124],
+        [0x20734E4],
         None,
-        None,
-        None,
-        "RetEu0x02073594",
+        "RetNa0x020731fc",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073598 = Symbol(
+    RetNa0x02073200 = Symbol(
+        [0x7128],
+        [0x20734E8],
         None,
-        None,
-        None,
-        "RetEu0x02073598",
+        "RetNa0x02073200",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x0207359c = Symbol(
+    RetNa0x02073204 = Symbol(
+        [0x712C],
+        [0x20734EC],
         None,
-        None,
-        None,
-        "RetEu0x0207359c",
+        "RetNa0x02073204",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
@@ -14068,7 +14126,7 @@ class JpLibsFunctions:
 
     FX_Atan2Idx = Symbol([0x9DF0], [0x20761B0], None, "FX_Atan2Idx", "", None)
 
-    FX_Init = Symbol(None, None, None, "FX_Init", "", None)
+    FX_Init = Symbol([0x9F98], [0x2076358], None, "FX_Init", "", None)
 
     GX_Init = Symbol([0x9F9C], [0x207635C], None, "GX_Init", "", None)
 
@@ -16152,7 +16210,7 @@ class JpLibsFunctions:
         [0x18E5C], [0x208521C], None, "Math_CountPopulation", "", None
     )
 
-    Math_CalcSha1 = Symbol(None, None, None, "Math_CalcSha1", "", None)
+    Math_CalcSha1 = Symbol([0x18EA0], [0x2085260], None, "Math_CalcSha1", "", None)
 
     Mathi_Crc8InitTable = Symbol(
         [0x18EE0], [0x20852A0], None, "Mathi_Crc8InitTable", "", None
@@ -16219,8 +16277,8 @@ class JpLibsFunctions:
     OS_VsNPrintfEx = Symbol([0x19AFC], [0x2085EBC], None, "OS_VsNPrintfEx", "", None)
 
     NotANumber = Symbol(
-        None,
-        None,
+        [0x1A378],
+        [0x2086738],
         None,
         "NotANumber",
         "The original name for this function is 'nan'.",
@@ -16228,10 +16286,10 @@ class JpLibsFunctions:
     )
 
     _flush_line_buffered_output_files = Symbol(
-        None, None, None, "_flush_line_buffered_output_files", "", None
+        [0x1A390], [0x2086750], None, "_flush_line_buffered_output_files", "", None
     )
 
-    _flush_all = Symbol(None, None, None, "_flush_all", "", None)
+    _flush_all = Symbol([0x1A41C], [0x20867DC], None, "_flush_all", "", None)
 
     abs = Symbol(
         [0x1A484],
@@ -16243,36 +16301,40 @@ class JpLibsFunctions:
     )
 
     _convert_from_newlines = Symbol(
-        None, None, None, "_convert_from_newlines", "", None
+        [0x1A490], [0x2086850], None, "_convert_from_newlines", "", None
     )
 
-    _convert_to_newlines = Symbol(None, None, None, "_convert_to_newlines", "", None)
+    _convert_to_newlines = Symbol(
+        [0x1A494], [0x2086854], None, "_convert_to_newlines", "", None
+    )
 
-    _prep_buffer = Symbol(None, None, None, "_prep_buffer", "", None)
+    _prep_buffer = Symbol([0x1A498], [0x2086858], None, "_prep_buffer", "", None)
 
-    _load_buffer = Symbol(None, None, None, "_load_buffer", "", None)
+    _load_buffer = Symbol([0x1A4C8], [0x2086888], None, "_load_buffer", "", None)
 
-    _flush_buffer = Symbol(None, None, None, "_flush_buffer", "", None)
+    _flush_buffer = Symbol([0x1A554], [0x2086914], None, "_flush_buffer", "", None)
 
-    fread = Symbol(None, None, None, "fread", "", None)
+    fread = Symbol([0x1A5DC], [0x208699C], None, "fread", "", None)
 
-    _fread = Symbol(None, None, None, "_fread", "", None)
+    _fread = Symbol([0x1A6E8], [0x2086AA8], None, "_fread", "", None)
 
-    fclose = Symbol(None, None, None, "fclose", "", None)
+    fclose = Symbol([0x1AA30], [0x2086DF0], None, "fclose", "", None)
 
-    fflush = Symbol(None, None, None, "fflush", "", None)
+    fflush = Symbol([0x1AAA4], [0x2086E64], None, "fflush", "", None)
 
-    _msl_strnicmp = Symbol(None, None, None, "_msl_strnicmp", "", None)
+    _msl_strnicmp = Symbol(
+        [0x1AB8C, 0x21DD8], [0x2086F4C, 0x208E198], None, "_msl_strnicmp", "", None
+    )
 
-    _ftell = Symbol(None, None, None, "_ftell", "", None)
+    _ftell = Symbol([0x1AC14], [0x2086FD4], None, "_ftell", "", None)
 
-    ftell = Symbol(None, None, None, "ftell", "", None)
+    ftell = Symbol([0x1AC90], [0x2087050], None, "ftell", "", None)
 
-    _fseek = Symbol(None, None, None, "_fseek", "", None)
+    _fseek = Symbol([0x1ADAC], [0x208716C], None, "_fseek", "", None)
 
-    fseek = Symbol(None, None, None, "fseek", "", None)
+    fseek = Symbol([0x1AF94], [0x2087354], None, "fseek", "", None)
 
-    rewind = Symbol(None, None, None, "rewind", "", None)
+    rewind = Symbol([0x1B0C0], [0x2087480], None, "rewind", "", None)
 
     _mbtowc_noconv = Symbol(
         [0x1B0E4],
@@ -16364,17 +16426,17 @@ class JpLibsFunctions:
         None,
     )
 
-    parse_format = Symbol(None, None, None, "parse_format", "", None)
+    parse_format = Symbol([0x1B360], [0x2087720], None, "parse_format", "", None)
 
-    long2str = Symbol(None, None, None, "long2str", "", None)
+    long2str = Symbol([0x1B8F0], [0x2087CB0], None, "long2str", "", None)
 
-    longlong2str = Symbol(None, None, None, "longlong2str", "", None)
+    longlong2str = Symbol([0x1BB3C], [0x2087EFC], None, "longlong2str", "", None)
 
-    double2hex = Symbol(None, None, None, "double2hex", "", None)
+    double2hex = Symbol([0x1BE38], [0x20881F8], None, "double2hex", "", None)
 
-    round_decimal = Symbol(None, None, None, "round_decimal", "", None)
+    round_decimal = Symbol([0x1C314], [0x20886D4], None, "round_decimal", "", None)
 
-    float2str = Symbol(None, None, None, "float2str", "", None)
+    float2str = Symbol([0x1C438], [0x20887F8], None, "float2str", "", None)
 
     __vsprintf_internal_slice = Symbol(
         [0x1CB9C],
@@ -16431,8 +16493,8 @@ class JpLibsFunctions:
     )
 
     rand = Symbol(
-        None,
-        None,
+        [0x1D4D8],
+        [0x2089898],
         None,
         "rand",
         "The rand(3) C library function.\n\nComputes a pseudorandom 15-bit integer using the classical ANSI C linear congruential generator (LCG), which uses a modulus of 2^32, a multiplier of 1103515245, and an increment of 12345. I.e., the recurrence relation is `x = (1103515245*x_prev + 12345)`, where x is a 32-bit unsigned integer. Only the upper 16 bits, excluding the most significant bit, are used as output.\n\nThe LCG has a hard-coded seed of 1, but can be seeded with a call to srand.\n\nreturn: psuedorandom integer on the interval [0, 32767]",
@@ -16440,8 +16502,8 @@ class JpLibsFunctions:
     )
 
     srand = Symbol(
-        None,
-        None,
+        [0x1D50C],
+        [0x20898CC],
         None,
         "srand",
         "The srand(3) C library function.\n\nSeed RAND_SEQUENCE_NUM to a given value.\n\nr0: seed",
@@ -16538,21 +16600,21 @@ class JpLibsFunctions:
         None,
     )
 
-    _strtold = Symbol(None, None, None, "_strtold", "", None)
+    _strtold = Symbol([0x1DA04], [0x2089DC4], None, "_strtold", "", None)
 
-    strtold = Symbol(None, None, None, "strtold", "", None)
+    strtold = Symbol([0x1EC50], [0x208B010], None, "strtold", "", None)
 
-    atof = Symbol(None, None, None, "atof", "", None)
+    atof = Symbol([0x1ED30], [0x208B0F0], None, "atof", "", None)
 
-    _strtoul = Symbol(None, None, None, "_strtoul", "", None)
+    _strtoul = Symbol([0x1ED40], [0x208B100], None, "_strtoul", "", None)
 
-    strtoul = Symbol(None, None, None, "strtoul", "", None)
+    strtoul = Symbol([0x1F128], [0x208B4E8], None, "strtoul", "", None)
 
     strtol = Symbol([0x1F1C0], [0x208B580], None, "strtol", "", None)
 
     atoi = Symbol([0x1F288], [0x208B648], None, "atoi", "", None)
 
-    fwide = Symbol(None, None, None, "fwide", "", None)
+    fwide = Symbol([0x1F29C], [0x208B65C], None, "fwide", "", None)
 
     wcslen = Symbol(
         [0x1F310],
@@ -16563,13 +16625,13 @@ class JpLibsFunctions:
         None,
     )
 
-    fabs = Symbol(None, None, None, "fabs", "", None)
+    fabs = Symbol([0x204DC], [0x208C89C], None, "fabs", "", None)
 
-    _num2dec = Symbol(None, None, None, "_num2dec", "", None)
+    _num2dec = Symbol([0x21560], [0x208D920], None, "_num2dec", "", None)
 
-    _dec2num = Symbol(None, None, None, "_dec2num", "", None)
+    _dec2num = Symbol([0x21608], [0x208D9C8], None, "_dec2num", "", None)
 
-    strcasecmp = Symbol(None, None, None, "strcasecmp", "", None)
+    strcasecmp = Symbol([0x21DE4], [0x208E1A4], None, "strcasecmp", "", None)
 
     _dadd = Symbol(
         [0x21DF0],
@@ -16878,7 +16940,7 @@ class JpLibsFunctions:
     )
 
     _call_static_initializers = Symbol(
-        None, None, None, "_call_static_initializers", "", None
+        [0x247D0], [0x2090B90], None, "_call_static_initializers", "", None
     )
 
     DseUtil_GetRandomNumber = _Deprecated(
@@ -20115,325 +20177,424 @@ class JpOverlay0Functions:
 
     WM_SetEntry = Symbol([0x4C14], [0x22C2E34], None, "WM_SetEntry", "", None)
 
-    Wbti_InitBitmap = Symbol(None, None, None, "Wbti_InitBitmap", "", None)
+    Wbti_InitBitmap = Symbol([0x4C60], [0x22C2E80], None, "Wbti_InitBitmap", "", None)
 
-    Wbti_MergeBitmapIndex = Symbol(None, None, None, "Wbti_MergeBitmapIndex", "", None)
+    Wbti_MergeBitmapIndex = Symbol(
+        [0x4CBC], [0x22C2EDC], None, "Wbti_MergeBitmapIndex", "", None
+    )
 
-    Wbti_FindBitmapIndex = Symbol(None, None, None, "Wbti_FindBitmapIndex", "", None)
+    Wbti_FindBitmapIndex = Symbol(
+        [0x4D28], [0x22C2F48], None, "Wbti_FindBitmapIndex", "", None
+    )
 
-    Wbti_GetPacketBuffer = Symbol(None, None, None, "Wbti_GetPacketBuffer", "", None)
+    Wbti_GetPacketBuffer = Symbol(
+        [0x4DAC], [0x22C2FCC], None, "Wbti_GetPacketBuffer", "", None
+    )
 
     Wbti_SwitchNextCommand = Symbol(
-        None, None, None, "Wbti_SwitchNextCommand", "", None
+        [0x4E4C], [0x22C306C], None, "Wbti_SwitchNextCommand", "", None
     )
 
     Wbti_NotifySystemCallback = Symbol(
-        None, None, None, "Wbti_NotifySystemCallback", "", None
+        [0x4F48], [0x22C3168], None, "Wbti_NotifySystemCallback", "", None
     )
 
     Wbti_TryCreateResponse = Symbol(
-        None, None, None, "Wbti_TryCreateResponse", "", None
+        [0x4FF8], [0x22C3218], None, "Wbti_TryCreateResponse", "", None
     )
 
-    Wbti_CheckRequest = Symbol(None, None, None, "Wbti_CheckRequest", "", None)
+    Wbti_CheckRequest = Symbol(
+        [0x5460], [0x22C3680], None, "Wbti_CheckRequest", "", None
+    )
 
     Wbti_CheckBlockResponse = Symbol(
-        None, None, None, "Wbti_CheckBlockResponse", "", None
+        [0x5648], [0x22C3868], None, "Wbti_CheckBlockResponse", "", None
     )
 
     Wbt_CallPacketSendHook = Symbol(
-        None, None, None, "Wbt_CallPacketSendHook", "", None
+        [0x57D4], [0x22C39F4], None, "Wbt_CallPacketSendHook", "", None
     )
 
     Wbti_NotifyCompletionCallback = Symbol(
-        None, None, None, "Wbti_NotifyCompletionCallback", "", None
+        [0x59D0], [0x22C3BF0], None, "Wbti_NotifyCompletionCallback", "", None
     )
 
     Wbt_CallPacketRecvHook = Symbol(
-        None, None, None, "Wbt_CallPacketRecvHook", "", None
+        [0x5AA8], [0x22C3CC8], None, "Wbt_CallPacketRecvHook", "", None
     )
 
-    Wbt_InitContext = Symbol(None, None, None, "Wbt_InitContext", "", None)
+    Wbt_InitContext = Symbol([0x5ED4], [0x22C40F4], None, "Wbt_InitContext", "", None)
 
-    Wbt_ResetContext = Symbol(None, None, None, "Wbt_ResetContext", "", None)
+    Wbt_ResetContext = Symbol([0x5F3C], [0x22C415C], None, "Wbt_ResetContext", "", None)
 
-    Wbt_PostCommand = Symbol(None, None, None, "Wbt_PostCommand", "", None)
+    Wbt_PostCommand = Symbol([0x5FB0], [0x22C41D0], None, "Wbt_PostCommand", "", None)
 
-    Wbt_CancelCommand = Symbol(None, None, None, "Wbt_CancelCommand", "", None)
+    Wbt_CancelCommand = Symbol(
+        [0x6028], [0x22C4248], None, "Wbt_CancelCommand", "", None
+    )
 
-    Wbt_GetBitmapLength = Symbol(None, None, None, "Wbt_GetBitmapLength", "", None)
+    Wbt_GetBitmapLength = Symbol(
+        [0x6144], [0x22C4364], None, "Wbt_GetBitmapLength", "", None
+    )
 
-    Wbt_RegisterBlockInfo = Symbol(None, None, None, "Wbt_RegisterBlockInfo", "", None)
+    Wbt_RegisterBlockInfo = Symbol(
+        [0x6170], [0x22C4390], None, "Wbt_RegisterBlockInfo", "", None
+    )
 
     Wbt_UnregisterBlockInfo = Symbol(
-        None, None, None, "Wbt_UnregisterBlockInfo", "", None
+        [0x6210], [0x22C4430], None, "Wbt_UnregisterBlockInfo", "", None
     )
 
     Wbt_GetRegisteredCount = Symbol(
-        None, None, None, "Wbt_GetRegisteredCount", "", None
+        [0x626C], [0x22C448C], None, "Wbt_GetRegisteredCount", "", None
     )
 
-    Wbt_PrintBtList = Symbol(None, None, None, "Wbt_PrintBtList", "", None)
+    Wbt_PrintBtList = Symbol([0x62A4], [0x22C44C4], None, "Wbt_PrintBtList", "", None)
 
-    Wbt_AidbitmapToAid = Symbol(None, None, None, "Wbt_AidbitmapToAid", "", None)
+    Wbt_AidbitmapToAid = Symbol(
+        [0x62C8], [0x22C44E8], None, "Wbt_AidbitmapToAid", "", None
+    )
 
-    Wbt_InitParent = Symbol(None, None, None, "Wbt_InitParent", "", None)
+    Wbt_InitParent = Symbol([0x62EC], [0x22C450C], None, "Wbt_InitParent", "", None)
 
-    Wbt_InitChild = Symbol(None, None, None, "Wbt_InitChild", "", None)
+    Wbt_InitChild = Symbol([0x63A8], [0x22C45C8], None, "Wbt_InitChild", "", None)
 
-    Wbt_End = Symbol(None, None, None, "Wbt_End", "", None)
+    Wbt_End = Symbol([0x6438], [0x22C4658], None, "Wbt_End", "", None)
 
-    Wbt_SetOwnAid = Symbol(None, None, None, "Wbt_SetOwnAid", "", None)
+    Wbt_SetOwnAid = Symbol([0x647C], [0x22C469C], None, "Wbt_SetOwnAid", "", None)
 
-    Wbt_MpParentSendHook = Symbol(None, None, None, "Wbt_MpParentSendHook", "", None)
+    Wbt_MpParentSendHook = Symbol(
+        [0x64AC], [0x22C46CC], None, "Wbt_MpParentSendHook", "", None
+    )
 
-    Wbt_MpChildSendHook = Symbol(None, None, None, "Wbt_MpChildSendHook", "", None)
+    Wbt_MpChildSendHook = Symbol(
+        [0x64D0], [0x22C46F0], None, "Wbt_MpChildSendHook", "", None
+    )
 
-    Wbt_MpParentRecvHook = Symbol(None, None, None, "Wbt_MpParentRecvHook", "", None)
+    Wbt_MpParentRecvHook = Symbol(
+        [0x64F4], [0x22C4714], None, "Wbt_MpParentRecvHook", "", None
+    )
 
-    Wbt_MpChildRecvHook = Symbol(None, None, None, "Wbt_MpChildRecvHook", "", None)
+    Wbt_MpChildRecvHook = Symbol(
+        [0x6518], [0x22C4738], None, "Wbt_MpChildRecvHook", "", None
+    )
 
-    Wbt_RegisterBlock = Symbol(None, None, None, "Wbt_RegisterBlock", "", None)
+    Wbt_RegisterBlock = Symbol(
+        [0x6538], [0x22C4758], None, "Wbt_RegisterBlock", "", None
+    )
 
-    Wbt_UnregisterBlock = Symbol(None, None, None, "Wbt_UnregisterBlock", "", None)
+    Wbt_UnregisterBlock = Symbol(
+        [0x657C], [0x22C479C], None, "Wbt_UnregisterBlock", "", None
+    )
 
-    Wbt_RequestSync = Symbol(None, None, None, "Wbt_RequestSync", "", None)
+    Wbt_RequestSync = Symbol([0x6594], [0x22C47B4], None, "Wbt_RequestSync", "", None)
 
-    Wbt_GetBlockInfo = Symbol(None, None, None, "Wbt_GetBlockInfo", "", None)
+    Wbt_GetBlockInfo = Symbol([0x65F8], [0x22C4818], None, "Wbt_GetBlockInfo", "", None)
 
-    Wbt_GetBlock = Symbol(None, None, None, "Wbt_GetBlock", "", None)
+    Wbt_GetBlock = Symbol([0x669C], [0x22C48BC], None, "Wbt_GetBlock", "", None)
 
-    Wbt_PutUserData = Symbol(None, None, None, "Wbt_PutUserData", "", None)
+    Wbt_PutUserData = Symbol([0x6760], [0x22C4980], None, "Wbt_PutUserData", "", None)
 
     Wbt_CancelCurrentCommand = Symbol(
-        None, None, None, "Wbt_CancelCurrentCommand", "", None
+        [0x67D8], [0x22C49F8], None, "Wbt_CancelCurrentCommand", "", None
     )
 
     MB_CommSetParentStateCallback = Symbol(
-        None, None, None, "MB_CommSetParentStateCallback", "", None
+        [0x67FC], [0x22C4A1C], None, "MB_CommSetParentStateCallback", "", None
     )
 
-    MB_CommGetParentState = Symbol(None, None, None, "MB_CommGetParentState", "", None)
+    MB_CommGetParentState = Symbol(
+        [0x6824], [0x22C4A44], None, "MB_CommGetParentState", "", None
+    )
 
-    MB_CommGetChildUser = Symbol(None, None, None, "MB_CommGetChildUser", "", None)
+    MB_CommGetChildUser = Symbol(
+        [0x6870], [0x22C4A90], None, "MB_CommGetChildUser", "", None
+    )
 
-    MB_CommIsBootable = Symbol(None, None, None, "MB_CommIsBootable", "", None)
+    MB_CommIsBootable = Symbol(
+        [0x68F4], [0x22C4B14], None, "MB_CommIsBootable", "", None
+    )
 
     MB_CommResponseRequest = Symbol(
-        None, None, None, "MB_CommResponseRequest", "", None
+        [0x6948], [0x22C4B68], None, "MB_CommResponseRequest", "", None
     )
 
     MBi_CommChangeParentState = Symbol(
-        None, None, None, "MBi_CommChangeParentState", "", None
+        [0x6A28], [0x22C4C48], None, "MBi_CommChangeParentState", "", None
     )
 
     MBi_CommChangeParentStateCallbackOnly = Symbol(
-        None, None, None, "MBi_CommChangeParentStateCallbackOnly", "", None
+        [0x6A74], [0x22C4C94], None, "MBi_CommChangeParentStateCallbackOnly", "", None
     )
 
     MBi_CommParentCallback = Symbol(
-        None, None, None, "MBi_CommParentCallback", "", None
+        [0x6A9C], [0x22C4CBC], None, "MBi_CommParentCallback", "", None
     )
 
     MBi_CommParentRecvDataPerChild = Symbol(
-        None, None, None, "MBi_CommParentRecvDataPerChild", "", None
+        [0x6F3C], [0x22C515C], None, "MBi_CommParentRecvDataPerChild", "", None
     )
 
     MBi_CommParentRecvData = Symbol(
-        None, None, None, "MBi_CommParentRecvData", "", None
+        [0x7420], [0x22C5640], None, "MBi_CommParentRecvData", "", None
     )
 
-    MBi_CommParentSendMsg = Symbol(None, None, None, "MBi_CommParentSendMsg", "", None)
+    MBi_CommParentSendMsg = Symbol(
+        [0x74CC], [0x22C56EC], None, "MBi_CommParentSendMsg", "", None
+    )
 
     MBi_CommParentSendDlFileInfo = Symbol(
-        None, None, None, "MBi_CommParentSendDlFileInfo", "", None
+        [0x750C], [0x22C572C], None, "MBi_CommParentSendDlFileInfo", "", None
     )
 
-    MBi_ReloadCache = Symbol(None, None, None, "MBi_ReloadCache", "", None)
+    MBi_ReloadCache = Symbol([0x76A4], [0x22C58C4], None, "MBi_ReloadCache", "", None)
 
     MBi_CommParentSendBlock = Symbol(
-        None, None, None, "MBi_CommParentSendBlock", "", None
+        [0x7748], [0x22C5968], None, "MBi_CommParentSendBlock", "", None
     )
 
     MBi_CommParentSendData = Symbol(
-        None, None, None, "MBi_CommParentSendData", "", None
+        [0x79E4], [0x22C5C04], None, "MBi_CommParentSendData", "", None
     )
 
-    MBi_Calc_SendBlock = Symbol(None, None, None, "MBi_Calc_SendBlock", "", None)
+    MBi_Calc_SendBlock = Symbol(
+        [0x7B64], [0x22C5D84], None, "MBi_Calc_SendBlock", "", None
+    )
 
     MBi_Calc_NextSendBlock = Symbol(
-        None, None, None, "MBi_Calc_NextSendBlock", "", None
+        [0x7BE0], [0x22C5E00], None, "MBi_Calc_NextSendBlock", "", None
     )
 
-    IsChildAidValid = Symbol(None, None, None, "IsChildAidValid", "", None)
+    IsChildAidValid = Symbol([0x7BF0], [0x22C5E10], None, "IsChildAidValid", "", None)
 
     MBi_CommCallParentError = Symbol(
-        None, None, None, "MBi_CommCallParentError", "", None
+        [0x7C0C], [0x22C5E2C], None, "MBi_CommCallParentError", "", None
     )
 
-    MB_GetSegmentLength = Symbol(None, None, None, "MB_GetSegmentLength", "", None)
+    MB_GetSegmentLength = Symbol(
+        [0x7C24], [0x22C5E44], None, "MB_GetSegmentLength", "", None
+    )
 
-    MB_ReadSegment = Symbol(None, None, None, "MB_ReadSegment", "", None)
+    MB_ReadSegment = Symbol([0x7CA4], [0x22C5EC4], None, "MB_ReadSegment", "", None)
 
-    MBi_ReadSegmentHeader = Symbol(None, None, None, "MBi_ReadSegmentHeader", "", None)
+    MBi_ReadSegmentHeader = Symbol(
+        [0x811C], [0x22C633C], None, "MBi_ReadSegmentHeader", "", None
+    )
 
-    MB_RegisterFile = Symbol(None, None, None, "MB_RegisterFile", "", None)
+    MB_RegisterFile = Symbol([0x8194], [0x22C63B4], None, "MB_RegisterFile", "", None)
 
     MBi_MakeDownloadFileInfo = Symbol(
-        None, None, None, "MBi_MakeDownloadFileInfo", "", None
+        [0x8424], [0x22C6644], None, "MBi_MakeDownloadFileInfo", "", None
     )
 
-    MBi_SetSegmentInfo = Symbol(None, None, None, "MBi_SetSegmentInfo", "", None)
+    MBi_SetSegmentInfo = Symbol(
+        [0x8498], [0x22C66B8], None, "MBi_SetSegmentInfo", "", None
+    )
 
     MBi_MakeBlockInfoTable = Symbol(
-        None, None, None, "MBi_MakeBlockInfoTable", "", None
+        [0x8610], [0x22C6830], None, "MBi_MakeBlockInfoTable", "", None
     )
 
-    MBi_Get_BlockInfo = Symbol(None, None, None, "MBi_Get_BlockInfo", "", None)
+    MBi_Get_BlockInfo = Symbol(
+        [0x86DC], [0x22C68FC], None, "MBi_Get_BlockInfo", "", None
+    )
 
-    MBi_IsAbleToRecv = Symbol(None, None, None, "MBi_IsAbleToRecv", "", None)
+    MBi_IsAbleToRecv = Symbol([0x8790], [0x22C69B0], None, "MBi_IsAbleToRecv", "", None)
 
-    IsAbleToLoad = Symbol(None, None, None, "IsAbleToLoad", "", None)
+    IsAbleToLoad = Symbol([0x883C], [0x22C6A5C], None, "IsAbleToLoad", "", None)
 
-    MBi_BlockHeaderEnd = Symbol(None, None, None, "MBi_BlockHeaderEnd", "", None)
+    MBi_BlockHeaderEnd = Symbol(
+        [0x8908], [0x22C6B28], None, "MBi_BlockHeaderEnd", "", None
+    )
 
-    MBi_Calc_Cksum = Symbol(None, None, None, "MBi_Calc_Cksum", "", None)
+    MBi_Calc_Cksum = Symbol([0x8940], [0x22C6B60], None, "MBi_Calc_Cksum", "", None)
 
-    MBi_MakeGameInfo = Symbol(None, None, None, "MBi_MakeGameInfo", "", None)
+    MBi_MakeGameInfo = Symbol([0x898C], [0x22C6BAC], None, "MBi_MakeGameInfo", "", None)
 
-    MBi_ReadIconInfo = Symbol(None, None, None, "MBi_ReadIconInfo", "", None)
+    MBi_ReadIconInfo = Symbol([0x8A7C], [0x22C6C9C], None, "MBi_ReadIconInfo", "", None)
 
     MB_UpdateGameInfoMember = Symbol(
-        None, None, None, "MB_UpdateGameInfoMember", "", None
+        [0x8B1C], [0x22C6D3C], None, "MB_UpdateGameInfoMember", "", None
     )
 
-    Mystrlen_MB = Symbol(None, None, None, "Mystrlen_MB", "", None)
+    Mystrlen_MB = Symbol([0x8B8C], [0x22C6DAC], None, "Mystrlen_MB", "", None)
 
-    MB_AddGameInfo = Symbol(None, None, None, "MB_AddGameInfo", "", None)
+    MB_AddGameInfo = Symbol([0x8BB4], [0x22C6DD4], None, "MB_AddGameInfo", "", None)
 
     MB_InitSendGameInfoStatus = Symbol(
-        None, None, None, "MB_InitSendGameInfoStatus", "", None
+        [0x8BF8], [0x22C6E18], None, "MB_InitSendGameInfoStatus", "", None
     )
 
-    MBi_ClearSendStatus = Symbol(None, None, None, "MBi_ClearSendStatus", "", None)
+    MBi_ClearSendStatus = Symbol(
+        [0x8C24], [0x22C6E44], None, "MBi_ClearSendStatus", "", None
+    )
 
-    MB_SendGameInfoBeacon = Symbol(None, None, None, "MB_SendGameInfoBeacon", "", None)
+    MB_SendGameInfoBeacon = Symbol(
+        [0x8C48], [0x22C6E68], None, "MB_SendGameInfoBeacon", "", None
+    )
 
     MBi_ReadyBeaconSendStatus = Symbol(
-        None, None, None, "MBi_ReadyBeaconSendStatus", "", None
+        [0x8CD4], [0x22C6EF4], None, "MBi_ReadyBeaconSendStatus", "", None
     )
 
     MBi_InitSendFixedBeacon = Symbol(
-        None, None, None, "MBi_InitSendFixedBeacon", "", None
+        [0x8D74], [0x22C6F94], None, "MBi_InitSendFixedBeacon", "", None
     )
 
-    MBi_SendFixedBeacon = Symbol(None, None, None, "MBi_SendFixedBeacon", "", None)
+    MBi_SendFixedBeacon = Symbol(
+        [0x8DC8], [0x22C6FE8], None, "MBi_SendFixedBeacon", "", None
+    )
 
     MBi_InitSendVolatBeacon = Symbol(
-        None, None, None, "MBi_InitSendVolatBeacon", "", None
+        [0x8F2C], [0x22C714C], None, "MBi_InitSendVolatBeacon", "", None
     )
 
-    MBi_SendVolatBeacon = Symbol(None, None, None, "MBi_SendVolatBeacon", "", None)
+    MBi_SendVolatBeacon = Symbol(
+        [0x8F5C], [0x22C717C], None, "MBi_SendVolatBeacon", "", None
+    )
 
-    ChangeScanChannel = Symbol(None, None, None, "ChangeScanChannel", "", None)
+    ChangeScanChannel = Symbol(
+        [0x91C8], [0x22C73E8], None, "ChangeScanChannel", "", None
+    )
 
-    MBi_IsSendEnabled = Symbol(None, None, None, "MBi_IsSendEnabled", "", None)
+    MBi_IsSendEnabled = Symbol(
+        [0x9238], [0x22C7458], None, "MBi_IsSendEnabled", "", None
+    )
 
-    MBi_OnInitializeDone = Symbol(None, None, None, "MBi_OnInitializeDone", "", None)
+    MBi_OnInitializeDone = Symbol(
+        [0x9298], [0x22C74B8], None, "MBi_OnInitializeDone", "", None
+    )
 
-    MBi_EndCommon = Symbol(None, None, None, "MBi_EndCommon", "", None)
+    MBi_EndCommon = Symbol([0x92E8], [0x22C7508], None, "MBi_EndCommon", "", None)
 
-    MBi_ParentCallback = Symbol(None, None, None, "MBi_ParentCallback", "", None)
+    MBi_ParentCallback = Symbol(
+        [0x932C], [0x22C754C], None, "MBi_ParentCallback", "", None
+    )
 
-    MBi_ChildPortCallback = Symbol(None, None, None, "MBi_ChildPortCallback", "", None)
+    MBi_ChildPortCallback = Symbol(
+        [0x9B84], [0x22C7DA4], None, "MBi_ChildPortCallback", "", None
+    )
 
-    MBi_ChildCallback = Symbol(None, None, None, "MBi_ChildCallback", "", None)
+    MBi_ChildCallback = Symbol(
+        [0x9BF4], [0x22C7E14], None, "MBi_ChildCallback", "", None
+    )
 
     MBi_GetBeaconPeriodDispersion = Symbol(
-        None, None, None, "MBi_GetBeaconPeriodDispersion", "", None
+        [0xA420], [0x22C8640], None, "MBi_GetBeaconPeriodDispersion", "", None
     )
 
-    MB_Init = Symbol(None, None, None, "MB_Init", "", None)
+    MB_Init = Symbol([0xA488], [0x22C86A8], None, "MB_Init", "", None)
 
-    MBi_IsCommSizeValid = Symbol(None, None, None, "MBi_IsCommSizeValid", "", None)
+    MBi_IsCommSizeValid = Symbol(
+        [0xA66C], [0x22C888C], None, "MBi_IsCommSizeValid", "", None
+    )
 
-    MB_SetParentCommParam = Symbol(None, None, None, "MB_SetParentCommParam", "", None)
+    MB_SetParentCommParam = Symbol(
+        [0xA6DC], [0x22C88FC], None, "MB_SetParentCommParam", "", None
+    )
 
-    MBi_StartCommon = Symbol(None, None, None, "MBi_StartCommon", "", None)
+    MBi_StartCommon = Symbol([0xA774], [0x22C8994], None, "MBi_StartCommon", "", None)
 
-    MBi_StartParentCore = Symbol(None, None, None, "MBi_StartParentCore", "", None)
+    MBi_StartParentCore = Symbol(
+        [0xA848], [0x22C8A68], None, "MBi_StartParentCore", "", None
+    )
 
     MB_StartParentFromIdle = Symbol(
-        None, None, None, "MB_StartParentFromIdle", "", None
+        [0xAA2C], [0x22C8C4C], None, "MB_StartParentFromIdle", "", None
     )
 
-    MBi_CallReset = Symbol(None, None, None, "MBi_CallReset", "", None)
+    MBi_CallReset = Symbol([0xAA50], [0x22C8C70], None, "MBi_CallReset", "", None)
 
-    MBi_OnReset = Symbol(None, None, None, "MBi_OnReset", "", None)
+    MBi_OnReset = Symbol([0xAA88], [0x22C8CA8], None, "MBi_OnReset", "", None)
 
-    MBi_CommEnd = Symbol(None, None, None, "MBi_CommEnd", "", None)
+    MBi_CommEnd = Symbol([0xAA94], [0x22C8CB4], None, "MBi_CommEnd", "", None)
 
-    MB_EndToIdle = Symbol(None, None, None, "MB_EndToIdle", "", None)
+    MB_EndToIdle = Symbol([0xAB28], [0x22C8D48], None, "MB_EndToIdle", "", None)
 
-    MB_DisconnectChild = Symbol(None, None, None, "MB_DisconnectChild", "", None)
+    MB_DisconnectChild = Symbol(
+        [0xAB64], [0x22C8D84], None, "MB_DisconnectChild", "", None
+    )
 
-    MBi_SetMaxScanTime = Symbol(None, None, None, "MBi_SetMaxScanTime", "", None)
+    MBi_SetMaxScanTime = Symbol(
+        [0xACF0], [0x22C8F10], None, "MBi_SetMaxScanTime", "", None
+    )
 
-    MBi_SetMpData = Symbol(None, None, None, "MBi_SetMpData", "", None)
+    MBi_SetMpData = Symbol([0xAD00], [0x22C8F20], None, "MBi_SetMpData", "", None)
 
-    MBi_SendMP = Symbol(None, None, None, "MBi_SendMP", "", None)
+    MBi_SendMP = Symbol([0xAD4C], [0x22C8F6C], None, "MBi_SendMP", "", None)
 
-    MBi_GetGgid = Symbol(None, None, None, "MBi_GetGgid", "", None)
+    MBi_GetGgid = Symbol([0xAE2C], [0x22C904C], None, "MBi_GetGgid", "", None)
 
-    MBi_GetTgid = Symbol(None, None, None, "MBi_GetTgid", "", None)
+    MBi_GetTgid = Symbol([0xAE40], [0x22C9060], None, "MBi_GetTgid", "", None)
 
-    MBi_GetAttribute = Symbol(None, None, None, "MBi_GetAttribute", "", None)
+    MBi_GetAttribute = Symbol([0xAE54], [0x22C9074], None, "MBi_GetAttribute", "", None)
 
-    MBi_IsStarted = Symbol(None, None, None, "MBi_IsStarted", "", None)
+    MBi_IsStarted = Symbol([0xAEB4], [0x22C90D4], None, "MBi_IsStarted", "", None)
 
-    MBi_CheckWmErrcode = Symbol(None, None, None, "MBi_CheckWmErrcode", "", None)
+    MBi_CheckWmErrcode = Symbol(
+        [0xAED4], [0x22C90F4], None, "MBi_CheckWmErrcode", "", None
+    )
 
-    MBi_InitCache = Symbol(None, None, None, "MBi_InitCache", "", None)
+    MBi_InitCache = Symbol([0xAF0C], [0x22C912C], None, "MBi_InitCache", "", None)
 
-    MBi_AttachCacheBuffer = Symbol(None, None, None, "MBi_AttachCacheBuffer", "", None)
+    MBi_AttachCacheBuffer = Symbol(
+        [0xAF20], [0x22C9140], None, "MBi_AttachCacheBuffer", "", None
+    )
 
     MBi_MakeParentSendBuffer = Symbol(
-        None, None, None, "MBi_MakeParentSendBuffer", "", None
+        [0xAF88, 0xB440],
+        [0x22C91A8, 0x22C9660],
+        None,
+        "MBi_MakeParentSendBuffer",
+        "",
+        None,
     )
 
-    MBi_TaskThread = Symbol(None, None, None, "MBi_TaskThread", "", None)
+    MBi_TaskThread = Symbol([0xB020], [0x22C9240], None, "MBi_TaskThread", "", None)
 
-    MBi_InitTaskThread = Symbol(None, None, None, "MBi_InitTaskThread", "", None)
+    MBi_InitTaskThread = Symbol(
+        [0xB138], [0x22C9358], None, "MBi_InitTaskThread", "", None
+    )
 
-    MBi_IsTaskAvailable = Symbol(None, None, None, "MBi_IsTaskAvailable", "", None)
+    MBi_IsTaskAvailable = Symbol(
+        [0xB1B8], [0x22C93D8], None, "MBi_IsTaskAvailable", "", None
+    )
 
-    MBi_InitTaskInfo = Symbol(None, None, None, "MBi_InitTaskInfo", "", None)
+    MBi_InitTaskInfo = Symbol([0xB1D4], [0x22C93F4], None, "MBi_InitTaskInfo", "", None)
 
-    MBi_ReadFromCache = Symbol(None, None, None, "MBi_ReadFromCache", "", None)
+    MBi_ReadFromCache = Symbol(
+        [0xB1E8], [0x22C9408], None, "MBi_ReadFromCache", "", None
+    )
 
-    MBi_SetTask = Symbol(None, None, None, "MBi_SetTask", "", None)
+    MBi_SetTask = Symbol([0xB200], [0x22C9420], None, "MBi_SetTask", "", None)
 
-    MBi_EndTaskThread = Symbol(None, None, None, "MBi_EndTaskThread", "", None)
+    MBi_EndTaskThread = Symbol(
+        [0xB364], [0x22C9584], None, "MBi_EndTaskThread", "", None
+    )
 
-    MBi_SetChildMpMaxSize = Symbol(None, None, None, "MBi_SetChildMpMaxSize", "", None)
+    MBi_SetChildMpMaxSize = Symbol(
+        [0xB3AC], [0x22C95CC], None, "MBi_SetChildMpMaxSize", "", None
+    )
 
     MBi_SetParentPieceBuffer = Symbol(
-        None, None, None, "MBi_SetParentPieceBuffer", "", None
+        [0xB3DC], [0x22C95FC], None, "MBi_SetParentPieceBuffer", "", None
     )
 
     MBi_ClearParentPieceBuffer = Symbol(
-        None, None, None, "MBi_ClearParentPieceBuffer", "", None
+        [0xB3FC], [0x22C961C], None, "MBi_ClearParentPieceBuffer", "", None
     )
 
     MBi_SetRecvBufferFromChild = Symbol(
-        None, None, None, "MBi_SetRecvBufferFromChild", "", None
+        [0xB4C4], [0x22C96E4], None, "MBi_SetRecvBufferFromChild", "", None
     )
 
     MBi_ReceiveRequestDataPiece = Symbol(
-        None, None, None, "MBi_ReceiveRequestDataPiece", "", None
+        [0xB5E0], [0x22C9800], None, "MBi_ReceiveRequestDataPiece", "", None
     )
 
-    IsGetAllRequestData = Symbol(None, None, None, "IsGetAllRequestData", "", None)
+    IsGetAllRequestData = Symbol(
+        [0xB66C], [0x22C988C], None, "IsGetAllRequestData", "", None
+    )
 
     reset_network_vars = Symbol(
         [0xB6C0], [0x22C98E0], None, "reset_network_vars", "", None
@@ -20441,7 +20602,7 @@ class JpOverlay0Functions:
 
     OS_YieldThread2 = Symbol([0xB7C4], [0x22C99E4], None, "OS_YieldThread2", "", None)
 
-    Empty_Func_Cps = Symbol(None, None, None, "Empty_Func_Cps", "", None)
+    Empty_Func_Cps = Symbol([0xB7EC], [0x22C9A0C], None, "Empty_Func_Cps", "", None)
 
     default_link_is_on = Symbol(
         [0xB7F0], [0x22C9A10], None, "default_link_is_on", "", None
@@ -21865,23 +22026,29 @@ class JpOverlay0Functions:
 
     Db64_Dwc = Symbol([0x1D99C], [0x22DBBBC], None, "Db64_Dwc", "", None)
 
-    WdsGetRssi8 = Symbol(None, None, None, "WdsGetRssi8", "", None)
+    WdsGetRssi8 = Symbol([0x1DB04], [0x22DBD24], None, "WdsGetRssi8", "", None)
 
-    WdsScanCallback = Symbol(None, None, None, "WdsScanCallback", "", None)
+    WdsScanCallback = Symbol([0x1DB18], [0x22DBD38], None, "WdsScanCallback", "", None)
 
-    Wds_GetWorkAreaSize = Symbol(None, None, None, "Wds_GetWorkAreaSize", "", None)
+    Wds_GetWorkAreaSize = Symbol(
+        [0x1DE04], [0x22DC024], None, "Wds_GetWorkAreaSize", "", None
+    )
 
-    Wds_Initialize = Symbol(None, None, None, "Wds_Initialize", "", None)
+    Wds_Initialize = Symbol([0x1DE10], [0x22DC030], None, "Wds_Initialize", "", None)
 
-    Wds_End = Symbol(None, None, None, "Wds_End", "", None)
+    Wds_End = Symbol([0x1DEA8], [0x22DC0C8], None, "Wds_End", "", None)
 
-    Wds_StartScan = Symbol(None, None, None, "Wds_StartScan", "", None)
+    Wds_StartScan = Symbol([0x1DEE8], [0x22DC108], None, "Wds_StartScan", "", None)
 
-    Wds_EndScan = Symbol(None, None, None, "Wds_EndScan", "", None)
+    Wds_EndScan = Symbol([0x1DFB0], [0x22DC1D0], None, "Wds_EndScan", "", None)
 
-    Wds_GetApInfoByIndex = Symbol(None, None, None, "Wds_GetApInfoByIndex", "", None)
+    Wds_GetApInfoByIndex = Symbol(
+        [0x1DFE8], [0x22DC208], None, "Wds_GetApInfoByIndex", "", None
+    )
 
-    Wds_GetApInfoAll = Symbol(None, None, None, "Wds_GetApInfoAll", "", None)
+    Wds_GetApInfoAll = Symbol(
+        [0x1E084], [0x22DC2A4], None, "Wds_GetApInfoAll", "", None
+    )
 
     Dwc_AC_StartupGetWdsInfo = Symbol(
         [0x1E128], [0x22DC348], None, "Dwc_AC_StartupGetWdsInfo", "", None
@@ -21899,19 +22066,25 @@ class JpOverlay0Functions:
         [0x1E4EC], [0x22DC70C], None, "Dwc_AC_CleanupGetWdsInfo", "", None
     )
 
-    IsValidApnum = Symbol(None, None, None, "IsValidApnum", "", None)
+    IsValidApnum = Symbol([0x1E548], [0x22DC768], None, "IsValidApnum", "", None)
 
-    Wds_Initialize_CB = Symbol(None, None, None, "Wds_Initialize_CB", "", None)
+    Wds_Initialize_CB = Symbol(
+        [0x1E57C], [0x22DC79C], None, "Wds_Initialize_CB", "", None
+    )
 
-    Wds_StartScan_CB = Symbol(None, None, None, "Wds_StartScan_CB", "", None)
+    Wds_StartScan_CB = Symbol(
+        [0x1E590], [0x22DC7B0], None, "Wds_StartScan_CB", "", None
+    )
 
-    Wds_EndScan_CB = Symbol(None, None, None, "Wds_EndScan_CB", "", None)
+    Wds_EndScan_CB = Symbol([0x1E5A4], [0x22DC7C4], None, "Wds_EndScan_CB", "", None)
 
-    Wds_End_CB = Symbol(None, None, None, "Wds_End_CB", "", None)
+    Wds_End_CB = Symbol([0x1E5B8], [0x22DC7D8], None, "Wds_End_CB", "", None)
 
-    Wds_Error_End_CB = Symbol(None, None, None, "Wds_Error_End_CB", "", None)
+    Wds_Error_End_CB = Symbol(
+        [0x1E5CC], [0x22DC7EC], None, "Wds_Error_End_CB", "", None
+    )
 
-    Dwc_Init = Symbol(None, None, None, "Dwc_Init", "", None)
+    Dwc_Init = Symbol([0x1E5E0], [0x22DC800], None, "Dwc_Init", "", None)
 
     Dwci_Acc_SetMaskBits = Symbol(
         [0x1E66C], [0x22DC88C], None, "Dwci_Acc_SetMaskBits", "", None
@@ -22137,7 +22310,9 @@ class JpOverlay0Functions:
         [0x1F210], [0x22DD430], None, "Dwc_Auth_SetCustomNas", "", None
     )
 
-    Dwc_Auth_GetCustomNas = Symbol(None, None, None, "Dwc_Auth_GetCustomNas", "", None)
+    Dwc_Auth_GetCustomNas = Symbol(
+        [0x1F220], [0x22DD440], None, "Dwc_Auth_GetCustomNas", "", None
+    )
 
     Dwc_Auth_Create = Symbol([0x1F230], [0x22DD450], None, "Dwc_Auth_Create", "", None)
 
@@ -22184,7 +22359,7 @@ class JpOverlay0Functions:
     )
 
     Dwc_Auth_GetCalInfoFromNVram = Symbol(
-        None, None, None, "Dwc_Auth_GetCalInfoFromNVram", "", None
+        [0x20044], [0x22DE264], None, "Dwc_Auth_GetCalInfoFromNVram", "", None
     )
 
     Dwc_Auth_GetCalInfoFromWiFiInfo = Symbol(
@@ -22192,7 +22367,7 @@ class JpOverlay0Functions:
     )
 
     Dwc_Auth_SetCalInfoToHttp = Symbol(
-        None, None, None, "Dwc_Auth_SetCalInfoToHttp", "", None
+        [0x2031C], [0x22DE53C], None, "Dwc_Auth_SetCalInfoToHttp", "", None
     )
 
     Dwc_Http_Create = Symbol([0x20668], [0x22DE888], None, "Dwc_Http_Create", "", None)
@@ -22218,7 +22393,7 @@ class JpOverlay0Functions:
     )
 
     Dwci_Http_CheckHeaderReceived = Symbol(
-        None, None, None, "Dwci_Http_CheckHeaderReceived", "", None
+        [0x20A18], [0x22DEC38], None, "Dwci_Http_CheckHeaderReceived", "", None
     )
 
     Dwci_Http_Thread = Symbol(
@@ -22347,13 +22522,17 @@ class JpOverlay0Functions:
         [0x23660], [0x22E1880], None, "Dwc_Auth_Base64Decode", "", None
     )
 
-    Dwc_GetLastError = Symbol(None, None, None, "Dwc_GetLastError", "", None)
+    Dwc_GetLastError = Symbol(
+        [0x237C8], [0x22E19E8], None, "Dwc_GetLastError", "", None
+    )
 
-    Dwc_GetLastErrorEx = Symbol(None, None, None, "Dwc_GetLastErrorEx", "", None)
+    Dwc_GetLastErrorEx = Symbol(
+        [0x237E8], [0x22E1A08], None, "Dwc_GetLastErrorEx", "", None
+    )
 
-    Dwc_ClearError = Symbol(None, None, None, "Dwc_ClearError", "", None)
+    Dwc_ClearError = Symbol([0x238E4], [0x22E1B04], None, "Dwc_ClearError", "", None)
 
-    Dwci_IsError = Symbol(None, None, None, "Dwci_IsError", "", None)
+    Dwci_IsError = Symbol([0x23904], [0x22E1B24], None, "Dwci_IsError", "", None)
 
     Dwci_SetError = Symbol([0x23920], [0x22E1B40], None, "Dwci_SetError", "", None)
 
@@ -22450,713 +22629,860 @@ class JpOverlay0Functions:
     Dwci_NdCallback = Symbol([0x24410], [0x22E2630], None, "Dwci_NdCallback", "", None)
 
     Dwci_NdCleanupCallback = Symbol(
-        None, None, None, "Dwci_NdCleanupCallback", "", None
+        [0x24508], [0x22E2728], None, "Dwci_NdCleanupCallback", "", None
     )
 
     Dwci_SvlTokenWaitThread = Symbol(
-        None, None, None, "Dwci_SvlTokenWaitThread", "", None
+        [0x2454C], [0x22E276C], None, "Dwci_SvlTokenWaitThread", "", None
     )
 
-    Dwc_NdInitAsync = Symbol(None, None, None, "Dwc_NdInitAsync", "", None)
+    Dwc_NdInitAsync = Symbol([0x24704], [0x22E2924], None, "Dwc_NdInitAsync", "", None)
 
-    Dwc_NdCleanupAsync = Symbol(None, None, None, "Dwc_NdCleanupAsync", "", None)
+    Dwc_NdCleanupAsync = Symbol(
+        [0x2481C], [0x22E2A3C], None, "Dwc_NdCleanupAsync", "", None
+    )
 
-    Dwc_NdSetAttr = Symbol(None, None, None, "Dwc_NdSetAttr", "", None)
+    Dwc_NdSetAttr = Symbol([0x24868], [0x22E2A88], None, "Dwc_NdSetAttr", "", None)
 
     Dwc_NdGetFileListNumAsync = Symbol(
-        None, None, None, "Dwc_NdGetFileListNumAsync", "", None
+        [0x2489C], [0x22E2ABC], None, "Dwc_NdGetFileListNumAsync", "", None
     )
 
     Dwc_NdGetFileListAsync = Symbol(
-        None, None, None, "Dwc_NdGetFileListAsync", "", None
+        [0x248C0], [0x22E2AE0], None, "Dwc_NdGetFileListAsync", "", None
     )
 
-    Dwc_NdGetFileAsync = Symbol(None, None, None, "Dwc_NdGetFileAsync", "", None)
+    Dwc_NdGetFileAsync = Symbol(
+        [0x24908], [0x22E2B28], None, "Dwc_NdGetFileAsync", "", None
+    )
 
-    Dwc_NdCancelAsync = Symbol(None, None, None, "Dwc_NdCancelAsync", "", None)
+    Dwc_NdCancelAsync = Symbol(
+        [0x24940], [0x22E2B60], None, "Dwc_NdCancelAsync", "", None
+    )
 
     Dwc_SetCommonKeyValueString = Symbol(
-        None, None, None, "Dwc_SetCommonKeyValueString", "", None
+        [0x2495C], [0x22E2B7C], None, "Dwc_SetCommonKeyValueString", "", None
     )
 
     Dwc_AddCommonKeyValueString = Symbol(
-        None, None, None, "Dwc_AddCommonKeyValueString", "", None
+        [0x24994], [0x22E2BB4], None, "Dwc_AddCommonKeyValueString", "", None
     )
 
     Dwc_GetCommonValueString = Symbol(
-        None, None, None, "Dwc_GetCommonValueString", "", None
+        [0x249D4], [0x22E2BF4], None, "Dwc_GetCommonValueString", "", None
     )
 
-    Dwci_GetMathRand32 = Symbol(None, None, None, "Dwci_GetMathRand32", "", None)
+    Dwci_GetMathRand32 = Symbol(
+        [0x24AD0], [0x22E2CF0], None, "Dwci_GetMathRand32", "", None
+    )
 
-    Dwci_WStrLen = Symbol(None, None, None, "Dwci_WStrLen", "", None)
+    Dwci_WStrLen = Symbol([0x24BF0], [0x22E2E10], None, "Dwci_WStrLen", "", None)
 
-    Dwc_InitFriendsMatch = Symbol(None, None, None, "Dwc_InitFriendsMatch", "", None)
+    Dwc_InitFriendsMatch = Symbol(
+        [0x24C1C], [0x22E2E3C], None, "Dwc_InitFriendsMatch", "", None
+    )
 
     Dwc_ShutdownFriendsMatch = Symbol(
-        None, None, None, "Dwc_ShutdownFriendsMatch", "", None
+        [0x24EA0], [0x22E30C0], None, "Dwc_ShutdownFriendsMatch", "", None
     )
 
     Dwc_ProcessFriendsMatch = Symbol(
-        None, None, None, "Dwc_ProcessFriendsMatch", "", None
+        [0x25010], [0x22E3230], None, "Dwc_ProcessFriendsMatch", "", None
     )
 
-    Dwc_LoginAsync = Symbol(None, None, None, "Dwc_LoginAsync", "", None)
+    Dwc_LoginAsync = Symbol([0x25290], [0x22E34B0], None, "Dwc_LoginAsync", "", None)
 
     Dwc_UpdateServersAsync = Symbol(
-        None, None, None, "Dwc_UpdateServersAsync", "", None
+        [0x25398], [0x22E35B8], None, "Dwc_UpdateServersAsync", "", None
     )
 
     Dwc_CloseConnectionHard = Symbol(
-        None, None, None, "Dwc_CloseConnectionHard", "", None
+        [0x25440], [0x22E3660], None, "Dwc_CloseConnectionHard", "", None
     )
 
-    Dwc_GetMyAid = Symbol(None, None, None, "Dwc_GetMyAid", "", None)
+    Dwc_GetMyAid = Symbol([0x254A8], [0x22E36C8], None, "Dwc_GetMyAid", "", None)
 
-    Dwc_GetAidList = Symbol(None, None, None, "Dwc_GetAidList", "", None)
+    Dwc_GetAidList = Symbol([0x254C4], [0x22E36E4], None, "Dwc_GetAidList", "", None)
 
-    Dwc_IsValidAid = Symbol(None, None, None, "Dwc_IsValidAid", "", None)
+    Dwc_IsValidAid = Symbol([0x25514], [0x22E3734], None, "Dwc_IsValidAid", "", None)
 
-    Dwc_GetState = Symbol(None, None, None, "Dwc_GetState", "", None)
+    Dwc_GetState = Symbol([0x2554C], [0x22E376C], None, "Dwc_GetState", "", None)
 
-    Dwci_GT2Startup = Symbol(None, None, None, "Dwci_GT2Startup", "", None)
+    Dwci_GT2Startup = Symbol([0x25568], [0x22E3788], None, "Dwci_GT2Startup", "", None)
 
-    Dwci_GetGT2Connection = Symbol(None, None, None, "Dwci_GetGT2Connection", "", None)
+    Dwci_GetGT2Connection = Symbol(
+        [0x25630], [0x22E3850], None, "Dwci_GetGT2Connection", "", None
+    )
 
-    Dwci_GetConnectionAid = Symbol(None, None, None, "Dwci_GetConnectionAid", "", None)
+    Dwci_GetConnectionAid = Symbol(
+        [0x25694], [0x22E38B4], None, "Dwci_GetConnectionAid", "", None
+    )
 
     Dwci_GetConnectionIndex = Symbol(
-        None, None, None, "Dwci_GetConnectionIndex", "", None
+        [0x256A4], [0x22E38C4], None, "Dwci_GetConnectionIndex", "", None
     )
 
     Dwci_GT2GetConnectionListIdx = Symbol(
-        None, None, None, "Dwci_GT2GetConnectionListIdx", "", None
+        [0x256B4], [0x22E38D4], None, "Dwci_GT2GetConnectionListIdx", "", None
     )
 
     Dwci_ClearGT2ConnectionList = Symbol(
-        None, None, None, "Dwci_ClearGT2ConnectionList", "", None
+        [0x256E0], [0x22E3900], None, "Dwci_ClearGT2ConnectionList", "", None
     )
 
     Dwci_GetGT2ConnectionByIdx = Symbol(
-        None, None, None, "Dwci_GetGT2ConnectionByIdx", "", None
+        [0x25710], [0x22E3930], None, "Dwci_GetGT2ConnectionByIdx", "", None
     )
 
     Dwci_GetGT2ConnectionByProfileID = Symbol(
-        None, None, None, "Dwci_GetGT2ConnectionByProfileID", "", None
+        [0x25720], [0x22E3940], None, "Dwci_GetGT2ConnectionByProfileID", "", None
     )
 
     Dwci_GetConnectionInfoByIdx = Symbol(
-        None, None, None, "Dwci_GetConnectionInfoByIdx", "", None
+        [0x25788], [0x22E39A8], None, "Dwci_GetConnectionInfoByIdx", "", None
     )
 
-    Dwci_IsValidAid = Symbol(None, None, None, "Dwci_IsValidAid", "", None)
+    Dwci_IsValidAid = Symbol([0x25798], [0x22E39B8], None, "Dwci_IsValidAid", "", None)
 
-    Dwci_ResetMyAid = Symbol(None, None, None, "Dwci_ResetMyAid", "", None)
+    Dwci_ResetMyAid = Symbol([0x257E0], [0x22E3A00], None, "Dwci_ResetMyAid", "", None)
 
-    Dwcs_ForceShutdown = Symbol(None, None, None, "Dwcs_ForceShutdown", "", None)
+    Dwcs_ForceShutdown = Symbol(
+        [0x257F8], [0x22E3A18], None, "Dwcs_ForceShutdown", "", None
+    )
 
-    Dwci_SetState = Symbol(None, None, None, "Dwci_SetState", "", None)
+    Dwci_SetState = Symbol([0x257FC], [0x22E3A1C], None, "Dwci_SetState", "", None)
 
-    Dwci_DeleteAid = Symbol(None, None, None, "Dwci_DeleteAid", "", None)
+    Dwci_DeleteAid = Symbol([0x2581C], [0x22E3A3C], None, "Dwci_DeleteAid", "", None)
 
     Dwci_HandleGpError_Common = Symbol(
-        None, None, None, "Dwci_HandleGpError_Common", "", None
+        [0x2587C], [0x22E3A9C], None, "Dwci_HandleGpError_Common", "", None
     )
 
-    Dwci_HandleGT2Error = Symbol(None, None, None, "Dwci_HandleGT2Error", "", None)
+    Dwci_HandleGT2Error = Symbol(
+        [0x25998], [0x22E3BB8], None, "Dwci_HandleGT2Error", "", None
+    )
 
-    Dwci_LoginCallback = Symbol(None, None, None, "Dwci_LoginCallback", "", None)
+    Dwci_LoginCallback = Symbol(
+        [0x25A3C], [0x22E3C5C], None, "Dwci_LoginCallback", "", None
+    )
 
     Dwci_UpdateServersCallback = Symbol(
-        None, None, None, "Dwci_UpdateServersCallback", "", None
+        [0x25A9C], [0x22E3CBC], None, "Dwci_UpdateServersCallback", "", None
     )
 
-    Dwci_GpErrorCallback = Symbol(None, None, None, "Dwci_GpErrorCallback", "", None)
+    Dwci_GpErrorCallback = Symbol(
+        [0x25AE4], [0x22E3D04], None, "Dwci_GpErrorCallback", "", None
+    )
 
     Dwci_GpRecvBuddyMessageCallback = Symbol(
-        None, None, None, "Dwci_GpRecvBuddyMessageCallback", "", None
+        [0x25B1C], [0x22E3D3C], None, "Dwci_GpRecvBuddyMessageCallback", "", None
     )
 
     Dwci_GT2ReceivedCallback = Symbol(
-        None, None, None, "Dwci_GT2ReceivedCallback", "", None
+        [0x25C74], [0x22E3E94], None, "Dwci_GT2ReceivedCallback", "", None
     )
 
     Dwci_GT2ClosedCallback = Symbol(
-        None, None, None, "Dwci_GT2ClosedCallback", "", None
+        [0x25C80], [0x22E3EA0], None, "Dwci_GT2ClosedCallback", "", None
     )
 
-    Dwci_GT2PingCallback = Symbol(None, None, None, "Dwci_GT2PingCallback", "", None)
+    Dwci_GT2PingCallback = Symbol(
+        [0x25FE8], [0x22E4208], None, "Dwci_GT2PingCallback", "", None
+    )
 
     Dwci_GT2SocketErrorCallback = Symbol(
-        None, None, None, "Dwci_GT2SocketErrorCallback", "", None
+        [0x25FF4], [0x22E4214], None, "Dwci_GT2SocketErrorCallback", "", None
     )
 
-    Dwci_LoginInit = Symbol(None, None, None, "Dwci_LoginInit", "", None)
+    Dwci_LoginInit = Symbol([0x26030], [0x22E4250], None, "Dwci_LoginInit", "", None)
 
-    Dwci_LoginAsync = Symbol(None, None, None, "Dwci_LoginAsync", "", None)
+    Dwci_LoginAsync = Symbol([0x260B4], [0x22E42D4], None, "Dwci_LoginAsync", "", None)
 
-    Dwci_LoginProcess = Symbol(None, None, None, "Dwci_LoginProcess", "", None)
+    Dwci_LoginProcess = Symbol(
+        [0x260EC], [0x22E430C], None, "Dwci_LoginProcess", "", None
+    )
 
-    Dwci_GetUserData = Symbol(None, None, None, "Dwci_GetUserData", "", None)
+    Dwci_GetUserData = Symbol(
+        [0x261E4], [0x22E4404], None, "Dwci_GetUserData", "", None
+    )
 
-    Dwci_StopLogin = Symbol(None, None, None, "Dwci_StopLogin", "", None)
+    Dwci_StopLogin = Symbol([0x26200], [0x22E4420], None, "Dwci_StopLogin", "", None)
 
-    Dwci_ShutdownLogin = Symbol(None, None, None, "Dwci_ShutdownLogin", "", None)
+    Dwci_ShutdownLogin = Symbol(
+        [0x26250], [0x22E4470], None, "Dwci_ShutdownLogin", "", None
+    )
 
-    Dwci_CloseLogin = Symbol(None, None, None, "Dwci_CloseLogin", "", None)
+    Dwci_CloseLogin = Symbol([0x262AC], [0x22E44CC], None, "Dwci_CloseLogin", "", None)
 
     Dwci_HandleGpError_Login = Symbol(
-        None, None, None, "Dwci_HandleGpError_Login", "", None
+        [0x262D4], [0x22E44F4], None, "Dwci_HandleGpError_Login", "", None
     )
 
     Dwci_GpConnectCallback = Symbol(
-        None, None, None, "Dwci_GpConnectCallback", "", None
+        [0x26348], [0x22E4568], None, "Dwci_GpConnectCallback", "", None
     )
 
     Dwci_RemoteAuthCallback = Symbol(
-        None, None, None, "Dwci_RemoteAuthCallback", "", None
+        [0x26480], [0x22E46A0], None, "Dwci_RemoteAuthCallback", "", None
     )
 
-    Dwci_GpConnect = Symbol(None, None, None, "Dwci_GpConnect", "", None)
+    Dwci_GpConnect = Symbol([0x26498], [0x22E46B8], None, "Dwci_GpConnect", "", None)
 
-    Dwci_RemoteLogin = Symbol(None, None, None, "Dwci_RemoteLogin", "", None)
+    Dwci_RemoteLogin = Symbol(
+        [0x26534], [0x22E4754], None, "Dwci_RemoteLogin", "", None
+    )
 
     Dwci_RemoteLoginProcess = Symbol(
-        None, None, None, "Dwci_RemoteLoginProcess", "", None
+        [0x26700], [0x22E4920], None, "Dwci_RemoteLoginProcess", "", None
     )
 
     Dwci_GpGetInfoCallback = Symbol(
-        None, None, None, "Dwci_GpGetInfoCallback", "", None
+        [0x26908], [0x22E4B28], None, "Dwci_GpGetInfoCallback", "", None
     )
 
-    Dwci_CheckLogin = Symbol(None, None, None, "Dwci_CheckLogin", "", None)
+    Dwci_CheckLogin = Symbol([0x26AAC], [0x22E4CCC], None, "Dwci_CheckLogin", "", None)
 
-    Dwc_GetFriendStatus = Symbol(None, None, None, "Dwc_GetFriendStatus", "", None)
+    Dwc_GetFriendStatus = Symbol(
+        [0x26AD8], [0x22E4CF8], None, "Dwc_GetFriendStatus", "", None
+    )
 
-    Dwc_GetFriendStatusSC = Symbol(None, None, None, "Dwc_GetFriendStatusSC", "", None)
+    Dwc_GetFriendStatusSC = Symbol(
+        [0x26AF0], [0x22E4D10], None, "Dwc_GetFriendStatusSC", "", None
+    )
 
     Dwc_DeleteBuddyFriendData = Symbol(
-        None, None, None, "Dwc_DeleteBuddyFriendData", "", None
+        [0x26C0C], [0x22E4E2C], None, "Dwc_DeleteBuddyFriendData", "", None
     )
 
     Dwc_SetBuddyFriendCallback = Symbol(
-        None, None, None, "Dwc_SetBuddyFriendCallback", "", None
+        [0x26CA0], [0x22E4EC0], None, "Dwc_SetBuddyFriendCallback", "", None
     )
 
-    Dwci_FriendInit = Symbol(None, None, None, "Dwci_FriendInit", "", None)
+    Dwci_FriendInit = Symbol([0x26CCC], [0x22E4EEC], None, "Dwci_FriendInit", "", None)
 
-    Dwci_FriendProcess = Symbol(None, None, None, "Dwci_FriendProcess", "", None)
+    Dwci_FriendProcess = Symbol(
+        [0x26DE8], [0x22E5008], None, "Dwci_FriendProcess", "", None
+    )
 
     Dwci_UpdateServersAsync = Symbol(
-        None, None, None, "Dwci_UpdateServersAsync", "", None
+        [0x270C8], [0x22E52E8], None, "Dwci_UpdateServersAsync", "", None
     )
 
     Dwci_StopFriendProcess = Symbol(
-        None, None, None, "Dwci_StopFriendProcess", "", None
+        [0x27174], [0x22E5394], None, "Dwci_StopFriendProcess", "", None
     )
 
     Dwci_GpRecvBuddyRequestCallback = Symbol(
-        None, None, None, "Dwci_GpRecvBuddyRequestCallback", "", None
+        [0x271FC], [0x22E541C], None, "Dwci_GpRecvBuddyRequestCallback", "", None
     )
 
     Dwci_GpRecvBuddyAuthCallback = Symbol(
-        None, None, None, "Dwci_GpRecvBuddyAuthCallback", "", None
+        [0x27248], [0x22E5468], None, "Dwci_GpRecvBuddyAuthCallback", "", None
     )
 
     Dwci_GpRecvBuddyStatusCallback = Symbol(
-        None, None, None, "Dwci_GpRecvBuddyStatusCallback", "", None
+        [0x27278], [0x22E5498], None, "Dwci_GpRecvBuddyStatusCallback", "", None
     )
 
     Dwci_GetProfileIdFromList = Symbol(
-        None, None, None, "Dwci_GetProfileIdFromList", "", None
+        [0x272FC], [0x22E551C], None, "Dwci_GetProfileIdFromList", "", None
     )
 
     Dwci_GetFriendListIndex = Symbol(
-        None, None, None, "Dwci_GetFriendListIndex", "", None
+        [0x27344], [0x22E5564], None, "Dwci_GetFriendListIndex", "", None
     )
 
     Dwci_InitGpProcessCount = Symbol(
-        None, None, None, "Dwci_InitGpProcessCount", "", None
+        [0x273A8], [0x22E55C8], None, "Dwci_InitGpProcessCount", "", None
     )
 
-    Dwci_SetGpStatus = Symbol(None, None, None, "Dwci_SetGpStatus", "", None)
+    Dwci_SetGpStatus = Symbol(
+        [0x273E0], [0x22E5600], None, "Dwci_SetGpStatus", "", None
+    )
 
-    Dwci_GetGpStatus = Symbol(None, None, None, "Dwci_GetGpStatus", "", None)
+    Dwci_GetGpStatus = Symbol(
+        [0x27494], [0x22E56B4], None, "Dwci_GetGpStatus", "", None
+    )
 
-    Dwci_ShutdownFriend = Symbol(None, None, None, "Dwci_ShutdownFriend", "", None)
+    Dwci_ShutdownFriend = Symbol(
+        [0x2751C], [0x22E573C], None, "Dwci_ShutdownFriend", "", None
+    )
 
-    Dwci_GpProcess = Symbol(None, None, None, "Dwci_GpProcess", "", None)
+    Dwci_GpProcess = Symbol([0x27530], [0x22E5750], None, "Dwci_GpProcess", "", None)
 
     Dwci_CloseFriendProcess = Symbol(
-        None, None, None, "Dwci_CloseFriendProcess", "", None
+        [0x275BC], [0x22E57DC], None, "Dwci_CloseFriendProcess", "", None
     )
 
-    Dwci_UpdateFriendReq = Symbol(None, None, None, "Dwci_UpdateFriendReq", "", None)
+    Dwci_UpdateFriendReq = Symbol(
+        [0x275EC], [0x22E580C], None, "Dwci_UpdateFriendReq", "", None
+    )
 
-    Dwci_EndUpdateServers = Symbol(None, None, None, "Dwci_EndUpdateServers", "", None)
+    Dwci_EndUpdateServers = Symbol(
+        [0x278BC], [0x22E5ADC], None, "Dwci_EndUpdateServers", "", None
+    )
 
     Dwci_DeleteFriendFromList = Symbol(
-        None, None, None, "Dwci_DeleteFriendFromList", "", None
+        [0x278F4], [0x22E5B14], None, "Dwci_DeleteFriendFromList", "", None
     )
 
     Dwci_RefreshFriendListForth = Symbol(
-        None, None, None, "Dwci_RefreshFriendListForth", "", None
+        [0x2794C], [0x22E5B6C], None, "Dwci_RefreshFriendListForth", "", None
     )
 
     Dwci_RefreshFriendListAll = Symbol(
-        None, None, None, "Dwci_RefreshFriendListAll", "", None
+        [0x27A10], [0x22E5C30], None, "Dwci_RefreshFriendListAll", "", None
     )
 
     Dwci_GpSendBuddyRequest = Symbol(
-        None, None, None, "Dwci_GpSendBuddyRequest", "", None
+        [0x27B5C], [0x22E5D7C], None, "Dwci_GpSendBuddyRequest", "", None
     )
 
     Dwci_GetFriendBuddyStatus = Symbol(
-        None, None, None, "Dwci_GetFriendBuddyStatus", "", None
+        [0x27B90], [0x22E5DB0], None, "Dwci_GetFriendBuddyStatus", "", None
     )
 
     Dwci_HandleGpError_Friend = Symbol(
-        None, None, None, "Dwci_HandleGpError_Friend", "", None
+        [0x27C4C], [0x22E5E6C], None, "Dwci_HandleGpError_Friend", "", None
     )
 
     Dwci_GpProfileSearchCallback = Symbol(
-        None, None, None, "Dwci_GpProfileSearchCallback", "", None
+        [0x27CC0], [0x22E5EE0], None, "Dwci_GpProfileSearchCallback", "", None
     )
 
     Dwci_GpGetInfoCallback_RecvBuddyRequest = Symbol(
-        None, None, None, "Dwci_GpGetInfoCallback_RecvBuddyRequest", "", None
+        [0x27F64],
+        [0x22E6184],
+        None,
+        "Dwci_GpGetInfoCallback_RecvBuddyRequest",
+        "",
+        None,
     )
 
     Dwci_GpGetInfoCallback_RecvAuthMessage = Symbol(
-        None, None, None, "Dwci_GpGetInfoCallback_RecvAuthMessage", "", None
+        [0x28194], [0x22E63B4], None, "Dwci_GpGetInfoCallback_RecvAuthMessage", "", None
     )
 
     Dwci_GetPersCallbackLevel = Symbol(
-        None, None, None, "Dwci_GetPersCallbackLevel", "", None
+        [0x283E8], [0x22E6608], None, "Dwci_GetPersCallbackLevel", "", None
     )
 
     Dwci_BeginCloseStatsConnection = Symbol(
-        None, None, None, "Dwci_BeginCloseStatsConnection", "", None
+        [0x283FC], [0x22E661C], None, "Dwci_BeginCloseStatsConnection", "", None
     )
 
     Dwci_EndCloseStatsConnection = Symbol(
-        None, None, None, "Dwci_EndCloseStatsConnection", "", None
+        [0x28410], [0x22E6630], None, "Dwci_EndCloseStatsConnection", "", None
     )
 
     Dwci_GetReverseBuddiesCallback = Symbol(
-        None, None, None, "Dwci_GetReverseBuddiesCallback", "", None
+        [0x28424], [0x22E6644], None, "Dwci_GetReverseBuddiesCallback", "", None
     )
 
     Dwci_NnFreeNegotiateList = Symbol(
-        None, None, None, "Dwci_NnFreeNegotiateList", "", None
+        [0x2860C], [0x22E682C], None, "Dwci_NnFreeNegotiateList", "", None
     )
 
-    Dwci_MatchInit = Symbol(None, None, None, "Dwci_MatchInit", "", None)
+    Dwci_MatchInit = Symbol([0x28634], [0x22E6854], None, "Dwci_MatchInit", "", None)
 
-    Dwci_QR2Startup = Symbol(None, None, None, "Dwci_QR2Startup", "", None)
+    Dwci_QR2Startup = Symbol([0x287B0], [0x22E69D0], None, "Dwci_QR2Startup", "", None)
 
-    Dwci_SendStateChanged = Symbol(None, None, None, "Dwci_SendStateChanged", "", None)
+    Dwci_SendStateChanged = Symbol(
+        [0x2894C], [0x22E6B6C], None, "Dwci_SendStateChanged", "", None
+    )
 
-    Dwci_MatchProcess = Symbol(None, None, None, "Dwci_MatchProcess", "", None)
+    Dwci_MatchProcess = Symbol(
+        [0x289FC], [0x22E6C1C], None, "Dwci_MatchProcess", "", None
+    )
 
     Dwci_GT2UnrecognizedMessageCallback = Symbol(
-        None, None, None, "Dwci_GT2UnrecognizedMessageCallback", "", None
+        [0x29498], [0x22E76B8], None, "Dwci_GT2UnrecognizedMessageCallback", "", None
     )
 
     Dwci_GT2ConnectAttemptCallback = Symbol(
-        None, None, None, "Dwci_GT2ConnectAttemptCallback", "", None
+        [0x2958C], [0x22E77AC], None, "Dwci_GT2ConnectAttemptCallback", "", None
     )
 
     Dwci_GT2ConnectedCallback = Symbol(
-        None, None, None, "Dwci_GT2ConnectedCallback", "", None
+        [0x297D4], [0x22E79F4], None, "Dwci_GT2ConnectedCallback", "", None
     )
 
     Dwci_MatchGpRecvBuddyMsgCallback = Symbol(
-        None, None, None, "Dwci_MatchGpRecvBuddyMsgCallback", "", None
+        [0x29A58], [0x22E7C78], None, "Dwci_MatchGpRecvBuddyMsgCallback", "", None
     )
 
     Dwci_StopResendingMatchCommand = Symbol(
-        None, None, None, "Dwci_StopResendingMatchCommand", "", None
+        [0x29ADC], [0x22E7CFC], None, "Dwci_StopResendingMatchCommand", "", None
     )
 
-    Dwci_StopMatching = Symbol(None, None, None, "Dwci_StopMatching", "", None)
+    Dwci_StopMatching = Symbol(
+        [0x29AFC], [0x22E7D1C], None, "Dwci_StopMatching", "", None
+    )
 
-    Dwci_ClearQR2Key = Symbol(None, None, None, "Dwci_ClearQR2Key", "", None)
+    Dwci_ClearQR2Key = Symbol(
+        [0x29BB8], [0x22E7DD8], None, "Dwci_ClearQR2Key", "", None
+    )
 
     Dwci_ProcessMatchSynPacket = Symbol(
-        None, None, None, "Dwci_ProcessMatchSynPacket", "", None
+        [0x29BF4], [0x22E7E14], None, "Dwci_ProcessMatchSynPacket", "", None
     )
 
     Dwci_ProcessMatchClosing = Symbol(
-        None, None, None, "Dwci_ProcessMatchClosing", "", None
+        [0x29DAC], [0x22E7FCC], None, "Dwci_ProcessMatchClosing", "", None
     )
 
     Dwci_ProcessMatchScClosing = Symbol(
-        None, None, None, "Dwci_ProcessMatchScClosing", "", None
+        [0x29F28], [0x22E8148], None, "Dwci_ProcessMatchScClosing", "", None
     )
 
     Dwci_DeleteHostByProfileID = Symbol(
-        None, None, None, "Dwci_DeleteHostByProfileID", "", None
+        [0x29F4C], [0x22E816C], None, "Dwci_DeleteHostByProfileID", "", None
     )
 
     Dwci_DeleteHostByIndex = Symbol(
-        None, None, None, "Dwci_DeleteHostByIndex", "", None
+        [0x29FB0], [0x22E81D0], None, "Dwci_DeleteHostByIndex", "", None
     )
 
     Dwci_SetNumValidConnection = Symbol(
-        None, None, None, "Dwci_SetNumValidConnection", "", None
+        [0x2A168], [0x22E8388], None, "Dwci_SetNumValidConnection", "", None
     )
 
-    Dwci_GetAllAidList = Symbol(None, None, None, "Dwci_GetAllAidList", "", None)
+    Dwci_GetAllAidList = Symbol(
+        [0x2A1BC], [0x22E83DC], None, "Dwci_GetAllAidList", "", None
+    )
 
-    Dwci_GetValidAidList = Symbol(None, None, None, "Dwci_GetValidAidList", "", None)
+    Dwci_GetValidAidList = Symbol(
+        [0x2A1F0], [0x22E8410], None, "Dwci_GetValidAidList", "", None
+    )
 
     Dwci_GpSetServerStatus = Symbol(
-        None, None, None, "Dwci_GpSetServerStatus", "", None
+        [0x2A294], [0x22E84B4], None, "Dwci_GpSetServerStatus", "", None
     )
 
-    Dwci_ShutdownMatch = Symbol(None, None, None, "Dwci_ShutdownMatch", "", None)
+    Dwci_ShutdownMatch = Symbol(
+        [0x2A364], [0x22E8584], None, "Dwci_ShutdownMatch", "", None
+    )
 
-    Dwci_IsShutdownMatch = Symbol(None, None, None, "Dwci_IsShutdownMatch", "", None)
+    Dwci_IsShutdownMatch = Symbol(
+        [0x2A3DC], [0x22E85FC], None, "Dwci_IsShutdownMatch", "", None
+    )
 
-    Dwci_ResetMatchParam = Symbol(None, None, None, "Dwci_ResetMatchParam", "", None)
+    Dwci_ResetMatchParam = Symbol(
+        [0x2A3F4], [0x22E8614], None, "Dwci_ResetMatchParam", "", None
+    )
 
-    Dwci_CloseMatching = Symbol(None, None, None, "Dwci_CloseMatching", "", None)
+    Dwci_CloseMatching = Symbol(
+        [0x2A790], [0x22E89B0], None, "Dwci_CloseMatching", "", None
+    )
 
-    Dwci_SbUpdateAsync = Symbol(None, None, None, "Dwci_SbUpdateAsync", "", None)
+    Dwci_SbUpdateAsync = Symbol(
+        [0x2A82C], [0x22E8A4C], None, "Dwci_SbUpdateAsync", "", None
+    )
 
     Dwci_GetDefaultMatchFilter = Symbol(
-        None, None, None, "Dwci_GetDefaultMatchFilter", "", None
+        [0x2AA28], [0x22E8C48], None, "Dwci_GetDefaultMatchFilter", "", None
     )
 
-    Dwci_NnStartupAsync = Symbol(None, None, None, "Dwci_NnStartupAsync", "", None)
+    Dwci_NnStartupAsync = Symbol(
+        [0x2AA90], [0x22E8CB0], None, "Dwci_NnStartupAsync", "", None
+    )
 
     Dwci_DoNatNegotiationAsync = Symbol(
-        None, None, None, "Dwci_DoNatNegotiationAsync", "", None
+        [0x2AD7C], [0x22E8F9C], None, "Dwci_DoNatNegotiationAsync", "", None
     )
 
-    Dwci_SendMatchCommand = Symbol(None, None, None, "Dwci_SendMatchCommand", "", None)
+    Dwci_SendMatchCommand = Symbol(
+        [0x2AE38], [0x22E9058], None, "Dwci_SendMatchCommand", "", None
+    )
 
-    Dwci_SendSbMsgCommand = Symbol(None, None, None, "Dwci_SendSbMsgCommand", "", None)
+    Dwci_SendSbMsgCommand = Symbol(
+        [0x2AFFC], [0x22E921C], None, "Dwci_SendSbMsgCommand", "", None
+    )
 
     Dwci_SendGpBuddyMsgCommand = Symbol(
-        None, None, None, "Dwci_SendGpBuddyMsgCommand", "", None
+        [0x2B114], [0x22E9334], None, "Dwci_SendGpBuddyMsgCommand", "", None
     )
 
     Dwci_GetGpBuddyAdditionalMsg = Symbol(
-        None, None, None, "Dwci_GetGpBuddyAdditionalMsg", "", None
+        [0x2B1D8], [0x22E93F8], None, "Dwci_GetGpBuddyAdditionalMsg", "", None
     )
 
     Dwci_ProcessRecvMatchCommand = Symbol(
-        None, None, None, "Dwci_ProcessRecvMatchCommand", "", None
+        [0x2B274], [0x22E9494], None, "Dwci_ProcessRecvMatchCommand", "", None
     )
 
-    Dwci_CheckResvCommand = Symbol(None, None, None, "Dwci_CheckResvCommand", "", None)
+    Dwci_CheckResvCommand = Symbol(
+        [0x2C158], [0x22EA378], None, "Dwci_CheckResvCommand", "", None
+    )
 
-    Dwci_ProcessResvOK = Symbol(None, None, None, "Dwci_ProcessResvOK", "", None)
+    Dwci_ProcessResvOK = Symbol(
+        [0x2C484], [0x22EA6A4], None, "Dwci_ProcessResvOK", "", None
+    )
 
     Dwci_MakeBackupServerData = Symbol(
-        None, None, None, "Dwci_MakeBackupServerData", "", None
+        [0x2C644], [0x22EA864], None, "Dwci_MakeBackupServerData", "", None
     )
 
     Dwci_HandleMatchCommandError = Symbol(
-        None, None, None, "Dwci_HandleMatchCommandError", "", None
+        [0x2C694], [0x22EA8B4], None, "Dwci_HandleMatchCommandError", "", None
     )
 
-    Dwci_SendResvCommand = Symbol(None, None, None, "Dwci_SendResvCommand", "", None)
+    Dwci_SendResvCommand = Symbol(
+        [0x2C6C0], [0x22EA8E0], None, "Dwci_SendResvCommand", "", None
+    )
 
     Dwci_SendResvCommandToFriend = Symbol(
-        None, None, None, "Dwci_SendResvCommandToFriend", "", None
+        [0x2C87C], [0x22EAA9C], None, "Dwci_SendResvCommandToFriend", "", None
     )
 
-    Dwci_RetryReserving = Symbol(None, None, None, "Dwci_RetryReserving", "", None)
+    Dwci_RetryReserving = Symbol(
+        [0x2CB44], [0x22EAD64], None, "Dwci_RetryReserving", "", None
+    )
 
     Dwci_CancelReservation = Symbol(
-        None, None, None, "Dwci_CancelReservation", "", None
+        [0x2CC1C], [0x22EAE3C], None, "Dwci_CancelReservation", "", None
     )
 
     Dwci_CancelPreConnectedServerProcess = Symbol(
-        None, None, None, "Dwci_CancelPreConnectedServerProcess", "", None
+        [0x2CC70], [0x22EAE90], None, "Dwci_CancelPreConnectedServerProcess", "", None
     )
 
     Dwci_CancelPreConnectedClientProcess = Symbol(
-        None, None, None, "Dwci_CancelPreConnectedClientProcess", "", None
+        [0x2CE8C], [0x22EB0AC], None, "Dwci_CancelPreConnectedClientProcess", "", None
     )
 
-    Dwci_ChangeToClient = Symbol(None, None, None, "Dwci_ChangeToClient", "", None)
+    Dwci_ChangeToClient = Symbol(
+        [0x2CF4C], [0x22EB16C], None, "Dwci_ChangeToClient", "", None
+    )
 
     Dwci_PostProcessConnection = Symbol(
-        None, None, None, "Dwci_PostProcessConnection", "", None
+        [0x2D030], [0x22EB250], None, "Dwci_PostProcessConnection", "", None
     )
 
-    Dwci_AreAllBuddies = Symbol(None, None, None, "Dwci_AreAllBuddies", "", None)
+    Dwci_AreAllBuddies = Symbol(
+        [0x2D6F8], [0x22EB918], None, "Dwci_AreAllBuddies", "", None
+    )
 
     Dwci_FinishCancelMatching = Symbol(
-        None, None, None, "Dwci_FinishCancelMatching", "", None
+        [0x2D780], [0x22EB9A0], None, "Dwci_FinishCancelMatching", "", None
     )
 
     Dwci_InvalidateReservation = Symbol(
-        None, None, None, "Dwci_InvalidateReservation", "", None
+        [0x2D840], [0x22EBA60], None, "Dwci_InvalidateReservation", "", None
     )
 
     Dwci_RestartFromCancel = Symbol(
-        None, None, None, "Dwci_RestartFromCancel", "", None
+        [0x2D914], [0x22EBB34], None, "Dwci_RestartFromCancel", "", None
     )
 
     Dwci_RestartFromTimeout = Symbol(
-        None, None, None, "Dwci_RestartFromTimeout", "", None
+        [0x2DA14], [0x22EBC34], None, "Dwci_RestartFromTimeout", "", None
     )
 
-    Dwci_ResumeMatching = Symbol(None, None, None, "Dwci_ResumeMatching", "", None)
+    Dwci_ResumeMatching = Symbol(
+        [0x2DA48], [0x22EBC68], None, "Dwci_ResumeMatching", "", None
+    )
 
     Dwci_CloseCancelHostAsync = Symbol(
-        None, None, None, "Dwci_CloseCancelHostAsync", "", None
+        [0x2DB08], [0x22EBD28], None, "Dwci_CloseCancelHostAsync", "", None
     )
 
     Dwci_CloseAllConnectionsByTimeout = Symbol(
-        None, None, None, "Dwci_CloseAllConnectionsByTimeout", "", None
+        [0x2DB78], [0x22EBD98], None, "Dwci_CloseAllConnectionsByTimeout", "", None
     )
 
     Dwci_CloseShutdownClientSC = Symbol(
-        None, None, None, "Dwci_CloseShutdownClientSC", "", None
+        [0x2DBA8], [0x22EBDC8], None, "Dwci_CloseShutdownClientSC", "", None
     )
 
     Dwci_SendMatchSynPacket = Symbol(
-        None, None, None, "Dwci_SendMatchSynPacket", "", None
+        [0x2DCE4], [0x22EBF04], None, "Dwci_SendMatchSynPacket", "", None
     )
 
     Dwci_ProcessMatchSynTimeout = Symbol(
-        None, None, None, "Dwci_ProcessMatchSynTimeout", "", None
+        [0x2DDD4], [0x22EBFF4], None, "Dwci_ProcessMatchSynTimeout", "", None
     )
 
     Dwci_SendCancelMatchSynCommand = Symbol(
-        None, None, None, "Dwci_SendCancelMatchSynCommand", "", None
+        [0x2E044], [0x22EC264], None, "Dwci_SendCancelMatchSynCommand", "", None
     )
 
     Dwci_ProcessCancelMatchSynCommand = Symbol(
-        None, None, None, "Dwci_ProcessCancelMatchSynCommand", "", None
+        [0x2E0C4], [0x22EC2E4], None, "Dwci_ProcessCancelMatchSynCommand", "", None
     )
 
     Dwci_ProcessCancelMatchSynTimeout = Symbol(
-        None, None, None, "Dwci_ProcessCancelMatchSynTimeout", "", None
+        [0x2E2E8], [0x22EC508], None, "Dwci_ProcessCancelMatchSynTimeout", "", None
     )
 
     Dwci_ClearGameMatchKeys = Symbol(
-        None, None, None, "Dwci_ClearGameMatchKeys", "", None
+        [0x2E4E8], [0x22EC708], None, "Dwci_ClearGameMatchKeys", "", None
     )
 
-    Dwci_GetAidFromList = Symbol(None, None, None, "Dwci_GetAidFromList", "", None)
+    Dwci_GetAidFromList = Symbol(
+        [0x2E540], [0x22EC760], None, "Dwci_GetAidFromList", "", None
+    )
 
     Dwci_IsFriendByIdxList = Symbol(
-        None, None, None, "Dwci_IsFriendByIdxList", "", None
+        [0x2E5B0], [0x22EC7D0], None, "Dwci_IsFriendByIdxList", "", None
     )
 
     Dwci_GetAidFromProfileID = Symbol(
-        None, None, None, "Dwci_GetAidFromProfileID", "", None
+        [0x2E620], [0x22EC840], None, "Dwci_GetAidFromProfileID", "", None
     )
 
-    Dwci_GetAidBitmask = Symbol(None, None, None, "Dwci_GetAidBitmask", "", None)
+    Dwci_GetAidBitmask = Symbol(
+        [0x2E684], [0x22EC8A4], None, "Dwci_GetAidBitmask", "", None
+    )
 
     Dwci_InitClWaitTimeout = Symbol(
-        None, None, None, "Dwci_InitClWaitTimeout", "", None
+        [0x2E6E8], [0x22EC908], None, "Dwci_InitClWaitTimeout", "", None
     )
 
     Dwci_InitOptMinCompParam = Symbol(
-        None, None, None, "Dwci_InitOptMinCompParam", "", None
+        [0x2E710], [0x22EC930], None, "Dwci_InitOptMinCompParam", "", None
     )
 
     Dwci_ProcessOptMinComp = Symbol(
-        None, None, None, "Dwci_ProcessOptMinComp", "", None
+        [0x2E780], [0x22EC9A0], None, "Dwci_ProcessOptMinComp", "", None
     )
 
     Dwci_HandleGpError_Match = Symbol(
-        None, None, None, "Dwci_HandleGpError_Match", "", None
+        [0x2EBAC], [0x22ECDCC], None, "Dwci_HandleGpError_Match", "", None
     )
 
     Dwci_HandleSbError_Match = Symbol(
-        None, None, None, "Dwci_HandleSbError_Match", "", None
+        [0x2EC20], [0x22ECE40], None, "Dwci_HandleSbError_Match", "", None
     )
 
-    Dwci_HandleQR2Error = Symbol(None, None, None, "Dwci_HandleQR2Error", "", None)
+    Dwci_HandleQR2Error = Symbol(
+        [0x2ECB4], [0x22ECED4], None, "Dwci_HandleQR2Error", "", None
+    )
 
-    Dwci_HandleNnError = Symbol(None, None, None, "Dwci_HandleNnError", "", None)
+    Dwci_HandleNnError = Symbol(
+        [0x2ED9C], [0x22ECFBC], None, "Dwci_HandleNnError", "", None
+    )
 
-    Dwci_HandleNnResult = Symbol(None, None, None, "Dwci_HandleNnResult", "", None)
+    Dwci_HandleNnResult = Symbol(
+        [0x2EDF8], [0x22ED018], None, "Dwci_HandleNnResult", "", None
+    )
 
     Dwci_HandleGT2Error_Match = Symbol(
-        None, None, None, "Dwci_HandleGT2Error_Match", "", None
+        [0x2EE58], [0x22ED078], None, "Dwci_HandleGT2Error_Match", "", None
     )
 
     Dwci_QR2ServerKeyCallback = Symbol(
-        None, None, None, "Dwci_QR2ServerKeyCallback", "", None
+        [0x2EEFC], [0x22ED11C], None, "Dwci_QR2ServerKeyCallback", "", None
     )
 
     Dwci_QR2PlayerKeyCallback = Symbol(
-        None, None, None, "Dwci_QR2PlayerKeyCallback", "", None
+        [0x2F044], [0x22ED264], None, "Dwci_QR2PlayerKeyCallback", "", None
     )
 
     Dwci_QR2TeamKeyCallback = Symbol(
-        None, None, None, "Dwci_QR2TeamKeyCallback", "", None
+        [0x2F048], [0x22ED268], None, "Dwci_QR2TeamKeyCallback", "", None
     )
 
     Dwci_QR2KeyListCallback = Symbol(
-        None, None, None, "Dwci_QR2KeyListCallback", "", None
+        [0x2F04C], [0x22ED26C], None, "Dwci_QR2KeyListCallback", "", None
     )
 
-    Dwci_QR2CountCallback = Symbol(None, None, None, "Dwci_QR2CountCallback", "", None)
+    Dwci_QR2CountCallback = Symbol(
+        [0x2F0F0], [0x22ED310], None, "Dwci_QR2CountCallback", "", None
+    )
 
     Dwci_QR2AddErrorCallback = Symbol(
-        None, None, None, "Dwci_QR2AddErrorCallback", "", None
+        [0x2F0F8], [0x22ED318], None, "Dwci_QR2AddErrorCallback", "", None
     )
 
     Dwci_QR2PublicAddrCallback = Symbol(
-        None, None, None, "Dwci_QR2PublicAddrCallback", "", None
+        [0x2F104], [0x22ED324], None, "Dwci_QR2PublicAddrCallback", "", None
     )
 
     Dwci_QR2NatnegCallback = Symbol(
-        None, None, None, "Dwci_QR2NatnegCallback", "", None
+        [0x2F124], [0x22ED344], None, "Dwci_QR2NatnegCallback", "", None
     )
 
     Dwci_QR2ClientMsgCallback = Symbol(
-        None, None, None, "Dwci_QR2ClientMsgCallback", "", None
+        [0x2F1D8], [0x22ED3F8], None, "Dwci_QR2ClientMsgCallback", "", None
     )
 
     Dwci_NnProgressCallback = Symbol(
-        None, None, None, "Dwci_NnProgressCallback", "", None
+        [0x2F2E4], [0x22ED504], None, "Dwci_NnProgressCallback", "", None
     )
 
     Dwci_NnCompletedCallback = Symbol(
-        None, None, None, "Dwci_NnCompletedCallback", "", None
+        [0x2F2E8], [0x22ED508], None, "Dwci_NnCompletedCallback", "", None
     )
 
-    Dwci_ProcessNnFailure = Symbol(None, None, None, "Dwci_ProcessNnFailure", "", None)
+    Dwci_ProcessNnFailure = Symbol(
+        [0x2F6CC], [0x22ED8EC], None, "Dwci_ProcessNnFailure", "", None
+    )
 
-    Dwci_SetMatchCnt = Symbol(None, None, None, "Dwci_SetMatchCnt", "", None)
+    Dwci_SetMatchCnt = Symbol(
+        [0x2F73C], [0x22ED95C], None, "Dwci_SetMatchCnt", "", None
+    )
 
-    Dwci_GetMatchCnt = Symbol(None, None, None, "Dwci_GetMatchCnt", "", None)
+    Dwci_GetMatchCnt = Symbol(
+        [0x2F74C], [0x22ED96C], None, "Dwci_GetMatchCnt", "", None
+    )
 
-    Dwci_SetMatchStatus = Symbol(None, None, None, "Dwci_SetMatchStatus", "", None)
+    Dwci_SetMatchStatus = Symbol(
+        [0x2F75C], [0x22ED97C], None, "Dwci_SetMatchStatus", "", None
+    )
 
     Dwci_InitReliableQueue = Symbol(
-        None, None, None, "Dwci_InitReliableQueue", "", None
+        [0x2F770], [0x22ED990], None, "Dwci_InitReliableQueue", "", None
     )
 
     Dwci_CleanupReliableQueue = Symbol(
-        None, None, None, "Dwci_CleanupReliableQueue", "", None
+        [0x2F788], [0x22ED9A8], None, "Dwci_CleanupReliableQueue", "", None
     )
 
     Dwci_IsReliableQueueFree = Symbol(
-        None, None, None, "Dwci_IsReliableQueueFree", "", None
+        [0x2F7F0], [0x22EDA10], None, "Dwci_IsReliableQueueFree", "", None
     )
 
     Dwci_ProcessReliableQueue = Symbol(
-        None, None, None, "Dwci_ProcessReliableQueue", "", None
+        [0x2F80C], [0x22EDA2C], None, "Dwci_ProcessReliableQueue", "", None
     )
 
     Dwci_ProcessReliableQueueEx = Symbol(
-        None, None, None, "Dwci_ProcessReliableQueueEx", "", None
+        [0x2F820], [0x22EDA40], None, "Dwci_ProcessReliableQueueEx", "", None
     )
 
     Dwci_InsertReliableQueue = Symbol(
-        None, None, None, "Dwci_InsertReliableQueue", "", None
+        [0x2F900], [0x22EDB20], None, "Dwci_InsertReliableQueue", "", None
     )
 
     Dwc_IsSendableReliable = Symbol(
-        None, None, None, "Dwc_IsSendableReliable", "", None
+        [0x2F9EC], [0x22EDC0C], None, "Dwc_IsSendableReliable", "", None
     )
 
-    Dwci_SendReliable = Symbol(None, None, None, "Dwci_SendReliable", "", None)
+    Dwci_SendReliable = Symbol(
+        [0x2FA7C], [0x22EDC9C], None, "Dwci_SendReliable", "", None
+    )
 
-    Dwcs_EncodeHeader = Symbol(None, None, None, "Dwcs_EncodeHeader", "", None)
+    Dwcs_EncodeHeader = Symbol(
+        [0x2FB9C], [0x22EDDBC], None, "Dwcs_EncodeHeader", "", None
+    )
 
-    Dwcs_DecodeHeader = Symbol(None, None, None, "Dwcs_DecodeHeader", "", None)
+    Dwcs_DecodeHeader = Symbol(
+        [0x2FBCC], [0x22EDDEC], None, "Dwcs_DecodeHeader", "", None
+    )
 
     Dwcs_GetRequiredHeaderSize = Symbol(
-        None, None, None, "Dwcs_GetRequiredHeaderSize", "", None
+        [0x2FC08], [0x22EDE28], None, "Dwcs_GetRequiredHeaderSize", "", None
     )
 
-    Dwci_InitTransport = Symbol(None, None, None, "Dwci_InitTransport", "", None)
+    Dwci_InitTransport = Symbol(
+        [0x2FC28], [0x22EDE48], None, "Dwci_InitTransport", "", None
+    )
 
-    Dwci_RecvCallback = Symbol(None, None, None, "Dwci_RecvCallback", "", None)
+    Dwci_RecvCallback = Symbol(
+        [0x2FC68], [0x22EDE88], None, "Dwci_RecvCallback", "", None
+    )
 
-    Dwci_PingCallback = Symbol(None, None, None, "Dwci_PingCallback", "", None)
+    Dwci_PingCallback = Symbol(
+        [0x2FCA4], [0x22EDEC4], None, "Dwci_PingCallback", "", None
+    )
 
-    Dwci_TransportProcess = Symbol(None, None, None, "Dwci_TransportProcess", "", None)
+    Dwci_TransportProcess = Symbol(
+        [0x2FCE4], [0x22EDF04], None, "Dwci_TransportProcess", "", None
+    )
 
     Dwci_ClearTransConnection = Symbol(
-        None, None, None, "Dwci_ClearTransConnection", "", None
+        [0x2FE7C], [0x22EE09C], None, "Dwci_ClearTransConnection", "", None
     )
 
     Dwci_ShutdownTransport = Symbol(
-        None, None, None, "Dwci_ShutdownTransport", "", None
+        [0x2FF08], [0x22EE128], None, "Dwci_ShutdownTransport", "", None
     )
 
     Dwcs_GetTransConnection = Symbol(
-        None, None, None, "Dwcs_GetTransConnection", "", None
+        [0x2FF24], [0x22EE144], None, "Dwcs_GetTransConnection", "", None
     )
 
-    Dwcs_GetSendState = Symbol(None, None, None, "Dwcs_GetSendState", "", None)
+    Dwcs_GetSendState = Symbol(
+        [0x2FF3C], [0x22EE15C], None, "Dwcs_GetSendState", "", None
+    )
 
-    Dwcs_GetRecvState = Symbol(None, None, None, "Dwcs_GetRecvState", "", None)
+    Dwcs_GetRecvState = Symbol(
+        [0x2FF58], [0x22EE178], None, "Dwcs_GetRecvState", "", None
+    )
 
-    Dwcs_Send = Symbol(None, None, None, "Dwcs_Send", "", None)
+    Dwcs_Send = Symbol([0x2FF74], [0x22EE194], None, "Dwcs_Send", "", None)
 
     Dwcs_HandleReliableMessage = Symbol(
-        None, None, None, "Dwcs_HandleReliableMessage", "", None
+        [0x2FFFC], [0x22EE21C], None, "Dwcs_HandleReliableMessage", "", None
     )
 
     Dwcs_HandleUnreliableMessage = Symbol(
-        None, None, None, "Dwcs_HandleUnreliableMessage", "", None
+        [0x300F0], [0x22EE310], None, "Dwcs_HandleUnreliableMessage", "", None
     )
 
-    Dwcs_RecvDataHeader = Symbol(None, None, None, "Dwcs_RecvDataHeader", "", None)
+    Dwcs_RecvDataHeader = Symbol(
+        [0x30170], [0x22EE390], None, "Dwcs_RecvDataHeader", "", None
+    )
 
-    Dwcs_RecvDataBody = Symbol(None, None, None, "Dwcs_RecvDataBody", "", None)
+    Dwcs_RecvDataBody = Symbol(
+        [0x30238], [0x22EE458], None, "Dwcs_RecvDataBody", "", None
+    )
 
     Dwcs_RecvSystemDataBody = Symbol(
-        None, None, None, "Dwcs_RecvSystemDataBody", "", None
+        [0x3031C], [0x22EE53C], None, "Dwcs_RecvSystemDataBody", "", None
     )
 
     Dwcs_GetOutgoingBufferFreeSize = Symbol(
-        None, None, None, "Dwcs_GetOutgoingBufferFreeSize", "", None
+        [0x30358], [0x22EE578], None, "Dwcs_GetOutgoingBufferFreeSize", "", None
     )
 
-    Dwc_InitGhttp = Symbol(None, None, None, "Dwc_InitGhttp", "", None)
+    Dwc_InitGhttp = Symbol([0x3037C], [0x22EE59C], None, "Dwc_InitGhttp", "", None)
 
-    Dwc_ShutdownGhttp = Symbol(None, None, None, "Dwc_ShutdownGhttp", "", None)
+    Dwc_ShutdownGhttp = Symbol(
+        [0x303A0], [0x22EE5C0], None, "Dwc_ShutdownGhttp", "", None
+    )
 
-    Dwc_ProcessGhttp = Symbol(None, None, None, "Dwc_ProcessGhttp", "", None)
+    Dwc_ProcessGhttp = Symbol(
+        [0x303E0], [0x22EE600], None, "Dwc_ProcessGhttp", "", None
+    )
 
     GhttpCompletedCallback = Symbol(
-        None, None, None, "GhttpCompletedCallback", "", None
+        [0x30400], [0x22EE620], None, "GhttpCompletedCallback", "", None
     )
 
-    GhttpProgressCallback = Symbol(None, None, None, "GhttpProgressCallback", "", None)
+    GhttpProgressCallback = Symbol(
+        [0x3049C], [0x22EE6BC], None, "GhttpProgressCallback", "", None
+    )
 
-    Dwci_GhttpGetEx = Symbol(None, None, None, "Dwci_GhttpGetEx", "", None)
+    Dwci_GhttpGetEx = Symbol([0x304E4], [0x22EE704], None, "Dwci_GhttpGetEx", "", None)
 
-    Dwc_GetGhttpDataEx2 = Symbol(None, None, None, "Dwc_GetGhttpDataEx2", "", None)
+    Dwc_GetGhttpDataEx2 = Symbol(
+        [0x30688], [0x22EE8A8], None, "Dwc_GetGhttpDataEx2", "", None
+    )
 
     Dwc_CancelGhttpRequest = Symbol(
-        None, None, None, "Dwc_CancelGhttpRequest", "", None
+        [0x306B0], [0x22EE8D0], None, "Dwc_CancelGhttpRequest", "", None
     )
 
-    Dwci_HandleGhttpError = Symbol(None, None, None, "Dwci_HandleGhttpError", "", None)
+    Dwci_HandleGhttpError = Symbol(
+        [0x306F0], [0x22EE910], None, "Dwci_HandleGhttpError", "", None
+    )
 
     Dwci_AppendDwcGhttpParam = Symbol(
-        None, None, None, "Dwci_AppendDwcGhttpParam", "", None
+        [0x3084C], [0x22EEA6C], None, "Dwci_AppendDwcGhttpParam", "", None
     )
 
     Dwci_RemoveDwcGHttpParamEntry = Symbol(
-        None, None, None, "Dwci_RemoveDwcGHttpParamEntry", "", None
+        [0x308A8], [0x22EEAC8], None, "Dwci_RemoveDwcGHttpParamEntry", "", None
     )
 
     Dwci_FindDwcGhttpParamEntryByReq = Symbol(
-        None, None, None, "Dwci_FindDwcGhttpParamEntryByReq", "", None
+        [0x3092C], [0x22EEB4C], None, "Dwci_FindDwcGhttpParamEntryByReq", "", None
     )
 
     Dwci_RemoveAllDwcGhttpParamEntry = Symbol(
-        None, None, None, "Dwci_RemoveAllDwcGhttpParamEntry", "", None
+        [0x30958], [0x22EEB78], None, "Dwci_RemoveAllDwcGhttpParamEntry", "", None
     )
 
     Dwci_BM_GetApInfo = Symbol(
@@ -23266,426 +23592,539 @@ class JpOverlay0Functions:
     Dwc_Auth_GetId = Symbol([0x31FEC], [0x22F020C], None, "Dwc_Auth_GetId", "", None)
 
     Dwc_Auth_CheckWiFiIdNeedCreate = Symbol(
-        None, None, None, "Dwc_Auth_CheckWiFiIdNeedCreate", "", None
+        [0x32040], [0x22F0260], None, "Dwc_Auth_CheckWiFiIdNeedCreate", "", None
     )
 
-    b64size = Symbol(None, None, None, "b64size", "", None)
+    b64size = Symbol([0x32090], [0x22F02B0], None, "b64size", "", None)
 
-    my_randinit = Symbol(None, None, None, "my_randinit", "", None)
+    my_randinit = Symbol([0x320C8], [0x22F02E8], None, "my_randinit", "", None)
 
-    my_rand = Symbol(None, None, None, "my_rand", "", None)
+    my_rand = Symbol([0x320DC], [0x22F02FC], None, "my_rand", "", None)
 
     Dwci_RankingValidateKey = Symbol(
-        None, None, None, "Dwci_RankingValidateKey", "", None
+        [0x3211C], [0x22F033C], None, "Dwci_RankingValidateKey", "", None
     )
 
     Dwci_RankingSessionCompleteCallback_Helper = Symbol(
-        None, None, None, "Dwci_RankingSessionCompleteCallback_Helper", "", None
+        [0x32218],
+        [0x22F0438],
+        None,
+        "Dwci_RankingSessionCompleteCallback_Helper",
+        "",
+        None,
     )
 
     Dwci_RankingSessionProgressCallback = Symbol(
-        None, None, None, "Dwci_RankingSessionProgressCallback", "", None
+        [0x323C8], [0x22F05E8], None, "Dwci_RankingSessionProgressCallback", "", None
     )
 
     Dwci_RankingSessionCompleteCallback = Symbol(
-        None, None, None, "Dwci_RankingSessionCompleteCallback", "", None
+        [0x323CC], [0x22F05EC], None, "Dwci_RankingSessionCompleteCallback", "", None
     )
 
     Dwci_RankingSessionEncrypt = Symbol(
-        None, None, None, "Dwci_RankingSessionEncrypt", "", None
+        [0x32654], [0x22F0874], None, "Dwci_RankingSessionEncrypt", "", None
     )
 
     Dwci_RankingSessionInitialize = Symbol(
-        None, None, None, "Dwci_RankingSessionInitialize", "", None
+        [0x3279C], [0x22F09BC], None, "Dwci_RankingSessionInitialize", "", None
     )
 
     Dwci_RankingSessionProcess = Symbol(
-        None, None, None, "Dwci_RankingSessionProcess", "", None
+        [0x3290C], [0x22F0B2C], None, "Dwci_RankingSessionProcess", "", None
     )
 
     Dwci_RankingSessionCancel = Symbol(
-        None, None, None, "Dwci_RankingSessionCancel", "", None
+        [0x32A38], [0x22F0C58], None, "Dwci_RankingSessionCancel", "", None
     )
 
     Dwci_RankingSessionShutdown = Symbol(
-        None, None, None, "Dwci_RankingSessionShutdown", "", None
+        [0x32A64], [0x22F0C84], None, "Dwci_RankingSessionShutdown", "", None
     )
 
     Dwci_RankingSessionGetResponse = Symbol(
-        None, None, None, "Dwci_RankingSessionGetResponse", "", None
+        [0x32AD4], [0x22F0CF4], None, "Dwci_RankingSessionGetResponse", "", None
     )
 
     Dwci_RankingSessionPutAsync = Symbol(
-        None, None, None, "Dwci_RankingSessionPutAsync", "", None
+        [0x32AEC], [0x22F0D0C], None, "Dwci_RankingSessionPutAsync", "", None
     )
 
     Dwci_RankingSessionGetAsync = Symbol(
-        None, None, None, "Dwci_RankingSessionGetAsync", "", None
+        [0x32D38], [0x22F0F58], None, "Dwci_RankingSessionGetAsync", "", None
     )
 
-    Dwci_Ndi_FreeAttr = Symbol(None, None, None, "Dwci_Ndi_FreeAttr", "", None)
+    Dwci_Ndi_FreeAttr = Symbol(
+        [0x32D5C], [0x22F0F7C], None, "Dwci_Ndi_FreeAttr", "", None
+    )
 
-    SetAttr_Dwc = Symbol(None, None, None, "SetAttr_Dwc", "", None)
+    SetAttr_Dwc = Symbol([0x32DA0], [0x22F0FC0], None, "SetAttr_Dwc", "", None)
 
-    Dwci_NdSetAttr = Symbol(None, None, None, "Dwci_NdSetAttr", "", None)
+    Dwci_NdSetAttr = Symbol([0x32E70], [0x22F1090], None, "Dwci_NdSetAttr", "", None)
 
-    GetNChar_Dwc = Symbol(None, None, None, "GetNChar_Dwc", "", None)
+    GetNChar_Dwc = Symbol([0x32EE0], [0x22F1100], None, "GetNChar_Dwc", "", None)
 
-    DecodeChar_Dwc = Symbol(None, None, None, "DecodeChar_Dwc", "", None)
+    DecodeChar_Dwc = Symbol([0x32F28], [0x22F1148], None, "DecodeChar_Dwc", "", None)
 
     Dwci_Ndi_GetDecodeLenBase64 = Symbol(
-        None, None, None, "Dwci_Ndi_GetDecodeLenBase64", "", None
+        [0x32F80], [0x22F11A0], None, "Dwci_Ndi_GetDecodeLenBase64", "", None
     )
 
     Dwci_Ndi_GetEncodeLenBase64 = Symbol(
-        None, None, None, "Dwci_Ndi_GetEncodeLenBase64", "", None
+        [0x32F8C], [0x22F11AC], None, "Dwci_Ndi_GetEncodeLenBase64", "", None
     )
 
-    Dwci_Ndi_EncodeBase64 = Symbol(None, None, None, "Dwci_Ndi_EncodeBase64", "", None)
+    Dwci_Ndi_EncodeBase64 = Symbol(
+        [0x32FA8], [0x22F11C8], None, "Dwci_Ndi_EncodeBase64", "", None
+    )
 
-    Dwci_Ndi_EecodeBase64 = Symbol(None, None, None, "Dwci_Ndi_EecodeBase64", "", None)
+    Dwci_Ndi_EecodeBase64 = Symbol(
+        [0x330A0], [0x22F12C0], None, "Dwci_Ndi_EecodeBase64", "", None
+    )
 
-    StrAlloc_Dwc = Symbol(None, None, None, "StrAlloc_Dwc", "", None)
+    StrAlloc_Dwc = Symbol([0x331C8], [0x22F13E8], None, "StrAlloc_Dwc", "", None)
 
-    Dwci_NdStartup = Symbol(None, None, None, "Dwci_NdStartup", "", None)
+    Dwci_NdStartup = Symbol([0x33214], [0x22F1434], None, "Dwci_NdStartup", "", None)
 
-    NhttpCleanupCallback = Symbol(None, None, None, "NhttpCleanupCallback", "", None)
+    NhttpCleanupCallback = Symbol(
+        [0x333BC], [0x22F15DC], None, "NhttpCleanupCallback", "", None
+    )
 
-    Dwci_NdCleanupAsync = Symbol(None, None, None, "Dwci_NdCleanupAsync", "", None)
+    Dwci_NdCleanupAsync = Symbol(
+        [0x33400], [0x22F1620], None, "Dwci_NdCleanupAsync", "", None
+    )
 
-    Dwci_NdCancelAsync = Symbol(None, None, None, "Dwci_NdCancelAsync", "", None)
+    Dwci_NdCancelAsync = Symbol(
+        [0x33428], [0x22F1648], None, "Dwci_NdCancelAsync", "", None
+    )
 
-    Dwci_Ndi_GetApInfo = Symbol(None, None, None, "Dwci_Ndi_GetApInfo", "", None)
+    Dwci_Ndi_GetApInfo = Symbol(
+        [0x33464], [0x22F1684], None, "Dwci_Ndi_GetApInfo", "", None
+    )
 
-    Dwci_Ndi_GetDSdesc = Symbol(None, None, None, "Dwci_Ndi_GetDSdesc", "", None)
+    Dwci_Ndi_GetDSdesc = Symbol(
+        [0x33564], [0x22F1784], None, "Dwci_Ndi_GetDSdesc", "", None
+    )
 
-    Dwci_Ndi_GetUserAgent = Symbol(None, None, None, "Dwci_Ndi_GetUserAgent", "", None)
+    Dwci_Ndi_GetUserAgent = Symbol(
+        [0x335F0], [0x22F1810], None, "Dwci_Ndi_GetUserAgent", "", None
+    )
 
-    Req_Callback_Dwc = Symbol(None, None, None, "Req_Callback_Dwc", "", None)
+    Req_Callback_Dwc = Symbol(
+        [0x33614], [0x22F1834], None, "Req_Callback_Dwc", "", None
+    )
 
-    FreeHttp = Symbol(None, None, None, "FreeHttp", "", None)
+    FreeHttp = Symbol([0x33944], [0x22F1B64], None, "FreeHttp", "", None)
 
-    SetupHttp = Symbol(None, None, None, "SetupHttp", "", None)
+    SetupHttp = Symbol([0x33970], [0x22F1B90], None, "SetupHttp", "", None)
 
-    RunHttp = Symbol(None, None, None, "RunHttp", "", None)
+    RunHttp = Symbol([0x33D18], [0x22F1F38], None, "RunHttp", "", None)
 
     Dwci_NdGetFileListNumAsync = Symbol(
-        None, None, None, "Dwci_NdGetFileListNumAsync", "", None
+        [0x33D78], [0x22F1F98], None, "Dwci_NdGetFileListNumAsync", "", None
     )
 
     Dwci_NdGetFileListAsync = Symbol(
-        None, None, None, "Dwci_NdGetFileListAsync", "", None
+        [0x33DF4], [0x22F2014], None, "Dwci_NdGetFileListAsync", "", None
     )
 
-    Dwci_NdGetFileAsync = Symbol(None, None, None, "Dwci_NdGetFileAsync", "", None)
+    Dwci_NdGetFileAsync = Symbol(
+        [0x340B8], [0x22F22D8], None, "Dwci_NdGetFileAsync", "", None
+    )
 
     Dwci_Ndi_Response_Count = Symbol(
-        None, None, None, "Dwci_Ndi_Response_Count", "", None
+        [0x3427C], [0x22F249C], None, "Dwci_Ndi_Response_Count", "", None
     )
 
     Dwci_Ndi_Response_Contents = Symbol(
-        None, None, None, "Dwci_Ndi_Response_Contents", "", None
+        [0x342D0], [0x22F24F0], None, "Dwci_Ndi_Response_Contents", "", None
     )
 
     Dwci_Ndi_Response_List = Symbol(
-        None, None, None, "Dwci_Ndi_Response_List", "", None
+        [0x342FC], [0x22F251C], None, "Dwci_Ndi_Response_List", "", None
     )
 
     Dwci_Ndi_InitLockGlobal = Symbol(
-        None, None, None, "Dwci_Ndi_InitLockGlobal", "", None
+        [0x34580], [0x22F27A0], None, "Dwci_Ndi_InitLockGlobal", "", None
     )
 
     Dwci_Ndi_ExitLockGlobal = Symbol(
-        None, None, None, "Dwci_Ndi_ExitLockGlobal", "", None
+        [0x34598], [0x22F27B8], None, "Dwci_Ndi_ExitLockGlobal", "", None
     )
 
-    Dwci_Ndi_LockGlobal = Symbol(None, None, None, "Dwci_Ndi_LockGlobal", "", None)
+    Dwci_Ndi_LockGlobal = Symbol(
+        [0x3459C], [0x22F27BC], None, "Dwci_Ndi_LockGlobal", "", None
+    )
 
-    Dwci_Ndi_UnlockGlobal = Symbol(None, None, None, "Dwci_Ndi_UnlockGlobal", "", None)
+    Dwci_Ndi_UnlockGlobal = Symbol(
+        [0x345B0], [0x22F27D0], None, "Dwci_Ndi_UnlockGlobal", "", None
+    )
 
     Dwci_Ndi_InitHttpCallback = Symbol(
-        None, None, None, "Dwci_Ndi_InitHttpCallback", "", None
+        [0x345C4], [0x22F27E4], None, "Dwci_Ndi_InitHttpCallback", "", None
     )
 
     Dwci_Ndi_ExitHttpCallback = Symbol(
-        None, None, None, "Dwci_Ndi_ExitHttpCallback", "", None
+        [0x345EC], [0x22F280C], None, "Dwci_Ndi_ExitHttpCallback", "", None
     )
 
     Dwci_Ndi_PrepareHttpCallback = Symbol(
-        None, None, None, "Dwci_Ndi_PrepareHttpCallback", "", None
+        [0x345F0], [0x22F2810], None, "Dwci_Ndi_PrepareHttpCallback", "", None
     )
 
     Dwci_Ndi_UnprepareHttpCallback = Symbol(
-        None, None, None, "Dwci_Ndi_UnprepareHttpCallback", "", None
+        [0x34638], [0x22F2858], None, "Dwci_Ndi_UnprepareHttpCallback", "", None
     )
 
-    Dwci_Ndi_KickThread = Symbol(None, None, None, "Dwci_Ndi_KickThread", "", None)
+    Dwci_Ndi_KickThread = Symbol(
+        [0x34664], [0x22F2884], None, "Dwci_Ndi_KickThread", "", None
+    )
 
     Dwci_Ndi_GetMacAddress = Symbol(
-        None, None, None, "Dwci_Ndi_GetMacAddress", "", None
+        [0x34678], [0x22F2898], None, "Dwci_Ndi_GetMacAddress", "", None
     )
 
-    Dwci_Ndi_Strlen = Symbol(None, None, None, "Dwci_Ndi_Strlen", "", None)
+    Dwci_Ndi_Strlen = Symbol([0x346D8], [0x22F28F8], None, "Dwci_Ndi_Strlen", "", None)
 
-    Dwci_Ndi_Strncmp = Symbol(None, None, None, "Dwci_Ndi_Strncmp", "", None)
+    Dwci_Ndi_Strncmp = Symbol(
+        [0x346E4], [0x22F2904], None, "Dwci_Ndi_Strncmp", "", None
+    )
 
-    Dwci_Ndi_Memclr = Symbol(None, None, None, "Dwci_Ndi_Memclr", "", None)
+    Dwci_Ndi_Memclr = Symbol([0x346F0], [0x22F2910], None, "Dwci_Ndi_Memclr", "", None)
 
-    Dwci_Ndi_Memcpy = Symbol(None, None, None, "Dwci_Ndi_Memcpy", "", None)
+    Dwci_Ndi_Memcpy = Symbol([0x34704], [0x22F2924], None, "Dwci_Ndi_Memcpy", "", None)
 
-    Dwci_Ndi_StrToInt = Symbol(None, None, None, "Dwci_Ndi_StrToInt", "", None)
+    Dwci_Ndi_StrToInt = Symbol(
+        [0x3471C], [0x22F293C], None, "Dwci_Ndi_StrToInt", "", None
+    )
 
-    Dwci_Ndi_IntToStr = Symbol(None, None, None, "Dwci_Ndi_IntToStr", "", None)
+    Dwci_Ndi_IntToStr = Symbol(
+        [0x34728], [0x22F2948], None, "Dwci_Ndi_IntToStr", "", None
+    )
 
     Dwci_Ndi_IntToStrFigure = Symbol(
-        None, None, None, "Dwci_Ndi_IntToStrFigure", "", None
+        [0x34734], [0x22F2954], None, "Dwci_Ndi_IntToStrFigure", "", None
     )
 
     Dwci_Ndi_HexToStrFigure = Symbol(
-        None, None, None, "Dwci_Ndi_HexToStrFigure", "", None
+        [0x3480C], [0x22F2A2C], None, "Dwci_Ndi_HexToStrFigure", "", None
     )
 
-    Nhttp_Startup = Symbol(None, None, None, "Nhttp_Startup", "", None)
+    Nhttp_Startup = Symbol([0x34864], [0x22F2A84], None, "Nhttp_Startup", "", None)
 
-    Nhttp_CleanupAsync = Symbol(None, None, None, "Nhttp_CleanupAsync", "", None)
+    Nhttp_CleanupAsync = Symbol(
+        [0x3492C], [0x22F2B4C], None, "Nhttp_CleanupAsync", "", None
+    )
 
     Nhttpi_CleanupThreadProc = Symbol(
-        None, None, None, "Nhttpi_CleanupThreadProc", "", None
+        [0x34974], [0x22F2B94], None, "Nhttpi_CleanupThreadProc", "", None
     )
 
-    AddHdrList_Nhttp = Symbol(None, None, None, "AddHdrList_Nhttp", "", None)
+    AddHdrList_Nhttp = Symbol(
+        [0x349B0], [0x22F2BD0], None, "AddHdrList_Nhttp", "", None
+    )
 
-    Nhttpi_GetHdrFromList = Symbol(None, None, None, "Nhttpi_GetHdrFromList", "", None)
+    Nhttpi_GetHdrFromList = Symbol(
+        [0x34AC8], [0x22F2CE8], None, "Nhttpi_GetHdrFromList", "", None
+    )
 
-    IncAscii_Nhttp = Symbol(None, None, None, "IncAscii_Nhttp", "", None)
+    IncAscii_Nhttp = Symbol([0x34B0C], [0x22F2D2C], None, "IncAscii_Nhttp", "", None)
 
-    CheckTagPost_Nhttp = Symbol(None, None, None, "CheckTagPost_Nhttp", "", None)
+    CheckTagPost_Nhttp = Symbol(
+        [0x34B40], [0x22F2D60], None, "CheckTagPost_Nhttp", "", None
+    )
 
-    Nhttp_AddHeaderField = Symbol(None, None, None, "Nhttp_AddHeaderField", "", None)
+    Nhttp_AddHeaderField = Symbol(
+        [0x34BE0], [0x22F2E00], None, "Nhttp_AddHeaderField", "", None
+    )
 
     Nhttp_AddPostDataAscii = Symbol(
-        None, None, None, "Nhttp_AddPostDataAscii", "", None
+        [0x34C04], [0x22F2E24], None, "Nhttp_AddPostDataAscii", "", None
     )
 
-    Nhttp_SetCaChain = Symbol(None, None, None, "Nhttp_SetCaChain", "", None)
+    Nhttp_SetCaChain = Symbol(
+        [0x34C78], [0x22F2E98], None, "Nhttp_SetCaChain", "", None
+    )
 
-    Nhttpi_SetReqQueue = Symbol(None, None, None, "Nhttpi_SetReqQueue", "", None)
+    Nhttpi_SetReqQueue = Symbol(
+        [0x34C94], [0x22F2EB4], None, "Nhttpi_SetReqQueue", "", None
+    )
 
-    Nhttpi_FindReqQueue = Symbol(None, None, None, "Nhttpi_FindReqQueue", "", None)
+    Nhttpi_FindReqQueue = Symbol(
+        [0x34D48], [0x22F2F68], None, "Nhttpi_FindReqQueue", "", None
+    )
 
-    Nhttpi_FreeReqQueue = Symbol(None, None, None, "Nhttpi_FreeReqQueue", "", None)
+    Nhttpi_FreeReqQueue = Symbol(
+        [0x34DA0], [0x22F2FC0], None, "Nhttpi_FreeReqQueue", "", None
+    )
 
     Nhttpi_AllFreeReqQueue = Symbol(
-        None, None, None, "Nhttpi_AllFreeReqQueue", "", None
+        [0x34E40], [0x22F3060], None, "Nhttpi_AllFreeReqQueue", "", None
     )
 
     Nhttpi_GetReqFromReqQueue = Symbol(
-        None, None, None, "Nhttpi_GetReqFromReqQueue", "", None
+        [0x34E70], [0x22F3090], None, "Nhttpi_GetReqFromReqQueue", "", None
     )
 
     Nhttpi_InitLockReqList = Symbol(
-        None, None, None, "Nhttpi_InitLockReqList", "", None
+        [0x34E84], [0x22F30A4], None, "Nhttpi_InitLockReqList", "", None
     )
 
     Nhttpi_ExitLockReqList = Symbol(
-        None, None, None, "Nhttpi_ExitLockReqList", "", None
+        [0x34E9C], [0x22F30BC], None, "Nhttpi_ExitLockReqList", "", None
     )
 
-    Nhttpi_LockReqList = Symbol(None, None, None, "Nhttpi_LockReqList", "", None)
+    Nhttpi_LockReqList = Symbol(
+        [0x34EA0], [0x22F30C0], None, "Nhttpi_LockReqList", "", None
+    )
 
-    Nhttpi_UnlockReqList = Symbol(None, None, None, "Nhttpi_UnlockReqList", "", None)
+    Nhttpi_UnlockReqList = Symbol(
+        [0x34EB4], [0x22F30D4], None, "Nhttpi_UnlockReqList", "", None
+    )
 
     Nhttpi_CreateCommThread = Symbol(
-        None, None, None, "Nhttpi_CreateCommThread", "", None
+        [0x34EC8], [0x22F30E8], None, "Nhttpi_CreateCommThread", "", None
     )
 
     Nhttpi_DestroyCommThread = Symbol(
-        None, None, None, "Nhttpi_DestroyCommThread", "", None
+        [0x34F40], [0x22F3160], None, "Nhttpi_DestroyCommThread", "", None
     )
 
-    Nhttpi_IdleCommThread = Symbol(None, None, None, "Nhttpi_IdleCommThread", "", None)
+    Nhttpi_IdleCommThread = Symbol(
+        [0x34F68], [0x22F3188], None, "Nhttpi_IdleCommThread", "", None
+    )
 
-    Nhttpi_KickCommThread = Symbol(None, None, None, "Nhttpi_KickCommThread", "", None)
+    Nhttpi_KickCommThread = Symbol(
+        [0x34F84], [0x22F31A4], None, "Nhttpi_KickCommThread", "", None
+    )
 
     SetupGetcharFromHdrRecvBuf = Symbol(
-        None, None, None, "SetupGetcharFromHdrRecvBuf", "", None
+        [0x34FA0], [0x22F31C0], None, "SetupGetcharFromHdrRecvBuf", "", None
     )
 
-    GetcharFromHdrRecvBuf = Symbol(None, None, None, "GetcharFromHdrRecvBuf", "", None)
+    GetcharFromHdrRecvBuf = Symbol(
+        [0x34FFC], [0x22F321C], None, "GetcharFromHdrRecvBuf", "", None
+    )
 
     Nhttpi_FindNextLineHdrRecvBuf = Symbol(
-        None, None, None, "Nhttpi_FindNextLineHdrRecvBuf", "", None
+        [0x35078], [0x22F3298], None, "Nhttpi_FindNextLineHdrRecvBuf", "", None
     )
 
     Nhttpi_SkipSpaceHdrRecvBuf = Symbol(
-        None, None, None, "Nhttpi_SkipSpaceHdrRecvBuf", "", None
+        [0x35148], [0x22F3368], None, "Nhttpi_SkipSpaceHdrRecvBuf", "", None
     )
 
     Nhttpi_CompareTokenN_HdrRecvBuf = Symbol(
-        None, None, None, "Nhttpi_CompareTokenN_HdrRecvBuf", "", None
+        [0x351B8], [0x22F33D8], None, "Nhttpi_CompareTokenN_HdrRecvBuf", "", None
     )
 
     Nhttpi_LoadFromHdrRecvBuf = Symbol(
-        None, None, None, "Nhttpi_LoadFromHdrRecvBuf", "", None
+        [0x35288], [0x22F34A8], None, "Nhttpi_LoadFromHdrRecvBuf", "", None
     )
 
-    Nhttpi_IsRecvBufFull = Symbol(None, None, None, "Nhttpi_IsRecvBufFull", "", None)
+    Nhttpi_IsRecvBufFull = Symbol(
+        [0x35374], [0x22F3594], None, "Nhttpi_IsRecvBufFull", "", None
+    )
 
-    Nhttpi_RecvBuf = Symbol(None, None, None, "Nhttpi_RecvBuf", "", None)
+    Nhttpi_RecvBuf = Symbol([0x35388], [0x22F35A8], None, "Nhttpi_RecvBuf", "", None)
 
-    Nhttpi_RecvBufN = Symbol(None, None, None, "Nhttpi_RecvBufN", "", None)
+    Nhttpi_RecvBufN = Symbol([0x353B0], [0x22F35D0], None, "Nhttpi_RecvBufN", "", None)
 
-    Nhttp_CreateRequest = Symbol(None, None, None, "Nhttp_CreateRequest", "", None)
+    Nhttp_CreateRequest = Symbol(
+        [0x35420], [0x22F3640], None, "Nhttp_CreateRequest", "", None
+    )
 
-    Nhttp_DestroyRequest = Symbol(None, None, None, "Nhttp_DestroyRequest", "", None)
+    Nhttp_DestroyRequest = Symbol(
+        [0x35984], [0x22F3BA4], None, "Nhttp_DestroyRequest", "", None
+    )
 
-    DeleteStrList = Symbol(None, None, None, "DeleteStrList", "", None)
+    DeleteStrList = Symbol([0x359AC], [0x22F3BCC], None, "DeleteStrList", "", None)
 
     Nhttpi_DestroyRequestObject = Symbol(
-        None, None, None, "Nhttpi_DestroyRequestObject", "", None
+        [0x35A00], [0x22F3C20], None, "Nhttpi_DestroyRequestObject", "", None
     )
 
     Nhttp_SendRequestAsync = Symbol(
-        None, None, None, "Nhttp_SendRequestAsync", "", None
+        [0x35A78], [0x22F3C98], None, "Nhttp_SendRequestAsync", "", None
     )
 
     Nhttp_CancelRequestAsync = Symbol(
-        None, None, None, "Nhttp_CancelRequestAsync", "", None
+        [0x35B04], [0x22F3D24], None, "Nhttp_CancelRequestAsync", "", None
     )
 
     Nhttpi_CancelAllRequests = Symbol(
-        None, None, None, "Nhttpi_CancelAllRequests", "", None
+        [0x35B80], [0x22F3DA0], None, "Nhttpi_CancelAllRequests", "", None
     )
 
     Nhttpi_ResolveHostname = Symbol(
-        None, None, None, "Nhttpi_ResolveHostname", "", None
+        [0x35BD4], [0x22F3DF4], None, "Nhttpi_ResolveHostname", "", None
     )
 
-    Nhttp_DestroyResponse = Symbol(None, None, None, "Nhttp_DestroyResponse", "", None)
+    Nhttp_DestroyResponse = Symbol(
+        [0x35C6C], [0x22F3E8C], None, "Nhttp_DestroyResponse", "", None
+    )
 
-    Nhttpi_GetHeaderValue = Symbol(None, None, None, "Nhttpi_GetHeaderValue", "", None)
+    Nhttpi_GetHeaderValue = Symbol(
+        [0x35CE4], [0x22F3F04], None, "Nhttpi_GetHeaderValue", "", None
+    )
 
-    Nhttp_GetHeaderField = Symbol(None, None, None, "Nhttp_GetHeaderField", "", None)
+    Nhttp_GetHeaderField = Symbol(
+        [0x35DF0], [0x22F4010], None, "Nhttp_GetHeaderField", "", None
+    )
 
-    Nhttp_GetBodyAll = Symbol(None, None, None, "Nhttp_GetBodyAll", "", None)
+    Nhttp_GetBodyAll = Symbol(
+        [0x35EF4], [0x22F4114], None, "Nhttp_GetBodyAll", "", None
+    )
 
-    SslAuthCallback = Symbol(None, None, None, "SslAuthCallback", "", None)
+    SslAuthCallback = Symbol([0x35F18], [0x22F4138], None, "SslAuthCallback", "", None)
 
-    Nhttpi_SetSslseed = Symbol(None, None, None, "Nhttpi_SetSslseed", "", None)
+    Nhttpi_SetSslseed = Symbol(
+        [0x35F24], [0x22F4144], None, "Nhttpi_SetSslseed", "", None
+    )
 
-    Nhttpi_SocOpen = Symbol(None, None, None, "Nhttpi_SocOpen", "", None)
+    Nhttpi_SocOpen = Symbol([0x35F44], [0x22F4164], None, "Nhttpi_SocOpen", "", None)
 
-    Nhttpi_SocClose = Symbol(None, None, None, "Nhttpi_SocClose", "", None)
+    Nhttpi_SocClose = Symbol([0x35FC4], [0x22F41E4], None, "Nhttpi_SocClose", "", None)
 
-    Nhttpi_SocCloseWait = Symbol(None, None, None, "Nhttpi_SocCloseWait", "", None)
+    Nhttpi_SocCloseWait = Symbol(
+        [0x35FD4], [0x22F41F4], None, "Nhttpi_SocCloseWait", "", None
+    )
 
-    Nhttpi_SocConnect = Symbol(None, None, None, "Nhttpi_SocConnect", "", None)
+    Nhttpi_SocConnect = Symbol(
+        [0x36010], [0x22F4230], None, "Nhttpi_SocConnect", "", None
+    )
 
-    Nhttpi_SocRecv = Symbol(None, None, None, "Nhttpi_SocRecv", "", None)
+    Nhttpi_SocRecv = Symbol([0x3608C], [0x22F42AC], None, "Nhttpi_SocRecv", "", None)
 
-    Nhttpi_SocSend = Symbol(None, None, None, "Nhttpi_SocSend", "", None)
+    Nhttpi_SocSend = Symbol([0x360D8], [0x22F42F8], None, "Nhttpi_SocSend", "", None)
 
-    Nhttpi_SocCancel = Symbol(None, None, None, "Nhttpi_SocCancel", "", None)
+    Nhttpi_SocCancel = Symbol(
+        [0x36124], [0x22F4344], None, "Nhttpi_SocCancel", "", None
+    )
 
-    Nhttpi_Strcmp = Symbol(None, None, None, "Nhttpi_Strcmp", "", None)
+    Nhttpi_Strcmp = Symbol([0x36140], [0x22F4360], None, "Nhttpi_Strcmp", "", None)
 
-    Nhttpi_Strnicmp = Symbol(None, None, None, "Nhttpi_Strnicmp", "", None)
+    Nhttpi_Strnicmp = Symbol([0x3614C], [0x22F436C], None, "Nhttpi_Strnicmp", "", None)
 
-    Nhttpi_Strlen = Symbol(None, None, None, "Nhttpi_Strlen", "", None)
+    Nhttpi_Strlen = Symbol([0x361B4], [0x22F43D4], None, "Nhttpi_Strlen", "", None)
 
-    Nhttpi_Memclr = Symbol(None, None, None, "Nhttpi_Memclr", "", None)
+    Nhttpi_Memclr = Symbol([0x361C0], [0x22F43E0], None, "Nhttpi_Memclr", "", None)
 
-    Nhttpi_Memcpy = Symbol(None, None, None, "Nhttpi_Memcpy", "", None)
+    Nhttpi_Memcpy = Symbol([0x361D4], [0x22F43F4], None, "Nhttpi_Memcpy", "", None)
 
-    SaveBuf = Symbol(None, None, None, "SaveBuf", "", None)
+    SaveBuf = Symbol([0x361EC], [0x22F440C], None, "SaveBuf", "", None)
 
-    SkipLineBuf = Symbol(None, None, None, "SkipLineBuf", "", None)
+    SkipLineBuf = Symbol([0x362A0], [0x22F44C0], None, "SkipLineBuf", "", None)
 
-    FreeSslConnection = Symbol(None, None, None, "FreeSslConnection", "", None)
+    FreeSslConnection = Symbol(
+        [0x3632C], [0x22F454C], None, "FreeSslConnection", "", None
+    )
 
-    PutSocketToCloseQue = Symbol(None, None, None, "PutSocketToCloseQue", "", None)
+    PutSocketToCloseQue = Symbol(
+        [0x36368], [0x22F4588], None, "PutSocketToCloseQue", "", None
+    )
 
-    ClearCloseQue = Symbol(None, None, None, "ClearCloseQue", "", None)
+    ClearCloseQue = Symbol([0x36408], [0x22F4628], None, "ClearCloseQue", "", None)
 
-    Nhttpi_CommThreadProc = Symbol(None, None, None, "Nhttpi_CommThreadProc", "", None)
+    Nhttpi_CommThreadProc = Symbol(
+        [0x36468], [0x22F4688], None, "Nhttpi_CommThreadProc", "", None
+    )
 
     Nhttpi_GetUrlEncodedSize = Symbol(
-        None, None, None, "Nhttpi_GetUrlEncodedSize", "", None
+        [0x37768], [0x22F5988], None, "Nhttpi_GetUrlEncodedSize", "", None
     )
 
-    Nhttpi_EncodeUrlChar = Symbol(None, None, None, "Nhttpi_EncodeUrlChar", "", None)
+    Nhttpi_EncodeUrlChar = Symbol(
+        [0x377D0], [0x22F59F0], None, "Nhttpi_EncodeUrlChar", "", None
+    )
 
-    Nhttpi_StrToHex = Symbol(None, None, None, "Nhttpi_StrToHex", "", None)
+    Nhttpi_StrToHex = Symbol([0x37860], [0x22F5A80], None, "Nhttpi_StrToHex", "", None)
 
-    Nhttpi_StrToInt = Symbol(None, None, None, "Nhttpi_StrToInt", "", None)
+    Nhttpi_StrToInt = Symbol([0x37948], [0x22F5B68], None, "Nhttpi_StrToInt", "", None)
 
-    Nhttpi_IntToStr = Symbol(None, None, None, "Nhttpi_IntToStr", "", None)
+    Nhttpi_IntToStr = Symbol([0x379E0], [0x22F5C00], None, "Nhttpi_IntToStr", "", None)
 
-    Nhttpi_CompareToken = Symbol(None, None, None, "Nhttpi_CompareToken", "", None)
+    Nhttpi_CompareToken = Symbol(
+        [0x37A9C], [0x22F5CBC], None, "Nhttpi_CompareToken", "", None
+    )
 
-    Nhttpi_StrToNum = Symbol(None, None, None, "Nhttpi_StrToNum", "", None)
+    Nhttpi_StrToNum = Symbol([0x37B20], [0x22F5D40], None, "Nhttpi_StrToNum", "", None)
 
-    Nhttpi_MemFind = Symbol(None, None, None, "Nhttpi_MemFind", "", None)
+    Nhttpi_MemFind = Symbol([0x37B90], [0x22F5DB0], None, "Nhttpi_MemFind", "", None)
 
-    FreeElement_Gsi = Symbol(None, None, None, "FreeElement_Gsi", "", None)
+    FreeElement_Gsi = Symbol([0x37C14], [0x22F5E34], None, "FreeElement_Gsi", "", None)
 
-    ArrayGrow_Gsi = Symbol(None, None, None, "ArrayGrow_Gsi", "", None)
+    ArrayGrow_Gsi = Symbol([0x37C38], [0x22F5E58], None, "ArrayGrow_Gsi", "", None)
 
-    SetElement_Gsi = Symbol(None, None, None, "SetElement_Gsi", "", None)
+    SetElement_Gsi = Symbol([0x37C68], [0x22F5E88], None, "SetElement_Gsi", "", None)
 
-    ArrayNew_Gsi = Symbol(None, None, None, "ArrayNew_Gsi", "", None)
+    ArrayNew_Gsi = Symbol([0x37C8C], [0x22F5EAC], None, "ArrayNew_Gsi", "", None)
 
-    ArrayFree_Gsi = Symbol(None, None, None, "ArrayFree_Gsi", "", None)
+    ArrayFree_Gsi = Symbol([0x37CE4], [0x22F5F04], None, "ArrayFree_Gsi", "", None)
 
-    ArrayLength_Gsi = Symbol(None, None, None, "ArrayLength_Gsi", "", None)
+    ArrayLength_Gsi = Symbol([0x37D2C], [0x22F5F4C], None, "ArrayLength_Gsi", "", None)
 
-    ArrayNth_Gsi = Symbol(None, None, None, "ArrayNth_Gsi", "", None)
+    ArrayNth_Gsi = Symbol([0x37D34], [0x22F5F54], None, "ArrayNth_Gsi", "", None)
 
-    ArrayAppend_Gsi = Symbol(None, None, None, "ArrayAppend_Gsi", "", None)
+    ArrayAppend_Gsi = Symbol([0x37D60], [0x22F5F80], None, "ArrayAppend_Gsi", "", None)
 
-    ArrayInsertAt_Gsi = Symbol(None, None, None, "ArrayInsertAt_Gsi", "", None)
+    ArrayInsertAt_Gsi = Symbol(
+        [0x37D78], [0x22F5F98], None, "ArrayInsertAt_Gsi", "", None
+    )
 
-    ArrayInsertSorted_Gsi = Symbol(None, None, None, "ArrayInsertSorted_Gsi", "", None)
+    ArrayInsertSorted_Gsi = Symbol(
+        [0x37DFC], [0x22F601C], None, "ArrayInsertSorted_Gsi", "", None
+    )
 
-    ArrayRemoveAt_Gsi = Symbol(None, None, None, "ArrayRemoveAt_Gsi", "", None)
+    ArrayRemoveAt_Gsi = Symbol(
+        [0x37E50], [0x22F6070], None, "ArrayRemoveAt_Gsi", "", None
+    )
 
-    ArrayDeleteAt_Gsi = Symbol(None, None, None, "ArrayDeleteAt_Gsi", "", None)
+    ArrayDeleteAt_Gsi = Symbol(
+        [0x37EA8], [0x22F60C8], None, "ArrayDeleteAt_Gsi", "", None
+    )
 
-    ArrayReplaceAt_Gsi = Symbol(None, None, None, "ArrayReplaceAt_Gsi", "", None)
+    ArrayReplaceAt_Gsi = Symbol(
+        [0x37EC8], [0x22F60E8], None, "ArrayReplaceAt_Gsi", "", None
+    )
 
-    ArraySearch_Gsi = Symbol(None, None, None, "ArraySearch_Gsi", "", None)
+    ArraySearch_Gsi = Symbol([0x37EF4], [0x22F6114], None, "ArraySearch_Gsi", "", None)
 
-    ArrayMap_Gsi = Symbol(None, None, None, "ArrayMap_Gsi", "", None)
+    ArrayMap_Gsi = Symbol([0x37FAC], [0x22F61CC], None, "ArrayMap_Gsi", "", None)
 
-    ArrayMapBackwards_Gsi = Symbol(None, None, None, "ArrayMapBackwards_Gsi", "", None)
+    ArrayMapBackwards_Gsi = Symbol(
+        [0x37FE8], [0x22F6208], None, "ArrayMapBackwards_Gsi", "", None
+    )
 
-    ArrayClear_Gsi = Symbol(None, None, None, "ArrayClear_Gsi", "", None)
+    ArrayClear_Gsi = Symbol([0x38038], [0x22F6258], None, "ArrayClear_Gsi", "", None)
 
-    mylsearch_gsi = Symbol(None, None, None, "mylsearch_gsi", "", None)
+    mylsearch_gsi = Symbol([0x38064], [0x22F6284], None, "mylsearch_gsi", "", None)
 
-    mybsearch_gsi = Symbol(None, None, None, "mybsearch_gsi", "", None)
+    mybsearch_gsi = Symbol([0x380BC], [0x22F62DC], None, "mybsearch_gsi", "", None)
 
-    TableNew_Gsi = Symbol(None, None, None, "TableNew_Gsi", "", None)
+    TableNew_Gsi = Symbol([0x38120], [0x22F6340], None, "TableNew_Gsi", "", None)
 
-    TableNew2_Gsi = Symbol(None, None, None, "TableNew2_Gsi", "", None)
+    TableNew2_Gsi = Symbol([0x38148], [0x22F6368], None, "TableNew2_Gsi", "", None)
 
-    TableFree_Gsi = Symbol(None, None, None, "TableFree_Gsi", "", None)
+    TableFree_Gsi = Symbol([0x381C4], [0x22F63E4], None, "TableFree_Gsi", "", None)
 
-    TableCount_Gsi = Symbol(None, None, None, "TableCount_Gsi", "", None)
+    TableCount_Gsi = Symbol([0x38210], [0x22F6430], None, "TableCount_Gsi", "", None)
 
-    TableEnter_Gsi = Symbol(None, None, None, "TableEnter_Gsi", "", None)
+    TableEnter_Gsi = Symbol([0x3825C], [0x22F647C], None, "TableEnter_Gsi", "", None)
 
-    TableRemove_Gsi = Symbol(None, None, None, "TableRemove_Gsi", "", None)
+    TableRemove_Gsi = Symbol([0x382DC], [0x22F64FC], None, "TableRemove_Gsi", "", None)
 
-    TableLookup_Gsi = Symbol(None, None, None, "TableLookup_Gsi", "", None)
+    TableLookup_Gsi = Symbol([0x38358], [0x22F6578], None, "TableLookup_Gsi", "", None)
 
-    TableMap_Gsi = Symbol(None, None, None, "TableMap_Gsi", "", None)
+    TableMap_Gsi = Symbol([0x383D0], [0x22F65F0], None, "TableMap_Gsi", "", None)
 
-    TableMapSafe2_Gsi = Symbol(None, None, None, "TableMapSafe2_Gsi", "", None)
+    TableMapSafe2_Gsi = Symbol(
+        [0x38418], [0x22F6638], None, "TableMapSafe2_Gsi", "", None
+    )
 
-    MD5Print_Gsi = Symbol(None, None, None, "MD5Print_Gsi", "", None)
+    MD5Print_Gsi = Symbol([0x3846C], [0x22F668C], None, "MD5Print_Gsi", "", None)
 
-    MD5Digest_Gsi = Symbol(None, None, None, "MD5Digest_Gsi", "", None)
+    MD5Digest_Gsi = Symbol([0x384C8], [0x22F66E8], None, "MD5Digest_Gsi", "", None)
 
     CheckRCode_Gsi = Symbol(
         [0x38514],
@@ -23714,7 +24153,7 @@ class JpOverlay0Functions:
         None,
     )
 
-    shutdown_gsi = Symbol(None, None, None, "shutdown_gsi", "", None)
+    shutdown_gsi = Symbol([0x38554], [0x22F6774], None, "shutdown_gsi", "", None)
 
     bind_gsi = Symbol(
         [0x38568],
@@ -23770,15 +24209,15 @@ class JpOverlay0Functions:
         None,
     )
 
-    setsockopt_gsi = Symbol(None, None, None, "setsockopt_gsi", "", None)
+    setsockopt_gsi = Symbol([0x386C4], [0x22F68E4], None, "setsockopt_gsi", "", None)
 
-    getsockname_gsi = Symbol(None, None, None, "getsockname_gsi", "", None)
+    getsockname_gsi = Symbol([0x386D8], [0x22F68F8], None, "getsockname_gsi", "", None)
 
-    inet_addr_gsi = Symbol(None, None, None, "inet_addr_gsi", "", None)
+    inet_addr_gsi = Symbol([0x38704], [0x22F6924], None, "inet_addr_gsi", "", None)
 
-    GoaGetLastError = Symbol(None, None, None, "GoaGetLastError", "", None)
+    GoaGetLastError = Symbol([0x38720], [0x22F6940], None, "GoaGetLastError", "", None)
 
-    GsiSocketSelect = Symbol(None, None, None, "GsiSocketSelect", "", None)
+    GsiSocketSelect = Symbol([0x38730], [0x22F6950], None, "GsiSocketSelect", "", None)
 
     SetSockBlocking = Symbol(
         [0x38828],
@@ -23789,43 +24228,57 @@ class JpOverlay0Functions:
         None,
     )
 
-    SetReceiveBufferSize = Symbol(None, None, None, "SetReceiveBufferSize", "", None)
+    SetReceiveBufferSize = Symbol(
+        [0x38868], [0x22F6A88], None, "SetReceiveBufferSize", "", None
+    )
 
-    CanReceiveOnSocket = Symbol(None, None, None, "CanReceiveOnSocket", "", None)
+    CanReceiveOnSocket = Symbol(
+        [0x388AC], [0x22F6ACC], None, "CanReceiveOnSocket", "", None
+    )
 
-    CanSendOnSocket = Symbol(None, None, None, "CanSendOnSocket", "", None)
+    CanSendOnSocket = Symbol([0x388D4], [0x22F6AF4], None, "CanSendOnSocket", "", None)
 
-    getlocalhost_gsi = Symbol(None, None, None, "getlocalhost_gsi", "", None)
+    getlocalhost_gsi = Symbol(
+        [0x388FC], [0x22F6B1C], None, "getlocalhost_gsi", "", None
+    )
 
-    IsPrivateIP = Symbol(None, None, None, "IsPrivateIP", "", None)
+    IsPrivateIP = Symbol([0x38988], [0x22F6BA8], None, "IsPrivateIP", "", None)
 
-    time_gsi = Symbol(None, None, None, "time_gsi", "", None)
+    time_gsi = Symbol([0x38A04], [0x22F6C24], None, "time_gsi", "", None)
 
     GsiStartResolvingHostname = Symbol(
-        None, None, None, "GsiStartResolvingHostname", "", None
+        [0x38A38], [0x22F6C58], None, "GsiStartResolvingHostname", "", None
     )
 
     GsiCancelResolvingHostname = Symbol(
-        None, None, None, "GsiCancelResolvingHostname", "", None
+        [0x38A80], [0x22F6CA0], None, "GsiCancelResolvingHostname", "", None
     )
 
-    GsiGetResolvedIP = Symbol(None, None, None, "GsiGetResolvedIP", "", None)
+    GsiGetResolvedIP = Symbol(
+        [0x38A8C], [0x22F6CAC], None, "GsiGetResolvedIP", "", None
+    )
 
-    goastrdup = Symbol(None, None, None, "goastrdup", "", None)
+    goastrdup = Symbol([0x38AA0], [0x22F6CC0], None, "goastrdup", "", None)
 
-    strlwr = Symbol(None, None, None, "strlwr", "", None)
+    strlwr = Symbol([0x38AD4], [0x22F6CF4], None, "strlwr", "", None)
 
-    SocketStartUp_Ghi = Symbol(None, None, None, "SocketStartUp_Ghi", "", None)
+    SocketStartUp_Ghi = Symbol(
+        [0x38B18], [0x22F6D38], None, "SocketStartUp_Ghi", "", None
+    )
 
-    SocketShutDown_Gsi = Symbol(None, None, None, "SocketShutDown_Gsi", "", None)
+    SocketShutDown_Gsi = Symbol(
+        [0x38B1C], [0x22F6D3C], None, "SocketShutDown_Gsi", "", None
+    )
 
-    current_time_gsi = Symbol(None, None, None, "current_time_gsi", "", None)
+    current_time_gsi = Symbol(
+        [0x38B20], [0x22F6D40], None, "current_time_gsi", "", None
+    )
 
     current_time_hires_gsi = Symbol(
-        None, None, None, "current_time_hires_gsi", "", None
+        [0x38B48], [0x22F6D68], None, "current_time_hires_gsi", "", None
     )
 
-    msleep_gsi = Symbol(None, None, None, "msleep_gsi", "", None)
+    msleep_gsi = Symbol([0x38B78], [0x22F6D98], None, "msleep_gsi", "", None)
 
     nextlongrand_gsi = Symbol(
         [0x38B84],
@@ -23863,27 +24316,31 @@ class JpOverlay0Functions:
         None,
     )
 
-    QuartToTrip = Symbol(None, None, None, "QuartToTrip", "", None)
+    QuartToTrip = Symbol([0x38C30], [0x22F6E50], None, "QuartToTrip", "", None)
 
-    TripToQuart = Symbol(None, None, None, "TripToQuart", "", None)
+    TripToQuart = Symbol([0x38C8C], [0x22F6EAC], None, "TripToQuart", "", None)
 
-    B64Decode = Symbol(None, None, None, "B64Decode", "", None)
+    B64Decode = Symbol([0x38D24], [0x22F6F44], None, "B64Decode", "", None)
 
-    B64Encode = Symbol(None, None, None, "B64Encode", "", None)
+    B64Encode = Symbol([0x38F18], [0x22F7138], None, "B64Encode", "", None)
 
-    GsDebugAssert = Symbol(None, None, None, "GsDebugAssert", "", None)
+    GsDebugAssert = Symbol([0x39050], [0x22F7270], None, "GsDebugAssert", "", None)
 
-    GsiMemoryCallbacksSet = Symbol(None, None, None, "GsiMemoryCallbacksSet", "", None)
+    GsiMemoryCallbacksSet = Symbol(
+        [0x39054], [0x22F7274], None, "GsiMemoryCallbacksSet", "", None
+    )
 
-    gsimalloc = Symbol(None, None, None, "gsimalloc", "", None)
+    gsimalloc = Symbol([0x39070], [0x22F7290], None, "gsimalloc", "", None)
 
-    gsirealloc = Symbol(None, None, None, "gsirealloc", "", None)
+    gsirealloc = Symbol([0x39088], [0x22F72A8], None, "gsirealloc", "", None)
 
-    gsifree = Symbol(None, None, None, "gsifree", "", None)
+    gsifree = Symbol([0x390A0], [0x22F72C0], None, "gsifree", "", None)
 
-    get_sockaddrin = Symbol(None, None, None, "get_sockaddrin", "", None)
+    get_sockaddrin = Symbol(
+        [0x390C0, 0x563B0], [0x22F72E0, 0x23145D0], None, "get_sockaddrin", "", None
+    )
 
-    SendPacket_Gsi = Symbol(None, None, None, "SendPacket_Gsi", "", None)
+    SendPacket_Gsi = Symbol([0x39134], [0x22F7354], None, "SendPacket_Gsi", "", None)
 
     GsiStartAvailableCheckA = Symbol(
         [0x39184],
@@ -23894,763 +24351,983 @@ class JpOverlay0Functions:
         None,
     )
 
-    HandlePacket = Symbol(None, None, None, "HandlePacket", "", None)
+    HandlePacket = Symbol([0x3927C], [0x22F749C], None, "HandlePacket", "", None)
 
     GsiAvailableCheckThink = Symbol(
-        None, None, None, "GsiAvailableCheckThink", "", None
+        [0x39334], [0x22F7554], None, "GsiAvailableCheckThink", "", None
     )
 
     GsiCryptRsaGeneratePad = Symbol(
-        None, None, None, "GsiCryptRsaGeneratePad", "", None
+        [0x3947C], [0x22F769C], None, "GsiCryptRsaGeneratePad", "", None
     )
 
     GsCryptRsaEncryptBuffer = Symbol(
-        None, None, None, "GsCryptRsaEncryptBuffer", "", None
+        [0x394C8], [0x22F76E8], None, "GsCryptRsaEncryptBuffer", "", None
     )
 
     GsCryptRsaPkcs1EncryptBuffer = Symbol(
-        None, None, None, "GsCryptRsaPkcs1EncryptBuffer", "", None
+        [0x394D4], [0x22F76F4], None, "GsCryptRsaPkcs1EncryptBuffer", "", None
     )
 
-    GsiLargeIntTimerEnter = Symbol(None, None, None, "GsiLargeIntTimerEnter", "", None)
+    GsiLargeIntTimerEnter = Symbol(
+        [0x395A4], [0x22F77C4], None, "GsiLargeIntTimerEnter", "", None
+    )
 
-    GsiLargeIntTimerExit = Symbol(None, None, None, "GsiLargeIntTimerExit", "", None)
+    GsiLargeIntTimerExit = Symbol(
+        [0x395F4], [0x22F7814], None, "GsiLargeIntTimerExit", "", None
+    )
 
-    GsiLargeIntCompare = Symbol(None, None, None, "GsiLargeIntCompare", "", None)
+    GsiLargeIntCompare = Symbol(
+        [0x39648], [0x22F7868], None, "GsiLargeIntCompare", "", None
+    )
 
     GsiLargeIntStripLeadingZeroes = Symbol(
-        None, None, None, "GsiLargeIntStripLeadingZeroes", "", None
+        [0x396D8], [0x22F78F8], None, "GsiLargeIntStripLeadingZeroes", "", None
     )
 
-    GsiLargeIntAdd = Symbol(None, None, None, "GsiLargeIntAdd", "", None)
+    GsiLargeIntAdd = Symbol([0x39708], [0x22F7928], None, "GsiLargeIntAdd", "", None)
 
-    GsiLargeIntSub = Symbol(None, None, None, "GsiLargeIntSub", "", None)
+    GsiLargeIntSub = Symbol([0x39848], [0x22F7A68], None, "GsiLargeIntSub", "", None)
 
-    GsiLargeIntMult = Symbol(None, None, None, "GsiLargeIntMult", "", None)
+    GsiLargeIntMult = Symbol([0x39954], [0x22F7B74], None, "GsiLargeIntMult", "", None)
 
-    GsLargeIntDiv = Symbol(None, None, None, "GsLargeIntDiv", "", None)
+    GsLargeIntDiv = Symbol([0x39B18], [0x22F7D38], None, "GsLargeIntDiv", "", None)
 
-    GsiLargeIntDiv = Symbol(None, None, None, "GsiLargeIntDiv", "", None)
+    GsiLargeIntDiv = Symbol([0x39B38], [0x22F7D58], None, "GsiLargeIntDiv", "", None)
 
-    GsiLargeIntSubDivide = Symbol(None, None, None, "GsiLargeIntSubDivide", "", None)
+    GsiLargeIntSubDivide = Symbol(
+        [0x39EC4], [0x22F80E4], None, "GsiLargeIntSubDivide", "", None
+    )
 
-    GsLargeIntSquareMod = Symbol(None, None, None, "GsLargeIntSquareMod", "", None)
+    GsLargeIntSquareMod = Symbol(
+        [0x3A0C4], [0x22F82E4], None, "GsLargeIntSquareMod", "", None
+    )
 
-    GsLargeIntPowerMod = Symbol(None, None, None, "GsLargeIntPowerMod", "", None)
+    GsLargeIntPowerMod = Symbol(
+        [0x3A2B4], [0x22F84D4], None, "GsLargeIntPowerMod", "", None
+    )
 
-    GsiLargeIntMultM = Symbol(None, None, None, "GsiLargeIntMultM", "", None)
+    GsiLargeIntMultM = Symbol(
+        [0x3A73C], [0x22F895C], None, "GsiLargeIntMultM", "", None
+    )
 
-    GsiLargeIntInverseMod = Symbol(None, None, None, "GsiLargeIntInverseMod", "", None)
+    GsiLargeIntInverseMod = Symbol(
+        [0x3AA04], [0x22F8C24], None, "GsiLargeIntInverseMod", "", None
+    )
 
     GsLargeIntReverseBytes = Symbol(
-        None, None, None, "GsLargeIntReverseBytes", "", None
+        [0x3AA88], [0x22F8CA8], None, "GsLargeIntReverseBytes", "", None
     )
 
     GsLargeIntSetFromMemoryStream = Symbol(
-        None, None, None, "GsLargeIntSetFromMemoryStream", "", None
+        [0x3AACC], [0x22F8CEC], None, "GsLargeIntSetFromMemoryStream", "", None
     )
 
     GsLargeIntWriteToMemoryStream = Symbol(
-        None, None, None, "GsLargeIntWriteToMemoryStream", "", None
+        [0x3AB10], [0x22F8D30], None, "GsLargeIntWriteToMemoryStream", "", None
     )
 
-    swap_byte_gsi = Symbol(None, None, None, "swap_byte_gsi", "", None)
+    swap_byte_gsi = Symbol([0x3AB58], [0x22F8D78], None, "swap_byte_gsi", "", None)
 
-    RC4Init_Gsi = Symbol(None, None, None, "RC4Init_Gsi", "", None)
+    RC4Init_Gsi = Symbol([0x3AB6C], [0x22F8D8C], None, "RC4Init_Gsi", "", None)
 
-    RC4Encrypt_Gsi = Symbol(None, None, None, "RC4Encrypt_Gsi", "", None)
+    RC4Encrypt_Gsi = Symbol([0x3ABF8], [0x22F8E18], None, "RC4Encrypt_Gsi", "", None)
 
-    Sha1Reset_Gsi = Symbol(None, None, None, "Sha1Reset_Gsi", "", None)
+    Sha1Reset_Gsi = Symbol([0x3AC98], [0x22F8EB8], None, "Sha1Reset_Gsi", "", None)
 
-    Sha1Result_Gsi = Symbol(None, None, None, "Sha1Result_Gsi", "", None)
+    Sha1Result_Gsi = Symbol([0x3AD00], [0x22F8F20], None, "Sha1Result_Gsi", "", None)
 
-    Sha1Input_Ghi = Symbol(None, None, None, "Sha1Input_Ghi", "", None)
+    Sha1Input_Ghi = Symbol([0x3AD98], [0x22F8FB8], None, "Sha1Input_Ghi", "", None)
 
     Sha1ProcessMessageBlock = Symbol(
-        None, None, None, "Sha1ProcessMessageBlock", "", None
+        [0x3AE5C], [0x22F907C], None, "Sha1ProcessMessageBlock", "", None
     )
 
-    Sha1PadMessage = Symbol(None, None, None, "Sha1PadMessage", "", None)
+    Sha1PadMessage = Symbol([0x3B0B0], [0x22F92D0], None, "Sha1PadMessage", "", None)
 
-    GsUdpEngineGetEngine = Symbol(None, None, None, "GsUdpEngineGetEngine", "", None)
+    GsUdpEngineGetEngine = Symbol(
+        [0x3B1E4], [0x22F9404], None, "GsUdpEngineGetEngine", "", None
+    )
 
-    GsUdpMsgHandlerFree = Symbol(None, None, None, "GsUdpMsgHandlerFree", "", None)
+    GsUdpMsgHandlerFree = Symbol(
+        [0x3B1F0], [0x22F9410], None, "GsUdpMsgHandlerFree", "", None
+    )
 
     GsUdpMsgHandlerCompare = Symbol(
-        None, None, None, "GsUdpMsgHandlerCompare", "", None
+        [0x3B200], [0x22F9420], None, "GsUdpMsgHandlerCompare", "", None
     )
 
     GsUdpMsgHandlerCompare2 = Symbol(
-        None, None, None, "GsUdpMsgHandlerCompare2", "", None
+        [0x3B210], [0x22F9430], None, "GsUdpMsgHandlerCompare2", "", None
     )
 
     GsUdpRemotePeerCompare = Symbol(
-        None, None, None, "GsUdpRemotePeerCompare", "", None
+        [0x3B228], [0x22F9448], None, "GsUdpRemotePeerCompare", "", None
     )
 
     GsUdpRemotePeerCompare2 = Symbol(
-        None, None, None, "GsUdpRemotePeerCompare2", "", None
+        [0x3B254], [0x22F9474], None, "GsUdpRemotePeerCompare2", "", None
     )
 
-    GsUdpSocketError = Symbol(None, None, None, "GsUdpSocketError", "", None)
+    GsUdpSocketError = Symbol(
+        [0x3B26C], [0x22F948C], None, "GsUdpSocketError", "", None
+    )
 
-    GsUdpClosedRoutingCB = Symbol(None, None, None, "GsUdpClosedRoutingCB", "", None)
+    GsUdpClosedRoutingCB = Symbol(
+        [0x3B2E0], [0x22F9500], None, "GsUdpClosedRoutingCB", "", None
+    )
 
     GsUdpConnectedRoutingCB = Symbol(
-        None, None, None, "GsUdpConnectedRoutingCB", "", None
+        [0x3B3F8], [0x22F9618], None, "GsUdpConnectedRoutingCB", "", None
     )
 
-    GsUdpPingRoutingCB = Symbol(None, None, None, "GsUdpPingRoutingCB", "", None)
+    GsUdpPingRoutingCB = Symbol(
+        [0x3B610], [0x22F9830], None, "GsUdpPingRoutingCB", "", None
+    )
 
     GsUdpReceivedRoutingCB = Symbol(
-        None, None, None, "GsUdpReceivedRoutingCB", "", None
+        [0x3B6D0], [0x22F98F0], None, "GsUdpReceivedRoutingCB", "", None
     )
 
     GsUdpUnrecognizedMsgCB = Symbol(
-        None, None, None, "GsUdpUnrecognizedMsgCB", "", None
+        [0x3B7F8], [0x22F9A18], None, "GsUdpUnrecognizedMsgCB", "", None
     )
 
-    GsUdpConnAttemptCB = Symbol(None, None, None, "GsUdpConnAttemptCB", "", None)
+    GsUdpConnAttemptCB = Symbol(
+        [0x3B858], [0x22F9A78], None, "GsUdpConnAttemptCB", "", None
+    )
 
     GsUdpEngineIsInitialized = Symbol(
-        None, None, None, "GsUdpEngineIsInitialized", "", None
+        [0x3B998], [0x22F9BB8], None, "GsUdpEngineIsInitialized", "", None
     )
 
-    GsUdpEngineInitialize = Symbol(None, None, None, "GsUdpEngineInitialize", "", None)
+    GsUdpEngineInitialize = Symbol(
+        [0x3B9A8], [0x22F9BC8], None, "GsUdpEngineInitialize", "", None
+    )
 
     GsUdpEngineGetPeerState = Symbol(
-        None, None, None, "GsUdpEngineGetPeerState", "", None
+        [0x3BB04], [0x22F9D24], None, "GsUdpEngineGetPeerState", "", None
     )
 
     GsUdpEngineStartTalkingToPeer = Symbol(
-        None, None, None, "GsUdpEngineStartTalkingToPeer", "", None
+        [0x3BBA8], [0x22F9DC8], None, "GsUdpEngineStartTalkingToPeer", "", None
     )
 
     GsUdpEngineSendMessage = Symbol(
-        None, None, None, "GsUdpEngineSendMessage", "", None
+        [0x3BDD4], [0x22F9FF4], None, "GsUdpEngineSendMessage", "", None
     )
 
-    GsUdpEngineThink = Symbol(None, None, None, "GsUdpEngineThink", "", None)
+    GsUdpEngineThink = Symbol(
+        [0x3BF14], [0x22FA134], None, "GsUdpEngineThink", "", None
+    )
 
-    GsUdpEngineShutdown = Symbol(None, None, None, "GsUdpEngineShutdown", "", None)
+    GsUdpEngineShutdown = Symbol(
+        [0x3BF3C], [0x22FA15C], None, "GsUdpEngineShutdown", "", None
+    )
 
     GsUdpEngineGetLocalPort = Symbol(
-        None, None, None, "GsUdpEngineGetLocalPort", "", None
+        [0x3BF7C], [0x22FA19C], None, "GsUdpEngineGetLocalPort", "", None
     )
 
     GsUdpEngineAddMsgHandler = Symbol(
-        None, None, None, "GsUdpEngineAddMsgHandler", "", None
+        [0x3BF98], [0x22FA1B8], None, "GsUdpEngineAddMsgHandler", "", None
     )
 
     GsUdpEngineRemoveMsgHandler = Symbol(
-        None, None, None, "GsUdpEngineRemoveMsgHandler", "", None
+        [0x3C0A8], [0x22FA2C8], None, "GsUdpEngineRemoveMsgHandler", "", None
     )
 
     GsUdpEngineNoMoreMsgHandlers = Symbol(
-        None, None, None, "GsUdpEngineNoMoreMsgHandlers", "", None
+        [0x3C150], [0x22FA370], None, "GsUdpEngineNoMoreMsgHandlers", "", None
     )
 
-    GsUdpEngineNoApp = Symbol(None, None, None, "GsUdpEngineNoApp", "", None)
+    GsUdpEngineNoApp = Symbol(
+        [0x3C180], [0x22FA3A0], None, "GsUdpEngineNoApp", "", None
+    )
 
     GsUdpEngineGetPeerOutBufferFreeSpace = Symbol(
-        None, None, None, "GsUdpEngineGetPeerOutBufferFreeSpace", "", None
+        [0x3C1DC], [0x22FA3FC], None, "GsUdpEngineGetPeerOutBufferFreeSpace", "", None
     )
 
-    GsXmlWriterGetData = Symbol(None, None, None, "GsXmlWriterGetData", "", None)
+    GsXmlWriterGetData = Symbol(
+        [0x3C25C], [0x22FA47C], None, "GsXmlWriterGetData", "", None
+    )
 
     GsXmlWriterGetDataLength = Symbol(
-        None, None, None, "GsXmlWriterGetDataLength", "", None
+        [0x3C264], [0x22FA484], None, "GsXmlWriterGetDataLength", "", None
     )
 
-    GhiResizeBuffer = Symbol(None, None, None, "GhiResizeBuffer", "", None)
+    GhiResizeBuffer = Symbol([0x3C26C], [0x22FA48C], None, "GhiResizeBuffer", "", None)
 
-    GhiInitBuffer = Symbol(None, None, None, "GhiInitBuffer", "", None)
+    GhiInitBuffer = Symbol([0x3C2AC], [0x22FA4CC], None, "GhiInitBuffer", "", None)
 
-    GhiInitFixedBuffer = Symbol(None, None, None, "GhiInitFixedBuffer", "", None)
+    GhiInitFixedBuffer = Symbol(
+        [0x3C338], [0x22FA558], None, "GhiInitFixedBuffer", "", None
+    )
 
-    GhiInitReadOnlyBuffer = Symbol(None, None, None, "GhiInitReadOnlyBuffer", "", None)
+    GhiInitReadOnlyBuffer = Symbol(
+        [0x3C398], [0x22FA5B8], None, "GhiInitReadOnlyBuffer", "", None
+    )
 
-    GhiFreeBuffer = Symbol(None, None, None, "GhiFreeBuffer", "", None)
+    GhiFreeBuffer = Symbol([0x3C3F0], [0x22FA610], None, "GhiFreeBuffer", "", None)
 
-    GhiAppendDataToBuffer = Symbol(None, None, None, "GhiAppendDataToBuffer", "", None)
+    GhiAppendDataToBuffer = Symbol(
+        [0x3C428], [0x22FA648], None, "GhiAppendDataToBuffer", "", None
+    )
 
     GhiEncryptDataToBuffer = Symbol(
-        None, None, None, "GhiEncryptDataToBuffer", "", None
+        [0x3C528], [0x22FA748], None, "GhiEncryptDataToBuffer", "", None
     )
 
     GhiAppendHeaderToBuffer = Symbol(
-        None, None, None, "GhiAppendHeaderToBuffer", "", None
+        [0x3C69C], [0x22FA8BC], None, "GhiAppendHeaderToBuffer", "", None
     )
 
-    GhiAppendCharToBuffer = Symbol(None, None, None, "GhiAppendCharToBuffer", "", None)
+    GhiAppendCharToBuffer = Symbol(
+        [0x3C71C], [0x22FA93C], None, "GhiAppendCharToBuffer", "", None
+    )
 
-    GhiAppendIntToBuffer = Symbol(None, None, None, "GhiAppendIntToBuffer", "", None)
+    GhiAppendIntToBuffer = Symbol(
+        [0x3C7D8], [0x22FA9F8], None, "GhiAppendIntToBuffer", "", None
+    )
 
-    GhiResetBuffer = Symbol(None, None, None, "GhiResetBuffer", "", None)
+    GhiResetBuffer = Symbol([0x3C810], [0x22FAA30], None, "GhiResetBuffer", "", None)
 
-    GhiSendBufferedData = Symbol(None, None, None, "GhiSendBufferedData", "", None)
+    GhiSendBufferedData = Symbol(
+        [0x3C830], [0x22FAA50], None, "GhiSendBufferedData", "", None
+    )
 
     GhiReadDataFromBufferFixed = Symbol(
-        None, None, None, "GhiReadDataFromBufferFixed", "", None
+        [0x3C924], [0x22FAB44], None, "GhiReadDataFromBufferFixed", "", None
     )
 
     GhiCallCompletedCallback = Symbol(
-        None, None, None, "GhiCallCompletedCallback", "", None
+        [0x3C970], [0x22FAB90], None, "GhiCallCompletedCallback", "", None
     )
 
     GhiCallProgressCallback = Symbol(
-        None, None, None, "GhiCallProgressCallback", "", None
+        [0x3C9C8], [0x22FABE8], None, "GhiCallProgressCallback", "", None
     )
 
-    GhiCallPostCallback = Symbol(None, None, None, "GhiCallPostCallback", "", None)
+    GhiCallPostCallback = Symbol(
+        [0x3CA18], [0x22FAC38], None, "GhiCallPostCallback", "", None
+    )
 
-    GhiCreateLock = Symbol(None, None, None, "GhiCreateLock", "", None)
+    GhiCreateLock = Symbol([0x3CA68], [0x22FAC88], None, "GhiCreateLock", "", None)
 
-    GhiFreeLock = Symbol(None, None, None, "GhiFreeLock", "", None)
+    GhiFreeLock = Symbol([0x3CA6C], [0x22FAC8C], None, "GhiFreeLock", "", None)
 
-    GhiLock = Symbol(None, None, None, "GhiLock", "", None)
+    GhiLock = Symbol([0x3CA70], [0x22FAC90], None, "GhiLock", "", None)
 
-    GhiUnlock = Symbol(None, None, None, "GhiUnlock", "", None)
+    GhiUnlock = Symbol([0x3CA74], [0x22FAC94], None, "GhiUnlock", "", None)
 
     GhiDecryptReceivedData = Symbol(
-        None, None, None, "GhiDecryptReceivedData", "", None
+        [0x3CA78], [0x22FAC98], None, "GhiDecryptReceivedData", "", None
     )
 
-    GhiDoReceive = Symbol(None, None, None, "GhiDoReceive", "", None)
+    GhiDoReceive = Symbol([0x3CBB8], [0x22FADD8], None, "GhiDoReceive", "", None)
 
-    GhiDoSend = Symbol(None, None, None, "GhiDoSend", "", None)
+    GhiDoSend = Symbol([0x3CCC0], [0x22FAEE0], None, "GhiDoSend", "", None)
 
-    GhiTrySendThenBuffer = Symbol(None, None, None, "GhiTrySendThenBuffer", "", None)
+    GhiTrySendThenBuffer = Symbol(
+        [0x3CD54], [0x22FAF74], None, "GhiTrySendThenBuffer", "", None
+    )
 
-    GhiFindFreeSlot = Symbol(None, None, None, "GhiFindFreeSlot", "", None)
+    GhiFindFreeSlot = Symbol([0x3CE2C], [0x22FB04C], None, "GhiFindFreeSlot", "", None)
 
-    GhiNewConnection = Symbol(None, None, None, "GhiNewConnection", "", None)
+    GhiNewConnection = Symbol(
+        [0x3CF18], [0x22FB138], None, "GhiNewConnection", "", None
+    )
 
-    GhiFreeConnection = Symbol(None, None, None, "GhiFreeConnection", "", None)
+    GhiFreeConnection = Symbol(
+        [0x3D0CC], [0x22FB2EC], None, "GhiFreeConnection", "", None
+    )
 
     GhiRequestToConnection = Symbol(
-        None, None, None, "GhiRequestToConnection", "", None
+        [0x3D21C], [0x22FB43C], None, "GhiRequestToConnection", "", None
     )
 
-    GhiEnumConnections = Symbol(None, None, None, "GhiEnumConnections", "", None)
+    GhiEnumConnections = Symbol(
+        [0x3D270], [0x22FB490], None, "GhiEnumConnections", "", None
+    )
 
-    GhiRedirectConnection = Symbol(None, None, None, "GhiRedirectConnection", "", None)
+    GhiRedirectConnection = Symbol(
+        [0x3D2D4], [0x22FB4F4], None, "GhiRedirectConnection", "", None
+    )
 
-    GhiCleanupConnections = Symbol(None, None, None, "GhiCleanupConnections", "", None)
+    GhiCleanupConnections = Symbol(
+        [0x3D3FC], [0x22FB61C], None, "GhiCleanupConnections", "", None
+    )
 
     GhttpSetRequestEncryptionEngine = Symbol(
-        None, None, None, "GhttpSetRequestEncryptionEngine", "", None
+        [0x3D474], [0x22FB694], None, "GhttpSetRequestEncryptionEngine", "", None
     )
 
     GhiEncryptorWriteNboLength = Symbol(
-        None, None, None, "GhiEncryptorWriteNboLength", "", None
+        [0x3D53C], [0x22FB75C], None, "GhiEncryptorWriteNboLength", "", None
     )
 
     GhiEncryptorReadNboLength = Symbol(
-        None, None, None, "GhiEncryptorReadNboLength", "", None
+        [0x3D598], [0x22FB7B8], None, "GhiEncryptorReadNboLength", "", None
     )
 
     GhiEncryptorParseAsn1Sequence = Symbol(
-        None, None, None, "GhiEncryptorParseAsn1Sequence", "", None
+        [0x3D600], [0x22FB820], None, "GhiEncryptorParseAsn1Sequence", "", None
     )
 
     GhttpEncryptorGenerateEncryptionKeys = Symbol(
-        None, None, None, "GhttpEncryptorGenerateEncryptionKeys", "", None
+        [0x3D6F4], [0x22FB914], None, "GhttpEncryptorGenerateEncryptionKeys", "", None
     )
 
     GhttpEncryptorSslInitFunc = Symbol(
-        None, None, None, "GhttpEncryptorSslInitFunc", "", None
+        [0x3DC34], [0x22FBE54], None, "GhttpEncryptorSslInitFunc", "", None
     )
 
     GhttpEncryptorSslCleanupFunc = Symbol(
-        None, None, None, "GhttpEncryptorSslCleanupFunc", "", None
+        [0x3DE3C], [0x22FC05C], None, "GhttpEncryptorSslCleanupFunc", "", None
     )
 
     GhttpEncryptorSslEncryptFunc = Symbol(
-        None, None, None, "GhttpEncryptorSslEncryptFunc", "", None
+        [0x3DE74], [0x22FC094], None, "GhttpEncryptorSslEncryptFunc", "", None
     )
 
     GhttpEncryptorSslDecryptFunc = Symbol(
-        None, None, None, "GhttpEncryptorSslDecryptFunc", "", None
+        [0x3E084], [0x22FC2A4], None, "GhttpEncryptorSslDecryptFunc", "", None
     )
 
     GhiCertificateChainIsValid = Symbol(
-        None, None, None, "GhiCertificateChainIsValid", "", None
+        [0x3E2B0], [0x22FC4D0], None, "GhiCertificateChainIsValid", "", None
     )
 
     GhttpEncryptorProcessSslHandshake = Symbol(
-        None, None, None, "GhttpEncryptorProcessSslHandshake", "", None
+        [0x3E2B8], [0x22FC4D8], None, "GhttpEncryptorProcessSslHandshake", "", None
     )
 
-    GhiHandleStatus = Symbol(None, None, None, "GhiHandleStatus", "", None)
+    GhiHandleStatus = Symbol([0x3F2B0], [0x22FD4D0], None, "GhiHandleStatus", "", None)
 
-    GhiProcessConnection = Symbol(None, None, None, "GhiProcessConnection", "", None)
+    GhiProcessConnection = Symbol(
+        [0x3F36C], [0x22FD58C], None, "GhiProcessConnection", "", None
+    )
 
-    GhttpStartup = Symbol(None, None, None, "GhttpStartup", "", None)
+    GhttpStartup = Symbol([0x3F4D4], [0x22FD6F4], None, "GhttpStartup", "", None)
 
-    GhttpCleanup = Symbol(None, None, None, "GhttpCleanup", "", None)
+    GhttpCleanup = Symbol([0x3F528], [0x22FD748], None, "GhttpCleanup", "", None)
 
-    GHttpGetExA = Symbol(None, None, None, "GHttpGetExA", "", None)
+    GHttpGetExA = Symbol([0x3F584], [0x22FD7A4], None, "GHttpGetExA", "", None)
 
-    GhttpThink = Symbol(None, None, None, "GhttpThink", "", None)
+    GhttpThink = Symbol([0x3F750], [0x22FD970], None, "GhttpThink", "", None)
 
-    GHttpCancelRequest = Symbol(None, None, None, "GHttpCancelRequest", "", None)
+    GHttpCancelRequest = Symbol(
+        [0x3F764], [0x22FD984], None, "GHttpCancelRequest", "", None
+    )
 
-    GhiIsPostAutoFree = Symbol(None, None, None, "GhiIsPostAutoFree", "", None)
+    GhiIsPostAutoFree = Symbol(
+        [0x3F77C], [0x22FD99C], None, "GhiIsPostAutoFree", "", None
+    )
 
-    GhiFreePost = Symbol(None, None, None, "GhiFreePost", "", None)
+    GhiFreePost = Symbol([0x3F784], [0x22FD9A4], None, "GhiFreePost", "", None)
 
-    GhiPostGetContentType = Symbol(None, None, None, "GhiPostGetContentType", "", None)
+    GhiPostGetContentType = Symbol(
+        [0x3F7A0], [0x22FD9C0], None, "GhiPostGetContentType", "", None
+    )
 
     GhiPostGetNoFilesContentLength = Symbol(
-        None, None, None, "GhiPostGetNoFilesContentLength", "", None
+        [0x3F7F8], [0x22FDA18], None, "GhiPostGetNoFilesContentLength", "", None
     )
 
     GhiPostGetHasFilesContentLength = Symbol(
-        None, None, None, "GhiPostGetHasFilesContentLength", "", None
+        [0x3F890], [0x22FDAB0], None, "GhiPostGetHasFilesContentLength", "", None
     )
 
     GhiPostGetContentLength = Symbol(
-        None, None, None, "GhiPostGetContentLength", "", None
+        [0x3FBA8], [0x22FDDC8], None, "GhiPostGetContentLength", "", None
     )
 
-    GhiPostStateInit = Symbol(None, None, None, "GhiPostStateInit", "", None)
+    GhiPostStateInit = Symbol(
+        [0x3FBD8], [0x22FDDF8], None, "GhiPostStateInit", "", None
+    )
 
-    GhiPostStateCleanup = Symbol(None, None, None, "GhiPostStateCleanup", "", None)
+    GhiPostStateCleanup = Symbol(
+        [0x3FC68], [0x22FDE88], None, "GhiPostStateCleanup", "", None
+    )
 
-    GhiPostInitState = Symbol(None, None, None, "GhiPostInitState", "", None)
+    GhiPostInitState = Symbol(
+        [0x3FCA4], [0x22FDEC4], None, "GhiPostInitState", "", None
+    )
 
-    GhiPostCleanupState = Symbol(None, None, None, "GhiPostCleanupState", "", None)
+    GhiPostCleanupState = Symbol(
+        [0x3FDE8], [0x22FE008], None, "GhiPostCleanupState", "", None
+    )
 
     GhiPostStringStateDoPosting = Symbol(
-        None, None, None, "GhiPostStringStateDoPosting", "", None
+        [0x3FE60], [0x22FE080], None, "GhiPostStringStateDoPosting", "", None
     )
 
     GhiPostXmlStateDoPosting = Symbol(
-        None, None, None, "GhiPostXmlStateDoPosting", "", None
+        [0x3FFEC], [0x22FE20C], None, "GhiPostXmlStateDoPosting", "", None
     )
 
     GhiPostFileDiskStateDoPosting = Symbol(
-        None, None, None, "GhiPostFileDiskStateDoPosting", "", None
+        [0x40138], [0x22FE358], None, "GhiPostFileDiskStateDoPosting", "", None
     )
 
     GhiPostFileMemoryStateDoPosting = Symbol(
-        None, None, None, "GhiPostFileMemoryStateDoPosting", "", None
+        [0x4028C], [0x22FE4AC], None, "GhiPostFileMemoryStateDoPosting", "", None
     )
 
-    GhiPostStateDoPosting = Symbol(None, None, None, "GhiPostStateDoPosting", "", None)
+    GhiPostStateDoPosting = Symbol(
+        [0x40468], [0x22FE688], None, "GhiPostStateDoPosting", "", None
+    )
 
-    GhiPostDoPosting = Symbol(None, None, None, "GhiPostDoPosting", "", None)
+    GhiPostDoPosting = Symbol(
+        [0x40B2C], [0x22FED4C], None, "GhiPostDoPosting", "", None
+    )
 
-    GhiParseUrl = Symbol(None, None, None, "GhiParseUrl", "", None)
+    GhiParseUrl = Symbol([0x40D30], [0x22FEF50], None, "GhiParseUrl", "", None)
 
-    GhiDoSocketInit = Symbol(None, None, None, "GhiDoSocketInit", "", None)
+    GhiDoSocketInit = Symbol([0x40EB0], [0x22FF0D0], None, "GhiDoSocketInit", "", None)
 
-    GhiDoHostLookup = Symbol(None, None, None, "GhiDoHostLookup", "", None)
+    GhiDoHostLookup = Symbol([0x40F48], [0x22FF168], None, "GhiDoHostLookup", "", None)
 
-    GhiDoLookupPending = Symbol(None, None, None, "GhiDoLookupPending", "", None)
+    GhiDoLookupPending = Symbol(
+        [0x41024], [0x22FF244], None, "GhiDoLookupPending", "", None
+    )
 
-    GhiDoConnecting = Symbol(None, None, None, "GhiDoConnecting", "", None)
+    GhiDoConnecting = Symbol([0x410A0], [0x22FF2C0], None, "GhiDoConnecting", "", None)
 
-    GhiDoSecuringSession = Symbol(None, None, None, "GhiDoSecuringSession", "", None)
+    GhiDoSecuringSession = Symbol(
+        [0x41308], [0x22FF528], None, "GhiDoSecuringSession", "", None
+    )
 
-    GhiDoSendingRequest = Symbol(None, None, None, "GhiDoSendingRequest", "", None)
+    GhiDoSendingRequest = Symbol(
+        [0x41474], [0x22FF694], None, "GhiDoSendingRequest", "", None
+    )
 
-    GhiDoPosting = Symbol(None, None, None, "GhiDoPosting", "", None)
+    GhiDoPosting = Symbol([0x4174C], [0x22FF96C], None, "GhiDoPosting", "", None)
 
-    GhiDoWaiting = Symbol(None, None, None, "GhiDoWaiting", "", None)
+    GhiDoWaiting = Symbol([0x4182C], [0x22FFA4C], None, "GhiDoWaiting", "", None)
 
-    GhiParseStatus = Symbol(None, None, None, "GhiParseStatus", "", None)
+    GhiParseStatus = Symbol([0x418DC], [0x22FFAFC], None, "GhiParseStatus", "", None)
 
-    GhiDoReceivingStatus = Symbol(None, None, None, "GhiDoReceivingStatus", "", None)
+    GhiDoReceivingStatus = Symbol(
+        [0x419D8], [0x22FFBF8], None, "GhiDoReceivingStatus", "", None
+    )
 
     GhiDeliverIncomingFileData = Symbol(
-        None, None, None, "GhiDeliverIncomingFileData", "", None
+        [0x41B80], [0x22FFDA0], None, "GhiDeliverIncomingFileData", "", None
     )
 
-    GhiParseChunkSize = Symbol(None, None, None, "GhiParseChunkSize", "", None)
+    GhiParseChunkSize = Symbol(
+        [0x41C40], [0x22FFE60], None, "GhiParseChunkSize", "", None
+    )
 
     GhiAppendToChunkHeaderBuffer = Symbol(
-        None, None, None, "GhiAppendToChunkHeaderBuffer", "", None
+        [0x41C68], [0x22FFE88], None, "GhiAppendToChunkHeaderBuffer", "", None
     )
 
     GhiProcessIncomingFileData = Symbol(
-        None, None, None, "GhiProcessIncomingFileData", "", None
+        [0x41CBC], [0x22FFEDC], None, "GhiProcessIncomingFileData", "", None
     )
 
-    GhiDoReceivingHeaders = Symbol(None, None, None, "GhiDoReceivingHeaders", "", None)
+    GhiDoReceivingHeaders = Symbol(
+        [0x41E44], [0x2300064], None, "GhiDoReceivingHeaders", "", None
+    )
 
-    GhiDoReceivingFile = Symbol(None, None, None, "GhiDoReceivingFile", "", None)
+    GhiDoReceivingFile = Symbol(
+        [0x42364], [0x2300584], None, "GhiDoReceivingFile", "", None
+    )
 
-    GpInitialize = Symbol(None, None, None, "GpInitialize", "", None)
+    GpInitialize = Symbol([0x424B4], [0x23006D4], None, "GpInitialize", "", None)
 
-    GpDestroy = Symbol(None, None, None, "GpDestroy", "", None)
+    GpDestroy = Symbol([0x424E4], [0x2300704], None, "GpDestroy", "", None)
 
-    GpProcess = Symbol(None, None, None, "GpProcess", "", None)
+    GpProcess = Symbol([0x42500], [0x2300720], None, "GpProcess", "", None)
 
-    GpSetCallback = Symbol(None, None, None, "GpSetCallback", "", None)
+    GpSetCallback = Symbol([0x42534], [0x2300754], None, "GpSetCallback", "", None)
 
     GpConnectPreAuthenticatedA = Symbol(
-        None, None, None, "GpConnectPreAuthenticatedA", "", None
+        [0x42584], [0x23007A4], None, "GpConnectPreAuthenticatedA", "", None
     )
 
-    GpDisconnect = Symbol(None, None, None, "GpDisconnect", "", None)
+    GpDisconnect = Symbol([0x42688], [0x23008A8], None, "GpDisconnect", "", None)
 
-    GpProfileSearchA = Symbol(None, None, None, "GpProfileSearchA", "", None)
+    GpProfileSearchA = Symbol(
+        [0x426BC], [0x23008DC], None, "GpProfileSearchA", "", None
+    )
 
-    GpGetInfo = Symbol(None, None, None, "GpGetInfo", "", None)
+    GpGetInfo = Symbol([0x42784], [0x23009A4], None, "GpGetInfo", "", None)
 
-    GpGetInfoNoWait = Symbol(None, None, None, "GpGetInfoNoWait", "", None)
+    GpGetInfoNoWait = Symbol([0x42860], [0x2300A80], None, "GpGetInfoNoWait", "", None)
 
-    GpSendBuddyRequestA = Symbol(None, None, None, "GpSendBuddyRequestA", "", None)
+    GpSendBuddyRequestA = Symbol(
+        [0x428B0], [0x2300AD0], None, "GpSendBuddyRequestA", "", None
+    )
 
-    GpAuthBuddyRequest = Symbol(None, None, None, "GpAuthBuddyRequest", "", None)
+    GpAuthBuddyRequest = Symbol(
+        [0x42A24], [0x2300C44], None, "GpAuthBuddyRequest", "", None
+    )
 
-    GpDenyBuddyRequest = Symbol(None, None, None, "GpDenyBuddyRequest", "", None)
+    GpDenyBuddyRequest = Symbol(
+        [0x42A74], [0x2300C94], None, "GpDenyBuddyRequest", "", None
+    )
 
-    GpGetNumBuddies = Symbol(None, None, None, "GpGetNumBuddies", "", None)
+    GpGetNumBuddies = Symbol([0x42B34], [0x2300D54], None, "GpGetNumBuddies", "", None)
 
-    GpGetBuddyStatus = Symbol(None, None, None, "GpGetBuddyStatus", "", None)
+    GpGetBuddyStatus = Symbol(
+        [0x42B64], [0x2300D84], None, "GpGetBuddyStatus", "", None
+    )
 
-    GpGetBuddyIndex = Symbol(None, None, None, "GpGetBuddyIndex", "", None)
+    GpGetBuddyIndex = Symbol([0x42CF4], [0x2300F14], None, "GpGetBuddyIndex", "", None)
 
-    GpIsBuddy = Symbol(None, None, None, "GpIsBuddy", "", None)
+    GpIsBuddy = Symbol([0x42D94], [0x2300FB4], None, "GpIsBuddy", "", None)
 
-    GpDeleteBuddy = Symbol(None, None, None, "GpDeleteBuddy", "", None)
+    GpDeleteBuddy = Symbol([0x42E0C], [0x230102C], None, "GpDeleteBuddy", "", None)
 
-    GpSetStatusA = Symbol(None, None, None, "GpSetStatusA", "", None)
+    GpSetStatusA = Symbol([0x42E68], [0x2301088], None, "GpSetStatusA", "", None)
 
-    GpSendBuddyMessageA = Symbol(None, None, None, "GpSendBuddyMessageA", "", None)
+    GpSendBuddyMessageA = Symbol(
+        [0x4309C], [0x23012BC], None, "GpSendBuddyMessageA", "", None
+    )
 
     GpGetReversBuddiesList = Symbol(
-        None, None, None, "GpGetReversBuddiesList", "", None
+        [0x43134], [0x2301354], None, "GpGetReversBuddiesList", "", None
     )
 
-    GpiInitialize = Symbol(None, None, None, "GpiInitialize", "", None)
+    GpiInitialize = Symbol([0x431E8], [0x2301408], None, "GpiInitialize", "", None)
 
-    GpiDestroy = Symbol(None, None, None, "GpiDestroy", "", None)
+    GpiDestroy = Symbol([0x43314], [0x2301534], None, "GpiDestroy", "", None)
 
-    GpiResetProfile = Symbol(None, None, None, "GpiResetProfile", "", None)
+    GpiResetProfile = Symbol([0x4337C], [0x230159C], None, "GpiResetProfile", "", None)
 
-    GpiReset = Symbol(None, None, None, "GpiReset", "", None)
+    GpiReset = Symbol([0x4339C], [0x23015BC], None, "GpiReset", "", None)
 
     GpiProcessConnectionManager = Symbol(
-        None, None, None, "GpiProcessConnectionManager", "", None
+        [0x435B8], [0x23017D8], None, "GpiProcessConnectionManager", "", None
     )
 
-    GpiProcess = Symbol(None, None, None, "GpiProcess", "", None)
+    GpiProcess = Symbol([0x43940], [0x2301B60], None, "GpiProcess", "", None)
 
     GpiSendAuthBuddyRequest = Symbol(
-        None, None, None, "GpiSendAuthBuddyRequest", "", None
+        [0x43AB0], [0x2301CD0], None, "GpiSendAuthBuddyRequest", "", None
     )
 
     GpiProcessRecvBuddyMessage = Symbol(
-        None, None, None, "GpiProcessRecvBuddyMessage", "", None
+        [0x43B58], [0x2301D78], None, "GpiProcessRecvBuddyMessage", "", None
     )
 
     GpiProcessRecvBuddyStatusInfo = Symbol(
-        None, None, None, "GpiProcessRecvBuddyStatusInfo", "", None
+        [0x44788], [0x23029A8], None, "GpiProcessRecvBuddyStatusInfo", "", None
     )
 
     GpiSendServerBuddyMessage = Symbol(
-        None, None, None, "GpiSendServerBuddyMessage", "", None
+        [0x44FDC], [0x23031FC], None, "GpiSendServerBuddyMessage", "", None
     )
 
-    GpiSendBuddyMessage = Symbol(None, None, None, "GpiSendBuddyMessage", "", None)
+    GpiSendBuddyMessage = Symbol(
+        [0x450B8], [0x23032D8], None, "GpiSendBuddyMessage", "", None
+    )
 
     GpiBuddyHandleKeyRequest = Symbol(
-        None, None, None, "GpiBuddyHandleKeyRequest", "", None
+        [0x45240], [0x2303460], None, "GpiBuddyHandleKeyRequest", "", None
     )
 
     GpiBuddyHandleKeyReply = Symbol(
-        None, None, None, "GpiBuddyHandleKeyReply", "", None
+        [0x452DC], [0x23034FC], None, "GpiBuddyHandleKeyReply", "", None
     )
 
-    GpiAuthBuddyRequest = Symbol(None, None, None, "GpiAuthBuddyRequest", "", None)
+    GpiAuthBuddyRequest = Symbol(
+        [0x4572C], [0x230394C], None, "GpiAuthBuddyRequest", "", None
+    )
 
-    GpiFixBuddyIndices = Symbol(None, None, None, "GpiFixBuddyIndices", "", None)
+    GpiFixBuddyIndices = Symbol(
+        [0x457F8], [0x2303A18], None, "GpiFixBuddyIndices", "", None
+    )
 
-    GpiDeleteBuddy = Symbol(None, None, None, "GpiDeleteBuddy", "", None)
+    GpiDeleteBuddy = Symbol([0x4583C], [0x2303A5C], None, "GpiDeleteBuddy", "", None)
 
-    GpiAppendCharToBuffer = Symbol(None, None, None, "GpiAppendCharToBuffer", "", None)
+    GpiAppendCharToBuffer = Symbol(
+        [0x45AA8], [0x2303CC8], None, "GpiAppendCharToBuffer", "", None
+    )
 
     GpiAppendStringToBufferLen = Symbol(
-        None, None, None, "GpiAppendStringToBufferLen", "", None
+        [0x45B20], [0x2303D40], None, "GpiAppendStringToBufferLen", "", None
     )
 
     GpiAppendStringToBuffer = Symbol(
-        None, None, None, "GpiAppendStringToBuffer", "", None
+        [0x45BC4], [0x2303DE4], None, "GpiAppendStringToBuffer", "", None
     )
 
-    GpiAppendIntToBuffer = Symbol(None, None, None, "GpiAppendIntToBuffer", "", None)
+    GpiAppendIntToBuffer = Symbol(
+        [0x45BF4], [0x2303E14], None, "GpiAppendIntToBuffer", "", None
+    )
 
-    GpiSendData = Symbol(None, None, None, "GpiSendData", "", None)
+    GpiSendData = Symbol([0x45C2C], [0x2303E4C], None, "GpiSendData", "", None)
 
-    GpiSendOrBufferChar = Symbol(None, None, None, "GpiSendOrBufferChar", "", None)
+    GpiSendOrBufferChar = Symbol(
+        [0x45D08], [0x2303F28], None, "GpiSendOrBufferChar", "", None
+    )
 
     GpiSendOrBufferStringLenToPeer = Symbol(
-        None, None, None, "GpiSendOrBufferStringLenToPeer", "", None
+        [0x45D10], [0x2303F30], None, "GpiSendOrBufferStringLenToPeer", "", None
     )
 
-    GpiSendOrBufferString = Symbol(None, None, None, "GpiSendOrBufferString", "", None)
+    GpiSendOrBufferString = Symbol(
+        [0x45E10], [0x2304030], None, "GpiSendOrBufferString", "", None
+    )
 
-    GpiRecvToBuffer = Symbol(None, None, None, "GpiRecvToBuffer", "", None)
+    GpiRecvToBuffer = Symbol([0x45E40], [0x2304060], None, "GpiRecvToBuffer", "", None)
 
-    GpiSendFromBuffer = Symbol(None, None, None, "GpiSendFromBuffer", "", None)
+    GpiSendFromBuffer = Symbol(
+        [0x45F90], [0x23041B0], None, "GpiSendFromBuffer", "", None
+    )
 
-    GpiSendBufferToPeer = Symbol(None, None, None, "GpiSendBufferToPeer", "", None)
+    GpiSendBufferToPeer = Symbol(
+        [0x4607C], [0x230429C], None, "GpiSendBufferToPeer", "", None
+    )
 
     GpiReadMessageFromBuffer = Symbol(
-        None, None, None, "GpiReadMessageFromBuffer", "", None
+        [0x461E4], [0x2304404], None, "GpiReadMessageFromBuffer", "", None
     )
 
     GpiClipBufferToPosition = Symbol(
-        None, None, None, "GpiClipBufferToPosition", "", None
+        [0x46320], [0x2304540], None, "GpiClipBufferToPosition", "", None
     )
 
-    GpiCallErrorCallback = Symbol(None, None, None, "GpiCallErrorCallback", "", None)
+    GpiCallErrorCallback = Symbol(
+        [0x46378], [0x2304598], None, "GpiCallErrorCallback", "", None
+    )
 
-    GpiAddCallback = Symbol(None, None, None, "GpiAddCallback", "", None)
+    GpiAddCallback = Symbol([0x46400], [0x2304620], None, "GpiAddCallback", "", None)
 
-    GpiCallCallback = Symbol(None, None, None, "GpiCallCallback", "", None)
+    GpiCallCallback = Symbol([0x464A4], [0x23046C4], None, "GpiCallCallback", "", None)
 
-    GpiProcessCallbacks = Symbol(None, None, None, "GpiProcessCallbacks", "", None)
+    GpiProcessCallbacks = Symbol(
+        [0x4673C], [0x230495C], None, "GpiProcessCallbacks", "", None
+    )
 
-    RandomString = Symbol(None, None, None, "RandomString", "", None)
+    RandomString = Symbol([0x46824], [0x2304A44], None, "RandomString", "", None)
 
-    GpiStartConnect = Symbol(None, None, None, "GpiStartConnect", "", None)
+    GpiStartConnect = Symbol([0x4688C], [0x2304AAC], None, "GpiStartConnect", "", None)
 
-    GpiConnect = Symbol(None, None, None, "GpiConnect", "", None)
+    GpiConnect = Symbol([0x46BF0], [0x2304E10], None, "GpiConnect", "", None)
 
-    GpiSendLogin = Symbol(None, None, None, "GpiSendLogin", "", None)
+    GpiSendLogin = Symbol([0x46DEC], [0x230500C], None, "GpiSendLogin", "", None)
 
-    GpiSendNewuser = Symbol(None, None, None, "GpiSendNewuser", "", None)
+    GpiSendNewuser = Symbol([0x47224], [0x2305444], None, "GpiSendNewuser", "", None)
 
-    GpiProcessConnect = Symbol(None, None, None, "GpiProcessConnect", "", None)
+    GpiProcessConnect = Symbol(
+        [0x4746C], [0x230568C], None, "GpiProcessConnect", "", None
+    )
 
-    GpiCheckConnect = Symbol(None, None, None, "GpiCheckConnect", "", None)
+    GpiCheckConnect = Symbol([0x47B40], [0x2305D60], None, "GpiCheckConnect", "", None)
 
     GpiDisconnectCleanupProfile = Symbol(
-        None, None, None, "GpiDisconnectCleanupProfile", "", None
+        [0x47BB4], [0x2305DD4], None, "GpiDisconnectCleanupProfile", "", None
     )
 
-    GpiDisconnect = Symbol(None, None, None, "GpiDisconnect", "", None)
+    GpiDisconnect = Symbol([0x47D24], [0x2305F44], None, "GpiDisconnect", "", None)
 
-    GpiIsValidDate = Symbol(None, None, None, "GpiIsValidDate", "", None)
+    GpiIsValidDate = Symbol([0x47EC4], [0x23060E4], None, "GpiIsValidDate", "", None)
 
-    GpiDateToInt = Symbol(None, None, None, "GpiDateToInt", "", None)
+    GpiDateToInt = Symbol([0x48024], [0x2306244], None, "GpiDateToInt", "", None)
 
-    GpiInfoCacheToArg = Symbol(None, None, None, "GpiInfoCacheToArg", "", None)
+    GpiInfoCacheToArg = Symbol(
+        [0x48094], [0x23062B4], None, "GpiInfoCacheToArg", "", None
+    )
 
-    GpiProcessGetInfo = Symbol(None, None, None, "GpiProcessGetInfo", "", None)
+    GpiProcessGetInfo = Symbol(
+        [0x4828C], [0x23064AC], None, "GpiProcessGetInfo", "", None
+    )
 
-    GpiAddLocalInfo = Symbol(None, None, None, "GpiAddLocalInfo", "", None)
+    GpiAddLocalInfo = Symbol([0x48A78], [0x2306C98], None, "GpiAddLocalInfo", "", None)
 
-    GpiSendLocalInfo = Symbol(None, None, None, "GpiSendLocalInfo", "", None)
+    GpiSendLocalInfo = Symbol(
+        [0x48B60], [0x2306D80], None, "GpiSendLocalInfo", "", None
+    )
 
-    GpiSendUserInfo = Symbol(None, None, None, "GpiSendUserInfo", "", None)
+    GpiSendUserInfo = Symbol([0x48BA0], [0x2306DC0], None, "GpiSendUserInfo", "", None)
 
-    GpiSetInfoi = Symbol(None, None, None, "GpiSetInfoi", "", None)
+    GpiSetInfoi = Symbol([0x48BE0], [0x2306E00], None, "GpiSetInfoi", "", None)
 
-    GpiSetInfos = Symbol(None, None, None, "GpiSetInfos", "", None)
+    GpiSetInfos = Symbol([0x490B0], [0x23072D0], None, "GpiSetInfos", "", None)
 
-    GpiSendGetInfo = Symbol(None, None, None, "GpiSendGetInfo", "", None)
+    GpiSendGetInfo = Symbol([0x49898], [0x2307AB8], None, "GpiSendGetInfo", "", None)
 
-    GpiGetInfo = Symbol(None, None, None, "GpiGetInfo", "", None)
+    GpiGetInfo = Symbol([0x49930], [0x2307B50], None, "GpiGetInfo", "", None)
 
-    GpiSetInfoCache = Symbol(None, None, None, "GpiSetInfoCache", "", None)
+    GpiSetInfoCache = Symbol([0x49AD4], [0x2307CF4], None, "GpiSetInfoCache", "", None)
 
-    GpiFreeInfoCache = Symbol(None, None, None, "GpiFreeInfoCache", "", None)
+    GpiFreeInfoCache = Symbol(
+        [0x49BAC], [0x2307DCC], None, "GpiFreeInfoCache", "", None
+    )
 
-    GpiStatusInfoKeyFree = Symbol(None, None, None, "GpiStatusInfoKeyFree", "", None)
+    GpiStatusInfoKeyFree = Symbol(
+        [0x49C78], [0x2307E98], None, "GpiStatusInfoKeyFree", "", None
+    )
 
-    GpiStatusInfoKeysInit = Symbol(None, None, None, "GpiStatusInfoKeysInit", "", None)
+    GpiStatusInfoKeysInit = Symbol(
+        [0x49CA4], [0x2307EC4], None, "GpiStatusInfoKeysInit", "", None
+    )
 
     GpiStatusInfoKeysDestroy = Symbol(
-        None, None, None, "GpiStatusInfoKeysDestroy", "", None
+        [0x49CEC], [0x2307F0C], None, "GpiStatusInfoKeysDestroy", "", None
     )
 
     GpiStatusInfoKeyCompFunc = Symbol(
-        None, None, None, "GpiStatusInfoKeyCompFunc", "", None
+        [0x49D10], [0x2307F30], None, "GpiStatusInfoKeyCompFunc", "", None
     )
 
-    GpiStatusInfoAddKey = Symbol(None, None, None, "GpiStatusInfoAddKey", "", None)
+    GpiStatusInfoAddKey = Symbol(
+        [0x49D24], [0x2307F44], None, "GpiStatusInfoAddKey", "", None
+    )
 
-    GpiStatusInfoSetKey = Symbol(None, None, None, "GpiStatusInfoSetKey", "", None)
+    GpiStatusInfoSetKey = Symbol(
+        [0x49DAC], [0x2307FCC], None, "GpiStatusInfoSetKey", "", None
+    )
 
-    GpiStatusInfoCheckKey = Symbol(None, None, None, "GpiStatusInfoCheckKey", "", None)
+    GpiStatusInfoCheckKey = Symbol(
+        [0x49E50], [0x2308070], None, "GpiStatusInfoCheckKey", "", None
+    )
 
-    GpiSaveKeysToBuffer = Symbol(None, None, None, "GpiSaveKeysToBuffer", "", None)
+    GpiSaveKeysToBuffer = Symbol(
+        [0x49EE4], [0x2308104], None, "GpiSaveKeysToBuffer", "", None
+    )
 
-    GpiFailedOpCallback = Symbol(None, None, None, "GpiFailedOpCallback", "", None)
+    GpiFailedOpCallback = Symbol(
+        [0x4A210], [0x2308430], None, "GpiFailedOpCallback", "", None
+    )
 
-    GpiAddOperation = Symbol(None, None, None, "GpiAddOperation", "", None)
+    GpiAddOperation = Symbol([0x4A5C8], [0x23087E8], None, "GpiAddOperation", "", None)
 
-    GpiDestroyOperation = Symbol(None, None, None, "GpiDestroyOperation", "", None)
+    GpiDestroyOperation = Symbol(
+        [0x4A680], [0x23088A0], None, "GpiDestroyOperation", "", None
+    )
 
-    GpiRemoveOperation = Symbol(None, None, None, "GpiRemoveOperation", "", None)
+    GpiRemoveOperation = Symbol(
+        [0x4A6F8], [0x2308918], None, "GpiRemoveOperation", "", None
+    )
 
-    GpiFindOperationByID = Symbol(None, None, None, "GpiFindOperationByID", "", None)
+    GpiFindOperationByID = Symbol(
+        [0x4A748], [0x2308968], None, "GpiFindOperationByID", "", None
+    )
 
     GpiOperationsAreBlocking = Symbol(
-        None, None, None, "GpiOperationsAreBlocking", "", None
+        [0x4A794], [0x23089B4], None, "GpiOperationsAreBlocking", "", None
     )
 
-    GpiProcessOperation = Symbol(None, None, None, "GpiProcessOperation", "", None)
+    GpiProcessOperation = Symbol(
+        [0x4A7D0], [0x23089F0], None, "GpiProcessOperation", "", None
+    )
 
     GpiProcessPeerInitiatingConnection = Symbol(
-        None, None, None, "GpiProcessPeerInitiatingConnection", "", None
+        [0x4A85C], [0x2308A7C], None, "GpiProcessPeerInitiatingConnection", "", None
     )
 
     GpiProcessPeerAcceptingConnection = Symbol(
-        None, None, None, "GpiProcessPeerAcceptingConnection", "", None
+        [0x4AB6C], [0x2308D8C], None, "GpiProcessPeerAcceptingConnection", "", None
     )
 
-    GpiPeerSendMessages = Symbol(None, None, None, "GpiPeerSendMessages", "", None)
+    GpiPeerSendMessages = Symbol(
+        [0x4ADB0], [0x2308FD0], None, "GpiPeerSendMessages", "", None
+    )
 
     GpiProcessPeerConnected = Symbol(
-        None, None, None, "GpiProcessPeerConnected", "", None
+        [0x4AE88], [0x23090A8], None, "GpiProcessPeerConnected", "", None
     )
 
     GpiCheckTimedOutPeerOperations = Symbol(
-        None, None, None, "GpiCheckTimedOutPeerOperations", "", None
+        [0x4B204], [0x2309424], None, "GpiCheckTimedOutPeerOperations", "", None
     )
 
-    GpiProcessPeer = Symbol(None, None, None, "GpiProcessPeer", "", None)
+    GpiProcessPeer = Symbol([0x4B2CC], [0x23094EC], None, "GpiProcessPeer", "", None)
 
-    GpiDestroyPeer = Symbol(None, None, None, "GpiDestroyPeer", "", None)
+    GpiDestroyPeer = Symbol([0x4B348], [0x2309568], None, "GpiDestroyPeer", "", None)
 
-    GpiRemovePeer = Symbol(None, None, None, "GpiRemovePeer", "", None)
+    GpiRemovePeer = Symbol([0x4B394], [0x23095B4], None, "GpiRemovePeer", "", None)
 
-    GpiProcessPeers = Symbol(None, None, None, "GpiProcessPeers", "", None)
+    GpiProcessPeers = Symbol([0x4B460], [0x2309680], None, "GpiProcessPeers", "", None)
 
-    GpiGetPeerByProfile = Symbol(None, None, None, "GpiGetPeerByProfile", "", None)
+    GpiGetPeerByProfile = Symbol(
+        [0x4B4EC], [0x230970C], None, "GpiGetPeerByProfile", "", None
+    )
 
-    GpiGetPeerByAddr = Symbol(None, None, None, "GpiGetPeerByAddr", "", None)
+    GpiGetPeerByAddr = Symbol(
+        [0x4B51C], [0x230973C], None, "GpiGetPeerByAddr", "", None
+    )
 
-    GpiFreeMessage = Symbol(None, None, None, "GpiFreeMessage", "", None)
+    GpiFreeMessage = Symbol([0x4B564], [0x2309784], None, "GpiFreeMessage", "", None)
 
-    GpiAddPeer = Symbol(None, None, None, "GpiAddPeer", "", None)
+    GpiAddPeer = Symbol([0x4B580], [0x23097A0], None, "GpiAddPeer", "", None)
 
-    GpiPeerGetSig = Symbol(None, None, None, "GpiPeerGetSig", "", None)
+    GpiPeerGetSig = Symbol([0x4B60C], [0x230982C], None, "GpiPeerGetSig", "", None)
 
-    GpiPeerStartConnect = Symbol(None, None, None, "GpiPeerStartConnect", "", None)
+    GpiPeerStartConnect = Symbol(
+        [0x4B670], [0x2309890], None, "GpiPeerStartConnect", "", None
+    )
 
-    GpiPeerAddMessage = Symbol(None, None, None, "GpiPeerAddMessage", "", None)
+    GpiPeerAddMessage = Symbol(
+        [0x4B770], [0x2309990], None, "GpiPeerAddMessage", "", None
+    )
 
     GpiPeerStartTransferMessage = Symbol(
-        None, None, None, "GpiPeerStartTransferMessage", "", None
+        [0x4B8D8], [0x2309AF8], None, "GpiPeerStartTransferMessage", "", None
     )
 
     GpiPeerFinishTransferMessage = Symbol(
-        None, None, None, "GpiPeerFinishTransferMessage", "", None
+        [0x4B934], [0x2309B54], None, "GpiPeerFinishTransferMessage", "", None
     )
 
-    GpiPeerLeftCallback = Symbol(None, None, None, "GpiPeerLeftCallback", "", None)
+    GpiPeerLeftCallback = Symbol(
+        [0x4BA08], [0x2309C28], None, "GpiPeerLeftCallback", "", None
+    )
 
     GpiPeerMessageCallback = Symbol(
-        None, None, None, "GpiPeerMessageCallback", "", None
+        [0x4BA30], [0x2309C50], None, "GpiPeerMessageCallback", "", None
     )
 
     GpiPeerAcceptedCallback = Symbol(
-        None, None, None, "GpiPeerAcceptedCallback", "", None
+        [0x4BB28], [0x2309D48], None, "GpiPeerAcceptedCallback", "", None
     )
 
     GpiPeerPingReplyCallback = Symbol(
-        None, None, None, "GpiPeerPingReplyCallback", "", None
+        [0x4BB58], [0x2309D78], None, "GpiPeerPingReplyCallback", "", None
     )
 
-    GpiPeerAddOp = Symbol(None, None, None, "GpiPeerAddOp", "", None)
+    GpiPeerAddOp = Symbol([0x4BB5C], [0x2309D7C], None, "GpiPeerAddOp", "", None)
 
-    GpiPeerRemoveOp = Symbol(None, None, None, "GpiPeerRemoveOp", "", None)
+    GpiPeerRemoveOp = Symbol([0x4BBA4], [0x2309DC4], None, "GpiPeerRemoveOp", "", None)
 
-    GpiProfilesTableHash = Symbol(None, None, None, "GpiProfilesTableHash", "", None)
+    GpiProfilesTableHash = Symbol(
+        [0x4BC38], [0x2309E58], None, "GpiProfilesTableHash", "", None
+    )
 
     GpiProfilesTableCompare = Symbol(
-        None, None, None, "GpiProfilesTableCompare", "", None
+        [0x4BC4C], [0x2309E6C], None, "GpiProfilesTableCompare", "", None
     )
 
-    GpiProfilesTableFree = Symbol(None, None, None, "GpiProfilesTableFree", "", None)
+    GpiProfilesTableFree = Symbol(
+        [0x4BC5C], [0x2309E7C], None, "GpiProfilesTableFree", "", None
+    )
 
-    GpiInitProfiles = Symbol(None, None, None, "GpiInitProfiles", "", None)
+    GpiInitProfiles = Symbol([0x4BD70], [0x2309F90], None, "GpiInitProfiles", "", None)
 
-    GpiProcessNewProfile = Symbol(None, None, None, "GpiProcessNewProfile", "", None)
+    GpiProcessNewProfile = Symbol(
+        [0x4BDC8], [0x2309FE8], None, "GpiProcessNewProfile", "", None
+    )
 
-    GpiProfileListAdd = Symbol(None, None, None, "GpiProfileListAdd", "", None)
+    GpiProfileListAdd = Symbol(
+        [0x4BF28], [0x230A148], None, "GpiProfileListAdd", "", None
+    )
 
-    GpiGetProfile = Symbol(None, None, None, "GpiGetProfile", "", None)
+    GpiGetProfile = Symbol([0x4BFD8], [0x230A1F8], None, "GpiGetProfile", "", None)
 
     GpiProcessDeleteProfle = Symbol(
-        None, None, None, "GpiProcessDeleteProfle", "", None
+        [0x4C014], [0x230A234], None, "GpiProcessDeleteProfle", "", None
     )
 
-    GpiRemoveProfileByID = Symbol(None, None, None, "GpiRemoveProfileByID", "", None)
+    GpiRemoveProfileByID = Symbol(
+        [0x4C124], [0x230A344], None, "GpiRemoveProfileByID", "", None
+    )
 
-    GpiRemoveProfile = Symbol(None, None, None, "GpiRemoveProfile", "", None)
+    GpiRemoveProfile = Symbol(
+        [0x4C158], [0x230A378], None, "GpiRemoveProfile", "", None
+    )
 
     GpiCheckProfileForUser = Symbol(
-        None, None, None, "GpiCheckProfileForUser", "", None
+        [0x4C16C], [0x230A38C], None, "GpiCheckProfileForUser", "", None
     )
 
-    GpiFindProfileByUser = Symbol(None, None, None, "GpiFindProfileByUser", "", None)
+    GpiFindProfileByUser = Symbol(
+        [0x4C1CC], [0x230A3EC], None, "GpiFindProfileByUser", "", None
+    )
 
-    GpiProfileMapCallback = Symbol(None, None, None, "GpiProfileMapCallback", "", None)
+    GpiProfileMapCallback = Symbol(
+        [0x4C218], [0x230A438], None, "GpiProfileMapCallback", "", None
+    )
 
-    GpiProfileMap = Symbol(None, None, None, "GpiProfileMap", "", None)
+    GpiProfileMap = Symbol([0x4C234], [0x230A454], None, "GpiProfileMap", "", None)
 
-    GpiCheckForBuddy = Symbol(None, None, None, "GpiCheckForBuddy", "", None)
+    GpiCheckForBuddy = Symbol(
+        [0x4C274], [0x230A494], None, "GpiCheckForBuddy", "", None
+    )
 
-    GpiFindBuddy = Symbol(None, None, None, "GpiFindBuddy", "", None)
+    GpiFindBuddy = Symbol([0x4C2C4], [0x230A4E4], None, "GpiFindBuddy", "", None)
 
-    GpiRemoveBuddyStatus = Symbol(None, None, None, "GpiRemoveBuddyStatus", "", None)
+    GpiRemoveBuddyStatus = Symbol(
+        [0x4C2F4], [0x230A514], None, "GpiRemoveBuddyStatus", "", None
+    )
 
     GpiRemoveBuddyStatusInfo = Symbol(
-        None, None, None, "GpiRemoveBuddyStatusInfo", "", None
+        [0x4C328], [0x230A548], None, "GpiRemoveBuddyStatusInfo", "", None
     )
 
-    GpiCanFreeProfile = Symbol(None, None, None, "GpiCanFreeProfile", "", None)
+    GpiCanFreeProfile = Symbol(
+        [0x4C38C], [0x230A5AC], None, "GpiCanFreeProfile", "", None
+    )
 
-    GpiStartProfileSearch = Symbol(None, None, None, "GpiStartProfileSearch", "", None)
+    GpiStartProfileSearch = Symbol(
+        [0x4C3CC], [0x230A5EC], None, "GpiStartProfileSearch", "", None
+    )
 
-    GpiInitSearchData = Symbol(None, None, None, "GpiInitSearchData", "", None)
+    GpiInitSearchData = Symbol(
+        [0x4C5A8], [0x230A7C8], None, "GpiInitSearchData", "", None
+    )
 
-    GpiStartSearch = Symbol(None, None, None, "GpiStartSearch", "", None)
+    GpiStartSearch = Symbol([0x4C658], [0x230A878], None, "GpiStartSearch", "", None)
 
-    GpiProfileSearch = Symbol(None, None, None, "GpiProfileSearch", "", None)
+    GpiProfileSearch = Symbol(
+        [0x4C6E8], [0x230A908], None, "GpiProfileSearch", "", None
+    )
 
-    GpiOthersBuddyList = Symbol(None, None, None, "GpiOthersBuddyList", "", None)
+    GpiOthersBuddyList = Symbol(
+        [0x4C8D4], [0x230AAF4], None, "GpiOthersBuddyList", "", None
+    )
 
-    GpiProcessSearch = Symbol(None, None, None, "GpiProcessSearch", "", None)
+    GpiProcessSearch = Symbol(
+        [0x4C940], [0x230AB60], None, "GpiProcessSearch", "", None
+    )
 
-    GpiProcessSearches = Symbol(None, None, None, "GpiProcessSearches", "", None)
+    GpiProcessSearches = Symbol(
+        [0x4EA74], [0x230CC94], None, "GpiProcessSearches", "", None
+    )
 
-    GpiSendTransferReply = Symbol(None, None, None, "GpiSendTransferReply", "", None)
+    GpiSendTransferReply = Symbol(
+        [0x4EB8C], [0x230CDAC], None, "GpiSendTransferReply", "", None
+    )
 
     GpiHandleTransferMessage = Symbol(
-        None, None, None, "GpiHandleTransferMessage", "", None
+        [0x4EC30], [0x230CE50], None, "GpiHandleTransferMessage", "", None
     )
 
     GpiProcessRegisterUniqueNick = Symbol(
-        None, None, None, "GpiProcessRegisterUniqueNick", "", None
+        [0x4ECB4], [0x230CED4], None, "GpiProcessRegisterUniqueNick", "", None
     )
 
     GpiProcessRegisterCdKey = Symbol(
-        None, None, None, "GpiProcessRegisterCdKey", "", None
+        [0x4EDB8], [0x230CFD8], None, "GpiProcessRegisterCdKey", "", None
     )
 
-    strzcpy_gsi = Symbol(None, None, None, "strzcpy_gsi", "", None)
+    strzcpy_gsi = Symbol([0x4EEBC], [0x230D0DC], None, "strzcpy_gsi", "", None)
 
-    GpiCheckForError = Symbol(None, None, None, "GpiCheckForError", "", None)
+    GpiCheckForError = Symbol(
+        [0x4EEDC], [0x230D0FC], None, "GpiCheckForError", "", None
+    )
 
-    GpiValueForKey = Symbol(None, None, None, "GpiValueForKey", "", None)
+    GpiValueForKey = Symbol([0x4EFB4], [0x230D1D4], None, "GpiValueForKey", "", None)
 
-    GpiCheckSocketConnect = Symbol(None, None, None, "GpiCheckSocketConnect", "", None)
+    GpiCheckSocketConnect = Symbol(
+        [0x4F020], [0x230D240], None, "GpiCheckSocketConnect", "", None
+    )
 
-    GpiReadKeyAndValue = Symbol(None, None, None, "GpiReadKeyAndValue", "", None)
+    GpiReadKeyAndValue = Symbol(
+        [0x4F0E4], [0x230D304], None, "GpiReadKeyAndValue", "", None
+    )
 
-    GpiSetError = Symbol(None, None, None, "GpiSetError", "", None)
+    GpiSetError = Symbol([0x4F234], [0x230D454], None, "GpiSetError", "", None)
 
-    GpiSetErrorString = Symbol(None, None, None, "GpiSetErrorString", "", None)
+    GpiSetErrorString = Symbol(
+        [0x4F258], [0x230D478], None, "GpiSetErrorString", "", None
+    )
 
     GpiEncodeString = Symbol(
         [0x4F26C],
@@ -24661,847 +25338,1102 @@ class JpOverlay0Functions:
         None,
     )
 
-    BucketNew = Symbol(None, None, None, "BucketNew", "", None)
+    BucketNew = Symbol([0x4F2F4], [0x230D514], None, "BucketNew", "", None)
 
-    BucketSet = Symbol(None, None, None, "BucketSet", "", None)
+    BucketSet = Symbol([0x4F368], [0x230D588], None, "BucketSet", "", None)
 
-    BucketAdd_Gsi = Symbol(None, None, None, "BucketAdd_Gsi", "", None)
+    BucketAdd_Gsi = Symbol([0x4F394], [0x230D5B4], None, "BucketAdd_Gsi", "", None)
 
-    BucketSub_Gsi = Symbol(None, None, None, "BucketSub_Gsi", "", None)
+    BucketSub_Gsi = Symbol([0x4F428], [0x230D648], None, "BucketSub_Gsi", "", None)
 
-    BucketMult_Gsi = Symbol(None, None, None, "BucketMult_Gsi", "", None)
+    BucketMult_Gsi = Symbol([0x4F4AC], [0x230D6CC], None, "BucketMult_Gsi", "", None)
 
-    BucketDiv_Gsi = Symbol(None, None, None, "BucketDiv_Gsi", "", None)
+    BucketDiv_Gsi = Symbol([0x4F52C], [0x230D74C], None, "BucketDiv_Gsi", "", None)
 
-    BucketConcat_Gsi = Symbol(None, None, None, "BucketConcat_Gsi", "", None)
-
-    BucketAvg_Gsi = Symbol(None, None, None, "BucketAvg_Gsi", "", None)
-
-    bint = Symbol(None, None, None, "bint", "", None)
-
-    bfloat = Symbol(None, None, None, "bfloat", "", None)
-
-    DumpMap_Gsi = Symbol(None, None, None, "DumpMap_Gsi", "", None)
-
-    DoSet_Gsi = Symbol(None, None, None, "DoSet_Gsi", "", None)
-
-    DoGet_Gsi = Symbol(None, None, None, "DoGet_Gsi", "", None)
-
-    DoFind_Gsi = Symbol(None, None, None, "DoFind_Gsi", "", None)
-
-    CloseStatsConnection = Symbol(None, None, None, "CloseStatsConnection", "", None)
-
-    IsStatsConnected = Symbol(None, None, None, "IsStatsConnected", "", None)
-
-    PersistThink = Symbol(None, None, None, "PersistThink", "", None)
-
-    xcode_buf = Symbol(None, None, None, "xcode_buf", "", None)
-
-    value_for_key = Symbol(None, None, None, "value_for_key", "", None)
-
-    value_for_key_safe = Symbol(None, None, None, "value_for_key_safe", "", None)
-
-    SocketReadable = Symbol(None, None, None, "SocketReadable", "", None)
-
-    FindFinal = Symbol(None, None, None, "FindFinal", "", None)
-
-    FindRequest = Symbol(None, None, None, "FindRequest", "", None)
-
-    ProcessPlayerAuth = Symbol(None, None, None, "ProcessPlayerAuth", "", None)
-
-    ProcessGetPid = Symbol(None, None, None, "ProcessGetPid", "", None)
-
-    ProcessGetData = Symbol(None, None, None, "ProcessGetData", "", None)
-
-    ProcessSetData = Symbol(None, None, None, "ProcessSetData", "", None)
-
-    ProcessStatement = Symbol(None, None, None, "ProcessStatement", "", None)
-
-    ProcessInBuffer = Symbol(None, None, None, "ProcessInBuffer", "", None)
-
-    CallReqCallback = Symbol(None, None, None, "CallReqCallback", "", None)
-
-    ClosePendingCallbacks = Symbol(None, None, None, "ClosePendingCallbacks", "", None)
-
-    GetTeamIndex_Gsi = Symbol(None, None, None, "GetTeamIndex_Gsi", "", None)
-
-    GetPlayerIndex_Gsi = Symbol(None, None, None, "GetPlayerIndex_Gsi", "", None)
-
-    ServerOpInt = Symbol(None, None, None, "ServerOpInt", "", None)
-
-    ServerOpFloat = Symbol(None, None, None, "ServerOpFloat", "", None)
-
-    ServerOpString = Symbol(None, None, None, "ServerOpString", "", None)
-
-    TeamOpInt = Symbol(None, None, None, "TeamOpInt", "", None)
-
-    TeamOpFloat = Symbol(None, None, None, "TeamOpFloat", "", None)
-
-    TeamOpString = Symbol(None, None, None, "TeamOpString", "", None)
-
-    PlayerOpInt = Symbol(None, None, None, "PlayerOpInt", "", None)
-
-    PlayerOpFloat = Symbol(None, None, None, "PlayerOpFloat", "", None)
-
-    PlayerOpString = Symbol(None, None, None, "PlayerOpString", "", None)
-
-    Gti2VerifyChallenge = Symbol(None, None, None, "Gti2VerifyChallenge", "", None)
-
-    Gti2GetChallenge = Symbol(None, None, None, "Gti2GetChallenge", "", None)
-
-    Gti2GetResponse = Symbol(None, None, None, "Gti2GetResponse", "", None)
-
-    Gti2CheckResponse = Symbol(None, None, None, "Gti2CheckResponse", "", None)
-
-    Gti2AllocateBuffer = Symbol(None, None, None, "Gti2AllocateBuffer", "", None)
-
-    Gti2GetBufferFreeSpace = Symbol(
-        None, None, None, "Gti2GetBufferFreeSpace", "", None
+    BucketConcat_Gsi = Symbol(
+        [0x4F5B0], [0x230D7D0], None, "BucketConcat_Gsi", "", None
     )
 
-    Gti2BufferWriteByte = Symbol(None, None, None, "Gti2BufferWriteByte", "", None)
+    BucketAvg_Gsi = Symbol([0x4F624], [0x230D844], None, "BucketAvg_Gsi", "", None)
 
-    Gti2BufferWriteUShort = Symbol(None, None, None, "Gti2BufferWriteUShort", "", None)
+    bint = Symbol([0x4F6F8], [0x230D918], None, "bint", "", None)
 
-    Gti2BufferWriteData = Symbol(None, None, None, "Gti2BufferWriteData", "", None)
+    bfloat = Symbol([0x4F710], [0x230D930], None, "bfloat", "", None)
 
-    Gti2BufferShorten = Symbol(None, None, None, "Gti2BufferShorten", "", None)
+    DumpMap_Gsi = Symbol([0x4F72C], [0x230D94C], None, "DumpMap_Gsi", "", None)
+
+    DoSet_Gsi = Symbol([0x4F75C], [0x230D97C], None, "DoSet_Gsi", "", None)
+
+    DoGet_Gsi = Symbol([0x4F7D8], [0x230D9F8], None, "DoGet_Gsi", "", None)
+
+    DoFind_Gsi = Symbol([0x4F7F8], [0x230DA18], None, "DoFind_Gsi", "", None)
+
+    CloseStatsConnection = Symbol(
+        [0x4F828], [0x230DA48], None, "CloseStatsConnection", "", None
+    )
+
+    IsStatsConnected = Symbol(
+        [0x4F898], [0x230DAB8], None, "IsStatsConnected", "", None
+    )
+
+    PersistThink = Symbol([0x4F8B8], [0x230DAD8], None, "PersistThink", "", None)
+
+    xcode_buf = Symbol([0x4FA08], [0x230DC28], None, "xcode_buf", "", None)
+
+    value_for_key = Symbol([0x4FA50], [0x230DC70], None, "value_for_key", "", None)
+
+    value_for_key_safe = Symbol(
+        [0x4FB24], [0x230DD44], None, "value_for_key_safe", "", None
+    )
+
+    SocketReadable = Symbol([0x4FB3C], [0x230DD5C], None, "SocketReadable", "", None)
+
+    FindFinal = Symbol([0x4FB48], [0x230DD68], None, "FindFinal", "", None)
+
+    FindRequest = Symbol([0x4FBB0], [0x230DDD0], None, "FindRequest", "", None)
+
+    ProcessPlayerAuth = Symbol(
+        [0x4FC34], [0x230DE54], None, "ProcessPlayerAuth", "", None
+    )
+
+    ProcessGetPid = Symbol([0x4FCE4], [0x230DF04], None, "ProcessGetPid", "", None)
+
+    ProcessGetData = Symbol([0x4FD70], [0x230DF90], None, "ProcessGetData", "", None)
+
+    ProcessSetData = Symbol([0x4FE54], [0x230E074], None, "ProcessSetData", "", None)
+
+    ProcessStatement = Symbol(
+        [0x4FEEC], [0x230E10C], None, "ProcessStatement", "", None
+    )
+
+    ProcessInBuffer = Symbol([0x4FFD4], [0x230E1F4], None, "ProcessInBuffer", "", None)
+
+    CallReqCallback = Symbol([0x5005C], [0x230E27C], None, "CallReqCallback", "", None)
+
+    ClosePendingCallbacks = Symbol(
+        [0x50160], [0x230E380], None, "ClosePendingCallbacks", "", None
+    )
+
+    GetTeamIndex_Gsi = Symbol(
+        [0x50254], [0x230E474], None, "GetTeamIndex_Gsi", "", None
+    )
+
+    GetPlayerIndex_Gsi = Symbol(
+        [0x50284], [0x230E4A4], None, "GetPlayerIndex_Gsi", "", None
+    )
+
+    ServerOpInt = Symbol([0x502B4], [0x230E4D4], None, "ServerOpInt", "", None)
+
+    ServerOpFloat = Symbol([0x5031C], [0x230E53C], None, "ServerOpFloat", "", None)
+
+    ServerOpString = Symbol([0x5038C], [0x230E5AC], None, "ServerOpString", "", None)
+
+    TeamOpInt = Symbol([0x503E8], [0x230E608], None, "TeamOpInt", "", None)
+
+    TeamOpFloat = Symbol([0x50444], [0x230E664], None, "TeamOpFloat", "", None)
+
+    TeamOpString = Symbol([0x504A4], [0x230E6C4], None, "TeamOpString", "", None)
+
+    PlayerOpInt = Symbol([0x50500], [0x230E720], None, "PlayerOpInt", "", None)
+
+    PlayerOpFloat = Symbol([0x5055C], [0x230E77C], None, "PlayerOpFloat", "", None)
+
+    PlayerOpString = Symbol([0x505BC], [0x230E7DC], None, "PlayerOpString", "", None)
+
+    Gti2VerifyChallenge = Symbol(
+        [0x50618], [0x230E838], None, "Gti2VerifyChallenge", "", None
+    )
+
+    Gti2GetChallenge = Symbol(
+        [0x506B4], [0x230E8D4], None, "Gti2GetChallenge", "", None
+    )
+
+    Gti2GetResponse = Symbol([0x507AC], [0x230E9CC], None, "Gti2GetResponse", "", None)
+
+    Gti2CheckResponse = Symbol(
+        [0x508B4], [0x230EAD4], None, "Gti2CheckResponse", "", None
+    )
+
+    Gti2AllocateBuffer = Symbol(
+        [0x508E8], [0x230EB08], None, "Gti2AllocateBuffer", "", None
+    )
+
+    Gti2GetBufferFreeSpace = Symbol(
+        [0x50914], [0x230EB34], None, "Gti2GetBufferFreeSpace", "", None
+    )
+
+    Gti2BufferWriteByte = Symbol(
+        [0x50924], [0x230EB44], None, "Gti2BufferWriteByte", "", None
+    )
+
+    Gti2BufferWriteUShort = Symbol(
+        [0x5093C], [0x230EB5C], None, "Gti2BufferWriteUShort", "", None
+    )
+
+    Gti2BufferWriteData = Symbol(
+        [0x5096C], [0x230EB8C], None, "Gti2BufferWriteData", "", None
+    )
+
+    Gti2BufferShorten = Symbol(
+        [0x509C4], [0x230EBE4], None, "Gti2BufferShorten", "", None
+    )
 
     Gti2SocketErrorCallback = Symbol(
-        None, None, None, "Gti2SocketErrorCallback", "", None
+        [0x50A0C], [0x230EC2C], None, "Gti2SocketErrorCallback", "", None
     )
 
     Gti2ConnectAttemptCallback = Symbol(
-        None, None, None, "Gti2ConnectAttemptCallback", "", None
+        [0x50A7C], [0x230EC9C], None, "Gti2ConnectAttemptCallback", "", None
     )
 
-    Gti2ConnectedCallback = Symbol(None, None, None, "Gti2ConnectedCallback", "", None)
+    Gti2ConnectedCallback = Symbol(
+        [0x50B5C], [0x230ED7C], None, "Gti2ConnectedCallback", "", None
+    )
 
-    Gti2ReceivedCallback = Symbol(None, None, None, "Gti2ReceivedCallback", "", None)
+    Gti2ReceivedCallback = Symbol(
+        [0x50C04], [0x230EE24], None, "Gti2ReceivedCallback", "", None
+    )
 
-    Gti2ClosedCallback = Symbol(None, None, None, "Gti2ClosedCallback", "", None)
+    Gti2ClosedCallback = Symbol(
+        [0x50CA8], [0x230EEC8], None, "Gti2ClosedCallback", "", None
+    )
 
-    Gti2PingCallback = Symbol(None, None, None, "Gti2PingCallback", "", None)
+    Gti2PingCallback = Symbol(
+        [0x50D38], [0x230EF58], None, "Gti2PingCallback", "", None
+    )
 
     Gti2SendFilterCallback = Symbol(
-        None, None, None, "Gti2SendFilterCallback", "", None
+        [0x50DC8], [0x230EFE8], None, "Gti2SendFilterCallback", "", None
     )
 
     Gti2ReceiveFilterCallback = Symbol(
-        None, None, None, "Gti2ReceiveFilterCallback", "", None
+        [0x50E90], [0x230F0B0], None, "Gti2ReceiveFilterCallback", "", None
     )
 
-    Gti2DumpCallback = Symbol(None, None, None, "Gti2DumpCallback", "", None)
+    Gti2DumpCallback = Symbol(
+        [0x50F58], [0x230F178], None, "Gti2DumpCallback", "", None
+    )
 
     Gti2UnrecognizedMessageCallback = Symbol(
-        None, None, None, "Gti2UnrecognizedMessageCallback", "", None
+        [0x51044], [0x230F264], None, "Gti2UnrecognizedMessageCallback", "", None
     )
 
     Gti2NewOutgoingConnection = Symbol(
-        None, None, None, "Gti2NewOutgoingConnection", "", None
+        [0x510E4], [0x230F304], None, "Gti2NewOutgoingConnection", "", None
     )
 
     Gti2NewIncomingConnection = Symbol(
-        None, None, None, "Gti2NewIncomingConnection", "", None
+        [0x51114], [0x230F334], None, "Gti2NewIncomingConnection", "", None
     )
 
     Gti2StartConnectionAttempt = Symbol(
-        None, None, None, "Gti2StartConnectionAttempt", "", None
+        [0x51144], [0x230F364], None, "Gti2StartConnectionAttempt", "", None
     )
 
-    Gti2AcceptConnection = Symbol(None, None, None, "Gti2AcceptConnection", "", None)
+    Gti2AcceptConnection = Symbol(
+        [0x511EC], [0x230F40C], None, "Gti2AcceptConnection", "", None
+    )
 
-    Gti2RejectConnection = Symbol(None, None, None, "Gti2RejectConnection", "", None)
+    Gti2RejectConnection = Symbol(
+        [0x51248], [0x230F468], None, "Gti2RejectConnection", "", None
+    )
 
     Gti2ConnectionSendData = Symbol(
-        None, None, None, "Gti2ConnectionSendData", "", None
+        [0x512A0], [0x230F4C0], None, "Gti2ConnectionSendData", "", None
     )
 
-    Gti2CheckTimeout = Symbol(None, None, None, "Gti2CheckTimeout", "", None)
+    Gti2CheckTimeout = Symbol(
+        [0x512E8], [0x230F508], None, "Gti2CheckTimeout", "", None
+    )
 
-    Gti2SendRetries = Symbol(None, None, None, "Gti2SendRetries", "", None)
+    Gti2SendRetries = Symbol([0x5138C], [0x230F5AC], None, "Gti2SendRetries", "", None)
 
-    Gti2CheckPendingAck = Symbol(None, None, None, "Gti2CheckPendingAck", "", None)
+    Gti2CheckPendingAck = Symbol(
+        [0x513F8], [0x230F618], None, "Gti2CheckPendingAck", "", None
+    )
 
-    Gti2CheckKeepAlive = Symbol(None, None, None, "Gti2CheckKeepAlive", "", None)
+    Gti2CheckKeepAlive = Symbol(
+        [0x51434], [0x230F654], None, "Gti2CheckKeepAlive", "", None
+    )
 
-    Gti2ConnectionThink = Symbol(None, None, None, "Gti2ConnectionThink", "", None)
+    Gti2ConnectionThink = Symbol(
+        [0x51468], [0x230F688], None, "Gti2ConnectionThink", "", None
+    )
 
-    Gti2CloseConnection = Symbol(None, None, None, "Gti2CloseConnection", "", None)
+    Gti2CloseConnection = Symbol(
+        [0x514D0], [0x230F6F0], None, "Gti2CloseConnection", "", None
+    )
 
-    Gti2ConnectionClosed = Symbol(None, None, None, "Gti2ConnectionClosed", "", None)
+    Gti2ConnectionClosed = Symbol(
+        [0x51520], [0x230F740], None, "Gti2ConnectionClosed", "", None
+    )
 
-    Gti2ConnectionCleanup = Symbol(None, None, None, "Gti2ConnectionCleanup", "", None)
+    Gti2ConnectionCleanup = Symbol(
+        [0x5157C], [0x230F79C], None, "Gti2ConnectionCleanup", "", None
+    )
 
-    Gt2CreateSocket = Symbol(None, None, None, "Gt2CreateSocket", "", None)
+    Gt2CreateSocket = Symbol([0x51600], [0x230F820], None, "Gt2CreateSocket", "", None)
 
-    Gt2CloseSocket = Symbol(None, None, None, "Gt2CloseSocket", "", None)
+    Gt2CloseSocket = Symbol([0x51624], [0x230F844], None, "Gt2CloseSocket", "", None)
 
-    Gt2Think = Symbol(None, None, None, "Gt2Think", "", None)
+    Gt2Think = Symbol([0x5163C], [0x230F85C], None, "Gt2Think", "", None)
 
-    Gt2Listen = Symbol(None, None, None, "Gt2Listen", "", None)
+    Gt2Listen = Symbol([0x5166C], [0x230F88C], None, "Gt2Listen", "", None)
 
-    Gt2Accept = Symbol(None, None, None, "Gt2Accept", "", None)
+    Gt2Accept = Symbol([0x51678], [0x230F898], None, "Gt2Accept", "", None)
 
-    Gt2Reject = Symbol(None, None, None, "Gt2Reject", "", None)
+    Gt2Reject = Symbol([0x51684], [0x230F8A4], None, "Gt2Reject", "", None)
 
-    Gt2Connect = Symbol(None, None, None, "Gt2Connect", "", None)
+    Gt2Connect = Symbol([0x51690], [0x230F8B0], None, "Gt2Connect", "", None)
 
-    Gt2Send = Symbol(None, None, None, "Gt2Send", "", None)
+    Gt2Send = Symbol([0x5180C], [0x230FA2C], None, "Gt2Send", "", None)
 
     Gt2CloseConnectionHard = Symbol(
-        None, None, None, "Gt2CloseConnectionHard", "", None
+        [0x51910], [0x230FB30], None, "Gt2CloseConnectionHard", "", None
     )
 
     Gti2CloseAllConnectionsHardMap = Symbol(
-        None, None, None, "Gti2CloseAllConnectionsHardMap", "", None
+        [0x51920], [0x230FB40], None, "Gti2CloseAllConnectionsHardMap", "", None
     )
 
     Gt2CloseAllConnectionsHard = Symbol(
-        None, None, None, "Gt2CloseAllConnectionsHard", "", None
+        [0x51930], [0x230FB50], None, "Gt2CloseAllConnectionsHard", "", None
     )
 
-    Gt2GetConnectionState = Symbol(None, None, None, "Gt2GetConnectionState", "", None)
+    Gt2GetConnectionState = Symbol(
+        [0x51974], [0x230FB94], None, "Gt2GetConnectionState", "", None
+    )
 
-    Gt2GetRemoteIP = Symbol(None, None, None, "Gt2GetRemoteIP", "", None)
+    Gt2GetRemoteIP = Symbol([0x5199C], [0x230FBBC], None, "Gt2GetRemoteIP", "", None)
 
-    Gt2GetRemotePort = Symbol(None, None, None, "Gt2GetRemotePort", "", None)
+    Gt2GetRemotePort = Symbol(
+        [0x519A4], [0x230FBC4], None, "Gt2GetRemotePort", "", None
+    )
 
-    Gt2GetLocalIP = Symbol(None, None, None, "Gt2GetLocalIP", "", None)
+    Gt2GetLocalIP = Symbol([0x519AC], [0x230FBCC], None, "Gt2GetLocalIP", "", None)
 
-    Gt2GetLocalPort = Symbol(None, None, None, "Gt2GetLocalPort", "", None)
+    Gt2GetLocalPort = Symbol([0x519B4], [0x230FBD4], None, "Gt2GetLocalPort", "", None)
 
     Gt2GetOutgoingBufferSize = Symbol(
-        None, None, None, "Gt2GetOutgoingBufferSize", "", None
+        [0x519BC], [0x230FBDC], None, "Gt2GetOutgoingBufferSize", "", None
     )
 
     Gt2GetOutgoingBufferFreeSpace = Symbol(
-        None, None, None, "Gt2GetOutgoingBufferFreeSpace", "", None
+        [0x519C4], [0x230FBE4], None, "Gt2GetOutgoingBufferFreeSpace", "", None
     )
 
-    Gt2GetSocketSocket = Symbol(None, None, None, "Gt2GetSocketSocket", "", None)
+    Gt2GetSocketSocket = Symbol(
+        [0x519D4], [0x230FBF4], None, "Gt2GetSocketSocket", "", None
+    )
 
     Gt2SetUnrecognizedMessageCallback = Symbol(
-        None, None, None, "Gt2SetUnrecognizedMessageCallback", "", None
+        [0x519DC], [0x230FBFC], None, "Gt2SetUnrecognizedMessageCallback", "", None
     )
 
-    Gt2SetConnectionData = Symbol(None, None, None, "Gt2SetConnectionData", "", None)
+    Gt2SetConnectionData = Symbol(
+        [0x519E4], [0x230FC04], None, "Gt2SetConnectionData", "", None
+    )
 
-    Gt2GetConnectionData = Symbol(None, None, None, "Gt2GetConnectionData", "", None)
+    Gt2GetConnectionData = Symbol(
+        [0x519EC], [0x230FC0C], None, "Gt2GetConnectionData", "", None
+    )
 
-    Gti2UShortFromBuffer = Symbol(None, None, None, "Gti2UShortFromBuffer", "", None)
+    Gti2UShortFromBuffer = Symbol(
+        [0x519F4], [0x230FC14], None, "Gti2UShortFromBuffer", "", None
+    )
 
-    Gti2UShortToBuffer = Symbol(None, None, None, "Gti2UShortToBuffer", "", None)
+    Gti2UShortToBuffer = Symbol(
+        [0x51A14], [0x230FC34], None, "Gti2UShortToBuffer", "", None
+    )
 
-    Gti2SnDiff = Symbol(None, None, None, "Gti2SnDiff", "", None)
+    Gti2SnDiff = Symbol([0x51A28], [0x230FC48], None, "Gti2SnDiff", "", None)
 
-    Gti2ConnectionError = Symbol(None, None, None, "Gti2ConnectionError", "", None)
+    Gti2ConnectionError = Symbol(
+        [0x51A38], [0x230FC58], None, "Gti2ConnectionError", "", None
+    )
 
     Gti2ConnectionCommunicationError = Symbol(
-        None, None, None, "Gti2ConnectionCommunicationError", "", None
+        [0x51ACC], [0x230FCEC], None, "Gti2ConnectionCommunicationError", "", None
     )
 
     Gti2ConnectionMemoryError = Symbol(
-        None, None, None, "Gti2ConnectionMemoryError", "", None
+        [0x51AE0], [0x230FD00], None, "Gti2ConnectionMemoryError", "", None
     )
 
-    Gti2HandleEsn = Symbol(None, None, None, "Gti2HandleEsn", "", None)
+    Gti2HandleEsn = Symbol([0x51B0C], [0x230FD2C], None, "Gti2HandleEsn", "", None)
 
     Gti2HandleAppUnreliable = Symbol(
-        None, None, None, "Gti2HandleAppUnreliable", "", None
+        [0x51C08], [0x230FE28], None, "Gti2HandleAppUnreliable", "", None
     )
 
-    Gti2HandleAppReliable = Symbol(None, None, None, "Gti2HandleAppReliable", "", None)
+    Gti2HandleAppReliable = Symbol(
+        [0x51C98], [0x230FEB8], None, "Gti2HandleAppReliable", "", None
+    )
 
     Gti2HandleClientChallenge = Symbol(
-        None, None, None, "Gti2HandleClientChallenge", "", None
+        [0x51D44], [0x230FF64], None, "Gti2HandleClientChallenge", "", None
     )
 
     Gti2HandleServerChallenge = Symbol(
-        None, None, None, "Gti2HandleServerChallenge", "", None
+        [0x51DDC], [0x230FFFC], None, "Gti2HandleServerChallenge", "", None
     )
 
     Gti2HandleClientResponse = Symbol(
-        None, None, None, "Gti2HandleClientResponse", "", None
+        [0x51EB8], [0x23100D8], None, "Gti2HandleClientResponse", "", None
     )
 
-    Gti2HandleAccept = Symbol(None, None, None, "Gti2HandleAccept", "", None)
+    Gti2HandleAccept = Symbol(
+        [0x51FC8], [0x23101E8], None, "Gti2HandleAccept", "", None
+    )
 
-    Gti2HandleReject = Symbol(None, None, None, "Gti2HandleReject", "", None)
+    Gti2HandleReject = Symbol(
+        [0x52014], [0x2310234], None, "Gti2HandleReject", "", None
+    )
 
-    Gti2HandleClose = Symbol(None, None, None, "Gti2HandleClose", "", None)
+    Gti2HandleClose = Symbol([0x52080], [0x23102A0], None, "Gti2HandleClose", "", None)
 
     Gti2DeliverReliableMessage = Symbol(
-        None, None, None, "Gti2DeliverReliableMessage", "", None
+        [0x520C4], [0x23102E4], None, "Gti2DeliverReliableMessage", "", None
     )
 
     Gti2IncomingBufferMessageCompare = Symbol(
-        None, None, None, "Gti2IncomingBufferMessageCompare", "", None
+        [0x521C4], [0x23103E4], None, "Gti2IncomingBufferMessageCompare", "", None
     )
 
     Gti2BufferIncomingMessage = Symbol(
-        None, None, None, "Gti2BufferIncomingMessage", "", None
+        [0x521D8], [0x23103F8], None, "Gti2BufferIncomingMessage", "", None
     )
 
-    Gti2RemoveHoldMessage = Symbol(None, None, None, "Gti2RemoveHoldMessage", "", None)
+    Gti2RemoveHoldMessage = Symbol(
+        [0x5238C], [0x23105AC], None, "Gti2RemoveHoldMessage", "", None
+    )
 
     Gti2DeliverHoldMessages = Symbol(
-        None, None, None, "Gti2DeliverHoldMessages", "", None
+        [0x52410], [0x2310630], None, "Gti2DeliverHoldMessages", "", None
     )
 
-    Gti2SetPendingAck = Symbol(None, None, None, "Gti2SetPendingAck", "", None)
+    Gti2SetPendingAck = Symbol(
+        [0x52490], [0x23106B0], None, "Gti2SetPendingAck", "", None
+    )
 
     Gti2HandleReliableMessage = Symbol(
-        None, None, None, "Gti2HandleReliableMessage", "", None
+        [0x524B8], [0x23106D8], None, "Gti2HandleReliableMessage", "", None
     )
 
-    Gti2HandleAck = Symbol(None, None, None, "Gti2HandleAck", "", None)
+    Gti2HandleAck = Symbol([0x52668], [0x2310888], None, "Gti2HandleAck", "", None)
 
-    Gti2HandleNack = Symbol(None, None, None, "Gti2HandleNack", "", None)
+    Gti2HandleNack = Symbol([0x526B4], [0x23108D4], None, "Gti2HandleNack", "", None)
 
-    Gti2HandlePing = Symbol(None, None, None, "Gti2HandlePing", "", None)
+    Gti2HandlePing = Symbol([0x52790], [0x23109B0], None, "Gti2HandlePing", "", None)
 
-    Gti2HandlePong = Symbol(None, None, None, "Gti2HandlePong", "", None)
+    Gti2HandlePong = Symbol([0x5279C], [0x23109BC], None, "Gti2HandlePong", "", None)
 
-    Gti2HandleClosed = Symbol(None, None, None, "Gti2HandleClosed", "", None)
+    Gti2HandleClosed = Symbol(
+        [0x52830], [0x2310A50], None, "Gti2HandleClosed", "", None
+    )
 
     Gti2HandleUnreliableMessage = Symbol(
-        None, None, None, "Gti2HandleUnreliableMessage", "", None
+        [0x52868], [0x2310A88], None, "Gti2HandleUnreliableMessage", "", None
     )
 
-    Gti2HandleMessage = Symbol(None, None, None, "Gti2HandleMessage", "", None)
+    Gti2HandleMessage = Symbol(
+        [0x5292C], [0x2310B4C], None, "Gti2HandleMessage", "", None
+    )
 
     Gti2HandleConnectionReset = Symbol(
-        None, None, None, "Gti2HandleConnectionReset", "", None
+        [0x52C28], [0x2310E48], None, "Gti2HandleConnectionReset", "", None
     )
 
     Gti2HandleHostUnreachable = Symbol(
-        None, None, None, "Gti2HandleHostUnreachable", "", None
+        [0x52D28], [0x2310F48], None, "Gti2HandleHostUnreachable", "", None
     )
 
-    Gti2ReceiveMessages = Symbol(None, None, None, "Gti2ReceiveMessages", "", None)
+    Gti2ReceiveMessages = Symbol(
+        [0x52DC4], [0x2310FE4], None, "Gti2ReceiveMessages", "", None
+    )
 
     Gti2StoreOutgoingReliableMessageInfo = Symbol(
-        None, None, None, "Gti2StoreOutgoingReliableMessageInfo", "", None
+        [0x52F48], [0x2311168], None, "Gti2StoreOutgoingReliableMessageInfo", "", None
     )
 
     Gti2BeginReliableMessage = Symbol(
-        None, None, None, "Gti2BeginReliableMessage", "", None
+        [0x52FBC], [0x23111DC], None, "Gti2BeginReliableMessage", "", None
     )
 
     Gti2EndReliableMessage = Symbol(
-        None, None, None, "Gti2EndReliableMessage", "", None
+        [0x530B0], [0x23112D0], None, "Gti2EndReliableMessage", "", None
     )
 
-    Gti2SendAppReliable = Symbol(None, None, None, "Gti2SendAppReliable", "", None)
+    Gti2SendAppReliable = Symbol(
+        [0x530F8], [0x2311318], None, "Gti2SendAppReliable", "", None
+    )
 
     Gti2SendClientChallenge = Symbol(
-        None, None, None, "Gti2SendClientChallenge", "", None
+        [0x5316C], [0x231138C], None, "Gti2SendClientChallenge", "", None
     )
 
     Gti2SendServerChallenge = Symbol(
-        None, None, None, "Gti2SendServerChallenge", "", None
+        [0x531D4], [0x23113F4], None, "Gti2SendServerChallenge", "", None
     )
 
     Gti2SendClientResponse = Symbol(
-        None, None, None, "Gti2SendClientResponse", "", None
+        [0x53268], [0x2311488], None, "Gti2SendClientResponse", "", None
     )
 
-    Gti2SendAccept = Symbol(None, None, None, "Gti2SendAccept", "", None)
+    Gti2SendAccept = Symbol([0x532EC], [0x231150C], None, "Gti2SendAccept", "", None)
 
-    Gti2SendReject = Symbol(None, None, None, "Gti2SendReject", "", None)
+    Gti2SendReject = Symbol([0x53350], [0x2311570], None, "Gti2SendReject", "", None)
 
-    Gti2SendClose = Symbol(None, None, None, "Gti2SendClose", "", None)
+    Gti2SendClose = Symbol([0x533D0], [0x23115F0], None, "Gti2SendClose", "", None)
 
-    Gti2SendKeepAlive = Symbol(None, None, None, "Gti2SendKeepAlive", "", None)
+    Gti2SendKeepAlive = Symbol(
+        [0x53434], [0x2311654], None, "Gti2SendKeepAlive", "", None
+    )
 
-    Gti2SendAppUnreliable = Symbol(None, None, None, "Gti2SendAppUnreliable", "", None)
+    Gti2SendAppUnreliable = Symbol(
+        [0x53498], [0x23116B8], None, "Gti2SendAppUnreliable", "", None
+    )
 
-    Gti2SendAck = Symbol(None, None, None, "Gti2SendAck", "", None)
+    Gti2SendAck = Symbol([0x53590], [0x23117B0], None, "Gti2SendAck", "", None)
 
-    Gti2SendNack = Symbol(None, None, None, "Gti2SendNack", "", None)
+    Gti2SendNack = Symbol([0x53634], [0x2311854], None, "Gti2SendNack", "", None)
 
-    Gti2SendPong = Symbol(None, None, None, "Gti2SendPong", "", None)
+    Gti2SendPong = Symbol([0x536FC], [0x231191C], None, "Gti2SendPong", "", None)
 
-    Gti2SendClosed = Symbol(None, None, None, "Gti2SendClosed", "", None)
+    Gti2SendClosed = Symbol([0x53710], [0x2311930], None, "Gti2SendClosed", "", None)
 
     Gti2SendClosedOnSocket = Symbol(
-        None, None, None, "Gti2SendClosedOnSocket", "", None
+        [0x5372C], [0x231194C], None, "Gti2SendClosedOnSocket", "", None
     )
 
-    Gti2ResendMessage = Symbol(None, None, None, "Gti2ResendMessage", "", None)
+    Gti2ResendMessage = Symbol(
+        [0x537B4], [0x23119D4], None, "Gti2ResendMessage", "", None
+    )
 
-    Gti2Send = Symbol(None, None, None, "Gti2Send", "", None)
+    Gti2Send = Symbol([0x53838], [0x2311A58], None, "Gti2Send", "", None)
 
-    Gti2ConnectionHash = Symbol(None, None, None, "Gti2ConnectionHash", "", None)
+    Gti2ConnectionHash = Symbol(
+        [0x53854], [0x2311A74], None, "Gti2ConnectionHash", "", None
+    )
 
-    Gti2ConnectionCompare = Symbol(None, None, None, "Gti2ConnectionCompare", "", None)
+    Gti2ConnectionCompare = Symbol(
+        [0x53874], [0x2311A94], None, "Gti2ConnectionCompare", "", None
+    )
 
-    Gti2ConnectionFree = Symbol(None, None, None, "Gti2ConnectionFree", "", None)
+    Gti2ConnectionFree = Symbol(
+        [0x538A8], [0x2311AC8], None, "Gti2ConnectionFree", "", None
+    )
 
     Gti2SocketFindConnection = Symbol(
-        None, None, None, "Gti2SocketFindConnection", "", None
+        [0x538B8], [0x2311AD8], None, "Gti2SocketFindConnection", "", None
     )
 
-    Gti2CreateSocket = Symbol(None, None, None, "Gti2CreateSocket", "", None)
+    Gti2CreateSocket = Symbol(
+        [0x538F0], [0x2311B10], None, "Gti2CreateSocket", "", None
+    )
 
-    Gti2CloseSocket = Symbol(None, None, None, "Gti2CloseSocket", "", None)
+    Gti2CloseSocket = Symbol([0x53B34], [0x2311D54], None, "Gti2CloseSocket", "", None)
 
-    Gti2Listen = Symbol(None, None, None, "Gti2Listen", "", None)
+    Gti2Listen = Symbol([0x53B78], [0x2311D98], None, "Gti2Listen", "", None)
 
     Gti2CreateConnectionObject = Symbol(
-        None, None, None, "Gti2CreateConnectionObject", "", None
+        [0x53B80], [0x2311DA0], None, "Gti2CreateConnectionObject", "", None
     )
 
     Gti2NewSocketConnection = Symbol(
-        None, None, None, "Gti2NewSocketConnection", "", None
+        [0x53B90], [0x2311DB0], None, "Gti2NewSocketConnection", "", None
     )
 
     Gti2FreeSocketConnection = Symbol(
-        None, None, None, "Gti2FreeSocketConnection", "", None
+        [0x53DA0], [0x2311FC0], None, "Gti2FreeSocketConnection", "", None
     )
 
-    Gti2SocketSend = Symbol(None, None, None, "Gti2SocketSend", "", None)
+    Gti2SocketSend = Symbol([0x53E64], [0x2312084], None, "Gti2SocketSend", "", None)
 
     Gti2SocketConnectionsThinkMap = Symbol(
-        None, None, None, "Gti2SocketConnectionsThinkMap", "", None
+        [0x54078], [0x2312298], None, "Gti2SocketConnectionsThinkMap", "", None
     )
 
     Gti2SocketConnectionsThink = Symbol(
-        None, None, None, "Gti2SocketConnectionsThink", "", None
+        [0x540D0], [0x23122F0], None, "Gti2SocketConnectionsThink", "", None
     )
 
     Gti2FreeClosedConnections = Symbol(
-        None, None, None, "Gti2FreeClosedConnections", "", None
+        [0x5410C], [0x231232C], None, "Gti2FreeClosedConnections", "", None
     )
 
-    Gti2SocketError = Symbol(None, None, None, "Gti2SocketError", "", None)
+    Gti2SocketError = Symbol([0x54144], [0x2312364], None, "Gti2SocketError", "", None)
 
-    Gt2AddressToString = Symbol(None, None, None, "Gt2AddressToString", "", None)
+    Gt2AddressToString = Symbol(
+        [0x54180], [0x23123A0], None, "Gt2AddressToString", "", None
+    )
 
-    Gt2StringToAddress = Symbol(None, None, None, "Gt2StringToAddress", "", None)
+    Gt2StringToAddress = Symbol(
+        [0x54230], [0x2312450], None, "Gt2StringToAddress", "", None
+    )
 
-    Gti2MessageCheck = Symbol(None, None, None, "Gti2MessageCheck", "", None)
+    Gti2MessageCheck = Symbol(
+        [0x5438C], [0x23125AC], None, "Gti2MessageCheck", "", None
+    )
 
-    GetLocalIP_Gsi = Symbol(None, None, None, "GetLocalIP_Gsi", "", None)
+    GetLocalIP_Gsi = Symbol([0x543DC], [0x23125FC], None, "GetLocalIP_Gsi", "", None)
 
-    GetLocalPort_Gsi = Symbol(None, None, None, "GetLocalPort_Gsi", "", None)
+    GetLocalPort_Gsi = Symbol(
+        [0x54440], [0x2312660], None, "GetLocalPort_Gsi", "", None
+    )
 
-    OutputMapping = Symbol(None, None, None, "OutputMapping", "", None)
+    OutputMapping = Symbol([0x54474], [0x2312694], None, "OutputMapping", "", None)
 
-    Think_NN = Symbol(None, None, None, "Think_NN", "", None)
+    Think_NN = Symbol([0x54478], [0x2312698], None, "Think_NN", "", None)
 
-    NatifyThink = Symbol(None, None, None, "NatifyThink", "", None)
+    NatifyThink = Symbol([0x547B8], [0x23129D8], None, "NatifyThink", "", None)
 
-    DetermineNatType = Symbol(None, None, None, "DetermineNatType", "", None)
+    DetermineNatType = Symbol(
+        [0x547C4], [0x23129E4], None, "DetermineNatType", "", None
+    )
 
     FindNegotiatorForCookie = Symbol(
-        None, None, None, "FindNegotiatorForCookie", "", None
+        [0x54A0C], [0x2312C2C], None, "FindNegotiatorForCookie", "", None
     )
 
-    AddNegotiator = Symbol(None, None, None, "AddNegotiator", "", None)
+    AddNegotiator = Symbol([0x54A74], [0x2312C94], None, "AddNegotiator", "", None)
 
-    RemoveNegotiator = Symbol(None, None, None, "RemoveNegotiator", "", None)
+    RemoveNegotiator = Symbol(
+        [0x54B04], [0x2312D24], None, "RemoveNegotiator", "", None
+    )
 
-    NnFreeNegotiateList = Symbol(None, None, None, "NnFreeNegotiateList", "", None)
+    NnFreeNegotiateList = Symbol(
+        [0x54B6C], [0x2312D8C], None, "NnFreeNegotiateList", "", None
+    )
 
-    CheckMagic_NN = Symbol(None, None, None, "CheckMagic_NN", "", None)
+    CheckMagic_NN = Symbol([0x54B98], [0x2312DB8], None, "CheckMagic_NN", "", None)
 
-    SendPacket_NN = Symbol(None, None, None, "SendPacket_NN", "", None)
+    SendPacket_NN = Symbol([0x54BBC], [0x2312DDC], None, "SendPacket_NN", "", None)
 
-    GetLocalIP_NN = Symbol(None, None, None, "GetLocalIP_NN", "", None)
+    GetLocalIP_NN = Symbol([0x54C10], [0x2312E30], None, "GetLocalIP_NN", "", None)
 
-    GetLocalPort_NN = Symbol(None, None, None, "GetLocalPort_NN", "", None)
+    GetLocalPort_NN = Symbol([0x54C74], [0x2312E94], None, "GetLocalPort_NN", "", None)
 
-    SendReportPacket = Symbol(None, None, None, "SendReportPacket", "", None)
+    SendReportPacket = Symbol(
+        [0x54CA8], [0x2312EC8], None, "SendReportPacket", "", None
+    )
 
-    StartReport = Symbol(None, None, None, "StartReport", "", None)
+    StartReport = Symbol([0x54DFC], [0x231301C], None, "StartReport", "", None)
 
-    SendInitPackets = Symbol(None, None, None, "SendInitPackets", "", None)
+    SendInitPackets = Symbol([0x54EA4], [0x23130C4], None, "SendInitPackets", "", None)
 
-    SendPingPacket = Symbol(None, None, None, "SendPingPacket", "", None)
+    SendPingPacket = Symbol([0x5511C], [0x231333C], None, "SendPingPacket", "", None)
 
-    CheckNatifyStatus = Symbol(None, None, None, "CheckNatifyStatus", "", None)
+    CheckNatifyStatus = Symbol(
+        [0x5523C], [0x231345C], None, "CheckNatifyStatus", "", None
+    )
 
-    NameToIp_NN = Symbol(None, None, None, "NameToIp_NN", "", None)
+    NameToIp_NN = Symbol([0x5534C], [0x231356C], None, "NameToIp_NN", "", None)
 
-    ResolveServer_NN = Symbol(None, None, None, "ResolveServer_NN", "", None)
+    ResolveServer_NN = Symbol(
+        [0x55384], [0x23135A4], None, "ResolveServer_NN", "", None
+    )
 
-    ResolveServers_NN = Symbol(None, None, None, "ResolveServers_NN", "", None)
+    ResolveServers_NN = Symbol(
+        [0x553C4], [0x23135E4], None, "ResolveServers_NN", "", None
+    )
 
     NnBeginNegotiationWithSocket = Symbol(
-        None, None, None, "NnBeginNegotiationWithSocket", "", None
+        [0x5546C], [0x231368C], None, "NnBeginNegotiationWithSocket", "", None
     )
 
-    NnCancel = Symbol(None, None, None, "NnCancel", "", None)
+    NnCancel = Symbol([0x5553C], [0x231375C], None, "NnCancel", "", None)
 
-    NegotiateThink = Symbol(None, None, None, "NegotiateThink", "", None)
+    NegotiateThink = Symbol([0x55574], [0x2313794], None, "NegotiateThink", "", None)
 
-    NnThink = Symbol(None, None, None, "NnThink", "", None)
+    NnThink = Symbol([0x55844], [0x2313A64], None, "NnThink", "", None)
 
-    SendConnectAck = Symbol(None, None, None, "SendConnectAck", "", None)
+    SendConnectAck = Symbol([0x558A8], [0x2313AC8], None, "SendConnectAck", "", None)
 
-    ProcessConnectPacket = Symbol(None, None, None, "ProcessConnectPacket", "", None)
+    ProcessConnectPacket = Symbol(
+        [0x55974], [0x2313B94], None, "ProcessConnectPacket", "", None
+    )
 
-    ProcessPingPacket = Symbol(None, None, None, "ProcessPingPacket", "", None)
+    ProcessPingPacket = Symbol(
+        [0x55A24], [0x2313C44], None, "ProcessPingPacket", "", None
+    )
 
-    ProcessInitPacket = Symbol(None, None, None, "ProcessInitPacket", "", None)
+    ProcessInitPacket = Symbol(
+        [0x55AC4], [0x2313CE4], None, "ProcessInitPacket", "", None
+    )
 
-    NnProcessData = Symbol(None, None, None, "NnProcessData", "", None)
+    NnProcessData = Symbol([0x55C18], [0x2313E38], None, "NnProcessData", "", None)
 
-    qr2_init_socketa = Symbol(None, None, None, "qr2_init_socketa", "", None)
+    qr2_init_socketa = Symbol(
+        [0x55D78], [0x2313F98], None, "qr2_init_socketa", "", None
+    )
 
     qr2_register_natneg_callback = Symbol(
-        None, None, None, "qr2_register_natneg_callback", "", None
+        [0x55F3C], [0x231415C], None, "qr2_register_natneg_callback", "", None
     )
 
     qr2_register_clientmessage_callback = Symbol(
-        None, None, None, "qr2_register_clientmessage_callback", "", None
+        [0x55F54], [0x2314174], None, "qr2_register_clientmessage_callback", "", None
     )
 
     qr2_register_publicaddress_callback = Symbol(
-        None, None, None, "qr2_register_publicaddress_callback", "", None
+        [0x55F6C], [0x231418C], None, "qr2_register_publicaddress_callback", "", None
     )
 
-    qr2_think = Symbol(None, None, None, "qr2_think", "", None)
+    qr2_think = Symbol([0x55F84], [0x23141A4], None, "qr2_think", "", None)
 
-    qr2_check_queries = Symbol(None, None, None, "qr2_check_queries", "", None)
+    qr2_check_queries = Symbol(
+        [0x55FC0], [0x23141E0], None, "qr2_check_queries", "", None
+    )
 
     qr2_check_send_heartbeat = Symbol(
-        None, None, None, "qr2_check_send_heartbeat", "", None
+        [0x5606C], [0x231428C], None, "qr2_check_send_heartbeat", "", None
     )
 
-    qr2_send_statechanged = Symbol(None, None, None, "qr2_send_statechanged", "", None)
+    qr2_send_statechanged = Symbol(
+        [0x56180], [0x23143A0], None, "qr2_send_statechanged", "", None
+    )
 
-    qr2_shutdown = Symbol(None, None, None, "qr2_shutdown", "", None)
+    qr2_shutdown = Symbol([0x561DC], [0x23143FC], None, "qr2_shutdown", "", None)
 
-    qr2_keybuffer_add = Symbol(None, None, None, "qr2_keybuffer_add", "", None)
+    qr2_keybuffer_add = Symbol(
+        [0x56260], [0x2314480], None, "qr2_keybuffer_add", "", None
+    )
 
-    qr2_buffer_add_int = Symbol(None, None, None, "qr2_buffer_add_int", "", None)
+    qr2_buffer_add_int = Symbol(
+        [0x5629C], [0x23144BC], None, "qr2_buffer_add_int", "", None
+    )
 
-    Qr2_Buffer_AddA = Symbol(None, None, None, "Qr2_Buffer_AddA", "", None)
+    Qr2_Buffer_AddA = Symbol([0x562D0], [0x23144F0], None, "Qr2_Buffer_AddA", "", None)
 
-    enum_local_ips = Symbol(None, None, None, "enum_local_ips", "", None)
+    enum_local_ips = Symbol([0x5633C], [0x231455C], None, "enum_local_ips", "", None)
 
-    swap_byte_qr2 = Symbol(None, None, None, "swap_byte_qr2", "", None)
+    swap_byte_qr2 = Symbol([0x56458], [0x2314678], None, "swap_byte_qr2", "", None)
 
-    encode_ct = Symbol(None, None, None, "encode_ct", "", None)
+    encode_ct = Symbol([0x5646C], [0x231468C], None, "encode_ct", "", None)
 
-    gs_encode = Symbol(None, None, None, "gs_encode", "", None)
+    gs_encode = Symbol([0x564B4], [0x23146D4], None, "gs_encode", "", None)
 
-    gs_encrypt = Symbol(None, None, None, "gs_encrypt", "", None)
+    gs_encrypt = Symbol([0x56578], [0x2314798], None, "gs_encrypt", "", None)
 
-    qr_add_packet_header = Symbol(None, None, None, "qr_add_packet_header", "", None)
+    qr_add_packet_header = Symbol(
+        [0x566BC], [0x23148DC], None, "qr_add_packet_header", "", None
+    )
 
     compute_challenge_response = Symbol(
-        None, None, None, "compute_challenge_response", "", None
+        [0x566EC], [0x231490C], None, "compute_challenge_response", "", None
     )
 
-    handle_public_address = Symbol(None, None, None, "handle_public_address", "", None)
+    handle_public_address = Symbol(
+        [0x5678C], [0x23149AC], None, "handle_public_address", "", None
+    )
 
     qr_build_partial_query_reply = Symbol(
-        None, None, None, "qr_build_partial_query_reply", "", None
+        [0x5683C], [0x2314A5C], None, "qr_build_partial_query_reply", "", None
     )
 
-    qr_build_query_reply = Symbol(None, None, None, "qr_build_query_reply", "", None)
+    qr_build_query_reply = Symbol(
+        [0x56AA0], [0x2314CC0], None, "qr_build_query_reply", "", None
+    )
 
     qr_build_split_query_reply = Symbol(
-        None, None, None, "qr_build_split_query_reply", "", None
+        [0x56AF8], [0x2314D18], None, "qr_build_split_query_reply", "", None
     )
 
-    qr_process_query = Symbol(None, None, None, "qr_process_query", "", None)
+    qr_process_query = Symbol(
+        [0x56DAC], [0x2314FCC], None, "qr_process_query", "", None
+    )
 
     qr_process_client_message = Symbol(
-        None, None, None, "qr_process_client_message", "", None
+        [0x56F40], [0x2315160], None, "qr_process_client_message", "", None
     )
 
-    qr_got_recent_message = Symbol(None, None, None, "qr_got_recent_message", "", None)
+    qr_got_recent_message = Symbol(
+        [0x57068], [0x2315288], None, "qr_got_recent_message", "", None
+    )
 
-    qr2_process_ip_verify = Symbol(None, None, None, "qr2_process_ip_verify", "", None)
+    qr2_process_ip_verify = Symbol(
+        [0x570CC], [0x23152EC], None, "qr2_process_ip_verify", "", None
+    )
 
-    qr2_check_ip_verify = Symbol(None, None, None, "qr2_check_ip_verify", "", None)
+    qr2_check_ip_verify = Symbol(
+        [0x57240], [0x2315460], None, "qr2_check_ip_verify", "", None
+    )
 
-    qr2_expire_ip_verify = Symbol(None, None, None, "qr2_expire_ip_verify", "", None)
+    qr2_expire_ip_verify = Symbol(
+        [0x572A0], [0x23154C0], None, "qr2_expire_ip_verify", "", None
+    )
 
-    qr2_parse_querya = Symbol(None, None, None, "qr2_parse_querya", "", None)
+    qr2_parse_querya = Symbol(
+        [0x572E4], [0x2315504], None, "qr2_parse_querya", "", None
+    )
 
-    send_keepalive = Symbol(None, None, None, "send_keepalive", "", None)
+    send_keepalive = Symbol([0x576E4], [0x2315904], None, "send_keepalive", "", None)
 
-    send_heartbeat = Symbol(None, None, None, "send_heartbeat", "", None)
+    send_heartbeat = Symbol([0x57744], [0x2315964], None, "send_heartbeat", "", None)
 
     qr2_internal_is_master_only_key = Symbol(
-        None, None, None, "qr2_internal_is_master_only_key", "", None
+        [0x579C8], [0x2315BE8], None, "qr2_internal_is_master_only_key", "", None
     )
 
-    keyrand_goa = Symbol(None, None, None, "keyrand_goa", "", None)
+    keyrand_goa = Symbol([0x57A10], [0x2315C30], None, "keyrand_goa", "", None)
 
-    GoaHashInit = Symbol(None, None, None, "GoaHashInit", "", None)
+    GoaHashInit = Symbol([0x57AC4], [0x2315CE4], None, "GoaHashInit", "", None)
 
-    GoaCryptInit = Symbol(None, None, None, "GoaCryptInit", "", None)
+    GoaCryptInit = Symbol([0x57B0C], [0x2315D2C], None, "GoaCryptInit", "", None)
 
-    GoaEncryptByte = Symbol(None, None, None, "GoaEncryptByte", "", None)
+    GoaEncryptByte = Symbol([0x57BD4], [0x2315DF4], None, "GoaEncryptByte", "", None)
 
-    GoaEncrypt = Symbol(None, None, None, "GoaEncrypt", "", None)
+    GoaEncrypt = Symbol([0x57CA0], [0x2315EC0], None, "GoaEncrypt", "", None)
 
-    FifoAddRear = Symbol(None, None, None, "FifoAddRear", "", None)
+    FifoAddRear = Symbol([0x57CDC], [0x2315EFC], None, "FifoAddRear", "", None)
 
-    FifoAddFront = Symbol(None, None, None, "FifoAddFront", "", None)
+    FifoAddFront = Symbol([0x57D10], [0x2315F30], None, "FifoAddFront", "", None)
 
-    FifoRemove = Symbol(None, None, None, "FifoRemove", "", None)
+    FifoRemove = Symbol([0x57D44], [0x2315F64], None, "FifoRemove", "", None)
 
-    FifoClear = Symbol(None, None, None, "FifoClear", "", None)
+    FifoClear = Symbol([0x57DB0], [0x2315FD0], None, "FifoClear", "", None)
 
-    QeStartQuery = Symbol(None, None, None, "QeStartQuery", "", None)
+    QeStartQuery = Symbol([0x57DC4], [0x2315FE4], None, "QeStartQuery", "", None)
 
-    SbEngineHaltUpdates = Symbol(None, None, None, "SbEngineHaltUpdates", "", None)
+    SbEngineHaltUpdates = Symbol(
+        [0x5808C], [0x23162AC], None, "SbEngineHaltUpdates", "", None
+    )
 
-    SbEngineCleanup = Symbol(None, None, None, "SbEngineCleanup", "", None)
+    SbEngineCleanup = Symbol([0x580A8], [0x23162C8], None, "SbEngineCleanup", "", None)
 
-    ParseSingleQR2Reply = Symbol(None, None, None, "ParseSingleQR2Reply", "", None)
+    ParseSingleQR2Reply = Symbol(
+        [0x580D4], [0x23162F4], None, "ParseSingleQR2Reply", "", None
+    )
 
-    ParseSingleGoaReply = Symbol(None, None, None, "ParseSingleGoaReply", "", None)
+    ParseSingleGoaReply = Symbol(
+        [0x58298], [0x23164B8], None, "ParseSingleGoaReply", "", None
+    )
 
-    ParseSingleIcmpReply = Symbol(None, None, None, "ParseSingleIcmpReply", "", None)
+    ParseSingleIcmpReply = Symbol(
+        [0x58330], [0x2316550], None, "ParseSingleIcmpReply", "", None
+    )
 
     ProcessIncomingReplies = Symbol(
-        None, None, None, "ProcessIncomingReplies", "", None
+        [0x58338], [0x2316558], None, "ProcessIncomingReplies", "", None
     )
 
-    TimeoutOldQueries = Symbol(None, None, None, "TimeoutOldQueries", "", None)
+    TimeoutOldQueries = Symbol(
+        [0x584CC], [0x23166EC], None, "TimeoutOldQueries", "", None
+    )
 
-    QueueNextQueries = Symbol(None, None, None, "QueueNextQueries", "", None)
+    QueueNextQueries = Symbol(
+        [0x5855C], [0x231677C], None, "QueueNextQueries", "", None
+    )
 
-    SbQueryEngineThink = Symbol(None, None, None, "SbQueryEngineThink", "", None)
+    SbQueryEngineThink = Symbol(
+        [0x5859C], [0x23167BC], None, "SbQueryEngineThink", "", None
+    )
 
     SbQueryEngineAddQueryKey = Symbol(
-        None, None, None, "SbQueryEngineAddQueryKey", "", None
+        [0x585FC], [0x231681C], None, "SbQueryEngineAddQueryKey", "", None
     )
 
-    RefStringHash = Symbol(None, None, None, "RefStringHash", "", None)
+    RefStringHash = Symbol([0x5861C], [0x231683C], None, "RefStringHash", "", None)
 
-    RefStringCompare = Symbol(None, None, None, "RefStringCompare", "", None)
+    RefStringCompare = Symbol(
+        [0x5862C], [0x231684C], None, "RefStringCompare", "", None
+    )
 
-    RefStringFree = Symbol(None, None, None, "RefStringFree", "", None)
+    RefStringFree = Symbol([0x58640], [0x2316860], None, "RefStringFree", "", None)
 
-    SbRefStrHash = Symbol(None, None, None, "SbRefStrHash", "", None)
+    SbRefStrHash = Symbol([0x58650], [0x2316870], None, "SbRefStrHash", "", None)
 
-    SbRefStrHashCleanup = Symbol(None, None, None, "SbRefStrHashCleanup", "", None)
+    SbRefStrHashCleanup = Symbol(
+        [0x586B4], [0x23168D4], None, "SbRefStrHashCleanup", "", None
+    )
 
-    SbServerFree = Symbol(None, None, None, "SbServerFree", "", None)
+    SbServerFree = Symbol([0x586F4], [0x2316914], None, "SbServerFree", "", None)
 
-    SbServerAddKeyValue = Symbol(None, None, None, "SbServerAddKeyValue", "", None)
+    SbServerAddKeyValue = Symbol(
+        [0x58718], [0x2316938], None, "SbServerAddKeyValue", "", None
+    )
 
     SbServerAddIntKeyValue = Symbol(
-        None, None, None, "SbServerAddIntKeyValue", "", None
+        [0x58758], [0x2316978], None, "SbServerAddIntKeyValue", "", None
     )
 
     SbServerGetStringValueA = Symbol(
-        None, None, None, "SbServerGetStringValueA", "", None
+        [0x58790], [0x23169B0], None, "SbServerGetStringValueA", "", None
     )
 
-    SbServerGetIntValueA = Symbol(None, None, None, "SbServerGetIntValueA", "", None)
+    SbServerGetIntValueA = Symbol(
+        [0x587F0], [0x2316A10], None, "SbServerGetIntValueA", "", None
+    )
 
     SbServerGetPublicInetAddress = Symbol(
-        None, None, None, "SbServerGetPublicInetAddress", "", None
+        [0x58898], [0x2316AB8], None, "SbServerGetPublicInetAddress", "", None
     )
 
     SbServerGetPublicQueryPort = Symbol(
-        None, None, None, "SbServerGetPublicQueryPort", "", None
+        [0x588A0], [0x2316AC0], None, "SbServerGetPublicQueryPort", "", None
     )
 
     SbServerGetPublicQueryPortNbo = Symbol(
-        None, None, None, "SbServerGetPublicQueryPortNbo", "", None
+        [0x588C4], [0x2316AE4], None, "SbServerGetPublicQueryPortNbo", "", None
     )
 
     SbServerHasPrivateAddress = Symbol(
-        None, None, None, "SbServerHasPrivateAddress", "", None
+        [0x588CC], [0x2316AEC], None, "SbServerHasPrivateAddress", "", None
     )
 
     SbServerGetPrivateInetAddress = Symbol(
-        None, None, None, "SbServerGetPrivateInetAddress", "", None
+        [0x588E4], [0x2316B04], None, "SbServerGetPrivateInetAddress", "", None
     )
 
     SbServerGetPrivateQueryPort = Symbol(
-        None, None, None, "SbServerGetPrivateQueryPort", "", None
+        [0x588EC], [0x2316B0C], None, "SbServerGetPrivateQueryPort", "", None
     )
 
-    SbServerSetNext = Symbol(None, None, None, "SbServerSetNext", "", None)
+    SbServerSetNext = Symbol([0x58910], [0x2316B30], None, "SbServerSetNext", "", None)
 
-    SbServerGetNext = Symbol(None, None, None, "SbServerGetNext", "", None)
+    SbServerGetNext = Symbol([0x58918], [0x2316B38], None, "SbServerGetNext", "", None)
 
-    CheckValidKey = Symbol(None, None, None, "CheckValidKey", "", None)
+    CheckValidKey = Symbol([0x58920], [0x2316B40], None, "CheckValidKey", "", None)
 
-    mytok = Symbol(None, None, None, "mytok", "", None)
+    mytok = Symbol([0x58980], [0x2316BA0], None, "mytok", "", None)
 
-    SbServerParseKeyVals = Symbol(None, None, None, "SbServerParseKeyVals", "", None)
+    SbServerParseKeyVals = Symbol(
+        [0x589E4], [0x2316C04], None, "SbServerParseKeyVals", "", None
+    )
 
     SbServerParseQR2FullKeysSingle = Symbol(
-        None, None, None, "SbServerParseQR2FullKeysSingle", "", None
+        [0x58A74], [0x2316C94], None, "SbServerParseQR2FullKeysSingle", "", None
     )
 
     SbServerParseQR2FullKeysSplit = Symbol(
-        None, None, None, "SbServerParseQR2FullKeysSplit", "", None
+        [0x58C60], [0x2316E80], None, "SbServerParseQR2FullKeysSplit", "", None
     )
 
-    StringHash = Symbol(None, None, None, "StringHash", "", None)
+    StringHash = Symbol([0x58EB8], [0x23170D8], None, "StringHash", "", None)
 
-    KeyValFree = Symbol(None, None, None, "KeyValFree", "", None)
+    KeyValFree = Symbol([0x58F10], [0x2317130], None, "KeyValFree", "", None)
 
-    KeyValHashKey = Symbol(None, None, None, "KeyValHashKey", "", None)
+    KeyValHashKey = Symbol([0x58F34], [0x2317154], None, "KeyValHashKey", "", None)
 
-    KeyValCompareKey = Symbol(None, None, None, "KeyValCompareKey", "", None)
+    KeyValCompareKey = Symbol(
+        [0x58F44], [0x2317164], None, "KeyValCompareKey", "", None
+    )
 
-    SbServerGetPing = Symbol(None, None, None, "SbServerGetPing", "", None)
+    SbServerGetPing = Symbol([0x58F68], [0x2317188], None, "SbServerGetPing", "", None)
 
-    SbAllocServer = Symbol(None, None, None, "SbAllocServer", "", None)
+    SbAllocServer = Symbol([0x58F70], [0x2317190], None, "SbAllocServer", "", None)
 
-    SbServerSetFlags = Symbol(None, None, None, "SbServerSetFlags", "", None)
+    SbServerSetFlags = Symbol(
+        [0x5901C], [0x231723C], None, "SbServerSetFlags", "", None
+    )
 
-    SbServerSetPublicAddr = Symbol(None, None, None, "SbServerSetPublicAddr", "", None)
+    SbServerSetPublicAddr = Symbol(
+        [0x59024], [0x2317244], None, "SbServerSetPublicAddr", "", None
+    )
 
-    SbServerSetIcmpIp = Symbol(None, None, None, "SbServerSetIcmpIp", "", None)
+    SbServerSetIcmpIp = Symbol(
+        [0x59030], [0x2317250], None, "SbServerSetIcmpIp", "", None
+    )
 
-    SbServerSetState = Symbol(None, None, None, "SbServerSetState", "", None)
+    SbServerSetState = Symbol(
+        [0x59038], [0x2317258], None, "SbServerSetState", "", None
+    )
 
-    SbServerGetState = Symbol(None, None, None, "SbServerGetState", "", None)
+    SbServerGetState = Symbol(
+        [0x59040], [0x2317260], None, "SbServerGetState", "", None
+    )
 
-    SbIsNullServer = Symbol(None, None, None, "SbIsNullServer", "", None)
+    SbIsNullServer = Symbol([0x59048], [0x2317268], None, "SbIsNullServer", "", None)
 
-    ServerBrowserFree = Symbol(None, None, None, "ServerBrowserFree", "", None)
+    ServerBrowserFree = Symbol(
+        [0x59064], [0x2317284], None, "ServerBrowserFree", "", None
+    )
 
     ServerBrowserBeginUpdate2 = Symbol(
-        None, None, None, "ServerBrowserBeginUpdate2", "", None
+        [0x59088], [0x23172A8], None, "ServerBrowserBeginUpdate2", "", None
     )
 
     ServerBrowserLimitUpdateA = Symbol(
-        None, None, None, "ServerBrowserLimitUpdateA", "", None
+        [0x591B8], [0x23173D8], None, "ServerBrowserLimitUpdateA", "", None
     )
 
     ServerBrowserSendMessageToServerA = Symbol(
-        None, None, None, "ServerBrowserSendMessageToServerA", "", None
+        [0x591EC], [0x231740C], None, "ServerBrowserSendMessageToServerA", "", None
     )
 
     ServerBrowserSendNatNegotiateCookieToServerA = Symbol(
-        None, None, None, "ServerBrowserSendNatNegotiateCookieToServerA", "", None
+        [0x59244],
+        [0x2317464],
+        None,
+        "ServerBrowserSendNatNegotiateCookieToServerA",
+        "",
+        None,
     )
 
-    ServerBrowserThink = Symbol(None, None, None, "ServerBrowserThink", "", None)
+    ServerBrowserThink = Symbol(
+        [0x5928C], [0x23174AC], None, "ServerBrowserThink", "", None
+    )
 
-    ServerBrowserHalt = Symbol(None, None, None, "ServerBrowserHalt", "", None)
+    ServerBrowserHalt = Symbol(
+        [0x592A4], [0x23174C4], None, "ServerBrowserHalt", "", None
+    )
 
-    ServerBrowserClear = Symbol(None, None, None, "ServerBrowserClear", "", None)
+    ServerBrowserClear = Symbol(
+        [0x592C0], [0x23174E0], None, "ServerBrowserClear", "", None
+    )
 
-    ServerBrowserState = Symbol(None, None, None, "ServerBrowserState", "", None)
+    ServerBrowserState = Symbol(
+        [0x592D8], [0x23174F8], None, "ServerBrowserState", "", None
+    )
 
     ServerBrowserGetServer = Symbol(
-        None, None, None, "ServerBrowserGetServer", "", None
+        [0x5930C], [0x231752C], None, "ServerBrowserGetServer", "", None
     )
 
     ServerBrowserGetMyPublicIpAddr = Symbol(
-        None, None, None, "ServerBrowserGetMyPublicIpAddr", "", None
+        [0x5931C], [0x231753C], None, "ServerBrowserGetMyPublicIpAddr", "", None
     )
 
     SbServerListAppendServer = Symbol(
-        None, None, None, "SbServerListAppendServer", "", None
+        [0x59324], [0x2317544], None, "SbServerListAppendServer", "", None
     )
 
     SbServerListFindServerByIP = Symbol(
-        None, None, None, "SbServerListFindServerByIP", "", None
+        [0x59360], [0x2317580], None, "SbServerListFindServerByIP", "", None
     )
 
-    AddServerToDeadlist = Symbol(None, None, None, "AddServerToDeadlist", "", None)
+    AddServerToDeadlist = Symbol(
+        [0x593D0], [0x23175F0], None, "AddServerToDeadlist", "", None
+    )
 
-    SbServerListRemoveAt = Symbol(None, None, None, "SbServerListRemoveAt", "", None)
+    SbServerListRemoveAt = Symbol(
+        [0x59404], [0x2317624], None, "SbServerListRemoveAt", "", None
+    )
 
-    SbServerListNth = Symbol(None, None, None, "SbServerListNth", "", None)
+    SbServerListNth = Symbol([0x59450], [0x2317670], None, "SbServerListNth", "", None)
 
-    SbFreeDeadList = Symbol(None, None, None, "SbFreeDeadList", "", None)
+    SbFreeDeadList = Symbol([0x59464], [0x2317684], None, "SbFreeDeadList", "", None)
 
-    SbServerListClear = Symbol(None, None, None, "SbServerListClear", "", None)
+    SbServerListClear = Symbol(
+        [0x594BC], [0x23176DC], None, "SbServerListClear", "", None
+    )
 
-    SbRefStr = Symbol(None, None, None, "SbRefStr", "", None)
+    SbRefStr = Symbol([0x59514], [0x2317734], None, "SbRefStr", "", None)
 
-    SbReleaseStr = Symbol(None, None, None, "SbReleaseStr", "", None)
+    SbReleaseStr = Symbol([0x59584], [0x23177A4], None, "SbReleaseStr", "", None)
 
-    NtsLengthSB = Symbol(None, None, None, "NtsLengthSB", "", None)
+    NtsLengthSB = Symbol([0x595D8], [0x23177F8], None, "NtsLengthSB", "", None)
 
-    ErrorDisconnect = Symbol(None, None, None, "ErrorDisconnect", "", None)
+    ErrorDisconnect = Symbol([0x59608], [0x2317828], None, "ErrorDisconnect", "", None)
 
-    StringHash_Sb = Symbol(None, None, None, "StringHash_Sb", "", None)
+    StringHash_Sb = Symbol([0x596C4], [0x23178E4], None, "StringHash_Sb", "", None)
 
-    ServerListConnect = Symbol(None, None, None, "ServerListConnect", "", None)
+    ServerListConnect = Symbol(
+        [0x5971C], [0x231793C], None, "ServerListConnect", "", None
+    )
 
-    BufferAddNtS = Symbol(None, None, None, "BufferAddNtS", "", None)
+    BufferAddNtS = Symbol([0x59848], [0x2317A68], None, "BufferAddNtS", "", None)
 
-    BufferAddByte = Symbol(None, None, None, "BufferAddByte", "", None)
+    BufferAddByte = Symbol([0x59898], [0x2317AB8], None, "BufferAddByte", "", None)
 
-    BufferAddInt = Symbol(None, None, None, "BufferAddInt", "", None)
+    BufferAddInt = Symbol([0x598BC], [0x2317ADC], None, "BufferAddInt", "", None)
 
-    BufferAddIntLE = Symbol(None, None, None, "BufferAddIntLE", "", None)
+    BufferAddIntLE = Symbol([0x59910], [0x2317B30], None, "BufferAddIntLE", "", None)
 
-    BufferAddData = Symbol(None, None, None, "BufferAddData", "", None)
+    BufferAddData = Symbol([0x59968], [0x2317B88], None, "BufferAddData", "", None)
 
-    SetupListChallenge = Symbol(None, None, None, "SetupListChallenge", "", None)
+    SetupListChallenge = Symbol(
+        [0x5999C], [0x2317BBC], None, "SetupListChallenge", "", None
+    )
 
-    SendWithRetry = Symbol(None, None, None, "SendWithRetry", "", None)
+    SendWithRetry = Symbol([0x59A88], [0x2317CA8], None, "SendWithRetry", "", None)
 
     SbServerListConnectAndQuery = Symbol(
-        None, None, None, "SbServerListConnectAndQuery", "", None
+        [0x59B2C], [0x2317D4C], None, "SbServerListConnectAndQuery", "", None
     )
 
-    FreePopularValues = Symbol(None, None, None, "FreePopularValues", "", None)
+    FreePopularValues = Symbol(
+        [0x59D68], [0x2317F88], None, "FreePopularValues", "", None
+    )
 
-    FreeKeyList = Symbol(None, None, None, "FreeKeyList", "", None)
+    FreeKeyList = Symbol([0x59DAC], [0x2317FCC], None, "FreeKeyList", "", None)
 
     SbServerListDisconnect = Symbol(
-        None, None, None, "SbServerListDisconnect", "", None
+        [0x59E10], [0x2318030], None, "SbServerListDisconnect", "", None
     )
 
-    SbServerListCleanup = Symbol(None, None, None, "SbServerListCleanup", "", None)
+    SbServerListCleanup = Symbol(
+        [0x59E74], [0x2318094], None, "SbServerListCleanup", "", None
+    )
 
-    InitCryptKey = Symbol(None, None, None, "InitCryptKey", "", None)
+    InitCryptKey = Symbol([0x59EAC], [0x23180CC], None, "InitCryptKey", "", None)
 
-    ServerSizeForFlags = Symbol(None, None, None, "ServerSizeForFlags", "", None)
+    ServerSizeForFlags = Symbol(
+        [0x59F48], [0x2318168], None, "ServerSizeForFlags", "", None
+    )
 
-    FullRulesPresent = Symbol(None, None, None, "FullRulesPresent", "", None)
+    FullRulesPresent = Symbol(
+        [0x59F74], [0x2318194], None, "FullRulesPresent", "", None
+    )
 
-    AllKeysPresent = Symbol(None, None, None, "AllKeysPresent", "", None)
+    AllKeysPresent = Symbol([0x59FF8], [0x2318218], None, "AllKeysPresent", "", None)
 
-    ParseServerIpPort = Symbol(None, None, None, "ParseServerIpPort", "", None)
+    ParseServerIpPort = Symbol(
+        [0x5A0D0], [0x23182F0], None, "ParseServerIpPort", "", None
+    )
 
-    ParseServer = Symbol(None, None, None, "ParseServer", "", None)
+    ParseServer = Symbol([0x5A140], [0x2318360], None, "ParseServer", "", None)
 
     IncomingListParseServer = Symbol(
-        None, None, None, "IncomingListParseServer", "", None
+        [0x5A418], [0x2318638], None, "IncomingListParseServer", "", None
     )
 
-    SbSetLastListErrorPtr = Symbol(None, None, None, "SbSetLastListErrorPtr", "", None)
+    SbSetLastListErrorPtr = Symbol(
+        [0x5A548], [0x2318768], None, "SbSetLastListErrorPtr", "", None
+    )
 
-    ProcessMainListData = Symbol(None, None, None, "ProcessMainListData", "", None)
+    ProcessMainListData = Symbol(
+        [0x5A550], [0x2318770], None, "ProcessMainListData", "", None
+    )
 
-    ProcessPushKeyList = Symbol(None, None, None, "ProcessPushKeyList", "", None)
+    ProcessPushKeyList = Symbol(
+        [0x5A97C], [0x2318B9C], None, "ProcessPushKeyList", "", None
+    )
 
-    ProcessPlayerSearch = Symbol(None, None, None, "ProcessPlayerSearch", "", None)
+    ProcessPlayerSearch = Symbol(
+        [0x5AA58], [0x2318C78], None, "ProcessPlayerSearch", "", None
+    )
 
-    ProcessMaploop = Symbol(None, None, None, "ProcessMaploop", "", None)
+    ProcessMaploop = Symbol([0x5AC14], [0x2318E34], None, "ProcessMaploop", "", None)
 
-    ProcessDeleteServer = Symbol(None, None, None, "ProcessDeleteServer", "", None)
+    ProcessDeleteServer = Symbol(
+        [0x5AD98], [0x2318FB8], None, "ProcessDeleteServer", "", None
+    )
 
-    ProcessPushServer = Symbol(None, None, None, "ProcessPushServer", "", None)
+    ProcessPushServer = Symbol(
+        [0x5AE24], [0x2319044], None, "ProcessPushServer", "", None
+    )
 
-    ProcessAdHocData = Symbol(None, None, None, "ProcessAdHocData", "", None)
+    ProcessAdHocData = Symbol(
+        [0x5AF1C], [0x231913C], None, "ProcessAdHocData", "", None
+    )
 
-    ProcessIncomingData = Symbol(None, None, None, "ProcessIncomingData", "", None)
+    ProcessIncomingData = Symbol(
+        [0x5B09C], [0x23192BC], None, "ProcessIncomingData", "", None
+    )
 
-    SbSendMessageToServer = Symbol(None, None, None, "SbSendMessageToServer", "", None)
+    SbSendMessageToServer = Symbol(
+        [0x5B180], [0x23193A0], None, "SbSendMessageToServer", "", None
+    )
 
     SbSendNatNegotiateCookieToServer = Symbol(
-        None, None, None, "SbSendNatNegotiateCookieToServer", "", None
+        [0x5B2A8], [0x23194C8], None, "SbSendNatNegotiateCookieToServer", "", None
     )
 
-    ProcessLanData = Symbol(None, None, None, "ProcessLanData", "", None)
+    ProcessLanData = Symbol([0x5B360], [0x2319580], None, "ProcessLanData", "", None)
 
-    SbListThink = Symbol(None, None, None, "SbListThink", "", None)
+    SbListThink = Symbol([0x5B484], [0x23196A4], None, "SbListThink", "", None)
 
     socket = _Deprecated("socket", Soc_Socket)
 
@@ -41703,8 +42635,8 @@ class JpOverlay29Functions:
     )
 
     SetTwoTurnInvincibility = Symbol(
-        None,
-        None,
+        [0x3C680],
+        [0x2319F60],
         None,
         "SetTwoTurnInvincibility",
         "Sets two-turn invincibility to a specified value on a target monster entity.\n\nUsed for the 'flying up/down' effects (similar to Fly/Bounce) in Seismic Toss' animation.\n\nr0: target entity pointer\nr1: two_turn_move_invincible value",

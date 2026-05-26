@@ -1059,6 +1059,55 @@ class JpItcmArm9Functions:
         None,
     )
 
+    InitOamInfo = Symbol(
+        None,
+        None,
+        None,
+        "InitOamInfo",
+        "Initializes an oam_info struct.\n\nr0: oam_info\nr1: max_num_objs\nr2: max_num_groups\nr3: oam_base_address\nstack[0]: MemAlloc flags",
+        None,
+    )
+
+    SetShouldCopyToOam = Symbol(
+        None, None, None, "SetShouldCopyToOam", "r0: oam_info", None
+    )
+
+    GroupOamObjs = Symbol(
+        None,
+        None,
+        None,
+        "GroupOamObjs",
+        "Fills oam_info's grouped_oam_objs by going backwards through each group in ungrouped_oam_objs.\n\nr0: oam_info",
+        None,
+    )
+
+    CopyAttributesToOam = Symbol(
+        None,
+        None,
+        None,
+        "CopyAttributesToOam",
+        "Copies oam_info's grouped_oam_objs to oam_info's oam_base_address.\n\nr0: oam_info",
+        None,
+    )
+
+    ClearGroupedOamObjsAndGroups = Symbol(
+        None,
+        None,
+        None,
+        "ClearGroupedOamObjsAndGroups",
+        "Clears oam_info's grouped_oam_objs and prev_obj_idx_in_group arrays.\n\nr0: oam_info",
+        None,
+    )
+
+    AddObjToUngroupedOamObjs = Symbol(
+        None,
+        None,
+        None,
+        "AddObjToUngroupedOamObjs",
+        "Adds an object to oam_info's ungrouped_oam_objs, while also updating the necessary values to group it later.\n\nr0: oam_info\nr1: oam_attributes\nr2: group",
+        None,
+    )
+
     UpdateFadeStatus = Symbol(
         None,
         None,
@@ -12209,6 +12258,15 @@ class JpItcmArm9Data:
         "struct move_data_table*",
     )
 
+    OBJ_GRAPHICS_CONTROLS_PTR = Symbol(
+        None,
+        None,
+        None,
+        "OBJ_GRAPHICS_CONTROLS_PTR",
+        "[Runtime] Points to the collection of master structs responsible for displaying objects.\n\ntype: struct obj_graphics_controls*",
+        "struct obj_graphics_controls*",
+    )
+
     WAN_TABLE = Symbol(
         None,
         None,
@@ -13457,74 +13515,74 @@ class JpItcmLibsFunctions:
         None, None, None, "DseTrackEvent_Dummy2Bytes2", "", None
     )
 
-    RetEu0x02073300 = Symbol(
+    RetNa0x02072f68 = Symbol(
         None,
         None,
         None,
-        "RetEu0x02073300",
+        "RetNa0x02072f68",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073304 = Symbol(
+    RetNa0x02072f6c = Symbol(
         None,
         None,
         None,
-        "RetEu0x02073304",
+        "RetNa0x02072f6c",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073308 = Symbol(
+    RetNa0x02072f70 = Symbol(
         None,
         None,
         None,
-        "RetEu0x02073308",
+        "RetNa0x02072f70",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x0207333c = Symbol(
+    RetNa0x02072fa4 = Symbol(
         None,
         None,
         None,
-        "RetEu0x0207333c",
+        "RetNa0x02072fa4",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073340 = Symbol(
+    RetNa0x02072fa8 = Symbol(
         None,
         None,
         None,
-        "RetEu0x02073340",
+        "RetNa0x02072fa8",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073594 = Symbol(
+    RetNa0x020731fc = Symbol(
         None,
         None,
         None,
-        "RetEu0x02073594",
+        "RetNa0x020731fc",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x02073598 = Symbol(
+    RetNa0x02073200 = Symbol(
         None,
         None,
         None,
-        "RetEu0x02073598",
+        "RetNa0x02073200",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )
 
-    RetEu0x0207359c = Symbol(
+    RetNa0x02073204 = Symbol(
         None,
         None,
         None,
-        "RetEu0x0207359c",
+        "RetNa0x02073204",
         "Does nothing but return. Consists of only a bx lr instruction. May be a placeholder, dummy callback, or similar.\n\nNo params.",
         None,
     )

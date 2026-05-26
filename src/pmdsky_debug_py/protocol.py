@@ -657,6 +657,36 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitOamInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetShouldCopyToOam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GroupOamObjs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyAttributesToOam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearGroupedOamObjsAndGroups: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AddObjToUngroupedOamObjs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateFadeStatus: Symbol[
         Optional[list[int]],
         None,
@@ -6840,6 +6870,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OBJ_GRAPHICS_CONTROLS_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     WAN_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -8013,42 +8048,42 @@ class LibsFunctionsProtocol(Protocol):
         None,
     ]
 
-    RetEu0x02073300: Symbol[
+    RetNa0x02072f68: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    RetEu0x02073304: Symbol[
+    RetNa0x02072f6c: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    RetEu0x02073308: Symbol[
+    RetNa0x02072f70: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    RetEu0x0207333c: Symbol[
+    RetNa0x02072fa4: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    RetEu0x02073340: Symbol[
+    RetNa0x02072fa8: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    RetEu0x02073594: Symbol[
+    RetNa0x020731fc: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    RetEu0x02073598: Symbol[
+    RetNa0x02073200: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    RetEu0x0207359c: Symbol[
+    RetNa0x02073204: Symbol[
         Optional[list[int]],
         None,
     ]
