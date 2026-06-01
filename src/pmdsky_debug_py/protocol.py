@@ -2167,12 +2167,57 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    FillCopyToFlatVramCommand: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ExecuteCopyToFlatVramCommand: Symbol[
         Optional[list[int]],
         None,
     ]
 
     DecodeFragmentByteAssemblyTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadObjPalette: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AddSimpleObjToOam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GroupOamAttributesWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyAttributesToOamWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ChangeSimpleObjTexture: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitObjGraphicsControls: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyAttributesToOamBothScreens: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GroupOamAttributesBothScreens: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2433,6 +2478,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     HandleSir0TranslationVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FillPaletteInitInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5248,6 +5298,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     RevertGiratinaAndShaymin: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OamTileNumberToVramAddress: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -34134,6 +34189,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    OamTileNumberToVramAddressOv29: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetTrapInfo: Symbol[
         Optional[list[int]],
         None,
@@ -34414,6 +34474,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetRandomSpawnTrapId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetRandomTrapId: Symbol[
         Optional[list[int]],
         None,
@@ -34424,12 +34489,27 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetRandomBazaarItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRandomSecretRoomItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CopySpawnEntriesMaster: Symbol[
         Optional[list[int]],
         None,
     ]
 
     MonsterSpawnListPartialCopy: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopySpawnEntriesOnce: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -34565,6 +34645,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     UnkMapRelatedFunc: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AnimateWaterShadows: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -35760,6 +35845,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     EvolveMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisplayMonsterShadow: Symbol[
         Optional[list[int]],
         None,
     ]

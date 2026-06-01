@@ -3818,6 +3818,15 @@ class EuArm9Functions:
         None,
     )
 
+    FillCopyToFlatVramCommand = Symbol(
+        [0x1AB74],
+        [0x201AB74],
+        None,
+        "FillCopyToFlatVramCommand",
+        "Fills the command contained in a copy_to_obj_vram_order struct with the specified values.\n\nr0: command\nr1: dst\nr2: src\nr3: len_output (doubled if using an interleaved copy, i.e. if using an extended palette)\nstack[0]: copy_type\nstack[1]: interleave_with",
+        None,
+    )
+
     ExecuteCopyToFlatVramCommand = Symbol(
         [0x1ABA8],
         [0x201ABA8],
@@ -3833,6 +3842,78 @@ class EuArm9Functions:
         None,
         "DecodeFragmentByteAssemblyTable",
         "Decode the sprite texture stored in each fragment byte assembly entry into the dst output, until the final one is reached.\n\nr0: pointer to array of fragment byte assembly entry, final (otherwise unused) one should have byte_amount = 0\nr1: dst\nreturn: number of decoded bytes",
+        None,
+    )
+
+    LoadObjPalette = Symbol(
+        [0x1B4D8],
+        [0x201B4D8],
+        None,
+        "LoadObjPalette",
+        "Loads an object palette into obj_graphics_control, from which it will be copied into VRAM.\n\nr0: obj_graphics_control\nr1: palette_init_info\nr2: palette_num (bits 12-15 of OAM attribute 2)\nreturn: always 1",
+        None,
+    )
+
+    AddSimpleObjToOam = Symbol(
+        [0x1BA94],
+        [0x201BA94],
+        None,
+        "AddSimpleObjToOam",
+        "Adds a simple object (one not tied to an animation_control struct) to OAM.\n\nThe second parameter is an array of size 4 where obj[0] is the second half of attribute 0,\nobj[1] is attribute 1, obj[2] is attribute 2, and obj[3] is the first half of attribute 0 (the y-coordinate) shifted left by 4.\n\nr0: obj_graphics_control\nr1: obj\nr2: group\nreturn: -2 if group out of bounds, -1 if too many objects, 0 if successful",
+        None,
+    )
+
+    GroupOamAttributesWrapper = Symbol(
+        [0x1BB38],
+        [0x201BB38],
+        None,
+        "GroupOamAttributesWrapper",
+        "r0: obj_graphics_control",
+        None,
+    )
+
+    CopyAttributesToOamWrapper = Symbol(
+        [0x1BB48],
+        [0x201BB48],
+        None,
+        "CopyAttributesToOamWrapper",
+        "r0: obj_graphics_control",
+        None,
+    )
+
+    ChangeSimpleObjTexture = Symbol(
+        [0x1BB64],
+        [0x201BB64],
+        None,
+        "ChangeSimpleObjTexture",
+        "Changes the texture in VRAM of all objects that use the specified OAM tile number. Used for simple objects (ones not tied to an animation_control struct).\n\nr0: obj_graphics_control\nr1: texture src\nr2: tile number in OAM\nr3: texture size in bytes\nstack[0]: true if object uses extended palettes, see https://problemkaputt.de/gbatek.htm#dsvideoextendedpalettes\nstack[1]: upper 4 bits in 256-color extended palette, shifted right by 4",
+        None,
+    )
+
+    InitObjGraphicsControls = Symbol(
+        [0x1BBD8],
+        [0x201BBD8],
+        None,
+        "InitObjGraphicsControls",
+        "Initializes the obj_graphics_controls struct.\n\nNo params.",
+        None,
+    )
+
+    CopyAttributesToOamBothScreens = Symbol(
+        [0x1BE50],
+        [0x201BE50],
+        None,
+        "CopyAttributesToOamBothScreens",
+        "No params.",
+        None,
+    )
+
+    GroupOamAttributesBothScreens = Symbol(
+        [0x1BEF8],
+        [0x201BEF8],
+        None,
+        "GroupOamAttributesBothScreens",
+        "No params.",
         None,
     )
 
@@ -4301,6 +4382,15 @@ class EuArm9Functions:
         None,
         "HandleSir0TranslationVeneer",
         "Likely a linker-generated veneer for HandleSir0Translation.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: [output] double pointer to beginning of data\nr1: pointer to source file buffer\nreturn: return code",
+        None,
+    )
+
+    FillPaletteInitInfo = Symbol(
+        [0x1F634],
+        [0x201F634],
+        None,
+        "FillPaletteInitInfo",
+        "Fills a palette_init_info struct's fields with the given parameters, besides multi_ext_palettes which will always be made 0.\n\nr0: palette_init_info\nr1: palette_bytes\nr2: palette_mode\nr3: nb_colors_or_palettes\nstack[0]: ext_palette_upper\nstack[1]: palette_num_custom",
         None,
     )
 
@@ -9368,6 +9458,15 @@ class EuArm9Functions:
         None,
         "RevertGiratinaAndShaymin",
         "Reverts Giratina and Shaymin party members to their standard forms.\n\nr0: team member index in party\nr1: ?",
+        None,
+    )
+
+    OamTileNumberToVramAddress = Symbol(
+        [0x58E38],
+        [0x2058E38],
+        None,
+        "OamTileNumberToVramAddress",
+        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nr0: tile number\nr1: 0 for bottom screen, 1 for top screen\nreturn: VRAM tile address",
         None,
     )
 
@@ -21456,9 +21555,7 @@ class EuOverlay0Functions:
 
     Cpsi_Rc4_Crypt = Symbol([0x16FE8], [0x22D43A8], None, "Cpsi_Rc4_Crypt", "", None)
 
-    count_digits = Symbol(
-        [0x17054, 0x1705C], [0x22D4414, 0x22D441C], None, "count_digits", "", None
-    )
+    count_digits = Symbol([0x17054], [0x22D4414], None, "count_digits", "", None)
 
     Cpsi_Big_Sign = Symbol([0x1707C], [0x22D443C], None, "Cpsi_Big_Sign", "", None)
 
@@ -24377,16 +24474,11 @@ class EuOverlay0Functions:
     )
 
     GsiLargeIntCompare = Symbol(
-        [0x39510, 0x39518], [0x22F68D0, 0x22F68D8], None, "GsiLargeIntCompare", "", None
+        [0x39510], [0x22F68D0], None, "GsiLargeIntCompare", "", None
     )
 
     GsiLargeIntStripLeadingZeroes = Symbol(
-        [0x395A0, 0x395B0],
-        [0x22F6960, 0x22F6970],
-        None,
-        "GsiLargeIntStripLeadingZeroes",
-        "",
-        None,
+        [0x395A0], [0x22F6960], None, "GsiLargeIntStripLeadingZeroes", "", None
     )
 
     GsiLargeIntAdd = Symbol([0x395D0], [0x22F6990], None, "GsiLargeIntAdd", "", None)
@@ -38806,6 +38898,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    OamTileNumberToVramAddressOv29 = Symbol(
+        [0x4CEC],
+        [0x22E186C],
+        None,
+        "OamTileNumberToVramAddressOv29",
+        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nIs an exact copy of OamTileNumberToVramAddress in arm9.\n\nr0: tile number\nr1: 0 for bottom screen, 1 for top screen\nreturn: VRAM tile address",
+        None,
+    )
+
     GetTrapInfo = Symbol(
         [0x53C8],
         [0x22E1F48],
@@ -39338,12 +39439,21 @@ class EuOverlay29Functions:
         None,
     )
 
+    GetRandomSpawnTrapId = Symbol(
+        [0xB860],
+        [0x22E83E0],
+        None,
+        "GetRandomSpawnTrapId",
+        "Gets the id of a random trap to be used when spawning traps on the floor during dungeon generation.\n\nreturn: trap id",
+        None,
+    )
+
     GetRandomTrapId = Symbol(
         [0xB8BC],
         [0x22E843C],
         None,
         "GetRandomTrapId",
-        "Gets the id of the trap to be used as the effect of a Random Trap.\n\nreturn: trap id",
+        "Gets the id of a random trap to be used as the effect of a Random Trap.\n\nreturn: trap id",
         None,
     )
 
@@ -39353,6 +39463,24 @@ class EuOverlay29Functions:
         None,
         "GetItemIdToSpawn",
         "Randomly picks an item to spawn using one of the floor's item spawn lists and returns its ID.\n\nIf the function fails to properly choose an item (due to, for example, a corrupted item list), ITEM_POKE is returned.\n\nr0: Which item list to use\nreturn: Item ID",
+        None,
+    )
+
+    GetRandomBazaarItem = Symbol(
+        [0xB9E8],
+        [0x22E8568],
+        None,
+        "GetRandomBazaarItem",
+        "Randomly picks an item from the pool of items for the Secret Bazaar grab bag.\n\nreturn: Item ID",
+        None,
+    )
+
+    GetRandomSecretRoomItem = Symbol(
+        [0xBA00],
+        [0x22E8580],
+        None,
+        "GetRandomSecretRoomItem",
+        "Randomly picks an item from the pool of items for secret room chests.\n\nreturn: Item ID",
         None,
     )
 
@@ -39371,6 +39499,15 @@ class EuOverlay29Functions:
         None,
         "MonsterSpawnListPartialCopy",
         "Copies all entries in the floor's monster spawn list that have a sprite size >= 6 to the specified buffer.\n\nThe parameter in r1 can be used to specify how many entries are already present in the buffer. Entries added by this function will be placed after those, and the total returned in r1 will account for existing entries as well.\n\nr0: [output] Buffer where the result will be stored\nr1: Current amount of entries in the buffer\nreturn: New amount of entries in the buffer",
+        None,
+    )
+
+    CopySpawnEntriesOnce = Symbol(
+        [0xBB2C],
+        [0x22E86AC],
+        None,
+        "CopySpawnEntriesOnce",
+        "Calls CopySpawnEntriesMaster if it has not already been called for the current dungeon. If CopySpawnEntriesMaster has already been called, this function does nothing.\n\nNo params.",
         None,
     )
 
@@ -39614,6 +39751,15 @@ class EuOverlay29Functions:
         None,
         "UnkMapRelatedFunc",
         "Calling this function with r0 = 6 (or its duplicates in the switch statement) will normally close the minimap, while r0 = 0 will reopen it.\n\nWhen called in certain places, the function will crash the game instead?\n\nAlso does nothing if the passed case is the same as the last case used (or 0 if the last case was 0xd).\n\nr0: Which case to use for the switch statement\nr1: unused",
+        None,
+    )
+
+    AnimateWaterShadows = Symbol(
+        [0xE47C],
+        [0x22EAFFC],
+        None,
+        "AnimateWaterShadows",
+        "Animates the water shadows beneath entities.\n\nNo params.",
         None,
     )
 
@@ -41811,6 +41957,15 @@ class EuOverlay29Functions:
         None,
         "EvolveMonster",
         "Makes the specified monster evolve into the specified species. Has a special case when\na monster evolves into Ninjask and tries to spawn a Shedinja as well.\n\nr0: user entity pointer?\nr1: target pointer to the entity to evolve\nr2: Species to evolve into",
+        None,
+    )
+
+    DisplayMonsterShadow = Symbol(
+        [0x27D08],
+        [0x2304888],
+        None,
+        "DisplayMonsterShadow",
+        "Displays a shadow under a monster.\n\nr0: whether to display the shadow\nr1: shadow type\nr2: whether to display a yellow circle (for team members and special cases like decoys, rescue clients, etc.)\nr3: x-coordinate in OAM plus 0x10\nstack[0]: y-coordinate in OAM plus 0x8",
         None,
     )
 
