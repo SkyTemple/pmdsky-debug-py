@@ -30278,43 +30278,370 @@ class NaItcmOverlay19Functions:
         None,
     )
 
-    GetRecruitableMonsterAll = Symbol(
+    SetMiracleDrinkStatCountRange = Symbol(
         None,
         None,
         None,
-        "GetRecruitableMonsterAll",
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
-        None,
-    )
-
-    GetRecruitableMonsterList = Symbol(
-        None,
-        None,
-        None,
-        "GetRecruitableMonsterList",
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+        "SetMiracleDrinkStatCountRange",
+        "Retrieves the minimum and maximum stat boost for a miracle drink. In vanilla this is [2,5].\n\nr0: int*\nr1: int*",
         None,
     )
 
-    GetRecruitableMonsterListRestricted = Symbol(
+    SetBadDrinkStatCountRange = Symbol(
         None,
         None,
         None,
-        "GetRecruitableMonsterListRestricted",
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+        "SetBadDrinkStatCountRange",
+        "Retrieves the minimum and maximum stat reduction for a bad drink. In vanilla this is [1,3].\n\nr0: int*\nr1: int*",
         None,
+    )
+
+    GetBarItemResultWeights = Symbol(
+        None,
+        None,
+        None,
+        "GetBarItemResultWeights",
+        "Retrieves a pointer to the weights for normal, good, miracle, and bad drink results by item.\nThe miracle drink event chance is actually a shared chance for a random drink event such as a dungeon unlock, recruit, or a real miracle drink.\n\nr0: item_id\nreturn: uint16_t*",
+        None,
+    )
+
+    BarGetDrinkEventWeights = Symbol(
+        None,
+        None,
+        None,
+        "BarGetDrinkEventWeights",
+        "Retrieves the static chances for an egg, recruit, dungeon unlock, or a miracle drink.\n\nreturn: uint16_t *",
+        None,
+    )
+
+    BarGetRandomValidEggRecruit = Symbol(
+        None,
+        None,
+        None,
+        "BarGetRandomValidEggRecruit",
+        "Retrieves a random valid egg species for an egg event at the cafe.\n\nreturn: enum monster_id",
+        None,
+    )
+
+    BarGetValidEggGiverFromGourmetTable = Symbol(
+        None,
+        None,
+        None,
+        "BarGetValidEggGiverFromGourmetTable",
+        "Retrieves a random valid species from BAR_RECRUITABLE_GOURMET_MONSTER_TABLE to serve as the egg giver for an egg event at the cafe.\n\nreturn: enum monster_id",
+        None,
+    )
+
+    BarGetRandomValidRecruitFromGourmetTable = Symbol(
+        None,
+        None,
+        None,
+        "BarGetRandomValidRecruitFromGourmetTable",
+        "Retrieves a random valid species from BAR_RECRUITABLE_GOURMET_MONSTER_TABLE to serve as the recruit for an gourmet recruit event at the cafe.\n\nreturn: enum monster_id",
+        None,
+    )
+
+    BarGetUnlockableDungeonPtr = Symbol(
+        None,
+        None,
+        None,
+        "BarGetUnlockableDungeonPtr",
+        "If not zero, stores a double pointer to the BAR_UNLOCKABLE_DUNGEONS_TABLE to r0. Then returns 6 for some reason... \nUnclear what this is intended to actually do...\n\nr0: struct bar_dungeon_unlock **\nreturn: Always 6?",
+        None,
+    )
+
+    BarPopulateUnlockableDungeons = Symbol(
+        None,
+        None,
+        None,
+        "BarPopulateUnlockableDungeons",
+        "Populates a pointer of dungeon ids based on the current $SCENARIO_BALANCE_FLAG and unlock statuses of dungeons in the BAR_UNLOCKABLE_DUNGEONS_TABLE.\n\nr0: struct dungeon_id_8*\nreturn: number of allowed dungeons",
+        None,
+    )
+
+    BarTryClosePortraitBox = Symbol(
+        None,
+        None,
+        None,
+        "BarTryClosePortraitBox",
+        "Seems to handle closing portrait boxes for the overlay. \n\nNo params.",
+        None,
+    )
+
+    BarCaseManagerSub = Symbol(
+        None,
+        None,
+        None,
+        "BarCaseManagerSub",
+        "Called once every frame by SpindaBarMenuUpdate if the bar_update_case is BAR_SUBCASE_FUNC.\nState Case with unique behaviors enumerated by enum bar_subcase.\n\nreturn: maybe a return code for SpindaBarMenuUpdate?",
+        None,
+    )
+
+    BarMaybeSetBarScrollBoxWindowId = Symbol(
+        None,
+        None,
+        None,
+        "BarMaybeSetBarScrollBoxWindowId",
+        "Seems to set the scroll_box_window_id for spinda_cafe.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nreturn: undefined4",
+        None,
+    )
+
+    BarPopulateDrinkableBagItems = Symbol(
+        None,
+        None,
+        None,
+        "BarPopulateDrinkableBagItems",
+        "Populates an item list of only valid bar items within spinda_cafe.\n\nNo params.",
+        None,
+    )
+
+    BarZeroInitPreprocessorFlagsAndReturnCase = Symbol(
+        None,
+        None,
+        None,
+        "BarZeroInitPreprocessorFlagsAndReturnCase",
+        "Zero inits many preprocessor_flag fields, but also sets the return_case for scripts to zero within spinda_cafe.\n\nNo params.",
+        None,
+    )
+
+    BarZeroInitBufferAndPreprocessorArgsZero = Symbol(
+        None,
+        None,
+        None,
+        "BarZeroInitBufferAndPreprocessorArgsZero",
+        "Zero initializes the preprocessor_args_0 and string_buffer_0 fields of spinda_cafe.\n\nreturn: bool for if buffer was empty string",
+        None,
+    )
+
+    BarTrySetEventMainActor = Symbol(
+        None,
+        None,
+        None,
+        "BarTrySetEventMainActor",
+        "Seems to set ACTOR_NPC_EVENT_MAIN to whoever the player ordered the drink for.\nSeems to do other things before that though...\n\nreturn: undefined4",
+        None,
+    )
+
+    BarZeroInitBufferAndPreprocessorArgsOne = Symbol(
+        None,
+        None,
+        None,
+        "BarZeroInitBufferAndPreprocessorArgsOne",
+        "Zero initializes the preprocessor_args_1 and string_buffer_1 fields of spinda_cafe.\n\nreturn: bool for if buffer was empty string",
+        None,
+    )
+
+    BarPrintHpIncreaseString = Symbol(
+        None,
+        None,
+        None,
+        "BarPrintHpIncreaseString",
+        "Handles printing the correct text for a HP stat increase from a drink.\n\nr0: hp increase amount?\nr1: a different hp increase amount?\nreturn: undefined4",
+        None,
+    )
+
+    BarPrintOtherStatIncreaseString = Symbol(
+        None,
+        None,
+        None,
+        "BarPrintOtherStatIncreaseString",
+        "Seems to handle printing the correct text for a non-HP, non-IQ stat increase from a drink.\n\nr0: stat increase amount?\nr1: a different stat increase amount?\nr2: Stat Index\nreturn: undefined4",
+        None,
+    )
+
+    BarPrintIqAndSkills = Symbol(
+        None,
+        None,
+        None,
+        "BarPrintIqAndSkills",
+        "Seems to handle printing the correct text for an IQ stat increase from a drink, including learned skills.\n\nr0: IQ increase amount\nreturn: undefined4",
+        None,
+    )
+
+    BarPrintLevelMaxedOutString = Symbol(
+        None,
+        None,
+        None,
+        "BarPrintLevelMaxedOutString",
+        "Seems to handle printing the correct text for a 'level increase' from a drink, but only if the pokemon is already level 100.\n\nr0: levels 'increased'",
+        None,
+    )
+
+    BarDrawAndUpdateGainedIqSkills = Symbol(
+        None,
+        None,
+        None,
+        "BarDrawAndUpdateGainedIqSkills",
+        "Called by BarPrintIqAndSkills to name any IQ skills gained from a drink.\n\nr0: char\nr1: char\nr2: int\nr3: int\nstack[0]: int\nstack[1]: int\nstack[2]: int\nreturn: undefined4",
+        None,
+    )
+
+    BarUpdateDrinkEventNewStats = Symbol(
+        None,
+        None,
+        None,
+        "BarUpdateDrinkEventNewStats",
+        "Actually apply stat changes from a drink.\n\nr0: struct bar_stats_data*\nr1: stored to bar_stats_data->stat_drink_event_kind\nreturn: undefined4",
+        None,
+    )
+
+    BarPrintReactionsAndStatIncreases = Symbol(
+        None,
+        None,
+        None,
+        "BarPrintReactionsAndStatIncreases",
+        "Seems to handle drink reactions, and calling the correct stat increase text function.\n\nr0: struct bar_stats_data*",
+        None,
+    )
+
+    BarHandleDrinkEventSubcase = Symbol(
+        None,
+        None,
+        None,
+        "BarHandleDrinkEventSubcase",
+        "Has different behavior based on the type of drink. Usually assigns the next correct bar_subcase, and for good stat based drink events, seems to handle or roll that somehow. \n\nNo params.",
+        None,
+    )
+
+    BarPostDrinkCaseForCustomer = Symbol(
+        None,
+        None,
+        None,
+        "BarPostDrinkCaseForCustomer",
+        "Sets the correct bar_update_case after completing a drink, depending on who ordered the drink.\n\nNo params.",
+        None,
+    )
+
+    BarMaybeIsClosedUnkStringIdMenu = Symbol(
+        None,
+        None,
+        None,
+        "BarMaybeIsClosedUnkStringIdMenu",
+        "Seems to check if a currently unknown String Id based menu type's window is closed?\nJust a guess.\n\nreturn: undefined4",
+        None,
+    )
+
+    BarCreateUnkStringIdMenu = Symbol(
+        None,
+        None,
+        None,
+        "BarCreateUnkStringIdMenu",
+        "Seems to handle initialization of a currently unknown String Id based menu type.\n\nr0: undefined4\nr1: undefined4\nr2: struct simple_menu_id_item*\nr3: undefined4\nstack[0]: char\nstack[1]: uint32_t",
+        None,
+    )
+
+    GetUnkStringIdMenuResult = Symbol(
+        None,
+        None,
+        None,
+        "GetUnkStringIdMenuResult",
+        "Seems to retrieve the result of some kind of player choice from a currently unknown String Id based menu type.\n\nreturn: menu result",
+        None,
+    )
+
+    BarTryShowPortrait = Symbol(
+        None,
+        None,
+        None,
+        "BarTryShowPortrait",
+        "Calls ShowPortraitInPortraitBox with portrait data from the spinda_cafe struct.\n\nNo params.",
+        None,
+    )
+
+    BarTryHidePortrait = Symbol(
+        None,
+        None,
+        None,
+        "BarTryHidePortrait",
+        "Calls HidePortraitBox with portrait data from the spinda_cafe struct.\n\nNo params.",
+        None,
+    )
+
+    BarInventoryMenuCallback = Symbol(
+        None,
+        None,
+        None,
+        "BarInventoryMenuCallback",
+        "Seems to be some sort of callback function used by an inventory menu for the cafe.\n\nr0: undefined4\nr1: spinda_cafe->item_validities index?\nr2: undefined4\nreturn: undefined4",
+        None,
+    )
+
+    BarTryCloseInventoryMenu = Symbol(
+        None,
+        None,
+        None,
+        "BarTryCloseInventoryMenu",
+        "Calls CloseInventoryMenu with spinda_cafe->inventory_window_id.\n\nNo params.",
+        None,
+    )
+
+    BarTryCloseTeamMovesMenu = Symbol(
+        None,
+        None,
+        None,
+        "BarTryCloseTeamMovesMenu",
+        "Calls CloseAdvancedTextBox with spinda_cafe->inventory_window_id.\nContextually seems responsible for closing the menu for team moves.\n\nNo params.",
+        None,
+    )
+
+    SpindaBarEntry = Symbol(
+        None,
+        None,
+        None,
+        "SpindaBarEntry",
+        "First entry point into overlay 19, called by MENU_JUICE_BAR.\n\nreturn: undefined4",
+        None,
+    )
+
+    SpindaBarResume = Symbol(
+        None,
+        None,
+        None,
+        "SpindaBarResume",
+        "Subsequent entry point into overlay 19, called by MENU_JUICE_BAR_PICK_ITEM.\n\nreturn: undefined4",
+        None,
+    )
+
+    SpindaBarDestruct = Symbol(
+        None,
+        None,
+        None,
+        "SpindaBarDestruct",
+        "The destructor of overlay 19 for both entry points.\nDoes nothing but call BarTryClosePortraitBox...\n\nNo params.",
+        None,
+    )
+
+    SpindaBarMenuUpdate = Symbol(
+        None,
+        None,
+        None,
+        "SpindaBarMenuUpdate",
+        "Called every frame overlay 19 is active, primarily handling interface between the script, and BarCaseManagerSub.\n\nreturn: undefined4",
+        None,
+    )
+
+    GetRecruitableMonsterAll = _Deprecated(
+        "GetRecruitableMonsterAll", BarGetRandomValidEggRecruit
+    )
+
+    GetRecruitableMonsterList = _Deprecated(
+        "GetRecruitableMonsterList", BarGetValidEggGiverFromGourmetTable
+    )
+
+    GetRecruitableMonsterListRestricted = _Deprecated(
+        "GetRecruitableMonsterListRestricted", BarGetRandomValidRecruitFromGourmetTable
     )
 
 
 class NaItcmOverlay19Data:
 
-    OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
+    BAR_MIRACLE_EVENT_WEIGHTS = Symbol(
         None,
         None,
         None,
-        "OVERLAY19_UNKNOWN_TABLE__NA_238DAE0",
-        "4*0x2\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "BAR_MIRACLE_EVENT_WEIGHTS",
+        "Weights for a 'miracle drink event' to be an egg, a gourmet recruit, a dungeon unlock, or a regular miracle drink in that order.\nBy default, it's 10 weight for each.\n\ntype: int16_t[4]",
+        "int16_t[4]",
     )
 
     BAR_UNLOCKABLE_DUNGEONS_TABLE = Symbol(
@@ -30322,16 +30649,16 @@ class NaItcmOverlay19Data:
         None,
         None,
         "BAR_UNLOCKABLE_DUNGEONS_TABLE",
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct dungeon_id_16[6]",
+        "Stores dungeon ids, as well as the required $SCENARIO_BALANCE_FLAG to obtain them from the cafe.\n\ntype: struct bar_dungeon_unlock[6]",
         "struct dungeon_id_16[6]",
     )
 
-    BAR_RECRUITABLE_MONSTER_TABLE = Symbol(
+    BAR_RECRUITABLE_GOURMET_MONSTER_TABLE = Symbol(
         None,
         None,
         None,
-        "BAR_RECRUITABLE_MONSTER_TABLE",
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct monster_id_16[108]",
+        "BAR_RECRUITABLE_GOURMET_MONSTER_TABLE",
+        "A table of valid monsters for both the recruit for the gourmet recruit event, and the egg-giver for egg event.\n\ntype: monster_id_16[108]",
         "struct monster_id_16[108]",
     )
 
@@ -30340,35 +30667,89 @@ class NaItcmOverlay19Data:
         None,
         None,
         "BAR_AVAILABLE_ITEMS",
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct bar_item[66]",
+        "A table of valid bar items, the stats they would give for a good drink, and the weights for normal/good/'miracle'/bad drinks.\n\ntype: struct bar_item[66]",
         "struct bar_item[66]",
     )
 
-    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178 = Symbol(
+    BAR_STAT_REACTION_STRINGS = Symbol(
         None,
         None,
         None,
-        "OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "BAR_STAT_REACTION_STRINGS",
+        "Text string ids for bad/miracle/good drink reactions to stat changes, in that order.\nEx: 'Huh?[K] Whaaat?[K]' or 'Shock!!!'\n\ntype: int16_t[3]",
+        "int16_t[3]",
     )
 
-    OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4 = Symbol(
+    GOOD_DRINK_REACTION_STRINGS = Symbol(
         None,
         None,
         None,
-        "OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4",
-        "5*0x8\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "GOOD_DRINK_REACTION_STRINGS",
+        "Text string ids for good drinks if a stat goes up/a stat is already maxed out/IQ went up in that order.\n\ntype: int16_t[3]",
+        "int16_t[3]",
     )
 
-    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC = Symbol(
+    BAR_STAT_CHANGE_STRINGS = Symbol(
         None,
         None,
         None,
-        "OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "BAR_STAT_CHANGE_STRINGS",
+        "Text string ids for stats changing because of bad/miracle/good drinks in that order.\n\ntype: int16_t[3]",
+        "int16_t[3]",
+    )
+
+    NEUTRAL_DRINK_REACTION_STRINGS = Symbol(
+        None,
+        None,
+        None,
+        "NEUTRAL_DRINK_REACTION_STRINGS",
+        "Text string ids for the flavor of neutral drinks.\n\ntype: int16_t[3]",
+        "int16_t[3]",
+    )
+
+    BAD_DRINK_REACTION_STRINGS = Symbol(
+        None,
+        None,
+        None,
+        "BAD_DRINK_REACTION_STRINGS",
+        "Text string ids for the flavor of bad drinks.\n\ntype: int16_t[3]",
+        "int16_t[3]",
+    )
+
+    BAR_IQ_CHANGE_STRINGS = Symbol(
+        None,
+        None,
+        None,
+        "BAR_IQ_CHANGE_STRINGS",
+        "Text string ids for how IQ changed, depending on the source of the IQ increase (guaranteed, good, miracle).\n\ntype: int16_t[3]",
+        "int16_t[3]",
+    )
+
+    BAR_IQ_UNABLE_TO_CHANGE_STRINGS = Symbol(
+        None,
+        None,
+        None,
+        "BAR_IQ_UNABLE_TO_CHANGE_STRINGS",
+        "Text string ids for how IQ would have changed, depending on the source of the IQ increase (guaranteed, good, miracle).\nPlay if IQ is already maxed out. One of these strings falsely claims IQ increases anyway.\n\ntype int16_t[3]",
+        "int16_t[3]",
+    )
+
+    GOURMET_PORTRAIT_OFFSET_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "GOURMET_PORTRAIT_OFFSET_TABLE",
+        "Table of portrait offsets for the gourmet recruit's portraits during the gourmet recruit drink event.\n\ntype: vec2[5]",
+        "struct vec2[5]",
+    )
+
+    BAR_STAT_NAME_STRINGS = Symbol(
+        None,
+        None,
+        None,
+        "BAR_STAT_NAME_STRINGS",
+        "Text string ids for the names of the stats, to be used by other text strings.\n\ntype: int16_t[6]",
+        "int16_t[6]",
     )
 
     BAR_WINDOW_PARAMS_1 = Symbol(
@@ -30416,13 +30797,13 @@ class NaItcmOverlay19Data:
         "struct simple_menu_id_item[3]",
     )
 
-    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
+    BAR_DRINK_NAMES_STRINGS = Symbol(
         None,
         None,
         None,
-        "OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "BAR_DRINK_NAMES_STRINGS",
+        "A list of types of drinks, such as 'Tea', 'Milk', or 'Juice' to refer to the drink by.\nNot all of the text strings designed for this purpose are actually in use. \n\ntype: int16_t[12]",
+        "int16_t[12]",
     )
 
     BAR_MAIN_MENU_ITEMS = Symbol(
@@ -30437,6 +30818,60 @@ class NaItcmOverlay19Data:
         None, None, None, "BAR_SUBMENU_ITEMS_2", "", "struct simple_menu_id_item[6]"
     )
 
+    BAR_NEW_LINE_CHAR = Symbol(
+        None,
+        None,
+        None,
+        "BAR_NEW_LINE_CHAR",
+        "A new line character, appended to various other strings during operation of the menu.\nAlways loaded as a full 4 bytes...\n\ntype: wchar_t",
+        "wchar_t",
+    )
+
+    BAR_ME_PLAY_TEXT_TAG = Symbol(
+        None,
+        None,
+        None,
+        "BAR_ME_PLAY_TEXT_TAG",
+        "'[me_play:0]'\n\ntype: string",
+        "char[12]",
+    )
+
+    DEBUG_MESSAGE_REQUEST_STR = Symbol(
+        None,
+        None,
+        None,
+        "DEBUG_MESSAGE_REQUEST_STR",
+        "'dirinkbar request %3d\n'\nRequest likely refers to requesting the script to do something.\n\ntype: string",
+        "char[23]",
+    )
+
+    DEBUG_MESSAGE_REQUEST_AND_RETURN_STR = Symbol(
+        None,
+        None,
+        None,
+        "DEBUG_MESSAGE_REQUEST_AND_RETURN_STR",
+        "'dirinkbar request %3d[%3d]\n'\nRequest again likely refers to requesting the script to do something.\n\ntype: string",
+        "char[28]",
+    )
+
+    DEBUG_MESSAGE_BEFORE_SET_STR = Symbol(
+        None,
+        None,
+        None,
+        "DEBUG_MESSAGE_BEFORE_SET_STR",
+        "'dirinkbar message before set\n'\nMessage before likely refers to a textbox appearing immediately before passing control to the script engine.\n\ntype: string",
+        "char[30]",
+    )
+
+    DEBUG_MESSAGE_AFTER_SET_STR = Symbol(
+        None,
+        None,
+        None,
+        "DEBUG_MESSAGE_AFTER_SET_STR",
+        "'dirinkbar message after set\n'\nMessage before likely refers to a textbox appearing immediately after passing control to the script engine.\n\ntype: string",
+        "char[29]",
+    )
+
     OV19_STATIC_INITIALIZER = Symbol(
         None,
         None,
@@ -30446,22 +30881,17 @@ class NaItcmOverlay19Data:
         "undefined4",
     )
 
-    OVERLAY19_UNKNOWN_POINTER__NA_238E360 = Symbol(
+    BAR_MENU_PRIOR_CHOICE_INDICES = Symbol(
         None,
         None,
         None,
-        "OVERLAY19_UNKNOWN_POINTER__NA_238E360",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "BAR_MENU_PRIOR_CHOICE_INDICES",
+        "Seems to remember where the player's cursor was previously during menu navigation.",
+        "int16_t[3]",
     )
 
-    OVERLAY19_UNKNOWN_POINTER__NA_238E364 = Symbol(
-        None,
-        None,
-        None,
-        "OVERLAY19_UNKNOWN_POINTER__NA_238E364",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+    BAR_RECRUITABLE_MONSTER_TABLE = _Deprecated(
+        "BAR_RECRUITABLE_MONSTER_TABLE", BAR_RECRUITABLE_GOURMET_MONSTER_TABLE
     )
 
     OVERLAY19_RESERVED_SPACE = _Deprecated(

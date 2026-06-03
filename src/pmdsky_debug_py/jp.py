@@ -3819,8 +3819,8 @@ class JpArm9Functions:
     )
 
     FillCopyToFlatVramCommand = Symbol(
-        None,
-        None,
+        [0x1AB30],
+        [0x201AB30],
         None,
         "FillCopyToFlatVramCommand",
         "Fills the command contained in a copy_to_obj_vram_order struct with the specified values.\n\nr0: command\nr1: dst\nr2: src\nr3: len_output (doubled if using an interleaved copy, i.e. if using an extended palette)\nstack[0]: copy_type\nstack[1]: interleave_with",
@@ -3846,8 +3846,8 @@ class JpArm9Functions:
     )
 
     LoadObjPalette = Symbol(
-        None,
-        None,
+        [0x1B494],
+        [0x201B494],
         None,
         "LoadObjPalette",
         "Loads an object palette into obj_graphics_control, from which it will be copied into VRAM.\n\nr0: obj_graphics_control\nr1: palette_init_info\nr2: palette_num (bits 12-15 of OAM attribute 2)\nreturn: always 1",
@@ -3855,8 +3855,8 @@ class JpArm9Functions:
     )
 
     AddSimpleObjToOam = Symbol(
-        None,
-        None,
+        [0x1BA50],
+        [0x201BA50],
         None,
         "AddSimpleObjToOam",
         "Adds a simple object (one not tied to an animation_control struct) to OAM.\n\nThe second parameter is an array of size 4 where obj[0] is the second half of attribute 0,\nobj[1] is attribute 1, obj[2] is attribute 2, and obj[3] is the first half of attribute 0 (the y-coordinate) shifted left by 4.\n\nr0: obj_graphics_control\nr1: obj\nr2: group\nreturn: -2 if group out of bounds, -1 if too many objects, 0 if successful",
@@ -3864,16 +3864,26 @@ class JpArm9Functions:
     )
 
     GroupOamAttributesWrapper = Symbol(
-        None, None, None, "GroupOamAttributesWrapper", "r0: obj_graphics_control", None
+        [0x1BAF4],
+        [0x201BAF4],
+        None,
+        "GroupOamAttributesWrapper",
+        "r0: obj_graphics_control",
+        None,
     )
 
     CopyAttributesToOamWrapper = Symbol(
-        None, None, None, "CopyAttributesToOamWrapper", "r0: obj_graphics_control", None
+        [0x1BB04],
+        [0x201BB04],
+        None,
+        "CopyAttributesToOamWrapper",
+        "r0: obj_graphics_control",
+        None,
     )
 
     ChangeSimpleObjTexture = Symbol(
-        None,
-        None,
+        [0x1BB20],
+        [0x201BB20],
         None,
         "ChangeSimpleObjTexture",
         "Changes the texture in VRAM of all objects that use the specified OAM tile number. Used for simple objects (ones not tied to an animation_control struct).\n\nr0: obj_graphics_control\nr1: texture src\nr2: tile number in OAM\nr3: texture size in bytes\nstack[0]: true if object uses extended palettes, see https://problemkaputt.de/gbatek.htm#dsvideoextendedpalettes\nstack[1]: upper 4 bits in 256-color extended palette, shifted right by 4",
@@ -3881,8 +3891,8 @@ class JpArm9Functions:
     )
 
     InitObjGraphicsControls = Symbol(
-        None,
-        None,
+        [0x1BB94],
+        [0x201BB94],
         None,
         "InitObjGraphicsControls",
         "Initializes the obj_graphics_controls struct.\n\nNo params.",
@@ -3890,11 +3900,21 @@ class JpArm9Functions:
     )
 
     CopyAttributesToOamBothScreens = Symbol(
-        None, None, None, "CopyAttributesToOamBothScreens", "No params.", None
+        [0x1BE0C],
+        [0x201BE0C],
+        None,
+        "CopyAttributesToOamBothScreens",
+        "No params.",
+        None,
     )
 
     GroupOamAttributesBothScreens = Symbol(
-        None, None, None, "GroupOamAttributesBothScreens", "No params.", None
+        [0x1BEB4],
+        [0x201BEB4],
+        None,
+        "GroupOamAttributesBothScreens",
+        "No params.",
+        None,
     )
 
     CopyAndInterleaveWrapper = Symbol(
@@ -4366,8 +4386,8 @@ class JpArm9Functions:
     )
 
     FillPaletteInitInfo = Symbol(
-        None,
-        None,
+        [0x1F5F0],
+        [0x201F5F0],
         None,
         "FillPaletteInitInfo",
         "Fills a palette_init_info struct's fields with the given parameters, besides multi_ext_palettes which will always be made 0.\n\nr0: palette_init_info\nr1: palette_bytes\nr2: palette_mode\nr3: nb_colors_or_palettes\nstack[0]: ext_palette_upper\nstack[1]: palette_num_custom",
@@ -9442,8 +9462,8 @@ class JpArm9Functions:
     )
 
     OamTileNumberToVramAddress = Symbol(
-        None,
-        None,
+        [0x58DB8],
+        [0x2058DB8],
         None,
         "OamTileNumberToVramAddress",
         "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nr0: tile number\nr1: 0 for bottom screen, 1 for top screen\nreturn: VRAM tile address",
@@ -32381,43 +32401,370 @@ class JpOverlay19Functions:
         None,
     )
 
-    GetRecruitableMonsterAll = Symbol(
+    SetMiracleDrinkStatCountRange = Symbol(
+        [0x40],
+        [0x238B6E0],
+        None,
+        "SetMiracleDrinkStatCountRange",
+        "Retrieves the minimum and maximum stat boost for a miracle drink. In vanilla this is [2,5].\n\nr0: int*\nr1: int*",
+        None,
+    )
+
+    SetBadDrinkStatCountRange = Symbol(
+        [0x54],
+        [0x238B6F4],
+        None,
+        "SetBadDrinkStatCountRange",
+        "Retrieves the minimum and maximum stat reduction for a bad drink. In vanilla this is [1,3].\n\nr0: int*\nr1: int*",
+        None,
+    )
+
+    GetBarItemResultWeights = Symbol(
+        [0x68],
+        [0x238B708],
+        None,
+        "GetBarItemResultWeights",
+        "Retrieves a pointer to the weights for normal, good, miracle, and bad drink results by item.\nThe miracle drink event chance is actually a shared chance for a random drink event such as a dungeon unlock, recruit, or a real miracle drink.\n\nr0: item_id\nreturn: uint16_t*",
+        None,
+    )
+
+    BarGetDrinkEventWeights = Symbol(
+        [0x78],
+        [0x238B718],
+        None,
+        "BarGetDrinkEventWeights",
+        "Retrieves the static chances for an egg, recruit, dungeon unlock, or a miracle drink.\n\nreturn: uint16_t *",
+        None,
+    )
+
+    BarGetRandomValidEggRecruit = Symbol(
         [0x84],
         [0x238B724],
         None,
-        "GetRecruitableMonsterAll",
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+        "BarGetRandomValidEggRecruit",
+        "Retrieves a random valid egg species for an egg event at the cafe.\n\nreturn: enum monster_id",
         None,
     )
 
-    GetRecruitableMonsterList = Symbol(
+    BarGetValidEggGiverFromGourmetTable = Symbol(
         [0x134],
         [0x238B7D4],
         None,
-        "GetRecruitableMonsterList",
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+        "BarGetValidEggGiverFromGourmetTable",
+        "Retrieves a random valid species from BAR_RECRUITABLE_GOURMET_MONSTER_TABLE to serve as the egg giver for an egg event at the cafe.\n\nreturn: enum monster_id",
         None,
     )
 
-    GetRecruitableMonsterListRestricted = Symbol(
+    BarGetRandomValidRecruitFromGourmetTable = Symbol(
         [0x1DC],
         [0x238B87C],
         None,
-        "GetRecruitableMonsterListRestricted",
-        "Note: unverified, ported from Irdkwia's notes\n\nreturn: int?",
+        "BarGetRandomValidRecruitFromGourmetTable",
+        "Retrieves a random valid species from BAR_RECRUITABLE_GOURMET_MONSTER_TABLE to serve as the recruit for an gourmet recruit event at the cafe.\n\nreturn: enum monster_id",
         None,
+    )
+
+    BarGetUnlockableDungeonPtr = Symbol(
+        [0x294],
+        [0x238B934],
+        None,
+        "BarGetUnlockableDungeonPtr",
+        "If not zero, stores a double pointer to the BAR_UNLOCKABLE_DUNGEONS_TABLE to r0. Then returns 6 for some reason... \nUnclear what this is intended to actually do...\n\nr0: struct bar_dungeon_unlock **\nreturn: Always 6?",
+        None,
+    )
+
+    BarPopulateUnlockableDungeons = Symbol(
+        [0x2AC],
+        [0x238B94C],
+        None,
+        "BarPopulateUnlockableDungeons",
+        "Populates a pointer of dungeon ids based on the current $SCENARIO_BALANCE_FLAG and unlock statuses of dungeons in the BAR_UNLOCKABLE_DUNGEONS_TABLE.\n\nr0: struct dungeon_id_8*\nreturn: number of allowed dungeons",
+        None,
+    )
+
+    BarTryClosePortraitBox = Symbol(
+        [0x328],
+        [0x238B9C8],
+        None,
+        "BarTryClosePortraitBox",
+        "Seems to handle closing portrait boxes for the overlay. \n\nNo params.",
+        None,
+    )
+
+    BarCaseManagerSub = Symbol(
+        [0x364],
+        [0x238BA04],
+        None,
+        "BarCaseManagerSub",
+        "Called once every frame by SpindaBarMenuUpdate if the bar_update_case is BAR_SUBCASE_FUNC.\nState Case with unique behaviors enumerated by enum bar_subcase.\n\nreturn: maybe a return code for SpindaBarMenuUpdate?",
+        None,
+    )
+
+    BarMaybeSetBarScrollBoxWindowId = Symbol(
+        None,
+        None,
+        None,
+        "BarMaybeSetBarScrollBoxWindowId",
+        "Seems to set the scroll_box_window_id for spinda_cafe.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nreturn: undefined4",
+        None,
+    )
+
+    BarPopulateDrinkableBagItems = Symbol(
+        [0x2460],
+        [0x238DB00],
+        None,
+        "BarPopulateDrinkableBagItems",
+        "Populates an item list of only valid bar items within spinda_cafe.\n\nNo params.",
+        None,
+    )
+
+    BarZeroInitPreprocessorFlagsAndReturnCase = Symbol(
+        [0x24F8],
+        [0x238DB98],
+        None,
+        "BarZeroInitPreprocessorFlagsAndReturnCase",
+        "Zero inits many preprocessor_flag fields, but also sets the return_case for scripts to zero within spinda_cafe.\n\nNo params.",
+        None,
+    )
+
+    BarZeroInitBufferAndPreprocessorArgsZero = Symbol(
+        [0x2528],
+        [0x238DBC8],
+        None,
+        "BarZeroInitBufferAndPreprocessorArgsZero",
+        "Zero initializes the preprocessor_args_0 and string_buffer_0 fields of spinda_cafe.\n\nreturn: bool for if buffer was empty string",
+        None,
+    )
+
+    BarTrySetEventMainActor = Symbol(
+        [0x257C],
+        [0x238DC1C],
+        None,
+        "BarTrySetEventMainActor",
+        "Seems to set ACTOR_NPC_EVENT_MAIN to whoever the player ordered the drink for.\nSeems to do other things before that though...\n\nreturn: undefined4",
+        None,
+    )
+
+    BarZeroInitBufferAndPreprocessorArgsOne = Symbol(
+        [0x2668],
+        [0x238DD08],
+        None,
+        "BarZeroInitBufferAndPreprocessorArgsOne",
+        "Zero initializes the preprocessor_args_1 and string_buffer_1 fields of spinda_cafe.\n\nreturn: bool for if buffer was empty string",
+        None,
+    )
+
+    BarPrintHpIncreaseString = Symbol(
+        [0x26C4],
+        [0x238DD64],
+        None,
+        "BarPrintHpIncreaseString",
+        "Handles printing the correct text for a HP stat increase from a drink.\n\nr0: hp increase amount?\nr1: a different hp increase amount?\nreturn: undefined4",
+        None,
+    )
+
+    BarPrintOtherStatIncreaseString = Symbol(
+        [0x27B8],
+        [0x238DE58],
+        None,
+        "BarPrintOtherStatIncreaseString",
+        "Seems to handle printing the correct text for a non-HP, non-IQ stat increase from a drink.\n\nr0: stat increase amount?\nr1: a different stat increase amount?\nr2: Stat Index\nreturn: undefined4",
+        None,
+    )
+
+    BarPrintIqAndSkills = Symbol(
+        [0x28A8],
+        [0x238DF48],
+        None,
+        "BarPrintIqAndSkills",
+        "Seems to handle printing the correct text for an IQ stat increase from a drink, including learned skills.\n\nr0: IQ increase amount\nreturn: undefined4",
+        None,
+    )
+
+    BarPrintLevelMaxedOutString = Symbol(
+        [0x29E4],
+        [0x238E084],
+        None,
+        "BarPrintLevelMaxedOutString",
+        "Seems to handle printing the correct text for a 'level increase' from a drink, but only if the pokemon is already level 100.\n\nr0: levels 'increased'",
+        None,
+    )
+
+    BarDrawAndUpdateGainedIqSkills = Symbol(
+        [0x2A78],
+        [0x238E118],
+        None,
+        "BarDrawAndUpdateGainedIqSkills",
+        "Called by BarPrintIqAndSkills to name any IQ skills gained from a drink.\n\nr0: char\nr1: char\nr2: int\nr3: int\nstack[0]: int\nstack[1]: int\nstack[2]: int\nreturn: undefined4",
+        None,
+    )
+
+    BarUpdateDrinkEventNewStats = Symbol(
+        [0x2BA4],
+        [0x238E244],
+        None,
+        "BarUpdateDrinkEventNewStats",
+        "Actually apply stat changes from a drink.\n\nr0: struct bar_stats_data*\nr1: stored to bar_stats_data->stat_drink_event_kind\nreturn: undefined4",
+        None,
+    )
+
+    BarPrintReactionsAndStatIncreases = Symbol(
+        [0x2D78],
+        [0x238E418],
+        None,
+        "BarPrintReactionsAndStatIncreases",
+        "Seems to handle drink reactions, and calling the correct stat increase text function.\n\nr0: struct bar_stats_data*",
+        None,
+    )
+
+    BarHandleDrinkEventSubcase = Symbol(
+        [0x2F90],
+        [0x238E630],
+        None,
+        "BarHandleDrinkEventSubcase",
+        "Has different behavior based on the type of drink. Usually assigns the next correct bar_subcase, and for good stat based drink events, seems to handle or roll that somehow. \n\nNo params.",
+        None,
+    )
+
+    BarPostDrinkCaseForCustomer = Symbol(
+        [0x31C8],
+        [0x238E868],
+        None,
+        "BarPostDrinkCaseForCustomer",
+        "Sets the correct bar_update_case after completing a drink, depending on who ordered the drink.\n\nNo params.",
+        None,
+    )
+
+    BarMaybeIsClosedUnkStringIdMenu = Symbol(
+        [0x3240],
+        [0x238E8E0],
+        None,
+        "BarMaybeIsClosedUnkStringIdMenu",
+        "Seems to check if a currently unknown String Id based menu type's window is closed?\nJust a guess.\n\nreturn: undefined4",
+        None,
+    )
+
+    BarCreateUnkStringIdMenu = Symbol(
+        [0x3258],
+        [0x238E8F8],
+        None,
+        "BarCreateUnkStringIdMenu",
+        "Seems to handle initialization of a currently unknown String Id based menu type.\n\nr0: undefined4\nr1: undefined4\nr2: struct simple_menu_id_item*\nr3: undefined4\nstack[0]: char\nstack[1]: uint32_t",
+        None,
+    )
+
+    GetUnkStringIdMenuResult = Symbol(
+        [0x32D0],
+        [0x238E970],
+        None,
+        "GetUnkStringIdMenuResult",
+        "Seems to retrieve the result of some kind of player choice from a currently unknown String Id based menu type.\n\nreturn: menu result",
+        None,
+    )
+
+    BarTryShowPortrait = Symbol(
+        [0x3308],
+        [0x238E9A8],
+        None,
+        "BarTryShowPortrait",
+        "Calls ShowPortraitInPortraitBox with portrait data from the spinda_cafe struct.\n\nNo params.",
+        None,
+    )
+
+    BarTryHidePortrait = Symbol(
+        [0x3334],
+        [0x238E9D4],
+        None,
+        "BarTryHidePortrait",
+        "Calls HidePortraitBox with portrait data from the spinda_cafe struct.\n\nNo params.",
+        None,
+    )
+
+    BarInventoryMenuCallback = Symbol(
+        [0x335C],
+        [0x238E9FC],
+        None,
+        "BarInventoryMenuCallback",
+        "Seems to be some sort of callback function used by an inventory menu for the cafe.\n\nr0: undefined4\nr1: spinda_cafe->item_validities index?\nr2: undefined4\nreturn: undefined4",
+        None,
+    )
+
+    BarTryCloseInventoryMenu = Symbol(
+        [0x339C],
+        [0x238EA3C],
+        None,
+        "BarTryCloseInventoryMenu",
+        "Calls CloseInventoryMenu with spinda_cafe->inventory_window_id.\n\nNo params.",
+        None,
+    )
+
+    BarTryCloseTeamMovesMenu = Symbol(
+        [0x33D4],
+        [0x238EA74],
+        None,
+        "BarTryCloseTeamMovesMenu",
+        "Calls CloseAdvancedTextBox with spinda_cafe->inventory_window_id.\nContextually seems responsible for closing the menu for team moves.\n\nNo params.",
+        None,
+    )
+
+    SpindaBarEntry = Symbol(
+        [0x3424],
+        [0x238EAC4],
+        None,
+        "SpindaBarEntry",
+        "First entry point into overlay 19, called by MENU_JUICE_BAR.\n\nreturn: undefined4",
+        None,
+    )
+
+    SpindaBarResume = Symbol(
+        [0x34B4],
+        [0x238EB54],
+        None,
+        "SpindaBarResume",
+        "Subsequent entry point into overlay 19, called by MENU_JUICE_BAR_PICK_ITEM.\n\nreturn: undefined4",
+        None,
+    )
+
+    SpindaBarDestruct = Symbol(
+        [0x3544],
+        [0x238EBE4],
+        None,
+        "SpindaBarDestruct",
+        "The destructor of overlay 19 for both entry points.\nDoes nothing but call BarTryClosePortraitBox...\n\nNo params.",
+        None,
+    )
+
+    SpindaBarMenuUpdate = Symbol(
+        [0x3550],
+        [0x238EBF0],
+        None,
+        "SpindaBarMenuUpdate",
+        "Called every frame overlay 19 is active, primarily handling interface between the script, and BarCaseManagerSub.\n\nreturn: undefined4",
+        None,
+    )
+
+    GetRecruitableMonsterAll = _Deprecated(
+        "GetRecruitableMonsterAll", BarGetRandomValidEggRecruit
+    )
+
+    GetRecruitableMonsterList = _Deprecated(
+        "GetRecruitableMonsterList", BarGetValidEggGiverFromGourmetTable
+    )
+
+    GetRecruitableMonsterListRestricted = _Deprecated(
+        "GetRecruitableMonsterListRestricted", BarGetRandomValidRecruitFromGourmetTable
     )
 
 
 class JpOverlay19Data:
 
-    OVERLAY19_UNKNOWN_TABLE__NA_238DAE0 = Symbol(
+    BAR_MIRACLE_EVENT_WEIGHTS = Symbol(
         [0x3998],
         [0x238F038],
         None,
-        "OVERLAY19_UNKNOWN_TABLE__NA_238DAE0",
-        "4*0x2\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "BAR_MIRACLE_EVENT_WEIGHTS",
+        "Weights for a 'miracle drink event' to be an egg, a gourmet recruit, a dungeon unlock, or a regular miracle drink in that order.\nBy default, it's 10 weight for each.\n\ntype: int16_t[4]",
+        "int16_t[4]",
     )
 
     BAR_UNLOCKABLE_DUNGEONS_TABLE = Symbol(
@@ -32425,16 +32772,16 @@ class JpOverlay19Data:
         [0x238F040],
         None,
         "BAR_UNLOCKABLE_DUNGEONS_TABLE",
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct dungeon_id_16[6]",
+        "Stores dungeon ids, as well as the required $SCENARIO_BALANCE_FLAG to obtain them from the cafe.\n\ntype: struct bar_dungeon_unlock[6]",
         "struct dungeon_id_16[6]",
     )
 
-    BAR_RECRUITABLE_MONSTER_TABLE = Symbol(
+    BAR_RECRUITABLE_GOURMET_MONSTER_TABLE = Symbol(
         [0x39AC],
         [0x238F04C],
         0xD8,
-        "BAR_RECRUITABLE_MONSTER_TABLE",
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct monster_id_16[108]",
+        "BAR_RECRUITABLE_GOURMET_MONSTER_TABLE",
+        "A table of valid monsters for both the recruit for the gourmet recruit event, and the egg-giver for egg event.\n\ntype: monster_id_16[108]",
         "struct monster_id_16[108]",
     )
 
@@ -32443,35 +32790,89 @@ class JpOverlay19Data:
         [0x238F124],
         None,
         "BAR_AVAILABLE_ITEMS",
-        "Note: unverified, ported from Irdkwia's notes\n\ntype: struct bar_item[66]",
+        "A table of valid bar items, the stats they would give for a good drink, and the weights for normal/good/'miracle'/bad drinks.\n\ntype: struct bar_item[66]",
         "struct bar_item[66]",
     )
 
-    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178 = Symbol(
+    BAR_STAT_REACTION_STRINGS = Symbol(
         [0x4030],
         [0x238F6D0],
         None,
-        "OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "BAR_STAT_REACTION_STRINGS",
+        "Text string ids for bad/miracle/good drink reactions to stat changes, in that order.\nEx: 'Huh?[K] Whaaat?[K]' or 'Shock!!!'\n\ntype: int16_t[3]",
+        "int16_t[3]",
     )
 
-    OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4 = Symbol(
+    GOOD_DRINK_REACTION_STRINGS = Symbol(
+        [0x4036],
+        [0x238F6D6],
+        None,
+        "GOOD_DRINK_REACTION_STRINGS",
+        "Text string ids for good drinks if a stat goes up/a stat is already maxed out/IQ went up in that order.\n\ntype: int16_t[3]",
+        "int16_t[3]",
+    )
+
+    BAR_STAT_CHANGE_STRINGS = Symbol(
+        [0x403C],
+        [0x238F6DC],
+        None,
+        "BAR_STAT_CHANGE_STRINGS",
+        "Text string ids for stats changing because of bad/miracle/good drinks in that order.\n\ntype: int16_t[3]",
+        "int16_t[3]",
+    )
+
+    NEUTRAL_DRINK_REACTION_STRINGS = Symbol(
+        [0x4042],
+        [0x238F6E2],
+        None,
+        "NEUTRAL_DRINK_REACTION_STRINGS",
+        "Text string ids for the flavor of neutral drinks.\n\ntype: int16_t[3]",
+        "int16_t[3]",
+    )
+
+    BAD_DRINK_REACTION_STRINGS = Symbol(
+        [0x4048],
+        [0x238F6E8],
+        None,
+        "BAD_DRINK_REACTION_STRINGS",
+        "Text string ids for the flavor of bad drinks.\n\ntype: int16_t[3]",
+        "int16_t[3]",
+    )
+
+    BAR_IQ_CHANGE_STRINGS = Symbol(
+        [0x404E],
+        [0x238F6EE],
+        None,
+        "BAR_IQ_CHANGE_STRINGS",
+        "Text string ids for how IQ changed, depending on the source of the IQ increase (guaranteed, good, miracle).\n\ntype: int16_t[3]",
+        "int16_t[3]",
+    )
+
+    BAR_IQ_UNABLE_TO_CHANGE_STRINGS = Symbol(
+        [0x4054],
+        [0x238F6F4],
+        None,
+        "BAR_IQ_UNABLE_TO_CHANGE_STRINGS",
+        "Text string ids for how IQ would have changed, depending on the source of the IQ increase (guaranteed, good, miracle).\nPlay if IQ is already maxed out. One of these strings falsely claims IQ increases anyway.\n\ntype int16_t[3]",
+        "int16_t[3]",
+    )
+
+    GOURMET_PORTRAIT_OFFSET_TABLE = Symbol(
         [0x405C],
         [0x238F6FC],
         None,
-        "OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4",
-        "5*0x8\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        "GOURMET_PORTRAIT_OFFSET_TABLE",
+        "Table of portrait offsets for the gourmet recruit's portraits during the gourmet recruit drink event.\n\ntype: vec2[5]",
+        "struct vec2[5]",
     )
 
-    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC = Symbol(
+    BAR_STAT_NAME_STRINGS = Symbol(
         [0x4084],
         [0x238F724],
         None,
-        "OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "BAR_STAT_NAME_STRINGS",
+        "Text string ids for the names of the stats, to be used by other text strings.\n\ntype: int16_t[6]",
+        "int16_t[6]",
     )
 
     BAR_WINDOW_PARAMS_1 = Symbol(
@@ -32519,13 +32920,13 @@ class JpOverlay19Data:
         "struct simple_menu_id_item[3]",
     )
 
-    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238 = Symbol(
+    BAR_DRINK_NAMES_STRINGS = Symbol(
         [0x40F0],
         [0x238F790],
-        None,
-        "OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x18,
+        "BAR_DRINK_NAMES_STRINGS",
+        "A list of types of drinks, such as 'Tea', 'Milk', or 'Juice' to refer to the drink by.\nNot all of the text strings designed for this purpose are actually in use. \n\ntype: int16_t[12]",
+        "int16_t[12]",
     )
 
     BAR_MAIN_MENU_ITEMS = Symbol(
@@ -32555,6 +32956,60 @@ class JpOverlay19Data:
         "struct simple_menu_id_item[6]",
     )
 
+    BAR_NEW_LINE_CHAR = Symbol(
+        [0x4178],
+        [0x238F818],
+        None,
+        "BAR_NEW_LINE_CHAR",
+        "A new line character, appended to various other strings during operation of the menu.\nAlways loaded as a full 4 bytes...\n\ntype: wchar_t",
+        "wchar_t",
+    )
+
+    BAR_ME_PLAY_TEXT_TAG = Symbol(
+        [0x417C],
+        [0x238F81C],
+        None,
+        "BAR_ME_PLAY_TEXT_TAG",
+        "'[me_play:0]'\n\ntype: string",
+        "char[12]",
+    )
+
+    DEBUG_MESSAGE_REQUEST_STR = Symbol(
+        [0x4188],
+        [0x238F828],
+        None,
+        "DEBUG_MESSAGE_REQUEST_STR",
+        "'dirinkbar request %3d\n'\nRequest likely refers to requesting the script to do something.\n\ntype: string",
+        "char[23]",
+    )
+
+    DEBUG_MESSAGE_REQUEST_AND_RETURN_STR = Symbol(
+        [0x41A0],
+        [0x238F840],
+        None,
+        "DEBUG_MESSAGE_REQUEST_AND_RETURN_STR",
+        "'dirinkbar request %3d[%3d]\n'\nRequest again likely refers to requesting the script to do something.\n\ntype: string",
+        "char[28]",
+    )
+
+    DEBUG_MESSAGE_BEFORE_SET_STR = Symbol(
+        [0x41BC],
+        [0x238F85C],
+        None,
+        "DEBUG_MESSAGE_BEFORE_SET_STR",
+        "'dirinkbar message before set\n'\nMessage before likely refers to a textbox appearing immediately before passing control to the script engine.\n\ntype: string",
+        "char[30]",
+    )
+
+    DEBUG_MESSAGE_AFTER_SET_STR = Symbol(
+        [0x41DC],
+        [0x238F87C],
+        None,
+        "DEBUG_MESSAGE_AFTER_SET_STR",
+        "'dirinkbar message after set\n'\nMessage before likely refers to a textbox appearing immediately after passing control to the script engine.\n\ntype: string",
+        "char[29]",
+    )
+
     OV19_STATIC_INITIALIZER = Symbol(
         [0x41FC],
         [0x238F89C],
@@ -32564,22 +33019,17 @@ class JpOverlay19Data:
         "undefined4",
     )
 
-    OVERLAY19_UNKNOWN_POINTER__NA_238E360 = Symbol(
+    BAR_MENU_PRIOR_CHOICE_INDICES = Symbol(
         [0x4200],
         [0x238F8A0],
         None,
-        "OVERLAY19_UNKNOWN_POINTER__NA_238E360",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "BAR_MENU_PRIOR_CHOICE_INDICES",
+        "Seems to remember where the player's cursor was previously during menu navigation.",
+        "int16_t[3]",
     )
 
-    OVERLAY19_UNKNOWN_POINTER__NA_238E364 = Symbol(
-        None,
-        None,
-        None,
-        "OVERLAY19_UNKNOWN_POINTER__NA_238E364",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+    BAR_RECRUITABLE_MONSTER_TABLE = _Deprecated(
+        "BAR_RECRUITABLE_MONSTER_TABLE", BAR_RECRUITABLE_GOURMET_MONSTER_TABLE
     )
 
     OVERLAY19_RESERVED_SPACE = _Deprecated(
@@ -38203,8 +38653,8 @@ class JpOverlay29Functions:
     )
 
     OamTileNumberToVramAddressOv29 = Symbol(
-        None,
-        None,
+        [0x4CDC],
+        [0x22E25BC],
         None,
         "OamTileNumberToVramAddressOv29",
         "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nIs an exact copy of OamTileNumberToVramAddress in arm9.\n\nr0: tile number\nr1: 0 for bottom screen, 1 for top screen\nreturn: VRAM tile address",
@@ -39059,8 +39509,8 @@ class JpOverlay29Functions:
     )
 
     AnimateWaterShadows = Symbol(
-        None,
-        None,
+        [0xE3D4],
+        [0x22EBCB4],
         None,
         "AnimateWaterShadows",
         "Animates the water shadows beneath entities.\n\nNo params.",
@@ -41265,8 +41715,8 @@ class JpOverlay29Functions:
     )
 
     DisplayMonsterShadow = Symbol(
-        None,
-        None,
+        [0x27ACC],
+        [0x23053AC],
         None,
         "DisplayMonsterShadow",
         "Displays a shadow under a monster.\n\nr0: whether to display the shadow\nr1: shadow type\nr2: whether to display a yellow circle (for team members and special cases like decoys, rescue clients, etc.)\nr3: x-coordinate in OAM plus 0x10\nstack[0]: y-coordinate in OAM plus 0x8",

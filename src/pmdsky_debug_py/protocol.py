@@ -26705,17 +26705,192 @@ class Overlay19FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetRecruitableMonsterAll: Symbol[
+    SetMiracleDrinkStatCountRange: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetRecruitableMonsterList: Symbol[
+    SetBadDrinkStatCountRange: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    GetRecruitableMonsterListRestricted: Symbol[
+    GetBarItemResultWeights: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarGetDrinkEventWeights: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarGetRandomValidEggRecruit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarGetValidEggGiverFromGourmetTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarGetRandomValidRecruitFromGourmetTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarGetUnlockableDungeonPtr: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarPopulateUnlockableDungeons: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarTryClosePortraitBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarCaseManagerSub: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarMaybeSetBarScrollBoxWindowId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarPopulateDrinkableBagItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarZeroInitPreprocessorFlagsAndReturnCase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarZeroInitBufferAndPreprocessorArgsZero: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarTrySetEventMainActor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarZeroInitBufferAndPreprocessorArgsOne: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarPrintHpIncreaseString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarPrintOtherStatIncreaseString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarPrintIqAndSkills: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarPrintLevelMaxedOutString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarDrawAndUpdateGainedIqSkills: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarUpdateDrinkEventNewStats: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarPrintReactionsAndStatIncreases: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarHandleDrinkEventSubcase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarPostDrinkCaseForCustomer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarMaybeIsClosedUnkStringIdMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarCreateUnkStringIdMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetUnkStringIdMenuResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarTryShowPortrait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarTryHidePortrait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarInventoryMenuCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarTryCloseInventoryMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BarTryCloseTeamMovesMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SpindaBarEntry: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SpindaBarResume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SpindaBarDestruct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SpindaBarMenuUpdate: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -26723,7 +26898,7 @@ class Overlay19FunctionsProtocol(Protocol):
 
 class Overlay19DataProtocol(Protocol):
 
-    OVERLAY19_UNKNOWN_TABLE__NA_238DAE0: Symbol[
+    BAR_MIRACLE_EVENT_WEIGHTS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -26733,7 +26908,7 @@ class Overlay19DataProtocol(Protocol):
         Optional[int],
     ]
 
-    BAR_RECRUITABLE_MONSTER_TABLE: Symbol[
+    BAR_RECRUITABLE_GOURMET_MONSTER_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -26743,17 +26918,47 @@ class Overlay19DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E178: Symbol[
+    BAR_STAT_REACTION_STRINGS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY19_UNKNOWN_STRUCT__NA_238E1A4: Symbol[
+    GOOD_DRINK_REACTION_STRINGS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E1CC: Symbol[
+    BAR_STAT_CHANGE_STRINGS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    NEUTRAL_DRINK_REACTION_STRINGS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BAD_DRINK_REACTION_STRINGS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BAR_IQ_CHANGE_STRINGS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BAR_IQ_UNABLE_TO_CHANGE_STRINGS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GOURMET_PORTRAIT_OFFSET_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BAR_STAT_NAME_STRINGS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -26783,7 +26988,7 @@ class Overlay19DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY19_UNKNOWN_STRING_IDS__NA_238E238: Symbol[
+    BAR_DRINK_NAMES_STRINGS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -26803,17 +27008,42 @@ class Overlay19DataProtocol(Protocol):
         Optional[int],
     ]
 
+    BAR_NEW_LINE_CHAR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BAR_ME_PLAY_TEXT_TAG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_MESSAGE_REQUEST_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_MESSAGE_REQUEST_AND_RETURN_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_MESSAGE_BEFORE_SET_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_MESSAGE_AFTER_SET_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     OV19_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY19_UNKNOWN_POINTER__NA_238E360: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    OVERLAY19_UNKNOWN_POINTER__NA_238E364: Symbol[
+    BAR_MENU_PRIOR_CHOICE_INDICES: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
