@@ -1694,6 +1694,15 @@ class NaArm9Functions:
         None,
     )
 
+    GetMoneyQuantity = Symbol(
+        None,
+        None,
+        None,
+        "GetMoneyQuantity",
+        "Gets the actual money a Poké item should give by indexing its quantity field into MONEY_QUANTITY_TABLE, then multiplying by 1.2x if the Coin Watcher flag is set.\n\nr0: item\nreturn: money amount",
+        None,
+    )
+
     GetItemsForSave = Symbol(
         [0xD95C],
         [0x200D95C],
@@ -4850,6 +4859,15 @@ class NaArm9Functions:
         None,
         "NewWindow",
         "Seems to return the ID of a newly initialized window in the next available slot in WINDOW_LIST, given some starting information.\n\nIf WINDOW_LIST is full, it will be overflowed, with the slot with an ID of 20 being initialized and returned.\n\nr0: window_params pointer to be copied by value into window::hdr in the new window\nr1: ?\nreturn: window_id",
+        None,
+    )
+
+    GetPaletteBaseAddress = Symbol(
+        None,
+        None,
+        None,
+        "GetPaletteBaseAddress",
+        "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
         None,
     )
 
@@ -9146,6 +9164,24 @@ class NaArm9Functions:
         None,
     )
 
+    RecolorNameString = Symbol(
+        None,
+        None,
+        None,
+        "RecolorNameString",
+        "Given a string of up to 10 characters, formats the string to display it in a specific color, or the original string if r2 is 0.\n\nr0: [output] buffer\nr1: string to recolor\nr2: text color symbol for the [CS:r2] tag",
+        None,
+    )
+
+    RecolorTeamMemberNameString = Symbol(
+        None,
+        None,
+        None,
+        "RecolorTeamMemberNameString",
+        "Given a string of up to 10 characters, formats the string to display it in either light blue if the monster is the leader or yellow otherwise.\n\nr0: [output] buffer\nr1: string to recolor\nr2: whether the monster is the team leader",
+        None,
+    )
+
     IsMonsterOnTeam = Symbol(
         [0x55148],
         [0x2055148],
@@ -9308,6 +9344,15 @@ class NaArm9Functions:
         None,
     )
 
+    GetRecoloredGroundMonsterName = Symbol(
+        None,
+        None,
+        None,
+        "GetRecoloredGroundMonsterName",
+        "Gets the name of the ground monster formatted to be displayed in a specific color.\n\nr0: [output] buffer\nr1: ground monster pointer\nr2: text color symbol for the [CS:r2] tag",
+        None,
+    )
+
     RemoveActiveMembersFromAllTeams = Symbol(
         [0x560C8],
         [0x20560C8],
@@ -9440,6 +9485,33 @@ class NaArm9Functions:
         None,
         "ClearItem",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: team_id\nr1: check",
+        None,
+    )
+
+    GetRecoloredNameOfTeamMemberAtIdx = Symbol(
+        None,
+        None,
+        None,
+        "GetRecoloredNameOfTeamMemberAtIdx",
+        "Gets the name of the active team member in the given slot index formatted to be displayed in either light blue if the monster is the leader or yellow otherwise.\n\nr0: [output] buffer\nr1: roster index",
+        None,
+    )
+
+    GetNameOfTeamMemberAtIdx = Symbol(
+        None,
+        None,
+        None,
+        "GetNameOfTeamMemberAtIdx",
+        "Gets the name of the active team member in the given slot index.\n\nr0: [output] buffer\nr1: roster index",
+        None,
+    )
+
+    GetRecoloredTeamMemberName = Symbol(
+        None,
+        None,
+        None,
+        "GetRecoloredTeamMemberName",
+        "Gets the name of the team member formatted to be displayed in either light blue if the monster is the leader or yellow otherwise.\n\nr0: [output] buffer\nr1: team member pointer",
         None,
     )
 
@@ -12296,14 +12368,7 @@ class NaArm9Data:
         [0xAE0C4], [0x20AE0C4], 0x60, "TEX_START_ADDR_TABLE", "", "int16_t[48]"
     )
 
-    ARM9_UNKNOWN_TABLE__NA_20AE924 = Symbol(
-        [0xAE924],
-        [0x20AE924],
-        0x2D4,
-        "ARM9_UNKNOWN_TABLE__NA_20AE924",
-        "724*0x1\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
-    )
+    VOLUME_TABLE = Symbol([0xAE924], [0x20AE924], 0x2D4, "VOLUME_TABLE", "724*0x1", "")
 
     MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
         [0xAEF00],
@@ -27267,6 +27332,24 @@ class NaOverlay10Data:
         "int16_t",
     )
 
+    CONSTRICTION_DAMAGE = Symbol(
+        None,
+        None,
+        None,
+        "CONSTRICTION_DAMAGE",
+        "Damage dealt by the constriction status condition.",
+        "int16_t",
+    )
+
+    WISE_HEALER_PERCENTAGE = Symbol(
+        None,
+        None,
+        None,
+        "WISE_HEALER_PERCENTAGE",
+        "The additional percentage of HP that should be restored for monsters with the Wise Healer IQ skill (15%).",
+        "int16_t",
+    )
+
     UNOWN_STONE_DROP_CHANCE = Symbol(
         [0x79F4],
         [0x22C4474],
@@ -38839,6 +38922,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    GetMonsterOrTrapName = Symbol(
+        None,
+        None,
+        None,
+        "GetMonsterOrTrapName",
+        "Gets the name of the entity if it is a monster or trap. In other cases, the function either does nothing or gets an unrelated string.\n\nr0: [output] buffer\nr1: entity",
+        None,
+    )
+
     SubstitutePlaceholderStringTags = Symbol(
         [0x6898],
         [0x22E2AD8],
@@ -38862,7 +38954,7 @@ class NaOverlay29Functions:
         [0x22E2E54],
         None,
         "PointCameraToMonster",
-        "Points the camera to the specified monster.\n\nr0: Entity pointer\nr1: ?",
+        "Points the camera to the specified monster.\n\nr0: Entity pointer\nr1: whether to also update trap visibility and the minimap",
         None,
     )
 
@@ -38935,7 +39027,7 @@ class NaOverlay29Functions:
         [0x22E35E4],
         None,
         "PlayEffectAnimationEntity",
-        "Just a guess. This appears to be paired often with GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the loop entirely. It seems like in this case the function might just preload some animation frames for later use??\n\nr0: entity pointer\nr1: Effect ID\nr2: appears to be a flag for actually running the animation now? If this is 0, the AdvanceFrame loop is skipped entirely.\nothers: ?\nreturn: status code, or maybe the number of frames or something? Either way, -1 seems to indicate the animation being finished or something?",
+        "Just a guess. This appears to be paired often with GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the loop entirely. It seems like in this case the function might just preload some animation frames for later use??\n\nr0: entity pointer\nr1: Effect ID\nr2: appears to be a flag for actually running the animation now? If this is 0, the AdvanceFrame loop is skipped entirely.\nstack[2]: direction of effect\nothers: ?\nreturn: status code, or maybe the number of frames or something? Either way, -1 seems to indicate the animation being finished or something?",
         None,
     )
 
@@ -39044,6 +39136,24 @@ class NaOverlay29Functions:
         None,
         "PlaySpeedDownEffect",
         "Displays the graphical effect on a monster that just lowered movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
+    DisplayStockpileNumbers = Symbol(
+        None,
+        None,
+        None,
+        "DisplayStockpileNumbers",
+        "Displays the numbers for a monster's stockpile stage above them.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayInvisifySeIfShouldDisplayEntity = Symbol(
+        None,
+        None,
+        None,
+        "PlayInvisifySeIfShouldDisplayEntity",
+        "Calls PlaySeByIdIfShouldDisplayEntity with the sound effect for turning a monster invisible.\n\nr0: entity pointer",
         None,
     )
 
@@ -39893,6 +40003,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    GetTrapName = Symbol(
+        None,
+        None,
+        None,
+        "GetTrapName",
+        "Gets the name of the given trap.\n\nr0: [output] buffer\nr1: trap id",
+        None,
+    )
+
     BindTrapToTile = Symbol(
         [0x11618],
         [0x22ED858],
@@ -40127,6 +40246,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    ChangeTrapOnTile = Symbol(
+        None,
+        None,
+        None,
+        "ChangeTrapOnTile",
+        "Changes the trap on the tile to the given trap id if there is already one on the tile.\n\nr0: tile\nr1: trap id",
+        None,
+    )
+
     SpawnMonstersAroundPos = Symbol(
         [0x13274],
         [0x22EF4B4],
@@ -40142,6 +40270,15 @@ class NaOverlay29Functions:
         None,
         "RevealTrapsNearby",
         "Reveals traps within the monster's viewing range.\n\nr0: entity pointer",
+        None,
+    )
+
+    RevealTrapAtPos = Symbol(
+        None,
+        None,
+        None,
+        "RevealTrapAtPos",
+        "Reveals the trap at the given position if one is present.\n\nr0: x\nr1: y\nreturn: true if there was a hidden trap to reveal",
         None,
     )
 
@@ -40187,6 +40324,51 @@ class NaOverlay29Functions:
         None,
         "IsSecretBazaarNpcBehavior",
         "Checks if a behavior ID corresponds to one of the Secret Bazaar NPCs.\n\nr0: monster behavior ID\nreturn: bool",
+        None,
+    )
+
+    TalkToSecretBazaarNpcStandard = Symbol(
+        None,
+        None,
+        None,
+        "TalkToSecretBazaarNpcStandard",
+        "Opens a dialogue box with the given shopkeeper as the speaker, without a yes/no menu and with param_5 set to false.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nreturn: ? (bool)",
+        None,
+    )
+
+    TalkToSecretBazaarNpcWithYesNoMenu = Symbol(
+        None,
+        None,
+        None,
+        "TalkToSecretBazaarNpcWithYesNoMenu",
+        "Opens a dialogue box with the given shopkeeper as the speaker, with a yes/no menu and with param_5 set to true.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nr3: pointer to an array of simple_menu_id_items\nreturn: ? (bool)",
+        None,
+    )
+
+    MakeTargetFaceUserAndIdle = Symbol(
+        None,
+        None,
+        None,
+        "MakeTargetFaceUserAndIdle",
+        "Makes the target face the user and changes their animation to idle.\n\nr0: target entity pointer\nr1: user entity pointer",
+        None,
+    )
+
+    SubtractMoneyCarriedWithSfx = Symbol(
+        None,
+        None,
+        None,
+        "SubtractMoneyCarriedWithSfx",
+        "Subtracts the amount of money from the the player's current amount of money and plays the sound effect for buying an item.\n\nr0: money amount",
+        None,
+    )
+
+    TalkToSecretBazaarNpc = Symbol(
+        None,
+        None,
+        None,
+        "TalkToSecretBazaarNpc",
+        "Opens a dialogue box with the given shopkeeper as the speaker.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nr3: pointer to an array of simple_menu_id_items (null if there is no menu)\nstack[0]: ? (changes something in secret_bazaar_dialogue_info if true. seems to only be true if there is a menu)\nreturn: ? (bool)",
         None,
     )
 
@@ -40633,6 +40815,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    CheckMonsterTeamMemberIdx = Symbol(
+        None,
+        None,
+        None,
+        "CheckMonsterTeamMemberIdx",
+        "Calls CheckTeamMemberIdx on the given monster's team_index.\n\nr0: entity pointer\nreturn: True if the value is equal to 0x55AA or 0x5AA5",
+        None,
+    )
+
     IsMonsterIdInNormalRangeVeneer = Symbol(
         [0x1DA28],
         [0x22F9C68],
@@ -40648,6 +40839,15 @@ class NaOverlay29Functions:
         None,
         "BoostIQ",
         "Tries to boost the target's IQ.\n\nr0: monster entity pointer\nr1: iq boost\nr2: bool suppress logs",
+        None,
+    )
+
+    ChangeMonsterAnimationToIdle = Symbol(
+        None,
+        None,
+        None,
+        "ChangeMonsterAnimationToIdle",
+        "Makes the monster play their idle animation in the given direction.\n\nr0: entity pointer\nr1: direction",
         None,
     )
 
@@ -41159,7 +41359,7 @@ class NaOverlay29Functions:
         [0x2300164],
         None,
         "GetMonsterName",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer\nr1: TargetInfo",
+        "Gets the name of a given monster.\n\nr0: [output] buffer\nr1: TargetInfo",
         None,
     )
 
@@ -41726,7 +41926,7 @@ class NaOverlay29Functions:
         [0x2303E5C],
         None,
         "DisplayMonsterShadow",
-        "Displays a shadow under a monster.\n\nr0: whether to display the shadow\nr1: shadow type\nr2: whether to display a yellow circle (for team members and special cases like decoys, rescue clients, etc.)\nr3: x-coordinate in OAM plus 0x10\nstack[0]: y-coordinate in OAM plus 0x8",
+        "Displays a shadow under a monster.\n\nr0: whether to display the shadow\nr1: shadow type\nr2: whether to display a yellow circle (for team members and special cases like decoys, rescue clients, etc.)\nr3: the x-coordinate in OAM plus some constant offset. Valid input range: (-0x20, 0x11F)\nstack[0]: the y-coordinate in OAM plus some constant offset. Valid input range: (-0x20, 0xE0)",
         None,
     )
 
@@ -42186,6 +42386,24 @@ class NaOverlay29Functions:
         None,
         "ResetDamageCalcDiagnostics",
         "Resets the damage calculation diagnostic info stored on the dungeon struct. Called unconditionally at the start of CalcDamage.\n\nNo params.",
+        None,
+    )
+
+    PointCameraToMonsterWrapper = Symbol(
+        None,
+        None,
+        None,
+        "PointCameraToMonsterWrapper",
+        "Calls PointCameraToMonster on the given monster with update_trap_vis_and_map = 1.\n\nr0: entity pointer",
+        None,
+    )
+
+    IsEitherMonsterInvalid = Symbol(
+        None,
+        None,
+        None,
+        "IsEitherMonsterInvalid",
+        "Returns true if at least one of the given monsters is an invalid entity.\n\nr0: entity pointer\nr1: entity pointer\nreturn: bool",
         None,
     )
 
@@ -44223,12 +44441,12 @@ class NaOverlay29Functions:
         None,
     )
 
-    GetPaletteBaseAddress = Symbol(
+    GetPaletteBaseAddressOv29 = Symbol(
         [0x59624],
         [0x2335864],
         None,
-        "GetPaletteBaseAddress",
-        "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
+        "GetPaletteBaseAddressOv29",
+        "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nIs an exact copy of GetPaletteBaseAddress in arm9.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
         None,
     )
 
@@ -45519,6 +45737,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    InteractWithSecretBazaarNpc = Symbol(
+        None,
+        None,
+        None,
+        "InteractWithSecretBazaarNpc",
+        "Called to interact with a secret bazaar shopkeeper.\n\nr0: user entity pointer\nr1: shopkeeper entity pointer",
+        None,
+    )
+
     PrepareItemForPrinting = Symbol(
         [0x68904, 0x68930],
         [0x2344B44, 0x2344B70],
@@ -46450,6 +46677,10 @@ class NaOverlay29Functions:
     )
 
     GetFlashFireStatus = _Deprecated("GetFlashFireStatus", FlashFireShouldActivate)
+
+    GetPaletteBaseAddress = _Deprecated(
+        "GetPaletteBaseAddress", GetPaletteBaseAddressOv29
+    )
 
     SetPreprocessorArgsIdVal = _Deprecated(
         "SetPreprocessorArgsIdVal", SetMessageLogPreprocessorArgsIdVal
@@ -49379,11 +49610,27 @@ class NaRamData:
         "struct thread_info",
     )
 
+    OSI_IS_THREAD_INITIALIZED = Symbol(
+        [0x2B9654], [0x22B9654], None, "OSI_IS_THREAD_INITIALIZED", "", ""
+    )
+
+    OSI_THREAD_INFO = Symbol([0x2B966C], [0x22B966C], None, "OSI_THREAD_INFO", "", "")
+
+    OSI_INITIALIZED = Symbol([0x2B98C4], [0x22B98C4], None, "OSI_INITIALIZED", "", "")
+
+    OSI_DEBUGGER_HANDLER = Symbol(
+        [0x2B98F0], [0x22B98F0], None, "OSI_DEBUGGER_HANDLER", "", ""
+    )
+
+    OSI_EX_CONTEXT = Symbol([0x2B991C], [0x22B991C], None, "OSI_EX_CONTEXT", "", "")
+
     OSI_TIMER_RESERVED = Symbol(
         [0x2B999C], [0x22B999C], 0x4, "OSI_TIMER_RESERVED", "", "uint16_t"
     )
 
     OSI_USE_TICK = Symbol([0x2B99A0], [0x22B99A0], 0x8, "OSI_USE_TICK", "", "undefined")
+
+    OSI_TICK_COUNTER = Symbol([0x2B99A8], [0x22B99A8], None, "OSI_TICK_COUNTER", "", "")
 
     OSI_USE_ALARM = Symbol(
         [0x2B99B0], [0x22B99B0], 0xC, "OSI_USE_ALARM", "", "undefined"
@@ -49398,6 +49645,10 @@ class NaRamData:
         "uint32_t",
     )
 
+    OSI_IS_INIT_RESET = Symbol(
+        [0x2B99D0], [0x22B99D0], None, "OSI_IS_INIT_RESET", "", ""
+    )
+
     OSI_VRAM_EXCLUSIVE = Symbol(
         [0x2B99D4], [0x22B99D4], 0x4, "OSI_VRAM_EXCLUSIVE", "", "uint32_t"
     )
@@ -49405,6 +49656,12 @@ class NaRamData:
     OSI_VRAM_LOCK_ID = Symbol(
         [0x2B99D8], [0x22B99D8], 0x14, "OSI_VRAM_LOCK_ID", "", "uint16_t[9]"
     )
+
+    SND_MUTEX = Symbol([0x2B99F0], [0x22B99F0], None, "SND_MUTEX", "", "")
+
+    RESERVE_LIST = Symbol([0x2B9A20], [0x22B9A20], None, "RESERVE_LIST", "", "")
+
+    SNDI_SHARED_WORK = Symbol([0x2BB560], [0x22BB560], None, "SNDI_SHARED_WORK", "", "")
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
         [0x324CB4],

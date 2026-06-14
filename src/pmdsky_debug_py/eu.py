@@ -1694,6 +1694,15 @@ class EuArm9Functions:
         None,
     )
 
+    GetMoneyQuantity = Symbol(
+        [0xD934],
+        [0x200D934],
+        None,
+        "GetMoneyQuantity",
+        "Gets the actual money a Poké item should give by indexing its quantity field into MONEY_QUANTITY_TABLE, then multiplying by 1.2x if the Coin Watcher flag is set.\n\nr0: item\nreturn: money amount",
+        None,
+    )
+
     GetItemsForSave = Symbol(
         [0xD9E4],
         [0x200D9E4],
@@ -4850,6 +4859,15 @@ class EuArm9Functions:
         None,
         "NewWindow",
         "Seems to return the ID of a newly initialized window in the next available slot in WINDOW_LIST, given some starting information.\n\nIf WINDOW_LIST is full, it will be overflowed, with the slot with an ID of 20 being initialized and returned.\n\nr0: window_params pointer to be copied by value into window::hdr in the new window\nr1: ?\nreturn: window_id",
+        None,
+    )
+
+    GetPaletteBaseAddress = Symbol(
+        [0x27B9C],
+        [0x2027B9C],
+        None,
+        "GetPaletteBaseAddress",
+        "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
         None,
     )
 
@@ -9146,6 +9164,24 @@ class EuArm9Functions:
         None,
     )
 
+    RecolorNameString = Symbol(
+        [0x552C0],
+        [0x20552C0],
+        None,
+        "RecolorNameString",
+        "Given a string of up to 10 characters, formats the string to display it in a specific color, or the original string if r2 is 0.\n\nr0: [output] buffer\nr1: string to recolor\nr2: text color symbol for the [CS:r2] tag",
+        None,
+    )
+
+    RecolorTeamMemberNameString = Symbol(
+        [0x5531C],
+        [0x205531C],
+        None,
+        "RecolorTeamMemberNameString",
+        "Given a string of up to 10 characters, formats the string to display it in either light blue if the monster is the leader or yellow otherwise.\n\nr0: [output] buffer\nr1: string to recolor\nr2: whether the monster is the team leader",
+        None,
+    )
+
     IsMonsterOnTeam = Symbol(
         [0x554C4],
         [0x20554C4],
@@ -9308,6 +9344,15 @@ class EuArm9Functions:
         None,
     )
 
+    GetRecoloredGroundMonsterName = Symbol(
+        [0x56400],
+        [0x2056400],
+        None,
+        "GetRecoloredGroundMonsterName",
+        "Gets the name of the ground monster formatted to be displayed in a specific color.\n\nr0: [output] buffer\nr1: ground monster pointer\nr2: text color symbol for the [CS:r2] tag",
+        None,
+    )
+
     RemoveActiveMembersFromAllTeams = Symbol(
         [0x56444],
         [0x2056444],
@@ -9440,6 +9485,33 @@ class EuArm9Functions:
         None,
         "ClearItem",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: team_id\nr1: check",
+        None,
+    )
+
+    GetRecoloredNameOfTeamMemberAtIdx = Symbol(
+        [0x58878],
+        [0x2058878],
+        None,
+        "GetRecoloredNameOfTeamMemberAtIdx",
+        "Gets the name of the active team member in the given slot index formatted to be displayed in either light blue if the monster is the leader or yellow otherwise.\n\nr0: [output] buffer\nr1: roster index",
+        None,
+    )
+
+    GetNameOfTeamMemberAtIdx = Symbol(
+        [0x58908],
+        [0x2058908],
+        None,
+        "GetNameOfTeamMemberAtIdx",
+        "Gets the name of the active team member in the given slot index.\n\nr0: [output] buffer\nr1: roster index",
+        None,
+    )
+
+    GetRecoloredTeamMemberName = Symbol(
+        [0x58930],
+        [0x2058930],
+        None,
+        "GetRecoloredTeamMemberName",
+        "Gets the name of the team member formatted to be displayed in either light blue if the monster is the leader or yellow otherwise.\n\nr0: [output] buffer\nr1: team member pointer",
         None,
     )
 
@@ -12296,14 +12368,7 @@ class EuArm9Data:
         [0xAE964], [0x20AE964], 0x60, "TEX_START_ADDR_TABLE", "", "int16_t[48]"
     )
 
-    ARM9_UNKNOWN_TABLE__NA_20AE924 = Symbol(
-        [0xAF1C4],
-        [0x20AF1C4],
-        0x2D4,
-        "ARM9_UNKNOWN_TABLE__NA_20AE924",
-        "724*0x1\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
-    )
+    VOLUME_TABLE = Symbol([0xAF1C4], [0x20AF1C4], 0x2D4, "VOLUME_TABLE", "724*0x1", "")
 
     MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
         [0xAF7A0],
@@ -27259,6 +27324,24 @@ class EuOverlay10Data:
         "int16_t",
     )
 
+    CONSTRICTION_DAMAGE = Symbol(
+        [0x7A04],
+        [0x22C4DC4],
+        0x2,
+        "CONSTRICTION_DAMAGE",
+        "Damage dealt by the constriction status condition.",
+        "int16_t",
+    )
+
+    WISE_HEALER_PERCENTAGE = Symbol(
+        [0x7A08],
+        [0x22C4DC8],
+        0x2,
+        "WISE_HEALER_PERCENTAGE",
+        "The additional percentage of HP that should be restored for monsters with the Wise Healer IQ skill (15%).",
+        "int16_t",
+    )
+
     UNOWN_STONE_DROP_CHANCE = Symbol(
         [0x7A0C],
         [0x22C4DCC],
@@ -39508,6 +39591,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    GetMonsterOrTrapName = Symbol(
+        [0x6838],
+        [0x22E33B8],
+        None,
+        "GetMonsterOrTrapName",
+        "Gets the name of the entity if it is a monster or trap. In other cases, the function either does nothing or gets an unrelated string.\n\nr0: [output] buffer\nr1: entity",
+        None,
+    )
+
     SubstitutePlaceholderStringTags = Symbol(
         [0x6898],
         [0x22E3418],
@@ -39531,7 +39623,7 @@ class EuOverlay29Functions:
         [0x22E3804],
         None,
         "PointCameraToMonster",
-        "Points the camera to the specified monster.\n\nr0: Entity pointer\nr1: ?",
+        "Points the camera to the specified monster.\n\nr0: Entity pointer\nr1: whether to also update trap visibility and the minimap",
         None,
     )
 
@@ -39604,7 +39696,7 @@ class EuOverlay29Functions:
         [0x22E3F94],
         None,
         "PlayEffectAnimationEntity",
-        "Just a guess. This appears to be paired often with GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the loop entirely. It seems like in this case the function might just preload some animation frames for later use??\n\nr0: entity pointer\nr1: Effect ID\nr2: appears to be a flag for actually running the animation now? If this is 0, the AdvanceFrame loop is skipped entirely.\nothers: ?\nreturn: status code, or maybe the number of frames or something? Either way, -1 seems to indicate the animation being finished or something?",
+        "Just a guess. This appears to be paired often with GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the loop entirely. It seems like in this case the function might just preload some animation frames for later use??\n\nr0: entity pointer\nr1: Effect ID\nr2: appears to be a flag for actually running the animation now? If this is 0, the AdvanceFrame loop is skipped entirely.\nstack[2]: direction of effect\nothers: ?\nreturn: status code, or maybe the number of frames or something? Either way, -1 seems to indicate the animation being finished or something?",
         None,
     )
 
@@ -39713,6 +39805,24 @@ class EuOverlay29Functions:
         None,
         "PlaySpeedDownEffect",
         "Displays the graphical effect on a monster that just lowered movement speed.\n\nr0: entity pointer",
+        None,
+    )
+
+    DisplayStockpileNumbers = Symbol(
+        [0x8504],
+        [0x22E5084],
+        None,
+        "DisplayStockpileNumbers",
+        "Displays the numbers for a monster's stockpile stage above them.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayInvisifySeIfShouldDisplayEntity = Symbol(
+        [0x8534],
+        [0x22E50B4],
+        None,
+        "PlayInvisifySeIfShouldDisplayEntity",
+        "Calls PlaySeByIdIfShouldDisplayEntity with the sound effect for turning a monster invisible.\n\nr0: entity pointer",
         None,
     )
 
@@ -40562,6 +40672,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    GetTrapName = Symbol(
+        [0x1165C],
+        [0x22EE1DC],
+        None,
+        "GetTrapName",
+        "Gets the name of the given trap.\n\nr0: [output] buffer\nr1: trap id",
+        None,
+    )
+
     BindTrapToTile = Symbol(
         [0x11688],
         [0x22EE208],
@@ -40796,6 +40915,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    ChangeTrapOnTile = Symbol(
+        [0x132AC],
+        [0x22EFE2C],
+        None,
+        "ChangeTrapOnTile",
+        "Changes the trap on the tile to the given trap id if there is already one on the tile.\n\nr0: tile\nr1: trap id",
+        None,
+    )
+
     SpawnMonstersAroundPos = Symbol(
         [0x132E8],
         [0x22EFE68],
@@ -40811,6 +40939,15 @@ class EuOverlay29Functions:
         None,
         "RevealTrapsNearby",
         "Reveals traps within the monster's viewing range.\n\nr0: entity pointer",
+        None,
+    )
+
+    RevealTrapAtPos = Symbol(
+        [0x13534],
+        [0x22F00B4],
+        None,
+        "RevealTrapAtPos",
+        "Reveals the trap at the given position if one is present.\n\nr0: x\nr1: y\nreturn: true if there was a hidden trap to reveal",
         None,
     )
 
@@ -40856,6 +40993,51 @@ class EuOverlay29Functions:
         None,
         "IsSecretBazaarNpcBehavior",
         "Checks if a behavior ID corresponds to one of the Secret Bazaar NPCs.\n\nr0: monster behavior ID\nreturn: bool",
+        None,
+    )
+
+    TalkToSecretBazaarNpcStandard = Symbol(
+        [0x14438],
+        [0x22F0FB8],
+        None,
+        "TalkToSecretBazaarNpcStandard",
+        "Opens a dialogue box with the given shopkeeper as the speaker, without a yes/no menu and with param_5 set to false.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nreturn: ? (bool)",
+        None,
+    )
+
+    TalkToSecretBazaarNpcWithYesNoMenu = Symbol(
+        [0x14460],
+        [0x22F0FE0],
+        None,
+        "TalkToSecretBazaarNpcWithYesNoMenu",
+        "Opens a dialogue box with the given shopkeeper as the speaker, with a yes/no menu and with param_5 set to true.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nr3: pointer to an array of simple_menu_id_items\nreturn: ? (bool)",
+        None,
+    )
+
+    MakeTargetFaceUserAndIdle = Symbol(
+        [0x14488],
+        [0x22F1008],
+        None,
+        "MakeTargetFaceUserAndIdle",
+        "Makes the target face the user and changes their animation to idle.\n\nr0: target entity pointer\nr1: user entity pointer",
+        None,
+    )
+
+    SubtractMoneyCarriedWithSfx = Symbol(
+        [0x145F0],
+        [0x22F1170],
+        None,
+        "SubtractMoneyCarriedWithSfx",
+        "Subtracts the amount of money from the the player's current amount of money and plays the sound effect for buying an item.\n\nr0: money amount",
+        None,
+    )
+
+    TalkToSecretBazaarNpc = Symbol(
+        [0x147B8],
+        [0x22F1338],
+        None,
+        "TalkToSecretBazaarNpc",
+        "Opens a dialogue box with the given shopkeeper as the speaker.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nr3: pointer to an array of simple_menu_id_items (null if there is no menu)\nstack[0]: ? (changes something in secret_bazaar_dialogue_info if true. seems to only be true if there is a menu)\nreturn: ? (bool)",
         None,
     )
 
@@ -41302,6 +41484,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    CheckMonsterTeamMemberIdx = Symbol(
+        [0x1DAD8],
+        [0x22FA658],
+        None,
+        "CheckMonsterTeamMemberIdx",
+        "Calls CheckTeamMemberIdx on the given monster's team_index.\n\nr0: entity pointer\nreturn: True if the value is equal to 0x55AA or 0x5AA5",
+        None,
+    )
+
     IsMonsterIdInNormalRangeVeneer = Symbol(
         [0x1DAF4],
         [0x22FA674],
@@ -41317,6 +41508,15 @@ class EuOverlay29Functions:
         None,
         "BoostIQ",
         "Tries to boost the target's IQ.\n\nr0: monster entity pointer\nr1: iq boost\nr2: bool suppress logs",
+        None,
+    )
+
+    ChangeMonsterAnimationToIdle = Symbol(
+        [0x1E1EC],
+        [0x22FAD6C],
+        None,
+        "ChangeMonsterAnimationToIdle",
+        "Makes the monster play their idle animation in the given direction.\n\nr0: entity pointer\nr1: direction",
         None,
     )
 
@@ -41828,7 +42028,7 @@ class EuOverlay29Functions:
         [0x2300B90],
         None,
         "GetMonsterName",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: buffer\nr1: TargetInfo",
+        "Gets the name of a given monster.\n\nr0: [output] buffer\nr1: TargetInfo",
         None,
     )
 
@@ -42395,7 +42595,7 @@ class EuOverlay29Functions:
         [0x2304888],
         None,
         "DisplayMonsterShadow",
-        "Displays a shadow under a monster.\n\nr0: whether to display the shadow\nr1: shadow type\nr2: whether to display a yellow circle (for team members and special cases like decoys, rescue clients, etc.)\nr3: x-coordinate in OAM plus 0x10\nstack[0]: y-coordinate in OAM plus 0x8",
+        "Displays a shadow under a monster.\n\nr0: whether to display the shadow\nr1: shadow type\nr2: whether to display a yellow circle (for team members and special cases like decoys, rescue clients, etc.)\nr3: the x-coordinate in OAM plus some constant offset. Valid input range: (-0x20, 0x11F)\nstack[0]: the y-coordinate in OAM plus some constant offset. Valid input range: (-0x20, 0xE0)",
         None,
     )
 
@@ -42855,6 +43055,24 @@ class EuOverlay29Functions:
         None,
         "ResetDamageCalcDiagnostics",
         "Resets the damage calculation diagnostic info stored on the dungeon struct. Called unconditionally at the start of CalcDamage.\n\nNo params.",
+        None,
+    )
+
+    PointCameraToMonsterWrapper = Symbol(
+        [0x31538],
+        [0x230E0B8],
+        None,
+        "PointCameraToMonsterWrapper",
+        "Calls PointCameraToMonster on the given monster with update_trap_vis_and_map = 1.\n\nr0: entity pointer",
+        None,
+    )
+
+    IsEitherMonsterInvalid = Symbol(
+        [0x31548],
+        [0x230E0C8],
+        None,
+        "IsEitherMonsterInvalid",
+        "Returns true if at least one of the given monsters is an invalid entity.\n\nr0: entity pointer\nr1: entity pointer\nreturn: bool",
         None,
     )
 
@@ -44892,12 +45110,12 @@ class EuOverlay29Functions:
         None,
     )
 
-    GetPaletteBaseAddress = Symbol(
+    GetPaletteBaseAddressOv29 = Symbol(
         [0x59730],
         [0x23362B0],
         None,
-        "GetPaletteBaseAddress",
-        "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
+        "GetPaletteBaseAddressOv29",
+        "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nIs an exact copy of GetPaletteBaseAddress in arm9.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
         None,
     )
 
@@ -46188,6 +46406,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    InteractWithSecretBazaarNpc = Symbol(
+        [0x685A8],
+        [0x2345128],
+        None,
+        "InteractWithSecretBazaarNpc",
+        "Called to interact with a secret bazaar shopkeeper.\n\nr0: user entity pointer\nr1: shopkeeper entity pointer",
+        None,
+    )
+
     PrepareItemForPrinting = Symbol(
         [0x68BA8, 0x68BD4],
         [0x2345728, 0x2345754],
@@ -47119,6 +47346,10 @@ class EuOverlay29Functions:
     )
 
     GetFlashFireStatus = _Deprecated("GetFlashFireStatus", FlashFireShouldActivate)
+
+    GetPaletteBaseAddress = _Deprecated(
+        "GetPaletteBaseAddress", GetPaletteBaseAddressOv29
+    )
 
     SetPreprocessorArgsIdVal = _Deprecated(
         "SetPreprocessorArgsIdVal", SetMessageLogPreprocessorArgsIdVal
@@ -50048,11 +50279,27 @@ class EuRamData:
         "struct thread_info",
     )
 
+    OSI_IS_THREAD_INITIALIZED = Symbol(
+        [0x2B9F94], [0x22B9F94], None, "OSI_IS_THREAD_INITIALIZED", "", ""
+    )
+
+    OSI_THREAD_INFO = Symbol([0x2B9FAC], [0x22B9FAC], None, "OSI_THREAD_INFO", "", "")
+
+    OSI_INITIALIZED = Symbol([0x2BA204], [0x22BA204], None, "OSI_INITIALIZED", "", "")
+
+    OSI_DEBUGGER_HANDLER = Symbol(
+        [0x2BA230], [0x22BA230], None, "OSI_DEBUGGER_HANDLER", "", ""
+    )
+
+    OSI_EX_CONTEXT = Symbol([0x2BA25C], [0x22BA25C], None, "OSI_EX_CONTEXT", "", "")
+
     OSI_TIMER_RESERVED = Symbol(
         [0x2BA2DC], [0x22BA2DC], 0x4, "OSI_TIMER_RESERVED", "", "uint16_t"
     )
 
     OSI_USE_TICK = Symbol([0x2BA2E0], [0x22BA2E0], 0x8, "OSI_USE_TICK", "", "undefined")
+
+    OSI_TICK_COUNTER = Symbol([0x2BA2E8], [0x22BA2E8], None, "OSI_TICK_COUNTER", "", "")
 
     OSI_USE_ALARM = Symbol(
         [0x2BA2F0], [0x22BA2F0], 0xC, "OSI_USE_ALARM", "", "undefined"
@@ -50067,6 +50314,10 @@ class EuRamData:
         "uint32_t",
     )
 
+    OSI_IS_INIT_RESET = Symbol(
+        [0x2BA310], [0x22BA310], None, "OSI_IS_INIT_RESET", "", ""
+    )
+
     OSI_VRAM_EXCLUSIVE = Symbol(
         [0x2BA314], [0x22BA314], 0x4, "OSI_VRAM_EXCLUSIVE", "", "uint32_t"
     )
@@ -50074,6 +50325,12 @@ class EuRamData:
     OSI_VRAM_LOCK_ID = Symbol(
         [0x2BA318], [0x22BA318], 0x14, "OSI_VRAM_LOCK_ID", "", "uint16_t[9]"
     )
+
+    SND_MUTEX = Symbol([0x2BA330], [0x22BA330], None, "SND_MUTEX", "", "")
+
+    RESERVE_LIST = Symbol([0x2BA360], [0x22BA360], None, "RESERVE_LIST", "", "")
+
+    SNDI_SHARED_WORK = Symbol([0x2BBEA0], [0x22BBEA0], None, "SNDI_SHARED_WORK", "", "")
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
         None,

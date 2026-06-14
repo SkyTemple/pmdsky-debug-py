@@ -987,6 +987,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetMoneyQuantity: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetItemsForSave: Symbol[
         Optional[list[int]],
         None,
@@ -2738,6 +2743,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     NewWindow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetPaletteBaseAddress: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5127,6 +5137,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    RecolorNameString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecolorTeamMemberNameString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsMonsterOnTeam: Symbol[
         Optional[list[int]],
         None,
@@ -5217,6 +5237,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetRecoloredGroundMonsterName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     RemoveActiveMembersFromAllTeams: Symbol[
         Optional[list[int]],
         None,
@@ -5288,6 +5313,21 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     ClearItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRecoloredNameOfTeamMemberAtIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetNameOfTeamMemberAtIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRecoloredTeamMemberName: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6850,7 +6890,7 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    ARM9_UNKNOWN_TABLE__NA_20AE924: Symbol[
+    VOLUME_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -23768,6 +23808,16 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    CONSTRICTION_DAMAGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WISE_HEALER_PERCENTAGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     UNOWN_STONE_DROP_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -34519,6 +34569,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetMonsterOrTrapName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SubstitutePlaceholderStringTags: Symbol[
         Optional[list[int]],
         None,
@@ -34615,6 +34670,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     PlaySpeedDownEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisplayStockpileNumbers: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayInvisifySeIfShouldDisplayEntity: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -35089,6 +35154,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetTrapName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     BindTrapToTile: Symbol[
         Optional[list[int]],
         None,
@@ -35219,12 +35289,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ChangeTrapOnTile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SpawnMonstersAroundPos: Symbol[
         Optional[list[int]],
         None,
     ]
 
     RevealTrapsNearby: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RevealTrapAtPos: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -35250,6 +35330,31 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsSecretBazaarNpcBehavior: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TalkToSecretBazaarNpcStandard: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TalkToSecretBazaarNpcWithYesNoMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeTargetFaceUserAndIdle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SubtractMoneyCarriedWithSfx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TalkToSecretBazaarNpc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -35489,12 +35594,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CheckMonsterTeamMemberIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsMonsterIdInNormalRangeVeneer: Symbol[
         Optional[list[int]],
         None,
     ]
 
     BoostIQ: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ChangeMonsterAnimationToIdle: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36335,6 +36450,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ResetDamageCalcDiagnostics: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PointCameraToMonsterWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsEitherMonsterInvalid: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37469,7 +37594,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetPaletteBaseAddress: Symbol[
+    GetPaletteBaseAddressOv29: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -38185,6 +38310,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsSecretBazaarVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InteractWithSecretBazaarNpc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -40349,6 +40479,31 @@ class RamDataProtocol(Protocol):
         None,
     ]
 
+    OSI_IS_THREAD_INITIALIZED: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSI_THREAD_INFO: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSI_INITIALIZED: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSI_DEBUGGER_HANDLER: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    OSI_EX_CONTEXT: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OSI_TIMER_RESERVED: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -40357,6 +40512,11 @@ class RamDataProtocol(Protocol):
     OSI_USE_TICK: Symbol[
         Optional[list[int]],
         Optional[int],
+    ]
+
+    OSI_TICK_COUNTER: Symbol[
+        Optional[list[int]],
+        None,
     ]
 
     OSI_USE_ALARM: Symbol[
@@ -40369,6 +40529,11 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
+    OSI_IS_INIT_RESET: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OSI_VRAM_EXCLUSIVE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -40377,6 +40542,21 @@ class RamDataProtocol(Protocol):
     OSI_VRAM_LOCK_ID: Symbol[
         Optional[list[int]],
         Optional[int],
+    ]
+
+    SND_MUTEX: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RESERVE_LIST: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SNDI_SHARED_WORK: Symbol[
+        Optional[list[int]],
+        None,
     ]
 
     GROUND_MEMORY_ARENA_1_PTR: Symbol[
