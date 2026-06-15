@@ -1477,6 +1477,46 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetEggSpecies: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetEggSpecies: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetUnkGameState0x13a6: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetUnkGameState0x13a6: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetEggHatchTimer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetEggHatchTimer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DecrementEggHatchTimer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveInvalidKecleonShop1Items: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     RemoveItemFromKecleonShop1: Symbol[
         Optional[list[int]],
         None,
@@ -1562,6 +1602,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SwapShopFreeDoublePointer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ApplyGummiBoostsToGroundMonster: Symbol[
         Optional[list[int]],
         None,
@@ -1627,6 +1672,121 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    WipeRecycleShopRecords: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeRecycleOfferItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRecycleItemId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleItemHasTradeTypePrizeTicket: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRecycleItemBonusOdds: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountTradedRecycleItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopTradeIsNonspecific: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopOfferExists: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearRecycleShopOffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetGameStateRecycleCount: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRankForRecycleShop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IncrementRecycleCountVar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateRecycleShop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DecrementRecycleOfferCooldown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsRecycleOfferCooldownOver: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRecycleOfferCooldown: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopIsNotThrownItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopIsTradableItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopCountTradableItemsInBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopCountTradableItemsInStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountValidRecycleShopItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsRecycleTradeTypeValid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearCroagunkItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     LoadSynthBin: Symbol[
         Optional[list[int]],
         None,
@@ -1638,6 +1798,26 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GenerateCroagunkItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCroagunkItemTemplates: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PopCroagunkItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadCroagunkItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SaveCroagunkItems: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2717,6 +2897,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    AppendStandardStringToMission: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetCharWidth: Symbol[
         Optional[list[int]],
         None,
@@ -3547,6 +3732,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    FreeMissionRewardStructMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MissionRewardCloseAllBoxes: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PrintMoveOptionMenu: Symbol[
         Optional[list[int]],
         None,
@@ -3558,6 +3753,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetCheckIqMenuSkillString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayMissionClearBgm: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3593,6 +3793,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     InitSpecialEpisodeExtraPartner: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AssignSpecialEpisodePc: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -4218,6 +4423,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     IsNoLossPenaltyDungeon: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MissionRewardValidateDungeonId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5147,6 +5357,26 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    ModifyHpStat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ModifyOffensiveStat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ModifyDefensiveStat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ModifyIqStat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsMonsterOnTeam: Symbol[
         Optional[list[int]],
         None,
@@ -5168,6 +5398,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetTeamMember: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRecruitMentryIdBySpecies: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5287,6 +5522,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetAppointedLeaderMemberIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     RemoveActiveMembersFromMainTeam: Symbol[
         Optional[list[int]],
         None,
@@ -5307,7 +5547,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetAdventureNpcIds: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetUnitNpcIds: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     RefillTeam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ValidateTeamMembers: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5497,12 +5752,37 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CheckMonsterForMissionType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckItemForMissionType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GenerateMission: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    CountAndPopulateValidMissionTableMonsters: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsMissionTypeSpecialEpisode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DoesMissionHaveTypeAndSubtype: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AlreadyHasSimilarMission: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5543,6 +5823,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetAcceptedMission: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WasMissionCompletedToday: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5597,6 +5882,21 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetMissionSpecificFixedRoom: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SelectRandomFixedRoomInRange: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ReadRescueBinFile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GenerateMissionDetailsStruct: Symbol[
         Optional[list[int]],
         None,
@@ -5612,12 +5912,67 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    MatchMissionTemplateToMission: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AppendMissionTitle: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    FormatMissionHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FormatSpecialEpisodeMissionHeader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AppendMissionSummary: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeMissionDetails: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeSpecialEpisodeMissionDetails: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PrintWonderMailSkyCode: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AppendMissionObjective: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AppendMissionDungeonLocation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SumValidMissionCategoryWeights: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetRandomMissionTemplate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadMissionTemplates: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5652,7 +6007,37 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetMissionRankWithCapAndModifiers: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetMissionRankWithCapAndModifiersAndCap: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CanSendItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitMissionReward: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RollRandomItemReward: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GenerateMissionRewards: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CheckDungeonMissionUnlockConditions: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5663,6 +6048,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetAvailableItemDeliveryList: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ZeroInitMissionRewardDataStruct: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5692,6 +6082,21 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetActorEventMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetRandomRequestNpcs1And2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetAllEventNpcs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     RandomizeDemoActors: Symbol[
         Optional[list[int]],
         None,
@@ -5703,6 +6108,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     MainLoop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ChooseMissionTitle: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6440,6 +6850,16 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OUTLAW_HIDEOUT_FIXED_ROOM_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CHALLENGE_NORMAL_FIXED_ROOM_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     TACTICS_FOLLOW_LEADER: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -6456,6 +6876,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     TACTICS_UNLOCK_LEVEL_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TREASURE_MEMO_FIXED_ROOM_IDS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -6955,6 +7380,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SYNTH_BIN_FILE_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     DUNGEON_MOVE_TABLES: Symbol[
         Optional[list[int]],
         None,
@@ -7001,6 +7431,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     KEYBOARD_STRING_IDS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_REWARD_STRUCT_MAIN_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -23615,6 +24050,11 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
+    CreateInventoryMenuOuter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetEffectAnimationField0x19: Symbol[
         Optional[list[int]],
         None,
@@ -24998,6 +25438,21 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    ReturnScriptMenuResultZero: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ReturnScriptMenuResult: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsScriptMenuReturnDisabled: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ScriptSpecialProcessCall: Symbol[
         Optional[list[int]],
         None,
@@ -25598,6 +26053,21 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    EatOverworldGummiEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EatOverworldGummiDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EatOverworldGummiFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CreateTopGroundMenu: Symbol[
         Optional[list[int]],
         None,
@@ -25613,6 +26083,36 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    GroundBagOthersMenuEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GroundBagOthersMenuDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GroundBagOthersMenuFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitDiaryAndFaqBoardMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeDiaryAndFaqBoardMenuMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DiaryAndFaqBoardMenuFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsBagNotEmpty: Symbol[
         Optional[list[int]],
         None,
@@ -25623,12 +26123,22 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsGroundMonsterAtMaxLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetExclusiveItemRequirements: Symbol[
         Optional[list[int]],
         None,
     ]
 
     SwapShopInventoryManager: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadRecycleShopOverlay: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -25766,6 +26276,46 @@ class Overlay11DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SWAP_SHOP_ONE_STAR_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_TWO_STAR_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_THREE_STAR_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_RED_TEXT_TAG_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_UNCENTER_TEXT_TAG_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_CLUMSET_ONE_STAR_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_CLUMSET_TWO_STAR_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SWAP_SHOP_CLUMSET_THREE_STAR_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     OVERLAY11_OVERLAY_LOAD_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -25792,6 +26342,11 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     GROUND_STATE_PTRS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EXCLUSIVE_ITEM_REQUIREMENTS_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -33366,7 +33921,85 @@ Overlay2Protocol = SectionProtocol[
 
 class Overlay20FunctionsProtocol(Protocol):
 
-    pass
+    RecycleShopEntryPointFirst: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopEntryPointResume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopCommonEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PrintWynautTextbox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PrintWynautSimpleMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopTryHidePortraitBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PrintWynautNormalPortrait: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopClosePortraitBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopCloseAllWindows: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopHandleTopScreenWindow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopTopScreenDrawItemStats: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopTopScreenDrawItemName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RecycleShopTopScreenDrawInfoWindow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisplaySelectionTutorialWindow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay20DataProtocol(Protocol):
@@ -33401,7 +34034,7 @@ class Overlay20DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY20_UNKNOWN_TABLE__NA_238D014: Symbol[
+    RECYCLE_SHOP_S14P02A_BGP_FILE_STR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -33476,22 +34109,22 @@ class Overlay20DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY20_UNKNOWN_POINTER__NA_238D120: Symbol[
+    RECYCLE_SHOP_MAIN_STRUCT_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY20_UNKNOWN_POINTER__NA_238D124: Symbol[
+    RECYCLE_SHOP_UNK_STRUCT_SIZE_84H_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY20_UNKNOWN_POINTER__NA_238D128: Symbol[
+    RECYCLE_SHOP_UNK_STRUCT_SIZE_340H_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY20_UNKNOWN_POINTER__NA_238D12C: Symbol[
+    RECYCLE_SHOP_UNK_STRUCT_SIZE_1CCH_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -33507,6 +34140,11 @@ Overlay20Protocol = SectionProtocol[
 class Overlay21FunctionsProtocol(Protocol):
 
     SwapShopDialogueManager: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapShopSetSimpleMenuWindowId: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -34184,12 +34822,160 @@ Overlay25Protocol = SectionProtocol[
 
 class Overlay26FunctionsProtocol(Protocol):
 
-    pass
+    MissionRewardOverlayEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MissionRewardOverlayDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MissionRewardOverlayFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MissionRewardClosePortraitAndDialogueBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyRuleDungeonEffectsEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyRuleDungeonEffectsDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ApplyRuleDungeonEffectsFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ExitDungeon1EntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ExitDungeon1Destructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ExitDungeon1FrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnkOv26EntryPointEu0238b754: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnkOv26DestructorEu0238b780: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnkOv26FrameUpdateEu0238b7ac: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DungeonExitEntryPoint2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DungeonExitDestructor2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DungeonExitFrameUpdate2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay26DataProtocol(Protocol):
 
-    OVERLAY26_UNKNOWN_TABLE__NA_238AE20: Symbol[
+    MISSION_TYPE_12_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_DEFAULT_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_10_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_9_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_8_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_6_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_7_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_3_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_2_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_1_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_0_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MISSION_TYPE_11_DIALOGUE_SEQS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_CONQUEST_COUNT_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_DEAD_COUNT_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEBUG_NO_COUNT_STR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -34199,17 +34985,17 @@ class Overlay26DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY26_UNKNOWN_POINTER__NA_238AF60: Symbol[
+    MISSION_REWARD_OVERLAY_STRUCT_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY26_UNKNOWN_POINTER__NA_238AF64: Symbol[
+    APPLY_RULE_DUNGEON_EFFECTS_STRUCT_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY26_UNKNOWN_POINTER__NA_238AF68: Symbol[
+    EXIT_DUNGEON_1_STRUCT_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -34219,7 +35005,7 @@ class Overlay26DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY26_UNKNOWN_POINTER5__NA_238AF70: Symbol[
+    EXIT_DUNGEON_2_STRUCT_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

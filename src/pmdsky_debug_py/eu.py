@@ -2576,6 +2576,78 @@ class EuArm9Functions:
         None,
     )
 
+    GetEggSpecies = Symbol(
+        [0x10824],
+        [0x2010824],
+        None,
+        "GetEggSpecies",
+        "Seems to retrieve the species of the egg the player currently has in Chansey Daycare from GAME_STATE_VALUES.\nIf no egg is present, returns zero.\n\nreturn: monster_id",
+        None,
+    )
+
+    SetEggSpecies = Symbol(
+        [0x1083C],
+        [0x201083C],
+        None,
+        "SetEggSpecies",
+        "Seems to set the species of the egg in Chansey Daycare to GAME_STATE_VALUES.\n\nr0: monster_id",
+        None,
+    )
+
+    GetUnkGameState0x13a6 = Symbol(
+        [0x10854],
+        [0x2010854],
+        None,
+        "GetUnkGameState0x13a6",
+        "Seems to get unknown field 0x13a6 of GAME_STATE_VALUES. Only known to be called by overlay 24, Chansey Daycare.\n\nreturn: undefined2",
+        None,
+    )
+
+    SetUnkGameState0x13a6 = Symbol(
+        [0x1086C],
+        [0x201086C],
+        None,
+        "SetUnkGameState0x13a6",
+        "Seems to set unknown field 0x13a6 of GAME_STATE_VALUES. Only known to be called by overlay 24, Chansey Daycare.\n\nr0: undefined2",
+        None,
+    )
+
+    GetEggHatchTimer = Symbol(
+        [0x10884],
+        [0x2010884],
+        None,
+        "GetEggHatchTimer",
+        "Seems to get the number of days until the current egg in Chansey Daycare hatches from GAME_STATE_VALUES.\nAppears to be entirely unused, in favor of DecementEggHatchTimer.\n\nreturn: uint16_t",
+        None,
+    )
+
+    SetEggHatchTimer = Symbol(
+        [0x1089C],
+        [0x201089C],
+        None,
+        "SetEggHatchTimer",
+        "Seems to set the number of days until the current egg in Chansey Daycare hatches to GAME_STATE_VALUES.\n\nr0: uint16_t",
+        None,
+    )
+
+    DecrementEggHatchTimer = Symbol(
+        [0x108B4],
+        [0x20108B4],
+        None,
+        "DecrementEggHatchTimer",
+        "Seems to decrement the number of days until the current egg in Chansey Daycare hatches. Called by GroundMainNextDay.\n\nNo params.",
+        None,
+    )
+
+    RemoveInvalidKecleonShop1Items = Symbol(
+        [0x108D8],
+        [0x20108D8],
+        None,
+        "RemoveInvalidKecleonShop1Items",
+        "Iterates through the current first Kecleon Shop items, and removes any with item_id ITEM_NONE.\n\nreturn: number of items removed from the shop.",
+        None,
+    )
+
     RemoveItemFromKecleonShop1 = Symbol(
         [0x10914],
         [0x2010914],
@@ -2729,6 +2801,15 @@ class EuArm9Functions:
         None,
     )
 
+    SwapShopFreeDoublePointer = Symbol(
+        [0x115A0],
+        [0x20115A0],
+        None,
+        "SwapShopFreeDoublePointer",
+        "Seems to call MemFree on *param_1 and **param_1, with a safety check that the **param_1 isn't zero.\nOnly known XREF is to SwapShopInventoryManager, so a more specific purpose for this function may exist.\n\nr0: double pointer to free",
+        None,
+    )
+
     ApplyGummiBoostsToGroundMonster = Symbol(
         [0x115D0],
         [0x20115D0],
@@ -2846,6 +2927,213 @@ class EuArm9Functions:
         None,
     )
 
+    WipeRecycleShopRecords = Symbol(
+        [0x11B60],
+        [0x2011B60],
+        None,
+        "WipeRecycleShopRecords",
+        "Sets the guild_rank, recycle_count, and recycle_offer_cooldown fields to zero, and sets the reycle_shop_offer to -1 of GAME_STATE_VALUES.\nAlso zeroes VAR_SUB30_SPOT_LEVEL, VAR_SUB30_SPOT_DISCOVER, VAR_RECYCLE_COUNT, and VAR_SUB30_TREASURE_DISCOVER script variables.\n\nNo params.",
+        None,
+    )
+
+    FreeRecycleOfferItems = Symbol(
+        [0x11E60],
+        [0x2011E60],
+        None,
+        "FreeRecycleOfferItems",
+        "Seems to free a recycle_offer_items struct from memory.\n\nr0: recycle_offer_items pointer",
+        None,
+    )
+
+    GetRecycleItemId = Symbol(
+        [0x11E98],
+        [0x2011E98],
+        None,
+        "GetRecycleItemId",
+        "Gets the item_id of a dereferenced recycle_item struct.\n\nr0: struct recycle_item double pointer\nreturn: item_id",
+        None,
+    )
+
+    RecycleItemHasTradeTypePrizeTicket = Symbol(
+        [0x11EA4],
+        [0x2011EA4],
+        None,
+        "RecycleItemHasTradeTypePrizeTicket",
+        "Checks if the trade_type of a recycle_item is 1, indicating that the item uses the trade method for prize tickets.\n\nr0: struct recycle_item double pointer\nreturn: 1 if trade_type is 1, 0 otherwise.",
+        None,
+    )
+
+    GetRecycleItemBonusOdds = Symbol(
+        [0x11EC0],
+        [0x2011EC0],
+        None,
+        "GetRecycleItemBonusOdds",
+        "Retrieves the odds of a recycle shop item to produce a bonus item when recycled.\n\nr0: struct recycle_item double pointer\nreturn: Odds to produce a bonus item, out of 100.",
+        None,
+    )
+
+    CountTradedRecycleItems = Symbol(
+        [0x11ECC],
+        [0x2011ECC],
+        None,
+        "CountTradedRecycleItems",
+        "Counts the number of valid traded_items in a recycle_item_data struct, effectively returning the number of specific items required to do the trade. \n\nr0: struct recycle_item double pointer\nreturn: number of items required for trade",
+        None,
+    )
+
+    RecycleShopTradeIsNonspecific = Symbol(
+        [0x11F6C],
+        [0x2011F6C],
+        None,
+        "RecycleShopTradeIsNonspecific",
+        "Checks if the first slot of a recycle_item struct's traded_items is 1400, indicative of a nonspecific prize ticket trade.\nUnclear how this differs in functionally from RecycleItemHasTradeTypePrizeTicket, as they conditions they check fully overlap in vanilla.\n\nr0: recycle_item double pointer\nreturn: 1 if the traded item is 1400, 0 if not.",
+        None,
+    )
+
+    RecycleShopOfferExists = Symbol(
+        [0x11F90],
+        [0x2011F90],
+        None,
+        "RecycleShopOfferExists",
+        "Checks if GAME_STATE_VALUES->recycle_shop_offer is anything but -1, which indicates no offer for the day.\n\nreturn: 1 if an offer exists, 0 if not.",
+        None,
+    )
+
+    ClearRecycleShopOffer = Symbol(
+        [0x11FBC],
+        [0x2011FBC],
+        None,
+        "ClearRecycleShopOffer",
+        "Sets GAME_STATE_VALUES->recycle_shop_offer to -1, indicating no offer for the day.\n\nNo params.",
+        None,
+    )
+
+    GetGameStateRecycleCount = Symbol(
+        [0x11FD8],
+        [0x2011FD8],
+        None,
+        "GetGameStateRecycleCount",
+        "Retrieves GAME_STATE_VALUES->recycle_count. May differ from the recycle count at ADVENTURE_LOG_PTR->nb_recycled.\n\nreturn: Recycle count",
+        None,
+    )
+
+    GetRankForRecycleShop = Symbol(
+        [0x11FF0],
+        [0x2011FF0],
+        None,
+        "GetRankForRecycleShop",
+        "Retrieves GAME_STATE_VALUES->rank. Seems to exclusively be used for recycle shop prize ticket unlocks, but does correlate with guild rank.\n\nreturn: guild rank",
+        None,
+    )
+
+    IncrementRecycleCountVar = Symbol(
+        [0x12008],
+        [0x2012008],
+        None,
+        "IncrementRecycleCountVar",
+        "Seems to increment the RECYCLE_COUNT script variable, capping it at 999,999 recycles.\n\nNo params.",
+        None,
+    )
+
+    UpdateRecycleShop = Symbol(
+        [0x12048],
+        [0x2012048],
+        None,
+        "UpdateRecycleShop",
+        "Call by GroundMainNextDay to prepare the recycle shop for the next day of operations.\nUpdates offers, offer cooldowns, recycle counts, available trades, and the flags for new dungeons or treasure. \n\nNo params.",
+        None,
+    )
+
+    DecrementRecycleOfferCooldown = Symbol(
+        [0x122CC],
+        [0x20122CC],
+        None,
+        "DecrementRecycleOfferCooldown",
+        "Calls IsRecycleOfferCooldownOver, and if that returns false, decrements GAME_STATE_VALUES->recycle_offer_cooldown by one day.\n\nNo params.",
+        None,
+    )
+
+    IsRecycleOfferCooldownOver = Symbol(
+        [0x122FC],
+        [0x20122FC],
+        None,
+        "IsRecycleOfferCooldownOver",
+        "Checks if GAME_STATE_VALUES->recycle_offer_cooldown is zero.\n\nreturn: 1 if the cooldown is over, 0 if not.",
+        None,
+    )
+
+    GetRecycleOfferCooldown = Symbol(
+        [0x12324],
+        [0x2012324],
+        None,
+        "GetRecycleOfferCooldown",
+        "Retrieves the GAME_STATE_VALUES->recycle_offer_cooldown, the number of days until a new recycle shop offer is allowed.\n\nreturn: number of days until next offer.",
+        None,
+    )
+
+    RecycleShopIsNotThrownItem = Symbol(
+        [0x126A4],
+        [0x20126A4],
+        None,
+        "RecycleShopIsNotThrownItem",
+        "Checks if the item_category of an item is anything but CATEGORY_THROWN_ARC or CATEGORY_THROWN_LINE.\nThis likely exists to prevent stackable items from being traded in the recycle shop, as in vanilla only thrown items are stackable.\n\nr0: item_id\nreturn: 0 if the item is throwable, 1 if not.",
+        None,
+    )
+
+    RecycleShopIsTradableItem = Symbol(
+        [0x126D8],
+        [0x20126D8],
+        None,
+        "RecycleShopIsTradableItem",
+        "Checks if an item is capable of being traded in the recycle shop, calling RecycleShopIsNotThrownItem.\nAlso returns if the item is a prize ticket from IsTicketItem, if r1 is not 0.\n\nr0: item_id\nr1: 0 if prize tickets are tradable, 1 if not.\nreturn: 0 if the item is not tradable, 1 if so.",
+        None,
+    )
+
+    RecycleShopCountTradableItemsInBag = Symbol(
+        [0x12704],
+        [0x2012704],
+        None,
+        "RecycleShopCountTradableItemsInBag",
+        "Count the number of tradable items in the current bag with RecycleShopIsTradableItem.\n\nr0: 0 if prize tickets are tradable, 1 if not.\nreturn: number of tradable items",
+        None,
+    )
+
+    RecycleShopCountTradableItemsInStorage = Symbol(
+        [0x12770],
+        [0x2012770],
+        None,
+        "RecycleShopCountTradableItemsInStorage",
+        "Count the number of tradable items in storage with RecycleShopIsTradableItem.\n\nr0: 0 if prize tickets are tradable, 1 if not.\nreturn: number of tradable items",
+        None,
+    )
+
+    CountValidRecycleShopItems = Symbol(
+        [0x12984],
+        [0x2012984],
+        None,
+        "CountValidRecycleShopItems",
+        "Loops through the RECYCLE_SHOP_ITEM_LIST, counting the number of valid recycle shop trades.\nFilters each entry by guild rank, minimum recycle count, and a specified filter on trade type.\n\n\nr0: trade filter. 3 to not exclude by trade type, else see IsRecycleTradeTypeValid.\nr1: number of recycles\nr2: guild rank\nreturn: number of valid recycle shop items",
+        None,
+    )
+
+    IsRecycleTradeTypeValid = Symbol(
+        [0x129FC],
+        [0x20129FC],
+        None,
+        "IsRecycleTradeTypeValid",
+        "Uses the following logic to check if a recycle trade type fits a trade filter.\nreturn not ((filter != type) && ((filter != 0 || (type == 2))))\n\nr0: trade filter. 2 to whitelist offers, 1 to blacklist offers, 0 to blacklist offer and prize ticket trade types.\nr1: trade_type\nreturn: 1 if the item is valid, 0 if not.",
+        None,
+    )
+
+    ClearCroagunkItems = Symbol(
+        [0x12B60],
+        [0x2012B60],
+        None,
+        "ClearCroagunkItems",
+        "Zeroes the 8 daily random items Croagunk can swap for.\n\nNo params.",
+        None,
+    )
+
     LoadSynthBin = Symbol(
         [0x12B88],
         [0x2012B88],
@@ -2870,6 +3158,42 @@ class EuArm9Functions:
         None,
         "GenerateCroagunkItems",
         "Generates the Croagunk Swap Shop items for Croagunk in Wigglytuff's Guild.\nreturn: 1 if at least one item generated, 0 otherwise.",
+        None,
+    )
+
+    GetCroagunkItemTemplates = Symbol(
+        [0x13160],
+        [0x2013160],
+        None,
+        "GetCroagunkItemTemplates",
+        "Retrieves the current Croagunk Swap Shop items as synth_template structs.\n\nr0: pointer to at least 8 synth_template structs\nreturn: uint32_t",
+        None,
+    )
+
+    PopCroagunkItem = Symbol(
+        [0x131F8],
+        [0x20131F8],
+        None,
+        "PopCroagunkItem",
+        "Tries to pop an item by id from Croagunk Swap Shop items.\n\nr0: item_id\nreturn: 1 if the item was found, 0 if not.",
+        None,
+    )
+
+    LoadCroagunkItems = Symbol(
+        [0x13238],
+        [0x2013238],
+        None,
+        "LoadCroagunkItems",
+        "Seems to load the Croagunk Swap Shop items from the save file.\n\nreturn: undefined4",
+        None,
+    )
+
+    SaveCroagunkItems = Symbol(
+        [0x13298],
+        [0x2013298],
+        None,
+        "SaveCroagunkItems",
+        "Seems to store the Croagunk Swap Shop items to the save file.\n\nreturn: undefined4",
         None,
     )
 
@@ -4808,6 +5132,15 @@ class EuArm9Functions:
         None,
     )
 
+    AppendStandardStringToMission = Symbol(
+        [0x2654C],
+        [0x202654C],
+        None,
+        "AppendStandardStringToMission",
+        "Seems to append a string from a string_id to text. Known to be used for this purpose in MakeMissionDetails.\n\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: string_id",
+        None,
+    )
+
     GetCharWidth = Symbol(
         [0x26830],
         [0x2026830],
@@ -6302,6 +6635,24 @@ class EuArm9Functions:
         None,
     )
 
+    FreeMissionRewardStructMain = Symbol(
+        [0x3F2D0],
+        [0x203F2D0],
+        None,
+        "FreeMissionRewardStructMain",
+        "Frees MISSION_REWARD_STRUCT_MAIN_PTR if it is currently active.\n\nNo params.",
+        None,
+    )
+
+    MissionRewardCloseAllBoxes = Symbol(
+        [0x3F358],
+        [0x203F358],
+        None,
+        "MissionRewardCloseAllBoxes",
+        "Closes all textboxes from MISSION_REWARD_STRUCT_MAIN_PTR for the overlay 11 portion of the mission reward sequence.\n\nNo params.",
+        None,
+    )
+
     PrintMoveOptionMenu = Symbol(
         [0x405BC],
         [0x20405BC],
@@ -6326,6 +6677,15 @@ class EuArm9Functions:
         None,
         "GetCheckIqMenuSkillString",
         "Gets the string for a team member's IQ skill to be displayed in the Check IQ menu.\n\nIs stored as an advanced_menu_entry_fn_t in the advanced_menu struct.\n\nr0: [output] buffer\nr1: id in team member's IQ skill list\nreturn: input buffer",
+        None,
+    )
+
+    PlayMissionClearBgm = Symbol(
+        [0x46A5C],
+        [0x2046A5C],
+        None,
+        "PlayMissionClearBgm",
+        "Plays the mission clear bgm after completing a dungeon. Called by overlay 26.\n\nNo params.",
         None,
     )
 
@@ -6389,6 +6749,15 @@ class EuArm9Functions:
         None,
         "InitSpecialEpisodeExtraPartner",
         "Initializes any partners/special episode members that join the team later in a special episode. This is used to add\nCelebi in the In the Future of Darkness special episode.\nImplements SPECIAL_PROC_0x4 (see ScriptSpecialProcessCall).\n\nNo params.",
+        None,
+    )
+
+    AssignSpecialEpisodePc = Symbol(
+        [0x48DE0],
+        [0x2048DE0],
+        None,
+        "AssignSpecialEpisodePc",
+        "Seems to be responsible for creating special episode ground_monster for special episodes.  \n\nr0: team_member_id\nr1: special_episode_pc pointer",
         None,
     )
 
@@ -7517,6 +7886,15 @@ class EuArm9Functions:
         None,
     )
 
+    MissionRewardValidateDungeonId = Symbol(
+        [0x4F490],
+        [0x204F490],
+        None,
+        "MissionRewardValidateDungeonId",
+        "Checks script variables $DUNGEON_ENTER and $DUNGEON_ENTER_INDEX for 'mission dungeon' and a valid non-dojo dungeon respectively.\nIf so, stores the dungeon id from $DUNGEON_ENTER_INDEX to a pointer.\n\nr0: [output] dungeon_id_8*\nreturn: 1 if the dungeon pulled from script variables is valid for mission rewards, 0 otherwise.",
+        None,
+    )
+
     CheckMissionRestrictions = Symbol(
         [0x4F6FC],
         [0x204F6FC],
@@ -7590,8 +7968,8 @@ class EuArm9Functions:
     )
 
     GetMissionRank = Symbol(
-        [0x4FB4C],
-        [0x204FB4C],
+        [0x4FAE0, 0x4FB4C],
+        [0x204FAE0, 0x204FB4C],
         None,
         "GetMissionRank",
         "Gets the mission rank for the given dungeon and floor.\n\nIf the dungeon ID is >= DUNGEON_NORMAL_FLY_MAZE or the group of the dungeon is > DGROUP_DUMMY_0x63, returns MISSION_RANK_E.\n\nr0: Dungeon and floor\nreturn: Mission rank",
@@ -9182,6 +9560,42 @@ class EuArm9Functions:
         None,
     )
 
+    ModifyHpStat = Symbol(
+        [0x55334],
+        [0x2055334],
+        None,
+        "ModifyHpStat",
+        "Used to raise or lower the Hp stat, bounding the value to [1,999].\n\nr0: hp stat pointer\nr1: amount",
+        None,
+    )
+
+    ModifyOffensiveStat = Symbol(
+        [0x55368],
+        [0x2055368],
+        None,
+        "ModifyOffensiveStat",
+        "Used to raise or lower a defensive stat, bounding the value to [1,255].\n\nr0: offensive stat pointer\nr1: amount",
+        None,
+    )
+
+    ModifyDefensiveStat = Symbol(
+        [0x5539C],
+        [0x205539C],
+        None,
+        "ModifyDefensiveStat",
+        "Used to raise or lower a defensive stat, bounding the value to [1,255].\n\nr0: defensive stat pointer\nr1: amount",
+        None,
+    )
+
+    ModifyIqStat = Symbol(
+        [0x553D0],
+        [0x20553D0],
+        None,
+        "ModifyIqStat",
+        "Used to raise or lower the Iq stat, bounding the value to [1,999].\n\nr0: iq stat pointer\nr1: amount",
+        None,
+    )
+
     IsMonsterOnTeam = Symbol(
         [0x554C4],
         [0x20554C4],
@@ -9224,6 +9638,15 @@ class EuArm9Functions:
         None,
         "GetTeamMember",
         "Gets the team member at the given index.\n\nr0: team member index\nreturn: ground monster pointer",
+        None,
+    )
+
+    GetRecruitMentryIdBySpecies = Symbol(
+        [0x5594C],
+        [0x205594C],
+        None,
+        "GetRecruitMentryIdBySpecies",
+        "Seems to retrieve a regular recruit in the mentry's id with a specified monster_id, looping through the entire mentry starting from slot 5.\nThe second param can be used to skip a specified number of matches, though this appears to be zero in both known calls to this function.\n\nr0: monster_id\nr1: number of target species to skip in the mentry\nreturn: mentry index",
         None,
     )
 
@@ -9434,6 +9857,15 @@ class EuArm9Functions:
         None,
     )
 
+    GetAppointedLeaderMemberIdx = Symbol(
+        [0x56C20],
+        [0x2056C20],
+        None,
+        "GetAppointedLeaderMemberIdx",
+        "Retrieves the team member index of the current leader.\n\nreturn: member index",
+        None,
+    )
+
     RemoveActiveMembersFromMainTeam = Symbol(
         [0x56CDC],
         [0x2056CDC],
@@ -9470,12 +9902,39 @@ class EuArm9Functions:
         None,
     )
 
+    GetAdventureNpcIds = Symbol(
+        [0x570EC],
+        [0x20570EC],
+        None,
+        "GetAdventureNpcIds",
+        "Retrieves the monster_ids of the active team, to set ACTOR_ADVENTURE_NPC01 through ACTOR_ADVENTURE_NPC04.\n\nr0: monster_id_16 pointers (minimum 4)\nreturn: number of members on the team.",
+        None,
+    )
+
+    GetUnitNpcIds = Symbol(
+        [0x57180],
+        [0x2057180],
+        None,
+        "GetUnitNpcIds",
+        "Retrieves the monster_ids of the active team, to set ACTOR_UNIT_NPC01 through ACTOR_UNIT_NPC04.\n\nr0: monster_id_16 pointers (minimum 4)\nreturn: number of members on the team.",
+        None,
+    )
+
     RefillTeam = Symbol(
         [0x580D4],
         [0x20580D4],
         None,
         "RefillTeam",
         "Note: unverified, ported from Irdkwia's notes\n\nNo params.",
+        None,
+    )
+
+    ValidateTeamMembers = Symbol(
+        [0x58440],
+        [0x2058440],
+        None,
+        "ValidateTeamMembers",
+        "Fills out a table of 4 bools for whether each member of the active team is valid.\n\nr0: bool* (Points to at least 4 bools)",
         None,
     )
 
@@ -9812,6 +10271,24 @@ class EuArm9Functions:
         None,
     )
 
+    CheckMonsterForMissionType = Symbol(
+        [0x5D384],
+        [0x205D384],
+        None,
+        "CheckMonsterForMissionType",
+        "Seems to check if a monster is valid for a specific mission type and subtype.\nChecks monster id range, some kind of legality check for purple kecleon, and if the monster is using its base form (IE: castform-sun would fail the base form check.)\nAlso checks body size for missions that use a monster, and are not MISSION_ARREST_OUTLAW, MISSION_CHALLENGE_REQUEST, or MISSION_TYPE_CONSUMABLE.\n\nr0: mission_type\nr1: mission_subtype pointer\nr2: monster_id\nr3: 1 if the monster is allowed to be nothing, 0 if not.\nreturn: 1 if the monster is allowed for the mission. 0 if not.",
+        None,
+    )
+
+    CheckItemForMissionType = Symbol(
+        [0x5D498],
+        [0x205D498],
+        None,
+        "CheckItemForMissionType",
+        "Seems to check if an item is valid for a specific mission type and subtype.\nCalls IsValidTargetItem, IsItemValidVeneer, and IsStorableItem.\nAlso checks IsThrownItem, with secondary checks permitting Rare Fossil/Gold Thorn for MISION_PROSPECT_WITH_CLIENT only.\n\nr0: mission_type\nr1: mission_subtype pointer\nr2: item_id\nreturn: 1 if the item is allowed for the mission. 0 if not.",
+        None,
+    )
+
     GenerateMission = Symbol(
         [0x5D5A0],
         [0x205D5A0],
@@ -9821,12 +10298,39 @@ class EuArm9Functions:
         None,
     )
 
+    CountAndPopulateValidMissionTableMonsters = Symbol(
+        [0x5E328],
+        [0x205E328],
+        None,
+        "CountAndPopulateValidMissionTableMonsters",
+        "Reads a portion of the mission monster table from rescue.bin, counting and populating the valid monsters for the mission.\n\nr0: [output] Pointer to the subset of valid monster_ids\nr1: Involved in the bounds of the min and max table indices.\nreturn: number of valid monsters",
+        None,
+    )
+
     IsMissionTypeSpecialEpisode = Symbol(
         [0x5E5B4],
         [0x205E5B4],
         None,
         "IsMissionTypeSpecialEpisode",
-        "Checks if a mission is for a Special Episode Transmission, which unlocks Special Episode 3. This specifically checks for a mission of type MISSION_SPECIAL_EPISODE and subtype 0x2.\n\nr0: mission pointer\nreturn: bool",
+        "Checks if a mission is for a Special Episode Transmission, which unlocks Special Episode 3. This specifically checks for a mission of type MISSION_TYPE_CONSUMABLE and subtype MISSION_SPECIAL_EPISODE.\n\nr0: mission pointer\nreturn: bool",
+        None,
+    )
+
+    DoesMissionHaveTypeAndSubtype = Symbol(
+        [0x5E604],
+        [0x205E604],
+        None,
+        "DoesMissionHaveTypeAndSubtype",
+        "Checks if a specified mission has a specified mission_type and subtype. More general than AreMissionsEquivalent.\n\nr0: mission pointer\nr1: mission_type pointer\nr2: mission_subtype pointer\nreturn: 1 if the player already has this mission, 0 if not.",
+        None,
+    )
+
+    AlreadyHasSimilarMission = Symbol(
+        [0x5E634],
+        [0x205E634],
+        None,
+        "AlreadyHasSimilarMission",
+        "Seems to check if the player already has a mission of the same type and subtype on the job list, or any mission vendor like the job board.\nLikely used for 'unique' missions like challenge letters, as this uses DoesMissionHaveTypeAndSubtype.\n\nr0: mission_type pointer\nr1: mission_subtype pointer\nreturn: 1 if the player already has this mission, 0 if not.",
         None,
     )
 
@@ -9899,6 +10403,15 @@ class EuArm9Functions:
         None,
         "GetAcceptedMission",
         "Gets the mission struct corresponding to a certain mission number in the player's job list.\n\nr0: mission id in player's job list\nreturn: mission struct pointer",
+        None,
+    )
+
+    WasMissionCompletedToday = Symbol(
+        [0x5F494],
+        [0x205F494],
+        None,
+        "WasMissionCompletedToday",
+        "Runs a series of mission_type specific checks to determine if the mission really was completed today, before running mission rewards.\nExamples of checks include: Being in the right dungeon, and having a specific item or item within a treasure box in the bag. \nAlso seems to initialize the mission_result_and_client struct's NPC fields to correctly fit the mission_type.\n\nr0: struct mission_result_and_client\nr1: struct mission\nr2: enum mission_type\nreturn: 1 if the mission was completed, 0 if not.",
         None,
     )
 
@@ -9992,6 +10505,33 @@ class EuArm9Functions:
         None,
     )
 
+    GetMissionSpecificFixedRoom = Symbol(
+        [0x602FC],
+        [0x20602FC],
+        None,
+        "GetMissionSpecificFixedRoom",
+        "Returns a fixed room id for a mission based on the specified mission type and subtype.\nFor missions with multiple valid fixed rooms, uses SelectRandomFixedRoomInRange to select one at random.\n\nr0: mission_type\nr1: mission_subtype\nreturn: fixed_room_id",
+        None,
+    )
+
+    SelectRandomFixedRoomInRange = Symbol(
+        [0x60400],
+        [0x2060400],
+        None,
+        "SelectRandomFixedRoomInRange",
+        "Returns a random fixed room from a list for a specified range. Checks for 'null-termination' if no ending table entry is given.\nIt seems that the TREASURE_MEMO_FIXED_ROOM_IDS table is frontloaded with 15 'easy' layouts, and only those are allowed before performance flag 9 is enabled. \n\nr0: fixed_room_id_8 table pointer\nr1: number of entries to choose from, -1 to use the entire table.\nreturn: int8_t",
+        None,
+    )
+
+    ReadRescueBinFile = Symbol(
+        [0x60448],
+        [0x2060448],
+        None,
+        "ReadRescueBinFile",
+        "Seems to open data/RESCUE/rescue.bin, if it is not already open.\nContains various mission data, see rescue.h for further details.\n\nNo params.",
+        None,
+    )
+
     GenerateMissionDetailsStruct = Symbol(
         [0x604CC],
         [0x20604CC],
@@ -10019,6 +10559,15 @@ class EuArm9Functions:
         None,
     )
 
+    MatchMissionTemplateToMission = Symbol(
+        [0x60CE8],
+        [0x2060CE8],
+        None,
+        "MatchMissionTemplateToMission",
+        "Seems to find a matching mission_template for the corresponding mission struct if one exists. \nUses a table of validation functions ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4, not all of which are known.\n\nr0: index of ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4?\nr1: mission pointer\nreturn: mission_template pointer",
+        None,
+    )
+
     AppendMissionTitle = Symbol(
         [0x60D8C],
         [0x2060D8C],
@@ -10028,12 +10577,102 @@ class EuArm9Functions:
         None,
     )
 
+    FormatMissionHeader = Symbol(
+        [0x60E78],
+        [0x2060E78],
+        None,
+        "FormatMissionHeader",
+        "Constructs a 'mission header' for a normal mission, shown in the job list on the bottom screen. Is also used for SOS/A-OK Mail.\nCan consist of a title, mission rank, mission status, dungeon, and floor. Some missions exclude some of these fields.\n\nr0: header buffer\nr1: struct mission_details",
+        None,
+    )
+
+    FormatSpecialEpisodeMissionHeader = Symbol(
+        [0x611A0],
+        [0x20611A0],
+        None,
+        "FormatSpecialEpisodeMissionHeader",
+        "Constructs a 'mission header' for a special episode transmission mission, shown in the job list on the bottom screen.\nUses a specific text string (15439 EU) to generate the header.\n\nr0: header buffer",
+        None,
+    )
+
     AppendMissionSummary = Symbol(
         [0x61230],
         [0x2061230],
         None,
         "AppendMissionSummary",
-        "Generates the mission title of a mission, and appends it to the string location.\n\nr0: [output] main string location\nr1: temporary string buffer, concatenated to main string\nr2: window_id for DrawTextInWindow\nr3: y offset for DrawTextInWindow\nstack[0]: pointer to preprocessor args\nstack[1]: pointer to mission_details struct",
+        "Generates the mission summary for a mission, and appends it to the string location.\n\nr0: [output] main string location\nr1: temporary string buffer, concatenated to main string\nr2: window_id for DrawTextInWindow\nr3: y offset for DrawTextInWindow\nstack[0]: pointer to preprocessor args\nstack[1]: pointer to mission_details struct",
+        None,
+    )
+
+    MakeMissionDetails = Symbol(
+        [0x61354],
+        [0x2061354],
+        None,
+        "MakeMissionDetails",
+        "Creates the mission details displayed on the top screen when viewing a mission. Is also used for SOS/A-OK Mail.\nCan consist of a mission summary, client, objective, dungeon+floor, restrictions, difficulty, reward, and WMS code.\nSome missions exclude one or more of these fields.\n\nr0: struct mission_details\nr1: buffer\nr2: ?",
+        None,
+    )
+
+    MakeSpecialEpisodeMissionDetails = Symbol(
+        [0x61FDC],
+        [0x2061FDC],
+        None,
+        "MakeSpecialEpisodeMissionDetails",
+        "Creates the mission details displayed on the top screen when viewing a special episode transmission.\nSeems to contain only a hard-coded mission summary, and a WMS code.\n\nr0: buffer\nr1: ?",
+        None,
+    )
+
+    PrintWonderMailSkyCode = Symbol(
+        [0x62044],
+        [0x2062044],
+        None,
+        "PrintWonderMailSkyCode",
+        "Seems to print a WMS code for a mission, based on context and live analysis.",
+        None,
+    )
+
+    AppendMissionObjective = Symbol(
+        [0x62144],
+        [0x2062144],
+        None,
+        "AppendMissionObjective",
+        "Generates the 'Objective: ...' string for MakeMissionDetails.\n\nr0: buffer\nr1: buffer size\nr2: type of objective to display?\nr3: monster_id to embed in the string\nstack[0]: item_id_16 to embed in the string",
+        None,
+    )
+
+    AppendMissionDungeonLocation = Symbol(
+        [0x62358],
+        [0x2062358],
+        None,
+        "AppendMissionDungeonLocation",
+        "Generates the 'Place: ...' string for MakeMissionDetails.\n\nr0: mission_details pointer\nr1: buffer\nr2: buffer size",
+        None,
+    )
+
+    SumValidMissionCategoryWeights = Symbol(
+        [0x6260C],
+        [0x206260C],
+        None,
+        "SumValidMissionCategoryWeights",
+        "Seems to tally up the total weights for each mission_category under a specified mission vendor.\n\n\nr0: mission_vendor\nreturn: 1 if the total weight is non-zero, 0 if not.",
+        None,
+    )
+
+    GetRandomMissionTemplate = Symbol(
+        [0x628F4],
+        [0x20628F4],
+        None,
+        "GetRandomMissionTemplate",
+        "Retrieves a random mission_template from a weighted random mission_category.\n\nreturn: mission_template pointer",
+        None,
+    )
+
+    LoadMissionTemplates = Symbol(
+        [0x62B80],
+        [0x2062B80],
+        None,
+        "LoadMissionTemplates",
+        "Retrieves a pointer to the mission_template table from the rescue.bin file.\nDoes not check if the file has been loaded first.\n\nreturn: mission_template*",
         None,
     )
 
@@ -10091,12 +10730,66 @@ class EuArm9Functions:
         None,
     )
 
+    GetMissionRankWithCapAndModifiers = Symbol(
+        [0x630D8],
+        [0x20630D8],
+        None,
+        "GetMissionRankWithCapAndModifiers",
+        "Calls GetMissionRank, then adds one to the rank if the mission requires escorting a client, or defeating an outlaw.\nBefore returning, caps the mission rank at 15 (9 stars).\n\nr0: dungeon_floor_pair pointer\nr1: mission_type\nreturn: mission rank",
+        None,
+    )
+
+    GetMissionRankWithCapAndModifiersAndCap = Symbol(
+        [0x63118],
+        [0x2063118],
+        None,
+        "GetMissionRankWithCapAndModifiersAndCap",
+        "Calls GetMissionRankWithModifiersWithCeil, then redundantly caps the return again at 15 (9 stars).\n\nr0: dungeon_floor_pair pointer\nr1: mission_type\nreturn: mission rank",
+        None,
+    )
+
     CanSendItem = Symbol(
         [0x63158],
         [0x2063158],
         None,
         "CanSendItem",
         "Returns whether a certain item can be sent to another player via Wonder Mail.\n\nr0: item ID\nr1: to_sky\nreturn: bool",
+        None,
+    )
+
+    InitMissionReward = Symbol(
+        [0x631D8],
+        [0x20631D8],
+        None,
+        "InitMissionReward",
+        "Seems to initialize a mission_reward_data struct from a mission.\nCalled by MissionRewardEntryPoint in overlay 26.\n\n\nr0: struct mission*\nr1: struct mission_reward_data*\nr2: undefined4\nr3: undefined4",
+        None,
+    )
+
+    RollRandomItemReward = Symbol(
+        [0x63420],
+        [0x2063420],
+        None,
+        "RollRandomItemReward",
+        "Seems to select a random item for an item mission reward, calling RetrieveFromItemList2 until it succeeds.\n\nr0: undefined4\nr1: undefined4\nr2: mission reward item pointer",
+        None,
+    )
+
+    GenerateMissionRewards = Symbol(
+        [0x634D8],
+        [0x20634D8],
+        None,
+        "GenerateMissionRewards",
+        "Seems to handle initializing the mission reward related fields of a mission struct, after generating the mission.\n\nr0: mission pointer\nr1: 1 if mission is from the cafe, 0 if not.",
+        None,
+    )
+
+    CheckDungeonMissionUnlockConditions = Symbol(
+        [0x63710],
+        [0x2063710],
+        None,
+        "CheckDungeonMissionUnlockConditions",
+        "Checks if a specified dungeon is eligible to be unlocked by a mission.\n\nr0: dungeon_id\nreturn: 3 if the dungeon is not in MISSION_DUNGEON_UNLOCK_TABLE, 2 if the dungeon is open or entered, 1 if $SCENARIO_BALANCE_FLAG is not large enough, and 0 otherwise.",
         None,
     )
 
@@ -10115,6 +10808,15 @@ class EuArm9Functions:
         None,
         "GetAvailableItemDeliveryList",
         "Iterates through ITEM_DELIVERY_TABLE and checks if each entry is valid to be used in delivery missions.\n\nr0: item_buffer\nreturn: Number of deliverable items for a mission",
+        None,
+    )
+
+    ZeroInitMissionRewardDataStruct = Symbol(
+        [0x63898],
+        [0x2063898],
+        None,
+        "ZeroInitMissionRewardDataStruct",
+        "Zero initializes a mission_reward_data struct.\n\nr0: struct mission_reward_data*",
         None,
     )
 
@@ -10159,7 +10861,34 @@ class EuArm9Functions:
         [0x2065EDC],
         None,
         "SetActorTalkSub",
-        "Sets ACTOR_TALK_SUB to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_SUB (see ScriptSpecialProcessCall).\n\nr0: script_entity_id",
+        "Sets ACTOR_TALK_SUB to be actor_id.\nImplements SPECIAL_PROC_SET_ACTOR_TALK_SUB (see ScriptSpecialProcessCall).\n\nr0: actor_id",
+        None,
+    )
+
+    SetActorEventMain = Symbol(
+        [0x65EEC],
+        [0x2065EEC],
+        None,
+        "SetActorEventMain",
+        "Sets ACTOR_NPC_EVENT_MAIN to a specific actor_id.\n\nr0: actor_id",
+        None,
+    )
+
+    SetRandomRequestNpcs1And2 = Symbol(
+        [0x65EFC],
+        [0x2065EFC],
+        None,
+        "SetRandomRequestNpcs1And2",
+        "Sets ACTOR_REQUEST_NPC01 and ACTOR_REQUEST_NPC02 to specific actor_ids.\nHas no impact on ACTOR_REQUEST_NPC03.\n\nr0: ACTOR_REQUEST_NPC01 actor_id\nr1: ACTOR_REQUEST_NPC02 actor_id",
+        None,
+    )
+
+    SetAllEventNpcs = Symbol(
+        [0x65F28],
+        [0x2065F28],
+        None,
+        "SetAllEventNpcs",
+        "Sets ACTOR_EVENT_NPC01 through ACTOR_EVENT_NPC04 to specific actor_ids.\n\nr0: ACTOR_EVENT_NPC01 actor_id\nr1: ACTOR_EVENT_NPC02 actor_id\nr2: ACTOR_EVENT_NPC03 actor_id\nr3: ACTOR_EVENT_NPC04 actor_id",
         None,
     )
 
@@ -10187,6 +10916,15 @@ class EuArm9Functions:
         None,
         "MainLoop",
         "This function gets called shortly after the game is started. Contains a single infinite loop and has no return statement.\n\nNo params.",
+        None,
+    )
+
+    ChooseMissionTitle = Symbol(
+        [0x699F8],
+        [0x20699F8],
+        None,
+        "ChooseMissionTitle",
+        "Seems to determine whether or not to use the standard system for generating a mission title, or to use a separate function for a special episode transmission.\n\nr0: main_buffer\nr1: int32_t\nr2: uint32_t pointer\nreturn: main_buffer",
         None,
     )
 
@@ -10795,8 +11533,8 @@ class EuArm9Data:
         [0x2098D10],
         0x360,
         "RECYCLE_SHOP_ITEM_LIST",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "Table of recycle_item structs, used to track all possible trades in the recycle shop.\n\ntype: recycle_item[24]",
+        "struct recycle_item[24]",
     )
 
     TYPE_SPECIFIC_EXCLUSIVE_ITEMS = Symbol(
@@ -11568,6 +12306,24 @@ class EuArm9Data:
         "fx32_8",
     )
 
+    OUTLAW_HIDEOUT_FIXED_ROOM_IDS = Symbol(
+        [0xA1E80],
+        [0x20A1E80],
+        0x5,
+        "OUTLAW_HIDEOUT_FIXED_ROOM_IDS",
+        "Table of fixed room ids used by the MISSION_ARREST_OUTLAW and MISSION_OUTLAW_HIDEOUT type and subtype.\n\ntype: fixed_room_id_8[5]",
+        "struct fixed_room_id_8[5]",
+    )
+
+    CHALLENGE_NORMAL_FIXED_ROOM_IDS = Symbol(
+        [0xA1E88],
+        [0x20A1E88],
+        0x5,
+        "CHALLENGE_NORMAL_FIXED_ROOM_IDS",
+        "Table of fixed room ids used by the MISSION_CHALLENGE_REQUEST and MISSION_CHALLENGE_NORMAL type and subtype.\n\ntype: fixed_room_id_8[5]",
+        "struct fixed_room_id_8[5]",
+    )
+
     TACTICS_FOLLOW_LEADER = Symbol(
         [0xA1E90],
         [0x20A1E90],
@@ -11602,6 +12358,15 @@ class EuArm9Data:
         "TACTICS_UNLOCK_LEVEL_TABLE",
         "type: int16_t[12]",
         "int16_t[12]",
+    )
+
+    TREASURE_MEMO_FIXED_ROOM_IDS = Symbol(
+        [0xA1EDC],
+        [0x20A1EDC],
+        0x1E,
+        "TREASURE_MEMO_FIXED_ROOM_IDS",
+        "Table of fixed room ids used by the MISSION_TREASURE_MEMO type.\nThe last 15 entries only show up after the postgame (performance flag 9).\n\ntype: fixed_room_id_8[30]",
+        "struct fixed_room_id_8[30]",
     )
 
     CLIENT_LEVEL_TABLE = Symbol(
@@ -12468,6 +13233,15 @@ class EuArm9Data:
         "char*[5]",
     )
 
+    SYNTH_BIN_FILE_PTR = Symbol(
+        [0xAFFA0],
+        [0x20AFFA0],
+        0x4,
+        "SYNTH_BIN_FILE_PTR",
+        "The location of the data/SYNTH/synth.bin file while loaded.",
+        "struct synth_file*",
+    )
+
     DUNGEON_MOVE_TABLES = Symbol(
         [0xAFFA8],
         [0x20AFFA8],
@@ -12551,6 +13325,15 @@ class EuArm9Data:
         "KEYBOARD_STRING_IDS",
         "30*0x2\n\nNote: unverified, ported from Irdkwia's notes\n\ntype: int16_t[30]",
         "int16_t[30]",
+    )
+
+    MISSION_REWARD_STRUCT_MAIN_PTR = Symbol(
+        [0xB0790],
+        [0x20B0790],
+        0x4,
+        "MISSION_REWARD_STRUCT_MAIN_PTR",
+        "Points to a mission_reward_struct_main struct, responsible for handling the overlay 11 portion of the mission reward sequence.\nIs also used sparingly during the Spinda Cafe egg event.\n\ntype: mission_reward_struct_main pointer",
+        "struct mission_reward_struct_main*",
     )
 
     NOTIFY_NOTE = Symbol(
@@ -26979,6 +27762,15 @@ class EuOverlay10Functions:
         None,
     )
 
+    CreateInventoryMenuOuter = Symbol(
+        [0x9F4],
+        [0x22BDDB4],
+        None,
+        "CreateInventoryMenuOuter",
+        "Seems to handle the creation of an inventory menu for the spinda cafe.\nThe fact that this lives in overlay_10 suggests it may serve a more general purpose\n\nr0: n_items\nr1: int32_t\nr2: int32_t\nr3: uint8_t * \nstack[0]: ?\nstack[1]: ?\nstatk[2]: uint32_t",
+        None,
+    )
+
     GetEffectAnimationField0x19 = Symbol(
         [0x1434],
         [0x22BE7F4],
@@ -29435,6 +30227,33 @@ class EuOverlay11Functions:
 
     SsbLoad1 = Symbol([0x9B10], [0x22E6690], None, "SsbLoad1", "", None)
 
+    ReturnScriptMenuResultZero = Symbol(
+        [0xAC28],
+        [0x22E77A8],
+        None,
+        "ReturnScriptMenuResultZero",
+        "Returns control to the scripting engine for a message_menu, with case id 0.\n\nNo params.",
+        None,
+    )
+
+    ReturnScriptMenuResult = Symbol(
+        [0xAC4C],
+        [0x22E77CC],
+        None,
+        "ReturnScriptMenuResult",
+        "Returns control to the scripting engine for a message_menu, with a specified case_id.\n\nr0: case id to pass to the scripting engine",
+        None,
+    )
+
+    IsScriptMenuReturnDisabled = Symbol(
+        [0xAC88],
+        [0x22E7808],
+        None,
+        "IsScriptMenuReturnDisabled",
+        "Checks if the scripting engine is ready to return control to an overlay-based menu.\n\nreturn: 1 if the menu should continue execution, 0 if not.",
+        None,
+    )
+
     ScriptSpecialProcessCall = Symbol(
         [0xAED8],
         [0x22E7A58],
@@ -30515,6 +31334,33 @@ class EuOverlay11Functions:
         None,
     )
 
+    EatOverworldGummiEntryPoint = Symbol(
+        [0x23038],
+        [0x22FFBB8],
+        None,
+        "EatOverworldGummiEntryPoint",
+        "Seems to be the entry_point for a 'mini-overlay' overlay_load_entry that lives in overlay 11, that controls eating gummis in the overworld. \n\nreturn: undefined4",
+        None,
+    )
+
+    EatOverworldGummiDestructor = Symbol(
+        [0x23138],
+        [0x22FFCB8],
+        None,
+        "EatOverworldGummiDestructor",
+        "Seems to be the destructor for a 'mini-overlay' overlay_load_entry that lives in overlay 11, that controls eating gummis in the overworld.\n\nNo params.",
+        None,
+    )
+
+    EatOverworldGummiFrameUpdate = Symbol(
+        [0x23174],
+        [0x22FFCF4],
+        None,
+        "EatOverworldGummiFrameUpdate",
+        "Seems to be the frame_update for a 'mini-overlay' overlay_load_entry that lives in overlay 11, that controls eating gummis in the overworld.\n\nreturn: undefined4",
+        None,
+    )
+
     CreateTopGroundMenu = Symbol(
         [0x24BA4],
         [0x2301724],
@@ -30542,6 +31388,60 @@ class EuOverlay11Functions:
         None,
     )
 
+    GroundBagOthersMenuEntryPoint = Symbol(
+        [0x24FB8],
+        [0x2301B38],
+        None,
+        "GroundBagOthersMenuEntryPoint",
+        "Seems to be the entry_point for a 'mini-overlay' overlay_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nreturn: undefined4",
+        None,
+    )
+
+    GroundBagOthersMenuDestructor = Symbol(
+        [0x2503C],
+        [0x2301BBC],
+        None,
+        "GroundBagOthersMenuDestructor",
+        "Seems to be the destructor for a 'mini-overlay' overlay_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nNo params.",
+        None,
+    )
+
+    GroundBagOthersMenuFrameUpdate = Symbol(
+        [0x25078],
+        [0x2301BF8],
+        None,
+        "GroundBagOthersMenuFrameUpdate",
+        "Seems to be the frame_update for a 'mini-overlay' overlay_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nreturn: undefined4",
+        None,
+    )
+
+    InitDiaryAndFaqBoardMenu = Symbol(
+        [0x270E0],
+        [0x2303C60],
+        None,
+        "InitDiaryAndFaqBoardMenu",
+        "Seems to initialize the menu which controls bidoof and sunflora's diaries, as well as the FAQ board on B1F of the guild.\n\nr0: undefined4\nreturn: undefined4",
+        None,
+    )
+
+    FreeDiaryAndFaqBoardMenuMenu = Symbol(
+        [0x27720],
+        [0x23042A0],
+        None,
+        "FreeDiaryAndFaqBoardMenuMenu",
+        "Seems to free them menu which controls bidoof and sunflora's diaries, as well as the FAQ board on B1F of the guild.\n\nNo params.",
+        None,
+    )
+
+    DiaryAndFaqBoardMenuFrameUpdate = Symbol(
+        [0x2774C],
+        [0x23042CC],
+        None,
+        "DiaryAndFaqBoardMenuFrameUpdate",
+        "Seems to run each frame to manage the menu which controls bidoof and sunflora's diaries, as well as the FAQ board on B1F of the guild.\n\nreturn: undefined4",
+        None,
+    )
+
     IsBagNotEmpty = Symbol(
         [0x288E0],
         [0x2305460],
@@ -30560,6 +31460,15 @@ class EuOverlay11Functions:
         None,
     )
 
+    IsGroundMonsterAtMaxLevel = Symbol(
+        [0x2EB98],
+        [0x230B718],
+        None,
+        "IsGroundMonsterAtMaxLevel",
+        "Checks if a ground_monster is above level 99.\n\nr0: ground_monster pointer\nreturn: 1 if ground monster is above level 99, 0 if not.",
+        None,
+    )
+
     GetExclusiveItemRequirements = Symbol(
         [0x2ED54],
         [0x230B8D4],
@@ -30575,6 +31484,15 @@ class EuOverlay11Functions:
         None,
         "SwapShopInventoryManager",
         "Called primarily handle the display and preparation of the swap shop inventory list, exclusive items list, and the item trade list. \nCreates a swap_shop_inventory_data struct if one does not already exist.  \nIs the child function to SwapShopDialogueManager.\n\nr0: switch case index for the function: 0 = Swap List Inventory, 1 = Unknown, 2 = Species Exclusive Item List, 3 = Item Trade Away Selection List.\nr1: Depends on r0. If case 2: ID of the monster to retrieve an exclusive item list for. If case 3: Number of Exclusive Items the player owns.",
+        None,
+    )
+
+    LoadRecycleShopOverlay = Symbol(
+        [0x30BE8],
+        [0x230D768],
+        None,
+        "LoadRecycleShopOverlay",
+        "Seems to be responsible for loading overlay 20 for the recycle shop.\n\nNo params.",
         None,
     )
 
@@ -30817,6 +31735,78 @@ class EuOverlay11Data:
         "struct window_params",
     )
 
+    SWAP_SHOP_ONE_STAR_STR = Symbol(
+        [0x46F58],
+        [0x2323AD8],
+        0x7,
+        "SWAP_SHOP_ONE_STAR_STR",
+        "'[M:S3]'\nUsed exclusively by GetExclusiveItemRequirements.",
+        "char[7]",
+    )
+
+    SWAP_SHOP_TWO_STAR_STR = Symbol(
+        [0x46F60],
+        [0x2323AE0],
+        0xD,
+        "SWAP_SHOP_TWO_STAR_STR",
+        "'[M:S3][M:S3]'\nUsed exclusively by GetExclusiveItemRequirements.",
+        "char[13]",
+    )
+
+    SWAP_SHOP_THREE_STAR_STR = Symbol(
+        [0x46F70],
+        [0x2323AF0],
+        0x13,
+        "SWAP_SHOP_THREE_STAR_STR",
+        "'[M:S3][M:S3][M:S3]'\nUsed exclusively by GetExclusiveItemRequirements.",
+        "char[19]",
+    )
+
+    SWAP_SHOP_RED_TEXT_TAG_STR = Symbol(
+        [0x46FB4],
+        [0x2323B34],
+        0x7,
+        "SWAP_SHOP_RED_TEXT_TAG_STR",
+        "'[CS:W]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
+        "char[7]",
+    )
+
+    SWAP_SHOP_UNCENTER_TEXT_TAG_STR = Symbol(
+        [0x46FBC],
+        [0x2323B3C],
+        0x5,
+        "SWAP_SHOP_UNCENTER_TEXT_TAG_STR",
+        "'[CR]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
+        "char[5]",
+    )
+
+    SWAP_SHOP_CLUMSET_ONE_STAR_STR = Symbol(
+        [0x46FC4],
+        [0x2323B44],
+        0x15,
+        "SWAP_SHOP_CLUMSET_ONE_STAR_STR",
+        "'[CLUM_SET:130][M:S3]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
+        "char[21]",
+    )
+
+    SWAP_SHOP_CLUMSET_TWO_STAR_STR = Symbol(
+        [0x46FDC],
+        [0x2323B5C],
+        0x1B,
+        "SWAP_SHOP_CLUMSET_TWO_STAR_STR",
+        "'[CLUM_SET:122][M:S3][M:S3]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
+        "char[27]",
+    )
+
+    SWAP_SHOP_CLUMSET_THREE_STAR_STR = Symbol(
+        [0x46FF8],
+        [0x2323B78],
+        0x21,
+        "SWAP_SHOP_CLUMSET_THREE_STAR_STR",
+        "'[CLUM_SET:114][M:S3][M:S3][M:S3]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
+        "char[33]",
+    )
+
     OVERLAY11_OVERLAY_LOAD_TABLE = Symbol(
         [0x4701C],
         [0x2323B9C],
@@ -30859,6 +31849,15 @@ class EuOverlay11Data:
         "GROUND_STATE_PTRS",
         "Host pointers to multiple structure used for performing an overworld scene\n\ntype: struct main_ground_data",
         "struct main_ground_data",
+    )
+
+    EXCLUSIVE_ITEM_REQUIREMENTS_PTR = Symbol(
+        [0x48D60],
+        [0x23258E0],
+        0x4,
+        "EXCLUSIVE_ITEM_REQUIREMENTS_PTR",
+        "Pointer to the exclusive_item_requirements struct, used by the swap shop.",
+        "struct exclusive_item_requirements*",
     )
 
     SWAP_SHOP_INVENTORY_PTRS = Symbol(
@@ -32549,7 +33548,7 @@ class EuOverlay19Functions:
         [0x238AF14],
         None,
         "BarGetUnlockableDungeonPtr",
-        "If not zero, stores a double pointer to the BAR_UNLOCKABLE_DUNGEONS_TABLE to r0. Then returns 6 for some reason... \nUnclear what this is intended to actually do...\n\nr0: struct bar_dungeon_unlock **\nreturn: Always 6?",
+        "If not zero, stores a double pointer to the BAR_UNLOCKABLE_DUNGEONS_TABLE to r0. Then returns 6 for some reason... \nUnclear what this is intended to actually do...\n\nr0: struct dungeon_unlock_entry **\nreturn: Always 6?",
         None,
     )
 
@@ -32852,8 +33851,8 @@ class EuOverlay19Data:
         [0x238E61C],
         0xC,
         "BAR_UNLOCKABLE_DUNGEONS_TABLE",
-        "Stores dungeon ids, as well as the required $SCENARIO_BALANCE_FLAG to obtain them from the cafe.\n\ntype: struct bar_dungeon_unlock[6]",
-        "struct dungeon_id_16[6]",
+        "Stores dungeon ids, as well as the required $SCENARIO_BALANCE_FLAG to obtain them from the cafe.\n\ntype: struct dungeon_unlock_entry[6]",
+        "struct dungeon_unlock_entry[6]",
     )
 
     BAR_RECRUITABLE_GOURMET_MONSTER_TABLE = Symbol(
@@ -37381,7 +38380,149 @@ class EuOverlay2Section:
 
 class EuOverlay20Functions:
 
-    pass
+    RecycleShopEntryPointFirst = Symbol(
+        [0x0],
+        [0x238AC80],
+        None,
+        "RecycleShopEntryPointFirst",
+        "The entry point for the overlay, when called by MENU_RECYCLE_SHOP, serving to initialize the recycle shop.\nCalls RecycleShopCommonEntryPoint(0).\n\nreturn: undefined4",
+        None,
+    )
+
+    RecycleShopEntryPointResume = Symbol(
+        [0x10],
+        [0x238AC90],
+        None,
+        "RecycleShopEntryPointResume",
+        "The entry point for the overlay, when called by MENU_RECYCLE_SHOP2, resuming operations of the overlay.\nCalls RecycleShopCommonEntryPoint(0).\n\nreturn: undefined4",
+        None,
+    )
+
+    RecycleShopDestructor = Symbol(
+        [0x20],
+        [0x238ACA0],
+        None,
+        "RecycleShopDestructor",
+        "The shared destructor of both recycle shop overlay_load_entries, suspending operations of the overlay.\n\nNo params.",
+        None,
+    )
+
+    RecycleShopFrameUpdate = Symbol(
+        [0x70],
+        [0x238ACF0],
+        None,
+        "RecycleShopFrameUpdate",
+        "The shared frame_update of both recycle shop overlay_load_entries, managing operations of the overlay each frame.\n\nreturn: undefined4",
+        None,
+    )
+
+    RecycleShopCommonEntryPoint = Symbol(
+        [0x1154],
+        [0x238BDD4],
+        None,
+        "RecycleShopCommonEntryPoint",
+        "Effectively the shared entry_point of both recycle shop overlay_load_entry, called immediately by both real entry_points to the overlay.\n\nr0: 1 if resuming, 0 if first entry.\nreturn: undefined4",
+        None,
+    )
+
+    PrintWynautTextbox = Symbol(
+        [0x1200],
+        [0x238BE80],
+        None,
+        "PrintWynautTextbox",
+        "Seems to display a textbox with wynaut's default portrait and a specified text string id.\n\nr0: string_id",
+        None,
+    )
+
+    PrintWynautSimpleMenu = Symbol(
+        [0x125C],
+        [0x238BEDC],
+        None,
+        "PrintWynautSimpleMenu",
+        "Seems to display a simple_menu with wynaut's default portrait, a specified text string id, and a few simple_menu_id_item pointers.\n\nr0: struct recycle_shop_main\nr1: string_id\nr2: simple_menu_id_items pointer",
+        None,
+    )
+
+    RecycleShopTryHidePortraitBox = Symbol(
+        [0x12D0],
+        [0x238BF50],
+        None,
+        "RecycleShopTryHidePortraitBox",
+        "Seems to hide the active portrait box? Might be doing something else in addition. \n\nr0: struct recycle_shop_main pointer\nr1: ?",
+        None,
+    )
+
+    PrintWynautNormalPortrait = Symbol(
+        [0x1368],
+        [0x238BFE8],
+        None,
+        "PrintWynautNormalPortrait",
+        "Prepares a normal portrait for wynaut, and updates the necessary fields of recycle_shop_main to do so.\n\nr0: struct recycle_shop_main pointer",
+        None,
+    )
+
+    RecycleShopClosePortraitBox = Symbol(
+        [0x13D0],
+        [0x238C050],
+        None,
+        "RecycleShopClosePortraitBox",
+        "Seems to close the currently active portrait box, if one exists.\n\nr0: struct recycle_shop_main pointer",
+        None,
+    )
+
+    RecycleShopCloseAllWindows = Symbol(
+        [0x146C],
+        [0x238C0EC],
+        None,
+        "RecycleShopCloseAllWindows",
+        "Seems to close all windows of the recycle shop when called. Retrieves window_ids from RECYCLE_SHOP_UNK_STRUCT_SIZE_84H_PTR. \n\nNo params.",
+        None,
+    )
+
+    RecycleShopHandleTopScreenWindow = Symbol(
+        [0x151C],
+        [0x238C19C],
+        None,
+        "RecycleShopHandleTopScreenWindow",
+        "Seems to generally manage the top screen window during item selection, assigning the below callbacks to some window creation function.\n\nreturn: undefined4",
+        None,
+    )
+
+    RecycleShopTopScreenDrawItemStats = Symbol(
+        [0x178C],
+        [0x238C40C],
+        None,
+        "RecycleShopTopScreenDrawItemStats",
+        "Seems to display the trade info and stats for the item the cursor is currently on on the top screen window.\n\nr0: int",
+        None,
+    )
+
+    RecycleShopTopScreenDrawItemName = Symbol(
+        [0x1900],
+        [0x238C580],
+        None,
+        "RecycleShopTopScreenDrawItemName",
+        "Seems to print the item the cursor is currently on to the top screen window. \n\nr0: window_id",
+        None,
+    )
+
+    RecycleShopTopScreenDrawInfoWindow = Symbol(
+        [0x1974],
+        [0x238C5F4],
+        None,
+        "RecycleShopTopScreenDrawInfoWindow",
+        "Seems to display the bottom window in the top screen display of the recycle shop, which explains how to read the top window.\n\nr0: window_id\nr1: undefined4\nr2: undefined4\nr3: undefined4",
+        None,
+    )
+
+    DisplaySelectionTutorialWindow = Symbol(
+        [0x2DE0],
+        [0x238DA60],
+        None,
+        "DisplaySelectionTutorialWindow",
+        "Displays a side window explaining how to multi-select items for non-specific recycling.\n\nr0: window_id\nr1: undefined4\nr2: undefined4\nr3: undefined4",
+        None,
+    )
 
 
 class EuOverlay20Data:
@@ -37389,9 +38530,9 @@ class EuOverlay20Data:
     OVERLAY20_UNKNOWN_POINTER__NA_238CF7C = Symbol(
         [0x2E3C],
         [0x238DABC],
-        None,
+        0x8,
         "OVERLAY20_UNKNOWN_POINTER__NA_238CF7C",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Note: unverified, ported from Irdkwia's notes.\nSeems to consist of a pointer to RECYCLE_SHOP_S14P02A_BGP_FILE_STR and an unknown value. Perhaps a pointer to the file at runtime?",
         "",
     )
 
@@ -37440,13 +38581,13 @@ class EuOverlay20Data:
         "struct simple_menu_id_item[5]",
     )
 
-    OVERLAY20_UNKNOWN_TABLE__NA_238D014 = Symbol(
+    RECYCLE_SHOP_S14P02A_BGP_FILE_STR = Symbol(
         [0x2ED4],
         [0x238DB54],
-        None,
-        "OVERLAY20_UNKNOWN_TABLE__NA_238D014",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x11,
+        "RECYCLE_SHOP_S14P02A_BGP_FILE_STR",
+        "'BACK/s14p02a.bgp'\nLikely a background file loaded in manually by the recycle shop.\n\ntype: string",
+        "char[17]",
     )
 
     RECYCLE_WINDOW_PARAMS_1 = Symbol(
@@ -37575,40 +38716,40 @@ class EuOverlay20Data:
         "undefined4",
     )
 
-    OVERLAY20_UNKNOWN_POINTER__NA_238D120 = Symbol(
+    RECYCLE_SHOP_MAIN_STRUCT_PTR = Symbol(
         [0x2FE0],
         [0x238DC60],
-        None,
-        "OVERLAY20_UNKNOWN_POINTER__NA_238D120",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "RECYCLE_SHOP_MAIN_STRUCT_PTR",
+        "A permanent pointer to the recycle_shop_main struct.\n\ntype: recycle_shop_main*",
+        "struct recycle_shop_main*",
     )
 
-    OVERLAY20_UNKNOWN_POINTER__NA_238D124 = Symbol(
+    RECYCLE_SHOP_UNK_STRUCT_SIZE_84H_PTR = Symbol(
         [0x2FE4],
         [0x238DC64],
-        None,
-        "OVERLAY20_UNKNOWN_POINTER__NA_238D124",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "RECYCLE_SHOP_UNK_STRUCT_SIZE_84H_PTR",
+        "Seems to be a pointer to a struct of unknown purpose with size 0x84.\n\ntype: recycle_unk_struct_0x84*",
+        "struct recycle_unk_struct_0x84*",
     )
 
-    OVERLAY20_UNKNOWN_POINTER__NA_238D128 = Symbol(
+    RECYCLE_SHOP_UNK_STRUCT_SIZE_340H_PTR = Symbol(
         [0x2FE8],
         [0x238DC68],
-        None,
-        "OVERLAY20_UNKNOWN_POINTER__NA_238D128",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "RECYCLE_SHOP_UNK_STRUCT_SIZE_340H_PTR",
+        "Seems to be a pointer to a struct of unknown purpose with size 0x340.\n\ntype: recycle_unk_struct_0x340*",
+        "struct recycle_unk_struct_0x340*",
     )
 
-    OVERLAY20_UNKNOWN_POINTER__NA_238D12C = Symbol(
+    RECYCLE_SHOP_UNK_STRUCT_SIZE_1CCH_PTR = Symbol(
         [0x2FEC],
         [0x238DC6C],
-        None,
-        "OVERLAY20_UNKNOWN_POINTER__NA_238D12C",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "RECYCLE_SHOP_UNK_STRUCT_SIZE_1CCH_PTR",
+        "Seems to be a pointer to a struct of unknown purpose with size 0x1CC.\n\ntype: recycle_unk_struct_0x1cc*",
+        "struct recycle_unk_struct_0x1cc*",
     )
 
     OVERLAY20_RESERVED_SPACE = _Deprecated(
@@ -37633,6 +38774,15 @@ class EuOverlay21Functions:
         None,
         "SwapShopDialogueManager",
         "Called primarily to fill dialogue boxes or display portraits, this function exists to print the next portrait, dialogue, or input for the Swap Shop. \nConsistently writes the provided input to shared_switch_case, and occasionally writes to next_switch_case.  \nOften calls SwapShopInventoryManager, and is often called by SwapShopMainManager.\n\nr0: New current_switch_case value.",
+        None,
+    )
+
+    SwapShopSetSimpleMenuWindowId = Symbol(
+        [0x328],
+        [0x238AFA8],
+        None,
+        "SwapShopSetSimpleMenuWindowId",
+        "Assigns a specified window_id to SWAP_SHOP_MENU_DATA_PTR->simple_menu_window_id.\n\nr0: window_id",
         None,
     )
 
@@ -38816,18 +39966,286 @@ class EuOverlay25Section:
 
 class EuOverlay26Functions:
 
-    pass
+    MissionRewardOverlayEntryPoint = Symbol(
+        [0x0],
+        [0x238AC80],
+        None,
+        "MissionRewardOverlayEntryPoint",
+        "The entry point for part of the mission reward sequence.\nA significant portion of this process lives in overlay 11 instead.\n\nreturn: undefined4",
+        None,
+    )
+
+    MissionRewardOverlayDestructor = Symbol(
+        [0x428],
+        [0x238B0A8],
+        None,
+        "MissionRewardOverlayDestructor",
+        "The destructor for initializing the mission reward sequence. \n\nNo params.",
+        None,
+    )
+
+    MissionRewardOverlayFrameUpdate = Symbol(
+        [0x460],
+        [0x238B0E0],
+        None,
+        "MissionRewardOverlayFrameUpdate",
+        "The entry point for part of the mission reward sequence.\nThe actual mission reward process itself is primarily done in overlay 11.\n\nreturn: undefined4",
+        None,
+    )
+
+    MissionRewardClosePortraitAndDialogueBox = Symbol(
+        [0x7CC],
+        [0x238B44C],
+        None,
+        "MissionRewardClosePortraitAndDialogueBox",
+        "Responsible for closing the current portrait and dialogue box for the above functions.\n\nNo params.",
+        None,
+    )
+
+    ApplyRuleDungeonEffectsEntryPoint = Symbol(
+        [0x830],
+        [0x238B4B0],
+        None,
+        "ApplyRuleDungeonEffectsEntryPoint",
+        "Just a guess. See ApplyRuleDungeonEffectsFrameUpdate for further explanation.\nIs an entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
+        None,
+    )
+
+    ApplyRuleDungeonEffectsDestructor = Symbol(
+        [0x85C],
+        [0x238B4DC],
+        None,
+        "ApplyRuleDungeonEffectsDestructor",
+        "Just a guess. See ApplyRuleDungeonEffectsFrameUpdate for further explanation.\nIs a destructor for an overlay_load_entry.\n\nNo params.",
+        None,
+    )
+
+    ApplyRuleDungeonEffectsFrameUpdate = Symbol(
+        [0x888],
+        [0x238B508],
+        None,
+        "ApplyRuleDungeonEffectsFrameUpdate",
+        "Just a guess. After enough frames pass, conditionally calls GetMaxItemsAllowed, RemoveAllItemsStartingAt, IsMoneyAllowed, and SetMoneyCarried, \nas well as a handful of unknown functions that likely check if the entered dungeon is a rule dungeon. \nIs a frame_update for an overlay_load_entry.\n\nreturn: undefined4",
+        None,
+    )
+
+    ExitDungeon1EntryPoint = Symbol(
+        [0x928],
+        [0x238B5A8],
+        None,
+        "ExitDungeon1EntryPoint",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs an entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
+        None,
+    )
+
+    ExitDungeon1Destructor = Symbol(
+        [0x954],
+        [0x238B5D4],
+        None,
+        "ExitDungeon1Destructor",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs a destructor for an overlay_load_entry.\n\nNo params.",
+        None,
+    )
+
+    ExitDungeon1FrameUpdate = Symbol(
+        [0x980],
+        [0x238B600],
+        None,
+        "ExitDungeon1FrameUpdate",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs a frame_update for an overlay_load_entry.\n\nreturn: undefined4",
+        None,
+    )
+
+    UnkOv26EntryPointEu0238b754 = Symbol(
+        [0xAD4],
+        [0x238B754],
+        None,
+        "UnkOv26EntryPointEu0238b754",
+        "Is an unidentified entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
+        None,
+    )
+
+    UnkOv26DestructorEu0238b780 = Symbol(
+        [0xB00],
+        [0x238B780],
+        None,
+        "UnkOv26DestructorEu0238b780",
+        "Is an unidentified destructor for an overlay_load_entry.\n\nNo params.",
+        None,
+    )
+
+    UnkOv26FrameUpdateEu0238b7ac = Symbol(
+        [0xB2C],
+        [0x238B7AC],
+        None,
+        "UnkOv26FrameUpdateEu0238b7ac",
+        "Is an unidentified frame_update for an overlay_load_entry.\n\nreturn: undefined4",
+        None,
+    )
+
+    DungeonExitEntryPoint2 = Symbol(
+        [0xB98],
+        [0x238B818],
+        None,
+        "DungeonExitEntryPoint2",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs an entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
+        None,
+    )
+
+    DungeonExitDestructor2 = Symbol(
+        [0xBD0],
+        [0x238B850],
+        None,
+        "DungeonExitDestructor2",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs a destructor for an overlay_load_entry.\n\nNo params.",
+        None,
+    )
+
+    DungeonExitFrameUpdate2 = Symbol(
+        [0xBFC],
+        [0x238B87C],
+        None,
+        "DungeonExitFrameUpdate2",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs a frame_update for an overlay_load_entry.\n\nreturn: undefined4",
+        None,
+    )
 
 
 class EuOverlay26Data:
 
-    OVERLAY26_UNKNOWN_TABLE__NA_238AE20 = Symbol(
+    MISSION_TYPE_12_DIALOGUE_SEQS = Symbol(
         [0xCE0],
         [0x238B960],
-        None,
-        "OVERLAY26_UNKNOWN_TABLE__NA_238AE20",
-        "0x6 + 11*0xC + 0x2\n\nNote: unverified, ported from Irdkwia's notes",
-        "",
+        0x6,
+        "MISSION_TYPE_12_DIALOGUE_SEQS",
+        "A singular mission_reward_dialogue_sequence struct for treasure hoard missions.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue. \n\ntype: mission_reward_dialogue_sequence[1]",
+        "struct mission_reward_dialogue_sequence[1]",
+    )
+
+    MISSION_DEFAULT_DIALOGUE_SEQS = Symbol(
+        [0xCE6],
+        [0x238B966],
+        0xC,
+        "MISSION_DEFAULT_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 4, 5, and technically 14.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue. \n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_10_DIALOGUE_SEQS = Symbol(
+        [0xCF2],
+        [0x238B972],
+        0xC,
+        "MISSION_TYPE_10_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 10.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_9_DIALOGUE_SEQS = Symbol(
+        [0xCFE],
+        [0x238B97E],
+        0xC,
+        "MISSION_TYPE_9_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 9.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_8_DIALOGUE_SEQS = Symbol(
+        [0xD0A],
+        [0x238B98A],
+        0xC,
+        "MISSION_TYPE_8_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 8.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_6_DIALOGUE_SEQS = Symbol(
+        [0xD16],
+        [0x238B996],
+        0xC,
+        "MISSION_TYPE_6_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 6.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_7_DIALOGUE_SEQS = Symbol(
+        [0xD22],
+        [0x238B9A2],
+        0xC,
+        "MISSION_TYPE_7_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 7.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_3_DIALOGUE_SEQS = Symbol(
+        [0xD2E],
+        [0x238B9AE],
+        0xC,
+        "MISSION_TYPE_3_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 3.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_2_DIALOGUE_SEQS = Symbol(
+        [0xD3A],
+        [0x238B9BA],
+        0xC,
+        "MISSION_TYPE_2_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 2.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_1_DIALOGUE_SEQS = Symbol(
+        [0xD46],
+        [0x238B9C6],
+        0xC,
+        "MISSION_TYPE_1_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 1.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_0_DIALOGUE_SEQS = Symbol(
+        [0xD52],
+        [0x238B9D2],
+        0xC,
+        "MISSION_TYPE_0_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 0.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    MISSION_TYPE_11_DIALOGUE_SEQS = Symbol(
+        [0xD5E],
+        [0x238B9DE],
+        0xC,
+        "MISSION_TYPE_11_DIALOGUE_SEQS",
+        "A pair of mission_reward_dialogue_sequence structs used for missions of type 11.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
+        "struct mission_reward_dialogue_sequence[2]",
+    )
+
+    DEBUG_CONQUEST_COUNT_STR = Symbol(
+        [0xD6C],
+        [0x238B9EC],
+        0x36,
+        "DEBUG_CONQUEST_COUNT_STR",
+        "'UNIT RETURN %3d conquest count ======================='\n\ntype: string",
+        "char[54]",
+    )
+
+    DEBUG_DEAD_COUNT_STR = Symbol(
+        [0xDA4],
+        [0x238BA24],
+        0x32,
+        "DEBUG_DEAD_COUNT_STR",
+        "'UNIT RETURN %3d dead count ======================='\n\ntype: string",
+        "char[50]",
+    )
+
+    DEBUG_NO_COUNT_STR = Symbol(
+        [0xDD8],
+        [0x238BA58],
+        0x30,
+        "DEBUG_NO_COUNT_STR",
+        "'UNIT RETURN %3d no count ======================='\n\ntype: string",
+        "char[48]",
     )
 
     OV26_STATIC_INITIALIZER = Symbol(
@@ -38839,49 +40257,49 @@ class EuOverlay26Data:
         "undefined4",
     )
 
-    OVERLAY26_UNKNOWN_POINTER__NA_238AF60 = Symbol(
+    MISSION_REWARD_OVERLAY_STRUCT_PTR = Symbol(
         [0xE20],
         [0x238BAA0],
-        None,
-        "OVERLAY26_UNKNOWN_POINTER__NA_238AF60",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "MISSION_REWARD_OVERLAY_STRUCT_PTR",
+        "A pointer to a mission_reward_struct_overlay struct, responsible for the operations of part of the mission reward sequence.\n\ntype: mission_reward_struct_overlay*",
+        "struct mission_reward_struct_overlay*",
     )
 
-    OVERLAY26_UNKNOWN_POINTER__NA_238AF64 = Symbol(
+    APPLY_RULE_DUNGEON_EFFECTS_STRUCT_PTR = Symbol(
         [0xE24],
         [0x238BAA4],
-        None,
-        "OVERLAY26_UNKNOWN_POINTER__NA_238AF64",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "APPLY_RULE_DUNGEON_EFFECTS_STRUCT_PTR",
+        "A pointer to a struct of unknown size, responsible for the operations of the ApplyRuleDungeonEffects* overlay_load_entry.\n\ntype: undefined*",
+        "undefined*",
     )
 
-    OVERLAY26_UNKNOWN_POINTER__NA_238AF68 = Symbol(
+    EXIT_DUNGEON_1_STRUCT_PTR = Symbol(
         [0xE28],
         [0x238BAA8],
-        None,
-        "OVERLAY26_UNKNOWN_POINTER__NA_238AF68",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "EXIT_DUNGEON_1_STRUCT_PTR",
+        "A pointer to a struct of unknown size, responsible for the operations of the DungeonExit1* overlay_load_entry.\n\ntype: undefined*",
+        "undefined*",
     )
 
     OVERLAY26_UNKNOWN_POINTER__NA_238AF6C = Symbol(
         [0xE2C],
         [0x238BAAC],
-        None,
+        0x4,
         "OVERLAY26_UNKNOWN_POINTER__NA_238AF6C",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Note: unverified, ported from Irdkwia's notes. Used exclusively by the UnkOv26EntryPoint_* structs.",
         "",
     )
 
-    OVERLAY26_UNKNOWN_POINTER5__NA_238AF70 = Symbol(
+    EXIT_DUNGEON_2_STRUCT_PTR = Symbol(
         [0xE30],
         [0x238BAB0],
-        None,
-        "OVERLAY26_UNKNOWN_POINTER5__NA_238AF70",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "EXIT_DUNGEON_2_STRUCT_PTR",
+        "A pointer to a struct of unknown size, responsible for the operations of the DungeonExit2* overlay_load_entry. \n\ntype: undefined*",
+        "undefined*",
     )
 
     OVERLAY26_RESERVED_SPACE = _Deprecated(
@@ -38891,7 +40309,7 @@ class EuOverlay26Data:
 
 class EuOverlay26Section:
     name = "overlay26"
-    description = "Related to mission completion. It's loaded when the dungeon completion summary is shown upon exiting a dungeon, and during the cutscenes where you collect mission rewards from clients."
+    description = "Related to mission completion. It's loaded when the dungeon completion summary is shown upon exiting a dungeon and during the cutscenes where you collect mission rewards from clients. May also be related to preparing for dungeon entry."
     loadaddress = 0x238AC80
     length = 0xE40
     functions = EuOverlay26Functions
