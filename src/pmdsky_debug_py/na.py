@@ -1695,8 +1695,8 @@ class NaArm9Functions:
     )
 
     GetMoneyQuantity = Symbol(
-        None,
-        None,
+        [0xD8AC],
+        [0x200D8AC],
         None,
         "GetMoneyQuantity",
         "Gets the actual money a Poké item should give by indexing its quantity field into MONEY_QUANTITY_TABLE, then multiplying by 1.2x if the Coin Watcher flag is set.\n\nr0: item\nreturn: money amount",
@@ -2577,8 +2577,8 @@ class NaArm9Functions:
     )
 
     GetEggSpecies = Symbol(
-        None,
-        None,
+        [0x1077C],
+        [0x201077C],
         None,
         "GetEggSpecies",
         "Seems to retrieve the species of the egg the player currently has in Chansey Daycare from GAME_STATE_VALUES.\nIf no egg is present, returns zero.\n\nreturn: monster_id",
@@ -2586,8 +2586,8 @@ class NaArm9Functions:
     )
 
     SetEggSpecies = Symbol(
-        None,
-        None,
+        [0x10794],
+        [0x2010794],
         None,
         "SetEggSpecies",
         "Seems to set the species of the egg in Chansey Daycare to GAME_STATE_VALUES.\n\nr0: monster_id",
@@ -2595,8 +2595,8 @@ class NaArm9Functions:
     )
 
     GetUnkGameState0x13a6 = Symbol(
-        None,
-        None,
+        [0x107AC],
+        [0x20107AC],
         None,
         "GetUnkGameState0x13a6",
         "Seems to get unknown field 0x13a6 of GAME_STATE_VALUES. Only known to be called by overlay 24, Chansey Daycare.\n\nreturn: undefined2",
@@ -2604,8 +2604,8 @@ class NaArm9Functions:
     )
 
     SetUnkGameState0x13a6 = Symbol(
-        None,
-        None,
+        [0x107C4],
+        [0x20107C4],
         None,
         "SetUnkGameState0x13a6",
         "Seems to set unknown field 0x13a6 of GAME_STATE_VALUES. Only known to be called by overlay 24, Chansey Daycare.\n\nr0: undefined2",
@@ -2613,8 +2613,8 @@ class NaArm9Functions:
     )
 
     GetEggHatchTimer = Symbol(
-        None,
-        None,
+        [0x107DC],
+        [0x20107DC],
         None,
         "GetEggHatchTimer",
         "Seems to get the number of days until the current egg in Chansey Daycare hatches from GAME_STATE_VALUES.\nAppears to be entirely unused, in favor of DecementEggHatchTimer.\n\nreturn: uint16_t",
@@ -2622,8 +2622,8 @@ class NaArm9Functions:
     )
 
     SetEggHatchTimer = Symbol(
-        None,
-        None,
+        [0x107F4],
+        [0x20107F4],
         None,
         "SetEggHatchTimer",
         "Seems to set the number of days until the current egg in Chansey Daycare hatches to GAME_STATE_VALUES.\n\nr0: uint16_t",
@@ -2631,8 +2631,8 @@ class NaArm9Functions:
     )
 
     DecrementEggHatchTimer = Symbol(
-        None,
-        None,
+        [0x1080C],
+        [0x201080C],
         None,
         "DecrementEggHatchTimer",
         "Seems to decrement the number of days until the current egg in Chansey Daycare hatches. Called by GroundMainNextDay.\n\nNo params.",
@@ -2640,8 +2640,8 @@ class NaArm9Functions:
     )
 
     RemoveInvalidKecleonShop1Items = Symbol(
-        None,
-        None,
+        [0x10830],
+        [0x2010830],
         None,
         "RemoveInvalidKecleonShop1Items",
         "Iterates through the current first Kecleon Shop items, and removes any with item_id ITEM_NONE.\n\nreturn: number of items removed from the shop.",
@@ -2802,8 +2802,8 @@ class NaArm9Functions:
     )
 
     SwapShopFreeDoublePointer = Symbol(
-        None,
-        None,
+        [0x114F8],
+        [0x20114F8],
         None,
         "SwapShopFreeDoublePointer",
         "Seems to call MemFree on *param_1 and **param_1, with a safety check that the **param_1 isn't zero.\nOnly known XREF is to SwapShopInventoryManager, so a more specific purpose for this function may exist.\n\nr0: double pointer to free",
@@ -2928,8 +2928,8 @@ class NaArm9Functions:
     )
 
     WipeRecycleShopRecords = Symbol(
-        None,
-        None,
+        [0x11AB8],
+        [0x2011AB8],
         None,
         "WipeRecycleShopRecords",
         "Sets the guild_rank, recycle_count, and recycle_offer_cooldown fields to zero, and sets the reycle_shop_offer to -1 of GAME_STATE_VALUES.\nAlso zeroes VAR_SUB30_SPOT_LEVEL, VAR_SUB30_SPOT_DISCOVER, VAR_RECYCLE_COUNT, and VAR_SUB30_TREASURE_DISCOVER script variables.\n\nNo params.",
@@ -2937,8 +2937,8 @@ class NaArm9Functions:
     )
 
     FreeRecycleOfferItems = Symbol(
-        None,
-        None,
+        [0x11DB8],
+        [0x2011DB8],
         None,
         "FreeRecycleOfferItems",
         "Seems to free a recycle_offer_items struct from memory.\n\nr0: recycle_offer_items pointer",
@@ -2946,8 +2946,8 @@ class NaArm9Functions:
     )
 
     GetRecycleItemId = Symbol(
-        None,
-        None,
+        [0x11DF0],
+        [0x2011DF0],
         None,
         "GetRecycleItemId",
         "Gets the item_id of a dereferenced recycle_item struct.\n\nr0: struct recycle_item double pointer\nreturn: item_id",
@@ -2955,8 +2955,8 @@ class NaArm9Functions:
     )
 
     RecycleItemHasTradeTypePrizeTicket = Symbol(
-        None,
-        None,
+        [0x11DFC],
+        [0x2011DFC],
         None,
         "RecycleItemHasTradeTypePrizeTicket",
         "Checks if the trade_type of a recycle_item is 1, indicating that the item uses the trade method for prize tickets.\n\nr0: struct recycle_item double pointer\nreturn: 1 if trade_type is 1, 0 otherwise.",
@@ -2964,8 +2964,8 @@ class NaArm9Functions:
     )
 
     GetRecycleItemBonusOdds = Symbol(
-        None,
-        None,
+        [0x11E18],
+        [0x2011E18],
         None,
         "GetRecycleItemBonusOdds",
         "Retrieves the odds of a recycle shop item to produce a bonus item when recycled.\n\nr0: struct recycle_item double pointer\nreturn: Odds to produce a bonus item, out of 100.",
@@ -2973,8 +2973,8 @@ class NaArm9Functions:
     )
 
     CountTradedRecycleItems = Symbol(
-        None,
-        None,
+        [0x11E24],
+        [0x2011E24],
         None,
         "CountTradedRecycleItems",
         "Counts the number of valid traded_items in a recycle_item_data struct, effectively returning the number of specific items required to do the trade. \n\nr0: struct recycle_item double pointer\nreturn: number of items required for trade",
@@ -2982,8 +2982,8 @@ class NaArm9Functions:
     )
 
     RecycleShopTradeIsNonspecific = Symbol(
-        None,
-        None,
+        [0x11EC4],
+        [0x2011EC4],
         None,
         "RecycleShopTradeIsNonspecific",
         "Checks if the first slot of a recycle_item struct's traded_items is 1400, indicative of a nonspecific prize ticket trade.\nUnclear how this differs in functionally from RecycleItemHasTradeTypePrizeTicket, as they conditions they check fully overlap in vanilla.\n\nr0: recycle_item double pointer\nreturn: 1 if the traded item is 1400, 0 if not.",
@@ -2991,8 +2991,8 @@ class NaArm9Functions:
     )
 
     RecycleShopOfferExists = Symbol(
-        None,
-        None,
+        [0x11EE8],
+        [0x2011EE8],
         None,
         "RecycleShopOfferExists",
         "Checks if GAME_STATE_VALUES->recycle_shop_offer is anything but -1, which indicates no offer for the day.\n\nreturn: 1 if an offer exists, 0 if not.",
@@ -3000,8 +3000,8 @@ class NaArm9Functions:
     )
 
     ClearRecycleShopOffer = Symbol(
-        None,
-        None,
+        [0x11F14],
+        [0x2011F14],
         None,
         "ClearRecycleShopOffer",
         "Sets GAME_STATE_VALUES->recycle_shop_offer to -1, indicating no offer for the day.\n\nNo params.",
@@ -3009,8 +3009,8 @@ class NaArm9Functions:
     )
 
     GetGameStateRecycleCount = Symbol(
-        None,
-        None,
+        [0x11F30],
+        [0x2011F30],
         None,
         "GetGameStateRecycleCount",
         "Retrieves GAME_STATE_VALUES->recycle_count. May differ from the recycle count at ADVENTURE_LOG_PTR->nb_recycled.\n\nreturn: Recycle count",
@@ -3018,8 +3018,8 @@ class NaArm9Functions:
     )
 
     GetRankForRecycleShop = Symbol(
-        None,
-        None,
+        [0x11F48],
+        [0x2011F48],
         None,
         "GetRankForRecycleShop",
         "Retrieves GAME_STATE_VALUES->rank. Seems to exclusively be used for recycle shop prize ticket unlocks, but does correlate with guild rank.\n\nreturn: guild rank",
@@ -3027,8 +3027,8 @@ class NaArm9Functions:
     )
 
     IncrementRecycleCountVar = Symbol(
-        None,
-        None,
+        [0x11F60],
+        [0x2011F60],
         None,
         "IncrementRecycleCountVar",
         "Seems to increment the RECYCLE_COUNT script variable, capping it at 999,999 recycles.\n\nNo params.",
@@ -3036,8 +3036,8 @@ class NaArm9Functions:
     )
 
     UpdateRecycleShop = Symbol(
-        None,
-        None,
+        [0x11FA0],
+        [0x2011FA0],
         None,
         "UpdateRecycleShop",
         "Call by GroundMainNextDay to prepare the recycle shop for the next day of operations.\nUpdates offers, offer cooldowns, recycle counts, available trades, and the flags for new dungeons or treasure. \n\nNo params.",
@@ -3045,8 +3045,8 @@ class NaArm9Functions:
     )
 
     DecrementRecycleOfferCooldown = Symbol(
-        None,
-        None,
+        [0x12224],
+        [0x2012224],
         None,
         "DecrementRecycleOfferCooldown",
         "Calls IsRecycleOfferCooldownOver, and if that returns false, decrements GAME_STATE_VALUES->recycle_offer_cooldown by one day.\n\nNo params.",
@@ -3054,8 +3054,8 @@ class NaArm9Functions:
     )
 
     IsRecycleOfferCooldownOver = Symbol(
-        None,
-        None,
+        [0x12254],
+        [0x2012254],
         None,
         "IsRecycleOfferCooldownOver",
         "Checks if GAME_STATE_VALUES->recycle_offer_cooldown is zero.\n\nreturn: 1 if the cooldown is over, 0 if not.",
@@ -3063,8 +3063,8 @@ class NaArm9Functions:
     )
 
     GetRecycleOfferCooldown = Symbol(
-        None,
-        None,
+        [0x1227C],
+        [0x201227C],
         None,
         "GetRecycleOfferCooldown",
         "Retrieves the GAME_STATE_VALUES->recycle_offer_cooldown, the number of days until a new recycle shop offer is allowed.\n\nreturn: number of days until next offer.",
@@ -3072,8 +3072,8 @@ class NaArm9Functions:
     )
 
     RecycleShopIsNotThrownItem = Symbol(
-        None,
-        None,
+        [0x125FC],
+        [0x20125FC],
         None,
         "RecycleShopIsNotThrownItem",
         "Checks if the item_category of an item is anything but CATEGORY_THROWN_ARC or CATEGORY_THROWN_LINE.\nThis likely exists to prevent stackable items from being traded in the recycle shop, as in vanilla only thrown items are stackable.\n\nr0: item_id\nreturn: 0 if the item is throwable, 1 if not.",
@@ -3081,8 +3081,8 @@ class NaArm9Functions:
     )
 
     RecycleShopIsTradableItem = Symbol(
-        None,
-        None,
+        [0x12630],
+        [0x2012630],
         None,
         "RecycleShopIsTradableItem",
         "Checks if an item is capable of being traded in the recycle shop, calling RecycleShopIsNotThrownItem.\nAlso returns if the item is a prize ticket from IsTicketItem, if r1 is not 0.\n\nr0: item_id\nr1: 0 if prize tickets are tradable, 1 if not.\nreturn: 0 if the item is not tradable, 1 if so.",
@@ -3090,8 +3090,8 @@ class NaArm9Functions:
     )
 
     RecycleShopCountTradableItemsInBag = Symbol(
-        None,
-        None,
+        [0x1265C],
+        [0x201265C],
         None,
         "RecycleShopCountTradableItemsInBag",
         "Count the number of tradable items in the current bag with RecycleShopIsTradableItem.\n\nr0: 0 if prize tickets are tradable, 1 if not.\nreturn: number of tradable items",
@@ -3099,8 +3099,8 @@ class NaArm9Functions:
     )
 
     RecycleShopCountTradableItemsInStorage = Symbol(
-        None,
-        None,
+        [0x126C8],
+        [0x20126C8],
         None,
         "RecycleShopCountTradableItemsInStorage",
         "Count the number of tradable items in storage with RecycleShopIsTradableItem.\n\nr0: 0 if prize tickets are tradable, 1 if not.\nreturn: number of tradable items",
@@ -3108,8 +3108,8 @@ class NaArm9Functions:
     )
 
     CountValidRecycleShopItems = Symbol(
-        None,
-        None,
+        [0x128DC],
+        [0x20128DC],
         None,
         "CountValidRecycleShopItems",
         "Loops through the RECYCLE_SHOP_ITEM_LIST, counting the number of valid recycle shop trades.\nFilters each entry by guild rank, minimum recycle count, and a specified filter on trade type.\n\n\nr0: trade filter. 3 to not exclude by trade type, else see IsRecycleTradeTypeValid.\nr1: number of recycles\nr2: guild rank\nreturn: number of valid recycle shop items",
@@ -3117,8 +3117,8 @@ class NaArm9Functions:
     )
 
     IsRecycleTradeTypeValid = Symbol(
-        None,
-        None,
+        [0x12954],
+        [0x2012954],
         None,
         "IsRecycleTradeTypeValid",
         "Uses the following logic to check if a recycle trade type fits a trade filter.\nreturn not ((filter != type) && ((filter != 0 || (type == 2))))\n\nr0: trade filter. 2 to whitelist offers, 1 to blacklist offers, 0 to blacklist offer and prize ticket trade types.\nr1: trade_type\nreturn: 1 if the item is valid, 0 if not.",
@@ -3126,8 +3126,8 @@ class NaArm9Functions:
     )
 
     ClearCroagunkItems = Symbol(
-        None,
-        None,
+        [0x12AB8],
+        [0x2012AB8],
         None,
         "ClearCroagunkItems",
         "Zeroes the 8 daily random items Croagunk can swap for.\n\nNo params.",
@@ -3162,8 +3162,8 @@ class NaArm9Functions:
     )
 
     GetCroagunkItemTemplates = Symbol(
-        None,
-        None,
+        [0x130B8],
+        [0x20130B8],
         None,
         "GetCroagunkItemTemplates",
         "Retrieves the current Croagunk Swap Shop items as synth_template structs.\n\nr0: pointer to at least 8 synth_template structs\nreturn: uint32_t",
@@ -3171,8 +3171,8 @@ class NaArm9Functions:
     )
 
     PopCroagunkItem = Symbol(
-        None,
-        None,
+        [0x13150],
+        [0x2013150],
         None,
         "PopCroagunkItem",
         "Tries to pop an item by id from Croagunk Swap Shop items.\n\nr0: item_id\nreturn: 1 if the item was found, 0 if not.",
@@ -3180,8 +3180,8 @@ class NaArm9Functions:
     )
 
     LoadCroagunkItems = Symbol(
-        None,
-        None,
+        [0x13190],
+        [0x2013190],
         None,
         "LoadCroagunkItems",
         "Seems to load the Croagunk Swap Shop items from the save file.\n\nreturn: undefined4",
@@ -3189,8 +3189,8 @@ class NaArm9Functions:
     )
 
     SaveCroagunkItems = Symbol(
-        None,
-        None,
+        [0x131F0],
+        [0x20131F0],
         None,
         "SaveCroagunkItems",
         "Seems to store the Croagunk Swap Shop items to the save file.\n\nreturn: undefined4",
@@ -5133,8 +5133,8 @@ class NaArm9Functions:
     )
 
     AppendStandardStringToMission = Symbol(
-        None,
-        None,
+        [0x26268],
+        [0x2026268],
         None,
         "AppendStandardStringToMission",
         "Seems to append a string from a string_id to text. Known to be used for this purpose in MakeMissionDetails.\n\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: string_id",
@@ -5196,8 +5196,8 @@ class NaArm9Functions:
     )
 
     GetPaletteBaseAddress = Symbol(
-        None,
-        None,
+        [0x278A8],
+        [0x20278A8],
         None,
         "GetPaletteBaseAddress",
         "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
@@ -6636,8 +6636,8 @@ class NaArm9Functions:
     )
 
     FreeMissionRewardStructMain = Symbol(
-        None,
-        None,
+        [0x3EFD4],
+        [0x203EFD4],
         None,
         "FreeMissionRewardStructMain",
         "Frees MISSION_REWARD_STRUCT_MAIN_PTR if it is currently active.\n\nNo params.",
@@ -6645,8 +6645,8 @@ class NaArm9Functions:
     )
 
     MissionRewardCloseAllBoxes = Symbol(
-        None,
-        None,
+        [0x3F05C],
+        [0x203F05C],
         None,
         "MissionRewardCloseAllBoxes",
         "Closes all textboxes from MISSION_REWARD_STRUCT_MAIN_PTR for the overlay 11 portion of the mission reward sequence.\n\nNo params.",
@@ -6681,8 +6681,8 @@ class NaArm9Functions:
     )
 
     PlayMissionClearBgm = Symbol(
-        None,
-        None,
+        [0x46740],
+        [0x2046740],
         None,
         "PlayMissionClearBgm",
         "Plays the mission clear bgm after completing a dungeon. Called by overlay 26.\n\nNo params.",
@@ -6753,8 +6753,8 @@ class NaArm9Functions:
     )
 
     AssignSpecialEpisodePc = Symbol(
-        None,
-        None,
+        [0x48AC4],
+        [0x2048AC4],
         None,
         "AssignSpecialEpisodePc",
         "Seems to be responsible for creating special episode ground_monster for special episodes.  \n\nr0: team_member_id\nr1: special_episode_pc pointer",
@@ -7887,8 +7887,8 @@ class NaArm9Functions:
     )
 
     MissionRewardValidateDungeonId = Symbol(
-        None,
-        None,
+        [0x4F158],
+        [0x204F158],
         None,
         "MissionRewardValidateDungeonId",
         "Checks script variables $DUNGEON_ENTER and $DUNGEON_ENTER_INDEX for 'mission dungeon' and a valid non-dojo dungeon respectively.\nIf so, stores the dungeon id from $DUNGEON_ENTER_INDEX to a pointer.\n\nr0: [output] dungeon_id_8*\nreturn: 1 if the dungeon pulled from script variables is valid for mission rewards, 0 otherwise.",
@@ -7968,8 +7968,8 @@ class NaArm9Functions:
     )
 
     GetMissionRank = Symbol(
-        [0x4F814],
-        [0x204F814],
+        [0x4F7A8, 0x4F814],
+        [0x204F7A8, 0x204F814],
         None,
         "GetMissionRank",
         "Gets the mission rank for the given dungeon and floor.\n\nIf the dungeon ID is >= DUNGEON_NORMAL_FLY_MAZE or the group of the dungeon is > DGROUP_DUMMY_0x63, returns MISSION_RANK_E.\n\nr0: Dungeon and floor\nreturn: Mission rank",
@@ -9543,8 +9543,8 @@ class NaArm9Functions:
     )
 
     RecolorNameString = Symbol(
-        None,
-        None,
+        [0x54F44],
+        [0x2054F44],
         None,
         "RecolorNameString",
         "Given a string of up to 10 characters, formats the string to display it in a specific color, or the original string if r2 is 0.\n\nr0: [output] buffer\nr1: string to recolor\nr2: text color symbol for the [CS:r2] tag",
@@ -9552,8 +9552,8 @@ class NaArm9Functions:
     )
 
     RecolorTeamMemberNameString = Symbol(
-        None,
-        None,
+        [0x54FA0],
+        [0x2054FA0],
         None,
         "RecolorTeamMemberNameString",
         "Given a string of up to 10 characters, formats the string to display it in either light blue if the monster is the leader or yellow otherwise.\n\nr0: [output] buffer\nr1: string to recolor\nr2: whether the monster is the team leader",
@@ -9561,8 +9561,8 @@ class NaArm9Functions:
     )
 
     ModifyHpStat = Symbol(
-        None,
-        None,
+        [0x54FB8],
+        [0x2054FB8],
         None,
         "ModifyHpStat",
         "Used to raise or lower the Hp stat, bounding the value to [1,999].\n\nr0: hp stat pointer\nr1: amount",
@@ -9570,8 +9570,8 @@ class NaArm9Functions:
     )
 
     ModifyOffensiveStat = Symbol(
-        None,
-        None,
+        [0x54FEC],
+        [0x2054FEC],
         None,
         "ModifyOffensiveStat",
         "Used to raise or lower a defensive stat, bounding the value to [1,255].\n\nr0: offensive stat pointer\nr1: amount",
@@ -9579,8 +9579,8 @@ class NaArm9Functions:
     )
 
     ModifyDefensiveStat = Symbol(
-        None,
-        None,
+        [0x55020],
+        [0x2055020],
         None,
         "ModifyDefensiveStat",
         "Used to raise or lower a defensive stat, bounding the value to [1,255].\n\nr0: defensive stat pointer\nr1: amount",
@@ -9588,8 +9588,8 @@ class NaArm9Functions:
     )
 
     ModifyIqStat = Symbol(
-        None,
-        None,
+        [0x55054],
+        [0x2055054],
         None,
         "ModifyIqStat",
         "Used to raise or lower the Iq stat, bounding the value to [1,999].\n\nr0: iq stat pointer\nr1: amount",
@@ -9642,8 +9642,8 @@ class NaArm9Functions:
     )
 
     GetRecruitMentryIdBySpecies = Symbol(
-        None,
-        None,
+        [0x555D0],
+        [0x20555D0],
         None,
         "GetRecruitMentryIdBySpecies",
         "Seems to retrieve a regular recruit in the mentry's id with a specified monster_id, looping through the entire mentry starting from slot 5.\nThe second param can be used to skip a specified number of matches, though this appears to be zero in both known calls to this function.\n\nr0: monster_id\nr1: number of target species to skip in the mentry\nreturn: mentry index",
@@ -9768,8 +9768,8 @@ class NaArm9Functions:
     )
 
     GetRecoloredGroundMonsterName = Symbol(
-        None,
-        None,
+        [0x56084],
+        [0x2056084],
         None,
         "GetRecoloredGroundMonsterName",
         "Gets the name of the ground monster formatted to be displayed in a specific color.\n\nr0: [output] buffer\nr1: ground monster pointer\nr2: text color symbol for the [CS:r2] tag",
@@ -9858,8 +9858,8 @@ class NaArm9Functions:
     )
 
     GetAppointedLeaderMemberIdx = Symbol(
-        None,
-        None,
+        [0x568A4],
+        [0x20568A4],
         None,
         "GetAppointedLeaderMemberIdx",
         "Retrieves the team member index of the current leader.\n\nreturn: member index",
@@ -9903,8 +9903,8 @@ class NaArm9Functions:
     )
 
     GetAdventureNpcIds = Symbol(
-        None,
-        None,
+        [0x56D70],
+        [0x2056D70],
         None,
         "GetAdventureNpcIds",
         "Retrieves the monster_ids of the active team, to set ACTOR_ADVENTURE_NPC01 through ACTOR_ADVENTURE_NPC04.\n\nr0: monster_id_16 pointers (minimum 4)\nreturn: number of members on the team.",
@@ -9912,8 +9912,8 @@ class NaArm9Functions:
     )
 
     GetUnitNpcIds = Symbol(
-        None,
-        None,
+        [0x56E04],
+        [0x2056E04],
         None,
         "GetUnitNpcIds",
         "Retrieves the monster_ids of the active team, to set ACTOR_UNIT_NPC01 through ACTOR_UNIT_NPC04.\n\nr0: monster_id_16 pointers (minimum 4)\nreturn: number of members on the team.",
@@ -9930,8 +9930,8 @@ class NaArm9Functions:
     )
 
     ValidateTeamMembers = Symbol(
-        None,
-        None,
+        [0x580C4],
+        [0x20580C4],
         None,
         "ValidateTeamMembers",
         "Fills out a table of 4 bools for whether each member of the active team is valid.\n\nr0: bool* (Points to at least 4 bools)",
@@ -9948,8 +9948,8 @@ class NaArm9Functions:
     )
 
     GetRecoloredNameOfTeamMemberAtIdx = Symbol(
-        None,
-        None,
+        [0x584FC],
+        [0x20584FC],
         None,
         "GetRecoloredNameOfTeamMemberAtIdx",
         "Gets the name of the active team member in the given slot index formatted to be displayed in either light blue if the monster is the leader or yellow otherwise.\n\nr0: [output] buffer\nr1: roster index",
@@ -9957,8 +9957,8 @@ class NaArm9Functions:
     )
 
     GetNameOfTeamMemberAtIdx = Symbol(
-        None,
-        None,
+        [0x5858C],
+        [0x205858C],
         None,
         "GetNameOfTeamMemberAtIdx",
         "Gets the name of the active team member in the given slot index.\n\nr0: [output] buffer\nr1: roster index",
@@ -9966,8 +9966,8 @@ class NaArm9Functions:
     )
 
     GetRecoloredTeamMemberName = Symbol(
-        None,
-        None,
+        [0x585B4],
+        [0x20585B4],
         None,
         "GetRecoloredTeamMemberName",
         "Gets the name of the team member formatted to be displayed in either light blue if the monster is the leader or yellow otherwise.\n\nr0: [output] buffer\nr1: team member pointer",
@@ -10272,8 +10272,8 @@ class NaArm9Functions:
     )
 
     CheckMonsterForMissionType = Symbol(
-        None,
-        None,
+        [0x5D008],
+        [0x205D008],
         None,
         "CheckMonsterForMissionType",
         "Seems to check if a monster is valid for a specific mission type and subtype.\nChecks monster id range, some kind of legality check for purple kecleon, and if the monster is using its base form (IE: castform-sun would fail the base form check.)\nAlso checks body size for missions that use a monster, and are not MISSION_ARREST_OUTLAW, MISSION_CHALLENGE_REQUEST, or MISSION_TYPE_CONSUMABLE.\n\nr0: mission_type\nr1: mission_subtype pointer\nr2: monster_id\nr3: 1 if the monster is allowed to be nothing, 0 if not.\nreturn: 1 if the monster is allowed for the mission. 0 if not.",
@@ -10281,8 +10281,8 @@ class NaArm9Functions:
     )
 
     CheckItemForMissionType = Symbol(
-        None,
-        None,
+        [0x5D11C],
+        [0x205D11C],
         None,
         "CheckItemForMissionType",
         "Seems to check if an item is valid for a specific mission type and subtype.\nCalls IsValidTargetItem, IsItemValidVeneer, and IsStorableItem.\nAlso checks IsThrownItem, with secondary checks permitting Rare Fossil/Gold Thorn for MISION_PROSPECT_WITH_CLIENT only.\n\nr0: mission_type\nr1: mission_subtype pointer\nr2: item_id\nreturn: 1 if the item is allowed for the mission. 0 if not.",
@@ -10299,8 +10299,8 @@ class NaArm9Functions:
     )
 
     CountAndPopulateValidMissionTableMonsters = Symbol(
-        None,
-        None,
+        [0x5DFAC],
+        [0x205DFAC],
         None,
         "CountAndPopulateValidMissionTableMonsters",
         "Reads a portion of the mission monster table from rescue.bin, counting and populating the valid monsters for the mission.\n\nr0: [output] Pointer to the subset of valid monster_ids\nr1: Involved in the bounds of the min and max table indices.\nreturn: number of valid monsters",
@@ -10317,8 +10317,8 @@ class NaArm9Functions:
     )
 
     DoesMissionHaveTypeAndSubtype = Symbol(
-        None,
-        None,
+        [0x5E288],
+        [0x205E288],
         None,
         "DoesMissionHaveTypeAndSubtype",
         "Checks if a specified mission has a specified mission_type and subtype. More general than AreMissionsEquivalent.\n\nr0: mission pointer\nr1: mission_type pointer\nr2: mission_subtype pointer\nreturn: 1 if the player already has this mission, 0 if not.",
@@ -10326,8 +10326,8 @@ class NaArm9Functions:
     )
 
     AlreadyHasSimilarMission = Symbol(
-        None,
-        None,
+        [0x5E2B8],
+        [0x205E2B8],
         None,
         "AlreadyHasSimilarMission",
         "Seems to check if the player already has a mission of the same type and subtype on the job list, or any mission vendor like the job board.\nLikely used for 'unique' missions like challenge letters, as this uses DoesMissionHaveTypeAndSubtype.\n\nr0: mission_type pointer\nr1: mission_subtype pointer\nreturn: 1 if the player already has this mission, 0 if not.",
@@ -10407,8 +10407,8 @@ class NaArm9Functions:
     )
 
     WasMissionCompletedToday = Symbol(
-        None,
-        None,
+        [0x5F118],
+        [0x205F118],
         None,
         "WasMissionCompletedToday",
         "Runs a series of mission_type specific checks to determine if the mission really was completed today, before running mission rewards.\nExamples of checks include: Being in the right dungeon, and having a specific item or item within a treasure box in the bag. \nAlso seems to initialize the mission_result_and_client struct's NPC fields to correctly fit the mission_type.\n\nr0: struct mission_result_and_client\nr1: struct mission\nr2: enum mission_type\nreturn: 1 if the mission was completed, 0 if not.",
@@ -10506,8 +10506,8 @@ class NaArm9Functions:
     )
 
     GetMissionSpecificFixedRoom = Symbol(
-        None,
-        None,
+        [0x5FF80],
+        [0x205FF80],
         None,
         "GetMissionSpecificFixedRoom",
         "Returns a fixed room id for a mission based on the specified mission type and subtype.\nFor missions with multiple valid fixed rooms, uses SelectRandomFixedRoomInRange to select one at random.\n\nr0: mission_type\nr1: mission_subtype\nreturn: fixed_room_id",
@@ -10515,8 +10515,8 @@ class NaArm9Functions:
     )
 
     SelectRandomFixedRoomInRange = Symbol(
-        None,
-        None,
+        [0x60084],
+        [0x2060084],
         None,
         "SelectRandomFixedRoomInRange",
         "Returns a random fixed room from a list for a specified range. Checks for 'null-termination' if no ending table entry is given.\nIt seems that the TREASURE_MEMO_FIXED_ROOM_IDS table is frontloaded with 15 'easy' layouts, and only those are allowed before performance flag 9 is enabled. \n\nr0: fixed_room_id_8 table pointer\nr1: number of entries to choose from, -1 to use the entire table.\nreturn: int8_t",
@@ -10524,8 +10524,8 @@ class NaArm9Functions:
     )
 
     ReadRescueBinFile = Symbol(
-        None,
-        None,
+        [0x600CC],
+        [0x20600CC],
         None,
         "ReadRescueBinFile",
         "Seems to open data/RESCUE/rescue.bin, if it is not already open.\nContains various mission data, see rescue.h for further details.\n\nNo params.",
@@ -10560,8 +10560,8 @@ class NaArm9Functions:
     )
 
     MatchMissionTemplateToMission = Symbol(
-        None,
-        None,
+        [0x6096C],
+        [0x206096C],
         None,
         "MatchMissionTemplateToMission",
         "Seems to find a matching mission_template for the corresponding mission struct if one exists. \nUses a table of validation functions ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4, not all of which are known.\n\nr0: index of ARM9_UNKNOWN_FUNCTION_TABLE__NA_20A3CF4?\nr1: mission pointer\nreturn: mission_template pointer",
@@ -10578,8 +10578,8 @@ class NaArm9Functions:
     )
 
     FormatMissionHeader = Symbol(
-        None,
-        None,
+        [0x60AFC],
+        [0x2060AFC],
         None,
         "FormatMissionHeader",
         "Constructs a 'mission header' for a normal mission, shown in the job list on the bottom screen. Is also used for SOS/A-OK Mail.\nCan consist of a title, mission rank, mission status, dungeon, and floor. Some missions exclude some of these fields.\n\nr0: header buffer\nr1: struct mission_details",
@@ -10587,8 +10587,8 @@ class NaArm9Functions:
     )
 
     FormatSpecialEpisodeMissionHeader = Symbol(
-        None,
-        None,
+        [0x60E24],
+        [0x2060E24],
         None,
         "FormatSpecialEpisodeMissionHeader",
         "Constructs a 'mission header' for a special episode transmission mission, shown in the job list on the bottom screen.\nUses a specific text string (15439 EU) to generate the header.\n\nr0: header buffer",
@@ -10605,8 +10605,8 @@ class NaArm9Functions:
     )
 
     MakeMissionDetails = Symbol(
-        None,
-        None,
+        [0x60FD8],
+        [0x2060FD8],
         None,
         "MakeMissionDetails",
         "Creates the mission details displayed on the top screen when viewing a mission. Is also used for SOS/A-OK Mail.\nCan consist of a mission summary, client, objective, dungeon+floor, restrictions, difficulty, reward, and WMS code.\nSome missions exclude one or more of these fields.\n\nr0: struct mission_details\nr1: buffer\nr2: ?",
@@ -10614,8 +10614,8 @@ class NaArm9Functions:
     )
 
     MakeSpecialEpisodeMissionDetails = Symbol(
-        None,
-        None,
+        [0x61C60],
+        [0x2061C60],
         None,
         "MakeSpecialEpisodeMissionDetails",
         "Creates the mission details displayed on the top screen when viewing a special episode transmission.\nSeems to contain only a hard-coded mission summary, and a WMS code.\n\nr0: buffer\nr1: ?",
@@ -10623,8 +10623,8 @@ class NaArm9Functions:
     )
 
     PrintWonderMailSkyCode = Symbol(
-        None,
-        None,
+        [0x61CC8],
+        [0x2061CC8],
         None,
         "PrintWonderMailSkyCode",
         "Seems to print a WMS code for a mission, based on context and live analysis.",
@@ -10632,8 +10632,8 @@ class NaArm9Functions:
     )
 
     AppendMissionObjective = Symbol(
-        None,
-        None,
+        [0x61DC8],
+        [0x2061DC8],
         None,
         "AppendMissionObjective",
         "Generates the 'Objective: ...' string for MakeMissionDetails.\n\nr0: buffer\nr1: buffer size\nr2: type of objective to display?\nr3: monster_id to embed in the string\nstack[0]: item_id_16 to embed in the string",
@@ -10641,8 +10641,8 @@ class NaArm9Functions:
     )
 
     AppendMissionDungeonLocation = Symbol(
-        None,
-        None,
+        [0x61FDC],
+        [0x2061FDC],
         None,
         "AppendMissionDungeonLocation",
         "Generates the 'Place: ...' string for MakeMissionDetails.\n\nr0: mission_details pointer\nr1: buffer\nr2: buffer size",
@@ -10650,8 +10650,8 @@ class NaArm9Functions:
     )
 
     SumValidMissionCategoryWeights = Symbol(
-        None,
-        None,
+        [0x62290],
+        [0x2062290],
         None,
         "SumValidMissionCategoryWeights",
         "Seems to tally up the total weights for each mission_category under a specified mission vendor.\n\n\nr0: mission_vendor\nreturn: 1 if the total weight is non-zero, 0 if not.",
@@ -10659,8 +10659,8 @@ class NaArm9Functions:
     )
 
     GetRandomMissionTemplate = Symbol(
-        None,
-        None,
+        [0x62578],
+        [0x2062578],
         None,
         "GetRandomMissionTemplate",
         "Retrieves a random mission_template from a weighted random mission_category.\n\nreturn: mission_template pointer",
@@ -10668,8 +10668,8 @@ class NaArm9Functions:
     )
 
     LoadMissionTemplates = Symbol(
-        None,
-        None,
+        [0x62804],
+        [0x2062804],
         None,
         "LoadMissionTemplates",
         "Retrieves a pointer to the mission_template table from the rescue.bin file.\nDoes not check if the file has been loaded first.\n\nreturn: mission_template*",
@@ -10731,8 +10731,8 @@ class NaArm9Functions:
     )
 
     GetMissionRankWithCapAndModifiers = Symbol(
-        None,
-        None,
+        [0x62D5C],
+        [0x2062D5C],
         None,
         "GetMissionRankWithCapAndModifiers",
         "Calls GetMissionRank, then adds one to the rank if the mission requires escorting a client, or defeating an outlaw.\nBefore returning, caps the mission rank at 15 (9 stars).\n\nr0: dungeon_floor_pair pointer\nr1: mission_type\nreturn: mission rank",
@@ -10740,8 +10740,8 @@ class NaArm9Functions:
     )
 
     GetMissionRankWithCapAndModifiersAndCap = Symbol(
-        None,
-        None,
+        [0x62D9C],
+        [0x2062D9C],
         None,
         "GetMissionRankWithCapAndModifiersAndCap",
         "Calls GetMissionRankWithModifiersWithCeil, then redundantly caps the return again at 15 (9 stars).\n\nr0: dungeon_floor_pair pointer\nr1: mission_type\nreturn: mission rank",
@@ -10758,8 +10758,8 @@ class NaArm9Functions:
     )
 
     InitMissionReward = Symbol(
-        None,
-        None,
+        [0x62E5C],
+        [0x2062E5C],
         None,
         "InitMissionReward",
         "Seems to initialize a mission_reward_data struct from a mission.\nCalled by MissionRewardEntryPoint in overlay 26.\n\n\nr0: struct mission*\nr1: struct mission_reward_data*\nr2: undefined4\nr3: undefined4",
@@ -10767,8 +10767,8 @@ class NaArm9Functions:
     )
 
     RollRandomItemReward = Symbol(
-        None,
-        None,
+        [0x630A4],
+        [0x20630A4],
         None,
         "RollRandomItemReward",
         "Seems to select a random item for an item mission reward, calling RetrieveFromItemList2 until it succeeds.\n\nr0: undefined4\nr1: undefined4\nr2: mission reward item pointer",
@@ -10776,8 +10776,8 @@ class NaArm9Functions:
     )
 
     GenerateMissionRewards = Symbol(
-        None,
-        None,
+        [0x6315C],
+        [0x206315C],
         None,
         "GenerateMissionRewards",
         "Seems to handle initializing the mission reward related fields of a mission struct, after generating the mission.\n\nr0: mission pointer\nr1: 1 if mission is from the cafe, 0 if not.",
@@ -10785,8 +10785,8 @@ class NaArm9Functions:
     )
 
     CheckDungeonMissionUnlockConditions = Symbol(
-        None,
-        None,
+        [0x63394],
+        [0x2063394],
         None,
         "CheckDungeonMissionUnlockConditions",
         "Checks if a specified dungeon is eligible to be unlocked by a mission.\n\nr0: dungeon_id\nreturn: 3 if the dungeon is not in MISSION_DUNGEON_UNLOCK_TABLE, 2 if the dungeon is open or entered, 1 if $SCENARIO_BALANCE_FLAG is not large enough, and 0 otherwise.",
@@ -10812,8 +10812,8 @@ class NaArm9Functions:
     )
 
     ZeroInitMissionRewardDataStruct = Symbol(
-        None,
-        None,
+        [0x6351C],
+        [0x206351C],
         None,
         "ZeroInitMissionRewardDataStruct",
         "Zero initializes a mission_reward_data struct.\n\nr0: struct mission_reward_data*",
@@ -10866,8 +10866,8 @@ class NaArm9Functions:
     )
 
     SetActorEventMain = Symbol(
-        None,
-        None,
+        [0x65B70],
+        [0x2065B70],
         None,
         "SetActorEventMain",
         "Sets ACTOR_NPC_EVENT_MAIN to a specific actor_id.\n\nr0: actor_id",
@@ -10875,8 +10875,8 @@ class NaArm9Functions:
     )
 
     SetRandomRequestNpcs1And2 = Symbol(
-        None,
-        None,
+        [0x65B80],
+        [0x2065B80],
         None,
         "SetRandomRequestNpcs1And2",
         "Sets ACTOR_REQUEST_NPC01 and ACTOR_REQUEST_NPC02 to specific actor_ids.\nHas no impact on ACTOR_REQUEST_NPC03.\n\nr0: ACTOR_REQUEST_NPC01 actor_id\nr1: ACTOR_REQUEST_NPC02 actor_id",
@@ -10884,8 +10884,8 @@ class NaArm9Functions:
     )
 
     SetAllEventNpcs = Symbol(
-        None,
-        None,
+        [0x65BAC],
+        [0x2065BAC],
         None,
         "SetAllEventNpcs",
         "Sets ACTOR_EVENT_NPC01 through ACTOR_EVENT_NPC04 to specific actor_ids.\n\nr0: ACTOR_EVENT_NPC01 actor_id\nr1: ACTOR_EVENT_NPC02 actor_id\nr2: ACTOR_EVENT_NPC03 actor_id\nr3: ACTOR_EVENT_NPC04 actor_id",
@@ -10920,8 +10920,8 @@ class NaArm9Functions:
     )
 
     ChooseMissionTitle = Symbol(
-        None,
-        None,
+        [0x69660],
+        [0x2069660],
         None,
         "ChooseMissionTitle",
         "Seems to determine whether or not to use the standard system for generating a mission title, or to use a separate function for a special episode transmission.\n\nr0: main_buffer\nr1: int32_t\nr2: uint32_t pointer\nreturn: main_buffer",
@@ -12307,8 +12307,8 @@ class NaArm9Data:
     )
 
     OUTLAW_HIDEOUT_FIXED_ROOM_IDS = Symbol(
-        None,
-        None,
+        [0xA18FC],
+        [0x20A18FC],
         None,
         "OUTLAW_HIDEOUT_FIXED_ROOM_IDS",
         "Table of fixed room ids used by the MISSION_ARREST_OUTLAW and MISSION_OUTLAW_HIDEOUT type and subtype.\n\ntype: fixed_room_id_8[5]",
@@ -12316,8 +12316,8 @@ class NaArm9Data:
     )
 
     CHALLENGE_NORMAL_FIXED_ROOM_IDS = Symbol(
-        None,
-        None,
+        [0xA1904],
+        [0x20A1904],
         None,
         "CHALLENGE_NORMAL_FIXED_ROOM_IDS",
         "Table of fixed room ids used by the MISSION_CHALLENGE_REQUEST and MISSION_CHALLENGE_NORMAL type and subtype.\n\ntype: fixed_room_id_8[5]",
@@ -12361,8 +12361,8 @@ class NaArm9Data:
     )
 
     TREASURE_MEMO_FIXED_ROOM_IDS = Symbol(
-        None,
-        None,
+        [0xA1958],
+        [0x20A1958],
         None,
         "TREASURE_MEMO_FIXED_ROOM_IDS",
         "Table of fixed room ids used by the MISSION_TREASURE_MEMO type.\nThe last 15 entries only show up after the postgame (performance flag 9).\n\ntype: fixed_room_id_8[30]",
@@ -13234,8 +13234,8 @@ class NaArm9Data:
     )
 
     SYNTH_BIN_FILE_PTR = Symbol(
-        None,
-        None,
+        [0xAF6D4],
+        [0x20AF6D4],
         None,
         "SYNTH_BIN_FILE_PTR",
         "The location of the data/SYNTH/synth.bin file while loaded.",
@@ -13328,8 +13328,8 @@ class NaArm9Data:
     )
 
     MISSION_REWARD_STRUCT_MAIN_PTR = Symbol(
-        None,
-        None,
+        [0xAFE74],
+        [0x20AFE74],
         None,
         "MISSION_REWARD_STRUCT_MAIN_PTR",
         "Points to a mission_reward_struct_main struct, responsible for handling the overlay 11 portion of the mission reward sequence.\nIs also used sparingly during the Spinda Cafe egg event.\n\ntype: mission_reward_struct_main pointer",
@@ -27771,8 +27771,8 @@ class NaOverlay10Functions:
     )
 
     CreateInventoryMenuOuter = Symbol(
-        None,
-        None,
+        [0x9F4],
+        [0x22BD474],
         None,
         "CreateInventoryMenuOuter",
         "Seems to handle the creation of an inventory menu for the spinda cafe.\nThe fact that this lives in overlay_10 suggests it may serve a more general purpose\n\nr0: n_items\nr1: int32_t\nr2: int32_t\nr3: uint8_t * \nstack[0]: ?\nstack[1]: ?\nstatk[2]: uint32_t",
@@ -28125,8 +28125,8 @@ class NaOverlay10Data:
     )
 
     CONSTRICTION_DAMAGE = Symbol(
-        None,
-        None,
+        [0x79EC],
+        [0x22C446C],
         None,
         "CONSTRICTION_DAMAGE",
         "Damage dealt by the constriction status condition.",
@@ -28134,8 +28134,8 @@ class NaOverlay10Data:
     )
 
     WISE_HEALER_PERCENTAGE = Symbol(
-        None,
-        None,
+        [0x79F0],
+        [0x22C4470],
         None,
         "WISE_HEALER_PERCENTAGE",
         "The additional percentage of HP that should be restored for monsters with the Wise Healer IQ skill (15%).",
@@ -30236,8 +30236,8 @@ class NaOverlay11Functions:
     SsbLoad1 = Symbol([0x9B10], [0x22E5D50], None, "SsbLoad1", "", None)
 
     ReturnScriptMenuResultZero = Symbol(
-        None,
-        None,
+        [0xAC28],
+        [0x22E6E68],
         None,
         "ReturnScriptMenuResultZero",
         "Returns control to the scripting engine for a message_menu, with case id 0.\n\nNo params.",
@@ -30245,8 +30245,8 @@ class NaOverlay11Functions:
     )
 
     ReturnScriptMenuResult = Symbol(
-        None,
-        None,
+        [0xAC4C],
+        [0x22E6E8C],
         None,
         "ReturnScriptMenuResult",
         "Returns control to the scripting engine for a message_menu, with a specified case_id.\n\nr0: case id to pass to the scripting engine",
@@ -30254,8 +30254,8 @@ class NaOverlay11Functions:
     )
 
     IsScriptMenuReturnDisabled = Symbol(
-        None,
-        None,
+        [0xAC88],
+        [0x22E6EC8],
         None,
         "IsScriptMenuReturnDisabled",
         "Checks if the scripting engine is ready to return control to an overlay-based menu.\n\nreturn: 1 if the menu should continue execution, 0 if not.",
@@ -31343,8 +31343,8 @@ class NaOverlay11Functions:
     )
 
     EatOverworldGummiEntryPoint = Symbol(
-        None,
-        None,
+        [0x22FDC],
+        [0x22FF21C],
         None,
         "EatOverworldGummiEntryPoint",
         "Seems to be the entry_point for a 'mini-overlay' overlay_load_entry that lives in overlay 11, that controls eating gummis in the overworld. \n\nreturn: undefined4",
@@ -31352,8 +31352,8 @@ class NaOverlay11Functions:
     )
 
     EatOverworldGummiDestructor = Symbol(
-        None,
-        None,
+        [0x230DC],
+        [0x22FF31C],
         None,
         "EatOverworldGummiDestructor",
         "Seems to be the destructor for a 'mini-overlay' overlay_load_entry that lives in overlay 11, that controls eating gummis in the overworld.\n\nNo params.",
@@ -31361,8 +31361,8 @@ class NaOverlay11Functions:
     )
 
     EatOverworldGummiFrameUpdate = Symbol(
-        None,
-        None,
+        [0x23118],
+        [0x22FF358],
         None,
         "EatOverworldGummiFrameUpdate",
         "Seems to be the frame_update for a 'mini-overlay' overlay_load_entry that lives in overlay 11, that controls eating gummis in the overworld.\n\nreturn: undefined4",
@@ -31397,8 +31397,8 @@ class NaOverlay11Functions:
     )
 
     GroundBagOthersMenuEntryPoint = Symbol(
-        None,
-        None,
+        [0x24F5C],
+        [0x230119C],
         None,
         "GroundBagOthersMenuEntryPoint",
         "Seems to be the entry_point for a 'mini-overlay' overlay_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nreturn: undefined4",
@@ -31406,8 +31406,8 @@ class NaOverlay11Functions:
     )
 
     GroundBagOthersMenuDestructor = Symbol(
-        None,
-        None,
+        [0x24FE0],
+        [0x2301220],
         None,
         "GroundBagOthersMenuDestructor",
         "Seems to be the destructor for a 'mini-overlay' overlay_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nNo params.",
@@ -31415,8 +31415,8 @@ class NaOverlay11Functions:
     )
 
     GroundBagOthersMenuFrameUpdate = Symbol(
-        None,
-        None,
+        [0x2501C],
+        [0x230125C],
         None,
         "GroundBagOthersMenuFrameUpdate",
         "Seems to be the frame_update for a 'mini-overlay' overlay_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nreturn: undefined4",
@@ -31424,8 +31424,8 @@ class NaOverlay11Functions:
     )
 
     InitDiaryAndFaqBoardMenu = Symbol(
-        None,
-        None,
+        [0x27084],
+        [0x23032C4],
         None,
         "InitDiaryAndFaqBoardMenu",
         "Seems to initialize the menu which controls bidoof and sunflora's diaries, as well as the FAQ board on B1F of the guild.\n\nr0: undefined4\nreturn: undefined4",
@@ -31433,8 +31433,8 @@ class NaOverlay11Functions:
     )
 
     FreeDiaryAndFaqBoardMenuMenu = Symbol(
-        None,
-        None,
+        [0x276C4],
+        [0x2303904],
         None,
         "FreeDiaryAndFaqBoardMenuMenu",
         "Seems to free them menu which controls bidoof and sunflora's diaries, as well as the FAQ board on B1F of the guild.\n\nNo params.",
@@ -31442,8 +31442,8 @@ class NaOverlay11Functions:
     )
 
     DiaryAndFaqBoardMenuFrameUpdate = Symbol(
-        None,
-        None,
+        [0x276F0],
+        [0x2303930],
         None,
         "DiaryAndFaqBoardMenuFrameUpdate",
         "Seems to run each frame to manage the menu which controls bidoof and sunflora's diaries, as well as the FAQ board on B1F of the guild.\n\nreturn: undefined4",
@@ -31469,8 +31469,8 @@ class NaOverlay11Functions:
     )
 
     IsGroundMonsterAtMaxLevel = Symbol(
-        None,
-        None,
+        [0x2EB3C],
+        [0x230AD7C],
         None,
         "IsGroundMonsterAtMaxLevel",
         "Checks if a ground_monster is above level 99.\n\nr0: ground_monster pointer\nreturn: 1 if ground monster is above level 99, 0 if not.",
@@ -31496,8 +31496,8 @@ class NaOverlay11Functions:
     )
 
     LoadRecycleShopOverlay = Symbol(
-        None,
-        None,
+        [0x30B8C],
+        [0x230CDCC],
         None,
         "LoadRecycleShopOverlay",
         "Seems to be responsible for loading overlay 20 for the recycle shop.\n\nNo params.",
@@ -31744,8 +31744,8 @@ class NaOverlay11Data:
     )
 
     SWAP_SHOP_ONE_STAR_STR = Symbol(
-        None,
-        None,
+        [0x46D68],
+        [0x2322FA8],
         None,
         "SWAP_SHOP_ONE_STAR_STR",
         "'[M:S3]'\nUsed exclusively by GetExclusiveItemRequirements.",
@@ -31753,8 +31753,8 @@ class NaOverlay11Data:
     )
 
     SWAP_SHOP_TWO_STAR_STR = Symbol(
-        None,
-        None,
+        [0x46D70],
+        [0x2322FB0],
         None,
         "SWAP_SHOP_TWO_STAR_STR",
         "'[M:S3][M:S3]'\nUsed exclusively by GetExclusiveItemRequirements.",
@@ -31762,8 +31762,8 @@ class NaOverlay11Data:
     )
 
     SWAP_SHOP_THREE_STAR_STR = Symbol(
-        None,
-        None,
+        [0x46D80],
+        [0x2322FC0],
         None,
         "SWAP_SHOP_THREE_STAR_STR",
         "'[M:S3][M:S3][M:S3]'\nUsed exclusively by GetExclusiveItemRequirements.",
@@ -31771,8 +31771,8 @@ class NaOverlay11Data:
     )
 
     SWAP_SHOP_RED_TEXT_TAG_STR = Symbol(
-        None,
-        None,
+        [0x46DC4],
+        [0x2323004],
         None,
         "SWAP_SHOP_RED_TEXT_TAG_STR",
         "'[CS:W]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
@@ -31780,8 +31780,8 @@ class NaOverlay11Data:
     )
 
     SWAP_SHOP_UNCENTER_TEXT_TAG_STR = Symbol(
-        None,
-        None,
+        [0x46DCC],
+        [0x232300C],
         None,
         "SWAP_SHOP_UNCENTER_TEXT_TAG_STR",
         "'[CR]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
@@ -31789,8 +31789,8 @@ class NaOverlay11Data:
     )
 
     SWAP_SHOP_CLUMSET_ONE_STAR_STR = Symbol(
-        None,
-        None,
+        [0x46DD4],
+        [0x2323014],
         None,
         "SWAP_SHOP_CLUMSET_ONE_STAR_STR",
         "'[CLUM_SET:130][M:S3]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
@@ -31798,8 +31798,8 @@ class NaOverlay11Data:
     )
 
     SWAP_SHOP_CLUMSET_TWO_STAR_STR = Symbol(
-        None,
-        None,
+        [0x46DEC],
+        [0x232302C],
         None,
         "SWAP_SHOP_CLUMSET_TWO_STAR_STR",
         "'[CLUM_SET:122][M:S3][M:S3]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
@@ -31807,8 +31807,8 @@ class NaOverlay11Data:
     )
 
     SWAP_SHOP_CLUMSET_THREE_STAR_STR = Symbol(
-        None,
-        None,
+        [0x46E08],
+        [0x2323048],
         None,
         "SWAP_SHOP_CLUMSET_THREE_STAR_STR",
         "'[CLUM_SET:114][M:S3][M:S3][M:S3]'\nUsed exclusively by a subfunction of SwapShopInventoryManager.",
@@ -31860,8 +31860,8 @@ class NaOverlay11Data:
     )
 
     EXCLUSIVE_ITEM_REQUIREMENTS_PTR = Symbol(
-        None,
-        None,
+        [0x48B60],
+        [0x2324DA0],
         None,
         "EXCLUSIVE_ITEM_REQUIREMENTS_PTR",
         "Pointer to the exclusive_item_requirements struct, used by the swap shop.",
@@ -37714,8 +37714,8 @@ class NaOverlay2Section:
 class NaOverlay20Functions:
 
     RecycleShopEntryPointFirst = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x238A140],
         None,
         "RecycleShopEntryPointFirst",
         "The entry point for the overlay, when called by MENU_RECYCLE_SHOP, serving to initialize the recycle shop.\nCalls RecycleShopCommonEntryPoint(0).\n\nreturn: undefined4",
@@ -37723,8 +37723,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopEntryPointResume = Symbol(
-        None,
-        None,
+        [0x10],
+        [0x238A150],
         None,
         "RecycleShopEntryPointResume",
         "The entry point for the overlay, when called by MENU_RECYCLE_SHOP2, resuming operations of the overlay.\nCalls RecycleShopCommonEntryPoint(0).\n\nreturn: undefined4",
@@ -37732,8 +37732,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopDestructor = Symbol(
-        None,
-        None,
+        [0x20],
+        [0x238A160],
         None,
         "RecycleShopDestructor",
         "The shared destructor of both recycle shop overlay_load_entries, suspending operations of the overlay.\n\nNo params.",
@@ -37741,8 +37741,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopFrameUpdate = Symbol(
-        None,
-        None,
+        [0x70],
+        [0x238A1B0],
         None,
         "RecycleShopFrameUpdate",
         "The shared frame_update of both recycle shop overlay_load_entries, managing operations of the overlay each frame.\n\nreturn: undefined4",
@@ -37750,8 +37750,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopCommonEntryPoint = Symbol(
-        None,
-        None,
+        [0x1154],
+        [0x238B294],
         None,
         "RecycleShopCommonEntryPoint",
         "Effectively the shared entry_point of both recycle shop overlay_load_entry, called immediately by both real entry_points to the overlay.\n\nr0: 1 if resuming, 0 if first entry.\nreturn: undefined4",
@@ -37759,8 +37759,8 @@ class NaOverlay20Functions:
     )
 
     PrintWynautTextbox = Symbol(
-        None,
-        None,
+        [0x1200],
+        [0x238B340],
         None,
         "PrintWynautTextbox",
         "Seems to display a textbox with wynaut's default portrait and a specified text string id.\n\nr0: string_id",
@@ -37768,8 +37768,8 @@ class NaOverlay20Functions:
     )
 
     PrintWynautSimpleMenu = Symbol(
-        None,
-        None,
+        [0x125C],
+        [0x238B39C],
         None,
         "PrintWynautSimpleMenu",
         "Seems to display a simple_menu with wynaut's default portrait, a specified text string id, and a few simple_menu_id_item pointers.\n\nr0: struct recycle_shop_main\nr1: string_id\nr2: simple_menu_id_items pointer",
@@ -37777,8 +37777,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopTryHidePortraitBox = Symbol(
-        None,
-        None,
+        [0x12D0],
+        [0x238B410],
         None,
         "RecycleShopTryHidePortraitBox",
         "Seems to hide the active portrait box? Might be doing something else in addition. \n\nr0: struct recycle_shop_main pointer\nr1: ?",
@@ -37786,8 +37786,8 @@ class NaOverlay20Functions:
     )
 
     PrintWynautNormalPortrait = Symbol(
-        None,
-        None,
+        [0x1368],
+        [0x238B4A8],
         None,
         "PrintWynautNormalPortrait",
         "Prepares a normal portrait for wynaut, and updates the necessary fields of recycle_shop_main to do so.\n\nr0: struct recycle_shop_main pointer",
@@ -37795,8 +37795,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopClosePortraitBox = Symbol(
-        None,
-        None,
+        [0x13D0],
+        [0x238B510],
         None,
         "RecycleShopClosePortraitBox",
         "Seems to close the currently active portrait box, if one exists.\n\nr0: struct recycle_shop_main pointer",
@@ -37804,8 +37804,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopCloseAllWindows = Symbol(
-        None,
-        None,
+        [0x146C],
+        [0x238B5AC],
         None,
         "RecycleShopCloseAllWindows",
         "Seems to close all windows of the recycle shop when called. Retrieves window_ids from RECYCLE_SHOP_UNK_STRUCT_SIZE_84H_PTR. \n\nNo params.",
@@ -37813,8 +37813,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopHandleTopScreenWindow = Symbol(
-        None,
-        None,
+        [0x151C],
+        [0x238B65C],
         None,
         "RecycleShopHandleTopScreenWindow",
         "Seems to generally manage the top screen window during item selection, assigning the below callbacks to some window creation function.\n\nreturn: undefined4",
@@ -37822,8 +37822,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopTopScreenDrawItemStats = Symbol(
-        None,
-        None,
+        [0x178C],
+        [0x238B8CC],
         None,
         "RecycleShopTopScreenDrawItemStats",
         "Seems to display the trade info and stats for the item the cursor is currently on on the top screen window.\n\nr0: int",
@@ -37831,8 +37831,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopTopScreenDrawItemName = Symbol(
-        None,
-        None,
+        [0x1900],
+        [0x238BA40],
         None,
         "RecycleShopTopScreenDrawItemName",
         "Seems to print the item the cursor is currently on to the top screen window. \n\nr0: window_id",
@@ -37840,8 +37840,8 @@ class NaOverlay20Functions:
     )
 
     RecycleShopTopScreenDrawInfoWindow = Symbol(
-        None,
-        None,
+        [0x1974],
+        [0x238BAB4],
         None,
         "RecycleShopTopScreenDrawInfoWindow",
         "Seems to display the bottom window in the top screen display of the recycle shop, which explains how to read the top window.\n\nr0: window_id\nr1: undefined4\nr2: undefined4\nr3: undefined4",
@@ -37849,8 +37849,8 @@ class NaOverlay20Functions:
     )
 
     DisplaySelectionTutorialWindow = Symbol(
-        None,
-        None,
+        [0x2DE0],
+        [0x238CF20],
         None,
         "DisplaySelectionTutorialWindow",
         "Displays a side window explaining how to multi-select items for non-specific recycling.\n\nr0: window_id\nr1: undefined4\nr2: undefined4\nr3: undefined4",
@@ -39300,8 +39300,8 @@ class NaOverlay25Section:
 class NaOverlay26Functions:
 
     MissionRewardOverlayEntryPoint = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x238A140],
         None,
         "MissionRewardOverlayEntryPoint",
         "The entry point for part of the mission reward sequence.\nA significant portion of this process lives in overlay 11 instead.\n\nreturn: undefined4",
@@ -39309,8 +39309,8 @@ class NaOverlay26Functions:
     )
 
     MissionRewardOverlayDestructor = Symbol(
-        None,
-        None,
+        [0x428],
+        [0x238A568],
         None,
         "MissionRewardOverlayDestructor",
         "The destructor for initializing the mission reward sequence. \n\nNo params.",
@@ -39318,8 +39318,8 @@ class NaOverlay26Functions:
     )
 
     MissionRewardOverlayFrameUpdate = Symbol(
-        None,
-        None,
+        [0x460],
+        [0x238A5A0],
         None,
         "MissionRewardOverlayFrameUpdate",
         "The entry point for part of the mission reward sequence.\nThe actual mission reward process itself is primarily done in overlay 11.\n\nreturn: undefined4",
@@ -39327,8 +39327,8 @@ class NaOverlay26Functions:
     )
 
     MissionRewardClosePortraitAndDialogueBox = Symbol(
-        None,
-        None,
+        [0x7CC],
+        [0x238A90C],
         None,
         "MissionRewardClosePortraitAndDialogueBox",
         "Responsible for closing the current portrait and dialogue box for the above functions.\n\nNo params.",
@@ -39336,8 +39336,8 @@ class NaOverlay26Functions:
     )
 
     ApplyRuleDungeonEffectsEntryPoint = Symbol(
-        None,
-        None,
+        [0x830],
+        [0x238A970],
         None,
         "ApplyRuleDungeonEffectsEntryPoint",
         "Just a guess. See ApplyRuleDungeonEffectsFrameUpdate for further explanation.\nIs an entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
@@ -39345,8 +39345,8 @@ class NaOverlay26Functions:
     )
 
     ApplyRuleDungeonEffectsDestructor = Symbol(
-        None,
-        None,
+        [0x85C],
+        [0x238A99C],
         None,
         "ApplyRuleDungeonEffectsDestructor",
         "Just a guess. See ApplyRuleDungeonEffectsFrameUpdate for further explanation.\nIs a destructor for an overlay_load_entry.\n\nNo params.",
@@ -39354,8 +39354,8 @@ class NaOverlay26Functions:
     )
 
     ApplyRuleDungeonEffectsFrameUpdate = Symbol(
-        None,
-        None,
+        [0x888],
+        [0x238A9C8],
         None,
         "ApplyRuleDungeonEffectsFrameUpdate",
         "Just a guess. After enough frames pass, conditionally calls GetMaxItemsAllowed, RemoveAllItemsStartingAt, IsMoneyAllowed, and SetMoneyCarried, \nas well as a handful of unknown functions that likely check if the entered dungeon is a rule dungeon. \nIs a frame_update for an overlay_load_entry.\n\nreturn: undefined4",
@@ -39363,8 +39363,8 @@ class NaOverlay26Functions:
     )
 
     ExitDungeon1EntryPoint = Symbol(
-        None,
-        None,
+        [0x928],
+        [0x238AA68],
         None,
         "ExitDungeon1EntryPoint",
         "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs an entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
@@ -39372,8 +39372,8 @@ class NaOverlay26Functions:
     )
 
     ExitDungeon1Destructor = Symbol(
-        None,
-        None,
+        [0x954],
+        [0x238AA94],
         None,
         "ExitDungeon1Destructor",
         "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs a destructor for an overlay_load_entry.\n\nNo params.",
@@ -39381,8 +39381,8 @@ class NaOverlay26Functions:
     )
 
     ExitDungeon1FrameUpdate = Symbol(
-        None,
-        None,
+        [0x980],
+        [0x238AAC0],
         None,
         "ExitDungeon1FrameUpdate",
         "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs a frame_update for an overlay_load_entry.\n\nreturn: undefined4",
@@ -39390,8 +39390,8 @@ class NaOverlay26Functions:
     )
 
     UnkOv26EntryPointEu0238b754 = Symbol(
-        None,
-        None,
+        [0xAD4],
+        [0x238AC14],
         None,
         "UnkOv26EntryPointEu0238b754",
         "Is an unidentified entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
@@ -39399,8 +39399,8 @@ class NaOverlay26Functions:
     )
 
     UnkOv26DestructorEu0238b780 = Symbol(
-        None,
-        None,
+        [0xB00],
+        [0x238AC40],
         None,
         "UnkOv26DestructorEu0238b780",
         "Is an unidentified destructor for an overlay_load_entry.\n\nNo params.",
@@ -39408,8 +39408,8 @@ class NaOverlay26Functions:
     )
 
     UnkOv26FrameUpdateEu0238b7ac = Symbol(
-        None,
-        None,
+        [0xB2C],
+        [0x238AC6C],
         None,
         "UnkOv26FrameUpdateEu0238b7ac",
         "Is an unidentified frame_update for an overlay_load_entry.\n\nreturn: undefined4",
@@ -39417,8 +39417,8 @@ class NaOverlay26Functions:
     )
 
     DungeonExitEntryPoint2 = Symbol(
-        None,
-        None,
+        [0xB98],
+        [0x238ACD8],
         None,
         "DungeonExitEntryPoint2",
         "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs an entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
@@ -39426,8 +39426,8 @@ class NaOverlay26Functions:
     )
 
     DungeonExitDestructor2 = Symbol(
-        None,
-        None,
+        [0xBD0],
+        [0x238AD10],
         None,
         "DungeonExitDestructor2",
         "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs a destructor for an overlay_load_entry.\n\nNo params.",
@@ -39435,8 +39435,8 @@ class NaOverlay26Functions:
     )
 
     DungeonExitFrameUpdate2 = Symbol(
-        None,
-        None,
+        [0xBFC],
+        [0x238AD3C],
         None,
         "DungeonExitFrameUpdate2",
         "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs a frame_update for an overlay_load_entry.\n\nreturn: undefined4",
@@ -39456,8 +39456,8 @@ class NaOverlay26Data:
     )
 
     MISSION_DEFAULT_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xCE6],
+        [0x238AE26],
         0xC,
         "MISSION_DEFAULT_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 4, 5, and technically 14.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue. \n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39465,8 +39465,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_10_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xCF2],
+        [0x238AE32],
         0xC,
         "MISSION_TYPE_10_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 10.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39474,8 +39474,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_9_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xCFE],
+        [0x238AE3E],
         0xC,
         "MISSION_TYPE_9_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 9.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39483,8 +39483,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_8_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xD0A],
+        [0x238AE4A],
         0xC,
         "MISSION_TYPE_8_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 8.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39492,8 +39492,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_6_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xD16],
+        [0x238AE56],
         0xC,
         "MISSION_TYPE_6_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 6.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39501,8 +39501,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_7_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xD22],
+        [0x238AE62],
         0xC,
         "MISSION_TYPE_7_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 7.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39510,8 +39510,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_3_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xD2E],
+        [0x238AE6E],
         0xC,
         "MISSION_TYPE_3_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 3.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39519,8 +39519,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_2_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xD3A],
+        [0x238AE7A],
         0xC,
         "MISSION_TYPE_2_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 2.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39528,8 +39528,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_1_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xD46],
+        [0x238AE86],
         0xC,
         "MISSION_TYPE_1_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 1.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39537,8 +39537,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_0_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xD52],
+        [0x238AE92],
         0xC,
         "MISSION_TYPE_0_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 0.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39546,8 +39546,8 @@ class NaOverlay26Data:
     )
 
     MISSION_TYPE_11_DIALOGUE_SEQS = Symbol(
-        None,
-        None,
+        [0xD5E],
+        [0x238AE9E],
         0xC,
         "MISSION_TYPE_11_DIALOGUE_SEQS",
         "A pair of mission_reward_dialogue_sequence structs used for missions of type 11.\nIs fed sequentially to MissionRewardFrameUpdate to either produce a textbox, or conclude the dialogue.\n\ntype: mission_reward_dialogue_sequence[2]",
@@ -39555,8 +39555,8 @@ class NaOverlay26Data:
     )
 
     DEBUG_CONQUEST_COUNT_STR = Symbol(
-        None,
-        None,
+        [0xD6C],
+        [0x238AEAC],
         None,
         "DEBUG_CONQUEST_COUNT_STR",
         "'UNIT RETURN %3d conquest count ======================='\n\ntype: string",
@@ -39564,8 +39564,8 @@ class NaOverlay26Data:
     )
 
     DEBUG_DEAD_COUNT_STR = Symbol(
-        None,
-        None,
+        [0xDA4],
+        [0x238AEE4],
         None,
         "DEBUG_DEAD_COUNT_STR",
         "'UNIT RETURN %3d dead count ======================='\n\ntype: string",
@@ -39573,8 +39573,8 @@ class NaOverlay26Data:
     )
 
     DEBUG_NO_COUNT_STR = Symbol(
-        None,
-        None,
+        [0xDD8],
+        [0x238AF18],
         None,
         "DEBUG_NO_COUNT_STR",
         "'UNIT RETURN %3d no count ======================='\n\ntype: string",
@@ -40341,8 +40341,8 @@ class NaOverlay29Functions:
     )
 
     GetMonsterOrTrapName = Symbol(
-        None,
-        None,
+        [0x6838],
+        [0x22E2A78],
         None,
         "GetMonsterOrTrapName",
         "Gets the name of the entity if it is a monster or trap. In other cases, the function either does nothing or gets an unrelated string.\n\nr0: [output] buffer\nr1: entity",
@@ -40558,8 +40558,8 @@ class NaOverlay29Functions:
     )
 
     DisplayStockpileNumbers = Symbol(
-        None,
-        None,
+        [0x8494],
+        [0x22E46D4],
         None,
         "DisplayStockpileNumbers",
         "Displays the numbers for a monster's stockpile stage above them.\n\nr0: entity pointer",
@@ -40567,8 +40567,8 @@ class NaOverlay29Functions:
     )
 
     PlayInvisifySeIfShouldDisplayEntity = Symbol(
-        None,
-        None,
+        [0x84C4],
+        [0x22E4704],
         None,
         "PlayInvisifySeIfShouldDisplayEntity",
         "Calls PlaySeByIdIfShouldDisplayEntity with the sound effect for turning a monster invisible.\n\nr0: entity pointer",
@@ -41422,8 +41422,8 @@ class NaOverlay29Functions:
     )
 
     GetTrapName = Symbol(
-        None,
-        None,
+        [0x115EC],
+        [0x22ED82C],
         None,
         "GetTrapName",
         "Gets the name of the given trap.\n\nr0: [output] buffer\nr1: trap id",
@@ -41665,8 +41665,8 @@ class NaOverlay29Functions:
     )
 
     ChangeTrapOnTile = Symbol(
-        None,
-        None,
+        [0x13238],
+        [0x22EF478],
         None,
         "ChangeTrapOnTile",
         "Changes the trap on the tile to the given trap id if there is already one on the tile.\n\nr0: tile\nr1: trap id",
@@ -41692,8 +41692,8 @@ class NaOverlay29Functions:
     )
 
     RevealTrapAtPos = Symbol(
-        None,
-        None,
+        [0x134C0],
+        [0x22EF700],
         None,
         "RevealTrapAtPos",
         "Reveals the trap at the given position if one is present.\n\nr0: x\nr1: y\nreturn: true if there was a hidden trap to reveal",
@@ -41746,8 +41746,8 @@ class NaOverlay29Functions:
     )
 
     TalkToSecretBazaarNpcStandard = Symbol(
-        None,
-        None,
+        [0x143C4],
+        [0x22F0604],
         None,
         "TalkToSecretBazaarNpcStandard",
         "Opens a dialogue box with the given shopkeeper as the speaker, without a yes/no menu and with param_5 set to false.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nreturn: ? (bool)",
@@ -41755,8 +41755,8 @@ class NaOverlay29Functions:
     )
 
     TalkToSecretBazaarNpcWithYesNoMenu = Symbol(
-        None,
-        None,
+        [0x143EC],
+        [0x22F062C],
         None,
         "TalkToSecretBazaarNpcWithYesNoMenu",
         "Opens a dialogue box with the given shopkeeper as the speaker, with a yes/no menu and with param_5 set to true.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nr3: pointer to an array of simple_menu_id_items\nreturn: ? (bool)",
@@ -41764,8 +41764,8 @@ class NaOverlay29Functions:
     )
 
     MakeTargetFaceUserAndIdle = Symbol(
-        None,
-        None,
+        [0x14414],
+        [0x22F0654],
         None,
         "MakeTargetFaceUserAndIdle",
         "Makes the target face the user and changes their animation to idle.\n\nr0: target entity pointer\nr1: user entity pointer",
@@ -41773,8 +41773,8 @@ class NaOverlay29Functions:
     )
 
     SubtractMoneyCarriedWithSfx = Symbol(
-        None,
-        None,
+        [0x1457C],
+        [0x22F07BC],
         None,
         "SubtractMoneyCarriedWithSfx",
         "Subtracts the amount of money from the the player's current amount of money and plays the sound effect for buying an item.\n\nr0: money amount",
@@ -41782,8 +41782,8 @@ class NaOverlay29Functions:
     )
 
     TalkToSecretBazaarNpc = Symbol(
-        None,
-        None,
+        [0x14744],
+        [0x22F0984],
         None,
         "TalkToSecretBazaarNpc",
         "Opens a dialogue box with the given shopkeeper as the speaker.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nr3: pointer to an array of simple_menu_id_items (null if there is no menu)\nstack[0]: ? (changes something in secret_bazaar_dialogue_info if true. seems to only be true if there is a menu)\nreturn: ? (bool)",
@@ -42234,8 +42234,8 @@ class NaOverlay29Functions:
     )
 
     CheckMonsterTeamMemberIdx = Symbol(
-        None,
-        None,
+        [0x1DA0C],
+        [0x22F9C4C],
         None,
         "CheckMonsterTeamMemberIdx",
         "Calls CheckTeamMemberIdx on the given monster's team_index.\n\nr0: entity pointer\nreturn: True if the value is equal to 0x55AA or 0x5AA5",
@@ -42261,8 +42261,8 @@ class NaOverlay29Functions:
     )
 
     ChangeMonsterAnimationToIdle = Symbol(
-        None,
-        None,
+        [0x1E120],
+        [0x22FA360],
         None,
         "ChangeMonsterAnimationToIdle",
         "Makes the monster play their idle animation in the given direction.\n\nr0: entity pointer\nr1: direction",
@@ -43817,8 +43817,8 @@ class NaOverlay29Functions:
     )
 
     IsEitherMonsterInvalid = Symbol(
-        None,
-        None,
+        [0x31414],
+        [0x230D654],
         None,
         "IsEitherMonsterInvalid",
         "Returns true if at least one of the given monsters is an invalid entity.\n\nr0: entity pointer\nr1: entity pointer\nreturn: bool",
@@ -47156,8 +47156,8 @@ class NaOverlay29Functions:
     )
 
     InteractWithSecretBazaarNpc = Symbol(
-        None,
-        None,
+        [0x68304],
+        [0x2344544],
         None,
         "InteractWithSecretBazaarNpc",
         "Called to interact with a secret bazaar shopkeeper.\n\nr0: user entity pointer\nr1: shopkeeper entity pointer",
