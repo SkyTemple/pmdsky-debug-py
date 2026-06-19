@@ -2207,6 +2207,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsMePlaying: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlaySeByIdVolumeWrapper: Symbol[
         Optional[list[int]],
         None,
@@ -3677,6 +3682,26 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    InventoryMenuNextPage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InventoryMenuPreviousPage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InventoryMenuNext10Pages: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InventoryMenuPrevious10Pages: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     OverlayLoadEntriesEqual: Symbol[
         Optional[list[int]],
         None,
@@ -4252,6 +4277,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetWorldMapLevel: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     InitDungeonListScriptVars: Symbol[
         Optional[list[int]],
         None,
@@ -4822,6 +4852,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    MtInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MtNext: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DungeonGoesUp: Symbol[
         Optional[list[int]],
         None,
@@ -5193,6 +5233,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     StrcmpMonsterName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitializeTeamMemberFromMentry: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5827,6 +5872,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsAcceptedMissionSlotEmpty: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     WasMissionCompletedToday: Symbol[
         Optional[list[int]],
         None,
@@ -5962,6 +6012,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    RandomizeMissionCategory: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SumValidMissionCategoryWeights: Symbol[
         Optional[list[int]],
         None,
@@ -6052,6 +6107,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    WriteMissionMtState: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ReadMissionMtStateLower: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ZeroInitMissionRewardDataStruct: Symbol[
         Optional[list[int]],
         None,
@@ -6092,7 +6157,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetRandomRequestNpc03KindVar: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetAllEventNpcs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetNewFriendActor: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6201,6 +6276,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     MAX_PLAY_TIME: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MT_MULT: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -7470,6 +7550,21 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MT_TABLE_INDEX: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TWIST_LOW_BIT_MULTS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MT_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     ITEM_TABLES_PTRS_1: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -7531,6 +7626,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     RANK_STRING_PTR_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RESCUE_BIN_UNPACK: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -35150,6 +35250,11 @@ Overlay28Protocol = SectionProtocol[
 
 class Overlay29FunctionsProtocol(Protocol):
 
+    InitDungeonPaletteStruct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetWeatherColorTable: Symbol[
         Optional[list[int]],
         None,
@@ -35256,6 +35361,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     OamTileNumberToVramAddressOv29: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ResetDungeonColorPalette: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -35655,6 +35765,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DungeonChangeTopScreenType: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetDirectionTowardsPosition: Symbol[
         Optional[list[int]],
         None,
@@ -35810,12 +35925,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayMeByIdIfNot998: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MusicTableIdxToMusicId: Symbol[
         Optional[list[int]],
         None,
     ]
 
     ChangeDungeonMusic: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetUnkMusicFlag: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -35866,6 +35991,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     RemoveUsedItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ConvertTmToUsedTm: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -35921,6 +36051,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DecrementWindCounter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateMonsterSummaryFromEntityOuter: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36136,6 +36271,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SubtractMoneyCarriedWithSfx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GonePebbleGradualPaletteShift: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36405,6 +36545,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DisplayLinkedMovesWarnings: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     MewSpawnCheck: Symbol[
         Optional[list[int]],
         None,
@@ -36506,6 +36651,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     FindMonsterWithBehavior: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountActiveMonsters: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -39210,6 +39360,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    MissionExitPrompt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     IsItemUnkMissionItem2: Symbol[
         Optional[list[int]],
         None,
@@ -39340,6 +39495,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ClearMissionDestinationInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     FloorHasMissionMonster: Symbol[
         Optional[list[int]],
         None,
@@ -39356,6 +39516,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GetFirstExperienceLockedTeamMember: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TryCompleteMission: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TreasureMemoComplete: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -39581,6 +39751,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DisplayMessageInternal: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PrintMissionCompleteString: Symbol[
         Optional[list[int]],
         None,
     ]

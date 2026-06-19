@@ -3844,6 +3844,15 @@ class NaItcmArm9Functions:
         None,
     )
 
+    IsMePlaying = Symbol(
+        None,
+        None,
+        None,
+        "IsMePlaying",
+        "Seems to check if the specified ME effect is currently active. Has some kind of special logic for unknown ME value 0x3E6, which is not known to be a valid ME value...\nMEs are usually short jingles that are used when notifying the player of something, like unlocking a dungeon or receiving an item.\n\nr0: ME_id\nreturn: 1 if that ME is playing, 0 if not.",
+        None,
+    )
+
     PlaySeByIdVolumeWrapper = Symbol(
         None,
         None,
@@ -6470,6 +6479,42 @@ class NaItcmArm9Functions:
         None,
     )
 
+    InventoryMenuNextPage = Symbol(
+        None,
+        None,
+        None,
+        "InventoryMenuNextPage",
+        "Tries to go to the next page of an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
+        None,
+    )
+
+    InventoryMenuPreviousPage = Symbol(
+        None,
+        None,
+        None,
+        "InventoryMenuPreviousPage",
+        "Tries to go to the previous page of an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
+        None,
+    )
+
+    InventoryMenuNext10Pages = Symbol(
+        None,
+        None,
+        None,
+        "InventoryMenuNext10Pages",
+        "Tries to go forward by 10 pages in an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
+        None,
+    )
+
+    InventoryMenuPrevious10Pages = Symbol(
+        None,
+        None,
+        None,
+        "InventoryMenuPrevious10Pages",
+        "Tries to go backward by 10 pages in an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
+        None,
+    )
+
     OverlayLoadEntriesEqual = Symbol(
         None,
         None,
@@ -7505,6 +7550,15 @@ class NaItcmArm9Functions:
         None,
     )
 
+    SetWorldMapLevel = Symbol(
+        None,
+        None,
+        None,
+        "SetWorldMapLevel",
+        "Calls SaveScriptVariableValue with script variable $WORLD_MAP_LEVEL. \n\nr0: value to save",
+        None,
+    )
+
     InitDungeonListScriptVars = Symbol(
         None,
         None,
@@ -8531,6 +8585,24 @@ class NaItcmArm9Functions:
         None,
     )
 
+    MtInit = Symbol(
+        None,
+        None,
+        None,
+        "MtInit",
+        "Initializes the MT_TABLE Mersenne Twister with a specified initial seed.\n\nr0: seed",
+        None,
+    )
+
+    MtNext = Symbol(
+        None,
+        None,
+        None,
+        "MtNext",
+        "Advances the MT_TABLE Mersenne Twister by one, and returns the result.\n\nreturn: next rand",
+        None,
+    )
+
     DungeonGoesUp = Symbol(
         None,
         None,
@@ -9203,6 +9275,15 @@ class NaItcmArm9Functions:
         None,
         "StrcmpMonsterName",
         "Checks if the string_buffer matches the name of the species\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: string_buffer\nr1: monster ID\nreturn: bool",
+        None,
+    )
+
+    InitializeTeamMemberFromMentry = Symbol(
+        None,
+        None,
+        None,
+        "InitializeTeamMemberFromMentry",
+        "Seems to copy a ground_monster pokemon from the Chimecho Assembly to the active team.\n\nr0: team_member pointer\nr1: ground_monster pointer\nr2: team_member index",
         None,
     )
 
@@ -10340,6 +10421,15 @@ class NaItcmArm9Functions:
         None,
     )
 
+    IsAcceptedMissionSlotEmpty = Symbol(
+        None,
+        None,
+        None,
+        "IsAcceptedMissionSlotEmpty",
+        "Checks if a specified slot of the player's mission list is empty.\n\nr0: slot id\nreturn: 1 if the slot is empty, 0 if not.",
+        None,
+    )
+
     WasMissionCompletedToday = Symbol(
         None,
         None,
@@ -10583,6 +10673,15 @@ class NaItcmArm9Functions:
         None,
     )
 
+    RandomizeMissionCategory = Symbol(
+        None,
+        None,
+        None,
+        "RandomizeMissionCategory",
+        "Seems to select a mission_weighted_category at weighted random, of the valid options.\n\nr0: sum of mission weight categories\nr1: ?\nr2: mission_weighted_category pointers to select at random.\nreturn: mission_weighted_category index, selected at random",
+        None,
+    )
+
     SumValidMissionCategoryWeights = Symbol(
         None,
         None,
@@ -10745,6 +10844,24 @@ class NaItcmArm9Functions:
         None,
     )
 
+    WriteMissionMtState = Symbol(
+        None,
+        None,
+        None,
+        "WriteMissionMtState",
+        "Stores a Mersenne Twister state to RESCUE_BIN_UNPACK->mt_state.\n\n\nr0: state pointer",
+        None,
+    )
+
+    ReadMissionMtStateLower = Symbol(
+        None,
+        None,
+        None,
+        "ReadMissionMtStateLower",
+        "Returns the bottom half of RESCUE_BIN_UNPACK->mt_state.\n\nreturn: bottom half of the current mt_state.",
+        None,
+    )
+
     ZeroInitMissionRewardDataStruct = Symbol(
         None,
         None,
@@ -10817,12 +10934,30 @@ class NaItcmArm9Functions:
         None,
     )
 
+    SetRandomRequestNpc03KindVar = Symbol(
+        None,
+        None,
+        None,
+        "SetRandomRequestNpc03KindVar",
+        "Sets the RANDOM_REQUEST_NPC03_KIND script variable, which controls the species of ACTOR_REQUEST_NPC03.\n\nr0: species to store in RANDOM_REQUEST_NPC03_KIND.",
+        None,
+    )
+
     SetAllEventNpcs = Symbol(
         None,
         None,
         None,
         "SetAllEventNpcs",
         "Sets ACTOR_EVENT_NPC01 through ACTOR_EVENT_NPC04 to specific actor_ids.\n\nr0: ACTOR_EVENT_NPC01 actor_id\nr1: ACTOR_EVENT_NPC02 actor_id\nr2: ACTOR_EVENT_NPC03 actor_id\nr3: ACTOR_EVENT_NPC04 actor_id",
+        None,
+    )
+
+    SetNewFriendActor = Symbol(
+        None,
+        None,
+        None,
+        "SetNewFriendActor",
+        "Sets NPC_NEW_FRIEND to a specific actor_id.\n\nr0: NPC_NEW_FRIEND actor_id",
         None,
     )
 
@@ -11157,6 +11292,15 @@ class NaItcmArm9Data:
         "MAX_PLAY_TIME",
         "Maximum number of seconds that the file timer counts up to.\n\n35999999 seconds (one second under 10000 hours).",
         "uint32_t",
+    )
+
+    MT_MULT = Symbol(
+        None,
+        None,
+        None,
+        "MT_MULT",
+        "The standard mult for Mersenne Twister initialization, 0x6C078965.\n\ntype: int",
+        "int",
     )
 
     MONSTER_ID_LIMIT = Symbol(
@@ -13304,6 +13448,33 @@ class NaItcmArm9Data:
         "struct adventure_log*",
     )
 
+    MT_TABLE_INDEX = Symbol(
+        None,
+        None,
+        None,
+        "MT_TABLE_INDEX",
+        "The current index of the Mersenne Twister Table.\n\ntype: int",
+        "int",
+    )
+
+    TWIST_LOW_BIT_MULTS = Symbol(
+        None,
+        None,
+        None,
+        "TWIST_LOW_BIT_MULTS",
+        "The mults for the 'twist' of a Mersenne Twister, 0x0 and 0x9908B0DF.\n\ntype: int[2]",
+        "int[2]",
+    )
+
+    MT_TABLE = Symbol(
+        None,
+        None,
+        None,
+        "MT_TABLE",
+        "A full Mersenne Twister table. Only known to be used by mission generation.\n\ntype: int[624]",
+        "int[624]",
+    )
+
     ITEM_TABLES_PTRS_1 = Symbol(
         None,
         None,
@@ -13419,6 +13590,15 @@ class NaItcmArm9Data:
         "RANK_STRING_PTR_TABLE",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: const char*[16]",
         "char*[16]",
+    )
+
+    RESCUE_BIN_UNPACK = Symbol(
+        None,
+        None,
+        None,
+        "RESCUE_BIN_UNPACK",
+        "The unpacked contents of the RESCUE/rescue.bin file. Also contains a mersenne twister state, for some reason.\n\ntype: rescue_bin_unpack struct",
+        "struct rescue_bin_unpack",
     )
 
     SMD_EVENTS_FUN_TABLE = Symbol(
@@ -37681,6 +37861,15 @@ class NaItcmOverlay28Section:
 
 class NaItcmOverlay29Functions:
 
+    InitDungeonPaletteStruct = Symbol(
+        None,
+        None,
+        None,
+        "InitDungeonPaletteStruct",
+        "Seems to initialize the dungeon_palette_struct, which likely handles background color display in dungeon mode. \n\nNo params.",
+        None,
+    )
+
     GetWeatherColorTable = Symbol(
         None,
         None,
@@ -37876,6 +38065,15 @@ class NaItcmOverlay29Functions:
         None,
         "OamTileNumberToVramAddressOv29",
         "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nIs an exact copy of OamTileNumberToVramAddress in arm9.\n\nr0: tile number\nr1: 0 for bottom screen, 1 for top screen\nreturn: VRAM tile address",
+        None,
+    )
+
+    ResetDungeonColorPalette = Symbol(
+        None,
+        None,
+        None,
+        "ResetDungeonColorPalette",
+        "Zeroes the entire color_table in the dungeon struct.\n\nNo params.",
         None,
     )
 
@@ -38590,6 +38788,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    DungeonChangeTopScreenType = Symbol(
+        None,
+        None,
+        None,
+        "DungeonChangeTopScreenType",
+        "Seems to change the top screen display type in dungeon mode.\n\nr0: index of top screen mode to change to",
+        None,
+    )
+
     GetDirectionTowardsPosition = Symbol(
         None,
         None,
@@ -38869,6 +39076,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    PlayMeByIdIfNot998 = Symbol(
+        None,
+        None,
+        None,
+        "PlayMeByIdIfNot998",
+        "Plays the specified ME effect if it is not a specific unknown ME value (0x3E6). This is not known to be a valid ME value...\nMEs are usually short jingles that are used when notifying the player of something, like unlocking a dungeon or receiving an item.\n\nr0: ME_id",
+        None,
+    )
+
     MusicTableIdxToMusicId = Symbol(
         None,
         None,
@@ -38884,6 +39100,15 @@ class NaItcmOverlay29Functions:
         None,
         "ChangeDungeonMusic",
         "Replace the currently playing music with the provided music\n\nr0: music ID",
+        None,
+    )
+
+    SetUnkMusicFlag = Symbol(
+        None,
+        None,
+        None,
+        "SetUnkMusicFlag",
+        "Seems to set some kind of flag in the dungeon struct that affects bgm in some way.\nCalled in ApplyDamage immediately before and after reviving a pokemon, as well as other places.\n\nr0: uint8_t",
         None,
     )
 
@@ -38974,6 +39199,15 @@ class NaItcmOverlay29Functions:
         None,
         "RemoveUsedItem",
         "Removes an item from the bag or from the floor after using it\n\nr0: Pointer to the entity that used the item\nr1: Parameter index in monster::action_data::action_parameters. Will be used to use to determine the index of the used item.",
+        None,
+    )
+
+    ConvertTmToUsedTm = Symbol(
+        None,
+        None,
+        None,
+        "ConvertTmToUsedTm",
+        "Seems to be responsible for turning a TM into a Used TM after use. Explicitly checks if the TM is an HM, and if so, does not transform it.\n\nr0: Pointer to the entity that used the TM.\nr1: Parameter index in monster::action_data::action_parameters. Will be used to use to determine the index of the used item.",
         None,
     )
 
@@ -39073,6 +39307,15 @@ class NaItcmOverlay29Functions:
         None,
         "DecrementWindCounter",
         "Decrements dungeon::wind_turns and displays a wind warning message if required.\n\nNo params.",
+        None,
+    )
+
+    CreateMonsterSummaryFromEntityOuter = Symbol(
+        None,
+        None,
+        None,
+        "CreateMonsterSummaryFromEntityOuter",
+        "Seems to be the parent function for CreateMonsterSummaryFromEntity.\nSets the fainted_monster_dungeon_end_reason field to a damage_source. \n\nr0: damage_source_16\nr1: entity pointer\nr2: monster pointer\nr3: int",
         None,
     )
 
@@ -39460,6 +39703,15 @@ class NaItcmOverlay29Functions:
         None,
         "SubtractMoneyCarriedWithSfx",
         "Subtracts the amount of money from the the player's current amount of money and plays the sound effect for buying an item.\n\nr0: money amount",
+        None,
+    )
+
+    GonePebbleGradualPaletteShift = Symbol(
+        None,
+        None,
+        None,
+        "GonePebbleGradualPaletteShift",
+        "Seems to be responsible for the palette shift of the dungeon background for the Gone Pebble item effect.\n\nr0: rgba table pointer\nr1: uint",
         None,
     )
 
@@ -39940,6 +40192,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    DisplayLinkedMovesWarnings = Symbol(
+        None,
+        None,
+        None,
+        "DisplayLinkedMovesWarnings",
+        "Seems to handle displaying the text string for linked moves de-linking when at 2, 1, or 0 PP. \n\nr0: entity pointer\nr1: move_slot id",
+        None,
+    )
+
     MewSpawnCheck = Symbol(
         None,
         None,
@@ -40126,6 +40387,15 @@ class NaItcmOverlay29Functions:
         None,
         "FindMonsterWithBehavior",
         "Searches the dungeon for a monster with a certain monster behavior, and returns the first matching entity.\n\nr0: monster behavior to search for\nreturn: the first entity in the dungeon with the given monster behavior, or null if not found",
+        None,
+    )
+
+    CountActiveMonsters = Symbol(
+        None,
+        None,
+        None,
+        "CountActiveMonsters",
+        "Loops through the monster entity table, counting the number of valid entities.\n\nreturn: number of monsters on the floor",
         None,
     )
 
@@ -44989,6 +45259,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    MissionExitPrompt = Symbol(
+        None,
+        None,
+        None,
+        "MissionExitPrompt",
+        "Responsible for asking the player if they want to leave the dungeon after a mission via nested YesNoMenu() calls.\nThe first YesNoMenu uses a text string id from the param of this function.\n\nr0: int\nreturn: undefined4",
+        None,
+    )
+
     IsItemUnkMissionItem2 = Symbol(
         None,
         None,
@@ -45223,6 +45502,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    ClearMissionDestinationInfo = Symbol(
+        None,
+        None,
+        None,
+        "ClearMissionDestinationInfo",
+        "Zeroes all fields of a mission_destination_info struct.\nSeems to be called as part of FillMissionDestinationInfo, and one other place.\n\nr0: mission_destination_info pointer",
+        None,
+    )
+
     FloorHasMissionMonster = Symbol(
         None,
         None,
@@ -45256,6 +45544,24 @@ class NaItcmOverlay29Functions:
         None,
         "GetFirstExperienceLockedTeamMember",
         "Returns the entity pointer to the first experience-locked member on the team (so a client or a special story ally).\n\nReturns a null pointer instead if none are present.\n\nreturn: entity pointer",
+        None,
+    )
+
+    TryCompleteMission = Symbol(
+        None,
+        None,
+        None,
+        "TryCompleteMission",
+        "Seems to check if the mission on the current floor has been completed. Each mission type seems to use the params differently.\n\nr0: target monster_id or arrest outlaw item_id?\nr1: treasure memo item_id?",
+        None,
+    )
+
+    TreasureMemoComplete = Symbol(
+        None,
+        None,
+        None,
+        "TreasureMemoComplete",
+        "Seems to run when a treasure memo mission has been completed.\nHandles the fanfare for completing the mission, runs TryCompleteMission, and calls MissionExitPrompt.\n\nNo params.",
         None,
     )
 
@@ -45656,6 +45962,15 @@ class NaItcmOverlay29Functions:
         None,
         "DisplayMessageInternal",
         "Called by DisplayMessage. Seems to be the function that handles the display of the dialogue box. It won't return until all the characters have been written and after the player manually closes the dialogue box (if the corresponding parameter was set).\n\nr0: ID of the string to display\nr1: True to wait for player input before closing the dialogue box, false to close it automatically once all the characters get printed.\nr2: pointer to the structure representing the desired state of the portrait\nr3: ?\nstack[0]: ?\nstack[1]: ?",
+        None,
+    )
+
+    PrintMissionCompleteString = Symbol(
+        None,
+        None,
+        None,
+        "PrintMissionCompleteString",
+        "Seems to handle the displaying the textbox for completing a specific kind of mission.\nOnly known to be called by TreasureMemoComplete.\n\nr0: string_id to play for completing the mission.\nr1: ?\nr2: ?\nr3: ?\nstack[0]: ?",
         None,
     )
 
