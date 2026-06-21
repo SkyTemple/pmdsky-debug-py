@@ -13325,7 +13325,7 @@ class EuArm9Data:
     )
 
     DEBUG_IS_INITIALIZED = Symbol(
-        [0xAFF50], [0x20AFF50], None, "DEBUG_IS_INITIALIZED", "", "bool"
+        [0xAFF50], [0x20AFF50], 0x1, "DEBUG_IS_INITIALIZED", "", "bool"
     )
 
     PACK_FILES_OPENED = Symbol(
@@ -13416,7 +13416,7 @@ class EuArm9Data:
     WAN_TABLE = Symbol(
         [0xB0524],
         [0x20B0524],
-        None,
+        0x4,
         "WAN_TABLE",
         "pointer to the list of wan sprite loaded in RAM\n\nstruct wan_table*",
         "struct wan_table*",
@@ -13447,7 +13447,7 @@ class EuArm9Data:
     TBL_TALK_GROUP_STRING_ID_START = Symbol(
         [0xB0614],
         [0x20B0614],
-        None,
+        0xC,
         "TBL_TALK_GROUP_STRING_ID_START",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
         "int16_t[6]",

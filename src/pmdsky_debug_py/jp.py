@@ -3891,8 +3891,8 @@ class JpArm9Functions:
     )
 
     IsMePlaying = Symbol(
-        None,
-        None,
+        [0x17C68],
+        [0x2017C68],
         None,
         "IsMePlaying",
         "Seems to check if the specified ME effect is currently active. Has some kind of special logic for unknown ME value 0x3E6, which is not known to be a valid ME value...\nMEs are usually short jingles that are used when notifying the player of something, like unlocking a dungeon or receiving an item.\n\nr0: ME_id\nreturn: 1 if that ME is playing, 0 if not.",
@@ -6546,8 +6546,8 @@ class JpArm9Functions:
     )
 
     InventoryMenuNextPage = Symbol(
-        None,
-        None,
+        [0x335A4],
+        [0x20335A4],
         None,
         "InventoryMenuNextPage",
         "Tries to go to the next page of an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
@@ -6555,8 +6555,8 @@ class JpArm9Functions:
     )
 
     InventoryMenuPreviousPage = Symbol(
-        None,
-        None,
+        [0x335CC],
+        [0x20335CC],
         None,
         "InventoryMenuPreviousPage",
         "Tries to go to the previous page of an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
@@ -6564,8 +6564,8 @@ class JpArm9Functions:
     )
 
     InventoryMenuNext10Pages = Symbol(
-        None,
-        None,
+        [0x335EC],
+        [0x20335EC],
         None,
         "InventoryMenuNext10Pages",
         "Tries to go forward by 10 pages in an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
@@ -6573,8 +6573,8 @@ class JpArm9Functions:
     )
 
     InventoryMenuPrevious10Pages = Symbol(
-        None,
-        None,
+        [0x33610],
+        [0x2033610],
         None,
         "InventoryMenuPrevious10Pages",
         "Tries to go backward by 10 pages in an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
@@ -7617,8 +7617,8 @@ class JpArm9Functions:
     )
 
     SetWorldMapLevel = Symbol(
-        None,
-        None,
+        [0x4D148],
+        [0x204D148],
         None,
         "SetWorldMapLevel",
         "Calls SaveScriptVariableValue with script variable $WORLD_MAP_LEVEL. \n\nr0: value to save",
@@ -8652,8 +8652,8 @@ class JpArm9Functions:
     )
 
     MtInit = Symbol(
-        None,
-        None,
+        [0x51438],
+        [0x2051438],
         None,
         "MtInit",
         "Initializes the MT_TABLE Mersenne Twister with a specified initial seed.\n\nr0: seed",
@@ -8661,8 +8661,8 @@ class JpArm9Functions:
     )
 
     MtNext = Symbol(
-        None,
-        None,
+        [0x51484],
+        [0x2051484],
         None,
         "MtNext",
         "Advances the MT_TABLE Mersenne Twister by one, and returns the result.\n\nreturn: next rand",
@@ -9345,8 +9345,8 @@ class JpArm9Functions:
     )
 
     InitializeTeamMemberFromMentry = Symbol(
-        None,
-        None,
+        [0x53588],
+        [0x2053588],
         None,
         "InitializeTeamMemberFromMentry",
         "Seems to copy a ground_monster pokemon from the Chimecho Assembly to the active team.\n\nr0: team_member pointer\nr1: ground_monster pointer\nr2: team_member index",
@@ -10488,8 +10488,8 @@ class JpArm9Functions:
     )
 
     IsAcceptedMissionSlotEmpty = Symbol(
-        None,
-        None,
+        [0x5F3F0],
+        [0x205F3F0],
         None,
         "IsAcceptedMissionSlotEmpty",
         "Checks if a specified slot of the player's mission list is empty.\n\nr0: slot id\nreturn: 1 if the slot is empty, 0 if not.",
@@ -10740,8 +10740,8 @@ class JpArm9Functions:
     )
 
     RandomizeMissionCategory = Symbol(
-        None,
-        None,
+        [0x62530],
+        [0x2062530],
         None,
         "RandomizeMissionCategory",
         "Seems to select a mission_weighted_category at weighted random, of the valid options.\n\nr0: sum of mission weight categories\nr1: ?\nr2: mission_weighted_category pointers to select at random.\nreturn: mission_weighted_category index, selected at random",
@@ -10911,8 +10911,8 @@ class JpArm9Functions:
     )
 
     WriteMissionMtState = Symbol(
-        None,
-        None,
+        [0x637DC],
+        [0x20637DC],
         None,
         "WriteMissionMtState",
         "Stores a Mersenne Twister state to RESCUE_BIN_UNPACK->mt_state.\n\n\nr0: state pointer",
@@ -10920,8 +10920,8 @@ class JpArm9Functions:
     )
 
     ReadMissionMtStateLower = Symbol(
-        None,
-        None,
+        [0x637EC],
+        [0x20637EC],
         None,
         "ReadMissionMtStateLower",
         "Returns the bottom half of RESCUE_BIN_UNPACK->mt_state.\n\nreturn: bottom half of the current mt_state.",
@@ -11001,8 +11001,8 @@ class JpArm9Functions:
     )
 
     SetRandomRequestNpc03KindVar = Symbol(
-        None,
-        None,
+        [0x65E7C],
+        [0x2065E7C],
         None,
         "SetRandomRequestNpc03KindVar",
         "Sets the RANDOM_REQUEST_NPC03_KIND script variable, which controls the species of ACTOR_REQUEST_NPC03.\n\nr0: species to store in RANDOM_REQUEST_NPC03_KIND.",
@@ -11019,8 +11019,8 @@ class JpArm9Functions:
     )
 
     SetNewFriendActor = Symbol(
-        None,
-        None,
+        [0x65EB0],
+        [0x2065EB0],
         None,
         "SetNewFriendActor",
         "Sets NPC_NEW_FRIEND to a specific actor_id.\n\nr0: NPC_NEW_FRIEND actor_id",
@@ -13240,7 +13240,7 @@ class JpArm9Data:
     LFO_OUTPUT_VOICE_UPDATE_FLAGS = Symbol(
         [0xAB3E8],
         [0x20AB3E8],
-        None,
+        0x10,
         "LFO_OUTPUT_VOICE_UPDATE_FLAGS",
         "",
         "struct dse_voice_update_flags",
@@ -13265,11 +13265,11 @@ class JpArm9Data:
     )
 
     TEX_PLTT_START_ADDR_TABLE = Symbol(
-        [0xAF4FC], [0x20AF4FC], None, "TEX_PLTT_START_ADDR_TABLE", "", "int16_t[8]"
+        [0xAF4FC], [0x20AF4FC], 0x10, "TEX_PLTT_START_ADDR_TABLE", "", "int16_t[8]"
     )
 
     TEX_START_ADDR_TABLE = Symbol(
-        [0xAF50C], [0x20AF50C], None, "TEX_START_ADDR_TABLE", "", "int16_t[48]"
+        [0xAF50C], [0x20AF50C], 0x60, "TEX_START_ADDR_TABLE", "", "int16_t[48]"
     )
 
     VOLUME_TABLE = Symbol([0xAFD6C], [0x20AFD6C], 0x2D4, "VOLUME_TABLE", "724*0x1", "")
@@ -13277,7 +13277,7 @@ class JpArm9Data:
     MEMORY_ALLOCATION_ARENA_GETTERS = Symbol(
         [0xB0340],
         [0x20B0340],
-        None,
+        0x8,
         "MEMORY_ALLOCATION_ARENA_GETTERS",
         "Functions to get the desired memory arena for allocating and freeing heap memory.\n\ntype: struct mem_arena_getters",
         "struct mem_arena_getters",
@@ -13320,13 +13320,13 @@ class JpArm9Data:
     )
 
     DEBUG_IS_INITIALIZED = Symbol(
-        [0xB0AD8], [0x20B0AD8], None, "DEBUG_IS_INITIALIZED", "", "bool"
+        [0xB0AD8], [0x20B0AD8], 0x1, "DEBUG_IS_INITIALIZED", "", "bool"
     )
 
     PACK_FILES_OPENED = Symbol(
         [0xB0ADC],
         [0x20B0ADC],
-        None,
+        0x4,
         "PACK_FILES_OPENED",
         "[Runtime] A pointer to the 6 opened Pack files (listed at PACK_FILE_PATHS_TABLE)\n\ntype: struct pack_file_opened*",
         "struct pack_file_opened*",
@@ -13335,7 +13335,7 @@ class JpArm9Data:
     PACK_FILE_PATHS_TABLE = Symbol(
         [0xB0AE0],
         [0x20B0AE0],
-        None,
+        0x18,
         "PACK_FILE_PATHS_TABLE",
         "List of pointers to path strings to all known pack files.\nThe game uses this table to load its resources when launching dungeon mode.\n\ntype: char*[6]",
         "char*[6]",
@@ -13357,7 +13357,7 @@ class JpArm9Data:
     ITEM_DATA_TABLE_PTRS = Symbol(
         [0xB0B00],
         [0x20B0B00],
-        None,
+        0xC,
         "ITEM_DATA_TABLE_PTRS",
         "[Runtime] List of pointers to various item data tables.\n\nThe first two pointers are definitely item-related (although the order appears to be flipped between EU/NA?). Not sure about the third pointer.",
         "void*[3]",
@@ -13375,7 +13375,7 @@ class JpArm9Data:
     SYNTH_BIN_FILE_PTR = Symbol(
         [0xB0B14],
         [0x20B0B14],
-        None,
+        0x4,
         "SYNTH_BIN_FILE_PTR",
         "The location of the data/SYNTH/synth.bin file while loaded.",
         "struct synth_file*",
@@ -13402,7 +13402,7 @@ class JpArm9Data:
     OBJ_GRAPHICS_CONTROLS_PTR = Symbol(
         [0xB108C],
         [0x20B108C],
-        None,
+        0x4,
         "OBJ_GRAPHICS_CONTROLS_PTR",
         "[Runtime] Points to the collection of master structs responsible for displaying objects.\n\ntype: struct obj_graphics_controls*",
         "struct obj_graphics_controls*",
@@ -13411,7 +13411,7 @@ class JpArm9Data:
     WAN_TABLE = Symbol(
         [0xB10A8],
         [0x20B10A8],
-        None,
+        0x4,
         "WAN_TABLE",
         "pointer to the list of wan sprite loaded in RAM\n\nstruct wan_table*",
         "struct wan_table*",
@@ -13420,7 +13420,7 @@ class JpArm9Data:
     RENDER_3D = Symbol(
         [0xB10C0],
         [0x20B10C0],
-        None,
+        0x44,
         "RENDER_3D",
         "The (seemingly) unique instance render_3d_global in the game\n\ntype: struct render_3d_global",
         "struct render_3d_global",
@@ -13429,7 +13429,7 @@ class JpArm9Data:
     RENDER_3D_FUNCTIONS_64 = Symbol(
         [0xB1104],
         [0x20B1104],
-        None,
+        0x20,
         "RENDER_3D_FUNCTIONS_64",
         "Pointers to the 8 functions available for rendering a render_3d_element_64\n\ntype: render_3d_element_64_fn_t[8]",
         "render_3d_element_64_fn_t[8]",
@@ -13442,7 +13442,7 @@ class JpArm9Data:
     TBL_TALK_GROUP_STRING_ID_START = Symbol(
         [0xB1140],
         [0x20B1140],
-        None,
+        0xC,
         "TBL_TALK_GROUP_STRING_ID_START",
         "Note: unverified, ported from Irdkwia's notes\n\ntype: int16_t[6]",
         "int16_t[6]",
@@ -13451,7 +13451,7 @@ class JpArm9Data:
     MENU_CONTROL_PTR = Symbol(
         [0xB11D8],
         [0x20B11D8],
-        None,
+        0x4,
         "MENU_CONTROL_PTR",
         "Pointer to the master struct used for handling menus.\n\ntype: menu_control*",
         "struct menu_control*",
@@ -13469,7 +13469,7 @@ class JpArm9Data:
     MISSION_REWARD_STRUCT_MAIN_PTR = Symbol(
         [0xB16E8],
         [0x20B16E8],
-        None,
+        0x4,
         "MISSION_REWARD_STRUCT_MAIN_PTR",
         "Points to a mission_reward_struct_main struct, responsible for handling the overlay 11 portion of the mission reward sequence.\nIs also used sparingly during the Spinda Cafe egg event.\n\ntype: mission_reward_struct_main pointer",
         "struct mission_reward_struct_main*",
@@ -13514,7 +13514,7 @@ class JpArm9Data:
     GLOBAL_PROGRESS_PTR = Symbol(
         [0xB17E8],
         [0x20B17E8],
-        None,
+        0x4,
         "GLOBAL_PROGRESS_PTR",
         "[Runtime]\n\ntype: struct global_progress*",
         "struct global_progress*",
@@ -13530,27 +13530,27 @@ class JpArm9Data:
     )
 
     MT_TABLE_INDEX = Symbol(
-        None,
-        None,
-        None,
+        [0xB17F0],
+        [0x20B17F0],
+        0x4,
         "MT_TABLE_INDEX",
         "The current index of the Mersenne Twister Table.\n\ntype: int",
         "int",
     )
 
     TWIST_LOW_BIT_MULTS = Symbol(
-        None,
-        None,
-        None,
+        [0xB17F0],
+        [0x20B17F0],
+        0x8,
         "TWIST_LOW_BIT_MULTS",
         "The mults for the 'twist' of a Mersenne Twister, 0x0 and 0x9908B0DF.\n\ntype: int[2]",
         "int[2]",
     )
 
     MT_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0xB17F0],
+        [0x20B17F0],
+        0x9C0,
         "MT_TABLE",
         "A full Mersenne Twister table. Only known to be used by mission generation.\n\ntype: int[624]",
         "int[624]",
@@ -13674,9 +13674,9 @@ class JpArm9Data:
     )
 
     RESCUE_BIN_UNPACK = Symbol(
-        None,
-        None,
-        None,
+        [0xB234C],
+        [0x20B234C],
+        0x28,
         "RESCUE_BIN_UNPACK",
         "The unpacked contents of the RESCUE/rescue.bin file. Also contains a mersenne twister state, for some reason.\n\ntype: rescue_bin_unpack struct",
         "struct rescue_bin_unpack",
@@ -13685,7 +13685,7 @@ class JpArm9Data:
     SMD_EVENTS_FUN_TABLE = Symbol(
         [0xB2404],
         [0x20B2404],
-        None,
+        0x1FC,
         "SMD_EVENTS_FUN_TABLE",
         "Table of all DSE events, see https://projectpokemon.org/docs/mystery-dungeon-nds/procyon-studios-digital-sound-elements-r12/\n\nIrdkwia's notes: named DSEEventFunctionPtrTable with length 0x3C0 (note the disagreement), 240*0x4.",
         "void*[127]",
@@ -13712,15 +13712,15 @@ class JpArm9Data:
     LFO_WAVEFORM_CALLBACKS = Symbol(
         [0xB2AC4],
         [0x20B2AC4],
-        None,
+        0x40,
         "LFO_WAVEFORM_CALLBACKS",
         "",
         "sound_lfo_waveform_callback[16]",
     )
 
-    IS_DISP_ON = Symbol([0xB4408], [0x20B4408], None, "IS_DISP_ON", "", "bool")
+    IS_DISP_ON = Symbol([0xB4408], [0x20B4408], 0x1, "IS_DISP_ON", "", "bool")
 
-    GXI_DMA_ID = Symbol([0xB440C], [0x20B440C], None, "GXI_DMA_ID", "", "uint32_t")
+    GXI_DMA_ID = Symbol([0xB440C], [0x20B440C], 0x4, "GXI_DMA_ID", "", "uint32_t")
 
     RAND_SEQUENCE_NUM = Symbol(
         [0xB4A98],
@@ -40045,8 +40045,8 @@ class JpOverlay28Section:
 class JpOverlay29Functions:
 
     InitDungeonPaletteStruct = Symbol(
-        None,
-        None,
+        [0x20C0],
+        [0x22DF9A0],
         None,
         "InitDungeonPaletteStruct",
         "Seems to initialize the dungeon_palette_struct, which likely handles background color display in dungeon mode. \n\nNo params.",
@@ -40352,8 +40352,8 @@ class JpOverlay29Functions:
     )
 
     ResetDungeonColorPalette = Symbol(
-        None,
-        None,
+        [0x52BC],
+        [0x22E2B9C],
         None,
         "ResetDungeonColorPalette",
         "Zeroes the entire color_table in the dungeon struct.\n\nNo params.",
@@ -41100,8 +41100,8 @@ class JpOverlay29Functions:
     )
 
     DungeonChangeTopScreenType = Symbol(
-        None,
-        None,
+        [0xCA30],
+        [0x22EA310],
         None,
         "DungeonChangeTopScreenType",
         "Seems to change the top screen display type in dungeon mode.\n\nr0: index of top screen mode to change to",
@@ -41388,8 +41388,8 @@ class JpOverlay29Functions:
     )
 
     PlayMeByIdIfNot998 = Symbol(
-        None,
-        None,
+        [0xEA6C],
+        [0x22EC34C],
         None,
         "PlayMeByIdIfNot998",
         "Plays the specified ME effect if it is not a specific unknown ME value (0x3E6). This is not known to be a valid ME value...\nMEs are usually short jingles that are used when notifying the player of something, like unlocking a dungeon or receiving an item.\n\nr0: ME_id",
@@ -41415,8 +41415,8 @@ class JpOverlay29Functions:
     )
 
     SetUnkMusicFlag = Symbol(
-        None,
-        None,
+        [0xECBC],
+        [0x22EC59C],
         None,
         "SetUnkMusicFlag",
         "Seems to set some kind of flag in the dungeon struct that affects bgm in some way.\nCalled in ApplyDamage immediately before and after reviving a pokemon, as well as other places.\n\nr0: uint8_t",
@@ -41514,8 +41514,8 @@ class JpOverlay29Functions:
     )
 
     ConvertTmToUsedTm = Symbol(
-        None,
-        None,
+        [0xF3F0],
+        [0x22ECCD0],
         None,
         "ConvertTmToUsedTm",
         "Seems to be responsible for turning a TM into a Used TM after use. Explicitly checks if the TM is an HM, and if so, does not transform it.\n\nr0: Pointer to the entity that used the TM.\nr1: Parameter index in monster::action_data::action_parameters. Will be used to use to determine the index of the used item.",
@@ -41622,8 +41622,8 @@ class JpOverlay29Functions:
     )
 
     CreateMonsterSummaryFromEntityOuter = Symbol(
-        None,
-        None,
+        [0x10B68],
+        [0x22EE448],
         None,
         "CreateMonsterSummaryFromEntityOuter",
         "Seems to be the parent function for CreateMonsterSummaryFromEntity.\nSets the fainted_monster_dungeon_end_reason field to a damage_source. \n\nr0: damage_source_16\nr1: entity pointer\nr2: monster pointer\nr3: int",
@@ -42018,8 +42018,8 @@ class JpOverlay29Functions:
     )
 
     GonePebbleGradualPaletteShift = Symbol(
-        None,
-        None,
+        [0x14580],
+        [0x22F1E60],
         None,
         "GonePebbleGradualPaletteShift",
         "Seems to be responsible for the palette shift of the dungeon background for the Gone Pebble item effect.\n\nr0: rgba table pointer\nr1: uint",
@@ -42524,8 +42524,8 @@ class JpOverlay29Functions:
     )
 
     DisplayLinkedMovesWarnings = Symbol(
-        None,
-        None,
+        [0x1E23C],
+        [0x22FBB1C],
         None,
         "DisplayLinkedMovesWarnings",
         "Seems to handle displaying the text string for linked moves de-linking when at 2, 1, or 0 PP. \n\nr0: entity pointer\nr1: move_slot id",
@@ -42748,8 +42748,8 @@ class JpOverlay29Functions:
     )
 
     CountActiveMonsters = Symbol(
-        None,
-        None,
+        [0x1F834],
+        [0x22FD114],
         None,
         "CountActiveMonsters",
         "Loops through the monster entity table, counting the number of valid entities.\n\nreturn: number of monsters on the floor",
@@ -47617,8 +47617,8 @@ class JpOverlay29Functions:
     )
 
     MissionExitPrompt = Symbol(
-        None,
-        None,
+        [0x6C460],
+        [0x2349D40],
         None,
         "MissionExitPrompt",
         "Responsible for asking the player if they want to leave the dungeon after a mission via nested YesNoMenu() calls.\nThe first YesNoMenu uses a text string id from the param of this function.\n\nr0: int\nreturn: undefined4",
@@ -47860,8 +47860,8 @@ class JpOverlay29Functions:
     )
 
     ClearMissionDestinationInfo = Symbol(
-        None,
-        None,
+        [0x6D134],
+        [0x234AA14],
         None,
         "ClearMissionDestinationInfo",
         "Zeroes all fields of a mission_destination_info struct.\nSeems to be called as part of FillMissionDestinationInfo, and one other place.\n\nr0: mission_destination_info pointer",
@@ -47905,8 +47905,8 @@ class JpOverlay29Functions:
     )
 
     TryCompleteMission = Symbol(
-        None,
-        None,
+        [0x6D494],
+        [0x234AD74],
         None,
         "TryCompleteMission",
         "Seems to check if the mission on the current floor has been completed. Each mission type seems to use the params differently.\n\nr0: target monster_id or arrest outlaw item_id?\nr1: treasure memo item_id?",
@@ -47914,8 +47914,8 @@ class JpOverlay29Functions:
     )
 
     TreasureMemoComplete = Symbol(
-        None,
-        None,
+        [0x6E61C],
+        [0x234BEFC],
         None,
         "TreasureMemoComplete",
         "Seems to run when a treasure memo mission has been completed.\nHandles the fanfare for completing the mission, runs TryCompleteMission, and calls MissionExitPrompt.\n\nNo params.",
@@ -48328,8 +48328,8 @@ class JpOverlay29Functions:
     )
 
     PrintMissionCompleteString = Symbol(
-        None,
-        None,
+        [0x710B8],
+        [0x234E998],
         None,
         "PrintMissionCompleteString",
         "Seems to handle the displaying the textbox for completing a specific kind of mission.\nOnly known to be called by TreasureMemoComplete.\n\nr0: string_id to play for completing the mission.\nr1: ?\nr2: ?\nr3: ?\nstack[0]: ?",

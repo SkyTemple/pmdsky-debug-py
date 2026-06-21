@@ -3891,8 +3891,8 @@ class NaArm9Functions:
     )
 
     IsMePlaying = Symbol(
-        None,
-        None,
+        [0x17C10],
+        [0x2017C10],
         None,
         "IsMePlaying",
         "Seems to check if the specified ME effect is currently active. Has some kind of special logic for unknown ME value 0x3E6, which is not known to be a valid ME value...\nMEs are usually short jingles that are used when notifying the player of something, like unlocking a dungeon or receiving an item.\n\nr0: ME_id\nreturn: 1 if that ME is playing, 0 if not.",
@@ -6546,8 +6546,8 @@ class NaArm9Functions:
     )
 
     InventoryMenuNextPage = Symbol(
-        None,
-        None,
+        [0x33284],
+        [0x2033284],
         None,
         "InventoryMenuNextPage",
         "Tries to go to the next page of an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
@@ -6555,8 +6555,8 @@ class NaArm9Functions:
     )
 
     InventoryMenuPreviousPage = Symbol(
-        None,
-        None,
+        [0x332AC],
+        [0x20332AC],
         None,
         "InventoryMenuPreviousPage",
         "Tries to go to the previous page of an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
@@ -6564,8 +6564,8 @@ class NaArm9Functions:
     )
 
     InventoryMenuNext10Pages = Symbol(
-        None,
-        None,
+        [0x332CC],
+        [0x20332CC],
         None,
         "InventoryMenuNext10Pages",
         "Tries to go forward by 10 pages in an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
@@ -6573,8 +6573,8 @@ class NaArm9Functions:
     )
 
     InventoryMenuPrevious10Pages = Symbol(
-        None,
-        None,
+        [0x332F0],
+        [0x20332F0],
         None,
         "InventoryMenuPrevious10Pages",
         "Tries to go backward by 10 pages in an inventory_menu window.\n\n\nr0: struct inventory_menu_input_ctx",
@@ -7617,8 +7617,8 @@ class NaArm9Functions:
     )
 
     SetWorldMapLevel = Symbol(
-        None,
-        None,
+        [0x4CDE8],
+        [0x204CDE8],
         None,
         "SetWorldMapLevel",
         "Calls SaveScriptVariableValue with script variable $WORLD_MAP_LEVEL. \n\nr0: value to save",
@@ -8652,8 +8652,8 @@ class NaArm9Functions:
     )
 
     MtInit = Symbol(
-        None,
-        None,
+        [0x510E8],
+        [0x20510E8],
         None,
         "MtInit",
         "Initializes the MT_TABLE Mersenne Twister with a specified initial seed.\n\nr0: seed",
@@ -8661,8 +8661,8 @@ class NaArm9Functions:
     )
 
     MtNext = Symbol(
-        None,
-        None,
+        [0x51134],
+        [0x2051134],
         None,
         "MtNext",
         "Advances the MT_TABLE Mersenne Twister by one, and returns the result.\n\nreturn: next rand",
@@ -9345,8 +9345,8 @@ class NaArm9Functions:
     )
 
     InitializeTeamMemberFromMentry = Symbol(
-        None,
-        None,
+        [0x53250],
+        [0x2053250],
         None,
         "InitializeTeamMemberFromMentry",
         "Seems to copy a ground_monster pokemon from the Chimecho Assembly to the active team.\n\nr0: team_member pointer\nr1: ground_monster pointer\nr2: team_member index",
@@ -10488,8 +10488,8 @@ class NaArm9Functions:
     )
 
     IsAcceptedMissionSlotEmpty = Symbol(
-        None,
-        None,
+        [0x5F0F0],
+        [0x205F0F0],
         None,
         "IsAcceptedMissionSlotEmpty",
         "Checks if a specified slot of the player's mission list is empty.\n\nr0: slot id\nreturn: 1 if the slot is empty, 0 if not.",
@@ -10740,8 +10740,8 @@ class NaArm9Functions:
     )
 
     RandomizeMissionCategory = Symbol(
-        None,
-        None,
+        [0x62248],
+        [0x2062248],
         None,
         "RandomizeMissionCategory",
         "Seems to select a mission_weighted_category at weighted random, of the valid options.\n\nr0: sum of mission weight categories\nr1: ?\nr2: mission_weighted_category pointers to select at random.\nreturn: mission_weighted_category index, selected at random",
@@ -10911,8 +10911,8 @@ class NaArm9Functions:
     )
 
     WriteMissionMtState = Symbol(
-        None,
-        None,
+        [0x634F4],
+        [0x20634F4],
         None,
         "WriteMissionMtState",
         "Stores a Mersenne Twister state to RESCUE_BIN_UNPACK->mt_state.\n\n\nr0: state pointer",
@@ -10920,8 +10920,8 @@ class NaArm9Functions:
     )
 
     ReadMissionMtStateLower = Symbol(
-        None,
-        None,
+        [0x63504],
+        [0x2063504],
         None,
         "ReadMissionMtStateLower",
         "Returns the bottom half of RESCUE_BIN_UNPACK->mt_state.\n\nreturn: bottom half of the current mt_state.",
@@ -11001,8 +11001,8 @@ class NaArm9Functions:
     )
 
     SetRandomRequestNpc03KindVar = Symbol(
-        None,
-        None,
+        [0x65B94],
+        [0x2065B94],
         None,
         "SetRandomRequestNpc03KindVar",
         "Sets the RANDOM_REQUEST_NPC03_KIND script variable, which controls the species of ACTOR_REQUEST_NPC03.\n\nr0: species to store in RANDOM_REQUEST_NPC03_KIND.",
@@ -11019,8 +11019,8 @@ class NaArm9Functions:
     )
 
     SetNewFriendActor = Symbol(
-        None,
-        None,
+        [0x65BC8],
+        [0x2065BC8],
         None,
         "SetNewFriendActor",
         "Sets NPC_NEW_FRIEND to a specific actor_id.\n\nr0: NPC_NEW_FRIEND actor_id",
@@ -13380,7 +13380,7 @@ class NaArm9Data:
     SYNTH_BIN_FILE_PTR = Symbol(
         [0xAF6D4],
         [0x20AF6D4],
-        None,
+        0x4,
         "SYNTH_BIN_FILE_PTR",
         "The location of the data/SYNTH/synth.bin file while loaded.",
         "struct synth_file*",
@@ -13407,7 +13407,7 @@ class NaArm9Data:
     OBJ_GRAPHICS_CONTROLS_PTR = Symbol(
         [0xAFC4C],
         [0x20AFC4C],
-        None,
+        0x4,
         "OBJ_GRAPHICS_CONTROLS_PTR",
         "[Runtime] Points to the collection of master structs responsible for displaying objects.\n\ntype: struct obj_graphics_controls*",
         "struct obj_graphics_controls*",
@@ -13456,7 +13456,7 @@ class NaArm9Data:
     MENU_CONTROL_PTR = Symbol(
         [0xAFD98],
         [0x20AFD98],
-        None,
+        0x4,
         "MENU_CONTROL_PTR",
         "Pointer to the master struct used for handling menus.\n\ntype: menu_control*",
         "struct menu_control*",
@@ -13474,7 +13474,7 @@ class NaArm9Data:
     MISSION_REWARD_STRUCT_MAIN_PTR = Symbol(
         [0xAFE74],
         [0x20AFE74],
-        None,
+        0x4,
         "MISSION_REWARD_STRUCT_MAIN_PTR",
         "Points to a mission_reward_struct_main struct, responsible for handling the overlay 11 portion of the mission reward sequence.\nIs also used sparingly during the Spinda Cafe egg event.\n\ntype: mission_reward_struct_main pointer",
         "struct mission_reward_struct_main*",
@@ -13535,27 +13535,27 @@ class NaArm9Data:
     )
 
     MT_TABLE_INDEX = Symbol(
-        None,
-        None,
-        None,
+        [0xAFF7C],
+        [0x20AFF7C],
+        0x4,
         "MT_TABLE_INDEX",
         "The current index of the Mersenne Twister Table.\n\ntype: int",
         "int",
     )
 
     TWIST_LOW_BIT_MULTS = Symbol(
-        None,
-        None,
-        None,
+        [0xAFF7C],
+        [0x20AFF7C],
+        0x8,
         "TWIST_LOW_BIT_MULTS",
         "The mults for the 'twist' of a Mersenne Twister, 0x0 and 0x9908B0DF.\n\ntype: int[2]",
         "int[2]",
     )
 
     MT_TABLE = Symbol(
-        None,
-        None,
-        None,
+        [0xAFF7C],
+        [0x20AFF7C],
+        0x9C0,
         "MT_TABLE",
         "A full Mersenne Twister table. Only known to be used by mission generation.\n\ntype: int[624]",
         "int[624]",
@@ -13679,9 +13679,9 @@ class NaArm9Data:
     )
 
     RESCUE_BIN_UNPACK = Symbol(
-        None,
-        None,
-        None,
+        [0xB0AD8],
+        [0x20B0AD8],
+        0x28,
         "RESCUE_BIN_UNPACK",
         "The unpacked contents of the RESCUE/rescue.bin file. Also contains a mersenne twister state, for some reason.\n\ntype: rescue_bin_unpack struct",
         "struct rescue_bin_unpack",
@@ -40050,8 +40050,8 @@ class NaOverlay28Section:
 class NaOverlay29Functions:
 
     InitDungeonPaletteStruct = Symbol(
-        None,
-        None,
+        [0x20C0],
+        [0x22DE300],
         None,
         "InitDungeonPaletteStruct",
         "Seems to initialize the dungeon_palette_struct, which likely handles background color display in dungeon mode. \n\nNo params.",
@@ -40359,8 +40359,8 @@ class NaOverlay29Functions:
     )
 
     ResetDungeonColorPalette = Symbol(
-        None,
-        None,
+        [0x52CC],
+        [0x22E150C],
         None,
         "ResetDungeonColorPalette",
         "Zeroes the entire color_table in the dungeon struct.\n\nNo params.",
@@ -41107,8 +41107,8 @@ class NaOverlay29Functions:
     )
 
     DungeonChangeTopScreenType = Symbol(
-        None,
-        None,
+        [0xCA68],
+        [0x22E8CA8],
         None,
         "DungeonChangeTopScreenType",
         "Seems to change the top screen display type in dungeon mode.\n\nr0: index of top screen mode to change to",
@@ -41395,8 +41395,8 @@ class NaOverlay29Functions:
     )
 
     PlayMeByIdIfNot998 = Symbol(
-        None,
-        None,
+        [0xEAA4],
+        [0x22EACE4],
         None,
         "PlayMeByIdIfNot998",
         "Plays the specified ME effect if it is not a specific unknown ME value (0x3E6). This is not known to be a valid ME value...\nMEs are usually short jingles that are used when notifying the player of something, like unlocking a dungeon or receiving an item.\n\nr0: ME_id",
@@ -41422,8 +41422,8 @@ class NaOverlay29Functions:
     )
 
     SetUnkMusicFlag = Symbol(
-        None,
-        None,
+        [0xECF4],
+        [0x22EAF34],
         None,
         "SetUnkMusicFlag",
         "Seems to set some kind of flag in the dungeon struct that affects bgm in some way.\nCalled in ApplyDamage immediately before and after reviving a pokemon, as well as other places.\n\nr0: uint8_t",
@@ -41521,8 +41521,8 @@ class NaOverlay29Functions:
     )
 
     ConvertTmToUsedTm = Symbol(
-        None,
-        None,
+        [0xF428],
+        [0x22EB668],
         None,
         "ConvertTmToUsedTm",
         "Seems to be responsible for turning a TM into a Used TM after use. Explicitly checks if the TM is an HM, and if so, does not transform it.\n\nr0: Pointer to the entity that used the TM.\nr1: Parameter index in monster::action_data::action_parameters. Will be used to use to determine the index of the used item.",
@@ -41629,8 +41629,8 @@ class NaOverlay29Functions:
     )
 
     CreateMonsterSummaryFromEntityOuter = Symbol(
-        None,
-        None,
+        [0x10BA4],
+        [0x22ECDE4],
         None,
         "CreateMonsterSummaryFromEntityOuter",
         "Seems to be the parent function for CreateMonsterSummaryFromEntity.\nSets the fainted_monster_dungeon_end_reason field to a damage_source. \n\nr0: damage_source_16\nr1: entity pointer\nr2: monster pointer\nr3: int",
@@ -42025,8 +42025,8 @@ class NaOverlay29Functions:
     )
 
     GonePebbleGradualPaletteShift = Symbol(
-        None,
-        None,
+        [0x1461C],
+        [0x22F085C],
         None,
         "GonePebbleGradualPaletteShift",
         "Seems to be responsible for the palette shift of the dungeon background for the Gone Pebble item effect.\n\nr0: rgba table pointer\nr1: uint",
@@ -42531,8 +42531,8 @@ class NaOverlay29Functions:
     )
 
     DisplayLinkedMovesWarnings = Symbol(
-        None,
-        None,
+        [0x1E334],
+        [0x22FA574],
         None,
         "DisplayLinkedMovesWarnings",
         "Seems to handle displaying the text string for linked moves de-linking when at 2, 1, or 0 PP. \n\nr0: entity pointer\nr1: move_slot id",
@@ -42755,8 +42755,8 @@ class NaOverlay29Functions:
     )
 
     CountActiveMonsters = Symbol(
-        None,
-        None,
+        [0x1FA0C],
+        [0x22FBC4C],
         None,
         "CountActiveMonsters",
         "Loops through the monster entity table, counting the number of valid entities.\n\nreturn: number of monsters on the floor",
@@ -47624,8 +47624,8 @@ class NaOverlay29Functions:
     )
 
     MissionExitPrompt = Symbol(
-        None,
-        None,
+        [0x6C7D8],
+        [0x2348A18],
         None,
         "MissionExitPrompt",
         "Responsible for asking the player if they want to leave the dungeon after a mission via nested YesNoMenu() calls.\nThe first YesNoMenu uses a text string id from the param of this function.\n\nr0: int\nreturn: undefined4",
@@ -47867,8 +47867,8 @@ class NaOverlay29Functions:
     )
 
     ClearMissionDestinationInfo = Symbol(
-        None,
-        None,
+        [0x6D4AC],
+        [0x23496EC],
         None,
         "ClearMissionDestinationInfo",
         "Zeroes all fields of a mission_destination_info struct.\nSeems to be called as part of FillMissionDestinationInfo, and one other place.\n\nr0: mission_destination_info pointer",
@@ -47912,8 +47912,8 @@ class NaOverlay29Functions:
     )
 
     TryCompleteMission = Symbol(
-        None,
-        None,
+        [0x6D894],
+        [0x2349AD4],
         None,
         "TryCompleteMission",
         "Seems to check if the mission on the current floor has been completed. Each mission type seems to use the params differently.\n\nr0: target monster_id or arrest outlaw item_id?\nr1: treasure memo item_id?",
@@ -47921,8 +47921,8 @@ class NaOverlay29Functions:
     )
 
     TreasureMemoComplete = Symbol(
-        None,
-        None,
+        [0x6EA4C],
+        [0x234AC8C],
         None,
         "TreasureMemoComplete",
         "Seems to run when a treasure memo mission has been completed.\nHandles the fanfare for completing the mission, runs TryCompleteMission, and calls MissionExitPrompt.\n\nNo params.",
@@ -48335,8 +48335,8 @@ class NaOverlay29Functions:
     )
 
     PrintMissionCompleteString = Symbol(
-        None,
-        None,
+        [0x714CC],
+        [0x234D70C],
         None,
         "PrintMissionCompleteString",
         "Seems to handle the displaying the textbox for completing a specific kind of mission.\nOnly known to be called by TreasureMemoComplete.\n\nr0: string_id to play for completing the mission.\nr1: ?\nr2: ?\nr3: ?\nstack[0]: ?",
