@@ -29551,6 +29551,15 @@ class EuOverlay10Data:
         "fx32_8",
     )
 
+    AQUA_RING_TURN_RANGE = Symbol(
+        [0x7CFC],
+        [0x22C50BC],
+        0x4,
+        "AQUA_RING_TURN_RANGE",
+        "The turn range for the Aqua Ring status, [8, 16).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     GASTRO_ACID_TURN_RANGE = Symbol(
         [0x7D04],
         [0x22C50C4],
@@ -29569,12 +29578,75 @@ class EuOverlay10Data:
         "int16_t[2]",
     )
 
+    EMBARGO_TURN_RANGE = Symbol(
+        [0x7D10],
+        [0x22C50D0],
+        0x4,
+        "EMBARGO_TURN_RANGE",
+        "The turn range for the Embargo status, [4, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    MIRACLE_EYE_TURN_RANGE = Symbol(
+        [0x7D14],
+        [0x22C50D4],
+        0x4,
+        "MIRACLE_EYE_TURN_RANGE",
+        "The turn range for the Miracle Eye status, [127, 127) (infinite).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    MAGNET_RISE_TURN_RANGE = Symbol(
+        [0x7D18],
+        [0x22C50D8],
+        0x4,
+        "MAGNET_RISE_TURN_RANGE",
+        "The turn range for the Magnet Rise status, [4, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    CURSE_TURN_RANGE = Symbol(
+        [0x7D1C],
+        [0x22C50DC],
+        0x4,
+        "CURSE_TURN_RANGE",
+        "The turn range for the Curse status, [3, 9).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    SNATCH_TURN_RANGE = Symbol(
+        [0x7D20],
+        [0x22C50E0],
+        0x4,
+        "SNATCH_TURN_RANGE",
+        "The turn range for the Snatch status, [3, 5).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     SPORT_CONDITION_TURN_RANGE = Symbol(
         [0x7D24],
         [0x22C50E4],
         0x4,
         "SPORT_CONDITION_TURN_RANGE",
         "The turn range for the sport conditions activated by Mud Sport and Water Sport, [10, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    LEECH_SEED_TURN_RANGE = Symbol(
+        [0x7D28],
+        [0x22C50E8],
+        0x4,
+        "LEECH_SEED_TURN_RANGE",
+        "The turn range for the Leech Seed status, [10, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    WISH_TURN_RANGE = Symbol(
+        [0x7D2C],
+        [0x22C50EC],
+        0x4,
+        "WISH_TURN_RANGE",
+        "The turn range for the Wish status, [10, 12).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -29587,6 +29659,33 @@ class EuOverlay10Data:
         "int16_t[2]",
     )
 
+    PLAYER_PETRIFIED_TURN_RANGE = Symbol(
+        [0x7D34],
+        [0x22C50F4],
+        0x4,
+        "PLAYER_PETRIFIED_TURN_RANGE",
+        "The turn range for the Petrified status when applied to the player character, [10, 20).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    PETRIFIED_TURN_RANGE = Symbol(
+        [0x7D38],
+        [0x22C50F8],
+        0x4,
+        "PETRIFIED_TURN_RANGE",
+        "The turn range for the Petrified status when applied to anything other than the player character, [127, 127) (infinite).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    SET_DAMAGE_TURN_RANGE = Symbol(
+        [0x7D3C],
+        [0x22C50FC],
+        0x4,
+        "SET_DAMAGE_TURN_RANGE",
+        "The turn range for the Set Damage status (Future Sight and Doom Desire), [2, 4).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     DETECT_BAND_MOVE_ACCURACY_DROP = Symbol(
         [0x7D40],
         [0x22C5100],
@@ -29596,12 +29695,48 @@ class EuOverlay10Data:
         "int",
     )
 
+    FOCUS_ENERGY_TURN_RANGE = Symbol(
+        [0x7D44],
+        [0x22C5104],
+        0x4,
+        "FOCUS_ENERGY_TURN_RANGE",
+        "The turn range for the Focus Energy status, [2, 4).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    COWERING_TURN_RANGE = Symbol(
+        [0x7D48],
+        [0x22C5108],
+        0x4,
+        "COWERING_TURN_RANGE",
+        "The turn range for the Cowering status, [10, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     DECOY_TURN_RANGE = Symbol(
         [0x7D4C],
         [0x22C510C],
         0x4,
         "DECOY_TURN_RANGE",
         "The turn range for the Decoy status, [20, 50).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    PROTECT_TURN_RANGE = Symbol(
+        [0x7D50],
+        [0x22C5110],
+        0x4,
+        "PROTECT_TURN_RANGE",
+        "The turn range for the Protect status, [1, 3).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    TAUNT_TURN_RANGE = Symbol(
+        [0x7D54],
+        [0x22C5114],
+        0x4,
+        "TAUNT_TURN_RANGE",
+        "The turn range for the Taunt status, [10, 12).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -29623,12 +29758,48 @@ class EuOverlay10Data:
         "int16_t[2]",
     )
 
+    INVISIBLE_TURN_RANGE = Symbol(
+        [0x7D60],
+        [0x22C5120],
+        0x4,
+        "INVISIBLE_TURN_RANGE",
+        "The turn range for the Invisible status, [20, 30).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    MIRROR_COAT_TURN_RANGE = Symbol(
+        [0x7D64],
+        [0x22C5124],
+        0x4,
+        "MIRROR_COAT_TURN_RANGE",
+        "The turn range for the Mirror Coat status, [10, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     PERISH_SONG_TURN_RANGE = Symbol(
         [0x7D68],
         [0x22C5128],
         0x4,
         "PERISH_SONG_TURN_RANGE",
         "The turn range for the status inflicted by Perish Song, [3, 3).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    DESTINY_BOND_TURN_RANGE = Symbol(
+        [0x7D6C],
+        [0x22C512C],
+        0x4,
+        "DESTINY_BOND_TURN_RANGE",
+        "The turn range for the Destiny Bond status, [10, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    ENCORE_TURN_RANGE = Symbol(
+        [0x7D70],
+        [0x22C5130],
+        0x4,
+        "ENCORE_TURN_RANGE",
+        "The turn range for the Encore status, [10, 10).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -29677,6 +29848,15 @@ class EuOverlay10Data:
         "fx32_8",
     )
 
+    INFATUATED_TURN_RANGE = Symbol(
+        [0x7D9C],
+        [0x22C515C],
+        0x4,
+        "INFATUATED_TURN_RANGE",
+        "The turn range for the Infatuated status, [4, 6).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     QUICK_DODGER_MOVE_ACCURACY_DROP = Symbol(
         [0x7DA0],
         [0x22C5160],
@@ -29684,6 +29864,15 @@ class EuOverlay10Data:
         "QUICK_DODGER_MOVE_ACCURACY_DROP",
         "The (subtractive) move accuracy drop induced on an attacker if the defender has the Quick Dodger IQ skill (10).",
         "int",
+    )
+
+    MOBILE_TURN_RANGE = Symbol(
+        [0x7DA4],
+        [0x22C5164],
+        0x4,
+        "MOBILE_TURN_RANGE",
+        "The turn range for the Mobile status (Mobile Orb), [127, 127) (infinite).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     MATCHUP_NOT_VERY_EFFECTIVE_MULTIPLIER = Symbol(
@@ -29731,6 +29920,15 @@ class EuOverlay10Data:
         "fx32_8",
     )
 
+    BLINKER_TURN_RANGE = Symbol(
+        [0x7DC0],
+        [0x22C5180],
+        0x4,
+        "BLINKER_TURN_RANGE",
+        "The turn range for the Blinker status, [10, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER = Symbol(
         [0x7DC4],
         [0x22C5184],
@@ -29738,6 +29936,24 @@ class EuOverlay10Data:
         "MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER",
         "The damage multiplier corresponding to MATCHUP_NEUTRAL when Erratic Player is active, as a fixed-point number with 8 fraction bits (1).",
         "fx32_8",
+    )
+
+    CROSS_EYED_TURN_RANGE = Symbol(
+        [0x7DC8],
+        [0x22C5188],
+        0x4,
+        "CROSS_EYED_TURN_RANGE",
+        "The turn range for the Cross Eyed status, [10, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    EYEDROP_TURN_RANGE = Symbol(
+        [0x7DD0],
+        [0x22C5190],
+        0x4,
+        "EYEDROP_TURN_RANGE",
+        "The turn range for the Eyedrop status, [127, 127) (infinite).\n\ntype: int16_t[2]",
+        "int16_t[2]",
     )
 
     MIRROR_MOVE_TURN_RANGE = Symbol(
@@ -29758,6 +29974,15 @@ class EuOverlay10Data:
         "fx32_8",
     )
 
+    MUZZLED_TURN_RANGE = Symbol(
+        [0x7DE0],
+        [0x22C51A0],
+        0x4,
+        "MUZZLED_TURN_RANGE",
+        "The turn range for the Muzzled status, [10, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER = Symbol(
         [0x7DE4],
         [0x22C51A4],
@@ -29776,12 +30001,84 @@ class EuOverlay10Data:
         "fx32_8",
     )
 
+    CONVERSION2_TURN_RANGE = Symbol(
+        [0x7DEC],
+        [0x22C51AC],
+        0x4,
+        "CONVERSION2_TURN_RANGE",
+        "The turn range for the Conversion 2 status, [10, 10).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    VITAL_THROW_TURN_RANGE = Symbol(
+        [0x7DF4],
+        [0x22C51B4],
+        0x4,
+        "VITAL_THROW_TURN_RANGE",
+        "The turn range for the Vital Throw status, [15, 20).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     YAWN_TURN_RANGE = Symbol(
         [0x7DF8],
         [0x22C51B8],
         0x4,
         "YAWN_TURN_RANGE",
         "The turn range for the Yawning status inflicted by Yawn, [2, 2].\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    SLIP_TURN_RANGE = Symbol(
+        [0x7E04],
+        [0x22C51C4],
+        0x4,
+        "SLIP_TURN_RANGE",
+        "The turn range for the Slip status (Slip Seed), [127, 127) (infinite).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    FROZEN_TURN_RANGE = Symbol(
+        [0x7E08],
+        [0x22C51C8],
+        0x4,
+        "FROZEN_TURN_RANGE",
+        "The turn range for the Frozen status, [3, 5).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    BURN_TURN_RANGE = Symbol(
+        [0x7E0C],
+        [0x22C51CC],
+        0x4,
+        "BURN_TURN_RANGE",
+        "The turn range for the Burn status, [127, 127) (infinite).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    POISONED_TURN_RANGE = Symbol(
+        [0x7E10],
+        [0x22C51D0],
+        0x4,
+        "POISONED_TURN_RANGE",
+        "The turn range for the Poisoned status, [127, 127) (infinite).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    DROPEYE_TURN_RANGE = Symbol(
+        [0x7E14],
+        [0x22C51D4],
+        0x4,
+        "DROPEYE_TURN_RANGE",
+        "The turn range for the Dropeye status, [40, 50).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    BADLY_POISONED_TURN_RANGE = Symbol(
+        [0x7E18],
+        [0x22C51D8],
+        0x4,
+        "BADLY_POISONED_TURN_RANGE",
+        "The turn range for the Badly Poisoned status, [127, 127) (infinite).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 
@@ -29812,12 +30109,30 @@ class EuOverlay10Data:
         "int16_t[2]",
     )
 
+    CONFUSED_TURN_RANGE = Symbol(
+        [0x7E28],
+        [0x22C51E8],
+        0x4,
+        "CONFUSED_TURN_RANGE",
+        "The turn range for the Confused status, [6, 12).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
     PARALYSIS_TURN_RANGE = Symbol(
         [0x7E2C],
         [0x22C51EC],
         0x4,
         "PARALYSIS_TURN_RANGE",
         "The turn range for the Paralysis status, [1, 2).\n\ntype: int16_t[2]",
+        "int16_t[2]",
+    )
+
+    CONSTRICTION_TURN_RANGE = Symbol(
+        [0x7E38],
+        [0x22C51F8],
+        0x4,
+        "CONSTRICTION_TURN_RANGE",
+        "The turn range for the Constriction status (applied by Whirlpool-like moves), [3, 6).\n\ntype: int16_t[2]",
         "int16_t[2]",
     )
 

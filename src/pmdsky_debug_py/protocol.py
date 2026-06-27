@@ -25048,6 +25048,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    AQUA_RING_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     GASTRO_ACID_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -25058,7 +25063,42 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    EMBARGO_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MIRACLE_EYE_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MAGNET_RISE_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CURSE_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SNATCH_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SPORT_CONDITION_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    LEECH_SEED_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WISH_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -25068,12 +25108,47 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    PLAYER_PETRIFIED_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PETRIFIED_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SET_DAMAGE_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     DETECT_BAND_MOVE_ACCURACY_DROP: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
+    FOCUS_ENERGY_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    COWERING_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     DECOY_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PROTECT_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TAUNT_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -25088,7 +25163,27 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    INVISIBLE_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MIRROR_COAT_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     PERISH_SONG_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DESTINY_BOND_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    ENCORE_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -25118,7 +25213,17 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    INFATUATED_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     QUICK_DODGER_MOVE_ACCURACY_DROP: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MOBILE_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -25148,7 +25253,22 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    BLINKER_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     MATCHUP_NEUTRAL_MULTIPLIER_ERRATIC_PLAYER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CROSS_EYED_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EYEDROP_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -25163,6 +25283,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    MUZZLED_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     KECLEON_SHOP_BOOST_CHANCE_MULTIPLIER: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -25173,7 +25298,47 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    CONVERSION2_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    VITAL_THROW_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     YAWN_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SLIP_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    FROZEN_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BURN_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    POISONED_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DROPEYE_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BADLY_POISONED_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -25193,7 +25358,17 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    CONFUSED_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     PARALYSIS_TURN_RANGE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    CONSTRICTION_TURN_RANGE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
