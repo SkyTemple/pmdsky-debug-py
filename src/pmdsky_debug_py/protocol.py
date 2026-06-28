@@ -2377,6 +2377,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    AddWanFragmentToOam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AddSimpleObjToOam: Symbol[
         Optional[list[int]],
         None,
@@ -2413,6 +2418,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     CopyAndInterleaveWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitOamAdjustmentInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2462,7 +2472,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    FillOamAttributeInfo: Symbol[
+    FillOamAdjustmentInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2603,6 +2613,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     InitRender3dElement64: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetPaletteBaseAddress: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2758,6 +2773,31 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     InitPreprocessorArgs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyOrInitPreprocessorArgs: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    QuantityToString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MoneyQuantityToString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BankQuantityToString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ExpQuantityToString: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2933,11 +2973,6 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     NewWindow: Symbol[
-        Optional[list[int]],
-        None,
-    ]
-
-    GetPaletteBaseAddress: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -35835,6 +35870,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayStairSensorArrowEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     LoadMappaFileAttributes: Symbol[
         Optional[list[int]],
         None,
@@ -36091,6 +36131,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DungeonRngSetPrimary: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayLevelUpSound: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayDungeonTipSound: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36735,7 +36785,32 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryActivateNewFloorPpRestoration: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ExclusiveItemEffectIsActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TryActivateNewFloorHpRestoration: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TryActivateStairSensor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TryActivateAcuteSniffer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ShouldTreatMonsterAsAlly: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37235,6 +37310,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    UpdateIqSkillsWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CanSeeTeammate: Symbol[
         Optional[list[int]],
         None,
@@ -37571,6 +37651,36 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsEitherMonsterInvalid: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapDefensiveStages: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapDefensiveMultipliers: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapOffensiveStages: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapOffensiveMultipliers: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapHitChanceStages: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SwapUserAtkAndDefModifiers: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -38701,6 +38811,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     LoadTextureUi: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitUi3dElement: Symbol[
         Optional[list[int]],
         None,
     ]

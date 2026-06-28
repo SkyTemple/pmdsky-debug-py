@@ -1116,7 +1116,7 @@ class EuArm9Functions:
         [0x200B6F0],
         None,
         "AddObjToUngroupedOamObjs",
-        "Adds an object to oam_info's ungrouped_oam_objs, while also updating the necessary values to group it later.\n\nr0: oam_info\nr1: oam_attributes\nr2: group",
+        "Adds an object to oam_info's ungrouped_oam_objs, while also updating the necessary values to group it later.\n\nr0: oam_info\nr1: oam_attributes\nr2: priority group",
         None,
     )
 
@@ -4196,12 +4196,21 @@ class EuArm9Functions:
         None,
     )
 
+    AddWanFragmentToOam = Symbol(
+        [0x1B770],
+        [0x201B770],
+        None,
+        "AddWanFragmentToOam",
+        "Adds a WAN fragment to OAM.\n\nr0: obj_graphics_control\nr1: wan_fragment\nr2: ?\nr3: oam_adjustment_info (length 6 array, or null to not adjust)\nreturn: -2 if group out of bounds, -1 if too many objects, 0 if successful",
+        None,
+    )
+
     AddSimpleObjToOam = Symbol(
         [0x1BA94],
         [0x201BA94],
         None,
         "AddSimpleObjToOam",
-        "Adds a simple object (one not tied to an animation_control struct) to OAM.\n\nThe second parameter is an array of size 4 where obj[0] is the second half of attribute 0,\nobj[1] is attribute 1, obj[2] is attribute 2, and obj[3] is the first half of attribute 0 (the y-coordinate) shifted left by 4.\n\nr0: obj_graphics_control\nr1: obj\nr2: group\nreturn: -2 if group out of bounds, -1 if too many objects, 0 if successful",
+        "Adds a simple object (one not tied to an animation_control struct) to OAM.\n\nThe second parameter is an array of size 4 where obj[0] is the second half of attribute 0,\nobj[1] is attribute 1, obj[2] is attribute 2, and obj[3] is the first half of attribute 0 (the y-coordinate) shifted left by 4.\n\nr0: obj_graphics_control\nr1: obj\nr2: priority group\nreturn: -2 if group out of bounds, -1 if too many objects, 0 if successful",
         None,
     )
 
@@ -4265,6 +4274,15 @@ class EuArm9Functions:
         None,
         "CopyAndInterleaveWrapper",
         "Calls CopyAndInterleave with the passed len divided by 2.\n\nr0: dst\nr1: src\nr2: len (in bytes, will be divided by 2 in the call to CopyAndInterleave)\nr3: val",
+        None,
+    )
+
+    InitOamAdjustmentInfo = Symbol(
+        [0x1C09C],
+        [0x201C09C],
+        None,
+        "InitOamAdjustmentInfo",
+        "Initializes an oam_adjustment_info array that will be used in an animation_control structure with default values (0xFFFF for the ANDs, 0 for the ORs).\n\nr0: [output] oam_adjustment_info array (length 6)",
         None,
     )
 
@@ -4349,12 +4367,12 @@ class EuArm9Functions:
         None,
     )
 
-    FillOamAttributeInfo = Symbol(
+    FillOamAdjustmentInfo = Symbol(
         [0x1D1AC],
         [0x201D1AC],
         None,
-        "FillOamAttributeInfo",
-        "Copies an array of values into an animation_control struct's oam_attribute_info.\n\nr0: animation_control\nr1: source array (length 6)",
+        "FillOamAdjustmentInfo",
+        "Copies an array of values into an animation_control struct's oam_adjustment_info.\n\nr0: animation_control\nr1: source array (length 6)",
         None,
     )
 
@@ -4607,6 +4625,15 @@ class EuArm9Functions:
         None,
         "InitRender3dElement64",
         "Initialize the render_3d_element_64 structure (without performing any drawing or external data access)\n\nr0: render_3d_element_64",
+        None,
+    )
+
+    GetPaletteBaseAddress = Symbol(
+        [0x1E858, 0x27B9C],
+        [0x201E858, 0x2027B9C],
+        None,
+        "GetPaletteBaseAddress",
+        "Gets the palette base address for a 3D element loaded from a WTE file.\nNormally takes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
         None,
     )
 
@@ -4885,7 +4912,52 @@ class EuArm9Functions:
         [0x20238B4],
         None,
         "InitPreprocessorArgs",
-        "Initializes a struct preprocess_args.\n\nr0: preprocessor args pointer",
+        "Initializes a preprocessor_args struct.\n\nr0: preprocessor args pointer",
+        None,
+    )
+
+    CopyOrInitPreprocessorArgs = Symbol(
+        [0x23920],
+        [0x2023920],
+        None,
+        "CopyOrInitPreprocessorArgs",
+        "Copies the input preprocessor_args struct to the output struct, or initializes it if the input is a null pointer.\n\nr0: [output] preprocessor args pointer\nr1: input preprocessor args pointer, or null if should initialize one",
+        None,
+    )
+
+    QuantityToString = Symbol(
+        [0x239D8],
+        [0x20239D8],
+        None,
+        "QuantityToString",
+        "Converts a quantity to a string, adding commas in between numbers when appropriate.\n\nr0: [output] string\nr1: quantity\nr2: adjusted size (if there are less characters in the string than this number, leading spaces will be added to make it this size)\nr3: ?",
+        None,
+    )
+
+    MoneyQuantityToString = Symbol(
+        [0x23B30, 0x23B58],
+        [0x2023B30, 0x2023B58],
+        None,
+        "MoneyQuantityToString",
+        "Converts a money quantity to a string, adding commas in between numbers when appropriate.\n\nNote that this function does not add the P symbol at the end.\n\nr0: [output] string\nr1: quantity",
+        None,
+    )
+
+    BankQuantityToString = Symbol(
+        [0x23B44],
+        [0x2023B44],
+        None,
+        "BankQuantityToString",
+        "Converts a money quantity shown in the bank menu to a string, adding commas in between numbers when appropriate and also adding leading spaces.\n\nr0: [output] string\nr1: quantity",
+        None,
+    )
+
+    ExpQuantityToString = Symbol(
+        [0x23B6C],
+        [0x2023B6C],
+        None,
+        "ExpQuantityToString",
+        "Converts an experience quantity to a string, adding commas in between numbers when appropriate.\n\nr0: [output] string\nr1: quantity",
         None,
     )
 
@@ -5201,15 +5273,6 @@ class EuArm9Functions:
         None,
         "NewWindow",
         "Seems to return the ID of a newly initialized window in the next available slot in WINDOW_LIST, given some starting information.\n\nIf WINDOW_LIST is full, it will be overflowed, with the slot with an ID of 20 being initialized and returned.\n\nr0: window_params pointer to be copied by value into window::hdr in the new window\nr1: ?\nreturn: window_id",
-        None,
-    )
-
-    GetPaletteBaseAddress = Symbol(
-        [0x27B9C],
-        [0x2027B9C],
-        None,
-        "GetPaletteBaseAddress",
-        "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
         None,
     )
 
@@ -11186,6 +11249,8 @@ class EuArm9Functions:
     CopyMovesetTo = _Deprecated("CopyMovesetTo", CopyMovesetToStream)
 
     CopyMovesetFrom = _Deprecated("CopyMovesetFrom", CopyMovesetFromStream)
+
+    FillOamAttributeInfo = _Deprecated("FillOamAttributeInfo", FillOamAdjustmentInfo)
 
     ZeroInitScriptVariable = _Deprecated("ZeroInitScriptVariable", ZinitScriptVariable)
 
@@ -41627,7 +41692,7 @@ class EuOverlay29Functions:
         [0x22E3F94],
         None,
         "PlayEffectAnimationEntity",
-        "Just a guess. This appears to be paired often with GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the loop entirely. It seems like in this case the function might just preload some animation frames for later use??\n\nr0: entity pointer\nr1: Effect ID\nr2: appears to be a flag for actually running the animation now? If this is 0, the AdvanceFrame loop is skipped entirely.\nstack[2]: direction of effect\nothers: ?\nreturn: status code, or maybe the number of frames or something? Either way, -1 seems to indicate the animation being finished or something?",
+        "Just a guess. This appears to be paired often with GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the loop entirely. It seems like in this case the function might just preload some animation frames for later use??\n\nr0: entity pointer\nr1: Effect ID\nr2: appears to be a flag for actually running the animation now? If this is 0, the AdvanceFrame loop is skipped entirely.\nstack[2]: direction of effect\nstack[3]: custom oam_adjustment_info array for the animation_control struct (length 6, or null if should use default values)\nothers: ?\nreturn: status code, or maybe the number of frames or something? Either way, -1 seems to indicate the animation being finished or something?",
         None,
     )
 
@@ -41898,6 +41963,15 @@ class EuOverlay29Functions:
         None,
         "PlayEffectAnimation0x18E",
         "Just a guess. Calls PlayEffectAnimation with data from animation ID 0x18E.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayStairSensorArrowEffect = Symbol(
+        [0xA758],
+        [0x22E72D8],
+        None,
+        "PlayStairSensorArrowEffect",
+        "Plays the Stair Sensor arrow effect.\n\nr0: entity pointer\nr1: arrow direction",
         None,
     )
 
@@ -42366,6 +42440,24 @@ class EuOverlay29Functions:
         None,
         "DungeonRngSetPrimary",
         "Sets the dungeon PRNG to use the primary LCG for subsequent random number generation.\n\nNo params.",
+        None,
+    )
+
+    PlayLevelUpSound = Symbol(
+        [0xEAAC],
+        [0x22EB62C],
+        None,
+        "PlayLevelUpSound",
+        "Plays the sound for leveling up.\n\nNo params.",
+        None,
+    )
+
+    PlayDungeonTipSound = Symbol(
+        [0xEABC, 0xEAEC],
+        [0x22EB63C, 0x22EB66C],
+        None,
+        "PlayDungeonTipSound",
+        "Plays the sound effect for displaying a dungeon tip.\n\nNo params.",
         None,
     )
 
@@ -43541,6 +43633,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    TryActivateNewFloorPpRestoration = Symbol(
+        [0x1E8E4],
+        [0x22FB464],
+        None,
+        "TryActivateNewFloorPpRestoration",
+        "Activates the Deep Breather IQ skill and/or the exclusive item effect for restoring PP on new floors for team members that have them.\n\nr0: flag to suppress message logging",
+        None,
+    )
+
     ExclusiveItemEffectIsActive = Symbol(
         [
             0x1EB24,
@@ -43573,6 +43674,42 @@ class EuOverlay29Functions:
         None,
         "ExclusiveItemEffectIsActive",
         "Checks if a monster is a team member under the effects of a certain exclusive item effect.\n\nr0: entity pointer\nr1: exclusive item effect ID\nreturn: bool",
+        None,
+    )
+
+    TryActivateNewFloorHpRestoration = Symbol(
+        [0x1EB48],
+        [0x22FB6C8],
+        None,
+        "TryActivateNewFloorHpRestoration",
+        "Activates the exclusive item effect for fully restoring HP on new floors for team members that have it.\n\nr0: flag to log a message on failure",
+        None,
+    )
+
+    TryActivateStairSensor = Symbol(
+        [0x1EBD8],
+        [0x22FB758],
+        None,
+        "TryActivateStairSensor",
+        "Activates the Stair Sensor IQ skill if a member on the team has it and they are not a special story ally.\n\nr0: flag to suppress message logging",
+        None,
+    )
+
+    TryActivateAcuteSniffer = Symbol(
+        [0x1ED94],
+        [0x22FB914],
+        None,
+        "TryActivateAcuteSniffer",
+        "Activates the Acute Sniffer IQ skill if a member on the team has it and no boss fight is active.\n\nr0: flag to suppress message logging",
+        None,
+    )
+
+    ShouldTreatMonsterAsAlly = Symbol(
+        [0x1EE60],
+        [0x22FB9E0],
+        None,
+        "ShouldTreatMonsterAsAlly",
+        "Returns true if entity 1 should treat entity 2 as an ally, assuming entity 1 can see invisible monsters and will not ignore petrified ones.\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nreturn: bool",
         None,
     )
 
@@ -44467,6 +44604,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    UpdateIqSkillsWrapper = Symbol(
+        [0x2609C],
+        [0x2302C1C],
+        None,
+        "UpdateIqSkillsWrapper",
+        "Wrapper function for UpdateIqSkills.\n\nr0: monster entity pointer",
+        None,
+    )
+
     CanSeeTeammate = Symbol(
         [0x260AC],
         [0x2302C2C],
@@ -45076,6 +45222,60 @@ class EuOverlay29Functions:
         None,
         "IsEitherMonsterInvalid",
         "Returns true if at least one of the given monsters is an invalid entity.\n\nr0: entity pointer\nr1: entity pointer\nreturn: bool",
+        None,
+    )
+
+    SwapDefensiveStages = Symbol(
+        [0x31768],
+        [0x230E2E8],
+        None,
+        "SwapDefensiveStages",
+        "Swaps the defensive stages of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
+        None,
+    )
+
+    SwapDefensiveMultipliers = Symbol(
+        [0x317DC],
+        [0x230E35C],
+        None,
+        "SwapDefensiveMultipliers",
+        "Swaps the defensive multipliers of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
+        None,
+    )
+
+    SwapOffensiveStages = Symbol(
+        [0x31850],
+        [0x230E3D0],
+        None,
+        "SwapOffensiveStages",
+        "Swaps the offensive stages of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
+        None,
+    )
+
+    SwapOffensiveMultipliers = Symbol(
+        [0x318C4],
+        [0x230E444],
+        None,
+        "SwapOffensiveMultipliers",
+        "Swaps the offensive multipliers of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
+        None,
+    )
+
+    SwapHitChanceStages = Symbol(
+        [0x31938],
+        [0x230E4B8],
+        None,
+        "SwapHitChanceStages",
+        "Swaps the hit chance stages of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
+        None,
+    )
+
+    SwapUserAtkAndDefModifiers = Symbol(
+        [0x319AC],
+        [0x230E52C],
+        None,
+        "SwapUserAtkAndDefModifiers",
+        "Swaps the attack and defense modifiers of the user entity.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
         None,
     )
 
@@ -47113,12 +47313,21 @@ class EuOverlay29Functions:
         None,
     )
 
+    InitUi3dElement = Symbol(
+        [0x596D4],
+        [0x2336254],
+        None,
+        "InitUi3dElement",
+        "Initializes a 3D element for displaying a part of the dungeon UI.\n\nr0: [output] render_3d_element_64\nr1: upper part of the palette VRAM",
+        None,
+    )
+
     GetPaletteBaseAddressOv29 = Symbol(
         [0x59730],
         [0x23362B0],
         None,
         "GetPaletteBaseAddressOv29",
-        "Gets the palette base address for a 3D element loaded from a WTE file.\nTakes the same parameters as were used in the specified file's ProcessWte call.\n\nIs an exact copy of GetPaletteBaseAddress in arm9.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
+        "Gets the palette base address for a 3D element loaded from a WTE file.\nNormally takes the same parameters as were used in the specified file's ProcessWte call.\n\nIs an exact copy of GetPaletteBaseAddress in arm9.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
         None,
     )
 
@@ -47136,7 +47345,7 @@ class EuOverlay29Functions:
         [0x23363D4],
         None,
         "DisplayCharTextureUi",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: render_3d_element_64\nr1: x position\nr2: y position\nr3: char_id\nstack[0]: ?\nreturn: ?",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: render_3d_element_64\nr1: x position\nr2: y position\nr3: char_id\nstack[0]: lower part of the palette VRAM\nreturn: ?",
         None,
     )
 
