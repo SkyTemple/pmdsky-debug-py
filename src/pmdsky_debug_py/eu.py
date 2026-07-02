@@ -1062,6 +1062,33 @@ class EuArm9Functions:
         None,
     )
 
+    MarkPaletteDataAsNeedingUpdate = Symbol(
+        [0xA504],
+        [0x200A504],
+        None,
+        "MarkPaletteDataAsNeedingUpdate",
+        "r0: palette_data",
+        None,
+    )
+
+    CopyColorToPaletteDataRgba = Symbol(
+        [0xA590],
+        [0x200A590],
+        None,
+        "CopyColorToPaletteDataRgba",
+        "Copies a single color to the RGBA palette of a palette_data struct, which will be transformed into RGB5 and copied into palette VRAM.\n\nr0: palette_data\nr1: position (ranges between [0, 0x100) for standard palettes and [0, 0x1000) for extended)\nr2: palette bytes",
+        None,
+    )
+
+    FillPaletteDataRgba = Symbol(
+        [0xA5B0],
+        [0x200A5B0],
+        None,
+        "FillPaletteDataRgba",
+        "Fills a portion of the RGBA palette of a palette_data struct, which will be transformed into RGB5 and copied into palette VRAM.\n\nr0: palette_data\nr1: starting position (ranges between [0, 0x100) for standard palettes and [0, 0x1000) for extended)\nr2: palette bytes\nr3: number of colors",
+        None,
+    )
+
     TransformPaletteDataWithFlushDivideFade = Symbol(
         [0xAE38],
         [0x200AE38],
@@ -1633,6 +1660,15 @@ class EuArm9Functions:
         None,
     )
 
+    MaybeGetFormattedItemName = Symbol(
+        [0xD398],
+        [0x200D398],
+        None,
+        "MaybeGetFormattedItemName",
+        "Seems to get a formatted copy of an item.\n\nr0: [output] name string\nr1: item pointer\nr2: bool table corresponding to item categories?\nr3: 1 if name should be colored, 0 if not\nstack[0]: 1 if should align with sticky items, 0 if not.",
+        None,
+    )
+
     SprintfStatic = Symbol(
         [
             0xD6BC,
@@ -1673,6 +1709,24 @@ class EuArm9Functions:
         None,
         "SprintfStatic",
         "Functionally the same as sprintf, just defined statically in many different places.\n\nSince this is essentially just a wrapper around vsprintf(3), this function was probably statically defined in a header somewhere and included in a bunch of different places. See the actual sprintf for the one in libc.\n\nr0: str\nr1: format\n...: variadic\nreturn: number of characters printed, excluding the null-terminator",
+        None,
+    )
+
+    MaybeGetUncoloredFormattedItemName = Symbol(
+        [0xD6E4],
+        [0x200D6E4],
+        None,
+        "MaybeGetUncoloredFormattedItemName",
+        "Seems to return an uncolored copy of the item name, with the appropriate quantity tag.\n\nr0: [output] name string\nr1: item pointer\nr2: bool table corresponding to item categories?",
+        None,
+    )
+
+    MaybeGetColoredFormattedItemName = Symbol(
+        [0xD6F8],
+        [0x200D6F8],
+        None,
+        "MaybeGetColoredFormattedItemName",
+        "Seems to return a colored copy of the item name, with the appropriate color and quantity tag.\n\nr0: [output] name string\nr1: item pointer\nr2: bool table corresponding to item categories?",
         None,
     )
 
@@ -2459,6 +2513,15 @@ class EuArm9Functions:
         None,
     )
 
+    MaybeUpdateStorage = Symbol(
+        [0x10124],
+        [0x2010124],
+        None,
+        "MaybeUpdateStorage",
+        "Just a guess.\nSeems like it might handle updating storage, syncing the item count data to the temporary item slots after interacting with storage.\nUsed as a sort parallel to RemoveEmptyItemsInBag.\n\nNo params.",
+        None,
+    )
+
     RemoveItemAtIdxInStorage = Symbol(
         [0x10248],
         [0x2010248],
@@ -2657,6 +2720,15 @@ class EuArm9Functions:
         None,
     )
 
+    GetCurrentKecleonShop1ItemByIndex = Symbol(
+        [0x10940],
+        [0x2010940],
+        None,
+        "GetCurrentKecleonShop1ItemByIndex",
+        "Retrieves a bulk_item from the first Kecleon Shop at a specified index.\n\nr0: index\nreturn: bulk_item pointer",
+        None,
+    )
+
     SortKecleonItems1 = Symbol(
         [0x109FC],
         [0x20109FC],
@@ -2684,12 +2756,30 @@ class EuArm9Functions:
         None,
     )
 
+    RemoveInvalidKecleonShop2Items = Symbol(
+        [0x10BE4],
+        [0x2010BE4],
+        None,
+        "RemoveInvalidKecleonShop2Items",
+        "Iterates through the current first Kecleon Shop items, and removes any with item_id ITEM_NONE.\n\nreturn: number of items removed from the shop.",
+        None,
+    )
+
     RemoveItemFromKecleonShop2 = Symbol(
         [0x10C20],
         [0x2010C20],
         None,
         "RemoveItemFromKecleonShop2",
         "Removes an item from the second Kecleon Shop at a specific slot in the shop list.\n\nr0: item slot (0-4)",
+        None,
+    )
+
+    GetCurrentKecleonShop2ItemByIndex = Symbol(
+        [0x10C4C],
+        [0x2010C4C],
+        None,
+        "GetCurrentKecleonShop2ItemByIndex",
+        "Retrieves a bulk_item from the first Kecleon Shop at a specified index.\n\nr0: index\nreturn: bulk_item pointer",
         None,
     )
 
@@ -4759,7 +4849,7 @@ class EuArm9Functions:
         [0x201F634],
         None,
         "FillPaletteInitInfo",
-        "Fills a palette_init_info struct's fields with the given parameters, besides multi_ext_palettes which will always be made 0.\n\nr0: palette_init_info\nr1: palette_bytes\nr2: palette_mode\nr3: nb_colors_or_palettes\nstack[0]: ext_palette_upper\nstack[1]: palette_num_custom",
+        "Fills a palette_init_info struct's fields with the given parameters, besides multi_ext_palettes which will always be made 0.\n\nr0: [output] palette_init_info\nr1: palette_bytes\nr2: palette_mode\nr3: nb_colors_or_palettes\nstack[0]: ext_palette_upper\nstack[1]: palette_num_custom",
         None,
     )
 
@@ -5213,12 +5303,12 @@ class EuArm9Functions:
         None,
     )
 
-    AppendStandardStringToMission = Symbol(
+    AppendStringIdToWindow = Symbol(
         [0x2654C],
         [0x202654C],
         None,
-        "AppendStandardStringToMission",
-        "Seems to append a string from a string_id to text. Known to be used for this purpose in MakeMissionDetails.\n\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: string_id",
+        "AppendStringIdToWindow",
+        "Seems to append a string from a string_id to text. Known to be used for this purpose in MakeMissionDetails and BankUpdateDigitInputMenuDisplay.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: string_id",
         None,
     )
 
@@ -5357,21 +5447,21 @@ class EuArm9Functions:
         None,
     )
 
-    Arm9LoadUnkFieldNa0x2029EC8 = Symbol(
+    LoadPrevMenuItem = Symbol(
         [0x2A1BC],
         [0x202A1BC],
         None,
-        "Arm9LoadUnkFieldNa0x2029EC8",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: id",
+        "LoadPrevMenuItem",
+        "Loads the index of the previous menu item the user had selected on the menu referenced by the given ID.\n\nr0: menu id\nreturn: menu item index",
         None,
     )
 
-    Arm9StoreUnkFieldNa0x2029ED8 = Symbol(
+    SavePrevMenuItem = Symbol(
         [0x2A1CC],
         [0x202A1CC],
         None,
-        "Arm9StoreUnkFieldNa0x2029ED8",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: id\nr1: value",
+        "SavePrevMenuItem",
+        "Stores the index of the previous menu item the user had selected on the menu referenced by the given ID.\n\nr0: menu id\nr1: menu item index",
         None,
     )
 
@@ -5750,6 +5840,15 @@ class EuArm9Functions:
         None,
         "IsCollectionMenuActive",
         "This is a guess.\n\nChecks if the state of a collection menu is something other than 6 or 7.\n\nr0: window_id\nreturn: bool",
+        None,
+    )
+
+    GetWindowIdSelectedMenuItemIdx = Symbol(
+        [0x2CA3C],
+        [0x202CA3C],
+        None,
+        "GetWindowIdSelectedMenuItemIdx",
+        "Gets the index of the current menu item the user has selected on the menu given by the window_id.\n\nr0: window id\nreturn: index of current selected item",
         None,
     )
 
@@ -6140,6 +6239,15 @@ class EuArm9Functions:
         None,
     )
 
+    IsTextboxState3 = Symbol(
+        [0x2FCAC],
+        [0x202FCAC],
+        None,
+        "IsTextboxState3",
+        "Checks if a text_box is in state 3.\n\nr0: window_id\nreturn: bool",
+        None,
+    )
+
     CreateTextBoxInternal = Symbol(
         [0x2FCD0],
         [0x202FCD0],
@@ -6380,6 +6488,15 @@ class EuArm9Functions:
         None,
         "IsAdvancedTextBoxActive",
         "This is a guess.\n\nChecks if the state of an advanced text box is something other than 6 or 7.\n\nr0: window_id\nreturn: bool",
+        None,
+    )
+
+    GetDigitInputResult = Symbol(
+        [0x30C34],
+        [0x2030C34],
+        None,
+        "GetDigitInputResult",
+        "Seems to retrieve the result of a digit input advanced textbox. \n\nr0: advanced textbox window_id\nreturn: value submitted in a digit input advanced texbox.",
         None,
     )
 
@@ -6734,6 +6851,87 @@ class EuArm9Functions:
         None,
     )
 
+    DigitInputMenuInit = Symbol(
+        [0x3975C],
+        [0x203975C],
+        None,
+        "DigitInputMenuInit",
+        "Seems to handle initialization of a digit_input_window_manager.\nUsed by something other than Duskull Bank!\n        \nr0: digit_input_menu pointer",
+        None,
+    )
+
+    DigitInputMenuReturn = Symbol(
+        [0x39824],
+        [0x2039824],
+        None,
+        "DigitInputMenuReturn",
+        "Seems to process the result of DigitInputMenuFrameUpdate.\nUsed by something other than Duskull Bank!\n\nr0: digit_input_menu pointer\nreturn: int32_t",
+        None,
+    )
+
+    DigitInputMenuInitDigits = Symbol(
+        [0x398C8],
+        [0x20398C8],
+        None,
+        "DigitInputMenuInitDigits",
+        "Seems to handle initializing the digit fields of a digit_input_menu struct, adjusting the max_digits to align with max_value, and more.\n\nr0: digit_input_menu pointer",
+        None,
+    )
+
+    DigitInputMenuGetDigits = Symbol(
+        [0x3997C],
+        [0x203997C],
+        None,
+        "DigitInputMenuGetDigits",
+        "Seems to handle generating the digits of a digit input menu, given the max value it can display and the number of digits it can hold. \n\nr0: [output] digit_values\nr1: max_value\nr2: max_digits\nreturn: ?",
+        None,
+    )
+
+    DigitInputMenuFrameUpdate = Symbol(
+        [0x399E0],
+        [0x20399E0],
+        None,
+        "DigitInputMenuFrameUpdate",
+        "Run every frame a digit input menu is active, detecting player inputs via both buttons and the touch screen.\n\nr0: digit_input_menu pointer\nreturn: Some kind of exit code, interpreted by DigitInputMenuReturn",
+        None,
+    )
+
+    DigitInputMenuCheckValidTouchScreenInput = Symbol(
+        [0x39C48],
+        [0x2039C48],
+        None,
+        "DigitInputMenuCheckValidTouchScreenInput",
+        "Just a guess. Seems to be checking for touch screen input, and interpreting the results as an equivalent set of button inputs?\n\nr0: digit_input_menu pointer\nreturn: undefined4",
+        None,
+    )
+
+    DigitInputMenuCheckTouchUpDownArrow = Symbol(
+        [0x39CF8],
+        [0x2039CF8],
+        None,
+        "DigitInputMenuCheckTouchUpDownArrow",
+        "Called by DigitInputMenuCheckValidTouchScreenInput, which this function assumes to be generally correct.\nSeems to specifically check for a touch screen press above or below the current digit, to increment/decrement it\n\nr0: digit_input_menu pointer\nr1: int\nr2: int\nreturn: ?",
+        None,
+    )
+
+    DigitInputMenuDrawDigits = Symbol(
+        [0x39E08],
+        [0x2039E08],
+        None,
+        "DigitInputMenuDrawDigits",
+        "Seems to handle actually drawing the digits on the advanced textbox for a digit_input_window_manager.\n\nr0: digit_input_menu pointer",
+        None,
+    )
+
+    DigitInputMenuDrawDigitsCallback = Symbol(
+        [0x39F10],
+        [0x2039F10],
+        None,
+        "DigitInputMenuDrawDigitsCallback",
+        "A text_box_callback_fn_t for a digit input window advanced_text_box.\nIs used by something other than the Duskull Bank!\n\nNo params.",
+        None,
+    )
+
     TeamSelectionMenuGetItem = Symbol(
         [0x3AA58],
         [0x203AA58],
@@ -6785,6 +6983,168 @@ class EuArm9Functions:
         None,
         "GetCheckIqMenuSkillString",
         "Gets the string for a team member's IQ skill to be displayed in the Check IQ menu.\n\nIs stored as an advanced_menu_entry_fn_t in the advanced_menu struct.\n\nr0: [output] buffer\nr1: id in team member's IQ skill list\nreturn: input buffer",
+        None,
+    )
+
+    InitUnkStorageStruct0xA0 = Symbol(
+        [0x42554],
+        [0x2042554],
+        None,
+        "InitUnkStorageStruct0xA0",
+        "Initializes an unknown struct of size 0xA0, to a pointer in UNK_STORAGE_STRUCT_0XC.\nAppears to be used for kangaskhan storage.\n\nr0: int32_t\nr1: undefined4\nr2: int\nr3: int\nreturn: int",
+        None,
+    )
+
+    FreeUnkStorageStruct0xA0 = Symbol(
+        [0x42980],
+        [0x2042980],
+        None,
+        "FreeUnkStorageStruct0xA0",
+        "Frees an unknown struct of size 0xA0, to a pointer in UNK_STORAGE_STRUCT_0XC.\nAppears to be used for kangaskhan storage.\n\nNo params.",
+        None,
+    )
+
+    ClearBagSelectedItemTable = Symbol(
+        [0x42E14],
+        [0x2042E14],
+        None,
+        "ClearBagSelectedItemTable",
+        "Seems to clear the list of selected bag item bools.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
+        None,
+    )
+
+    IsBagItemIndexSelected = Symbol(
+        [0x42EA0],
+        [0x2042EA0],
+        None,
+        "IsBagItemIndexSelected",
+        "Seems to check if a specified index in the bag is selected.\nKnown to be used by Kangaskhan Storage.\n\nr0: index\nreturn: bool",
+        None,
+    )
+
+    AllocUnkBagStruct = Symbol(
+        [0x42EB4],
+        [0x2042EB4],
+        None,
+        "AllocUnkBagStruct",
+        "Allocates a currently unknown struct UNK_STORAGE_STRUCT_0XC, that seems to manage the bag while interacting with storage.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
+        None,
+    )
+
+    FreeUnkBagStruct = Symbol(
+        [0x42ED8],
+        [0x2042ED8],
+        None,
+        "FreeUnkBagStruct",
+        "Frees a currently unknown struct UNK_STORAGE_STRUCT_0XC, that seems to manage the bag while interacting with storage.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
+        None,
+    )
+
+    InitUnkStorageStruct0x18c0 = Symbol(
+        [0x4300C],
+        [0x204300C],
+        None,
+        "InitUnkStorageStruct0x18c0",
+        "Allocates a currently unknown struct of size 0x18c0, and stores it to a pointer at UNK_STORAGE_STRUCT_0X14.\nKnown to be used by Kangaskhan Storage.\n\nr0: int\nr1: undefined4\nr2: int\nreturn: int",
+        None,
+    )
+
+    MaybeTrySelectStorageItem = Symbol(
+        [0x432D4],
+        [0x20432D4],
+        None,
+        "MaybeTrySelectStorageItem",
+        "Seems to be responsible for selecting an item from storage, for multi-select. \nKnown to be used by Kangaskhan Storage.\n\nr0: buttons struct? Seems to be checking for the R button...\nreturn: bool",
+        None,
+    )
+
+    FreeUnkStorageStruct0x18c0 = Symbol(
+        [0x43498],
+        [0x2043498],
+        None,
+        "FreeUnkStorageStruct0x18c0",
+        "Frees a currently unknown struct of size 0x18c0 from a pointer at UNK_STORAGE_STRUCT_0X14.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
+        None,
+    )
+
+    ClearStorageSelectedItemTable = Symbol(
+        [0x437F0],
+        [0x20437F0],
+        None,
+        "ClearStorageSelectedItemTable",
+        "Seems to clear the selected item bool table for storage.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
+        None,
+    )
+
+    CountSelectedStorageItems = Symbol(
+        [0x43818],
+        [0x2043818],
+        None,
+        "CountSelectedStorageItems",
+        "Seems to count the number of currently selected items in storage.\nKnown to be used by Kangaskhan Storage. \n\nreturn: number of selected items",
+        None,
+    )
+
+    GetFirstSelectedStorageItemIndex = Symbol(
+        [0x43848],
+        [0x2043848],
+        None,
+        "GetFirstSelectedStorageItemIndex",
+        "Seems to retrieve the index of the first currently selected item in storage.\nKnown to be used by Kangaskhan Storage. \n\nreturn: index of first selected item",
+        None,
+    )
+
+    IsStorageItemIndexSelected = Symbol(
+        [0x43884],
+        [0x2043884],
+        None,
+        "IsStorageItemIndexSelected",
+        "Seems to check if a specified storage item index is selected.\nKnown to be used by Kangaskhan Storage. \n\nr0: index\nreturn: bool",
+        None,
+    )
+
+    AllocStorageSelectedItemTable = Symbol(
+        [0x443B0],
+        [0x20443B0],
+        None,
+        "AllocStorageSelectedItemTable",
+        "Seems to allocate a table of bools for selected storage items to a pointer in UNK_STORAGE_STRUCT_0X14.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
+        None,
+    )
+
+    FreeStorageSelectedItemTable = Symbol(
+        [0x443D4],
+        [0x20443D4],
+        None,
+        "FreeStorageSelectedItemTable",
+        "Seems to free a table of bools for selected storage items from a pointer in UNK_STORAGE_STRUCT_0X14.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
+        None,
+    )
+
+    InitUnkStorageStruct0x410 = Symbol(
+        [0x45714],
+        [0x2045714],
+        None,
+        "InitUnkStorageStruct0x410",
+        "Allocates a currently unknown struct of size 0x410 at UNK_STORAGE_STRUCT_0X410_PTR. May be a state case structure of some kind.\nLikely used by Kangaskhan Storage, or some other storage interaction menu.\n\nr0: undefined2 pointer\nr1: int\nreturn: undefined4",
+        None,
+    )
+
+    UnkStorageStruct0x410CloseSimpleMenu = Symbol(
+        [0x468F8],
+        [0x20468F8],
+        None,
+        "UnkStorageStruct0x410CloseSimpleMenu",
+        "Seems to close a simple menu for a currently unknown struct of size 0x410 at UNK_STORAGE_STRUCT_0X410_PTR. May be a state case structure of some kind.\nLikely used by Kangaskhan Storage, or some other storage interaction menu.\n\nNo params.",
+        None,
+    )
+
+    UnkStorageStruct0x410CreateDialogueBox = Symbol(
+        [0x46940],
+        [0x2046940],
+        None,
+        "UnkStorageStruct0x410CreateDialogueBox",
+        "Seems to create a dialogue box for a currently unknown struct of size 0x410 at UNK_STORAGE_STRUCT_0X410_PTR. May be a state case structure of some kind.\nLikely used by Kangaskhan Storage, or some other storage interaction menu.\n\nNo params.",
         None,
     )
 
@@ -11252,6 +11612,18 @@ class EuArm9Functions:
 
     FillOamAttributeInfo = _Deprecated("FillOamAttributeInfo", FillOamAdjustmentInfo)
 
+    AppendStandardStringToMission = _Deprecated(
+        "AppendStandardStringToMission", AppendStringIdToWindow
+    )
+
+    Arm9LoadUnkFieldNa0x2029EC8 = _Deprecated(
+        "Arm9LoadUnkFieldNa0x2029EC8", LoadPrevMenuItem
+    )
+
+    Arm9StoreUnkFieldNa0x2029ED8 = _Deprecated(
+        "Arm9StoreUnkFieldNa0x2029ED8", SavePrevMenuItem
+    )
+
     ZeroInitScriptVariable = _Deprecated("ZeroInitScriptVariable", ZinitScriptVariable)
 
     InitScenarioProgressScriptVars = _Deprecated(
@@ -13543,6 +13915,60 @@ class EuArm9Data:
         "MISSION_REWARD_STRUCT_MAIN_PTR",
         "Points to a mission_reward_struct_main struct, responsible for handling the overlay 11 portion of the mission reward sequence.\nIs also used sparingly during the Spinda Cafe egg event.\n\ntype: mission_reward_struct_main pointer",
         "struct mission_reward_struct_main*",
+    )
+
+    UNK_STORAGE_STRUCT_0XC = Symbol(
+        [0xB07C4],
+        [0x20B07C4],
+        0xC,
+        "UNK_STORAGE_STRUCT_0XC",
+        "A currently unknown struct of size 0xc, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0xc",
+        "struct unk_storage_struct_0xc",
+    )
+
+    UNK_STORAGE_STRUCT_0X14 = Symbol(
+        [0xB07D0],
+        [0x20B07D0],
+        0x14,
+        "UNK_STORAGE_STRUCT_0X14",
+        "A currently unknown struct of size 0x14, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0x14",
+        "struct unk_storage_struct_0x14",
+    )
+
+    UNK_STORAGE_STRUCT_0X8_PTR_1 = Symbol(
+        [0xB07E4],
+        [0x20B07E4],
+        0x4,
+        "UNK_STORAGE_STRUCT_0X8_PTR_1",
+        "A pointer to a currently unknown struct of size 0x8, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0x8*",
+        "struct unk_storage_struct_0x8*",
+    )
+
+    UNK_STORAGE_WINDOW_STRUCT_0XC_PTR = Symbol(
+        [0xB07E8],
+        [0x20B07E8],
+        0x4,
+        "UNK_STORAGE_WINDOW_STRUCT_0XC_PTR",
+        "A pointer to a currently unknown struct of size 0xc, with ties to kangaskhan storage.\n\ntype: struct unk_storage_window_struct_0xc*",
+        "struct unk_storage_window_struct_0xc*",
+    )
+
+    UNK_STORAGE_STRUCT_0X8_PTR_2 = Symbol(
+        [0xB07EC],
+        [0x20B07EC],
+        0x4,
+        "UNK_STORAGE_STRUCT_0X8_PTR_2",
+        "A pointer to a currently unknown struct of size 0x8, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0x8*",
+        "struct unk_storage_struct_0x8*",
+    )
+
+    UNK_STORAGE_STRUCT_0X410_PTR = Symbol(
+        [0xB07F0],
+        [0x20B07F0],
+        0x4,
+        "UNK_STORAGE_STRUCT_0X410_PTR",
+        "A pointer to a currently unknown struct of size 0x410, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0x410*",
+        "struct unk_storage_struct_0x410*",
     )
 
     NOTIFY_NOTE = Symbol(
@@ -32047,12 +32473,174 @@ class EuOverlay11Functions:
         None,
     )
 
-    LoadRecycleShopOverlay = Symbol(
+    LoadDuskullBankOverlay = Symbol(
+        [0x309CC],
+        [0x230D54C],
+        None,
+        "LoadDuskullBankOverlay",
+        "Seems to handle loading overlay 15 for the duskull bank.\n\nNo params.",
+        None,
+    )
+
+    LoadLuminousSpringOverlay = Symbol(
+        [0x309E0],
+        [0x230D560],
+        None,
+        "LoadLuminousSpringOverlay",
+        "Seems to handle loading overlay 16 for luminous spring.\n\nNo params.",
+        None,
+    )
+
+    LoadChimechoAssemblyOverlay = Symbol(
+        [0x309F4],
+        [0x230D574],
+        None,
+        "LoadChimechoAssemblyOverlay",
+        "Seems to handle loading overlay 17 for the chimecho assembly.\n\nr0: undefined4",
+        None,
+    )
+
+    LoadElectivireLinkShopOverlay = Symbol(
+        [0x30A1C],
+        [0x230D59C],
+        None,
+        "LoadElectivireLinkShopOverlay",
+        "Seems to handle loading overlay 18 for the electivire link shop.\n\nr0: undefined4",
+        None,
+    )
+
+    LoadSpindaCafeOverlayInit = Symbol(
+        [0x30A44],
+        [0x230D5C4],
+        None,
+        "LoadSpindaCafeOverlayInit",
+        "Seems to handle loading overlay 19 for initializing the spinda cafe.\n\nNo params.",
+        None,
+    )
+
+    LoadSpindaCafeOverlayResume = Symbol(
+        [0x30A68],
+        [0x230D5E8],
+        None,
+        "LoadSpindaCafeOverlayResume",
+        "Seems to handle loading overlay 19 for resuming operations of the spinda cafe.\n\nNo params.",
+        None,
+    )
+
+    IsSpindaCafeOverlaySuspended = Symbol(
+        [0x30A8C],
+        [0x230D60C],
+        None,
+        "IsSpindaCafeOverlaySuspended",
+        "Checks SPINDA_CAFE_OVERLAY_STATUS for if the Spinda Cafe is inactive.\n\nreturn: 1 if the cafe is suspended, 0 if not.",
+        None,
+    )
+
+    LoadRecycleShopOverlayInit = Symbol(
+        [0x30A9C],
+        [0x230D61C],
+        None,
+        "LoadRecycleShopOverlayInit",
+        "Seems to handle loading overlay 20 for initializing the recycle shop.\n\nNo params.",
+        None,
+    )
+
+    LoadRecycleShopOverlayResume = Symbol(
+        [0x30AC4],
+        [0x230D644],
+        None,
+        "LoadRecycleShopOverlayResume",
+        "Seems to handle loading overlay 20 for resuming operations of the recycle shop.\n\nNo params.",
+        None,
+    )
+
+    IsRecycleShopOverlaySuspended = Symbol(
+        [0x30AFC],
+        [0x230D67C],
+        None,
+        "IsRecycleShopOverlaySuspended",
+        "Checks RECYCLE_SHOP_OVERLAY_STATUS for if the recycle shop is inactive.\n\nreturn: 1 if the recycle shop is suspended, 0 if not.",
+        None,
+    )
+
+    LoadCroagunkSwapShopOverlay = Symbol(
+        [0x30B64],
+        [0x230D6E4],
+        None,
+        "LoadCroagunkSwapShopOverlay",
+        "Seems to handle loading overlay 21 for the croagunk swap shop.\n\nNo params.",
+        None,
+    )
+
+    LoadKecleonShopOverlay = Symbol(
+        [0x30B78],
+        [0x230D6F8],
+        None,
+        "LoadKecleonShopOverlay",
+        "Seems to handle loading overlay 22 for the kecleon brothers shop. Is used by both colors of Kecleon.\n\nr0: 1 for purple kecleon, 0 for green kecleon.",
+        None,
+    )
+
+    LoadKangaskhanOverlay = Symbol(
+        [0x30BA0],
+        [0x230D720],
+        None,
+        "LoadKangaskhanOverlay",
+        "Seems to handle loading overlay 23 for Kangaskhan storage, as well as Kangaskhan rock storage. \n\nr0: 2 for kangaskhan rock, 0 otherwise?",
+        None,
+    )
+
+    LoadChanseyDaycareOverlay = Symbol(
+        [0x30BC0],
+        [0x230D740],
+        None,
+        "LoadChanseyDaycareOverlay",
+        "Seems to handle loading overlay 24 for the Chansey daycare.\n\nNo params.",
+        None,
+    )
+
+    LoadXatuAppraisalOverlay = Symbol(
+        [0x30BD4],
+        [0x230D754],
+        None,
+        "LoadXatuAppraisalOverlay",
+        "Seems to handle loading overlay 24 for Xatu's appraisal.\n\nNo params.",
+        None,
+    )
+
+    LoadMissionRewardOverlay = Symbol(
         [0x30BE8],
         [0x230D768],
         None,
-        "LoadRecycleShopOverlay",
-        "Seems to be responsible for loading overlay 20 for the recycle shop.\n\nNo params.",
+        "LoadMissionRewardOverlay",
+        "Seems to be responsible for loading overlay 26 for the mission reward sequence.\n\nNo params.",
+        None,
+    )
+
+    LoadRuleDungeonEffectsOverlay = Symbol(
+        [0x30BFC],
+        [0x230D77C],
+        None,
+        "LoadRuleDungeonEffectsOverlay",
+        "Seems to be responsible for loading overlay 26 to handle rule dungeon effects.\n\nNo params.",
+        None,
+    )
+
+    LoadSpecialEpisodeDiscardOverlay1 = Symbol(
+        [0x30C4C],
+        [0x230D7CC],
+        None,
+        "LoadSpecialEpisodeDiscardOverlay1",
+        "Seems to load overlay 27, which is believed to handle special episode discarding.\n\nNo params.",
+        None,
+    )
+
+    LoadSpecialEpisodeDiscardOverlay2 = Symbol(
+        [0x30C60],
+        [0x230D7E0],
+        None,
+        "LoadSpecialEpisodeDiscardOverlay2",
+        "Seems to load overlay 27, which is believed to handle special episode discarding.\n\nNo params.",
         None,
     )
 
@@ -32111,6 +32699,10 @@ class EuOverlay11Functions:
     )
 
     ProcessScriptParam = _Deprecated("ProcessScriptParam", ScriptParamToInt)
+
+    LoadRecycleShopOverlay = _Deprecated(
+        "LoadRecycleShopOverlay", LoadMissionRewardOverlay
+    )
 
 
 class EuOverlay11Data:
@@ -32427,6 +33019,24 @@ class EuOverlay11Data:
         "SWAP_SHOP_INVENTORY_PTRS",
         "Host pointers to multiple structures used for performing internal Swap Shop checks.",
         "struct swap_shop_inventory_ptrs",
+    )
+
+    SPINDA_CAFE_OVERLAY_STATUS = Symbol(
+        [0x48D6C],
+        [0x23258EC],
+        0x4,
+        "SPINDA_CAFE_OVERLAY_STATUS",
+        "Tracks whether or not the spinda cafe overlay is suspended. 1 if it is inactive, 0 if it is active.\n\ntype: int",
+        "int",
+    )
+
+    RECYCLE_SHOP_OVERLAY_STATUS = Symbol(
+        [0x48D74],
+        [0x23258F4],
+        0x4,
+        "RECYCLE_SHOP_OVERLAY_STATUS",
+        "Tracks whether or not the recycle shop overlay is suspended. 1 if it is inactive, 0 if it is active.\n\ntype: int",
+        "int",
     )
 
     WORLD_MAP_MODE = Symbol(
@@ -33319,7 +33929,86 @@ class EuOverlay14Section:
 
 class EuOverlay15Functions:
 
-    pass
+    InitDuskullBankStruct = Symbol(
+        [0x0],
+        [0x238AC80],
+        None,
+        "InitDuskullBankStruct",
+        "Allocates and initializes a duskull_bank struct at DUSKULL_BANK_STRUCT_PTR.\n\nNo params.",
+        None,
+    )
+
+    DuskullBankSubcaseManager1 = Symbol(
+        [0xF4],
+        [0x238AD74],
+        None,
+        "DuskullBankSubcaseManager1",
+        "Seems to manage the more niche operations of the bank, primarily window management and player input interpretation.\nConsists of a switch case over the bank_subcase enum.\n\nreturn: undefined4",
+        None,
+    )
+
+    DuskullBankSubcaseManager2 = Symbol(
+        [0x3AC],
+        [0x238B02C],
+        None,
+        "DuskullBankSubcaseManager2",
+        "Seems to manage the more niche operations of the bank, primarily window generation.\nConsists of a switch case over the bank_subcase enum.\n\nr0: enum bank_subcase",
+        None,
+    )
+
+    BankUpdateDigitInputMenuDisplay = Symbol(
+        [0xC64],
+        [0x238B8E4],
+        None,
+        "BankUpdateDigitInputMenuDisplay",
+        "Runs once every frame while the digit display menu is up, to redraw it as needed.\n\nr0: 1 for the withdrawing text string, 0 for depositing.",
+        None,
+    )
+
+    DuskullBankTextboxGoldStatusCallback = Symbol(
+        [0xCB0],
+        [0x238B930],
+        None,
+        "DuskullBankTextboxGoldStatusCallback",
+        "A text_box_callback_fn_t function for the gold status window that seems to populate the current and stored money.\n\nr0: window_id",
+        None,
+    )
+
+    DuskullBankDigitInputDisplayCallback = Symbol(
+        [0xD58],
+        [0x238B9D8],
+        None,
+        "DuskullBankDigitInputDisplayCallback",
+        "A text_box_callback_fn_t function for the digit display window that calls BankUpdateDigitInputMenuDisplay with the correct param from the duskull_bank struct.\n\nNo params.",
+        None,
+    )
+
+    DuskullBankEntryPoint = Symbol(
+        [0xD74],
+        [0x238B9F4],
+        None,
+        "DuskullBankEntryPoint",
+        "The sole entry_point function for the duskull bank overlay.\n\nreturn: undefined4",
+        None,
+    )
+
+    DuskullBankDestructor = Symbol(
+        [0xD84],
+        [0x238BA04],
+        None,
+        "DuskullBankDestructor",
+        "The sole destructor function for the duskull bank overlay.\n\nNo params.",
+        None,
+    )
+
+    DuskullBankFrameUpdate = Symbol(
+        [0xE40],
+        [0x238BAC0],
+        None,
+        "DuskullBankFrameUpdate",
+        "The sole frame_update function for the duskull bank overlay.\n\nreturn: undefined4",
+        None,
+    )
 
 
 class EuOverlay15Data:
@@ -33334,48 +34023,138 @@ class EuOverlay15Data:
     )
 
     BANK_WINDOW_PARAMS_1 = Symbol(
-        None,
-        None,
-        None,
+        [0xF68],
+        [0x238BBE8],
+        0x10,
         "BANK_WINDOW_PARAMS_1",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Seems to be fully unused. May be a leftover from Time/Darkness or Rescue Team?\n\ntype: struct window_params",
         "struct window_params",
     )
 
-    BANK_WINDOW_PARAMS_2 = Symbol(
+    BANK_GOLD_STATUS_WINDOW_PARAMS = Symbol(
         [0xF78],
         [0x238BBF8],
         0x10,
-        "BANK_WINDOW_PARAMS_2",
-        "Note: unverified, ported from Irdkwia's notes",
+        "BANK_GOLD_STATUS_WINDOW_PARAMS",
+        "A window_params struct used by the window displaying stored and carried gold for the duskull bank.\n\ntype: struct window_params",
         "struct window_params",
     )
 
-    BANK_WINDOW_PARAMS_3 = Symbol(
+    BANK_ADVANCED_TEXTBOX_WINDOW_PARAMS = Symbol(
         [0xF88],
         [0x238BC08],
         0x10,
-        "BANK_WINDOW_PARAMS_3",
-        "Note: unverified, ported from Irdkwia's notes",
+        "BANK_ADVANCED_TEXTBOX_WINDOW_PARAMS",
+        "A window_params struct used by the digit input advanced textbox for the duskull bank.\n\ntype: struct window_params",
         "struct window_params",
     )
 
-    BANK_WINDOW_PARAMS_4 = Symbol(
+    BANK_MAIN_MENU_WINDOW_PARAMS = Symbol(
         [0xF98],
         [0x238BC18],
         0x10,
-        "BANK_WINDOW_PARAMS_4",
-        "Note: unverified, ported from Irdkwia's notes",
+        "BANK_MAIN_MENU_WINDOW_PARAMS",
+        "A window_params struct used by the main menu of the duskull bank.\n\ntype: struct window_params",
         "struct window_params",
     )
 
     BANK_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
-        None,
+        [0xFA8],
+        [0x238BC28],
+        0x10,
         "BANK_WINDOW_PARAMS_5",
-        "Note: unverified, ported from Irdkwia's notes",
+        "Seems to be fully unused. May be a leftover from Time/Darkness or Rescue Team?\n\ntype: struct window_params",
         "struct window_params",
+    )
+
+    BANK_R_CLOSE_STR = Symbol(
+        [0xFB8],
+        [0x238BC38],
+        0x9,
+        "BANK_R_CLOSE_STR",
+        "'R-Close\n'\n\ntype: string",
+        "char[9]",
+    )
+
+    BANK_M_OPEN_STR = Symbol(
+        [0xFC4],
+        [0x238BC44],
+        0x8,
+        "BANK_M_OPEN_STR",
+        "'M-Open\n'\n\ntype: string",
+        "char[8]",
+    )
+
+    BANK_S_CLOSE_STR = Symbol(
+        [0xFCC],
+        [0x238BC4C],
+        0x9,
+        "BANK_S_CLOSE_STR",
+        "'S-Close\n'\n\ntype: string",
+        "char[9]",
+    )
+
+    MENU_BANK_MODE_CANCEL_STR = Symbol(
+        [0xFD8],
+        [0x238BC58],
+        0x17,
+        "MENU_BANK_MODE_CANCEL_STR",
+        "'Menu_Bank_Mode_Cancel\n'\n\ntype: string",
+        "char[23]",
+    )
+
+    BANK_P_OPEN_STR = Symbol(
+        [0xFF0],
+        [0x238BC70],
+        0x8,
+        "BANK_P_OPEN_STR",
+        "'P-Open\n'\n\ntype: string",
+        "char[8]",
+    )
+
+    BANK_G_OPEN_STR = Symbol(
+        [0xFF8],
+        [0x238BC78],
+        0x8,
+        "BANK_G_OPEN_STR",
+        "'G-Open\n'\n\ntype: string",
+        "char[8]",
+    )
+
+    BANK_MES_NOT_CLOSE_STR = Symbol(
+        [0x1000],
+        [0x238BC80],
+        0xF,
+        "BANK_MES_NOT_CLOSE_STR",
+        "'mes not close\n'\n\ntype: string",
+        "char[15]",
+    )
+
+    BANK_SUB_NOT_CLOSE_STR = Symbol(
+        [0x1010],
+        [0x238BC90],
+        0xF,
+        "BANK_SUB_NOT_CLOSE_STR",
+        "'sub not close\n'\n\ntype: string",
+        "char[15]",
+    )
+
+    BANK_SELECT_NOT_CLOSE_STR = Symbol(
+        [0x1020],
+        [0x238BCA0],
+        0x12,
+        "BANK_SELECT_NOT_CLOSE_STR",
+        "'select not close\n'\n\ntype: string",
+        "char[18]",
+    )
+
+    BANK_INPUT_NOT_CLOSE_STR = Symbol(
+        [0x1034],
+        [0x238BCB4],
+        0x11,
+        "BANK_INPUT_NOT_CLOSE_STR",
+        "'Input not close\n'\n\ntype: string",
+        "char[17]",
     )
 
     OV15_STATIC_INITIALIZER = Symbol(
@@ -33387,13 +34166,13 @@ class EuOverlay15Data:
         "undefined4",
     )
 
-    OVERLAY15_UNKNOWN_POINTER__NA_238B180 = Symbol(
+    DUSKULL_BANK_STRUCT_PTR = Symbol(
         [0x1060],
         [0x238BCE0],
-        None,
-        "OVERLAY15_UNKNOWN_POINTER__NA_238B180",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "DUSKULL_BANK_STRUCT_PTR",
+        "Manages the majority of duskull bank operations for the overlay.\n\ntype: duskull_bank struct pointer",
+        "struct duskull_bank*",
     )
 
     OVERLAY15_RESERVED_SPACE = _Deprecated(
@@ -39828,7 +40607,374 @@ class EuOverlay21Section:
 
 class EuOverlay22Functions:
 
-    pass
+    GreenKecleonShopUpdateItemNamesAndCollectionMenu = Symbol(
+        [0x0],
+        [0x238AC80],
+        None,
+        "GreenKecleonShopUpdateItemNamesAndCollectionMenu",
+        "Calls GreenKecleonShopFillItemNameData and GreenKecleonShopInitCollectionMenu, then returns.\n\nNo params.",
+        None,
+    )
+
+    GreenKecleonShopInitCollectionMenu = Symbol(
+        [0x10],
+        [0x238AC90],
+        None,
+        "GreenKecleonShopInitCollectionMenu",
+        "Seems to initialize a collection menu for green kecleon with data from GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: collection menu window_id",
+        None,
+    )
+
+    GreenKecleonShopDoNothing = Symbol(
+        [0xEC],
+        [0x238AD6C],
+        None,
+        "GreenKecleonShopDoNothing",
+        "Does nothing but return. Is exclusively called by the green kecleon shop.\n\nNo params.",
+        None,
+    )
+
+    GreenKecleonShopGetCollectionMenuStatus = Symbol(
+        [0xF0],
+        [0x238AD70],
+        None,
+        "GreenKecleonShopGetCollectionMenuStatus",
+        "Seems to return some kind of status data for the collection menu from GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: collection menu status?",
+        None,
+    )
+
+    GreenKecleonShopGetShopItemSlot = Symbol(
+        [0x16C],
+        [0x238ADEC],
+        None,
+        "GreenKecleonShopGetShopItemSlot",
+        "Seems to retrieve the item slot the cursor is currently pointing to from GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: shop item slot index",
+        None,
+    )
+
+    GreenKecleonShopInitItemNameData = Symbol(
+        [0x180],
+        [0x238AE00],
+        None,
+        "GreenKecleonShopInitItemNameData",
+        "Initializes a green_kec_shop_item_data struct in GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
+        None,
+    )
+
+    GreenKecleonShopFreeItemNameData = Symbol(
+        [0x1B4],
+        [0x238AE34],
+        None,
+        "GreenKecleonShopFreeItemNameData",
+        "Frees a green_kec_shop_item_data struct in GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
+        None,
+    )
+
+    GreenKecleonShopFillItemNameData = Symbol(
+        [0x1E0],
+        [0x238AE60],
+        None,
+        "GreenKecleonShopFillItemNameData",
+        "Populates a green_kec_shop_item_data struct in GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
+        None,
+    )
+
+    GreenKecleonShopCountSelectedItems = Symbol(
+        [0x38C],
+        [0x238B00C],
+        None,
+        "GreenKecleonShopCountSelectedItems",
+        "Counts the number of multi-selected items in the green kecleon shop.\n\nreturn: # of selected items.",
+        None,
+    )
+
+    GreenKecleonShopGetFirstSelectedItemIndex = Symbol(
+        [0x3C8],
+        [0x238B048],
+        None,
+        "GreenKecleonShopGetFirstSelectedItemIndex",
+        "Retrieves the index of the first multi-selected item in the green kecleon shop.\n\nreturn: index of the first selected shop item.",
+        None,
+    )
+
+    GreenKecleonShopSumSelectedItemPrices = Symbol(
+        [0x404],
+        [0x238B084],
+        None,
+        "GreenKecleonShopSumSelectedItemPrices",
+        "Sums the prices of all currently selected items in the green kecleon shop.\n\nreturn: total price of all selected shop items.",
+        None,
+    )
+
+    GreenKecleonShopPurchaseSingleItem = Symbol(
+        [0x448],
+        [0x238B0C8],
+        None,
+        "GreenKecleonShopPurchaseSingleItem",
+        "Handles purchasing a single item from the green kecleon shop, by index.\n\nr0: shop item slot",
+        None,
+    )
+
+    GreenKecleonShopPurchaseSelectedItems = Symbol(
+        [0x48C],
+        [0x238B10C],
+        None,
+        "GreenKecleonShopPurchaseSelectedItems",
+        "Handles purchasing all selected items from the green kecleon shop.\nWill not be used if only one item is selected.\n\nNo params.",
+        None,
+    )
+
+    GreenKecleonGetItemNameStringByIndex = Symbol(
+        [0x500],
+        [0x238B180],
+        None,
+        "GreenKecleonGetItemNameStringByIndex",
+        "Retrieves the item name string for a shop item in the green kecleon shop by index.\n\nr0: unused\nr1: int\nr2: uint32_t pointer\nreturn: item name string (buffer size 80)",
+        None,
+    )
+
+    GreenKecleonShopUnkCollectionMenuCallback = Symbol(
+        [0x53C],
+        [0x238B1BC],
+        None,
+        "GreenKecleonShopUnkCollectionMenuCallback",
+        "An unk_collection_menu_fn_t function used by GreenKecleonShopInitCollectionMenu.\n\nr0: uint\nreturn: undefined4",
+        None,
+    )
+
+    GreenKecleonShopVoidFnCollectionMenuCallback = Symbol(
+        [0x634],
+        [0x238B2B4],
+        None,
+        "GreenKecleonShopVoidFnCollectionMenuCallback",
+        "An unk_collection_menu_void_fn_t function used by GreenKecleonShopInitCollectionMenu.\n\nr0: uint",
+        None,
+    )
+
+    PurpleKecleonShopUpdateItemNamesAndCollectionMenu = Symbol(
+        [0x64C],
+        [0x238B2CC],
+        None,
+        "PurpleKecleonShopUpdateItemNamesAndCollectionMenu",
+        "Calls PurpleKecleonShopFillItemNameData and PurpleKecleonShopInitCollectionMenu, then returns.\n\nNo params.",
+        None,
+    )
+
+    PurpleKecleonShopInitCollectionMenu = Symbol(
+        [0x65C],
+        [0x238B2DC],
+        None,
+        "PurpleKecleonShopInitCollectionMenu",
+        "Seems to initialize a collection menu for purple kecleon with data from PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: collection menu window_id",
+        None,
+    )
+
+    PurpleKecleonShopDoNothing = Symbol(
+        [0x738],
+        [0x238B3B8],
+        None,
+        "PurpleKecleonShopDoNothing",
+        "Does nothing but return. Is exclusively called by the purple kecleon shop.\n\nNo params.",
+        None,
+    )
+
+    PurpleKecleonShopGetCollectionMenuStatus = Symbol(
+        [0x73C],
+        [0x238B3BC],
+        None,
+        "PurpleKecleonShopGetCollectionMenuStatus",
+        "Seems to return some kind of status data for the collection menu from PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: collection menu status?",
+        None,
+    )
+
+    PurpleKecleonShopGetShopItemSlot = Symbol(
+        [0x7B8],
+        [0x238B438],
+        None,
+        "PurpleKecleonShopGetShopItemSlot",
+        "Seems to retrieve the item slot the cursor is currently pointing to from PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: shop item slot index",
+        None,
+    )
+
+    PurpleKecleonShopInitItemNameData = Symbol(
+        [0x7CC],
+        [0x238B44C],
+        None,
+        "PurpleKecleonShopInitItemNameData",
+        "Initializes a purple_kec_shop_item_data struct in PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
+        None,
+    )
+
+    PurpleKecleonShopFreeItemNameData = Symbol(
+        [0x800],
+        [0x238B480],
+        None,
+        "PurpleKecleonShopFreeItemNameData",
+        "Frees a purple_kec_shop_item_data struct in PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
+        None,
+    )
+
+    PurpleKecleonShopFillItemNameData = Symbol(
+        [0x82C],
+        [0x238B4AC],
+        None,
+        "PurpleKecleonShopFillItemNameData",
+        "Frees a purple_kec_shop_item_data struct in PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
+        None,
+    )
+
+    PurpleKecleonShopCountSelectedItems = Symbol(
+        [0x9D8],
+        [0x238B658],
+        None,
+        "PurpleKecleonShopCountSelectedItems",
+        "Counts the number of multi-selected items in the purple kecleon shop.\n\nreturn: # of selected items.",
+        None,
+    )
+
+    PurpleKecleonShopGetFirstSelectedItemIndex = Symbol(
+        [0xA14],
+        [0x238B694],
+        None,
+        "PurpleKecleonShopGetFirstSelectedItemIndex",
+        "Retrieves the index of the first multi-selected item in the purple kecleon shop.\n\nreturn: index of the first selected shop item.",
+        None,
+    )
+
+    PurpleKecleonShopSumSelectedItemPrices = Symbol(
+        [0xA50],
+        [0x238B6D0],
+        None,
+        "PurpleKecleonShopSumSelectedItemPrices",
+        "Sums the prices of all currently selected items in the purple kecleon shop.\n\nreturn: total price of all selected shop items.",
+        None,
+    )
+
+    PurpleKecleonShopPurchaseSingleItem = Symbol(
+        [0xA94],
+        [0x238B714],
+        None,
+        "PurpleKecleonShopPurchaseSingleItem",
+        "Handles purchasing a single item from the purple kecleon shop, by index.\n\nr0: shop item slot",
+        None,
+    )
+
+    PurpleKecleonShopPurchaseSelectedItems = Symbol(
+        [0xAD8],
+        [0x238B758],
+        None,
+        "PurpleKecleonShopPurchaseSelectedItems",
+        "Handles purchasing all selected items from the purple kecleon shop.\nWill not be used if only one item is selected.\n\nNo params.",
+        None,
+    )
+
+    PurpleKecleonGetItemNameStringByIndex = Symbol(
+        [0xB4C],
+        [0x238B7CC],
+        None,
+        "PurpleKecleonGetItemNameStringByIndex",
+        "Retrieves the item name string for a shop item in the purple kecleon shop by index.\n\nr0: unused\nr1: int\nr2: uint32_t pointer\nreturn: item name string (buffer size 80)",
+        None,
+    )
+
+    PurpleKecleonShopUnkCollectionMenuCallback = Symbol(
+        [0xB88],
+        [0x238B808],
+        None,
+        "PurpleKecleonShopUnkCollectionMenuCallback",
+        "An unk_collection_menu_fn_t function used by PurpleKecleonShopInitCollectionMenu.\n\nr0: uint\nreturn: undefined4",
+        None,
+    )
+
+    PurpleKecleonShopCollectionMenuCallback = Symbol(
+        [0xC80],
+        [0x238B900],
+        None,
+        "PurpleKecleonShopCollectionMenuCallback",
+        "An unk_collection_menu_void_fn_t function used by PurpleKecleonShopInitCollectionMenu.\n\nr0: uint",
+        None,
+    )
+
+    KecleonShopSubcaseManager1 = Symbol(
+        [0xC98],
+        [0x238B918],
+        None,
+        "KecleonShopSubcaseManager1",
+        "Seems responsible for handling the majority of the frame update behavior for both kecleon shops, particularly window management.\nShares this responsibility with KecleonShopSubcaseManager2.\n\nr0: subcase id (should eventually be an enum)",
+        None,
+    )
+
+    KecleonShopSubcaseManager2 = Symbol(
+        [0x2044],
+        [0x238CCC4],
+        None,
+        "KecleonShopSubcaseManager2",
+        "Seems responsible for handling the majority of the frame update behavior for both kecleon shops, particularly window management.\nShares this responsibility with KecleonShopSubcaseManager1.\n\nNo params.",
+        None,
+    )
+
+    RemoveInvalidKecleonShopItems = Symbol(
+        [0x33E8],
+        [0x238E068],
+        None,
+        "RemoveInvalidKecleonShopItems",
+        "Calls either RemoveInvalidKecleonShop1Items or RemoveInvalidKecleonShop2Items depending on which kecleon shop is active.\n\nNo params.",
+        None,
+    )
+
+    KecleonShopSumBagItemSellPrices = Symbol(
+        [0x3414],
+        [0x238E094],
+        None,
+        "KecleonShopSumBagItemSellPrices",
+        "Sums the sell prices of all items in the bag, presumably for the Sell All option for both kecleon shops.\n\nNo params.",
+        None,
+    )
+
+    KecleonShopUpdatePortraitEmotion = Symbol(
+        [0x34B4],
+        [0x238E134],
+        None,
+        "KecleonShopUpdatePortraitEmotion",
+        "Updates the portrait emotion for the currently active kecleon shop.\nCan only change the portrait to PORTRAIT_NORMAL or PORTRAIT_ANGRY.\n\nr0: 1 if angry, 0 if normal.",
+        None,
+    )
+
+    KecleonShopEntryPoint = Symbol(
+        [0x3500],
+        [0x238E180],
+        None,
+        "KecleonShopEntryPoint",
+        "The sole entry_point for the kecleon shop overlay.\n\nreturn: undefined4",
+        None,
+    )
+
+    KecleonShopDestructor = Symbol(
+        [0x3670],
+        [0x238E2F0],
+        None,
+        "KecleonShopDestructor",
+        "The sole destructor for the kecleon shop overlay.\n\nNo params.",
+        None,
+    )
+
+    KecleonShopFrameUpdate = Symbol(
+        [0x36C0],
+        [0x238E340],
+        None,
+        "KecleonShopFrameUpdate",
+        "The sole frame_update for the kecleon shop overlay.\n\nreturn: undefined4",
+        None,
+    )
+
+    KecleonShopCloseSimpleMenu = Symbol(
+        [0x46A4],
+        [0x238F324],
+        None,
+        "KecleonShopCloseSimpleMenu",
+        "Closes a simple menu for the kecleon shop.\n\nNo params.",
+        None,
+    )
 
 
 class EuOverlay22Data:
@@ -39842,6 +40988,24 @@ class EuOverlay22Data:
         "struct window_params",
     )
 
+    GREEN_KEC_SHOP_RED_COLOR_TEXT_TAG = Symbol(
+        [0x46EC],
+        [0x238F36C],
+        0x7,
+        "GREEN_KEC_SHOP_RED_COLOR_TEXT_TAG",
+        "'[CS:W]'\nUsed exclusively before items in green kecleon's shop that the player cannot buy/sell.\n\ntype: string",
+        "char[7]",
+    )
+
+    GREEN_KEC_SHOP_UNCOLOR_TEXT_TAG = Symbol(
+        [0x46F4],
+        [0x238F374],
+        0x5,
+        "GREEN_KEC_SHOP_UNCOLOR_TEXT_TAG",
+        "'[CR]'\nUsed exclusively after items in green kecleon's shop that the player cannot buy/sell.\n\ntype: string",
+        "char[5]",
+    )
+
     SHOP_WINDOW_PARAMS_2 = Symbol(
         [0x46FC],
         [0x238F37C],
@@ -39851,13 +41015,31 @@ class EuOverlay22Data:
         "struct window_params",
     )
 
-    OVERLAY22_UNKNOWN_STRUCT__NA_238E85C = Symbol(
+    PURPLE_KEC_SHOP_RED_COLOR_TEXT_TAG = Symbol(
+        [0x470C],
+        [0x238F38C],
+        0x7,
+        "PURPLE_KEC_SHOP_RED_COLOR_TEXT_TAG",
+        "'[CS:W]'\nUsed exclusively before items in purple kecleon's shop that the player cannot buy/sell.\n\ntype: string",
+        "char[7]",
+    )
+
+    PURPLE_KEC_SHOP_UNCOLOR_TEXT_TAG = Symbol(
+        [0x4714],
+        [0x238F394],
+        0x5,
+        "PURPLE_KEC_SHOP_UNCOLOR_TEXT_TAG",
+        "'[CR]'\nUsed exclusively after items in purple kecleon's shop that the player cannot buy/sell.\n\ntype: string",
+        "char[5]",
+    )
+
+    KECLEON_SHOP_ITEM_CATEGORY_BOOLS = Symbol(
         [0x471C],
         [0x238F39C],
-        None,
-        "OVERLAY22_UNKNOWN_STRUCT__NA_238E85C",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0xC,
+        "KECLEON_SHOP_ITEM_CATEGORY_BOOLS",
+        "Exclusively passed into MaybeGetUncoloredFormattedItemName and MaybeGetColoredFormattedItemName.\nThe exact purpose of this struct is unknown, but the only 'true' bool in the table is for 'Other' items.",
+        "bool[12]",
     )
 
     SHOP_MENU_ITEMS_CONFIRM = Symbol(
@@ -39896,37 +41078,37 @@ class EuOverlay22Data:
         "struct simple_menu_id_item[6]",
     )
 
-    OVERLAY22_UNKNOWN_STRING_IDS = Symbol(
+    KECLEON_SHOP_TEXT_STRINGS = Symbol(
         [0x47B0],
         [0x238F430],
         None,
-        "OVERLAY22_UNKNOWN_STRING_IDS",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "KECLEON_SHOP_TEXT_STRINGS",
+        "A collection of 48 text string ids, 24 for green kecleon, and 24 for purple kecleon. \n\ntype: int16_t[2][24]",
+        "int16_t[2][24]",
     )
 
     SHOP_WINDOW_PARAMS_3 = Symbol(
-        None,
-        None,
-        None,
+        [0x4810],
+        [0x238F490],
+        0x10,
         "SHOP_WINDOW_PARAMS_3",
         "Note: unverified, ported from Irdkwia's notes",
         "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_4 = Symbol(
-        None,
-        None,
-        None,
+        [0x4820],
+        [0x238F4A0],
+        0x10,
         "SHOP_WINDOW_PARAMS_4",
         "Note: unverified, ported from Irdkwia's notes",
         "struct window_params",
     )
 
     SHOP_WINDOW_PARAMS_5 = Symbol(
-        None,
-        None,
-        None,
+        [0x4830],
+        [0x238F4B0],
+        0x10,
         "SHOP_WINDOW_PARAMS_5",
         "Note: unverified, ported from Irdkwia's notes",
         "struct window_params",
@@ -39977,6 +41159,393 @@ class EuOverlay22Data:
         "struct window_params",
     )
 
+    KEC_SHOP_START_STR = Symbol(
+        [0x4890],
+        [0x238F510],
+        0x8,
+        "KEC_SHOP_START_STR",
+        "'_START\n'\n\ntype: string",
+        "char[8]",
+    )
+
+    KEC_SHOP_RESTART_STR = Symbol(
+        [0x4898],
+        [0x238F518],
+        0xA,
+        "KEC_SHOP_RESTART_STR",
+        "'_RESTART\n'\n\ntype: string",
+        "char[10]",
+    )
+
+    KEC_SHOP_SELECTMENU_STR = Symbol(
+        [0x48A4],
+        [0x238F524],
+        0xD,
+        "KEC_SHOP_SELECTMENU_STR",
+        "'_SELECTMENU\n'\n\ntype: string",
+        "char[13]",
+    )
+
+    KEC_SHOP_EXPLANATION_STR = Symbol(
+        [0x48B4],
+        [0x238F534],
+        0xE,
+        "KEC_SHOP_EXPLANATION_STR",
+        "'_EXPLANATION\n'\n\ntype: string",
+        "char[14]",
+    )
+
+    KEC_SHOP_THANKS_STR = Symbol(
+        [0x48C4],
+        [0x238F544],
+        0x9,
+        "KEC_SHOP_THANKS_STR",
+        "'_THANKS\n'\n\ntype: string",
+        "char[9]",
+    )
+
+    KEC_SHOP_SHOP_NON_STR = Symbol(
+        [0x48D0],
+        [0x238F550],
+        0xB,
+        "KEC_SHOP_SHOP_NON_STR",
+        "'_SHOP_NON\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_GOLD_NON_STR = Symbol(
+        [0x48DC],
+        [0x238F55C],
+        0xB,
+        "KEC_SHOP_GOLD_NON_STR",
+        "'_GOLD_NON\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_GOLD_MAX_STR = Symbol(
+        [0x48E8],
+        [0x238F568],
+        0xB,
+        "KEC_SHOP_GOLD_MAX_STR",
+        "'_GOLD_MAX\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_GOLD_FULL_STR = Symbol(
+        [0x48F4],
+        [0x238F574],
+        0xC,
+        "KEC_SHOP_GOLD_FULL_STR",
+        "'_GOLD_FULL\n'\n\ntype: string",
+        "char[12]",
+    )
+
+    KEC_SHOP_SELL_NON_STR = Symbol(
+        [0x4900],
+        [0x238F580],
+        0xB,
+        "KEC_SHOP_SELL_NON_STR",
+        "'_SELL_NON\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_ITEM_NON_STR = Symbol(
+        [0x490C],
+        [0x238F58C],
+        0xB,
+        "KEC_SHOP_ITEM_NON_STR",
+        "'_ITEM_NON\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_ITEM_MAX_STR = Symbol(
+        [0x4918],
+        [0x238F598],
+        0xB,
+        "KEC_SHOP_ITEM_MAX_STR",
+        "'_ITEM_MAX\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_SOLD_OUT_STR = Symbol(
+        [0x4924],
+        [0x238F5A4],
+        0xB,
+        "KEC_SHOP_SOLD_OUT_STR",
+        "'_SOLD_OUT\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_BUY_POOR_STR = Symbol(
+        [0x4930],
+        [0x238F5B0],
+        0xB,
+        "KEC_SHOP_BUY_POOR_STR",
+        "'_BUY_POOR\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_SELL_BAD_STR = Symbol(
+        [0x493C],
+        [0x238F5BC],
+        0xB,
+        "KEC_SHOP_SELL_BAD_STR",
+        "'_SELL_BAD\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_SELL_FULL_STR = Symbol(
+        [0x4948],
+        [0x238F5C8],
+        0xC,
+        "KEC_SHOP_SELL_FULL_STR",
+        "'_SELL_FULL\n'\n\ntype: string",
+        "char[12]",
+    )
+
+    KEC_SHOP_MODE_BUY_START_STR = Symbol(
+        [0x4954],
+        [0x238F5D4],
+        0x11,
+        "KEC_SHOP_MODE_BUY_START_STR",
+        "'_MODE_BUY_START\n'\n\ntype: string",
+        "char[17]",
+    )
+
+    KEC_SHOP_BUY_RESTART_STR = Symbol(
+        [0x4968],
+        [0x238F5E8],
+        0xE,
+        "KEC_SHOP_BUY_RESTART_STR",
+        "'_BUY_RESTART\n'\n\ntype: string",
+        "char[14]",
+    )
+
+    KEC_SHOP_BUY_SELECT_STR = Symbol(
+        [0x4978],
+        [0x238F5F8],
+        0xD,
+        "KEC_SHOP_BUY_SELECT_STR",
+        "'_BUY_SELECT\n'\n\ntype: string",
+        "char[13]",
+    )
+
+    KEC_SHOP_BUY_RESELECT_STR = Symbol(
+        [0x4988],
+        [0x238F608],
+        0xF,
+        "KEC_SHOP_BUY_RESELECT_STR",
+        "'_BUY_RESELECT\n'\n\ntype: string",
+        "char[15]",
+    )
+
+    KEC_SHOP_SUB_MENU_BUY_STR = Symbol(
+        [0x4998],
+        [0x238F618],
+        0xF,
+        "KEC_SHOP_SUB_MENU_BUY_STR",
+        "'_SUB_MENU_BUY\n'\n\ntype: string",
+        "char[15]",
+    )
+
+    KEC_SHOP_BUY_CONFIRM_STR = Symbol(
+        [0x49A8],
+        [0x238F628],
+        0xE,
+        "KEC_SHOP_BUY_CONFIRM_STR",
+        "'_BUY_CONFIRM\n'\n\ntype: string",
+        "char[14]",
+    )
+
+    KEC_SHOP_BUY_EXPLA_ITEM_STR = Symbol(
+        [0x49B8],
+        [0x238F638],
+        0x1B,
+        "KEC_SHOP_BUY_EXPLA_ITEM_STR",
+        "'_BUY_EXPLA Item%d Count%d\n'\n\ntype: string",
+        "char[27]",
+    )
+
+    KEC_SHOP_ITEM_TEXT_TAG = Symbol(
+        [0x49D4],
+        [0x238F654],
+        0x9,
+        "KEC_SHOP_ITEM_TEXT_TAG",
+        "'[item:0]'\n\ntype: string",
+        "char[9]",
+    )
+
+    KEC_SHOP_BUY_THANKS_STR = Symbol(
+        [0x49E0],
+        [0x238F660],
+        0xD,
+        "KEC_SHOP_BUY_THANKS_STR",
+        "'_BUY_THANKS\n'\n\ntype: string",
+        "char[13]",
+    )
+
+    KEC_SHOP_SELL_START_STR = Symbol(
+        [0x49F0],
+        [0x238F670],
+        0xD,
+        "KEC_SHOP_SELL_START_STR",
+        "'_SELL_START\n'\n\ntype: string",
+        "char[13]",
+    )
+
+    KEC_SHOP_SELL_RESTART_STR = Symbol(
+        [0x4A00],
+        [0x238F680],
+        0xF,
+        "KEC_SHOP_SELL_RESTART_STR",
+        "'_SELL_RESTART\n'\n\ntype: string",
+        "char[15]",
+    )
+
+    KEC_SHOP_SELL_SELECT_STR = Symbol(
+        [0x4A10],
+        [0x238F690],
+        0xE,
+        "KEC_SHOP_SELL_SELECT_STR",
+        "'_SELL_SELECT\n'\n\ntype: string",
+        "char[14]",
+    )
+
+    KEC_SHOP_SELL_RESELECT_STR = Symbol(
+        [0x4A20],
+        [0x238F6A0],
+        0x10,
+        "KEC_SHOP_SELL_RESELECT_STR",
+        "'_SELL_RESELECT\n'\n\ntype: string",
+        "char[16]",
+    )
+
+    KEC_SHOP_SELL_SUB_MENU_STR = Symbol(
+        [0x4A30],
+        [0x238F6B0],
+        0x10,
+        "KEC_SHOP_SELL_SUB_MENU_STR",
+        "'_SELL_SUB_MENU\n'\n\ntype: string",
+        "char[16]",
+    )
+
+    KEC_SHOP_SELL_CONFIRM_STR = Symbol(
+        [0x4A40],
+        [0x238F6C0],
+        0xF,
+        "KEC_SHOP_SELL_CONFIRM_STR",
+        "'_SELL_CONFIRM\n'\n\ntype: string",
+        "char[15]",
+    )
+
+    KEC_SHOP_SELL_CONFIRM_NEW_STR = Symbol(
+        [0x4A50],
+        [0x238F6D0],
+        0x13,
+        "KEC_SHOP_SELL_CONFIRM_NEW_STR",
+        "'_SELL_CONFIRM NEW\n'\n\ntype: string",
+        "char[19]",
+    )
+
+    KEC_SHOP_BUY_CONFIRM_NEW_STR = Symbol(
+        [0x4A64],
+        [0x238F6E4],
+        0x12,
+        "KEC_SHOP_BUY_CONFIRM_NEW_STR",
+        "'_BUY_CONFIRM NEW\n'\n\ntype: string",
+        "char[18]",
+    )
+
+    KEC_SHOP_SELL_EXPLA_STR = Symbol(
+        [0x4A78],
+        [0x238F6F8],
+        0xD,
+        "KEC_SHOP_SELL_EXPLA_STR",
+        "'_SELL_EXPLA\n'\n\ntype: string",
+        "char[13]",
+    )
+
+    KEC_SHOP_SELL_THANKS_STR = Symbol(
+        [0x4A88],
+        [0x238F708],
+        0xE,
+        "KEC_SHOP_SELL_THANKS_STR",
+        "'_SELL_THANKS\n'\n\ntype: string",
+        "char[14]",
+    )
+
+    KEC_SHOP_SELL_ALL_STR = Symbol(
+        [0x4A98],
+        [0x238F718],
+        0xB,
+        "KEC_SHOP_SELL_ALL_STR",
+        "'_SELL_ALL\n'\n\ntype: string",
+        "char[11]",
+    )
+
+    KEC_SHOP_BUT_MULTI_STR = Symbol(
+        [0x4AA4],
+        [0x238F724],
+        0xC,
+        "KEC_SHOP_BUT_MULTI_STR",
+        "'_BUT_MULTI\n'\nLikely a typo for '_BUY_MULTI\n'.\n\ntype: string",
+        "char[12]",
+    )
+
+    KEC_SHOP_SELL_MULTI_STR = Symbol(
+        [0x4AB0],
+        [0x238F730],
+        0xD,
+        "KEC_SHOP_SELL_MULTI_STR",
+        "'_SELL_MULTI\n'\n\ntype: string",
+        "char[13]",
+    )
+
+    KEC_SHOP_ALL_CONFIRM_STR = Symbol(
+        [0x4AC0],
+        [0x238F740],
+        0xE,
+        "KEC_SHOP_ALL_CONFIRM_STR",
+        "'_ALL_CONFIRM\n'\n\ntype: string",
+        "char[14]",
+    )
+
+    KEC_SHOP_SELL_ALL_THANKS_STR = Symbol(
+        [0x4AD0],
+        [0x238F750],
+        0x11,
+        "KEC_SHOP_SELL_ALL_THANKS_STR",
+        "'SELL_ALL_THANKS\n'\n\ntype: string",
+        "char[17]",
+    )
+
+    KEC_SHOP_BUY_MULTI_THANKS_STR = Symbol(
+        [0x4AE4],
+        [0x238F764],
+        0x12,
+        "KEC_SHOP_BUY_MULTI_THANKS_STR",
+        "'BUY_MULTI_THANKS\n'\n\ntype: string",
+        "char[18]",
+    )
+
+    KEC_SHOP_SELL_MULTI_THANKS_STR = Symbol(
+        [0x4AF8],
+        [0x238F778],
+        0x13,
+        "KEC_SHOP_SELL_MULTI_THANKS_STR",
+        "'SELL_MULTI_THANKS\n'\n\ntype: string",
+        "char[19]",
+    )
+
+    KEC_SHOP_CHANGEJOB_STR = Symbol(
+        [0x4B0C],
+        [0x238F78C],
+        0xB,
+        "KEC_SHOP_CHANGEJOB_STR",
+        "'ChangeJob\n'\n\ntype: string",
+        "char[11]",
+    )
+
     OV22_STATIC_INITIALIZER = Symbol(
         [0x4B18],
         [0x238F798],
@@ -39986,49 +41555,31 @@ class EuOverlay22Data:
         "undefined4",
     )
 
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC60 = Symbol(
+    GREEN_KEC_SHOP_ITEM_DATA_WRAPPER = Symbol(
         [0x4B20],
         [0x238F7A0],
-        None,
-        "OVERLAY22_UNKNOWN_POINTER__NA_238EC60",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x8,
+        "GREEN_KEC_SHOP_ITEM_DATA_WRAPPER",
+        "Seems to contain item property data for the green kecleon shop.\n\ntype: green_kec_shop_item_data_wrapper",
+        "struct green_kec_shop_item_data_wrapper",
     )
 
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC64 = Symbol(
-        None,
-        None,
-        None,
-        "OVERLAY22_UNKNOWN_POINTER__NA_238EC64",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
-    )
-
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC68 = Symbol(
+    PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER = Symbol(
         [0x4B28],
         [0x238F7A8],
-        None,
-        "OVERLAY22_UNKNOWN_POINTER__NA_238EC68",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x8,
+        "PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER",
+        "Seems to contain item property data for the purple kecleon shop.\n\ntype: purple_kec_shop_item_data_wrapper",
+        "struct purple_kec_shop_item_data_wrapper",
     )
 
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC6C = Symbol(
-        None,
-        None,
-        None,
-        "OVERLAY22_UNKNOWN_POINTER__NA_238EC6C",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
-    )
-
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC70 = Symbol(
+    KECLEON_SHOP_SHARED_STRUCT_PTR = Symbol(
         [0x4B30],
         [0x238F7B0],
-        None,
-        "OVERLAY22_UNKNOWN_POINTER__NA_238EC70",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0x4,
+        "KECLEON_SHOP_SHARED_STRUCT_PTR",
+        "Seems to handle the operations of the kecleon shop, and is shared for both brothers.\n\ntype: kecleon_shop_shared_struct*",
+        "struct kecleon_shop_shared_struct*",
     )
 
     OVERLAY22_RESERVED_SPACE = _Deprecated(
@@ -40047,36 +41598,133 @@ class EuOverlay22Section:
 
 class EuOverlay23Functions:
 
-    pass
+    KangaskhanStorageSubcaseManager1 = Symbol(
+        [0x0],
+        [0x238AC80],
+        None,
+        "KangaskhanStorageSubcaseManager1",
+        "Seems responsible for handling the majority of the frame update behavior for kangaskhan storage, particularly window management.\nShares this responsibility with KangaskhanStorageSubcaseManager1.\n\nr0: subcase id (should eventually be an enum)",
+        None,
+    )
+
+    KangaskhanStorageSubcaseManager2 = Symbol(
+        [0x10F8],
+        [0x238BD78],
+        None,
+        "KangaskhanStorageSubcaseManager2",
+        "Seems responsible for handling the majority of the frame update behavior for kangaskhan storage, particularly window management.\nShares this responsibility with KangaskhanStorageSubcaseManager2.\n\nNo params.",
+        None,
+    )
+
+    KangaskhanStorageEntryPoint = Symbol(
+        [0x21E8],
+        [0x238CE68],
+        None,
+        "KangaskhanStorageEntryPoint",
+        "The sole entry_point for the kangaskhan storage overlay.\n\nreturn: undefined4",
+        None,
+    )
+
+    KangaskhanStorageDestructor = Symbol(
+        [0x2308],
+        [0x238CF88],
+        None,
+        "KangaskhanStorageDestructor",
+        "The sole destructor for the kangaskhan storage overlay.\n\nNo params.",
+        None,
+    )
+
+    KangaskhanStorageFrameUpdate = Symbol(
+        [0x2334],
+        [0x238CFB4],
+        None,
+        "KangaskhanStorageFrameUpdate",
+        "The sole frame_update for the kangaskhan storage overlay.\n\nreturn: undefined4",
+        None,
+    )
+
+    KangaskhanStorageCloseSimpleMenu = Symbol(
+        [0x2F58],
+        [0x238DBD8],
+        None,
+        "KangaskhanStorageCloseSimpleMenu",
+        "Closes a simple menu with the simple_menu_window_id from KANGASKHAN_STORAGE_MENU_PTR.\n\nNo params.",
+        None,
+    )
+
+    KangaskhanStorageShowDialogueAndPortraitIfNotRock = Symbol(
+        [0x2FA0],
+        [0x238DC20],
+        None,
+        "KangaskhanStorageShowDialogueAndPortraitIfNotRock",
+        "Seems responsible for handling dialogue from kangaskhan.\nDoes nothing if 'KANGASKHAN_STORAGE_MENU_PTR->is_kanga_rock' is true.\n\nr0: window_id\nr1: preprocessor_flags\nr2: string_id",
+        None,
+    )
+
+    KangaskhanStorageWithdrawSelectedItems = Symbol(
+        [0x3008],
+        [0x238DC88],
+        None,
+        "KangaskhanStorageWithdrawSelectedItems",
+        "Seems to iteratively remove selected items from storage, and add them to the bag. \nOnly used when multiple items are selected.\n\nNo params.",
+        None,
+    )
+
+    KangaskhanStorageDepositSelectedItems = Symbol(
+        [0x3078],
+        [0x238DCF8],
+        None,
+        "KangaskhanStorageDepositSelectedItems",
+        "Seems to iteratively remove selected items from the bag, and add them to storage. \nOnly used when multiple items are selected.\n\nNo params.",
+        None,
+    )
+
+    KangaskhanStorageWithdrawSingleItem = Symbol(
+        [0x30F8],
+        [0x238DD78],
+        None,
+        "KangaskhanStorageWithdrawSingleItem",
+        "Seems to remove a single item from storage, and add it to the bag.\nSubsequently clears the storage selected item table, likely for if multi-select was used on a single item.\n\nNo params.",
+        None,
+    )
+
+    KangaskhanStorageDepositSingleItem = Symbol(
+        [0x3138],
+        [0x238DDB8],
+        None,
+        "KangaskhanStorageDepositSingleItem",
+        "Seems to remove a single item from the bag, and add it to storage.\nSubsequently clears the bag selected item table, likely for if multi-select was used on a single item.\n\nNo params.",
+        None,
+    )
 
 
 class EuOverlay23Data:
 
-    OVERLAY23_UNKNOWN_VALUE__NA_238D2E8 = Symbol(
+    STORAGE_OPTION_STATES_1 = Symbol(
         [0x31A8],
         [0x238DE28],
         None,
-        "OVERLAY23_UNKNOWN_VALUE__NA_238D2E8",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "STORAGE_OPTION_STATES_1",
+        "A list of states per menu option. Enabled is 0x0 and Disabled is 0x3.\nNot currently known how these are used.\n\ntype: int8_t[4]",
+        "int8_t[4]",
     )
 
-    OVERLAY23_UNKNOWN_VALUE__NA_238D2EC = Symbol(
+    STORAGE_OPTION_STATES_2 = Symbol(
         [0x31AC],
         [0x238DE2C],
         None,
-        "OVERLAY23_UNKNOWN_VALUE__NA_238D2EC",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "STORAGE_OPTION_STATES_2",
+        "A list of states per menu option. Enabled is 0x0 and Disabled is 0x3.\nNot currently known how these are used.\n\ntype: int8_t[4]",
+        "int8_t[4]",
     )
 
-    OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0 = Symbol(
+    STORAGE_ITEM_CATEGORY_BOOLS = Symbol(
         [0x31B0],
         [0x238DE30],
-        None,
-        "OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        0xC,
+        "STORAGE_ITEM_CATEGORY_BOOLS",
+        "Exclusively passed into MaybeGetUncoloredFormattedItemName and MaybeGetColoredFormattedItemName.\nThe exact purpose of this struct is unknown, but the only 'true' bool in the table is for 'Other' items.     \n\ntype: bool[12]",
+        "bool[12]",
     )
 
     STORAGE_MENU_ITEMS_CONFIRM = Symbol(
@@ -40214,13 +41862,13 @@ class EuOverlay23Data:
         "undefined4",
     )
 
-    OVERLAY23_UNKNOWN_POINTER__NA_238D8A0 = Symbol(
+    KANGASKHAN_STORAGE_MANAGER_PTR = Symbol(
         [0x3760],
         [0x238E3E0],
         None,
-        "OVERLAY23_UNKNOWN_POINTER__NA_238D8A0",
-        "Note: unverified, ported from Irdkwia's notes",
-        "",
+        "KANGASKHAN_STORAGE_MANAGER_PTR",
+        "The main struct that manages kangaskhan storage behavior for the overlay.\n\ntype: kangaskhan_storage_manager struct pointer",
+        "struct kangaskhan_storage_manager*",
     )
 
     OVERLAY23_RESERVED_SPACE = _Deprecated(
@@ -42133,7 +43781,7 @@ class EuOverlay29Functions:
         [0x22E8C20],
         None,
         "DisplayTeamStatsSprite",
-        "Displays a party member's sprite on the team stats menu.\n\nr0: Team member entity pointer\nr1: ?\nr2: ?",
+        "Displays a party member's sprite on the team stats menu.\n\nr0: Team member entity pointer\nr1: Actual index to display the sprite at\nr2: Roster index",
         None,
     )
 
@@ -43403,6 +45051,15 @@ class EuOverlay29Functions:
         None,
         "CreateMonsterSummaryFromEntity",
         "Creates a snapshot of the condition of a monster struct in a monster_summary struct.\n\nr0: [output] monster_summary\nr1: monster_entity",
+        None,
+    )
+
+    FillRecruitInfo = Symbol(
+        [0x1CEE4],
+        [0x22F9A64],
+        None,
+        "FillRecruitInfo",
+        "Fills the recruit_info struct with values from the monster entity pointer.\n\nr0: [output] recruit_info pointer\nr1: entity pointer",
         None,
     )
 
@@ -45302,7 +46959,7 @@ class EuOverlay29Functions:
         [0x230EAD8],
         None,
         "TryRecruit",
-        "Asks the player if they would like to recruit the enemy that was just defeated and handles the recruitment if they accept.\n\nr0: user entity pointer\nr1: monster to recruit entity pointer\nreturn: True if the monster was recruited, false if it wasn't",
+        "Asks the player if they would like to recruit the enemy that was just defeated and handles the recruitment if they accept.\n\nr0: user entity pointer\nr1: monster to recruit entity pointer\nr2: recruit_info pointer\nreturn: True if the monster was recruited, false if it wasn't",
         None,
     )
 
@@ -47547,6 +49204,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    RemoveMonsterFromTile = Symbol(
+        [0x5BF10],
+        [0x2338A90],
+        None,
+        "RemoveMonsterFromTile",
+        "Removes the given monster from the tile at the given position if it is present on it.\n\nr0: entity pointer\nr1: x position\nr2: y position",
+        None,
+    )
+
     GetRandomSpawnMonsterID = Symbol(
         [0x5BFE8],
         [0x2338B68],
@@ -49362,6 +51028,15 @@ class EuOverlay29Functions:
         None,
         "LogMessageById",
         "Logs a message in the message log.\n\nr0: user entity pointer\nr1: message ID\nr2: bool, whether or not to present a message popup",
+        None,
+    )
+
+    AlertBoxIsActive = Symbol(
+        [0x6F7BC],
+        [0x234C33C],
+        None,
+        "AlertBoxIsActive",
+        "Returns true if the alert box is currently open.\n\nreturn: bool",
         None,
     )
 
@@ -52340,6 +54015,15 @@ class EuRamData:
         "CURSOR_SPRITE_ID",
         "Id of the 'FONT/cursor.wan' sprite loaded in WAN_TABLE",
         "uint16_t",
+    )
+
+    PREV_MENU_ITEMS = Symbol(
+        [0x2AB5A8],
+        [0x22AB5A8],
+        0x15,
+        "PREV_MENU_ITEMS",
+        "A list of the previous menu item indexes the user had selected on different ingame menus, indexed by a 'menu ID' assigned to each one.",
+        "uint8_t[21]",
     )
 
     CURSOR_ANIMATION_CONTROL = Symbol(

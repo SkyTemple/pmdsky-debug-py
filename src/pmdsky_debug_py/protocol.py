@@ -652,6 +652,21 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    MarkPaletteDataAsNeedingUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyColorToPaletteDataRgba: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FillPaletteDataRgba: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TransformPaletteDataWithFlushDivideFade: Symbol[
         Optional[list[int]],
         None,
@@ -972,7 +987,22 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    MaybeGetFormattedItemName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SprintfStatic: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MaybeGetUncoloredFormattedItemName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MaybeGetColoredFormattedItemName: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -1412,6 +1442,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    MaybeUpdateStorage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     RemoveItemAtIdxInStorage: Symbol[
         Optional[list[int]],
         None,
@@ -1522,6 +1557,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetCurrentKecleonShop1ItemByIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SortKecleonItems1: Symbol[
         Optional[list[int]],
         None,
@@ -1537,7 +1577,17 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    RemoveInvalidKecleonShop2Items: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     RemoveItemFromKecleonShop2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCurrentKecleonShop2ItemByIndex: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -2942,7 +2992,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    AppendStandardStringToMission: Symbol[
+    AppendStringIdToWindow: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3022,12 +3072,12 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    Arm9LoadUnkFieldNa0x2029EC8: Symbol[
+    LoadPrevMenuItem: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    Arm9StoreUnkFieldNa0x2029ED8: Symbol[
+    SavePrevMenuItem: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3238,6 +3288,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     IsCollectionMenuActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetWindowIdSelectedMenuItemIdx: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3457,6 +3512,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsTextboxState3: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CreateTextBoxInternal: Symbol[
         Optional[list[int]],
         None,
@@ -3588,6 +3648,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     IsAdvancedTextBoxActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetDigitInputResult: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -3787,6 +3852,51 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    DigitInputMenuInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DigitInputMenuReturn: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DigitInputMenuInitDigits: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DigitInputMenuGetDigits: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DigitInputMenuFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DigitInputMenuCheckValidTouchScreenInput: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DigitInputMenuCheckTouchUpDownArrow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DigitInputMenuDrawDigits: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DigitInputMenuDrawDigitsCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TeamSelectionMenuGetItem: Symbol[
         Optional[list[int]],
         None,
@@ -3813,6 +3923,96 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetCheckIqMenuSkillString: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitUnkStorageStruct0xA0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeUnkStorageStruct0xA0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearBagSelectedItemTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsBagItemIndexSelected: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllocUnkBagStruct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeUnkBagStruct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitUnkStorageStruct0x18c0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MaybeTrySelectStorageItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeUnkStorageStruct0x18c0: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ClearStorageSelectedItemTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CountSelectedStorageItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetFirstSelectedStorageItemIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsStorageItemIndexSelected: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AllocStorageSelectedItemTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeStorageSelectedItemTable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitUnkStorageStruct0x410: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnkStorageStruct0x410CloseSimpleMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnkStorageStruct0x410CreateDialogueBox: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -7551,6 +7751,36 @@ class Arm9DataProtocol(Protocol):
     ]
 
     MISSION_REWARD_STRUCT_MAIN_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    UNK_STORAGE_STRUCT_0XC: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    UNK_STORAGE_STRUCT_0X14: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    UNK_STORAGE_STRUCT_0X8_PTR_1: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    UNK_STORAGE_WINDOW_STRUCT_0XC_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    UNK_STORAGE_STRUCT_0X8_PTR_2: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    UNK_STORAGE_STRUCT_0X410_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -26448,7 +26678,97 @@ class Overlay11FunctionsProtocol(Protocol):
         None,
     ]
 
-    LoadRecycleShopOverlay: Symbol[
+    LoadDuskullBankOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadLuminousSpringOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadChimechoAssemblyOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadElectivireLinkShopOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadSpindaCafeOverlayInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadSpindaCafeOverlayResume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsSpindaCafeOverlaySuspended: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadRecycleShopOverlayInit: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadRecycleShopOverlayResume: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsRecycleShopOverlaySuspended: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadCroagunkSwapShopOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadKecleonShopOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadKangaskhanOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadChanseyDaycareOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadXatuAppraisalOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadMissionRewardOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadRuleDungeonEffectsOverlay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadSpecialEpisodeDiscardOverlay1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadSpecialEpisodeDiscardOverlay2: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -26662,6 +26982,16 @@ class Overlay11DataProtocol(Protocol):
     ]
 
     SWAP_SHOP_INVENTORY_PTRS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SPINDA_CAFE_OVERLAY_STATUS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    RECYCLE_SHOP_OVERLAY_STATUS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -27207,7 +27537,50 @@ Overlay14Protocol = SectionProtocol[
 
 class Overlay15FunctionsProtocol(Protocol):
 
-    pass
+    InitDuskullBankStruct: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DuskullBankSubcaseManager1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DuskullBankSubcaseManager2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BankUpdateDigitInputMenuDisplay: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DuskullBankTextboxGoldStatusCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DuskullBankDigitInputDisplayCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DuskullBankEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DuskullBankDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DuskullBankFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay15DataProtocol(Protocol):
@@ -27222,17 +27595,17 @@ class Overlay15DataProtocol(Protocol):
         Optional[int],
     ]
 
-    BANK_WINDOW_PARAMS_2: Symbol[
+    BANK_GOLD_STATUS_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BANK_WINDOW_PARAMS_3: Symbol[
+    BANK_ADVANCED_TEXTBOX_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    BANK_WINDOW_PARAMS_4: Symbol[
+    BANK_MAIN_MENU_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -27242,12 +27615,62 @@ class Overlay15DataProtocol(Protocol):
         Optional[int],
     ]
 
+    BANK_R_CLOSE_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BANK_M_OPEN_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BANK_S_CLOSE_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MENU_BANK_MODE_CANCEL_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BANK_P_OPEN_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BANK_G_OPEN_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BANK_MES_NOT_CLOSE_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BANK_SUB_NOT_CLOSE_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BANK_SELECT_NOT_CLOSE_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BANK_INPUT_NOT_CLOSE_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     OV15_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY15_UNKNOWN_POINTER__NA_238B180: Symbol[
+    DUSKULL_BANK_STRUCT_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -34732,7 +35155,210 @@ Overlay21Protocol = SectionProtocol[
 
 class Overlay22FunctionsProtocol(Protocol):
 
-    pass
+    GreenKecleonShopUpdateItemNamesAndCollectionMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopInitCollectionMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopDoNothing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopGetCollectionMenuStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopGetShopItemSlot: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopInitItemNameData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopFreeItemNameData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopFillItemNameData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopCountSelectedItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopGetFirstSelectedItemIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopSumSelectedItemPrices: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopPurchaseSingleItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopPurchaseSelectedItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonGetItemNameStringByIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopUnkCollectionMenuCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GreenKecleonShopVoidFnCollectionMenuCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopUpdateItemNamesAndCollectionMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopInitCollectionMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopDoNothing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopGetCollectionMenuStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopGetShopItemSlot: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopInitItemNameData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopFreeItemNameData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopFillItemNameData: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopCountSelectedItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopGetFirstSelectedItemIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopSumSelectedItemPrices: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopPurchaseSingleItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopPurchaseSelectedItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonGetItemNameStringByIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopUnkCollectionMenuCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PurpleKecleonShopCollectionMenuCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KecleonShopSubcaseManager1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KecleonShopSubcaseManager2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    RemoveInvalidKecleonShopItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KecleonShopSumBagItemSellPrices: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KecleonShopUpdatePortraitEmotion: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KecleonShopEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KecleonShopDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KecleonShopFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KecleonShopCloseSimpleMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay22DataProtocol(Protocol):
@@ -34742,12 +35368,32 @@ class Overlay22DataProtocol(Protocol):
         Optional[int],
     ]
 
+    GREEN_KEC_SHOP_RED_COLOR_TEXT_TAG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    GREEN_KEC_SHOP_UNCOLOR_TEXT_TAG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SHOP_WINDOW_PARAMS_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY22_UNKNOWN_STRUCT__NA_238E85C: Symbol[
+    PURPLE_KEC_SHOP_RED_COLOR_TEXT_TAG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PURPLE_KEC_SHOP_UNCOLOR_TEXT_TAG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KECLEON_SHOP_ITEM_CATEGORY_BOOLS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -34772,7 +35418,7 @@ class Overlay22DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY22_UNKNOWN_STRING_IDS: Symbol[
+    KECLEON_SHOP_TEXT_STRINGS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -34817,32 +35463,237 @@ class Overlay22DataProtocol(Protocol):
         Optional[int],
     ]
 
+    KEC_SHOP_START_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_RESTART_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELECTMENU_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_EXPLANATION_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_THANKS_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SHOP_NON_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_GOLD_NON_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_GOLD_MAX_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_GOLD_FULL_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_NON_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_ITEM_NON_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_ITEM_MAX_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SOLD_OUT_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUY_POOR_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_BAD_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_FULL_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_MODE_BUY_START_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUY_RESTART_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUY_SELECT_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUY_RESELECT_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SUB_MENU_BUY_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUY_CONFIRM_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUY_EXPLA_ITEM_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_ITEM_TEXT_TAG: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUY_THANKS_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_START_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_RESTART_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_SELECT_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_RESELECT_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_SUB_MENU_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_CONFIRM_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_CONFIRM_NEW_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUY_CONFIRM_NEW_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_EXPLA_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_THANKS_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_ALL_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUT_MULTI_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_MULTI_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_ALL_CONFIRM_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_ALL_THANKS_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_BUY_MULTI_THANKS_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_SELL_MULTI_THANKS_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    KEC_SHOP_CHANGEJOB_STR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     OV22_STATIC_INITIALIZER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC60: Symbol[
+    GREEN_KEC_SHOP_ITEM_DATA_WRAPPER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC64: Symbol[
+    PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC68: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC6C: Symbol[
-        Optional[list[int]],
-        Optional[int],
-    ]
-
-    OVERLAY22_UNKNOWN_POINTER__NA_238EC70: Symbol[
+    KECLEON_SHOP_SHARED_STRUCT_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -34857,22 +35708,75 @@ Overlay22Protocol = SectionProtocol[
 
 class Overlay23FunctionsProtocol(Protocol):
 
-    pass
+    KangaskhanStorageSubcaseManager1: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageSubcaseManager2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageEntryPoint: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageDestructor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageFrameUpdate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageCloseSimpleMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageShowDialogueAndPortraitIfNotRock: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageWithdrawSelectedItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageDepositSelectedItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageWithdrawSingleItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    KangaskhanStorageDepositSingleItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
 
 
 class Overlay23DataProtocol(Protocol):
 
-    OVERLAY23_UNKNOWN_VALUE__NA_238D2E8: Symbol[
+    STORAGE_OPTION_STATES_1: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY23_UNKNOWN_VALUE__NA_238D2EC: Symbol[
+    STORAGE_OPTION_STATES_2: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
-    OVERLAY23_UNKNOWN_STRUCT__NA_238D2F0: Symbol[
+    STORAGE_ITEM_CATEGORY_BOOLS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -34952,7 +35856,7 @@ class Overlay23DataProtocol(Protocol):
         Optional[int],
     ]
 
-    OVERLAY23_UNKNOWN_POINTER__NA_238D8A0: Symbol[
+    KANGASKHAN_STORAGE_MANAGER_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -36666,6 +37570,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     CreateMonsterSummaryFromEntity: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FillRecruitInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -38945,6 +39854,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    RemoveMonsterFromTile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetRandomSpawnMonsterID: Symbol[
         Optional[list[int]],
         None,
@@ -39951,6 +40865,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     LogMessageById: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AlertBoxIsActive: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -41601,6 +42520,11 @@ class RamDataProtocol(Protocol):
     ]
 
     CURSOR_SPRITE_ID: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PREV_MENU_ITEMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
