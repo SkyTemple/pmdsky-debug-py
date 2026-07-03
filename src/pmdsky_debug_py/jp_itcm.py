@@ -14127,6 +14127,10 @@ class JpItcmArm9Data:
 
     GXI_DMA_ID = Symbol(None, None, None, "GXI_DMA_ID", "", "uint32_t")
 
+    OSI_CONSOLE_TYPE_CACHE = Symbol(
+        None, None, None, "OSI_CONSOLE_TYPE_CACHE", "", "uint32_t"
+    )
+
     RAND_SEQUENCE_NUM = Symbol(
         None,
         None,

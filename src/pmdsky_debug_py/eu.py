@@ -14218,6 +14218,10 @@ class EuArm9Data:
 
     GXI_DMA_ID = Symbol([0xB34DC], [0x20B34DC], 0x4, "GXI_DMA_ID", "", "uint32_t")
 
+    OSI_CONSOLE_TYPE_CACHE = Symbol(
+        [0xB34F0], [0x20B34F0], 0x4, "OSI_CONSOLE_TYPE_CACHE", "", "uint32_t"
+    )
+
     RAND_SEQUENCE_NUM = Symbol(
         [0xB3B68],
         [0x20B3B68],
@@ -41081,7 +41085,7 @@ class EuOverlay22Data:
     KECLEON_SHOP_TEXT_STRINGS = Symbol(
         [0x47B0],
         [0x238F430],
-        None,
+        0x60,
         "KECLEON_SHOP_TEXT_STRINGS",
         "A collection of 48 text string ids, 24 for green kecleon, and 24 for purple kecleon. \n\ntype: int16_t[2][24]",
         "int16_t[2][24]",

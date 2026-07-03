@@ -1063,12 +1063,17 @@ class NaArm9Functions:
     )
 
     MarkPaletteDataAsNeedingUpdate = Symbol(
-        None, None, None, "MarkPaletteDataAsNeedingUpdate", "r0: palette_data", None
+        [0xA504],
+        [0x200A504],
+        None,
+        "MarkPaletteDataAsNeedingUpdate",
+        "r0: palette_data",
+        None,
     )
 
     CopyColorToPaletteDataRgba = Symbol(
-        None,
-        None,
+        [0xA590],
+        [0x200A590],
         None,
         "CopyColorToPaletteDataRgba",
         "Copies a single color to the RGBA palette of a palette_data struct, which will be transformed into RGB5 and copied into palette VRAM.\n\nr0: palette_data\nr1: position (ranges between [0, 0x100) for standard palettes and [0, 0x1000) for extended)\nr2: palette bytes",
@@ -1076,8 +1081,8 @@ class NaArm9Functions:
     )
 
     FillPaletteDataRgba = Symbol(
-        None,
-        None,
+        [0xA5B0],
+        [0x200A5B0],
         None,
         "FillPaletteDataRgba",
         "Fills a portion of the RGBA palette of a palette_data struct, which will be transformed into RGB5 and copied into palette VRAM.\n\nr0: palette_data\nr1: starting position (ranges between [0, 0x100) for standard palettes and [0, 0x1000) for extended)\nr2: palette bytes\nr3: number of colors",
@@ -1656,8 +1661,8 @@ class NaArm9Functions:
     )
 
     MaybeGetFormattedItemName = Symbol(
-        None,
-        None,
+        [0xD310],
+        [0x200D310],
         None,
         "MaybeGetFormattedItemName",
         "Seems to get a formatted copy of an item.\n\nr0: [output] name string\nr1: item pointer\nr2: bool table corresponding to item categories?\nr3: 1 if name should be colored, 0 if not\nstack[0]: 1 if should align with sticky items, 0 if not.",
@@ -1708,8 +1713,8 @@ class NaArm9Functions:
     )
 
     MaybeGetUncoloredFormattedItemName = Symbol(
-        None,
-        None,
+        [0xD65C],
+        [0x200D65C],
         None,
         "MaybeGetUncoloredFormattedItemName",
         "Seems to return an uncolored copy of the item name, with the appropriate quantity tag.\n\nr0: [output] name string\nr1: item pointer\nr2: bool table corresponding to item categories?",
@@ -1717,8 +1722,8 @@ class NaArm9Functions:
     )
 
     MaybeGetColoredFormattedItemName = Symbol(
-        None,
-        None,
+        [0xD670],
+        [0x200D670],
         None,
         "MaybeGetColoredFormattedItemName",
         "Seems to return a colored copy of the item name, with the appropriate color and quantity tag.\n\nr0: [output] name string\nr1: item pointer\nr2: bool table corresponding to item categories?",
@@ -2509,8 +2514,8 @@ class NaArm9Functions:
     )
 
     MaybeUpdateStorage = Symbol(
-        None,
-        None,
+        [0x1007C],
+        [0x201007C],
         None,
         "MaybeUpdateStorage",
         "Just a guess.\nSeems like it might handle updating storage, syncing the item count data to the temporary item slots after interacting with storage.\nUsed as a sort parallel to RemoveEmptyItemsInBag.\n\nNo params.",
@@ -2716,8 +2721,8 @@ class NaArm9Functions:
     )
 
     GetCurrentKecleonShop1ItemByIndex = Symbol(
-        None,
-        None,
+        [0x10898],
+        [0x2010898],
         None,
         "GetCurrentKecleonShop1ItemByIndex",
         "Retrieves a bulk_item from the first Kecleon Shop at a specified index.\n\nr0: index\nreturn: bulk_item pointer",
@@ -2752,8 +2757,8 @@ class NaArm9Functions:
     )
 
     RemoveInvalidKecleonShop2Items = Symbol(
-        None,
-        None,
+        [0x10B3C],
+        [0x2010B3C],
         None,
         "RemoveInvalidKecleonShop2Items",
         "Iterates through the current first Kecleon Shop items, and removes any with item_id ITEM_NONE.\n\nreturn: number of items removed from the shop.",
@@ -2770,8 +2775,8 @@ class NaArm9Functions:
     )
 
     GetCurrentKecleonShop2ItemByIndex = Symbol(
-        None,
-        None,
+        [0x10BA4],
+        [0x2010BA4],
         None,
         "GetCurrentKecleonShop2ItemByIndex",
         "Retrieves a bulk_item from the first Kecleon Shop at a specified index.\n\nr0: index\nreturn: bulk_item pointer",
@@ -4282,8 +4287,8 @@ class NaArm9Functions:
     )
 
     AddWanFragmentToOam = Symbol(
-        None,
-        None,
+        [0x1B6D4],
+        [0x201B6D4],
         None,
         "AddWanFragmentToOam",
         "Adds a WAN fragment to OAM.\n\nr0: obj_graphics_control\nr1: wan_fragment\nr2: ?\nr3: oam_adjustment_info (length 6 array, or null to not adjust)\nreturn: -2 if group out of bounds, -1 if too many objects, 0 if successful",
@@ -4363,8 +4368,8 @@ class NaArm9Functions:
     )
 
     InitOamAdjustmentInfo = Symbol(
-        None,
-        None,
+        [0x1C000],
+        [0x201C000],
         None,
         "InitOamAdjustmentInfo",
         "Initializes an oam_adjustment_info array that will be used in an animation_control structure with default values (0xFFFF for the ANDs, 0 for the ORs).\n\nr0: [output] oam_adjustment_info array (length 6)",
@@ -4714,8 +4719,8 @@ class NaArm9Functions:
     )
 
     GetPaletteBaseAddress = Symbol(
-        [0x278A8],
-        [0x20278A8],
+        [0x1E7BC, 0x278A8],
+        [0x201E7BC, 0x20278A8],
         None,
         "GetPaletteBaseAddress",
         "Gets the palette base address for a 3D element loaded from a WTE file.\nNormally takes the same parameters as were used in the specified file's ProcessWte call.\n\nr0: upper part of the palette VRAM\nr1: lower part of the palette VRAM\nreturn: palette base address",
@@ -5002,8 +5007,8 @@ class NaArm9Functions:
     )
 
     CopyOrInitPreprocessorArgs = Symbol(
-        None,
-        None,
+        [0x236FC],
+        [0x20236FC],
         None,
         "CopyOrInitPreprocessorArgs",
         "Copies the input preprocessor_args struct to the output struct, or initializes it if the input is a null pointer.\n\nr0: [output] preprocessor args pointer\nr1: input preprocessor args pointer, or null if should initialize one",
@@ -5011,8 +5016,8 @@ class NaArm9Functions:
     )
 
     QuantityToString = Symbol(
-        None,
-        None,
+        [0x237B4],
+        [0x20237B4],
         None,
         "QuantityToString",
         "Converts a quantity to a string, adding commas in between numbers when appropriate.\n\nr0: [output] string\nr1: quantity\nr2: adjusted size (if there are less characters in the string than this number, leading spaces will be added to make it this size)\nr3: ?",
@@ -5020,8 +5025,8 @@ class NaArm9Functions:
     )
 
     MoneyQuantityToString = Symbol(
-        None,
-        None,
+        [0x238E0, 0x23900],
+        [0x20238E0, 0x2023900],
         None,
         "MoneyQuantityToString",
         "Converts a money quantity to a string, adding commas in between numbers when appropriate.\n\nNote that this function does not add the P symbol at the end.\n\nr0: [output] string\nr1: quantity",
@@ -5029,8 +5034,8 @@ class NaArm9Functions:
     )
 
     BankQuantityToString = Symbol(
-        None,
-        None,
+        [0x238F0],
+        [0x20238F0],
         None,
         "BankQuantityToString",
         "Converts a money quantity shown in the bank menu to a string, adding commas in between numbers when appropriate and also adding leading spaces.\n\nr0: [output] string\nr1: quantity",
@@ -5038,8 +5043,8 @@ class NaArm9Functions:
     )
 
     ExpQuantityToString = Symbol(
-        None,
-        None,
+        [0x23910],
+        [0x2023910],
         None,
         "ExpQuantityToString",
         "Converts an experience quantity to a string, adding commas in between numbers when appropriate.\n\nr0: [output] string\nr1: quantity",
@@ -5839,8 +5844,8 @@ class NaArm9Functions:
     )
 
     GetWindowIdSelectedMenuItemIdx = Symbol(
-        None,
-        None,
+        [0x2C748],
+        [0x202C748],
         None,
         "GetWindowIdSelectedMenuItemIdx",
         "Gets the index of the current menu item the user has selected on the menu given by the window_id.\n\nr0: window id\nreturn: index of current selected item",
@@ -6235,8 +6240,8 @@ class NaArm9Functions:
     )
 
     IsTextboxState3 = Symbol(
-        None,
-        None,
+        [0x2F9B8],
+        [0x202F9B8],
         None,
         "IsTextboxState3",
         "Checks if a text_box is in state 3.\n\nr0: window_id\nreturn: bool",
@@ -6487,8 +6492,8 @@ class NaArm9Functions:
     )
 
     GetDigitInputResult = Symbol(
-        None,
-        None,
+        [0x30940],
+        [0x2030940],
         None,
         "GetDigitInputResult",
         "Seems to retrieve the result of a digit input advanced textbox. \n\nr0: advanced textbox window_id\nreturn: value submitted in a digit input advanced texbox.",
@@ -6847,8 +6852,8 @@ class NaArm9Functions:
     )
 
     DigitInputMenuInit = Symbol(
-        None,
-        None,
+        [0x39460],
+        [0x2039460],
         None,
         "DigitInputMenuInit",
         "Seems to handle initialization of a digit_input_window_manager.\nUsed by something other than Duskull Bank!\n        \nr0: digit_input_menu pointer",
@@ -6856,8 +6861,8 @@ class NaArm9Functions:
     )
 
     DigitInputMenuReturn = Symbol(
-        None,
-        None,
+        [0x39528],
+        [0x2039528],
         None,
         "DigitInputMenuReturn",
         "Seems to process the result of DigitInputMenuFrameUpdate.\nUsed by something other than Duskull Bank!\n\nr0: digit_input_menu pointer\nreturn: int32_t",
@@ -6865,8 +6870,8 @@ class NaArm9Functions:
     )
 
     DigitInputMenuInitDigits = Symbol(
-        None,
-        None,
+        [0x395CC],
+        [0x20395CC],
         None,
         "DigitInputMenuInitDigits",
         "Seems to handle initializing the digit fields of a digit_input_menu struct, adjusting the max_digits to align with max_value, and more.\n\nr0: digit_input_menu pointer",
@@ -6874,8 +6879,8 @@ class NaArm9Functions:
     )
 
     DigitInputMenuGetDigits = Symbol(
-        None,
-        None,
+        [0x39680],
+        [0x2039680],
         None,
         "DigitInputMenuGetDigits",
         "Seems to handle generating the digits of a digit input menu, given the max value it can display and the number of digits it can hold. \n\nr0: [output] digit_values\nr1: max_value\nr2: max_digits\nreturn: ?",
@@ -6883,8 +6888,8 @@ class NaArm9Functions:
     )
 
     DigitInputMenuFrameUpdate = Symbol(
-        None,
-        None,
+        [0x396E4],
+        [0x20396E4],
         None,
         "DigitInputMenuFrameUpdate",
         "Run every frame a digit input menu is active, detecting player inputs via both buttons and the touch screen.\n\nr0: digit_input_menu pointer\nreturn: Some kind of exit code, interpreted by DigitInputMenuReturn",
@@ -6892,8 +6897,8 @@ class NaArm9Functions:
     )
 
     DigitInputMenuCheckValidTouchScreenInput = Symbol(
-        None,
-        None,
+        [0x3994C],
+        [0x203994C],
         None,
         "DigitInputMenuCheckValidTouchScreenInput",
         "Just a guess. Seems to be checking for touch screen input, and interpreting the results as an equivalent set of button inputs?\n\nr0: digit_input_menu pointer\nreturn: undefined4",
@@ -6901,8 +6906,8 @@ class NaArm9Functions:
     )
 
     DigitInputMenuCheckTouchUpDownArrow = Symbol(
-        None,
-        None,
+        [0x399FC],
+        [0x20399FC],
         None,
         "DigitInputMenuCheckTouchUpDownArrow",
         "Called by DigitInputMenuCheckValidTouchScreenInput, which this function assumes to be generally correct.\nSeems to specifically check for a touch screen press above or below the current digit, to increment/decrement it\n\nr0: digit_input_menu pointer\nr1: int\nr2: int\nreturn: ?",
@@ -6910,8 +6915,8 @@ class NaArm9Functions:
     )
 
     DigitInputMenuDrawDigits = Symbol(
-        None,
-        None,
+        [0x39B0C],
+        [0x2039B0C],
         None,
         "DigitInputMenuDrawDigits",
         "Seems to handle actually drawing the digits on the advanced textbox for a digit_input_window_manager.\n\nr0: digit_input_menu pointer",
@@ -6919,8 +6924,8 @@ class NaArm9Functions:
     )
 
     DigitInputMenuDrawDigitsCallback = Symbol(
-        None,
-        None,
+        [0x39C14],
+        [0x2039C14],
         None,
         "DigitInputMenuDrawDigitsCallback",
         "A text_box_callback_fn_t for a digit input window advanced_text_box.\nIs used by something other than the Duskull Bank!\n\nNo params.",
@@ -6982,8 +6987,8 @@ class NaArm9Functions:
     )
 
     InitUnkStorageStruct0xA0 = Symbol(
-        None,
-        None,
+        [0x42258],
+        [0x2042258],
         None,
         "InitUnkStorageStruct0xA0",
         "Initializes an unknown struct of size 0xA0, to a pointer in UNK_STORAGE_STRUCT_0XC.\nAppears to be used for kangaskhan storage.\n\nr0: int32_t\nr1: undefined4\nr2: int\nr3: int\nreturn: int",
@@ -6991,8 +6996,8 @@ class NaArm9Functions:
     )
 
     FreeUnkStorageStruct0xA0 = Symbol(
-        None,
-        None,
+        [0x42664],
+        [0x2042664],
         None,
         "FreeUnkStorageStruct0xA0",
         "Frees an unknown struct of size 0xA0, to a pointer in UNK_STORAGE_STRUCT_0XC.\nAppears to be used for kangaskhan storage.\n\nNo params.",
@@ -7000,8 +7005,8 @@ class NaArm9Functions:
     )
 
     ClearBagSelectedItemTable = Symbol(
-        None,
-        None,
+        [0x42AF8],
+        [0x2042AF8],
         None,
         "ClearBagSelectedItemTable",
         "Seems to clear the list of selected bag item bools.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
@@ -7009,8 +7014,8 @@ class NaArm9Functions:
     )
 
     IsBagItemIndexSelected = Symbol(
-        None,
-        None,
+        [0x42B84],
+        [0x2042B84],
         None,
         "IsBagItemIndexSelected",
         "Seems to check if a specified index in the bag is selected.\nKnown to be used by Kangaskhan Storage.\n\nr0: index\nreturn: bool",
@@ -7018,8 +7023,8 @@ class NaArm9Functions:
     )
 
     AllocUnkBagStruct = Symbol(
-        None,
-        None,
+        [0x42B98],
+        [0x2042B98],
         None,
         "AllocUnkBagStruct",
         "Allocates a currently unknown struct UNK_STORAGE_STRUCT_0XC, that seems to manage the bag while interacting with storage.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
@@ -7027,8 +7032,8 @@ class NaArm9Functions:
     )
 
     FreeUnkBagStruct = Symbol(
-        None,
-        None,
+        [0x42BBC],
+        [0x2042BBC],
         None,
         "FreeUnkBagStruct",
         "Frees a currently unknown struct UNK_STORAGE_STRUCT_0XC, that seems to manage the bag while interacting with storage.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
@@ -7036,8 +7041,8 @@ class NaArm9Functions:
     )
 
     InitUnkStorageStruct0x18c0 = Symbol(
-        None,
-        None,
+        [0x42CF0],
+        [0x2042CF0],
         None,
         "InitUnkStorageStruct0x18c0",
         "Allocates a currently unknown struct of size 0x18c0, and stores it to a pointer at UNK_STORAGE_STRUCT_0X14.\nKnown to be used by Kangaskhan Storage.\n\nr0: int\nr1: undefined4\nr2: int\nreturn: int",
@@ -7045,8 +7050,8 @@ class NaArm9Functions:
     )
 
     MaybeTrySelectStorageItem = Symbol(
-        None,
-        None,
+        [0x42FB8],
+        [0x2042FB8],
         None,
         "MaybeTrySelectStorageItem",
         "Seems to be responsible for selecting an item from storage, for multi-select. \nKnown to be used by Kangaskhan Storage.\n\nr0: buttons struct? Seems to be checking for the R button...\nreturn: bool",
@@ -7054,8 +7059,8 @@ class NaArm9Functions:
     )
 
     FreeUnkStorageStruct0x18c0 = Symbol(
-        None,
-        None,
+        [0x4317C],
+        [0x204317C],
         None,
         "FreeUnkStorageStruct0x18c0",
         "Frees a currently unknown struct of size 0x18c0 from a pointer at UNK_STORAGE_STRUCT_0X14.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
@@ -7063,8 +7068,8 @@ class NaArm9Functions:
     )
 
     ClearStorageSelectedItemTable = Symbol(
-        None,
-        None,
+        [0x434D4],
+        [0x20434D4],
         None,
         "ClearStorageSelectedItemTable",
         "Seems to clear the selected item bool table for storage.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
@@ -7072,8 +7077,8 @@ class NaArm9Functions:
     )
 
     CountSelectedStorageItems = Symbol(
-        None,
-        None,
+        [0x434FC],
+        [0x20434FC],
         None,
         "CountSelectedStorageItems",
         "Seems to count the number of currently selected items in storage.\nKnown to be used by Kangaskhan Storage. \n\nreturn: number of selected items",
@@ -7081,8 +7086,8 @@ class NaArm9Functions:
     )
 
     GetFirstSelectedStorageItemIndex = Symbol(
-        None,
-        None,
+        [0x4352C],
+        [0x204352C],
         None,
         "GetFirstSelectedStorageItemIndex",
         "Seems to retrieve the index of the first currently selected item in storage.\nKnown to be used by Kangaskhan Storage. \n\nreturn: index of first selected item",
@@ -7090,8 +7095,8 @@ class NaArm9Functions:
     )
 
     IsStorageItemIndexSelected = Symbol(
-        None,
-        None,
+        [0x43568],
+        [0x2043568],
         None,
         "IsStorageItemIndexSelected",
         "Seems to check if a specified storage item index is selected.\nKnown to be used by Kangaskhan Storage. \n\nr0: index\nreturn: bool",
@@ -7099,8 +7104,8 @@ class NaArm9Functions:
     )
 
     AllocStorageSelectedItemTable = Symbol(
-        None,
-        None,
+        [0x44094],
+        [0x2044094],
         None,
         "AllocStorageSelectedItemTable",
         "Seems to allocate a table of bools for selected storage items to a pointer in UNK_STORAGE_STRUCT_0X14.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
@@ -7108,8 +7113,8 @@ class NaArm9Functions:
     )
 
     FreeStorageSelectedItemTable = Symbol(
-        None,
-        None,
+        [0x440B8],
+        [0x20440B8],
         None,
         "FreeStorageSelectedItemTable",
         "Seems to free a table of bools for selected storage items from a pointer in UNK_STORAGE_STRUCT_0X14.\nKnown to be used by Kangaskhan Storage.\n\nNo params.",
@@ -7117,8 +7122,8 @@ class NaArm9Functions:
     )
 
     InitUnkStorageStruct0x410 = Symbol(
-        None,
-        None,
+        [0x453F8],
+        [0x20453F8],
         None,
         "InitUnkStorageStruct0x410",
         "Allocates a currently unknown struct of size 0x410 at UNK_STORAGE_STRUCT_0X410_PTR. May be a state case structure of some kind.\nLikely used by Kangaskhan Storage, or some other storage interaction menu.\n\nr0: undefined2 pointer\nr1: int\nreturn: undefined4",
@@ -7126,8 +7131,8 @@ class NaArm9Functions:
     )
 
     UnkStorageStruct0x410CloseSimpleMenu = Symbol(
-        None,
-        None,
+        [0x465DC],
+        [0x20465DC],
         None,
         "UnkStorageStruct0x410CloseSimpleMenu",
         "Seems to close a simple menu for a currently unknown struct of size 0x410 at UNK_STORAGE_STRUCT_0X410_PTR. May be a state case structure of some kind.\nLikely used by Kangaskhan Storage, or some other storage interaction menu.\n\nNo params.",
@@ -7135,8 +7140,8 @@ class NaArm9Functions:
     )
 
     UnkStorageStruct0x410CreateDialogueBox = Symbol(
-        None,
-        None,
+        [0x46624],
+        [0x2046624],
         None,
         "UnkStorageStruct0x410CreateDialogueBox",
         "Seems to create a dialogue box for a currently unknown struct of size 0x410 at UNK_STORAGE_STRUCT_0X410_PTR. May be a state case structure of some kind.\nLikely used by Kangaskhan Storage, or some other storage interaction menu.\n\nNo params.",
@@ -13913,54 +13918,54 @@ class NaArm9Data:
     )
 
     UNK_STORAGE_STRUCT_0XC = Symbol(
-        None,
-        None,
-        None,
+        [0xAFEA8],
+        [0x20AFEA8],
+        0xC,
         "UNK_STORAGE_STRUCT_0XC",
         "A currently unknown struct of size 0xc, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0xc",
         "struct unk_storage_struct_0xc",
     )
 
     UNK_STORAGE_STRUCT_0X14 = Symbol(
-        None,
-        None,
-        None,
+        [0xAFEB4],
+        [0x20AFEB4],
+        0x14,
         "UNK_STORAGE_STRUCT_0X14",
         "A currently unknown struct of size 0x14, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0x14",
         "struct unk_storage_struct_0x14",
     )
 
     UNK_STORAGE_STRUCT_0X8_PTR_1 = Symbol(
-        None,
-        None,
-        None,
+        [0xAFEC8],
+        [0x20AFEC8],
+        0x4,
         "UNK_STORAGE_STRUCT_0X8_PTR_1",
         "A pointer to a currently unknown struct of size 0x8, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0x8*",
         "struct unk_storage_struct_0x8*",
     )
 
     UNK_STORAGE_WINDOW_STRUCT_0XC_PTR = Symbol(
-        None,
-        None,
-        None,
+        [0xAFECC],
+        [0x20AFECC],
+        0x4,
         "UNK_STORAGE_WINDOW_STRUCT_0XC_PTR",
         "A pointer to a currently unknown struct of size 0xc, with ties to kangaskhan storage.\n\ntype: struct unk_storage_window_struct_0xc*",
         "struct unk_storage_window_struct_0xc*",
     )
 
     UNK_STORAGE_STRUCT_0X8_PTR_2 = Symbol(
-        None,
-        None,
-        None,
+        [0xAFED0],
+        [0x20AFED0],
+        0x4,
         "UNK_STORAGE_STRUCT_0X8_PTR_2",
         "A pointer to a currently unknown struct of size 0x8, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0x8*",
         "struct unk_storage_struct_0x8*",
     )
 
     UNK_STORAGE_STRUCT_0X410_PTR = Symbol(
-        None,
-        None,
-        None,
+        [0xAFED4],
+        [0x20AFED4],
+        0x4,
         "UNK_STORAGE_STRUCT_0X410_PTR",
         "A pointer to a currently unknown struct of size 0x410, with ties to kangaskhan storage.\n\ntype: struct unk_storage_struct_0x410*",
         "struct unk_storage_struct_0x410*",
@@ -14212,6 +14217,10 @@ class NaArm9Data:
     IS_DISP_ON = Symbol([0xB2B94], [0x20B2B94], 0x1, "IS_DISP_ON", "", "bool")
 
     GXI_DMA_ID = Symbol([0xB2B98], [0x20B2B98], 0x4, "GXI_DMA_ID", "", "uint32_t")
+
+    OSI_CONSOLE_TYPE_CACHE = Symbol(
+        [0xB2BAC], [0x20B2BAC], 0x4, "OSI_CONSOLE_TYPE_CACHE", "", "uint32_t"
+    )
 
     RAND_SEQUENCE_NUM = Symbol(
         [0xB3224],
@@ -32477,8 +32486,8 @@ class NaOverlay11Functions:
     )
 
     LoadDuskullBankOverlay = Symbol(
-        None,
-        None,
+        [0x30970],
+        [0x230CBB0],
         None,
         "LoadDuskullBankOverlay",
         "Seems to handle loading overlay 15 for the duskull bank.\n\nNo params.",
@@ -32486,8 +32495,8 @@ class NaOverlay11Functions:
     )
 
     LoadLuminousSpringOverlay = Symbol(
-        None,
-        None,
+        [0x30984],
+        [0x230CBC4],
         None,
         "LoadLuminousSpringOverlay",
         "Seems to handle loading overlay 16 for luminous spring.\n\nNo params.",
@@ -32495,8 +32504,8 @@ class NaOverlay11Functions:
     )
 
     LoadChimechoAssemblyOverlay = Symbol(
-        None,
-        None,
+        [0x30998],
+        [0x230CBD8],
         None,
         "LoadChimechoAssemblyOverlay",
         "Seems to handle loading overlay 17 for the chimecho assembly.\n\nr0: undefined4",
@@ -32504,8 +32513,8 @@ class NaOverlay11Functions:
     )
 
     LoadElectivireLinkShopOverlay = Symbol(
-        None,
-        None,
+        [0x309C0],
+        [0x230CC00],
         None,
         "LoadElectivireLinkShopOverlay",
         "Seems to handle loading overlay 18 for the electivire link shop.\n\nr0: undefined4",
@@ -32513,8 +32522,8 @@ class NaOverlay11Functions:
     )
 
     LoadSpindaCafeOverlayInit = Symbol(
-        None,
-        None,
+        [0x309E8],
+        [0x230CC28],
         None,
         "LoadSpindaCafeOverlayInit",
         "Seems to handle loading overlay 19 for initializing the spinda cafe.\n\nNo params.",
@@ -32522,8 +32531,8 @@ class NaOverlay11Functions:
     )
 
     LoadSpindaCafeOverlayResume = Symbol(
-        None,
-        None,
+        [0x30A0C],
+        [0x230CC4C],
         None,
         "LoadSpindaCafeOverlayResume",
         "Seems to handle loading overlay 19 for resuming operations of the spinda cafe.\n\nNo params.",
@@ -32531,8 +32540,8 @@ class NaOverlay11Functions:
     )
 
     IsSpindaCafeOverlaySuspended = Symbol(
-        None,
-        None,
+        [0x30A30],
+        [0x230CC70],
         None,
         "IsSpindaCafeOverlaySuspended",
         "Checks SPINDA_CAFE_OVERLAY_STATUS for if the Spinda Cafe is inactive.\n\nreturn: 1 if the cafe is suspended, 0 if not.",
@@ -32540,8 +32549,8 @@ class NaOverlay11Functions:
     )
 
     LoadRecycleShopOverlayInit = Symbol(
-        None,
-        None,
+        [0x30A40],
+        [0x230CC80],
         None,
         "LoadRecycleShopOverlayInit",
         "Seems to handle loading overlay 20 for initializing the recycle shop.\n\nNo params.",
@@ -32549,8 +32558,8 @@ class NaOverlay11Functions:
     )
 
     LoadRecycleShopOverlayResume = Symbol(
-        None,
-        None,
+        [0x30A68],
+        [0x230CCA8],
         None,
         "LoadRecycleShopOverlayResume",
         "Seems to handle loading overlay 20 for resuming operations of the recycle shop.\n\nNo params.",
@@ -32558,8 +32567,8 @@ class NaOverlay11Functions:
     )
 
     IsRecycleShopOverlaySuspended = Symbol(
-        None,
-        None,
+        [0x30AA0],
+        [0x230CCE0],
         None,
         "IsRecycleShopOverlaySuspended",
         "Checks RECYCLE_SHOP_OVERLAY_STATUS for if the recycle shop is inactive.\n\nreturn: 1 if the recycle shop is suspended, 0 if not.",
@@ -32567,8 +32576,8 @@ class NaOverlay11Functions:
     )
 
     LoadCroagunkSwapShopOverlay = Symbol(
-        None,
-        None,
+        [0x30B08],
+        [0x230CD48],
         None,
         "LoadCroagunkSwapShopOverlay",
         "Seems to handle loading overlay 21 for the croagunk swap shop.\n\nNo params.",
@@ -32576,8 +32585,8 @@ class NaOverlay11Functions:
     )
 
     LoadKecleonShopOverlay = Symbol(
-        None,
-        None,
+        [0x30B1C],
+        [0x230CD5C],
         None,
         "LoadKecleonShopOverlay",
         "Seems to handle loading overlay 22 for the kecleon brothers shop. Is used by both colors of Kecleon.\n\nr0: 1 for purple kecleon, 0 for green kecleon.",
@@ -32585,8 +32594,8 @@ class NaOverlay11Functions:
     )
 
     LoadKangaskhanOverlay = Symbol(
-        None,
-        None,
+        [0x30B44],
+        [0x230CD84],
         None,
         "LoadKangaskhanOverlay",
         "Seems to handle loading overlay 23 for Kangaskhan storage, as well as Kangaskhan rock storage. \n\nr0: 2 for kangaskhan rock, 0 otherwise?",
@@ -32594,8 +32603,8 @@ class NaOverlay11Functions:
     )
 
     LoadChanseyDaycareOverlay = Symbol(
-        None,
-        None,
+        [0x30B64],
+        [0x230CDA4],
         None,
         "LoadChanseyDaycareOverlay",
         "Seems to handle loading overlay 24 for the Chansey daycare.\n\nNo params.",
@@ -32603,8 +32612,8 @@ class NaOverlay11Functions:
     )
 
     LoadXatuAppraisalOverlay = Symbol(
-        None,
-        None,
+        [0x30B78],
+        [0x230CDB8],
         None,
         "LoadXatuAppraisalOverlay",
         "Seems to handle loading overlay 24 for Xatu's appraisal.\n\nNo params.",
@@ -32621,8 +32630,8 @@ class NaOverlay11Functions:
     )
 
     LoadRuleDungeonEffectsOverlay = Symbol(
-        None,
-        None,
+        [0x30BA0],
+        [0x230CDE0],
         None,
         "LoadRuleDungeonEffectsOverlay",
         "Seems to be responsible for loading overlay 26 to handle rule dungeon effects.\n\nNo params.",
@@ -32630,8 +32639,8 @@ class NaOverlay11Functions:
     )
 
     LoadSpecialEpisodeDiscardOverlay1 = Symbol(
-        None,
-        None,
+        [0x30BF0],
+        [0x230CE30],
         None,
         "LoadSpecialEpisodeDiscardOverlay1",
         "Seems to load overlay 27, which is believed to handle special episode discarding.\n\nNo params.",
@@ -32639,8 +32648,8 @@ class NaOverlay11Functions:
     )
 
     LoadSpecialEpisodeDiscardOverlay2 = Symbol(
-        None,
-        None,
+        [0x30C04],
+        [0x230CE44],
         None,
         "LoadSpecialEpisodeDiscardOverlay2",
         "Seems to load overlay 27, which is believed to handle special episode discarding.\n\nNo params.",
@@ -33009,7 +33018,7 @@ class NaOverlay11Data:
     EXCLUSIVE_ITEM_REQUIREMENTS_PTR = Symbol(
         [0x48B60],
         [0x2324DA0],
-        None,
+        0x4,
         "EXCLUSIVE_ITEM_REQUIREMENTS_PTR",
         "Pointer to the exclusive_item_requirements struct, used by the swap shop.",
         "struct exclusive_item_requirements*",
@@ -33018,25 +33027,25 @@ class NaOverlay11Data:
     SWAP_SHOP_INVENTORY_PTRS = Symbol(
         [0x48B64],
         [0x2324DA4],
-        None,
+        0x8,
         "SWAP_SHOP_INVENTORY_PTRS",
         "Host pointers to multiple structures used for performing internal Swap Shop checks.",
         "struct swap_shop_inventory_ptrs",
     )
 
     SPINDA_CAFE_OVERLAY_STATUS = Symbol(
-        None,
-        None,
-        None,
+        [0x48B6C],
+        [0x2324DAC],
+        0x4,
         "SPINDA_CAFE_OVERLAY_STATUS",
         "Tracks whether or not the spinda cafe overlay is suspended. 1 if it is inactive, 0 if it is active.\n\ntype: int",
         "int",
     )
 
     RECYCLE_SHOP_OVERLAY_STATUS = Symbol(
-        None,
-        None,
-        None,
+        [0x48B74],
+        [0x2324DB4],
+        0x4,
         "RECYCLE_SHOP_OVERLAY_STATUS",
         "Tracks whether or not the recycle shop overlay is suspended. 1 if it is inactive, 0 if it is active.\n\ntype: int",
         "int",
@@ -33933,8 +33942,8 @@ class NaOverlay14Section:
 class NaOverlay15Functions:
 
     InitDuskullBankStruct = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x238A140],
         None,
         "InitDuskullBankStruct",
         "Allocates and initializes a duskull_bank struct at DUSKULL_BANK_STRUCT_PTR.\n\nNo params.",
@@ -33942,8 +33951,8 @@ class NaOverlay15Functions:
     )
 
     DuskullBankSubcaseManager1 = Symbol(
-        None,
-        None,
+        [0xF4],
+        [0x238A234],
         None,
         "DuskullBankSubcaseManager1",
         "Seems to manage the more niche operations of the bank, primarily window management and player input interpretation.\nConsists of a switch case over the bank_subcase enum.\n\nreturn: undefined4",
@@ -33951,8 +33960,8 @@ class NaOverlay15Functions:
     )
 
     DuskullBankSubcaseManager2 = Symbol(
-        None,
-        None,
+        [0x3A8],
+        [0x238A4E8],
         None,
         "DuskullBankSubcaseManager2",
         "Seems to manage the more niche operations of the bank, primarily window generation.\nConsists of a switch case over the bank_subcase enum.\n\nr0: enum bank_subcase",
@@ -33960,8 +33969,8 @@ class NaOverlay15Functions:
     )
 
     BankUpdateDigitInputMenuDisplay = Symbol(
-        None,
-        None,
+        [0xC38],
+        [0x238AD78],
         None,
         "BankUpdateDigitInputMenuDisplay",
         "Runs once every frame while the digit display menu is up, to redraw it as needed.\n\nr0: 1 for the withdrawing text string, 0 for depositing.",
@@ -33969,8 +33978,8 @@ class NaOverlay15Functions:
     )
 
     DuskullBankTextboxGoldStatusCallback = Symbol(
-        None,
-        None,
+        [0xC84],
+        [0x238ADC4],
         None,
         "DuskullBankTextboxGoldStatusCallback",
         "A text_box_callback_fn_t function for the gold status window that seems to populate the current and stored money.\n\nr0: window_id",
@@ -33978,8 +33987,8 @@ class NaOverlay15Functions:
     )
 
     DuskullBankDigitInputDisplayCallback = Symbol(
-        None,
-        None,
+        [0xD2C],
+        [0x238AE6C],
         None,
         "DuskullBankDigitInputDisplayCallback",
         "A text_box_callback_fn_t function for the digit display window that calls BankUpdateDigitInputMenuDisplay with the correct param from the duskull_bank struct.\n\nNo params.",
@@ -33987,8 +33996,8 @@ class NaOverlay15Functions:
     )
 
     DuskullBankEntryPoint = Symbol(
-        None,
-        None,
+        [0xD48],
+        [0x238AE88],
         None,
         "DuskullBankEntryPoint",
         "The sole entry_point function for the duskull bank overlay.\n\nreturn: undefined4",
@@ -33996,8 +34005,8 @@ class NaOverlay15Functions:
     )
 
     DuskullBankDestructor = Symbol(
-        None,
-        None,
+        [0xD58],
+        [0x238AE98],
         None,
         "DuskullBankDestructor",
         "The sole destructor function for the duskull bank overlay.\n\nNo params.",
@@ -34005,8 +34014,8 @@ class NaOverlay15Functions:
     )
 
     DuskullBankFrameUpdate = Symbol(
-        None,
-        None,
+        [0xE14],
+        [0x238AF54],
         None,
         "DuskullBankFrameUpdate",
         "The sole frame_update function for the duskull bank overlay.\n\nreturn: undefined4",
@@ -34071,65 +34080,90 @@ class NaOverlay15Data:
     )
 
     BANK_R_CLOSE_STR = Symbol(
-        None, None, None, "BANK_R_CLOSE_STR", "'R-Close\n'\n\ntype: string", "char[9]"
+        [0xF94],
+        [0x238B0D4],
+        0x9,
+        "BANK_R_CLOSE_STR",
+        "'R-Close\n'\n\ntype: string",
+        "char[9]",
     )
 
     BANK_M_OPEN_STR = Symbol(
-        None, None, None, "BANK_M_OPEN_STR", "'M-Open\n'\n\ntype: string", "char[8]"
+        [0xFA0],
+        [0x238B0E0],
+        0x8,
+        "BANK_M_OPEN_STR",
+        "'M-Open\n'\n\ntype: string",
+        "char[8]",
     )
 
     BANK_S_CLOSE_STR = Symbol(
-        None, None, None, "BANK_S_CLOSE_STR", "'S-Close\n'\n\ntype: string", "char[9]"
+        [0xFA8],
+        [0x238B0E8],
+        0x9,
+        "BANK_S_CLOSE_STR",
+        "'S-Close\n'\n\ntype: string",
+        "char[9]",
     )
 
     MENU_BANK_MODE_CANCEL_STR = Symbol(
-        None,
-        None,
-        None,
+        [0xFB4],
+        [0x238B0F4],
+        0x17,
         "MENU_BANK_MODE_CANCEL_STR",
         "'Menu_Bank_Mode_Cancel\n'\n\ntype: string",
         "char[23]",
     )
 
     BANK_P_OPEN_STR = Symbol(
-        None, None, None, "BANK_P_OPEN_STR", "'P-Open\n'\n\ntype: string", "char[8]"
+        [0xFCC],
+        [0x238B10C],
+        0x8,
+        "BANK_P_OPEN_STR",
+        "'P-Open\n'\n\ntype: string",
+        "char[8]",
     )
 
     BANK_G_OPEN_STR = Symbol(
-        None, None, None, "BANK_G_OPEN_STR", "'G-Open\n'\n\ntype: string", "char[8]"
+        [0xFD4],
+        [0x238B114],
+        0x8,
+        "BANK_G_OPEN_STR",
+        "'G-Open\n'\n\ntype: string",
+        "char[8]",
     )
 
     BANK_MES_NOT_CLOSE_STR = Symbol(
-        None,
-        None,
-        None,
+        [0xFDC],
+        [0x238B11C],
+        0xF,
         "BANK_MES_NOT_CLOSE_STR",
         "'mes not close\n'\n\ntype: string",
         "char[15]",
     )
 
     BANK_SUB_NOT_CLOSE_STR = Symbol(
-        None,
-        None,
-        None,
+        [0xFEC],
+        [0x238B12C],
+        0xF,
         "BANK_SUB_NOT_CLOSE_STR",
         "'sub not close\n'\n\ntype: string",
         "char[15]",
     )
 
     BANK_SELECT_NOT_CLOSE_STR = Symbol(
-        None,
-        None,
-        None,
+        [0xFFC],
+        [0x238B13C],
+        0x12,
         "BANK_SELECT_NOT_CLOSE_STR",
         "'select not close\n'\n\ntype: string",
         "char[18]",
     )
 
     BANK_INPUT_NOT_CLOSE_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x1010],
+        [0x238B150],
+        0x11,
         "BANK_INPUT_NOT_CLOSE_STR",
         "'Input not close\n'\n\ntype: string",
         "char[17]",
@@ -39911,8 +39945,8 @@ class NaOverlay21Section:
 class NaOverlay22Functions:
 
     GreenKecleonShopUpdateItemNamesAndCollectionMenu = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x238A140],
         None,
         "GreenKecleonShopUpdateItemNamesAndCollectionMenu",
         "Calls GreenKecleonShopFillItemNameData and GreenKecleonShopInitCollectionMenu, then returns.\n\nNo params.",
@@ -39920,8 +39954,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopInitCollectionMenu = Symbol(
-        None,
-        None,
+        [0x10],
+        [0x238A150],
         None,
         "GreenKecleonShopInitCollectionMenu",
         "Seems to initialize a collection menu for green kecleon with data from GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: collection menu window_id",
@@ -39929,8 +39963,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopDoNothing = Symbol(
-        None,
-        None,
+        [0xEC],
+        [0x238A22C],
         None,
         "GreenKecleonShopDoNothing",
         "Does nothing but return. Is exclusively called by the green kecleon shop.\n\nNo params.",
@@ -39938,8 +39972,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopGetCollectionMenuStatus = Symbol(
-        None,
-        None,
+        [0xF0],
+        [0x238A230],
         None,
         "GreenKecleonShopGetCollectionMenuStatus",
         "Seems to return some kind of status data for the collection menu from GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: collection menu status?",
@@ -39947,8 +39981,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopGetShopItemSlot = Symbol(
-        None,
-        None,
+        [0x16C],
+        [0x238A2AC],
         None,
         "GreenKecleonShopGetShopItemSlot",
         "Seems to retrieve the item slot the cursor is currently pointing to from GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: shop item slot index",
@@ -39956,8 +39990,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopInitItemNameData = Symbol(
-        None,
-        None,
+        [0x180],
+        [0x238A2C0],
         None,
         "GreenKecleonShopInitItemNameData",
         "Initializes a green_kec_shop_item_data struct in GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
@@ -39965,8 +39999,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopFreeItemNameData = Symbol(
-        None,
-        None,
+        [0x1B4],
+        [0x238A2F4],
         None,
         "GreenKecleonShopFreeItemNameData",
         "Frees a green_kec_shop_item_data struct in GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
@@ -39974,8 +40008,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopFillItemNameData = Symbol(
-        None,
-        None,
+        [0x1E0],
+        [0x238A320],
         None,
         "GreenKecleonShopFillItemNameData",
         "Populates a green_kec_shop_item_data struct in GREEN_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
@@ -39983,8 +40017,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopCountSelectedItems = Symbol(
-        None,
-        None,
+        [0x38C],
+        [0x238A4CC],
         None,
         "GreenKecleonShopCountSelectedItems",
         "Counts the number of multi-selected items in the green kecleon shop.\n\nreturn: # of selected items.",
@@ -39992,8 +40026,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopGetFirstSelectedItemIndex = Symbol(
-        None,
-        None,
+        [0x3C8],
+        [0x238A508],
         None,
         "GreenKecleonShopGetFirstSelectedItemIndex",
         "Retrieves the index of the first multi-selected item in the green kecleon shop.\n\nreturn: index of the first selected shop item.",
@@ -40001,8 +40035,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopSumSelectedItemPrices = Symbol(
-        None,
-        None,
+        [0x404],
+        [0x238A544],
         None,
         "GreenKecleonShopSumSelectedItemPrices",
         "Sums the prices of all currently selected items in the green kecleon shop.\n\nreturn: total price of all selected shop items.",
@@ -40010,8 +40044,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopPurchaseSingleItem = Symbol(
-        None,
-        None,
+        [0x448],
+        [0x238A588],
         None,
         "GreenKecleonShopPurchaseSingleItem",
         "Handles purchasing a single item from the green kecleon shop, by index.\n\nr0: shop item slot",
@@ -40019,8 +40053,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopPurchaseSelectedItems = Symbol(
-        None,
-        None,
+        [0x48C],
+        [0x238A5CC],
         None,
         "GreenKecleonShopPurchaseSelectedItems",
         "Handles purchasing all selected items from the green kecleon shop.\nWill not be used if only one item is selected.\n\nNo params.",
@@ -40028,8 +40062,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonGetItemNameStringByIndex = Symbol(
-        None,
-        None,
+        [0x500],
+        [0x238A640],
         None,
         "GreenKecleonGetItemNameStringByIndex",
         "Retrieves the item name string for a shop item in the green kecleon shop by index.\n\nr0: unused\nr1: int\nr2: uint32_t pointer\nreturn: item name string (buffer size 80)",
@@ -40037,8 +40071,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopUnkCollectionMenuCallback = Symbol(
-        None,
-        None,
+        [0x53C],
+        [0x238A67C],
         None,
         "GreenKecleonShopUnkCollectionMenuCallback",
         "An unk_collection_menu_fn_t function used by GreenKecleonShopInitCollectionMenu.\n\nr0: uint\nreturn: undefined4",
@@ -40046,8 +40080,8 @@ class NaOverlay22Functions:
     )
 
     GreenKecleonShopVoidFnCollectionMenuCallback = Symbol(
-        None,
-        None,
+        [0x634],
+        [0x238A774],
         None,
         "GreenKecleonShopVoidFnCollectionMenuCallback",
         "An unk_collection_menu_void_fn_t function used by GreenKecleonShopInitCollectionMenu.\n\nr0: uint",
@@ -40055,8 +40089,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopUpdateItemNamesAndCollectionMenu = Symbol(
-        None,
-        None,
+        [0x64C],
+        [0x238A78C],
         None,
         "PurpleKecleonShopUpdateItemNamesAndCollectionMenu",
         "Calls PurpleKecleonShopFillItemNameData and PurpleKecleonShopInitCollectionMenu, then returns.\n\nNo params.",
@@ -40064,8 +40098,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopInitCollectionMenu = Symbol(
-        None,
-        None,
+        [0x65C],
+        [0x238A79C],
         None,
         "PurpleKecleonShopInitCollectionMenu",
         "Seems to initialize a collection menu for purple kecleon with data from PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: collection menu window_id",
@@ -40073,8 +40107,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopDoNothing = Symbol(
-        None,
-        None,
+        [0x738],
+        [0x238A878],
         None,
         "PurpleKecleonShopDoNothing",
         "Does nothing but return. Is exclusively called by the purple kecleon shop.\n\nNo params.",
@@ -40082,8 +40116,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopGetCollectionMenuStatus = Symbol(
-        None,
-        None,
+        [0x73C],
+        [0x238A87C],
         None,
         "PurpleKecleonShopGetCollectionMenuStatus",
         "Seems to return some kind of status data for the collection menu from PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: collection menu status?",
@@ -40091,8 +40125,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopGetShopItemSlot = Symbol(
-        None,
-        None,
+        [0x7B8],
+        [0x238A8F8],
         None,
         "PurpleKecleonShopGetShopItemSlot",
         "Seems to retrieve the item slot the cursor is currently pointing to from PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nreturn: shop item slot index",
@@ -40100,8 +40134,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopInitItemNameData = Symbol(
-        None,
-        None,
+        [0x7CC],
+        [0x238A90C],
         None,
         "PurpleKecleonShopInitItemNameData",
         "Initializes a purple_kec_shop_item_data struct in PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
@@ -40109,8 +40143,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopFreeItemNameData = Symbol(
-        None,
-        None,
+        [0x800],
+        [0x238A940],
         None,
         "PurpleKecleonShopFreeItemNameData",
         "Frees a purple_kec_shop_item_data struct in PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
@@ -40118,8 +40152,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopFillItemNameData = Symbol(
-        None,
-        None,
+        [0x82C],
+        [0x238A96C],
         None,
         "PurpleKecleonShopFillItemNameData",
         "Frees a purple_kec_shop_item_data struct in PURPLE_KEC_SHOP_ITEM_DATA_WRAPPER.\n\nNo params.",
@@ -40127,8 +40161,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopCountSelectedItems = Symbol(
-        None,
-        None,
+        [0x9D8],
+        [0x238AB18],
         None,
         "PurpleKecleonShopCountSelectedItems",
         "Counts the number of multi-selected items in the purple kecleon shop.\n\nreturn: # of selected items.",
@@ -40136,8 +40170,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopGetFirstSelectedItemIndex = Symbol(
-        None,
-        None,
+        [0xA14],
+        [0x238AB54],
         None,
         "PurpleKecleonShopGetFirstSelectedItemIndex",
         "Retrieves the index of the first multi-selected item in the purple kecleon shop.\n\nreturn: index of the first selected shop item.",
@@ -40145,8 +40179,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopSumSelectedItemPrices = Symbol(
-        None,
-        None,
+        [0xA50],
+        [0x238AB90],
         None,
         "PurpleKecleonShopSumSelectedItemPrices",
         "Sums the prices of all currently selected items in the purple kecleon shop.\n\nreturn: total price of all selected shop items.",
@@ -40154,8 +40188,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopPurchaseSingleItem = Symbol(
-        None,
-        None,
+        [0xA94],
+        [0x238ABD4],
         None,
         "PurpleKecleonShopPurchaseSingleItem",
         "Handles purchasing a single item from the purple kecleon shop, by index.\n\nr0: shop item slot",
@@ -40163,8 +40197,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopPurchaseSelectedItems = Symbol(
-        None,
-        None,
+        [0xAD8],
+        [0x238AC18],
         None,
         "PurpleKecleonShopPurchaseSelectedItems",
         "Handles purchasing all selected items from the purple kecleon shop.\nWill not be used if only one item is selected.\n\nNo params.",
@@ -40172,8 +40206,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonGetItemNameStringByIndex = Symbol(
-        None,
-        None,
+        [0xB4C],
+        [0x238AC8C],
         None,
         "PurpleKecleonGetItemNameStringByIndex",
         "Retrieves the item name string for a shop item in the purple kecleon shop by index.\n\nr0: unused\nr1: int\nr2: uint32_t pointer\nreturn: item name string (buffer size 80)",
@@ -40181,8 +40215,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopUnkCollectionMenuCallback = Symbol(
-        None,
-        None,
+        [0xB88],
+        [0x238ACC8],
         None,
         "PurpleKecleonShopUnkCollectionMenuCallback",
         "An unk_collection_menu_fn_t function used by PurpleKecleonShopInitCollectionMenu.\n\nr0: uint\nreturn: undefined4",
@@ -40190,8 +40224,8 @@ class NaOverlay22Functions:
     )
 
     PurpleKecleonShopCollectionMenuCallback = Symbol(
-        None,
-        None,
+        [0xC80],
+        [0x238ADC0],
         None,
         "PurpleKecleonShopCollectionMenuCallback",
         "An unk_collection_menu_void_fn_t function used by PurpleKecleonShopInitCollectionMenu.\n\nr0: uint",
@@ -40199,8 +40233,8 @@ class NaOverlay22Functions:
     )
 
     KecleonShopSubcaseManager1 = Symbol(
-        None,
-        None,
+        [0xC98],
+        [0x238ADD8],
         None,
         "KecleonShopSubcaseManager1",
         "Seems responsible for handling the majority of the frame update behavior for both kecleon shops, particularly window management.\nShares this responsibility with KecleonShopSubcaseManager2.\n\nr0: subcase id (should eventually be an enum)",
@@ -40208,8 +40242,8 @@ class NaOverlay22Functions:
     )
 
     KecleonShopSubcaseManager2 = Symbol(
-        None,
-        None,
+        [0x2044],
+        [0x238C184],
         None,
         "KecleonShopSubcaseManager2",
         "Seems responsible for handling the majority of the frame update behavior for both kecleon shops, particularly window management.\nShares this responsibility with KecleonShopSubcaseManager1.\n\nNo params.",
@@ -40217,8 +40251,8 @@ class NaOverlay22Functions:
     )
 
     RemoveInvalidKecleonShopItems = Symbol(
-        None,
-        None,
+        [0x33E8],
+        [0x238D528],
         None,
         "RemoveInvalidKecleonShopItems",
         "Calls either RemoveInvalidKecleonShop1Items or RemoveInvalidKecleonShop2Items depending on which kecleon shop is active.\n\nNo params.",
@@ -40226,8 +40260,8 @@ class NaOverlay22Functions:
     )
 
     KecleonShopSumBagItemSellPrices = Symbol(
-        None,
-        None,
+        [0x3414],
+        [0x238D554],
         None,
         "KecleonShopSumBagItemSellPrices",
         "Sums the sell prices of all items in the bag, presumably for the Sell All option for both kecleon shops.\n\nNo params.",
@@ -40235,8 +40269,8 @@ class NaOverlay22Functions:
     )
 
     KecleonShopUpdatePortraitEmotion = Symbol(
-        None,
-        None,
+        [0x34B4],
+        [0x238D5F4],
         None,
         "KecleonShopUpdatePortraitEmotion",
         "Updates the portrait emotion for the currently active kecleon shop.\nCan only change the portrait to PORTRAIT_NORMAL or PORTRAIT_ANGRY.\n\nr0: 1 if angry, 0 if normal.",
@@ -40244,8 +40278,8 @@ class NaOverlay22Functions:
     )
 
     KecleonShopEntryPoint = Symbol(
-        None,
-        None,
+        [0x3500],
+        [0x238D640],
         None,
         "KecleonShopEntryPoint",
         "The sole entry_point for the kecleon shop overlay.\n\nreturn: undefined4",
@@ -40253,8 +40287,8 @@ class NaOverlay22Functions:
     )
 
     KecleonShopDestructor = Symbol(
-        None,
-        None,
+        [0x3670],
+        [0x238D7B0],
         None,
         "KecleonShopDestructor",
         "The sole destructor for the kecleon shop overlay.\n\nNo params.",
@@ -40262,8 +40296,8 @@ class NaOverlay22Functions:
     )
 
     KecleonShopFrameUpdate = Symbol(
-        None,
-        None,
+        [0x36C0],
+        [0x238D800],
         None,
         "KecleonShopFrameUpdate",
         "The sole frame_update for the kecleon shop overlay.\n\nreturn: undefined4",
@@ -40271,8 +40305,8 @@ class NaOverlay22Functions:
     )
 
     KecleonShopCloseSimpleMenu = Symbol(
-        None,
-        None,
+        [0x46A4],
+        [0x238E7E4],
         None,
         "KecleonShopCloseSimpleMenu",
         "Closes a simple menu for the kecleon shop.\n\nNo params.",
@@ -40292,18 +40326,18 @@ class NaOverlay22Data:
     )
 
     GREEN_KEC_SHOP_RED_COLOR_TEXT_TAG = Symbol(
-        None,
-        None,
-        None,
+        [0x46EC],
+        [0x238E82C],
+        0x7,
         "GREEN_KEC_SHOP_RED_COLOR_TEXT_TAG",
         "'[CS:W]'\nUsed exclusively before items in green kecleon's shop that the player cannot buy/sell.\n\ntype: string",
         "char[7]",
     )
 
     GREEN_KEC_SHOP_UNCOLOR_TEXT_TAG = Symbol(
-        None,
-        None,
-        None,
+        [0x46F4],
+        [0x238E834],
+        0x5,
         "GREEN_KEC_SHOP_UNCOLOR_TEXT_TAG",
         "'[CR]'\nUsed exclusively after items in green kecleon's shop that the player cannot buy/sell.\n\ntype: string",
         "char[5]",
@@ -40319,18 +40353,18 @@ class NaOverlay22Data:
     )
 
     PURPLE_KEC_SHOP_RED_COLOR_TEXT_TAG = Symbol(
-        None,
-        None,
-        None,
+        [0x470C],
+        [0x238E84C],
+        0x7,
         "PURPLE_KEC_SHOP_RED_COLOR_TEXT_TAG",
         "'[CS:W]'\nUsed exclusively before items in purple kecleon's shop that the player cannot buy/sell.\n\ntype: string",
         "char[7]",
     )
 
     PURPLE_KEC_SHOP_UNCOLOR_TEXT_TAG = Symbol(
-        None,
-        None,
-        None,
+        [0x4714],
+        [0x238E854],
+        0x5,
         "PURPLE_KEC_SHOP_UNCOLOR_TEXT_TAG",
         "'[CR]'\nUsed exclusively after items in purple kecleon's shop that the player cannot buy/sell.\n\ntype: string",
         "char[5]",
@@ -40463,382 +40497,387 @@ class NaOverlay22Data:
     )
 
     KEC_SHOP_START_STR = Symbol(
-        None, None, None, "KEC_SHOP_START_STR", "'_START\n'\n\ntype: string", "char[8]"
+        [0x4890],
+        [0x238E9D0],
+        0x8,
+        "KEC_SHOP_START_STR",
+        "'_START\n'\n\ntype: string",
+        "char[8]",
     )
 
     KEC_SHOP_RESTART_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4898],
+        [0x238E9D8],
+        0xA,
         "KEC_SHOP_RESTART_STR",
         "'_RESTART\n'\n\ntype: string",
         "char[10]",
     )
 
     KEC_SHOP_SELECTMENU_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x48A4],
+        [0x238E9E4],
+        0xD,
         "KEC_SHOP_SELECTMENU_STR",
         "'_SELECTMENU\n'\n\ntype: string",
         "char[13]",
     )
 
     KEC_SHOP_EXPLANATION_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x48B4],
+        [0x238E9F4],
+        0xE,
         "KEC_SHOP_EXPLANATION_STR",
         "'_EXPLANATION\n'\n\ntype: string",
         "char[14]",
     )
 
     KEC_SHOP_THANKS_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x48C4],
+        [0x238EA04],
+        0x9,
         "KEC_SHOP_THANKS_STR",
         "'_THANKS\n'\n\ntype: string",
         "char[9]",
     )
 
     KEC_SHOP_SHOP_NON_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x48D0],
+        [0x238EA10],
+        0xB,
         "KEC_SHOP_SHOP_NON_STR",
         "'_SHOP_NON\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_GOLD_NON_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x48DC],
+        [0x238EA1C],
+        0xB,
         "KEC_SHOP_GOLD_NON_STR",
         "'_GOLD_NON\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_GOLD_MAX_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x48E8],
+        [0x238EA28],
+        0xB,
         "KEC_SHOP_GOLD_MAX_STR",
         "'_GOLD_MAX\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_GOLD_FULL_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x48F4],
+        [0x238EA34],
+        0xC,
         "KEC_SHOP_GOLD_FULL_STR",
         "'_GOLD_FULL\n'\n\ntype: string",
         "char[12]",
     )
 
     KEC_SHOP_SELL_NON_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4900],
+        [0x238EA40],
+        0xB,
         "KEC_SHOP_SELL_NON_STR",
         "'_SELL_NON\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_ITEM_NON_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x490C],
+        [0x238EA4C],
+        0xB,
         "KEC_SHOP_ITEM_NON_STR",
         "'_ITEM_NON\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_ITEM_MAX_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4918],
+        [0x238EA58],
+        0xB,
         "KEC_SHOP_ITEM_MAX_STR",
         "'_ITEM_MAX\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_SOLD_OUT_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4924],
+        [0x238EA64],
+        0xB,
         "KEC_SHOP_SOLD_OUT_STR",
         "'_SOLD_OUT\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_BUY_POOR_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4930],
+        [0x238EA70],
+        0xB,
         "KEC_SHOP_BUY_POOR_STR",
         "'_BUY_POOR\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_SELL_BAD_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x493C],
+        [0x238EA7C],
+        0xB,
         "KEC_SHOP_SELL_BAD_STR",
         "'_SELL_BAD\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_SELL_FULL_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4948],
+        [0x238EA88],
+        0xC,
         "KEC_SHOP_SELL_FULL_STR",
         "'_SELL_FULL\n'\n\ntype: string",
         "char[12]",
     )
 
     KEC_SHOP_MODE_BUY_START_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4954],
+        [0x238EA94],
+        0x11,
         "KEC_SHOP_MODE_BUY_START_STR",
         "'_MODE_BUY_START\n'\n\ntype: string",
         "char[17]",
     )
 
     KEC_SHOP_BUY_RESTART_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4968],
+        [0x238EAA8],
+        0xE,
         "KEC_SHOP_BUY_RESTART_STR",
         "'_BUY_RESTART\n'\n\ntype: string",
         "char[14]",
     )
 
     KEC_SHOP_BUY_SELECT_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4978],
+        [0x238EAB8],
+        0xD,
         "KEC_SHOP_BUY_SELECT_STR",
         "'_BUY_SELECT\n'\n\ntype: string",
         "char[13]",
     )
 
     KEC_SHOP_BUY_RESELECT_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4988],
+        [0x238EAC8],
+        0xF,
         "KEC_SHOP_BUY_RESELECT_STR",
         "'_BUY_RESELECT\n'\n\ntype: string",
         "char[15]",
     )
 
     KEC_SHOP_SUB_MENU_BUY_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4998],
+        [0x238EAD8],
+        0xF,
         "KEC_SHOP_SUB_MENU_BUY_STR",
         "'_SUB_MENU_BUY\n'\n\ntype: string",
         "char[15]",
     )
 
     KEC_SHOP_BUY_CONFIRM_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x49A8],
+        [0x238EAE8],
+        0xE,
         "KEC_SHOP_BUY_CONFIRM_STR",
         "'_BUY_CONFIRM\n'\n\ntype: string",
         "char[14]",
     )
 
     KEC_SHOP_BUY_EXPLA_ITEM_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x49B8],
+        [0x238EAF8],
+        0x1B,
         "KEC_SHOP_BUY_EXPLA_ITEM_STR",
         "'_BUY_EXPLA Item%d Count%d\n'\n\ntype: string",
         "char[27]",
     )
 
     KEC_SHOP_ITEM_TEXT_TAG = Symbol(
-        None,
-        None,
-        None,
+        [0x49D4],
+        [0x238EB14],
+        0x9,
         "KEC_SHOP_ITEM_TEXT_TAG",
         "'[item:0]'\n\ntype: string",
         "char[9]",
     )
 
     KEC_SHOP_BUY_THANKS_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x49E0],
+        [0x238EB20],
+        0xD,
         "KEC_SHOP_BUY_THANKS_STR",
         "'_BUY_THANKS\n'\n\ntype: string",
         "char[13]",
     )
 
     KEC_SHOP_SELL_START_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x49F0],
+        [0x238EB30],
+        0xD,
         "KEC_SHOP_SELL_START_STR",
         "'_SELL_START\n'\n\ntype: string",
         "char[13]",
     )
 
     KEC_SHOP_SELL_RESTART_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A00],
+        [0x238EB40],
+        0xF,
         "KEC_SHOP_SELL_RESTART_STR",
         "'_SELL_RESTART\n'\n\ntype: string",
         "char[15]",
     )
 
     KEC_SHOP_SELL_SELECT_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A10],
+        [0x238EB50],
+        0xE,
         "KEC_SHOP_SELL_SELECT_STR",
         "'_SELL_SELECT\n'\n\ntype: string",
         "char[14]",
     )
 
     KEC_SHOP_SELL_RESELECT_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A20],
+        [0x238EB60],
+        0x10,
         "KEC_SHOP_SELL_RESELECT_STR",
         "'_SELL_RESELECT\n'\n\ntype: string",
         "char[16]",
     )
 
     KEC_SHOP_SELL_SUB_MENU_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A30],
+        [0x238EB70],
+        0x10,
         "KEC_SHOP_SELL_SUB_MENU_STR",
         "'_SELL_SUB_MENU\n'\n\ntype: string",
         "char[16]",
     )
 
     KEC_SHOP_SELL_CONFIRM_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A40],
+        [0x238EB80],
+        0xF,
         "KEC_SHOP_SELL_CONFIRM_STR",
         "'_SELL_CONFIRM\n'\n\ntype: string",
         "char[15]",
     )
 
     KEC_SHOP_SELL_CONFIRM_NEW_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A50],
+        [0x238EB90],
+        0x13,
         "KEC_SHOP_SELL_CONFIRM_NEW_STR",
         "'_SELL_CONFIRM NEW\n'\n\ntype: string",
         "char[19]",
     )
 
     KEC_SHOP_BUY_CONFIRM_NEW_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A64],
+        [0x238EBA4],
+        0x12,
         "KEC_SHOP_BUY_CONFIRM_NEW_STR",
         "'_BUY_CONFIRM NEW\n'\n\ntype: string",
         "char[18]",
     )
 
     KEC_SHOP_SELL_EXPLA_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A78],
+        [0x238EBB8],
+        0xD,
         "KEC_SHOP_SELL_EXPLA_STR",
         "'_SELL_EXPLA\n'\n\ntype: string",
         "char[13]",
     )
 
     KEC_SHOP_SELL_THANKS_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A88],
+        [0x238EBC8],
+        0xE,
         "KEC_SHOP_SELL_THANKS_STR",
         "'_SELL_THANKS\n'\n\ntype: string",
         "char[14]",
     )
 
     KEC_SHOP_SELL_ALL_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4A98],
+        [0x238EBD8],
+        0xB,
         "KEC_SHOP_SELL_ALL_STR",
         "'_SELL_ALL\n'\n\ntype: string",
         "char[11]",
     )
 
     KEC_SHOP_BUT_MULTI_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4AA4],
+        [0x238EBE4],
+        0xC,
         "KEC_SHOP_BUT_MULTI_STR",
         "'_BUT_MULTI\n'\nLikely a typo for '_BUY_MULTI\n'.\n\ntype: string",
         "char[12]",
     )
 
     KEC_SHOP_SELL_MULTI_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4AB0],
+        [0x238EBF0],
+        0xD,
         "KEC_SHOP_SELL_MULTI_STR",
         "'_SELL_MULTI\n'\n\ntype: string",
         "char[13]",
     )
 
     KEC_SHOP_ALL_CONFIRM_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4AC0],
+        [0x238EC00],
+        0xE,
         "KEC_SHOP_ALL_CONFIRM_STR",
         "'_ALL_CONFIRM\n'\n\ntype: string",
         "char[14]",
     )
 
     KEC_SHOP_SELL_ALL_THANKS_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4AD0],
+        [0x238EC10],
+        0x11,
         "KEC_SHOP_SELL_ALL_THANKS_STR",
         "'SELL_ALL_THANKS\n'\n\ntype: string",
         "char[17]",
     )
 
     KEC_SHOP_BUY_MULTI_THANKS_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4AE4],
+        [0x238EC24],
+        0x12,
         "KEC_SHOP_BUY_MULTI_THANKS_STR",
         "'BUY_MULTI_THANKS\n'\n\ntype: string",
         "char[18]",
     )
 
     KEC_SHOP_SELL_MULTI_THANKS_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4AF8],
+        [0x238EC38],
+        0x13,
         "KEC_SHOP_SELL_MULTI_THANKS_STR",
         "'SELL_MULTI_THANKS\n'\n\ntype: string",
         "char[19]",
     )
 
     KEC_SHOP_CHANGEJOB_STR = Symbol(
-        None,
-        None,
-        None,
+        [0x4B0C],
+        [0x238EC4C],
+        0xB,
         "KEC_SHOP_CHANGEJOB_STR",
         "'ChangeJob\n'\n\ntype: string",
         "char[11]",
@@ -40897,8 +40936,8 @@ class NaOverlay22Section:
 class NaOverlay23Functions:
 
     KangaskhanStorageSubcaseManager1 = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x238A140],
         None,
         "KangaskhanStorageSubcaseManager1",
         "Seems responsible for handling the majority of the frame update behavior for kangaskhan storage, particularly window management.\nShares this responsibility with KangaskhanStorageSubcaseManager1.\n\nr0: subcase id (should eventually be an enum)",
@@ -40906,8 +40945,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageSubcaseManager2 = Symbol(
-        None,
-        None,
+        [0x10F8],
+        [0x238B238],
         None,
         "KangaskhanStorageSubcaseManager2",
         "Seems responsible for handling the majority of the frame update behavior for kangaskhan storage, particularly window management.\nShares this responsibility with KangaskhanStorageSubcaseManager2.\n\nNo params.",
@@ -40915,8 +40954,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageEntryPoint = Symbol(
-        None,
-        None,
+        [0x21E8],
+        [0x238C328],
         None,
         "KangaskhanStorageEntryPoint",
         "The sole entry_point for the kangaskhan storage overlay.\n\nreturn: undefined4",
@@ -40924,8 +40963,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageDestructor = Symbol(
-        None,
-        None,
+        [0x2308],
+        [0x238C448],
         None,
         "KangaskhanStorageDestructor",
         "The sole destructor for the kangaskhan storage overlay.\n\nNo params.",
@@ -40933,8 +40972,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageFrameUpdate = Symbol(
-        None,
-        None,
+        [0x2334],
+        [0x238C474],
         None,
         "KangaskhanStorageFrameUpdate",
         "The sole frame_update for the kangaskhan storage overlay.\n\nreturn: undefined4",
@@ -40942,8 +40981,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageCloseSimpleMenu = Symbol(
-        None,
-        None,
+        [0x2F58],
+        [0x238D098],
         None,
         "KangaskhanStorageCloseSimpleMenu",
         "Closes a simple menu with the simple_menu_window_id from KANGASKHAN_STORAGE_MENU_PTR.\n\nNo params.",
@@ -40951,8 +40990,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageShowDialogueAndPortraitIfNotRock = Symbol(
-        None,
-        None,
+        [0x2FA0],
+        [0x238D0E0],
         None,
         "KangaskhanStorageShowDialogueAndPortraitIfNotRock",
         "Seems responsible for handling dialogue from kangaskhan.\nDoes nothing if 'KANGASKHAN_STORAGE_MENU_PTR->is_kanga_rock' is true.\n\nr0: window_id\nr1: preprocessor_flags\nr2: string_id",
@@ -40960,8 +40999,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageWithdrawSelectedItems = Symbol(
-        None,
-        None,
+        [0x3008],
+        [0x238D148],
         None,
         "KangaskhanStorageWithdrawSelectedItems",
         "Seems to iteratively remove selected items from storage, and add them to the bag. \nOnly used when multiple items are selected.\n\nNo params.",
@@ -40969,8 +41008,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageDepositSelectedItems = Symbol(
-        None,
-        None,
+        [0x3078],
+        [0x238D1B8],
         None,
         "KangaskhanStorageDepositSelectedItems",
         "Seems to iteratively remove selected items from the bag, and add them to storage. \nOnly used when multiple items are selected.\n\nNo params.",
@@ -40978,8 +41017,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageWithdrawSingleItem = Symbol(
-        None,
-        None,
+        [0x30F8],
+        [0x238D238],
         None,
         "KangaskhanStorageWithdrawSingleItem",
         "Seems to remove a single item from storage, and add it to the bag.\nSubsequently clears the storage selected item table, likely for if multi-select was used on a single item.\n\nNo params.",
@@ -40987,8 +41026,8 @@ class NaOverlay23Functions:
     )
 
     KangaskhanStorageDepositSingleItem = Symbol(
-        None,
-        None,
+        [0x3138],
+        [0x238D278],
         None,
         "KangaskhanStorageDepositSingleItem",
         "Seems to remove a single item from the bag, and add it to storage.\nSubsequently clears the bag selected item table, likely for if multi-select was used on a single item.\n\nNo params.",
@@ -42911,8 +42950,8 @@ class NaOverlay29Functions:
     )
 
     PlayStairSensorArrowEffect = Symbol(
-        None,
-        None,
+        [0xA6E8],
+        [0x22E6928],
         None,
         "PlayStairSensorArrowEffect",
         "Plays the Stair Sensor arrow effect.\n\nr0: entity pointer\nr1: arrow direction",
@@ -43388,8 +43427,8 @@ class NaOverlay29Functions:
     )
 
     PlayLevelUpSound = Symbol(
-        None,
-        None,
+        [0xEA3C],
+        [0x22EAC7C],
         None,
         "PlayLevelUpSound",
         "Plays the sound for leveling up.\n\nNo params.",
@@ -43397,8 +43436,8 @@ class NaOverlay29Functions:
     )
 
     PlayDungeonTipSound = Symbol(
-        None,
-        None,
+        [0xEA4C, 0xEA7C],
+        [0x22EAC8C, 0x22EACBC],
         None,
         "PlayDungeonTipSound",
         "Plays the sound effect for displaying a dungeon tip.\n\nNo params.",
@@ -44351,8 +44390,8 @@ class NaOverlay29Functions:
     )
 
     FillRecruitInfo = Symbol(
-        None,
-        None,
+        [0x1CE18],
+        [0x22F9058],
         None,
         "FillRecruitInfo",
         "Fills the recruit_info struct with values from the monster entity pointer.\n\nr0: [output] recruit_info pointer\nr1: entity pointer",
@@ -44587,8 +44626,8 @@ class NaOverlay29Functions:
     )
 
     TryActivateNewFloorPpRestoration = Symbol(
-        None,
-        None,
+        [0x1E818],
+        [0x22FAA58],
         None,
         "TryActivateNewFloorPpRestoration",
         "Activates the Deep Breather IQ skill and/or the exclusive item effect for restoring PP on new floors for team members that have them.\n\nr0: flag to suppress message logging",
@@ -44631,8 +44670,8 @@ class NaOverlay29Functions:
     )
 
     TryActivateNewFloorHpRestoration = Symbol(
-        None,
-        None,
+        [0x1EA7C],
+        [0x22FACBC],
         None,
         "TryActivateNewFloorHpRestoration",
         "Activates the exclusive item effect for fully restoring HP on new floors for team members that have it.\n\nr0: flag to log a message on failure",
@@ -44640,8 +44679,8 @@ class NaOverlay29Functions:
     )
 
     TryActivateStairSensor = Symbol(
-        None,
-        None,
+        [0x1EB0C],
+        [0x22FAD4C],
         None,
         "TryActivateStairSensor",
         "Activates the Stair Sensor IQ skill if a member on the team has it and they are not a special story ally.\n\nr0: flag to suppress message logging",
@@ -44649,8 +44688,8 @@ class NaOverlay29Functions:
     )
 
     TryActivateAcuteSniffer = Symbol(
-        None,
-        None,
+        [0x1ECC8],
+        [0x22FAF08],
         None,
         "TryActivateAcuteSniffer",
         "Activates the Acute Sniffer IQ skill if a member on the team has it and no boss fight is active.\n\nr0: flag to suppress message logging",
@@ -44658,8 +44697,8 @@ class NaOverlay29Functions:
     )
 
     ShouldTreatMonsterAsAlly = Symbol(
-        None,
-        None,
+        [0x1ED94],
+        [0x22FAFD4],
         None,
         "ShouldTreatMonsterAsAlly",
         "Returns true if entity 1 should treat entity 2 as an ally, assuming entity 1 can see invisible monsters and will not ignore petrified ones.\n\nr0: Pointer to entity 1\nr1: Pointer to entity 2\nreturn: bool",
@@ -45558,8 +45597,8 @@ class NaOverlay29Functions:
     )
 
     UpdateIqSkillsWrapper = Symbol(
-        None,
-        None,
+        [0x25FB0],
+        [0x23021F0],
         None,
         "UpdateIqSkillsWrapper",
         "Wrapper function for UpdateIqSkills.\n\nr0: monster entity pointer",
@@ -46179,8 +46218,8 @@ class NaOverlay29Functions:
     )
 
     SwapDefensiveStages = Symbol(
-        None,
-        None,
+        [0x31634],
+        [0x230D874],
         None,
         "SwapDefensiveStages",
         "Swaps the defensive stages of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
@@ -46188,8 +46227,8 @@ class NaOverlay29Functions:
     )
 
     SwapDefensiveMultipliers = Symbol(
-        None,
-        None,
+        [0x316A8],
+        [0x230D8E8],
         None,
         "SwapDefensiveMultipliers",
         "Swaps the defensive multipliers of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
@@ -46197,8 +46236,8 @@ class NaOverlay29Functions:
     )
 
     SwapOffensiveStages = Symbol(
-        None,
-        None,
+        [0x3171C],
+        [0x230D95C],
         None,
         "SwapOffensiveStages",
         "Swaps the offensive stages of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
@@ -46206,8 +46245,8 @@ class NaOverlay29Functions:
     )
 
     SwapOffensiveMultipliers = Symbol(
-        None,
-        None,
+        [0x31790],
+        [0x230D9D0],
         None,
         "SwapOffensiveMultipliers",
         "Swaps the offensive multipliers of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
@@ -46215,8 +46254,8 @@ class NaOverlay29Functions:
     )
 
     SwapHitChanceStages = Symbol(
-        None,
-        None,
+        [0x31804],
+        [0x230DA44],
         None,
         "SwapHitChanceStages",
         "Swaps the hit chance stages of two monsters.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
@@ -46224,8 +46263,8 @@ class NaOverlay29Functions:
     )
 
     SwapUserAtkAndDefModifiers = Symbol(
-        None,
-        None,
+        [0x31878],
+        [0x230DAB8],
         None,
         "SwapUserAtkAndDefModifiers",
         "Swaps the attack and defense modifiers of the user entity.\n\nr0: attacker pointer\nr1: defender pointer\nr2: whether to log a message",
@@ -48267,8 +48306,8 @@ class NaOverlay29Functions:
     )
 
     InitUi3dElement = Symbol(
-        None,
-        None,
+        [0x595C8],
+        [0x2335808],
         None,
         "InitUi3dElement",
         "Initializes a 3D element for displaying a part of the dungeon UI.\n\nr0: [output] render_3d_element_64\nr1: upper part of the palette VRAM",
@@ -48501,8 +48540,8 @@ class NaOverlay29Functions:
     )
 
     RemoveMonsterFromTile = Symbol(
-        None,
-        None,
+        [0x5BC80],
+        [0x2337EC0],
         None,
         "RemoveMonsterFromTile",
         "Removes the given monster from the tile at the given position if it is present on it.\n\nr0: entity pointer\nr1: x position\nr2: y position",
@@ -50328,8 +50367,8 @@ class NaOverlay29Functions:
     )
 
     AlertBoxIsActive = Symbol(
-        None,
-        None,
+        [0x6F4FC],
+        [0x234B73C],
         None,
         "AlertBoxIsActive",
         "Returns true if the alert box is currently open.\n\nreturn: bool",
@@ -53314,8 +53353,8 @@ class NaRamData:
     )
 
     PREV_MENU_ITEMS = Symbol(
-        None,
-        None,
+        [0x2AAC68],
+        [0x22AAC68],
         None,
         "PREV_MENU_ITEMS",
         "A list of the previous menu item indexes the user had selected on different ingame menus, indexed by a 'menu ID' assigned to each one.",

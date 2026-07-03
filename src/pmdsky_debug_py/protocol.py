@@ -7930,6 +7930,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    OSI_CONSOLE_TYPE_CACHE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     RAND_SEQUENCE_NUM: Symbol[
         Optional[list[int]],
         None,
