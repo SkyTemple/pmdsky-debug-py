@@ -3802,7 +3802,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    OverlayLoadEntriesEqual: Symbol[
+    MenuLoadEntriesEqual: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -6835,7 +6835,7 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
-    NULL_OVERLAY_LOAD_ENTRY: Symbol[
+    NULL_MENU_LOAD_ENTRY: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -37364,6 +37364,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CheckBossFightVictory: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShouldRunMonsterAi: Symbol[
         Optional[list[int]],
         None,
@@ -37405,6 +37410,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SubtractMoneyCarriedWithSfx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ReopenMinimap: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37929,6 +37939,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    HasStatusThatPreventsLeaderActing: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetMobilityTypeCheckSlip: Symbol[
         Optional[list[int]],
         None,
@@ -38060,6 +38075,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     CheckVariousStatuses2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HasStatusThatPreventsOutlawEscaping: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -38944,6 +38964,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    EndLeechSeedStatusForAllTargets: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TryInflictDestinyBondStatus: Symbol[
         Optional[list[int]],
         None,
@@ -39180,6 +39205,26 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SetTwoTurnInvincibility: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WaitUntilMonsterFliesOffscreen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WaitUntilMonsterIsBackOnGround: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    BeginChargedMove: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    EndTwoTurnMove: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -40739,6 +40784,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryFleeingOutlawEscapeFloor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TeleportFleeingOutlaw: Symbol[
         Optional[list[int]],
         None,
@@ -40864,6 +40914,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetAlertBoxLoadingStatus: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     LogMessage: Symbol[
         Optional[list[int]],
         None,
@@ -40889,6 +40944,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    WaitUntilAlertBoxPauseIsOver: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     InitPortraitDungeon: Symbol[
         Optional[list[int]],
         None,
@@ -40910,6 +40970,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     StartFadeDungeonWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WaitUntilFadeIsFinished: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -40960,6 +41025,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     YesNoMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CloseMinimap: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -41433,6 +41503,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     CORNER_CARDINAL_NEIGHBOR_IS_OPEN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DEFEAT_STRING_IDS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

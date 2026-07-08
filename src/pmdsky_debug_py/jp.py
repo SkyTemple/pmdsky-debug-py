@@ -6761,12 +6761,12 @@ class JpArm9Functions:
         None,
     )
 
-    OverlayLoadEntriesEqual = Symbol(
+    MenuLoadEntriesEqual = Symbol(
         [0x34AC0],
         [0x2034AC0],
         None,
-        "OverlayLoadEntriesEqual",
-        "Checks if two overlay_load_entries have the same values for all of their fields.\n\nr0: overlay_load_entry pointer\nr1: overlay_load_entry pointer\nreturn: bool",
+        "MenuLoadEntriesEqual",
+        "Checks if two menu_load_entries have the same values for all of their fields.\n\nr0: menu_load_entry pointer\nr1: menu_load_entry pointer\nreturn: bool",
         None,
     )
 
@@ -6784,7 +6784,7 @@ class JpArm9Functions:
         [0x2034C04],
         None,
         "InitMenu",
-        "Initializes a menu by setting the incoming_entry field of menu_control to the given overlay_load_entry.\n\nr0: overlay_load_entry pointer\nreturn: whether the menu was successfully initialized",
+        "Initializes a menu by setting the incoming_entry field of menu_control to the given menu_load_entry.\n\nr0: menu_load_entry pointer\nreturn: whether the menu was successfully initialized",
         None,
     )
 
@@ -6793,7 +6793,7 @@ class JpArm9Functions:
         [0x2034C94],
         None,
         "InitMenuWithWindowExtraInfo",
-        "Has the same functionality as InitMenu except also tries to initialize menu_control's window_extra_info struct.\n\nr0: overlay_load_entry pointer\nr1: whether there is a window_extra_info struct\nr2: window_extra_info pointer\nreturn: whether the menu was successfully initialized",
+        "Has the same functionality as InitMenu except also tries to initialize menu_control's window_extra_info struct.\n\nr0: menu_load_entry pointer\nr1: whether there is a window_extra_info struct\nr2: window_extra_info pointer\nreturn: whether the menu was successfully initialized",
         None,
     )
 
@@ -11624,6 +11624,10 @@ class JpArm9Functions:
         "Arm9StoreUnkFieldNa0x2029ED8", SavePrevMenuItem
     )
 
+    OverlayLoadEntriesEqual = _Deprecated(
+        "OverlayLoadEntriesEqual", MenuLoadEntriesEqual
+    )
+
     ZeroInitScriptVariable = _Deprecated("ZeroInitScriptVariable", ZinitScriptVariable)
 
     InitScenarioProgressScriptVars = _Deprecated(
@@ -12293,13 +12297,13 @@ class JpArm9Data:
         "struct window_params",
     )
 
-    NULL_OVERLAY_LOAD_ENTRY = Symbol(
+    NULL_MENU_LOAD_ENTRY = Symbol(
         [0x9B9E0],
         [0x209B9E0],
         None,
-        "NULL_OVERLAY_LOAD_ENTRY",
-        "An overlay_load_entry whose values are all zeroes.\n\ntype: overlay_load_entry",
-        "struct overlay_load_entry",
+        "NULL_MENU_LOAD_ENTRY",
+        "An menu_load_entry whose values are all zeroes.\n\ntype: menu_load_entry",
+        "struct menu_load_entry",
     )
 
     PARTNER_TALK_KIND_TABLE = Symbol(
@@ -14273,6 +14277,10 @@ class JpArm9Data:
 
     EXCLUSIVE_ITEM_ATTACK_BOOSTS = _Deprecated(
         "EXCLUSIVE_ITEM_ATTACK_BOOSTS", EXCLUSIVE_ITEM_STAT_BOOST_DATA
+    )
+
+    NULL_OVERLAY_LOAD_ENTRY = _Deprecated(
+        "NULL_OVERLAY_LOAD_ENTRY", NULL_MENU_LOAD_ENTRY
     )
 
     EVENT_FLAG_PROG_POS_INFO = _Deprecated(
@@ -32332,7 +32340,7 @@ class JpOverlay11Functions:
         [0x2300888],
         None,
         "EatOverworldGummiEntryPoint",
-        "Seems to be the entry_point for a 'mini-overlay' overlay_load_entry that lives in overlay 11, that controls eating gummis in the overworld. \n\nreturn: undefined4",
+        "Seems to be the entry_point for a 'mini-overlay' menu_load_entry that lives in overlay 11, that controls eating gummis in the overworld. \n\nreturn: undefined4",
         None,
     )
 
@@ -32341,7 +32349,7 @@ class JpOverlay11Functions:
         [0x2300988],
         None,
         "EatOverworldGummiDestructor",
-        "Seems to be the destructor for a 'mini-overlay' overlay_load_entry that lives in overlay 11, that controls eating gummis in the overworld.\n\nNo params.",
+        "Seems to be the destructor for a 'mini-overlay' menu_load_entry that lives in overlay 11, that controls eating gummis in the overworld.\n\nNo params.",
         None,
     )
 
@@ -32350,7 +32358,7 @@ class JpOverlay11Functions:
         [0x23009C4],
         None,
         "EatOverworldGummiFrameUpdate",
-        "Seems to be the frame_update for a 'mini-overlay' overlay_load_entry that lives in overlay 11, that controls eating gummis in the overworld.\n\nreturn: undefined4",
+        "Seems to be the frame_update for a 'mini-overlay' menu_load_entry that lives in overlay 11, that controls eating gummis in the overworld.\n\nreturn: undefined4",
         None,
     )
 
@@ -32386,7 +32394,7 @@ class JpOverlay11Functions:
         [0x23027F0],
         None,
         "GroundBagOthersMenuEntryPoint",
-        "Seems to be the entry_point for a 'mini-overlay' overlay_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nreturn: undefined4",
+        "Seems to be the entry_point for a 'mini-overlay' menu_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nreturn: undefined4",
         None,
     )
 
@@ -32395,7 +32403,7 @@ class JpOverlay11Functions:
         [0x2302874],
         None,
         "GroundBagOthersMenuDestructor",
-        "Seems to be the destructor for a 'mini-overlay' overlay_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nNo params.",
+        "Seems to be the destructor for a 'mini-overlay' menu_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nNo params.",
         None,
     )
 
@@ -32404,7 +32412,7 @@ class JpOverlay11Functions:
         [0x23028B0],
         None,
         "GroundBagOthersMenuFrameUpdate",
-        "Seems to be the frame_update for a 'mini-overlay' overlay_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nreturn: undefined4",
+        "Seems to be the frame_update for a 'mini-overlay' menu_load_entry that lives in overlay 11, which controls the others menu in ground mode.\n\nreturn: undefined4",
         None,
     )
 
@@ -32971,8 +32979,8 @@ class JpOverlay11Data:
         [0x23245E8],
         None,
         "OVERLAY11_OVERLAY_LOAD_TABLE",
-        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16 bytes, consisting of:\n- overlay group ID (see arm9.yml or enum overlay_group_id in the C headers for a mapping between group ID and overlay number)\n- function pointer to entry point\n- function pointer to destructor\n- possibly function pointer to frame-update function?\n\ntype: struct overlay_load_entry[21]",
-        "struct overlay_load_entry[21]",
+        "The overlays that can be loaded while this one is loaded.\n\nEach entry is 16 bytes, consisting of:\n- overlay group ID (see arm9.yml or enum overlay_group_id in the C headers for a mapping between group ID and overlay number)\n- function pointer to entry point\n- function pointer to destructor\n- possibly function pointer to frame-update function?\n\ntype: struct menu_load_entry[21]",
+        "struct menu_load_entry[21]",
     )
 
     OV11_STATIC_INITIALIZER = Symbol(
@@ -33206,8 +33214,8 @@ class JpOverlay13Data:
         [0x238D58C],
         0x10,
         "OVERLAY13_LOAD_ENTRY",
-        "Information about the overlay: the ID, the frame update function, and the destructor function.\n\nThe entrypoint function is NOT specified here, as overlay 11 directly calls PersonalityTestEntryPoint after loading the overlay.\n\ntype: overlay_load_entry",
-        "struct overlay_load_entry",
+        "Information about the overlay: the ID, the frame update function, and the destructor function.\n\nThe entrypoint function is NOT specified here, as overlay 11 directly calls PersonalityTestEntryPoint after loading the overlay.\n\ntype: menu_load_entry",
+        "struct menu_load_entry",
     )
 
     MAIN_DBOX_WINDOW_PARAMS = Symbol(
@@ -34551,7 +34559,7 @@ class JpOverlay18Functions:
         [0x238B6A0],
         None,
         "LinkShopEntryPoint",
-        "Is the entrypoint of the overlay_load_entry, and seems to run once to initiate the Link Shop. Is not called anywhere else.\nAllocates space for link_shop, and initializes many of its fields.\n\nreturn: Always returns 1.",
+        "Is the entrypoint of the menu_load_entry, and seems to run once to initiate the Link Shop. Is not called anywhere else.\nAllocates space for link_shop, and initializes many of its fields.\n\nreturn: Always returns 1.",
         None,
     )
 
@@ -34560,7 +34568,7 @@ class JpOverlay18Functions:
         [0x238C530],
         None,
         "LinkShopDestructor",
-        "Is the destructor of the overlay_load_entry, and seems to run once on closing the Link Shop. Is not called anywhere else.\nFrees up the allocated space for link_shop if it is not already empty.\n\nNo params.",
+        "Is the destructor of the menu_load_entry, and seems to run once on closing the Link Shop. Is not called anywhere else.\nFrees up the allocated space for link_shop if it is not already empty.\n\nNo params.",
         None,
     )
 
@@ -39074,7 +39082,7 @@ class JpOverlay20Functions:
         [0x238B6C0],
         None,
         "RecycleShopDestructor",
-        "The shared destructor of both recycle shop overlay_load_entries, suspending operations of the overlay.\n\nNo params.",
+        "The shared destructor of both recycle shop menu_load_entries, suspending operations of the overlay.\n\nNo params.",
         None,
     )
 
@@ -39083,7 +39091,7 @@ class JpOverlay20Functions:
         [0x238B710],
         None,
         "RecycleShopFrameUpdate",
-        "The shared frame_update of both recycle shop overlay_load_entries, managing operations of the overlay each frame.\n\nreturn: undefined4",
+        "The shared frame_update of both recycle shop menu_load_entries, managing operations of the overlay each frame.\n\nreturn: undefined4",
         None,
     )
 
@@ -39092,7 +39100,7 @@ class JpOverlay20Functions:
         [0x238C7F4],
         None,
         "RecycleShopCommonEntryPoint",
-        "Effectively the shared entry_point of both recycle shop overlay_load_entry, called immediately by both real entry_points to the overlay.\n\nr0: 1 if resuming, 0 if first entry.\nreturn: undefined4",
+        "Effectively the shared entry_point of both recycle shop menu_load_entry, called immediately by both real entry_points to the overlay.\n\nr0: 1 if resuming, 0 if first entry.\nreturn: undefined4",
         None,
     )
 
@@ -39471,7 +39479,7 @@ class JpOverlay21Functions:
         [0x238CDC0],
         None,
         "SwapShopEntryPoint",
-        "Is the entrypoint of the overlay_load_entry, and seems to run once to initiate the Swap Shop. Is not called anywhere else.\nAllocates space for swap_shop_menu_data, and initializes many of its fields.\n\nreturn: Always returns 1.",
+        "Is the entrypoint of the menu_load_entry, and seems to run once to initiate the Swap Shop. Is not called anywhere else.\nAllocates space for swap_shop_menu_data, and initializes many of its fields.\n\nreturn: Always returns 1.",
         None,
     )
 
@@ -39480,7 +39488,7 @@ class JpOverlay21Functions:
         [0x238CE74],
         None,
         "SwapShopDestructor",
-        "Is the destructor of the overlay_load_entry, and seems to run once on closing the Swap Shop. Is not called anywhere else.\nFrees up the allocated space for swap_shop_menu_data if it is not already empty.\n\nNo params.",
+        "Is the destructor of the menu_load_entry, and seems to run once on closing the Swap Shop. Is not called anywhere else.\nFrees up the allocated space for swap_shop_menu_data if it is not already empty.\n\nNo params.",
         None,
     )
 
@@ -41547,7 +41555,7 @@ class JpOverlay26Functions:
         [0x238BED0],
         None,
         "ApplyRuleDungeonEffectsEntryPoint",
-        "Just a guess. See ApplyRuleDungeonEffectsFrameUpdate for further explanation.\nIs an entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
+        "Just a guess. See ApplyRuleDungeonEffectsFrameUpdate for further explanation.\nIs an entry_point for a menu_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
         None,
     )
 
@@ -41556,7 +41564,7 @@ class JpOverlay26Functions:
         [0x238BEFC],
         None,
         "ApplyRuleDungeonEffectsDestructor",
-        "Just a guess. See ApplyRuleDungeonEffectsFrameUpdate for further explanation.\nIs a destructor for an overlay_load_entry.\n\nNo params.",
+        "Just a guess. See ApplyRuleDungeonEffectsFrameUpdate for further explanation.\nIs a destructor for a menu_load_entry.\n\nNo params.",
         None,
     )
 
@@ -41565,7 +41573,7 @@ class JpOverlay26Functions:
         [0x238BF28],
         None,
         "ApplyRuleDungeonEffectsFrameUpdate",
-        "Just a guess. After enough frames pass, conditionally calls GetMaxItemsAllowed, RemoveAllItemsStartingAt, IsMoneyAllowed, and SetMoneyCarried, \nas well as a handful of unknown functions that likely check if the entered dungeon is a rule dungeon. \nIs a frame_update for an overlay_load_entry.\n\nreturn: undefined4",
+        "Just a guess. After enough frames pass, conditionally calls GetMaxItemsAllowed, RemoveAllItemsStartingAt, IsMoneyAllowed, and SetMoneyCarried, \nas well as a handful of unknown functions that likely check if the entered dungeon is a rule dungeon. \nIs a frame_update for a menu_load_entry.\n\nreturn: undefined4",
         None,
     )
 
@@ -41574,7 +41582,7 @@ class JpOverlay26Functions:
         [0x238BFC8],
         None,
         "ExitDungeon1EntryPoint",
-        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs an entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs an entry_point for a menu_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
         None,
     )
 
@@ -41583,7 +41591,7 @@ class JpOverlay26Functions:
         [0x238BFF4],
         None,
         "ExitDungeon1Destructor",
-        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs a destructor for an overlay_load_entry.\n\nNo params.",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs a destructor for a menu_load_entry.\n\nNo params.",
         None,
     )
 
@@ -41592,7 +41600,7 @@ class JpOverlay26Functions:
         [0x238C020],
         None,
         "ExitDungeon1FrameUpdate",
-        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs a frame_update for an overlay_load_entry.\n\nreturn: undefined4",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is in mission mode?\nIs a frame_update for a menu_load_entry.\n\nreturn: undefined4",
         None,
     )
 
@@ -41601,7 +41609,7 @@ class JpOverlay26Functions:
         [0x238C174],
         None,
         "UnkOv26EntryPointEu0238b754",
-        "Is an unidentified entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
+        "Is an unidentified entry_point for a menu_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
         None,
     )
 
@@ -41610,7 +41618,7 @@ class JpOverlay26Functions:
         [0x238C1A0],
         None,
         "UnkOv26DestructorEu0238b780",
-        "Is an unidentified destructor for an overlay_load_entry.\n\nNo params.",
+        "Is an unidentified destructor for a menu_load_entry.\n\nNo params.",
         None,
     )
 
@@ -41619,7 +41627,7 @@ class JpOverlay26Functions:
         [0x238C1CC],
         None,
         "UnkOv26FrameUpdateEu0238b7ac",
-        "Is an unidentified frame_update for an overlay_load_entry.\n\nreturn: undefined4",
+        "Is an unidentified frame_update for a menu_load_entry.\n\nreturn: undefined4",
         None,
     )
 
@@ -41628,7 +41636,7 @@ class JpOverlay26Functions:
         [0x238C238],
         None,
         "DungeonExitEntryPoint2",
-        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs an entry_point for an overlay_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs an entry_point for a menu_load_entry.\n\nr0: undefined4\nr1: undefined4\nr2: undefined4\nr3: undefined4\nreturn: undefined4",
         None,
     )
 
@@ -41637,7 +41645,7 @@ class JpOverlay26Functions:
         [0x238C270],
         None,
         "DungeonExitDestructor2",
-        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs a destructor for an overlay_load_entry.\n\nNo params.",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs a destructor for a menu_load_entry.\n\nNo params.",
         None,
     )
 
@@ -41646,7 +41654,7 @@ class JpOverlay26Functions:
         [0x238C29C],
         None,
         "DungeonExitFrameUpdate2",
-        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs a frame_update for an overlay_load_entry.\n\nreturn: undefined4",
+        "Seems to get called on exiting a dungeon. Might be exclusive to whether the dungeon is not in mission mode?\nIs a frame_update for a menu_load_entry.\n\nreturn: undefined4",
         None,
     )
 
@@ -41811,7 +41819,7 @@ class JpOverlay26Data:
         [0x238C4C4],
         None,
         "APPLY_RULE_DUNGEON_EFFECTS_STRUCT_PTR",
-        "A pointer to a struct of unknown size, responsible for the operations of the ApplyRuleDungeonEffects* overlay_load_entry.\n\ntype: undefined*",
+        "A pointer to a struct of unknown size, responsible for the operations of the ApplyRuleDungeonEffects* menu_load_entry.\n\ntype: undefined*",
         "undefined*",
     )
 
@@ -41820,7 +41828,7 @@ class JpOverlay26Data:
         [0x238C4C8],
         None,
         "EXIT_DUNGEON_1_STRUCT_PTR",
-        "A pointer to a struct of unknown size, responsible for the operations of the DungeonExit1* overlay_load_entry.\n\ntype: undefined*",
+        "A pointer to a struct of unknown size, responsible for the operations of the DungeonExit1* menu_load_entry.\n\ntype: undefined*",
         "undefined*",
     )
 
@@ -41838,7 +41846,7 @@ class JpOverlay26Data:
         [0x238C4D0],
         None,
         "EXIT_DUNGEON_2_STRUCT_PTR",
-        "A pointer to a struct of unknown size, responsible for the operations of the DungeonExit2* overlay_load_entry. \n\ntype: undefined*",
+        "A pointer to a struct of unknown size, responsible for the operations of the DungeonExit2* menu_load_entry. \n\ntype: undefined*",
         "undefined*",
     )
 
@@ -43280,7 +43288,7 @@ class JpOverlay29Functions:
         [0x22EBA90],
         None,
         "UnkMapRelatedFunc",
-        "Calling this function with r0 = 6 (or its duplicates in the switch statement) will normally close the minimap, while r0 = 0 will reopen it.\n\nWhen called in certain places, the function will crash the game instead?\n\nAlso does nothing if the passed case is the same as the last case used (or 0 if the last case was 0xd).\n\nr0: Which case to use for the switch statement\nr1: unused",
+        "Calling this function with r0 = 6 (or its duplicates in the switch statement) will normally close the minimap, while r0 = 0 will reopen it.\n\nClosing it requires some additional function calls if the alert box is open (see CloseMinimap's code).\n\nWhen called in certain places, the function will crash the game instead?\n\nAlso does nothing if the passed case is the same as the last case used (or 0 if the last case was 0xd).\n\nr0: Which case to use for the switch statement\nr1: unused",
         None,
     )
 
@@ -43995,6 +44003,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    CheckBossFightVictory = Symbol(
+        [0x134E8],
+        [0x22F0DC8],
+        None,
+        "CheckBossFightVictory",
+        "Checks if the boss fight should be marked as won after the given entity has fainted.\n\nr0: fainted entity\nr1: behavior of fainted monster (the function will do nothing if it's not a fixed room enemy)\nr2: whether to change the music if the boss fight is over",
+        None,
+    )
+
     ShouldRunMonsterAi = Symbol(
         [0x13710],
         [0x22F0FF0],
@@ -44073,6 +44090,15 @@ class JpOverlay29Functions:
         None,
         "SubtractMoneyCarriedWithSfx",
         "Subtracts the amount of money from the the player's current amount of money and plays the sound effect for buying an item.\n\nr0: money amount",
+        None,
+    )
+
+    ReopenMinimap = Symbol(
+        [0x1456C],
+        [0x22F1E4C],
+        None,
+        "ReopenMinimap",
+        "Reopens the minimap if the option to hide it is not set.\n\nNo params.",
         None,
     )
 
@@ -45054,7 +45080,16 @@ class JpOverlay29Functions:
         [0x23005B8],
         None,
         "HasStatusThatPreventsActing",
-        "Returns true if the monster has any status problem that prevents it from acting\n\nr0: Entity pointer\nreturn: True if the specified monster can't act because of a status problem, false otherwise.",
+        "Returns true if the monster has any status problem that prevents its AI from acting.\n\nr0: Entity pointer\nreturn: True if the specified monster can't act because of a status problem, false otherwise.",
+        None,
+    )
+
+    HasStatusThatPreventsLeaderActing = Symbol(
+        [0x22F04],
+        [0x23007E4],
+        None,
+        "HasStatusThatPreventsLeaderActing",
+        "Returns true if the monster has any status problem that prevents it from acting as the leader.\n\nAlso executes the monster's two-turn move if it is charging one.\n\nr0: Entity pointer\nreturn: True if the specified monster can't act because of a status problem, false otherwise.",
         None,
     )
 
@@ -45298,6 +45333,15 @@ class JpOverlay29Functions:
         None,
         "CheckVariousStatuses2",
         "Returns 0 if none of these conditions holds for the given entity:\nblinded (checked only if blind_check == 1),\nasleep, frozen, paused, infatuated, wrapping, wrapped, biding, petrified, or terrified.\n\nr0: Entity pointer\nr1: If true, return 1 if entity is blinded\nreturn: bool",
+        None,
+    )
+
+    HasStatusThatPreventsOutlawEscaping = Symbol(
+        [0x24608],
+        [0x2301EE8],
+        None,
+        "HasStatusThatPreventsOutlawEscaping",
+        "Checks if a monster has a status (any kind of sleep or status under status_frozen) that prevents it from escaping as an outlaw.\n\nr0: entity pointer\nreturn: bool",
         None,
     )
 
@@ -46885,6 +46929,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    EndLeechSeedStatusForAllTargets = Symbol(
+        [0x395CC],
+        [0x2316EAC],
+        None,
+        "EndLeechSeedStatusForAllTargets",
+        "Ends the Leech Seed status for all monsters that the given monster gave the status to.\n\nr0: user entity pointer",
+        None,
+    )
+
     TryInflictDestinyBondStatus = Symbol(
         [0x39648],
         [0x2316F28],
@@ -47314,6 +47367,42 @@ class JpOverlay29Functions:
         None,
         "SetTwoTurnInvincibility",
         "Sets two-turn invincibility to a specified value on a target monster entity.\n\nUsed for the 'flying up/down' effects (similar to Fly/Bounce) in Seismic Toss' animation.\n\nr0: target entity pointer\nr1: two_turn_move_invincible value",
+        None,
+    )
+
+    WaitUntilMonsterFliesOffscreen = Symbol(
+        [0x3C6C4],
+        [0x2319FA4],
+        None,
+        "WaitUntilMonsterFliesOffscreen",
+        "Waits in a loop until the monster has flown offscreen (used for the effect of Seismic Toss and moves like Fly/Bounce).\n\nr0: entity pointer",
+        None,
+    )
+
+    WaitUntilMonsterIsBackOnGround = Symbol(
+        [0x3C738],
+        [0x231A018],
+        None,
+        "WaitUntilMonsterIsBackOnGround",
+        "Waits in a loop until the monster is back on the ground (used for the effect of Seismic Toss).\n\nr0: entity pointer",
+        None,
+    )
+
+    BeginChargedMove = Symbol(
+        [0x3C7AC],
+        [0x231A08C],
+        None,
+        "BeginChargedMove",
+        "Begins the given charged move for the target entity.\n\nr0: user entity pointer\nr1: target entity pointer (always the same)\nr2: status id\nr3: move pointer\nstack[0]: string to log as the message",
+        None,
+    )
+
+    EndTwoTurnMove = Symbol(
+        [0x3C948],
+        [0x231A228],
+        None,
+        "EndTwoTurnMove",
+        "Ends a two-turn move for the given entity, resetting its relevant fields.\n\nr0: entity pointer",
         None,
     )
 
@@ -50116,6 +50205,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    TryFleeingOutlawEscapeFloor = Symbol(
+        None,
+        None,
+        None,
+        "TryFleeingOutlawEscapeFloor",
+        "Checks if the monster is a fleeing outlaw and if so, whether it can escape the floor if it is standing on the stairs.\n\nr0: entity pointer",
+        None,
+    )
+
     TeleportFleeingOutlaw = Symbol(
         [0x6E834],
         [0x234C114],
@@ -50341,6 +50439,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    GetAlertBoxLoadingStatus = Symbol(
+        [0x6EE84],
+        [0x234C764],
+        None,
+        "GetAlertBoxLoadingStatus",
+        "return: message_log_info->alert_box_info::loading_status",
+        None,
+    )
+
     LogMessage = Symbol(
         [0x6EE98],
         [0x234C778],
@@ -50386,6 +50493,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    WaitUntilAlertBoxPauseIsOver = Symbol(
+        [0x6F3D8],
+        [0x234CCB8],
+        None,
+        "WaitUntilAlertBoxPauseIsOver",
+        "Waits until the dungeon alert box has finished scrolling, then waits until one of the following conditions is true:\n\n- The alert box has less than 180 frames until closing (countdown starts at 240 in LogMessage)\n- Both A and B are held\n- A key on the d-pad (up, down, left, right) is pressed\n\nThere is also a check for if the loop passes 240 iterations, but in practice the first condition above will always come first.\n\nr0: value to pass to AdvanceFrame (unused by the function)",
+        None,
+    )
+
     InitPortraitDungeon = Symbol(
         [0x6F444],
         [0x234CD24],
@@ -50428,6 +50544,15 @@ class JpOverlay29Functions:
         None,
         "StartFadeDungeonWrapper",
         "Calls StartFadeDungeon to initiate a screen fade in dungeon mode.\n\nSets the status field in the dungeon_fades struct to the fade type, then uses a switch-case to create a mapping of the status enums to different ones for some reason. This mapped value is then used in the StartFadeDungeon call.\n\nr0: Fade type\nr1: Change of brightness per frame\nr2: Screen to fade",
+        None,
+    )
+
+    WaitUntilFadeIsFinished = Symbol(
+        [0x700BC],
+        [0x234D99C],
+        None,
+        "WaitUntilFadeIsFinished",
+        "Waits in a loop until the screen fade on the given screen is finished.\n\nr0: enum screen",
         None,
     )
 
@@ -50518,6 +50643,15 @@ class JpOverlay29Functions:
         None,
         "YesNoMenu",
         "Opens a menu where the user can choose 'Yes' or 'No' and waits for input before returning.\n\nr0: ?\nr1: ID of the string to display in the textbox\nr2: Option that the cursor will be on by default. 0 for 'Yes', 1 for 'No'\nr3: ?\nreturn: True if the user chooses 'Yes', false if the user chooses 'No'",
+        None,
+    )
+
+    CloseMinimap = Symbol(
+        [0x70F04],
+        [0x234E7E4],
+        None,
+        "CloseMinimap",
+        "Closes the minimap.\n\nNo params.",
         None,
     )
 
@@ -51394,6 +51528,15 @@ class JpOverlay29Data:
         "CORNER_CARDINAL_NEIGHBOR_IS_OPEN",
         "An array mapping each (corner index, neighbor direction index) to whether or not that neighbor is expected to be open floor.\n\nCorners start with 0=top-left and proceed clockwise. Directions are enumerated as with DIRECTIONS_XY. The array is indexed by i=(corner_index * N_DIRECTIONS + direction). An element of 1 (0) means that starting from the specified corner of a room, moving in the specified direction should lead to an open floor tile (non-open terrain like a wall).\n\nNote that this array is only used for the cardinal directions. The elements at odd indexes are unused and unconditionally set to 0.\n\nThis array is used by the dungeon generation algorithm when generating room imperfections. See GenerateRoomImperfections.",
         "bool[4][8]",
+    )
+
+    DEFEAT_STRING_IDS = Symbol(
+        [0x76BBC],
+        [0x235449C],
+        None,
+        "DEFEAT_STRING_IDS",
+        "List that holds the string IDs for a monster being defeated (0 is 'was defeated!', 1 is 'fainted!')",
+        "int16_t[2]",
     )
 
     GUMMI_LIKE_STRING_IDS = Symbol(
