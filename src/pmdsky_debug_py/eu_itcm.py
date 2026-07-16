@@ -4386,6 +4386,24 @@ class EuItcmArm9Functions:
         None,
     )
 
+    DisplayAnimationControlCurrentFrame = Symbol(
+        None,
+        None,
+        None,
+        "DisplayAnimationControlCurrentFrame",
+        "Displays the current frame of the animation_control struct.\n\nr0: animation_control",
+        None,
+    )
+
+    DisplayAndSwitchAnimationControlCurrentFrame = Symbol(
+        None,
+        None,
+        None,
+        "DisplayAndSwitchAnimationControlCurrentFrame",
+        "Displays the current frame of the animation_control struct and switches it afterwards if applicable.\n\nr0: animation_control",
+        None,
+    )
+
     FillOamAdjustmentInfo = Symbol(
         None,
         None,
@@ -18924,12 +18942,12 @@ class EuItcmMove_effectsFunctions:
         None,
     )
 
-    DoMoveDamageParalyze10 = Symbol(
+    DoMoveDamageParalyze15 = Symbol(
         None,
         None,
         None,
-        "DoMoveDamageParalyze10",
-        "Move effect: Deal damage with a 10% chance (LICK_PARALZYE_CHANCE) of paralyzing the defender.\nRelevant moves: Lick, Spark, Body Slam, DragonBreath\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
+        "DoMoveDamageParalyze15",
+        "Move effect: Deal damage with a 15% chance (LICK_PARALZYE_CHANCE) of paralyzing the defender.\nRelevant moves: Lick, Spark, Body Slam, DragonBreath\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
         None,
     )
 
@@ -19325,7 +19343,7 @@ class EuItcmMove_effectsFunctions:
         None,
         None,
         "DoMoveThundershock",
-        "Move effect: Thundershock\n\nThis is identical to DoMoveDamageParalyze10, except it uses a different data symbol for the paralysis chance (but it's still 10%).\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
+        "Move effect: Thundershock\n\nr0: attacker pointer\nr1: defender pointer\nr2: move\nr3: item ID\nreturn: whether the move was successfully used",
         None,
     )
 
@@ -27101,7 +27119,7 @@ class EuItcmOverlay10Data:
         None,
         None,
         "LICK_PARALYZE_CHANCE",
-        "The chance of Lick (and others, see DoMoveDamageParalyze10) paralyzing, as a percentage (10%).",
+        "The chance of Lick (and others, see DoMoveDamageParalyze15) paralyzing, as a percentage (15%).",
         "int16_t",
     )
 
@@ -40109,6 +40127,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    DisplayMonstersAndItems = Symbol(
+        None,
+        None,
+        None,
+        "DisplayMonstersAndItems",
+        "Displays all monsters on the top and bottom screen as well as all items (including hallucinated ones) on the floor.\n\nNo params.",
+        None,
+    )
+
     UpdateEntityPixelPos = Symbol(
         None,
         None,
@@ -40160,6 +40187,15 @@ class EuItcmOverlay29Functions:
         None,
         "SpawnItemEntity",
         "Spawns a blank item entity on the floor. Fails if there are more than 64 items already on the floor.\n\nThis initializes a new entry in the entity table and points it to the corresponding slot in the item info list.\n\nr0: position\nreturn: entity pointer for the newly added item, or null on failure",
+        None,
+    )
+
+    CreateTemporaryEntity = Symbol(
+        None,
+        None,
+        None,
+        "CreateTemporaryEntity",
+        "Creates a temporary entity to be used as a placeholder for functions that require one.\n\nr0: [output] entity pointer",
         None,
     )
 
@@ -40358,6 +40394,15 @@ class EuItcmOverlay29Functions:
         None,
         "AnimationDelayOrSomething",
         "Called whenever most (all?) animations are played. Does not return until the animation is over.\n\nMight wait until the animation is done? Contains several loops that call AdvanceFrame.\n\nr0: ?",
+        None,
+    )
+
+    CopyStatusIconFlags = Symbol(
+        None,
+        None,
+        None,
+        "CopyStatusIconFlags",
+        "Copies a monster's status_icon_flags to the destination pointer.\n\nr0: [output] status_icon_flags\nr1: entity pointer",
         None,
     )
 
@@ -40811,6 +40856,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    DrawDungeonControlsText = Symbol(
+        None,
+        None,
+        None,
+        "DrawDungeonControlsText",
+        "Draws the text for the top screen controls menu in the given window.\n\nr0: window id",
+        None,
+    )
+
     GetDirectionTowardsPosition = Symbol(
         None,
         None,
@@ -40853,6 +40907,15 @@ class EuItcmOverlay29Functions:
         None,
         "IsPositionWithinTwoTiles",
         "Checks if a given target position is within two tiles of a given origin position.\n\nr0: Origin position\nr1: Target position\nreturn: True if the target position within two tiles of the origin position.",
+        None,
+    )
+
+    DisplayThrownItemShadow = Symbol(
+        None,
+        None,
+        None,
+        "DisplayThrownItemShadow",
+        "Displays the shadow of an item that is being thrown.\n\nr0: x (pixel pos)\nr1: y (pixel pos)\nreturn: true if the shadow was displayed (pixel pos was not out of bounds)",
         None,
     )
 
@@ -41423,6 +41486,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    CreateTrapAndStairsHallucinations = Symbol(
+        None,
+        None,
+        None,
+        "CreateTrapAndStairsHallucinations",
+        "Places hallucination items at the locations of traps and stairs.\n\nRemoving the original texture of the tile is handled elsewhere.\n\nNo params.",
+        None,
+    )
+
     PrepareTrapperTrap = Symbol(
         None,
         None,
@@ -41666,6 +41738,24 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    ChangeTeamAnimationsToIdle = Symbol(
+        None,
+        None,
+        None,
+        "ChangeTeamAnimationsToIdle",
+        "Changes the animations of all team members to idle.\n\nNo params.",
+        None,
+    )
+
+    IsFloorOver2 = Symbol(
+        None,
+        None,
+        None,
+        "IsFloorOver2",
+        "Same as IsFloorOver, but with a redundant check for end_floor_flag.\n\nreturn: bool",
+        None,
+    )
+
     ShouldRunMonsterAi = Symbol(
         None,
         None,
@@ -41747,6 +41837,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    MakeSecretBazaarNpcsIdleInDirection = Symbol(
+        None,
+        None,
+        None,
+        "MakeSecretBazaarNpcsIdleInDirection",
+        "Changes the animations of all secret bazaar shopkeepers to idle in the given direction and updates their target_pos field.\n\nr0: direction",
+        None,
+    )
+
     ReopenMinimap = Symbol(
         None,
         None,
@@ -41770,7 +41869,7 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "TalkToSecretBazaarNpc",
-        "Opens a dialogue box with the given shopkeeper as the speaker.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nr3: pointer to an array of simple_menu_id_items (null if there is no menu)\nstack[0]: ? (changes something in secret_bazaar_dialogue_info if true. seems to only be true if there is a menu)\nreturn: ? (bool)",
+        "Opens a dialogue box with the given shopkeeper as the speaker.\n\nr0: string id\nr1: shopkeeper entity pointer\nr2: portrait emotion\nr3: pointer to an array of simple_menu_id_items (null if there is no menu)\nstack[0]: ? (changes something in dungeon_dialogue_info if true. seems to only be true if there is a menu)\nreturn: ? (bool)",
         None,
     )
 
@@ -42233,12 +42332,12 @@ class EuItcmOverlay29Functions:
         None,
     )
 
-    ChangeMonsterAnimationToIdle = Symbol(
+    MakeMonsterIdleInDirection2 = Symbol(
         None,
         None,
         None,
-        "ChangeMonsterAnimationToIdle",
-        "Makes the monster play their idle animation in the given direction.\n\nr0: entity pointer\nr1: direction",
+        "MakeMonsterIdleInDirection2",
+        "Makes the monster play their idle animation in the given direction and sets the direction field of their action struct.\n\nr0: entity pointer\nr1: direction",
         None,
     )
 
@@ -42751,7 +42850,7 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "CannotStandOnTile",
-        "Checks if a given monster cannot stand on a given tile.\n\nReasons include:\n- The coordinates of the tile are out of bounds\n- There's another monster on the tile\n- The monster does not have the required mobility to stand on the tile\n\nr0: Entity pointer\nr1: Tile pointer\nreturn: True if the monster cannot stand on the specified tile, false if it can",
+        "Checks if a given monster cannot stand on the tile at the given position.\n\nReasons include:\n- The coordinates of the tile are out of bounds\n- There's another monster on the tile\n- The monster does not have the required mobility to stand on the tile\n\nr0: Entity pointer\nr1: Tile position pointer\nreturn: True if the monster cannot stand on the specified tile, false if it can",
         None,
     )
 
@@ -43385,6 +43484,24 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    DisplayMonster = Symbol(
+        None,
+        None,
+        None,
+        "DisplayMonster",
+        "Handles displaying the monster on the bottom screen.\n\nr0: entity pointer",
+        None,
+    )
+
+    AnimateFlyingMoves = Symbol(
+        None,
+        None,
+        None,
+        "AnimateFlyingMoves",
+        "Called every frame to make the monster fly up when its two_turn_move_invincible field is set to TWO_TURN_FLYING, and back down when its value is changed.\n\nr0: entity pointer",
+        None,
+    )
+
     ChangeMonsterAnimation = Symbol(
         None,
         None,
@@ -43394,12 +43511,39 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    ChangeMonsterAnimationToIdle = Symbol(
+        None,
+        None,
+        None,
+        "ChangeMonsterAnimationToIdle",
+        "Changes the animation a monster is currently playing to its idle animation. Optionally changes their direction as well.\n\nDoes nothing if the provided entity is not a monster.\n\nr0: Entity pointer\nr1: Direction to turn the monster in, or DIR_NONE to keep the current direction",
+        None,
+    )
+
+    ChangeMonsterAnimationToHurt = Symbol(
+        None,
+        None,
+        None,
+        "ChangeMonsterAnimationToHurt",
+        "Changes the animation a monster is currently playing to its hurt animation. Optionally changes their direction as well.\n\nDoes nothing if the provided entity is not a monster.\n\nr0: Entity pointer\nr1: Direction to turn the monster in, or DIR_NONE to keep the current direction",
+        None,
+    )
+
     GetIdleAnimationId = Symbol(
         None,
         None,
         None,
         "GetIdleAnimationId",
         "Returns the animation id to be applied to a monster that is currently idling.\n\nReturns a different animation for monsters with the sleep, napping, nightmare or bide status, as well as for sudowoodo and for monsters with infinite sleep turns (0x7F).\n\nr0: pointer to entity\nreturn: animation ID",
+        None,
+    )
+
+    MakeMonsterIdleInDirection = Symbol(
+        None,
+        None,
+        None,
+        "MakeMonsterIdleInDirection",
+        "Makes the monster play their idle animation in the given direction and sets the direction field of their action struct.\n\nr0: entity pointer\nr1: direction",
         None,
     )
 
@@ -47381,6 +47525,15 @@ class EuItcmOverlay29Functions:
         None,
     )
 
+    DisplayItem = Symbol(
+        None,
+        None,
+        None,
+        "DisplayItem",
+        "Displays an item.\n\nr0: item entity pointer\nr1: whether the camera entity is hallucinating\nr2: whether the item is on the floor\nr3: direction\nstack[0]: whether the item should be displayed at a higher priority than monsters\nreturn: whether the item was successfully displayed",
+        None,
+    )
+
     SpawnDroppedItemWrapper = Symbol(
         None,
         None,
@@ -47459,6 +47612,15 @@ class EuItcmOverlay29Functions:
         None,
         "GenerateItem",
         "Initializes an item struct with the given information.\n\nThis wraps InitItem, but with extra logic to resolve the item's stickiness. It also calls GenerateMoneyQuantity for Poké.\n\nr0: pointer to item to initialize\nr1: item ID\nr2: quantity\nr3: stickiness type (enum gen_item_stickiness)",
+        None,
+    )
+
+    HandleRegularProjectileThrow = Symbol(
+        None,
+        None,
+        None,
+        "HandleRegularProjectileThrow",
+        "Throws an item in a straight line.\n\nr0: monster entity throwing the item\nr1: item being thrown\nr2: position to start throwing the item from\nr3: direction to throw the item in\nstack[0]: Metadata about the item being thrown",
         None,
     )
 
@@ -48258,7 +48420,7 @@ class EuItcmOverlay29Functions:
         None,
         None,
         "DisplayMessageInternal",
-        "Called by DisplayMessage. Seems to be the function that handles the display of the dialogue box. It won't return until all the characters have been written and after the player manually closes the dialogue box (if the corresponding parameter was set).\n\nr0: ID of the string to display\nr1: True to wait for player input before closing the dialogue box, false to close it automatically once all the characters get printed.\nr2: pointer to the structure representing the desired state of the portrait\nr3: ?\nstack[0]: ?\nstack[1]: ?",
+        "Called by DisplayMessage. Seems to be the function that handles the display of the dialogue box. It won't return until all the characters have been written and after the player manually closes the dialogue box (if the corresponding parameter was set).\n\nr0: ID of the string to display\nr1: True to wait for player input before closing the dialogue box, false to close it automatically once all the characters get printed.\nr2: pointer to the structure representing the desired state of the portrait\nr3: ?\nstack[0]: preprocessor args\nstack[1]: ?",
         None,
     )
 
@@ -48271,12 +48433,12 @@ class EuItcmOverlay29Functions:
         None,
     )
 
-    InitSecretBazaarDialogueInfo = Symbol(
+    InitDungeonDialogueInfo = Symbol(
         None,
         None,
         None,
-        "InitSecretBazaarDialogueInfo",
-        "Initializes the struct pointed to by SECRET_BAZAAR_DIALOGUE_INFO_PTR.\n\nNo params.",
+        "InitDungeonDialogueInfo",
+        "Initializes the struct pointed to by DUNGEON_DIALOGUE_INFO_PTR.\n\nNo params.",
         None,
     )
 
@@ -48349,6 +48511,10 @@ class EuItcmOverlay29Functions:
 
     LogMessageByIdWithPopupCheckParticipants = _Deprecated(
         "LogMessageByIdWithPopupCheckParticipants", LogMessageByIdWithPopupAndAbility
+    )
+
+    InitSecretBazaarDialogueInfo = _Deprecated(
+        "InitSecretBazaarDialogueInfo", InitDungeonDialogueInfo
     )
 
 
@@ -51464,13 +51630,13 @@ class EuItcmRamData:
         "struct floor_generation_status",
     )
 
-    SECRET_BAZAAR_DIALOGUE_INFO_PTR = Symbol(
+    DUNGEON_DIALOGUE_INFO_PTR = Symbol(
         None,
         None,
         None,
-        "SECRET_BAZAAR_DIALOGUE_INFO_PTR",
-        "[Runtime] Pointer to the secret_bazaar_dialogue_info struct during dungeon mode.",
-        "struct secret_bazaar_dialogue_info*",
+        "DUNGEON_DIALOGUE_INFO_PTR",
+        "[Runtime] Pointer to the dungeon_dialogue_info struct during dungeon mode.",
+        "struct dungeon_dialogue_info*",
     )
 
     STAIRS_MENU_PTR = Symbol(
@@ -51480,6 +51646,10 @@ class EuItcmRamData:
         "STAIRS_MENU_PTR",
         "Pointer to the stairs_menu struct during dungeon mode.",
         "struct stairs_menu*",
+    )
+
+    SECRET_BAZAAR_DIALOGUE_INFO_PTR = _Deprecated(
+        "SECRET_BAZAAR_DIALOGUE_INFO_PTR", DUNGEON_DIALOGUE_INFO_PTR
     )
 
 

@@ -2522,6 +2522,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    DisplayAnimationControlCurrentFrame: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisplayAndSwitchAnimationControlCurrentFrame: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     FillOamAdjustmentInfo: Symbol[
         Optional[list[int]],
         None,
@@ -13436,7 +13446,7 @@ class Move_effectsFunctionsProtocol(Protocol):
         None,
     ]
 
-    DoMoveDamageParalyze10: Symbol[
+    DoMoveDamageParalyze15: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36504,6 +36514,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DisplayMonstersAndItems: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateEntityPixelPos: Symbol[
         Optional[list[int]],
         None,
@@ -36530,6 +36545,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SpawnItemEntity: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CreateTemporaryEntity: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36640,6 +36660,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     AnimationDelayOrSomething: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CopyStatusIconFlags: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36894,6 +36919,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DrawDungeonControlsText: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetDirectionTowardsPosition: Symbol[
         Optional[list[int]],
         None,
@@ -36915,6 +36945,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsPositionWithinTwoTiles: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisplayThrownItemShadow: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37234,6 +37269,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CreateTrapAndStairsHallucinations: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PrepareTrapperTrap: Symbol[
         Optional[list[int]],
         None,
@@ -37369,6 +37409,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ChangeTeamAnimationsToIdle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsFloorOver2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShouldRunMonsterAi: Symbol[
         Optional[list[int]],
         None,
@@ -37410,6 +37460,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     SubtractMoneyCarriedWithSfx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeSecretBazaarNpcsIdleInDirection: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37684,7 +37739,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    ChangeMonsterAnimationToIdle: Symbol[
+    MakeMonsterIdleInDirection2: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -38324,12 +38379,37 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DisplayMonster: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AnimateFlyingMoves: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ChangeMonsterAnimation: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    ChangeMonsterAnimationToIdle: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ChangeMonsterAnimationToHurt: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetIdleAnimationId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeMonsterIdleInDirection: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -40544,6 +40624,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DisplayItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SpawnDroppedItemWrapper: Symbol[
         Optional[list[int]],
         None,
@@ -40585,6 +40670,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     GenerateItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleRegularProjectileThrow: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -41044,7 +41134,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    InitSecretBazaarDialogueInfo: Symbol[
+    InitDungeonDialogueInfo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -42959,7 +43049,7 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
-    SECRET_BAZAAR_DIALOGUE_INFO_PTR: Symbol[
+    DUNGEON_DIALOGUE_INFO_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
