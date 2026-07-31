@@ -4422,6 +4422,15 @@ class NaItcmArm9Functions:
         None,
     )
 
+    SetAnimationControlPausedFlag = Symbol(
+        None,
+        None,
+        None,
+        "SetAnimationControlPausedFlag",
+        "Changes the flag for whether the animation should be paused.\n\nr0: animation_control\nr1: whether the animation should be paused",
+        None,
+    )
+
     DeleteWanTableEntry = Symbol(
         None,
         None,
@@ -6453,6 +6462,15 @@ class NaItcmArm9Functions:
         None,
         "GetWindowIdPageStart",
         "Gets the item the current menu page of a given window id starts on (the current page id times the maximum number of items on one page).\n\nr0: window id\nreturn: first item on page",
+        None,
+    )
+
+    SetWindowTitle = Symbol(
+        None,
+        None,
+        None,
+        "SetWindowTitle",
+        "Sets the string ID to use for a window's title.\n\nr0: window id\nr1: string id",
         None,
     )
 
@@ -10448,7 +10466,7 @@ class NaItcmArm9Functions:
         None,
         None,
         "OamTileNumberToVramAddress",
-        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nr0: tile number\nr1: 0 for bottom screen, 1 for top screen\nreturn: VRAM tile address",
+        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nr0: tile number\nr1: screen\nreturn: VRAM tile address",
         None,
     )
 
@@ -10506,12 +10524,12 @@ class NaItcmArm9Functions:
         None,
     )
 
-    DisableIqSkill = Symbol(
+    ToggleIqSkill = Symbol(
         None,
         None,
         None,
-        "DisableIqSkill",
-        "Disables an IQ skill.\n\nr0: Pointer to the bitarray containing the list of enabled IQ skills\nr1: ID of the skill to disable",
+        "ToggleIqSkill",
+        "Turns an IQ skill on if it is inactive, or off if it is active.\n\nr0: Pointer to the bitarray containing the list of enabled IQ skills\nr1: ID of the skill to toggle",
         None,
     )
 
@@ -11620,6 +11638,8 @@ class NaItcmArm9Functions:
     Copy16BitsFrom = _Deprecated("Copy16BitsFrom", Copy16BitsFromStream)
 
     GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
+
+    DisableIqSkill = _Deprecated("DisableIqSkill", ToggleIqSkill)
 
     WriteMonsterInfoToSave = _Deprecated(
         "WriteMonsterInfoToSave", GetMonsterInfoForSave
@@ -12971,6 +12991,15 @@ class NaItcmArm9Data:
         "IQ_SKILLS",
         "Table of 4-byte values for each IQ skill that represent the required IQ value to unlock a skill.\n\ntype: int[69]",
         "int32_t[69]",
+    )
+
+    MIN_TEAM_MEMBER_IQ = Symbol(
+        None,
+        None,
+        None,
+        "MIN_TEAM_MEMBER_IQ",
+        "The minimum IQ for a team member or Explorer Maze monster.",
+        "int",
     )
 
     IQ_GROUP_SKILLS = Symbol(
@@ -26436,12 +26465,30 @@ class NaItcmOverlay10Functions:
         None,
     )
 
+    LoadPaletteBase = Symbol(
+        None,
+        None,
+        None,
+        "LoadPaletteBase",
+        "Loads either the 8bpp or 4bpp palette base (from WAN file 292 or 1, respectively).\n\nSee https://github.com/WraithFire/wanimation-studio/blob/master/docs/README.md#sprite-modes\n\nr0: sprite index in wan_table to load from\nr1: 0 for 8bpp, 1 for 4bpp",
+        None,
+    )
+
     GetEffectAnimationField0x19 = Symbol(
         None,
         None,
         None,
         "GetEffectAnimationField0x19",
         "Calls GetEffectAnimation and returns field 0x19.\n\nr0: anim_id\nreturn: GetEffectAnimation(anim_id)->field_0x19.",
+        None,
+    )
+
+    ScreenEffectActive = Symbol(
+        None,
+        None,
+        None,
+        "ScreenEffectActive",
+        "Returns true if a screen effect (like Leaf Storm's or cutscene rain) is currently active on the given screen.\n\nr0: screen",
         None,
     )
 
@@ -26558,7 +26605,7 @@ class NaItcmOverlay10Functions:
         None,
         None,
         "ProcessTeamStatsLvHp",
-        "Appears to populate the Lv./HP row in the 'Team stats' top screen.\n\nr0: index of some kind",
+        "Appears to populate the Lv./HP row in the 'Team stats' top screen.\n\nr0: window id",
         None,
     )
 
@@ -26567,7 +26614,7 @@ class NaItcmOverlay10Functions:
         None,
         None,
         "ProcessTeamStatsNameGender",
-        "Appears to populate the name/gender row in the 'Team stats' top screen.\n\nr0: index of some kind",
+        "Appears to populate the name/gender row in the 'Team stats' top screen.\n\nr0: window id",
         None,
     )
 
@@ -40087,7 +40134,7 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "OamTileNumberToVramAddressOv29",
-        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nIs an exact copy of OamTileNumberToVramAddress in arm9.\n\nr0: tile number\nr1: 0 for bottom screen, 1 for top screen\nreturn: VRAM tile address",
+        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nIs an exact copy of OamTileNumberToVramAddress in arm9.\n\nr0: tile number\nr1: screen\nreturn: VRAM tile address",
         None,
     )
 
@@ -40361,6 +40408,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    DungeonScreenEffectActive = Symbol(
+        None,
+        None,
+        None,
+        "DungeonScreenEffectActive",
+        "Returns true if a screen effect (like Leaf Storm's or Sunny Day's) is currently active.\n\nreturn: bool",
+        None,
+    )
+
     PlayEffectAnimationEntity = Symbol(
         None,
         None,
@@ -40613,6 +40669,24 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    PlayMissSfx = Symbol(
+        None,
+        None,
+        None,
+        "PlayMissSfx",
+        "Plays the sound effect for an attack missing. Varies depending on whether the defender is a team member or not.\n\nr0: attacker entity pointer (unused)\nr1: defender entity pointer",
+        None,
+    )
+
+    PlayStairsSfx = Symbol(
+        None,
+        None,
+        None,
+        "PlayStairsSfx",
+        "Plays the appropriate sound effect for climbing/descending the stairs, or nothing if the stairs are replaced by a warp zone or rescue point.\n\nNo params.",
+        None,
+    )
+
     ShouldDisplayEntityAdvanced = Symbol(
         None,
         None,
@@ -40646,6 +40720,15 @@ class NaItcmOverlay29Functions:
         None,
         "PlayEffectAnimation0x18E",
         "Just a guess. Calls PlayEffectAnimation with data from animation ID 0x18E.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayKeyDoorUnlockEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayKeyDoorUnlockEffect",
+        "Plays the key door unlock effect.\n\nr0: entity pointer\nr1: whether the key door is not for a treasure memo (plays a sound if true)",
         None,
     )
 
@@ -40820,6 +40903,24 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    InitDungeonControlsMenuWithBg = Symbol(
+        None,
+        None,
+        None,
+        "InitDungeonControlsMenuWithBg",
+        "Calls InitDungeonControlsMenu and loads the menu's background.\n\nNo params.",
+        None,
+    )
+
+    FreeDungeonControlsMenuWithBg = Symbol(
+        None,
+        None,
+        None,
+        "FreeDungeonControlsMenuWithBg",
+        "Calls FreeDungeonControlsMenu and unloads the menu's background.\n\nNo params.",
+        None,
+    )
+
     AssignTopScreenHandlers = Symbol(
         None,
         None,
@@ -40862,6 +40963,24 @@ class NaItcmOverlay29Functions:
         None,
         "DrawDungeonControlsText",
         "Draws the text for the top screen controls menu in the given window.\n\nr0: window id",
+        None,
+    )
+
+    InitDungeonControlsMenu = Symbol(
+        None,
+        None,
+        None,
+        "InitDungeonControlsMenu",
+        "Initializes the dungeon controls menu.\n\nNo params.",
+        None,
+    )
+
+    FreeDungeonControlsMenu = Symbol(
+        None,
+        None,
+        None,
+        "FreeDungeonControlsMenu",
+        "Frees the dungeon controls menu.\n\nNo params.",
         None,
     )
 
@@ -41734,7 +41853,7 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "CheckBossFightVictory",
-        "Checks if the boss fight should be marked as won after the given entity has fainted.\n\nr0: fainted entity\nr1: behavior of fainted monster (the function will do nothing if it's not a fixed room enemy)\nr2: whether to change the music if the boss fight is over",
+        "Checks if the boss fight should be marked as won after the given entity has fainted.\n\nr0: fainted entity\nr1: behavior of fainted monster (the function will do nothing if it's not a fixed room enemy)\nr2: whether to not change the music if the boss fight is over",
         None,
     )
 
@@ -41798,6 +41917,24 @@ class NaItcmOverlay29Functions:
         None,
         "IsSecretBazaarNpcBehavior",
         "Checks if a behavior ID corresponds to one of the Secret Bazaar NPCs.\n\nr0: monster behavior ID\nreturn: bool",
+        None,
+    )
+
+    FreezeAnim = Symbol(
+        None,
+        None,
+        None,
+        "FreezeAnim",
+        "Freezes a monster's current animation.\n\nr0: entity pointer",
+        None,
+    )
+
+    UnfreezeAnim = Symbol(
+        None,
+        None,
+        None,
+        "UnfreezeAnim",
+        "Unfreezes a monster's current animation.\n\nr0: entity pointer",
         None,
     )
 
@@ -41954,6 +42091,24 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    TryPlaceItem = Symbol(
+        None,
+        None,
+        None,
+        "TryPlaceItem",
+        "Tries to place an item on the floor, and logs various failure messages under different conditions.\n\nThe item to use is determined by the user's monster::action_data::action_parameter[0].\n\nr0: User entity pointer",
+        None,
+    )
+
+    UseSingleUseItemSelf = Symbol(
+        None,
+        None,
+        None,
+        "UseSingleUseItemSelf",
+        "Same as UseSingleUseItem, but the target will be set to the user.\n\nr0: User",
+        None,
+    )
+
     UseSingleUseItemWrapper = Symbol(
         None,
         None,
@@ -41978,6 +42133,33 @@ class NaItcmOverlay29Functions:
         None,
         "UseThrowableItem",
         "Makes a monster use a throwable item.\n\nThe item to use is determined by monster::action_data::action_parameter[0].\nIf the item's category is CATEGORY_THROWN_LINE or CATEGORY_THROWN_ARC, the game will attempt to decrement the count of the used item by 1. If it's not or there's only 1 item left, it is destroyed instead.\n\nr0: User (monster who used the item)",
+        None,
+    )
+
+    TalkToTeamMemberInFront = Symbol(
+        None,
+        None,
+        None,
+        "TalkToTeamMemberInFront",
+        "Talks to the team member in front of the given entity, if there is one and it is on a tile the entity can attack in.\n\nr0: Entity pointer",
+        None,
+    )
+
+    PlayerUseMove = Symbol(
+        None,
+        None,
+        None,
+        "PlayerUseMove",
+        "Handles using a move by the player.\n\nr0: entity pointer",
+        None,
+    )
+
+    UseRegularAttackOrStruggle = Symbol(
+        None,
+        None,
+        None,
+        "UseRegularAttackOrStruggle",
+        "Handles using the regular attack or Struggle by the entity.\n\nr0: entity pointer",
         None,
     )
 
@@ -42032,6 +42214,24 @@ class NaItcmOverlay29Functions:
         None,
         "DungeonGetTotalSpriteFileSize",
         "Checks Castform and Cherrim\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: sprite file size",
+        None,
+    )
+
+    LoadMonsterSprites = Symbol(
+        None,
+        None,
+        None,
+        "LoadMonsterSprites",
+        "The main function for loading monster sprites at the beginning of a floor.\n\nNo params.",
+        None,
+    )
+
+    LoadActiveMonsterSprites = Symbol(
+        None,
+        None,
+        None,
+        "LoadActiveMonsterSprites",
+        "Loads the sprites of all active monsters on the floor based on their apparent ids. Used when loading quicksaves.\n\nNo params.",
         None,
     )
 
@@ -42125,6 +42325,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    CanMonsterBeAddedToTeam = Symbol(
+        None,
+        None,
+        None,
+        "CanMonsterBeAddedToTeam",
+        "Returns false if there are already four members on the active team or if the total body size of the team would be greater than 6 if this monster was added.\n\nr0: entity pointer",
+        None,
+    )
+
     EuFaintCheck = Symbol(
         None,
         None,
@@ -42148,7 +42357,16 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "MoveMonsterToPos",
-        "Moves a monster to the target position. Used both for regular movement and special movement (like teleportation).\n\nr0: Entity pointer\nr1: X target position\nr2: Y target position\nr3: ?",
+        "Moves a monster to the target position. Used both for regular movement and special movement (like teleportation).\n\nr0: Entity pointer\nr1: X target position\nr2: Y target position\nr3: whether to reset the monster struct's prev_pos, prev_pos_2, etc. fields to the target position",
+        None,
+    )
+
+    GetMonsterInFront = Symbol(
+        None,
+        None,
+        None,
+        "GetMonsterInFront",
+        "Returns the monster in front of the given entity, or null if there is none or it is on a tile they cannot attack in.\n\nr0: Entity pointer\nreturn: Entity pointer of monster in front",
         None,
     )
 
@@ -42652,7 +42870,16 @@ class NaItcmOverlay29Functions:
         None,
         None,
         "InitEnemyStatsAndMoves",
-        "Initializes the HP, Atk, Sp. Atk, Def, Sp. Def and moveset of a newly spawned enemy. Might do something else too.\n\nr0: Pointer to the monster's move list\nr1: Pointer to the monster's current HP\nr2: Pointer to the monster's offensive stats\nr3: Pointer to the monster's defensive stats",
+        "Initializes the HP, Atk, Sp. Atk, Def, Sp. Def and moveset of a newly spawned enemy. Might do something else too.\n\nr0: [output] Pointer to the monster's move list\nr1: [output] Pointer to the monster's current HP\nr2: [output] Pointer to the monster's offensive stats\nr3: [output] Pointer to the monster's defensive stats",
+        None,
+    )
+
+    InitExplorerMazeMonsterStatsMovesAndIq = Symbol(
+        None,
+        None,
+        None,
+        "InitExplorerMazeMonsterStatsMovesAndIq",
+        "Initializes the HP, offensive/defensive stats, and IQ of an explorer maze monster.\n\nr0: [output] Pointer to the monster's move list\nr1: [output] Pointer to the monster's current HP\nr2: [output] Pointer to the monster's offensive stats\nr3: [output] Pointer to the monster's defensive stats\nstack[0]: [output] Pointer to the monster's IQ\nstack[1]: Monster behavior",
         None,
     )
 
@@ -44582,6 +44809,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    LogMessageWithTargetAndExclusiveItemName = Symbol(
+        None,
+        None,
+        None,
+        "LogMessageWithTargetAndExclusiveItemName",
+        "Logs the given string ID, substituting its [string:0] tag for the target's name and [item:1] for an exclusive item in the bag which has the given effect id.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: string id\nr3: exclusive item effect id",
+        None,
+    )
+
     TryActivateQuickFeet = Symbol(
         None,
         None,
@@ -45380,6 +45616,15 @@ class NaItcmOverlay29Functions:
         None,
         "ShouldUsePp",
         "Checks if a monster should use PP when using a move. It also displays the corresponding animation if PP Saver triggers and prints the required messages to the message log.\n\nr0: entity pointer\nreturn: True if the monster should not use PP, false if it should.",
+        None,
+    )
+
+    AiUseMove = Symbol(
+        None,
+        None,
+        None,
+        "AiUseMove",
+        "Handles using a move by the AI.\n\nr0: entity pointer",
         None,
     )
 
@@ -46652,6 +46897,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    Weather3DEffectActive = Symbol(
+        None,
+        None,
+        None,
+        "Weather3DEffectActive",
+        "Returns true if a 3D weather effect (a tileset weather or Sandstorm/Fog) is active.\n\nreturn: bool",
+        None,
+    )
+
     RenderWeather3D = Symbol(
         None,
         None,
@@ -47300,12 +47554,21 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    TryOpenKeyDoor = Symbol(
+        None,
+        None,
+        None,
+        "TryOpenKeyDoor",
+        "Attempts to open a locked door at the given tile if a locked door has not already\nbeen opened on the floor.\n\nr0: user entity pointer\nr1: tile pointer\nr2: success string id\nr3: failure string id",
+        None,
+    )
+
     ApplyKeyEffect = Symbol(
         None,
         None,
         None,
         "ApplyKeyEffect",
-        "Attempts to open a locked door in front of the target if a locked door has not already\nbeen open on the floor.\n\nr0: user entity pointer\nr1: target entity pointer",
+        "Attempts to open a locked door above the target if a locked door has not already\nbeen opened on the floor.\n\nr0: user entity pointer\nr1: target entity pointer",
         None,
     )
 
@@ -48245,6 +48508,15 @@ class NaItcmOverlay29Functions:
         None,
     )
 
+    FullyCloseAlertBox = Symbol(
+        None,
+        None,
+        None,
+        "FullyCloseAlertBox",
+        "Fully closes the alert box, calling CloseAlertBox and various other functions as well as changing the window id and loading status.\n\nreturn: whether the alert box was closed",
+        None,
+    )
+
     AlertBoxIsScrolling = Symbol(
         None,
         None,
@@ -49033,6 +49305,15 @@ class NaItcmOverlay29Data:
         "struct status_icon_flags[18]",
     )
 
+    DUNGEON_CONTROLS_MENU_WINDOW_PARAMS = Symbol(
+        None,
+        None,
+        None,
+        "DUNGEON_CONTROLS_MENU_WINDOW_PARAMS",
+        "",
+        "struct window_params",
+    )
+
     POSITION_DISPLACEMENT_TO_DIRECTION = Symbol(
         None,
         None,
@@ -49362,8 +49643,17 @@ class NaItcmOverlay29Data:
         None,
         None,
         "TOP_SCREEN_STATUS_PTR",
-        "[Runtime] Pointer for struct for handling the status of the top screen in dungeon mode.\n\ntype: struct top_screen_status",
+        "[Runtime] Pointer for struct for handling the status of the top screen in dungeon mode.\n\ntype: struct top_screen_status*",
         "struct top_screen_status*",
+    )
+
+    DUNGEON_CONTROLS_MENU_PTR = Symbol(
+        None,
+        None,
+        None,
+        "DUNGEON_CONTROLS_MENU_PTR",
+        "[Runtime] Pointer for struct for displaying the dungeon controls menu.\n\ntype: struct dungeon_controls_menu*",
+        "struct dungeon_controls_menu*",
     )
 
     LEADER_PTR = Symbol(

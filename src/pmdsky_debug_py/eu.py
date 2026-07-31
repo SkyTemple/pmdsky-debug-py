@@ -4493,6 +4493,15 @@ class EuArm9Functions:
         None,
     )
 
+    SetAnimationControlPausedFlag = Symbol(
+        [0x1D234],
+        [0x201D234],
+        None,
+        "SetAnimationControlPausedFlag",
+        "Changes the flag for whether the animation should be paused.\n\nr0: animation_control\nr1: whether the animation should be paused",
+        None,
+    )
+
     DeleteWanTableEntry = Symbol(
         [0x1D278],
         [0x201D278],
@@ -6524,6 +6533,15 @@ class EuArm9Functions:
         None,
         "GetWindowIdPageStart",
         "Gets the item the current menu page of a given window id starts on (the current page id times the maximum number of items on one page).\n\nr0: window id\nreturn: first item on page",
+        None,
+    )
+
+    SetWindowTitle = Symbol(
+        [0x30D28],
+        [0x2030D28],
+        None,
+        "SetWindowTitle",
+        "Sets the string ID to use for a window's title.\n\nr0: window id\nr1: string id",
         None,
     )
 
@@ -10519,7 +10537,7 @@ class EuArm9Functions:
         [0x2058E38],
         None,
         "OamTileNumberToVramAddress",
-        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nr0: tile number\nr1: 0 for bottom screen, 1 for top screen\nreturn: VRAM tile address",
+        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nr0: tile number\nr1: screen\nreturn: VRAM tile address",
         None,
     )
 
@@ -10577,12 +10595,12 @@ class EuArm9Functions:
         None,
     )
 
-    DisableIqSkill = Symbol(
+    ToggleIqSkill = Symbol(
         [0x59120],
         [0x2059120],
         None,
-        "DisableIqSkill",
-        "Disables an IQ skill.\n\nr0: Pointer to the bitarray containing the list of enabled IQ skills\nr1: ID of the skill to disable",
+        "ToggleIqSkill",
+        "Turns an IQ skill on if it is inactive, or off if it is active.\n\nr0: Pointer to the bitarray containing the list of enabled IQ skills\nr1: ID of the skill to toggle",
         None,
     )
 
@@ -11691,6 +11709,8 @@ class EuArm9Functions:
     Copy16BitsFrom = _Deprecated("Copy16BitsFrom", Copy16BitsFromStream)
 
     GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
+
+    DisableIqSkill = _Deprecated("DisableIqSkill", ToggleIqSkill)
 
     WriteMonsterInfoToSave = _Deprecated(
         "WriteMonsterInfoToSave", GetMonsterInfoForSave
@@ -13053,6 +13073,15 @@ class EuArm9Data:
         "int32_t[69]",
     )
 
+    MIN_TEAM_MEMBER_IQ = Symbol(
+        [0xA2220],
+        [0x20A2220],
+        0x4,
+        "MIN_TEAM_MEMBER_IQ",
+        "The minimum IQ for a team member or Explorer Maze monster.",
+        "int",
+    )
+
     IQ_GROUP_SKILLS = Symbol(
         [0xA2314],
         [0x20A2314],
@@ -13913,8 +13942,8 @@ class EuArm9Data:
     )
 
     MENU_CONTROL_PTR = Symbol(
-        [0xB06B4],
-        [0x20B06B4],
+        [0xB06D4],
+        [0x20B06D4],
         0x4,
         "MENU_CONTROL_PTR",
         "Pointer to the master struct used for handling menus.\n\ntype: menu_control*",
@@ -28472,12 +28501,30 @@ class EuOverlay10Functions:
         None,
     )
 
+    LoadPaletteBase = Symbol(
+        [0xCDC],
+        [0x22BE09C],
+        None,
+        "LoadPaletteBase",
+        "Loads either the 8bpp or 4bpp palette base (from WAN file 292 or 1, respectively).\n\nSee https://github.com/WraithFire/wanimation-studio/blob/master/docs/README.md#sprite-modes\n\nr0: sprite index in wan_table to load from\nr1: 0 for 8bpp, 1 for 4bpp",
+        None,
+    )
+
     GetEffectAnimationField0x19 = Symbol(
         [0x1434],
         [0x22BE7F4],
         None,
         "GetEffectAnimationField0x19",
         "Calls GetEffectAnimation and returns field 0x19.\n\nr0: anim_id\nreturn: GetEffectAnimation(anim_id)->field_0x19.",
+        None,
+    )
+
+    ScreenEffectActive = Symbol(
+        [0x2E68],
+        [0x22C0228],
+        None,
+        "ScreenEffectActive",
+        "Returns true if a screen effect (like Leaf Storm's or cutscene rain) is currently active on the given screen.\n\nr0: screen",
         None,
     )
 
@@ -28594,7 +28641,7 @@ class EuOverlay10Functions:
         [0x22C2094],
         None,
         "ProcessTeamStatsLvHp",
-        "Appears to populate the Lv./HP row in the 'Team stats' top screen.\n\nr0: index of some kind",
+        "Appears to populate the Lv./HP row in the 'Team stats' top screen.\n\nr0: window id",
         None,
     )
 
@@ -28603,7 +28650,7 @@ class EuOverlay10Functions:
         [0x22C21BC],
         None,
         "ProcessTeamStatsNameGender",
-        "Appears to populate the name/gender row in the 'Team stats' top screen.\n\nr0: index of some kind",
+        "Appears to populate the name/gender row in the 'Team stats' top screen.\n\nr0: window id",
         None,
     )
 
@@ -43081,7 +43128,7 @@ class EuOverlay29Functions:
         [0x22E186C],
         None,
         "OamTileNumberToVramAddressOv29",
-        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nIs an exact copy of OamTileNumberToVramAddress in arm9.\n\nr0: tile number\nr1: 0 for bottom screen, 1 for top screen\nreturn: VRAM tile address",
+        "Maps an object's designated OAM tile number (bits 0-9 in attribute 2) to the address its texture should be placed at in VRAM.\n\nIs an exact copy of OamTileNumberToVramAddress in arm9.\n\nr0: tile number\nr1: screen\nreturn: VRAM tile address",
         None,
     )
 
@@ -43383,6 +43430,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    DungeonScreenEffectActive = Symbol(
+        [0x73B0],
+        [0x22E3F30],
+        None,
+        "DungeonScreenEffectActive",
+        "Returns true if a screen effect (like Leaf Storm's or Sunny Day's) is currently active.\n\nreturn: bool",
+        None,
+    )
+
     PlayEffectAnimationEntity = Symbol(
         [0x7414],
         [0x22E3F94],
@@ -43635,6 +43691,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    PlayMissSfx = Symbol(
+        [0x959C, 0x95D0],
+        [0x22E611C, 0x22E6150],
+        None,
+        "PlayMissSfx",
+        "Plays the sound effect for an attack missing. Varies depending on whether the defender is a team member or not.\n\nr0: attacker entity pointer (unused)\nr1: defender entity pointer",
+        None,
+    )
+
+    PlayStairsSfx = Symbol(
+        [0x9B98],
+        [0x22E6718],
+        None,
+        "PlayStairsSfx",
+        "Plays the appropriate sound effect for climbing/descending the stairs, or nothing if the stairs are replaced by a warp zone or rescue point.\n\nNo params.",
+        None,
+    )
+
     ShouldDisplayEntityAdvanced = Symbol(
         [0x9D00],
         [0x22E6880],
@@ -43668,6 +43742,15 @@ class EuOverlay29Functions:
         None,
         "PlayEffectAnimation0x18E",
         "Just a guess. Calls PlayEffectAnimation with data from animation ID 0x18E.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayKeyDoorUnlockEffect = Symbol(
+        [0xA4C4],
+        [0x22E7044],
+        None,
+        "PlayKeyDoorUnlockEffect",
+        "Plays the key door unlock effect.\n\nr0: entity pointer\nr1: whether the key door is not for a treasure memo (plays a sound if true)",
         None,
     )
 
@@ -43842,6 +43925,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    InitDungeonControlsMenuWithBg = Symbol(
+        [0xC330],
+        [0x22E8EB0],
+        None,
+        "InitDungeonControlsMenuWithBg",
+        "Calls InitDungeonControlsMenu and loads the menu's background.\n\nNo params.",
+        None,
+    )
+
+    FreeDungeonControlsMenuWithBg = Symbol(
+        [0xC3B8],
+        [0x22E8F38],
+        None,
+        "FreeDungeonControlsMenuWithBg",
+        "Calls FreeDungeonControlsMenu and unloads the menu's background.\n\nNo params.",
+        None,
+    )
+
     AssignTopScreenHandlers = Symbol(
         [0xC4F8],
         [0x22E9078],
@@ -43884,6 +43985,24 @@ class EuOverlay29Functions:
         None,
         "DrawDungeonControlsText",
         "Draws the text for the top screen controls menu in the given window.\n\nr0: window id",
+        None,
+    )
+
+    InitDungeonControlsMenu = Symbol(
+        [0xCCC4],
+        [0x22E9844],
+        None,
+        "InitDungeonControlsMenu",
+        "Initializes the dungeon controls menu.\n\nNo params.",
+        None,
+    )
+
+    FreeDungeonControlsMenu = Symbol(
+        [0xCD58],
+        [0x22E98D8],
+        None,
+        "FreeDungeonControlsMenu",
+        "Frees the dungeon controls menu.\n\nNo params.",
         None,
     )
 
@@ -44756,7 +44875,7 @@ class EuOverlay29Functions:
         [0x22F0178],
         None,
         "CheckBossFightVictory",
-        "Checks if the boss fight should be marked as won after the given entity has fainted.\n\nr0: fainted entity\nr1: behavior of fainted monster (the function will do nothing if it's not a fixed room enemy)\nr2: whether to change the music if the boss fight is over",
+        "Checks if the boss fight should be marked as won after the given entity has fainted.\n\nr0: fainted entity\nr1: behavior of fainted monster (the function will do nothing if it's not a fixed room enemy)\nr2: whether to not change the music if the boss fight is over",
         None,
     )
 
@@ -44820,6 +44939,24 @@ class EuOverlay29Functions:
         None,
         "IsSecretBazaarNpcBehavior",
         "Checks if a behavior ID corresponds to one of the Secret Bazaar NPCs.\n\nr0: monster behavior ID\nreturn: bool",
+        None,
+    )
+
+    FreezeAnim = Symbol(
+        [0x14324],
+        [0x22F0EA4],
+        None,
+        "FreezeAnim",
+        "Freezes a monster's current animation.\n\nr0: entity pointer",
+        None,
+    )
+
+    UnfreezeAnim = Symbol(
+        [0x1434C],
+        [0x22F0ECC],
+        None,
+        "UnfreezeAnim",
+        "Unfreezes a monster's current animation.\n\nr0: entity pointer",
         None,
     )
 
@@ -44976,6 +45113,24 @@ class EuOverlay29Functions:
         None,
     )
 
+    TryPlaceItem = Symbol(
+        [0x18A34],
+        [0x22F55B4],
+        None,
+        "TryPlaceItem",
+        "Tries to place an item on the floor, and logs various failure messages under different conditions.\n\nThe item to use is determined by the user's monster::action_data::action_parameter[0].\n\nr0: User entity pointer",
+        None,
+    )
+
+    UseSingleUseItemSelf = Symbol(
+        [0x190F8],
+        [0x22F5C78],
+        None,
+        "UseSingleUseItemSelf",
+        "Same as UseSingleUseItem, but the target will be set to the user.\n\nr0: User",
+        None,
+    )
+
     UseSingleUseItemWrapper = Symbol(
         [0x19108],
         [0x22F5C88],
@@ -45000,6 +45155,33 @@ class EuOverlay29Functions:
         None,
         "UseThrowableItem",
         "Makes a monster use a throwable item.\n\nThe item to use is determined by monster::action_data::action_parameter[0].\nIf the item's category is CATEGORY_THROWN_LINE or CATEGORY_THROWN_ARC, the game will attempt to decrement the count of the used item by 1. If it's not or there's only 1 item left, it is destroyed instead.\n\nr0: User (monster who used the item)",
+        None,
+    )
+
+    TalkToTeamMemberInFront = Symbol(
+        [0x19800],
+        [0x22F6380],
+        None,
+        "TalkToTeamMemberInFront",
+        "Talks to the team member in front of the given entity, if there is one and it is on a tile the entity can attack in.\n\nr0: Entity pointer",
+        None,
+    )
+
+    PlayerUseMove = Symbol(
+        [0x19D50],
+        [0x22F68D0],
+        None,
+        "PlayerUseMove",
+        "Handles using a move by the player.\n\nr0: entity pointer",
+        None,
+    )
+
+    UseRegularAttackOrStruggle = Symbol(
+        [0x19E90],
+        [0x22F6A10],
+        None,
+        "UseRegularAttackOrStruggle",
+        "Handles using the regular attack or Struggle by the entity.\n\nr0: entity pointer",
         None,
     )
 
@@ -45054,6 +45236,24 @@ class EuOverlay29Functions:
         None,
         "DungeonGetTotalSpriteFileSize",
         "Checks Castform and Cherrim\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: sprite file size",
+        None,
+    )
+
+    LoadMonsterSprites = Symbol(
+        [0x1AF68],
+        [0x22F7AE8],
+        None,
+        "LoadMonsterSprites",
+        "The main function for loading monster sprites at the beginning of a floor.\n\nNo params.",
+        None,
+    )
+
+    LoadActiveMonsterSprites = Symbol(
+        [0x1B140],
+        [0x22F7CC0],
+        None,
+        "LoadActiveMonsterSprites",
+        "Loads the sprites of all active monsters on the floor based on their apparent ids. Used when loading quicksaves.\n\nNo params.",
         None,
     )
 
@@ -45147,6 +45347,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    CanMonsterBeAddedToTeam = Symbol(
+        [0x1B66C],
+        [0x22F81EC],
+        None,
+        "CanMonsterBeAddedToTeam",
+        "Returns false if there are already four members on the active team or if the total body size of the team would be greater than 6 if this monster was added.\n\nr0: entity pointer",
+        None,
+    )
+
     EuFaintCheck = Symbol(
         [0x1BD68],
         [0x22F88E8],
@@ -45170,7 +45379,16 @@ class EuOverlay29Functions:
         [0x22F8FFC],
         None,
         "MoveMonsterToPos",
-        "Moves a monster to the target position. Used both for regular movement and special movement (like teleportation).\n\nr0: Entity pointer\nr1: X target position\nr2: Y target position\nr3: ?",
+        "Moves a monster to the target position. Used both for regular movement and special movement (like teleportation).\n\nr0: Entity pointer\nr1: X target position\nr2: Y target position\nr3: whether to reset the monster struct's prev_pos, prev_pos_2, etc. fields to the target position",
+        None,
+    )
+
+    GetMonsterInFront = Symbol(
+        [0x1C64C],
+        [0x22F91CC],
+        None,
+        "GetMonsterInFront",
+        "Returns the monster in front of the given entity, or null if there is none or it is on a tile they cannot attack in.\n\nr0: Entity pointer\nreturn: Entity pointer of monster in front",
         None,
     )
 
@@ -45720,7 +45938,16 @@ class EuOverlay29Functions:
         [0x22FCC30],
         None,
         "InitEnemyStatsAndMoves",
-        "Initializes the HP, Atk, Sp. Atk, Def, Sp. Def and moveset of a newly spawned enemy. Might do something else too.\n\nr0: Pointer to the monster's move list\nr1: Pointer to the monster's current HP\nr2: Pointer to the monster's offensive stats\nr3: Pointer to the monster's defensive stats",
+        "Initializes the HP, Atk, Sp. Atk, Def, Sp. Def and moveset of a newly spawned enemy. Might do something else too.\n\nr0: [output] Pointer to the monster's move list\nr1: [output] Pointer to the monster's current HP\nr2: [output] Pointer to the monster's offensive stats\nr3: [output] Pointer to the monster's defensive stats",
+        None,
+    )
+
+    InitExplorerMazeMonsterStatsMovesAndIq = Symbol(
+        [0x202E4],
+        [0x22FCE64],
+        None,
+        "InitExplorerMazeMonsterStatsMovesAndIq",
+        "Initializes the HP, offensive/defensive stats, and IQ of an explorer maze monster.\n\nr0: [output] Pointer to the monster's move list\nr1: [output] Pointer to the monster's current HP\nr2: [output] Pointer to the monster's offensive stats\nr3: [output] Pointer to the monster's defensive stats\nstack[0]: [output] Pointer to the monster's IQ\nstack[1]: Monster behavior",
         None,
     )
 
@@ -47650,6 +47877,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    LogMessageWithTargetAndExclusiveItemName = Symbol(
+        [0x38CA4],
+        [0x2315824],
+        None,
+        "LogMessageWithTargetAndExclusiveItemName",
+        "Logs the given string ID, substituting its [string:0] tag for the target's name and [item:1] for an exclusive item in the bag which has the given effect id.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: string id\nr3: exclusive item effect id",
+        None,
+    )
+
     TryActivateQuickFeet = Symbol(
         [0x38CFC],
         [0x231587C],
@@ -48448,6 +48684,15 @@ class EuOverlay29Functions:
         None,
         "ShouldUsePp",
         "Checks if a monster should use PP when using a move. It also displays the corresponding animation if PP Saver triggers and prints the required messages to the message log.\n\nr0: entity pointer\nreturn: True if the monster should not use PP, false if it should.",
+        None,
+    )
+
+    AiUseMove = Symbol(
+        [0x3E780],
+        [0x231B300],
+        None,
+        "AiUseMove",
+        "Handles using a move by the AI.\n\nr0: entity pointer",
         None,
     )
 
@@ -49720,6 +49965,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    Weather3DEffectActive = Symbol(
+        [0x5C9D8],
+        [0x2339558],
+        None,
+        "Weather3DEffectActive",
+        "Returns true if a 3D weather effect (a tileset weather or Sandstorm/Fog) is active.\n\nreturn: bool",
+        None,
+    )
+
     RenderWeather3D = Symbol(
         [0x5CB14],
         [0x2339694],
@@ -50368,12 +50622,21 @@ class EuOverlay29Functions:
         None,
     )
 
+    TryOpenKeyDoor = Symbol(
+        [0x67A3C],
+        [0x23445BC],
+        None,
+        "TryOpenKeyDoor",
+        "Attempts to open a locked door at the given tile if a locked door has not already\nbeen opened on the floor.\n\nr0: user entity pointer\nr1: tile pointer\nr2: success string id\nr3: failure string id",
+        None,
+    )
+
     ApplyKeyEffect = Symbol(
         [0x67D3C],
         [0x23448BC],
         None,
         "ApplyKeyEffect",
-        "Attempts to open a locked door in front of the target if a locked door has not already\nbeen open on the floor.\n\nr0: user entity pointer\nr1: target entity pointer",
+        "Attempts to open a locked door above the target if a locked door has not already\nbeen opened on the floor.\n\nr0: user entity pointer\nr1: target entity pointer",
         None,
     )
 
@@ -51313,6 +51576,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    FullyCloseAlertBox = Symbol(
+        [0x6F7E8],
+        [0x234C368],
+        None,
+        "FullyCloseAlertBox",
+        "Fully closes the alert box, calling CloseAlertBox and various other functions as well as changing the window id and loading status.\n\nreturn: whether the alert box was closed",
+        None,
+    )
+
     AlertBoxIsScrolling = Symbol(
         [0x6F86C],
         [0x234C3EC],
@@ -52209,6 +52481,15 @@ class EuOverlay29Data:
         "struct status_icon_flags[18]",
     )
 
+    DUNGEON_CONTROLS_MENU_WINDOW_PARAMS = Symbol(
+        [0x75680],
+        [0x2352200],
+        0x10,
+        "DUNGEON_CONTROLS_MENU_WINDOW_PARAMS",
+        "",
+        "struct window_params",
+    )
+
     POSITION_DISPLACEMENT_TO_DIRECTION = Symbol(
         [0x75690],
         [0x2352210],
@@ -52538,8 +52819,17 @@ class EuOverlay29Data:
         [0x2354154],
         0x4,
         "TOP_SCREEN_STATUS_PTR",
-        "[Runtime] Pointer for struct for handling the status of the top screen in dungeon mode.\n\ntype: struct top_screen_status",
+        "[Runtime] Pointer for struct for handling the status of the top screen in dungeon mode.\n\ntype: struct top_screen_status*",
         "struct top_screen_status*",
+    )
+
+    DUNGEON_CONTROLS_MENU_PTR = Symbol(
+        [0x775D8],
+        [0x2354158],
+        0x4,
+        "DUNGEON_CONTROLS_MENU_PTR",
+        "[Runtime] Pointer for struct for displaying the dungeon controls menu.\n\ntype: struct dungeon_controls_menu*",
+        "struct dungeon_controls_menu*",
     )
 
     LEADER_PTR = Symbol(

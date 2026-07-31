@@ -2542,6 +2542,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    SetAnimationControlPausedFlag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DeleteWanTableEntry: Symbol[
         Optional[list[int]],
         None,
@@ -3668,6 +3673,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     GetWindowIdPageStart: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    SetWindowTitle: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -5922,7 +5932,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    DisableIqSkill: Symbol[
+    ToggleIqSkill: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -7251,6 +7261,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     IQ_SKILLS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    MIN_TEAM_MEMBER_IQ: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -24435,7 +24450,17 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
+    LoadPaletteBase: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetEffectAnimationField0x19: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ScreenEffectActive: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36644,6 +36669,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    DungeonScreenEffectActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlayEffectAnimationEntity: Symbol[
         Optional[list[int]],
         None,
@@ -36784,6 +36814,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayMissSfx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayStairsSfx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ShouldDisplayEntityAdvanced: Symbol[
         Optional[list[int]],
         None,
@@ -36800,6 +36840,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     PlayEffectAnimation0x18E: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayKeyDoorUnlockEffect: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36899,6 +36944,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitDungeonControlsMenuWithBg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeDungeonControlsMenuWithBg: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AssignTopScreenHandlers: Symbol[
         Optional[list[int]],
         None,
@@ -36920,6 +36975,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DrawDungeonControlsText: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitDungeonControlsMenu: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeDungeonControlsMenu: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37444,6 +37509,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    FreezeAnim: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UnfreezeAnim: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TalkToSecretBazaarNpcStandard: Symbol[
         Optional[list[int]],
         None,
@@ -37529,6 +37604,16 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryPlaceItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UseSingleUseItemSelf: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UseSingleUseItemWrapper: Symbol[
         Optional[list[int]],
         None,
@@ -37540,6 +37625,21 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     UseThrowableItem: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TalkToTeamMemberInFront: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayerUseMove: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UseRegularAttackOrStruggle: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37570,6 +37670,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     DungeonGetTotalSpriteFileSize: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadMonsterSprites: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadActiveMonsterSprites: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37624,6 +37734,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CanMonsterBeAddedToTeam: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     EuFaintCheck: Symbol[
         Optional[list[int]],
         None,
@@ -37635,6 +37750,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     MoveMonsterToPos: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetMonsterInFront: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37915,6 +38035,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     InitEnemyStatsAndMoves: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitExplorerMazeMonsterStatsMovesAndIq: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -38989,6 +39114,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    LogMessageWithTargetAndExclusiveItemName: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TryActivateQuickFeet: Symbol[
         Optional[list[int]],
         None,
@@ -39430,6 +39560,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ShouldUsePp: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    AiUseMove: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -40139,6 +40274,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    Weather3DEffectActive: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     RenderWeather3D: Symbol[
         Optional[list[int]],
         None,
@@ -40495,6 +40635,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     FixedRoomActionParamToDirection: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TryOpenKeyDoor: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -41024,6 +41169,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    FullyCloseAlertBox: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     AlertBoxIsScrolling: Symbol[
         Optional[list[int]],
         None,
@@ -41452,6 +41602,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    DUNGEON_CONTROLS_MENU_WINDOW_PARAMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     POSITION_DISPLACEMENT_TO_DIRECTION: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -41633,6 +41788,11 @@ class Overlay29DataProtocol(Protocol):
     ]
 
     TOP_SCREEN_STATUS_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    DUNGEON_CONTROLS_MENU_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
