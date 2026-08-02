@@ -14138,6 +14138,15 @@ class EuItcmArm9Data:
         "struct rescue_bin_unpack",
     )
 
+    SPECIAL_ACTORS = Symbol(
+        None,
+        None,
+        None,
+        "SPECIAL_ACTORS",
+        "Actors that require special handling for the game to display, such as the player and partner.\n\ntype: special_actors struct",
+        "struct special_actors",
+    )
+
     SMD_EVENTS_FUN_TABLE = Symbol(
         None,
         None,
@@ -14181,6 +14190,10 @@ class EuItcmArm9Data:
     OSI_CONSOLE_TYPE_CACHE = Symbol(
         None, None, None, "OSI_CONSOLE_TYPE_CACHE", "", "uint32_t"
     )
+
+    FSI_DIGEST_KEY_LEN = Symbol(None, None, None, "FSI_DIGEST_KEY_LEN", "", "")
+
+    DAY_OF_YEAR = Symbol(None, None, None, "DAY_OF_YEAR", "", "")
 
     RAND_SEQUENCE_NUM = Symbol(
         None,
@@ -14546,6 +14559,15 @@ class EuItcmItcmFunctions:
 
     MIi_DmaSetParams_NoInt = Symbol(
         [0x1B18], [0x1FF9B18], None, "MIi_DmaSetParams_NoInt", "", None
+    )
+
+    Mii_DmaSetParams_Wait_NoInt = Symbol(
+        [0x1B3C],
+        [0x1FF9B3C],
+        None,
+        "Mii_DmaSetParams_Wait_NoInt",
+        "r0: channel id\nr1: source address\nr2: destination address\nr3: word count",
+        None,
     )
 
     ShouldMonsterRunAwayAndShowEffectOutlawCheck = Symbol(
@@ -18046,9 +18068,15 @@ class EuItcmLibsFunctions:
 
     MI_CpuCopy8 = _Deprecated("MI_CpuCopy8", MemcpyFast)
 
+    MI_SwapWord = _Deprecated("MI_SwapWord", AtomicExchange)
+
+    MIi_CardDmaCopy32 = _Deprecated("MIi_CardDmaCopy32", MTi_CardDmaCopy32)
+
     FileInit = _Deprecated("FileInit", FS_InitFile)
 
     GetOverlayInfo = _Deprecated("GetOverlayInfo", FS_LoadOverlayInfo)
+
+    FS_LoadOverlayImage = _Deprecated("FS_LoadOverlayImage", FS_LoadOverlayImageAsync)
 
     LoadOverlayInternal = _Deprecated("LoadOverlayInternal", FS_LoadOverlayImageAsync)
 
@@ -18061,6 +18089,12 @@ class EuItcmLibsFunctions:
     Math_MD5Digest = _Deprecated("Math_MD5Digest", MD5_Digest)
 
     Math_MD5Transform = _Deprecated("Math_MD5Transform", MD5_Transform)
+
+    Dgt_Hash2Reset = _Deprecated("Dgt_Hash2Reset", Dgt_Hash2Init)
+
+    Dgt_Hash2SetSource = _Deprecated("Dgt_Hash2SetSource", Dgt_Hash2Update)
+
+    Dgt_Hash2GetDigest = _Deprecated("Dgt_Hash2GetDigest", Dgt_Hash2GetHash)
 
     mbtowc = _Deprecated("mbtowc", _mbtowc_noconv)
 
@@ -51662,7 +51696,15 @@ class EuItcmRamData:
 
     RESERVE_LIST = Symbol(None, None, None, "RESERVE_LIST", "", "")
 
+    CALLBACK_TABLE = Symbol(
+        None, None, None, "CALLBACK_TABLE", "", "struct alarm_callback_info[8]"
+    )
+
     SNDI_SHARED_WORK = Symbol(None, None, None, "SNDI_SHARED_WORK", "", "")
+
+    FIFO_CTRL_INIT = Symbol(None, None, None, "FIFO_CTRL_INIT", "", "")
+
+    FSI_ARC_ROM = Symbol(None, None, None, "FSI_ARC_ROM", "", "")
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
         None,

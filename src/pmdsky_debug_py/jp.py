@@ -4494,8 +4494,8 @@ class JpArm9Functions:
     )
 
     SetAnimationControlPausedFlag = Symbol(
-        None,
-        None,
+        [0x1D1F0],
+        [0x201D1F0],
         None,
         "SetAnimationControlPausedFlag",
         "Changes the flag for whether the animation should be paused.\n\nr0: animation_control\nr1: whether the animation should be paused",
@@ -6537,8 +6537,8 @@ class JpArm9Functions:
     )
 
     SetWindowTitle = Symbol(
-        None,
-        None,
+        [0x30D4C],
+        [0x2030D4C],
         None,
         "SetWindowTitle",
         "Sets the string ID to use for a window's title.\n\nr0: window id\nr1: string id",
@@ -13937,8 +13937,8 @@ class JpArm9Data:
     )
 
     MENU_CONTROL_PTR = Symbol(
-        None,
-        None,
+        [0xB11FC],
+        [0x20B11FC],
         0x4,
         "MENU_CONTROL_PTR",
         "Pointer to the master struct used for handling menus.\n\ntype: menu_control*",
@@ -14224,6 +14224,15 @@ class JpArm9Data:
         "struct rescue_bin_unpack",
     )
 
+    SPECIAL_ACTORS = Symbol(
+        [0xB237C],
+        [0x20B237C],
+        0x38,
+        "SPECIAL_ACTORS",
+        "Actors that require special handling for the game to display, such as the player and partner.\n\ntype: special_actors struct",
+        "struct special_actors",
+    )
+
     SMD_EVENTS_FUN_TABLE = Symbol(
         [0xB2404],
         [0x20B2404],
@@ -14267,6 +14276,12 @@ class JpArm9Data:
     OSI_CONSOLE_TYPE_CACHE = Symbol(
         [0xB4420], [0x20B4420], 0x4, "OSI_CONSOLE_TYPE_CACHE", "", "uint32_t"
     )
+
+    FSI_DIGEST_KEY_LEN = Symbol(
+        [0xB442C], [0x20B442C], None, "FSI_DIGEST_KEY_LEN", "", ""
+    )
+
+    DAY_OF_YEAR = Symbol([0xB4710], [0x20B4710], None, "DAY_OF_YEAR", "", "")
 
     RAND_SEQUENCE_NUM = Symbol(
         [0xB4A98],
@@ -14632,6 +14647,15 @@ class JpItcmFunctions:
 
     MIi_DmaSetParams_NoInt = Symbol(
         [0x1B80], [0x20B6760], None, "MIi_DmaSetParams_NoInt", "", None
+    )
+
+    Mii_DmaSetParams_Wait_NoInt = Symbol(
+        [0x1BA4],
+        [0x20B6784],
+        None,
+        "Mii_DmaSetParams_Wait_NoInt",
+        "r0: channel id\nr1: source address\nr2: destination address\nr3: word count",
+        None,
     )
 
     ShouldMonsterRunAwayAndShowEffectOutlawCheck = Symbol(
@@ -18680,9 +18704,15 @@ class JpLibsFunctions:
 
     MI_CpuCopy8 = _Deprecated("MI_CpuCopy8", MemcpyFast)
 
+    MI_SwapWord = _Deprecated("MI_SwapWord", AtomicExchange)
+
+    MIi_CardDmaCopy32 = _Deprecated("MIi_CardDmaCopy32", MTi_CardDmaCopy32)
+
     FileInit = _Deprecated("FileInit", FS_InitFile)
 
     GetOverlayInfo = _Deprecated("GetOverlayInfo", FS_LoadOverlayInfo)
+
+    FS_LoadOverlayImage = _Deprecated("FS_LoadOverlayImage", FS_LoadOverlayImageAsync)
 
     LoadOverlayInternal = _Deprecated("LoadOverlayInternal", FS_LoadOverlayImageAsync)
 
@@ -18695,6 +18725,12 @@ class JpLibsFunctions:
     Math_MD5Digest = _Deprecated("Math_MD5Digest", MD5_Digest)
 
     Math_MD5Transform = _Deprecated("Math_MD5Transform", MD5_Transform)
+
+    Dgt_Hash2Reset = _Deprecated("Dgt_Hash2Reset", Dgt_Hash2Init)
+
+    Dgt_Hash2SetSource = _Deprecated("Dgt_Hash2SetSource", Dgt_Hash2Update)
+
+    Dgt_Hash2GetDigest = _Deprecated("Dgt_Hash2GetDigest", Dgt_Hash2GetHash)
 
     mbtowc = _Deprecated("mbtowc", _mbtowc_noconv)
 
@@ -28505,8 +28541,8 @@ class JpOverlay10Functions:
     )
 
     LoadPaletteBase = Symbol(
-        None,
-        None,
+        [0xCE0],
+        [0x22BEF00],
         None,
         "LoadPaletteBase",
         "Loads either the 8bpp or 4bpp palette base (from WAN file 292 or 1, respectively).\n\nSee https://github.com/WraithFire/wanimation-studio/blob/master/docs/README.md#sprite-modes\n\nr0: sprite index in wan_table to load from\nr1: 0 for 8bpp, 1 for 4bpp",
@@ -28523,8 +28559,8 @@ class JpOverlay10Functions:
     )
 
     ScreenEffectActive = Symbol(
-        None,
-        None,
+        [0x2E6C],
+        [0x22C108C],
         None,
         "ScreenEffectActive",
         "Returns true if a screen effect (like Leaf Storm's or cutscene rain) is currently active on the given screen.\n\nr0: screen",
@@ -42755,8 +42791,8 @@ class JpOverlay29Functions:
     )
 
     DungeonScreenEffectActive = Symbol(
-        None,
-        None,
+        [0x7310],
+        [0x22E4BF0],
         None,
         "DungeonScreenEffectActive",
         "Returns true if a screen effect (like Leaf Storm's or Sunny Day's) is currently active.\n\nreturn: bool",
@@ -43016,8 +43052,8 @@ class JpOverlay29Functions:
     )
 
     PlayMissSfx = Symbol(
-        None,
-        None,
+        [0x94FC, 0x9530],
+        [0x22E6DDC, 0x22E6E10],
         None,
         "PlayMissSfx",
         "Plays the sound effect for an attack missing. Varies depending on whether the defender is a team member or not.\n\nr0: attacker entity pointer (unused)\nr1: defender entity pointer",
@@ -43025,8 +43061,8 @@ class JpOverlay29Functions:
     )
 
     PlayStairsSfx = Symbol(
-        None,
-        None,
+        [0x9AF8],
+        [0x22E73D8],
         None,
         "PlayStairsSfx",
         "Plays the appropriate sound effect for climbing/descending the stairs, or nothing if the stairs are replaced by a warp zone or rescue point.\n\nNo params.",
@@ -43070,8 +43106,8 @@ class JpOverlay29Functions:
     )
 
     PlayKeyDoorUnlockEffect = Symbol(
-        None,
-        None,
+        [0xA424],
+        [0x22E7D04],
         None,
         "PlayKeyDoorUnlockEffect",
         "Plays the key door unlock effect.\n\nr0: entity pointer\nr1: whether the key door is not for a treasure memo (plays a sound if true)",
@@ -43250,8 +43286,8 @@ class JpOverlay29Functions:
     )
 
     InitDungeonControlsMenuWithBg = Symbol(
-        None,
-        None,
+        [0xC288],
+        [0x22E9B68],
         None,
         "InitDungeonControlsMenuWithBg",
         "Calls InitDungeonControlsMenu and loads the menu's background.\n\nNo params.",
@@ -43259,8 +43295,8 @@ class JpOverlay29Functions:
     )
 
     FreeDungeonControlsMenuWithBg = Symbol(
-        None,
-        None,
+        [0xC310],
+        [0x22E9BF0],
         None,
         "FreeDungeonControlsMenuWithBg",
         "Calls FreeDungeonControlsMenu and unloads the menu's background.\n\nNo params.",
@@ -43313,8 +43349,8 @@ class JpOverlay29Functions:
     )
 
     InitDungeonControlsMenu = Symbol(
-        None,
-        None,
+        [0xCC1C],
+        [0x22EA4FC],
         None,
         "InitDungeonControlsMenu",
         "Initializes the dungeon controls menu.\n\nNo params.",
@@ -43322,8 +43358,8 @@ class JpOverlay29Functions:
     )
 
     FreeDungeonControlsMenu = Symbol(
-        None,
-        None,
+        [0xCCB0],
+        [0x22EA590],
         None,
         "FreeDungeonControlsMenu",
         "Frees the dungeon controls menu.\n\nNo params.",
@@ -44267,8 +44303,8 @@ class JpOverlay29Functions:
     )
 
     FreezeAnim = Symbol(
-        None,
-        None,
+        [0x14214],
+        [0x22F1AF4],
         None,
         "FreezeAnim",
         "Freezes a monster's current animation.\n\nr0: entity pointer",
@@ -44276,8 +44312,8 @@ class JpOverlay29Functions:
     )
 
     UnfreezeAnim = Symbol(
-        None,
-        None,
+        [0x1423C],
+        [0x22F1B1C],
         None,
         "UnfreezeAnim",
         "Unfreezes a monster's current animation.\n\nr0: entity pointer",
@@ -44438,8 +44474,8 @@ class JpOverlay29Functions:
     )
 
     TryPlaceItem = Symbol(
-        None,
-        None,
+        [0x18914],
+        [0x22F61F4],
         None,
         "TryPlaceItem",
         "Tries to place an item on the floor, and logs various failure messages under different conditions.\n\nThe item to use is determined by the user's monster::action_data::action_parameter[0].\n\nr0: User entity pointer",
@@ -44447,8 +44483,8 @@ class JpOverlay29Functions:
     )
 
     UseSingleUseItemSelf = Symbol(
-        None,
-        None,
+        [0x18FD4],
+        [0x22F68B4],
         None,
         "UseSingleUseItemSelf",
         "Same as UseSingleUseItem, but the target will be set to the user.\n\nr0: User",
@@ -44483,8 +44519,8 @@ class JpOverlay29Functions:
     )
 
     TalkToTeamMemberInFront = Symbol(
-        None,
-        None,
+        [0x196E0],
+        [0x22F6FC0],
         None,
         "TalkToTeamMemberInFront",
         "Talks to the team member in front of the given entity, if there is one and it is on a tile the entity can attack in.\n\nr0: Entity pointer",
@@ -44492,8 +44528,8 @@ class JpOverlay29Functions:
     )
 
     PlayerUseMove = Symbol(
-        None,
-        None,
+        [0x19C1C],
+        [0x22F74FC],
         None,
         "PlayerUseMove",
         "Handles using a move by the player.\n\nr0: entity pointer",
@@ -44501,8 +44537,8 @@ class JpOverlay29Functions:
     )
 
     UseRegularAttackOrStruggle = Symbol(
-        None,
-        None,
+        [0x19D5C],
+        [0x22F763C],
         None,
         "UseRegularAttackOrStruggle",
         "Handles using the regular attack or Struggle by the entity.\n\nr0: entity pointer",
@@ -44564,8 +44600,8 @@ class JpOverlay29Functions:
     )
 
     LoadMonsterSprites = Symbol(
-        None,
-        None,
+        [0x1AE1C],
+        [0x22F86FC],
         None,
         "LoadMonsterSprites",
         "The main function for loading monster sprites at the beginning of a floor.\n\nNo params.",
@@ -44573,8 +44609,8 @@ class JpOverlay29Functions:
     )
 
     LoadActiveMonsterSprites = Symbol(
-        None,
-        None,
+        [0x1AFF4],
+        [0x22F88D4],
         None,
         "LoadActiveMonsterSprites",
         "Loads the sprites of all active monsters on the floor based on their apparent ids. Used when loading quicksaves.\n\nNo params.",
@@ -44672,8 +44708,8 @@ class JpOverlay29Functions:
     )
 
     CanMonsterBeAddedToTeam = Symbol(
-        None,
-        None,
+        [0x1B514],
+        [0x22F8DF4],
         None,
         "CanMonsterBeAddedToTeam",
         "Returns false if there are already four members on the active team or if the total body size of the team would be greater than 6 if this monster was added.\n\nr0: entity pointer",
@@ -44708,8 +44744,8 @@ class JpOverlay29Functions:
     )
 
     GetMonsterInFront = Symbol(
-        None,
-        None,
+        [0x1C4A4],
+        [0x22F9D84],
         None,
         "GetMonsterInFront",
         "Returns the monster in front of the given entity, or null if there is none or it is on a tile they cannot attack in.\n\nr0: Entity pointer\nreturn: Entity pointer of monster in front",
@@ -45267,8 +45303,8 @@ class JpOverlay29Functions:
     )
 
     InitExplorerMazeMonsterStatsMovesAndIq = Symbol(
-        None,
-        None,
+        [0x1FF78],
+        [0x22FD858],
         None,
         "InitExplorerMazeMonsterStatsMovesAndIq",
         "Initializes the HP, offensive/defensive stats, and IQ of an explorer maze monster.\n\nr0: [output] Pointer to the monster's move list\nr1: [output] Pointer to the monster's current HP\nr2: [output] Pointer to the monster's offensive stats\nr3: [output] Pointer to the monster's defensive stats\nstack[0]: [output] Pointer to the monster's IQ\nstack[1]: Monster behavior",
@@ -47202,8 +47238,8 @@ class JpOverlay29Functions:
     )
 
     LogMessageWithTargetAndExclusiveItemName = Symbol(
-        None,
-        None,
+        [0x389B8],
+        [0x2316298],
         None,
         "LogMessageWithTargetAndExclusiveItemName",
         "Logs the given string ID, substituting its [string:0] tag for the target's name and [item:1] for an exclusive item in the bag which has the given effect id.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: string id\nr3: exclusive item effect id",
@@ -48012,8 +48048,8 @@ class JpOverlay29Functions:
     )
 
     AiUseMove = Symbol(
-        None,
-        None,
+        [0x3E490],
+        [0x231BD70],
         None,
         "AiUseMove",
         "Handles using a move by the AI.\n\nr0: entity pointer",
@@ -49290,8 +49326,8 @@ class JpOverlay29Functions:
     )
 
     Weather3DEffectActive = Symbol(
-        None,
-        None,
+        [0x5C46C],
+        [0x2339D4C],
         None,
         "Weather3DEffectActive",
         "Returns true if a 3D weather effect (a tileset weather or Sandstorm/Fog) is active.\n\nreturn: bool",
@@ -49947,8 +49983,8 @@ class JpOverlay29Functions:
     )
 
     TryOpenKeyDoor = Symbol(
-        None,
-        None,
+        [0x674BC],
+        [0x2344D9C],
         None,
         "TryOpenKeyDoor",
         "Attempts to open a locked door at the given tile if a locked door has not already\nbeen opened on the floor.\n\nr0: user entity pointer\nr1: tile pointer\nr2: success string id\nr3: failure string id",
@@ -50901,8 +50937,8 @@ class JpOverlay29Functions:
     )
 
     FullyCloseAlertBox = Symbol(
-        None,
-        None,
+        [0x6F0F8],
+        [0x234C9D8],
         None,
         "FullyCloseAlertBox",
         "Fully closes the alert box, calling CloseAlertBox and various other functions as well as changing the window id and loading status.\n\nreturn: whether the alert box was closed",
@@ -51708,8 +51744,8 @@ class JpOverlay29Data:
     )
 
     DUNGEON_CONTROLS_MENU_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x74F94],
+        [0x2352874],
         None,
         "DUNGEON_CONTROLS_MENU_WINDOW_PARAMS",
         "",
@@ -52050,8 +52086,8 @@ class JpOverlay29Data:
     )
 
     DUNGEON_CONTROLS_MENU_PTR = Symbol(
-        None,
-        None,
+        [0x76EF8],
+        [0x23547D8],
         None,
         "DUNGEON_CONTROLS_MENU_PTR",
         "[Runtime] Pointer for struct for displaying the dungeon controls menu.\n\ntype: struct dungeon_controls_menu*",
@@ -54095,7 +54131,20 @@ class JpRamData:
 
     RESERVE_LIST = Symbol([0x2BB1C0], [0x22BB1C0], None, "RESERVE_LIST", "", "")
 
+    CALLBACK_TABLE = Symbol(
+        [0x2BCCA0],
+        [0x22BCCA0],
+        0x60,
+        "CALLBACK_TABLE",
+        "",
+        "struct alarm_callback_info[8]",
+    )
+
     SNDI_SHARED_WORK = Symbol([0x2BCD00], [0x22BCD00], None, "SNDI_SHARED_WORK", "", "")
+
+    FIFO_CTRL_INIT = Symbol([0x2BCD04], [0x22BCD04], None, "FIFO_CTRL_INIT", "", "")
+
+    FSI_ARC_ROM = Symbol([0x2BCDB4], [0x22BCDB4], None, "FSI_ARC_ROM", "", "")
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
         None,

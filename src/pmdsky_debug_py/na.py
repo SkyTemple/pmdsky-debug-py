@@ -4494,8 +4494,8 @@ class NaArm9Functions:
     )
 
     SetAnimationControlPausedFlag = Symbol(
-        None,
-        None,
+        [0x1D198],
+        [0x201D198],
         None,
         "SetAnimationControlPausedFlag",
         "Changes the flag for whether the animation should be paused.\n\nr0: animation_control\nr1: whether the animation should be paused",
@@ -6537,8 +6537,8 @@ class NaArm9Functions:
     )
 
     SetWindowTitle = Symbol(
-        None,
-        None,
+        [0x30A2C],
+        [0x2030A2C],
         None,
         "SetWindowTitle",
         "Sets the string ID to use for a window's title.\n\nr0: window id\nr1: string id",
@@ -13942,8 +13942,8 @@ class NaArm9Data:
     )
 
     MENU_CONTROL_PTR = Symbol(
-        None,
-        None,
+        [0xAFDB8],
+        [0x20AFDB8],
         0x4,
         "MENU_CONTROL_PTR",
         "Pointer to the master struct used for handling menus.\n\ntype: menu_control*",
@@ -14229,6 +14229,15 @@ class NaArm9Data:
         "struct rescue_bin_unpack",
     )
 
+    SPECIAL_ACTORS = Symbol(
+        [0xB0B08],
+        [0x20B0B08],
+        0x38,
+        "SPECIAL_ACTORS",
+        "Actors that require special handling for the game to display, such as the player and partner.\n\ntype: special_actors struct",
+        "struct special_actors",
+    )
+
     SMD_EVENTS_FUN_TABLE = Symbol(
         [0xB0B90],
         [0x20B0B90],
@@ -14272,6 +14281,12 @@ class NaArm9Data:
     OSI_CONSOLE_TYPE_CACHE = Symbol(
         [0xB2BAC], [0x20B2BAC], 0x4, "OSI_CONSOLE_TYPE_CACHE", "", "uint32_t"
     )
+
+    FSI_DIGEST_KEY_LEN = Symbol(
+        [0xB2BB8], [0x20B2BB8], None, "FSI_DIGEST_KEY_LEN", "", ""
+    )
+
+    DAY_OF_YEAR = Symbol([0xB2E9C], [0x20B2E9C], None, "DAY_OF_YEAR", "", "")
 
     RAND_SEQUENCE_NUM = Symbol(
         [0xB3224],
@@ -14637,6 +14652,15 @@ class NaItcmFunctions:
 
     MIi_DmaSetParams_NoInt = Symbol(
         [0x1B18], [0x20B4E98], None, "MIi_DmaSetParams_NoInt", "", None
+    )
+
+    Mii_DmaSetParams_Wait_NoInt = Symbol(
+        [0x1B3C],
+        [0x20B4EBC],
+        None,
+        "Mii_DmaSetParams_Wait_NoInt",
+        "r0: channel id\nr1: source address\nr2: destination address\nr3: word count",
+        None,
     )
 
     ShouldMonsterRunAwayAndShowEffectOutlawCheck = Symbol(
@@ -18685,9 +18709,15 @@ class NaLibsFunctions:
 
     MI_CpuCopy8 = _Deprecated("MI_CpuCopy8", MemcpyFast)
 
+    MI_SwapWord = _Deprecated("MI_SwapWord", AtomicExchange)
+
+    MIi_CardDmaCopy32 = _Deprecated("MIi_CardDmaCopy32", MTi_CardDmaCopy32)
+
     FileInit = _Deprecated("FileInit", FS_InitFile)
 
     GetOverlayInfo = _Deprecated("GetOverlayInfo", FS_LoadOverlayInfo)
+
+    FS_LoadOverlayImage = _Deprecated("FS_LoadOverlayImage", FS_LoadOverlayImageAsync)
 
     LoadOverlayInternal = _Deprecated("LoadOverlayInternal", FS_LoadOverlayImageAsync)
 
@@ -18700,6 +18730,12 @@ class NaLibsFunctions:
     Math_MD5Digest = _Deprecated("Math_MD5Digest", MD5_Digest)
 
     Math_MD5Transform = _Deprecated("Math_MD5Transform", MD5_Transform)
+
+    Dgt_Hash2Reset = _Deprecated("Dgt_Hash2Reset", Dgt_Hash2Init)
+
+    Dgt_Hash2SetSource = _Deprecated("Dgt_Hash2SetSource", Dgt_Hash2Update)
+
+    Dgt_Hash2GetDigest = _Deprecated("Dgt_Hash2GetDigest", Dgt_Hash2GetHash)
 
     mbtowc = _Deprecated("mbtowc", _mbtowc_noconv)
 
@@ -28510,8 +28546,8 @@ class NaOverlay10Functions:
     )
 
     LoadPaletteBase = Symbol(
-        None,
-        None,
+        [0xCDC],
+        [0x22BD75C],
         None,
         "LoadPaletteBase",
         "Loads either the 8bpp or 4bpp palette base (from WAN file 292 or 1, respectively).\n\nSee https://github.com/WraithFire/wanimation-studio/blob/master/docs/README.md#sprite-modes\n\nr0: sprite index in wan_table to load from\nr1: 0 for 8bpp, 1 for 4bpp",
@@ -28528,8 +28564,8 @@ class NaOverlay10Functions:
     )
 
     ScreenEffectActive = Symbol(
-        None,
-        None,
+        [0x2E68],
+        [0x22BF8E8],
         None,
         "ScreenEffectActive",
         "Returns true if a screen effect (like Leaf Storm's or cutscene rain) is currently active on the given screen.\n\nr0: screen",
@@ -42762,8 +42798,8 @@ class NaOverlay29Functions:
     )
 
     DungeonScreenEffectActive = Symbol(
-        None,
-        None,
+        [0x7340],
+        [0x22E3580],
         None,
         "DungeonScreenEffectActive",
         "Returns true if a screen effect (like Leaf Storm's or Sunny Day's) is currently active.\n\nreturn: bool",
@@ -43023,8 +43059,8 @@ class NaOverlay29Functions:
     )
 
     PlayMissSfx = Symbol(
-        None,
-        None,
+        [0x952C, 0x9560],
+        [0x22E576C, 0x22E57A0],
         None,
         "PlayMissSfx",
         "Plays the sound effect for an attack missing. Varies depending on whether the defender is a team member or not.\n\nr0: attacker entity pointer (unused)\nr1: defender entity pointer",
@@ -43032,8 +43068,8 @@ class NaOverlay29Functions:
     )
 
     PlayStairsSfx = Symbol(
-        None,
-        None,
+        [0x9B28],
+        [0x22E5D68],
         None,
         "PlayStairsSfx",
         "Plays the appropriate sound effect for climbing/descending the stairs, or nothing if the stairs are replaced by a warp zone or rescue point.\n\nNo params.",
@@ -43077,8 +43113,8 @@ class NaOverlay29Functions:
     )
 
     PlayKeyDoorUnlockEffect = Symbol(
-        None,
-        None,
+        [0xA454],
+        [0x22E6694],
         None,
         "PlayKeyDoorUnlockEffect",
         "Plays the key door unlock effect.\n\nr0: entity pointer\nr1: whether the key door is not for a treasure memo (plays a sound if true)",
@@ -43257,8 +43293,8 @@ class NaOverlay29Functions:
     )
 
     InitDungeonControlsMenuWithBg = Symbol(
-        None,
-        None,
+        [0xC2C0],
+        [0x22E8500],
         None,
         "InitDungeonControlsMenuWithBg",
         "Calls InitDungeonControlsMenu and loads the menu's background.\n\nNo params.",
@@ -43266,8 +43302,8 @@ class NaOverlay29Functions:
     )
 
     FreeDungeonControlsMenuWithBg = Symbol(
-        None,
-        None,
+        [0xC348],
+        [0x22E8588],
         None,
         "FreeDungeonControlsMenuWithBg",
         "Calls FreeDungeonControlsMenu and unloads the menu's background.\n\nNo params.",
@@ -43320,8 +43356,8 @@ class NaOverlay29Functions:
     )
 
     InitDungeonControlsMenu = Symbol(
-        None,
-        None,
+        [0xCC54],
+        [0x22E8E94],
         None,
         "InitDungeonControlsMenu",
         "Initializes the dungeon controls menu.\n\nNo params.",
@@ -43329,8 +43365,8 @@ class NaOverlay29Functions:
     )
 
     FreeDungeonControlsMenu = Symbol(
-        None,
-        None,
+        [0xCCE8],
+        [0x22E8F28],
         None,
         "FreeDungeonControlsMenu",
         "Frees the dungeon controls menu.\n\nNo params.",
@@ -44274,8 +44310,8 @@ class NaOverlay29Functions:
     )
 
     FreezeAnim = Symbol(
-        None,
-        None,
+        [0x142B0],
+        [0x22F04F0],
         None,
         "FreezeAnim",
         "Freezes a monster's current animation.\n\nr0: entity pointer",
@@ -44283,8 +44319,8 @@ class NaOverlay29Functions:
     )
 
     UnfreezeAnim = Symbol(
-        None,
-        None,
+        [0x142D8],
+        [0x22F0518],
         None,
         "UnfreezeAnim",
         "Unfreezes a monster's current animation.\n\nr0: entity pointer",
@@ -44445,8 +44481,8 @@ class NaOverlay29Functions:
     )
 
     TryPlaceItem = Symbol(
-        None,
-        None,
+        [0x189B8],
+        [0x22F4BF8],
         None,
         "TryPlaceItem",
         "Tries to place an item on the floor, and logs various failure messages under different conditions.\n\nThe item to use is determined by the user's monster::action_data::action_parameter[0].\n\nr0: User entity pointer",
@@ -44454,8 +44490,8 @@ class NaOverlay29Functions:
     )
 
     UseSingleUseItemSelf = Symbol(
-        None,
-        None,
+        [0x1907C],
+        [0x22F52BC],
         None,
         "UseSingleUseItemSelf",
         "Same as UseSingleUseItem, but the target will be set to the user.\n\nr0: User",
@@ -44490,8 +44526,8 @@ class NaOverlay29Functions:
     )
 
     TalkToTeamMemberInFront = Symbol(
-        None,
-        None,
+        [0x19784],
+        [0x22F59C4],
         None,
         "TalkToTeamMemberInFront",
         "Talks to the team member in front of the given entity, if there is one and it is on a tile the entity can attack in.\n\nr0: Entity pointer",
@@ -44499,8 +44535,8 @@ class NaOverlay29Functions:
     )
 
     PlayerUseMove = Symbol(
-        None,
-        None,
+        [0x19CD8],
+        [0x22F5F18],
         None,
         "PlayerUseMove",
         "Handles using a move by the player.\n\nr0: entity pointer",
@@ -44508,8 +44544,8 @@ class NaOverlay29Functions:
     )
 
     UseRegularAttackOrStruggle = Symbol(
-        None,
-        None,
+        [0x19E18],
+        [0x22F6058],
         None,
         "UseRegularAttackOrStruggle",
         "Handles using the regular attack or Struggle by the entity.\n\nr0: entity pointer",
@@ -44571,8 +44607,8 @@ class NaOverlay29Functions:
     )
 
     LoadMonsterSprites = Symbol(
-        None,
-        None,
+        [0x1AEF0],
+        [0x22F7130],
         None,
         "LoadMonsterSprites",
         "The main function for loading monster sprites at the beginning of a floor.\n\nNo params.",
@@ -44580,8 +44616,8 @@ class NaOverlay29Functions:
     )
 
     LoadActiveMonsterSprites = Symbol(
-        None,
-        None,
+        [0x1B0C8],
+        [0x22F7308],
         None,
         "LoadActiveMonsterSprites",
         "Loads the sprites of all active monsters on the floor based on their apparent ids. Used when loading quicksaves.\n\nNo params.",
@@ -44679,8 +44715,8 @@ class NaOverlay29Functions:
     )
 
     CanMonsterBeAddedToTeam = Symbol(
-        None,
-        None,
+        [0x1B5F4],
+        [0x22F7834],
         None,
         "CanMonsterBeAddedToTeam",
         "Returns false if there are already four members on the active team or if the total body size of the team would be greater than 6 if this monster was added.\n\nr0: entity pointer",
@@ -44715,8 +44751,8 @@ class NaOverlay29Functions:
     )
 
     GetMonsterInFront = Symbol(
-        None,
-        None,
+        [0x1C580],
+        [0x22F87C0],
         None,
         "GetMonsterInFront",
         "Returns the monster in front of the given entity, or null if there is none or it is on a tile they cannot attack in.\n\nr0: Entity pointer\nreturn: Entity pointer of monster in front",
@@ -45274,8 +45310,8 @@ class NaOverlay29Functions:
     )
 
     InitExplorerMazeMonsterStatsMovesAndIq = Symbol(
-        None,
-        None,
+        [0x20228],
+        [0x22FC468],
         None,
         "InitExplorerMazeMonsterStatsMovesAndIq",
         "Initializes the HP, offensive/defensive stats, and IQ of an explorer maze monster.\n\nr0: [output] Pointer to the monster's move list\nr1: [output] Pointer to the monster's current HP\nr2: [output] Pointer to the monster's offensive stats\nr3: [output] Pointer to the monster's defensive stats\nstack[0]: [output] Pointer to the monster's IQ\nstack[1]: Monster behavior",
@@ -47209,8 +47245,8 @@ class NaOverlay29Functions:
     )
 
     LogMessageWithTargetAndExclusiveItemName = Symbol(
-        None,
-        None,
+        [0x38B84],
+        [0x2314DC4],
         None,
         "LogMessageWithTargetAndExclusiveItemName",
         "Logs the given string ID, substituting its [string:0] tag for the target's name and [item:1] for an exclusive item in the bag which has the given effect id.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: string id\nr3: exclusive item effect id",
@@ -48019,8 +48055,8 @@ class NaOverlay29Functions:
     )
 
     AiUseMove = Symbol(
-        None,
-        None,
+        [0x3E660],
+        [0x231A8A0],
         None,
         "AiUseMove",
         "Handles using a move by the AI.\n\nr0: entity pointer",
@@ -49297,8 +49333,8 @@ class NaOverlay29Functions:
     )
 
     Weather3DEffectActive = Symbol(
-        None,
-        None,
+        [0x5C748],
+        [0x2338988],
         None,
         "Weather3DEffectActive",
         "Returns true if a 3D weather effect (a tileset weather or Sandstorm/Fog) is active.\n\nreturn: bool",
@@ -49954,8 +49990,8 @@ class NaOverlay29Functions:
     )
 
     TryOpenKeyDoor = Symbol(
-        None,
-        None,
+        [0x67798],
+        [0x23439D8],
         None,
         "TryOpenKeyDoor",
         "Attempts to open a locked door at the given tile if a locked door has not already\nbeen opened on the floor.\n\nr0: user entity pointer\nr1: tile pointer\nr2: success string id\nr3: failure string id",
@@ -50908,8 +50944,8 @@ class NaOverlay29Functions:
     )
 
     FullyCloseAlertBox = Symbol(
-        None,
-        None,
+        [0x6F528],
+        [0x234B768],
         None,
         "FullyCloseAlertBox",
         "Fully closes the alert box, calling CloseAlertBox and various other functions as well as changing the window id and loading status.\n\nreturn: whether the alert box was closed",
@@ -51813,8 +51849,8 @@ class NaOverlay29Data:
     )
 
     DUNGEON_CONTROLS_MENU_WINDOW_PARAMS = Symbol(
-        None,
-        None,
+        [0x753B4],
+        [0x23515F4],
         None,
         "DUNGEON_CONTROLS_MENU_WINDOW_PARAMS",
         "",
@@ -52155,8 +52191,8 @@ class NaOverlay29Data:
     )
 
     DUNGEON_CONTROLS_MENU_PTR = Symbol(
-        None,
-        None,
+        [0x77318],
+        [0x2353558],
         None,
         "DUNGEON_CONTROLS_MENU_PTR",
         "[Runtime] Pointer for struct for displaying the dungeon controls menu.\n\ntype: struct dungeon_controls_menu*",
@@ -54205,7 +54241,20 @@ class NaRamData:
 
     RESERVE_LIST = Symbol([0x2B9A20], [0x22B9A20], None, "RESERVE_LIST", "", "")
 
+    CALLBACK_TABLE = Symbol(
+        [0x2BB500],
+        [0x22BB500],
+        0x60,
+        "CALLBACK_TABLE",
+        "",
+        "struct alarm_callback_info[8]",
+    )
+
     SNDI_SHARED_WORK = Symbol([0x2BB560], [0x22BB560], None, "SNDI_SHARED_WORK", "", "")
+
+    FIFO_CTRL_INIT = Symbol([0x2BB564], [0x22BB564], None, "FIFO_CTRL_INIT", "", "")
+
+    FSI_ARC_ROM = Symbol([0x2BB614], [0x22BB614], None, "FSI_ARC_ROM", "", "")
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
         [0x324CB4],

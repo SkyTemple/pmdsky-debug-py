@@ -7925,6 +7925,11 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    SPECIAL_ACTORS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SMD_EVENTS_FUN_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -7958,6 +7963,16 @@ class Arm9DataProtocol(Protocol):
     OSI_CONSOLE_TYPE_CACHE: Symbol[
         Optional[list[int]],
         Optional[int],
+    ]
+
+    FSI_DIGEST_KEY_LEN: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DAY_OF_YEAR: Symbol[
+        Optional[list[int]],
+        None,
     ]
 
     RAND_SEQUENCE_NUM: Symbol[
@@ -8172,6 +8187,11 @@ class ItcmFunctionsProtocol(Protocol):
 
     MIi_DmaSetParams_NoInt: Symbol[
         Optional[list[int]],
+        None,
+    ]
+
+    Mii_DmaSetParams_Wait_NoInt: Symbol[
+        list[int],
         None,
     ]
 
@@ -43059,7 +43079,22 @@ class RamDataProtocol(Protocol):
         None,
     ]
 
+    CALLBACK_TABLE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     SNDI_SHARED_WORK: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FIFO_CTRL_INIT: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FSI_ARC_ROM: Symbol[
         Optional[list[int]],
         None,
     ]

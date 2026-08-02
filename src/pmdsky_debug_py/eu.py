@@ -6537,8 +6537,8 @@ class EuArm9Functions:
     )
 
     SetWindowTitle = Symbol(
-        [0x30D28],
-        [0x2030D28],
+        [0x30D20],
+        [0x2030D20],
         None,
         "SetWindowTitle",
         "Sets the string ID to use for a window's title.\n\nr0: window id\nr1: string id",
@@ -14229,6 +14229,15 @@ class EuArm9Data:
         "struct rescue_bin_unpack",
     )
 
+    SPECIAL_ACTORS = Symbol(
+        [0xB144C],
+        [0x20B144C],
+        0x38,
+        "SPECIAL_ACTORS",
+        "Actors that require special handling for the game to display, such as the player and partner.\n\ntype: special_actors struct",
+        "struct special_actors",
+    )
+
     SMD_EVENTS_FUN_TABLE = Symbol(
         [0xB14D4],
         [0x20B14D4],
@@ -14272,6 +14281,12 @@ class EuArm9Data:
     OSI_CONSOLE_TYPE_CACHE = Symbol(
         [0xB34F0], [0x20B34F0], 0x4, "OSI_CONSOLE_TYPE_CACHE", "", "uint32_t"
     )
+
+    FSI_DIGEST_KEY_LEN = Symbol(
+        [0xB34FC], [0x20B34FC], None, "FSI_DIGEST_KEY_LEN", "", ""
+    )
+
+    DAY_OF_YEAR = Symbol([0xB37E0], [0x20B37E0], None, "DAY_OF_YEAR", "", "")
 
     RAND_SEQUENCE_NUM = Symbol(
         [0xB3B68],
@@ -14629,6 +14644,15 @@ class EuItcmFunctions:
 
     MIi_DmaSetParams_NoInt = Symbol(
         None, None, None, "MIi_DmaSetParams_NoInt", "", None
+    )
+
+    Mii_DmaSetParams_Wait_NoInt = Symbol(
+        [0x1B3C],
+        [0x20B57FC],
+        None,
+        "Mii_DmaSetParams_Wait_NoInt",
+        "r0: channel id\nr1: source address\nr2: destination address\nr3: word count",
+        None,
     )
 
     ShouldMonsterRunAwayAndShowEffectOutlawCheck = Symbol(
@@ -18677,9 +18701,15 @@ class EuLibsFunctions:
 
     MI_CpuCopy8 = _Deprecated("MI_CpuCopy8", MemcpyFast)
 
+    MI_SwapWord = _Deprecated("MI_SwapWord", AtomicExchange)
+
+    MIi_CardDmaCopy32 = _Deprecated("MIi_CardDmaCopy32", MTi_CardDmaCopy32)
+
     FileInit = _Deprecated("FileInit", FS_InitFile)
 
     GetOverlayInfo = _Deprecated("GetOverlayInfo", FS_LoadOverlayInfo)
+
+    FS_LoadOverlayImage = _Deprecated("FS_LoadOverlayImage", FS_LoadOverlayImageAsync)
 
     LoadOverlayInternal = _Deprecated("LoadOverlayInternal", FS_LoadOverlayImageAsync)
 
@@ -18692,6 +18722,12 @@ class EuLibsFunctions:
     Math_MD5Digest = _Deprecated("Math_MD5Digest", MD5_Digest)
 
     Math_MD5Transform = _Deprecated("Math_MD5Transform", MD5_Transform)
+
+    Dgt_Hash2Reset = _Deprecated("Dgt_Hash2Reset", Dgt_Hash2Init)
+
+    Dgt_Hash2SetSource = _Deprecated("Dgt_Hash2SetSource", Dgt_Hash2Update)
+
+    Dgt_Hash2GetDigest = _Deprecated("Dgt_Hash2GetDigest", Dgt_Hash2GetHash)
 
     mbtowc = _Deprecated("mbtowc", _mbtowc_noconv)
 
@@ -54874,7 +54910,20 @@ class EuRamData:
 
     RESERVE_LIST = Symbol([0x2BA360], [0x22BA360], None, "RESERVE_LIST", "", "")
 
+    CALLBACK_TABLE = Symbol(
+        [0x2BBE40],
+        [0x22BBE40],
+        0x60,
+        "CALLBACK_TABLE",
+        "",
+        "struct alarm_callback_info[8]",
+    )
+
     SNDI_SHARED_WORK = Symbol([0x2BBEA0], [0x22BBEA0], None, "SNDI_SHARED_WORK", "", "")
+
+    FIFO_CTRL_INIT = Symbol([0x2BBEA4], [0x22BBEA4], None, "FIFO_CTRL_INIT", "", "")
+
+    FSI_ARC_ROM = Symbol([0x2BBF54], [0x22BBF54], None, "FSI_ARC_ROM", "", "")
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
         None,
