@@ -2532,6 +2532,16 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetPixelOffsetFromSprite: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FillPixelOffsetArrayFromSprite: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     FillOamAdjustmentInfo: Symbol[
         Optional[list[int]],
         None,
@@ -24475,7 +24485,7 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetEffectAnimationField0x19: Symbol[
+    GetEffectAnimationWanOffset: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -24485,7 +24495,7 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
-    AnimationHasMoreFrames: Symbol[
+    BlockingAnimationInProgress: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36709,7 +36719,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    AnimationDelayOrSomething: Symbol[
+    FinishPlayingEffectAnimations: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37839,6 +37849,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    TryPointCameraToFarOffTeammate: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     TryPointCameraToMonster: Symbol[
         Optional[list[int]],
         None,
@@ -38679,6 +38694,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    ResetTypeChanges: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     EndProtectStatus: Symbol[
         Optional[list[int]],
         None,
@@ -39194,7 +39214,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    EndLeechSeedStatusForAllTargets: Symbol[
+    EndLeechSeedClassStatusForAllTargets: Symbol[
         Optional[list[int]],
         None,
     ]

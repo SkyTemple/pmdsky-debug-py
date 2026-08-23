@@ -4475,6 +4475,24 @@ class NaArm9Functions:
         None,
     )
 
+    GetPixelOffsetFromSprite = Symbol(
+        [0x1CF90],
+        [0x201CF90],
+        None,
+        "GetPixelOffsetFromSprite",
+        "Converts a WAN offset on a sprite into a pixel offset.\n\nr0: [output] pixel offset (99 in a field means there is no offset)\nr1: animation_control of sprite\nr2: WAN offset type",
+        None,
+    )
+
+    FillPixelOffsetArrayFromSprite = Symbol(
+        [0x1D034],
+        [0x201D034],
+        None,
+        "FillPixelOffsetArrayFromSprite",
+        "Converts the first array_len WAN offsets on a sprite into an array of pixel offsets.\n\nr0: [output] array of pixel offsets of size array_len (99 in a field means there is no offset)\nr1: array_len\nr2: animation_control of sprite",
+        None,
+    )
+
     FillOamAdjustmentInfo = Symbol(
         [0x1D110],
         [0x201D110],
@@ -28550,16 +28568,16 @@ class NaOverlay10Functions:
         [0x22BD75C],
         None,
         "LoadPaletteBase",
-        "Loads either the 8bpp or 4bpp palette base (from WAN file 292 or 1, respectively).\n\nSee https://github.com/WraithFire/wanimation-studio/blob/master/docs/README.md#sprite-modes\n\nr0: sprite index in wan_table to load from\nr1: 0 for 8bpp, 1 for 4bpp",
+        "Loads either the 8bpp or 4bpp palette base (from WAN file 292 or 1, respectively).\n\nSee https://github.com/WraithFire/wanimation-studio/blob/master/docs/README.md#sprite-modes\n\nr0: sprite index in wan_table to load from\nr1: 0 for 8bpp, 1 for 4bpp\nr2: starting palette number for 4bpp",
         None,
     )
 
-    GetEffectAnimationField0x19 = Symbol(
+    GetEffectAnimationWanOffset = Symbol(
         [0x1434],
         [0x22BDEB4],
         None,
-        "GetEffectAnimationField0x19",
-        "Calls GetEffectAnimation and returns field 0x19.\n\nr0: anim_id\nreturn: GetEffectAnimation(anim_id)->field_0x19.",
+        "GetEffectAnimationWanOffset",
+        "Calls GetEffectAnimation and returns its wan_offset field.\n\nr0: anim_id\nreturn: GetEffectAnimation(anim_id)->wan_offset",
         None,
     )
 
@@ -28572,12 +28590,12 @@ class NaOverlay10Functions:
         None,
     )
 
-    AnimationHasMoreFrames = Symbol(
+    BlockingAnimationInProgress = Symbol(
         [0x2E84],
         [0x22BF904],
         None,
-        "AnimationHasMoreFrames",
-        "Just a guess. This is called in a loop in PlayEffectAnimation, and the output controls whether or not AdvanceFrame continues to be called.\nIf the current effect animation's is_non_blocking field is set, the function will return false the very first time it is called.\n\nr0: ?\nreturn: whether or not the animation still has more frames left?",
+        "BlockingAnimationInProgress",
+        "Checks if there is an effect animation with the given unique id in progress and if so, whether its is_non_blocking field is 0.\n\nr0: unique id of animation\nreturn: bool",
         None,
     )
 
@@ -28723,6 +28741,10 @@ class NaOverlay10Functions:
         "MainGame",
         "Contains several functions that handle switching between ground and dungeon mode. It also handles other situations, like what happens right after exiting a dungeon.\n\nThe function doesn't get called until the player selects the option to resume a saved game and doesn't return until the player returns to the main menu.\n\nr0: End condition code? Seems to control what tasks get run and what transition happens when the dungeon ends\nreturn: return code?",
         None,
+    )
+
+    AnimationHasMoreFrames = _Deprecated(
+        "AnimationHasMoreFrames", BlockingAnimationInProgress
     )
 
 
@@ -42811,7 +42833,7 @@ class NaOverlay29Functions:
         [0x22E35E4],
         None,
         "PlayEffectAnimationEntity",
-        "Just a guess. This appears to be paired often with GetEffectAnimationField0x19, and also has calls AnimationHasMoreFrames in a loop alongside AdvanceFrame(66) calls.\n\nThe third parameter skips the loop entirely. It seems like in this case the function might just preload some animation frames for later use??\n\nr0: entity pointer\nr1: Effect ID\nr2: appears to be a flag for actually running the animation now? If this is 0, the AdvanceFrame loop is skipped entirely.\nstack[2]: direction of effect\nstack[3]: custom oam_adjustment_info array for the animation_control struct (length 6, or null if should use default values)\nothers: ?\nreturn: status code, or maybe the number of frames or something? Either way, -1 seems to indicate the animation being finished or something?",
+        "Plays an effect animation on an entity.\n\nr0: entity pointer\nr1: Effect ID\nr2: whether the effect is blocking or not (i.e. whether the function should wait until it is finished or 100 frames have passed to return)\nr3: WAN offset on entity sprite to use\nstack[0]: if 2, waits until any in-progress effects are finished before playing the given one; if 1, waits only for blocking effects\nstack[1]: whether to still play the effect even if the entity is using a non-flying two-turn move like Dig or Shadow Force\nstack[2]: direction of effect\nstack[3]: custom oam_adjustment_info array for the animation_control struct (length 6, or null if should use default values)\nreturn: -1 if the animation is finished / exceeded 100 frames, or a unique id for the playing effect otherwise",
         None,
     )
 
@@ -42820,7 +42842,7 @@ class NaOverlay29Functions:
         [0x22E37DC],
         None,
         "PlayEffectAnimationPos",
-        "Takes a position struct in r0 and converts it to a pixel position struct before calling PlayEffectAnimationPixelPos\n\nr0: Position where the effect should be played\nr1: Effect ID\nr2: Unknown flag (same as the one in PlayEffectAnimationEntity)\nreturn: Result of call to PlayEffectAnimationPixelPos",
+        "Takes a position struct in r0 and converts it to a pixel position struct before calling PlayEffectAnimationPixelPos\n\nr0: Position where the effect should be played\nr1: Effect ID\nr2: whether the effect is blocking or not (i.e. whether the function should wait until it is finished or 100 frames have passed to return)\nreturn: -1 if the animation is finished / exceeded 100 frames, or a unique id for the playing effect otherwise",
         None,
     )
 
@@ -42829,16 +42851,16 @@ class NaOverlay29Functions:
         [0x22E3820],
         None,
         "PlayEffectAnimationPixelPos",
-        "Seems like a variant of PlayEffectAnimationEntity that uses pixel coordinates as its first parameter instead of an entity pointer.\n\nr0: Pixel position where the effect should be played\nr1: Effect ID\nr2: Unknown flag (same as the one in PlayEffectAnimationEntity)\nreturn: Same as PlayEffectAnimationEntity",
+        "Seems like a variant of PlayEffectAnimationEntity that uses pixel coordinates as its first parameter instead of an entity pointer.\n\nr0: Pixel position where the effect should be played\nr1: Effect ID\nr2: whether the effect is blocking or not (i.e. whether the function should wait until it is finished or 100 frames have passed to return)\nreturn: -1 if the animation is finished / exceeded 100 frames, or a unique id for the playing effect otherwise",
         None,
     )
 
-    AnimationDelayOrSomething = Symbol(
+    FinishPlayingEffectAnimations = Symbol(
         [0x76A0],
         [0x22E38E0],
         None,
-        "AnimationDelayOrSomething",
-        "Called whenever most (all?) animations are played. Does not return until the animation is over.\n\nMight wait until the animation is done? Contains several loops that call AdvanceFrame.\n\nr0: ?",
+        "FinishPlayingEffectAnimations",
+        "Waits until currently playing effect animations are finished, and returns only when they are done. Might have some other effects too.\n\nr0: if 0, will only wait until effects with an is_non_blocking field equal to 0 finish; if 1, waits for all effects to finish",
         None,
     )
 
@@ -44887,12 +44909,21 @@ class NaOverlay29Functions:
         None,
     )
 
+    TryPointCameraToFarOffTeammate = Symbol(
+        [0x1D600],
+        [0x22F9840],
+        None,
+        "TryPointCameraToFarOffTeammate",
+        "Attempts to place the camera on top of the specified teammate.\n\nIf the monster is already onscreen or the far-off pals option is disabled, the function does nothing.\n\nr0: entity pointer",
+        None,
+    )
+
     TryPointCameraToMonster = Symbol(
         [0x1D674],
         [0x22F98B4],
         None,
         "TryPointCameraToMonster",
-        "Attempts to place the camera on top of the specified monster.\n\nIf the camera is already on top of the specified entity, the function does nothing.\n\nr0: Entity pointer. Must be a monster, otherwise the function does nothing.\nr1: ?\nr2: ?",
+        "Attempts to place the camera on top of the specified monster.\n\nIf the camera is already on top of the specified entity, the function does nothing.\n\nr0: Entity pointer. Must be a monster, otherwise the function does nothing.\nr1: ?\nr2: whether to fill the minimap at the monster's position",
         None,
     )
 
@@ -46425,6 +46456,15 @@ class NaOverlay29Functions:
         None,
     )
 
+    ResetTypeChanges = Symbol(
+        [0x2BAA0],
+        [0x2307CE0],
+        None,
+        "ResetTypeChanges",
+        "Resets any type changes that the given monster has undergone.\n\nr0: entity pointer",
+        None,
+    )
+
     EndProtectStatus = Symbol(
         [0x2BAD8],
         [0x2307D18],
@@ -47352,12 +47392,12 @@ class NaOverlay29Functions:
         None,
     )
 
-    EndLeechSeedStatusForAllTargets = Symbol(
+    EndLeechSeedClassStatusForAllTargets = Symbol(
         [0x39794],
         [0x23159D4],
         None,
-        "EndLeechSeedStatusForAllTargets",
-        "Ends the Leech Seed status for all monsters that the given monster gave the status to.\n\nr0: user entity pointer",
+        "EndLeechSeedClassStatusForAllTargets",
+        "Ends the Leech Seed and Destiny Bond status for all monsters that the given monster gave the status to.\n\nr0: user entity pointer",
         None,
     )
 
@@ -51204,6 +51244,10 @@ class NaOverlay29Functions:
         None,
     )
 
+    AnimationDelayOrSomething = _Deprecated(
+        "AnimationDelayOrSomething", FinishPlayingEffectAnimations
+    )
+
     CreateMonsterSummaryFromMonster = _Deprecated(
         "CreateMonsterSummaryFromMonster", CreateMonsterSummaryFromEntity
     )
@@ -51217,6 +51261,10 @@ class NaOverlay29Functions:
     )
 
     GetFlashFireStatus = _Deprecated("GetFlashFireStatus", FlashFireShouldActivate)
+
+    EndLeechSeedStatusForAllTargets = _Deprecated(
+        "EndLeechSeedStatusForAllTargets", EndLeechSeedClassStatusForAllTargets
+    )
 
     GetPaletteBaseAddress = _Deprecated(
         "GetPaletteBaseAddress", GetPaletteBaseAddressOv29
