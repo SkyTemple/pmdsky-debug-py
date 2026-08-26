@@ -28970,6 +28970,15 @@ class JpOverlay10Data:
         "int16_t",
     )
 
+    EARTH_POWER_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
+        [0x7948],
+        [0x22C5B68],
+        0x2,
+        "EARTH_POWER_LOWER_SPECIAL_DEFENSE_CHANCE",
+        "The chance of Earth Power lowering special defense, as a percentage (20%).",
+        "int16_t",
+    )
+
     MUDDY_WATER_LOWER_ACCURACY_CHANCE = Symbol(
         [0x794C],
         [0x22C5B6C],
@@ -29201,6 +29210,24 @@ class JpOverlay10Data:
         0x2,
         "OCTAZOOKA_LOWER_ACCURACY_CHANCE",
         "The chance of Octazooka lowering accuracy, as a percentage (60%).",
+        "int16_t",
+    )
+
+    SEED_FLARE_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
+        [0x79CC],
+        [0x22C5BEC],
+        0x2,
+        "SEED_FLARE_LOWER_SPECIAL_DEFENSE_CHANCE",
+        "The chance of Seed Flare lowering special defense, as a percentage (20%).",
+        "int16_t",
+    )
+
+    FLASH_CANNON_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
+        [0x79D0],
+        [0x22C5BF0],
+        0x2,
+        "FLASH_CANNON_LOWER_SPECIAL_DEFENSE_CHANCE",
+        "The chance of Flash Cannon lowering special defense, as a percentage (20%).",
         "int16_t",
     )
 
@@ -29555,12 +29582,30 @@ class JpOverlay10Data:
         "int16_t",
     )
 
+    ACID_PSYCHIC_LOWER_DEFENSE_CHANCE = Symbol(
+        [0x7AD4],
+        [0x22C5CF4],
+        0x2,
+        "ACID_PSYCHIC_LOWER_DEFENSE_CHANCE",
+        "The chance of Acid lowering defense and Psychic lowering special defense, as a percentage (20%).",
+        "int16_t",
+    )
+
     BURN_DAMAGE_COOLDOWN = Symbol(
         [0x7AD8],
         [0x22C5CF8],
         0x2,
         "BURN_DAMAGE_COOLDOWN",
         "The number of turns between passive burn damage.",
+        "int16_t",
+    )
+
+    BUG_BUZZ_LOWER_SPECIAL_DEFENSE_CHANCE = Symbol(
+        [0x7ADC],
+        [0x22C5CFC],
+        0x2,
+        "BUG_BUZZ_LOWER_SPECIAL_DEFENSE_CHANCE",
+        "The chance of Bug Buzz lowering special defense, as a percentage (20%).",
         "int16_t",
     )
 
@@ -47165,7 +47210,7 @@ class JpOverlay29Functions:
         [0x2315224],
         None,
         "ApplyOffensiveStatMultiplier",
-        "Applies a multiplier to the specified offensive stat on the target monster.\n\nThis affects struct monster_stat_modifiers::offensive_multipliers, for moves like Charm and Memento.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: stat index\nr3: multiplier\nstack[0]: ?",
+        "Applies a multiplier to the specified offensive stat on the target monster.\n\nThis affects struct monster_stat_modifiers::offensive_multipliers, for moves like Charm and Memento.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: stat index\nr3: multiplier\nstack[0]: whether to display a message indicating the stat multiplier change",
         None,
     )
 
@@ -47174,7 +47219,7 @@ class JpOverlay29Functions:
         [0x2315444],
         None,
         "ApplyDefensiveStatMultiplier",
-        "Applies a multiplier to the specified defensive stat on the target monster.\n\nThis affects struct monster_stat_modifiers::defensive_multipliers, for moves like Screech.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: stat index\nr3: multiplier\nstack[0]: ?",
+        "Applies a multiplier to the specified defensive stat on the target monster.\n\nThis affects struct monster_stat_modifiers::defensive_multipliers, for moves like Screech.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: stat index\nr3: multiplier\nstack[0]: whether to display a message indicating the stat multiplier change",
         None,
     )
 

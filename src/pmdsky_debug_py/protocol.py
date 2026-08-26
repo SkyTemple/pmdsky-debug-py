@@ -24708,6 +24708,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    EARTH_POWER_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     MUDDY_WATER_LOWER_ACCURACY_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -24834,6 +24839,16 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     OCTAZOOKA_LOWER_ACCURACY_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    SEED_FLARE_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    FLASH_CANNON_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -25033,7 +25048,17 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    ACID_PSYCHIC_LOWER_DEFENSE_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     BURN_DAMAGE_COOLDOWN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    BUG_BUZZ_LOWER_SPECIAL_DEFENSE_CHANCE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
