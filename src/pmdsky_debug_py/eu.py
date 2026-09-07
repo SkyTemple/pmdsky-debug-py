@@ -3355,7 +3355,7 @@ class EuArm9Functions:
         [0x2013828],
         None,
         "FormatMoveStringMore",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: ???\nr1: ???\nr2: move\nr3: type_print",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: preprocessor_args pointer\nr1: position in preprocessor_args id_vals array\nr2: move\nr3: type_print",
         None,
     )
 
@@ -28564,12 +28564,66 @@ class EuOverlay10Functions:
         None,
     )
 
+    TerminateAllEffects = Symbol(
+        [0x1148],
+        [0x22BE508],
+        None,
+        "TerminateAllEffects",
+        "Terminates all currently playing live effects.\n\nNo params.",
+        None,
+    )
+
+    TerminateEffect = Symbol(
+        [0x123C],
+        [0x22BE5FC],
+        None,
+        "TerminateEffect",
+        "Makes the live effect with the given unique id stop playing in the middle of execution.\n\nr0: unique id\nr1: true if the effect does not have type WAN File 0/1",
+        None,
+    )
+
+    TerminateEffectWrapper = Symbol(
+        [0x13D0],
+        [0x22BE790],
+        None,
+        "TerminateEffectWrapper",
+        "Wrapper for TerminateEffect.\n\nr0: unique id",
+        None,
+    )
+
     GetEffectAnimationWanOffset = Symbol(
         [0x1434],
         [0x22BE7F4],
         None,
         "GetEffectAnimationWanOffset",
         "Calls GetEffectAnimation and returns its wan_offset field.\n\nr0: anim_id\nreturn: GetEffectAnimation(anim_id)->wan_offset",
+        None,
+    )
+
+    PlayEffect = Symbol(
+        [0x1540],
+        [0x22BE900],
+        None,
+        "PlayEffect",
+        "Fills a live_effect struct's fields with specific effect-related information to begin playback.\n\nNote that some initialization must be done first (see callsites).\n\nr0: live_effect\nr1: screen",
+        None,
+    )
+
+    GetLiveEffectIdx = Symbol(
+        [0x1F20],
+        [0x22BF2E0],
+        None,
+        "GetLiveEffectIdx",
+        "Gets a live effect's index in EFFECT_CONTROL.live_effects from its unique id.\n\nr0: unique id\nreturn: index, or -1 if it is not present",
+        None,
+    )
+
+    DisplayEffect = Symbol(
+        [0x2A70],
+        [0x22BFE30],
+        None,
+        "DisplayEffect",
+        "Displays the current frame of an effect animation, also handling playing the sound effect if necessary.\n\nr0: live_effect\nr1: pixel position of camera\nreturn: true if the effect's is_non_blocking field is 0, false otherwise",
         None,
     )
 
@@ -43547,7 +43601,7 @@ class EuOverlay29Functions:
         [0x22E3F94],
         None,
         "PlayEffectAnimationEntity",
-        "Plays an effect animation on an entity.\n\nr0: entity pointer\nr1: Effect ID\nr2: whether the effect is blocking or not (i.e. whether the function should wait until it is finished or 100 frames have passed to return)\nr3: WAN offset on entity sprite to use\nstack[0]: if 2, waits until any in-progress effects are finished before playing the given one; if 1, waits only for blocking effects\nstack[1]: whether to still play the effect even if the entity is using a non-flying two-turn move like Dig or Shadow Force\nstack[2]: direction of effect\nstack[3]: custom oam_adjustment_info array for the animation_control struct (length 6, or null if should use default values)\nreturn: -1 if the animation is finished / exceeded 100 frames, or a unique id for the playing effect otherwise",
+        "Plays an effect animation on an entity.\n\nr0: entity pointer\nr1: Effect ID\nr2: if the effect is blocking, whether the function should wait until it is finished or 100 frames have passed to return\nr3: WAN offset on entity sprite to use\nstack[0]: if 2, waits until any in-progress effects are finished before playing the given one; if 1, waits only for blocking effects\nstack[1]: whether to still play the effect even if the entity is using a non-flying two-turn move like Dig or Shadow Force\nstack[2]: direction of effect\nstack[3]: custom oam_adjustment_info array for the animation_control struct (length 6, or null if should use default values)\nreturn: -1 if the animation is finished / exceeded 100 frames, or a unique id for the playing effect otherwise",
         None,
     )
 
@@ -43556,7 +43610,7 @@ class EuOverlay29Functions:
         [0x22E418C],
         None,
         "PlayEffectAnimationPos",
-        "Takes a position struct in r0 and converts it to a pixel position struct before calling PlayEffectAnimationPixelPos\n\nr0: Position where the effect should be played\nr1: Effect ID\nr2: whether the effect is blocking or not (i.e. whether the function should wait until it is finished or 100 frames have passed to return)\nreturn: -1 if the animation is finished / exceeded 100 frames, or a unique id for the playing effect otherwise",
+        "Takes a position struct in r0 and converts it to a pixel position struct before calling PlayEffectAnimationPixelPos\n\nr0: Position where the effect should be played\nr1: Effect ID\nr2: if the effect is blocking, whether the function should wait until it is finished or 100 frames have passed to return\nreturn: -1 if the animation is finished / exceeded 100 frames, or a unique id for the playing effect otherwise",
         None,
     )
 
@@ -43565,7 +43619,7 @@ class EuOverlay29Functions:
         [0x22E41D0],
         None,
         "PlayEffectAnimationPixelPos",
-        "Seems like a variant of PlayEffectAnimationEntity that uses pixel coordinates as its first parameter instead of an entity pointer.\n\nr0: Pixel position where the effect should be played\nr1: Effect ID\nr2: whether the effect is blocking or not (i.e. whether the function should wait until it is finished or 100 frames have passed to return)\nreturn: -1 if the animation is finished / exceeded 100 frames, or a unique id for the playing effect otherwise",
+        "Seems like a variant of PlayEffectAnimationEntity that uses pixel coordinates as its first parameter instead of an entity pointer.\n\nr0: Pixel position where the effect should be played\nr1: Effect ID\nr2: if the effect is blocking, whether the function should wait until it is finished or 100 frames have passed to return\nreturn: -1 if the animation is finished / exceeded 100 frames, or a unique id for the playing effect otherwise",
         None,
     )
 
@@ -43574,7 +43628,7 @@ class EuOverlay29Functions:
         [0x22E4290],
         None,
         "FinishPlayingEffectAnimations",
-        "Waits until currently playing effect animations are finished, and returns only when they are done. Might have some other effects too.\n\nr0: if 0, will only wait until effects with an is_non_blocking field equal to 0 finish; if 1, waits for all effects to finish",
+        "Waits until currently playing effect animations are finished, and returns only when they are done. Might have some other effects too.\n\nr0: if 0, will only wait for effects with an is_non_blocking field equal to 0; if 1, waits for all effects to finish",
         None,
     )
 
@@ -43791,6 +43845,15 @@ class EuOverlay29Functions:
         None,
         "PlaySeByIdIfShouldDisplayEntity",
         "Plays the specified sound effect if ShouldDisplayEntityAdvanced returns true for the entity (or if the entity pointer is null).\n\nr0: entity pointer\nr1: Sound effect ID",
+        None,
+    )
+
+    PlayItemThrowSfx = Symbol(
+        [0x9558],
+        [0x22E60D8],
+        None,
+        "PlayItemThrowSfx",
+        "Plays the appropriate sound effect for throwing an item based on its category.\n\nr0: user entity pointer (unused)\nr1: item category",
         None,
     )
 
@@ -44232,6 +44295,15 @@ class EuOverlay29Functions:
         None,
         "TickStatusTurnCounter",
         "Ticks down a turn counter for a status condition. If the counter equals 0x7F, it will not be decreased.\n\nr0: pointer to the status turn counter\nreturn: new counter value",
+        None,
+    )
+
+    GetCurvedProjectileTargetPos = Symbol(
+        [0xD8CC],
+        [0x22EA44C],
+        None,
+        "GetCurvedProjectileTargetPos",
+        "Gets the position a curved projectile should land at when thrown by the user.\n\nr0: [output] position\nr1: user entity pointer",
         None,
     )
 
@@ -45288,6 +45360,51 @@ class EuOverlay29Functions:
         None,
     )
 
+    GetShopkeeperIfTalkable = Symbol(
+        [0x1A048],
+        [0x22F6BC8],
+        None,
+        "GetShopkeeperIfTalkable",
+        "Returns a pointer to the floor's shopkeeper, or an invalid entity pointer if there is none, they cannot be talked to, or they are not in the same room as the leader.\n\nr0: leader pointer\nreturn: shopkeeper pointer",
+        None,
+    )
+
+    HandleShopTransaction = Symbol(
+        [0x1A104],
+        [0x22F6C84],
+        None,
+        "HandleShopTransaction",
+        "Checks if a Kecleon shop transaction should occur and initiates it if so.\n\nr0: whether to attempt a transaction even if the leader is still standing in the shop",
+        None,
+    )
+
+    TrySellToShop = Symbol(
+        [0x1A598],
+        [0x22F7118],
+        None,
+        "TrySellToShop",
+        "Handles selling to a Kecleon shop.\n\nr0: ?",
+        None,
+    )
+
+    TryBuyFromShop = Symbol(
+        [0x1A844],
+        [0x22F73C4],
+        None,
+        "TryBuyFromShop",
+        "Handles buying from a Kecleon shop.\n\nr0: ?\nreturn: 0 if the purchase was successful, 1 or 2 if should be treated as a theft",
+        None,
+    )
+
+    TriggerThiefAlert = Symbol(
+        [0x1AAE4],
+        [0x22F7664],
+        None,
+        "TriggerThiefAlert",
+        "Triggers the sequence for stealing from a Kecleon shop.\n\nNo params.",
+        None,
+    )
+
     ResetDamageData = Symbol(
         [0x1AC50],
         [0x22F77D0],
@@ -45450,12 +45567,12 @@ class EuOverlay29Functions:
         None,
     )
 
-    CanMonsterBeAddedToTeam = Symbol(
+    MonsterCannotBeAddedToTeam = Symbol(
         [0x1B66C],
         [0x22F81EC],
         None,
-        "CanMonsterBeAddedToTeam",
-        "Returns false if there are already four members on the active team or if the total body size of the team would be greater than 6 if this monster was added.\n\nr0: entity pointer",
+        "MonsterCannotBeAddedToTeam",
+        "Returns true if there are already four members on the active team or if the total body size of the team would be greater than 6 if this monster was added.\n\nr0: entity pointer\nreturn: bool",
         None,
     )
 
@@ -45692,6 +45809,15 @@ class EuOverlay29Functions:
         None,
         "IsMonsterIdInNormalRangeVeneer",
         "Likely a linker-generated veneer for IsMonsterIdInNormalRange.\n\nSee https://developer.arm.com/documentation/dui0474/k/image-structure-and-generation/linker-generated-veneers/what-is-a-veneer-\n\nr0: monster ID\nreturn: bool",
+        None,
+    )
+
+    ActivateTerrainEffects = Symbol(
+        [0x1DB00],
+        [0x22FA680],
+        None,
+        "ActivateTerrainEffects",
+        "Handles causing the burn from lava, healing a burn from water, and decreasing hunger in the walls.\n\nr0: monster entity pointer",
         None,
     )
 
@@ -46234,6 +46360,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    CannotMoveToTile = Symbol(
+        [0x23610],
+        [0x2300190],
+        None,
+        "CannotMoveToTile",
+        "Same as CannotStandOnTile, but also returns false if the monster is currently on the tile.\n\nr0: Entity pointer\nr1: Tile position pointer\nreturn: True if the monster cannot move to the specified tile, false if it can",
+        None,
+    )
+
     GetMobilityTypeAfterIqSkills = Symbol(
         [0x23774],
         [0x23002F4],
@@ -46252,9 +46387,18 @@ class EuOverlay29Functions:
         None,
     )
 
+    CannotStandOnTileNoMonsterCheck = Symbol(
+        [0x23804],
+        [0x2300384],
+        None,
+        "CannotStandOnTileNoMonsterCheck",
+        "Same as CannotStandOnTile, but without the check for another monster on the tile.\n\nr0: Entity pointer\nr1: Tile position pointer\nreturn: True if the monster cannot stand on the specified tile, false if it can",
+        None,
+    )
+
     CannotStandOnTile = Symbol(
-        [0x23804, 0x23B48],
-        [0x2300384, 0x23006C8],
+        [0x23B48],
+        [0x23006C8],
         None,
         "CannotStandOnTile",
         "Checks if a given monster cannot stand on the tile at the given position.\n\nReasons include:\n- The coordinates of the tile are out of bounds\n- There's another monster on the tile\n- The monster does not have the required mobility to stand on the tile\n\nr0: Entity pointer\nr1: Tile position pointer\nreturn: True if the monster cannot stand on the specified tile, false if it can",
@@ -46447,6 +46591,15 @@ class EuOverlay29Functions:
         None,
         "CheckVariousStatuses2",
         "Returns 0 if none of these conditions holds for the given entity:\nblinded (checked only if blind_check == 1),\nasleep, frozen, paused, infatuated, wrapping, wrapped, biding, petrified, or terrified.\n\nr0: Entity pointer\nr1: If true, return 1 if entity is blinded\nreturn: bool",
+        None,
+    )
+
+    CanBeTalkedTo = Symbol(
+        [0x24878],
+        [0x23013F8],
+        None,
+        "CanBeTalkedTo",
+        "Returns true if the monster doesn't have a status that prevents it from being talked to.\n\nr0: entity pointer\nreturn: bool",
         None,
     )
 
@@ -46918,6 +47071,15 @@ class EuOverlay29Functions:
         None,
     )
 
+    MakeMonsterIdleInDirectionIfValid = Symbol(
+        [0x288AC],
+        [0x230542C],
+        None,
+        "MakeMonsterIdleInDirectionIfValid",
+        "Makes the monster play their idle animation. Also makes them do so in the given direction and sets the direction field of their action struct if the direction parameter is between 0 and 7 (inclusive).\n\nr0: entity pointer\nr1: direction",
+        None,
+    )
+
     ChangeMonsterAnimationToIdle = Symbol(
         [0x288F4],
         [0x2305474],
@@ -47238,7 +47400,7 @@ class EuOverlay29Functions:
         [0x2309068],
         None,
         "ApplyDamageAndEffects",
-        "Calls ApplyDamage, then performs various 'post-damage' effects such as counter damage, statuses from abilities that activate on contact, and probably some other stuff.\n\nNote that this doesn't include the effect of Illuminate, which is specifically handled elsewhere.\n\nr0: attacker pointer\nr1: defender pointer\nr2: damage_data pointer\nr3: False Swipe flag (see ApplyDamage)\nstack[0]: experience flag (see ApplyDamage)\nstack[1]: Damage source (see HandleFaint)\nstack[2]: defender response flag. If true, the defender can respond to the attack with various effects. If false, the only post-damage effect that can happen is the Rage attack boost.",
+        "Calls ApplyDamage, then performs various 'post-damage' effects such as counter damage, statuses from abilities that activate on contact, and probably some other stuff.\n\nNote that this doesn't include the effect of Illuminate, which is specifically handled elsewhere.\n\nr0: attacker pointer\nr1: defender pointer\nr2: damage_data pointer\nr3: False Swipe flag (see ApplyDamage)\nstack[0]: experience flag (see ApplyDamage)\nstack[1]: Damage source (see HandleFaint)\nstack[2]: defender response flag. If true, the defender can respond to the attack with various effects. If false, the only post-damage effect that can happen is the Rage attack boost.\nstack[3]: is fissure",
         None,
     )
 
@@ -47247,7 +47409,7 @@ class EuOverlay29Functions:
         [0x2309A0C],
         None,
         "ApplyDamage",
-        "Applies damage to a monster. Displays the damage animation, lowers its health and handles reviving if applicable.\nThe EU version has some additional checks related to printing fainting messages under specific circumstances.\n\nr0: Attacker pointer\nr1: Defender pointer\nr2: Pointer to the damage_data struct that contains info about the damage to deal\nr3: False Swipe flag, causes the defender's HP to be set to 1 if it would otherwise have been 0\nstack[0]: experience flag, controls whether or not experience will be granted upon a monster fainting, and whether enemy evolution might be triggered\nstack[1]: Damage source (see HandleFaint)\nreturn: True if the target fainted (reviving does not count as fainting)",
+        "Applies damage to a monster. Displays the damage animation, lowers its health and handles reviving if applicable.\nThe EU version has some additional checks related to printing fainting messages under specific circumstances.\n\nr0: Attacker pointer\nr1: Defender pointer\nr2: Pointer to the damage_data struct that contains info about the damage to deal\nr3: False Swipe flag, causes the defender's HP to be set to 1 if it would otherwise have been 0\nstack[0]: experience flag, controls whether or not experience will be granted upon a monster fainting, and whether enemy evolution might be triggered\nstack[1]: Damage source (see HandleFaint)\nstack[2]: is fissure\nreturn: True if the target fainted (reviving does not count as fainting)",
         None,
     )
 
@@ -47346,7 +47508,7 @@ class EuOverlay29Functions:
         [0x230DC00],
         None,
         "CalcRecoilDamageFixed",
-        "Appears to calculate recoil damage to a monster.\n\nThis function wraps CalcDamageFixed using the monster as both the attacker and the defender, after doing some basic checks (like if the monster is already at 0 HP) and applying a boost from the Reckless ability if applicable.\n\nr0: entity pointer\nr1: fixed damage\nr2: ?\nr3: [output] struct containing info about the damage calculation\nstack[0]: move ID (interestingly, this doesn't seem to be used by the function)\nstack[1]: attack type\nstack[2]: damage source\nstack[3]: damage message\nothers: ?",
+        "Appears to calculate recoil damage to a monster.\n\nThis function wraps CalcDamageFixed using the monster as both the attacker and the defender, after doing some basic checks (like if the monster is already at 0 HP) and applying a boost from the Reckless ability if applicable.\n\nr0: entity pointer\nr1: fixed damage\nr2: experience flag (see ApplyDamage)\nr3: [output] struct containing info about the damage calculation\nstack[0]: move ID (interestingly, this doesn't seem to be used by the function)\nstack[1]: attack type\nstack[2]: damage source\nstack[3]: damage message\nstack[4]: defender response flag (see ApplyDamageAndEffects)\nstack[5]: is fissure (always 0)",
         None,
     )
 
@@ -47355,7 +47517,7 @@ class EuOverlay29Functions:
         [0x230DCB4],
         None,
         "CalcDamageFixed",
-        "Appears to calculate damage from a fixed-damage effect.\n\nr0: attacker pointer\nr1: defender pointer\nr2: fixed damage\nr3: experience flag (see ApplyDamage)\nstack[0]: [output] struct containing info about the damage calculation\nstack[1]: attack type\nstack[2]: move category\nstack[3]: damage source\nstack[4]: damage message\nothers: ?",
+        "Appears to calculate damage from a fixed-damage effect.\n\nr0: attacker pointer\nr1: defender pointer\nr2: fixed damage\nr3: experience flag (see ApplyDamage)\nstack[0]: [output] struct containing info about the damage calculation\nstack[1]: attack type\nstack[2]: move category\nstack[3]: damage source\nstack[4]: damage message\nstack[5]: defender response flag (see ApplyDamageAndEffects)\nstack[6]: is fissure",
         None,
     )
 
@@ -47364,7 +47526,7 @@ class EuOverlay29Functions:
         [0x230DE1C],
         None,
         "CalcDamageFixedNoCategory",
-        "A wrapper around CalcDamageFixed with the move category set to none.\n\nr0: attacker pointer\nr1: defender pointer\nr2: fixed damage\nr3: experience flag (see ApplyDamage)\nstack[0]: [output] struct containing info about the damage calculation\nstack[1]: attack type\nstack[2]: damage source\nstack[3]: damage message\nothers: ?",
+        "A wrapper around CalcDamageFixed with the move category set to none.\n\nr0: attacker pointer\nr1: defender pointer\nr2: fixed damage\nr3: experience flag (see ApplyDamage)\nstack[0]: [output] struct containing info about the damage calculation\nstack[1]: attack type\nstack[2]: damage source\nstack[3]: damage message\nstack[4]: defender response flag (see ApplyDamageAndEffects)\nstack[5]: is fissure (always 0)",
         None,
     )
 
@@ -47373,7 +47535,7 @@ class EuOverlay29Functions:
         [0x230DE68],
         None,
         "CalcDamageFixedWrapper",
-        "A wrapper around CalcDamageFixed.\n\nr0: attacker pointer\nr1: defender pointer\nr2: fixed damage\nr3: experience flag (see ApplyDamage)\nstack[0]: [output] struct containing info about the damage calculation\nstack[1]: attack type\nstack[2]: move category\nstack[3]: damage source\nstack[4]: damage message\nothers: ?",
+        "A wrapper around CalcDamageFixed.\n\nr0: attacker pointer\nr1: defender pointer\nr2: fixed damage\nr3: experience flag (see ApplyDamage)\nstack[0]: [output] struct containing info about the damage calculation\nstack[1]: attack type\nstack[2]: move category\nstack[3]: damage source\nstack[4]: damage message\nstack[5]: defender response flag (see ApplyDamageAndEffects)\nstack[6]: is fissure",
         None,
     )
 
@@ -49210,6 +49372,24 @@ class EuOverlay29Functions:
         None,
         "TryAftermathExplosion",
         "Creates the explosion for the ability aftermath if possible.\n\nThe target monster is considered the source of the explosion.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: coordinates where the explosion should take place (center)\nr3: explosion radius (only works correctly with 1 and 2)\nstack[0]: damage type\nstack[1]: damage source (normally DAMAGE_SOURCE_EXPLOSION)",
+        None,
+    )
+
+    CalcExplosionDamage = Symbol(
+        [0x4498C],
+        [0x232150C],
+        None,
+        "CalcExplosionDamage",
+        "Calculates and inflicts damage from an explosion.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: damage type\nr3: move id\nstack[0]: base fixed damage for non-teammates",
+        None,
+    )
+
+    CalcAftermathExplosionDamage = Symbol(
+        [0x44AB4],
+        [0x2321634],
+        None,
+        "CalcAftermathExplosionDamage",
+        "Calculates and inflicts damage from an aftermath explosion.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: damage type\nr3: move id\nstack[0]: base fixed damage for non-teammates",
         None,
     )
 
@@ -51962,6 +52142,10 @@ class EuOverlay29Functions:
         "AnimationDelayOrSomething", FinishPlayingEffectAnimations
     )
 
+    CanMonsterBeAddedToTeam = _Deprecated(
+        "CanMonsterBeAddedToTeam", MonsterCannotBeAddedToTeam
+    )
+
     CreateMonsterSummaryFromMonster = _Deprecated(
         "CreateMonsterSummaryFromMonster", CreateMonsterSummaryFromEntity
     )
@@ -53042,6 +53226,15 @@ class EuOverlay29Data:
         "uint32_t",
     )
 
+    EXPLOSION_FIXED_DAMAGES = Symbol(
+        [0x77780],
+        [0x2354300],
+        0xC,
+        "EXPLOSION_FIXED_DAMAGES",
+        "Array of damages indexed by radius for explosion damage (before reductions from exclusive items, etc).",
+        "uint32_t[3]",
+    )
+
     EXCL_ITEM_EFFECTS_EVASION_BOOST = Symbol(
         [0x77790],
         [0x2354310],
@@ -53292,6 +53485,15 @@ class EuOverlay31Functions:
         None,
     )
 
+    StairsDescriptionCallback = Symbol(
+        [0xA28],
+        [0x2383E48],
+        None,
+        "StairsDescriptionCallback",
+        "Callback function passed to CreateAdvancedTextBox for creating the description for the stairs in the info menu.\n\nr0: window_id",
+        None,
+    )
+
     CloseMainStairsMenu = Symbol(
         [0xA6C],
         [0x2383E8C],
@@ -53485,12 +53687,12 @@ class EuOverlay31Data:
         "",
     )
 
-    DUNGEON_WINDOW_PARAMS_5 = Symbol(
+    STAIRS_INFO_WINDOW_PARAMS = Symbol(
         [0x7644],
         [0x238AA64],
         0x10,
-        "DUNGEON_WINDOW_PARAMS_5",
-        "Note: unverified, ported from Irdkwia's notes",
+        "STAIRS_INFO_WINDOW_PARAMS",
+        "Parameters for the text box created after pressing Info in the stairs menu.",
         "struct window_params",
     )
 
@@ -53951,6 +54153,10 @@ class EuOverlay31Data:
         "OVERLAY31_UNKNOWN_POINTER__NA_238A28C",
         "Note: unverified, ported from Irdkwia's notes",
         "",
+    )
+
+    DUNGEON_WINDOW_PARAMS_5 = _Deprecated(
+        "DUNGEON_WINDOW_PARAMS_5", STAIRS_INFO_WINDOW_PARAMS
     )
 
     DUNGEON_SUBMENU_ITEMS_1 = _Deprecated(
@@ -55017,6 +55223,15 @@ class EuRamData:
     FIFO_CTRL_INIT = Symbol([0x2BBEA4], [0x22BBEA4], None, "FIFO_CTRL_INIT", "", "")
 
     FSI_ARC_ROM = Symbol([0x2BBF54], [0x22BBF54], None, "FSI_ARC_ROM", "", "")
+
+    EFFECT_CONTROL = Symbol(
+        [0x2DCB00],
+        [0x22DCB00],
+        0x27A4,
+        "EFFECT_CONTROL",
+        "The master struct containing information about how effects should be played and the ones that are currently active.",
+        "struct effect_control",
+    )
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
         None,

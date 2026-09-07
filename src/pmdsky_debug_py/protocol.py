@@ -24485,7 +24485,37 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
+    TerminateAllEffects: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TerminateEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TerminateEffectWrapper: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetEffectAnimationWanOffset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetLiveEffectIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    DisplayEffect: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36869,6 +36899,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayItemThrowSfx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlayMissSfx: Symbol[
         Optional[list[int]],
         None,
@@ -37110,6 +37145,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TickStatusTurnCounter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetCurvedProjectileTargetPos: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37699,6 +37739,31 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetShopkeeperIfTalkable: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    HandleShopTransaction: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TrySellToShop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TryBuyFromShop: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TriggerThiefAlert: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ResetDamageData: Symbol[
         Optional[list[int]],
         None,
@@ -37789,7 +37854,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    CanMonsterBeAddedToTeam: Symbol[
+    MonsterCannotBeAddedToTeam: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37910,6 +37975,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsMonsterIdInNormalRangeVeneer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ActivateTerrainEffects: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -38199,12 +38269,22 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    CannotMoveToTile: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetMobilityTypeAfterIqSkills: Symbol[
         Optional[list[int]],
         None,
     ]
 
     CanMoveThroughWalls: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CannotStandOnTileNoMonsterCheck: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -38315,6 +38395,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     CheckVariousStatuses2: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CanBeTalkedTo: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -38575,6 +38660,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ChangeMonsterAnimation: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    MakeMonsterIdleInDirectionIfValid: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -39850,6 +39940,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     TryAftermathExplosion: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CalcExplosionDamage: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    CalcAftermathExplosionDamage: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -41907,6 +42007,11 @@ class Overlay29DataProtocol(Protocol):
         Optional[int],
     ]
 
+    EXPLOSION_FIXED_DAMAGES: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     EXCL_ITEM_EFFECTS_EVASION_BOOST: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -42065,6 +42170,11 @@ class Overlay31FunctionsProtocol(Protocol):
         None,
     ]
 
+    StairsDescriptionCallback: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     CloseMainStairsMenu: Symbol[
         Optional[list[int]],
         None,
@@ -42173,7 +42283,7 @@ class Overlay31DataProtocol(Protocol):
         Optional[int],
     ]
 
-    DUNGEON_WINDOW_PARAMS_5: Symbol[
+    STAIRS_INFO_WINDOW_PARAMS: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -43142,6 +43252,11 @@ class RamDataProtocol(Protocol):
     FSI_ARC_ROM: Symbol[
         Optional[list[int]],
         None,
+    ]
+
+    EFFECT_CONTROL: Symbol[
+        Optional[list[int]],
+        Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_1_PTR: Symbol[
