@@ -50194,6 +50194,51 @@ class EuItcmOverlay30Functions:
         None,
     )
 
+    InitDataSerializerWriter = Symbol(
+        None,
+        None,
+        None,
+        "InitDataSerializerWriter",
+        "Initializes the quicksave data serializer when writing to it.\n\nr0: data_serializer struct\nr1: data stream for the data serializer to write data to.\nr2: number of bytes that the data stream can hold.",
+        None,
+    )
+
+    WriteBitsToDataSerializer = Symbol(
+        None,
+        None,
+        None,
+        "WriteBitsToDataSerializer",
+        "Writes bits to the quicksave data serializer from a source pointer.\n\nr0: data_serializer struct\nr1: pointer to the data to write to the data serializer.\nr2: number of bits to write to the data serializer.",
+        None,
+    )
+
+    InitDataSerializerReader = Symbol(
+        None,
+        None,
+        None,
+        "InitDataSerializerReader",
+        "Initializes the quicksave data serializer when reading from it.\n\nr0: data_serializer struct\nr1: data stream for the data serializer to read data from.\nr2: number of bytes that the data stream holds.",
+        None,
+    )
+
+    ReadBitsFromDataSerializer = Symbol(
+        None,
+        None,
+        None,
+        "ReadBitsFromDataSerializer",
+        "Reads bits to a pointer from the quicksave data serializer.\n\nr0: data_serializer struct\nr1: pointer to a buffer to hold data read from the data serializer.\nr2: number of bits to read from the data serializer.",
+        None,
+    )
+
+    FinishDataSerializer = Symbol(
+        None,
+        None,
+        None,
+        "FinishDataSerializer",
+        "Empty function called at the end of writing/reading quicksave data.\n\nr0: data_serializer struct",
+        None,
+    )
+
 
 class EuItcmOverlay30Data:
 

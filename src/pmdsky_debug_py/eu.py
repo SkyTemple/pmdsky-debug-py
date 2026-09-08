@@ -53372,6 +53372,51 @@ class EuOverlay30Functions:
         None,
     )
 
+    InitDataSerializerWriter = Symbol(
+        [0x3420],
+        [0x2386840],
+        None,
+        "InitDataSerializerWriter",
+        "Initializes the quicksave data serializer when writing to it.\n\nr0: data_serializer struct\nr1: data stream for the data serializer to write data to.\nr2: number of bytes that the data stream can hold.",
+        None,
+    )
+
+    WriteBitsToDataSerializer = Symbol(
+        [0x3438],
+        [0x2386858],
+        None,
+        "WriteBitsToDataSerializer",
+        "Writes bits to the quicksave data serializer from a source pointer.\n\nr0: data_serializer struct\nr1: pointer to the data to write to the data serializer.\nr2: number of bits to write to the data serializer.",
+        None,
+    )
+
+    InitDataSerializerReader = Symbol(
+        [0x3470],
+        [0x2386890],
+        None,
+        "InitDataSerializerReader",
+        "Initializes the quicksave data serializer when reading from it.\n\nr0: data_serializer struct\nr1: data stream for the data serializer to read data from.\nr2: number of bytes that the data stream holds.",
+        None,
+    )
+
+    ReadBitsFromDataSerializer = Symbol(
+        [0x3488],
+        [0x23868A8],
+        None,
+        "ReadBitsFromDataSerializer",
+        "Reads bits to a pointer from the quicksave data serializer.\n\nr0: data_serializer struct\nr1: pointer to a buffer to hold data read from the data serializer.\nr2: number of bits to read from the data serializer.",
+        None,
+    )
+
+    FinishDataSerializer = Symbol(
+        [0x34C0],
+        [0x23868E0],
+        None,
+        "FinishDataSerializer",
+        "Empty function called at the end of writing/reading quicksave data.\n\nr0: data_serializer struct",
+        None,
+    )
+
 
 class EuOverlay30Data:
 

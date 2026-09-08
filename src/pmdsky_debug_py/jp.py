@@ -28568,8 +28568,8 @@ class JpOverlay10Functions:
     )
 
     TerminateAllEffects = Symbol(
-        None,
-        None,
+        [0x114C],
+        [0x22BF36C],
         None,
         "TerminateAllEffects",
         "Terminates all currently playing live effects.\n\nNo params.",
@@ -28577,8 +28577,8 @@ class JpOverlay10Functions:
     )
 
     TerminateEffect = Symbol(
-        None,
-        None,
+        [0x1240],
+        [0x22BF460],
         None,
         "TerminateEffect",
         "Makes the live effect with the given unique id stop playing in the middle of execution.\n\nr0: unique id\nr1: true if the effect does not have type WAN File 0/1",
@@ -28586,8 +28586,8 @@ class JpOverlay10Functions:
     )
 
     TerminateEffectWrapper = Symbol(
-        None,
-        None,
+        [0x13D4],
+        [0x22BF5F4],
         None,
         "TerminateEffectWrapper",
         "Wrapper for TerminateEffect.\n\nr0: unique id",
@@ -28604,8 +28604,8 @@ class JpOverlay10Functions:
     )
 
     PlayEffect = Symbol(
-        None,
-        None,
+        [0x1544],
+        [0x22BF764],
         None,
         "PlayEffect",
         "Fills a live_effect struct's fields with specific effect-related information to begin playback.\n\nNote that some initialization must be done first (see callsites).\n\nr0: live_effect\nr1: screen",
@@ -28613,8 +28613,8 @@ class JpOverlay10Functions:
     )
 
     GetLiveEffectIdx = Symbol(
-        None,
-        None,
+        [0x1F24],
+        [0x22C0144],
         None,
         "GetLiveEffectIdx",
         "Gets a live effect's index in EFFECT_CONTROL.live_effects from its unique id.\n\nr0: unique id\nreturn: index, or -1 if it is not present",
@@ -28622,8 +28622,8 @@ class JpOverlay10Functions:
     )
 
     DisplayEffect = Symbol(
-        None,
-        None,
+        [0x2A74],
+        [0x22C0C94],
         None,
         "DisplayEffect",
         "Displays the current frame of an effect animation, also handling playing the sound effect if necessary.\n\nr0: live_effect\nr1: pixel position of camera\nreturn: true if the effect's is_non_blocking field is 0, false otherwise",
@@ -43173,8 +43173,8 @@ class JpOverlay29Functions:
     )
 
     PlayItemThrowSfx = Symbol(
-        None,
-        None,
+        [0x94B8],
+        [0x22E6D98],
         None,
         "PlayItemThrowSfx",
         "Plays the appropriate sound effect for throwing an item based on its category.\n\nr0: user entity pointer (unused)\nr1: item category",
@@ -43623,8 +43623,8 @@ class JpOverlay29Functions:
     )
 
     GetCurvedProjectileTargetPos = Symbol(
-        None,
-        None,
+        [0xD824],
+        [0x22EB104],
         None,
         "GetCurvedProjectileTargetPos",
         "Gets the position a curved projectile should land at when thrown by the user.\n\nr0: [output] position\nr1: user entity pointer",
@@ -44685,8 +44685,8 @@ class JpOverlay29Functions:
     )
 
     GetShopkeeperIfTalkable = Symbol(
-        None,
-        None,
+        [0x19F14],
+        [0x22F77F4],
         None,
         "GetShopkeeperIfTalkable",
         "Returns a pointer to the floor's shopkeeper, or an invalid entity pointer if there is none, they cannot be talked to, or they are not in the same room as the leader.\n\nr0: leader pointer\nreturn: shopkeeper pointer",
@@ -44694,8 +44694,8 @@ class JpOverlay29Functions:
     )
 
     HandleShopTransaction = Symbol(
-        None,
-        None,
+        [0x19FD0],
+        [0x22F78B0],
         None,
         "HandleShopTransaction",
         "Checks if a Kecleon shop transaction should occur and initiates it if so.\n\nr0: whether to attempt a transaction even if the leader is still standing in the shop",
@@ -44712,8 +44712,8 @@ class JpOverlay29Functions:
     )
 
     TryBuyFromShop = Symbol(
-        None,
-        None,
+        [0x1A714],
+        [0x22F7FF4],
         None,
         "TryBuyFromShop",
         "Handles buying from a Kecleon shop.\n\nr0: ?\nreturn: 0 if the purchase was successful, 1 or 2 if should be treated as a theft",
@@ -44721,8 +44721,8 @@ class JpOverlay29Functions:
     )
 
     TriggerThiefAlert = Symbol(
-        None,
-        None,
+        [0x1A9B0],
+        [0x22F8290],
         None,
         "TriggerThiefAlert",
         "Triggers the sequence for stealing from a Kecleon shop.\n\nNo params.",
@@ -45137,8 +45137,8 @@ class JpOverlay29Functions:
     )
 
     ActivateTerrainEffects = Symbol(
-        None,
-        None,
+        [0x1D94C],
+        [0x22FB22C],
         None,
         "ActivateTerrainEffects",
         "Handles causing the burn from lava, healing a burn from water, and decreasing hunger in the walls.\n\nr0: monster entity pointer",
@@ -45685,8 +45685,8 @@ class JpOverlay29Functions:
     )
 
     CannotMoveToTile = Symbol(
-        None,
-        None,
+        [0x23274],
+        [0x2300B54],
         None,
         "CannotMoveToTile",
         "Same as CannotStandOnTile, but also returns false if the monster is currently on the tile.\n\nr0: Entity pointer\nr1: Tile position pointer\nreturn: True if the monster cannot move to the specified tile, false if it can",
@@ -45919,8 +45919,8 @@ class JpOverlay29Functions:
     )
 
     CanBeTalkedTo = Symbol(
-        None,
-        None,
+        [0x244D0],
+        [0x2301DB0],
         None,
         "CanBeTalkedTo",
         "Returns true if the monster doesn't have a status that prevents it from being talked to.\n\nr0: entity pointer\nreturn: bool",
@@ -46396,8 +46396,8 @@ class JpOverlay29Functions:
     )
 
     MakeMonsterIdleInDirectionIfValid = Symbol(
-        None,
-        None,
+        [0x28670],
+        [0x2305F50],
         None,
         "MakeMonsterIdleInDirectionIfValid",
         "Makes the monster play their idle animation. Also makes them do so in the given direction and sets the direction field of their action struct if the direction parameter is between 0 and 7 (inclusive).\n\nr0: entity pointer\nr1: direction",
@@ -48700,8 +48700,8 @@ class JpOverlay29Functions:
     )
 
     CalcExplosionDamage = Symbol(
-        None,
-        None,
+        [0x44670],
+        [0x2321F50],
         None,
         "CalcExplosionDamage",
         "Calculates and inflicts damage from an explosion.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: damage type\nr3: move id\nstack[0]: base fixed damage for non-teammates",
@@ -48709,8 +48709,8 @@ class JpOverlay29Functions:
     )
 
     CalcAftermathExplosionDamage = Symbol(
-        None,
-        None,
+        [0x44798],
+        [0x2322078],
         None,
         "CalcAftermathExplosionDamage",
         "Calculates and inflicts damage from an aftermath explosion.\n\nr0: user entity pointer\nr1: target entity pointer\nr2: damage type\nr3: move id\nstack[0]: base fixed damage for non-teammates",
@@ -52453,8 +52453,8 @@ class JpOverlay29Data:
     )
 
     EXPLOSION_FIXED_DAMAGES = Symbol(
-        None,
-        None,
+        [0x770A0],
+        [0x2354980],
         None,
         "EXPLOSION_FIXED_DAMAGES",
         "Array of damages indexed by radius for explosion damage (before reductions from exclusive items, etc).",
@@ -52598,6 +52598,51 @@ class JpOverlay30Functions:
         None,
     )
 
+    InitDataSerializerWriter = Symbol(
+        [0x33FC],
+        [0x2386E9C],
+        None,
+        "InitDataSerializerWriter",
+        "Initializes the quicksave data serializer when writing to it.\n\nr0: data_serializer struct\nr1: data stream for the data serializer to write data to.\nr2: number of bytes that the data stream can hold.",
+        None,
+    )
+
+    WriteBitsToDataSerializer = Symbol(
+        [0x3414],
+        [0x2386EB4],
+        None,
+        "WriteBitsToDataSerializer",
+        "Writes bits to the quicksave data serializer from a source pointer.\n\nr0: data_serializer struct\nr1: pointer to the data to write to the data serializer.\nr2: number of bits to write to the data serializer.",
+        None,
+    )
+
+    InitDataSerializerReader = Symbol(
+        [0x344C],
+        [0x2386EEC],
+        None,
+        "InitDataSerializerReader",
+        "Initializes the quicksave data serializer when reading from it.\n\nr0: data_serializer struct\nr1: data stream for the data serializer to read data from.\nr2: number of bytes that the data stream holds.",
+        None,
+    )
+
+    ReadBitsFromDataSerializer = Symbol(
+        [0x3464],
+        [0x2386F04],
+        None,
+        "ReadBitsFromDataSerializer",
+        "Reads bits to a pointer from the quicksave data serializer.\n\nr0: data_serializer struct\nr1: pointer to a buffer to hold data read from the data serializer.\nr2: number of bits to read from the data serializer.",
+        None,
+    )
+
+    FinishDataSerializer = Symbol(
+        [0x349C],
+        [0x2386F3C],
+        None,
+        "FinishDataSerializer",
+        "Empty function called at the end of writing/reading quicksave data.\n\nr0: data_serializer struct",
+        None,
+    )
+
 
 class JpOverlay30Data:
 
@@ -52712,8 +52757,8 @@ class JpOverlay31Functions:
     )
 
     StairsDescriptionCallback = Symbol(
-        None,
-        None,
+        [0xA28],
+        [0x23844C8],
         None,
         "StairsDescriptionCallback",
         "Callback function passed to CreateAdvancedTextBox for creating the description for the stairs in the info menu.\n\nr0: window_id",

@@ -42097,6 +42097,31 @@ class Overlay30FunctionsProtocol(Protocol):
         None,
     ]
 
+    InitDataSerializerWriter: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    WriteBitsToDataSerializer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitDataSerializerReader: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ReadBitsFromDataSerializer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FinishDataSerializer: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
 
 class Overlay30DataProtocol(Protocol):
 
