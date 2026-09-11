@@ -5507,6 +5507,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    AddUniqueStarterMoveTo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetLvlUpEntry: Symbol[
         Optional[list[int]],
         None,

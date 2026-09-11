@@ -9759,6 +9759,15 @@ class NaItcmArm9Functions:
         None,
     )
 
+    AddUniqueStarterMoveTo = Symbol(
+        None,
+        None,
+        None,
+        "AddUniqueStarterMoveTo",
+        "Grants certain starter Pokemon a unique move that they cannot normally learn.\n\nOnly called during InitMainTeamAfterQuiz, for both the hero and the partner.\nWill skip granting any move if the target somehow already has four moves.\nGives the following:\n- Vulpix: Faint Attack\n- Eevee: Flail\n- Phanphy: Ancient Power\n- Shinx: Quick Attack\n- Riolu: Bite\n- Meowth: Hypnosis\n- Munchlax: Zen Headbutt\n- Skitty: Zen Headbutt\n\nr0: pointer to the ground_monster to attempt to grant a move to, as either the hero or the partner.",
+        None,
+    )
+
     GetLvlUpEntry = Symbol(
         None,
         None,
