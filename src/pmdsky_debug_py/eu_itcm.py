@@ -3547,7 +3547,7 @@ class EuItcmArm9Functions:
         None,
         None,
         "GetNbMoves",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: moveset_str\nreturn: # moves",
+        "Note: semi-verified?\n\nr0: pointer to a ground_monster's move table\nreturn: # of moves the ground_monster knows",
         None,
     )
 
@@ -3556,7 +3556,7 @@ class EuItcmArm9Functions:
         None,
         None,
         "GetMovesetIdx",
-        "Returns the move position in the moveset if it is found, -1 otherwise\n\nNote: unverified, ported from Irdkwia's notes\n\nr0: moveset_str\nr1: move ID\nreturn: ?",
+        "Returns the move position in the moveset if it is found, -1 otherwise\n\nNote: semi-verified?\n\nr0: pointer to a ground_monster's move table\nr1: move ID to find\nreturn: index of the move in the ground_monster's move table, or -1 if the given move wasn't found.",
         None,
     )
 
