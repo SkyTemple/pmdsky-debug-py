@@ -9830,12 +9830,12 @@ class EuArm9Functions:
         None,
     )
 
-    AddUniqueStarterMoveTo = Symbol(
+    AddStarterEggMove = Symbol(
         None,
         None,
         None,
-        "AddUniqueStarterMoveTo",
-        "Grants certain starter Pokemon a unique move that they cannot normally learn.\n\nOnly called during InitMainTeamAfterQuiz, for both the hero and the partner.\nWill skip granting any move if the target somehow already has four moves.\nGives the following:\n- Vulpix: Faint Attack\n- Eevee: Flail\n- Phanphy: Ancient Power\n- Shinx: Quick Attack\n- Riolu: Bite\n- Meowth: Hypnosis\n- Munchlax: Zen Headbutt\n- Skitty: Zen Headbutt\n\nr0: pointer to the ground_monster to attempt to grant a move to, as either the hero or the partner.",
+        "AddStarterEggMove",
+        "Grants certain starter Pokemon an egg move from their line at the beginning of the game, adding it to the first available slot.\n\nOnly called during the InitMainTeamAfterQuiz special process, for both the hero and the partner.\nWill skip granting any move if the target somehow already has four moves.\n\nSee pointer to STARTER_MOVES_ARRAY near the end of this function for a full list of the Pokemon-move pairs that are used by it.\n\nr0: pointer to the ground_monster to attempt to grant a move to. Will always be either the hero or the partner.",
         None,
     )
 
@@ -11737,6 +11737,8 @@ class EuArm9Functions:
 
     GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
 
+    AddUniqueStarterMoveTo = _Deprecated("AddUniqueStarterMoveTo", AddStarterEggMove)
+
     DisableIqSkill = _Deprecated("DisableIqSkill", ToggleIqSkill)
 
     WriteMonsterInfoToSave = _Deprecated(
@@ -13395,6 +13397,15 @@ class EuArm9Data:
         "MONSTER_SPRITE_DATA",
         "Contains information about the sprite size and sprite file size of each monster",
         "struct monster_sprite_data_entry[600]",
+    )
+
+    STARTER_MOVES_ARRAY = Symbol(
+        None,
+        None,
+        None,
+        "STARTER_MOVES_ARRAY",
+        "An array of eight egg-moves manually granted to a small handful starter pokemon, used by the function AddStarterEggMove.\n\nThe ninth element is a terminator, containing a blank monster and move ID.\n\nThe moves are as follows:\n- Vulpix: Faint Attack\n- Eevee: Flail\n- Phanpy: AncientPower\n- Shinx: Quick Attack\n- Riolu: Bite\n- Meowth: Hypnosis\n- Munchlax: Zen Headbutt\n- Skitty: Zen Headbutt\n\nNotably, all of the listed Pokémon are starters whom have recieved changes in some way in Explorers of Sky.\nAccording to Bulbapedia: Phanphy, Vulpix, Riolu, Eevee, and Shinx are all new hero choices in EoS specifically,\nSkitty was modified to be unavalible as a male,\nand Meowth and Munchlax were removed from the hero pool altogether, only being partner choices in EoS.\n\nMORE RESEARCH REQUIRED: Are these pokemon able to re-learn the egg move they're given if it's forgotten in any way?",
+        "struct starter_egg_move[9]",
     )
 
     REMOTE_STRINGS = Symbol(
@@ -43755,6 +43766,15 @@ class EuOverlay29Functions:
         None,
         "ShowPpRestoreEffect",
         "Displays the graphical effect on a monster that just recovered PP.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayAttractHitEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayAttractHitEffect",
+        "Displays the graphical effect on a monster that was just hit by the move Attract.\n\nr0: entity pointer",
         None,
     )
 

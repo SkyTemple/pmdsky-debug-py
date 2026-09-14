@@ -5507,7 +5507,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    AddUniqueStarterMoveTo: Symbol[
+    AddStarterEggMove: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -7441,6 +7441,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     MONSTER_SPRITE_DATA: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    STARTER_MOVES_ARRAY: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -36845,6 +36850,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     ShowPpRestoreEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayAttractHitEffect: Symbol[
         Optional[list[int]],
         None,
     ]
