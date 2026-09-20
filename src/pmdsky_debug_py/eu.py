@@ -9831,8 +9831,8 @@ class EuArm9Functions:
     )
 
     AddStarterEggMove = Symbol(
-        None,
-        None,
+        [0x538E4],
+        [0x20538E4],
         None,
         "AddStarterEggMove",
         "Grants certain starter Pokemon an egg move from their line at the beginning of the game, adding it to the first available slot.\n\nOnly called during the InitMainTeamAfterQuiz special process, for both the hero and the partner.\nWill skip granting any move if the target somehow already has four moves.\n\nSee pointer to STARTER_MOVES_ARRAY near the end of this function for a full list of the Pokemon-move pairs that are used by it.\n\nr0: pointer to the ground_monster to attempt to grant a move to. Will always be either the hero or the partner.",
@@ -13400,8 +13400,8 @@ class EuArm9Data:
     )
 
     STARTER_MOVES_ARRAY = Symbol(
-        None,
-        None,
+        [0xA3858],
+        [0x20A3858],
         None,
         "STARTER_MOVES_ARRAY",
         "An array of eight egg-moves manually granted to a small handful starter pokemon, used by the function AddStarterEggMove.\n\nThe ninth element is a terminator, containing a blank monster and move ID.\n\nThe moves are as follows:\n- Vulpix: Faint Attack\n- Eevee: Flail\n- Phanpy: AncientPower\n- Shinx: Quick Attack\n- Riolu: Bite\n- Meowth: Hypnosis\n- Munchlax: Zen Headbutt\n- Skitty: Zen Headbutt\n\nNotably, all of the listed Pokémon are starters whom have recieved changes in some way in Explorers of Sky.\nAccording to Bulbapedia: Phanphy, Vulpix, Riolu, Eevee, and Shinx are all new hero choices in EoS specifically,\nSkitty was modified to be unavalible as a male,\nand Meowth and Munchlax were removed from the hero pool altogether, only being partner choices in EoS.\n\nMORE RESEARCH REQUIRED: Are these pokemon able to re-learn the egg move they're given if it's forgotten in any way?",
@@ -43770,8 +43770,8 @@ class EuOverlay29Functions:
     )
 
     PlayAttractHitEffect = Symbol(
-        None,
-        None,
+        [0x8A30],
+        [0x22E55B0],
         None,
         "PlayAttractHitEffect",
         "Displays the graphical effect on a monster that was just hit by the move Attract.\n\nr0: entity pointer",
