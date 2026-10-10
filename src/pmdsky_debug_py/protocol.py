@@ -24515,12 +24515,57 @@ class Overlay10FunctionsProtocol(Protocol):
         None,
     ]
 
+    UnloadEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlayEffect: Symbol[
         Optional[list[int]],
         None,
     ]
 
+    InitEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitAndPlayEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitAndPlayEffectWithChecks: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetLiveEffectIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetLiveEffectWanOffset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitEffectDisplayInfo: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitAndPlayEffectSetWanOffset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitEffectSetWanOffset: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetLiveEffect: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -24536,6 +24581,21 @@ class Overlay10FunctionsProtocol(Protocol):
     ]
 
     BlockingAnimationInProgress: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsBlizzardTailwindOrPowderSnow: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsWanOrWat: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsScreenOrWba: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -24571,6 +24631,11 @@ class Overlay10FunctionsProtocol(Protocol):
     ]
 
     GetMoveAnimationSpeed: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadEffectWanTableEntry: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -25888,6 +25953,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    NATURE_GIFTER_RESTRICTED_ITEMS: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     TYPE_MATCHUP_COMBINATOR_TABLE: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -26009,6 +26079,11 @@ class Overlay10DataProtocol(Protocol):
     ]
 
     OV10_STATIC_INITIALIZER: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    EFFECT_CONTROL_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -36734,6 +36809,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsPositionVisibleAndOnScreen: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     UpdateMapSurveyorFlag: Symbol[
         Optional[list[int]],
         None,
@@ -36764,6 +36844,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsFloorWithoutDarkness: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     DungeonScreenEffectActive: Symbol[
         Optional[list[int]],
         None,
@@ -36790,6 +36875,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     CopyStatusIconFlags: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateStatusIconFlagsAllMonsters: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -36955,6 +37045,26 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     PlayStairSensorArrowEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    InitMonsterMoveEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeMonsterMoveEffects: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    FreeAllMonsterMoveEffects: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    UpdateLiveEffectsFromMonsterMoveEffects: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -37390,6 +37500,11 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     IsFloorOver: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    ShakeScreen: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -40084,6 +40199,11 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    IsMoveBlockedByTerrain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     ExecuteMoveEffect: Symbol[
         Optional[list[int]],
         None,
@@ -40985,6 +41105,16 @@ class Overlay29FunctionsProtocol(Protocol):
     ]
 
     AddHeldItemToBag: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetItemHolderTeamIndex: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    IsNatureGifterRestrictedItem: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -43292,11 +43422,6 @@ class RamDataProtocol(Protocol):
     FSI_ARC_ROM: Symbol[
         Optional[list[int]],
         None,
-    ]
-
-    EFFECT_CONTROL: Symbol[
-        Optional[list[int]],
-        Optional[int],
     ]
 
     GROUND_MEMORY_ARENA_1_PTR: Symbol[

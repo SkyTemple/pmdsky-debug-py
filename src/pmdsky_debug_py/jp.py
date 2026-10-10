@@ -14614,7 +14614,7 @@ class JpItcmFunctions:
         [0x20B6154],
         None,
         "GetKeyM2NSwitch",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nr1: switch",
+        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nr1: switch\nreturn: key",
         None,
     )
 
@@ -28623,6 +28623,15 @@ class JpOverlay10Functions:
         None,
     )
 
+    UnloadEffect = Symbol(
+        None,
+        None,
+        None,
+        "UnloadEffect",
+        "Marks the live effect as not being used, unloads its wan_table entry if applicable, and calls an unknown inner function to free certain pointers.\n\nr0: live effect pointer\nr1: true if the effect does not have type WAN File 0/1",
+        None,
+    )
+
     PlayEffect = Symbol(
         [0x1544],
         [0x22BF764],
@@ -28632,12 +28641,84 @@ class JpOverlay10Functions:
         None,
     )
 
+    InitEffect = Symbol(
+        None,
+        None,
+        None,
+        "InitEffect",
+        "Finds a currently unused live effect, zeroes it, and fills its more general fields such as screen, file_type, and unique_id.\n\nr0: ?\nr1: effect_display_info\nr2: screen\nreturn: unique id",
+        None,
+    )
+
+    InitAndPlayEffect = Symbol(
+        None,
+        None,
+        None,
+        "InitAndPlayEffect",
+        "Calls InitEffect, then calls PlayEffect.\n\nr0: ?\nr1: effect_display_info\nr2: screen\nreturn: unique id",
+        None,
+    )
+
+    InitAndPlayEffectWithChecks = Symbol(
+        None,
+        None,
+        None,
+        "InitAndPlayEffectWithChecks",
+        "Calls InitAndPlayEffect with the given parameters if certain checks pass, otherwise either returns -1 or plays a placeholder effect (ID 8).\n\nr0: ?\nr1: effect_display_info\nr2: screen\nreturn: unique id",
+        None,
+    )
+
     GetLiveEffectIdx = Symbol(
         [0x1F24],
         [0x22C0144],
         None,
         "GetLiveEffectIdx",
         "Gets a live effect's index in EFFECT_CONTROL.live_effects from its unique id.\n\nr0: unique id\nreturn: index, or -1 if it is not present",
+        None,
+    )
+
+    GetLiveEffectWanOffset = Symbol(
+        None,
+        None,
+        None,
+        "GetLiveEffectWanOffset",
+        "Gets the WAN offset of the live effect given by the unique id.\n\nr0: unique id\nreturn: WAN offset type, or -1 if a live effect with the given id was not found",
+        None,
+    )
+
+    InitEffectDisplayInfo = Symbol(
+        None,
+        None,
+        None,
+        "InitEffectDisplayInfo",
+        "Initializes an effect_display_info struct with default values.\n\nr0: [output] effect_display_info",
+        None,
+    )
+
+    InitAndPlayEffectSetWanOffset = Symbol(
+        None,
+        None,
+        None,
+        "InitAndPlayEffectSetWanOffset",
+        "Calls InitAndPlayEffectWithChecks with r0 = 7, also setting effect_display_info's wan_offset field to the default value for its effect_id.\n\nr0: effect_display_info\nr1: screen\nreturn: unique id",
+        None,
+    )
+
+    InitEffectSetWanOffset = Symbol(
+        None,
+        None,
+        None,
+        "InitEffectSetWanOffset",
+        "Calls InitEffect with r0 = 7, also setting effect_display_info's wan_offset field to the default value for its effect_id.\n\nr0: effect_display_info\nr1: screen\nreturn: unique id",
+        None,
+    )
+
+    GetLiveEffect = Symbol(
+        None,
+        None,
+        None,
+        "GetLiveEffect",
+        "Gets the live effect with the given unique id if there is one and its field_0x4 is nonzero (which it seemingly always is?).\n\nr0: unique id\nreturn: live_effect pointer, or null if none was found / the unique id is -1",
         None,
     )
 
@@ -28665,6 +28746,33 @@ class JpOverlay10Functions:
         None,
         "BlockingAnimationInProgress",
         "Checks if there is an effect animation with the given unique id in progress and if so, whether its is_non_blocking field is 0.\n\nr0: unique id of animation\nreturn: bool",
+        None,
+    )
+
+    IsBlizzardTailwindOrPowderSnow = Symbol(
+        None,
+        None,
+        None,
+        "IsBlizzardTailwindOrPowderSnow",
+        "Returns true if the move id is equal to Blizzard, Tailwind or Powder Snow.\n\nr0: move id\nreturn: bool",
+        None,
+    )
+
+    IsWanOrWat = Symbol(
+        None,
+        None,
+        None,
+        "IsWanOrWat",
+        "Returns true if the file type is a WAN file (including WAN files 0/1) or a WAT file.\n\nr0: effect file type\nreturn: bool",
+        None,
+    )
+
+    IsScreenOrWba = Symbol(
+        None,
+        None,
+        None,
+        "IsScreenOrWba",
+        "Returns true if the file type is a screen effect or a WBA file.\n\nr0: effect file type\nreturn: bool",
         None,
     )
 
@@ -28728,6 +28836,15 @@ class JpOverlay10Functions:
         None,
         "GetMoveAnimationSpeed",
         "Note: unverified, ported from Irdkwia's notes\n\nr0: move_id\nreturn: anim_ent_ptr (This might be a mistake? It seems to be an integer, not a pointer)",
+        None,
+    )
+
+    LoadEffectWanTableEntry = Symbol(
+        None,
+        None,
+        None,
+        "LoadEffectWanTableEntry",
+        "Returns an already allocated entry for this effect if it exists, otherwise allocates a new one.\n\nr0: effect file type\nr1: file_index\nr2: index of effect in EFFECT_CONTROL.live_effects (seemingly unused in practice)\nreturn: the entry id in wan_table",
         None,
     )
 
@@ -31091,6 +31208,15 @@ class JpOverlay10Data:
         "int16_t[30]",
     )
 
+    NATURE_GIFTER_RESTRICTED_ITEMS = Symbol(
+        None,
+        None,
+        0x3C,
+        "NATURE_GIFTER_RESTRICTED_ITEMS",
+        "The list of items whose effects cannot be spread to the whole party through Nature Gifter when consumed.",
+        "struct item_id_16[30]",
+    )
+
     TYPE_MATCHUP_COMBINATOR_TABLE = Symbol(
         [0x81DC],
         [0x22C63FC],
@@ -31314,6 +31440,15 @@ class JpOverlay10Data:
         "OV10_STATIC_INITIALIZER",
         "Static initializer for overlay 10.",
         "undefined4",
+    )
+
+    EFFECT_CONTROL_PTR = Symbol(
+        None,
+        None,
+        None,
+        "EFFECT_CONTROL_PTR",
+        "Pointer to the master struct containing information about how effects should be played and the ones that are currently active.",
+        "struct effect_control*",
     )
 
     DEFEAT_ITEM_LOSS_CHANCE = Symbol(
@@ -42849,6 +42984,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsPositionVisibleAndOnScreen = Symbol(
+        None,
+        None,
+        None,
+        "IsPositionVisibleAndOnScreen",
+        "Returns true if the position is within 6 tiles in the x direction and 5 tiles in the y direction from the camera target, and if either IsPositionActuallyInSight returns true for the position or the floor is without darkness.\n\nr0: position pointer\nreturn: bool",
+        None,
+    )
+
     UpdateMapSurveyorFlag = Symbol(
         None,
         None,
@@ -42931,6 +43075,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    IsFloorWithoutDarkness = Symbol(
+        None,
+        None,
+        None,
+        "IsFloorWithoutDarkness",
+        "Returns true if there is no darkness on the floor, i.e. if the camera entity doesn't have the dropeye status and either one of dungeon::display_data::luminous or dungeon::display_data::natural_lighting is true.\n\nr0: display_data pointer\nreturn: bool",
+        None,
+    )
+
     DungeonScreenEffectActive = Symbol(
         [0x7310],
         [0x22E4BF0],
@@ -42982,6 +43135,15 @@ class JpOverlay29Functions:
         None,
         "CopyStatusIconFlags",
         "Copies a monster's status_icon_flags to the destination pointer.\n\nr0: [output] status_icon_flags\nr1: entity pointer",
+        None,
+    )
+
+    UpdateStatusIconFlagsAllMonsters = Symbol(
+        None,
+        None,
+        None,
+        "UpdateStatusIconFlagsAllMonsters",
+        "Calls UpdateStatusIconFlags on all monsters on the floor.\n\nr0: whether to also set field_0x156 of all monster structs (always 0 in practice)",
         None,
     )
 
@@ -43279,6 +43441,42 @@ class JpOverlay29Functions:
         None,
         "PlayStairSensorArrowEffect",
         "Plays the Stair Sensor arrow effect.\n\nr0: entity pointer\nr1: arrow direction",
+        None,
+    )
+
+    InitMonsterMoveEffect = Symbol(
+        None,
+        None,
+        None,
+        "InitMonsterMoveEffect",
+        "Finds the first available entry in dungeon::monster_move_animations and initializes it with the given values.\n\nr0: live effect unique id\nr1: entity pointer\nr2: ?",
+        None,
+    )
+
+    FreeMonsterMoveEffects = Symbol(
+        None,
+        None,
+        None,
+        "FreeMonsterMoveEffects",
+        "Marks entries in dungeon::monster_move_animations whose animations have finished as being unused.\n\nNo params.",
+        None,
+    )
+
+    FreeAllMonsterMoveEffects = Symbol(
+        None,
+        None,
+        None,
+        "FreeAllMonsterMoveEffects",
+        "Marks all entries in dungeon::monster_move_animations as being unused.\n\nNo params.",
+        None,
+    )
+
+    UpdateLiveEffectsFromMonsterMoveEffects = Symbol(
+        None,
+        None,
+        None,
+        "UpdateLiveEffectsFromMonsterMoveEffects",
+        "Finds any entries in dungeon::monster_move_animations that use the given entity and updates fields in their live_effects.\n\nr0: entity pointer\nr1: ?",
         None,
     )
 
@@ -44065,6 +44263,15 @@ class JpOverlay29Functions:
         None,
     )
 
+    ShakeScreen = Symbol(
+        None,
+        None,
+        None,
+        "ShakeScreen",
+        "Shakes the screen. Does not return until shaking is finished.\n\nr0: ? (always 1 in practice)",
+        None,
+    )
+
     DecrementWindCounter = Symbol(
         [0x108CC],
         [0x22EE1AC],
@@ -44214,7 +44421,7 @@ class JpOverlay29Functions:
         [0x22EF540],
         None,
         "TryRevealAttackedTrap",
-        "Reveals the trap given by the position if the dungeon struct's regular_attack_reveal_traps field is true.\n\nIs also activated on a tile if a fainted monster drops an item on it.\n\nr0: position struct pointer\nr1: boolean for whether to update trap visibility afterwards (always 1 in practice)\nreturn: true if there is a trap on the position",
+        "Reveals the trap given by the position if the dungeon struct's regular_attack_no_reveal_traps field is false.\n\nIs also activated on a tile if an item lands on it.\n\nr0: position struct pointer\nr1: boolean for whether to update trap visibility afterwards (always 1 in practice)\nreturn: true if there is a trap on the position",
         None,
     )
 
@@ -44709,7 +44916,7 @@ class JpOverlay29Functions:
         [0x22F763C],
         None,
         "UseRegularAttackOrStruggle",
-        "Handles using the regular attack or Struggle by the entity.\n\nr0: entity pointer",
+        "Handles using the regular attack or Struggle by the entity.\n\nr0: entity pointer\nr1: move id",
         None,
     )
 
@@ -48949,7 +49156,16 @@ class JpOverlay29Functions:
         [0x2327104],
         None,
         "ShouldMovePlayAlternativeAnimation",
-        "Checks whether a moved used by a monster should play its alternative animation. Includes checks for Curse, Snore, Sleep Talk, Solar Beam and 2-turn moves.\n\nr0: Pointer to the entity that used the move\nr1: Move pointer\nreturn: True if the move should play its alternative animation",
+        "Checks whether a move used by a monster should play its alternative animation. Includes checks for Curse, Snore, Sleep Talk, Solar Beam and 2-turn moves.\n\nr0: Pointer to the entity that used the move\nr1: Move pointer\nreturn: True if the move should play its alternative animation",
+        None,
+    )
+
+    IsMoveBlockedByTerrain = Symbol(
+        None,
+        None,
+        None,
+        "IsMoveBlockedByTerrain",
+        "If the monster is using Dig or Dive, checks whether the terrain of the tile the monster is standing on blocks the use of the move.\n\nr0: Pointer to the entity that used the move\nr1: Pointer to move being used\nreturn: True if the monster cannot use the move because of the terrain",
         None,
     )
 
@@ -48958,7 +49174,7 @@ class JpOverlay29Functions:
         [0x232FC60],
         None,
         "ExecuteMoveEffect",
-        "Handles the effects that happen after a move is used. Includes a loop that is run for each target, mutiple ability checks and the giant switch statement that executes the effect of the move used given its ID.\n\nr0: pointer to list of targets\nr1: attacker pointer\nr2: pointer to move data\nr3: ?\nstack[0]: ?",
+        "Handles the effects that happen after a move is used. Includes a loop that is run for each target, mutiple ability checks and the giant switch statement that executes the effect of the move used given its ID.\n\nr0: pointer to list of targets\nr1: attacker pointer\nr2: pointer to move data\nr3: item id\nstack[0]: ?",
         None,
     )
 
@@ -49417,7 +49633,7 @@ class JpOverlay29Functions:
         [0x23397F4],
         None,
         "RevealAttackedTile",
-        "Reveals the tile given by the position.\n\nIs also activated on a tile if a fainted monster drops an item on it.\n\nr0: position struct pointer",
+        "Reveals the tile given by the position.\n\nIs also activated on a tile if an item lands on it.\n\nr0: position struct pointer",
         None,
     )
 
@@ -50524,7 +50740,7 @@ class JpOverlay29Functions:
         [0x2346E00],
         None,
         "SpawnDroppedItemWrapper",
-        "Wraps SpawnDroppedItem in a more convenient interface.\n\nr0: entity\nr1: position\nr2: item\nr3: ?",
+        "Wraps SpawnDroppedItem in a more convenient interface.\n\nr0: entity\nr1: position\nr2: item\nr3: whether to not display the item during the drop sequence if the camera entity is blinded",
         None,
     )
 
@@ -50533,7 +50749,7 @@ class JpOverlay29Functions:
         [0x2346E9C],
         None,
         "SpawnDroppedItem",
-        "Used to spawn an item that was thrown or dropped, with a log message.\n\nDetermines where exactly the item will land, if it bounces on a trap, etc.\nUsed for thrown items that hit a wall, for certain enemy drops (such as Unown stones or Treasure Boxes), for certain moves (like Pay Day and Knock Off), and possibly other things.\n\nr0: entity that dropped or threw the item\nr1: item entity. Contains the coordinates where the item should try to land first.\nr2: item info\nr3: ?\nstack[0]: pointer to int16_t[2] for x/y direction (corresponding to DIRECTIONS_XY)\nstack[1]: ?",
+        "Used to spawn an item that was thrown or dropped, with a log message.\n\nDetermines where exactly the item will land, if it bounces on a trap, etc.\nUsed for thrown items that hit a wall, for certain enemy drops (such as Unown stones or Treasure Boxes), for certain moves (like Pay Day and Knock Off), and possibly other things.\n\nr0: entity that dropped or threw the item\nr1: item entity. Contains the coordinates where the item should try to land first.\nr2: item info\nr3: ?\nstack[0]: pointer to int16_t[2] for x/y direction (corresponding to DIRECTIONS_XY)\nstack[1]: whether to not display the item during the drop sequence if the camera entity is blinded",
         None,
     )
 
@@ -50579,6 +50795,24 @@ class JpOverlay29Functions:
         None,
         "AddHeldItemToBag",
         "Adds the monster's held item to the bag. This is only called on monsters on the exploration team.\nmonster::is_not_team_member should be checked to be false before calling.\n\nr0: monster pointer",
+        None,
+    )
+
+    GetItemHolderTeamIndex = Symbol(
+        None,
+        None,
+        None,
+        "GetItemHolderTeamIndex",
+        "Gets the index in the team of the monster holding the given item, or -1 if none is.\n\nr0: item pointer\nreturn: team index, or -1",
+        None,
+    )
+
+    IsNatureGifterRestrictedItem = Symbol(
+        None,
+        None,
+        None,
+        "IsNatureGifterRestrictedItem",
+        "Checks if the given item's effect cannot be spread to the whole party through Nature Gifter when consumed.\n\nr0: item id\nreturn: bool",
         None,
     )
 
@@ -54518,15 +54752,6 @@ class JpRamData:
     FIFO_CTRL_INIT = Symbol([0x2BCD04], [0x22BCD04], None, "FIFO_CTRL_INIT", "", "")
 
     FSI_ARC_ROM = Symbol([0x2BCDB4], [0x22BCDB4], None, "FSI_ARC_ROM", "", "")
-
-    EFFECT_CONTROL = Symbol(
-        None,
-        None,
-        None,
-        "EFFECT_CONTROL",
-        "The master struct containing information about how effects should be played and the ones that are currently active.",
-        "struct effect_control",
-    )
 
     GROUND_MEMORY_ARENA_1_PTR = Symbol(
         None,
