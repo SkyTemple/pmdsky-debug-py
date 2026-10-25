@@ -42,6 +42,96 @@ class EuItcmArm7Functions:
         None,
     )
 
+    GetRomValidLanguage = Symbol(None, None, None, "GetRomValidLanguage", "", None)
+
+    VBlankIntr = Symbol(None, None, None, "VBlankIntr", "", None)
+
+    MainTaskRoutine = Symbol(None, None, None, "MainTaskRoutine", "", None)
+
+    AddTask = Symbol(None, None, None, "AddTask", "", None)
+
+    DeleteTask = Symbol(None, None, None, "DeleteTask", "", None)
+
+    LowestIdleTask = Symbol(None, None, None, "LowestIdleTask", "", None)
+
+    ExecuteMessage = Symbol(None, None, None, "ExecuteMessage", "", None)
+
+    NewHeapBuf = Symbol(None, None, None, "NewHeapBuf", "", None)
+
+    DeleteHeapBuf = Symbol(None, None, None, "DeleteHeapBuf", "", None)
+
+    AllocateHeapBuf = Symbol(None, None, None, "AllocateHeapBuf", "", None)
+
+    ReleaseHeapBuf = Symbol(None, None, None, "ReleaseHeapBuf", "", None)
+
+    MoveHeapBuf = Symbol(None, None, None, "MoveHeapBuf", "", None)
+
+    AddHeapBuf = Symbol(None, None, None, "AddHeapBuf", "", None)
+
+    RequestCmdTask = Symbol(None, None, None, "RequestCmdTask", "", None)
+
+    SendMessageToWmDirect = Symbol(None, None, None, "SendMessageToWmDirect", "", None)
+
+    WStop = Symbol(None, None, None, "WStop", "", None)
+
+    WSetStaState = Symbol(None, None, None, "WSetStaState", "", None)
+
+    WlIntr = Symbol(None, None, None, "WlIntr", "", None)
+
+    WlIntrPreTbtt = Symbol(None, None, None, "WlIntrPreTbtt", "", None)
+
+    WlIntrTbtt = Symbol(None, None, None, "WlIntrTbtt", "", None)
+
+    WlIntrActEnd = Symbol(None, None, None, "WlIntrActEnd", "", None)
+
+    WlIntrCntOvf = Symbol(None, None, None, "WlIntrCntOvf", "", None)
+
+    WlIntrTxErr = Symbol(None, None, None, "WlIntrTxErr", "", None)
+
+    WlIntrRxCntup = Symbol(None, None, None, "WlIntrRxCntup", "", None)
+
+    WlIntrTxEnd = Symbol(None, None, None, "WlIntrTxEnd", "", None)
+
+    WlIntrRxEnd = Symbol(None, None, None, "WlIntrRxEnd", "", None)
+
+    WlIntrMpEnd = Symbol(None, None, None, "WlIntrMpEnd", "", None)
+
+    WlIntrStartTx = Symbol(None, None, None, "WlIntrStartTx", "", None)
+
+    WlIntrStartRx = Symbol(None, None, None, "WlIntrStartRx", "", None)
+
+    SetParentTbttTxq = Symbol(None, None, None, "SetParentTbttTxq", "", None)
+
+    MacBugTxMp = Symbol(None, None, None, "MacBugTxMp", "", None)
+
+    AdjustRingPointer = Symbol(None, None, None, "AdjustRingPointer", "", None)
+
+    CheckKeyTxEnd = Symbol(None, None, None, "CheckKeyTxEnd", "", None)
+
+    WlIntrTxBeaconTask = Symbol(None, None, None, "WlIntrTxBeaconTask", "", None)
+
+    WlIntrTxEndTask = Symbol(None, None, None, "WlIntrTxEndTask", "", None)
+
+    WlIntrRxEndTask = Symbol(None, None, None, "WlIntrRxEndTask", "", None)
+
+    WlIntrMpEndTask = Symbol(None, None, None, "WlIntrMpEndTask", "", None)
+
+    SetParentTbttTxqTask = Symbol(None, None, None, "SetParentTbttTxqTask", "", None)
+
+    TakeoutRxFrame = Symbol(None, None, None, "TakeoutRxFrame", "", None)
+
+    InitTxCtrl = Symbol(None, None, None, "InitTxCtrl", "", None)
+
+    InitRxCtrl = Symbol(None, None, None, "InitRxCtrl", "", None)
+
+    WaitLoop_Rxpe = Symbol(None, None, None, "WaitLoop_Rxpe", "", None)
+
+    WaitLoop_ClrAid = Symbol(None, None, None, "WaitLoop_ClrAid", "", None)
+
+    WaitLoop_BbpAccess = Symbol(None, None, None, "WaitLoop_BbpAccess", "", None)
+
+    WaitLoop_RfAccess = Symbol(None, None, None, "WaitLoop_RfAccess", "", None)
+
     HardwareInterrupt = Symbol(
         None,
         None,
@@ -69,6 +159,18 @@ class EuItcmArm7Functions:
         None,
     )
 
+    OSi_IrqVBlank = Symbol(None, None, None, "OSi_IrqVBlank", "", None)
+
+    OS_InitIrqTable = Symbol(None, None, None, "OS_InitIrqTable", "", None)
+
+    OS_SetIrqFunctionArm7 = Symbol(None, None, None, "OS_SetIrqFunctionArm7", "", None)
+
+    OSi_EnterTimerCallback = Symbol(
+        None, None, None, "OSi_EnterTimerCallback", "", None
+    )
+
+    OS_SetIrqMaskArm7 = Symbol(None, None, None, "OS_SetIrqMaskArm7", "", None)
+
     ClearImeFlag = Symbol(
         None,
         None,
@@ -77,6 +179,8 @@ class EuItcmArm7Functions:
         "Clears the Interrupt Master Enable flag, which disables all hardware interrupts.\n\nreturn: Previous IME value",
         None,
     )
+
+    OS_EnableIrqMaskArm7 = Symbol(None, None, None, "OS_EnableIrqMaskArm7", "", None)
 
     ClearIeFlag = Symbol(
         None,
@@ -87,6 +191,130 @@ class EuItcmArm7Functions:
         None,
     )
 
+    OS_ResetRequestIrqMaskArm7 = Symbol(
+        None, None, None, "OS_ResetRequestIrqMaskArm7", "", None
+    )
+
+    OS_InitLock = Symbol(None, None, None, "OS_InitLock", "", None)
+
+    OSi_DoUnlockByWordArm7 = Symbol(
+        None, None, None, "OSi_DoUnlockByWordArm7", "", None
+    )
+
+    OSi_DoTryLockByWord = Symbol(None, None, None, "OSi_DoTryLockByWord", "", None)
+
+    OS_LockCartridge = Symbol(None, None, None, "OS_LockCartridge", "", None)
+
+    OSi_InsertLinkToQueueArm7 = Symbol(
+        None, None, None, "OSi_InsertLinkToQueueArm7", "", None
+    )
+
+    OSi_RemoveSpecifiedLinkFromQueue = Symbol(
+        None, None, None, "OSi_RemoveSpecifiedLinkFromQueue", "", None
+    )
+
+    OSi_RemoveMutexLinkFromQueue = Symbol(
+        None, None, None, "OSi_RemoveMutexLinkFromQueue", "", None
+    )
+
+    OSi_InsertThreadToListArm7 = Symbol(
+        None, None, None, "OSi_InsertThreadToListArm7", "", None
+    )
+
+    OSi_RemoveThreadFromList = Symbol(
+        None, None, None, "OSi_RemoveThreadFromList", "", None
+    )
+
+    OSi_RescheduleThread = Symbol(None, None, None, "OSi_RescheduleThread", "", None)
+
+    OS_CreateThreadArm7 = Symbol(None, None, None, "OS_CreateThreadArm7", "", None)
+
+    OS_ExitThread = Symbol(None, None, None, "OS_ExitThread", "", None)
+
+    OSi_ExitThread_ArgSpecified = Symbol(
+        None, None, None, "OSi_ExitThread_ArgSpecified", "", None
+    )
+
+    OSi_ExitThread = Symbol(None, None, None, "OSi_ExitThread", "", None)
+
+    OSi_ExitThread_Destroy = Symbol(
+        None, None, None, "OSi_ExitThread_Destroy", "", None
+    )
+
+    OS_SleepThreadArm7 = Symbol(None, None, None, "OS_SleepThreadArm7", "", None)
+
+    OS_WakeupThread = Symbol(None, None, None, "OS_WakeupThread", "", None)
+
+    OS_WakeupThreadDirectArm7 = Symbol(
+        None, None, None, "OS_WakeupThreadDirectArm7", "", None
+    )
+
+    OS_SelectThreadArm7 = Symbol(None, None, None, "OS_SelectThreadArm7", "", None)
+
+    OS_SetThreadPriority = Symbol(None, None, None, "OS_SetThreadPriority", "", None)
+
+    OSi_SleepAlarmCallback = Symbol(
+        None, None, None, "OSi_SleepAlarmCallback", "", None
+    )
+
+    OS_SetSwitchThreadCallbackArm7 = Symbol(
+        None, None, None, "OS_SetSwitchThreadCallbackArm7", "", None
+    )
+
+    OS_DisableScheduler = Symbol(None, None, None, "OS_DisableScheduler", "", None)
+
+    OS_EnableScheduler = Symbol(None, None, None, "OS_EnableScheduler", "", None)
+
+    OS_SaveContextArm7 = Symbol(None, None, None, "OS_SaveContextArm7", "", None)
+
+    OS_LoadContextArm7 = Symbol(None, None, None, "OS_LoadContextArm7", "", None)
+
+    OS_InitMessageQueue = Symbol(None, None, None, "OS_InitMessageQueue", "", None)
+
+    OS_SendMessage = Symbol(None, None, None, "OS_SendMessage", "", None)
+
+    OS_ReceiveMessage = Symbol(None, None, None, "OS_ReceiveMessage", "", None)
+
+    OS_ReadMessage = Symbol(None, None, None, "OS_ReadMessage", "", None)
+
+    OS_LockMutex = Symbol(None, None, None, "OS_LockMutex", "", None)
+
+    OS_UnlockMutex = Symbol(None, None, None, "OS_UnlockMutex", "", None)
+
+    OSi_UnlockAllMutex = Symbol(None, None, None, "OSi_UnlockAllMutex", "", None)
+
+    OSi_EnqueueTail = Symbol(None, None, None, "OSi_EnqueueTail", "", None)
+
+    OSi_DequeueItem = Symbol(None, None, None, "OSi_DequeueItem", "", None)
+
+    OS_Init = Symbol(None, None, None, "OS_Init", "", None)
+
+    OS_InitArena = Symbol(None, None, None, "OS_InitArena", "", None)
+
+    OS_InitArenaHiAndLo = Symbol(None, None, None, "OS_InitArenaHiAndLo", "", None)
+
+    OS_GetInitArenaLoArm7 = Symbol(None, None, None, "OS_GetInitArenaLoArm7", "", None)
+
+    DlExtract = Symbol(None, None, None, "DlExtract", "", None)
+
+    DlInsert = Symbol(None, None, None, "DlInsert", "", None)
+
+    OS_AllocFromHeap = Symbol(None, None, None, "OS_AllocFromHeap", "", None)
+
+    OS_FreeToHeap = Symbol(None, None, None, "OS_FreeToHeap", "", None)
+
+    OS_SetCurrentHeap = Symbol(None, None, None, "OS_SetCurrentHeap", "", None)
+
+    OS_InitAlloc = Symbol(None, None, None, "OS_InitAlloc", "", None)
+
+    OS_CreateHeap = Symbol(None, None, None, "OS_CreateHeap", "", None)
+
+    OS_CheckHeap = Symbol(None, None, None, "OS_CheckHeap", "", None)
+
+    OS_InitTick = Symbol(None, None, None, "OS_InitTick", "", None)
+
+    OSi_CountUpTick = Symbol(None, None, None, "OSi_CountUpTick", "", None)
+
     GetCurrentPlaybackTime = Symbol(
         None,
         None,
@@ -95,6 +323,42 @@ class EuItcmArm7Functions:
         "Returns the time that the current song has been playing for. Might have a more generic purpose.\n\nThe time is obtained using a couple of RAM counters and the hardware timers for additional precision.\nThe game uses this value to know when a given note should stop being played. It doesn't seem to be used to keep track of the\ncurrent time instant within the song.\n\nreturn: Playback time. Units unknown.",
         None,
     )
+
+    OSi_SetTimer = Symbol(None, None, None, "OSi_SetTimer", "", None)
+
+    OS_InitAlarm = Symbol(None, None, None, "OS_InitAlarm", "", None)
+
+    OSi_InsertAlarm = Symbol(None, None, None, "OSi_InsertAlarm", "", None)
+
+    OS_SetAlarm = Symbol(None, None, None, "OS_SetAlarm", "", None)
+
+    OS_SetPeriodicAlarm = Symbol(None, None, None, "OS_SetPeriodicAlarm", "", None)
+
+    OS_CancelAlarm = Symbol(None, None, None, "OS_CancelAlarm", "", None)
+
+    OSi_ArrangeTimer = Symbol(None, None, None, "OSi_ArrangeTimer", "", None)
+
+    OS_InitVAlarm = Symbol(None, None, None, "OS_InitVAlarm", "", None)
+
+    OSi_InsertVAlarm = Symbol(None, None, None, "OSi_InsertVAlarm", "", None)
+
+    OSi_DetachVAlarm = Symbol(None, None, None, "OSi_DetachVAlarm", "", None)
+
+    OS_SetVAlarm = Symbol(None, None, None, "OS_SetVAlarm", "", None)
+
+    OS_SetPeriodicVAlarm = Symbol(None, None, None, "OS_SetPeriodicVAlarm", "", None)
+
+    OSi_SetNextVAlarm = Symbol(None, None, None, "OSi_SetNextVAlarm", "", None)
+
+    OS_SetVAlarmTag = Symbol(None, None, None, "OS_SetVAlarmTag", "", None)
+
+    OS_CancelVAlarm = Symbol(None, None, None, "OS_CancelVAlarm", "", None)
+
+    OS_CancelVAlarms = Symbol(None, None, None, "OS_CancelVAlarms", "", None)
+
+    OSi_VAlarmHandler = Symbol(None, None, None, "OSi_VAlarmHandler", "", None)
+
+    OSi_GetVFrame = Symbol(None, None, None, "OSi_GetVFrame", "", None)
 
     ClearIrqFlag = Symbol(
         None,
@@ -150,6 +414,422 @@ class EuItcmArm7Functions:
         None,
     )
 
+    OS_InitReset = Symbol(None, None, None, "OS_InitReset", "", None)
+
+    OSi_CommonCallback = Symbol(None, None, None, "OSi_CommonCallback", "", None)
+
+    OS_ResetSystem = Symbol(None, None, None, "OS_ResetSystem", "", None)
+
+    MI_WaitDma = Symbol(None, None, None, "MI_WaitDma", "", None)
+
+    MI_StopDmaArm7 = Symbol(None, None, None, "MI_StopDmaArm7", "", None)
+
+    Pxi_InitFifo = Symbol(None, None, None, "Pxi_InitFifo", "", None)
+
+    Pxi_SetFifoRecvCallback = Symbol(
+        None, None, None, "Pxi_SetFifoRecvCallback", "", None
+    )
+
+    Pxi_IsCallbackReady = Symbol(None, None, None, "Pxi_IsCallbackReady", "", None)
+
+    Pxi_SendWordByFifo = Symbol(None, None, None, "Pxi_SendWordByFifo", "", None)
+
+    Pxii_SetToFifo = Symbol(None, None, None, "Pxii_SetToFifo", "", None)
+
+    Pxii_HandlerRecvFifoNotEmpty = Symbol(
+        None, None, None, "Pxii_HandlerRecvFifoNotEmpty", "", None
+    )
+
+    Exii_SetBitRcnt0L = Symbol(None, None, None, "Exii_SetBitRcnt0L", "", None)
+
+    Padi_XyButton_Callback = Symbol(
+        None, None, None, "Padi_XyButton_Callback", "", None
+    )
+
+    Snd_Shutdown = Symbol(None, None, None, "Snd_Shutdown", "", None)
+
+    Snd_BeginSleep = Symbol(None, None, None, "Snd_BeginSleep", "", None)
+
+    Snd_EndSleep = Symbol(None, None, None, "Snd_EndSleep", "", None)
+
+    Snd_SetOutputSelector = Symbol(None, None, None, "Snd_SetOutputSelector", "", None)
+
+    Snd_SetupChannelPcm = Symbol(None, None, None, "Snd_SetupChannelPcm", "", None)
+
+    Snd_SetupChannelPsg = Symbol(None, None, None, "Snd_SetupChannelPsg", "", None)
+
+    Snd_SetupChannelNoise = Symbol(None, None, None, "Snd_SetupChannelNoise", "", None)
+
+    Snd_StopChannel = Symbol(None, None, None, "Snd_StopChannel", "", None)
+
+    Snd_SetChannelVolume = Symbol(None, None, None, "Snd_SetChannelVolume", "", None)
+
+    Snd_SetChannelPan = Symbol(None, None, None, "Snd_SetChannelPan", "", None)
+
+    Snd_SetMasterPan = Symbol(None, None, None, "Snd_SetMasterPan", "", None)
+
+    Sndi_SetSurroundDecay = Symbol(None, None, None, "Sndi_SetSurroundDecay", "", None)
+
+    CalcSurroundDecay = Symbol(None, None, None, "CalcSurroundDecay", "", None)
+
+    Snd_CalcTimer = Symbol(None, None, None, "Snd_CalcTimer", "", None)
+
+    Snd_CalcChannelVolume = Symbol(None, None, None, "Snd_CalcChannelVolume", "", None)
+
+    Snd_SinIdx = Symbol(None, None, None, "Snd_SinIdx", "", None)
+
+    Snd_CalcRandom = Symbol(None, None, None, "Snd_CalcRandom", "", None)
+
+    Snd_Init = Symbol(None, None, None, "Snd_Init", "", None)
+
+    Snd_StartIntervalTimer = Symbol(
+        None, None, None, "Snd_StartIntervalTimer", "", None
+    )
+
+    SndThread = Symbol(None, None, None, "SndThread", "", None)
+
+    Snd_SetupCapture = Symbol(None, None, None, "Snd_SetupCapture", "", None)
+
+    Snd_ExChannelInit = Symbol(None, None, None, "Snd_ExChannelInit", "", None)
+
+    Snd_UpdateExChannel = Symbol(None, None, None, "Snd_UpdateExChannel", "", None)
+
+    Snd_StartExChannelPcm = Symbol(None, None, None, "Snd_StartExChannelPcm", "", None)
+
+    Snd_StartExChannelPsg = Symbol(None, None, None, "Snd_StartExChannelPsg", "", None)
+
+    Snd_StartExChannelNoise = Symbol(
+        None, None, None, "Snd_StartExChannelNoise", "", None
+    )
+
+    Snd_UpdateExChannelEnvelope = Symbol(
+        None, None, None, "Snd_UpdateExChannelEnvelope", "", None
+    )
+
+    Snd_SetExChannelAttack = Symbol(
+        None, None, None, "Snd_SetExChannelAttack", "", None
+    )
+
+    Snd_AllocExChannel = Symbol(None, None, None, "Snd_AllocExChannel", "", None)
+
+    Snd_StopUnlockedChannel = Symbol(
+        None, None, None, "Snd_StopUnlockedChannel", "", None
+    )
+
+    Snd_LockChannel = Symbol(None, None, None, "Snd_LockChannel", "", None)
+
+    Snd_UnlockChannel = Symbol(None, None, None, "Snd_UnlockChannel", "", None)
+
+    Snd_InvalidateWave = Symbol(None, None, None, "Snd_InvalidateWave", "", None)
+
+    Snd_InitLfoParam = Symbol(None, None, None, "Snd_InitLfoParam", "", None)
+
+    Snd_UpdateLfo = Symbol(None, None, None, "Snd_UpdateLfo", "", None)
+
+    Snd_GetLfoValue = Symbol(None, None, None, "Snd_GetLfoValue", "", None)
+
+    CalcRelease = Symbol(None, None, None, "CalcRelease", "", None)
+
+    StartExChannel = Symbol(None, None, None, "StartExChannel", "", None)
+
+    Snd_SeqInit = Symbol(None, None, None, "Snd_SeqInit", "", None)
+
+    Snd_SeqMain = Symbol(None, None, None, "Snd_SeqMain", "", None)
+
+    Snd_PrepareSeq = Symbol(None, None, None, "Snd_PrepareSeq", "", None)
+
+    ReadByte = Symbol(None, None, None, "ReadByte", "", None)
+
+    Snd_StartPreparedSeq = Symbol(None, None, None, "Snd_StartPreparedSeq", "", None)
+
+    Snd_StartSeq = Symbol(None, None, None, "Snd_StartSeq", "", None)
+
+    Snd_StopSeq = Symbol(None, None, None, "Snd_StopSeq", "", None)
+
+    Snd_PauseSeq = Symbol(None, None, None, "Snd_PauseSeq", "", None)
+
+    Snd_SkipSeq = Symbol(None, None, None, "Snd_SkipSeq", "", None)
+
+    Snd_SetTrackMute = Symbol(None, None, None, "Snd_SetTrackMute", "", None)
+
+    Snd_SetTrackAllocatableChannel = Symbol(
+        None, None, None, "Snd_SetTrackAllocatableChannel", "", None
+    )
+
+    Snd_InvalidateSeq = Symbol(None, None, None, "Snd_InvalidateSeq", "", None)
+
+    Snd_InvalidateBank = Symbol(None, None, None, "Snd_InvalidateBank", "", None)
+
+    Sndi_SetPlayerParam = Symbol(None, None, None, "Sndi_SetPlayerParam", "", None)
+
+    Sndi_SetTrackParam = Symbol(None, None, None, "Sndi_SetTrackParam", "", None)
+
+    InitCache = Symbol(None, None, None, "InitCache", "", None)
+
+    Read24 = Symbol(None, None, None, "Read24", "", None)
+
+    ReadArg = Symbol(None, None, None, "ReadArg", "", None)
+
+    ReleaseTrackChannelAll = Symbol(
+        None, None, None, "ReleaseTrackChannelAll", "", None
+    )
+
+    FreeTrackChannelAll = Symbol(None, None, None, "FreeTrackChannelAll", "", None)
+
+    GetPlayerTrack = Symbol(None, None, None, "GetPlayerTrack", "", None)
+
+    ClosePlayerTrack = Symbol(None, None, None, "ClosePlayerTrack", "", None)
+
+    FinishPlayer = Symbol(None, None, None, "FinishPlayer", "", None)
+
+    PlayerSeqMain = Symbol(None, None, None, "PlayerSeqMain", "", None)
+
+    GetVariablePtr = Symbol(None, None, None, "GetVariablePtr", "", None)
+
+    AllocTrack = Symbol(None, None, None, "AllocTrack", "", None)
+
+    SetTrackMute = Symbol(None, None, None, "SetTrackMute", "", None)
+
+    Snd_ReadInstData = Symbol(None, None, None, "Snd_ReadInstData", "", None)
+
+    Snd_GetWaveDataAddress = Symbol(
+        None, None, None, "Snd_GetWaveDataAddress", "", None
+    )
+
+    Snd_NoteOn = Symbol(None, None, None, "Snd_NoteOn", "", None)
+
+    Snd_SetPlayerLocalVariable = Symbol(
+        None, None, None, "Snd_SetPlayerLocalVariable", "", None
+    )
+
+    Snd_UpdateSharedWork = Symbol(None, None, None, "Snd_UpdateSharedWork", "", None)
+
+    Snd_AlarmInit = Symbol(None, None, None, "Snd_AlarmInit", "", None)
+
+    Snd_SetupAlarm = Symbol(None, None, None, "Snd_SetupAlarm", "", None)
+
+    Snd_StartAlarm = Symbol(None, None, None, "Snd_StartAlarm", "", None)
+
+    Snd_StopAlarm = Symbol(None, None, None, "Snd_StopAlarm", "", None)
+
+    AlarmHandler = Symbol(None, None, None, "AlarmHandler", "", None)
+
+    Snd_CommandInit = Symbol(None, None, None, "Snd_CommandInit", "", None)
+
+    Snd_CommandProc = Symbol(None, None, None, "Snd_CommandProc", "", None)
+
+    PxiFifoCallback = Symbol(None, None, None, "PxiFifoCallback", "", None)
+
+    Cardi_InitCommon = Symbol(None, None, None, "Cardi_InitCommon", "", None)
+
+    Card_SetThreadPriority = Symbol(
+        None, None, None, "Card_SetThreadPriority", "", None
+    )
+
+    Cardi_CommandEnd = Symbol(None, None, None, "Cardi_CommandEnd", "", None)
+
+    Cardi_CommandReadStatus = Symbol(
+        None, None, None, "Cardi_CommandReadStatus", "", None
+    )
+
+    Cardi_WaitPrevCommand = Symbol(None, None, None, "Cardi_WaitPrevCommand", "", None)
+
+    Cardi_CommArray = Symbol(None, None, None, "Cardi_CommArray", "", None)
+
+    Cardi_CommReadCore = Symbol(None, None, None, "Cardi_CommReadCore", "", None)
+
+    Cardi_CommWriteCore = Symbol(None, None, None, "Cardi_CommWriteCore", "", None)
+
+    Cardi_CommVerifyCore = Symbol(None, None, None, "Cardi_CommVerifyCore", "", None)
+
+    Cardi_WriteEnable = Symbol(None, None, None, "Cardi_WriteEnable", "", None)
+
+    Cardi_SendSpiAddressingCommand = Symbol(
+        None, None, None, "Cardi_SendSpiAddressingCommand", "", None
+    )
+
+    Cardi_InitStatusRegister = Symbol(
+        None, None, None, "Cardi_InitStatusRegister", "", None
+    )
+
+    Cardi_ReadBackupCore = Symbol(None, None, None, "Cardi_ReadBackupCore", "", None)
+
+    Cardi_ProgramBackupCore = Symbol(
+        None, None, None, "Cardi_ProgramBackupCore", "", None
+    )
+
+    Cardi_WriteBackupCore = Symbol(None, None, None, "Cardi_WriteBackupCore", "", None)
+
+    Cardi_VerifyBackupCore = Symbol(
+        None, None, None, "Cardi_VerifyBackupCore", "", None
+    )
+
+    Cardi_EraseBackupSectorCore = Symbol(
+        None, None, None, "Cardi_EraseBackupSectorCore", "", None
+    )
+
+    Cardi_EraseBackupSubSectorCore = Symbol(
+        None, None, None, "Cardi_EraseBackupSubSectorCore", "", None
+    )
+
+    Cardi_EraseChipCore = Symbol(None, None, None, "Cardi_EraseChipCore", "", None)
+
+    Cardi_SetWriteProtectCore = Symbol(
+        None, None, None, "Cardi_SetWriteProtectCore", "", None
+    )
+
+    Cardi_SetRomOp = Symbol(None, None, None, "Cardi_SetRomOp", "", None)
+
+    Cardi_ReadEnd = Symbol(None, None, None, "Cardi_ReadEnd", "", None)
+
+    Cardi_GetRomFlag = Symbol(None, None, None, "Cardi_GetRomFlag", "", None)
+
+    Cardi_ReadRomIdCore = Symbol(None, None, None, "Cardi_ReadRomIdCore", "", None)
+
+    Cardi_ReadRomId = Symbol(None, None, None, "Cardi_ReadRomId", "", None)
+
+    Cardi_WaitTask = Symbol(None, None, None, "Cardi_WaitTask", "", None)
+
+    Card_Init = Symbol(None, None, None, "Card_Init", "", None)
+
+    Cardi_OnFifoRecv = Symbol(None, None, None, "Cardi_OnFifoRecv", "", None)
+
+    Cardi_TaskThread = Symbol(None, None, None, "Cardi_TaskThread", "", None)
+
+    Card_InitPulledOutCallback = Symbol(
+        None, None, None, "Card_InitPulledOutCallback", "", None
+    )
+
+    Cardi_CallbackForPulledOut = Symbol(
+        None, None, None, "Cardi_CallbackForPulledOut", "", None
+    )
+
+    Card_IsPulledOut = Symbol(None, None, None, "Card_IsPulledOut", "", None)
+
+    Card_CompareCardId = Symbol(None, None, None, "Card_CompareCardId", "", None)
+
+    Card_IsCardIreqLo = Symbol(None, None, None, "Card_IsCardIreqLo", "", None)
+
+    Math_CountPopulation = Symbol(None, None, None, "Math_CountPopulation", "", None)
+
+    Spi_Init = Symbol(None, None, None, "Spi_Init", "", None)
+
+    Spi_Lock = Symbol(None, None, None, "Spi_Lock", "", None)
+
+    Spi_Unlock = Symbol(None, None, None, "Spi_Unlock", "", None)
+
+    Spii_ReturnResult = Symbol(None, None, None, "Spii_ReturnResult", "", None)
+
+    Spii_ReleaseException = Symbol(None, None, None, "Spii_ReleaseException", "", None)
+
+    SpiPxiCallback = Symbol(None, None, None, "SpiPxiCallback", "", None)
+
+    TP_Init = Symbol(None, None, None, "TP_Init", "", None)
+
+    TP_AnalyzeCommand = Symbol(None, None, None, "TP_AnalyzeCommand", "", None)
+
+    TpVAlarmHandler = Symbol(None, None, None, "TpVAlarmHandler", "", None)
+
+    TPi_DetectTouch = Symbol(None, None, None, "TPi_DetectTouch", "", None)
+
+    TPi_DetectPos = Symbol(None, None, None, "TPi_DetectPos", "", None)
+
+    TP_ExecSampling = Symbol(None, None, None, "TP_ExecSampling", "", None)
+
+    PM_Init = Symbol(None, None, None, "PM_Init", "", None)
+
+    PM_AnalyzeCommand = Symbol(None, None, None, "PM_AnalyzeCommand", "", None)
+
+    PM_ExecuteProcess = Symbol(None, None, None, "PM_ExecuteProcess", "", None)
+
+    PMi_SendPxiCommand = Symbol(None, None, None, "PMi_SendPxiCommand", "", None)
+
+    PMi_SetRegister = Symbol(None, None, None, "PMi_SetRegister", "", None)
+
+    PMi_GetRegister = Symbol(None, None, None, "PMi_GetRegister", "", None)
+
+    PMi_SetControl = Symbol(None, None, None, "PMi_SetControl", "", None)
+
+    PMi_ResetControl = Symbol(None, None, None, "PMi_ResetControl", "", None)
+
+    PMi_SwitchUtilityProc = Symbol(None, None, None, "PMi_SwitchUtilityProc", "", None)
+
+    Pmi_SetLed = Symbol(None, None, None, "Pmi_SetLed", "", None)
+
+    PMi_DoSleep = Symbol(None, None, None, "PMi_DoSleep", "", None)
+
+    Wvr_Begin = Symbol(None, None, None, "Wvr_Begin", "", None)
+
+    Wvr_Shutdown = Symbol(None, None, None, "Wvr_Shutdown", "", None)
+
+    WvrBegin = Symbol(None, None, None, "WvrBegin", "", None)
+
+    Mic_Init = Symbol(None, None, None, "Mic_Init", "", None)
+
+    Mic_AnalyzeCommand = Symbol(None, None, None, "Mic_AnalyzeCommand", "", None)
+
+    MicSetTimerValue = Symbol(None, None, None, "MicSetTimerValue", "", None)
+
+    Mic_ExecuteProcess = Symbol(None, None, None, "Mic_ExecuteProcess", "", None)
+
+    Mic_TimerHandler = Symbol(None, None, None, "Mic_TimerHandler", "", None)
+
+    Spi_DummyWaitReceive = Symbol(None, None, None, "Spi_DummyWaitReceive", "", None)
+
+    Mic_SetIrqFunction = Symbol(None, None, None, "Mic_SetIrqFunction", "", None)
+
+    Mic_EnableMultipleInterrupt = Symbol(
+        None, None, None, "Mic_EnableMultipleInterrupt", "", None
+    )
+
+    Mic_DisableMultipleInterrupt = Symbol(
+        None, None, None, "Mic_DisableMultipleInterrupt", "", None
+    )
+
+    Ctrdgi_InitCommon = Symbol(None, None, None, "Ctrdgi_InitCommon", "", None)
+
+    Ctrdg_IsPulledOut = Symbol(None, None, None, "Ctrdg_IsPulledOut", "", None)
+
+    Ctrdg_IsExisting = Symbol(None, None, None, "Ctrdg_IsExisting", "", None)
+
+    Ctrdgi_ChangeLatestAccessCycle = Symbol(
+        None, None, None, "Ctrdgi_ChangeLatestAccessCycle", "", None
+    )
+
+    Ctrdgi_LockByProcessor = Symbol(
+        None, None, None, "Ctrdgi_LockByProcessor", "", None
+    )
+
+    Ctrdgi_UnlockByProcessor = Symbol(
+        None, None, None, "Ctrdgi_UnlockByProcessor", "", None
+    )
+
+    Ctrdgi_SendtoPxi = Symbol(None, None, None, "Ctrdgi_SendtoPxi", "", None)
+
+    Ctrdg_Init = Symbol(None, None, None, "Ctrdg_Init", "", None)
+
+    Ctrdgi_InitModuleInfo = Symbol(None, None, None, "Ctrdgi_InitModuleInfo", "", None)
+
+    Ctrdgi_CallbackForInitModuleInfo = Symbol(
+        None, None, None, "Ctrdgi_CallbackForInitModuleInfo", "", None
+    )
+
+    Ctrdgi_CallbackForPulledOut = Symbol(
+        None, None, None, "Ctrdgi_CallbackForPulledOut", "", None
+    )
+
+    Ctrdg_VibPulseEdgeUpdate = Symbol(
+        None, None, None, "Ctrdg_VibPulseEdgeUpdate", "", None
+    )
+
+    Ctrdgcheckpullout_Polling = Symbol(
+        None, None, None, "Ctrdgcheckpullout_Polling", "", None
+    )
+
+    Ctrdgi_CallbackForSetPhi = Symbol(
+        None, None, None, "Ctrdgi_CallbackForSetPhi", "", None
+    )
+
     _s32_div_f = Symbol(
         None,
         None,
@@ -176,6 +856,1028 @@ class EuItcmArm7Functions:
         "Copy of the ARM9 function. See arm9.yml for more information.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
         None,
     )
+
+    OSi_DoBoot = Symbol(None, None, None, "OSi_DoBoot", "", None)
+
+    Wmsp_ReturnResult2Wm9 = Symbol(None, None, None, "Wmsp_ReturnResult2Wm9", "", None)
+
+    Wmsp_GetBuffer4Callback2Wm9 = Symbol(
+        None, None, None, "Wmsp_GetBuffer4Callback2Wm9", "", None
+    )
+
+    Wm_Sp_Init = Symbol(None, None, None, "Wm_Sp_Init", "", None)
+
+    Wmsp_WlRequest = Symbol(None, None, None, "Wmsp_WlRequest", "", None)
+
+    WmspPxiCallback = Symbol(None, None, None, "WmspPxiCallback", "", None)
+
+    Wmsp_CheckMacAddress = Symbol(None, None, None, "Wmsp_CheckMacAddress", "", None)
+
+    Wmsp_CopyParentParam = Symbol(None, None, None, "Wmsp_CopyParentParam", "", None)
+
+    Wmsp_SetAllParams = Symbol(None, None, None, "Wmsp_SetAllParams", "", None)
+
+    Wmsp_AddRssiToList = Symbol(None, None, None, "Wmsp_AddRssiToList", "", None)
+
+    Wmsp_FillRssiIntoList = Symbol(None, None, None, "Wmsp_FillRssiIntoList", "", None)
+
+    Wmsp_GetAverageLinkLevel = Symbol(
+        None, None, None, "Wmsp_GetAverageLinkLevel", "", None
+    )
+
+    Wmsp_GetLinkLevel = Symbol(None, None, None, "Wmsp_GetLinkLevel", "", None)
+
+    Wmsp_SetThreadPriorityLow = Symbol(
+        None, None, None, "Wmsp_SetThreadPriorityLow", "", None
+    )
+
+    Wmsp_SetThreadPriorityHigh = Symbol(
+        None, None, None, "Wmsp_SetThreadPriorityHigh", "", None
+    )
+
+    Wmsp_GetInternalRequestBuf = Symbol(
+        None, None, None, "Wmsp_GetInternalRequestBuf", "", None
+    )
+
+    Wmsp_ResetSizeVars = Symbol(None, None, None, "Wmsp_ResetSizeVars", "", None)
+
+    Wmsp_SetParentMaxSize = Symbol(None, None, None, "Wmsp_SetParentMaxSize", "", None)
+
+    Wmsp_SetChildMaxSize = Symbol(None, None, None, "Wmsp_SetChildMaxSize", "", None)
+
+    Wmsp_SetParentSize = Symbol(None, None, None, "Wmsp_SetParentSize", "", None)
+
+    Wmsp_SetChildSize = Symbol(None, None, None, "Wmsp_SetChildSize", "", None)
+
+    WmspFreeBufOfWL = Symbol(None, None, None, "WmspFreeBufOfWL", "", None)
+
+    Wmsp_RequestResumeMP = Symbol(None, None, None, "Wmsp_RequestResumeMP", "", None)
+
+    WmspKickMpParent = Symbol(None, None, None, "WmspKickMpParent", "", None)
+
+    WmspMaMultiPollAckAlarmCallback = Symbol(
+        None, None, None, "WmspMaMultiPollAckAlarmCallback", "", None
+    )
+
+    WmspKickMpChild = Symbol(None, None, None, "WmspKickMpChild", "", None)
+
+    Wmsp_RequestThread = Symbol(None, None, None, "Wmsp_RequestThread", "", None)
+
+    Wmsp_Wl_MlmeReset = Symbol(None, None, None, "Wmsp_Wl_MlmeReset", "", None)
+
+    Wmsp_Wl_MlmePowerManagement = Symbol(
+        None, None, None, "Wmsp_Wl_MlmePowerManagement", "", None
+    )
+
+    Wmsp_Wl_MlmeScan = Symbol(None, None, None, "Wmsp_Wl_MlmeScan", "", None)
+
+    Wmsp_Wl_MlmeJoin = Symbol(None, None, None, "Wmsp_Wl_MlmeJoin", "", None)
+
+    Wmsp_Wl_MlmeAuthenticate = Symbol(
+        None, None, None, "Wmsp_Wl_MlmeAuthenticate", "", None
+    )
+
+    Wmsp_Wl_MlmeDeAuthenticate = Symbol(
+        None, None, None, "Wmsp_Wl_MlmeDeAuthenticate", "", None
+    )
+
+    Wmsp_Wl_MlmeAssociate = Symbol(None, None, None, "Wmsp_Wl_MlmeAssociate", "", None)
+
+    Wmsp_Wl_MlmeStart = Symbol(None, None, None, "Wmsp_Wl_MlmeStart", "", None)
+
+    Wmsp_Wl_MlmeMeasureChannel = Symbol(
+        None, None, None, "Wmsp_Wl_MlmeMeasureChannel", "", None
+    )
+
+    Wmsp_Wl_MaData = Symbol(None, None, None, "Wmsp_Wl_MaData", "", None)
+
+    Wmsp_Wl_MaKeyData = Symbol(None, None, None, "Wmsp_Wl_MaKeyData", "", None)
+
+    Wmsp_Wl_MaMp = Symbol(None, None, None, "Wmsp_Wl_MaMp", "", None)
+
+    Wmsp_Wl_MaClearData = Symbol(None, None, None, "Wmsp_Wl_MaClearData", "", None)
+
+    Wmsp_Wl_ParamSetAll = Symbol(None, None, None, "Wmsp_Wl_ParamSetAll", "", None)
+
+    Wmsp_Wl_ParamSetWepKeyId = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetWepKeyId", "", None
+    )
+
+    Wmsp_Wl_ParamSetBeaconLostThreshold = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetBeaconLostThreshold", "", None
+    )
+
+    Wmsp_Wl_ParamSetSsidMask = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetSsidMask", "", None
+    )
+
+    Wmsp_Wl_ParamSetPreambleType = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetPreambleType", "", None
+    )
+
+    Wmsp_Wl_ParamSetLifeTime = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetLifeTime", "", None
+    )
+
+    Wmsp_Wl_ParamSetMaxConnectableChild = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetMaxConnectableChild", "", None
+    )
+
+    Wmsp_Wl_ParamSetBeaconSendRecvInd = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetBeaconSendRecvInd", "", None
+    )
+
+    Wmsp_Wl_ParamSetNullKeyResponseMode = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetNullKeyResponseMode", "", None
+    )
+
+    Wmsp_Wl_ParamSetBeaconPeriod = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetBeaconPeriod", "", None
+    )
+
+    Wmsp_Wl_ParamSetGameInfo = Symbol(
+        None, None, None, "Wmsp_Wl_ParamSetGameInfo", "", None
+    )
+
+    Wmsp_Wl_DevTestSignal = Symbol(None, None, None, "Wmsp_Wl_DevTestSignal", "", None)
+
+    Wmspi_Wl_NoArg = Symbol(None, None, None, "Wmspi_Wl_NoArg", "", None)
+
+    Wmsp_Initialize = Symbol(None, None, None, "Wmsp_Initialize", "", None)
+
+    Wmsp_Reset = Symbol(None, None, None, "Wmsp_Reset", "", None)
+
+    Wmsp_End = Symbol(None, None, None, "Wmsp_End", "", None)
+
+    Wmsp_SetParentParam = Symbol(None, None, None, "Wmsp_SetParentParam", "", None)
+
+    Wmsp_StartParent = Symbol(None, None, None, "Wmsp_StartParent", "", None)
+
+    Wmsp_EndParent = Symbol(None, None, None, "Wmsp_EndParent", "", None)
+
+    Wmsp_StartScan = Symbol(None, None, None, "Wmsp_StartScan", "", None)
+
+    Wmsp_StartScanEx = Symbol(None, None, None, "Wmsp_StartScanEx", "", None)
+
+    Wmsp_EndScan = Symbol(None, None, None, "Wmsp_EndScan", "", None)
+
+    Wmsp_StartConnectEx = Symbol(None, None, None, "Wmsp_StartConnectEx", "", None)
+
+    Wmsp_Disconnect = Symbol(None, None, None, "Wmsp_Disconnect", "", None)
+
+    Wmsp_DisconnectCore = Symbol(None, None, None, "Wmsp_DisconnectCore", "", None)
+
+    Wmsp_IndicateDisconnectionFromMyself = Symbol(
+        None, None, None, "Wmsp_IndicateDisconnectionFromMyself", "", None
+    )
+
+    WmspError = Symbol(None, None, None, "WmspError", "", None)
+
+    WmspIndError = Symbol(None, None, None, "WmspIndError", "", None)
+
+    Wmsp_StartMp = Symbol(None, None, None, "Wmsp_StartMp", "", None)
+
+    Wmsp_SetMpData = Symbol(None, None, None, "Wmsp_SetMpData", "", None)
+
+    Wmsp_EndMp = Symbol(None, None, None, "Wmsp_EndMp", "", None)
+
+    Wmsp_StartDcf = Symbol(None, None, None, "Wmsp_StartDcf", "", None)
+
+    Wmsp_SetDcfData = Symbol(None, None, None, "Wmsp_SetDcfData", "", None)
+
+    Wmsp_EndDcf = Symbol(None, None, None, "Wmsp_EndDcf", "", None)
+
+    Wmsp_SetWepKey = Symbol(None, None, None, "Wmsp_SetWepKey", "", None)
+
+    Wmsp_SetWepKeyEx = Symbol(None, None, None, "Wmsp_SetWepKeyEx", "", None)
+
+    Wmsp_SetGameInfo = Symbol(None, None, None, "Wmsp_SetGameInfo", "", None)
+
+    Wmsp_SetBeaconTxRxInd = Symbol(None, None, None, "Wmsp_SetBeaconTxRxInd", "", None)
+
+    Wmsp_StartTestMode = Symbol(None, None, None, "Wmsp_StartTestMode", "", None)
+
+    Wmsp_StopTestMode = Symbol(None, None, None, "Wmsp_StopTestMode", "", None)
+
+    Wmsp_MeasureChannel = Symbol(None, None, None, "Wmsp_MeasureChannel", "", None)
+
+    Wmsp_InitWirelessCounter = Symbol(
+        None, None, None, "Wmsp_InitWirelessCounter", "", None
+    )
+
+    Wmsp_GetWirelessCounter = Symbol(
+        None, None, None, "Wmsp_GetWirelessCounter", "", None
+    )
+
+    Wmsp_SetValarm = Symbol(None, None, None, "Wmsp_SetValarm", "", None)
+
+    WmspChildAdjustVSync1 = Symbol(None, None, None, "WmspChildAdjustVSync1", "", None)
+
+    WmspChildAdjustVSync2 = Symbol(None, None, None, "WmspChildAdjustVSync2", "", None)
+
+    WmspChildVAlarmMP = Symbol(None, None, None, "WmspChildVAlarmMP", "", None)
+
+    WmspParentAdjustVSync = Symbol(None, None, None, "WmspParentAdjustVSync", "", None)
+
+    WmspParentVAlarmMP = Symbol(None, None, None, "WmspParentVAlarmMP", "", None)
+
+    WmspFromVAlarmToWmspThread = Symbol(
+        None, None, None, "WmspFromVAlarmToWmspThread", "", None
+    )
+
+    Wmsp_ValarmSetMpData = Symbol(None, None, None, "Wmsp_ValarmSetMpData", "", None)
+
+    Wmspkicknextmp_Child = Symbol(None, None, None, "Wmspkicknextmp_Child", "", None)
+
+    Wmsp_InitSendQueue = Symbol(None, None, None, "Wmsp_InitSendQueue", "", None)
+
+    Wmsp_SendMaKeyData = Symbol(None, None, None, "Wmsp_SendMaKeyData", "", None)
+
+    Wmsp_SendMaMp = Symbol(None, None, None, "Wmsp_SendMaMp", "", None)
+
+    Wmsp_ResumeMaMP = Symbol(None, None, None, "Wmsp_ResumeMaMP", "", None)
+
+    Wmsp_PutSendQueue = Symbol(None, None, None, "Wmsp_PutSendQueue", "", None)
+
+    Wmsp_FlushSendQueue = Symbol(None, None, None, "Wmsp_FlushSendQueue", "", None)
+
+    Wmsp_CleanSendQueue = Symbol(None, None, None, "Wmsp_CleanSendQueue", "", None)
+
+    Wmsp_ParsePortPacket = Symbol(None, None, None, "Wmsp_ParsePortPacket", "", None)
+
+    WmspGetTmptt = Symbol(None, None, None, "WmspGetTmptt", "", None)
+
+    Wmsp_SetEntry = Symbol(None, None, None, "Wmsp_SetEntry", "", None)
+
+    Wmsp_AutoDeAuth = Symbol(None, None, None, "Wmsp_AutoDeAuth", "", None)
+
+    Wmsp_Disable = Symbol(None, None, None, "Wmsp_Disable", "", None)
+
+    Wmsp_PowerOn = Symbol(None, None, None, "Wmsp_PowerOn", "", None)
+
+    Wmspi_CommonWlIdle = Symbol(None, None, None, "Wmspi_CommonWlIdle", "", None)
+
+    Wmsp_PowerOff = Symbol(None, None, None, "Wmsp_PowerOff", "", None)
+
+    Wmsp_SetMpParameter = Symbol(None, None, None, "Wmsp_SetMpParameter", "", None)
+
+    Wmsp_SetBeaconPeriod = Symbol(None, None, None, "Wmsp_SetBeaconPeriod", "", None)
+
+    Wmsp_SetPowerSaveMode = Symbol(None, None, None, "Wmsp_SetPowerSaveMode", "", None)
+
+    Wmsp_StartTestRxMode = Symbol(None, None, None, "Wmsp_StartTestRxMode", "", None)
+
+    Wmsp_StopTestRxMode = Symbol(None, None, None, "Wmsp_StopTestRxMode", "", None)
+
+    WlessLibReboot = Symbol(None, None, None, "WlessLibReboot", "", None)
+
+    WL_InitDriver = Symbol(None, None, None, "WL_InitDriver", "", None)
+
+    InitializeTask = Symbol(None, None, None, "InitializeTask", "", None)
+
+    InitializeHeapBuf = Symbol(None, None, None, "InitializeHeapBuf", "", None)
+
+    ReleaseAllWlHeapBuf = Symbol(None, None, None, "ReleaseAllWlHeapBuf", "", None)
+
+    ReleaseAllHeapBuf = Symbol(None, None, None, "ReleaseAllHeapBuf", "", None)
+
+    InitializeParam = Symbol(None, None, None, "InitializeParam", "", None)
+
+    WSetMacAdrs = Symbol(None, None, None, "WSetMacAdrs", "", None)
+
+    WSetRetryLimit = Symbol(None, None, None, "WSetRetryLimit", "", None)
+
+    WSetEnableChannel = Symbol(None, None, None, "WSetEnableChannel", "", None)
+
+    WSetMode = Symbol(None, None, None, "WSetMode", "", None)
+
+    WSetRate = Symbol(None, None, None, "WSetRate", "", None)
+
+    WSetWepMode = Symbol(None, None, None, "WSetWepMode", "", None)
+
+    WSetWepKeyId = Symbol(None, None, None, "WSetWepKeyId", "", None)
+
+    WSetWepKey = Symbol(None, None, None, "WSetWepKey", "", None)
+
+    WSetBeaconType = Symbol(None, None, None, "WSetBeaconType", "", None)
+
+    WSetBcSsidResponse = Symbol(None, None, None, "WSetBcSsidResponse", "", None)
+
+    WSetBeaconLostThreshold = Symbol(
+        None, None, None, "WSetBeaconLostThreshold", "", None
+    )
+
+    WSetActiveZoneTime = Symbol(None, None, None, "WSetActiveZoneTime", "", None)
+
+    WSetSsidMask = Symbol(None, None, None, "WSetSsidMask", "", None)
+
+    WSetPreambleType = Symbol(None, None, None, "WSetPreambleType", "", None)
+
+    WSetAuthAlgo = Symbol(None, None, None, "WSetAuthAlgo", "", None)
+
+    WsetCca_Ed = Symbol(None, None, None, "WsetCca_Ed", "", None)
+
+    WSetMainAntenna = Symbol(None, None, None, "WSetMainAntenna", "", None)
+
+    WSetDiversity = Symbol(None, None, None, "WSetDiversity", "", None)
+
+    WSetBeaconSendRecvIndicate = Symbol(
+        None, None, None, "WSetBeaconSendRecvIndicate", "", None
+    )
+
+    WSetNullKeyMode = Symbol(None, None, None, "WSetNullKeyMode", "", None)
+
+    WSetBssid = Symbol(None, None, None, "WSetBssid", "", None)
+
+    WSetSsid = Symbol(None, None, None, "WSetSsid", "", None)
+
+    WSetBeaconPeriod = Symbol(None, None, None, "WSetBeaconPeriod", "", None)
+
+    WSetDTimPeriod = Symbol(None, None, None, "WSetDTimPeriod", "", None)
+
+    WSetListenInterval = Symbol(None, None, None, "WSetListenInterval", "", None)
+
+    WSetDefaultParameters = Symbol(None, None, None, "WSetDefaultParameters", "", None)
+
+    WSetChannel = Symbol(None, None, None, "WSetChannel", "", None)
+
+    WSetRateSet = Symbol(None, None, None, "WSetRateSet", "", None)
+
+    WSetTxTimeStampOffset = Symbol(None, None, None, "WSetTxTimeStampOffset", "", None)
+
+    WSetPowerMgtMode = Symbol(None, None, None, "WSetPowerMgtMode", "", None)
+
+    WSetPowerState = Symbol(None, None, None, "WSetPowerState", "", None)
+
+    WShutdown = Symbol(None, None, None, "WShutdown", "", None)
+
+    WWakeUp = Symbol(None, None, None, "WWakeUp", "", None)
+
+    WSetFrameLifeTime = Symbol(None, None, None, "WSetFrameLifeTime", "", None)
+
+    WDisableTmpttPowerSave = Symbol(
+        None, None, None, "WDisableTmpttPowerSave", "", None
+    )
+
+    WEnableTmpttPowerSave = Symbol(None, None, None, "WEnableTmpttPowerSave", "", None)
+
+    WInitGameInfo = Symbol(None, None, None, "WInitGameInfo", "", None)
+
+    WSetGameInfo = Symbol(None, None, None, "WSetGameInfo", "", None)
+
+    WSetAids = Symbol(None, None, None, "WSetAids", "", None)
+
+    WClearAids = Symbol(None, None, None, "WClearAids", "", None)
+
+    WSetKsid = Symbol(None, None, None, "WSetKsid", "", None)
+
+    WClearKsid = Symbol(None, None, None, "WClearKsid", "", None)
+
+    WSetMacAdrs2 = Symbol(None, None, None, "WSetMacAdrs2", "", None)
+
+    WSetMacAdrs3 = Symbol(None, None, None, "WSetMacAdrs3", "", None)
+
+    WInitCounter = Symbol(None, None, None, "WInitCounter", "", None)
+
+    WUpdateCounter = Symbol(None, None, None, "WUpdateCounter", "", None)
+
+    WCheckSsid = Symbol(None, None, None, "WCheckSsid", "", None)
+
+    MatchMacAdrs = Symbol(None, None, None, "MatchMacAdrs", "", None)
+
+    CheckEnableChannel = Symbol(None, None, None, "CheckEnableChannel", "", None)
+
+    WElement2RateSet = Symbol(None, None, None, "WElement2RateSet", "", None)
+
+    WCalcManRate = Symbol(None, None, None, "WCalcManRate", "", None)
+
+    Bbp_Read = Symbol(None, None, None, "Bbp_Read", "", None)
+
+    Bbp_Write = Symbol(None, None, None, "Bbp_Write", "", None)
+
+    RF_Write = Symbol(None, None, None, "RF_Write", "", None)
+
+    CalcBbpCrc = Symbol(None, None, None, "CalcBbpCrc", "", None)
+
+    WConfigDevice = Symbol(None, None, None, "WConfigDevice", "", None)
+
+    InitMac = Symbol(None, None, None, "InitMac", "", None)
+
+    InitBaseBand = Symbol(None, None, None, "InitBaseBand", "", None)
+
+    InitRF = Symbol(None, None, None, "InitRF", "", None)
+
+    InitializeAlarm = Symbol(None, None, None, "InitializeAlarm", "", None)
+
+    ClearPeriodicTimeOut = Symbol(None, None, None, "ClearPeriodicTimeOut", "", None)
+
+    WIntervalTimer = Symbol(None, None, None, "WIntervalTimer", "", None)
+
+    ClearTimeOut = Symbol(None, None, None, "ClearTimeOut", "", None)
+
+    Dma_Read = Symbol(None, None, None, "Dma_Read", "", None)
+
+    Dma_Write = Symbol(None, None, None, "Dma_Write", "", None)
+
+    Dma_WriteHeaderData = Symbol(None, None, None, "Dma_WriteHeaderData", "", None)
+
+    Dma_WepWriteHeaderData = Symbol(
+        None, None, None, "Dma_WepWriteHeaderData", "", None
+    )
+
+    WL_WriteByte = Symbol(None, None, None, "WL_WriteByte", "", None)
+
+    Rnd_Init = Symbol(None, None, None, "Rnd_Init", "", None)
+
+    Rnd_Rand = Symbol(None, None, None, "Rnd_Rand", "", None)
+
+    Calc_NextCrc = Symbol(None, None, None, "Calc_NextCrc", "", None)
+
+    WCheckTxBufIdBeforeFrame = Symbol(
+        None, None, None, "WCheckTxBufIdBeforeFrame", "", None
+    )
+
+    WaitMacStop = Symbol(None, None, None, "WaitMacStop", "", None)
+
+    RestoreTxFrame = Symbol(None, None, None, "RestoreTxFrame", "", None)
+
+    WCheckTxBuf = Symbol(None, None, None, "WCheckTxBuf", "", None)
+
+    SetFatalErr = Symbol(None, None, None, "SetFatalErr", "", None)
+
+    SendFatalErrMsgTask = Symbol(None, None, None, "SendFatalErrMsgTask", "", None)
+
+    TerminateWlTask = Symbol(None, None, None, "TerminateWlTask", "", None)
+
+    ReleaseWlTask = Symbol(None, None, None, "ReleaseWlTask", "", None)
+
+    DiagMacRegister = Symbol(None, None, None, "DiagMacRegister", "", None)
+
+    DiagMacMemory = Symbol(None, None, None, "DiagMacMemory", "", None)
+
+    DiagBaseBand = Symbol(None, None, None, "DiagBaseBand", "", None)
+
+    CheckKeyTxEndMain = Symbol(None, None, None, "CheckKeyTxEndMain", "", None)
+
+    InitializeIntr = Symbol(None, None, None, "InitializeIntr", "", None)
+
+    ReleaseIntr = Symbol(None, None, None, "ReleaseIntr", "", None)
+
+    Cam_Search = Symbol(None, None, None, "Cam_Search", "", None)
+
+    Cam_SearchAdd = Symbol(None, None, None, "Cam_SearchAdd", "", None)
+
+    Cam_AddBcFrame = Symbol(None, None, None, "Cam_AddBcFrame", "", None)
+
+    Cam_IncFrameCount = Symbol(None, None, None, "Cam_IncFrameCount", "", None)
+
+    Cam_DecFrameCount = Symbol(None, None, None, "Cam_DecFrameCount", "", None)
+
+    Cam_SetStaState = Symbol(None, None, None, "Cam_SetStaState", "", None)
+
+    Cam_SetRssi = Symbol(None, None, None, "Cam_SetRssi", "", None)
+
+    Cam_SetPowerMgtMode = Symbol(None, None, None, "Cam_SetPowerMgtMode", "", None)
+
+    Cam_SetDoze = Symbol(None, None, None, "Cam_SetDoze", "", None)
+
+    Cam_SetAwake = Symbol(None, None, None, "Cam_SetAwake", "", None)
+
+    Cam_SetCapaInfo = Symbol(None, None, None, "Cam_SetCapaInfo", "", None)
+
+    Cam_SetSupRate = Symbol(None, None, None, "Cam_SetSupRate", "", None)
+
+    Cam_SetLastSeqCtrl = Symbol(None, None, None, "Cam_SetLastSeqCtrl", "", None)
+
+    Cam_SetAuthSeed = Symbol(None, None, None, "Cam_SetAuthSeed", "", None)
+
+    Cam_UpdateLifeTime = Symbol(None, None, None, "Cam_UpdateLifeTime", "", None)
+
+    Cam_AllocateAid = Symbol(None, None, None, "Cam_AllocateAid", "", None)
+
+    Cam_ReleaseAid = Symbol(None, None, None, "Cam_ReleaseAid", "", None)
+
+    Cam_GetStaState = Symbol(None, None, None, "Cam_GetStaState", "", None)
+
+    Cam_IsActive = Symbol(None, None, None, "Cam_IsActive", "", None)
+
+    Cam_GetPowerMgtMode = Symbol(None, None, None, "Cam_GetPowerMgtMode", "", None)
+
+    Cam_GetMacAdrs = Symbol(None, None, None, "Cam_GetMacAdrs", "", None)
+
+    Cam_GetAuthSeed = Symbol(None, None, None, "Cam_GetAuthSeed", "", None)
+
+    Cam_GetLastSeqCtrl = Symbol(None, None, None, "Cam_GetLastSeqCtrl", "", None)
+
+    Cam_GetTxRate = Symbol(None, None, None, "Cam_GetTxRate", "", None)
+
+    Cam_GetAid = Symbol(None, None, None, "Cam_GetAid", "", None)
+
+    Cam_GetFrameCount = Symbol(None, None, None, "Cam_GetFrameCount", "", None)
+
+    Cam_SetTimElementBitmap = Symbol(
+        None, None, None, "Cam_SetTimElementBitmap", "", None
+    )
+
+    Cam_ClrTimElementBitmap = Symbol(
+        None, None, None, "Cam_ClrTimElementBitmap", "", None
+    )
+
+    Cam_TimerTask = Symbol(None, None, None, "Cam_TimerTask", "", None)
+
+    Cam_Delete = Symbol(None, None, None, "Cam_Delete", "", None)
+
+    InitializeCam = Symbol(None, None, None, "InitializeCam", "", None)
+
+    InitCam = Symbol(None, None, None, "InitCam", "", None)
+
+    Cam_InitElement = Symbol(None, None, None, "Cam_InitElement", "", None)
+
+    SendMessageToWmTask = Symbol(None, None, None, "SendMessageToWmTask", "", None)
+
+    Mlme_ResetReqCmd = Symbol(None, None, None, "Mlme_ResetReqCmd", "", None)
+
+    Mlme_PwrMgtReqCmd = Symbol(None, None, None, "Mlme_PwrMgtReqCmd", "", None)
+
+    Mlme_ScanReqCmd = Symbol(None, None, None, "Mlme_ScanReqCmd", "", None)
+
+    Mlme_JoinReqCmd = Symbol(None, None, None, "Mlme_JoinReqCmd", "", None)
+
+    Mlme_AuthReqCmd = Symbol(None, None, None, "Mlme_AuthReqCmd", "", None)
+
+    Mlme_DeAuthReqCmd = Symbol(None, None, None, "Mlme_DeAuthReqCmd", "", None)
+
+    Mlme_AssReqCmd = Symbol(None, None, None, "Mlme_AssReqCmd", "", None)
+
+    Mlme_ReAssReqCmd = Symbol(None, None, None, "Mlme_ReAssReqCmd", "", None)
+
+    Mlme_DisAssReqCmd = Symbol(None, None, None, "Mlme_DisAssReqCmd", "", None)
+
+    Mlme_StartReqCmd = Symbol(None, None, None, "Mlme_StartReqCmd", "", None)
+
+    Mlme_MeasChanReqCmd = Symbol(None, None, None, "Mlme_MeasChanReqCmd", "", None)
+
+    Mlme_ScanTask = Symbol(None, None, None, "Mlme_ScanTask", "", None)
+
+    Mlme_ScanTimeOut = Symbol(None, None, None, "Mlme_ScanTimeOut", "", None)
+
+    Mlme_JoinTask = Symbol(None, None, None, "Mlme_JoinTask", "", None)
+
+    Mlme_JoinTimeOut = Symbol(None, None, None, "Mlme_JoinTimeOut", "", None)
+
+    Mlme_AuthTask = Symbol(None, None, None, "Mlme_AuthTask", "", None)
+
+    Mlme_AuthTimeOut = Symbol(None, None, None, "Mlme_AuthTimeOut", "", None)
+
+    Mlme_AssTask = Symbol(None, None, None, "Mlme_AssTask", "", None)
+
+    Mlme_AssTimeOut = Symbol(None, None, None, "Mlme_AssTimeOut", "", None)
+
+    Mlme_ReAssTask = Symbol(None, None, None, "Mlme_ReAssTask", "", None)
+
+    Mlme_ReAssTimeOut = Symbol(None, None, None, "Mlme_ReAssTimeOut", "", None)
+
+    Mlme_MeasChannelTask = Symbol(None, None, None, "Mlme_MeasChannelTask", "", None)
+
+    Mlme_MeasChanTimeOut = Symbol(None, None, None, "Mlme_MeasChanTimeOut", "", None)
+
+    Mlme_BeaconLostTask = Symbol(None, None, None, "Mlme_BeaconLostTask", "", None)
+
+    IssueMlmeConfirm = Symbol(None, None, None, "IssueMlmeConfirm", "", None)
+
+    Mlme_IssueAuthIndication = Symbol(
+        None, None, None, "Mlme_IssueAuthIndication", "", None
+    )
+
+    Mlme_IssueDeAuthIndication = Symbol(
+        None, None, None, "Mlme_IssueDeAuthIndication", "", None
+    )
+
+    Mlme_IssueAssIndication = Symbol(
+        None, None, None, "Mlme_IssueAssIndication", "", None
+    )
+
+    Mlme_IssueReAssIndication = Symbol(
+        None, None, None, "Mlme_IssueReAssIndication", "", None
+    )
+
+    Mlme_IssueDisAssIndication = Symbol(
+        None, None, None, "Mlme_IssueDisAssIndication", "", None
+    )
+
+    Mlme_IssueBeaconLostIndication = Symbol(
+        None, None, None, "Mlme_IssueBeaconLostIndication", "", None
+    )
+
+    Mlme_IssueBeaconSendIndication = Symbol(
+        None, None, None, "Mlme_IssueBeaconSendIndication", "", None
+    )
+
+    Mlme_IssueBeaconRecvIndication = Symbol(
+        None, None, None, "Mlme_IssueBeaconRecvIndication", "", None
+    )
+
+    InitializeMlme = Symbol(None, None, None, "InitializeMlme", "", None)
+
+    ParamSet_AllReqCmd = Symbol(None, None, None, "ParamSet_AllReqCmd", "", None)
+
+    ParamSet_MacAdrsReqCmd = Symbol(
+        None, None, None, "ParamSet_MacAdrsReqCmd", "", None
+    )
+
+    ParamSet_EnableChannelReqCmd = Symbol(
+        None, None, None, "ParamSet_EnableChannelReqCmd", "", None
+    )
+
+    ParamSet_ModeReqCmd = Symbol(None, None, None, "ParamSet_ModeReqCmd", "", None)
+
+    ParamSet_BeaconTypeReqCmd = Symbol(
+        None, None, None, "ParamSet_BeaconTypeReqCmd", "", None
+    )
+
+    ParamSet_CcaModeEdThReqCmd = Symbol(
+        None, None, None, "ParamSet_CcaModeEdThReqCmd", "", None
+    )
+
+    ParamSet_LifeTimeReqCmd = Symbol(
+        None, None, None, "ParamSet_LifeTimeReqCmd", "", None
+    )
+
+    ParamSet_MaxConnReqCmd = Symbol(
+        None, None, None, "ParamSet_MaxConnReqCmd", "", None
+    )
+
+    ParamSet_DiversityReqCmd = Symbol(
+        None, None, None, "ParamSet_DiversityReqCmd", "", None
+    )
+
+    ParamSet_SsidReqCmd = Symbol(None, None, None, "ParamSet_SsidReqCmd", "", None)
+
+    ParamSet_ListenIntervalReqCmd = Symbol(
+        None, None, None, "ParamSet_ListenIntervalReqCmd", "", None
+    )
+
+    ParamSet_GameInfoReqCmd = Symbol(
+        None, None, None, "ParamSet_GameInfoReqCmd", "", None
+    )
+
+    ParamGet_AllReqCmd = Symbol(None, None, None, "ParamGet_AllReqCmd", "", None)
+
+    ParamGet_MacAdrsReqCmd = Symbol(
+        None, None, None, "ParamGet_MacAdrsReqCmd", "", None
+    )
+
+    ParamGet_RetryReqCmd = Symbol(None, None, None, "ParamGet_RetryReqCmd", "", None)
+
+    ParamGet_EnableChannelReqCmd = Symbol(
+        None, None, None, "ParamGet_EnableChannelReqCmd", "", None
+    )
+
+    ParamGet_ModeReqCmd = Symbol(None, None, None, "ParamGet_ModeReqCmd", "", None)
+
+    ParamGet_RateReqCmd = Symbol(None, None, None, "ParamGet_RateReqCmd", "", None)
+
+    ParamGet_WepModeReqCmd = Symbol(
+        None, None, None, "ParamGet_WepModeReqCmd", "", None
+    )
+
+    ParamGet_WepKeyIdReqCmd = Symbol(
+        None, None, None, "ParamGet_WepKeyIdReqCmd", "", None
+    )
+
+    ParamGet_BeaconTypeReqCmd = Symbol(
+        None, None, None, "ParamGet_BeaconTypeReqCmd", "", None
+    )
+
+    ParamGet_ResBcSsidReqCmd = Symbol(
+        None, None, None, "ParamGet_ResBcSsidReqCmd", "", None
+    )
+
+    ParamGet_BeaconLostThReqCmd = Symbol(
+        None, None, None, "ParamGet_BeaconLostThReqCmd", "", None
+    )
+
+    ParamGet_ActiveZoneReqCmd = Symbol(
+        None, None, None, "ParamGet_ActiveZoneReqCmd", "", None
+    )
+
+    ParamGet_SsidMaskReqCmd = Symbol(
+        None, None, None, "ParamGet_SsidMaskReqCmd", "", None
+    )
+
+    ParamGet_PreambleTypeReqCmd = Symbol(
+        None, None, None, "ParamGet_PreambleTypeReqCmd", "", None
+    )
+
+    ParamGet_AuthAlgoReqCmd = Symbol(
+        None, None, None, "ParamGet_AuthAlgoReqCmd", "", None
+    )
+
+    ParamGet_CcaModeEdThReqCmd = Symbol(
+        None, None, None, "ParamGet_CcaModeEdThReqCmd", "", None
+    )
+
+    ParamGet_MaxConnReqCmd = Symbol(
+        None, None, None, "ParamGet_MaxConnReqCmd", "", None
+    )
+
+    ParamGet_MainAntennaReqCmd = Symbol(
+        None, None, None, "ParamGet_MainAntennaReqCmd", "", None
+    )
+
+    ParamGet_DiversityReqCmd = Symbol(
+        None, None, None, "ParamGet_DiversityReqCmd", "", None
+    )
+
+    ParamGet_BcnSendRecvIndReqCmd = Symbol(
+        None, None, None, "ParamGet_BcnSendRecvIndReqCmd", "", None
+    )
+
+    ParamGet_NullKeyModeReqCmd = Symbol(
+        None, None, None, "ParamGet_NullKeyModeReqCmd", "", None
+    )
+
+    ParamGet_BssIdReqCmd = Symbol(None, None, None, "ParamGet_BssIdReqCmd", "", None)
+
+    ParamGet_SsidReqCmd = Symbol(None, None, None, "ParamGet_SsidReqCmd", "", None)
+
+    ParamGet_BeaconPeriodReqCmd = Symbol(
+        None, None, None, "ParamGet_BeaconPeriodReqCmd", "", None
+    )
+
+    ParamGet_DtimPeriodReqCmd = Symbol(
+        None, None, None, "ParamGet_DtimPeriodReqCmd", "", None
+    )
+
+    ParamGet_ListenIntervalReqCmd = Symbol(
+        None, None, None, "ParamGet_ListenIntervalReqCmd", "", None
+    )
+
+    ParamGet_GameInfoReqCmd = Symbol(
+        None, None, None, "ParamGet_GameInfoReqCmd", "", None
+    )
+
+    Dev_ShutdownReqCmd = Symbol(None, None, None, "Dev_ShutdownReqCmd", "", None)
+
+    Dev_IdleReqCmd = Symbol(None, None, None, "Dev_IdleReqCmd", "", None)
+
+    Dev_Class1ReqCmd = Symbol(None, None, None, "Dev_Class1ReqCmd", "", None)
+
+    Dev_RebootReqCmd = Symbol(None, None, None, "Dev_RebootReqCmd", "", None)
+
+    Dev_ClearWlInfoReqCmd = Symbol(None, None, None, "Dev_ClearWlInfoReqCmd", "", None)
+
+    Dev_GetVerInfoReqCmd = Symbol(None, None, None, "Dev_GetVerInfoReqCmd", "", None)
+
+    Dev_GetWlInfoReqCmd = Symbol(None, None, None, "Dev_GetWlInfoReqCmd", "", None)
+
+    Dev_GetStateReqCmd = Symbol(None, None, None, "Dev_GetStateReqCmd", "", None)
+
+    Dev_TestSignalReqCmd = Symbol(None, None, None, "Dev_TestSignalReqCmd", "", None)
+
+    IntrCarrierSuppresionSignal = Symbol(
+        None, None, None, "IntrCarrierSuppresionSignal", "", None
+    )
+
+    Dev_TestRxReqCmd = Symbol(None, None, None, "Dev_TestRxReqCmd", "", None)
+
+    MA_DataReqCmd = Symbol(None, None, None, "MA_DataReqCmd", "", None)
+
+    MA_KeyDataReqCmd = Symbol(None, None, None, "MA_KeyDataReqCmd", "", None)
+
+    MA_MpReqCmd = Symbol(None, None, None, "MA_MpReqCmd", "", None)
+
+    MA_TestDataReqCmd = Symbol(None, None, None, "MA_TestDataReqCmd", "", None)
+
+    MA_ClrDataReqCmd = Symbol(None, None, None, "MA_ClrDataReqCmd", "", None)
+
+    IssueMaDataConfirm = Symbol(None, None, None, "IssueMaDataConfirm", "", None)
+
+    TxqPri = Symbol(None, None, None, "TxqPri", "", None)
+
+    CopyTxFrmToMacBuf = Symbol(None, None, None, "CopyTxFrmToMacBuf", "", None)
+
+    CheckFrameTimeout = Symbol(None, None, None, "CheckFrameTimeout", "", None)
+
+    TxqEndData = Symbol(None, None, None, "TxqEndData", "", None)
+
+    TxqEndManCtrl = Symbol(None, None, None, "TxqEndManCtrl", "", None)
+
+    TxqEndPsPoll = Symbol(None, None, None, "TxqEndPsPoll", "", None)
+
+    TxqEndBroadCast = Symbol(None, None, None, "TxqEndBroadCast", "", None)
+
+    TxEndKeyData = Symbol(None, None, None, "TxEndKeyData", "", None)
+
+    ClearTxKeyData = Symbol(None, None, None, "ClearTxKeyData", "", None)
+
+    ClearTxMp = Symbol(None, None, None, "ClearTxMp", "", None)
+
+    ClearTxData = Symbol(None, None, None, "ClearTxData", "", None)
+
+    ClearQueuedPri = Symbol(None, None, None, "ClearQueuedPri", "", None)
+
+    ResetTxqPri = Symbol(None, None, None, "ResetTxqPri", "", None)
+
+    DeleteTxFrames = Symbol(None, None, None, "DeleteTxFrames", "", None)
+
+    DeleteTxFrameByAdrs = Symbol(None, None, None, "DeleteTxFrameByAdrs", "", None)
+
+    DeleteAllTxFrames = Symbol(None, None, None, "DeleteAllTxFrames", "", None)
+
+    MessageDeleteTx = Symbol(None, None, None, "MessageDeleteTx", "", None)
+
+    SetManCtrlFrame = Symbol(None, None, None, "SetManCtrlFrame", "", None)
+
+    TxPsPollFrame = Symbol(None, None, None, "TxPsPollFrame", "", None)
+
+    StartBeaconFrame = Symbol(None, None, None, "StartBeaconFrame", "", None)
+
+    StopBeaconFrame = Symbol(None, None, None, "StopBeaconFrame", "", None)
+
+    MakeBeaconFrame = Symbol(None, None, None, "MakeBeaconFrame", "", None)
+
+    UpdateGameInfoElement = Symbol(None, None, None, "UpdateGameInfoElement", "", None)
+
+    IsEnableManagement = Symbol(None, None, None, "IsEnableManagement", "", None)
+
+    MakeDisAssFrame = Symbol(None, None, None, "MakeDisAssFrame", "", None)
+
+    MakeAssReqFrame = Symbol(None, None, None, "MakeAssReqFrame", "", None)
+
+    MakeReAssReqFrame = Symbol(None, None, None, "MakeReAssReqFrame", "", None)
+
+    MakeAssResFrame = Symbol(None, None, None, "MakeAssResFrame", "", None)
+
+    MakeReAssResFrame = Symbol(None, None, None, "MakeReAssResFrame", "", None)
+
+    MakeProbeReqFrame = Symbol(None, None, None, "MakeProbeReqFrame", "", None)
+
+    MakeProbeResFrame = Symbol(None, None, None, "MakeProbeResFrame", "", None)
+
+    MakeAuthFrame = Symbol(None, None, None, "MakeAuthFrame", "", None)
+
+    MakeDeAuthFrame = Symbol(None, None, None, "MakeDeAuthFrame", "", None)
+
+    MakePsPollFrame = Symbol(None, None, None, "MakePsPollFrame", "", None)
+
+    InitManHeader = Symbol(None, None, None, "InitManHeader", "", None)
+
+    IsExistManFrame = Symbol(None, None, None, "IsExistManFrame", "", None)
+
+    SetSsidElement = Symbol(None, None, None, "SetSsidElement", "", None)
+
+    SetSupRateSet = Symbol(None, None, None, "SetSupRateSet", "", None)
+
+    RxDataFrameTask = Symbol(None, None, None, "RxDataFrameTask", "", None)
+
+    RxMpFrame = Symbol(None, None, None, "RxMpFrame", "", None)
+
+    RxKeyDataFrame = Symbol(None, None, None, "RxKeyDataFrame", "", None)
+
+    RxMpAckFrame = Symbol(None, None, None, "RxMpAckFrame", "", None)
+
+    RxDisAssFrame = Symbol(None, None, None, "RxDisAssFrame", "", None)
+
+    RxAssReqFrame = Symbol(None, None, None, "RxAssReqFrame", "", None)
+
+    RxProbeReqFrame = Symbol(None, None, None, "RxProbeReqFrame", "", None)
+
+    RxAuthFrame = Symbol(None, None, None, "RxAuthFrame", "", None)
+
+    RxDeAuthFrame = Symbol(None, None, None, "RxDeAuthFrame", "", None)
+
+    ElementChecker = Symbol(None, None, None, "ElementChecker", "", None)
+
+    RxManCtrlTask = Symbol(None, None, None, "RxManCtrlTask", "", None)
+
+    DefragTask = Symbol(None, None, None, "DefragTask", "", None)
+
+    DefragTimerTask = Symbol(None, None, None, "DefragTimerTask", "", None)
+
+    UpdateApList = Symbol(None, None, None, "UpdateApList", "", None)
+
+    InitApList = Symbol(None, None, None, "InitApList", "", None)
+
+    UpdateApListTask = Symbol(None, None, None, "UpdateApListTask", "", None)
+
+    Flash_VerifyCheckSum = Symbol(None, None, None, "Flash_VerifyCheckSum", "", None)
+
+    Flash_Wait = Symbol(None, None, None, "Flash_Wait", "", None)
+
+    Flash_Read = Symbol(None, None, None, "Flash_Read", "", None)
+
+    Flash_DirectRead = Symbol(None, None, None, "Flash_DirectRead", "", None)
+
+    Flash_MakeImage = Symbol(None, None, None, "Flash_MakeImage", "", None)
+
+    Nvram_Init = Symbol(None, None, None, "Nvram_Init", "", None)
+
+    Nvram_AnalyzeCommand = Symbol(None, None, None, "Nvram_AnalyzeCommand", "", None)
+
+    Nvram_ExecuteProcess = Symbol(None, None, None, "Nvram_ExecuteProcess", "", None)
+
+    NvramCheckReadyToRead = Symbol(None, None, None, "NvramCheckReadyToRead", "", None)
+
+    NvramCheckReadyToWrite = Symbol(
+        None, None, None, "NvramCheckReadyToWrite", "", None
+    )
+
+    Nvram_WriteEnable = Symbol(None, None, None, "Nvram_WriteEnable", "", None)
+
+    Nvram_WriteDisable = Symbol(None, None, None, "Nvram_WriteDisable", "", None)
+
+    Nvram_ReadStatusRegister = Symbol(
+        None, None, None, "Nvram_ReadStatusRegister", "", None
+    )
+
+    Nvram_ReadDataBytes = Symbol(None, None, None, "Nvram_ReadDataBytes", "", None)
+
+    Nvram_ReadDataBytesAtHigherSpeed = Symbol(
+        None, None, None, "Nvram_ReadDataBytesAtHigherSpeed", "", None
+    )
+
+    Nvram_PageWrite = Symbol(None, None, None, "Nvram_PageWrite", "", None)
+
+    Nvram_PageProgram = Symbol(None, None, None, "Nvram_PageProgram", "", None)
+
+    Nvram_PageErase = Symbol(None, None, None, "Nvram_PageErase", "", None)
+
+    Nvram_SectorErase = Symbol(None, None, None, "Nvram_SectorErase", "", None)
+
+    Nvram_DeepPowerDown = Symbol(None, None, None, "Nvram_DeepPowerDown", "", None)
+
+    Nvram_ReleaseFromDeepPowerDown = Symbol(
+        None, None, None, "Nvram_ReleaseFromDeepPowerDown", "", None
+    )
+
+    Nvram_ChipErase = Symbol(None, None, None, "Nvram_ChipErase", "", None)
+
+    Nvram_ReadSiliconId = Symbol(None, None, None, "Nvram_ReadSiliconId", "", None)
+
+    Nvram_SoftwareReset = Symbol(None, None, None, "Nvram_SoftwareReset", "", None)
+
+    RtcPxiCallback = Symbol(None, None, None, "RtcPxiCallback", "", None)
+
+    RtcAlarmIntr = Symbol(None, None, None, "RtcAlarmIntr", "", None)
+
+    RtcBcd2Hex = Symbol(None, None, None, "RtcBcd2Hex", "", None)
+
+    Rtc_Reset = Symbol(None, None, None, "Rtc_Reset", "", None)
+
+    Rtc_SetHourFormat = Symbol(None, None, None, "Rtc_SetHourFormat", "", None)
+
+    Rtc_ReadDateTime = Symbol(None, None, None, "Rtc_ReadDateTime", "", None)
+
+    Rtc_WriteDateTime = Symbol(None, None, None, "Rtc_WriteDateTime", "", None)
+
+    Rtc_ReadDate = Symbol(None, None, None, "Rtc_ReadDate", "", None)
+
+    Rtc_ReadTime = Symbol(None, None, None, "Rtc_ReadTime", "", None)
+
+    Rtc_WriteTime = Symbol(None, None, None, "Rtc_WriteTime", "", None)
+
+    Rtc_ReadPulse = Symbol(None, None, None, "Rtc_ReadPulse", "", None)
+
+    Rtc_WritePulse = Symbol(None, None, None, "Rtc_WritePulse", "", None)
+
+    Rtc_ReadAlarm1 = Symbol(None, None, None, "Rtc_ReadAlarm1", "", None)
+
+    Rtc_WriteAlarm1 = Symbol(None, None, None, "Rtc_WriteAlarm1", "", None)
+
+    Rtc_ReadAlarm2 = Symbol(None, None, None, "Rtc_ReadAlarm2", "", None)
+
+    Rtc_WriteAlarm2 = Symbol(None, None, None, "Rtc_WriteAlarm2", "", None)
+
+    Rtc_ReadStatus1 = Symbol(None, None, None, "Rtc_ReadStatus1", "", None)
+
+    Rtc_WriteStatus1 = Symbol(None, None, None, "Rtc_WriteStatus1", "", None)
+
+    Rtc_ReadStatus2 = Symbol(None, None, None, "Rtc_ReadStatus2", "", None)
+
+    Rtc_WriteStatus2 = Symbol(None, None, None, "Rtc_WriteStatus2", "", None)
+
+    Rtc_ReadAdjust = Symbol(None, None, None, "Rtc_ReadAdjust", "", None)
+
+    Rtc_WriteAdjust = Symbol(None, None, None, "Rtc_WriteAdjust", "", None)
+
+    Rtc_ReadFree = Symbol(None, None, None, "Rtc_ReadFree", "", None)
+
+    Rtc_WriteFree = Symbol(None, None, None, "Rtc_WriteFree", "", None)
+
+    RtcChangeAlarmFormat24to12 = Symbol(
+        None, None, None, "RtcChangeAlarmFormat24to12", "", None
+    )
+
+    RtcChangeAlarmFormat12to24 = Symbol(
+        None, None, None, "RtcChangeAlarmFormat12to24", "", None
+    )
+
+    RtcGpioTransfer = Symbol(None, None, None, "RtcGpioTransfer", "", None)
+
+    Rtci_GpioStart = Symbol(None, None, None, "Rtci_GpioStart", "", None)
+
+    Rtci_GpioEnd = Symbol(None, None, None, "Rtci_GpioEnd", "", None)
 
     __divsi3 = _Deprecated("__divsi3", _s32_div_f)
 
@@ -789,6 +2491,12 @@ class EuItcmArm9Functions:
         None,
     )
 
+    Sys_IsMailboxPending = Symbol(None, None, None, "Sys_IsMailboxPending", "", None)
+
+    Task_AbortSync = Symbol(None, None, None, "Task_AbortSync", "", None)
+
+    Sys_WaitForVBlank = Symbol(None, None, None, "Sys_WaitForVBlank", "", None)
+
     SoundResume = Symbol(
         None,
         None,
@@ -1048,6 +2756,14 @@ class EuItcmArm9Functions:
         "LoadFileFromRom",
         "Loads a file from ROM by filepath into a heap-allocated buffer.\n\nr0: [output] pointer to an IO struct {ptr, len}\nr1: file path string pointer\nr2: flags",
         None,
+    )
+
+    GraphicsEngine_SetState = Symbol(
+        None, None, None, "GraphicsEngine_SetState", "", None
+    )
+
+    GraphicsEngine_ApplyState = Symbol(
+        None, None, None, "GraphicsEngine_ApplyState", "", None
     )
 
     MarkPaletteDataAsNeedingUpdate = Symbol(
@@ -15658,7 +17374,7 @@ class EuItcmLibsFunctions:
 
     GX_Init = Symbol(None, None, None, "GX_Init", "", None)
 
-    GX_HBlankIntr = Symbol(None, None, None, "GX_HBlankIntr", "", None)
+    GX_SetVCountEqVal = Symbol(None, None, None, "GX_SetVCountEqVal", "", None)
 
     GX_VBlankIntr = Symbol(None, None, None, "GX_VBlankIntr", "", None)
 
@@ -16049,13 +17765,13 @@ class EuItcmLibsFunctions:
 
     OS_ReleaseLockId = Symbol(None, None, None, "OS_ReleaseLockId", "", None)
 
-    OS_VsPrintf = Symbol(None, None, None, "OS_VsPrintf", "", None)
+    OS_SPrintf = Symbol(None, None, None, "OS_SPrintf", "", None)
 
-    OS_VsNPrintf = Symbol(None, None, None, "OS_VsNPrintf", "", None)
+    Os_VsPrintf = Symbol(None, None, None, "Os_VsPrintf", "", None)
 
     OS_SnPrintf = Symbol(None, None, None, "OS_SnPrintf", "", None)
 
-    OS_VsNPrintfExStub = Symbol(None, None, None, "OS_VsNPrintfExStub", "", None)
+    Os_VsnPrintf = Symbol(None, None, None, "Os_VsnPrintf", "", None)
 
     OSi_GetUnusedThreadId = Symbol(
         None,
@@ -16093,7 +17809,7 @@ class EuItcmLibsFunctions:
         None, None, None, "OSi_RemoveThreadFromList", "", None
     )
 
-    OS_RescheduleThread = Symbol(None, None, None, "OS_RescheduleThread", "", None)
+    OSi_RescheduleThread = Symbol(None, None, None, "OSi_RescheduleThread", "", None)
 
     OS_InitThread = Symbol(None, None, None, "OS_InitThread", "", None)
 
@@ -16263,7 +17979,19 @@ class EuItcmLibsFunctions:
 
     OS_SetArenaLo = Symbol(None, None, None, "OS_SetArenaLo", "", None)
 
-    OS_AllocFromArenaLo = Symbol(None, None, None, "OS_AllocFromArenaLo", "", None)
+    DlExtract = Symbol(None, None, None, "DlExtract", "", None)
+
+    DlInsert = Symbol(None, None, None, "DlInsert", "", None)
+
+    OS_AllocFromHeap = Symbol(None, None, None, "OS_AllocFromHeap", "", None)
+
+    OS_FreeToHeap = Symbol(None, None, None, "OS_FreeToHeap", "", None)
+
+    OS_SetCurrentHeap = Symbol(None, None, None, "OS_SetCurrentHeap", "", None)
+
+    OS_InitAlloc = Symbol(None, None, None, "OS_InitAlloc", "", None)
+
+    OS_CreateHeap = Symbol(None, None, None, "OS_CreateHeap", "", None)
 
     OS_GetDtcmAddress = Symbol(None, None, None, "OS_GetDtcmAddress", "", None)
 
@@ -16608,13 +18336,13 @@ class EuItcmLibsFunctions:
 
     Snd_StartPreparedSeq = Symbol(None, None, None, "Snd_StartPreparedSeq", "", None)
 
-    Snd_SetPlayerTempoRatio = Symbol(
-        None, None, None, "Snd_SetPlayerTempoRatio", "", None
-    )
-
     Snd_SetPlayerVolume = Symbol(None, None, None, "Snd_SetPlayerVolume", "", None)
 
-    Snd_SetTrackPan = Symbol(None, None, None, "Snd_SetTrackPan", "", None)
+    Snd_SetPlayerChannelPriority = Symbol(
+        None, None, None, "Snd_SetPlayerChannelPriority", "", None
+    )
+
+    Snd_SetTrackPitch = Symbol(None, None, None, "Snd_SetTrackPitch", "", None)
 
     Snd_SetTrackAllocatableChannel = Symbol(
         None, None, None, "Snd_SetTrackAllocatableChannel", "", None
@@ -16644,10 +18372,12 @@ class EuItcmLibsFunctions:
 
     Snd_SetupChannelNoise = Symbol(None, None, None, "Snd_SetupChannelNoise", "", None)
 
-    Snd_InvalidateSeqData = Symbol(None, None, None, "Snd_InvalidateSeqData", "", None)
-
     Snd_InvalidateBankData = Symbol(
         None, None, None, "Snd_InvalidateBankData", "", None
+    )
+
+    Snd_InvalidateWaveData = Symbol(
+        None, None, None, "Snd_InvalidateWaveData", "", None
     )
 
     Snd_SetOutputSelector = Symbol(None, None, None, "Snd_SetOutputSelector", "", None)
@@ -17010,6 +18740,10 @@ class EuItcmLibsFunctions:
         None, None, None, "TP_RequestAutoSamplingStartAsync", "", None
     )
 
+    TP_RequestAutoSamplingStopAsync = Symbol(
+        None, None, None, "TP_RequestAutoSamplingStopAsync", "", None
+    )
+
     TP_GetLatestIndexInAuto = Symbol(
         None, None, None, "TP_GetLatestIndexInAuto", "", None
     )
@@ -17020,7 +18754,7 @@ class EuItcmLibsFunctions:
 
     TP_WaitBusy = Symbol(None, None, None, "TP_WaitBusy", "", None)
 
-    TP_CheckBusy = Symbol(None, None, None, "TP_CheckBusy", "", None)
+    TP_CheckError = Symbol(None, None, None, "TP_CheckError", "", None)
 
     PMi_Lock = Symbol(None, None, None, "PMi_Lock", "", None)
 
@@ -17078,6 +18812,8 @@ class EuItcmLibsFunctions:
     PM_GetBackLight = Symbol(None, None, None, "PM_GetBackLight", "", None)
 
     PMi_SendPxiData = Symbol(None, None, None, "PMi_SendPxiData", "", None)
+
+    PM_GoSleepMode = Symbol(None, None, None, "PM_GoSleepMode", "", None)
 
     PMi_SetLcdPower = Symbol(None, None, None, "PMi_SetLcdPower", "", None)
 
@@ -17235,9 +18971,15 @@ class EuItcmLibsFunctions:
 
     Cardi_SetRomOp = Symbol(None, None, None, "Cardi_SetRomOp", "", None)
 
+    Cardi_SetCardDma = Symbol(None, None, None, "Cardi_SetCardDma", "", None)
+
+    Cardi_OnReadCard = Symbol(None, None, None, "Cardi_OnReadCard", "", None)
+
     Cardi_TryReadCardDma = Symbol(None, None, None, "Cardi_TryReadCardDma", "", None)
 
     Cardi_ReadCard = Symbol(None, None, None, "Cardi_ReadCard", "", None)
+
+    Cardi_ReadRomIdCore = Symbol(None, None, None, "Cardi_ReadRomIdCore", "", None)
 
     Cardi_ReadRomSyncCore = Symbol(None, None, None, "Cardi_ReadRomSyncCore", "", None)
 
@@ -17345,19 +19087,25 @@ class EuItcmLibsFunctions:
 
     Mathi_Crc8Update = Symbol(None, None, None, "Mathi_Crc8Update", "", None)
 
-    Mathi_Crc16InitTable = Symbol(None, None, None, "Mathi_Crc16InitTable", "", None)
+    Mathi_Crc16InitTableRev = Symbol(
+        None, None, None, "Mathi_Crc16InitTableRev", "", None
+    )
 
-    Mathi_Crc16Update = Symbol(None, None, None, "Mathi_Crc16Update", "", None)
+    Mathi_Crc16UpdateRev = Symbol(None, None, None, "Mathi_Crc16UpdateRev", "", None)
 
-    Mathi_Crc32InitTable = Symbol(None, None, None, "Mathi_Crc32InitTable", "", None)
+    Mathi_Crc32InitTableRev = Symbol(
+        None, None, None, "Mathi_Crc32InitTableRev", "", None
+    )
 
-    Mathi_Crc32Update = Symbol(None, None, None, "Mathi_Crc32Update", "", None)
+    Mathi_Crc32UpdateRev = Symbol(None, None, None, "Mathi_Crc32UpdateRev", "", None)
 
     Math_CalcCrc8 = Symbol(None, None, None, "Math_CalcCrc8", "", None)
 
     Math_CalcCrc16 = Symbol(None, None, None, "Math_CalcCrc16", "", None)
 
     Math_CalcCrc32 = Symbol(None, None, None, "Math_CalcCrc32", "", None)
+
+    Cht_IsPictochatParent = Symbol(None, None, None, "Cht_IsPictochatParent", "", None)
 
     Std_CopyLString = Symbol(None, None, None, "Std_CopyLString", "", None)
 
@@ -17381,7 +19129,7 @@ class EuItcmLibsFunctions:
 
     string_put_string = Symbol(None, None, None, "string_put_string", "", None)
 
-    OS_VsNPrintfEx = Symbol(None, None, None, "OS_VsNPrintfEx", "", None)
+    Std_TvsnPrintf = Symbol(None, None, None, "Std_TvsnPrintf", "", None)
 
     NotANumber = Symbol(
         None,
@@ -21546,7 +23294,7 @@ class EuItcmOverlay0Functions:
 
     MBi_InitTaskInfo = Symbol(None, None, None, "MBi_InitTaskInfo", "", None)
 
-    MBi_ReadFromCache = Symbol(None, None, None, "MBi_ReadFromCache", "", None)
+    MBi_IsTaskBusy = Symbol(None, None, None, "MBi_IsTaskBusy", "", None)
 
     MBi_SetTask = Symbol(None, None, None, "MBi_SetTask", "", None)
 
@@ -21951,7 +23699,7 @@ class EuItcmOverlay0Functions:
 
     Socli_TrashSocket = Symbol(None, None, None, "Socli_TrashSocket", "", None)
 
-    Soc_Cleanup = Symbol(None, None, None, "Soc_Cleanup", "", None)
+    Socl_Cleanup = Symbol(None, None, None, "Socl_Cleanup", "", None)
 
     Socl_CloseAll = Symbol(None, None, None, "Socl_CloseAll", "", None)
 
@@ -22174,6 +23922,8 @@ class EuItcmOverlay0Functions:
 
     client_hello_v2 = Symbol(None, None, None, "client_hello_v2", "", None)
 
+    client_hello = Symbol(None, None, None, "client_hello", "", None)
+
     decrypt_premaster_secret = Symbol(
         None, None, None, "decrypt_premaster_secret", "", None
     )
@@ -22228,7 +23978,7 @@ class EuItcmOverlay0Functions:
         None, None, None, "mustget_change_cipher_spec_and_finished", "", None
     )
 
-    ssl_listen_try = Symbol(None, None, None, "ssl_listen_try", "", None)
+    ssl_connect_try = Symbol(None, None, None, "ssl_connect_try", "", None)
 
     Cpsi_SslConnect = Symbol(None, None, None, "Cpsi_SslConnect", "", None)
 
@@ -22448,7 +24198,7 @@ class EuItcmOverlay0Functions:
         None, None, None, "Wcm_SetRecvDcfCallback", "", None
     )
 
-    Wcm_SendDcfData = Symbol(None, None, None, "Wcm_SendDcfData", "", None)
+    Wcm_SendDcfDataEx = Symbol(None, None, None, "Wcm_SendDcfDataEx", "", None)
 
     WcmCpsifWmCallback = Symbol(None, None, None, "WcmCpsifWmCallback", "", None)
 
@@ -22491,9 +24241,9 @@ class EuItcmOverlay0Functions:
 
     Dwc_AC_Destroy = Symbol(None, None, None, "Dwc_AC_Destroy", "", None)
 
-    Dwc_AC_SetSpecifyAp = Symbol(None, None, None, "Dwc_AC_SetSpecifyAp", "", None)
+    Dwc_Ac_SetSpecifyApEx = Symbol(None, None, None, "Dwc_Ac_SetSpecifyApEx", "", None)
 
-    Dwc_AC_SetSpecifyApEx = Symbol(None, None, None, "Dwc_AC_SetSpecifyApEx", "", None)
+    Dwc_Ac_SetSpecifyAp = Symbol(None, None, None, "Dwc_Ac_SetSpecifyAp", "", None)
 
     Dwci_AC_InsertApInfo = Symbol(None, None, None, "Dwci_AC_InsertApInfo", "", None)
 
@@ -23091,8 +24841,8 @@ class EuItcmOverlay0Functions:
 
     Dwc_ConnectInetAsync = Symbol(None, None, None, "Dwc_ConnectInetAsync", "", None)
 
-    Dwc_DebugConnectInetAsync = Symbol(
-        None, None, None, "Dwc_DebugConnectInetAsync", "", None
+    Dwc_DebugConnectInetExAsync = Symbol(
+        None, None, None, "Dwc_DebugConnectInetExAsync", "", None
     )
 
     Dwc_CheckInet = Symbol(None, None, None, "Dwc_CheckInet", "", None)
@@ -23815,7 +25565,7 @@ class EuItcmOverlay0Functions:
 
     Dwci_GhttpGetEx = Symbol(None, None, None, "Dwci_GhttpGetEx", "", None)
 
-    Dwc_GetGhttpDataEx2 = Symbol(None, None, None, "Dwc_GetGhttpDataEx2", "", None)
+    Dwc_GetGhttpDataEx = Symbol(None, None, None, "Dwc_GetGhttpDataEx", "", None)
 
     Dwc_CancelGhttpRequest = Symbol(
         None, None, None, "Dwc_CancelGhttpRequest", "", None
@@ -25891,7 +27641,7 @@ class EuItcmOverlay0Functions:
 
     GoaCryptInit = Symbol(None, None, None, "GoaCryptInit", "", None)
 
-    GoaEncryptByte = Symbol(None, None, None, "GoaEncryptByte", "", None)
+    GoaDecryptByte = Symbol(None, None, None, "GoaDecryptByte", "", None)
 
     GoaEncrypt = Symbol(None, None, None, "GoaEncrypt", "", None)
 
@@ -26009,7 +27759,9 @@ class EuItcmOverlay0Functions:
 
     SbServerSetFlags = Symbol(None, None, None, "SbServerSetFlags", "", None)
 
-    SbServerSetPublicAddr = Symbol(None, None, None, "SbServerSetPublicAddr", "", None)
+    SbServerSetPrivateAddr = Symbol(
+        None, None, None, "SbServerSetPrivateAddr", "", None
+    )
 
     SbServerSetIcmpIp = Symbol(None, None, None, "SbServerSetIcmpIp", "", None)
 
@@ -26154,6 +27906,8 @@ class EuItcmOverlay0Functions:
     ProcessLanData = Symbol(None, None, None, "ProcessLanData", "", None)
 
     SbListThink = Symbol(None, None, None, "SbListThink", "", None)
+
+    Socl_Close = _Deprecated("Socl_Close", close)
 
     socket = _Deprecated("socket", Soc_Socket)
 
@@ -33811,8 +35565,8 @@ class EuItcmOverlay2Functions:
         None, None, None, "Nnsi_G2dFontGetTextHeight", "", None
     )
 
-    Nnsi_G2dFontGetTextWidth = Symbol(
-        None, None, None, "Nnsi_G2dFontGetTextWidth", "", None
+    Nnsi_G2dFontGetTextRect = Symbol(
+        None, None, None, "Nnsi_G2dFontGetTextRect", "", None
     )
 
     GetCharIndex1D = Symbol(None, None, None, "GetCharIndex1D", "", None)
@@ -36577,6 +38331,8 @@ class EuItcmOverlay2Functions:
 
     Dwci_SettinglSetDnsP = Symbol(None, None, None, "Dwci_SettinglSetDnsP", "", None)
 
+    Dwci_SettinglSetDnsS = Symbol(None, None, None, "Dwci_SettinglSetDnsS", "", None)
+
     Dwci_SettinglGetSsid = Symbol(None, None, None, "Dwci_SettinglGetSsid", "", None)
 
     Dwci_SettinglGetIp = Symbol(None, None, None, "Dwci_SettinglGetIp", "", None)
@@ -36803,16 +38559,16 @@ class EuItcmOverlay2Functions:
         None, None, None, "Dwci_Mov_WH_StateOutSetParentParam", "", None
     )
 
-    Dwci_Mov_WH_StateInStartParent = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInStartParent", "", None
+    Dwci_Mov_Wh_StateInSetParentWepKey = Symbol(
+        None, None, None, "Dwci_Mov_Wh_StateInSetParentWepKey", "", None
     )
 
     Dwci_Mov_WH_StateOutSetParentWepKey = Symbol(
         None, None, None, "Dwci_Mov_WH_StateOutSetParentWepKey", "", None
     )
 
-    Dwci_Mov_WH_StateInSetParentWepKey = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInSetParentWepKey", "", None
+    Dwci_Mov_Wh_StateInStartParent = Symbol(
+        None, None, None, "Dwci_Mov_Wh_StateInStartParent", "", None
     )
 
     Dwci_Mov_WH_StateOutStartParent = Symbol(

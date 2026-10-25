@@ -42,6 +42,110 @@ class JpArm7Functions:
         None,
     )
 
+    GetRomValidLanguage = Symbol(
+        [0x66C], [0x238066C], None, "GetRomValidLanguage", "", None
+    )
+
+    VBlankIntr = Symbol([0x6A4], [0x23806A4], None, "VBlankIntr", "", None)
+
+    MainTaskRoutine = Symbol([0x6C8], [0x23806C8], None, "MainTaskRoutine", "", None)
+
+    AddTask = Symbol([0x780], [0x2380780], None, "AddTask", "", None)
+
+    DeleteTask = Symbol([0x838], [0x2380838], None, "DeleteTask", "", None)
+
+    LowestIdleTask = Symbol([0x8B0], [0x23808B0], None, "LowestIdleTask", "", None)
+
+    ExecuteMessage = Symbol([0x8EC], [0x23808EC], None, "ExecuteMessage", "", None)
+
+    NewHeapBuf = Symbol([0x924], [0x2380924], None, "NewHeapBuf", "", None)
+
+    DeleteHeapBuf = Symbol([0x994], [0x2380994], None, "DeleteHeapBuf", "", None)
+
+    AllocateHeapBuf = Symbol([0xA54], [0x2380A54], None, "AllocateHeapBuf", "", None)
+
+    ReleaseHeapBuf = Symbol([0xAF0], [0x2380AF0], None, "ReleaseHeapBuf", "", None)
+
+    MoveHeapBuf = Symbol([0xB70], [0x2380B70], None, "MoveHeapBuf", "", None)
+
+    AddHeapBuf = Symbol([0xBDC], [0x2380BDC], None, "AddHeapBuf", "", None)
+
+    RequestCmdTask = Symbol([0xC70], [0x2380C70], None, "RequestCmdTask", "", None)
+
+    SendMessageToWmDirect = Symbol(
+        [0xF40], [0x2380F40], None, "SendMessageToWmDirect", "", None
+    )
+
+    WStop = Symbol([0x1380], [0x2381380], None, "WStop", "", None)
+
+    WSetStaState = Symbol([0x1420], [0x2381420], None, "WSetStaState", "", None)
+
+    WlIntr = Symbol([0x14C4], [0x23814C4], None, "WlIntr", "", None)
+
+    WlIntrPreTbtt = Symbol([0x1598], [0x2381598], None, "WlIntrPreTbtt", "", None)
+
+    WlIntrTbtt = Symbol([0x1624], [0x2381624], None, "WlIntrTbtt", "", None)
+
+    WlIntrActEnd = Symbol([0x18C8], [0x23818C8], None, "WlIntrActEnd", "", None)
+
+    WlIntrCntOvf = Symbol([0x1934], [0x2381934], None, "WlIntrCntOvf", "", None)
+
+    WlIntrTxErr = Symbol([0x1964], [0x2381964], None, "WlIntrTxErr", "", None)
+
+    WlIntrRxCntup = Symbol([0x1A74], [0x2381A74], None, "WlIntrRxCntup", "", None)
+
+    WlIntrTxEnd = Symbol([0x1BF0], [0x2381BF0], None, "WlIntrTxEnd", "", None)
+
+    WlIntrRxEnd = Symbol([0x1E58], [0x2381E58], None, "WlIntrRxEnd", "", None)
+
+    WlIntrMpEnd = Symbol([0x2314], [0x2382314], None, "WlIntrMpEnd", "", None)
+
+    WlIntrStartTx = Symbol([0x2404], [0x2382404], None, "WlIntrStartTx", "", None)
+
+    WlIntrStartRx = Symbol([0x2510], [0x2382510], None, "WlIntrStartRx", "", None)
+
+    SetParentTbttTxq = Symbol([0x2780], [0x2382780], None, "SetParentTbttTxq", "", None)
+
+    MacBugTxMp = Symbol([0x2848], [0x2382848], None, "MacBugTxMp", "", None)
+
+    AdjustRingPointer = Symbol(
+        [0x28B0], [0x23828B0], None, "AdjustRingPointer", "", None
+    )
+
+    CheckKeyTxEnd = Symbol([0x28D8], [0x23828D8], None, "CheckKeyTxEnd", "", None)
+
+    WlIntrTxBeaconTask = Symbol(
+        [0x2910], [0x2382910], None, "WlIntrTxBeaconTask", "", None
+    )
+
+    WlIntrTxEndTask = Symbol([0x295C], [0x238295C], None, "WlIntrTxEndTask", "", None)
+
+    WlIntrRxEndTask = Symbol([0x2B30], [0x2382B30], None, "WlIntrRxEndTask", "", None)
+
+    WlIntrMpEndTask = Symbol([0x2E9C], [0x2382E9C], None, "WlIntrMpEndTask", "", None)
+
+    SetParentTbttTxqTask = Symbol(
+        [0x2F78], [0x2382F78], None, "SetParentTbttTxqTask", "", None
+    )
+
+    TakeoutRxFrame = Symbol([0x3038], [0x2383038], None, "TakeoutRxFrame", "", None)
+
+    InitTxCtrl = Symbol([0x30A8], [0x23830A8], None, "InitTxCtrl", "", None)
+
+    InitRxCtrl = Symbol([0x33C8], [0x23833C8], None, "InitRxCtrl", "", None)
+
+    WaitLoop_Rxpe = Symbol([0x34E8], [0x23834E8], None, "WaitLoop_Rxpe", "", None)
+
+    WaitLoop_ClrAid = Symbol([0x359C], [0x238359C], None, "WaitLoop_ClrAid", "", None)
+
+    WaitLoop_BbpAccess = Symbol(
+        [0x3608], [0x2383608], None, "WaitLoop_BbpAccess", "", None
+    )
+
+    WaitLoop_RfAccess = Symbol(
+        [0x363C], [0x238363C], None, "WaitLoop_RfAccess", "", None
+    )
+
     HardwareInterrupt = Symbol(
         [0x3670],
         [0x2383670],
@@ -69,6 +173,22 @@ class JpArm7Functions:
         None,
     )
 
+    OSi_IrqVBlank = Symbol([0x3930], [0x2383930], None, "OSi_IrqVBlank", "", None)
+
+    OS_InitIrqTable = Symbol([0x3980], [0x2383980], None, "OS_InitIrqTable", "", None)
+
+    OS_SetIrqFunctionArm7 = Symbol(
+        [0x39A4], [0x23839A4], None, "OS_SetIrqFunctionArm7", "", None
+    )
+
+    OSi_EnterTimerCallback = Symbol(
+        [0x3A40], [0x2383A40], None, "OSi_EnterTimerCallback", "", None
+    )
+
+    OS_SetIrqMaskArm7 = Symbol(
+        [0x3A8C], [0x2383A8C], None, "OS_SetIrqMaskArm7", "", None
+    )
+
     ClearImeFlag = Symbol(
         [0x3AC0],
         [0x2383AC0],
@@ -76,6 +196,10 @@ class JpArm7Functions:
         "ClearImeFlag",
         "Clears the Interrupt Master Enable flag, which disables all hardware interrupts.\n\nreturn: Previous IME value",
         None,
+    )
+
+    OS_EnableIrqMaskArm7 = Symbol(
+        [0x3AD8], [0x2383AD8], None, "OS_EnableIrqMaskArm7", "", None
     )
 
     ClearIeFlag = Symbol(
@@ -87,6 +211,162 @@ class JpArm7Functions:
         None,
     )
 
+    OS_ResetRequestIrqMaskArm7 = Symbol(
+        [0x3B4C], [0x2383B4C], None, "OS_ResetRequestIrqMaskArm7", "", None
+    )
+
+    OS_InitLock = Symbol([0x3B80], [0x2383B80], None, "OS_InitLock", "", None)
+
+    OSi_DoUnlockByWordArm7 = Symbol(
+        [0x3C00], [0x2383C00], None, "OSi_DoUnlockByWordArm7", "", None
+    )
+
+    OSi_DoTryLockByWord = Symbol(
+        [0x3C7C], [0x2383C7C], None, "OSi_DoTryLockByWord", "", None
+    )
+
+    OS_LockCartridge = Symbol([0x3CF0], [0x2383CF0], None, "OS_LockCartridge", "", None)
+
+    OSi_InsertLinkToQueueArm7 = Symbol(
+        [0x3ED4], [0x2383ED4], None, "OSi_InsertLinkToQueueArm7", "", None
+    )
+
+    OSi_RemoveSpecifiedLinkFromQueue = Symbol(
+        [0x3F4C], [0x2383F4C], None, "OSi_RemoveSpecifiedLinkFromQueue", "", None
+    )
+
+    OSi_RemoveMutexLinkFromQueue = Symbol(
+        [0x3FA4], [0x2383FA4], None, "OSi_RemoveMutexLinkFromQueue", "", None
+    )
+
+    OSi_InsertThreadToListArm7 = Symbol(
+        [0x3FD4], [0x2383FD4], None, "OSi_InsertThreadToListArm7", "", None
+    )
+
+    OSi_RemoveThreadFromList = Symbol(
+        [0x4034], [0x2384034], None, "OSi_RemoveThreadFromList", "", None
+    )
+
+    OSi_RescheduleThread = Symbol(
+        [0x4078], [0x2384078], None, "OSi_RescheduleThread", "", None
+    )
+
+    OS_CreateThreadArm7 = Symbol(
+        [0x423C], [0x238423C], None, "OS_CreateThreadArm7", "", None
+    )
+
+    OS_ExitThread = Symbol([0x4344], [0x2384344], None, "OS_ExitThread", "", None)
+
+    OSi_ExitThread_ArgSpecified = Symbol(
+        [0x4368], [0x2384368], None, "OSi_ExitThread_ArgSpecified", "", None
+    )
+
+    OSi_ExitThread = Symbol([0x43C8], [0x23843C8], None, "OSi_ExitThread", "", None)
+
+    OSi_ExitThread_Destroy = Symbol(
+        [0x4408], [0x2384408], None, "OSi_ExitThread_Destroy", "", None
+    )
+
+    OS_SleepThreadArm7 = Symbol(
+        [0x4478], [0x2384478], None, "OS_SleepThreadArm7", "", None
+    )
+
+    OS_WakeupThread = Symbol([0x44CC], [0x23844CC], None, "OS_WakeupThread", "", None)
+
+    OS_WakeupThreadDirectArm7 = Symbol(
+        [0x4554], [0x2384554], None, "OS_WakeupThreadDirectArm7", "", None
+    )
+
+    OS_SelectThreadArm7 = Symbol(
+        [0x4580], [0x2384580], None, "OS_SelectThreadArm7", "", None
+    )
+
+    OS_SetThreadPriority = Symbol(
+        [0x45A8], [0x23845A8], None, "OS_SetThreadPriority", "", None
+    )
+
+    OSi_SleepAlarmCallback = Symbol(
+        [0x46F4], [0x23846F4], None, "OSi_SleepAlarmCallback", "", None
+    )
+
+    OS_SetSwitchThreadCallbackArm7 = Symbol(
+        [0x4714], [0x2384714], None, "OS_SetSwitchThreadCallbackArm7", "", None
+    )
+
+    OS_DisableScheduler = Symbol(
+        [0x4740], [0x2384740], None, "OS_DisableScheduler", "", None
+    )
+
+    OS_EnableScheduler = Symbol(
+        [0x4778], [0x2384778], None, "OS_EnableScheduler", "", None
+    )
+
+    OS_SaveContextArm7 = Symbol(
+        [0x4834], [0x2384834], None, "OS_SaveContextArm7", "", None
+    )
+
+    OS_LoadContextArm7 = Symbol(
+        [0x4868], [0x2384868], None, "OS_LoadContextArm7", "", None
+    )
+
+    OS_InitMessageQueue = Symbol(
+        [0x4894], [0x2384894], None, "OS_InitMessageQueue", "", None
+    )
+
+    OS_SendMessage = Symbol([0x48BC], [0x23848BC], None, "OS_SendMessage", "", None)
+
+    OS_ReceiveMessage = Symbol(
+        [0x4948], [0x2384948], None, "OS_ReceiveMessage", "", None
+    )
+
+    OS_ReadMessage = Symbol([0x49E4], [0x23849E4], None, "OS_ReadMessage", "", None)
+
+    OS_LockMutex = Symbol([0x4A70], [0x2384A70], None, "OS_LockMutex", "", None)
+
+    OS_UnlockMutex = Symbol([0x4AF4], [0x2384AF4], None, "OS_UnlockMutex", "", None)
+
+    OSi_UnlockAllMutex = Symbol(
+        [0x4B54], [0x2384B54], None, "OSi_UnlockAllMutex", "", None
+    )
+
+    OSi_EnqueueTail = Symbol([0x4B8C], [0x2384B8C], None, "OSi_EnqueueTail", "", None)
+
+    OSi_DequeueItem = Symbol([0x4BB0], [0x2384BB0], None, "OSi_DequeueItem", "", None)
+
+    OS_Init = Symbol([0x4BD4], [0x2384BD4], None, "OS_Init", "", None)
+
+    OS_InitArena = Symbol([0x4C04], [0x2384C04], None, "OS_InitArena", "", None)
+
+    OS_InitArenaHiAndLo = Symbol(
+        [0x4C40], [0x2384C40], None, "OS_InitArenaHiAndLo", "", None
+    )
+
+    OS_GetInitArenaLoArm7 = Symbol(
+        [0x4D20], [0x2384D20], None, "OS_GetInitArenaLoArm7", "", None
+    )
+
+    DlExtract = Symbol([0x4D8C], [0x2384D8C], None, "DlExtract", "", None)
+
+    DlInsert = Symbol([0x4DB4], [0x2384DB4], None, "DlInsert", "", None)
+
+    OS_AllocFromHeap = Symbol([0x4E5C], [0x2384E5C], None, "OS_AllocFromHeap", "", None)
+
+    OS_FreeToHeap = Symbol([0x4F6C], [0x2384F6C], None, "OS_FreeToHeap", "", None)
+
+    OS_SetCurrentHeap = Symbol(
+        [0x4FD8], [0x2384FD8], None, "OS_SetCurrentHeap", "", None
+    )
+
+    OS_InitAlloc = Symbol([0x500C], [0x238500C], None, "OS_InitAlloc", "", None)
+
+    OS_CreateHeap = Symbol([0x50B4], [0x23850B4], None, "OS_CreateHeap", "", None)
+
+    OS_CheckHeap = Symbol([0x5154], [0x2385154], None, "OS_CheckHeap", "", None)
+
+    OS_InitTick = Symbol([0x5310], [0x2385310], None, "OS_InitTick", "", None)
+
+    OSi_CountUpTick = Symbol([0x539C], [0x238539C], None, "OSi_CountUpTick", "", None)
+
     GetCurrentPlaybackTime = Symbol(
         [0x5404],
         [0x2385404],
@@ -95,6 +375,50 @@ class JpArm7Functions:
         "Returns the time that the current song has been playing for. Might have a more generic purpose.\n\nThe time is obtained using a couple of RAM counters and the hardware timers for additional precision.\nThe game uses this value to know when a given note should stop being played. It doesn't seem to be used to keep track of the\ncurrent time instant within the song.\n\nreturn: Playback time. Units unknown.",
         None,
     )
+
+    OSi_SetTimer = Symbol([0x54A8], [0x23854A8], None, "OSi_SetTimer", "", None)
+
+    OS_InitAlarm = Symbol([0x5534], [0x2385534], None, "OS_InitAlarm", "", None)
+
+    OSi_InsertAlarm = Symbol([0x5598], [0x2385598], None, "OSi_InsertAlarm", "", None)
+
+    OS_SetAlarm = Symbol([0x56C4], [0x23856C4], None, "OS_SetAlarm", "", None)
+
+    OS_SetPeriodicAlarm = Symbol(
+        [0x5734], [0x2385734], None, "OS_SetPeriodicAlarm", "", None
+    )
+
+    OS_CancelAlarm = Symbol([0x57A8], [0x23857A8], None, "OS_CancelAlarm", "", None)
+
+    OSi_ArrangeTimer = Symbol([0x5840], [0x2385840], None, "OSi_ArrangeTimer", "", None)
+
+    OS_InitVAlarm = Symbol([0x5934], [0x2385934], None, "OS_InitVAlarm", "", None)
+
+    OSi_InsertVAlarm = Symbol([0x5990], [0x2385990], None, "OSi_InsertVAlarm", "", None)
+
+    OSi_DetachVAlarm = Symbol([0x5A34], [0x2385A34], None, "OSi_DetachVAlarm", "", None)
+
+    OS_SetVAlarm = Symbol([0x5A80], [0x2385A80], None, "OS_SetVAlarm", "", None)
+
+    OS_SetPeriodicVAlarm = Symbol(
+        [0x5B10], [0x2385B10], None, "OS_SetPeriodicVAlarm", "", None
+    )
+
+    OSi_SetNextVAlarm = Symbol(
+        [0x5BA0], [0x2385BA0], None, "OSi_SetNextVAlarm", "", None
+    )
+
+    OS_SetVAlarmTag = Symbol([0x5BFC], [0x2385BFC], None, "OS_SetVAlarmTag", "", None)
+
+    OS_CancelVAlarm = Symbol([0x5C20], [0x2385C20], None, "OS_CancelVAlarm", "", None)
+
+    OS_CancelVAlarms = Symbol([0x5C6C], [0x2385C6C], None, "OS_CancelVAlarms", "", None)
+
+    OSi_VAlarmHandler = Symbol(
+        [0x5CE0], [0x2385CE0], None, "OSi_VAlarmHandler", "", None
+    )
+
+    OSi_GetVFrame = Symbol([0x5E90], [0x2385E90], None, "OSi_GetVFrame", "", None)
 
     ClearIrqFlag = Symbol(
         [0x5ED4],
@@ -150,6 +474,528 @@ class JpArm7Functions:
         None,
     )
 
+    OS_InitReset = Symbol([0x5F64], [0x2385F64], None, "OS_InitReset", "", None)
+
+    OSi_CommonCallback = Symbol(
+        [0x5FAC], [0x2385FAC], None, "OSi_CommonCallback", "", None
+    )
+
+    OS_ResetSystem = Symbol([0x5FE0], [0x2385FE0], None, "OS_ResetSystem", "", None)
+
+    MI_WaitDma = Symbol([0x6070], [0x2386070], None, "MI_WaitDma", "", None)
+
+    MI_StopDmaArm7 = Symbol([0x60DC], [0x23860DC], None, "MI_StopDmaArm7", "", None)
+
+    Pxi_InitFifo = Symbol([0x64A8], [0x23864A8], None, "Pxi_InitFifo", "", None)
+
+    Pxi_SetFifoRecvCallback = Symbol(
+        [0x6584], [0x2386584], None, "Pxi_SetFifoRecvCallback", "", None
+    )
+
+    Pxi_IsCallbackReady = Symbol(
+        [0x65D4], [0x23865D4], None, "Pxi_IsCallbackReady", "", None
+    )
+
+    Pxi_SendWordByFifo = Symbol(
+        [0x65F8], [0x23865F8], None, "Pxi_SendWordByFifo", "", None
+    )
+
+    Pxii_SetToFifo = Symbol([0x6630], [0x2386630], None, "Pxii_SetToFifo", "", None)
+
+    Pxii_HandlerRecvFifoNotEmpty = Symbol(
+        [0x6690], [0x2386690], None, "Pxii_HandlerRecvFifoNotEmpty", "", None
+    )
+
+    Exii_SetBitRcnt0L = Symbol(
+        [0x6770], [0x2386770], None, "Exii_SetBitRcnt0L", "", None
+    )
+
+    Padi_XyButton_Callback = Symbol(
+        [0x6844], [0x2386844], None, "Padi_XyButton_Callback", "", None
+    )
+
+    Snd_Shutdown = Symbol([0x689C], [0x238689C], None, "Snd_Shutdown", "", None)
+
+    Snd_BeginSleep = Symbol([0x68F0], [0x23868F0], None, "Snd_BeginSleep", "", None)
+
+    Snd_EndSleep = Symbol([0x6948], [0x2386948], None, "Snd_EndSleep", "", None)
+
+    Snd_SetOutputSelector = Symbol(
+        [0x69B4], [0x23869B4], None, "Snd_SetOutputSelector", "", None
+    )
+
+    Snd_SetupChannelPcm = Symbol(
+        [0x69EC], [0x23869EC], None, "Snd_SetupChannelPcm", "", None
+    )
+
+    Snd_SetupChannelPsg = Symbol(
+        [0x6AB8], [0x2386AB8], None, "Snd_SetupChannelPsg", "", None
+    )
+
+    Snd_SetupChannelNoise = Symbol(
+        [0x6B64], [0x2386B64], None, "Snd_SetupChannelNoise", "", None
+    )
+
+    Snd_StopChannel = Symbol([0x6C08], [0x2386C08], None, "Snd_StopChannel", "", None)
+
+    Snd_SetChannelVolume = Symbol(
+        [0x6C30], [0x2386C30], None, "Snd_SetChannelVolume", "", None
+    )
+
+    Snd_SetChannelPan = Symbol(
+        [0x6CC0], [0x2386CC0], None, "Snd_SetChannelPan", "", None
+    )
+
+    Snd_SetMasterPan = Symbol([0x6D54], [0x2386D54], None, "Snd_SetMasterPan", "", None)
+
+    Sndi_SetSurroundDecay = Symbol(
+        [0x6DC8], [0x2386DC8], None, "Sndi_SetSurroundDecay", "", None
+    )
+
+    CalcSurroundDecay = Symbol(
+        [0x6E28], [0x2386E28], None, "CalcSurroundDecay", "", None
+    )
+
+    Snd_CalcTimer = Symbol([0x6E94], [0x2386E94], None, "Snd_CalcTimer", "", None)
+
+    Snd_CalcChannelVolume = Symbol(
+        [0x6FC0], [0x2386FC0], None, "Snd_CalcChannelVolume", "", None
+    )
+
+    Snd_SinIdx = Symbol([0x7040], [0x2387040], None, "Snd_SinIdx", "", None)
+
+    Snd_CalcRandom = Symbol([0x70AC], [0x23870AC], None, "Snd_CalcRandom", "", None)
+
+    Snd_Init = Symbol([0x70E0], [0x23870E0], None, "Snd_Init", "", None)
+
+    Snd_StartIntervalTimer = Symbol(
+        [0x714C], [0x238714C], None, "Snd_StartIntervalTimer", "", None
+    )
+
+    SndThread = Symbol([0x71F0], [0x23871F0], None, "SndThread", "", None)
+
+    Snd_SetupCapture = Symbol([0x72E4], [0x23872E4], None, "Snd_SetupCapture", "", None)
+
+    Snd_ExChannelInit = Symbol(
+        [0x734C], [0x238734C], None, "Snd_ExChannelInit", "", None
+    )
+
+    Snd_UpdateExChannel = Symbol(
+        [0x73A8], [0x23873A8], None, "Snd_UpdateExChannel", "", None
+    )
+
+    Snd_StartExChannelPcm = Symbol(
+        [0x7948], [0x2387948], None, "Snd_StartExChannelPcm", "", None
+    )
+
+    Snd_StartExChannelPsg = Symbol(
+        [0x7984], [0x2387984], None, "Snd_StartExChannelPsg", "", None
+    )
+
+    Snd_StartExChannelNoise = Symbol(
+        [0x79D0], [0x23879D0], None, "Snd_StartExChannelNoise", "", None
+    )
+
+    Snd_UpdateExChannelEnvelope = Symbol(
+        [0x7A14], [0x2387A14], None, "Snd_UpdateExChannelEnvelope", "", None
+    )
+
+    Snd_SetExChannelAttack = Symbol(
+        [0x7ABC], [0x2387ABC], None, "Snd_SetExChannelAttack", "", None
+    )
+
+    Snd_AllocExChannel = Symbol(
+        [0x7B38], [0x2387B38], None, "Snd_AllocExChannel", "", None
+    )
+
+    Snd_StopUnlockedChannel = Symbol(
+        [0x7D18], [0x2387D18], None, "Snd_StopUnlockedChannel", "", None
+    )
+
+    Snd_LockChannel = Symbol([0x7DC8], [0x2387DC8], None, "Snd_LockChannel", "", None)
+
+    Snd_UnlockChannel = Symbol(
+        [0x7EA8], [0x2387EA8], None, "Snd_UnlockChannel", "", None
+    )
+
+    Snd_InvalidateWave = Symbol(
+        [0x7EFC], [0x2387EFC], None, "Snd_InvalidateWave", "", None
+    )
+
+    Snd_InitLfoParam = Symbol([0x7F78], [0x2387F78], None, "Snd_InitLfoParam", "", None)
+
+    Snd_UpdateLfo = Symbol([0x7F9C], [0x2387F9C], None, "Snd_UpdateLfo", "", None)
+
+    Snd_GetLfoValue = Symbol([0x7FFC], [0x2387FFC], None, "Snd_GetLfoValue", "", None)
+
+    CalcRelease = Symbol([0x804C], [0x238804C], None, "CalcRelease", "", None)
+
+    StartExChannel = Symbol([0x80A0], [0x23880A0], None, "StartExChannel", "", None)
+
+    Snd_SeqInit = Symbol([0x80D8], [0x23880D8], None, "Snd_SeqInit", "", None)
+
+    Snd_SeqMain = Symbol([0x813C], [0x238813C], None, "Snd_SeqMain", "", None)
+
+    Snd_PrepareSeq = Symbol([0x829C], [0x238829C], None, "Snd_PrepareSeq", "", None)
+
+    ReadByte = Symbol([0x8478], [0x2388478], None, "ReadByte", "", None)
+
+    Snd_StartPreparedSeq = Symbol(
+        [0x84D8], [0x23884D8], None, "Snd_StartPreparedSeq", "", None
+    )
+
+    Snd_StartSeq = Symbol([0x84F8], [0x23884F8], None, "Snd_StartSeq", "", None)
+
+    Snd_StopSeq = Symbol([0x8528], [0x2388528], None, "Snd_StopSeq", "", None)
+
+    Snd_PauseSeq = Symbol([0x8584], [0x2388584], None, "Snd_PauseSeq", "", None)
+
+    Snd_SkipSeq = Symbol([0x85FC], [0x23885FC], None, "Snd_SkipSeq", "", None)
+
+    Snd_SetTrackMute = Symbol([0x86C8], [0x23886C8], None, "Snd_SetTrackMute", "", None)
+
+    Snd_SetTrackAllocatableChannel = Symbol(
+        [0x8734], [0x2388734], None, "Snd_SetTrackAllocatableChannel", "", None
+    )
+
+    Snd_InvalidateSeq = Symbol(
+        [0x87A4], [0x23887A4], None, "Snd_InvalidateSeq", "", None
+    )
+
+    Snd_InvalidateBank = Symbol(
+        [0x8830], [0x2388830], None, "Snd_InvalidateBank", "", None
+    )
+
+    Sndi_SetPlayerParam = Symbol(
+        [0x888C], [0x238888C], None, "Sndi_SetPlayerParam", "", None
+    )
+
+    Sndi_SetTrackParam = Symbol(
+        [0x88D0], [0x23888D0], None, "Sndi_SetTrackParam", "", None
+    )
+
+    InitCache = Symbol([0x896C], [0x238896C], None, "InitCache", "", None)
+
+    Read24 = Symbol([0x89A8], [0x23889A8], None, "Read24", "", None)
+
+    ReadArg = Symbol([0x89D8], [0x23889D8], None, "ReadArg", "", None)
+
+    ReleaseTrackChannelAll = Symbol(
+        [0x8BC8], [0x2388BC8], None, "ReleaseTrackChannelAll", "", None
+    )
+
+    FreeTrackChannelAll = Symbol(
+        [0x8C30], [0x2388C30], None, "FreeTrackChannelAll", "", None
+    )
+
+    GetPlayerTrack = Symbol([0x8C64], [0x2388C64], None, "GetPlayerTrack", "", None)
+
+    ClosePlayerTrack = Symbol([0x8C90], [0x2388C90], None, "ClosePlayerTrack", "", None)
+
+    FinishPlayer = Symbol([0x8CE8], [0x2388CE8], None, "FinishPlayer", "", None)
+
+    PlayerSeqMain = Symbol([0x8ED8], [0x2388ED8], None, "PlayerSeqMain", "", None)
+
+    GetVariablePtr = Symbol([0x9A28], [0x2389A28], None, "GetVariablePtr", "", None)
+
+    AllocTrack = Symbol([0x9A6C], [0x2389A6C], None, "AllocTrack", "", None)
+
+    SetTrackMute = Symbol([0x9AB0], [0x2389AB0], None, "SetTrackMute", "", None)
+
+    Snd_ReadInstData = Symbol([0x9B30], [0x2389B30], None, "Snd_ReadInstData", "", None)
+
+    Snd_GetWaveDataAddress = Symbol(
+        [0x9CB0], [0x2389CB0], None, "Snd_GetWaveDataAddress", "", None
+    )
+
+    Snd_NoteOn = Symbol([0x9CF0], [0x2389CF0], None, "Snd_NoteOn", "", None)
+
+    Snd_SetPlayerLocalVariable = Symbol(
+        [0x9E38], [0x2389E38], None, "Snd_SetPlayerLocalVariable", "", None
+    )
+
+    Snd_UpdateSharedWork = Symbol(
+        [0x9E74], [0x2389E74], None, "Snd_UpdateSharedWork", "", None
+    )
+
+    Snd_AlarmInit = Symbol([0x9F0C], [0x2389F0C], None, "Snd_AlarmInit", "", None)
+
+    Snd_SetupAlarm = Symbol([0x9F38], [0x2389F38], None, "Snd_SetupAlarm", "", None)
+
+    Snd_StartAlarm = Symbol([0x9F94], [0x2389F94], None, "Snd_StartAlarm", "", None)
+
+    Snd_StopAlarm = Symbol([0xA050], [0x238A050], None, "Snd_StopAlarm", "", None)
+
+    AlarmHandler = Symbol([0xA090], [0x238A090], None, "AlarmHandler", "", None)
+
+    Snd_CommandInit = Symbol([0xA0C0], [0x238A0C0], None, "Snd_CommandInit", "", None)
+
+    Snd_CommandProc = Symbol([0xA104], [0x238A104], None, "Snd_CommandProc", "", None)
+
+    PxiFifoCallback = Symbol([0xA7B4], [0x238A7B4], None, "PxiFifoCallback", "", None)
+
+    Cardi_InitCommon = Symbol([0xA80C], [0x238A80C], None, "Cardi_InitCommon", "", None)
+
+    Card_SetThreadPriority = Symbol(
+        [0xA8C8], [0x238A8C8], None, "Card_SetThreadPriority", "", None
+    )
+
+    Cardi_CommandEnd = Symbol([0xA914], [0x238A914], None, "Cardi_CommandEnd", "", None)
+
+    Cardi_CommandReadStatus = Symbol(
+        [0xA9B8], [0x238A9B8], None, "Cardi_CommandReadStatus", "", None
+    )
+
+    Cardi_WaitPrevCommand = Symbol(
+        [0xAA0C], [0x238AA0C], None, "Cardi_WaitPrevCommand", "", None
+    )
+
+    Cardi_CommArray = Symbol([0xAA48], [0x238AA48], None, "Cardi_CommArray", "", None)
+
+    Cardi_CommReadCore = Symbol(
+        [0xAACC], [0x238AACC], None, "Cardi_CommReadCore", "", None
+    )
+
+    Cardi_CommWriteCore = Symbol(
+        [0xAB0C], [0x238AB0C], None, "Cardi_CommWriteCore", "", None
+    )
+
+    Cardi_CommVerifyCore = Symbol(
+        [0xAB5C], [0x238AB5C], None, "Cardi_CommVerifyCore", "", None
+    )
+
+    Cardi_WriteEnable = Symbol(
+        [0xABC0], [0x238ABC0], None, "Cardi_WriteEnable", "", None
+    )
+
+    Cardi_SendSpiAddressingCommand = Symbol(
+        [0xABF4], [0x238ABF4], None, "Cardi_SendSpiAddressingCommand", "", None
+    )
+
+    Cardi_InitStatusRegister = Symbol(
+        [0xAC94], [0x238AC94], None, "Cardi_InitStatusRegister", "", None
+    )
+
+    Cardi_ReadBackupCore = Symbol(
+        [0xACEC], [0x238ACEC], None, "Cardi_ReadBackupCore", "", None
+    )
+
+    Cardi_ProgramBackupCore = Symbol(
+        [0xAD58], [0x238AD58], None, "Cardi_ProgramBackupCore", "", None
+    )
+
+    Cardi_WriteBackupCore = Symbol(
+        [0xAE10], [0x238AE10], None, "Cardi_WriteBackupCore", "", None
+    )
+
+    Cardi_VerifyBackupCore = Symbol(
+        [0xAEC8], [0x238AEC8], None, "Cardi_VerifyBackupCore", "", None
+    )
+
+    Cardi_EraseBackupSectorCore = Symbol(
+        [0xAF58], [0x238AF58], None, "Cardi_EraseBackupSectorCore", "", None
+    )
+
+    Cardi_EraseBackupSubSectorCore = Symbol(
+        [0xAFF4], [0x238AFF4], None, "Cardi_EraseBackupSubSectorCore", "", None
+    )
+
+    Cardi_EraseChipCore = Symbol(
+        [0xB090], [0x238B090], None, "Cardi_EraseChipCore", "", None
+    )
+
+    Cardi_SetWriteProtectCore = Symbol(
+        [0xB0EC], [0x238B0EC], None, "Cardi_SetWriteProtectCore", "", None
+    )
+
+    Cardi_SetRomOp = Symbol([0xB184], [0x238B184], None, "Cardi_SetRomOp", "", None)
+
+    Cardi_ReadEnd = Symbol([0xB1E4], [0x238B1E4], None, "Cardi_ReadEnd", "", None)
+
+    Cardi_GetRomFlag = Symbol([0xB258], [0x238B258], None, "Cardi_GetRomFlag", "", None)
+
+    Cardi_ReadRomIdCore = Symbol(
+        [0xB27C], [0x238B27C], None, "Cardi_ReadRomIdCore", "", None
+    )
+
+    Cardi_ReadRomId = Symbol([0xB2CC], [0x238B2CC], None, "Cardi_ReadRomId", "", None)
+
+    Cardi_WaitTask = Symbol([0xB2FC], [0x238B2FC], None, "Cardi_WaitTask", "", None)
+
+    Card_Init = Symbol([0xB350], [0x238B350], None, "Card_Init", "", None)
+
+    Cardi_OnFifoRecv = Symbol([0xB3BC], [0x238B3BC], None, "Cardi_OnFifoRecv", "", None)
+
+    Cardi_TaskThread = Symbol([0xB4A0], [0x238B4A0], None, "Cardi_TaskThread", "", None)
+
+    Card_InitPulledOutCallback = Symbol(
+        [0xB6D4], [0x238B6D4], None, "Card_InitPulledOutCallback", "", None
+    )
+
+    Cardi_CallbackForPulledOut = Symbol(
+        [0xB72C], [0x238B72C], None, "Cardi_CallbackForPulledOut", "", None
+    )
+
+    Card_IsPulledOut = Symbol([0xB790], [0x238B790], None, "Card_IsPulledOut", "", None)
+
+    Card_CompareCardId = Symbol(
+        [0xB7D8], [0x238B7D8], None, "Card_CompareCardId", "", None
+    )
+
+    Card_IsCardIreqLo = Symbol(
+        [0xB878], [0x238B878], None, "Card_IsCardIreqLo", "", None
+    )
+
+    Math_CountPopulation = Symbol(
+        [0xBA18], [0x238BA18], None, "Math_CountPopulation", "", None
+    )
+
+    Spi_Init = Symbol([0xBA5C], [0x238BA5C], None, "Spi_Init", "", None)
+
+    Spi_Lock = Symbol([0xBB74], [0x238BB74], None, "Spi_Lock", "", None)
+
+    Spi_Unlock = Symbol([0xBBD0], [0x238BBD0], None, "Spi_Unlock", "", None)
+
+    Spii_ReturnResult = Symbol(
+        [0xBC30], [0x238BC30], None, "Spii_ReturnResult", "", None
+    )
+
+    Spii_ReleaseException = Symbol(
+        [0xBD28], [0x238BD28], None, "Spii_ReleaseException", "", None
+    )
+
+    SpiPxiCallback = Symbol([0xBED0], [0x238BED0], None, "SpiPxiCallback", "", None)
+
+    TP_Init = Symbol([0xBF38], [0x238BF38], None, "TP_Init", "", None)
+
+    TP_AnalyzeCommand = Symbol(
+        [0xC048], [0x238C048], None, "TP_AnalyzeCommand", "", None
+    )
+
+    TpVAlarmHandler = Symbol([0xC524], [0x238C524], None, "TpVAlarmHandler", "", None)
+
+    TPi_DetectTouch = Symbol([0xC58C], [0x238C58C], None, "TPi_DetectTouch", "", None)
+
+    TPi_DetectPos = Symbol([0xC6A4], [0x238C6A4], None, "TPi_DetectPos", "", None)
+
+    TP_ExecSampling = Symbol([0xC894], [0x238C894], None, "TP_ExecSampling", "", None)
+
+    PM_Init = Symbol([0xCA8C], [0x238CA8C], None, "PM_Init", "", None)
+
+    PM_AnalyzeCommand = Symbol(
+        [0xCAC8], [0x238CAC8], None, "PM_AnalyzeCommand", "", None
+    )
+
+    PM_ExecuteProcess = Symbol(
+        [0xCC84], [0x238CC84], None, "PM_ExecuteProcess", "", None
+    )
+
+    PMi_SendPxiCommand = Symbol(
+        [0xCDF4], [0x238CDF4], None, "PMi_SendPxiCommand", "", None
+    )
+
+    PMi_SetRegister = Symbol([0xCE38], [0x238CE38], None, "PMi_SetRegister", "", None)
+
+    PMi_GetRegister = Symbol([0xCEB4], [0x238CEB4], None, "PMi_GetRegister", "", None)
+
+    PMi_SetControl = Symbol([0xCF28], [0x238CF28], None, "PMi_SetControl", "", None)
+
+    PMi_ResetControl = Symbol([0xCF4C], [0x238CF4C], None, "PMi_ResetControl", "", None)
+
+    PMi_SwitchUtilityProc = Symbol(
+        [0xCF78], [0x238CF78], None, "PMi_SwitchUtilityProc", "", None
+    )
+
+    Pmi_SetLed = Symbol([0xD09C], [0x238D09C], None, "Pmi_SetLed", "", None)
+
+    PMi_DoSleep = Symbol([0xD104], [0x238D104], None, "PMi_DoSleep", "", None)
+
+    Wvr_Begin = Symbol([0xD430], [0x238D430], None, "Wvr_Begin", "", None)
+
+    Wvr_Shutdown = Symbol([0xD474], [0x238D474], None, "Wvr_Shutdown", "", None)
+
+    WvrBegin = Symbol([0xD4A4], [0x238D4A4], None, "WvrBegin", "", None)
+
+    Mic_Init = Symbol([0xD548], [0x238D548], None, "Mic_Init", "", None)
+
+    Mic_AnalyzeCommand = Symbol(
+        [0xD590], [0x238D590], None, "Mic_AnalyzeCommand", "", None
+    )
+
+    MicSetTimerValue = Symbol([0xD858], [0x238D858], None, "MicSetTimerValue", "", None)
+
+    Mic_ExecuteProcess = Symbol(
+        [0xD8FC], [0x238D8FC], None, "Mic_ExecuteProcess", "", None
+    )
+
+    Mic_TimerHandler = Symbol([0xDB24], [0x238DB24], None, "Mic_TimerHandler", "", None)
+
+    Spi_DummyWaitReceive = Symbol(
+        [0xDE1C], [0x238DE1C], None, "Spi_DummyWaitReceive", "", None
+    )
+
+    Mic_SetIrqFunction = Symbol(
+        [0xDF80], [0x238DF80], None, "Mic_SetIrqFunction", "", None
+    )
+
+    Mic_EnableMultipleInterrupt = Symbol(
+        [0xDFA8], [0x238DFA8], None, "Mic_EnableMultipleInterrupt", "", None
+    )
+
+    Mic_DisableMultipleInterrupt = Symbol(
+        [0xE008], [0x238E008], None, "Mic_DisableMultipleInterrupt", "", None
+    )
+
+    Ctrdgi_InitCommon = Symbol(
+        [0xE280], [0x238E280], None, "Ctrdgi_InitCommon", "", None
+    )
+
+    Ctrdg_IsPulledOut = Symbol(
+        [0xE2C8], [0x238E2C8], None, "Ctrdg_IsPulledOut", "", None
+    )
+
+    Ctrdg_IsExisting = Symbol([0xE318], [0x238E318], None, "Ctrdg_IsExisting", "", None)
+
+    Ctrdgi_ChangeLatestAccessCycle = Symbol(
+        [0xE43C], [0x238E43C], None, "Ctrdgi_ChangeLatestAccessCycle", "", None
+    )
+
+    Ctrdgi_LockByProcessor = Symbol(
+        [0xE4B8], [0x238E4B8], None, "Ctrdgi_LockByProcessor", "", None
+    )
+
+    Ctrdgi_UnlockByProcessor = Symbol(
+        [0xE508], [0x238E508], None, "Ctrdgi_UnlockByProcessor", "", None
+    )
+
+    Ctrdgi_SendtoPxi = Symbol([0xE530], [0x238E530], None, "Ctrdgi_SendtoPxi", "", None)
+
+    Ctrdg_Init = Symbol([0xE570], [0x238E570], None, "Ctrdg_Init", "", None)
+
+    Ctrdgi_InitModuleInfo = Symbol(
+        [0xE610], [0x238E610], None, "Ctrdgi_InitModuleInfo", "", None
+    )
+
+    Ctrdgi_CallbackForInitModuleInfo = Symbol(
+        [0xE784], [0x238E784], None, "Ctrdgi_CallbackForInitModuleInfo", "", None
+    )
+
+    Ctrdgi_CallbackForPulledOut = Symbol(
+        [0xE7B4], [0x238E7B4], None, "Ctrdgi_CallbackForPulledOut", "", None
+    )
+
+    Ctrdg_VibPulseEdgeUpdate = Symbol(
+        [0xE7F8], [0x238E7F8], None, "Ctrdg_VibPulseEdgeUpdate", "", None
+    )
+
+    Ctrdgcheckpullout_Polling = Symbol(
+        [0xEA30], [0x238EA30], None, "Ctrdgcheckpullout_Polling", "", None
+    )
+
+    Ctrdgi_CallbackForSetPhi = Symbol(
+        [0xEB2C], [0x238EB2C], None, "Ctrdgi_CallbackForSetPhi", "", None
+    )
+
     _s32_div_f = Symbol(
         [0xEDB0],
         [0x238EDB0],
@@ -176,6 +1022,1328 @@ class JpArm7Functions:
         "Copy of the ARM9 function. See arm9.yml for more information.\n\nr0: dividend\nr1: divisor\nreturn: (quotient) | (remainder << 32)",
         None,
     )
+
+    OSi_DoBoot = Symbol([0xF4A8], [0x238F4A8], None, "OSi_DoBoot", "", None)
+
+    Wmsp_ReturnResult2Wm9 = Symbol(
+        [0xF51C], [0x238F51C], None, "Wmsp_ReturnResult2Wm9", "", None
+    )
+
+    Wmsp_GetBuffer4Callback2Wm9 = Symbol(
+        [0xF568], [0x238F568], None, "Wmsp_GetBuffer4Callback2Wm9", "", None
+    )
+
+    Wm_Sp_Init = Symbol([0xF7F0], [0x238F7F0], None, "Wm_Sp_Init", "", None)
+
+    Wmsp_WlRequest = Symbol([0xF9BC], [0x238F9BC], None, "Wmsp_WlRequest", "", None)
+
+    WmspPxiCallback = Symbol([0xFA34], [0x238FA34], None, "WmspPxiCallback", "", None)
+
+    Wmsp_CheckMacAddress = Symbol(
+        [0xFA9C], [0x238FA9C], None, "Wmsp_CheckMacAddress", "", None
+    )
+
+    Wmsp_CopyParentParam = Symbol(
+        [0xFAFC], [0x238FAFC], None, "Wmsp_CopyParentParam", "", None
+    )
+
+    Wmsp_SetAllParams = Symbol(
+        [0xFBC0], [0x238FBC0], None, "Wmsp_SetAllParams", "", None
+    )
+
+    Wmsp_AddRssiToList = Symbol(
+        [0xFD10], [0x238FD10], None, "Wmsp_AddRssiToList", "", None
+    )
+
+    Wmsp_FillRssiIntoList = Symbol(
+        [0xFD54], [0x238FD54], None, "Wmsp_FillRssiIntoList", "", None
+    )
+
+    Wmsp_GetAverageLinkLevel = Symbol(
+        [0xFD8C], [0x238FD8C], None, "Wmsp_GetAverageLinkLevel", "", None
+    )
+
+    Wmsp_GetLinkLevel = Symbol(
+        [0xFDC8], [0x238FDC8], None, "Wmsp_GetLinkLevel", "", None
+    )
+
+    Wmsp_SetThreadPriorityLow = Symbol(
+        [0xFE30], [0x238FE30], None, "Wmsp_SetThreadPriorityLow", "", None
+    )
+
+    Wmsp_SetThreadPriorityHigh = Symbol(
+        [0xFE90], [0x238FE90], None, "Wmsp_SetThreadPriorityHigh", "", None
+    )
+
+    Wmsp_GetInternalRequestBuf = Symbol(
+        [0xFEF0], [0x238FEF0], None, "Wmsp_GetInternalRequestBuf", "", None
+    )
+
+    Wmsp_ResetSizeVars = Symbol(
+        [0xFF5C], [0x238FF5C], None, "Wmsp_ResetSizeVars", "", None
+    )
+
+    Wmsp_SetParentMaxSize = Symbol(
+        [0xFF90], [0x238FF90], None, "Wmsp_SetParentMaxSize", "", None
+    )
+
+    Wmsp_SetChildMaxSize = Symbol(
+        [0xFFE0], [0x238FFE0], None, "Wmsp_SetChildMaxSize", "", None
+    )
+
+    Wmsp_SetParentSize = Symbol(
+        [0x10030], [0x2390030], None, "Wmsp_SetParentSize", "", None
+    )
+
+    Wmsp_SetChildSize = Symbol(
+        [0x1005C], [0x239005C], None, "Wmsp_SetChildSize", "", None
+    )
+
+    WmspFreeBufOfWL = Symbol([0x111F8], [0x23911F8], None, "WmspFreeBufOfWL", "", None)
+
+    Wmsp_RequestResumeMP = Symbol(
+        [0x11244], [0x2391244], None, "Wmsp_RequestResumeMP", "", None
+    )
+
+    WmspKickMpParent = Symbol(
+        [0x112D8], [0x23912D8], None, "WmspKickMpParent", "", None
+    )
+
+    WmspMaMultiPollAckAlarmCallback = Symbol(
+        [0x11358], [0x2391358], None, "WmspMaMultiPollAckAlarmCallback", "", None
+    )
+
+    WmspKickMpChild = Symbol([0x113FC], [0x23913FC], None, "WmspKickMpChild", "", None)
+
+    Wmsp_RequestThread = Symbol(
+        [0x114B0], [0x23914B0], None, "Wmsp_RequestThread", "", None
+    )
+
+    Wmsp_Wl_MlmeReset = Symbol(
+        [0x11558], [0x2391558], None, "Wmsp_Wl_MlmeReset", "", None
+    )
+
+    Wmsp_Wl_MlmePowerManagement = Symbol(
+        [0x115AC], [0x23915AC], None, "Wmsp_Wl_MlmePowerManagement", "", None
+    )
+
+    Wmsp_Wl_MlmeScan = Symbol(
+        [0x1160C], [0x239160C], None, "Wmsp_Wl_MlmeScan", "", None
+    )
+
+    Wmsp_Wl_MlmeJoin = Symbol(
+        [0x116C4], [0x23916C4], None, "Wmsp_Wl_MlmeJoin", "", None
+    )
+
+    Wmsp_Wl_MlmeAuthenticate = Symbol(
+        [0x1173C], [0x239173C], None, "Wmsp_Wl_MlmeAuthenticate", "", None
+    )
+
+    Wmsp_Wl_MlmeDeAuthenticate = Symbol(
+        [0x117BC], [0x23917BC], None, "Wmsp_Wl_MlmeDeAuthenticate", "", None
+    )
+
+    Wmsp_Wl_MlmeAssociate = Symbol(
+        [0x11834], [0x2391834], None, "Wmsp_Wl_MlmeAssociate", "", None
+    )
+
+    Wmsp_Wl_MlmeStart = Symbol(
+        [0x118B0], [0x23918B0], None, "Wmsp_Wl_MlmeStart", "", None
+    )
+
+    Wmsp_Wl_MlmeMeasureChannel = Symbol(
+        [0x11970], [0x2391970], None, "Wmsp_Wl_MlmeMeasureChannel", "", None
+    )
+
+    Wmsp_Wl_MaData = Symbol([0x119F0], [0x23919F0], None, "Wmsp_Wl_MaData", "", None)
+
+    Wmsp_Wl_MaKeyData = Symbol(
+        [0x11A9C], [0x2391A9C], None, "Wmsp_Wl_MaKeyData", "", None
+    )
+
+    Wmsp_Wl_MaMp = Symbol([0x11B04], [0x2391B04], None, "Wmsp_Wl_MaMp", "", None)
+
+    Wmsp_Wl_MaClearData = Symbol(
+        [0x11B9C], [0x2391B9C], None, "Wmsp_Wl_MaClearData", "", None
+    )
+
+    Wmsp_Wl_ParamSetAll = Symbol(
+        [0x11BF4], [0x2391BF4], None, "Wmsp_Wl_ParamSetAll", "", None
+    )
+
+    Wmsp_Wl_ParamSetWepKeyId = Symbol(
+        [0x11C48], [0x2391C48], None, "Wmsp_Wl_ParamSetWepKeyId", "", None
+    )
+
+    Wmsp_Wl_ParamSetBeaconLostThreshold = Symbol(
+        [0x11CA4], [0x2391CA4], None, "Wmsp_Wl_ParamSetBeaconLostThreshold", "", None
+    )
+
+    Wmsp_Wl_ParamSetSsidMask = Symbol(
+        [0x11D00], [0x2391D00], None, "Wmsp_Wl_ParamSetSsidMask", "", None
+    )
+
+    Wmsp_Wl_ParamSetPreambleType = Symbol(
+        [0x11D74], [0x2391D74], None, "Wmsp_Wl_ParamSetPreambleType", "", None
+    )
+
+    Wmsp_Wl_ParamSetLifeTime = Symbol(
+        [0x11DD0], [0x2391DD0], None, "Wmsp_Wl_ParamSetLifeTime", "", None
+    )
+
+    Wmsp_Wl_ParamSetMaxConnectableChild = Symbol(
+        [0x11E38], [0x2391E38], None, "Wmsp_Wl_ParamSetMaxConnectableChild", "", None
+    )
+
+    Wmsp_Wl_ParamSetBeaconSendRecvInd = Symbol(
+        [0x11E94], [0x2391E94], None, "Wmsp_Wl_ParamSetBeaconSendRecvInd", "", None
+    )
+
+    Wmsp_Wl_ParamSetNullKeyResponseMode = Symbol(
+        [0x11EF0], [0x2391EF0], None, "Wmsp_Wl_ParamSetNullKeyResponseMode", "", None
+    )
+
+    Wmsp_Wl_ParamSetBeaconPeriod = Symbol(
+        [0x11F4C], [0x2391F4C], None, "Wmsp_Wl_ParamSetBeaconPeriod", "", None
+    )
+
+    Wmsp_Wl_ParamSetGameInfo = Symbol(
+        [0x11FA8], [0x2391FA8], None, "Wmsp_Wl_ParamSetGameInfo", "", None
+    )
+
+    Wmsp_Wl_DevTestSignal = Symbol(
+        [0x12128], [0x2392128], None, "Wmsp_Wl_DevTestSignal", "", None
+    )
+
+    Wmspi_Wl_NoArg = Symbol([0x12198], [0x2392198], None, "Wmspi_Wl_NoArg", "", None)
+
+    Wmsp_Initialize = Symbol([0x121E0], [0x23921E0], None, "Wmsp_Initialize", "", None)
+
+    Wmsp_Reset = Symbol([0x12280], [0x2392280], None, "Wmsp_Reset", "", None)
+
+    Wmsp_End = Symbol([0x12690], [0x2392690], None, "Wmsp_End", "", None)
+
+    Wmsp_SetParentParam = Symbol(
+        [0x12740], [0x2392740], None, "Wmsp_SetParentParam", "", None
+    )
+
+    Wmsp_StartParent = Symbol(
+        [0x12800], [0x2392800], None, "Wmsp_StartParent", "", None
+    )
+
+    Wmsp_EndParent = Symbol([0x12AC8], [0x2392AC8], None, "Wmsp_EndParent", "", None)
+
+    Wmsp_StartScan = Symbol([0x12CC0], [0x2392CC0], None, "Wmsp_StartScan", "", None)
+
+    Wmsp_StartScanEx = Symbol(
+        [0x13050], [0x2393050], None, "Wmsp_StartScanEx", "", None
+    )
+
+    Wmsp_EndScan = Symbol([0x135AC], [0x23935AC], None, "Wmsp_EndScan", "", None)
+
+    Wmsp_StartConnectEx = Symbol(
+        [0x136B4], [0x23936B4], None, "Wmsp_StartConnectEx", "", None
+    )
+
+    Wmsp_Disconnect = Symbol([0x13C94], [0x2393C94], None, "Wmsp_Disconnect", "", None)
+
+    Wmsp_DisconnectCore = Symbol(
+        [0x13CEC], [0x2393CEC], None, "Wmsp_DisconnectCore", "", None
+    )
+
+    Wmsp_IndicateDisconnectionFromMyself = Symbol(
+        [0x14278], [0x2394278], None, "Wmsp_IndicateDisconnectionFromMyself", "", None
+    )
+
+    WmspError = Symbol([0x1433C], [0x239433C], None, "WmspError", "", None)
+
+    WmspIndError = Symbol([0x14380], [0x2394380], None, "WmspIndError", "", None)
+
+    Wmsp_StartMp = Symbol([0x143C4], [0x23943C4], None, "Wmsp_StartMp", "", None)
+
+    Wmsp_SetMpData = Symbol([0x14758], [0x2394758], None, "Wmsp_SetMpData", "", None)
+
+    Wmsp_EndMp = Symbol([0x14894], [0x2394894], None, "Wmsp_EndMp", "", None)
+
+    Wmsp_StartDcf = Symbol([0x149E4], [0x23949E4], None, "Wmsp_StartDcf", "", None)
+
+    Wmsp_SetDcfData = Symbol([0x14A70], [0x2394A70], None, "Wmsp_SetDcfData", "", None)
+
+    Wmsp_EndDcf = Symbol([0x14B68], [0x2394B68], None, "Wmsp_EndDcf", "", None)
+
+    Wmsp_SetWepKey = Symbol([0x14C24], [0x2394C24], None, "Wmsp_SetWepKey", "", None)
+
+    Wmsp_SetWepKeyEx = Symbol(
+        [0x14CCC], [0x2394CCC], None, "Wmsp_SetWepKeyEx", "", None
+    )
+
+    Wmsp_SetGameInfo = Symbol(
+        [0x14DC4], [0x2394DC4], None, "Wmsp_SetGameInfo", "", None
+    )
+
+    Wmsp_SetBeaconTxRxInd = Symbol(
+        [0x14EB8], [0x2394EB8], None, "Wmsp_SetBeaconTxRxInd", "", None
+    )
+
+    Wmsp_StartTestMode = Symbol(
+        [0x14F2C], [0x2394F2C], None, "Wmsp_StartTestMode", "", None
+    )
+
+    Wmsp_StopTestMode = Symbol(
+        [0x14F50], [0x2394F50], None, "Wmsp_StopTestMode", "", None
+    )
+
+    Wmsp_MeasureChannel = Symbol(
+        [0x150A0], [0x23950A0], None, "Wmsp_MeasureChannel", "", None
+    )
+
+    Wmsp_InitWirelessCounter = Symbol(
+        [0x1527C], [0x239527C], None, "Wmsp_InitWirelessCounter", "", None
+    )
+
+    Wmsp_GetWirelessCounter = Symbol(
+        [0x152E4], [0x23952E4], None, "Wmsp_GetWirelessCounter", "", None
+    )
+
+    Wmsp_SetValarm = Symbol([0x15390], [0x2395390], None, "Wmsp_SetValarm", "", None)
+
+    WmspChildAdjustVSync1 = Symbol(
+        [0x15440], [0x2395440], None, "WmspChildAdjustVSync1", "", None
+    )
+
+    WmspChildAdjustVSync2 = Symbol(
+        [0x155A4], [0x23955A4], None, "WmspChildAdjustVSync2", "", None
+    )
+
+    WmspChildVAlarmMP = Symbol(
+        [0x15664], [0x2395664], None, "WmspChildVAlarmMP", "", None
+    )
+
+    WmspParentAdjustVSync = Symbol(
+        [0x1577C], [0x239577C], None, "WmspParentAdjustVSync", "", None
+    )
+
+    WmspParentVAlarmMP = Symbol(
+        [0x15834], [0x2395834], None, "WmspParentVAlarmMP", "", None
+    )
+
+    WmspFromVAlarmToWmspThread = Symbol(
+        [0x15880], [0x2395880], None, "WmspFromVAlarmToWmspThread", "", None
+    )
+
+    Wmsp_ValarmSetMpData = Symbol(
+        [0x15930], [0x2395930], None, "Wmsp_ValarmSetMpData", "", None
+    )
+
+    Wmspkicknextmp_Child = Symbol(
+        [0x15B04], [0x2395B04], None, "Wmspkicknextmp_Child", "", None
+    )
+
+    Wmsp_InitSendQueue = Symbol(
+        [0x15B60], [0x2395B60], None, "Wmsp_InitSendQueue", "", None
+    )
+
+    Wmsp_SendMaKeyData = Symbol(
+        [0x15C18], [0x2395C18], None, "Wmsp_SendMaKeyData", "", None
+    )
+
+    Wmsp_SendMaMp = Symbol([0x16110], [0x2396110], None, "Wmsp_SendMaMp", "", None)
+
+    Wmsp_ResumeMaMP = Symbol([0x16AB8], [0x2396AB8], None, "Wmsp_ResumeMaMP", "", None)
+
+    Wmsp_PutSendQueue = Symbol(
+        [0x16BA8], [0x2396BA8], None, "Wmsp_PutSendQueue", "", None
+    )
+
+    Wmsp_FlushSendQueue = Symbol(
+        [0x16CDC], [0x2396CDC], None, "Wmsp_FlushSendQueue", "", None
+    )
+
+    Wmsp_CleanSendQueue = Symbol(
+        [0x1700C], [0x239700C], None, "Wmsp_CleanSendQueue", "", None
+    )
+
+    Wmsp_ParsePortPacket = Symbol(
+        [0x17200], [0x2397200], None, "Wmsp_ParsePortPacket", "", None
+    )
+
+    WmspGetTmptt = Symbol([0x17404], [0x2397404], None, "WmspGetTmptt", "", None)
+
+    Wmsp_SetEntry = Symbol([0x174AC], [0x23974AC], None, "Wmsp_SetEntry", "", None)
+
+    Wmsp_AutoDeAuth = Symbol([0x1753C], [0x239753C], None, "Wmsp_AutoDeAuth", "", None)
+
+    Wmsp_Disable = Symbol([0x177E4], [0x23977E4], None, "Wmsp_Disable", "", None)
+
+    Wmsp_PowerOn = Symbol([0x1784C], [0x239784C], None, "Wmsp_PowerOn", "", None)
+
+    Wmspi_CommonWlIdle = Symbol(
+        [0x178F4], [0x23978F4], None, "Wmspi_CommonWlIdle", "", None
+    )
+
+    Wmsp_PowerOff = Symbol([0x17B04], [0x2397B04], None, "Wmsp_PowerOff", "", None)
+
+    Wmsp_SetMpParameter = Symbol(
+        [0x17BB0], [0x2397BB0], None, "Wmsp_SetMpParameter", "", None
+    )
+
+    Wmsp_SetBeaconPeriod = Symbol(
+        [0x17F30], [0x2397F30], None, "Wmsp_SetBeaconPeriod", "", None
+    )
+
+    Wmsp_SetPowerSaveMode = Symbol(
+        [0x17FBC], [0x2397FBC], None, "Wmsp_SetPowerSaveMode", "", None
+    )
+
+    Wmsp_StartTestRxMode = Symbol(
+        [0x1813C], [0x239813C], None, "Wmsp_StartTestRxMode", "", None
+    )
+
+    Wmsp_StopTestRxMode = Symbol(
+        [0x18160], [0x2398160], None, "Wmsp_StopTestRxMode", "", None
+    )
+
+    WlessLibReboot = Symbol([0x18184], [0x2398184], None, "WlessLibReboot", "", None)
+
+    WL_InitDriver = Symbol([0x181D0], [0x23981D0], None, "WL_InitDriver", "", None)
+
+    InitializeTask = Symbol([0x183B4], [0x23983B4], None, "InitializeTask", "", None)
+
+    InitializeHeapBuf = Symbol(
+        [0x1845C], [0x239845C], None, "InitializeHeapBuf", "", None
+    )
+
+    ReleaseAllWlHeapBuf = Symbol(
+        [0x18534], [0x2398534], None, "ReleaseAllWlHeapBuf", "", None
+    )
+
+    ReleaseAllHeapBuf = Symbol(
+        [0x1858C], [0x239858C], None, "ReleaseAllHeapBuf", "", None
+    )
+
+    InitializeParam = Symbol([0x185CC], [0x23985CC], None, "InitializeParam", "", None)
+
+    WSetMacAdrs = Symbol([0x1864C], [0x239864C], None, "WSetMacAdrs", "", None)
+
+    WSetRetryLimit = Symbol([0x186AC], [0x23986AC], None, "WSetRetryLimit", "", None)
+
+    WSetEnableChannel = Symbol(
+        [0x186E0], [0x23986E0], None, "WSetEnableChannel", "", None
+    )
+
+    WSetMode = Symbol([0x18720], [0x2398720], None, "WSetMode", "", None)
+
+    WSetRate = Symbol([0x187A0], [0x23987A0], None, "WSetRate", "", None)
+
+    WSetWepMode = Symbol([0x187D4], [0x23987D4], None, "WSetWepMode", "", None)
+
+    WSetWepKeyId = Symbol([0x18874], [0x2398874], None, "WSetWepKeyId", "", None)
+
+    WSetWepKey = Symbol([0x18898], [0x2398898], None, "WSetWepKey", "", None)
+
+    WSetBeaconType = Symbol([0x188F8], [0x23988F8], None, "WSetBeaconType", "", None)
+
+    WSetBcSsidResponse = Symbol(
+        [0x18930], [0x2398930], None, "WSetBcSsidResponse", "", None
+    )
+
+    WSetBeaconLostThreshold = Symbol(
+        [0x18968], [0x2398968], None, "WSetBeaconLostThreshold", "", None
+    )
+
+    WSetActiveZoneTime = Symbol(
+        [0x189A0], [0x23989A0], None, "WSetActiveZoneTime", "", None
+    )
+
+    WSetSsidMask = Symbol([0x18A50], [0x2398A50], None, "WSetSsidMask", "", None)
+
+    WSetPreambleType = Symbol(
+        [0x18A80], [0x2398A80], None, "WSetPreambleType", "", None
+    )
+
+    WSetAuthAlgo = Symbol([0x18B28], [0x2398B28], None, "WSetAuthAlgo", "", None)
+
+    WsetCca_Ed = Symbol([0x18B4C], [0x2398B4C], None, "WsetCca_Ed", "", None)
+
+    WSetMainAntenna = Symbol([0x18B90], [0x2398B90], None, "WSetMainAntenna", "", None)
+
+    WSetDiversity = Symbol([0x18BF8], [0x2398BF8], None, "WSetDiversity", "", None)
+
+    WSetBeaconSendRecvIndicate = Symbol(
+        [0x18CCC], [0x2398CCC], None, "WSetBeaconSendRecvIndicate", "", None
+    )
+
+    WSetNullKeyMode = Symbol([0x18D0C], [0x2398D0C], None, "WSetNullKeyMode", "", None)
+
+    WSetBssid = Symbol([0x18D5C], [0x2398D5C], None, "WSetBssid", "", None)
+
+    WSetSsid = Symbol([0x18DC0], [0x2398DC0], None, "WSetSsid", "", None)
+
+    WSetBeaconPeriod = Symbol(
+        [0x18ED0], [0x2398ED0], None, "WSetBeaconPeriod", "", None
+    )
+
+    WSetDTimPeriod = Symbol([0x18F28], [0x2398F28], None, "WSetDTimPeriod", "", None)
+
+    WSetListenInterval = Symbol(
+        [0x18F6C], [0x2398F6C], None, "WSetListenInterval", "", None
+    )
+
+    WSetDefaultParameters = Symbol(
+        [0x18FA0], [0x2398FA0], None, "WSetDefaultParameters", "", None
+    )
+
+    WSetChannel = Symbol([0x190F0], [0x23990F0], None, "WSetChannel", "", None)
+
+    WSetRateSet = Symbol([0x1937C], [0x239937C], None, "WSetRateSet", "", None)
+
+    WSetTxTimeStampOffset = Symbol(
+        [0x193BC], [0x23993BC], None, "WSetTxTimeStampOffset", "", None
+    )
+
+    WSetPowerMgtMode = Symbol(
+        [0x1943C], [0x239943C], None, "WSetPowerMgtMode", "", None
+    )
+
+    WSetPowerState = Symbol([0x194A4], [0x23994A4], None, "WSetPowerState", "", None)
+
+    WShutdown = Symbol([0x194E4], [0x23994E4], None, "WShutdown", "", None)
+
+    WWakeUp = Symbol([0x1956C], [0x239956C], None, "WWakeUp", "", None)
+
+    WSetFrameLifeTime = Symbol(
+        [0x19620], [0x2399620], None, "WSetFrameLifeTime", "", None
+    )
+
+    WDisableTmpttPowerSave = Symbol(
+        [0x19684], [0x2399684], None, "WDisableTmpttPowerSave", "", None
+    )
+
+    WEnableTmpttPowerSave = Symbol(
+        [0x196D0], [0x23996D0], None, "WEnableTmpttPowerSave", "", None
+    )
+
+    WInitGameInfo = Symbol([0x19700], [0x2399700], None, "WInitGameInfo", "", None)
+
+    WSetGameInfo = Symbol([0x19744], [0x2399744], None, "WSetGameInfo", "", None)
+
+    WSetAids = Symbol([0x197F0], [0x23997F0], None, "WSetAids", "", None)
+
+    WClearAids = Symbol([0x1982C], [0x239982C], None, "WClearAids", "", None)
+
+    WSetKsid = Symbol([0x19888], [0x2399888], None, "WSetKsid", "", None)
+
+    WClearKsid = Symbol([0x198AC], [0x23998AC], None, "WClearKsid", "", None)
+
+    WSetMacAdrs2 = Symbol([0x198EC], [0x23998EC], None, "WSetMacAdrs2", "", None)
+
+    WSetMacAdrs3 = Symbol([0x19920], [0x2399920], None, "WSetMacAdrs3", "", None)
+
+    WInitCounter = Symbol([0x1996C], [0x239996C], None, "WInitCounter", "", None)
+
+    WUpdateCounter = Symbol([0x1999C], [0x239999C], None, "WUpdateCounter", "", None)
+
+    WCheckSsid = Symbol([0x19B94], [0x2399B94], None, "WCheckSsid", "", None)
+
+    MatchMacAdrs = Symbol([0x19C64], [0x2399C64], None, "MatchMacAdrs", "", None)
+
+    CheckEnableChannel = Symbol(
+        [0x19C94], [0x2399C94], None, "CheckEnableChannel", "", None
+    )
+
+    WElement2RateSet = Symbol(
+        [0x19CB4], [0x2399CB4], None, "WElement2RateSet", "", None
+    )
+
+    WCalcManRate = Symbol([0x19D68], [0x2399D68], None, "WCalcManRate", "", None)
+
+    Bbp_Read = Symbol([0x19DB4], [0x2399DB4], None, "Bbp_Read", "", None)
+
+    Bbp_Write = Symbol([0x19DE0], [0x2399DE0], None, "Bbp_Write", "", None)
+
+    RF_Write = Symbol([0x19E10], [0x2399E10], None, "RF_Write", "", None)
+
+    CalcBbpCrc = Symbol([0x19E30], [0x2399E30], None, "CalcBbpCrc", "", None)
+
+    WConfigDevice = Symbol([0x19EA0], [0x2399EA0], None, "WConfigDevice", "", None)
+
+    InitMac = Symbol([0x19F10], [0x2399F10], None, "InitMac", "", None)
+
+    InitBaseBand = Symbol([0x19F48], [0x2399F48], None, "InitBaseBand", "", None)
+
+    InitRF = Symbol([0x19FB0], [0x2399FB0], None, "InitRF", "", None)
+
+    InitializeAlarm = Symbol([0x1A138], [0x239A138], None, "InitializeAlarm", "", None)
+
+    ClearPeriodicTimeOut = Symbol(
+        [0x1A23C], [0x239A23C], None, "ClearPeriodicTimeOut", "", None
+    )
+
+    WIntervalTimer = Symbol([0x1A25C], [0x239A25C], None, "WIntervalTimer", "", None)
+
+    ClearTimeOut = Symbol([0x1A3D0], [0x239A3D0], None, "ClearTimeOut", "", None)
+
+    Dma_Read = Symbol([0x1A3F0], [0x239A3F0], None, "Dma_Read", "", None)
+
+    Dma_Write = Symbol([0x1A46C], [0x239A46C], None, "Dma_Write", "", None)
+
+    Dma_WriteHeaderData = Symbol(
+        [0x1A48C], [0x239A48C], None, "Dma_WriteHeaderData", "", None
+    )
+
+    Dma_WepWriteHeaderData = Symbol(
+        [0x1A4D0], [0x239A4D0], None, "Dma_WepWriteHeaderData", "", None
+    )
+
+    WL_WriteByte = Symbol([0x1A514], [0x239A514], None, "WL_WriteByte", "", None)
+
+    Rnd_Init = Symbol([0x1A55C], [0x239A55C], None, "Rnd_Init", "", None)
+
+    Rnd_Rand = Symbol([0x1A5A8], [0x239A5A8], None, "Rnd_Rand", "", None)
+
+    Calc_NextCrc = Symbol([0x1A5D8], [0x239A5D8], None, "Calc_NextCrc", "", None)
+
+    WCheckTxBufIdBeforeFrame = Symbol(
+        [0x1A658], [0x239A658], None, "WCheckTxBufIdBeforeFrame", "", None
+    )
+
+    WaitMacStop = Symbol([0x1A6D8], [0x239A6D8], None, "WaitMacStop", "", None)
+
+    RestoreTxFrame = Symbol([0x1A714], [0x239A714], None, "RestoreTxFrame", "", None)
+
+    WCheckTxBuf = Symbol([0x1A760], [0x239A760], None, "WCheckTxBuf", "", None)
+
+    SetFatalErr = Symbol([0x1A85C], [0x239A85C], None, "SetFatalErr", "", None)
+
+    SendFatalErrMsgTask = Symbol(
+        [0x1A8A0], [0x239A8A0], None, "SendFatalErrMsgTask", "", None
+    )
+
+    TerminateWlTask = Symbol([0x1A920], [0x239A920], None, "TerminateWlTask", "", None)
+
+    ReleaseWlTask = Symbol([0x1A9C0], [0x239A9C0], None, "ReleaseWlTask", "", None)
+
+    DiagMacRegister = Symbol([0x1AA10], [0x239AA10], None, "DiagMacRegister", "", None)
+
+    DiagMacMemory = Symbol([0x1ABB4], [0x239ABB4], None, "DiagMacMemory", "", None)
+
+    DiagBaseBand = Symbol([0x1AD40], [0x239AD40], None, "DiagBaseBand", "", None)
+
+    CheckKeyTxEndMain = Symbol(
+        [0x1B034], [0x239B034], None, "CheckKeyTxEndMain", "", None
+    )
+
+    InitializeIntr = Symbol([0x1B0AC], [0x239B0AC], None, "InitializeIntr", "", None)
+
+    ReleaseIntr = Symbol([0x1B0D0], [0x239B0D0], None, "ReleaseIntr", "", None)
+
+    Cam_Search = Symbol([0x1B0F0], [0x239B0F0], None, "Cam_Search", "", None)
+
+    Cam_SearchAdd = Symbol([0x1B198], [0x239B198], None, "Cam_SearchAdd", "", None)
+
+    Cam_AddBcFrame = Symbol([0x1B2D8], [0x239B2D8], None, "Cam_AddBcFrame", "", None)
+
+    Cam_IncFrameCount = Symbol(
+        [0x1B334], [0x239B334], None, "Cam_IncFrameCount", "", None
+    )
+
+    Cam_DecFrameCount = Symbol(
+        [0x1B3C4], [0x239B3C4], None, "Cam_DecFrameCount", "", None
+    )
+
+    Cam_SetStaState = Symbol([0x1B434], [0x239B434], None, "Cam_SetStaState", "", None)
+
+    Cam_SetRssi = Symbol([0x1B51C], [0x239B51C], None, "Cam_SetRssi", "", None)
+
+    Cam_SetPowerMgtMode = Symbol(
+        [0x1B53C], [0x239B53C], None, "Cam_SetPowerMgtMode", "", None
+    )
+
+    Cam_SetDoze = Symbol([0x1B598], [0x239B598], None, "Cam_SetDoze", "", None)
+
+    Cam_SetAwake = Symbol([0x1B5D8], [0x239B5D8], None, "Cam_SetAwake", "", None)
+
+    Cam_SetCapaInfo = Symbol([0x1B5FC], [0x239B5FC], None, "Cam_SetCapaInfo", "", None)
+
+    Cam_SetSupRate = Symbol([0x1B61C], [0x239B61C], None, "Cam_SetSupRate", "", None)
+
+    Cam_SetLastSeqCtrl = Symbol(
+        [0x1B63C], [0x239B63C], None, "Cam_SetLastSeqCtrl", "", None
+    )
+
+    Cam_SetAuthSeed = Symbol([0x1B65C], [0x239B65C], None, "Cam_SetAuthSeed", "", None)
+
+    Cam_UpdateLifeTime = Symbol(
+        [0x1B67C], [0x239B67C], None, "Cam_UpdateLifeTime", "", None
+    )
+
+    Cam_AllocateAid = Symbol([0x1B6A0], [0x239B6A0], None, "Cam_AllocateAid", "", None)
+
+    Cam_ReleaseAid = Symbol([0x1B750], [0x239B750], None, "Cam_ReleaseAid", "", None)
+
+    Cam_GetStaState = Symbol([0x1B7D0], [0x239B7D0], None, "Cam_GetStaState", "", None)
+
+    Cam_IsActive = Symbol([0x1B7F0], [0x239B7F0], None, "Cam_IsActive", "", None)
+
+    Cam_GetPowerMgtMode = Symbol(
+        [0x1B810], [0x239B810], None, "Cam_GetPowerMgtMode", "", None
+    )
+
+    Cam_GetMacAdrs = Symbol([0x1B830], [0x239B830], None, "Cam_GetMacAdrs", "", None)
+
+    Cam_GetAuthSeed = Symbol([0x1B850], [0x239B850], None, "Cam_GetAuthSeed", "", None)
+
+    Cam_GetLastSeqCtrl = Symbol(
+        [0x1B870], [0x239B870], None, "Cam_GetLastSeqCtrl", "", None
+    )
+
+    Cam_GetTxRate = Symbol([0x1B890], [0x239B890], None, "Cam_GetTxRate", "", None)
+
+    Cam_GetAid = Symbol([0x1B8BC], [0x239B8BC], None, "Cam_GetAid", "", None)
+
+    Cam_GetFrameCount = Symbol(
+        [0x1B8DC], [0x239B8DC], None, "Cam_GetFrameCount", "", None
+    )
+
+    Cam_SetTimElementBitmap = Symbol(
+        [0x1B8FC], [0x239B8FC], None, "Cam_SetTimElementBitmap", "", None
+    )
+
+    Cam_ClrTimElementBitmap = Symbol(
+        [0x1B9B8], [0x239B9B8], None, "Cam_ClrTimElementBitmap", "", None
+    )
+
+    Cam_TimerTask = Symbol([0x1BA64], [0x239BA64], None, "Cam_TimerTask", "", None)
+
+    Cam_Delete = Symbol([0x1BC1C], [0x239BC1C], None, "Cam_Delete", "", None)
+
+    InitializeCam = Symbol([0x1BC64], [0x239BC64], None, "InitializeCam", "", None)
+
+    InitCam = Symbol([0x1BD00], [0x239BD00], None, "InitCam", "", None)
+
+    Cam_InitElement = Symbol([0x1BD88], [0x239BD88], None, "Cam_InitElement", "", None)
+
+    SendMessageToWmTask = Symbol(
+        [0x1BE74], [0x239BE74], None, "SendMessageToWmTask", "", None
+    )
+
+    Mlme_ResetReqCmd = Symbol(
+        [0x1BEF0], [0x239BEF0], None, "Mlme_ResetReqCmd", "", None
+    )
+
+    Mlme_PwrMgtReqCmd = Symbol(
+        [0x1BF30], [0x239BF30], None, "Mlme_PwrMgtReqCmd", "", None
+    )
+
+    Mlme_ScanReqCmd = Symbol([0x1BFDC], [0x239BFDC], None, "Mlme_ScanReqCmd", "", None)
+
+    Mlme_JoinReqCmd = Symbol([0x1C11C], [0x239C11C], None, "Mlme_JoinReqCmd", "", None)
+
+    Mlme_AuthReqCmd = Symbol([0x1C2D4], [0x239C2D4], None, "Mlme_AuthReqCmd", "", None)
+
+    Mlme_DeAuthReqCmd = Symbol(
+        [0x1C3A8], [0x239C3A8], None, "Mlme_DeAuthReqCmd", "", None
+    )
+
+    Mlme_AssReqCmd = Symbol([0x1C4DC], [0x239C4DC], None, "Mlme_AssReqCmd", "", None)
+
+    Mlme_ReAssReqCmd = Symbol(
+        [0x1C5B4], [0x239C5B4], None, "Mlme_ReAssReqCmd", "", None
+    )
+
+    Mlme_DisAssReqCmd = Symbol(
+        [0x1C674], [0x239C674], None, "Mlme_DisAssReqCmd", "", None
+    )
+
+    Mlme_StartReqCmd = Symbol(
+        [0x1C780], [0x239C780], None, "Mlme_StartReqCmd", "", None
+    )
+
+    Mlme_MeasChanReqCmd = Symbol(
+        [0x1C920], [0x239C920], None, "Mlme_MeasChanReqCmd", "", None
+    )
+
+    Mlme_ScanTask = Symbol([0x1CA04], [0x239CA04], None, "Mlme_ScanTask", "", None)
+
+    Mlme_ScanTimeOut = Symbol(
+        [0x1CBF4], [0x239CBF4], None, "Mlme_ScanTimeOut", "", None
+    )
+
+    Mlme_JoinTask = Symbol([0x1CC58], [0x239CC58], None, "Mlme_JoinTask", "", None)
+
+    Mlme_JoinTimeOut = Symbol(
+        [0x1CCF8], [0x239CCF8], None, "Mlme_JoinTimeOut", "", None
+    )
+
+    Mlme_AuthTask = Symbol([0x1CD34], [0x239CD34], None, "Mlme_AuthTask", "", None)
+
+    Mlme_AuthTimeOut = Symbol(
+        [0x1CE18], [0x239CE18], None, "Mlme_AuthTimeOut", "", None
+    )
+
+    Mlme_AssTask = Symbol([0x1CE58], [0x239CE58], None, "Mlme_AssTask", "", None)
+
+    Mlme_AssTimeOut = Symbol([0x1CF18], [0x239CF18], None, "Mlme_AssTimeOut", "", None)
+
+    Mlme_ReAssTask = Symbol([0x1CF54], [0x239CF54], None, "Mlme_ReAssTask", "", None)
+
+    Mlme_ReAssTimeOut = Symbol(
+        [0x1D00C], [0x239D00C], None, "Mlme_ReAssTimeOut", "", None
+    )
+
+    Mlme_MeasChannelTask = Symbol(
+        [0x1D048], [0x239D048], None, "Mlme_MeasChannelTask", "", None
+    )
+
+    Mlme_MeasChanTimeOut = Symbol(
+        [0x1D2B8], [0x239D2B8], None, "Mlme_MeasChanTimeOut", "", None
+    )
+
+    Mlme_BeaconLostTask = Symbol(
+        [0x1D2E4], [0x239D2E4], None, "Mlme_BeaconLostTask", "", None
+    )
+
+    IssueMlmeConfirm = Symbol(
+        [0x1D304], [0x239D304], None, "IssueMlmeConfirm", "", None
+    )
+
+    Mlme_IssueAuthIndication = Symbol(
+        [0x1D358], [0x239D358], None, "Mlme_IssueAuthIndication", "", None
+    )
+
+    Mlme_IssueDeAuthIndication = Symbol(
+        [0x1D3D4], [0x239D3D4], None, "Mlme_IssueDeAuthIndication", "", None
+    )
+
+    Mlme_IssueAssIndication = Symbol(
+        [0x1D450], [0x239D450], None, "Mlme_IssueAssIndication", "", None
+    )
+
+    Mlme_IssueReAssIndication = Symbol(
+        [0x1D548], [0x239D548], None, "Mlme_IssueReAssIndication", "", None
+    )
+
+    Mlme_IssueDisAssIndication = Symbol(
+        [0x1D634], [0x239D634], None, "Mlme_IssueDisAssIndication", "", None
+    )
+
+    Mlme_IssueBeaconLostIndication = Symbol(
+        [0x1D6B0], [0x239D6B0], None, "Mlme_IssueBeaconLostIndication", "", None
+    )
+
+    Mlme_IssueBeaconSendIndication = Symbol(
+        [0x1D724], [0x239D724], None, "Mlme_IssueBeaconSendIndication", "", None
+    )
+
+    Mlme_IssueBeaconRecvIndication = Symbol(
+        [0x1D784], [0x239D784], None, "Mlme_IssueBeaconRecvIndication", "", None
+    )
+
+    InitializeMlme = Symbol([0x1D8A0], [0x239D8A0], None, "InitializeMlme", "", None)
+
+    ParamSet_AllReqCmd = Symbol(
+        [0x1D8C8], [0x239D8C8], None, "ParamSet_AllReqCmd", "", None
+    )
+
+    ParamSet_MacAdrsReqCmd = Symbol(
+        [0x1D9B4], [0x239D9B4], None, "ParamSet_MacAdrsReqCmd", "", None
+    )
+
+    ParamSet_EnableChannelReqCmd = Symbol(
+        [0x1DA0C], [0x239DA0C], None, "ParamSet_EnableChannelReqCmd", "", None
+    )
+
+    ParamSet_ModeReqCmd = Symbol(
+        [0x1DA4C], [0x239DA4C], None, "ParamSet_ModeReqCmd", "", None
+    )
+
+    ParamSet_BeaconTypeReqCmd = Symbol(
+        [0x1DAFC], [0x239DAFC], None, "ParamSet_BeaconTypeReqCmd", "", None
+    )
+
+    ParamSet_CcaModeEdThReqCmd = Symbol(
+        [0x1DBD0], [0x239DBD0], None, "ParamSet_CcaModeEdThReqCmd", "", None
+    )
+
+    ParamSet_LifeTimeReqCmd = Symbol(
+        [0x1DC1C], [0x239DC1C], None, "ParamSet_LifeTimeReqCmd", "", None
+    )
+
+    ParamSet_MaxConnReqCmd = Symbol(
+        [0x1DD24], [0x239DD24], None, "ParamSet_MaxConnReqCmd", "", None
+    )
+
+    ParamSet_DiversityReqCmd = Symbol(
+        [0x1DDBC], [0x239DDBC], None, "ParamSet_DiversityReqCmd", "", None
+    )
+
+    ParamSet_SsidReqCmd = Symbol(
+        [0x1DE94], [0x239DE94], None, "ParamSet_SsidReqCmd", "", None
+    )
+
+    ParamSet_ListenIntervalReqCmd = Symbol(
+        [0x1DF2C], [0x239DF2C], None, "ParamSet_ListenIntervalReqCmd", "", None
+    )
+
+    ParamSet_GameInfoReqCmd = Symbol(
+        [0x1DF6C], [0x239DF6C], None, "ParamSet_GameInfoReqCmd", "", None
+    )
+
+    ParamGet_AllReqCmd = Symbol(
+        [0x1DFD0], [0x239DFD0], None, "ParamGet_AllReqCmd", "", None
+    )
+
+    ParamGet_MacAdrsReqCmd = Symbol(
+        [0x1E108], [0x239E108], None, "ParamGet_MacAdrsReqCmd", "", None
+    )
+
+    ParamGet_RetryReqCmd = Symbol(
+        [0x1E138], [0x239E138], None, "ParamGet_RetryReqCmd", "", None
+    )
+
+    ParamGet_EnableChannelReqCmd = Symbol(
+        [0x1E160], [0x239E160], None, "ParamGet_EnableChannelReqCmd", "", None
+    )
+
+    ParamGet_ModeReqCmd = Symbol(
+        [0x1E198], [0x239E198], None, "ParamGet_ModeReqCmd", "", None
+    )
+
+    ParamGet_RateReqCmd = Symbol(
+        [0x1E1C0], [0x239E1C0], None, "ParamGet_RateReqCmd", "", None
+    )
+
+    ParamGet_WepModeReqCmd = Symbol(
+        [0x1E1E8], [0x239E1E8], None, "ParamGet_WepModeReqCmd", "", None
+    )
+
+    ParamGet_WepKeyIdReqCmd = Symbol(
+        [0x1E210], [0x239E210], None, "ParamGet_WepKeyIdReqCmd", "", None
+    )
+
+    ParamGet_BeaconTypeReqCmd = Symbol(
+        [0x1E238], [0x239E238], None, "ParamGet_BeaconTypeReqCmd", "", None
+    )
+
+    ParamGet_ResBcSsidReqCmd = Symbol(
+        [0x1E268], [0x239E268], None, "ParamGet_ResBcSsidReqCmd", "", None
+    )
+
+    ParamGet_BeaconLostThReqCmd = Symbol(
+        [0x1E298], [0x239E298], None, "ParamGet_BeaconLostThReqCmd", "", None
+    )
+
+    ParamGet_ActiveZoneReqCmd = Symbol(
+        [0x1E2C0], [0x239E2C0], None, "ParamGet_ActiveZoneReqCmd", "", None
+    )
+
+    ParamGet_SsidMaskReqCmd = Symbol(
+        [0x1E2E8], [0x239E2E8], None, "ParamGet_SsidMaskReqCmd", "", None
+    )
+
+    ParamGet_PreambleTypeReqCmd = Symbol(
+        [0x1E324], [0x239E324], None, "ParamGet_PreambleTypeReqCmd", "", None
+    )
+
+    ParamGet_AuthAlgoReqCmd = Symbol(
+        [0x1E354], [0x239E354], None, "ParamGet_AuthAlgoReqCmd", "", None
+    )
+
+    ParamGet_CcaModeEdThReqCmd = Symbol(
+        [0x1E37C], [0x239E37C], None, "ParamGet_CcaModeEdThReqCmd", "", None
+    )
+
+    ParamGet_MaxConnReqCmd = Symbol(
+        [0x1E3BC], [0x239E3BC], None, "ParamGet_MaxConnReqCmd", "", None
+    )
+
+    ParamGet_MainAntennaReqCmd = Symbol(
+        [0x1E3E8], [0x239E3E8], None, "ParamGet_MainAntennaReqCmd", "", None
+    )
+
+    ParamGet_DiversityReqCmd = Symbol(
+        [0x1E424], [0x239E424], None, "ParamGet_DiversityReqCmd", "", None
+    )
+
+    ParamGet_BcnSendRecvIndReqCmd = Symbol(
+        [0x1E484], [0x239E484], None, "ParamGet_BcnSendRecvIndReqCmd", "", None
+    )
+
+    ParamGet_NullKeyModeReqCmd = Symbol(
+        [0x1E4C0], [0x239E4C0], None, "ParamGet_NullKeyModeReqCmd", "", None
+    )
+
+    ParamGet_BssIdReqCmd = Symbol(
+        [0x1E4FC], [0x239E4FC], None, "ParamGet_BssIdReqCmd", "", None
+    )
+
+    ParamGet_SsidReqCmd = Symbol(
+        [0x1E52C], [0x239E52C], None, "ParamGet_SsidReqCmd", "", None
+    )
+
+    ParamGet_BeaconPeriodReqCmd = Symbol(
+        [0x1E578], [0x239E578], None, "ParamGet_BeaconPeriodReqCmd", "", None
+    )
+
+    ParamGet_DtimPeriodReqCmd = Symbol(
+        [0x1E5A0], [0x239E5A0], None, "ParamGet_DtimPeriodReqCmd", "", None
+    )
+
+    ParamGet_ListenIntervalReqCmd = Symbol(
+        [0x1E5C8], [0x239E5C8], None, "ParamGet_ListenIntervalReqCmd", "", None
+    )
+
+    ParamGet_GameInfoReqCmd = Symbol(
+        [0x1E5F0], [0x239E5F0], None, "ParamGet_GameInfoReqCmd", "", None
+    )
+
+    Dev_ShutdownReqCmd = Symbol(
+        [0x1E6C8], [0x239E6C8], None, "Dev_ShutdownReqCmd", "", None
+    )
+
+    Dev_IdleReqCmd = Symbol([0x1E708], [0x239E708], None, "Dev_IdleReqCmd", "", None)
+
+    Dev_Class1ReqCmd = Symbol(
+        [0x1E764], [0x239E764], None, "Dev_Class1ReqCmd", "", None
+    )
+
+    Dev_RebootReqCmd = Symbol(
+        [0x1E7B8], [0x239E7B8], None, "Dev_RebootReqCmd", "", None
+    )
+
+    Dev_ClearWlInfoReqCmd = Symbol(
+        [0x1E7F4], [0x239E7F4], None, "Dev_ClearWlInfoReqCmd", "", None
+    )
+
+    Dev_GetVerInfoReqCmd = Symbol(
+        [0x1E82C], [0x239E82C], None, "Dev_GetVerInfoReqCmd", "", None
+    )
+
+    Dev_GetWlInfoReqCmd = Symbol(
+        [0x1E8D0], [0x239E8D0], None, "Dev_GetWlInfoReqCmd", "", None
+    )
+
+    Dev_GetStateReqCmd = Symbol(
+        [0x1E92C], [0x239E92C], None, "Dev_GetStateReqCmd", "", None
+    )
+
+    Dev_TestSignalReqCmd = Symbol(
+        [0x1E954], [0x239E954], None, "Dev_TestSignalReqCmd", "", None
+    )
+
+    IntrCarrierSuppresionSignal = Symbol(
+        [0x1ECB0], [0x239ECB0], None, "IntrCarrierSuppresionSignal", "", None
+    )
+
+    Dev_TestRxReqCmd = Symbol(
+        [0x1ED2C], [0x239ED2C], None, "Dev_TestRxReqCmd", "", None
+    )
+
+    MA_DataReqCmd = Symbol([0x1EDDC], [0x239EDDC], None, "MA_DataReqCmd", "", None)
+
+    MA_KeyDataReqCmd = Symbol(
+        [0x1EFA8], [0x239EFA8], None, "MA_KeyDataReqCmd", "", None
+    )
+
+    MA_MpReqCmd = Symbol([0x1F14C], [0x239F14C], None, "MA_MpReqCmd", "", None)
+
+    MA_TestDataReqCmd = Symbol(
+        [0x1F600], [0x239F600], None, "MA_TestDataReqCmd", "", None
+    )
+
+    MA_ClrDataReqCmd = Symbol(
+        [0x1F660], [0x239F660], None, "MA_ClrDataReqCmd", "", None
+    )
+
+    IssueMaDataConfirm = Symbol(
+        [0x1F6AC], [0x239F6AC], None, "IssueMaDataConfirm", "", None
+    )
+
+    TxqPri = Symbol([0x1F6E4], [0x239F6E4], None, "TxqPri", "", None)
+
+    CopyTxFrmToMacBuf = Symbol(
+        [0x1F904], [0x239F904], None, "CopyTxFrmToMacBuf", "", None
+    )
+
+    CheckFrameTimeout = Symbol(
+        [0x1FA6C], [0x239FA6C], None, "CheckFrameTimeout", "", None
+    )
+
+    TxqEndData = Symbol([0x1FAEC], [0x239FAEC], None, "TxqEndData", "", None)
+
+    TxqEndManCtrl = Symbol([0x1FC68], [0x239FC68], None, "TxqEndManCtrl", "", None)
+
+    TxqEndPsPoll = Symbol([0x20134], [0x23A0134], None, "TxqEndPsPoll", "", None)
+
+    TxqEndBroadCast = Symbol([0x2019C], [0x23A019C], None, "TxqEndBroadCast", "", None)
+
+    TxEndKeyData = Symbol([0x202A8], [0x23A02A8], None, "TxEndKeyData", "", None)
+
+    ClearTxKeyData = Symbol([0x202F0], [0x23A02F0], None, "ClearTxKeyData", "", None)
+
+    ClearTxMp = Symbol([0x20364], [0x23A0364], None, "ClearTxMp", "", None)
+
+    ClearTxData = Symbol([0x203B8], [0x23A03B8], None, "ClearTxData", "", None)
+
+    ClearQueuedPri = Symbol([0x20460], [0x23A0460], None, "ClearQueuedPri", "", None)
+
+    ResetTxqPri = Symbol([0x204C4], [0x23A04C4], None, "ResetTxqPri", "", None)
+
+    DeleteTxFrames = Symbol([0x20550], [0x23A0550], None, "DeleteTxFrames", "", None)
+
+    DeleteTxFrameByAdrs = Symbol(
+        [0x20648], [0x23A0648], None, "DeleteTxFrameByAdrs", "", None
+    )
+
+    DeleteAllTxFrames = Symbol(
+        [0x206F8], [0x23A06F8], None, "DeleteAllTxFrames", "", None
+    )
+
+    MessageDeleteTx = Symbol([0x207E0], [0x23A07E0], None, "MessageDeleteTx", "", None)
+
+    SetManCtrlFrame = Symbol([0x20884], [0x23A0884], None, "SetManCtrlFrame", "", None)
+
+    TxPsPollFrame = Symbol([0x208F8], [0x23A08F8], None, "TxPsPollFrame", "", None)
+
+    StartBeaconFrame = Symbol(
+        [0x2098C], [0x23A098C], None, "StartBeaconFrame", "", None
+    )
+
+    StopBeaconFrame = Symbol([0x209CC], [0x23A09CC], None, "StopBeaconFrame", "", None)
+
+    MakeBeaconFrame = Symbol([0x209F4], [0x23A09F4], None, "MakeBeaconFrame", "", None)
+
+    UpdateGameInfoElement = Symbol(
+        [0x20D68], [0x23A0D68], None, "UpdateGameInfoElement", "", None
+    )
+
+    IsEnableManagement = Symbol(
+        [0x20E64], [0x23A0E64], None, "IsEnableManagement", "", None
+    )
+
+    MakeDisAssFrame = Symbol([0x20E94], [0x23A0E94], None, "MakeDisAssFrame", "", None)
+
+    MakeAssReqFrame = Symbol([0x20F10], [0x23A0F10], None, "MakeAssReqFrame", "", None)
+
+    MakeReAssReqFrame = Symbol(
+        [0x20FB8], [0x23A0FB8], None, "MakeReAssReqFrame", "", None
+    )
+
+    MakeAssResFrame = Symbol([0x2106C], [0x23A106C], None, "MakeAssResFrame", "", None)
+
+    MakeReAssResFrame = Symbol(
+        [0x211E0], [0x23A11E0], None, "MakeReAssResFrame", "", None
+    )
+
+    MakeProbeReqFrame = Symbol(
+        [0x21340], [0x23A1340], None, "MakeProbeReqFrame", "", None
+    )
+
+    MakeProbeResFrame = Symbol(
+        [0x213CC], [0x23A13CC], None, "MakeProbeResFrame", "", None
+    )
+
+    MakeAuthFrame = Symbol([0x215EC], [0x23A15EC], None, "MakeAuthFrame", "", None)
+
+    MakeDeAuthFrame = Symbol([0x216AC], [0x23A16AC], None, "MakeDeAuthFrame", "", None)
+
+    MakePsPollFrame = Symbol([0x21740], [0x23A1740], None, "MakePsPollFrame", "", None)
+
+    InitManHeader = Symbol([0x21798], [0x23A1798], None, "InitManHeader", "", None)
+
+    IsExistManFrame = Symbol([0x217E4], [0x23A17E4], None, "IsExistManFrame", "", None)
+
+    SetSsidElement = Symbol([0x2184C], [0x23A184C], None, "SetSsidElement", "", None)
+
+    SetSupRateSet = Symbol([0x218C0], [0x23A18C0], None, "SetSupRateSet", "", None)
+
+    RxDataFrameTask = Symbol([0x21964], [0x23A1964], None, "RxDataFrameTask", "", None)
+
+    RxMpFrame = Symbol([0x21C34], [0x23A1C34], None, "RxMpFrame", "", None)
+
+    RxKeyDataFrame = Symbol([0x21DB0], [0x23A1DB0], None, "RxKeyDataFrame", "", None)
+
+    RxMpAckFrame = Symbol([0x21F5C], [0x23A1F5C], None, "RxMpAckFrame", "", None)
+
+    RxDisAssFrame = Symbol([0x2267C], [0x23A267C], None, "RxDisAssFrame", "", None)
+
+    RxAssReqFrame = Symbol([0x2275C], [0x23A275C], None, "RxAssReqFrame", "", None)
+
+    RxProbeReqFrame = Symbol([0x2292C], [0x23A292C], None, "RxProbeReqFrame", "", None)
+
+    RxAuthFrame = Symbol([0x22DB0], [0x23A2DB0], None, "RxAuthFrame", "", None)
+
+    RxDeAuthFrame = Symbol([0x23350], [0x23A3350], None, "RxDeAuthFrame", "", None)
+
+    ElementChecker = Symbol([0x23400], [0x23A3400], None, "ElementChecker", "", None)
+
+    RxManCtrlTask = Symbol([0x23724], [0x23A3724], None, "RxManCtrlTask", "", None)
+
+    DefragTask = Symbol([0x23DD8], [0x23A3DD8], None, "DefragTask", "", None)
+
+    DefragTimerTask = Symbol([0x24300], [0x23A4300], None, "DefragTimerTask", "", None)
+
+    UpdateApList = Symbol([0x2436C], [0x23A436C], None, "UpdateApList", "", None)
+
+    InitApList = Symbol([0x244B0], [0x23A44B0], None, "InitApList", "", None)
+
+    UpdateApListTask = Symbol(
+        [0x244D4], [0x23A44D4], None, "UpdateApListTask", "", None
+    )
+
+    Flash_VerifyCheckSum = Symbol(
+        [0x2451C], [0x23A451C], None, "Flash_VerifyCheckSum", "", None
+    )
+
+    Flash_Wait = Symbol([0x245C0], [0x23A45C0], None, "Flash_Wait", "", None)
+
+    Flash_Read = Symbol([0x24600], [0x23A4600], None, "Flash_Read", "", None)
+
+    Flash_DirectRead = Symbol(
+        [0x24660], [0x23A4660], None, "Flash_DirectRead", "", None
+    )
+
+    Flash_MakeImage = Symbol([0x246B0], [0x23A46B0], None, "Flash_MakeImage", "", None)
+
+    Nvram_Init = Symbol([0x2479C], [0x23A479C], None, "Nvram_Init", "", None)
+
+    Nvram_AnalyzeCommand = Symbol(
+        [0x247C4], [0x23A47C4], None, "Nvram_AnalyzeCommand", "", None
+    )
+
+    Nvram_ExecuteProcess = Symbol(
+        [0x2496C], [0x23A496C], None, "Nvram_ExecuteProcess", "", None
+    )
+
+    NvramCheckReadyToRead = Symbol(
+        [0x24C40], [0x23A4C40], None, "NvramCheckReadyToRead", "", None
+    )
+
+    NvramCheckReadyToWrite = Symbol(
+        [0x24C64], [0x23A4C64], None, "NvramCheckReadyToWrite", "", None
+    )
+
+    Nvram_WriteEnable = Symbol(
+        [0x24C94], [0x23A4C94], None, "Nvram_WriteEnable", "", None
+    )
+
+    Nvram_WriteDisable = Symbol(
+        [0x24CF8], [0x23A4CF8], None, "Nvram_WriteDisable", "", None
+    )
+
+    Nvram_ReadStatusRegister = Symbol(
+        [0x24D38], [0x23A4D38], None, "Nvram_ReadStatusRegister", "", None
+    )
+
+    Nvram_ReadDataBytes = Symbol(
+        [0x24DA8], [0x23A4DA8], None, "Nvram_ReadDataBytes", "", None
+    )
+
+    Nvram_ReadDataBytesAtHigherSpeed = Symbol(
+        [0x24ED0], [0x23A4ED0], None, "Nvram_ReadDataBytesAtHigherSpeed", "", None
+    )
+
+    Nvram_PageWrite = Symbol([0x24FF0], [0x23A4FF0], None, "Nvram_PageWrite", "", None)
+
+    Nvram_PageProgram = Symbol(
+        [0x250FC], [0x23A50FC], None, "Nvram_PageProgram", "", None
+    )
+
+    Nvram_PageErase = Symbol([0x25208], [0x23A5208], None, "Nvram_PageErase", "", None)
+
+    Nvram_SectorErase = Symbol(
+        [0x25290], [0x23A5290], None, "Nvram_SectorErase", "", None
+    )
+
+    Nvram_DeepPowerDown = Symbol(
+        [0x25318], [0x23A5318], None, "Nvram_DeepPowerDown", "", None
+    )
+
+    Nvram_ReleaseFromDeepPowerDown = Symbol(
+        [0x25358], [0x23A5358], None, "Nvram_ReleaseFromDeepPowerDown", "", None
+    )
+
+    Nvram_ChipErase = Symbol([0x25398], [0x23A5398], None, "Nvram_ChipErase", "", None)
+
+    Nvram_ReadSiliconId = Symbol(
+        [0x253D8], [0x23A53D8], None, "Nvram_ReadSiliconId", "", None
+    )
+
+    Nvram_SoftwareReset = Symbol(
+        [0x25474], [0x23A5474], None, "Nvram_SoftwareReset", "", None
+    )
+
+    RtcPxiCallback = Symbol([0x25714], [0x23A5714], None, "RtcPxiCallback", "", None)
+
+    RtcAlarmIntr = Symbol([0x25D1C], [0x23A5D1C], None, "RtcAlarmIntr", "", None)
+
+    RtcBcd2Hex = Symbol([0x25DAC], [0x23A5DAC], None, "RtcBcd2Hex", "", None)
+
+    Rtc_Reset = Symbol([0x25E1C], [0x23A5E1C], None, "Rtc_Reset", "", None)
+
+    Rtc_SetHourFormat = Symbol(
+        [0x25E60], [0x23A5E60], None, "Rtc_SetHourFormat", "", None
+    )
+
+    Rtc_ReadDateTime = Symbol(
+        [0x25F84], [0x23A5F84], None, "Rtc_ReadDateTime", "", None
+    )
+
+    Rtc_WriteDateTime = Symbol(
+        [0x25FB0], [0x23A5FB0], None, "Rtc_WriteDateTime", "", None
+    )
+
+    Rtc_ReadDate = Symbol([0x25FE8], [0x23A5FE8], None, "Rtc_ReadDate", "", None)
+
+    Rtc_ReadTime = Symbol([0x26014], [0x23A6014], None, "Rtc_ReadTime", "", None)
+
+    Rtc_WriteTime = Symbol([0x26040], [0x23A6040], None, "Rtc_WriteTime", "", None)
+
+    Rtc_ReadPulse = Symbol([0x26078], [0x23A6078], None, "Rtc_ReadPulse", "", None)
+
+    Rtc_WritePulse = Symbol([0x260E0], [0x23A60E0], None, "Rtc_WritePulse", "", None)
+
+    Rtc_ReadAlarm1 = Symbol([0x26154], [0x23A6154], None, "Rtc_ReadAlarm1", "", None)
+
+    Rtc_WriteAlarm1 = Symbol([0x261B8], [0x23A61B8], None, "Rtc_WriteAlarm1", "", None)
+
+    Rtc_ReadAlarm2 = Symbol([0x26228], [0x23A6228], None, "Rtc_ReadAlarm2", "", None)
+
+    Rtc_WriteAlarm2 = Symbol([0x26288], [0x23A6288], None, "Rtc_WriteAlarm2", "", None)
+
+    Rtc_ReadStatus1 = Symbol([0x262F4], [0x23A62F4], None, "Rtc_ReadStatus1", "", None)
+
+    Rtc_WriteStatus1 = Symbol(
+        [0x26320], [0x23A6320], None, "Rtc_WriteStatus1", "", None
+    )
+
+    Rtc_ReadStatus2 = Symbol([0x26358], [0x23A6358], None, "Rtc_ReadStatus2", "", None)
+
+    Rtc_WriteStatus2 = Symbol(
+        [0x26384], [0x23A6384], None, "Rtc_WriteStatus2", "", None
+    )
+
+    Rtc_ReadAdjust = Symbol([0x263BC], [0x23A63BC], None, "Rtc_ReadAdjust", "", None)
+
+    Rtc_WriteAdjust = Symbol([0x263E8], [0x23A63E8], None, "Rtc_WriteAdjust", "", None)
+
+    Rtc_ReadFree = Symbol([0x26420], [0x23A6420], None, "Rtc_ReadFree", "", None)
+
+    Rtc_WriteFree = Symbol([0x2644C], [0x23A644C], None, "Rtc_WriteFree", "", None)
+
+    RtcChangeAlarmFormat24to12 = Symbol(
+        [0x26484], [0x23A6484], None, "RtcChangeAlarmFormat24to12", "", None
+    )
+
+    RtcChangeAlarmFormat12to24 = Symbol(
+        [0x26594], [0x23A6594], None, "RtcChangeAlarmFormat12to24", "", None
+    )
+
+    RtcGpioTransfer = Symbol([0x266A4], [0x23A66A4], None, "RtcGpioTransfer", "", None)
+
+    Rtci_GpioStart = Symbol([0x26700], [0x23A6700], None, "Rtci_GpioStart", "", None)
+
+    Rtci_GpioEnd = Symbol([0x26740], [0x23A6740], None, "Rtci_GpioEnd", "", None)
 
     __divsi3 = _Deprecated("__divsi3", _s32_div_f)
 
@@ -801,6 +2969,16 @@ class JpArm9Functions:
         None,
     )
 
+    Sys_IsMailboxPending = Symbol(
+        [0x38D8], [0x20038D8], None, "Sys_IsMailboxPending", "", None
+    )
+
+    Task_AbortSync = Symbol([0x3990], [0x2003990], None, "Task_AbortSync", "", None)
+
+    Sys_WaitForVBlank = Symbol(
+        [0x3A40], [0x2003A40], None, "Sys_WaitForVBlank", "", None
+    )
+
     SoundResume = Symbol(
         [0x3CC4],
         [0x2003CC4],
@@ -1060,6 +3238,14 @@ class JpArm9Functions:
         "LoadFileFromRom",
         "Loads a file from ROM by filepath into a heap-allocated buffer.\n\nr0: [output] pointer to an IO struct {ptr, len}\nr1: file path string pointer\nr2: flags",
         None,
+    )
+
+    GraphicsEngine_SetState = Symbol(
+        [0x8ED0], [0x2008ED0], None, "GraphicsEngine_SetState", "", None
+    )
+
+    GraphicsEngine_ApplyState = Symbol(
+        [0x8F88], [0x2008F88], None, "GraphicsEngine_ApplyState", "", None
     )
 
     MarkPaletteDataAsNeedingUpdate = Symbol(
@@ -15869,7 +18055,9 @@ class JpLibsFunctions:
 
     GX_Init = Symbol([0x9F9C], [0x207635C], None, "GX_Init", "", None)
 
-    GX_HBlankIntr = Symbol([0xA0E8], [0x20764A8], None, "GX_HBlankIntr", "", None)
+    GX_SetVCountEqVal = Symbol(
+        [0xA0E8], [0x20764A8], None, "GX_SetVCountEqVal", "", None
+    )
 
     GX_VBlankIntr = Symbol([0xA110], [0x20764D0], None, "GX_VBlankIntr", "", None)
 
@@ -16334,15 +18522,13 @@ class JpLibsFunctions:
 
     OS_ReleaseLockId = Symbol([0xCFBC], [0x207937C], None, "OS_ReleaseLockId", "", None)
 
-    OS_VsPrintf = Symbol([0xD004], [0x20793C4], None, "OS_VsPrintf", "", None)
+    OS_SPrintf = Symbol([0xD004], [0x20793C4], None, "OS_SPrintf", "", None)
 
-    OS_VsNPrintf = Symbol([0xD02C], [0x20793EC], None, "OS_VsNPrintf", "", None)
+    Os_VsPrintf = Symbol([0xD02C], [0x20793EC], None, "Os_VsPrintf", "", None)
 
     OS_SnPrintf = Symbol([0xD044], [0x2079404], None, "OS_SnPrintf", "", None)
 
-    OS_VsNPrintfExStub = Symbol(
-        [0xD06C], [0x207942C], None, "OS_VsNPrintfExStub", "", None
-    )
+    Os_VsnPrintf = Symbol([0xD06C], [0x207942C], None, "Os_VsnPrintf", "", None)
 
     OSi_GetUnusedThreadId = Symbol(
         [0xD078],
@@ -16382,8 +18568,8 @@ class JpLibsFunctions:
         [0xD220], [0x20795E0], None, "OSi_RemoveThreadFromList", "", None
     )
 
-    OS_RescheduleThread = Symbol(
-        [0xD268], [0x2079628], None, "OS_RescheduleThread", "", None
+    OSi_RescheduleThread = Symbol(
+        [0xD268], [0x2079628], None, "OSi_RescheduleThread", "", None
     )
 
     OS_InitThread = Symbol([0xD330], [0x20796F0], None, "OS_InitThread", "", None)
@@ -16590,9 +18776,21 @@ class JpLibsFunctions:
 
     OS_SetArenaLo = Symbol([0xE614], [0x207A9D4], None, "OS_SetArenaLo", "", None)
 
-    OS_AllocFromArenaLo = Symbol(
-        [0xE644], [0x207AA04], None, "OS_AllocFromArenaLo", "", None
+    DlExtract = Symbol([0xE644], [0x207AA04], None, "DlExtract", "", None)
+
+    DlInsert = Symbol([0xE66C], [0x207AA2C], None, "DlInsert", "", None)
+
+    OS_AllocFromHeap = Symbol([0xE714], [0x207AAD4], None, "OS_AllocFromHeap", "", None)
+
+    OS_FreeToHeap = Symbol([0xE81C], [0x207ABDC], None, "OS_FreeToHeap", "", None)
+
+    OS_SetCurrentHeap = Symbol(
+        [0xE884], [0x207AC44], None, "OS_SetCurrentHeap", "", None
     )
+
+    OS_InitAlloc = Symbol([0xE8B4], [0x207AC74], None, "OS_InitAlloc", "", None)
+
+    OS_CreateHeap = Symbol([0xE95C], [0x207AD1C], None, "OS_CreateHeap", "", None)
 
     OS_GetDtcmAddress = Symbol(
         [0xE9F4], [0x207ADB4], None, "OS_GetDtcmAddress", "", None
@@ -16981,15 +19179,17 @@ class JpLibsFunctions:
         [0x1074C], [0x207CB0C], None, "Snd_StartPreparedSeq", "", None
     )
 
-    Snd_SetPlayerTempoRatio = Symbol(
-        [0x1076C], [0x207CB2C], None, "Snd_SetPlayerTempoRatio", "", None
-    )
-
     Snd_SetPlayerVolume = Symbol(
-        [0x10784], [0x207CB44], None, "Snd_SetPlayerVolume", "", None
+        [0x1076C], [0x207CB2C], None, "Snd_SetPlayerVolume", "", None
     )
 
-    Snd_SetTrackPan = Symbol([0x1079C], [0x207CB5C], None, "Snd_SetTrackPan", "", None)
+    Snd_SetPlayerChannelPriority = Symbol(
+        [0x10784], [0x207CB44], None, "Snd_SetPlayerChannelPriority", "", None
+    )
+
+    Snd_SetTrackPitch = Symbol(
+        [0x1079C], [0x207CB5C], None, "Snd_SetTrackPitch", "", None
+    )
 
     Snd_SetTrackAllocatableChannel = Symbol(
         [0x107B8], [0x207CB78], None, "Snd_SetTrackAllocatableChannel", "", None
@@ -17035,12 +19235,12 @@ class JpLibsFunctions:
         [0x10A08], [0x207CDC8], None, "Snd_SetupChannelNoise", "", None
     )
 
-    Snd_InvalidateSeqData = Symbol(
-        [0x10A3C], [0x207CDFC], None, "Snd_InvalidateSeqData", "", None
+    Snd_InvalidateBankData = Symbol(
+        [0x10A3C], [0x207CDFC], None, "Snd_InvalidateBankData", "", None
     )
 
-    Snd_InvalidateBankData = Symbol(
-        [0x10A5C], [0x207CE1C], None, "Snd_InvalidateBankData", "", None
+    Snd_InvalidateWaveData = Symbol(
+        [0x10A5C], [0x207CE1C], None, "Snd_InvalidateWaveData", "", None
     )
 
     Snd_SetOutputSelector = Symbol(
@@ -17530,6 +19730,10 @@ class JpLibsFunctions:
         [0x15444], [0x2081804], None, "TP_RequestAutoSamplingStartAsync", "", None
     )
 
+    TP_RequestAutoSamplingStopAsync = Symbol(
+        [0x15544], [0x2081904], None, "TP_RequestAutoSamplingStopAsync", "", None
+    )
+
     TP_GetLatestIndexInAuto = Symbol(
         [0x155DC], [0x208199C], None, "TP_GetLatestIndexInAuto", "", None
     )
@@ -17544,7 +19748,7 @@ class JpLibsFunctions:
 
     TP_WaitBusy = Symbol([0x158FC], [0x2081CBC], None, "TP_WaitBusy", "", None)
 
-    TP_CheckBusy = Symbol([0x15914], [0x2081CD4], None, "TP_CheckBusy", "", None)
+    TP_CheckError = Symbol([0x15914], [0x2081CD4], None, "TP_CheckError", "", None)
 
     PMi_Lock = Symbol([0x15928], [0x2081CE8], None, "PMi_Lock", "", None)
 
@@ -17616,6 +19820,8 @@ class JpLibsFunctions:
     PM_GetBackLight = Symbol([0x15F88], [0x2082348], None, "PM_GetBackLight", "", None)
 
     PMi_SendPxiData = Symbol([0x15FE4], [0x20823A4], None, "PMi_SendPxiData", "", None)
+
+    PM_GoSleepMode = Symbol([0x16010], [0x20823D0], None, "PM_GoSleepMode", "", None)
 
     PMi_SetLcdPower = Symbol([0x16250], [0x2082610], None, "PMi_SetLcdPower", "", None)
 
@@ -17815,11 +20021,23 @@ class JpLibsFunctions:
 
     Cardi_SetRomOp = Symbol([0x17C40], [0x2084000], None, "Cardi_SetRomOp", "", None)
 
+    Cardi_SetCardDma = Symbol(
+        [0x17CA0], [0x2084060], None, "Cardi_SetCardDma", "", None
+    )
+
+    Cardi_OnReadCard = Symbol(
+        [0x17CF4], [0x20840B4], None, "Cardi_OnReadCard", "", None
+    )
+
     Cardi_TryReadCardDma = Symbol(
         [0x17DC4], [0x2084184], None, "Cardi_TryReadCardDma", "", None
     )
 
     Cardi_ReadCard = Symbol([0x17F50], [0x2084310], None, "Cardi_ReadCard", "", None)
+
+    Cardi_ReadRomIdCore = Symbol(
+        [0x18040], [0x2084400], None, "Cardi_ReadRomIdCore", "", None
+    )
 
     Cardi_ReadRomSyncCore = Symbol(
         [0x1809C], [0x208445C], None, "Cardi_ReadRomSyncCore", "", None
@@ -17959,20 +20177,20 @@ class JpLibsFunctions:
         [0x18F20], [0x20852E0], None, "Mathi_Crc8Update", "", None
     )
 
-    Mathi_Crc16InitTable = Symbol(
-        [0x18F58], [0x2085318], None, "Mathi_Crc16InitTable", "", None
+    Mathi_Crc16InitTableRev = Symbol(
+        [0x18F58], [0x2085318], None, "Mathi_Crc16InitTableRev", "", None
     )
 
-    Mathi_Crc16Update = Symbol(
-        [0x18F9C], [0x208535C], None, "Mathi_Crc16Update", "", None
+    Mathi_Crc16UpdateRev = Symbol(
+        [0x18F9C], [0x208535C], None, "Mathi_Crc16UpdateRev", "", None
     )
 
-    Mathi_Crc32InitTable = Symbol(
-        [0x18FDC], [0x208539C], None, "Mathi_Crc32InitTable", "", None
+    Mathi_Crc32InitTableRev = Symbol(
+        [0x18FDC], [0x208539C], None, "Mathi_Crc32InitTableRev", "", None
     )
 
-    Mathi_Crc32Update = Symbol(
-        [0x1901C], [0x20853DC], None, "Mathi_Crc32Update", "", None
+    Mathi_Crc32UpdateRev = Symbol(
+        [0x1901C], [0x20853DC], None, "Mathi_Crc32UpdateRev", "", None
     )
 
     Math_CalcCrc8 = Symbol([0x19058], [0x2085418], None, "Math_CalcCrc8", "", None)
@@ -17980,6 +20198,10 @@ class JpLibsFunctions:
     Math_CalcCrc16 = Symbol([0x19080], [0x2085440], None, "Math_CalcCrc16", "", None)
 
     Math_CalcCrc32 = Symbol([0x190A8], [0x2085468], None, "Math_CalcCrc32", "", None)
+
+    Cht_IsPictochatParent = Symbol(
+        [0x190D4], [0x2085494], None, "Cht_IsPictochatParent", "", None
+    )
 
     Std_CopyLString = Symbol([0x1916C], [0x208552C], None, "Std_CopyLString", "", None)
 
@@ -18013,7 +20235,7 @@ class JpLibsFunctions:
         [0x19AA4], [0x2085E64], None, "string_put_string", "", None
     )
 
-    OS_VsNPrintfEx = Symbol([0x19AFC], [0x2085EBC], None, "OS_VsNPrintfEx", "", None)
+    Std_TvsnPrintf = Symbol([0x19AFC], [0x2085EBC], None, "Std_TvsnPrintf", "", None)
 
     NotANumber = Symbol(
         [0x1A378],
@@ -22313,9 +24535,7 @@ class JpOverlay0Functions:
 
     MBi_InitTaskInfo = Symbol([0xB1D4], [0x22C93F4], None, "MBi_InitTaskInfo", "", None)
 
-    MBi_ReadFromCache = Symbol(
-        [0xB1E8], [0x22C9408], None, "MBi_ReadFromCache", "", None
-    )
+    MBi_IsTaskBusy = Symbol([0xB1E8], [0x22C9408], None, "MBi_IsTaskBusy", "", None)
 
     MBi_SetTask = Symbol([0xB200], [0x22C9420], None, "MBi_SetTask", "", None)
 
@@ -22818,7 +25038,7 @@ class JpOverlay0Functions:
         [0x12168], [0x22D0388], None, "Socli_TrashSocket", "", None
     )
 
-    Soc_Cleanup = Symbol([0x121A4], [0x22D03C4], None, "Soc_Cleanup", "", None)
+    Socl_Cleanup = Symbol([0x121A4], [0x22D03C4], None, "Socl_Cleanup", "", None)
 
     Socl_CloseAll = Symbol([0x12248], [0x22D0468], None, "Socl_CloseAll", "", None)
 
@@ -23063,6 +25283,8 @@ class JpOverlay0Functions:
 
     client_hello_v2 = Symbol([0x14118], [0x22D2338], None, "client_hello_v2", "", None)
 
+    client_hello = Symbol([0x141E0], [0x22D2400], None, "client_hello", "", None)
+
     decrypt_premaster_secret = Symbol(
         [0x1427C], [0x22D249C], None, "decrypt_premaster_secret", "", None
     )
@@ -23134,7 +25356,7 @@ class JpOverlay0Functions:
         None,
     )
 
-    ssl_listen_try = Symbol([0x15ADC], [0x22D3CFC], None, "ssl_listen_try", "", None)
+    ssl_connect_try = Symbol([0x15ADC], [0x22D3CFC], None, "ssl_connect_try", "", None)
 
     Cpsi_SslConnect = Symbol([0x15BA8], [0x22D3DC8], None, "Cpsi_SslConnect", "", None)
 
@@ -23426,7 +25648,9 @@ class JpOverlay0Functions:
         [0x1A770], [0x22D8990], None, "Wcm_SetRecvDcfCallback", "", None
     )
 
-    Wcm_SendDcfData = Symbol([0x1A790], [0x22D89B0], None, "Wcm_SendDcfData", "", None)
+    Wcm_SendDcfDataEx = Symbol(
+        [0x1A790], [0x22D89B0], None, "Wcm_SendDcfDataEx", "", None
+    )
 
     WcmCpsifWmCallback = Symbol(
         [0x1A918], [0x22D8B38], None, "WcmCpsifWmCallback", "", None
@@ -23487,12 +25711,12 @@ class JpOverlay0Functions:
 
     Dwc_AC_Destroy = Symbol([0x1AEE4], [0x22D9104], None, "Dwc_AC_Destroy", "", None)
 
-    Dwc_AC_SetSpecifyAp = Symbol(
-        [0x1AF20], [0x22D9140], None, "Dwc_AC_SetSpecifyAp", "", None
+    Dwc_Ac_SetSpecifyApEx = Symbol(
+        [0x1AF20], [0x22D9140], None, "Dwc_Ac_SetSpecifyApEx", "", None
     )
 
-    Dwc_AC_SetSpecifyApEx = Symbol(
-        [0x1AF84], [0x22D91A4], None, "Dwc_AC_SetSpecifyApEx", "", None
+    Dwc_Ac_SetSpecifyAp = Symbol(
+        [0x1AF84], [0x22D91A4], None, "Dwc_Ac_SetSpecifyAp", "", None
     )
 
     Dwci_AC_InsertApInfo = Symbol(
@@ -24331,8 +26555,8 @@ class JpOverlay0Functions:
         [0x23BA4], [0x22E1DC4], None, "Dwc_ConnectInetAsync", "", None
     )
 
-    Dwc_DebugConnectInetAsync = Symbol(
-        [0x23C58], [0x22E1E78], None, "Dwc_DebugConnectInetAsync", "", None
+    Dwc_DebugConnectInetExAsync = Symbol(
+        [0x23C58], [0x22E1E78], None, "Dwc_DebugConnectInetExAsync", "", None
     )
 
     Dwc_CheckInet = Symbol([0x23CB4], [0x22E1ED4], None, "Dwc_CheckInet", "", None)
@@ -25208,8 +27432,8 @@ class JpOverlay0Functions:
 
     Dwci_GhttpGetEx = Symbol([0x304E4], [0x22EE704], None, "Dwci_GhttpGetEx", "", None)
 
-    Dwc_GetGhttpDataEx2 = Symbol(
-        [0x30688], [0x22EE8A8], None, "Dwc_GetGhttpDataEx2", "", None
+    Dwc_GetGhttpDataEx = Symbol(
+        [0x30688], [0x22EE8A8], None, "Dwc_GetGhttpDataEx", "", None
     )
 
     Dwc_CancelGhttpRequest = Symbol(
@@ -27833,7 +30057,7 @@ class JpOverlay0Functions:
 
     GoaCryptInit = Symbol([0x57B0C], [0x2315D2C], None, "GoaCryptInit", "", None)
 
-    GoaEncryptByte = Symbol([0x57BD4], [0x2315DF4], None, "GoaEncryptByte", "", None)
+    GoaDecryptByte = Symbol([0x57BD4], [0x2315DF4], None, "GoaDecryptByte", "", None)
 
     GoaEncrypt = Symbol([0x57CA0], [0x2315EC0], None, "GoaEncrypt", "", None)
 
@@ -27979,8 +30203,8 @@ class JpOverlay0Functions:
         [0x5901C], [0x231723C], None, "SbServerSetFlags", "", None
     )
 
-    SbServerSetPublicAddr = Symbol(
-        [0x59024], [0x2317244], None, "SbServerSetPublicAddr", "", None
+    SbServerSetPrivateAddr = Symbol(
+        [0x59024], [0x2317244], None, "SbServerSetPrivateAddr", "", None
     )
 
     SbServerSetIcmpIp = Symbol(
@@ -28185,6 +30409,8 @@ class JpOverlay0Functions:
     ProcessLanData = Symbol([0x5B360], [0x2319580], None, "ProcessLanData", "", None)
 
     SbListThink = Symbol([0x5B484], [0x23196A4], None, "SbListThink", "", None)
+
+    Socl_Close = _Deprecated("Socl_Close", close)
 
     socket = _Deprecated("socket", Soc_Socket)
 
@@ -28624,8 +30850,8 @@ class JpOverlay10Functions:
     )
 
     UnloadEffect = Symbol(
-        None,
-        None,
+        [0x1448],
+        [0x22BF668],
         None,
         "UnloadEffect",
         "Marks the live effect as not being used, unloads its wan_table entry if applicable, and calls an unknown inner function to free certain pointers.\n\nr0: live effect pointer\nr1: true if the effect does not have type WAN File 0/1",
@@ -28642,8 +30868,8 @@ class JpOverlay10Functions:
     )
 
     InitEffect = Symbol(
-        None,
-        None,
+        [0x19D0],
+        [0x22BFBF0],
         None,
         "InitEffect",
         "Finds a currently unused live effect, zeroes it, and fills its more general fields such as screen, file_type, and unique_id.\n\nr0: ?\nr1: effect_display_info\nr2: screen\nreturn: unique id",
@@ -28651,8 +30877,8 @@ class JpOverlay10Functions:
     )
 
     InitAndPlayEffect = Symbol(
-        None,
-        None,
+        [0x1CB4],
+        [0x22BFED4],
         None,
         "InitAndPlayEffect",
         "Calls InitEffect, then calls PlayEffect.\n\nr0: ?\nr1: effect_display_info\nr2: screen\nreturn: unique id",
@@ -28660,8 +30886,8 @@ class JpOverlay10Functions:
     )
 
     InitAndPlayEffectWithChecks = Symbol(
-        None,
-        None,
+        [0x1D04],
+        [0x22BFF24],
         None,
         "InitAndPlayEffectWithChecks",
         "Calls InitAndPlayEffect with the given parameters if certain checks pass, otherwise either returns -1 or plays a placeholder effect (ID 8).\n\nr0: ?\nr1: effect_display_info\nr2: screen\nreturn: unique id",
@@ -28678,8 +30904,8 @@ class JpOverlay10Functions:
     )
 
     GetLiveEffectWanOffset = Symbol(
-        None,
-        None,
+        [0x255C],
+        [0x22C077C],
         None,
         "GetLiveEffectWanOffset",
         "Gets the WAN offset of the live effect given by the unique id.\n\nr0: unique id\nreturn: WAN offset type, or -1 if a live effect with the given id was not found",
@@ -28687,8 +30913,8 @@ class JpOverlay10Functions:
     )
 
     InitEffectDisplayInfo = Symbol(
-        None,
-        None,
+        [0x27F8],
+        [0x22C0A18],
         None,
         "InitEffectDisplayInfo",
         "Initializes an effect_display_info struct with default values.\n\nr0: [output] effect_display_info",
@@ -28696,8 +30922,8 @@ class JpOverlay10Functions:
     )
 
     InitAndPlayEffectSetWanOffset = Symbol(
-        None,
-        None,
+        [0x2838],
+        [0x22C0A58],
         None,
         "InitAndPlayEffectSetWanOffset",
         "Calls InitAndPlayEffectWithChecks with r0 = 7, also setting effect_display_info's wan_offset field to the default value for its effect_id.\n\nr0: effect_display_info\nr1: screen\nreturn: unique id",
@@ -28705,8 +30931,8 @@ class JpOverlay10Functions:
     )
 
     InitEffectSetWanOffset = Symbol(
-        None,
-        None,
+        [0x2868],
+        [0x22C0A88],
         None,
         "InitEffectSetWanOffset",
         "Calls InitEffect with r0 = 7, also setting effect_display_info's wan_offset field to the default value for its effect_id.\n\nr0: effect_display_info\nr1: screen\nreturn: unique id",
@@ -28714,8 +30940,8 @@ class JpOverlay10Functions:
     )
 
     GetLiveEffect = Symbol(
-        None,
-        None,
+        [0x2898],
+        [0x22C0AB8],
         None,
         "GetLiveEffect",
         "Gets the live effect with the given unique id if there is one and its field_0x4 is nonzero (which it seemingly always is?).\n\nr0: unique id\nreturn: live_effect pointer, or null if none was found / the unique id is -1",
@@ -28750,8 +30976,8 @@ class JpOverlay10Functions:
     )
 
     IsBlizzardTailwindOrPowderSnow = Symbol(
-        None,
-        None,
+        [0x3370],
+        [0x22C1590],
         None,
         "IsBlizzardTailwindOrPowderSnow",
         "Returns true if the move id is equal to Blizzard, Tailwind or Powder Snow.\n\nr0: move id\nreturn: bool",
@@ -28759,8 +30985,8 @@ class JpOverlay10Functions:
     )
 
     IsWanOrWat = Symbol(
-        None,
-        None,
+        [0x33C0],
+        [0x22C15E0],
         None,
         "IsWanOrWat",
         "Returns true if the file type is a WAN file (including WAN files 0/1) or a WAT file.\n\nr0: effect file type\nreturn: bool",
@@ -28768,8 +30994,8 @@ class JpOverlay10Functions:
     )
 
     IsScreenOrWba = Symbol(
-        None,
-        None,
+        [0x33D8],
+        [0x22C15F8],
         None,
         "IsScreenOrWba",
         "Returns true if the file type is a screen effect or a WBA file.\n\nr0: effect file type\nreturn: bool",
@@ -28840,8 +31066,8 @@ class JpOverlay10Functions:
     )
 
     LoadEffectWanTableEntry = Symbol(
-        None,
-        None,
+        [0x3978],
+        [0x22C1B98],
         None,
         "LoadEffectWanTableEntry",
         "Returns an already allocated entry for this effect if it exists, otherwise allocates a new one.\n\nr0: effect file type\nr1: file_index\nr2: index of effect in EFFECT_CONTROL.live_effects (seemingly unused in practice)\nreturn: the entry id in wan_table",
@@ -31209,8 +33435,8 @@ class JpOverlay10Data:
     )
 
     NATURE_GIFTER_RESTRICTED_ITEMS = Symbol(
-        None,
-        None,
+        [0x81A0],
+        [0x22C63C0],
         0x3C,
         "NATURE_GIFTER_RESTRICTED_ITEMS",
         "The list of items whose effects cannot be spread to the whole party through Nature Gifter when consumed.",
@@ -31443,8 +33669,8 @@ class JpOverlay10Data:
     )
 
     EFFECT_CONTROL_PTR = Symbol(
-        None,
-        None,
+        [0x1F640],
+        [0x22DD860],
         None,
         "EFFECT_CONTROL_PTR",
         "Pointer to the master struct containing information about how effects should be played and the ones that are currently active.",
@@ -35859,3558 +38085,4230 @@ class JpOverlay19Section:
 class JpOverlay2Functions:
 
     InitWfcSettingsOverlay = Symbol(
-        None,
-        None,
+        [0x0],
+        [0x232ACC0],
         None,
         "InitWfcSettingsOverlay",
         "Most likely the only non-SDK/DWC function in the entire overlay. Seems responsible for initializing and running the WFC Settings interface, via overlay_00 and overlay_02 SDK/DWC functions.",
         None,
     )
 
-    Nns_FndInitList = Symbol(None, None, None, "Nns_FndInitList", "", None)
+    Nns_FndInitList = Symbol([0x40], [0x232AD00], None, "Nns_FndInitList", "", None)
 
-    SetFirstObject = Symbol(None, None, None, "SetFirstObject", "", None)
+    SetFirstObject = Symbol([0x58], [0x232AD18], None, "SetFirstObject", "", None)
 
     Nns_FndAppendListObject = Symbol(
-        None, None, None, "Nns_FndAppendListObject", "", None
+        [0x84], [0x232AD44], None, "Nns_FndAppendListObject", "", None
     )
 
     Nns_FndPrependListObject = Symbol(
-        None, None, None, "Nns_FndPrependListObject", "", None
+        [0xD8], [0x232AD98], None, "Nns_FndPrependListObject", "", None
     )
 
     Nns_FndInsertListObject = Symbol(
-        None, None, None, "Nns_FndInsertListObject", "", None
+        [0x128], [0x232ADE8], None, "Nns_FndInsertListObject", "", None
     )
 
     Nns_FndRemoveListObject = Symbol(
-        None, None, None, "Nns_FndRemoveListObject", "", None
+        [0x18C], [0x232AE4C], None, "Nns_FndRemoveListObject", "", None
     )
 
     Nns_FndGetNextListObject = Symbol(
-        None, None, None, "Nns_FndGetNextListObject", "", None
+        [0x1EC], [0x232AEAC], None, "Nns_FndGetNextListObject", "", None
     )
 
     Nns_FndGetPrevListObject = Symbol(
-        None, None, None, "Nns_FndGetPrevListObject", "", None
+        [0x204], [0x232AEC4], None, "Nns_FndGetPrevListObject", "", None
     )
 
-    FindContainHeap = Symbol(None, None, None, "FindContainHeap", "", None)
+    FindContainHeap = Symbol([0x218], [0x232AED8], None, "FindContainHeap", "", None)
 
-    FindListContainHeap = Symbol(None, None, None, "FindListContainHeap", "", None)
+    FindListContainHeap = Symbol(
+        [0x280], [0x232AF40], None, "FindListContainHeap", "", None
+    )
 
-    Nnsi_FndInitHeapHead = Symbol(None, None, None, "Nnsi_FndInitHeapHead", "", None)
+    Nnsi_FndInitHeapHead = Symbol(
+        [0x2A8], [0x232AF68], None, "Nnsi_FndInitHeapHead", "", None
+    )
 
-    Nnsi_FndFinalizeHeap = Symbol(None, None, None, "Nnsi_FndFinalizeHeap", "", None)
+    Nnsi_FndFinalizeHeap = Symbol(
+        [0x324], [0x232AFE4], None, "Nnsi_FndFinalizeHeap", "", None
+    )
 
-    GetRegionOfMBlock = Symbol(None, None, None, "GetRegionOfMBlock", "", None)
+    GetRegionOfMBlock = Symbol(
+        [0x33C], [0x232AFFC], None, "GetRegionOfMBlock", "", None
+    )
 
-    RemoveMBlock = Symbol(None, None, None, "RemoveMBlock", "", None)
+    RemoveMBlock = Symbol([0x368], [0x232B028], None, "RemoveMBlock", "", None)
 
-    InsertMBlock = Symbol(None, None, None, "InsertMBlock", "", None)
+    InsertMBlock = Symbol([0x390], [0x232B050], None, "InsertMBlock", "", None)
 
-    InitMBlock = Symbol(None, None, None, "InitMBlock", "", None)
+    InitMBlock = Symbol([0x3C0], [0x232B080], None, "InitMBlock", "", None)
 
-    InitExpHeap = Symbol(None, None, None, "InitExpHeap", "", None)
+    InitExpHeap = Symbol([0x3EC], [0x232B0AC], None, "InitExpHeap", "", None)
 
     AllocUsedBlockFromFreeBlock = Symbol(
-        None, None, None, "AllocUsedBlockFromFreeBlock", "", None
+        [0x460], [0x232B120], None, "AllocUsedBlockFromFreeBlock", "", None
     )
 
-    ExpHeap_AllocFromHead = Symbol(None, None, None, "ExpHeap_AllocFromHead", "", None)
+    ExpHeap_AllocFromHead = Symbol(
+        [0x5E0], [0x232B2A0], None, "ExpHeap_AllocFromHead", "", None
+    )
 
-    ExpHeap_AllocFromTail = Symbol(None, None, None, "ExpHeap_AllocFromTail", "", None)
+    ExpHeap_AllocFromTail = Symbol(
+        [0x694], [0x232B354], None, "ExpHeap_AllocFromTail", "", None
+    )
 
-    RecycleRegion = Symbol(None, None, None, "RecycleRegion", "", None)
+    RecycleRegion = Symbol([0x744], [0x232B404], None, "RecycleRegion", "", None)
 
     Nns_FndCreateExpHeapEx = Symbol(
-        None, None, None, "Nns_FndCreateExpHeapEx", "", None
+        [0x834], [0x232B4F4], None, "Nns_FndCreateExpHeapEx", "", None
     )
 
-    Nns_FndDestroyExpHeap = Symbol(None, None, None, "Nns_FndDestroyExpHeap", "", None)
+    Nns_FndDestroyExpHeap = Symbol(
+        [0x86C], [0x232B52C], None, "Nns_FndDestroyExpHeap", "", None
+    )
 
     Nns_FndAllocFromExpHeapEx = Symbol(
-        None, None, None, "Nns_FndAllocFromExpHeapEx", "", None
+        [0x878], [0x232B538], None, "Nns_FndAllocFromExpHeapEx", "", None
     )
 
-    Nns_FndFreeToExpHeap = Symbol(None, None, None, "Nns_FndFreeToExpHeap", "", None)
+    Nns_FndFreeToExpHeap = Symbol(
+        [0x8A8], [0x232B568], None, "Nns_FndFreeToExpHeap", "", None
+    )
 
-    InitFrameHeap = Symbol(None, None, None, "InitFrameHeap", "", None)
+    InitFrameHeap = Symbol([0x8E4], [0x232B5A4], None, "InitFrameHeap", "", None)
 
-    FrmHeap_AllocFromHead = Symbol(None, None, None, "FrmHeap_AllocFromHead", "", None)
+    FrmHeap_AllocFromHead = Symbol(
+        [0x92C], [0x232B5EC], None, "FrmHeap_AllocFromHead", "", None
+    )
 
-    FrmHeap_AllocFromTail = Symbol(None, None, None, "FrmHeap_AllocFromTail", "", None)
+    FrmHeap_AllocFromTail = Symbol(
+        [0x988], [0x232B648], None, "FrmHeap_AllocFromTail", "", None
+    )
 
-    FrmHeap_FreeHead = Symbol(None, None, None, "FrmHeap_FreeHead", "", None)
+    FrmHeap_FreeHead = Symbol([0x9E0], [0x232B6A0], None, "FrmHeap_FreeHead", "", None)
 
-    FrmHeap_FreeTail = Symbol(None, None, None, "FrmHeap_FreeTail", "", None)
+    FrmHeap_FreeTail = Symbol([0x9F4], [0x232B6B4], None, "FrmHeap_FreeTail", "", None)
 
     Nns_FndCreateFrmHeapEx = Symbol(
-        None, None, None, "Nns_FndCreateFrmHeapEx", "", None
+        [0xA20], [0x232B6E0], None, "Nns_FndCreateFrmHeapEx", "", None
     )
 
-    Nns_FndDestroyFrmHeap = Symbol(None, None, None, "Nns_FndDestroyFrmHeap", "", None)
+    Nns_FndDestroyFrmHeap = Symbol(
+        [0xA58], [0x232B718], None, "Nns_FndDestroyFrmHeap", "", None
+    )
 
     Nns_FndAllocFromFrmHeapEx = Symbol(
-        None, None, None, "Nns_FndAllocFromFrmHeapEx", "", None
+        [0xA64], [0x232B724], None, "Nns_FndAllocFromFrmHeapEx", "", None
     )
 
-    Nns_FndFreeToFrmHeap = Symbol(None, None, None, "Nns_FndFreeToFrmHeap", "", None)
+    Nns_FndFreeToFrmHeap = Symbol(
+        [0xA98], [0x232B758], None, "Nns_FndFreeToFrmHeap", "", None
+    )
 
     Nns_G2dFindBinaryBlock = Symbol(
-        None, None, None, "Nns_G2dFindBinaryBlock", "", None
+        [0xAC4], [0x232B784], None, "Nns_G2dFindBinaryBlock", "", None
     )
 
-    GetGlyphIndex = Symbol(None, None, None, "GetGlyphIndex", "", None)
+    GetGlyphIndex = Symbol([0xB0C], [0x232B7CC], None, "GetGlyphIndex", "", None)
 
-    Nns_G2dFontInitUtf16 = Symbol(None, None, None, "Nns_G2dFontInitUtf16", "", None)
+    Nns_G2dFontInitUtf16 = Symbol(
+        [0xBD4], [0x232B894], None, "Nns_G2dFontInitUtf16", "", None
+    )
 
     Nns_G2dFontFindGlyphIndex = Symbol(
-        None, None, None, "Nns_G2dFontFindGlyphIndex", "", None
+        [0xBF8], [0x232B8B8], None, "Nns_G2dFontFindGlyphIndex", "", None
     )
 
     Nns_G2dFontGetCharWidthsFromIndex = Symbol(
-        None, None, None, "Nns_G2dFontGetCharWidthsFromIndex", "", None
+        [0xC40], [0x232B900], None, "Nns_G2dFontGetCharWidthsFromIndex", "", None
     )
 
     Nnsi_G2dFontGetStringWidth = Symbol(
-        None, None, None, "Nnsi_G2dFontGetStringWidth", "", None
+        [0xC8C], [0x232B94C], None, "Nnsi_G2dFontGetStringWidth", "", None
     )
 
     Nnsi_G2dFontGetTextHeight = Symbol(
-        None, None, None, "Nnsi_G2dFontGetTextHeight", "", None
+        [0xD38], [0x232B9F8], None, "Nnsi_G2dFontGetTextHeight", "", None
     )
 
-    Nnsi_G2dFontGetTextWidth = Symbol(
-        None, None, None, "Nnsi_G2dFontGetTextWidth", "", None
+    Nnsi_G2dFontGetTextRect = Symbol(
+        [0xDAC], [0x232BA6C], None, "Nnsi_G2dFontGetTextRect", "", None
     )
 
-    GetCharIndex1D = Symbol(None, None, None, "GetCharIndex1D", "", None)
+    GetCharIndex1D = Symbol([0xE40], [0x232BB00], None, "GetCharIndex1D", "", None)
 
-    ObjSizeToShape = Symbol(None, None, None, "ObjSizeToShape", "", None)
+    ObjSizeToShape = Symbol([0xF38], [0x232BBF8], None, "ObjSizeToShape", "", None)
 
-    ClearChar = Symbol(None, None, None, "ClearChar", "", None)
+    ClearChar = Symbol([0xF54], [0x232BC14], None, "ClearChar", "", None)
 
-    LetterChar = Symbol(None, None, None, "LetterChar", "", None)
+    LetterChar = Symbol([0x108C], [0x232BD4C], None, "LetterChar", "", None)
 
-    DrawGlyphLine = Symbol(None, None, None, "DrawGlyphLine", "", None)
+    DrawGlyphLine = Symbol([0x12CC], [0x232BF8C], None, "DrawGlyphLine", "", None)
 
-    DrawGlyph1D = Symbol(None, None, None, "DrawGlyph1D", "", None)
+    DrawGlyph1D = Symbol([0x1464], [0x232C124], None, "DrawGlyph1D", "", None)
 
-    ClearContinuous = Symbol(None, None, None, "ClearContinuous", "", None)
+    ClearContinuous = Symbol([0x1674], [0x232C334], None, "ClearContinuous", "", None)
 
-    ClearLine = Symbol(None, None, None, "ClearLine", "", None)
+    ClearLine = Symbol([0x16C4], [0x232C384], None, "ClearLine", "", None)
 
-    ClearAreaLine = Symbol(None, None, None, "ClearAreaLine", "", None)
+    ClearAreaLine = Symbol([0x1744], [0x232C404], None, "ClearAreaLine", "", None)
 
-    ClearArea1D = Symbol(None, None, None, "ClearArea1D", "", None)
+    ClearArea1D = Symbol([0x18E0], [0x232C5A0], None, "ClearArea1D", "", None)
 
-    InitCharCanvas = Symbol(None, None, None, "InitCharCanvas", "", None)
+    InitCharCanvas = Symbol([0x1AD4], [0x232C794], None, "InitCharCanvas", "", None)
 
     Nns_G2dCharCanvasDrawChar = Symbol(
-        None, None, None, "Nns_G2dCharCanvasDrawChar", "", None
+        [0x1AFC], [0x232C7BC], None, "Nns_G2dCharCanvasDrawChar", "", None
     )
 
     Nns_G2dCharCanvasInitForBG = Symbol(
-        None, None, None, "Nns_G2dCharCanvasInitForBG", "", None
+        [0x1C20], [0x232C8E0], None, "Nns_G2dCharCanvasInitForBG", "", None
     )
 
     Nns_G2dCharCanvasInitForObj1D = Symbol(
-        None, None, None, "Nns_G2dCharCanvasInitForObj1D", "", None
+        [0x1C4C], [0x232C90C], None, "Nns_G2dCharCanvasInitForObj1D", "", None
     )
 
     Nns_G2dMapScrToCharText = Symbol(
-        None, None, None, "Nns_G2dMapScrToCharText", "", None
+        [0x1CD4], [0x232C994], None, "Nns_G2dMapScrToCharText", "", None
     )
 
     Nns_G2dMapScrToChar256x16Pltt = Symbol(
-        None, None, None, "Nns_G2dMapScrToChar256x16Pltt", "", None
+        [0x1D84], [0x232CA44], None, "Nns_G2dMapScrToChar256x16Pltt", "", None
     )
 
     Nnsi_G2dCalcRequiredObj = Symbol(
-        None, None, None, "Nnsi_G2dCalcRequiredObj", "", None
+        [0x1DE0], [0x232CAA0], None, "Nnsi_G2dCalcRequiredObj", "", None
     )
 
-    Nns_G2dArrangeObj1D = Symbol(None, None, None, "Nns_G2dArrangeObj1D", "", None)
+    Nns_G2dArrangeObj1D = Symbol(
+        [0x1E3C], [0x232CAFC], None, "Nns_G2dArrangeObj1D", "", None
+    )
 
     Nnsi_G2dTextCanvasDrawString = Symbol(
-        None, None, None, "Nnsi_G2dTextCanvasDrawString", "", None
+        [0x2134], [0x232CDF4], None, "Nnsi_G2dTextCanvasDrawString", "", None
     )
 
     Nnsi_G2dTextCanvasDrawTextAlign = Symbol(
-        None, None, None, "Nnsi_G2dTextCanvasDrawTextAlign", "", None
+        [0x21E8], [0x232CEA8], None, "Nnsi_G2dTextCanvasDrawTextAlign", "", None
     )
 
     Nnsi_G2dTextCanvasDrawText = Symbol(
-        None, None, None, "Nnsi_G2dTextCanvasDrawText", "", None
+        [0x2350], [0x232D010], None, "Nnsi_G2dTextCanvasDrawText", "", None
     )
 
     Nnsi_G2dTextCanvasDrawTextRect = Symbol(
-        None, None, None, "Nnsi_G2dTextCanvasDrawTextRect", "", None
+        [0x2474], [0x232D134], None, "Nnsi_G2dTextCanvasDrawTextRect", "", None
     )
 
     Nnsi_G2dGetUnpackedFont = Symbol(
-        None, None, None, "Nnsi_G2dGetUnpackedFont", "", None
+        [0x2554], [0x232D214], None, "Nnsi_G2dGetUnpackedFont", "", None
     )
 
-    Nnsi_G2dUnpackNft = Symbol(None, None, None, "Nnsi_G2dUnpackNft", "", None)
+    Nnsi_G2dUnpackNft = Symbol(
+        [0x26A8], [0x232D368], None, "Nnsi_G2dUnpackNft", "", None
+    )
 
-    Nnsi_G2dBitReaderRead = Symbol(None, None, None, "Nnsi_G2dBitReaderRead", "", None)
+    Nnsi_G2dBitReaderRead = Symbol(
+        [0x2784], [0x232D444], None, "Nnsi_G2dBitReaderRead", "", None
+    )
 
     Nnsi_G2dSplitCharUtf16 = Symbol(
-        None, None, None, "Nnsi_G2dSplitCharUtf16", "", None
+        [0x27E4], [0x232D4A4], None, "Nnsi_G2dSplitCharUtf16", "", None
     )
 
-    Nns_SndInit = Symbol(None, None, None, "Nns_SndInit", "", None)
+    Nns_SndInit = Symbol([0x27F8], [0x232D4B8], None, "Nns_SndInit", "", None)
 
-    Nns_SndMain = Symbol(None, None, None, "Nns_SndMain", "", None)
+    Nns_SndMain = Symbol([0x2880], [0x232D540], None, "Nns_SndMain", "", None)
 
-    BeginSleep = Symbol(None, None, None, "BeginSleep", "", None)
+    BeginSleep = Symbol([0x28B0], [0x232D570], None, "BeginSleep", "", None)
 
-    EndSleep = Symbol(None, None, None, "EndSleep", "", None)
+    EndSleep = Symbol([0x28E8], [0x232D5A8], None, "EndSleep", "", None)
 
-    Nns_SndUnlockChannel = Symbol(None, None, None, "Nns_SndUnlockChannel", "", None)
+    Nns_SndUnlockChannel = Symbol(
+        [0x28F4], [0x232D5B4], None, "Nns_SndUnlockChannel", "", None
+    )
 
-    Nns_SndUnlockCapture = Symbol(None, None, None, "Nns_SndUnlockCapture", "", None)
+    Nns_SndUnlockCapture = Symbol(
+        [0x2924], [0x232D5E4], None, "Nns_SndUnlockCapture", "", None
+    )
 
-    Nns_SndFreeAlarm = Symbol(None, None, None, "Nns_SndFreeAlarm", "", None)
+    Nns_SndFreeAlarm = Symbol([0x2940], [0x232D600], None, "Nns_SndFreeAlarm", "", None)
 
     Nnsi_SndInitResourceMgr = Symbol(
-        None, None, None, "Nnsi_SndInitResourceMgr", "", None
+        [0x2960], [0x232D620], None, "Nnsi_SndInitResourceMgr", "", None
     )
 
     Nns_SndPlayerSetPlayableSeqCount = Symbol(
-        None, None, None, "Nns_SndPlayerSetPlayableSeqCount", "", None
+        [0x297C], [0x232D63C], None, "Nns_SndPlayerSetPlayableSeqCount", "", None
     )
 
     Nns_SndPlayerSetAllocatableChannel = Symbol(
-        None, None, None, "Nns_SndPlayerSetAllocatableChannel", "", None
+        [0x299C], [0x232D65C], None, "Nns_SndPlayerSetAllocatableChannel", "", None
     )
 
     Nns_SndPlayerCreateHeap = Symbol(
-        None, None, None, "Nns_SndPlayerCreateHeap", "", None
+        [0x29B4], [0x232D674], None, "Nns_SndPlayerCreateHeap", "", None
     )
 
-    Nns_SndPlayerStopSeq = Symbol(None, None, None, "Nns_SndPlayerStopSeq", "", None)
+    Nns_SndPlayerStopSeq = Symbol(
+        [0x2A48], [0x232D708], None, "Nns_SndPlayerStopSeq", "", None
+    )
 
-    Nns_SndHandleInit = Symbol(None, None, None, "Nns_SndHandleInit", "", None)
+    Nns_SndHandleInit = Symbol(
+        [0x2A58], [0x232D718], None, "Nns_SndHandleInit", "", None
+    )
 
     Nns_SndHandleReleaseSeq = Symbol(
-        None, None, None, "Nns_SndHandleReleaseSeq", "", None
+        [0x2A64], [0x232D724], None, "Nns_SndHandleReleaseSeq", "", None
     )
 
     Nns_SndPlayerSetInitialVolume = Symbol(
-        None, None, None, "Nns_SndPlayerSetInitialVolume", "", None
+        [0x2A98], [0x232D758], None, "Nns_SndPlayerSetInitialVolume", "", None
     )
 
     Nns_SndPlayerSetChannelPriority = Symbol(
-        None, None, None, "Nns_SndPlayerSetChannelPriority", "", None
+        [0x2AAC], [0x232D76C], None, "Nns_SndPlayerSetChannelPriority", "", None
     )
 
     Nns_SndPlayerSetTrackPitch = Symbol(
-        None, None, None, "Nns_SndPlayerSetTrackPitch", "", None
+        [0x2ACC], [0x232D78C], None, "Nns_SndPlayerSetTrackPitch", "", None
     )
 
     Nns_SndPlayerSetSeqArcNo = Symbol(
-        None, None, None, "Nns_SndPlayerSetSeqArcNo", "", None
+        [0x2AEC], [0x232D7AC], None, "Nns_SndPlayerSetSeqArcNo", "", None
     )
 
-    Nnsi_SndPlayerInit = Symbol(None, None, None, "Nnsi_SndPlayerInit", "", None)
+    Nnsi_SndPlayerInit = Symbol(
+        [0x2B18], [0x232D7D8], None, "Nnsi_SndPlayerInit", "", None
+    )
 
-    Nnsi_SndPlayerMain = Symbol(None, None, None, "Nnsi_SndPlayerMain", "", None)
+    Nnsi_SndPlayerMain = Symbol(
+        [0x2BCC], [0x232D88C], None, "Nnsi_SndPlayerMain", "", None
+    )
 
     Nnsi_SndPlayerAllocSeqPlayer = Symbol(
-        None, None, None, "Nnsi_SndPlayerAllocSeqPlayer", "", None
+        [0x2D30], [0x232D9F0], None, "Nnsi_SndPlayerAllocSeqPlayer", "", None
     )
 
     Nnsi_SndPlayerFreeSeqPlayer = Symbol(
-        None, None, None, "Nnsi_SndPlayerFreeSeqPlayer", "", None
+        [0x2DC8], [0x232DA88], None, "Nnsi_SndPlayerFreeSeqPlayer", "", None
     )
 
     Nnsi_SndPlayerStartSeq = Symbol(
-        None, None, None, "Nnsi_SndPlayerStartSeq", "", None
+        [0x2DD4], [0x232DA94], None, "Nnsi_SndPlayerStartSeq", "", None
     )
 
-    Nnsi_SndPlayerStopSeq = Symbol(None, None, None, "Nnsi_SndPlayerStopSeq", "", None)
+    Nnsi_SndPlayerStopSeq = Symbol(
+        [0x2E24], [0x232DAE4], None, "Nnsi_SndPlayerStopSeq", "", None
+    )
 
     Nnsi_SndPlayerAllocHeap = Symbol(
-        None, None, None, "Nnsi_SndPlayerAllocHeap", "", None
+        [0x2E70], [0x232DB30], None, "Nnsi_SndPlayerAllocHeap", "", None
     )
 
-    InitPlayer = Symbol(None, None, None, "InitPlayer", "", None)
+    InitPlayer = Symbol([0x2EC4], [0x232DB84], None, "InitPlayer", "", None)
 
-    InsertPlayerList = Symbol(None, None, None, "InsertPlayerList", "", None)
+    InsertPlayerList = Symbol([0x2F0C], [0x232DBCC], None, "InsertPlayerList", "", None)
 
-    InsertPrioList = Symbol(None, None, None, "InsertPrioList", "", None)
+    InsertPrioList = Symbol([0x2F5C], [0x232DC1C], None, "InsertPrioList", "", None)
 
-    ForceStopSeq = Symbol(None, None, None, "ForceStopSeq", "", None)
+    ForceStopSeq = Symbol([0x2FB0], [0x232DC70], None, "ForceStopSeq", "", None)
 
-    AllocSeqPlayer = Symbol(None, None, None, "AllocSeqPlayer", "", None)
+    AllocSeqPlayer = Symbol([0x2FE8], [0x232DCA8], None, "AllocSeqPlayer", "", None)
 
-    ShutdownPlayer = Symbol(None, None, None, "ShutdownPlayer", "", None)
+    ShutdownPlayer = Symbol(
+        [0x3050, 0x4644], [0x232DD10, 0x232F304], None, "ShutdownPlayer", "", None
+    )
 
     PlayerHeapDisposeCallback = Symbol(
-        None, None, None, "PlayerHeapDisposeCallback", "", None
+        [0x30D4], [0x232DD94], None, "PlayerHeapDisposeCallback", "", None
     )
 
-    SetPlayerPriority = Symbol(None, None, None, "SetPlayerPriority", "", None)
+    SetPlayerPriority = Symbol(
+        [0x3124], [0x232DDE4], None, "SetPlayerPriority", "", None
+    )
 
     Nns_SndStrmFreeChannel = Symbol(
-        None, None, None, "Nns_SndStrmFreeChannel", "", None
+        [0x3184], [0x232DE44], None, "Nns_SndStrmFreeChannel", "", None
     )
 
-    Nns_SndStrmStart = Symbol(None, None, None, "Nns_SndStrmStart", "", None)
+    Nns_SndStrmStart = Symbol([0x31AC], [0x232DE6C], None, "Nns_SndStrmStart", "", None)
 
-    Nns_SndStrmStop = Symbol(None, None, None, "Nns_SndStrmStop", "", None)
+    Nns_SndStrmStop = Symbol([0x3200], [0x232DEC0], None, "Nns_SndStrmStop", "", None)
 
-    Nns_SndStrmSetVolume = Symbol(None, None, None, "Nns_SndStrmSetVolume", "", None)
+    Nns_SndStrmSetVolume = Symbol(
+        [0x321C], [0x232DEDC], None, "Nns_SndStrmSetVolume", "", None
+    )
 
-    ForceStopStrm = Symbol(None, None, None, "ForceStopStrm", "", None)
+    ForceStopStrm = Symbol([0x3288], [0x232DF48], None, "ForceStopStrm", "", None)
 
-    ShutdownStrm = Symbol(None, None, None, "ShutdownStrm", "", None)
+    ShutdownStrm = Symbol([0x32FC], [0x232DFBC], None, "ShutdownStrm", "", None)
 
-    Nnsi_SndCaptureInit = Symbol(None, None, None, "Nnsi_SndCaptureInit", "", None)
+    Nnsi_SndCaptureInit = Symbol(
+        [0x332C], [0x232DFEC], None, "Nnsi_SndCaptureInit", "", None
+    )
 
-    Nnsi_SndCaptureMain = Symbol(None, None, None, "Nnsi_SndCaptureMain", "", None)
+    Nnsi_SndCaptureMain = Symbol(
+        [0x3344], [0x232E004], None, "Nnsi_SndCaptureMain", "", None
+    )
 
-    Nnsi_SndCaptureStop = Symbol(None, None, None, "Nnsi_SndCaptureStop", "", None)
+    Nnsi_SndCaptureStop = Symbol(
+        [0x33CC], [0x232E08C], None, "Nnsi_SndCaptureStop", "", None
+    )
 
     Nnsi_SndCaptureBeginSleep = Symbol(
-        None, None, None, "Nnsi_SndCaptureBeginSleep", "", None
+        [0x34BC], [0x232E17C], None, "Nnsi_SndCaptureBeginSleep", "", None
     )
 
     Nnsi_SndCaptureEndSleep = Symbol(
-        None, None, None, "Nnsi_SndCaptureEndSleep", "", None
+        [0x351C], [0x232E1DC], None, "Nnsi_SndCaptureEndSleep", "", None
     )
 
     Nns_SndArcInitOnMemory = Symbol(
-        None, None, None, "Nns_SndArcInitOnMemory", "", None
+        [0x35A0], [0x232E260], None, "Nns_SndArcInitOnMemory", "", None
     )
 
-    Nns_SndArcSetCurrent = Symbol(None, None, None, "Nns_SndArcSetCurrent", "", None)
+    Nns_SndArcSetCurrent = Symbol(
+        [0x3664], [0x232E324], None, "Nns_SndArcSetCurrent", "", None
+    )
 
-    Nns_SndArcGetCurrent = Symbol(None, None, None, "Nns_SndArcGetCurrent", "", None)
+    Nns_SndArcGetCurrent = Symbol(
+        [0x367C], [0x232E33C], None, "Nns_SndArcGetCurrent", "", None
+    )
 
     Nns_SndArcGetSeqArcInfo = Symbol(
-        None, None, None, "Nns_SndArcGetSeqArcInfo", "", None
+        [0x368C], [0x232E34C], None, "Nns_SndArcGetSeqArcInfo", "", None
     )
 
-    Nns_SndArcGetBankInfo = Symbol(None, None, None, "Nns_SndArcGetBankInfo", "", None)
+    Nns_SndArcGetBankInfo = Symbol(
+        [0x36F0], [0x232E3B0], None, "Nns_SndArcGetBankInfo", "", None
+    )
 
     Nns_SndArcGetWaveArcInfo = Symbol(
-        None, None, None, "Nns_SndArcGetWaveArcInfo", "", None
+        [0x3754], [0x232E414], None, "Nns_SndArcGetWaveArcInfo", "", None
     )
 
     Nns_SndArcGetPlayerInfo = Symbol(
-        None, None, None, "Nns_SndArcGetPlayerInfo", "", None
+        [0x37B8], [0x232E478], None, "Nns_SndArcGetPlayerInfo", "", None
     )
 
-    Nns_SndArcGetFileSize = Symbol(None, None, None, "Nns_SndArcGetFileSize", "", None)
+    Nns_SndArcGetFileSize = Symbol(
+        [0x381C], [0x232E4DC], None, "Nns_SndArcGetFileSize", "", None
+    )
 
-    Nns_SndArcReadFile = Symbol(None, None, None, "Nns_SndArcReadFile", "", None)
+    Nns_SndArcReadFile = Symbol(
+        [0x3844], [0x232E504], None, "Nns_SndArcReadFile", "", None
+    )
 
     Nns_SndArcGetFileAddress = Symbol(
-        None, None, None, "Nns_SndArcGetFileAddress", "", None
+        [0x390C], [0x232E5CC], None, "Nns_SndArcGetFileAddress", "", None
     )
 
     Nns_SndArcSetFileAddress = Symbol(
-        None, None, None, "Nns_SndArcSetFileAddress", "", None
+        [0x3934], [0x232E5F4], None, "Nns_SndArcSetFileAddress", "", None
     )
 
-    Nns_SndHeapCreate = Symbol(None, None, None, "Nns_SndHeapCreate", "", None)
+    Nns_SndHeapCreate = Symbol(
+        [0x3950], [0x232E610], None, "Nns_SndHeapCreate", "", None
+    )
 
-    Nns_SndHeapDestroy = Symbol(None, None, None, "Nns_SndHeapDestroy", "", None)
+    Nns_SndHeapDestroy = Symbol(
+        [0x39C0], [0x232E680], None, "Nns_SndHeapDestroy", "", None
+    )
 
-    Nns_SndHeapClear = Symbol(None, None, None, "Nns_SndHeapClear", "", None)
+    Nns_SndHeapClear = Symbol([0x39D8], [0x232E698], None, "Nns_SndHeapClear", "", None)
 
-    Nns_SndHeapAlloc = Symbol(None, None, None, "Nns_SndHeapAlloc", "", None)
+    Nns_SndHeapAlloc = Symbol([0x3A94], [0x232E754], None, "Nns_SndHeapAlloc", "", None)
 
-    InitHeapSection = Symbol(None, None, None, "InitHeapSection", "", None)
+    InitHeapSection = Symbol([0x3AFC], [0x232E7BC], None, "InitHeapSection", "", None)
 
-    InitHeap = Symbol(None, None, None, "InitHeap", "", None)
+    InitHeap = Symbol([0x3B0C], [0x232E7CC], None, "InitHeap", "", None)
 
-    NewSection = Symbol(None, None, None, "NewSection", "", None)
+    NewSection = Symbol([0x3B40], [0x232E800], None, "NewSection", "", None)
 
-    EraseSync = Symbol(None, None, None, "EraseSync", "", None)
+    EraseSync = Symbol([0x3B7C], [0x232E83C], None, "EraseSync", "", None)
 
-    Nnsi_SndArcLoadBank = Symbol(None, None, None, "Nnsi_SndArcLoadBank", "", None)
+    Nnsi_SndArcLoadBank = Symbol(
+        [0x3B9C], [0x232E85C], None, "Nnsi_SndArcLoadBank", "", None
+    )
 
     Nnsi_SndArcLoadWaveArc = Symbol(
-        None, None, None, "Nnsi_SndArcLoadWaveArc", "", None
+        [0x3CDC], [0x232E99C], None, "Nnsi_SndArcLoadWaveArc", "", None
     )
 
-    Nnsi_SndArcLoadFile = Symbol(None, None, None, "Nnsi_SndArcLoadFile", "", None)
+    Nnsi_SndArcLoadFile = Symbol(
+        [0x3D68], [0x232EA28], None, "Nnsi_SndArcLoadFile", "", None
+    )
 
-    LoadBank = Symbol(None, None, None, "LoadBank", "", None)
+    LoadBank = Symbol([0x3E08], [0x232EAC8], None, "LoadBank", "", None)
 
-    LoadWaveArc = Symbol(None, None, None, "LoadWaveArc", "", None)
+    LoadWaveArc = Symbol([0x3E74], [0x232EB34], None, "LoadWaveArc", "", None)
 
-    LoadWaveArcTable = Symbol(None, None, None, "LoadWaveArcTable", "", None)
+    LoadWaveArcTable = Symbol([0x3EE0], [0x232EBA0], None, "LoadWaveArcTable", "", None)
 
-    DisposeCallback = Symbol(None, None, None, "DisposeCallback", "", None)
+    DisposeCallback = Symbol([0x3FE8], [0x232ECA8], None, "DisposeCallback", "", None)
 
-    BankDisposeCallback = Symbol(None, None, None, "BankDisposeCallback", "", None)
+    BankDisposeCallback = Symbol(
+        [0x4040], [0x232ED00], None, "BankDisposeCallback", "", None
+    )
 
     WaveArcDisposeCallback = Symbol(
-        None, None, None, "WaveArcDisposeCallback", "", None
+        [0x4070], [0x232ED30], None, "WaveArcDisposeCallback", "", None
     )
 
     WaveArcTableDisposeCallback = Symbol(
-        None, None, None, "WaveArcTableDisposeCallback", "", None
+        [0x40A0], [0x232ED60], None, "WaveArcTableDisposeCallback", "", None
     )
 
     SingleWaveDisposeCallback = Symbol(
-        None, None, None, "SingleWaveDisposeCallback", "", None
+        [0x40C0], [0x232ED80], None, "SingleWaveDisposeCallback", "", None
     )
 
-    LoadSingleWave = Symbol(None, None, None, "LoadSingleWave", "", None)
+    LoadSingleWave = Symbol([0x4108], [0x232EDC8], None, "LoadSingleWave", "", None)
 
-    LoadSingleWaves = Symbol(None, None, None, "LoadSingleWaves", "", None)
+    LoadSingleWaves = Symbol([0x41D0], [0x232EE90], None, "LoadSingleWaves", "", None)
 
-    Nns_SndArcPlayerSetup = Symbol(None, None, None, "Nns_SndArcPlayerSetup", "", None)
+    Nns_SndArcPlayerSetup = Symbol(
+        [0x4290], [0x232EF50], None, "Nns_SndArcPlayerSetup", "", None
+    )
 
     Nns_SndArcPlayerStartSeqArc = Symbol(
-        None, None, None, "Nns_SndArcPlayerStartSeqArc", "", None
+        [0x432C], [0x232EFEC], None, "Nns_SndArcPlayerStartSeqArc", "", None
     )
 
-    StartSeqArc = Symbol(None, None, None, "StartSeqArc", "", None)
+    StartSeqArc = Symbol([0x43AC], [0x232F06C], None, "StartSeqArc", "", None)
 
-    Nnsi_SndArcStrmMain = Symbol(None, None, None, "Nnsi_SndArcStrmMain", "", None)
+    Nnsi_SndArcStrmMain = Symbol(
+        [0x4470], [0x232F130], None, "Nnsi_SndArcStrmMain", "", None
+    )
 
-    FreePlayer = Symbol(None, None, None, "FreePlayer", "", None)
+    FreePlayer = Symbol([0x4580], [0x232F240], None, "FreePlayer", "", None)
 
-    ForceStopStrm_Arc = Symbol(None, None, None, "ForceStopStrm_Arc", "", None)
+    ForceStopStrm_Arc = Symbol(
+        [0x45AC], [0x232F26C], None, "ForceStopStrm_Arc", "", None
+    )
 
-    FreeChannel = Symbol(None, None, None, "FreeChannel", "", None)
+    FreeChannel = Symbol([0x46A8], [0x232F368], None, "FreeChannel", "", None)
 
-    RemoveCommandByPlayer = Symbol(None, None, None, "RemoveCommandByPlayer", "", None)
+    RemoveCommandByPlayer = Symbol(
+        [0x46CC], [0x232F38C], None, "RemoveCommandByPlayer", "", None
+    )
 
-    FreeCommandBuffer = Symbol(None, None, None, "FreeCommandBuffer", "", None)
+    FreeCommandBuffer = Symbol(
+        [0x473C], [0x232F3FC], None, "FreeCommandBuffer", "", None
+    )
 
     Nnsi_SndSeqArcGetSeqInfo = Symbol(
-        None, None, None, "Nnsi_SndSeqArcGetSeqInfo", "", None
+        [0x4768], [0x232F428], None, "Nnsi_SndSeqArcGetSeqInfo", "", None
     )
 
-    Nnsi_SndFaderInit = Symbol(None, None, None, "Nnsi_SndFaderInit", "", None)
+    Nnsi_SndFaderInit = Symbol(
+        [0x47A8], [0x232F468], None, "Nnsi_SndFaderInit", "", None
+    )
 
-    Nnsi_SndFaderSet = Symbol(None, None, None, "Nnsi_SndFaderSet", "", None)
+    Nnsi_SndFaderSet = Symbol([0x47C0], [0x232F480], None, "Nnsi_SndFaderSet", "", None)
 
-    Nnsi_SndFaderGet = Symbol(None, None, None, "Nnsi_SndFaderGet", "", None)
+    Nnsi_SndFaderGet = Symbol([0x47E8], [0x232F4A8], None, "Nnsi_SndFaderGet", "", None)
 
-    Nnsi_SndFaderUpdate = Symbol(None, None, None, "Nnsi_SndFaderUpdate", "", None)
+    Nnsi_SndFaderUpdate = Symbol(
+        [0x481C], [0x232F4DC], None, "Nnsi_SndFaderUpdate", "", None
+    )
 
     Nnsi_SndFaderIsFinished = Symbol(
-        None, None, None, "Nnsi_SndFaderIsFinished", "", None
+        [0x4834], [0x232F4F4], None, "Nnsi_SndFaderIsFinished", "", None
     )
 
-    Aoss_Malloc = Symbol(None, None, None, "Aoss_Malloc", "", None)
+    Aoss_Malloc = Symbol([0x484C], [0x232F50C], None, "Aoss_Malloc", "", None)
 
-    Aoss_Free = Symbol(None, None, None, "Aoss_Free", "", None)
+    Aoss_Free = Symbol([0x485C], [0x232F51C], None, "Aoss_Free", "", None)
 
-    Aossi_Init = Symbol(None, None, None, "Aossi_Init", "", None)
+    Aossi_Init = Symbol([0x486C], [0x232F52C], None, "Aossi_Init", "", None)
 
-    Aoss_Init_Old = Symbol(None, None, None, "Aoss_Init_Old", "", None)
+    Aoss_Init_Old = Symbol([0x495C], [0x232F61C], None, "Aoss_Init_Old", "", None)
 
-    aoss_ip_sta = Symbol(None, None, None, "aoss_ip_sta", "", None)
+    aoss_ip_sta = Symbol([0x5374], [0x2330034], None, "aoss_ip_sta", "", None)
 
-    aoss_release = Symbol(None, None, None, "aoss_release", "", None)
+    aoss_release = Symbol([0x538C], [0x233004C], None, "aoss_release", "", None)
 
-    aoss_data_init = Symbol(None, None, None, "aoss_data_init", "", None)
+    aoss_data_init = Symbol([0x53B8], [0x2330078], None, "aoss_data_init", "", None)
 
-    aoss_set_error = Symbol(None, None, None, "aoss_set_error", "", None)
+    aoss_set_error = Symbol([0x5410], [0x23300D0], None, "aoss_set_error", "", None)
 
-    aoss_get_error = Symbol(None, None, None, "aoss_get_error", "", None)
+    aoss_get_error = Symbol([0x541C], [0x23300DC], None, "aoss_get_error", "", None)
 
-    aoss_seq_data_copy = Symbol(None, None, None, "aoss_seq_data_copy", "", None)
+    aoss_seq_data_copy = Symbol(
+        [0x5428], [0x23300E8], None, "aoss_seq_data_copy", "", None
+    )
 
-    aoss_check_str = Symbol(None, None, None, "aoss_check_str", "", None)
+    aoss_check_str = Symbol([0x5620], [0x23302E0], None, "aoss_check_str", "", None)
 
-    CheckAP_Aoss = Symbol(None, None, None, "CheckAP_Aoss", "", None)
+    CheckAP_Aoss = Symbol([0x5644], [0x2330304], None, "CheckAP_Aoss", "", None)
 
-    Aoss_Set_ApInfo = Symbol(None, None, None, "Aoss_Set_ApInfo", "", None)
+    Aoss_Set_ApInfo = Symbol([0x56C0], [0x2330380], None, "Aoss_Set_ApInfo", "", None)
 
-    MakeSendSeqID = Symbol(None, None, None, "MakeSendSeqID", "", None)
+    MakeSendSeqID = Symbol([0x5704], [0x23303C4], None, "MakeSendSeqID", "", None)
 
-    Aoss_StatusExclusion = Symbol(None, None, None, "Aoss_StatusExclusion", "", None)
+    Aoss_StatusExclusion = Symbol(
+        [0x5734], [0x23303F4], None, "Aoss_StatusExclusion", "", None
+    )
 
-    RecvMessage = Symbol(None, None, None, "RecvMessage", "", None)
+    RecvMessage = Symbol([0x5760], [0x2330420], None, "RecvMessage", "", None)
 
-    AstsSetInitRes = Symbol(None, None, None, "AstsSetInitRes", "", None)
+    AstsSetInitRes = Symbol([0x5800], [0x23304C0], None, "AstsSetInitRes", "", None)
 
-    AstsSetSecureRes = Symbol(None, None, None, "AstsSetSecureRes", "", None)
+    AstsSetSecureRes = Symbol([0x58DC], [0x233059C], None, "AstsSetSecureRes", "", None)
 
-    AstsRestartRes = Symbol(None, None, None, "AstsRestartRes", "", None)
+    AstsRestartRes = Symbol([0x59B4], [0x2330674], None, "AstsRestartRes", "", None)
 
-    DecodePacket = Symbol(None, None, None, "DecodePacket", "", None)
+    DecodePacket = Symbol([0x5A58], [0x2330718], None, "DecodePacket", "", None)
 
-    CheckSeqID = Symbol(None, None, None, "CheckSeqID", "", None)
+    CheckSeqID = Symbol([0x5B4C], [0x233080C], None, "CheckSeqID", "", None)
 
-    CheckRecvSeqID = Symbol(None, None, None, "CheckRecvSeqID", "", None)
+    CheckRecvSeqID = Symbol([0x5B90], [0x2330850], None, "CheckRecvSeqID", "", None)
 
-    GetProductInfo = Symbol(None, None, None, "GetProductInfo", "", None)
+    GetProductInfo = Symbol([0x5BDC], [0x233089C], None, "GetProductInfo", "", None)
 
-    aoss_get_bin = Symbol(None, None, None, "aoss_get_bin", "", None)
+    aoss_get_bin = Symbol([0x5C98], [0x2330958], None, "aoss_get_bin", "", None)
 
-    GetWepData = Symbol(None, None, None, "GetWepData", "", None)
+    GetWepData = Symbol([0x5CBC], [0x233097C], None, "GetWepData", "", None)
 
-    GetWpaData = Symbol(None, None, None, "GetWpaData", "", None)
+    GetWpaData = Symbol([0x5E10], [0x2330AD0], None, "GetWpaData", "", None)
 
-    GetBssidData = Symbol(None, None, None, "GetBssidData", "", None)
+    GetBssidData = Symbol([0x5EC8], [0x2330B88], None, "GetBssidData", "", None)
 
-    GetSecurityData = Symbol(None, None, None, "GetSecurityData", "", None)
+    GetSecurityData = Symbol([0x5EF8], [0x2330BB8], None, "GetSecurityData", "", None)
 
-    GetSecurityType = Symbol(None, None, None, "GetSecurityType", "", None)
+    GetSecurityType = Symbol([0x6008], [0x2330CC8], None, "GetSecurityType", "", None)
 
-    SendMessage = Symbol(None, None, None, "SendMessage", "", None)
+    SendMessage = Symbol([0x6018], [0x2330CD8], None, "SendMessage", "", None)
 
-    AstsSetInitReq = Symbol(None, None, None, "AstsSetInitReq", "", None)
+    AstsSetInitReq = Symbol([0x606C], [0x2330D2C], None, "AstsSetInitReq", "", None)
 
-    AstsSetSecureReq = Symbol(None, None, None, "AstsSetSecureReq", "", None)
+    AstsSetSecureReq = Symbol([0x61B0], [0x2330E70], None, "AstsSetSecureReq", "", None)
 
-    AstsRestartReq = Symbol(None, None, None, "AstsRestartReq", "", None)
+    AstsRestartReq = Symbol([0x628C], [0x2330F4C], None, "AstsRestartReq", "", None)
 
-    SetStaData = Symbol(None, None, None, "SetStaData", "", None)
+    SetStaData = Symbol([0x62F8], [0x2330FB8], None, "SetStaData", "", None)
 
-    PacketDataSet = Symbol(None, None, None, "PacketDataSet", "", None)
+    PacketDataSet = Symbol([0x6384], [0x2331044], None, "PacketDataSet", "", None)
 
-    SetPacketHeader = Symbol(None, None, None, "SetPacketHeader", "", None)
+    SetPacketHeader = Symbol([0x63D8], [0x2331098], None, "SetPacketHeader", "", None)
 
-    SendPacketUdp = Symbol(None, None, None, "SendPacketUdp", "", None)
+    SendPacketUdp = Symbol([0x6430], [0x23310F0], None, "SendPacketUdp", "", None)
 
-    EncodeRC4 = Symbol(None, None, None, "EncodeRC4", "", None)
+    EncodeRC4 = Symbol([0x6498], [0x2331158], None, "EncodeRC4", "", None)
 
-    DecodeRC4 = Symbol(None, None, None, "DecodeRC4", "", None)
+    DecodeRC4 = Symbol([0x6514], [0x23311D4], None, "DecodeRC4", "", None)
 
-    RC4init = Symbol(None, None, None, "RC4init", "", None)
+    RC4init = Symbol([0x659C], [0x233125C], None, "RC4init", "", None)
 
-    RC4encrypt = Symbol(None, None, None, "RC4encrypt", "", None)
+    RC4encrypt = Symbol([0x6600], [0x23312C0], None, "RC4encrypt", "", None)
 
-    arcfour_byte = Symbol(None, None, None, "arcfour_byte", "", None)
+    arcfour_byte = Symbol([0x662C], [0x23312EC], None, "arcfour_byte", "", None)
 
-    crc = Symbol(None, None, None, "crc", "", None)
+    crc = Symbol([0x666C], [0x233132C], None, "crc", "", None)
 
-    update_crc = Symbol(None, None, None, "update_crc", "", None)
+    update_crc = Symbol([0x6694], [0x2331354], None, "update_crc", "", None)
 
-    make_crc_table = Symbol(None, None, None, "make_crc_table", "", None)
+    make_crc_table = Symbol([0x66CC], [0x233138C], None, "make_crc_table", "", None)
 
-    CryptSeqNo = Symbol(None, None, None, "CryptSeqNo", "", None)
+    CryptSeqNo = Symbol([0x6704], [0x23313C4], None, "CryptSeqNo", "", None)
 
-    MakeKey = Symbol(None, None, None, "MakeKey", "", None)
+    MakeKey = Symbol([0x6780], [0x2331440], None, "MakeKey", "", None)
 
-    AddKey = Symbol(None, None, None, "AddKey", "", None)
+    AddKey = Symbol([0x67B4], [0x2331474], None, "AddKey", "", None)
 
-    Rotate = Symbol(None, None, None, "Rotate", "", None)
+    Rotate = Symbol([0x67D8], [0x2331498], None, "Rotate", "", None)
 
-    Aoss_SetIpAddr = Symbol(None, None, None, "Aoss_SetIpAddr", "", None)
+    Aoss_SetIpAddr = Symbol([0x6830], [0x23314F0], None, "Aoss_SetIpAddr", "", None)
 
-    Aoss_Disconnect = Symbol(None, None, None, "Aoss_Disconnect", "", None)
+    Aoss_Disconnect = Symbol([0x6888], [0x2331548], None, "Aoss_Disconnect", "", None)
 
-    Aoss_Memcmp = Symbol(None, None, None, "Aoss_Memcmp", "", None)
+    Aoss_Memcmp = Symbol([0x68AC], [0x233156C], None, "Aoss_Memcmp", "", None)
 
-    Aoss_Memcpy = Symbol(None, None, None, "Aoss_Memcpy", "", None)
+    Aoss_Memcpy = Symbol([0x68CC], [0x233158C], None, "Aoss_Memcpy", "", None)
 
-    Aoss_Memset = Symbol(None, None, None, "Aoss_Memset", "", None)
+    Aoss_Memset = Symbol([0x68DC], [0x233159C], None, "Aoss_Memset", "", None)
 
-    Aoss_Recvfrom = Symbol(None, None, None, "Aoss_Recvfrom", "", None)
+    Aoss_Recvfrom = Symbol([0x68E8], [0x23315A8], None, "Aoss_Recvfrom", "", None)
 
-    Aoss_Select = Symbol(None, None, None, "Aoss_Select", "", None)
+    Aoss_Select = Symbol([0x68FC], [0x23315BC], None, "Aoss_Select", "", None)
 
-    Aoss_Sendto = Symbol(None, None, None, "Aoss_Sendto", "", None)
+    Aoss_Sendto = Symbol([0x6950], [0x2331610], None, "Aoss_Sendto", "", None)
 
-    Aoss_Setsockopt = Symbol(None, None, None, "Aoss_Setsockopt", "", None)
+    Aoss_Setsockopt = Symbol([0x6960], [0x2331620], None, "Aoss_Setsockopt", "", None)
 
-    Aoss_Socket = Symbol(None, None, None, "Aoss_Socket", "", None)
+    Aoss_Socket = Symbol([0x6964], [0x2331624], None, "Aoss_Socket", "", None)
 
-    Aoss_Bind = Symbol(None, None, None, "Aoss_Bind", "", None)
+    Aoss_Bind = Symbol([0x696C], [0x233162C], None, "Aoss_Bind", "", None)
 
-    Aoss_Close = Symbol(None, None, None, "Aoss_Close", "", None)
+    Aoss_Close = Symbol([0x6978], [0x2331638], None, "Aoss_Close", "", None)
 
-    Aoss_Htonl = Symbol(None, None, None, "Aoss_Htonl", "", None)
+    Aoss_Htonl = Symbol([0x6980], [0x2331640], None, "Aoss_Htonl", "", None)
 
-    Aoss_Htons = Symbol(None, None, None, "Aoss_Htons", "", None)
+    Aoss_Htons = Symbol([0x69A8], [0x2331668], None, "Aoss_Htons", "", None)
 
-    Aoss_Ntohl = Symbol(None, None, None, "Aoss_Ntohl", "", None)
+    Aoss_Ntohl = Symbol([0x69C0], [0x2331680], None, "Aoss_Ntohl", "", None)
 
-    Aoss_Ntohs = Symbol(None, None, None, "Aoss_Ntohs", "", None)
+    Aoss_Ntohs = Symbol([0x69E8], [0x23316A8], None, "Aoss_Ntohs", "", None)
 
-    Aoss_Strlen = Symbol(None, None, None, "Aoss_Strlen", "", None)
+    Aoss_Strlen = Symbol([0x6A00], [0x23316C0], None, "Aoss_Strlen", "", None)
 
-    Aoss_Rand = Symbol(None, None, None, "Aoss_Rand", "", None)
+    Aoss_Rand = Symbol([0x6A14], [0x23316D4], None, "Aoss_Rand", "", None)
 
-    Aoss_FD_Zero = Symbol(None, None, None, "Aoss_FD_Zero", "", None)
+    Aoss_FD_Zero = Symbol([0x6A84], [0x2331744], None, "Aoss_FD_Zero", "", None)
 
-    Aoss_FD_Set = Symbol(None, None, None, "Aoss_FD_Set", "", None)
+    Aoss_FD_Set = Symbol([0x6A90], [0x2331750], None, "Aoss_FD_Set", "", None)
 
-    Set_Wlla_Bss_Info = Symbol(None, None, None, "Set_Wlla_Bss_Info", "", None)
+    Set_Wlla_Bss_Info = Symbol(
+        [0x6A98], [0x2331758], None, "Set_Wlla_Bss_Info", "", None
+    )
 
-    Get_Wlla_Ssid_Param = Symbol(None, None, None, "Get_Wlla_Ssid_Param", "", None)
+    Get_Wlla_Ssid_Param = Symbol(
+        [0x6B24], [0x23317E4], None, "Get_Wlla_Ssid_Param", "", None
+    )
 
-    Set_Wlla_Link_Stat = Symbol(None, None, None, "Set_Wlla_Link_Stat", "", None)
+    Set_Wlla_Link_Stat = Symbol(
+        [0x6B48], [0x2331808], None, "Set_Wlla_Link_Stat", "", None
+    )
 
-    aoss_apc_callback = Symbol(None, None, None, "aoss_apc_callback", "", None)
+    aoss_apc_callback = Symbol(
+        [0x6B58], [0x2331818], None, "aoss_apc_callback", "", None
+    )
 
-    AlarmCallback = Symbol(None, None, None, "AlarmCallback", "", None)
+    AlarmCallback = Symbol(
+        [0x6B6C, 0x7E38], [0x233182C, 0x2332AF8], None, "AlarmCallback", "", None
+    )
 
-    Aossi_InitLocal = Symbol(None, None, None, "Aossi_InitLocal", "", None)
+    Aossi_InitLocal = Symbol([0x6B80], [0x2331840], None, "Aossi_InitLocal", "", None)
 
-    Aossi_EndLocal = Symbol(None, None, None, "Aossi_EndLocal", "", None)
+    Aossi_EndLocal = Symbol([0x6C44], [0x2331904], None, "Aossi_EndLocal", "", None)
 
-    Aossi_Disconnect = Symbol(None, None, None, "Aossi_Disconnect", "", None)
+    Aossi_Disconnect = Symbol([0x6CDC], [0x233199C], None, "Aossi_Disconnect", "", None)
 
-    Aossi_WlanGetBssList = Symbol(None, None, None, "Aossi_WlanGetBssList", "", None)
+    Aossi_WlanGetBssList = Symbol(
+        [0x6D14], [0x23319D4], None, "Aossi_WlanGetBssList", "", None
+    )
 
-    Aossi_WlanConnect = Symbol(None, None, None, "Aossi_WlanConnect", "", None)
+    Aossi_WlanConnect = Symbol(
+        [0x6E8C], [0x2331B4C], None, "Aossi_WlanConnect", "", None
+    )
 
-    Aossi_Sleep = Symbol(None, None, None, "Aossi_Sleep", "", None)
+    Aossi_Sleep = Symbol([0x705C], [0x2331D1C], None, "Aossi_Sleep", "", None)
 
-    Aossi_Status = Symbol(None, None, None, "Aossi_Status", "", None)
+    Aossi_Status = Symbol([0x7064], [0x2331D24], None, "Aossi_Status", "", None)
 
-    Apci_Notify = Symbol(None, None, None, "Apci_Notify", "", None)
+    Apci_Notify = Symbol(
+        [0x7078, 0x76D4], [0x2331D38, 0x2332394], None, "Apci_Notify", "", None
+    )
 
-    Apci_MoveIdleState = Symbol(None, None, None, "Apci_MoveIdleState", "", None)
+    Apci_MoveIdleState = Symbol(
+        [0x7330, 0x79E0], [0x2331FF0, 0x23326A0], None, "Apci_MoveIdleState", "", None
+    )
 
-    Apc_GetApList = Symbol(None, None, None, "Apc_GetApList", "", None)
+    Apc_GetApList = Symbol(
+        [0x7398, 0x7A48], [0x2332058, 0x2332708], None, "Apc_GetApList", "", None
+    )
 
-    Apc_SearchStart = Symbol(None, None, None, "Apc_SearchStart", "", None)
+    Apc_SearchStart = Symbol(
+        [0x73DC, 0x7A8C], [0x233209C, 0x233274C], None, "Apc_SearchStart", "", None
+    )
 
-    Apc_SearchEnd = Symbol(None, None, None, "Apc_SearchEnd", "", None)
+    Apc_SearchEnd = Symbol(
+        [0x74CC, 0x7B74], [0x233218C, 0x2332834], None, "Apc_SearchEnd", "", None
+    )
 
-    Apc_Disconnect = Symbol(None, None, None, "Apc_Disconnect", "", None)
+    Apc_Disconnect = Symbol([0x7508], [0x23321C8], None, "Apc_Disconnect", "", None)
 
-    Apc_End = Symbol(None, None, None, "Apc_End", "", None)
+    Apc_End = Symbol(
+        [0x7540, 0x7BAC], [0x2332200, 0x233286C], None, "Apc_End", "", None
+    )
 
-    Apc_Connect = Symbol(None, None, None, "Apc_Connect", "", None)
+    Apc_Connect = Symbol(
+        [0x7598, 0x7C04], [0x2332258, 0x23328C4], None, "Apc_Connect", "", None
+    )
 
-    Apc_Init = Symbol(None, None, None, "Apc_Init", "", None)
+    Apc_Init = Symbol(
+        [0x761C, 0x7C88], [0x23322DC, 0x2332948], None, "Apc_Init", "", None
+    )
 
-    Apc_GetState = Symbol(None, None, None, "Apc_GetState", "", None)
+    Apc_GetState = Symbol([0x7D44], [0x2332A04], None, "Apc_GetState", "", None)
 
-    SoAlloc = Symbol(None, None, None, "SoAlloc", "", None)
+    SoAlloc = Symbol([0x7D50], [0x2332A10], None, "SoAlloc", "", None)
 
-    SoFree = Symbol(None, None, None, "SoFree", "", None)
+    SoFree = Symbol([0x7D80], [0x2332A40], None, "SoFree", "", None)
 
-    AtermApc_InitEventBuf = Symbol(None, None, None, "AtermApc_InitEventBuf", "", None)
+    AtermApc_InitEventBuf = Symbol(
+        [0x7DA8], [0x2332A68], None, "AtermApc_InitEventBuf", "", None
+    )
 
-    AtermApc_GetEvent = Symbol(None, None, None, "AtermApc_GetEvent", "", None)
+    AtermApc_GetEvent = Symbol(
+        [0x7DD0], [0x2332A90], None, "AtermApc_GetEvent", "", None
+    )
 
-    AtermApc_Callback = Symbol(None, None, None, "AtermApc_Callback", "", None)
+    AtermApc_Callback = Symbol(
+        [0x7E08], [0x2332AC8], None, "AtermApc_Callback", "", None
+    )
 
-    InitAtermApcNetwork = Symbol(None, None, None, "InitAtermApcNetwork", "", None)
+    InitAtermApcNetwork = Symbol(
+        [0x7E44], [0x2332B04], None, "InitAtermApcNetwork", "", None
+    )
 
-    FreeAtermApcNetwork = Symbol(None, None, None, "FreeAtermApcNetwork", "", None)
+    FreeAtermApcNetwork = Symbol(
+        [0x7EE8], [0x2332BA8], None, "FreeAtermApcNetwork", "", None
+    )
 
-    ConnectAP = Symbol(None, None, None, "ConnectAP", "", None)
+    ConnectAP = Symbol([0x7F40], [0x2332C00], None, "ConnectAP", "", None)
 
-    DisconnectAP = Symbol(None, None, None, "DisconnectAP", "", None)
+    DisconnectAP = Symbol([0x8064], [0x2332D24], None, "DisconnectAP", "", None)
 
-    CheckAccessPoint = Symbol(None, None, None, "CheckAccessPoint", "", None)
+    CheckAccessPoint = Symbol([0x80C8], [0x2332D88], None, "CheckAccessPoint", "", None)
 
-    ScanAP = Symbol(None, None, None, "ScanAP", "", None)
+    ScanAP = Symbol([0x8294], [0x2332F54], None, "ScanAP", "", None)
 
-    SendFrameViaInterface = Symbol(None, None, None, "SendFrameViaInterface", "", None)
+    SendFrameViaInterface = Symbol(
+        [0x8528], [0x23331E8], None, "SendFrameViaInterface", "", None
+    )
 
-    SendBroadcast = Symbol(None, None, None, "SendBroadcast", "", None)
+    SendBroadcast = Symbol([0x8540], [0x2333200], None, "SendBroadcast", "", None)
 
-    SendFrame = Symbol(None, None, None, "SendFrame", "", None)
+    SendFrame = Symbol([0x857C], [0x233323C], None, "SendFrame", "", None)
 
-    GetFrameData = Symbol(None, None, None, "GetFrameData", "", None)
+    GetFrameData = Symbol([0x8588], [0x2333248], None, "GetFrameData", "", None)
 
-    GetElementData = Symbol(None, None, None, "GetElementData", "", None)
+    GetElementData = Symbol([0x85F8], [0x23332B8], None, "GetElementData", "", None)
 
-    GetFirstElement = Symbol(None, None, None, "GetFirstElement", "", None)
+    GetFirstElement = Symbol([0x8648], [0x2333308], None, "GetFirstElement", "", None)
 
-    SetFrameData = Symbol(None, None, None, "SetFrameData", "", None)
+    SetFrameData = Symbol([0x867C], [0x233333C], None, "SetFrameData", "", None)
 
-    SetElementData = Symbol(None, None, None, "SetElementData", "", None)
+    SetElementData = Symbol([0x8740], [0x2333400], None, "SetElementData", "", None)
 
-    SetSingleElement = Symbol(None, None, None, "SetSingleElement", "", None)
+    SetSingleElement = Symbol([0x87A0], [0x2333460], None, "SetSingleElement", "", None)
 
-    IsSearchCommand = Symbol(None, None, None, "IsSearchCommand", "", None)
+    IsSearchCommand = Symbol([0x87C8], [0x2333488], None, "IsSearchCommand", "", None)
 
-    GetCommandElement = Symbol(None, None, None, "GetCommandElement", "", None)
+    GetCommandElement = Symbol(
+        [0x889C], [0x233355C], None, "GetCommandElement", "", None
+    )
 
-    SetSearchRes = Symbol(None, None, None, "SetSearchRes", "", None)
+    SetSearchRes = Symbol([0x88EC], [0x23335AC], None, "SetSearchRes", "", None)
 
-    GetAdapterMac = Symbol(None, None, None, "GetAdapterMac", "", None)
+    GetAdapterMac = Symbol([0x8988], [0x2333648], None, "GetAdapterMac", "", None)
 
-    GetMacEncKey = Symbol(None, None, None, "GetMacEncKey", "", None)
+    GetMacEncKey = Symbol([0x8994], [0x2333654], None, "GetMacEncKey", "", None)
 
-    GetWLanSetElement = Symbol(None, None, None, "GetWLanSetElement", "", None)
+    GetWLanSetElement = Symbol(
+        [0x8A90], [0x2333750], None, "GetWLanSetElement", "", None
+    )
 
-    AsciiToHex = Symbol(None, None, None, "AsciiToHex", "", None)
+    AsciiToHex = Symbol([0x8C64], [0x2333924], None, "AsciiToHex", "", None)
 
-    StoreNetParam = Symbol(None, None, None, "StoreNetParam", "", None)
+    StoreNetParam = Symbol([0x8D18], [0x23339D8], None, "StoreNetParam", "", None)
 
-    AutoConfigThreadEx = Symbol(None, None, None, "AutoConfigThreadEx", "", None)
+    AutoConfigThreadEx = Symbol(
+        [0x8EA0], [0x2333B60], None, "AutoConfigThreadEx", "", None
+    )
 
-    AutoConfigThread = Symbol(None, None, None, "AutoConfigThread", "", None)
+    AutoConfigThread = Symbol([0x9284], [0x2333F44], None, "AutoConfigThread", "", None)
 
-    keywrap_encrypt = Symbol(None, None, None, "keywrap_encrypt", "", None)
+    keywrap_encrypt = Symbol([0x92BC], [0x2333F7C], None, "keywrap_encrypt", "", None)
 
-    keywrap_decrypt = Symbol(None, None, None, "keywrap_decrypt", "", None)
+    keywrap_decrypt = Symbol([0x9474], [0x2334134], None, "keywrap_decrypt", "", None)
 
-    aeskw_xor64 = Symbol(None, None, None, "aeskw_xor64", "", None)
+    aeskw_xor64 = Symbol([0x962C], [0x23342EC], None, "aeskw_xor64", "", None)
 
-    RijndaelKeySetupEnc = Symbol(None, None, None, "RijndaelKeySetupEnc", "", None)
+    RijndaelKeySetupEnc = Symbol(
+        [0x9674], [0x2334334], None, "RijndaelKeySetupEnc", "", None
+    )
 
-    RijndaelKeySetupDec = Symbol(None, None, None, "RijndaelKeySetupDec", "", None)
+    RijndaelKeySetupDec = Symbol(
+        [0x992C], [0x23345EC], None, "RijndaelKeySetupDec", "", None
+    )
 
-    RijndaelEncrypt = Symbol(None, None, None, "RijndaelEncrypt", "", None)
+    RijndaelEncrypt = Symbol([0x9ABC], [0x233477C], None, "RijndaelEncrypt", "", None)
 
-    RijndaelDecrypt = Symbol(None, None, None, "RijndaelDecrypt", "", None)
+    RijndaelDecrypt = Symbol([0x9E78], [0x2334B38], None, "RijndaelDecrypt", "", None)
 
-    MY_MD5Init = Symbol(None, None, None, "MY_MD5Init", "", None)
+    MY_MD5Init = Symbol([0xA234], [0x2334EF4], None, "MY_MD5Init", "", None)
 
-    MY_MD5Update = Symbol(None, None, None, "MY_MD5Update", "", None)
+    MY_MD5Update = Symbol([0xA25C], [0x2334F1C], None, "MY_MD5Update", "", None)
 
-    MY_MD5Final = Symbol(None, None, None, "MY_MD5Final", "", None)
+    MY_MD5Final = Symbol([0xA2D4], [0x2334F94], None, "MY_MD5Final", "", None)
 
-    MD5Transform = Symbol(None, None, None, "MD5Transform", "", None)
+    MD5Transform = Symbol([0xA328], [0x2334FE8], None, "MD5Transform", "", None)
 
-    Encode = Symbol(None, None, None, "Encode", "", None)
+    Encode = Symbol([0xAB70], [0x2335830], None, "Encode", "", None)
 
-    Decode = Symbol(None, None, None, "Decode", "", None)
+    Decode = Symbol([0xAB9C], [0x233585C], None, "Decode", "", None)
 
-    MD5_Memcpy = Symbol(None, None, None, "MD5_Memcpy", "", None)
+    MD5_Memcpy = Symbol([0xABC8], [0x2335888], None, "MD5_Memcpy", "", None)
 
-    MD5_Memset = Symbol(None, None, None, "MD5_Memset", "", None)
+    MD5_Memset = Symbol([0xABE0], [0x23358A0], None, "MD5_Memset", "", None)
 
-    MD5Encode = Symbol(None, None, None, "MD5Encode", "", None)
+    MD5Encode = Symbol([0xABF8], [0x23358B8], None, "MD5Encode", "", None)
 
-    GetTickCount = Symbol(None, None, None, "GetTickCount", "", None)
+    GetTickCount = Symbol([0xAC20], [0x23358E0], None, "GetTickCount", "", None)
 
-    Calloc = Symbol(None, None, None, "Calloc", "", None)
+    Calloc = Symbol([0xAC3C], [0x23358FC], None, "Calloc", "", None)
 
-    Free = Symbol(None, None, None, "Free", "", None)
+    Free = Symbol([0xAC60], [0x2335920], None, "Free", "", None)
 
-    PutHex = Symbol(None, None, None, "PutHex", "", None)
+    PutHex = Symbol([0xAC70], [0x2335930], None, "PutHex", "", None)
 
-    PutMac = Symbol(None, None, None, "PutMac", "", None)
+    PutMac = Symbol([0xACA4], [0x2335964], None, "PutMac", "", None)
 
-    Atermi_ApConfigStart = Symbol(None, None, None, "Atermi_ApConfigStart", "", None)
+    Atermi_ApConfigStart = Symbol(
+        [0xACD8], [0x2335998], None, "Atermi_ApConfigStart", "", None
+    )
 
-    Atermi_ApConfigEnd = Symbol(None, None, None, "Atermi_ApConfigEnd", "", None)
+    Atermi_ApConfigEnd = Symbol(
+        [0xADC0], [0x2335A80], None, "Atermi_ApConfigEnd", "", None
+    )
 
     Atermi_ApConfigGetState = Symbol(
-        None, None, None, "Atermi_ApConfigGetState", "", None
+        [0xAE54], [0x2335B14], None, "Atermi_ApConfigGetState", "", None
     )
 
     Atermi_ApConfigGetResult = Symbol(
-        None, None, None, "Atermi_ApConfigGetResult", "", None
+        [0xAE8C], [0x2335B4C], None, "Atermi_ApConfigGetResult", "", None
     )
 
-    SendNotify = Symbol(None, None, None, "SendNotify", "", None)
+    SendNotify = Symbol([0xAEA0], [0x2335B60], None, "SendNotify", "", None)
 
-    Dwci_AnimelInitEx = Symbol(None, None, None, "Dwci_AnimelInitEx", "", None)
+    Dwci_AnimelInitEx = Symbol(
+        [0xAEBC], [0x2335B7C], None, "Dwci_AnimelInitEx", "", None
+    )
 
-    Dwci_AnimelEnd = Symbol(None, None, None, "Dwci_AnimelEnd", "", None)
+    Dwci_AnimelEnd = Symbol([0xAF8C], [0x2335C4C], None, "Dwci_AnimelEnd", "", None)
 
-    TaskAnime = Symbol(None, None, None, "TaskAnime", "", None)
+    TaskAnime = Symbol([0xAFC8], [0x2335C88], None, "TaskAnime", "", None)
 
-    Dwci_BtnlInit = Symbol(None, None, None, "Dwci_BtnlInit", "", None)
+    Dwci_BtnlInit = Symbol([0xB094], [0x2335D54], None, "Dwci_BtnlInit", "", None)
 
-    Dwci_BtnlEnd = Symbol(None, None, None, "Dwci_BtnlEnd", "", None)
+    Dwci_BtnlEnd = Symbol([0xB18C], [0x2335E4C], None, "Dwci_BtnlEnd", "", None)
 
-    Dwci_BtnlGet = Symbol(None, None, None, "Dwci_BtnlGet", "", None)
+    Dwci_BtnlGet = Symbol([0xB1BC], [0x2335E7C], None, "Dwci_BtnlGet", "", None)
 
-    Dwci_BtnlSet = Symbol(None, None, None, "Dwci_BtnlSet", "", None)
+    Dwci_BtnlSet = Symbol([0xB1D0], [0x2335E90], None, "Dwci_BtnlSet", "", None)
 
-    Dwci_BtnlSetForce = Symbol(None, None, None, "Dwci_BtnlSetForce", "", None)
+    Dwci_BtnlSetForce = Symbol(
+        [0xB1F0], [0x2335EB0], None, "Dwci_BtnlSetForce", "", None
+    )
 
-    Dwci_BtnlIsEnd = Symbol(None, None, None, "Dwci_BtnlIsEnd", "", None)
+    Dwci_BtnlIsEnd = Symbol([0xB204], [0x2335EC4], None, "Dwci_BtnlIsEnd", "", None)
 
-    Dwci_BtnlEnable = Symbol(None, None, None, "Dwci_BtnlEnable", "", None)
+    Dwci_BtnlEnable = Symbol([0xB230], [0x2335EF0], None, "Dwci_BtnlEnable", "", None)
 
-    Dwci_BtnlDisable = Symbol(None, None, None, "Dwci_BtnlDisable", "", None)
+    Dwci_BtnlDisable = Symbol([0xB248], [0x2335F08], None, "Dwci_BtnlDisable", "", None)
 
-    Button_Disp = Symbol(None, None, None, "Button_Disp", "", None)
+    Button_Disp = Symbol([0xB260], [0x2335F20], None, "Button_Disp", "", None)
 
-    Button_TaskStart = Symbol(None, None, None, "Button_TaskStart", "", None)
+    Button_TaskStart = Symbol([0xB2F4], [0x2335FB4], None, "Button_TaskStart", "", None)
 
-    Button_TaskStart1 = Symbol(None, None, None, "Button_TaskStart1", "", None)
+    Button_TaskStart1 = Symbol(
+        [0xB360], [0x2336020], None, "Button_TaskStart1", "", None
+    )
 
-    Button_TaskMain = Symbol(None, None, None, "Button_TaskMain", "", None)
+    Button_TaskMain = Symbol([0xB3B0], [0x2336070], None, "Button_TaskMain", "", None)
 
-    Button_TaskEnd = Symbol(None, None, None, "Button_TaskEnd", "", None)
+    Button_TaskEnd = Symbol([0xB53C], [0x23361FC], None, "Button_TaskEnd", "", None)
 
-    Button_TaskEnd1 = Symbol(None, None, None, "Button_TaskEnd1", "", None)
+    Button_TaskEnd1 = Symbol([0xB5A0], [0x2336260], None, "Button_TaskEnd1", "", None)
 
-    Button_TaskRelease = Symbol(None, None, None, "Button_TaskRelease", "", None)
+    Button_TaskRelease = Symbol(
+        [0xB618], [0x23362D8], None, "Button_TaskRelease", "", None
+    )
 
-    Dwci_CommentlInit = Symbol(None, None, None, "Dwci_CommentlInit", "", None)
+    Dwci_CommentlInit = Symbol(
+        [0xB708], [0x23363C8], None, "Dwci_CommentlInit", "", None
+    )
 
-    Dwci_CommentlDispEx = Symbol(None, None, None, "Dwci_CommentlDispEx", "", None)
+    Dwci_CommentlDispEx = Symbol(
+        [0xB71C], [0x23363DC], None, "Dwci_CommentlDispEx", "", None
+    )
 
-    Dwci_CommentlDelete = Symbol(None, None, None, "Dwci_CommentlDelete", "", None)
+    Dwci_CommentlDelete = Symbol(
+        [0xB7F0], [0x23364B0], None, "Dwci_CommentlDelete", "", None
+    )
 
-    Dwci_Char = Symbol(None, None, None, "Dwci_Char", "", None)
+    Dwci_Char = Symbol([0xB828], [0x23364E8], None, "Dwci_Char", "", None)
 
-    Dwci_CmnlLoadResource = Symbol(None, None, None, "Dwci_CmnlLoadResource", "", None)
+    Dwci_CmnlLoadResource = Symbol(
+        [0xB888], [0x2336548], None, "Dwci_CmnlLoadResource", "", None
+    )
 
-    Dwci_CmnlStep = Symbol(None, None, None, "Dwci_CmnlStep", "", None)
+    Dwci_CmnlStep = Symbol([0xB8C8], [0x2336588], None, "Dwci_CmnlStep", "", None)
 
-    Dwci_CmnlButton = Symbol(None, None, None, "Dwci_CmnlButton", "", None)
+    Dwci_CmnlButton = Symbol([0xB918], [0x23365D8], None, "Dwci_CmnlButton", "", None)
 
-    Dwci_CmnlMsgDraw = Symbol(None, None, None, "Dwci_CmnlMsgDraw", "", None)
+    Dwci_CmnlMsgDraw = Symbol([0xB950], [0x2336610], None, "Dwci_CmnlMsgDraw", "", None)
 
-    Dwci_CmnlMsgNameDraw = Symbol(None, None, None, "Dwci_CmnlMsgNameDraw", "", None)
+    Dwci_CmnlMsgNameDraw = Symbol(
+        [0xB9C4], [0x2336684], None, "Dwci_CmnlMsgNameDraw", "", None
+    )
 
-    Dwci_CmnlFontFlag = Symbol(None, None, None, "Dwci_CmnlFontFlag", "", None)
+    Dwci_CmnlFontFlag = Symbol(
+        [0xBA80], [0x2336740], None, "Dwci_CmnlFontFlag", "", None
+    )
 
-    Dwci_FocuslInit = Symbol(None, None, None, "Dwci_FocuslInit", "", None)
+    Dwci_FocuslInit = Symbol([0xBA98], [0x2336758], None, "Dwci_FocuslInit", "", None)
 
-    Dwci_FocuslEnd = Symbol(None, None, None, "Dwci_FocuslEnd", "", None)
+    Dwci_FocuslEnd = Symbol([0xBAB8], [0x2336778], None, "Dwci_FocuslEnd", "", None)
 
-    Dwci_FocuslDisp = Symbol(None, None, None, "Dwci_FocuslDisp", "", None)
+    Dwci_FocuslDisp = Symbol([0xBAD0], [0x2336790], None, "Dwci_FocuslDisp", "", None)
 
-    Dwci_FocuslDisp4 = Symbol(None, None, None, "Dwci_FocuslDisp4", "", None)
+    Dwci_FocuslDisp4 = Symbol([0xBB8C], [0x233684C], None, "Dwci_FocuslDisp4", "", None)
 
-    Dwci_FocuslDelete = Symbol(None, None, None, "Dwci_FocuslDelete", "", None)
+    Dwci_FocuslDelete = Symbol(
+        [0xBC7C], [0x233693C], None, "Dwci_FocuslDelete", "", None
+    )
 
-    Dwci_HLlInit = Symbol(None, None, None, "Dwci_HLlInit", "", None)
+    Dwci_HLlInit = Symbol([0xBCBC], [0x233697C], None, "Dwci_HLlInit", "", None)
 
-    Dwci_HLlEnd = Symbol(None, None, None, "Dwci_HLlEnd", "", None)
+    Dwci_HLlEnd = Symbol([0xBD34], [0x23369F4], None, "Dwci_HLlEnd", "", None)
 
-    Dwci_HLlLoad = Symbol(None, None, None, "Dwci_HLlLoad", "", None)
+    Dwci_HLlLoad = Symbol([0xBD48], [0x2336A08], None, "Dwci_HLlLoad", "", None)
 
-    Dwci_HLlLoadSet = Symbol(None, None, None, "Dwci_HLlLoadSet", "", None)
+    Dwci_HLlLoadSet = Symbol([0xBDA4], [0x2336A64], None, "Dwci_HLlLoadSet", "", None)
 
-    Dwci_HLlLoadList = Symbol(None, None, None, "Dwci_HLlLoadList", "", None)
+    Dwci_HLlLoadList = Symbol([0xBDBC], [0x2336A7C], None, "Dwci_HLlLoadList", "", None)
 
-    Headline_TaskLoad = Symbol(None, None, None, "Headline_TaskLoad", "", None)
+    Headline_TaskLoad = Symbol(
+        [0xBDD4], [0x2336A94], None, "Headline_TaskLoad", "", None
+    )
 
-    Dwci_IconlInit = Symbol(None, None, None, "Dwci_IconlInit", "", None)
+    Dwci_IconlInit = Symbol([0xBE14], [0x2336AD4], None, "Dwci_IconlInit", "", None)
 
-    Dwci_IconlEnd = Symbol(None, None, None, "Dwci_IconlEnd", "", None)
+    Dwci_IconlEnd = Symbol([0xBECC], [0x2336B8C], None, "Dwci_IconlEnd", "", None)
 
-    Icon_TaskRenew = Symbol(None, None, None, "Icon_TaskRenew", "", None)
+    Icon_TaskRenew = Symbol([0xBF10], [0x2336BD0], None, "Icon_TaskRenew", "", None)
 
-    Dwci_KBlInit = Symbol(None, None, None, "Dwci_KBlInit", "", None)
+    Dwci_KBlInit = Symbol([0xBFB8], [0x2336C78], None, "Dwci_KBlInit", "", None)
 
-    Dwci_KBlEnd = Symbol(None, None, None, "Dwci_KBlEnd", "", None)
+    Dwci_KBlEnd = Symbol([0xC31C], [0x2336FDC], None, "Dwci_KBlEnd", "", None)
 
-    Dwci_KBlGet = Symbol(None, None, None, "Dwci_KBlGet", "", None)
+    Dwci_KBlGet = Symbol([0xC350], [0x2337010], None, "Dwci_KBlGet", "", None)
 
-    Dwci_KBlSetErase = Symbol(None, None, None, "Dwci_KBlSetErase", "", None)
+    Dwci_KBlSetErase = Symbol([0xC364], [0x2337024], None, "Dwci_KBlSetErase", "", None)
 
-    Dwci_KBlSetInput = Symbol(None, None, None, "Dwci_KBlSetInput", "", None)
+    Dwci_KBlSetInput = Symbol([0xC378], [0x2337038], None, "Dwci_KBlSetInput", "", None)
 
-    Dwci_KBlIsInit = Symbol(None, None, None, "Dwci_KBlIsInit", "", None)
+    Dwci_KBlIsInit = Symbol([0xC38C], [0x233704C], None, "Dwci_KBlIsInit", "", None)
 
-    Keyboard_TaskStart0 = Symbol(None, None, None, "Keyboard_TaskStart0", "", None)
+    Keyboard_TaskStart0 = Symbol(
+        [0xC3A8], [0x2337068], None, "Keyboard_TaskStart0", "", None
+    )
 
-    Keyboard_TaskStart1 = Symbol(None, None, None, "Keyboard_TaskStart1", "", None)
+    Keyboard_TaskStart1 = Symbol(
+        [0xC43C], [0x23370FC], None, "Keyboard_TaskStart1", "", None
+    )
 
-    Keyboard_TaskStart2 = Symbol(None, None, None, "Keyboard_TaskStart2", "", None)
+    Keyboard_TaskStart2 = Symbol(
+        [0xC4D0], [0x2337190], None, "Keyboard_TaskStart2", "", None
+    )
 
-    Keyboard_TaskStart3 = Symbol(None, None, None, "Keyboard_TaskStart3", "", None)
+    Keyboard_TaskStart3 = Symbol(
+        [0xC564], [0x2337224], None, "Keyboard_TaskStart3", "", None
+    )
 
     Keyboard_TaskStart4 = Symbol(None, None, None, "Keyboard_TaskStart4", "", None)
 
-    Keyboard_TaskMain = Symbol(None, None, None, "Keyboard_TaskMain", "", None)
+    Keyboard_TaskMain = Symbol(
+        [0xC684], [0x2337344], None, "Keyboard_TaskMain", "", None
+    )
 
-    Keyboard_TouchTriger = Symbol(None, None, None, "Keyboard_TouchTriger", "", None)
+    Keyboard_TouchTriger = Symbol(
+        [0xC69C], [0x233735C], None, "Keyboard_TouchTriger", "", None
+    )
 
-    Keyboard_TouchRelease = Symbol(None, None, None, "Keyboard_TouchRelease", "", None)
+    Keyboard_TouchRelease = Symbol(
+        [0xC884], [0x2337544], None, "Keyboard_TouchRelease", "", None
+    )
 
-    Keyboard_PushCaps = Symbol(None, None, None, "Keyboard_PushCaps", "", None)
+    Keyboard_PushCaps = Symbol(
+        [0xCB6C], [0x233782C], None, "Keyboard_PushCaps", "", None
+    )
 
-    Keyboard_PushShift = Symbol(None, None, None, "Keyboard_PushShift", "", None)
+    Keyboard_PushShift = Symbol(
+        [0xCB9C], [0x233785C], None, "Keyboard_PushShift", "", None
+    )
 
-    Keyboard_Touch = Symbol(None, None, None, "Keyboard_Touch", "", None)
+    Keyboard_Touch = Symbol([0xCBCC], [0x233788C], None, "Keyboard_Touch", "", None)
 
-    Keyboard_ExchangeBack = Symbol(None, None, None, "Keyboard_ExchangeBack", "", None)
+    Keyboard_ExchangeBack = Symbol(
+        [0xCDD0], [0x2337A90], None, "Keyboard_ExchangeBack", "", None
+    )
 
-    Keyboard_Key = Symbol(None, None, None, "Keyboard_Key", "", None)
+    Keyboard_Key = Symbol([0xCE24], [0x2337AE4], None, "Keyboard_Key", "", None)
 
-    Keyboard_Disp = Symbol(None, None, None, "Keyboard_Disp", "", None)
+    Keyboard_Disp = Symbol([0xD054], [0x2337D14], None, "Keyboard_Disp", "", None)
 
-    Keyboard_ChangePage = Symbol(None, None, None, "Keyboard_ChangePage", "", None)
+    Keyboard_ChangePage = Symbol(
+        [0xD2D0], [0x2337F90], None, "Keyboard_ChangePage", "", None
+    )
 
-    Keyboard_ChangeColor = Symbol(None, None, None, "Keyboard_ChangeColor", "", None)
+    Keyboard_ChangeColor = Symbol(
+        [0xD354], [0x2338014], None, "Keyboard_ChangeColor", "", None
+    )
 
-    Keyboard_DispFocus = Symbol(None, None, None, "Keyboard_DispFocus", "", None)
+    Keyboard_DispFocus = Symbol(
+        [0xD41C], [0x23380DC], None, "Keyboard_DispFocus", "", None
+    )
 
-    Keyboard_MoveFocus = Symbol(None, None, None, "Keyboard_MoveFocus", "", None)
+    Keyboard_MoveFocus = Symbol(
+        [0xD4F8], [0x23381B8], None, "Keyboard_MoveFocus", "", None
+    )
 
-    Keyboard_TaskEnd0 = Symbol(None, None, None, "Keyboard_TaskEnd0", "", None)
+    Keyboard_TaskEnd0 = Symbol(
+        [0xD930], [0x23385F0], None, "Keyboard_TaskEnd0", "", None
+    )
 
-    Keyboard_TaskEnd1 = Symbol(None, None, None, "Keyboard_TaskEnd1", "", None)
+    Keyboard_TaskEnd1 = Symbol(
+        [0xD9B4], [0x2338674], None, "Keyboard_TaskEnd1", "", None
+    )
 
-    Keyboard_TaskEnd2 = Symbol(None, None, None, "Keyboard_TaskEnd2", "", None)
+    Keyboard_TaskEnd2 = Symbol(
+        [0xDA28], [0x23386E8], None, "Keyboard_TaskEnd2", "", None
+    )
 
-    Keyboard_TaskEnd3 = Symbol(None, None, None, "Keyboard_TaskEnd3", "", None)
+    Keyboard_TaskEnd3 = Symbol(
+        [0xDA9C], [0x233875C], None, "Keyboard_TaskEnd3", "", None
+    )
 
-    Keyboard_TaskEnd4 = Symbol(None, None, None, "Keyboard_TaskEnd4", "", None)
+    Keyboard_TaskEnd4 = Symbol(
+        [0xDB10], [0x23387D0], None, "Keyboard_TaskEnd4", "", None
+    )
 
-    Keyboard_TaskEnd5 = Symbol(None, None, None, "Keyboard_TaskEnd5", "", None)
+    Keyboard_TaskEnd5 = Symbol(
+        [0xDB84], [0x2338844], None, "Keyboard_TaskEnd5", "", None
+    )
 
-    Dwci_KB10lInit = Symbol(None, None, None, "Dwci_KB10lInit", "", None)
+    Dwci_KB10lInit = Symbol([0xDC64], [0x2338924], None, "Dwci_KB10lInit", "", None)
 
-    Dwci_KB10lEnd = Symbol(None, None, None, "Dwci_KB10lEnd", "", None)
+    Dwci_KB10lEnd = Symbol([0xDFA0], [0x2338C60], None, "Dwci_KB10lEnd", "", None)
 
-    Dwci_KB10lGet = Symbol(None, None, None, "Dwci_KB10lGet", "", None)
+    Dwci_KB10lGet = Symbol([0xDFD4], [0x2338C94], None, "Dwci_KB10lGet", "", None)
 
-    Dwci_KB10lSetErase = Symbol(None, None, None, "Dwci_KB10lSetErase", "", None)
+    Dwci_KB10lSetErase = Symbol(
+        [0xDFE8], [0x2338CA8], None, "Dwci_KB10lSetErase", "", None
+    )
 
-    Dwci_KB10lSetInput = Symbol(None, None, None, "Dwci_KB10lSetInput", "", None)
+    Dwci_KB10lSetInput = Symbol(
+        [0xDFFC], [0x2338CBC], None, "Dwci_KB10lSetInput", "", None
+    )
 
-    Dwci_KB10lSetShift = Symbol(None, None, None, "Dwci_KB10lSetShift", "", None)
+    Dwci_KB10lSetShift = Symbol(
+        [0xE010], [0x2338CD0], None, "Dwci_KB10lSetShift", "", None
+    )
 
-    Dwci_KB10lIsInit = Symbol(None, None, None, "Dwci_KB10lIsInit", "", None)
+    Dwci_KB10lIsInit = Symbol([0xE024], [0x2338CE4], None, "Dwci_KB10lIsInit", "", None)
 
-    Keyboard10_TaskStart0 = Symbol(None, None, None, "Keyboard10_TaskStart0", "", None)
+    Keyboard10_TaskStart0 = Symbol(
+        [0xE040], [0x2338D00], None, "Keyboard10_TaskStart0", "", None
+    )
 
-    Keyboard10_TaskStart1 = Symbol(None, None, None, "Keyboard10_TaskStart1", "", None)
+    Keyboard10_TaskStart1 = Symbol(
+        [0xE0C4], [0x2338D84], None, "Keyboard10_TaskStart1", "", None
+    )
 
-    Keyboard10_TaskStart2 = Symbol(None, None, None, "Keyboard10_TaskStart2", "", None)
+    Keyboard10_TaskStart2 = Symbol(
+        [0xE148], [0x2338E08], None, "Keyboard10_TaskStart2", "", None
+    )
 
-    Keyboard10_TaskStart3 = Symbol(None, None, None, "Keyboard10_TaskStart3", "", None)
+    Keyboard10_TaskStart3 = Symbol(
+        [0xE1CC], [0x2338E8C], None, "Keyboard10_TaskStart3", "", None
+    )
 
-    Keyboard10_TaskStart4 = Symbol(None, None, None, "Keyboard10_TaskStart4", "", None)
+    Keyboard10_TaskStart4 = Symbol(
+        [0xE250], [0x2338F10], None, "Keyboard10_TaskStart4", "", None
+    )
 
-    Keyboard10_TaskMain = Symbol(None, None, None, "Keyboard10_TaskMain", "", None)
+    Keyboard10_TaskMain = Symbol(
+        [0xE2C4], [0x2338F84], None, "Keyboard10_TaskMain", "", None
+    )
 
     Keyboard10_TouchTriger = Symbol(
-        None, None, None, "Keyboard10_TouchTriger", "", None
+        [0xE2DC], [0x2338F9C], None, "Keyboard10_TouchTriger", "", None
     )
 
     Keyboard10_TouchRelease = Symbol(
-        None, None, None, "Keyboard10_TouchRelease", "", None
+        [0xE4B8], [0x2339178], None, "Keyboard10_TouchRelease", "", None
     )
 
-    Keyboard10_Touch = Symbol(None, None, None, "Keyboard10_Touch", "", None)
+    Keyboard10_Touch = Symbol([0xE688], [0x2339348], None, "Keyboard10_Touch", "", None)
 
     Keyboard10_ExchangeBack = Symbol(
-        None, None, None, "Keyboard10_ExchangeBack", "", None
+        [0xE878], [0x2339538], None, "Keyboard10_ExchangeBack", "", None
     )
 
-    Keyboard10_Key = Symbol(None, None, None, "Keyboard10_Key", "", None)
+    Keyboard10_Key = Symbol([0xE8C4], [0x2339584], None, "Keyboard10_Key", "", None)
 
-    Keyboard10_Disp = Symbol(None, None, None, "Keyboard10_Disp", "", None)
+    Keyboard10_Disp = Symbol([0xEA60], [0x2339720], None, "Keyboard10_Disp", "", None)
 
     Keyboard10_ChangeColor = Symbol(
-        None, None, None, "Keyboard10_ChangeColor", "", None
+        [0xECC0], [0x2339980], None, "Keyboard10_ChangeColor", "", None
     )
 
-    Keyboard10_DispFocus = Symbol(None, None, None, "Keyboard10_DispFocus", "", None)
+    Keyboard10_DispFocus = Symbol(
+        [0xED88], [0x2339A48], None, "Keyboard10_DispFocus", "", None
+    )
 
-    Keyboard10_MoveFocus = Symbol(None, None, None, "Keyboard10_MoveFocus", "", None)
+    Keyboard10_MoveFocus = Symbol(
+        [0xEE14], [0x2339AD4], None, "Keyboard10_MoveFocus", "", None
+    )
 
-    Keyboard10_TaskEnd0 = Symbol(None, None, None, "Keyboard10_TaskEnd0", "", None)
+    Keyboard10_TaskEnd0 = Symbol(
+        [0xEEC0], [0x2339B80], None, "Keyboard10_TaskEnd0", "", None
+    )
 
-    Keyboard10_TaskEnd1 = Symbol(None, None, None, "Keyboard10_TaskEnd1", "", None)
+    Keyboard10_TaskEnd1 = Symbol(
+        [0xEF38], [0x2339BF8], None, "Keyboard10_TaskEnd1", "", None
+    )
 
-    Keyboard10_TaskEnd2 = Symbol(None, None, None, "Keyboard10_TaskEnd2", "", None)
+    Keyboard10_TaskEnd2 = Symbol(
+        [0xEFA8], [0x2339C68], None, "Keyboard10_TaskEnd2", "", None
+    )
 
-    Keyboard10_TaskEnd3 = Symbol(None, None, None, "Keyboard10_TaskEnd3", "", None)
+    Keyboard10_TaskEnd3 = Symbol(
+        [0xF018], [0x2339CD8], None, "Keyboard10_TaskEnd3", "", None
+    )
 
-    Keyboard10_TaskEnd4 = Symbol(None, None, None, "Keyboard10_TaskEnd4", "", None)
+    Keyboard10_TaskEnd4 = Symbol(
+        [0xF088], [0x2339D48], None, "Keyboard10_TaskEnd4", "", None
+    )
 
-    Keyboard10_TaskEnd5 = Symbol(None, None, None, "Keyboard10_TaskEnd5", "", None)
+    Keyboard10_TaskEnd5 = Symbol(
+        [0xF0F8], [0x2339DB8], None, "Keyboard10_TaskEnd5", "", None
+    )
 
-    Dwci_AosslInit = Symbol(None, None, None, "Dwci_AosslInit", "", None)
+    Dwci_AosslInit = Symbol([0xF1B8], [0x2339E78], None, "Dwci_AosslInit", "", None)
 
-    Dwci_AosslEnd = Symbol(None, None, None, "Dwci_AosslEnd", "", None)
+    Dwci_AosslEnd = Symbol([0xF2C8], [0x2339F88], None, "Dwci_AosslEnd", "", None)
 
-    Dwci_AosslStart = Symbol(None, None, None, "Dwci_AosslStart", "", None)
+    Dwci_AosslStart = Symbol([0xF318], [0x2339FD8], None, "Dwci_AosslStart", "", None)
 
-    AossAlloc = Symbol(None, None, None, "AossAlloc", "", None)
+    AossAlloc = Symbol([0xF378], [0x233A038], None, "AossAlloc", "", None)
 
-    AossFree = Symbol(None, None, None, "AossFree", "", None)
+    AossFree = Symbol([0xF388], [0x233A048], None, "AossFree", "", None)
 
-    Dwc_StartUtility = Symbol(None, None, None, "Dwc_StartUtility", "", None)
+    Dwc_StartUtility = Symbol([0xF394], [0x233A054], None, "Dwc_StartUtility", "", None)
 
-    Main_CheckParam = Symbol(None, None, None, "Main_CheckParam", "", None)
+    Main_CheckParam = Symbol([0xF43C], [0x233A0FC], None, "Main_CheckParam", "", None)
 
-    Main_InitGame = Symbol(None, None, None, "Main_InitGame", "", None)
+    Main_InitGame = Symbol([0xF4B8], [0x233A178], None, "Main_InitGame", "", None)
 
-    Main_InitGraph = Symbol(None, None, None, "Main_InitGraph", "", None)
+    Main_InitGraph = Symbol([0xF580], [0x233A240], None, "Main_InitGraph", "", None)
 
-    Main_ProcEnd = Symbol(None, None, None, "Main_ProcEnd", "", None)
+    Main_ProcEnd = Symbol([0xF7F8], [0x233A4B8], None, "Main_ProcEnd", "", None)
 
-    Dwci_ChangeScene = Symbol(None, None, None, "Dwci_ChangeScene", "", None)
+    Dwci_ChangeScene = Symbol([0xF848], [0x233A508], None, "Dwci_ChangeScene", "", None)
 
-    Dwci_SetParam = Symbol(None, None, None, "Dwci_SetParam", "", None)
+    Dwci_SetParam = Symbol([0xF858], [0x233A518], None, "Dwci_SetParam", "", None)
 
-    Dwci_GetParam = Symbol(None, None, None, "Dwci_GetParam", "", None)
+    Dwci_GetParam = Symbol([0xF86C], [0x233A52C], None, "Dwci_GetParam", "", None)
 
-    Dwci_SetParam2 = Symbol(None, None, None, "Dwci_SetParam2", "", None)
+    Dwci_SetParam2 = Symbol([0xF894], [0x233A554], None, "Dwci_SetParam2", "", None)
 
-    Dwci_GetParam2 = Symbol(None, None, None, "Dwci_GetParam2", "", None)
+    Dwci_GetParam2 = Symbol([0xF8A8], [0x233A568], None, "Dwci_GetParam2", "", None)
 
-    Dwci_Language = Symbol(None, None, None, "Dwci_Language", "", None)
+    Dwci_Language = Symbol(
+        [0xF8D0, 0xF928], [0x233A590, 0x233A5E8], None, "Dwci_Language", "", None
+    )
 
-    Dwci_Entry = Symbol(None, None, None, "Dwci_Entry", "", None)
+    Dwci_Entry = Symbol([0xF8E0], [0x233A5A0], None, "Dwci_Entry", "", None)
 
-    Dwci_Flag = Symbol(None, None, None, "Dwci_Flag", "", None)
+    Dwci_Flag = Symbol([0xF8F8], [0x233A5B8], None, "Dwci_Flag", "", None)
 
-    Dwci_EndUtility = Symbol(None, None, None, "Dwci_EndUtility", "", None)
+    Dwci_EndUtility = Symbol([0xF914], [0x233A5D4], None, "Dwci_EndUtility", "", None)
 
-    Dwci_MsglInit = Symbol(None, None, None, "Dwci_MsglInit", "", None)
+    Dwci_MsglInit = Symbol([0xF968], [0x233A628], None, "Dwci_MsglInit", "", None)
 
-    Dwci_MsglEnd = Symbol(None, None, None, "Dwci_MsglEnd", "", None)
+    Dwci_MsglEnd = Symbol([0xF9A4], [0x233A664], None, "Dwci_MsglEnd", "", None)
 
-    Dwci_MsglRead = Symbol(None, None, None, "Dwci_MsglRead", "", None)
+    Dwci_MsglRead = Symbol([0xF9B8], [0x233A678], None, "Dwci_MsglRead", "", None)
 
-    Dwci_MsglRelease = Symbol(None, None, None, "Dwci_MsglRelease", "", None)
+    Dwci_MsglRelease = Symbol([0xFA10], [0x233A6D0], None, "Dwci_MsglRelease", "", None)
 
-    Dwci_MsglGet = Symbol(None, None, None, "Dwci_MsglGet", "", None)
+    Dwci_MsglGet = Symbol([0xFA3C], [0x233A6FC], None, "Dwci_MsglGet", "", None)
 
-    Dwci_MsglGetEx = Symbol(None, None, None, "Dwci_MsglGetEx", "", None)
+    Dwci_MsglGetEx = Symbol([0xFA54], [0x233A714], None, "Dwci_MsglGetEx", "", None)
 
-    Dwci_MovlInit = Symbol(None, None, None, "Dwci_MovlInit", "", None)
+    Dwci_MovlInit = Symbol([0xFA80], [0x233A740], None, "Dwci_MovlInit", "", None)
 
-    Dwci_MovlEnd = Symbol(None, None, None, "Dwci_MovlEnd", "", None)
+    Dwci_MovlEnd = Symbol([0xFB6C], [0x233A82C], None, "Dwci_MovlEnd", "", None)
 
-    Move_TaskEnd = Symbol(None, None, None, "Move_TaskEnd", "", None)
+    Move_TaskEnd = Symbol([0xFB8C], [0x233A84C], None, "Move_TaskEnd", "", None)
 
-    Dwci_MovlIsEnd = Symbol(None, None, None, "Dwci_MovlIsEnd", "", None)
+    Dwci_MovlIsEnd = Symbol([0xFBC8], [0x233A888], None, "Dwci_MovlIsEnd", "", None)
 
     Dwci_MovlChangeCallback = Symbol(
-        None, None, None, "Dwci_MovlChangeCallback", "", None
+        [0xFBE4], [0x233A8A4], None, "Dwci_MovlChangeCallback", "", None
     )
 
-    Dwci_MovlAdmitChild = Symbol(None, None, None, "Dwci_MovlAdmitChild", "", None)
+    Dwci_MovlAdmitChild = Symbol(
+        [0xFBFC], [0x233A8BC], None, "Dwci_MovlAdmitChild", "", None
+    )
 
-    Dwci_MovlGetChild = Symbol(None, None, None, "Dwci_MovlGetChild", "", None)
+    Dwci_MovlGetChild = Symbol(
+        [0xFC08], [0x233A8C8], None, "Dwci_MovlGetChild", "", None
+    )
 
-    Move_TaskFramework = Symbol(None, None, None, "Move_TaskFramework", "", None)
+    Move_TaskFramework = Symbol(
+        [0xFC20], [0x233A8E0], None, "Move_TaskFramework", "", None
+    )
 
-    Dwci_RakulInit = Symbol(None, None, None, "Dwci_RakulInit", "", None)
+    Dwci_RakulInit = Symbol([0xFEC0], [0x233AB80], None, "Dwci_RakulInit", "", None)
 
-    Dwci_RakulEnd = Symbol(None, None, None, "Dwci_RakulEnd", "", None)
+    Dwci_RakulEnd = Symbol([0xFF2C], [0x233ABEC], None, "Dwci_RakulEnd", "", None)
 
-    Dwci_RakulGetState = Symbol(None, None, None, "Dwci_RakulGetState", "", None)
+    Dwci_RakulGetState = Symbol(
+        [0xFF50], [0x233AC10], None, "Dwci_RakulGetState", "", None
+    )
 
-    Dwci_RakulSetResult = Symbol(None, None, None, "Dwci_RakulSetResult", "", None)
+    Dwci_RakulSetResult = Symbol(
+        [0x1000C], [0x233ACCC], None, "Dwci_RakulSetResult", "", None
+    )
 
-    RakuRaku_MemAlloc = Symbol(None, None, None, "RakuRaku_MemAlloc", "", None)
+    RakuRaku_MemAlloc = Symbol(
+        [0x10038], [0x233ACF8], None, "RakuRaku_MemAlloc", "", None
+    )
 
-    RakuRaku_MemFree = Symbol(None, None, None, "RakuRaku_MemFree", "", None)
+    RakuRaku_MemFree = Symbol(
+        [0x10050], [0x233AD10], None, "RakuRaku_MemFree", "", None
+    )
 
-    RakuRaku_CbConfig = Symbol(None, None, None, "RakuRaku_CbConfig", "", None)
+    RakuRaku_CbConfig = Symbol(
+        [0x10060], [0x233AD20], None, "RakuRaku_CbConfig", "", None
+    )
 
-    Dwci_SceneEnd = Symbol(None, None, None, "Dwci_SceneEnd", "", None)
+    Dwci_SceneEnd = Symbol([0x1006C], [0x233AD2C], None, "Dwci_SceneEnd", "", None)
 
-    SceneEnd_EndScene = Symbol(None, None, None, "SceneEnd_EndScene", "", None)
+    SceneEnd_EndScene = Symbol(
+        [0x100A8], [0x233AD68], None, "SceneEnd_EndScene", "", None
+    )
 
-    Dwci_SceneInit = Symbol(None, None, None, "Dwci_SceneInit", "", None)
+    Dwci_SceneInit = Symbol([0x1011C], [0x233ADDC], None, "Dwci_SceneInit", "", None)
 
-    SceneInit_ProcFade = Symbol(None, None, None, "SceneInit_ProcFade", "", None)
+    SceneInit_ProcFade = Symbol(
+        [0x102FC], [0x233AFBC], None, "SceneInit_ProcFade", "", None
+    )
 
-    SceneInit_ProcWait = Symbol(None, None, None, "SceneInit_ProcWait", "", None)
+    SceneInit_ProcWait = Symbol(
+        [0x10338], [0x233AFF8], None, "SceneInit_ProcWait", "", None
+    )
 
-    Dwci_SceneMenu = Symbol(None, None, None, "Dwci_SceneMenu", "", None)
+    Dwci_SceneMenu = Symbol([0x103AC], [0x233B06C], None, "Dwci_SceneMenu", "", None)
 
     SceneMenu_InitGraphics = Symbol(
-        None, None, None, "SceneMenu_InitGraphics", "", None
+        [0x10428], [0x233B0E8], None, "SceneMenu_InitGraphics", "", None
     )
 
-    SceneMenu_ProcInit = Symbol(None, None, None, "SceneMenu_ProcInit", "", None)
+    SceneMenu_ProcInit = Symbol(
+        [0x10514], [0x233B1D4], None, "SceneMenu_ProcInit", "", None
+    )
 
-    SceneMenu_ProcInit1 = Symbol(None, None, None, "SceneMenu_ProcInit1", "", None)
+    SceneMenu_ProcInit1 = Symbol(
+        [0x10568], [0x233B228], None, "SceneMenu_ProcInit1", "", None
+    )
 
-    SceneMenu_ProcInit2 = Symbol(None, None, None, "SceneMenu_ProcInit2", "", None)
+    SceneMenu_ProcInit2 = Symbol(
+        [0x105A4], [0x233B264], None, "SceneMenu_ProcInit2", "", None
+    )
 
-    SceneMenu_ProcScene = Symbol(None, None, None, "SceneMenu_ProcScene", "", None)
+    SceneMenu_ProcScene = Symbol(
+        [0x105CC], [0x233B28C], None, "SceneMenu_ProcScene", "", None
+    )
 
-    SceneMenu_Input = Symbol(None, None, None, "SceneMenu_Input", "", None)
+    SceneMenu_Input = Symbol([0x105E0], [0x233B2A0], None, "SceneMenu_Input", "", None)
 
-    SceneMenu_Draw = Symbol(None, None, None, "SceneMenu_Draw", "", None)
+    SceneMenu_Draw = Symbol([0x1070C], [0x233B3CC], None, "SceneMenu_Draw", "", None)
 
-    SceneMenu_Button = Symbol(None, None, None, "SceneMenu_Button", "", None)
+    SceneMenu_Button = Symbol(
+        [0x10710], [0x233B3D0], None, "SceneMenu_Button", "", None
+    )
 
-    SceneMenu_EndScene = Symbol(None, None, None, "SceneMenu_EndScene", "", None)
+    SceneMenu_EndScene = Symbol(
+        [0x10760], [0x233B420], None, "SceneMenu_EndScene", "", None
+    )
 
-    SceneMenu_EndScene1 = Symbol(None, None, None, "SceneMenu_EndScene1", "", None)
+    SceneMenu_EndScene1 = Symbol(
+        [0x10780], [0x233B440], None, "SceneMenu_EndScene1", "", None
+    )
 
-    SceneMenu_EndScene2 = Symbol(None, None, None, "SceneMenu_EndScene2", "", None)
+    SceneMenu_EndScene2 = Symbol(
+        [0x107CC], [0x233B48C], None, "SceneMenu_EndScene2", "", None
+    )
 
-    SceneMenu_MoveFocus = Symbol(None, None, None, "SceneMenu_MoveFocus", "", None)
+    SceneMenu_MoveFocus = Symbol(
+        [0x10874], [0x233B534], None, "SceneMenu_MoveFocus", "", None
+    )
 
     SceneMenu_DispPushButton = Symbol(
-        None, None, None, "SceneMenu_DispPushButton", "", None
+        [0x108E4], [0x233B5A4], None, "SceneMenu_DispPushButton", "", None
     )
 
-    Dwci_SceneOptErase = Symbol(None, None, None, "Dwci_SceneOptErase", "", None)
+    Dwci_SceneOptErase = Symbol(
+        [0x10924], [0x233B5E4], None, "Dwci_SceneOptErase", "", None
+    )
 
     SceneOptErase_InitGraphics = Symbol(
-        None, None, None, "SceneOptErase_InitGraphics", "", None
+        [0x1096C], [0x233B62C], None, "SceneOptErase_InitGraphics", "", None
     )
 
     SceneOptErase_ProcInit = Symbol(
-        None, None, None, "SceneOptErase_ProcInit", "", None
+        [0x109EC], [0x233B6AC], None, "SceneOptErase_ProcInit", "", None
     )
 
     SceneOptErase_ProcInit1 = Symbol(
-        None, None, None, "SceneOptErase_ProcInit1", "", None
+        [0x10A40], [0x233B700], None, "SceneOptErase_ProcInit1", "", None
     )
 
     SceneOptErase_ProcInit2 = Symbol(
-        None, None, None, "SceneOptErase_ProcInit2", "", None
+        [0x10A7C], [0x233B73C], None, "SceneOptErase_ProcInit2", "", None
     )
 
     SceneOptErase_ProcScene = Symbol(
-        None, None, None, "SceneOptErase_ProcScene", "", None
+        [0x10AA4], [0x233B764], None, "SceneOptErase_ProcScene", "", None
     )
 
-    SceneOptErase_Input = Symbol(None, None, None, "SceneOptErase_Input", "", None)
+    SceneOptErase_Input = Symbol(
+        [0x10AB8], [0x233B778], None, "SceneOptErase_Input", "", None
+    )
 
-    SceneOptErase_Draw = Symbol(None, None, None, "SceneOptErase_Draw", "", None)
+    SceneOptErase_Draw = Symbol(
+        [0x10AF0], [0x233B7B0], None, "SceneOptErase_Draw", "", None
+    )
 
-    SceneOptErase_Button = Symbol(None, None, None, "SceneOptErase_Button", "", None)
+    SceneOptErase_Button = Symbol(
+        [0x10AF4], [0x233B7B4], None, "SceneOptErase_Button", "", None
+    )
 
     SceneOptErase_EndScene = Symbol(
-        None, None, None, "SceneOptErase_EndScene", "", None
+        [0x10B5C], [0x233B81C], None, "SceneOptErase_EndScene", "", None
     )
 
     SceneOptErase_EndScene1 = Symbol(
-        None, None, None, "SceneOptErase_EndScene1", "", None
+        [0x10B7C], [0x233B83C], None, "SceneOptErase_EndScene1", "", None
     )
 
     SceneOptErase_EndScene2 = Symbol(
-        None, None, None, "SceneOptErase_EndScene2", "", None
+        [0x10BE0], [0x233B8A0], None, "SceneOptErase_EndScene2", "", None
     )
 
     SceneOptErase_ProcConfirm = Symbol(
-        None, None, None, "SceneOptErase_ProcConfirm", "", None
+        [0x10C98], [0x233B958], None, "SceneOptErase_ProcConfirm", "", None
     )
 
     SceneOptErase_ProcConfirm1 = Symbol(
-        None, None, None, "SceneOptErase_ProcConfirm1", "", None
+        [0x10CE8], [0x233B9A8], None, "SceneOptErase_ProcConfirm1", "", None
     )
 
-    Dwci_SceneOptErase1 = Symbol(None, None, None, "Dwci_SceneOptErase1", "", None)
+    Dwci_SceneOptErase1 = Symbol(
+        [0x10D08], [0x233B9C8], None, "Dwci_SceneOptErase1", "", None
+    )
 
     SceneOptErase1_InitGraphics = Symbol(
-        None, None, None, "SceneOptErase1_InitGraphics", "", None
+        [0x10D2C], [0x233B9EC], None, "SceneOptErase1_InitGraphics", "", None
     )
 
     SceneOptErase1_ProcInit = Symbol(
-        None, None, None, "SceneOptErase1_ProcInit", "", None
+        [0x10DAC], [0x233BA6C], None, "SceneOptErase1_ProcInit", "", None
     )
 
     SceneOptErase1_ProcInit1 = Symbol(
-        None, None, None, "SceneOptErase1_ProcInit1", "", None
+        [0x10DE0], [0x233BAA0], None, "SceneOptErase1_ProcInit1", "", None
     )
 
     SceneOptErase1_ProcInit2 = Symbol(
-        None, None, None, "SceneOptErase1_ProcInit2", "", None
+        [0x10E0C], [0x233BACC], None, "SceneOptErase1_ProcInit2", "", None
     )
 
     SceneOptErase1_ProcScene = Symbol(
-        None, None, None, "SceneOptErase1_ProcScene", "", None
+        [0x10E34], [0x233BAF4], None, "SceneOptErase1_ProcScene", "", None
     )
 
-    SceneOptErase1_Input = Symbol(None, None, None, "SceneOptErase1_Input", "", None)
+    SceneOptErase1_Input = Symbol(
+        [0x10E48], [0x233BB08], None, "SceneOptErase1_Input", "", None
+    )
 
-    SceneOptErase1_Draw = Symbol(None, None, None, "SceneOptErase1_Draw", "", None)
+    SceneOptErase1_Draw = Symbol(
+        [0x10E68], [0x233BB28], None, "SceneOptErase1_Draw", "", None
+    )
 
-    SceneOptErase1_Button = Symbol(None, None, None, "SceneOptErase1_Button", "", None)
+    SceneOptErase1_Button = Symbol(
+        [0x10E6C], [0x233BB2C], None, "SceneOptErase1_Button", "", None
+    )
 
     SceneOptErase1_EndScene = Symbol(
-        None, None, None, "SceneOptErase1_EndScene", "", None
+        [0x10E94], [0x233BB54], None, "SceneOptErase1_EndScene", "", None
     )
 
     SceneOptErase1_EndScene1 = Symbol(
-        None, None, None, "SceneOptErase1_EndScene1", "", None
+        [0x10EB4], [0x233BB74], None, "SceneOptErase1_EndScene1", "", None
     )
 
     SceneOptErase1_EndScene2 = Symbol(
-        None, None, None, "SceneOptErase1_EndScene2", "", None
+        [0x10F00], [0x233BBC0], None, "SceneOptErase1_EndScene2", "", None
     )
 
-    Dwci_SceneOptInfo = Symbol(None, None, None, "Dwci_SceneOptInfo", "", None)
+    Dwci_SceneOptInfo = Symbol(
+        [0x10F34], [0x233BBF4], None, "Dwci_SceneOptInfo", "", None
+    )
 
     SceneOptInfo_InitGraphics = Symbol(
-        None, None, None, "SceneOptInfo_InitGraphics", "", None
+        [0x10F68], [0x233BC28], None, "SceneOptInfo_InitGraphics", "", None
     )
 
-    SceneOptInfo_DrawInfo = Symbol(None, None, None, "SceneOptInfo_DrawInfo", "", None)
+    SceneOptInfo_DrawInfo = Symbol(
+        [0x10FE8], [0x233BCA8], None, "SceneOptInfo_DrawInfo", "", None
+    )
 
-    SceneOptInfo_ProcInit = Symbol(None, None, None, "SceneOptInfo_ProcInit", "", None)
+    SceneOptInfo_ProcInit = Symbol(
+        [0x111EC], [0x233BEAC], None, "SceneOptInfo_ProcInit", "", None
+    )
 
     SceneOptInfo_ProcInit1 = Symbol(
-        None, None, None, "SceneOptInfo_ProcInit1", "", None
+        [0x11240], [0x233BF00], None, "SceneOptInfo_ProcInit1", "", None
     )
 
     SceneOptInfo_ProcInit2 = Symbol(
-        None, None, None, "SceneOptInfo_ProcInit2", "", None
+        [0x1127C], [0x233BF3C], None, "SceneOptInfo_ProcInit2", "", None
     )
 
     SceneOptInfo_ProcScene = Symbol(
-        None, None, None, "SceneOptInfo_ProcScene", "", None
+        [0x112A4], [0x233BF64], None, "SceneOptInfo_ProcScene", "", None
     )
 
-    SceneOptInfo_Input = Symbol(None, None, None, "SceneOptInfo_Input", "", None)
+    SceneOptInfo_Input = Symbol(
+        [0x112B8], [0x233BF78], None, "SceneOptInfo_Input", "", None
+    )
 
-    SceneOptInfo_Draw = Symbol(None, None, None, "SceneOptInfo_Draw", "", None)
+    SceneOptInfo_Draw = Symbol(
+        [0x112D8], [0x233BF98], None, "SceneOptInfo_Draw", "", None
+    )
 
-    SceneOptInfo_Button = Symbol(None, None, None, "SceneOptInfo_Button", "", None)
+    SceneOptInfo_Button = Symbol(
+        [0x112DC], [0x233BF9C], None, "SceneOptInfo_Button", "", None
+    )
 
-    SceneOptInfo_EndScene = Symbol(None, None, None, "SceneOptInfo_EndScene", "", None)
+    SceneOptInfo_EndScene = Symbol(
+        [0x11304], [0x233BFC4], None, "SceneOptInfo_EndScene", "", None
+    )
 
     SceneOptInfo_EndScene1 = Symbol(
-        None, None, None, "SceneOptInfo_EndScene1", "", None
+        [0x11324], [0x233BFE4], None, "SceneOptInfo_EndScene1", "", None
     )
 
     SceneOptInfo_EndScene2 = Symbol(
-        None, None, None, "SceneOptInfo_EndScene2", "", None
+        [0x11374], [0x233C034], None, "SceneOptInfo_EndScene2", "", None
     )
 
-    Dwci_SceneOptMenu = Symbol(None, None, None, "Dwci_SceneOptMenu", "", None)
+    Dwci_SceneOptMenu = Symbol(
+        [0x113E4], [0x233C0A4], None, "Dwci_SceneOptMenu", "", None
+    )
 
     SceneOptMenu_InitGraphics = Symbol(
-        None, None, None, "SceneOptMenu_InitGraphics", "", None
+        [0x114AC], [0x233C16C], None, "SceneOptMenu_InitGraphics", "", None
     )
 
-    SceneOptMenu_ProcInit = Symbol(None, None, None, "SceneOptMenu_ProcInit", "", None)
+    SceneOptMenu_ProcInit = Symbol(
+        [0x11648], [0x233C308], None, "SceneOptMenu_ProcInit", "", None
+    )
 
     SceneOptMenu_ProcInit1 = Symbol(
-        None, None, None, "SceneOptMenu_ProcInit1", "", None
+        [0x1169C], [0x233C35C], None, "SceneOptMenu_ProcInit1", "", None
     )
 
     SceneOptMenu_ProcInit2 = Symbol(
-        None, None, None, "SceneOptMenu_ProcInit2", "", None
+        [0x116D8], [0x233C398], None, "SceneOptMenu_ProcInit2", "", None
     )
 
     SceneOptMenu_ProcScene = Symbol(
-        None, None, None, "SceneOptMenu_ProcScene", "", None
+        [0x11700], [0x233C3C0], None, "SceneOptMenu_ProcScene", "", None
     )
 
-    SceneOptMenu_Input = Symbol(None, None, None, "SceneOptMenu_Input", "", None)
+    SceneOptMenu_Input = Symbol(
+        [0x11714], [0x233C3D4], None, "SceneOptMenu_Input", "", None
+    )
 
-    SceneOptMenu_Draw = Symbol(None, None, None, "SceneOptMenu_Draw", "", None)
+    SceneOptMenu_Draw = Symbol(
+        [0x11808], [0x233C4C8], None, "SceneOptMenu_Draw", "", None
+    )
 
-    SceneOptMenu_Button = Symbol(None, None, None, "SceneOptMenu_Button", "", None)
+    SceneOptMenu_Button = Symbol(
+        [0x1180C], [0x233C4CC], None, "SceneOptMenu_Button", "", None
+    )
 
-    SceneOptMenu_EndScene = Symbol(None, None, None, "SceneOptMenu_EndScene", "", None)
+    SceneOptMenu_EndScene = Symbol(
+        [0x118B0], [0x233C570], None, "SceneOptMenu_EndScene", "", None
+    )
 
     SceneOptMenu_EndScene1 = Symbol(
-        None, None, None, "SceneOptMenu_EndScene1", "", None
+        [0x118D0], [0x233C590], None, "SceneOptMenu_EndScene1", "", None
     )
 
     SceneOptMenu_EndScene2 = Symbol(
-        None, None, None, "SceneOptMenu_EndScene2", "", None
+        [0x11934], [0x233C5F4], None, "SceneOptMenu_EndScene2", "", None
     )
 
     SceneOptMenu_MoveFocus = Symbol(
-        None, None, None, "SceneOptMenu_MoveFocus", "", None
+        [0x11A40], [0x233C700], None, "SceneOptMenu_MoveFocus", "", None
     )
 
-    SceneOptMenu_DispPush = Symbol(None, None, None, "SceneOptMenu_DispPush", "", None)
+    SceneOptMenu_DispPush = Symbol(
+        [0x11AD0], [0x233C790], None, "SceneOptMenu_DispPush", "", None
+    )
 
-    Dwci_SceneOptMovComm = Symbol(None, None, None, "Dwci_SceneOptMovComm", "", None)
+    Dwci_SceneOptMovComm = Symbol(
+        [0x11AFC], [0x233C7BC], None, "Dwci_SceneOptMovComm", "", None
+    )
 
     SceneOptMovComm_InitGraphics = Symbol(
-        None, None, None, "SceneOptMovComm_InitGraphics", "", None
+        [0x11B34], [0x233C7F4], None, "SceneOptMovComm_InitGraphics", "", None
     )
 
     SceneOptMovComm_ProcInit = Symbol(
-        None, None, None, "SceneOptMovComm_ProcInit", "", None
+        [0x11BB4], [0x233C874], None, "SceneOptMovComm_ProcInit", "", None
     )
 
     SceneOptMovComm_ProcInit1 = Symbol(
-        None, None, None, "SceneOptMovComm_ProcInit1", "", None
+        [0x11BE8], [0x233C8A8], None, "SceneOptMovComm_ProcInit1", "", None
     )
 
     SceneOptMovComm_ProcScene = Symbol(
-        None, None, None, "SceneOptMovComm_ProcScene", "", None
+        [0x11C18], [0x233C8D8], None, "SceneOptMovComm_ProcScene", "", None
     )
 
-    SceneOptMovComm_Input = Symbol(None, None, None, "SceneOptMovComm_Input", "", None)
+    SceneOptMovComm_Input = Symbol(
+        [0x11C28], [0x233C8E8], None, "SceneOptMovComm_Input", "", None
+    )
 
-    SceneOptMovComm_Draw = Symbol(None, None, None, "SceneOptMovComm_Draw", "", None)
+    SceneOptMovComm_Draw = Symbol(
+        [0x11C2C], [0x233C8EC], None, "SceneOptMovComm_Draw", "", None
+    )
 
     SceneOptMovComm_EndScene = Symbol(
-        None, None, None, "SceneOptMovComm_EndScene", "", None
+        [0x11C30], [0x233C8F0], None, "SceneOptMovComm_EndScene", "", None
     )
 
     SceneOptMovComm_EndScene1 = Symbol(
-        None, None, None, "SceneOptMovComm_EndScene1", "", None
+        [0x11C58], [0x233C918], None, "SceneOptMovComm_EndScene1", "", None
     )
 
     SceneOptMoveComm_CbMov = Symbol(
-        None, None, None, "SceneOptMoveComm_CbMov", "", None
+        [0x11CEC], [0x233C9AC], None, "SceneOptMoveComm_CbMov", "", None
     )
 
     Dwci_SceneOptMovComplete = Symbol(
-        None, None, None, "Dwci_SceneOptMovComplete", "", None
+        [0x11D74], [0x233CA34], None, "Dwci_SceneOptMovComplete", "", None
     )
 
     SceneOptMovComplete_InitGraphics = Symbol(
-        None, None, None, "SceneOptMovComplete_InitGraphics", "", None
+        [0x11D94], [0x233CA54], None, "SceneOptMovComplete_InitGraphics", "", None
     )
 
     SceneOptMovComplete_ProcInit = Symbol(
-        None, None, None, "SceneOptMovComplete_ProcInit", "", None
+        [0x11DFC], [0x233CABC], None, "SceneOptMovComplete_ProcInit", "", None
     )
 
     SceneOptMovComplete_ProcInit1 = Symbol(
-        None, None, None, "SceneOptMovComplete_ProcInit1", "", None
+        [0x11E30], [0x233CAF0], None, "SceneOptMovComplete_ProcInit1", "", None
     )
 
     SceneOptMovComplete_ProcInit2 = Symbol(
-        None, None, None, "SceneOptMovComplete_ProcInit2", "", None
+        [0x11E5C], [0x233CB1C], None, "SceneOptMovComplete_ProcInit2", "", None
     )
 
     SceneOptMovComplete_ProcScene = Symbol(
-        None, None, None, "SceneOptMovComplete_ProcScene", "", None
+        [0x11E84], [0x233CB44], None, "SceneOptMovComplete_ProcScene", "", None
     )
 
     SceneOptMovComplete_Input = Symbol(
-        None, None, None, "SceneOptMovComplete_Input", "", None
+        [0x11E98], [0x233CB58], None, "SceneOptMovComplete_Input", "", None
     )
 
     SceneOptMovComplete_Draw = Symbol(
-        None, None, None, "SceneOptMovComplete_Draw", "", None
+        [0x11EB8], [0x233CB78], None, "SceneOptMovComplete_Draw", "", None
     )
 
     SceneOptMovComplete_Button = Symbol(
-        None, None, None, "SceneOptMovComplete_Button", "", None
+        [0x11EBC], [0x233CB7C], None, "SceneOptMovComplete_Button", "", None
     )
 
     SceneOptMovComplete_EndScene = Symbol(
-        None, None, None, "SceneOptMovComplete_EndScene", "", None
+        [0x11EE4], [0x233CBA4], None, "SceneOptMovComplete_EndScene", "", None
     )
 
     SceneOptMovComplete_EndScene1 = Symbol(
-        None, None, None, "SceneOptMovComplete_EndScene1", "", None
+        [0x11F04], [0x233CBC4], None, "SceneOptMovComplete_EndScene1", "", None
     )
 
     SceneOptMovComplete_EndScene2 = Symbol(
-        None, None, None, "SceneOptMovComplete_EndScene2", "", None
+        [0x11F50], [0x233CC10], None, "SceneOptMovComplete_EndScene2", "", None
     )
 
     Dwci_SceneOptMovConfirm = Symbol(
-        None, None, None, "Dwci_SceneOptMovConfirm", "", None
+        [0x11F84], [0x233CC44], None, "Dwci_SceneOptMovConfirm", "", None
     )
 
     SceneOptMovConfirm_InitGraphics = Symbol(
-        None, None, None, "SceneOptMovConfirm_InitGraphics", "", None
+        [0x11FA4], [0x233CC64], None, "SceneOptMovConfirm_InitGraphics", "", None
     )
 
     SceneOptMovConfirm_ProcInit = Symbol(
-        None, None, None, "SceneOptMovConfirm_ProcInit", "", None
+        [0x1200C], [0x233CCCC], None, "SceneOptMovConfirm_ProcInit", "", None
     )
 
     SceneOptMovConfirm_ProcInit1 = Symbol(
-        None, None, None, "SceneOptMovConfirm_ProcInit1", "", None
+        [0x12040], [0x233CD00], None, "SceneOptMovConfirm_ProcInit1", "", None
     )
 
     SceneOptMovConfirm_ProcInit2 = Symbol(
-        None, None, None, "SceneOptMovConfirm_ProcInit2", "", None
+        [0x1207C], [0x233CD3C], None, "SceneOptMovConfirm_ProcInit2", "", None
     )
 
     SceneOptMovConfirm_ProcScene = Symbol(
-        None, None, None, "SceneOptMovConfirm_ProcScene", "", None
+        [0x120A4], [0x233CD64], None, "SceneOptMovConfirm_ProcScene", "", None
     )
 
     SceneOptMovConfirm_Input = Symbol(
-        None, None, None, "SceneOptMovConfirm_Input", "", None
+        [0x120B8], [0x233CD78], None, "SceneOptMovConfirm_Input", "", None
     )
 
     SceneOptMovConfirm_Draw = Symbol(
-        None, None, None, "SceneOptMovConfirm_Draw", "", None
+        [0x120D8], [0x233CD98], None, "SceneOptMovConfirm_Draw", "", None
     )
 
     SceneOptMovConfirm_Button = Symbol(
-        None, None, None, "SceneOptMovConfirm_Button", "", None
+        [0x120DC], [0x233CD9C], None, "SceneOptMovConfirm_Button", "", None
     )
 
     SceneOptMovConfirm_EndScene = Symbol(
-        None, None, None, "SceneOptMovConfirm_EndScene", "", None
+        [0x12104], [0x233CDC4], None, "SceneOptMovConfirm_EndScene", "", None
     )
 
     SceneOptMovConfirm_EndScene1 = Symbol(
-        None, None, None, "SceneOptMovConfirm_EndScene1", "", None
+        [0x12124], [0x233CDE4], None, "SceneOptMovConfirm_EndScene1", "", None
     )
 
     SceneOptMovConfirm_EndScene2 = Symbol(
-        None, None, None, "SceneOptMovConfirm_EndScene2", "", None
+        [0x12160], [0x233CE20], None, "SceneOptMovConfirm_EndScene2", "", None
     )
 
     Dwci_SceneOptMovConfirm1 = Symbol(
-        None, None, None, "Dwci_SceneOptMovConfirm1", "", None
+        [0x121B0], [0x233CE70], None, "Dwci_SceneOptMovConfirm1", "", None
     )
 
     SceneOptMovConfirm1_InitGraphics = Symbol(
-        None, None, None, "SceneOptMovConfirm1_InitGraphics", "", None
+        [0x121F8], [0x233CEB8], None, "SceneOptMovConfirm1_InitGraphics", "", None
     )
 
     SceneOptMovConfirm1_ProcInit = Symbol(
-        None, None, None, "SceneOptMovConfirm1_ProcInit", "", None
+        [0x12278], [0x233CF38], None, "SceneOptMovConfirm1_ProcInit", "", None
     )
 
     SceneOptMovConfirm1_ProcInit1 = Symbol(
-        None, None, None, "SceneOptMovConfirm1_ProcInit1", "", None
+        [0x122CC], [0x233CF8C], None, "SceneOptMovConfirm1_ProcInit1", "", None
     )
 
     SceneOptMovConfirm1_ProcInit2 = Symbol(
-        None, None, None, "SceneOptMovConfirm1_ProcInit2", "", None
+        [0x122F8], [0x233CFB8], None, "SceneOptMovConfirm1_ProcInit2", "", None
     )
 
     SceneOptMovConfirm1_ProcScene = Symbol(
-        None, None, None, "SceneOptMovConfirm1_ProcScene", "", None
+        [0x12320], [0x233CFE0], None, "SceneOptMovConfirm1_ProcScene", "", None
     )
 
     SceneOptMovConfirm1_Input = Symbol(
-        None, None, None, "SceneOptMovConfirm1_Input", "", None
+        [0x12334], [0x233CFF4], None, "SceneOptMovConfirm1_Input", "", None
     )
 
     SceneOptMovConfirm1_Draw = Symbol(
-        None, None, None, "SceneOptMovConfirm1_Draw", "", None
+        [0x1236C], [0x233D02C], None, "SceneOptMovConfirm1_Draw", "", None
     )
 
     SceneOptMovConfirm1_Button = Symbol(
-        None, None, None, "SceneOptMovConfirm1_Button", "", None
+        [0x12370], [0x233D030], None, "SceneOptMovConfirm1_Button", "", None
     )
 
     SceneOptMovConfirm1_EndScene = Symbol(
-        None, None, None, "SceneOptMovConfirm1_EndScene", "", None
+        [0x123C0], [0x233D080], None, "SceneOptMovConfirm1_EndScene", "", None
     )
 
     SceneOptMovConfirm1_EndScene1 = Symbol(
-        None, None, None, "SceneOptMovConfirm1_EndScene1", "", None
+        [0x123E0], [0x233D0A0], None, "SceneOptMovConfirm1_EndScene1", "", None
     )
 
     SceneOptMovConfirm1_EndScene2 = Symbol(
-        None, None, None, "SceneOptMovConfirm1_EndScene2", "", None
+        [0x12444], [0x233D104], None, "SceneOptMovConfirm1_EndScene2", "", None
     )
 
     Dwci_SceneOptMovDisconnect = Symbol(
-        None, None, None, "Dwci_SceneOptMovDisconnect", "", None
+        [0x124FC], [0x233D1BC], None, "Dwci_SceneOptMovDisconnect", "", None
     )
 
     SceneOptMovDisconnect_InitGraphics = Symbol(
-        None, None, None, "SceneOptMovDisconnect_InitGraphics", "", None
+        [0x1252C], [0x233D1EC], None, "SceneOptMovDisconnect_InitGraphics", "", None
     )
 
     SceneOptMovDisconnect_ProcInit = Symbol(
-        None, None, None, "SceneOptMovDisconnect_ProcInit", "", None
+        [0x12598], [0x233D258], None, "SceneOptMovDisconnect_ProcInit", "", None
     )
 
     SceneOptMovDisconnect_ProcInit1 = Symbol(
-        None, None, None, "SceneOptMovDisconnect_ProcInit1", "", None
+        [0x125CC], [0x233D28C], None, "SceneOptMovDisconnect_ProcInit1", "", None
     )
 
     SceneOptMovDisconnect_ProcScene = Symbol(
-        None, None, None, "SceneOptMovDisconnect_ProcScene", "", None
+        [0x125FC], [0x233D2BC], None, "SceneOptMovDisconnect_ProcScene", "", None
     )
 
     SceneOptMovDisconnect_Draw = Symbol(
-        None, None, None, "SceneOptMovDisconnect_Draw", "", None
+        [0x1260C], [0x233D2CC], None, "SceneOptMovDisconnect_Draw", "", None
     )
 
     SceneOptMovDisconnect_EndScene = Symbol(
-        None, None, None, "SceneOptMovDisconnect_EndScene", "", None
+        [0x12610], [0x233D2D0], None, "SceneOptMovDisconnect_EndScene", "", None
     )
 
     SceneOptMovDisconnect_EndScene1 = Symbol(
-        None, None, None, "SceneOptMovDisconnect_EndScene1", "", None
+        [0x1264C], [0x233D30C], None, "SceneOptMovDisconnect_EndScene1", "", None
     )
 
     SceneOptMovDisconnect_Wait = Symbol(
-        None, None, None, "SceneOptMovDisconnect_Wait", "", None
+        [0x126B0], [0x233D370], None, "SceneOptMovDisconnect_Wait", "", None
     )
 
     Dwci_SceneOptMovFailure = Symbol(
-        None, None, None, "Dwci_SceneOptMovFailure", "", None
+        [0x126E4], [0x233D3A4], None, "Dwci_SceneOptMovFailure", "", None
     )
 
     SceneOptMovFailure_InitGraphics = Symbol(
-        None, None, None, "SceneOptMovFailure_InitGraphics", "", None
+        [0x12720], [0x233D3E0], None, "SceneOptMovFailure_InitGraphics", "", None
     )
 
     SceneOptMovFailure_ProcInit = Symbol(
-        None, None, None, "SceneOptMovFailure_ProcInit", "", None
+        [0x127A0], [0x233D460], None, "SceneOptMovFailure_ProcInit", "", None
     )
 
     SceneOptMovFailure_ProcInit1 = Symbol(
-        None, None, None, "SceneOptMovFailure_ProcInit1", "", None
+        [0x12808], [0x233D4C8], None, "SceneOptMovFailure_ProcInit1", "", None
     )
 
     SceneOptMovFailure_ProcInit2 = Symbol(
-        None, None, None, "SceneOptMovFailure_ProcInit2", "", None
+        [0x12844], [0x233D504], None, "SceneOptMovFailure_ProcInit2", "", None
     )
 
     SceneOptMovFailure_ProcScene = Symbol(
-        None, None, None, "SceneOptMovFailure_ProcScene", "", None
+        [0x12878], [0x233D538], None, "SceneOptMovFailure_ProcScene", "", None
     )
 
     SceneOptMovFailure_Input = Symbol(
-        None, None, None, "SceneOptMovFailure_Input", "", None
+        [0x1288C], [0x233D54C], None, "SceneOptMovFailure_Input", "", None
     )
 
     SceneOptMovFailure_Draw = Symbol(
-        None, None, None, "SceneOptMovFailure_Draw", "", None
+        [0x128C4], [0x233D584], None, "SceneOptMovFailure_Draw", "", None
     )
 
     SceneOptMovFailure_Button = Symbol(
-        None, None, None, "SceneOptMovFailure_Button", "", None
+        [0x128C8], [0x233D588], None, "SceneOptMovFailure_Button", "", None
     )
 
     SceneOptMovFailure_EndScene = Symbol(
-        None, None, None, "SceneOptMovFailure_EndScene", "", None
+        [0x12920], [0x233D5E0], None, "SceneOptMovFailure_EndScene", "", None
     )
 
     SceneOptMovFailure_EndScene1 = Symbol(
-        None, None, None, "SceneOptMovFailure_EndScene1", "", None
+        [0x12940], [0x233D600], None, "SceneOptMovFailure_EndScene1", "", None
     )
 
     SceneOptMovFailure_EndScene2 = Symbol(
-        None, None, None, "SceneOptMovFailure_EndScene2", "", None
+        [0x129A4], [0x233D664], None, "SceneOptMovFailure_EndScene2", "", None
     )
 
-    Dwci_SceneOptMovUser = Symbol(None, None, None, "Dwci_SceneOptMovUser", "", None)
+    Dwci_SceneOptMovUser = Symbol(
+        [0x12A4C], [0x233D70C], None, "Dwci_SceneOptMovUser", "", None
+    )
 
     SceneOptMovUser_InitGraphics = Symbol(
-        None, None, None, "SceneOptMovUser_InitGraphics", "", None
+        [0x12B1C], [0x233D7DC], None, "SceneOptMovUser_InitGraphics", "", None
     )
 
     SceneOptMovUser_ProcInit = Symbol(
-        None, None, None, "SceneOptMovUser_ProcInit", "", None
+        [0x12B9C], [0x233D85C], None, "SceneOptMovUser_ProcInit", "", None
     )
 
     SceneOptMovUser_ProcInit1 = Symbol(
-        None, None, None, "SceneOptMovUser_ProcInit1", "", None
+        [0x12BD0], [0x233D890], None, "SceneOptMovUser_ProcInit1", "", None
     )
 
     SceneOptMovUser_ProcInit2 = Symbol(
-        None, None, None, "SceneOptMovUser_ProcInit2", "", None
+        [0x12BF4], [0x233D8B4], None, "SceneOptMovUser_ProcInit2", "", None
     )
 
     SceneOptMovUser_ProcScene = Symbol(
-        None, None, None, "SceneOptMovUser_ProcScene", "", None
+        [0x12C18], [0x233D8D8], None, "SceneOptMovUser_ProcScene", "", None
     )
 
-    SceneOptMovUser_Input = Symbol(None, None, None, "SceneOptMovUser_Input", "", None)
+    SceneOptMovUser_Input = Symbol(
+        [0x12C88], [0x233D948], None, "SceneOptMovUser_Input", "", None
+    )
 
-    SceneOptMovUser_Draw = Symbol(None, None, None, "SceneOptMovUser_Draw", "", None)
+    SceneOptMovUser_Draw = Symbol(
+        [0x12C8C], [0x233D94C], None, "SceneOptMovUser_Draw", "", None
+    )
 
     SceneOptMovUser_EndScene = Symbol(
-        None, None, None, "SceneOptMovUser_EndScene", "", None
+        [0x12C90], [0x233D950], None, "SceneOptMovUser_EndScene", "", None
     )
 
     SceneOptMovUser_EndScene1 = Symbol(
-        None, None, None, "SceneOptMovUser_EndScene1", "", None
+        [0x12CEC], [0x233D9AC], None, "SceneOptMovUser_EndScene1", "", None
     )
 
     SceneOptMovUser_EndScene2 = Symbol(
-        None, None, None, "SceneOptMovUser_EndScene2", "", None
+        [0x12D48], [0x233DA08], None, "SceneOptMovUser_EndScene2", "", None
     )
 
-    SceneOptMovUser_CbMov = Symbol(None, None, None, "SceneOptMovUser_CbMov", "", None)
+    SceneOptMovUser_CbMov = Symbol(
+        [0x12E10], [0x233DAD0], None, "SceneOptMovUser_CbMov", "", None
+    )
 
-    Dwci_IsFold = Symbol(None, None, None, "Dwci_IsFold", "", None)
+    Dwci_IsFold = Symbol(
+        [0x12E24, 0x1321C, 0x194A8, 0x198C0, 0x19F18, 0x1CC34],
+        [0x233DAE4, 0x233DEDC, 0x2344168, 0x2344580, 0x2344BD8, 0x23478F4],
+        None,
+        "Dwci_IsFold",
+        "",
+        None,
+    )
 
-    Dwci_SceneOptMovWait = Symbol(None, None, None, "Dwci_SceneOptMovWait", "", None)
+    Dwci_SceneOptMovWait = Symbol(
+        [0x12E44], [0x233DB04], None, "Dwci_SceneOptMovWait", "", None
+    )
 
     SceneOptMovWait_InitGraphics = Symbol(
-        None, None, None, "SceneOptMovWait_InitGraphics", "", None
+        [0x12E90], [0x233DB50], None, "SceneOptMovWait_InitGraphics", "", None
     )
 
     SceneOptMovWait_ProcInit = Symbol(
-        None, None, None, "SceneOptMovWait_ProcInit", "", None
+        [0x12F10], [0x233DBD0], None, "SceneOptMovWait_ProcInit", "", None
     )
 
     SceneOptMovWait_ProcInit1 = Symbol(
-        None, None, None, "SceneOptMovWait_ProcInit1", "", None
+        [0x12F44], [0x233DC04], None, "SceneOptMovWait_ProcInit1", "", None
     )
 
     SceneOptMovWait_ProcInit2 = Symbol(
-        None, None, None, "SceneOptMovWait_ProcInit2", "", None
+        [0x12F70], [0x233DC30], None, "SceneOptMovWait_ProcInit2", "", None
     )
 
     SceneOptMovWait_ProcScene = Symbol(
-        None, None, None, "SceneOptMovWait_ProcScene", "", None
+        [0x12F94], [0x233DC54], None, "SceneOptMovWait_ProcScene", "", None
     )
 
-    SceneOptMovWait_Input = Symbol(None, None, None, "SceneOptMovWait_Input", "", None)
+    SceneOptMovWait_Input = Symbol(
+        [0x12FA8], [0x233DC68], None, "SceneOptMovWait_Input", "", None
+    )
 
-    SceneOptMovWait_Draw = Symbol(None, None, None, "SceneOptMovWait_Draw", "", None)
+    SceneOptMovWait_Draw = Symbol(
+        [0x12FE0], [0x233DCA0], None, "SceneOptMovWait_Draw", "", None
+    )
 
     SceneOptMovWait_Button = Symbol(
-        None, None, None, "SceneOptMovWait_Button", "", None
+        [0x12FE4], [0x233DCA4], None, "SceneOptMovWait_Button", "", None
     )
 
     SceneOptMovWait_EndScene = Symbol(
-        None, None, None, "SceneOptMovWait_EndScene", "", None
+        [0x13010], [0x233DCD0], None, "SceneOptMovWait_EndScene", "", None
     )
 
     SceneOptMovWait_EndScene1 = Symbol(
-        None, None, None, "SceneOptMovWait_EndScene1", "", None
+        [0x13048], [0x233DD08], None, "SceneOptMovWait_EndScene1", "", None
     )
 
     SceneOptMovWait_EndScene2 = Symbol(
-        None, None, None, "SceneOptMovWait_EndScene2", "", None
+        [0x130C8], [0x233DD88], None, "SceneOptMovWait_EndScene2", "", None
     )
 
-    SceneOptMovWait_CbMov = Symbol(None, None, None, "SceneOptMovWait_CbMov", "", None)
+    SceneOptMovWait_CbMov = Symbol(
+        [0x131C0], [0x233DE80], None, "SceneOptMovWait_CbMov", "", None
+    )
 
     Dwci_SceneSetAossButton = Symbol(
-        None, None, None, "Dwci_SceneSetAossButton", "", None
+        [0x1323C], [0x233DEFC], None, "Dwci_SceneSetAossButton", "", None
     )
 
     SceneSetAossButton_InitGraphics = Symbol(
-        None, None, None, "SceneSetAossButton_InitGraphics", "", None
+        [0x1329C], [0x233DF5C], None, "SceneSetAossButton_InitGraphics", "", None
     )
 
     SceneSetAossButton_ProcInit = Symbol(
-        None, None, None, "SceneSetAossButton_ProcInit", "", None
+        [0x13344], [0x233E004], None, "SceneSetAossButton_ProcInit", "", None
     )
 
     SceneSetAossButton_ProcInit1 = Symbol(
-        None, None, None, "SceneSetAossButton_ProcInit1", "", None
+        [0x13398], [0x233E058], None, "SceneSetAossButton_ProcInit1", "", None
     )
 
     SceneSetAossButton_ProcInit2 = Symbol(
-        None, None, None, "SceneSetAossButton_ProcInit2", "", None
+        [0x133D4], [0x233E094], None, "SceneSetAossButton_ProcInit2", "", None
     )
 
     SceneSetAossButton_ProcScene = Symbol(
-        None, None, None, "SceneSetAossButton_ProcScene", "", None
+        [0x1341C], [0x233E0DC], None, "SceneSetAossButton_ProcScene", "", None
     )
 
     SceneSetAossButton_Input = Symbol(
-        None, None, None, "SceneSetAossButton_Input", "", None
+        [0x134F0], [0x233E1B0], None, "SceneSetAossButton_Input", "", None
     )
 
     SceneSetAossButton_Draw = Symbol(
-        None, None, None, "SceneSetAossButton_Draw", "", None
+        [0x13528], [0x233E1E8], None, "SceneSetAossButton_Draw", "", None
     )
 
     SceneSetAossButton_Button = Symbol(
-        None, None, None, "SceneSetAossButton_Button", "", None
+        [0x1352C], [0x233E1EC], None, "SceneSetAossButton_Button", "", None
     )
 
     SceneSetAossButton_EndScene = Symbol(
-        None, None, None, "SceneSetAossButton_EndScene", "", None
+        [0x13578], [0x233E238], None, "SceneSetAossButton_EndScene", "", None
     )
 
     SceneSetAossButton_EndScene1 = Symbol(
-        None, None, None, "SceneSetAossButton_EndScene1", "", None
+        [0x135B4], [0x233E274], None, "SceneSetAossButton_EndScene1", "", None
     )
 
     SceneSetAossButton_EndScene2 = Symbol(
-        None, None, None, "SceneSetAossButton_EndScene2", "", None
+        [0x13618], [0x233E2D8], None, "SceneSetAossButton_EndScene2", "", None
     )
 
     SceneSetAossButton_TaskVBlank = Symbol(
-        None, None, None, "SceneSetAossButton_TaskVBlank", "", None
+        [0x136F4], [0x233E3B4], None, "SceneSetAossButton_TaskVBlank", "", None
     )
 
     SceneSetAossButton_ProcError = Symbol(
-        None, None, None, "SceneSetAossButton_ProcError", "", None
+        [0x13710], [0x233E3D0], None, "SceneSetAossButton_ProcError", "", None
     )
 
     SceneSetAossButton_ProcError1 = Symbol(
-        None, None, None, "SceneSetAossButton_ProcError1", "", None
+        [0x1373C], [0x233E3FC], None, "SceneSetAossButton_ProcError1", "", None
     )
 
     SceneSetAossButton_ProcWait = Symbol(
-        None, None, None, "SceneSetAossButton_ProcWait", "", None
+        [0x1375C], [0x233E41C], None, "SceneSetAossButton_ProcWait", "", None
     )
 
     SceneSetAossButton_ProcCancel = Symbol(
-        None, None, None, "SceneSetAossButton_ProcCancel", "", None
+        [0x137A8], [0x233E468], None, "SceneSetAossButton_ProcCancel", "", None
     )
 
     Dwci_SceneSetAossComplete = Symbol(
-        None, None, None, "Dwci_SceneSetAossComplete", "", None
+        [0x137D8], [0x233E498], None, "Dwci_SceneSetAossComplete", "", None
     )
 
     SceneSetAossComplete_InitGraphics = Symbol(
-        None, None, None, "SceneSetAossComplete_InitGraphics", "", None
+        [0x13814], [0x233E4D4], None, "SceneSetAossComplete_InitGraphics", "", None
     )
 
     SceneSetAossComplete_ProcInit = Symbol(
-        None, None, None, "SceneSetAossComplete_ProcInit", "", None
+        [0x13880], [0x233E540], None, "SceneSetAossComplete_ProcInit", "", None
     )
 
     SceneSetAossComplete_ProcInit1 = Symbol(
-        None, None, None, "SceneSetAossComplete_ProcInit1", "", None
+        [0x138B4], [0x233E574], None, "SceneSetAossComplete_ProcInit1", "", None
     )
 
     SceneSetAossComplete_ProcScene = Symbol(
-        None, None, None, "SceneSetAossComplete_ProcScene", "", None
+        [0x138D8], [0x233E598], None, "SceneSetAossComplete_ProcScene", "", None
     )
 
     SceneSetAossComplete_Draw = Symbol(
-        None, None, None, "SceneSetAossComplete_Draw", "", None
+        [0x138E8], [0x233E5A8], None, "SceneSetAossComplete_Draw", "", None
     )
 
     SceneSetAossComplete_EndScene = Symbol(
-        None, None, None, "SceneSetAossComplete_EndScene", "", None
+        [0x138EC], [0x233E5AC], None, "SceneSetAossComplete_EndScene", "", None
     )
 
     SceneSetAossComplete_EndScene1 = Symbol(
-        None, None, None, "SceneSetAossComplete_EndScene1", "", None
+        [0x13928], [0x233E5E8], None, "SceneSetAossComplete_EndScene1", "", None
     )
 
     SceneSetAossComplete_Wait = Symbol(
-        None, None, None, "SceneSetAossComplete_Wait", "", None
+        [0x13998], [0x233E658], None, "SceneSetAossComplete_Wait", "", None
     )
 
-    Dwci_SceneSetApList = Symbol(None, None, None, "Dwci_SceneSetApList", "", None)
+    Dwci_SceneSetApList = Symbol(
+        [0x139CC], [0x233E68C], None, "Dwci_SceneSetApList", "", None
+    )
 
     SceneSetApList_InitGraphics = Symbol(
-        None, None, None, "SceneSetApList_InitGraphics", "", None
+        [0x13AA4], [0x233E764], None, "SceneSetApList_InitGraphics", "", None
     )
 
-    InitScrollBar = Symbol(None, None, None, "InitScrollBar", "", None)
+    InitScrollBar = Symbol([0x13BF8], [0x233E8B8], None, "InitScrollBar", "", None)
 
-    GetCharName = Symbol(None, None, None, "GetCharName", "", None)
+    GetCharName = Symbol([0x13CA0], [0x233E960], None, "GetCharName", "", None)
 
     SceneSetApList_ProcInit = Symbol(
-        None, None, None, "SceneSetApList_ProcInit", "", None
+        [0x13E14], [0x233EAD4], None, "SceneSetApList_ProcInit", "", None
     )
 
     SceneSetApList_ProcInit1 = Symbol(
-        None, None, None, "SceneSetApList_ProcInit1", "", None
+        [0x13E68], [0x233EB28], None, "SceneSetApList_ProcInit1", "", None
     )
 
     SceneSetApList_ProcInit2 = Symbol(
-        None, None, None, "SceneSetApList_ProcInit2", "", None
+        [0x13EA4], [0x233EB64], None, "SceneSetApList_ProcInit2", "", None
     )
 
     SceneSetApList_ProcScene = Symbol(
-        None, None, None, "SceneSetApList_ProcScene", "", None
+        [0x13ECC], [0x233EB8C], None, "SceneSetApList_ProcScene", "", None
     )
 
-    SceneSetApList_Input = Symbol(None, None, None, "SceneSetApList_Input", "", None)
+    SceneSetApList_Input = Symbol(
+        [0x13EE0], [0x233EBA0], None, "SceneSetApList_Input", "", None
+    )
 
-    SceneSetApList_Draw = Symbol(None, None, None, "SceneSetApList_Draw", "", None)
+    SceneSetApList_Draw = Symbol(
+        [0x14134], [0x233EDF4], None, "SceneSetApList_Draw", "", None
+    )
 
-    SceneSetApList_Button = Symbol(None, None, None, "SceneSetApList_Button", "", None)
+    SceneSetApList_Button = Symbol(
+        [0x143A4], [0x233F064], None, "SceneSetApList_Button", "", None
+    )
 
     SceneSetApList_EndScene = Symbol(
-        None, None, None, "SceneSetApList_EndScene", "", None
+        [0x144B0], [0x233F170], None, "SceneSetApList_EndScene", "", None
     )
 
     SceneSetApList_EndScene1 = Symbol(
-        None, None, None, "SceneSetApList_EndScene1", "", None
+        [0x144D0], [0x233F190], None, "SceneSetApList_EndScene1", "", None
     )
 
     SceneSetApList_EndScene2 = Symbol(
-        None, None, None, "SceneSetApList_EndScene2", "", None
+        [0x14540], [0x233F200], None, "SceneSetApList_EndScene2", "", None
     )
 
-    DrawApInfo = Symbol(None, None, None, "DrawApInfo", "", None)
+    DrawApInfo = Symbol([0x1473C], [0x233F3FC], None, "DrawApInfo", "", None)
 
-    DrawAp = Symbol(None, None, None, "DrawAp", "", None)
+    DrawAp = Symbol([0x147E4], [0x233F4A4], None, "DrawAp", "", None)
 
-    DrapApObj = Symbol(None, None, None, "DrapApObj", "", None)
+    DrapApObj = Symbol([0x1495C], [0x233F61C], None, "DrapApObj", "", None)
 
     SceneSetApList_SetOffset = Symbol(
-        None, None, None, "SceneSetApList_SetOffset", "", None
+        [0x149E8], [0x233F6A8], None, "SceneSetApList_SetOffset", "", None
     )
 
-    SceneSetApList_TaskUp = Symbol(None, None, None, "SceneSetApList_TaskUp", "", None)
+    SceneSetApList_TaskUp = Symbol(
+        [0x14AA4], [0x233F764], None, "SceneSetApList_TaskUp", "", None
+    )
 
     SceneSetApList_TaskDown = Symbol(
-        None, None, None, "SceneSetApList_TaskDown", "", None
+        [0x14B60], [0x233F820], None, "SceneSetApList_TaskDown", "", None
     )
 
     SceneSetApList_TaskVBlank = Symbol(
-        None, None, None, "SceneSetApList_TaskVBlank", "", None
+        [0x14BF8], [0x233F8B8], None, "SceneSetApList_TaskVBlank", "", None
     )
 
     SceneSetApList_DispFocus = Symbol(
-        None, None, None, "SceneSetApList_DispFocus", "", None
+        [0x14C54], [0x233F914], None, "SceneSetApList_DispFocus", "", None
     )
 
     SceneSetApList_MoveFocus = Symbol(
-        None, None, None, "SceneSetApList_MoveFocus", "", None
+        [0x14CA0], [0x233F960], None, "SceneSetApList_MoveFocus", "", None
     )
 
-    ScrollUp = Symbol(None, None, None, "ScrollUp", "", None)
+    ScrollUp = Symbol([0x14DEC], [0x233FAAC], None, "ScrollUp", "", None)
 
-    ScrollDown = Symbol(None, None, None, "ScrollDown", "", None)
+    ScrollDown = Symbol([0x14E60], [0x233FB20], None, "ScrollDown", "", None)
 
     SceneSetApList_DispPushButton = Symbol(
-        None, None, None, "SceneSetApList_DispPushButton", "", None
+        [0x14EE4], [0x233FBA4], None, "SceneSetApList_DispPushButton", "", None
     )
 
     SceneSetApList_ProcError = Symbol(
-        None, None, None, "SceneSetApList_ProcError", "", None
+        [0x14F14], [0x233FBD4], None, "SceneSetApList_ProcError", "", None
     )
 
     SceneSetApList_ProcError1 = Symbol(
-        None, None, None, "SceneSetApList_ProcError1", "", None
+        [0x14F40], [0x233FC00], None, "SceneSetApList_ProcError1", "", None
     )
 
-    Dwci_SceneSetEdit32 = Symbol(None, None, None, "Dwci_SceneSetEdit32", "", None)
+    Dwci_SceneSetEdit32 = Symbol(
+        [0x14F68], [0x233FC28], None, "Dwci_SceneSetEdit32", "", None
+    )
 
     SceneSetEdit32_InitGraphics = Symbol(
-        None, None, None, "SceneSetEdit32_InitGraphics", "", None
+        [0x1509C], [0x233FD5C], None, "SceneSetEdit32_InitGraphics", "", None
     )
 
     SceneSetEdit32_ProcInit = Symbol(
-        None, None, None, "SceneSetEdit32_ProcInit", "", None
+        [0x15158], [0x233FE18], None, "SceneSetEdit32_ProcInit", "", None
     )
 
     SceneSetEdit32_ProcInit1 = Symbol(
-        None, None, None, "SceneSetEdit32_ProcInit1", "", None
+        [0x151AC], [0x233FE6C], None, "SceneSetEdit32_ProcInit1", "", None
     )
 
     SceneSetEdit32_ProcInit2 = Symbol(
-        None, None, None, "SceneSetEdit32_ProcInit2", "", None
+        [0x15228], [0x233FEE8], None, "SceneSetEdit32_ProcInit2", "", None
     )
 
     SceneSetEdit32_ProcScene = Symbol(
-        None, None, None, "SceneSetEdit32_ProcScene", "", None
+        [0x15248], [0x233FF08], None, "SceneSetEdit32_ProcScene", "", None
     )
 
-    SceneSetEdit32_Input = Symbol(None, None, None, "SceneSetEdit32_Input", "", None)
+    SceneSetEdit32_Input = Symbol(
+        [0x15258], [0x233FF18], None, "SceneSetEdit32_Input", "", None
+    )
 
-    SceneSetEdit32_Draw = Symbol(None, None, None, "SceneSetEdit32_Draw", "", None)
+    SceneSetEdit32_Draw = Symbol(
+        [0x15418], [0x23400D8], None, "SceneSetEdit32_Draw", "", None
+    )
 
     SceneSetEdit32_EndScene = Symbol(
-        None, None, None, "SceneSetEdit32_EndScene", "", None
+        [0x1541C], [0x23400DC], None, "SceneSetEdit32_EndScene", "", None
     )
 
     SceneSetEdit32_EndScene1 = Symbol(
-        None, None, None, "SceneSetEdit32_EndScene1", "", None
+        [0x15438], [0x23400F8], None, "SceneSetEdit32_EndScene1", "", None
     )
 
     SceneSetEdit32_EndScene2 = Symbol(
-        None, None, None, "SceneSetEdit32_EndScene2", "", None
+        [0x15468], [0x2340128], None, "SceneSetEdit32_EndScene2", "", None
     )
 
     SceneSetEdit32_EndScene3 = Symbol(
-        None, None, None, "SceneSetEdit32_EndScene3", "", None
+        [0x15540], [0x2340200], None, "SceneSetEdit32_EndScene3", "", None
     )
 
-    DrawSsid = Symbol(None, None, None, "DrawSsid", "", None)
+    DrawSsid = Symbol([0x15644], [0x2340304], None, "DrawSsid", "", None)
 
     SceneSetEdit32_DispCaret = Symbol(
-        None, None, None, "SceneSetEdit32_DispCaret", "", None
+        [0x15738], [0x23403F8], None, "SceneSetEdit32_DispCaret", "", None
     )
 
     SceneSetEdit32_ProcWin = Symbol(
-        None, None, None, "SceneSetEdit32_ProcWin", "", None
+        [0x157A0], [0x2340460], None, "SceneSetEdit32_ProcWin", "", None
     )
 
     SceneSetEdit32_ProcWin1 = Symbol(
-        None, None, None, "SceneSetEdit32_ProcWin1", "", None
+        [0x157FC], [0x23404BC], None, "SceneSetEdit32_ProcWin1", "", None
     )
 
     SceneSetEdit32_IsCorrect = Symbol(
-        None, None, None, "SceneSetEdit32_IsCorrect", "", None
+        [0x158AC], [0x234056C], None, "SceneSetEdit32_IsCorrect", "", None
     )
 
     SceneSetEdit32_ProcError = Symbol(
-        None, None, None, "SceneSetEdit32_ProcError", "", None
+        [0x15A38], [0x23406F8], None, "SceneSetEdit32_ProcError", "", None
     )
 
     SceneSetEdit32_ProcError1 = Symbol(
-        None, None, None, "SceneSetEdit32_ProcError1", "", None
+        [0x15A64], [0x2340724], None, "SceneSetEdit32_ProcError1", "", None
     )
 
     Dwci_SceneSetEditAddress = Symbol(
-        None, None, None, "Dwci_SceneSetEditAddress", "", None
+        [0x15AA8], [0x2340768], None, "Dwci_SceneSetEditAddress", "", None
     )
 
     SceneSetEditAddress_InitGraphics = Symbol(
-        None, None, None, "SceneSetEditAddress_InitGraphics", "", None
+        [0x15C1C], [0x23408DC], None, "SceneSetEditAddress_InitGraphics", "", None
     )
 
     SceneSetEditAddress_ProcInit = Symbol(
-        None, None, None, "SceneSetEditAddress_ProcInit", "", None
+        [0x15CD8], [0x2340998], None, "SceneSetEditAddress_ProcInit", "", None
     )
 
     SceneSetEditAddress_ProcInit1 = Symbol(
-        None, None, None, "SceneSetEditAddress_ProcInit1", "", None
+        [0x15D2C], [0x23409EC], None, "SceneSetEditAddress_ProcInit1", "", None
     )
 
     SceneSetEditAddress_ProcInit2 = Symbol(
-        None, None, None, "SceneSetEditAddress_ProcInit2", "", None
+        [0x15DB8], [0x2340A78], None, "SceneSetEditAddress_ProcInit2", "", None
     )
 
     SceneSetEditAddress_ProcScene = Symbol(
-        None, None, None, "SceneSetEditAddress_ProcScene", "", None
+        [0x15DD8], [0x2340A98], None, "SceneSetEditAddress_ProcScene", "", None
     )
 
     SceneSetEditAddress_Input = Symbol(
-        None, None, None, "SceneSetEditAddress_Input", "", None
+        [0x15DE8], [0x2340AA8], None, "SceneSetEditAddress_Input", "", None
     )
 
-    IsOver = Symbol(None, None, None, "IsOver", "", None)
+    IsOver = Symbol([0x160F8], [0x2340DB8], None, "IsOver", "", None)
 
     SceneSetEditAddress_Draw = Symbol(
-        None, None, None, "SceneSetEditAddress_Draw", "", None
+        [0x1618C], [0x2340E4C], None, "SceneSetEditAddress_Draw", "", None
     )
 
     SceneSetEditAddress_EndScene = Symbol(
-        None, None, None, "SceneSetEditAddress_EndScene", "", None
+        [0x16190], [0x2340E50], None, "SceneSetEditAddress_EndScene", "", None
     )
 
     SceneSetEditAddress_EndScene1 = Symbol(
-        None, None, None, "SceneSetEditAddress_EndScene1", "", None
+        [0x161AC], [0x2340E6C], None, "SceneSetEditAddress_EndScene1", "", None
     )
 
     SceneSetEditAddress_EndScene2 = Symbol(
-        None, None, None, "SceneSetEditAddress_EndScene2", "", None
+        [0x161DC], [0x2340E9C], None, "SceneSetEditAddress_EndScene2", "", None
     )
 
     SceneSetEditAddress_EndScene3 = Symbol(
-        None, None, None, "SceneSetEditAddress_EndScene3", "", None
+        [0x16268], [0x2340F28], None, "SceneSetEditAddress_EndScene3", "", None
     )
 
     SceneSetEditAddress_DrawAddress = Symbol(
-        None, None, None, "SceneSetEditAddress_DrawAddress", "", None
+        [0x1630C], [0x2340FCC], None, "SceneSetEditAddress_DrawAddress", "", None
     )
 
     SceneSetEditAddress_DispCaret = Symbol(
-        None, None, None, "SceneSetEditAddress_DispCaret", "", None
+        [0x163D0], [0x2341090], None, "SceneSetEditAddress_DispCaret", "", None
     )
 
     SceneSetEditAddress_ProcWin = Symbol(
-        None, None, None, "SceneSetEditAddress_ProcWin", "", None
+        [0x16424], [0x23410E4], None, "SceneSetEditAddress_ProcWin", "", None
     )
 
     SceneSetEditAddress_ProcWin1 = Symbol(
-        None, None, None, "SceneSetEditAddress_ProcWin1", "", None
+        [0x16480], [0x2341140], None, "SceneSetEditAddress_ProcWin1", "", None
     )
 
-    ArrangeAddress = Symbol(None, None, None, "ArrangeAddress", "", None)
+    ArrangeAddress = Symbol([0x16534], [0x23411F4], None, "ArrangeAddress", "", None)
 
     SceneSetEditAddress_IsCorrect = Symbol(
-        None, None, None, "SceneSetEditAddress_IsCorrect", "", None
+        [0x165AC], [0x234126C], None, "SceneSetEditAddress_IsCorrect", "", None
     )
 
     SceneSetEditAddress_ProcError = Symbol(
-        None, None, None, "SceneSetEditAddress_ProcError", "", None
+        [0x16700], [0x23413C0], None, "SceneSetEditAddress_ProcError", "", None
     )
 
     SceneSetEditAddress_ProcError1 = Symbol(
-        None, None, None, "SceneSetEditAddress_ProcError1", "", None
+        [0x1672C], [0x23413EC], None, "SceneSetEditAddress_ProcError1", "", None
     )
 
-    Dwci_SceneSetError = Symbol(None, None, None, "Dwci_SceneSetError", "", None)
+    Dwci_SceneSetError = Symbol(
+        [0x16770], [0x2341430], None, "Dwci_SceneSetError", "", None
+    )
 
     SceneSetError_InitGraphics = Symbol(
-        None, None, None, "SceneSetError_InitGraphics", "", None
+        [0x1678C], [0x234144C], None, "SceneSetError_InitGraphics", "", None
     )
 
-    DrawMessage = Symbol(None, None, None, "DrawMessage", "", None)
+    DrawMessage = Symbol([0x1680C], [0x23414CC], None, "DrawMessage", "", None)
 
     SceneSetError_ProcInit = Symbol(
-        None, None, None, "SceneSetError_ProcInit", "", None
+        [0x16B80], [0x2341840], None, "SceneSetError_ProcInit", "", None
     )
 
     SceneSetError_ProcInit1 = Symbol(
-        None, None, None, "SceneSetError_ProcInit1", "", None
+        [0x16BB4], [0x2341874], None, "SceneSetError_ProcInit1", "", None
     )
 
     SceneSetError_ProcInit2 = Symbol(
-        None, None, None, "SceneSetError_ProcInit2", "", None
+        [0x16BF0], [0x23418B0], None, "SceneSetError_ProcInit2", "", None
     )
 
     SceneSetError_ProcScene = Symbol(
-        None, None, None, "SceneSetError_ProcScene", "", None
+        [0x16C18], [0x23418D8], None, "SceneSetError_ProcScene", "", None
     )
 
-    SceneSetError_Input = Symbol(None, None, None, "SceneSetError_Input", "", None)
+    SceneSetError_Input = Symbol(
+        [0x16C2C], [0x23418EC], None, "SceneSetError_Input", "", None
+    )
 
-    SceneSetError_Draw = Symbol(None, None, None, "SceneSetError_Draw", "", None)
+    SceneSetError_Draw = Symbol(
+        [0x16C4C], [0x234190C], None, "SceneSetError_Draw", "", None
+    )
 
-    SceneSetError_Button = Symbol(None, None, None, "SceneSetError_Button", "", None)
+    SceneSetError_Button = Symbol(
+        [0x16C50], [0x2341910], None, "SceneSetError_Button", "", None
+    )
 
     SceneSetError_EndScene = Symbol(
-        None, None, None, "SceneSetError_EndScene", "", None
+        [0x16C78], [0x2341938], None, "SceneSetError_EndScene", "", None
     )
 
     SceneSetError_EndScene1 = Symbol(
-        None, None, None, "SceneSetError_EndScene1", "", None
+        [0x16C98], [0x2341958], None, "SceneSetError_EndScene1", "", None
     )
 
     SceneSetError_EndScene2 = Symbol(
-        None, None, None, "SceneSetError_EndScene2", "", None
+        [0x16CE8], [0x23419A8], None, "SceneSetError_EndScene2", "", None
     )
 
-    Dwci_SetErrorCode = Symbol(None, None, None, "Dwci_SetErrorCode", "", None)
+    Dwci_SetErrorCode = Symbol(
+        [0x16D9C], [0x2341A5C], None, "Dwci_SetErrorCode", "", None
+    )
 
-    Dwci_SceneSetList = Symbol(None, None, None, "Dwci_SceneSetList", "", None)
+    Dwci_SceneSetList = Symbol(
+        [0x16DAC], [0x2341A6C], None, "Dwci_SceneSetList", "", None
+    )
 
     SceneSetList_InitGraphics = Symbol(
-        None, None, None, "SceneSetList_InitGraphics", "", None
+        [0x16FA8], [0x2341C68], None, "SceneSetList_InitGraphics", "", None
     )
 
-    CalcParam = Symbol(None, None, None, "CalcParam", "", None)
+    CalcParam = Symbol([0x171BC], [0x2341E7C], None, "CalcParam", "", None)
 
-    SceneSetList_ProcInit = Symbol(None, None, None, "SceneSetList_ProcInit", "", None)
+    SceneSetList_ProcInit = Symbol(
+        [0x171F8], [0x2341EB8], None, "SceneSetList_ProcInit", "", None
+    )
 
     SceneSetList_ProcInit1 = Symbol(
-        None, None, None, "SceneSetList_ProcInit1", "", None
+        [0x1724C], [0x2341F0C], None, "SceneSetList_ProcInit1", "", None
     )
 
     SceneSetList_ProcScene = Symbol(
-        None, None, None, "SceneSetList_ProcScene", "", None
+        [0x17280], [0x2341F40], None, "SceneSetList_ProcScene", "", None
     )
 
-    SceneSetList_Input = Symbol(None, None, None, "SceneSetList_Input", "", None)
+    SceneSetList_Input = Symbol(
+        [0x17290], [0x2341F50], None, "SceneSetList_Input", "", None
+    )
 
-    InputWinButton = Symbol(None, None, None, "InputWinButton", "", None)
+    InputWinButton = Symbol([0x17510], [0x23421D0], None, "InputWinButton", "", None)
 
-    PushWinButton = Symbol(None, None, None, "PushWinButton", "", None)
+    PushWinButton = Symbol([0x17594], [0x2342254], None, "PushWinButton", "", None)
 
     SceneSetList_PushIpAuto = Symbol(
-        None, None, None, "SceneSetList_PushIpAuto", "", None
+        [0x17714], [0x23423D4], None, "SceneSetList_PushIpAuto", "", None
     )
 
     SceneSetList_PushDnsAuto = Symbol(
-        None, None, None, "SceneSetList_PushDnsAuto", "", None
+        [0x17780], [0x2342440], None, "SceneSetList_PushDnsAuto", "", None
     )
 
-    SceneSetList_Draw = Symbol(None, None, None, "SceneSetList_Draw", "", None)
+    SceneSetList_Draw = Symbol(
+        [0x177B8], [0x2342478], None, "SceneSetList_Draw", "", None
+    )
 
-    SceneSetList_EndScene = Symbol(None, None, None, "SceneSetList_EndScene", "", None)
+    SceneSetList_EndScene = Symbol(
+        [0x17A14], [0x23426D4], None, "SceneSetList_EndScene", "", None
+    )
 
     SceneSetList_EndScene1 = Symbol(
-        None, None, None, "SceneSetList_EndScene1", "", None
+        [0x17A34], [0x23426F4], None, "SceneSetList_EndScene1", "", None
     )
 
     SceneSetList_EndScene2 = Symbol(
-        None, None, None, "SceneSetList_EndScene2", "", None
+        [0x17A80], [0x2342740], None, "SceneSetList_EndScene2", "", None
     )
 
     SceneSetList_DrawWindow = Symbol(
-        None, None, None, "SceneSetList_DrawWindow", "", None
+        [0x17D74], [0x2342A34], None, "SceneSetList_DrawWindow", "", None
     )
 
     SceneSetList_DrawColumnChar = Symbol(
-        None, None, None, "SceneSetList_DrawColumnChar", "", None
+        [0x17E34], [0x2342AF4], None, "SceneSetList_DrawColumnChar", "", None
     )
 
     SceneSetList_DrawColumnObj = Symbol(
-        None, None, None, "SceneSetList_DrawColumnObj", "", None
+        [0x17FD0], [0x2342C90], None, "SceneSetList_DrawColumnObj", "", None
     )
 
     SceneSetList_IsEnablePush = Symbol(
-        None, None, None, "SceneSetList_IsEnablePush", "", None
+        [0x18124], [0x2342DE4], None, "SceneSetList_IsEnablePush", "", None
     )
 
-    SceneSetList_DispObj = Symbol(None, None, None, "SceneSetList_DispObj", "", None)
+    SceneSetList_DispObj = Symbol(
+        [0x181B8], [0x2342E78], None, "SceneSetList_DispObj", "", None
+    )
 
     SceneSetList_DrawString = Symbol(
-        None, None, None, "SceneSetList_DrawString", "", None
+        [0x182BC], [0x2342F7C], None, "SceneSetList_DrawString", "", None
     )
 
     SceneSetList_DrawAddress = Symbol(
-        None, None, None, "SceneSetList_DrawAddress", "", None
+        [0x18410], [0x23430D0], None, "SceneSetList_DrawAddress", "", None
     )
 
     SceneSetList_SetOffset = Symbol(
-        None, None, None, "SceneSetList_SetOffset", "", None
+        [0x184A8], [0x2343168], None, "SceneSetList_SetOffset", "", None
     )
 
-    SceneSetList_IsPush = Symbol(None, None, None, "SceneSetList_IsPush", "", None)
+    SceneSetList_IsPush = Symbol(
+        [0x186B8], [0x2343378], None, "SceneSetList_IsPush", "", None
+    )
 
     SceneSetList_CalcColumnIdx = Symbol(
-        None, None, None, "SceneSetList_CalcColumnIdx", "", None
+        [0x1892C], [0x23435EC], None, "SceneSetList_CalcColumnIdx", "", None
     )
 
     SceneSetList_CalcIdxColumn = Symbol(
-        None, None, None, "SceneSetList_CalcIdxColumn", "", None
+        [0x18970], [0x2343630], None, "SceneSetList_CalcIdxColumn", "", None
     )
 
-    SceneSetList_TaskUp = Symbol(None, None, None, "SceneSetList_TaskUp", "", None)
+    SceneSetList_TaskUp = Symbol(
+        [0x18994], [0x2343654], None, "SceneSetList_TaskUp", "", None
+    )
 
-    SceneSetList_TaskDown = Symbol(None, None, None, "SceneSetList_TaskDown", "", None)
+    SceneSetList_TaskDown = Symbol(
+        [0x18A5C], [0x234371C], None, "SceneSetList_TaskDown", "", None
+    )
 
     SceneSetList_TaskVBlank = Symbol(
-        None, None, None, "SceneSetList_TaskVBlank", "", None
+        [0x18B00], [0x23437C0], None, "SceneSetList_TaskVBlank", "", None
     )
 
     SceneSetList_DispFocus = Symbol(
-        None, None, None, "SceneSetList_DispFocus", "", None
+        [0x18B84], [0x2343844], None, "SceneSetList_DispFocus", "", None
     )
 
     SceneSetList_ApplyForcus = Symbol(
-        None, None, None, "SceneSetList_ApplyForcus", "", None
+        [0x18C5C], [0x234391C], None, "SceneSetList_ApplyForcus", "", None
     )
 
     SceneSetList_ApplyForcus1 = Symbol(
-        None, None, None, "SceneSetList_ApplyForcus1", "", None
+        [0x18D0C], [0x23439CC], None, "SceneSetList_ApplyForcus1", "", None
     )
 
     SceneSetList_MoveFocus = Symbol(
-        None, None, None, "SceneSetList_MoveFocus", "", None
+        [0x18D3C], [0x23439FC], None, "SceneSetList_MoveFocus", "", None
     )
 
     SceneSetList_DispPushButton = Symbol(
-        None, None, None, "SceneSetList_DispPushButton", "", None
+        [0x1902C], [0x2343CEC], None, "SceneSetList_DispPushButton", "", None
     )
 
     SceneSetList_TaskPushCount = Symbol(
-        None, None, None, "SceneSetList_TaskPushCount", "", None
+        [0x19060], [0x2343D20], None, "SceneSetList_TaskPushCount", "", None
     )
 
     SceneSetList_PushButtonYesNo = Symbol(
-        None, None, None, "SceneSetList_PushButtonYesNo", "", None
+        [0x190B4], [0x2343D74], None, "SceneSetList_PushButtonYesNo", "", None
     )
 
     SceneSetList_IsCorrect = Symbol(
-        None, None, None, "SceneSetList_IsCorrect", "", None
+        [0x19178], [0x2343E38], None, "SceneSetList_IsCorrect", "", None
     )
 
     SceneSetList_ProcError = Symbol(
-        None, None, None, "SceneSetList_ProcError", "", None
+        [0x19218], [0x2343ED8], None, "SceneSetList_ProcError", "", None
     )
 
     SceneSetList_ProcError1 = Symbol(
-        None, None, None, "SceneSetList_ProcError1", "", None
+        [0x19258], [0x2343F18], None, "SceneSetList_ProcError1", "", None
     )
 
-    Dwci_SetListReturn = Symbol(None, None, None, "Dwci_SetListReturn", "", None)
+    Dwci_SetListReturn = Symbol(
+        [0x19278], [0x2343F38], None, "Dwci_SetListReturn", "", None
+    )
 
-    Dwci_SceneSetListSave = Symbol(None, None, None, "Dwci_SceneSetListSave", "", None)
+    Dwci_SceneSetListSave = Symbol(
+        [0x19288], [0x2343F48], None, "Dwci_SceneSetListSave", "", None
+    )
 
     SceneSetListSave_InitGraphics = Symbol(
-        None, None, None, "SceneSetListSave_InitGraphics", "", None
+        [0x192A8], [0x2343F68], None, "SceneSetListSave_InitGraphics", "", None
     )
 
     SceneSetListSave_ProcInit = Symbol(
-        None, None, None, "SceneSetListSave_ProcInit", "", None
+        [0x1933C], [0x2343FFC], None, "SceneSetListSave_ProcInit", "", None
     )
 
     SceneSetListSave_ProcInit1 = Symbol(
-        None, None, None, "SceneSetListSave_ProcInit1", "", None
+        [0x19390], [0x2344050], None, "SceneSetListSave_ProcInit1", "", None
     )
 
     SceneSetListSave_ProcScene = Symbol(
-        None, None, None, "SceneSetListSave_ProcScene", "", None
+        [0x193E0], [0x23440A0], None, "SceneSetListSave_ProcScene", "", None
     )
 
     SceneSetListSave_Input = Symbol(
-        None, None, None, "SceneSetListSave_Input", "", None
+        [0x19408], [0x23440C8], None, "SceneSetListSave_Input", "", None
     )
 
-    SceneSetListSave_Draw = Symbol(None, None, None, "SceneSetListSave_Draw", "", None)
+    SceneSetListSave_Draw = Symbol(
+        [0x1940C], [0x23440CC], None, "SceneSetListSave_Draw", "", None
+    )
 
     SceneSetListSave_EndScene = Symbol(
-        None, None, None, "SceneSetListSave_EndScene", "", None
+        [0x19410], [0x23440D0], None, "SceneSetListSave_EndScene", "", None
     )
 
     SceneSetListSave_EndScene1 = Symbol(
-        None, None, None, "SceneSetListSave_EndScene1", "", None
+        [0x1944C], [0x234410C], None, "SceneSetListSave_EndScene1", "", None
     )
 
     Dwci_SceneSetRakuButton = Symbol(
-        None, None, None, "Dwci_SceneSetRakuButton", "", None
+        [0x194C8], [0x2344188], None, "Dwci_SceneSetRakuButton", "", None
     )
 
     SceneSetRakuButton_InitGraphics = Symbol(
-        None, None, None, "SceneSetRakuButton_InitGraphics", "", None
+        [0x19504], [0x23441C4], None, "SceneSetRakuButton_InitGraphics", "", None
     )
 
     SceneSetRakuButton_ProcInit = Symbol(
-        None, None, None, "SceneSetRakuButton_ProcInit", "", None
+        [0x19584], [0x2344244], None, "SceneSetRakuButton_ProcInit", "", None
     )
 
     SceneSetRakuButton_ProcInit1 = Symbol(
-        None, None, None, "SceneSetRakuButton_ProcInit1", "", None
+        [0x195B8], [0x2344278], None, "SceneSetRakuButton_ProcInit1", "", None
     )
 
     SceneSetRakuButton_ProcInit2 = Symbol(
-        None, None, None, "SceneSetRakuButton_ProcInit2", "", None
+        [0x195E4], [0x23442A4], None, "SceneSetRakuButton_ProcInit2", "", None
     )
 
     SceneSetRakuButton_ProcScene = Symbol(
-        None, None, None, "SceneSetRakuButton_ProcScene", "", None
+        [0x1960C], [0x23442CC], None, "SceneSetRakuButton_ProcScene", "", None
     )
 
     SceneSetRakuButton_Input = Symbol(
-        None, None, None, "SceneSetRakuButton_Input", "", None
+        [0x1962C], [0x23442EC], None, "SceneSetRakuButton_Input", "", None
     )
 
     SceneSetRakuButton_Draw = Symbol(
-        None, None, None, "SceneSetRakuButton_Draw", "", None
+        [0x19664], [0x2344324], None, "SceneSetRakuButton_Draw", "", None
     )
 
     SceneSetRakuButton_Button = Symbol(
-        None, None, None, "SceneSetRakuButton_Button", "", None
+        [0x19668], [0x2344328], None, "SceneSetRakuButton_Button", "", None
     )
 
     SceneSetRakuButton_EndScene = Symbol(
-        None, None, None, "SceneSetRakuButton_EndScene", "", None
+        [0x19694], [0x2344354], None, "SceneSetRakuButton_EndScene", "", None
     )
 
     SceneSetRakuButton_EndScene1 = Symbol(
-        None, None, None, "SceneSetRakuButton_EndScene1", "", None
+        [0x196B4], [0x2344374], None, "SceneSetRakuButton_EndScene1", "", None
     )
 
     SceneSetRakuButton_EndScene2 = Symbol(
-        None, None, None, "SceneSetRakuButton_EndScene2", "", None
+        [0x19728], [0x23443E8], None, "SceneSetRakuButton_EndScene2", "", None
     )
 
     SceneSetRakuButton_CheckRaku = Symbol(
-        None, None, None, "SceneSetRakuButton_CheckRaku", "", None
+        [0x197F0], [0x23444B0], None, "SceneSetRakuButton_CheckRaku", "", None
     )
 
     SceneSetRakuButton_ProcError = Symbol(
-        None, None, None, "SceneSetRakuButton_ProcError", "", None
+        [0x19874], [0x2344534], None, "SceneSetRakuButton_ProcError", "", None
     )
 
     SceneSetRakuButton_ProcError1 = Symbol(
-        None, None, None, "SceneSetRakuButton_ProcError1", "", None
+        [0x198A0], [0x2344560], None, "SceneSetRakuButton_ProcError1", "", None
     )
 
     Dwci_SceneSetRakuButton1 = Symbol(
-        None, None, None, "Dwci_SceneSetRakuButton1", "", None
+        [0x198E0], [0x23445A0], None, "Dwci_SceneSetRakuButton1", "", None
     )
 
     SceneSetRakuButton1_InitGraphics = Symbol(
-        None, None, None, "SceneSetRakuButton1_InitGraphics", "", None
+        [0x1991C], [0x23445DC], None, "SceneSetRakuButton1_InitGraphics", "", None
     )
 
     SceneSetRakuButton1_ProcInit = Symbol(
-        None, None, None, "SceneSetRakuButton1_ProcInit", "", None
+        [0x1999C], [0x234465C], None, "SceneSetRakuButton1_ProcInit", "", None
     )
 
     SceneSetRakuButton1_ProcInit1 = Symbol(
-        None, None, None, "SceneSetRakuButton1_ProcInit1", "", None
+        [0x199D0], [0x2344690], None, "SceneSetRakuButton1_ProcInit1", "", None
     )
 
     SceneSetRakuButton1_ProcInit2 = Symbol(
-        None, None, None, "SceneSetRakuButton1_ProcInit2", "", None
+        [0x199FC], [0x23446BC], None, "SceneSetRakuButton1_ProcInit2", "", None
     )
 
     SceneSetRakuButton1_ProcScene = Symbol(
-        None, None, None, "SceneSetRakuButton1_ProcScene", "", None
+        [0x19A24], [0x23446E4], None, "SceneSetRakuButton1_ProcScene", "", None
     )
 
     SceneSetRakuButton1_Input = Symbol(
-        None, None, None, "SceneSetRakuButton1_Input", "", None
+        [0x19A44], [0x2344704], None, "SceneSetRakuButton1_Input", "", None
     )
 
     SceneSetRakuButton1_Draw = Symbol(
-        None, None, None, "SceneSetRakuButton1_Draw", "", None
+        [0x19A7C], [0x234473C], None, "SceneSetRakuButton1_Draw", "", None
     )
 
     SceneSetRakuButton1_Button = Symbol(
-        None, None, None, "SceneSetRakuButton1_Button", "", None
+        [0x19A80], [0x2344740], None, "SceneSetRakuButton1_Button", "", None
     )
 
     SceneSetRakuButton1_EndScene = Symbol(
-        None, None, None, "SceneSetRakuButton1_EndScene", "", None
+        [0x19AAC], [0x234476C], None, "SceneSetRakuButton1_EndScene", "", None
     )
 
     SceneSetRakuButton1_EndScene1 = Symbol(
-        None, None, None, "SceneSetRakuButton1_EndScene1", "", None
+        [0x19ACC], [0x234478C], None, "SceneSetRakuButton1_EndScene1", "", None
     )
 
     SceneSetRakuButton1_EndScene2 = Symbol(
-        None, None, None, "SceneSetRakuButton1_EndScene2", "", None
+        [0x19B30], [0x23447F0], None, "SceneSetRakuButton1_EndScene2", "", None
     )
 
     SceneSetRakuButton1_CheckRaku = Symbol(
-        None, None, None, "SceneSetRakuButton1_CheckRaku", "", None
+        [0x19BEC], [0x23448AC], None, "SceneSetRakuButton1_CheckRaku", "", None
     )
 
     SceneSetRakuButton1_ProcError = Symbol(
-        None, None, None, "SceneSetRakuButton1_ProcError", "", None
+        [0x19CC4], [0x2344984], None, "SceneSetRakuButton1_ProcError", "", None
     )
 
     SceneSetRakuButton1_ProcError1 = Symbol(
-        None, None, None, "SceneSetRakuButton1_ProcError1", "", None
+        [0x19CF0], [0x23449B0], None, "SceneSetRakuButton1_ProcError1", "", None
     )
 
     Dwci_SceneSetRakuComplete = Symbol(
-        None, None, None, "Dwci_SceneSetRakuComplete", "", None
+        [0x19D10], [0x23449D0], None, "Dwci_SceneSetRakuComplete", "", None
     )
 
     SceneSetRakuComplete_InitGraphics = Symbol(
-        None, None, None, "SceneSetRakuComplete_InitGraphics", "", None
+        [0x19D4C], [0x2344A0C], None, "SceneSetRakuComplete_InitGraphics", "", None
     )
 
     SceneSetRakuComplete_ProcInit = Symbol(
-        None, None, None, "SceneSetRakuComplete_ProcInit", "", None
+        [0x19DCC], [0x2344A8C], None, "SceneSetRakuComplete_ProcInit", "", None
     )
 
     SceneSetRakuComplete_ProcInit1 = Symbol(
-        None, None, None, "SceneSetRakuComplete_ProcInit1", "", None
+        [0x19E00], [0x2344AC0], None, "SceneSetRakuComplete_ProcInit1", "", None
     )
 
     SceneSetRakuComplete_ProcScene = Symbol(
-        None, None, None, "SceneSetRakuComplete_ProcScene", "", None
+        [0x19E24], [0x2344AE4], None, "SceneSetRakuComplete_ProcScene", "", None
     )
 
     SceneSetRakuComplete_Draw = Symbol(
-        None, None, None, "SceneSetRakuComplete_Draw", "", None
+        [0x19E34], [0x2344AF4], None, "SceneSetRakuComplete_Draw", "", None
     )
 
     SceneSetRakuComplete_EndScene = Symbol(
-        None, None, None, "SceneSetRakuComplete_EndScene", "", None
+        [0x19E38], [0x2344AF8], None, "SceneSetRakuComplete_EndScene", "", None
     )
 
     SceneSetRakuComplete_EndScene1 = Symbol(
-        None, None, None, "SceneSetRakuComplete_EndScene1", "", None
+        [0x19E74], [0x2344B34], None, "SceneSetRakuComplete_EndScene1", "", None
     )
 
     SceneSetRakuComplete_Wait = Symbol(
-        None, None, None, "SceneSetRakuComplete_Wait", "", None
+        [0x19EE4], [0x2344BA4], None, "SceneSetRakuComplete_Wait", "", None
     )
 
     Dwci_SceneSetRakuReady = Symbol(
-        None, None, None, "Dwci_SceneSetRakuReady", "", None
+        [0x19F38], [0x2344BF8], None, "Dwci_SceneSetRakuReady", "", None
     )
 
     SceneSetRakuReady_InitGraphics = Symbol(
-        None, None, None, "SceneSetRakuReady_InitGraphics", "", None
+        [0x19F94], [0x2344C54], None, "SceneSetRakuReady_InitGraphics", "", None
     )
 
     SceneSetRakuReady_ProcInit = Symbol(
-        None, None, None, "SceneSetRakuReady_ProcInit", "", None
+        [0x1A03C], [0x2344CFC], None, "SceneSetRakuReady_ProcInit", "", None
     )
 
     SceneSetRakuReady_ProcInit1 = Symbol(
-        None, None, None, "SceneSetRakuReady_ProcInit1", "", None
+        [0x1A090], [0x2344D50], None, "SceneSetRakuReady_ProcInit1", "", None
     )
 
     SceneSetRakuReady_ProcInit2 = Symbol(
-        None, None, None, "SceneSetRakuReady_ProcInit2", "", None
+        [0x1A0D0], [0x2344D90], None, "SceneSetRakuReady_ProcInit2", "", None
     )
 
     SceneSetRakuReady_ProcScene = Symbol(
-        None, None, None, "SceneSetRakuReady_ProcScene", "", None
+        [0x1A0F8], [0x2344DB8], None, "SceneSetRakuReady_ProcScene", "", None
     )
 
     SceneSetRakuReady_Input = Symbol(
-        None, None, None, "SceneSetRakuReady_Input", "", None
+        [0x1A118], [0x2344DD8], None, "SceneSetRakuReady_Input", "", None
     )
 
     SceneSetRakuReady_Draw = Symbol(
-        None, None, None, "SceneSetRakuReady_Draw", "", None
+        [0x1A150], [0x2344E10], None, "SceneSetRakuReady_Draw", "", None
     )
 
     SceneSetRakuReady_Button = Symbol(
-        None, None, None, "SceneSetRakuReady_Button", "", None
+        [0x1A154], [0x2344E14], None, "SceneSetRakuReady_Button", "", None
     )
 
     SceneSetRakuReady_EndScene = Symbol(
-        None, None, None, "SceneSetRakuReady_EndScene", "", None
+        [0x1A180], [0x2344E40], None, "SceneSetRakuReady_EndScene", "", None
     )
 
     SceneSetRakuReady_EndScene1 = Symbol(
-        None, None, None, "SceneSetRakuReady_EndScene1", "", None
+        [0x1A1A0], [0x2344E60], None, "SceneSetRakuReady_EndScene1", "", None
     )
 
     SceneSetRakuReady_EndScene2 = Symbol(
-        None, None, None, "SceneSetRakuReady_EndScene2", "", None
+        [0x1A214], [0x2344ED4], None, "SceneSetRakuReady_EndScene2", "", None
     )
 
     SceneSetRakuReady_CheckRaku = Symbol(
-        None, None, None, "SceneSetRakuReady_CheckRaku", "", None
+        [0x1A2DC], [0x2344F9C], None, "SceneSetRakuReady_CheckRaku", "", None
     )
 
     SceneSetRakuReady_ProcError = Symbol(
-        None, None, None, "SceneSetRakuReady_ProcError", "", None
+        [0x1A360], [0x2345020], None, "SceneSetRakuReady_ProcError", "", None
     )
 
     SceneSetRakuReady_ProcError1 = Symbol(
-        None, None, None, "SceneSetRakuReady_ProcError1", "", None
+        [0x1A38C], [0x234504C], None, "SceneSetRakuReady_ProcError1", "", None
     )
 
-    Dwci_SceneSetSearch = Symbol(None, None, None, "Dwci_SceneSetSearch", "", None)
+    Dwci_SceneSetSearch = Symbol(
+        [0x1A3AC], [0x234506C], None, "Dwci_SceneSetSearch", "", None
+    )
 
     SceneSetSearch_InitGraphics = Symbol(
-        None, None, None, "SceneSetSearch_InitGraphics", "", None
+        [0x1A414], [0x23450D4], None, "SceneSetSearch_InitGraphics", "", None
     )
 
     SceneSetSearch_ProcInit = Symbol(
-        None, None, None, "SceneSetSearch_ProcInit", "", None
+        [0x1A4BC], [0x234517C], None, "SceneSetSearch_ProcInit", "", None
     )
 
     SceneSetSearch_ProcInit1 = Symbol(
-        None, None, None, "SceneSetSearch_ProcInit1", "", None
+        [0x1A510], [0x23451D0], None, "SceneSetSearch_ProcInit1", "", None
     )
 
     SceneSetSearch_ProcInit2 = Symbol(
-        None, None, None, "SceneSetSearch_ProcInit2", "", None
+        [0x1A54C], [0x234520C], None, "SceneSetSearch_ProcInit2", "", None
     )
 
     SceneSetSearch_ProcScene = Symbol(
-        None, None, None, "SceneSetSearch_ProcScene", "", None
+        [0x1A574], [0x2345234], None, "SceneSetSearch_ProcScene", "", None
     )
 
-    SceneSetSearch_IsEnd = Symbol(None, None, None, "SceneSetSearch_IsEnd", "", None)
+    SceneSetSearch_IsEnd = Symbol(
+        [0x1A58C], [0x234524C], None, "SceneSetSearch_IsEnd", "", None
+    )
 
-    SceneSetSearch_Input = Symbol(None, None, None, "SceneSetSearch_Input", "", None)
+    SceneSetSearch_Input = Symbol(
+        [0x1A6B4], [0x2345374], None, "SceneSetSearch_Input", "", None
+    )
 
-    SceneSetSearch_Draw = Symbol(None, None, None, "SceneSetSearch_Draw", "", None)
+    SceneSetSearch_Draw = Symbol(
+        [0x1A6D8], [0x2345398], None, "SceneSetSearch_Draw", "", None
+    )
 
-    SceneSetSearch_Button = Symbol(None, None, None, "SceneSetSearch_Button", "", None)
+    SceneSetSearch_Button = Symbol(
+        [0x1A6DC], [0x234539C], None, "SceneSetSearch_Button", "", None
+    )
 
     SceneSetSearch_EndScene = Symbol(
-        None, None, None, "SceneSetSearch_EndScene", "", None
+        [0x1A708], [0x23453C8], None, "SceneSetSearch_EndScene", "", None
     )
 
     SceneSetSearch_EndScene1 = Symbol(
-        None, None, None, "SceneSetSearch_EndScene1", "", None
+        [0x1A728], [0x23453E8], None, "SceneSetSearch_EndScene1", "", None
     )
 
     SceneSetSearch_EndScene2 = Symbol(
-        None, None, None, "SceneSetSearch_EndScene2", "", None
+        [0x1A778], [0x2345438], None, "SceneSetSearch_EndScene2", "", None
     )
 
     SceneSetSearch_ProcError = Symbol(
-        None, None, None, "SceneSetSearch_ProcError", "", None
+        [0x1A844], [0x2345504], None, "SceneSetSearch_ProcError", "", None
     )
 
     SceneSetSearch_ProcError1 = Symbol(
-        None, None, None, "SceneSetSearch_ProcError1", "", None
+        [0x1A870], [0x2345530], None, "SceneSetSearch_ProcError1", "", None
     )
 
-    Dwci_SceneSetSelectAp = Symbol(None, None, None, "Dwci_SceneSetSelectAp", "", None)
+    Dwci_SceneSetSelectAp = Symbol(
+        [0x1A890], [0x2345550], None, "Dwci_SceneSetSelectAp", "", None
+    )
 
     SceneSetSelectAp_InitGraphics = Symbol(
-        None, None, None, "SceneSetSelectAp_InitGraphics", "", None
+        [0x1A8F0], [0x23455B0], None, "SceneSetSelectAp_InitGraphics", "", None
     )
 
     SceneSetSelectAp_InitObj = Symbol(
-        None, None, None, "SceneSetSelectAp_InitObj", "", None
+        [0x1AA00], [0x23456C0], None, "SceneSetSelectAp_InitObj", "", None
     )
 
     SceneSetSelectAp_ProcInit = Symbol(
-        None, None, None, "SceneSetSelectAp_ProcInit", "", None
+        [0x1AB08], [0x23457C8], None, "SceneSetSelectAp_ProcInit", "", None
     )
 
     SceneSetSelectAp_ProcInit1 = Symbol(
-        None, None, None, "SceneSetSelectAp_ProcInit1", "", None
+        [0x1AB5C], [0x234581C], None, "SceneSetSelectAp_ProcInit1", "", None
     )
 
     SceneSetSelectAp_ProcInit2 = Symbol(
-        None, None, None, "SceneSetSelectAp_ProcInit2", "", None
+        [0x1AB98], [0x2345858], None, "SceneSetSelectAp_ProcInit2", "", None
     )
 
     SceneSetSelectAp_ProcScene = Symbol(
-        None, None, None, "SceneSetSelectAp_ProcScene", "", None
+        [0x1ABCC], [0x234588C], None, "SceneSetSelectAp_ProcScene", "", None
     )
 
     SceneSetSelectAp_Input = Symbol(
-        None, None, None, "SceneSetSelectAp_Input", "", None
+        [0x1ABE0], [0x23458A0], None, "SceneSetSelectAp_Input", "", None
     )
 
-    SceneSetSelectAp_Draw = Symbol(None, None, None, "SceneSetSelectAp_Draw", "", None)
+    SceneSetSelectAp_Draw = Symbol(
+        [0x1ACD4], [0x2345994], None, "SceneSetSelectAp_Draw", "", None
+    )
 
     SceneSetSelectAp_Button = Symbol(
-        None, None, None, "SceneSetSelectAp_Button", "", None
+        [0x1ACD8], [0x2345998], None, "SceneSetSelectAp_Button", "", None
     )
 
     SceneSetSelectAp_EndScene = Symbol(
-        None, None, None, "SceneSetSelectAp_EndScene", "", None
+        [0x1AE0C], [0x2345ACC], None, "SceneSetSelectAp_EndScene", "", None
     )
 
     SceneSetSelectAp_EndScene1 = Symbol(
-        None, None, None, "SceneSetSelectAp_EndScene1", "", None
+        [0x1AE48], [0x2345B08], None, "SceneSetSelectAp_EndScene1", "", None
     )
 
     SceneSetSelectAp_EndScene2 = Symbol(
-        None, None, None, "SceneSetSelectAp_EndScene2", "", None
+        [0x1AECC], [0x2345B8C], None, "SceneSetSelectAp_EndScene2", "", None
     )
 
     SceneSetSelectAp_DispFocus = Symbol(
-        None, None, None, "SceneSetSelectAp_DispFocus", "", None
+        [0x1B070], [0x2345D30], None, "SceneSetSelectAp_DispFocus", "", None
     )
 
     SceneSetSelectAp_MoveFocus = Symbol(
-        None, None, None, "SceneSetSelectAp_MoveFocus", "", None
+        [0x1B0EC], [0x2345DAC], None, "SceneSetSelectAp_MoveFocus", "", None
     )
 
     SceneSetSelectAp_DispPushClear = Symbol(
-        None, None, None, "SceneSetSelectAp_DispPushClear", "", None
+        [0x1B2E0], [0x2345FA0], None, "SceneSetSelectAp_DispPushClear", "", None
     )
 
     SceneSetSelectAp_ProcErase = Symbol(
-        None, None, None, "SceneSetSelectAp_ProcErase", "", None
+        [0x1B370], [0x2346030], None, "SceneSetSelectAp_ProcErase", "", None
     )
 
     SceneSetSelectAp_ProcErase1 = Symbol(
-        None, None, None, "SceneSetSelectAp_ProcErase1", "", None
+        [0x1B4DC], [0x234619C], None, "SceneSetSelectAp_ProcErase1", "", None
     )
 
     SceneSetSelectAp_DispPush = Symbol(
-        None, None, None, "SceneSetSelectAp_DispPush", "", None
+        [0x1B500], [0x23461C0], None, "SceneSetSelectAp_DispPush", "", None
     )
 
     Dwci_SceneSetSelectWay = Symbol(
-        None, None, None, "Dwci_SceneSetSelectWay", "", None
+        [0x1B5D0], [0x2346290], None, "Dwci_SceneSetSelectWay", "", None
     )
 
     SceneSetSelectWay_InitGraphics = Symbol(
-        None, None, None, "SceneSetSelectWay_InitGraphics", "", None
+        [0x1B6F4], [0x23463B4], None, "SceneSetSelectWay_InitGraphics", "", None
     )
 
     SceneSetSelectWay_ProcInit = Symbol(
-        None, None, None, "SceneSetSelectWay_ProcInit", "", None
+        [0x1B7E0], [0x23464A0], None, "SceneSetSelectWay_ProcInit", "", None
     )
 
     SceneSetSelectWay_ProcInit1 = Symbol(
-        None, None, None, "SceneSetSelectWay_ProcInit1", "", None
+        [0x1B834], [0x23464F4], None, "SceneSetSelectWay_ProcInit1", "", None
     )
 
     SceneSetSelectWay_ProcInit2 = Symbol(
-        None, None, None, "SceneSetSelectWay_ProcInit2", "", None
+        [0x1B870], [0x2346530], None, "SceneSetSelectWay_ProcInit2", "", None
     )
 
     SceneSetSelectWay_ProcScene = Symbol(
-        None, None, None, "SceneSetSelectWay_ProcScene", "", None
+        [0x1B898], [0x2346558], None, "SceneSetSelectWay_ProcScene", "", None
     )
 
     SceneSetSelectWay_Input = Symbol(
-        None, None, None, "SceneSetSelectWay_Input", "", None
+        [0x1B8AC], [0x234656C], None, "SceneSetSelectWay_Input", "", None
     )
 
     SceneSetSelectWay_Draw = Symbol(
-        None, None, None, "SceneSetSelectWay_Draw", "", None
+        [0x1BA30], [0x23466F0], None, "SceneSetSelectWay_Draw", "", None
     )
 
     SceneSetSelectWay_Button = Symbol(
-        None, None, None, "SceneSetSelectWay_Button", "", None
+        [0x1BA34], [0x23466F4], None, "SceneSetSelectWay_Button", "", None
     )
 
     SceneSetSelectWay_EndScene = Symbol(
-        None, None, None, "SceneSetSelectWay_EndScene", "", None
+        [0x1BA88], [0x2346748], None, "SceneSetSelectWay_EndScene", "", None
     )
 
     SceneSetSelectWay_EndScene1 = Symbol(
-        None, None, None, "SceneSetSelectWay_EndScene1", "", None
+        [0x1BAA8], [0x2346768], None, "SceneSetSelectWay_EndScene1", "", None
     )
 
     SceneSetSelectWay_EndScene2 = Symbol(
-        None, None, None, "SceneSetSelectWay_EndScene2", "", None
+        [0x1BB0C], [0x23467CC], None, "SceneSetSelectWay_EndScene2", "", None
     )
 
     SceneSetSelectWay_MoveFocus = Symbol(
-        None, None, None, "SceneSetSelectWay_MoveFocus", "", None
+        [0x1BC3C], [0x23468FC], None, "SceneSetSelectWay_MoveFocus", "", None
     )
 
     SceneSetSelectWay_DispPush = Symbol(
-        None, None, None, "SceneSetSelectWay_DispPush", "", None
+        [0x1BD30], [0x23469F0], None, "SceneSetSelectWay_DispPush", "", None
     )
 
-    Dwci_SceneSetTest = Symbol(None, None, None, "Dwci_SceneSetTest", "", None)
+    Dwci_SceneSetTest = Symbol(
+        [0x1BD88], [0x2346A48], None, "Dwci_SceneSetTest", "", None
+    )
 
     SceneSetTest_InitGraphics = Symbol(
-        None, None, None, "SceneSetTest_InitGraphics", "", None
+        [0x1BE14], [0x2346AD4], None, "SceneSetTest_InitGraphics", "", None
     )
 
-    SceneSetTest_InitAc = Symbol(None, None, None, "SceneSetTest_InitAc", "", None)
+    SceneSetTest_InitAc = Symbol(
+        [0x1BEBC], [0x2346B7C], None, "SceneSetTest_InitAc", "", None
+    )
 
-    SceneSetTest_ProcInit = Symbol(None, None, None, "SceneSetTest_ProcInit", "", None)
+    SceneSetTest_ProcInit = Symbol(
+        [0x1BF5C], [0x2346C1C], None, "SceneSetTest_ProcInit", "", None
+    )
 
     SceneSetTest_ProcInit1 = Symbol(
-        None, None, None, "SceneSetTest_ProcInit1", "", None
+        [0x1BFC8], [0x2346C88], None, "SceneSetTest_ProcInit1", "", None
     )
 
     SceneSetTest_ProcScene = Symbol(
-        None, None, None, "SceneSetTest_ProcScene", "", None
+        [0x1BFFC], [0x2346CBC], None, "SceneSetTest_ProcScene", "", None
     )
 
-    SceneSetTest_Input = Symbol(None, None, None, "SceneSetTest_Input", "", None)
+    SceneSetTest_Input = Symbol(
+        [0x1C010], [0x2346CD0], None, "SceneSetTest_Input", "", None
+    )
 
-    SceneSetTest_Draw = Symbol(None, None, None, "SceneSetTest_Draw", "", None)
+    SceneSetTest_Draw = Symbol(
+        [0x1C014], [0x2346CD4], None, "SceneSetTest_Draw", "", None
+    )
 
-    SceneSetTest_Button = Symbol(None, None, None, "SceneSetTest_Button", "", None)
+    SceneSetTest_Button = Symbol(
+        [0x1C018], [0x2346CD8], None, "SceneSetTest_Button", "", None
+    )
 
-    SceneSetTest_EndScene = Symbol(None, None, None, "SceneSetTest_EndScene", "", None)
+    SceneSetTest_EndScene = Symbol(
+        [0x1C01C], [0x2346CDC], None, "SceneSetTest_EndScene", "", None
+    )
 
     SceneSetTest_EndScene1 = Symbol(
-        None, None, None, "SceneSetTest_EndScene1", "", None
+        [0x1C044], [0x2346D04], None, "SceneSetTest_EndScene1", "", None
     )
 
     SceneSetTest_EndScene2 = Symbol(
-        None, None, None, "SceneSetTest_EndScene2", "", None
+        [0x1C068], [0x2346D28], None, "SceneSetTest_EndScene2", "", None
     )
 
-    SceneSetTest_TaskAc = Symbol(None, None, None, "SceneSetTest_TaskAc", "", None)
+    SceneSetTest_TaskAc = Symbol(
+        [0x1C10C], [0x2346DCC], None, "SceneSetTest_TaskAc", "", None
+    )
 
-    AcAlloc = Symbol(None, None, None, "AcAlloc", "", None)
+    AcAlloc = Symbol([0x1C1B0], [0x2346E70], None, "AcAlloc", "", None)
 
-    AcFree = Symbol(None, None, None, "AcFree", "", None)
+    AcFree = Symbol([0x1C1C4], [0x2346E84], None, "AcFree", "", None)
 
     Dwci_SceneSetTestCompletet = Symbol(
-        None, None, None, "Dwci_SceneSetTestCompletet", "", None
+        [0x1C1D4], [0x2346E94], None, "Dwci_SceneSetTestCompletet", "", None
     )
 
     SceneSetTestCompletet_InitGraphics = Symbol(
-        None, None, None, "SceneSetTestCompletet_InitGraphics", "", None
+        [0x1C204], [0x2346EC4], None, "SceneSetTestCompletet_InitGraphics", "", None
     )
 
     SceneSetTestCompletet_ProcInit = Symbol(
-        None, None, None, "SceneSetTestCompletet_ProcInit", "", None
+        [0x1C270], [0x2346F30], None, "SceneSetTestCompletet_ProcInit", "", None
     )
 
     SceneSetTestCompletet_ProcInit1 = Symbol(
-        None, None, None, "SceneSetTestCompletet_ProcInit1", "", None
+        [0x1C2A4], [0x2346F64], None, "SceneSetTestCompletet_ProcInit1", "", None
     )
 
     SceneSetTestCompletet_ProcScene = Symbol(
-        None, None, None, "SceneSetTestCompletet_ProcScene", "", None
+        [0x1C2C8], [0x2346F88], None, "SceneSetTestCompletet_ProcScene", "", None
     )
 
     SceneSetTestCompletet_Draw = Symbol(
-        None, None, None, "SceneSetTestCompletet_Draw", "", None
+        [0x1C2D8], [0x2346F98], None, "SceneSetTestCompletet_Draw", "", None
     )
 
     SceneSetTestCompletet_EndScene = Symbol(
-        None, None, None, "SceneSetTestCompletet_EndScene", "", None
+        [0x1C2DC], [0x2346F9C], None, "SceneSetTestCompletet_EndScene", "", None
     )
 
     SceneSetTestCompletet_EndScene1 = Symbol(
-        None, None, None, "SceneSetTestCompletet_EndScene1", "", None
+        [0x1C334], [0x2346FF4], None, "SceneSetTestCompletet_EndScene1", "", None
     )
 
     SceneSetTestCompletet_Wait = Symbol(
-        None, None, None, "SceneSetTestCompletet_Wait", "", None
+        [0x1C3D8], [0x2347098], None, "SceneSetTestCompletet_Wait", "", None
     )
 
     Dwci_SceneSetTestConfirm = Symbol(
-        None, None, None, "Dwci_SceneSetTestConfirm", "", None
+        [0x1C448], [0x2347108], None, "Dwci_SceneSetTestConfirm", "", None
     )
 
     SceneSetTestConfirm_InitGraphics = Symbol(
-        None, None, None, "SceneSetTestConfirm_InitGraphics", "", None
+        [0x1C4A0], [0x2347160], None, "SceneSetTestConfirm_InitGraphics", "", None
     )
 
     SceneSetTestConfirm_ProcInit = Symbol(
-        None, None, None, "SceneSetTestConfirm_ProcInit", "", None
+        [0x1C50C], [0x23471CC], None, "SceneSetTestConfirm_ProcInit", "", None
     )
 
     SceneSetTestConfirm_ProcInit1 = Symbol(
-        None, None, None, "SceneSetTestConfirm_ProcInit1", "", None
+        [0x1C560], [0x2347220], None, "SceneSetTestConfirm_ProcInit1", "", None
     )
 
     SceneSetTestConfirm_ProcScene = Symbol(
-        None, None, None, "SceneSetTestConfirm_ProcScene", "", None
+        [0x1C5E8], [0x23472A8], None, "SceneSetTestConfirm_ProcScene", "", None
     )
 
     SceneSetTestConfirm_Input = Symbol(
-        None, None, None, "SceneSetTestConfirm_Input", "", None
+        [0x1C624], [0x23472E4], None, "SceneSetTestConfirm_Input", "", None
     )
 
     SceneSetTestConfirm_Draw = Symbol(
-        None, None, None, "SceneSetTestConfirm_Draw", "", None
+        [0x1C628], [0x23472E8], None, "SceneSetTestConfirm_Draw", "", None
     )
 
     SceneSetTestConfirm_EndScene = Symbol(
-        None, None, None, "SceneSetTestConfirm_EndScene", "", None
+        [0x1C62C], [0x23472EC], None, "SceneSetTestConfirm_EndScene", "", None
     )
 
     SceneSetTestConfirm_EndScene1 = Symbol(
-        None, None, None, "SceneSetTestConfirm_EndScene1", "", None
+        [0x1C660], [0x2347320], None, "SceneSetTestConfirm_EndScene1", "", None
     )
 
     Dwci_SceneSetUsbComplete = Symbol(
-        None, None, None, "Dwci_SceneSetUsbComplete", "", None
+        [0x1C69C], [0x234735C], None, "Dwci_SceneSetUsbComplete", "", None
     )
 
     SceneSetUsbComplete_InitGraphics = Symbol(
-        None, None, None, "SceneSetUsbComplete_InitGraphics", "", None
+        [0x1C6DC], [0x234739C], None, "SceneSetUsbComplete_InitGraphics", "", None
     )
 
     SceneSetUsbComplete_ProcInit = Symbol(
-        None, None, None, "SceneSetUsbComplete_ProcInit", "", None
+        [0x1C75C], [0x234741C], None, "SceneSetUsbComplete_ProcInit", "", None
     )
 
     SceneSetUsbComplete_ProcInit1 = Symbol(
-        None, None, None, "SceneSetUsbComplete_ProcInit1", "", None
+        [0x1C790], [0x2347450], None, "SceneSetUsbComplete_ProcInit1", "", None
     )
 
     SceneSetUsbComplete_ProcScene = Symbol(
-        None, None, None, "SceneSetUsbComplete_ProcScene", "", None
+        [0x1C7B4], [0x2347474], None, "SceneSetUsbComplete_ProcScene", "", None
     )
 
     SceneSetUsbComplete_Draw = Symbol(
-        None, None, None, "SceneSetUsbComplete_Draw", "", None
+        [0x1C7C4], [0x2347484], None, "SceneSetUsbComplete_Draw", "", None
     )
 
     SceneSetUsbComplete_EndScene = Symbol(
-        None, None, None, "SceneSetUsbComplete_EndScene", "", None
+        [0x1C7C8], [0x2347488], None, "SceneSetUsbComplete_EndScene", "", None
     )
 
     SceneSetUsbComplete_EndScene1 = Symbol(
-        None, None, None, "SceneSetUsbComplete_EndScene1", "", None
+        [0x1C804], [0x23474C4], None, "SceneSetUsbComplete_EndScene1", "", None
     )
 
     SceneSetUsbComplete_Wait = Symbol(
-        None, None, None, "SceneSetUsbComplete_Wait", "", None
+        [0x1C874], [0x2347534], None, "SceneSetUsbComplete_Wait", "", None
     )
 
-    Dwci_SceneSetUsbReady = Symbol(None, None, None, "Dwci_SceneSetUsbReady", "", None)
+    Dwci_SceneSetUsbReady = Symbol(
+        [0x1C8A8], [0x2347568], None, "Dwci_SceneSetUsbReady", "", None
+    )
 
     SceneSetUsbReady_InitGraphics = Symbol(
-        None, None, None, "SceneSetUsbReady_InitGraphics", "", None
+        [0x1C8F8], [0x23475B8], None, "SceneSetUsbReady_InitGraphics", "", None
     )
 
     SceneSetUsbReady_ProcInit = Symbol(
-        None, None, None, "SceneSetUsbReady_ProcInit", "", None
+        [0x1C9A0], [0x2347660], None, "SceneSetUsbReady_ProcInit", "", None
     )
 
     SceneSetUsbReady_ProcInit1 = Symbol(
-        None, None, None, "SceneSetUsbReady_ProcInit1", "", None
+        [0x1C9F4], [0x23476B4], None, "SceneSetUsbReady_ProcInit1", "", None
     )
 
     SceneSetUsbReady_ProcInit2 = Symbol(
-        None, None, None, "SceneSetUsbReady_ProcInit2", "", None
+        [0x1CA30], [0x23476F0], None, "SceneSetUsbReady_ProcInit2", "", None
     )
 
     SceneSetUsbReady_ProcScene = Symbol(
-        None, None, None, "SceneSetUsbReady_ProcScene", "", None
+        [0x1CA58], [0x2347718], None, "SceneSetUsbReady_ProcScene", "", None
     )
 
     SceneSetUsbReady_Input = Symbol(
-        None, None, None, "SceneSetUsbReady_Input", "", None
+        [0x1CA6C], [0x234772C], None, "SceneSetUsbReady_Input", "", None
     )
 
-    SceneSetUsbReady_Draw = Symbol(None, None, None, "SceneSetUsbReady_Draw", "", None)
+    SceneSetUsbReady_Draw = Symbol(
+        [0x1CAA4], [0x2347764], None, "SceneSetUsbReady_Draw", "", None
+    )
 
     SceneSetUsbReady_Button = Symbol(
-        None, None, None, "SceneSetUsbReady_Button", "", None
+        [0x1CAA8], [0x2347768], None, "SceneSetUsbReady_Button", "", None
     )
 
     SceneSetUsbReady_EndScene = Symbol(
-        None, None, None, "SceneSetUsbReady_EndScene", "", None
+        [0x1CAF8], [0x23477B8], None, "SceneSetUsbReady_EndScene", "", None
     )
 
     SceneSetUsbReady_EndScene1 = Symbol(
-        None, None, None, "SceneSetUsbReady_EndScene1", "", None
+        [0x1CB18], [0x23477D8], None, "SceneSetUsbReady_EndScene1", "", None
     )
 
     SceneSetUsbReady_EndScene2 = Symbol(
-        None, None, None, "SceneSetUsbReady_EndScene2", "", None
+        [0x1CB7C], [0x234783C], None, "SceneSetUsbReady_EndScene2", "", None
     )
 
     Dwci_SceneSetUsbReady1 = Symbol(
-        None, None, None, "Dwci_SceneSetUsbReady1", "", None
+        [0x1CC54], [0x2347914], None, "Dwci_SceneSetUsbReady1", "", None
     )
 
     SceneSetUsbReady1_InitGraphics = Symbol(
-        None, None, None, "SceneSetUsbReady1_InitGraphics", "", None
+        [0x1CCE8], [0x23479A8], None, "SceneSetUsbReady1_InitGraphics", "", None
     )
 
     SceneSetUsbReady1_ProcInit = Symbol(
-        None, None, None, "SceneSetUsbReady1_ProcInit", "", None
+        [0x1CD90], [0x2347A50], None, "SceneSetUsbReady1_ProcInit", "", None
     )
 
     SceneSetUsbReady1_ProcInit1 = Symbol(
-        None, None, None, "SceneSetUsbReady1_ProcInit1", "", None
+        [0x1CDC4], [0x2347A84], None, "SceneSetUsbReady1_ProcInit1", "", None
     )
 
     SceneSetUsbReady1_ProcInit2 = Symbol(
-        None, None, None, "SceneSetUsbReady1_ProcInit2", "", None
+        [0x1CDF0], [0x2347AB0], None, "SceneSetUsbReady1_ProcInit2", "", None
     )
 
     SceneSetUsbReady1_ProcScene = Symbol(
-        None, None, None, "SceneSetUsbReady1_ProcScene", "", None
+        [0x1CE18], [0x2347AD8], None, "SceneSetUsbReady1_ProcScene", "", None
     )
 
     SceneSetUsbReady1_Input = Symbol(
-        None, None, None, "SceneSetUsbReady1_Input", "", None
+        [0x1CE2C], [0x2347AEC], None, "SceneSetUsbReady1_Input", "", None
     )
 
     SceneSetUsbReady1_Draw = Symbol(
-        None, None, None, "SceneSetUsbReady1_Draw", "", None
+        [0x1CE64], [0x2347B24], None, "SceneSetUsbReady1_Draw", "", None
     )
 
     SceneSetUsbReady1_Button = Symbol(
-        None, None, None, "SceneSetUsbReady1_Button", "", None
+        [0x1CE68], [0x2347B28], None, "SceneSetUsbReady1_Button", "", None
     )
 
     SceneSetUsbReady1_EndScene = Symbol(
-        None, None, None, "SceneSetUsbReady1_EndScene", "", None
+        [0x1CEB4], [0x2347B74], None, "SceneSetUsbReady1_EndScene", "", None
     )
 
     SceneSetUsbReady1_EndScene1 = Symbol(
-        None, None, None, "SceneSetUsbReady1_EndScene1", "", None
+        [0x1CED4], [0x2347B94], None, "SceneSetUsbReady1_EndScene1", "", None
     )
 
     SceneSetUsbReady1_EndScene2 = Symbol(
-        None, None, None, "SceneSetUsbReady1_EndScene2", "", None
+        [0x1CF40], [0x2347C00], None, "SceneSetUsbReady1_EndScene2", "", None
     )
 
     SceneSetUsbReady1_CbUsb = Symbol(
-        None, None, None, "SceneSetUsbReady1_CbUsb", "", None
+        [0x1D034], [0x2347CF4], None, "SceneSetUsbReady1_CbUsb", "", None
     )
 
     SceneSetUsbReady1_ProcNotFound = Symbol(
-        None, None, None, "SceneSetUsbReady1_ProcNotFound", "", None
+        [0x1D120], [0x2347DE0], None, "SceneSetUsbReady1_ProcNotFound", "", None
     )
 
     SceneSetUsbReady1_ProcNotFound1 = Symbol(
-        None, None, None, "SceneSetUsbReady1_ProcNotFound1", "", None
+        [0x1D14C], [0x2347E0C], None, "SceneSetUsbReady1_ProcNotFound1", "", None
     )
 
     SceneSetUsbReady1_ProcBoth = Symbol(
-        None, None, None, "SceneSetUsbReady1_ProcBoth", "", None
+        [0x1D16C, 0x1D1C8],
+        [0x2347E2C, 0x2347E88],
+        None,
+        "SceneSetUsbReady1_ProcBoth",
+        "",
+        None,
     )
 
-    Dwci_ScreenlInit = Symbol(None, None, None, "Dwci_ScreenlInit", "", None)
+    Dwci_ScreenlInit = Symbol(
+        [0x1D230], [0x2347EF0], None, "Dwci_ScreenlInit", "", None
+    )
 
-    Dwci_ScreenlEnd = Symbol(None, None, None, "Dwci_ScreenlEnd", "", None)
+    Dwci_ScreenlEnd = Symbol([0x1D290], [0x2347F50], None, "Dwci_ScreenlEnd", "", None)
 
-    Dwci_ScreenlRenew = Symbol(None, None, None, "Dwci_ScreenlRenew", "", None)
+    Dwci_ScreenlRenew = Symbol(
+        [0x1D2BC], [0x2347F7C], None, "Dwci_ScreenlRenew", "", None
+    )
 
-    Dwci_ScreenlCopy = Symbol(None, None, None, "Dwci_ScreenlCopy", "", None)
+    Dwci_ScreenlCopy = Symbol(
+        [0x1D2D4], [0x2347F94], None, "Dwci_ScreenlCopy", "", None
+    )
 
-    Screen_TaskLoad = Symbol(None, None, None, "Screen_TaskLoad", "", None)
+    Screen_TaskLoad = Symbol([0x1D32C], [0x2347FEC], None, "Screen_TaskLoad", "", None)
 
     Dwci_ScreenlCopyPalette = Symbol(
-        None, None, None, "Dwci_ScreenlCopyPalette", "", None
+        [0x1D380], [0x2348040], None, "Dwci_ScreenlCopyPalette", "", None
     )
 
-    Screen_TaskCopyPltt = Symbol(None, None, None, "Screen_TaskCopyPltt", "", None)
+    Screen_TaskCopyPltt = Symbol(
+        [0x1D3BC], [0x234807C], None, "Screen_TaskCopyPltt", "", None
+    )
 
     Dwci_ScreenlSetPalette = Symbol(
-        None, None, None, "Dwci_ScreenlSetPalette", "", None
+        [0x1D3E8], [0x23480A8], None, "Dwci_ScreenlSetPalette", "", None
     )
 
-    Screen_TaskSetPltt = Symbol(None, None, None, "Screen_TaskSetPltt", "", None)
+    Screen_TaskSetPltt = Symbol(
+        [0x1D414], [0x23480D4], None, "Screen_TaskSetPltt", "", None
+    )
 
-    Dwci_SBlInit = Symbol(None, None, None, "Dwci_SBlInit", "", None)
+    Dwci_SBlInit = Symbol([0x1D444], [0x2348104], None, "Dwci_SBlInit", "", None)
 
-    Dwci_SBlEnd = Symbol(None, None, None, "Dwci_SBlEnd", "", None)
+    Dwci_SBlEnd = Symbol([0x1D51C], [0x23481DC], None, "Dwci_SBlEnd", "", None)
 
-    Dwci_SBlGet = Symbol(None, None, None, "Dwci_SBlGet", "", None)
+    Dwci_SBlGet = Symbol([0x1D558], [0x2348218], None, "Dwci_SBlGet", "", None)
 
-    Dwci_SBlGetState = Symbol(None, None, None, "Dwci_SBlGetState", "", None)
+    Dwci_SBlGetState = Symbol(
+        [0x1D56C], [0x234822C], None, "Dwci_SBlGetState", "", None
+    )
 
-    Scrollbar_Disp = Symbol(None, None, None, "Scrollbar_Disp", "", None)
+    Scrollbar_Disp = Symbol(
+        [0x1D580, 0x1DACC], [0x2348240, 0x234878C], None, "Scrollbar_Disp", "", None
+    )
 
-    Dwci_SBlEnable = Symbol(None, None, None, "Dwci_SBlEnable", "", None)
+    Dwci_SBlEnable = Symbol([0x1D58C], [0x234824C], None, "Dwci_SBlEnable", "", None)
 
-    Dwci_SBlDisable = Symbol(None, None, None, "Dwci_SBlDisable", "", None)
+    Dwci_SBlDisable = Symbol([0x1D5A4], [0x2348264], None, "Dwci_SBlDisable", "", None)
 
-    Scrollbar_TaskMain = Symbol(None, None, None, "Scrollbar_TaskMain", "", None)
+    Scrollbar_TaskMain = Symbol(
+        [0x1D5BC], [0x234827C], None, "Scrollbar_TaskMain", "", None
+    )
 
-    Scrollbar_MoveBar = Symbol(None, None, None, "Scrollbar_MoveBar", "", None)
+    Scrollbar_MoveBar = Symbol(
+        [0x1D740], [0x2348400], None, "Scrollbar_MoveBar", "", None
+    )
 
-    Scrollbar_PlaySound = Symbol(None, None, None, "Scrollbar_PlaySound", "", None)
+    Scrollbar_PlaySound = Symbol(
+        [0x1D810], [0x23484D0], None, "Scrollbar_PlaySound", "", None
+    )
 
-    Scrollbar_StepBar = Symbol(None, None, None, "Scrollbar_StepBar", "", None)
+    Scrollbar_StepBar = Symbol(
+        [0x1D888], [0x2348548], None, "Scrollbar_StepBar", "", None
+    )
 
-    Scrollbar_SetBar = Symbol(None, None, None, "Scrollbar_SetBar", "", None)
+    Scrollbar_SetBar = Symbol(
+        [0x1D8B4], [0x2348574], None, "Scrollbar_SetBar", "", None
+    )
 
-    Scrollbar_IsTrigger = Symbol(None, None, None, "Scrollbar_IsTrigger", "", None)
+    Scrollbar_IsTrigger = Symbol(
+        [0x1D91C], [0x23485DC], None, "Scrollbar_IsTrigger", "", None
+    )
 
-    Scrollbar_IsTouch = Symbol(None, None, None, "Scrollbar_IsTouch", "", None)
+    Scrollbar_IsTouch = Symbol(
+        [0x1D9A8], [0x2348668], None, "Scrollbar_IsTouch", "", None
+    )
 
-    Scrollbar_CalcRect = Symbol(None, None, None, "Scrollbar_CalcRect", "", None)
+    Scrollbar_CalcRect = Symbol(
+        [0x1D9F4], [0x23486B4], None, "Scrollbar_CalcRect", "", None
+    )
 
-    Dwci_SearchlInit = Symbol(None, None, None, "Dwci_SearchlInit", "", None)
+    Dwci_SearchlInit = Symbol(
+        [0x1DB08], [0x23487C8], None, "Dwci_SearchlInit", "", None
+    )
 
-    Dwci_SearchlEnd = Symbol(None, None, None, "Dwci_SearchlEnd", "", None)
+    Dwci_SearchlEnd = Symbol([0x1DB3C], [0x23487FC], None, "Dwci_SearchlEnd", "", None)
 
-    Dwci_SearchlBegin = Symbol(None, None, None, "Dwci_SearchlBegin", "", None)
+    Dwci_SearchlBegin = Symbol(
+        [0x1DB70], [0x2348830], None, "Dwci_SearchlBegin", "", None
+    )
 
-    Search_StartScan = Symbol(None, None, None, "Search_StartScan", "", None)
+    Search_StartScan = Symbol(
+        [0x1DC3C], [0x23488FC], None, "Search_StartScan", "", None
+    )
 
-    Dwci_SearchlStop = Symbol(None, None, None, "Dwci_SearchlStop", "", None)
+    Dwci_SearchlStop = Symbol(
+        [0x1DC70], [0x2348930], None, "Dwci_SearchlStop", "", None
+    )
 
-    Dwci_SearchlGetApInfo = Symbol(None, None, None, "Dwci_SearchlGetApInfo", "", None)
+    Dwci_SearchlGetApInfo = Symbol(
+        [0x1DD0C], [0x23489CC], None, "Dwci_SearchlGetApInfo", "", None
+    )
 
-    Search_Callback = Symbol(None, None, None, "Search_Callback", "", None)
+    Search_Callback = Symbol([0x1DD68], [0x2348A28], None, "Search_Callback", "", None)
 
-    Search_RenewInfo = Symbol(None, None, None, "Search_RenewInfo", "", None)
+    Search_RenewInfo = Symbol(
+        [0x1DDCC], [0x2348A8C], None, "Search_RenewInfo", "", None
+    )
 
-    Dwci_SettignlInit = Symbol(None, None, None, "Dwci_SettignlInit", "", None)
+    Dwci_SettignlInit = Symbol(
+        [0x1DFA0], [0x2348C60], None, "Dwci_SettignlInit", "", None
+    )
 
-    Dwci_SettignlEnd = Symbol(None, None, None, "Dwci_SettignlEnd", "", None)
+    Dwci_SettignlEnd = Symbol(
+        [0x1DFE4], [0x2348CA4], None, "Dwci_SettignlEnd", "", None
+    )
 
-    Dwci_SettignlGet = Symbol(None, None, None, "Dwci_SettignlGet", "", None)
+    Dwci_SettignlGet = Symbol(
+        [0x1DFF8], [0x2348CB8], None, "Dwci_SettignlGet", "", None
+    )
 
     Dwci_SettinglSetIpAuto = Symbol(
-        None, None, None, "Dwci_SettinglSetIpAuto", "", None
+        [0x1E00C], [0x2348CCC], None, "Dwci_SettinglSetIpAuto", "", None
     )
 
     Dwci_SettinglSetDnsAuto = Symbol(
-        None, None, None, "Dwci_SettinglSetDnsAuto", "", None
+        [0x1E020], [0x2348CE0], None, "Dwci_SettinglSetDnsAuto", "", None
     )
 
-    Dwci_SettinglSetSsid = Symbol(None, None, None, "Dwci_SettinglSetSsid", "", None)
+    Dwci_SettinglSetSsid = Symbol(
+        [0x1E034], [0x2348CF4], None, "Dwci_SettinglSetSsid", "", None
+    )
 
-    Dwci_SettinglSetWep = Symbol(None, None, None, "Dwci_SettinglSetWep", "", None)
+    Dwci_SettinglSetWep = Symbol(
+        [0x1E064], [0x2348D24], None, "Dwci_SettinglSetWep", "", None
+    )
 
-    Dwci_SettinglSetIp = Symbol(None, None, None, "Dwci_SettinglSetIp", "", None)
+    Dwci_SettinglSetIp = Symbol(
+        [0x1E1FC], [0x2348EBC], None, "Dwci_SettinglSetIp", "", None
+    )
 
     Dwci_SettinglSetNetMask = Symbol(
-        None, None, None, "Dwci_SettinglSetNetMask", "", None
+        [0x1E218], [0x2348ED8], None, "Dwci_SettinglSetNetMask", "", None
     )
 
     Dwci_SettinglSetGateway = Symbol(
-        None, None, None, "Dwci_SettinglSetGateway", "", None
+        [0x1E234], [0x2348EF4], None, "Dwci_SettinglSetGateway", "", None
     )
 
-    Dwci_SettinglSetDnsP = Symbol(None, None, None, "Dwci_SettinglSetDnsP", "", None)
+    Dwci_SettinglSetDnsP = Symbol(
+        [0x1E254], [0x2348F14], None, "Dwci_SettinglSetDnsP", "", None
+    )
 
-    Dwci_SettinglGetSsid = Symbol(None, None, None, "Dwci_SettinglGetSsid", "", None)
+    Dwci_SettinglSetDnsS = Symbol(
+        [0x1E274], [0x2348F34], None, "Dwci_SettinglSetDnsS", "", None
+    )
 
-    Dwci_SettinglGetIp = Symbol(None, None, None, "Dwci_SettinglGetIp", "", None)
+    Dwci_SettinglGetSsid = Symbol(
+        [0x1E294], [0x2348F54], None, "Dwci_SettinglGetSsid", "", None
+    )
+
+    Dwci_SettinglGetIp = Symbol(
+        [0x1E2B8], [0x2348F78], None, "Dwci_SettinglGetIp", "", None
+    )
 
     Dwci_SettinglGetNetMask = Symbol(
-        None, None, None, "Dwci_SettinglGetNetMask", "", None
+        [0x1E2F8], [0x2348FB8], None, "Dwci_SettinglGetNetMask", "", None
     )
 
     Dwci_SettinglGetGateway = Symbol(
-        None, None, None, "Dwci_SettinglGetGateway", "", None
+        [0x1E338], [0x2348FF8], None, "Dwci_SettinglGetGateway", "", None
     )
 
-    Dwci_SettinglGetDnsP = Symbol(None, None, None, "Dwci_SettinglGetDnsP", "", None)
+    Dwci_SettinglGetDnsP = Symbol(
+        [0x1E37C], [0x234903C], None, "Dwci_SettinglGetDnsP", "", None
+    )
 
-    Dwci_SettinglGetDnsS = Symbol(None, None, None, "Dwci_SettinglGetDnsS", "", None)
+    Dwci_SettinglGetDnsS = Symbol(
+        [0x1E3C0], [0x2349080], None, "Dwci_SettinglGetDnsS", "", None
+    )
 
     Dwci_SettinglGetSetType = Symbol(
-        None, None, None, "Dwci_SettinglGetSetType", "", None
+        [0x1E404], [0x23490C4], None, "Dwci_SettinglGetSetType", "", None
     )
 
     Dwci_SettinglSetSetting = Symbol(
-        None, None, None, "Dwci_SettinglSetSetting", "", None
+        [0x1E41C], [0x23490DC], None, "Dwci_SettinglSetSetting", "", None
     )
 
-    Dwci_SettinglSet = Symbol(None, None, None, "Dwci_SettinglSet", "", None)
+    Dwci_SettinglSet = Symbol(
+        [0x1E4FC], [0x23491BC], None, "Dwci_SettinglSet", "", None
+    )
 
-    Dwci_SettinglSetRaku = Symbol(None, None, None, "Dwci_SettinglSetRaku", "", None)
+    Dwci_SettinglSetRaku = Symbol(
+        [0x1E5D8], [0x2349298], None, "Dwci_SettinglSetRaku", "", None
+    )
 
-    Dwci_SettinglSetAoss = Symbol(None, None, None, "Dwci_SettinglSetAoss", "", None)
+    Dwci_SettinglSetAoss = Symbol(
+        [0x1E6EC], [0x23493AC], None, "Dwci_SettinglSetAoss", "", None
+    )
 
     Dwci_SettinglGetMemMap = Symbol(
-        None, None, None, "Dwci_SettinglGetMemMap", "", None
+        [0x1E7FC], [0x23494BC], None, "Dwci_SettinglGetMemMap", "", None
     )
 
     Dwci_SettinglErasePage = Symbol(
-        None, None, None, "Dwci_SettinglErasePage", "", None
+        [0x1E80C], [0x23494CC], None, "Dwci_SettinglErasePage", "", None
     )
 
-    Dwci_SettinglEraseAll = Symbol(None, None, None, "Dwci_SettinglEraseAll", "", None)
+    Dwci_SettinglEraseAll = Symbol(
+        [0x1E848], [0x2349508], None, "Dwci_SettinglEraseAll", "", None
+    )
 
-    Setting_Write = Symbol(None, None, None, "Setting_Write", "", None)
+    Setting_Write = Symbol([0x1E8F8], [0x23495B8], None, "Setting_Write", "", None)
 
     Dwci_SettinglConvAddress = Symbol(
-        None, None, None, "Dwci_SettinglConvAddress", "", None
+        [0x1EA60], [0x2349720], None, "Dwci_SettinglConvAddress", "", None
     )
 
-    Setting_Ascii2Hex = Symbol(None, None, None, "Setting_Ascii2Hex", "", None)
+    Setting_Ascii2Hex = Symbol(
+        [0x1EAE8], [0x23497A8], None, "Setting_Ascii2Hex", "", None
+    )
 
-    Dwci_SndlInit = Symbol(None, None, None, "Dwci_SndlInit", "", None)
+    Dwci_SndlInit = Symbol([0x1EB04], [0x23497C4], None, "Dwci_SndlInit", "", None)
 
-    Dwci_SndlEnd = Symbol(None, None, None, "Dwci_SndlEnd", "", None)
+    Dwci_SndlEnd = Symbol([0x1EB94], [0x2349854], None, "Dwci_SndlEnd", "", None)
 
-    Dwci_SndlPlay = Symbol(None, None, None, "Dwci_SndlPlay", "", None)
+    Dwci_SndlPlay = Symbol([0x1EBC0], [0x2349880], None, "Dwci_SndlPlay", "", None)
 
-    Dwci_SndlSetVolume = Symbol(None, None, None, "Dwci_SndlSetVolume", "", None)
+    Dwci_SndlSetVolume = Symbol(
+        [0x1EBE4], [0x23498A4], None, "Dwci_SndlSetVolume", "", None
+    )
 
-    Dwci_SndlSetPitch = Symbol(None, None, None, "Dwci_SndlSetPitch", "", None)
+    Dwci_SndlSetPitch = Symbol(
+        [0x1EC04], [0x23498C4], None, "Dwci_SndlSetPitch", "", None
+    )
 
-    Dwci_SndlStop = Symbol(None, None, None, "Dwci_SndlStop", "", None)
+    Dwci_SndlStop = Symbol([0x1EC28], [0x23498E8], None, "Dwci_SndlStop", "", None)
 
-    Sound_TaskSound = Symbol(None, None, None, "Sound_TaskSound", "", None)
+    Sound_TaskSound = Symbol([0x1EC48], [0x2349908], None, "Sound_TaskSound", "", None)
 
-    Dwci_SteplBegin = Symbol(None, None, None, "Dwci_SteplBegin", "", None)
+    Dwci_SteplBegin = Symbol([0x1EC54], [0x2349914], None, "Dwci_SteplBegin", "", None)
 
-    Step_TaskBegin0 = Symbol(None, None, None, "Step_TaskBegin0", "", None)
+    Step_TaskBegin0 = Symbol([0x1ED50], [0x2349A10], None, "Step_TaskBegin0", "", None)
 
-    Step_TaskBegin1 = Symbol(None, None, None, "Step_TaskBegin1", "", None)
+    Step_TaskBegin1 = Symbol([0x1EE34], [0x2349AF4], None, "Step_TaskBegin1", "", None)
 
-    Step_TaskBegin2 = Symbol(None, None, None, "Step_TaskBegin2", "", None)
+    Step_TaskBegin2 = Symbol([0x1EF18], [0x2349BD8], None, "Step_TaskBegin2", "", None)
 
-    Step_TaskBegin3 = Symbol(None, None, None, "Step_TaskBegin3", "", None)
+    Step_TaskBegin3 = Symbol([0x1EFFC], [0x2349CBC], None, "Step_TaskBegin3", "", None)
 
-    Step_TaskBegin4 = Symbol(None, None, None, "Step_TaskBegin4", "", None)
+    Step_TaskBegin4 = Symbol([0x1F0E0], [0x2349DA0], None, "Step_TaskBegin4", "", None)
 
-    Step_TaskBegin5 = Symbol(None, None, None, "Step_TaskBegin5", "", None)
+    Step_TaskBegin5 = Symbol([0x1F180], [0x2349E40], None, "Step_TaskBegin5", "", None)
 
-    Dwci_SteplEnd = Symbol(None, None, None, "Dwci_SteplEnd", "", None)
+    Dwci_SteplEnd = Symbol([0x1F1A8], [0x2349E68], None, "Dwci_SteplEnd", "", None)
 
-    Dwci_SteplChange = Symbol(None, None, None, "Dwci_SteplChange", "", None)
+    Dwci_SteplChange = Symbol(
+        [0x1F1E8], [0x2349EA8], None, "Dwci_SteplChange", "", None
+    )
 
-    Dwci_SteplGet = Symbol(None, None, None, "Dwci_SteplGet", "", None)
+    Dwci_SteplGet = Symbol([0x1F2B0], [0x2349F70], None, "Dwci_SteplGet", "", None)
 
-    Step_TaskEnd0 = Symbol(None, None, None, "Step_TaskEnd0", "", None)
+    Step_TaskEnd0 = Symbol([0x1F2D0], [0x2349F90], None, "Step_TaskEnd0", "", None)
 
-    Step_TaskEnd1 = Symbol(None, None, None, "Step_TaskEnd1", "", None)
+    Step_TaskEnd1 = Symbol([0x1F364], [0x234A024], None, "Step_TaskEnd1", "", None)
 
-    Step_TaskEnd2 = Symbol(None, None, None, "Step_TaskEnd2", "", None)
+    Step_TaskEnd2 = Symbol([0x1F440], [0x234A100], None, "Step_TaskEnd2", "", None)
 
-    Step_TaskEnd3 = Symbol(None, None, None, "Step_TaskEnd3", "", None)
+    Step_TaskEnd3 = Symbol([0x1F51C], [0x234A1DC], None, "Step_TaskEnd3", "", None)
 
-    Step_TaskEnd4 = Symbol(None, None, None, "Step_TaskEnd4", "", None)
+    Step_TaskEnd4 = Symbol([0x1F5F8], [0x234A2B8], None, "Step_TaskEnd4", "", None)
 
-    Dwci_SteplIsEnd = Symbol(None, None, None, "Dwci_SteplIsEnd", "", None)
+    Dwci_SteplIsEnd = Symbol([0x1F6D0], [0x234A390], None, "Dwci_SteplIsEnd", "", None)
 
-    Dwci_SteplChangeScr = Symbol(None, None, None, "Dwci_SteplChangeScr", "", None)
+    Dwci_SteplChangeScr = Symbol(
+        [0x1F6FC], [0x234A3BC], None, "Dwci_SteplChangeScr", "", None
+    )
 
-    Step_TaskChange = Symbol(None, None, None, "Step_TaskChange", "", None)
+    Step_TaskChange = Symbol([0x1F744], [0x234A404], None, "Step_TaskChange", "", None)
 
-    Dwci_UsbaplBegin = Symbol(None, None, None, "Dwci_UsbaplBegin", "", None)
+    Dwci_UsbaplBegin = Symbol(
+        [0x1F790], [0x234A450], None, "Dwci_UsbaplBegin", "", None
+    )
 
-    UsbAc_StartScan = Symbol(None, None, None, "UsbAc_StartScan", "", None)
+    UsbAc_StartScan = Symbol([0x1F914], [0x234A5D4], None, "UsbAc_StartScan", "", None)
 
-    Dwci_UsbaplEnd = Symbol(None, None, None, "Dwci_UsbaplEnd", "", None)
+    Dwci_UsbaplEnd = Symbol([0x1F948], [0x234A608], None, "Dwci_UsbaplEnd", "", None)
 
     Dwci_UsbaplSetCallback = Symbol(
-        None, None, None, "Dwci_UsbaplSetCallback", "", None
+        [0x1FA2C], [0x234A6EC], None, "Dwci_UsbaplSetCallback", "", None
     )
 
-    UsbAc_CbWm = Symbol(None, None, None, "UsbAc_CbWm", "", None)
+    UsbAc_CbWm = Symbol([0x1FA44], [0x234A704], None, "UsbAc_CbWm", "", None)
 
-    UsbAc_ScanFirst = Symbol(None, None, None, "UsbAc_ScanFirst", "", None)
+    UsbAc_ScanFirst = Symbol([0x1FAD4], [0x234A794], None, "UsbAc_ScanFirst", "", None)
 
-    UsbAc_ScanWait = Symbol(None, None, None, "UsbAc_ScanWait", "", None)
+    UsbAc_ScanWait = Symbol([0x1FC2C], [0x234A8EC], None, "UsbAc_ScanWait", "", None)
 
-    UsbAc_TaskFirst = Symbol(None, None, None, "UsbAc_TaskFirst", "", None)
+    UsbAc_TaskFirst = Symbol([0x1FD38], [0x234A9F8], None, "UsbAc_TaskFirst", "", None)
 
-    Dwci_WinlInitEx = Symbol(None, None, None, "Dwci_WinlInitEx", "", None)
+    Dwci_WinlInitEx = Symbol([0x1FE74], [0x234AB34], None, "Dwci_WinlInitEx", "", None)
 
-    Dwci_WinlEnd = Symbol(None, None, None, "Dwci_WinlEnd", "", None)
+    Dwci_WinlEnd = Symbol([0x201A0], [0x234AE60], None, "Dwci_WinlEnd", "", None)
 
-    Dwci_WinlGet = Symbol(None, None, None, "Dwci_WinlGet", "", None)
+    Dwci_WinlGet = Symbol([0x201E4], [0x234AEA4], None, "Dwci_WinlGet", "", None)
 
-    Dwci_WinlIsInit = Symbol(None, None, None, "Dwci_WinlIsInit", "", None)
+    Dwci_WinlIsInit = Symbol([0x201F8], [0x234AEB8], None, "Dwci_WinlIsInit", "", None)
 
-    Window_TaskV = Symbol(None, None, None, "Window_TaskV", "", None)
+    Window_TaskV = Symbol([0x20214], [0x234AED4], None, "Window_TaskV", "", None)
 
-    Window_TaskMove = Symbol(None, None, None, "Window_TaskMove", "", None)
+    Window_TaskMove = Symbol([0x20274], [0x234AF34], None, "Window_TaskMove", "", None)
 
-    Window_TaskMain = Symbol(None, None, None, "Window_TaskMain", "", None)
+    Window_TaskMain = Symbol([0x20348], [0x234B008], None, "Window_TaskMain", "", None)
 
-    Window_TaskMain1 = Symbol(None, None, None, "Window_TaskMain1", "", None)
+    Window_TaskMain1 = Symbol(
+        [0x204A4], [0x234B164], None, "Window_TaskMain1", "", None
+    )
 
-    Window_Disp = Symbol(None, None, None, "Window_Disp", "", None)
+    Window_Disp = Symbol([0x20510], [0x234B1D0], None, "Window_Disp", "", None)
 
-    Window_DispCell = Symbol(None, None, None, "Window_DispCell", "", None)
+    Window_DispCell = Symbol([0x206B8], [0x234B378], None, "Window_DispCell", "", None)
 
-    Window_PushButton = Symbol(None, None, None, "Window_PushButton", "", None)
+    Window_PushButton = Symbol(
+        [0x20744], [0x234B404], None, "Window_PushButton", "", None
+    )
 
-    Window_TaskEnd = Symbol(None, None, None, "Window_TaskEnd", "", None)
+    Window_TaskEnd = Symbol([0x20804], [0x234B4C4], None, "Window_TaskEnd", "", None)
 
-    Window_TaskEnd1 = Symbol(None, None, None, "Window_TaskEnd1", "", None)
+    Window_TaskEnd1 = Symbol([0x20840], [0x234B500], None, "Window_TaskEnd1", "", None)
 
-    WindowTaskEnd2 = Symbol(None, None, None, "WindowTaskEnd2", "", None)
+    WindowTaskEnd2 = Symbol([0x208D0], [0x234B590], None, "WindowTaskEnd2", "", None)
 
-    Window_TaskEnd3 = Symbol(None, None, None, "Window_TaskEnd3", "", None)
+    Window_TaskEnd3 = Symbol([0x2092C], [0x234B5EC], None, "Window_TaskEnd3", "", None)
 
-    Dwci_Mov_Mbp_MemInit = Symbol(None, None, None, "Dwci_Mov_Mbp_MemInit", "", None)
+    Dwci_Mov_Mbp_MemInit = Symbol(
+        [0x209DC], [0x234B69C], None, "Dwci_Mov_Mbp_MemInit", "", None
+    )
 
-    Dwci_Mov_Mbp_Init = Symbol(None, None, None, "Dwci_Mov_Mbp_Init", "", None)
+    Dwci_Mov_Mbp_Init = Symbol(
+        [0x20A1C], [0x234B6DC], None, "Dwci_Mov_Mbp_Init", "", None
+    )
 
-    Dwci_Mov_Mbp_Start = Symbol(None, None, None, "Dwci_Mov_Mbp_Start", "", None)
+    Dwci_Mov_Mbp_Start = Symbol(
+        [0x20B3C], [0x234B7FC], None, "Dwci_Mov_Mbp_Start", "", None
+    )
 
     Dwci_Mov_Mbp_RegistFile = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_RegistFile", "", None
+        [0x20B84], [0x234B844], None, "Dwci_Mov_Mbp_RegistFile", "", None
     )
 
     Dwci_Mov_Mbp_AcceptChild = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_AcceptChild", "", None
+        [0x20C58], [0x234B918], None, "Dwci_Mov_Mbp_AcceptChild", "", None
     )
 
     Dwci_Mov_Mbp_KickChild = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_KickChild", "", None
+        [0x20CF8], [0x234B9B8], None, "Dwci_Mov_Mbp_KickChild", "", None
     )
 
     Dwci_Mov_Mbp_StartDownload = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_StartDownload", "", None
+        [0x20DD0], [0x234BA90], None, "Dwci_Mov_Mbp_StartDownload", "", None
     )
 
     Dwci_Mov_Mbp_StartDownloadAll = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_StartDownloadAll", "", None
+        [0x20EA8], [0x234BB68], None, "Dwci_Mov_Mbp_StartDownloadAll", "", None
     )
 
     Dwci_Mov_Mbp_IsBootableAll = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_IsBootableAll", "", None
+        [0x20F88], [0x234BC48], None, "Dwci_Mov_Mbp_IsBootableAll", "", None
     )
 
     Dwci_Mov_Mbp_StartRebootAll = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_StartRebootAll", "", None
+        [0x20FF0], [0x234BCB0], None, "Dwci_Mov_Mbp_StartRebootAll", "", None
     )
 
-    Dwci_Mov_Mbp_Cancel = Symbol(None, None, None, "Dwci_Mov_Mbp_Cancel", "", None)
+    Dwci_Mov_Mbp_Cancel = Symbol(
+        [0x210E8], [0x234BDA8], None, "Dwci_Mov_Mbp_Cancel", "", None
+    )
 
     ParentStateCallback_Helper = Symbol(
-        None, None, None, "ParentStateCallback_Helper", "", None
+        [0x210FC], [0x234BDBC], None, "ParentStateCallback_Helper", "", None
     )
 
-    ParentStateCallback = Symbol(None, None, None, "ParentStateCallback", "", None)
+    ParentStateCallback = Symbol(
+        [0x2112C], [0x234BDEC], None, "ParentStateCallback", "", None
+    )
 
     Dwci_Mov_Mbp_ChangeState = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_ChangeState", "", None
+        [0x21450], [0x234C110], None, "Dwci_Mov_Mbp_ChangeState", "", None
     )
 
-    Dwci_Mov_Mbp_GetState = Symbol(None, None, None, "Dwci_Mov_Mbp_GetState", "", None)
+    Dwci_Mov_Mbp_GetState = Symbol(
+        [0x21464], [0x234C124], None, "Dwci_Mov_Mbp_GetState", "", None
+    )
 
     Dwci_Mov_Mbp_GetChildBmp = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_GetChildBmp", "", None
+        [0x21478], [0x234C138], None, "Dwci_Mov_Mbp_GetChildBmp", "", None
     )
 
     Dwci_Mov_Mbp_GetChildState = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_GetChildState", "", None
+        [0x214D0], [0x234C190], None, "Dwci_Mov_Mbp_GetChildState", "", None
     )
 
     Dwci_Mov_Mbp_GetChildInfo = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_GetChildInfo", "", None
+        [0x21598], [0x234C258], None, "Dwci_Mov_Mbp_GetChildInfo", "", None
     )
 
     Dwci_Mov_Mbp_GetPlayerNo = Symbol(
-        None, None, None, "Dwci_Mov_Mbp_GetPlayerNo", "", None
+        [0x215CC], [0x234C28C], None, "Dwci_Mov_Mbp_GetPlayerNo", "", None
     )
 
-    Dwci_Mov_WH_MemInit = Symbol(None, None, None, "Dwci_Mov_WH_MemInit", "", None)
+    Dwci_Mov_WH_MemInit = Symbol(
+        [0x21674], [0x234C334], None, "Dwci_Mov_WH_MemInit", "", None
+    )
 
     Dwci_Mov_WH_ChangeSysState = Symbol(
-        None, None, None, "Dwci_Mov_WH_ChangeSysState", "", None
+        [0x216B0], [0x234C370], None, "Dwci_Mov_WH_ChangeSysState", "", None
     )
 
-    Dwci_Mov_WH_SetError = Symbol(None, None, None, "Dwci_Mov_WH_SetError", "", None)
+    Dwci_Mov_WH_SetError = Symbol(
+        [0x2172C], [0x234C3EC], None, "Dwci_Mov_WH_SetError", "", None
+    )
 
     Dwci_Mov_WH_StateInSetParentParam = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInSetParentParam", "", None
+        [0x2174C], [0x234C40C], None, "Dwci_Mov_WH_StateInSetParentParam", "", None
     )
 
     Dwci_Mov_WH_StateOutSetParentParam = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutSetParentParam", "", None
+        [0x21790], [0x234C450], None, "Dwci_Mov_WH_StateOutSetParentParam", "", None
     )
 
-    Dwci_Mov_WH_StateInStartParent = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInStartParent", "", None
+    Dwci_Mov_Wh_StateInSetParentWepKey = Symbol(
+        [0x217FC], [0x234C4BC], None, "Dwci_Mov_Wh_StateInSetParentWepKey", "", None
     )
 
     Dwci_Mov_WH_StateOutSetParentWepKey = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutSetParentWepKey", "", None
+        [0x21860], [0x234C520], None, "Dwci_Mov_WH_StateOutSetParentWepKey", "", None
     )
 
-    Dwci_Mov_WH_StateInSetParentWepKey = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInSetParentWepKey", "", None
+    Dwci_Mov_Wh_StateInStartParent = Symbol(
+        [0x21898], [0x234C558], None, "Dwci_Mov_Wh_StateInStartParent", "", None
     )
 
     Dwci_Mov_WH_StateOutStartParent = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutStartParent", "", None
+        [0x218FC], [0x234C5BC], None, "Dwci_Mov_WH_StateOutStartParent", "", None
     )
 
     Dwci_Mov_WH_StateInStartParentMP = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInStartParentMP", "", None
+        [0x21A6C], [0x234C72C], None, "Dwci_Mov_WH_StateInStartParentMP", "", None
     )
 
     Dwci_Mov_WH_StateOutStartParentMP = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutStartParentMP", "", None
+        [0x21B04], [0x234C7C4], None, "Dwci_Mov_WH_StateOutStartParentMP", "", None
     )
 
     Dwci_Mov_WH_StateInStartParentKeyShare = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInStartParentKeyShare", "", None
+        [0x21C30], [0x234C8F0], None, "Dwci_Mov_WH_StateInStartParentKeyShare", "", None
     )
 
     Dwci_Mov_WH_StateInEndParentKeyShare = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInEndParentKeyShare", "", None
+        [0x21C6C], [0x234C92C], None, "Dwci_Mov_WH_StateInEndParentKeyShare", "", None
     )
 
     Dwci_Mov_WH_StateInEndParentMP = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInEndParentMP", "", None
+        [0x21C9C], [0x234C95C], None, "Dwci_Mov_WH_StateInEndParentMP", "", None
     )
 
     Dwci_Mov_WH_StateOutEndParentMP = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutEndParentMP", "", None
+        [0x21CCC], [0x234C98C], None, "Dwci_Mov_WH_StateOutEndParentMP", "", None
     )
 
     Dwci_Mov_WH_StateInEndParent = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInEndParent", "", None
+        [0x21D20], [0x234C9E0], None, "Dwci_Mov_WH_StateInEndParent", "", None
     )
 
     Dwci_Mov_WH_StateOutEndParent = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutEndParent", "", None
+        [0x21D48], [0x234CA08], None, "Dwci_Mov_WH_StateOutEndParent", "", None
     )
 
     Dwci_Mov_WH_StateInEndChildKeyShare = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInEndChildKeyShare", "", None
+        [0x21D6C], [0x234CA2C], None, "Dwci_Mov_WH_StateInEndChildKeyShare", "", None
     )
 
     Dwci_Mov_WH_StateInEndChildMP = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInEndChildMP", "", None
+        [0x21DBC], [0x234CA7C], None, "Dwci_Mov_WH_StateInEndChildMP", "", None
     )
 
     Dwci_Mov_WH_StateOutEndChildMP = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutEndChildMP", "", None
+        [0x21DEC], [0x234CAAC], None, "Dwci_Mov_WH_StateOutEndChildMP", "", None
     )
 
     Dwci_Mov_WH_StateInEndChild = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInEndChild", "", None
+        [0x21E20], [0x234CAE0], None, "Dwci_Mov_WH_StateInEndChild", "", None
     )
 
     Dwci_Mov_WH_StateOutEndChild = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutEndChild", "", None
+        [0x21E58], [0x234CB18], None, "Dwci_Mov_WH_StateOutEndChild", "", None
     )
 
     Dwci_Mov_WH_StateInReset = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInReset", "", None
+        [0x21E7C], [0x234CB3C], None, "Dwci_Mov_WH_StateInReset", "", None
     )
 
     Dwci_Mov_WH_StateOutReset = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutReset", "", None
+        [0x21EAC], [0x234CB6C], None, "Dwci_Mov_WH_StateOutReset", "", None
     )
 
     Dwci_Mov_WH_StateOutEnd = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutEnd", "", None
+        [0x21EE0], [0x234CBA0], None, "Dwci_Mov_WH_StateOutEnd", "", None
     )
 
-    Dwci_Mov_WH_SetGgid = Symbol(None, None, None, "Dwci_Mov_WH_SetGgid", "", None)
+    Dwci_Mov_WH_SetGgid = Symbol(
+        [0x21F08], [0x234CBC8], None, "Dwci_Mov_WH_SetGgid", "", None
+    )
 
-    Dwci_Mov_WH_GetBitmap = Symbol(None, None, None, "Dwci_Mov_WH_GetBitmap", "", None)
+    Dwci_Mov_WH_GetBitmap = Symbol(
+        [0x21F1C], [0x234CBDC], None, "Dwci_Mov_WH_GetBitmap", "", None
+    )
 
     Dwci_Mov_WH_GetSystemState = Symbol(
-        None, None, None, "Dwci_Mov_WH_GetSystemState", "", None
+        [0x21F30], [0x234CBF0], None, "Dwci_Mov_WH_GetSystemState", "", None
     )
 
     Dwci_Mov_WH_StartMeasureChannel = Symbol(
-        None, None, None, "Dwci_Mov_WH_StartMeasureChannel", "", None
+        [0x21F44], [0x234CC04], None, "Dwci_Mov_WH_StartMeasureChannel", "", None
     )
 
     Dwci_Mov_WH_StateInMeasureChannel = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInMeasureChannel", "", None
+        [0x2201C], [0x234CCDC], None, "Dwci_Mov_WH_StateInMeasureChannel", "", None
     )
 
     Dwci_Mov_WH_StateOutMeasureChannel = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutMeasureChannel", "", None
+        [0x220B8], [0x234CD78], None, "Dwci_Mov_WH_StateOutMeasureChannel", "", None
     )
 
-    WHi_MeasureChannel = Symbol(None, None, None, "WHi_MeasureChannel", "", None)
+    WHi_MeasureChannel = Symbol(
+        [0x22190], [0x234CE50], None, "WHi_MeasureChannel", "", None
+    )
 
     Dwci_Mov_WH_GetMeasureChannel = Symbol(
-        None, None, None, "Dwci_Mov_WH_GetMeasureChannel", "", None
+        [0x221B0], [0x234CE70], None, "Dwci_Mov_WH_GetMeasureChannel", "", None
     )
 
-    SelectChannel = Symbol(None, None, None, "SelectChannel", "", None)
+    SelectChannel = Symbol([0x22228], [0x234CEE8], None, "SelectChannel", "", None)
 
     Dwci_Mov_WH_Initialize = Symbol(
-        None, None, None, "Dwci_Mov_WH_Initialize", "", None
+        [0x22310], [0x234CFD0], None, "Dwci_Mov_WH_Initialize", "", None
     )
 
     Dwci_Mov_WH_IndicateHandler = Symbol(
-        None, None, None, "Dwci_Mov_WH_IndicateHandler", "", None
+        [0x22388], [0x234D048], None, "Dwci_Mov_WH_IndicateHandler", "", None
     )
 
     Dwci_Mov_WH_StateInInitialize = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateInInitialize", "", None
+        [0x223A8], [0x234D068], None, "Dwci_Mov_WH_StateInInitialize", "", None
     )
 
     Dwci_Mov_WH_StateOutInitialize = Symbol(
-        None, None, None, "Dwci_Mov_WH_StateOutInitialize", "", None
+        [0x223F4], [0x234D0B4], None, "Dwci_Mov_WH_StateOutInitialize", "", None
     )
 
     Dwci_Mov_WH_ParentConnect = Symbol(
-        None, None, None, "Dwci_Mov_WH_ParentConnect", "", None
+        [0x22444], [0x234D104], None, "Dwci_Mov_WH_ParentConnect", "", None
     )
 
     Dwci_Mov_WH_SetJudgeAcceptFunc = Symbol(
-        None, None, None, "Dwci_Mov_WH_SetJudgeAcceptFunc", "", None
+        [0x225BC], [0x234D27C], None, "Dwci_Mov_WH_SetJudgeAcceptFunc", "", None
     )
 
     Dwci_Mov_WH_GetSharedDataAdr = Symbol(
-        None, None, None, "Dwci_Mov_WH_GetSharedDataAdr", "", None
+        [0x225D0], [0x234D290], None, "Dwci_Mov_WH_GetSharedDataAdr", "", None
     )
 
-    Dwci_Mov_WH_StepDS = Symbol(None, None, None, "Dwci_Mov_WH_StepDS", "", None)
+    Dwci_Mov_WH_StepDS = Symbol(
+        [0x225F8], [0x234D2B8], None, "Dwci_Mov_WH_StepDS", "", None
+    )
 
-    Dwci_Mov_WH_Reset = Symbol(None, None, None, "Dwci_Mov_WH_Reset", "", None)
+    Dwci_Mov_WH_Reset = Symbol(
+        [0x226A0], [0x234D360], None, "Dwci_Mov_WH_Reset", "", None
+    )
 
-    Dwci_Mov_WH_Finalize = Symbol(None, None, None, "Dwci_Mov_WH_Finalize", "", None)
+    Dwci_Mov_WH_Finalize = Symbol(
+        [0x226BC], [0x234D37C], None, "Dwci_Mov_WH_Finalize", "", None
+    )
 
-    Dwci_Mov_WH_End = Symbol(None, None, None, "Dwci_Mov_WH_End", "", None)
+    Dwci_Mov_WH_End = Symbol([0x227C4], [0x234D484], None, "Dwci_Mov_WH_End", "", None)
 
-    Dwci_MovInit = Symbol(None, None, None, "Dwci_MovInit", "", None)
+    Dwci_MovInit = Symbol([0x22814], [0x234D4D4], None, "Dwci_MovInit", "", None)
 
-    Dwci_MovFinalize = Symbol(None, None, None, "Dwci_MovFinalize", "", None)
+    Dwci_MovFinalize = Symbol(
+        [0x22904], [0x234D5C4], None, "Dwci_MovFinalize", "", None
+    )
 
-    Dwci_MovPrepare = Symbol(None, None, None, "Dwci_MovPrepare", "", None)
+    Dwci_MovPrepare = Symbol([0x229E0], [0x234D6A0], None, "Dwci_MovPrepare", "", None)
 
     Dwci_MovStartAdmitChild = Symbol(
-        None, None, None, "Dwci_MovStartAdmitChild", "", None
+        [0x22A60], [0x234D720], None, "Dwci_MovStartAdmitChild", "", None
     )
 
     Dwci_MovStartDownloadandBootChild = Symbol(
-        None, None, None, "Dwci_MovStartDownloadandBootChild", "", None
+        [0x22AA8], [0x234D768], None, "Dwci_MovStartDownloadandBootChild", "", None
     )
 
-    Dwci_MovFramework = Symbol(None, None, None, "Dwci_MovFramework", "", None)
+    Dwci_MovFramework = Symbol(
+        [0x22ADC], [0x234D79C], None, "Dwci_MovFramework", "", None
+    )
 
-    Dwci_MovGetStatus = Symbol(None, None, None, "Dwci_MovGetStatus", "", None)
+    Dwci_MovGetStatus = Symbol(
+        [0x22E60], [0x234DB20], None, "Dwci_MovGetStatus", "", None
+    )
 
-    Dwci_GetChildInfo = Symbol(None, None, None, "Dwci_GetChildInfo", "", None)
+    Dwci_GetChildInfo = Symbol(
+        [0x22EA4], [0x234DB64], None, "Dwci_GetChildInfo", "", None
+    )
 
-    Dwci_MovSearchChannel = Symbol(None, None, None, "Dwci_MovSearchChannel", "", None)
+    Dwci_MovSearchChannel = Symbol(
+        [0x22EB4], [0x234DB74], None, "Dwci_MovSearchChannel", "", None
+    )
 
     Dwci_MovStartWaitChild = Symbol(
-        None, None, None, "Dwci_MovStartWaitChild", "", None
+        [0x22F5C], [0x234DC1C], None, "Dwci_MovStartWaitChild", "", None
     )
 
     Dwci_Mov_WaitandDownloadandBoot_Child = Symbol(
-        None, None, None, "Dwci_Mov_WaitandDownloadandBoot_Child", "", None
+        [0x22F80], [0x234DC40], None, "Dwci_Mov_WaitandDownloadandBoot_Child", "", None
     )
 
     Dwci_Mov_ReadyMovUserID = Symbol(
-        None, None, None, "Dwci_Mov_ReadyMovUserID", "", None
+        [0x23138], [0x234DDF8], None, "Dwci_Mov_ReadyMovUserID", "", None
     )
 
-    Dwci_Mov_MovUserID = Symbol(None, None, None, "Dwci_Mov_MovUserID", "", None)
+    Dwci_Mov_MovUserID = Symbol(
+        [0x23164], [0x234DE24], None, "Dwci_Mov_MovUserID", "", None
+    )
 
     Dwci_Mov_EraseFlashData = Symbol(
-        None, None, None, "Dwci_Mov_EraseFlashData", "", None
+        [0x23340], [0x234E000], None, "Dwci_Mov_EraseFlashData", "", None
     )
 
-    Dwci_MovEnd = Symbol(None, None, None, "Dwci_MovEnd", "", None)
+    Dwci_MovEnd = Symbol([0x23358], [0x234E018], None, "Dwci_MovEnd", "", None)
 
-    JudgeConnectableChild = Symbol(None, None, None, "JudgeConnectableChild", "", None)
+    JudgeConnectableChild = Symbol(
+        [0x23388], [0x234E048], None, "JudgeConnectableChild", "", None
+    )
 
-    Parent_InitDataShare = Symbol(None, None, None, "Parent_InitDataShare", "", None)
+    Parent_InitDataShare = Symbol(
+        [0x233C4], [0x234E084], None, "Parent_InitDataShare", "", None
+    )
 
-    Parent_StepDataShare = Symbol(None, None, None, "Parent_StepDataShare", "", None)
+    Parent_StepDataShare = Symbol(
+        [0x23408], [0x234E0C8], None, "Parent_StepDataShare", "", None
+    )
 
     Parent_Data_Receive_Progress = Symbol(
-        None, None, None, "Parent_Data_Receive_Progress", "", None
+        [0x23570], [0x234E230], None, "Parent_Data_Receive_Progress", "", None
     )
 
     Parent_Get_Child_Data_Kind = Symbol(
-        None, None, None, "Parent_Get_Child_Data_Kind", "", None
+        [0x23654], [0x234E314], None, "Parent_Get_Child_Data_Kind", "", None
     )
 
-    Dwci_ArclInit = Symbol(None, None, None, "Dwci_ArclInit", "", None)
+    Dwci_ArclInit = Symbol([0x2366C], [0x234E32C], None, "Dwci_ArclInit", "", None)
 
-    Dwci_ArclEnd = Symbol(None, None, None, "Dwci_ArclEnd", "", None)
+    Dwci_ArclEnd = Symbol([0x2381C], [0x234E4DC], None, "Dwci_ArclEnd", "", None)
 
-    UserProc = Symbol(None, None, None, "UserProc", "", None)
+    UserProc = Symbol([0x238A8], [0x234E568], None, "UserProc", "", None)
 
-    CbRead = Symbol(None, None, None, "CbRead", "", None)
+    CbRead = Symbol([0x2390C], [0x234E5CC], None, "CbRead", "", None)
 
-    CbReadRom = Symbol(None, None, None, "CbReadRom", "", None)
+    CbReadRom = Symbol([0x2394C], [0x234E60C], None, "CbReadRom", "", None)
 
-    CbWrite = Symbol(None, None, None, "CbWrite", "", None)
+    CbWrite = Symbol([0x2395C], [0x234E61C], None, "CbWrite", "", None)
 
-    Dwci_ArclReadEx = Symbol(None, None, None, "Dwci_ArclReadEx", "", None)
+    Dwci_ArclReadEx = Symbol([0x23964], [0x234E624], None, "Dwci_ArclReadEx", "", None)
 
-    Dwci_ArclRelease = Symbol(None, None, None, "Dwci_ArclRelease", "", None)
+    Dwci_ArclRelease = Symbol(
+        [0x23A58], [0x234E718], None, "Dwci_ArclRelease", "", None
+    )
 
-    CmpBack = Symbol(None, None, None, "CmpBack", "", None)
+    CmpBack = Symbol([0x23A8C], [0x234E74C], None, "CmpBack", "", None)
 
-    Dwci_CelllInit = Symbol(None, None, None, "Dwci_CelllInit", "", None)
+    Dwci_CelllInit = Symbol([0x23AE4], [0x234E7A4], None, "Dwci_CelllInit", "", None)
 
-    Dwci_CelllEnd = Symbol(None, None, None, "Dwci_CelllEnd", "", None)
+    Dwci_CelllEnd = Symbol([0x23BB8], [0x234E878], None, "Dwci_CelllEnd", "", None)
 
-    Dwci_CelllForm = Symbol(None, None, None, "Dwci_CelllForm", "", None)
+    Dwci_CelllForm = Symbol([0x23C0C], [0x234E8CC], None, "Dwci_CelllForm", "", None)
 
-    Dwci_CelllDelete = Symbol(None, None, None, "Dwci_CelllDelete", "", None)
+    Dwci_CelllDelete = Symbol(
+        [0x23D68], [0x234EA28], None, "Dwci_CelllDelete", "", None
+    )
 
-    Dwci_CelllGetObj = Symbol(None, None, None, "Dwci_CelllGetObj", "", None)
+    Dwci_CelllGetObj = Symbol(
+        [0x23DE8], [0x234EAA8], None, "Dwci_CelllGetObj", "", None
+    )
 
-    Dwci_CelllGetObjNum = Symbol(None, None, None, "Dwci_CelllGetObjNum", "", None)
+    Dwci_CelllGetObjNum = Symbol(
+        [0x23DF4], [0x234EAB4], None, "Dwci_CelllGetObjNum", "", None
+    )
 
-    Dwci_CelllSetEffect = Symbol(None, None, None, "Dwci_CelllSetEffect", "", None)
+    Dwci_CelllSetEffect = Symbol(
+        [0x23DFC], [0x234EABC], None, "Dwci_CelllSetEffect", "", None
+    )
 
-    Dwci_CelllSetPalette = Symbol(None, None, None, "Dwci_CelllSetPalette", "", None)
+    Dwci_CelllSetPalette = Symbol(
+        [0x23EA0], [0x234EB60], None, "Dwci_CelllSetPalette", "", None
+    )
 
-    Dwci_CelllSetPosition = Symbol(None, None, None, "Dwci_CelllSetPosition", "", None)
+    Dwci_CelllSetPosition = Symbol(
+        [0x23F20], [0x234EBE0], None, "Dwci_CelllSetPosition", "", None
+    )
 
-    Dwci_CelllSetPriority = Symbol(None, None, None, "Dwci_CelllSetPriority", "", None)
+    Dwci_CelllSetPriority = Symbol(
+        [0x24010], [0x234ECD0], None, "Dwci_CelllSetPriority", "", None
+    )
 
-    Dwci_CelllGetPosition = Symbol(None, None, None, "Dwci_CelllGetPosition", "", None)
+    Dwci_CelllGetPosition = Symbol(
+        [0x24070], [0x234ED30], None, "Dwci_CelllGetPosition", "", None
+    )
 
-    Dwci_CeinlRead = Symbol(None, None, None, "Dwci_CeinlRead", "", None)
+    Dwci_CeinlRead = Symbol([0x240A0], [0x234ED60], None, "Dwci_CeinlRead", "", None)
 
-    Dwci_CeinlRelease = Symbol(None, None, None, "Dwci_CeinlRelease", "", None)
+    Dwci_CeinlRelease = Symbol(
+        [0x240D0], [0x234ED90], None, "Dwci_CeinlRelease", "", None
+    )
 
-    Dwci_CeinlSet = Symbol(None, None, None, "Dwci_CeinlSet", "", None)
+    Dwci_CeinlSet = Symbol([0x240F8], [0x234EDB8], None, "Dwci_CeinlSet", "", None)
 
-    Dwci_CeinlSetExObj = Symbol(None, None, None, "Dwci_CeinlSetExObj", "", None)
+    Dwci_CeinlSetExObj = Symbol(
+        [0x2418C], [0x234EE4C], None, "Dwci_CeinlSetExObj", "", None
+    )
 
-    Dwci_CeinlSetExCell = Symbol(None, None, None, "Dwci_CeinlSetExCell", "", None)
+    Dwci_CeinlSetExCell = Symbol(
+        [0x241B8], [0x234EE78], None, "Dwci_CeinlSetExCell", "", None
+    )
 
-    Dwci_QuelForm = Symbol(None, None, None, "Dwci_QuelForm", "", None)
+    Dwci_QuelForm = Symbol([0x24200], [0x234EEC0], None, "Dwci_QuelForm", "", None)
 
-    Dwci_QuelFormEx = Symbol(None, None, None, "Dwci_QuelFormEx", "", None)
+    Dwci_QuelFormEx = Symbol([0x24234], [0x234EEF4], None, "Dwci_QuelFormEx", "", None)
 
-    Dwci_QuelDelete = Symbol(None, None, None, "Dwci_QuelDelete", "", None)
+    Dwci_QuelDelete = Symbol([0x24274], [0x234EF34], None, "Dwci_QuelDelete", "", None)
 
-    Dwci_QuelPushBack = Symbol(None, None, None, "Dwci_QuelPushBack", "", None)
+    Dwci_QuelPushBack = Symbol(
+        [0x24290], [0x234EF50], None, "Dwci_QuelPushBack", "", None
+    )
 
-    Dwci_QuelPopBack = Symbol(None, None, None, "Dwci_QuelPopBack", "", None)
+    Dwci_QuelPopBack = Symbol(
+        [0x242E8], [0x234EFA8], None, "Dwci_QuelPopBack", "", None
+    )
 
-    Dwci_EfflInit = Symbol(None, None, None, "Dwci_EfflInit", "", None)
+    Dwci_EfflInit = Symbol([0x24340], [0x234F000], None, "Dwci_EfflInit", "", None)
 
-    Dwci_EfflEnd = Symbol(None, None, None, "Dwci_EfflEnd", "", None)
+    Dwci_EfflEnd = Symbol([0x24388], [0x234F048], None, "Dwci_EfflEnd", "", None)
 
-    Dwci_EfflCheck = Symbol(None, None, None, "Dwci_EfflCheck", "", None)
+    Dwci_EfflCheck = Symbol([0x2439C], [0x234F05C], None, "Dwci_EfflCheck", "", None)
 
-    Dwci_EfflFade = Symbol(None, None, None, "Dwci_EfflFade", "", None)
+    Dwci_EfflFade = Symbol([0x243C0], [0x234F080], None, "Dwci_EfflFade", "", None)
 
-    Effect_TaskFade = Symbol(None, None, None, "Effect_TaskFade", "", None)
+    Effect_TaskFade = Symbol([0x24498], [0x234F158], None, "Effect_TaskFade", "", None)
 
-    Dwci_EfflWait = Symbol(None, None, None, "Dwci_EfflWait", "", None)
+    Dwci_EfflWait = Symbol([0x245C0], [0x234F280], None, "Dwci_EfflWait", "", None)
 
-    Effect_TaskWait = Symbol(None, None, None, "Effect_TaskWait", "", None)
+    Effect_TaskWait = Symbol([0x24618], [0x234F2D8], None, "Effect_TaskWait", "", None)
 
-    Dwci_FntlInit = Symbol(None, None, None, "Dwci_FntlInit", "", None)
+    Dwci_FntlInit = Symbol([0x24650], [0x234F310], None, "Dwci_FntlInit", "", None)
 
-    Dwci_FntlEnd = Symbol(None, None, None, "Dwci_FntlEnd", "", None)
+    Dwci_FntlEnd = Symbol([0x24754], [0x234F414], None, "Dwci_FntlEnd", "", None)
 
-    Dwci_FntlFormEx = Symbol(None, None, None, "Dwci_FntlFormEx", "", None)
+    Dwci_FntlFormEx = Symbol([0x247A0], [0x234F460], None, "Dwci_FntlFormEx", "", None)
 
-    Dwci_FntlDelete = Symbol(None, None, None, "Dwci_FntlDelete", "", None)
+    Dwci_FntlDelete = Symbol([0x2487C], [0x234F53C], None, "Dwci_FntlDelete", "", None)
 
-    Dwci_FntlFormBgEx = Symbol(None, None, None, "Dwci_FntlFormBgEx", "", None)
+    Dwci_FntlFormBgEx = Symbol(
+        [0x248A8], [0x234F568], None, "Dwci_FntlFormBgEx", "", None
+    )
 
-    Font_TaskLoad = Symbol(None, None, None, "Font_TaskLoad", "", None)
+    Font_TaskLoad = Symbol([0x24A20], [0x234F6E0], None, "Font_TaskLoad", "", None)
 
-    Dwci_FntlDeleteBg = Symbol(None, None, None, "Dwci_FntlDeleteBg", "", None)
+    Dwci_FntlDeleteBg = Symbol(
+        [0x24AA8], [0x234F768], None, "Dwci_FntlDeleteBg", "", None
+    )
 
-    Dwci_FntlDeleteBgLcd = Symbol(None, None, None, "Dwci_FntlDeleteBgLcd", "", None)
+    Dwci_FntlDeleteBgLcd = Symbol(
+        [0x24B0C], [0x234F7CC], None, "Dwci_FntlDeleteBgLcd", "", None
+    )
 
-    Dwci_FntlDraw = Symbol(None, None, None, "Dwci_FntlDraw", "", None)
+    Dwci_FntlDraw = Symbol([0x24B30], [0x234F7F0], None, "Dwci_FntlDraw", "", None)
 
-    Dwci_FntlDrawCharEx = Symbol(None, None, None, "Dwci_FntlDrawCharEx", "", None)
+    Dwci_FntlDrawCharEx = Symbol(
+        [0x24BE0], [0x234F8A0], None, "Dwci_FntlDrawCharEx", "", None
+    )
 
-    Dwci_FntlDrawStringEx = Symbol(None, None, None, "Dwci_FntlDrawStringEx", "", None)
+    Dwci_FntlDrawStringEx = Symbol(
+        [0x24C1C], [0x234F8DC], None, "Dwci_FntlDrawStringEx", "", None
+    )
 
-    Dwci_FntlDrawRect = Symbol(None, None, None, "Dwci_FntlDrawRect", "", None)
+    Dwci_FntlDrawRect = Symbol(
+        [0x24CC8], [0x234F988], None, "Dwci_FntlDrawRect", "", None
+    )
 
-    Dwci_FntlClear = Symbol(None, None, None, "Dwci_FntlClear", "", None)
+    Dwci_FntlClear = Symbol([0x24D88], [0x234FA48], None, "Dwci_FntlClear", "", None)
 
-    Dwci_FntlDisp = Symbol(None, None, None, "Dwci_FntlDisp", "", None)
+    Dwci_FntlDisp = Symbol([0x24D9C], [0x234FA5C], None, "Dwci_FntlDisp", "", None)
 
-    Dwci_FntlRenewBg = Symbol(None, None, None, "Dwci_FntlRenewBg", "", None)
+    Dwci_FntlRenewBg = Symbol(
+        [0x24E34], [0x234FAF4], None, "Dwci_FntlRenewBg", "", None
+    )
 
-    Dwci_InputCoord = Symbol(None, None, None, "Dwci_InputCoord", "", None)
+    Dwci_InputCoord = Symbol([0x24E58], [0x234FB18], None, "Dwci_InputCoord", "", None)
 
-    Dwci_InputRect = Symbol(None, None, None, "Dwci_InputRect", "", None)
+    Dwci_InputRect = Symbol([0x24E64], [0x234FB24], None, "Dwci_InputRect", "", None)
 
-    Dwci_Coord2Rect = Symbol(None, None, None, "Dwci_Coord2Rect", "", None)
+    Dwci_Coord2Rect = Symbol([0x24E7C], [0x234FB3C], None, "Dwci_Coord2Rect", "", None)
 
-    Dwci_GXlVisible = Symbol(None, None, None, "Dwci_GXlVisible", "", None)
+    Dwci_GXlVisible = Symbol([0x24EB0], [0x234FB70], None, "Dwci_GXlVisible", "", None)
 
-    Dwci_GXlInvisible = Symbol(None, None, None, "Dwci_GXlInvisible", "", None)
+    Dwci_GXlInvisible = Symbol(
+        [0x24F04], [0x234FBC4], None, "Dwci_GXlInvisible", "", None
+    )
 
     Dwci_GXlSetWndPosition = Symbol(
-        None, None, None, "Dwci_GXlSetWndPosition", "", None
+        [0x24F60], [0x234FC20], None, "Dwci_GXlSetWndPosition", "", None
     )
 
-    Dwci_GXlSetWndPlane = Symbol(None, None, None, "Dwci_GXlSetWndPlane", "", None)
+    Dwci_GXlSetWndPlane = Symbol(
+        [0x25078], [0x234FD38], None, "Dwci_GXlSetWndPlane", "", None
+    )
 
-    Dwci_HeaplInit = Symbol(None, None, None, "Dwci_HeaplInit", "", None)
+    Dwci_HeaplInit = Symbol([0x251E4], [0x234FEA4], None, "Dwci_HeaplInit", "", None)
 
-    Dwci_HeaplEnd = Symbol(None, None, None, "Dwci_HeaplEnd", "", None)
+    Dwci_HeaplEnd = Symbol([0x25224], [0x234FEE4], None, "Dwci_HeaplEnd", "", None)
 
-    Dwci_HeaplAlloc = Symbol(None, None, None, "Dwci_HeaplAlloc", "", None)
+    Dwci_HeaplAlloc = Symbol([0x25248], [0x234FF08], None, "Dwci_HeaplAlloc", "", None)
 
-    Dwci_HeaplAllocEx = Symbol(None, None, None, "Dwci_HeaplAllocEx", "", None)
+    Dwci_HeaplAllocEx = Symbol(
+        [0x25294], [0x234FF54], None, "Dwci_HeaplAllocEx", "", None
+    )
 
-    Dwci_HeaplFree = Symbol(None, None, None, "Dwci_HeaplFree", "", None)
+    Dwci_HeaplFree = Symbol([0x252B8], [0x234FF78], None, "Dwci_HeaplFree", "", None)
 
-    Dwci_HeaplFree2 = Symbol(None, None, None, "Dwci_HeaplFree2", "", None)
+    Dwci_HeaplFree2 = Symbol([0x252FC], [0x234FFBC], None, "Dwci_HeaplFree2", "", None)
 
-    Dwci_IptlInit = Symbol(None, None, None, "Dwci_IptlInit", "", None)
+    Dwci_IptlInit = Symbol([0x25338], [0x234FFF8], None, "Dwci_IptlInit", "", None)
 
-    Dwci_IptlEnd = Symbol(None, None, None, "Dwci_IptlEnd", "", None)
+    Dwci_IptlEnd = Symbol([0x253B4], [0x2350074], None, "Dwci_IptlEnd", "", None)
 
-    Dwci_IptlRead = Symbol(None, None, None, "Dwci_IptlRead", "", None)
+    Dwci_IptlRead = Symbol([0x253EC], [0x23500AC], None, "Dwci_IptlRead", "", None)
 
-    Input_ReadKey = Symbol(None, None, None, "Input_ReadKey", "", None)
+    Input_ReadKey = Symbol([0x253FC], [0x23500BC], None, "Input_ReadKey", "", None)
 
-    Input_ReadTouch = Symbol(None, None, None, "Input_ReadTouch", "", None)
+    Input_ReadTouch = Symbol([0x25500], [0x23501C0], None, "Input_ReadTouch", "", None)
 
-    Dwci_IptlCheckTrigger = Symbol(None, None, None, "Dwci_IptlCheckTrigger", "", None)
+    Dwci_IptlCheckTrigger = Symbol(
+        [0x2569C], [0x235035C], None, "Dwci_IptlCheckTrigger", "", None
+    )
 
-    Dwci_IptlCheckRepeat = Symbol(None, None, None, "Dwci_IptlCheckRepeat", "", None)
+    Dwci_IptlCheckRepeat = Symbol(
+        [0x256DC], [0x235039C], None, "Dwci_IptlCheckRepeat", "", None
+    )
 
-    Dwci_IptlCheckRelease = Symbol(None, None, None, "Dwci_IptlCheckRelease", "", None)
+    Dwci_IptlCheckRelease = Symbol(
+        [0x2571C], [0x23503DC], None, "Dwci_IptlCheckRelease", "", None
+    )
 
-    Dwci_TPlCheck = Symbol(None, None, None, "Dwci_TPlCheck", "", None)
+    Dwci_TPlCheck = Symbol([0x2575C], [0x235041C], None, "Dwci_TPlCheck", "", None)
 
-    Dwci_TPlCheckTrigger = Symbol(None, None, None, "Dwci_TPlCheckTrigger", "", None)
+    Dwci_TPlCheckTrigger = Symbol(
+        [0x257E4], [0x23504A4], None, "Dwci_TPlCheckTrigger", "", None
+    )
 
-    Dwci_TPlCheckRepeat = Symbol(None, None, None, "Dwci_TPlCheckRepeat", "", None)
+    Dwci_TPlCheckRepeat = Symbol(
+        [0x2586C], [0x235052C], None, "Dwci_TPlCheckRepeat", "", None
+    )
 
-    Dwci_TPlCheckRelease = Symbol(None, None, None, "Dwci_TPlCheckRelease", "", None)
+    Dwci_TPlCheckRelease = Symbol(
+        [0x258F4], [0x23505B4], None, "Dwci_TPlCheckRelease", "", None
+    )
 
-    Dwci_TPlCheckATrigger = Symbol(None, None, None, "Dwci_TPlCheckATrigger", "", None)
+    Dwci_TPlCheckATrigger = Symbol(
+        [0x2597C], [0x235063C], None, "Dwci_TPlCheckATrigger", "", None
+    )
 
-    Dwci_TPlGet = Symbol(None, None, None, "Dwci_TPlGet", "", None)
+    Dwci_TPlGet = Symbol([0x259E4], [0x23506A4], None, "Dwci_TPlGet", "", None)
 
-    Dwci_IptlCheckFold = Symbol(None, None, None, "Dwci_IptlCheckFold", "", None)
+    Dwci_IptlCheckFold = Symbol(
+        [0x25A4C], [0x235070C], None, "Dwci_IptlCheckFold", "", None
+    )
 
-    Dwci_ItrlIntr = Symbol(None, None, None, "Dwci_ItrlIntr", "", None)
+    Dwci_ItrlIntr = Symbol([0x25AC8], [0x2350788], None, "Dwci_ItrlIntr", "", None)
 
-    Dwci_ItrlEnd = Symbol(None, None, None, "Dwci_ItrlEnd", "", None)
+    Dwci_ItrlEnd = Symbol([0x25B3C], [0x23507FC], None, "Dwci_ItrlEnd", "", None)
 
-    IntrVBlank = Symbol(None, None, None, "IntrVBlank", "", None)
+    IntrVBlank = Symbol([0x25B78], [0x2350838], None, "IntrVBlank", "", None)
 
-    Dwci_LstlForm = Symbol(None, None, None, "Dwci_LstlForm", "", None)
+    Dwci_LstlForm = Symbol([0x25BA0], [0x2350860], None, "Dwci_LstlForm", "", None)
 
-    Dwci_LstlDelete = Symbol(None, None, None, "Dwci_LstlDelete", "", None)
+    Dwci_LstlDelete = Symbol([0x25BCC], [0x235088C], None, "Dwci_LstlDelete", "", None)
 
-    Dwci_LstlErase = Symbol(None, None, None, "Dwci_LstlErase", "", None)
+    Dwci_LstlErase = Symbol([0x25BE8], [0x23508A8], None, "Dwci_LstlErase", "", None)
 
-    Dwci_LstlInsert = Symbol(None, None, None, "Dwci_LstlInsert", "", None)
+    Dwci_LstlInsert = Symbol([0x25C20], [0x23508E0], None, "Dwci_LstlInsert", "", None)
 
-    Dwci_LstlPushBack = Symbol(None, None, None, "Dwci_LstlPushBack", "", None)
+    Dwci_LstlPushBack = Symbol(
+        [0x25C50], [0x2350910], None, "Dwci_LstlPushBack", "", None
+    )
 
-    Dwci_LstlPushFront = Symbol(None, None, None, "Dwci_LstlPushFront", "", None)
+    Dwci_LstlPushFront = Symbol(
+        [0x25C60], [0x2350920], None, "Dwci_LstlPushFront", "", None
+    )
 
-    Dwci_ObjlInit = Symbol(None, None, None, "Dwci_ObjlInit", "", None)
+    Dwci_ObjlInit = Symbol([0x25C70], [0x2350930], None, "Dwci_ObjlInit", "", None)
 
-    Obj_TaskTransfer = Symbol(None, None, None, "Obj_TaskTransfer", "", None)
+    Obj_TaskTransfer = Symbol(
+        [0x25D0C], [0x23509CC], None, "Obj_TaskTransfer", "", None
+    )
 
-    Dwci_ObjlEnd = Symbol(None, None, None, "Dwci_ObjlEnd", "", None)
+    Dwci_ObjlEnd = Symbol([0x25D54], [0x2350A14], None, "Dwci_ObjlEnd", "", None)
 
-    Dwci_ObjlFormGx = Symbol(None, None, None, "Dwci_ObjlFormGx", "", None)
+    Dwci_ObjlFormGx = Symbol([0x25D80], [0x2350A40], None, "Dwci_ObjlFormGx", "", None)
 
-    Dwci_ObjlDelete = Symbol(None, None, None, "Dwci_ObjlDelete", "", None)
+    Dwci_ObjlDelete = Symbol([0x25DA0], [0x2350A60], None, "Dwci_ObjlDelete", "", None)
 
-    Dwci_ObjlGetOam = Symbol(None, None, None, "Dwci_ObjlGetOam", "", None)
+    Dwci_ObjlGetOam = Symbol([0x25DEC], [0x2350AAC], None, "Dwci_ObjlGetOam", "", None)
 
-    Dwci_OvrlInit = Symbol(None, None, None, "Dwci_OvrlInit", "", None)
+    Dwci_OvrlInit = Symbol([0x25E04], [0x2350AC4], None, "Dwci_OvrlInit", "", None)
 
-    Dwci_OvrlAlloc = Symbol(None, None, None, "Dwci_OvrlAlloc", "", None)
+    Dwci_OvrlAlloc = Symbol([0x25EC4], [0x2350B84], None, "Dwci_OvrlAlloc", "", None)
 
-    Dwci_OvrlFree = Symbol(None, None, None, "Dwci_OvrlFree", "", None)
+    Dwci_OvrlFree = Symbol([0x2603C], [0x2350CFC], None, "Dwci_OvrlFree", "", None)
 
-    Dwci_StrlNLen = Symbol(None, None, None, "Dwci_StrlNLen", "", None)
+    Dwci_StrlNLen = Symbol([0x2607C], [0x2350D3C], None, "Dwci_StrlNLen", "", None)
 
     swprintf_subroutine = Symbol(
-        None,
-        None,
+        [0x260A8],
+        [0x2350D68],
         None,
         "swprintf_subroutine",
         "Likely part of some sort of inline swprintf function.",
         None,
     )
 
-    Dwci_ClearVram = Symbol(None, None, None, "Dwci_ClearVram", "", None)
+    Dwci_ClearVram = Symbol([0x260F0], [0x2350DB0], None, "Dwci_ClearVram", "", None)
 
-    Dwci_RepairVram = Symbol(None, None, None, "Dwci_RepairVram", "", None)
+    Dwci_RepairVram = Symbol([0x261A4], [0x2350E64], None, "Dwci_RepairVram", "", None)
 
-    Sub_ClearVram = Symbol(None, None, None, "Sub_ClearVram", "", None)
+    Sub_ClearVram = Symbol([0x262AC], [0x2350F6C], None, "Sub_ClearVram", "", None)
 
-    Dwci_SetLedWireless = Symbol(None, None, None, "Dwci_SetLedWireless", "", None)
+    Dwci_SetLedWireless = Symbol(
+        [0x26330], [0x2350FF0], None, "Dwci_SetLedWireless", "", None
+    )
 
-    Dwci_SetLedNormal = Symbol(None, None, None, "Dwci_SetLedNormal", "", None)
+    Dwci_SetLedNormal = Symbol(
+        [0x2635C], [0x235101C], None, "Dwci_SetLedNormal", "", None
+    )
 
-    Dwci_TsklInit = Symbol(None, None, None, "Dwci_TsklInit", "", None)
+    Dwci_TsklInit = Symbol([0x2636C], [0x235102C], None, "Dwci_TsklInit", "", None)
 
-    Dwci_TsklEnd = Symbol(None, None, None, "Dwci_TsklEnd", "", None)
+    Dwci_TsklEnd = Symbol([0x26480], [0x2351140], None, "Dwci_TsklEnd", "", None)
 
-    Dwci_TsklAct = Symbol(None, None, None, "Dwci_TsklAct", "", None)
+    Dwci_TsklAct = Symbol([0x264C8], [0x2351188], None, "Dwci_TsklAct", "", None)
 
-    Dwci_TsklForm = Symbol(None, None, None, "Dwci_TsklForm", "", None)
+    Dwci_TsklForm = Symbol([0x26578], [0x2351238], None, "Dwci_TsklForm", "", None)
 
-    Task_FormTask = Symbol(None, None, None, "Task_FormTask", "", None)
+    Task_FormTask = Symbol([0x2658C], [0x235124C], None, "Task_FormTask", "", None)
 
-    Dwci_TsklChangeFunc = Symbol(None, None, None, "Dwci_TsklChangeFunc", "", None)
+    Dwci_TsklChangeFunc = Symbol(
+        [0x26618], [0x23512D8], None, "Dwci_TsklChangeFunc", "", None
+    )
 
-    Dwci_TsklDelete = Symbol(None, None, None, "Dwci_TsklDelete", "", None)
+    Dwci_TsklDelete = Symbol([0x26620], [0x23512E0], None, "Dwci_TsklDelete", "", None)
 
-    Dwci_TsklDeleteEx = Symbol(None, None, None, "Dwci_TsklDeleteEx", "", None)
+    Dwci_TsklDeleteEx = Symbol(
+        [0x26640], [0x2351300], None, "Dwci_TsklDeleteEx", "", None
+    )
 
-    Task_DeleteTcb = Symbol(None, None, None, "Task_DeleteTcb", "", None)
+    Task_DeleteTcb = Symbol([0x2664C], [0x235130C], None, "Task_DeleteTcb", "", None)
 
-    Dwci_TsklOperate = Symbol(None, None, None, "Dwci_TsklOperate", "", None)
+    Dwci_TsklOperate = Symbol(
+        [0x26690], [0x2351350], None, "Dwci_TsklOperate", "", None
+    )
 
 
 class JpOverlay2Data:
@@ -42985,8 +45883,8 @@ class JpOverlay29Functions:
     )
 
     IsPositionVisibleAndOnScreen = Symbol(
-        None,
-        None,
+        [0x6A54],
+        [0x22E4334],
         None,
         "IsPositionVisibleAndOnScreen",
         "Returns true if the position is within 6 tiles in the x direction and 5 tiles in the y direction from the camera target, and if either IsPositionActuallyInSight returns true for the position or the floor is without darkness.\n\nr0: position pointer\nreturn: bool",
@@ -43076,8 +45974,8 @@ class JpOverlay29Functions:
     )
 
     IsFloorWithoutDarkness = Symbol(
-        None,
-        None,
+        [0x72C4],
+        [0x22E4BA4],
         None,
         "IsFloorWithoutDarkness",
         "Returns true if there is no darkness on the floor, i.e. if the camera entity doesn't have the dropeye status and either one of dungeon::display_data::luminous or dungeon::display_data::natural_lighting is true.\n\nr0: display_data pointer\nreturn: bool",
@@ -43139,8 +46037,8 @@ class JpOverlay29Functions:
     )
 
     UpdateStatusIconFlagsAllMonsters = Symbol(
-        None,
-        None,
+        [0x77E8],
+        [0x22E50C8],
         None,
         "UpdateStatusIconFlagsAllMonsters",
         "Calls UpdateStatusIconFlags on all monsters on the floor.\n\nr0: whether to also set field_0x156 of all monster structs (always 0 in practice)",
@@ -43445,8 +46343,8 @@ class JpOverlay29Functions:
     )
 
     InitMonsterMoveEffect = Symbol(
-        None,
-        None,
+        [0xAAF8],
+        [0x22E83D8],
         None,
         "InitMonsterMoveEffect",
         "Finds the first available entry in dungeon::monster_move_animations and initializes it with the given values.\n\nr0: live effect unique id\nr1: entity pointer\nr2: ?",
@@ -43454,8 +46352,8 @@ class JpOverlay29Functions:
     )
 
     FreeMonsterMoveEffects = Symbol(
-        None,
-        None,
+        [0xAB60],
+        [0x22E8440],
         None,
         "FreeMonsterMoveEffects",
         "Marks entries in dungeon::monster_move_animations whose animations have finished as being unused.\n\nNo params.",
@@ -43463,8 +46361,8 @@ class JpOverlay29Functions:
     )
 
     FreeAllMonsterMoveEffects = Symbol(
-        None,
-        None,
+        [0xABD0],
+        [0x22E84B0],
         None,
         "FreeAllMonsterMoveEffects",
         "Marks all entries in dungeon::monster_move_animations as being unused.\n\nNo params.",
@@ -43472,8 +46370,8 @@ class JpOverlay29Functions:
     )
 
     UpdateLiveEffectsFromMonsterMoveEffects = Symbol(
-        None,
-        None,
+        [0xAC10],
+        [0x22E84F0],
         None,
         "UpdateLiveEffectsFromMonsterMoveEffects",
         "Finds any entries in dungeon::monster_move_animations that use the given entity and updates fields in their live_effects.\n\nr0: entity pointer\nr1: ?",
@@ -44264,8 +47162,8 @@ class JpOverlay29Functions:
     )
 
     ShakeScreen = Symbol(
-        None,
-        None,
+        [0x10880],
+        [0x22EE160],
         None,
         "ShakeScreen",
         "Shakes the screen. Does not return until shaking is finished.\n\nr0: ? (always 1 in practice)",
@@ -49161,8 +52059,8 @@ class JpOverlay29Functions:
     )
 
     IsMoveBlockedByTerrain = Symbol(
-        None,
-        None,
+        [0x498CC],
+        [0x23271AC],
         None,
         "IsMoveBlockedByTerrain",
         "If the monster is using Dig or Dive, checks whether the terrain of the tile the monster is standing on blocks the use of the move.\n\nr0: Pointer to the entity that used the move\nr1: Pointer to move being used\nreturn: True if the monster cannot use the move because of the terrain",
@@ -50799,8 +53697,8 @@ class JpOverlay29Functions:
     )
 
     GetItemHolderTeamIndex = Symbol(
-        None,
-        None,
+        [0x6AA98],
+        [0x2348378],
         None,
         "GetItemHolderTeamIndex",
         "Gets the index in the team of the monster holding the given item, or -1 if none is.\n\nr0: item pointer\nreturn: team index, or -1",
@@ -50808,8 +53706,8 @@ class JpOverlay29Functions:
     )
 
     IsNatureGifterRestrictedItem = Symbol(
-        None,
-        None,
+        [0x6AAE0],
+        [0x23483C0],
         None,
         "IsNatureGifterRestrictedItem",
         "Checks if the given item's effect cannot be spread to the whole party through Nature Gifter when consumed.\n\nr0: item id\nreturn: bool",
