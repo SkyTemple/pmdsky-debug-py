@@ -10205,6 +10205,16 @@ class Arm9DataProtocol(Protocol):
         Optional[int],
     ]
 
+    BUFFER_CONTROLLER_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEMP_ALLOCATED_BUFFER_START_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     WINDOW_LIST_PTR: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -46920,6 +46930,16 @@ class RamDataProtocol(Protocol):
     ]
 
     SOUND_MEMORY_ARENA_PTR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    TEMP_ALLOCATED_BUFFER_CONTROLLER: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    TEMP_ALLOCATED_BUFFER_ZONE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

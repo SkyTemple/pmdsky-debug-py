@@ -6917,7 +6917,7 @@ class JpItcmArm9Functions:
         None,
         None,
         "AllocateTemp1024ByteBufferFromPool",
-        "return: Pointer to byte buffer",
+        "Cycles through one of eight 1024-byte buffers, returning the next one in the sequence.\n\nIn effect, this function returns a unique buffer only for the first eight calls, with the ninth returning the buffer given to the first, the tenth to the second, etc.\nThis means the buffers given do not need to be manually freed, as they'll be re-used eventually regardless.",
         None,
     )
 
@@ -13484,6 +13484,24 @@ class JpItcmArm9Data:
         "MAX_MONEY_STORED",
         "Maximum amount of money the player can store in the Duskull Bank, 9999999.",
         "uint32_t",
+    )
+
+    BUFFER_CONTROLLER_PTR = Symbol(
+        None,
+        None,
+        None,
+        "BUFFER_CONTROLLER_PTR",
+        "Points to the struct used for tracking the buffers managed by AllocateTemp1024ByteBufferFromPool, seen above.\n\ntype: temp_allocated_buffer_controller*",
+        "struct temp_allocated_buffer_controller*",
+    )
+
+    TEMP_ALLOCATED_BUFFER_START_PTR = Symbol(
+        None,
+        None,
+        None,
+        "TEMP_ALLOCATED_BUFFER_START_PTR",
+        "Points to the beginning of the eight 1024-byte buffers used by AllocateTemp1024ByteBufferFromPool, seen above.\n\ntype: temporary_string_buffers*",
+        "struct temporary_string_buffers*",
     )
 
     WINDOW_LIST_PTR = Symbol(
@@ -53792,6 +53810,24 @@ class JpItcmRamData:
         "SOUND_MEMORY_ARENA_PTR",
         "Pointer to SOUND_MEMORY_ARENA.",
         "struct mem_arena*",
+    )
+
+    TEMP_ALLOCATED_BUFFER_CONTROLLER = Symbol(
+        None,
+        None,
+        None,
+        "TEMP_ALLOCATED_BUFFER_CONTROLLER",
+        "The struct used by AllocateTemp1024ByteBufferFromPool for tracking which of its eight buffers have been allocated most recently.\n\nSize not fully known. Has Some value(s) between 0x0 and 0x4 which are seemingly never used.",
+        "struct temp_allocated_buffer_controller",
+    )
+
+    TEMP_ALLOCATED_BUFFER_ZONE = Symbol(
+        None,
+        None,
+        None,
+        "TEMP_ALLOCATED_BUFFER_ZONE",
+        "The eight 1024-byte buffers, used sequentially by AllocateTemp1024ByteBufferFromPool.\n\nType: temporary_string_buffers",
+        "struct temporary_string_buffers",
     )
 
     WINDOW_LIST = Symbol(
