@@ -8377,12 +8377,37 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    GetDungeonObjective: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetDungeonIdx: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetDungeonId: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetDungeonStartingFloor: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    LoadDungeonInitMain: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     SetEnterDungeon: Symbol[
         Optional[list[int]],
         None,
     ]
 
-    InitDungeonInit: Symbol[
+    InitDungeonInitMain: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9192,6 +9217,11 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
+    CanMonsterLearnMove: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     GetEvoFamily: Symbol[
         Optional[list[int]],
         None,
@@ -9292,7 +9322,7 @@ class Arm9FunctionsProtocol(Protocol):
         None,
     ]
 
-    GetSecondFormIfValid: Symbol[
+    MaleToFemaleForm: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -9798,6 +9828,11 @@ class Arm9FunctionsProtocol(Protocol):
     ]
 
     AnyDungeonRequestsDone: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    GetUnfulfilledMissionRestrictions: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -10771,6 +10806,11 @@ class Arm9DataProtocol(Protocol):
     ]
 
     WONDER_GUMMI_IQ_GAIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    WONDER_GUMMI_BELLY_RESTORE: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
@@ -28633,6 +28673,11 @@ class Overlay10DataProtocol(Protocol):
         Optional[int],
     ]
 
+    GUMMI_STAT_BOOST_CHANCE: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     GOLD_THORN_POWER: Symbol[
         Optional[list[int]],
         Optional[int],
@@ -40794,6 +40839,21 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
+    PlayEscapeEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayStandardEscapeEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
+    PlayEscapeOrbEscapeEffect: Symbol[
+        Optional[list[int]],
+        None,
+    ]
+
     PlayStairSensorArrowEffect: Symbol[
         Optional[list[int]],
         None,
@@ -42484,7 +42544,7 @@ class Overlay29FunctionsProtocol(Protocol):
         None,
     ]
 
-    AddExpSpecial: Symbol[
+    AddExp: Symbol[
         Optional[list[int]],
         None,
     ]
@@ -47014,12 +47074,22 @@ class RamDataProtocol(Protocol):
         Optional[int],
     ]
 
+    DUNGEON_INIT_MAIN: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
     PENDING_DUNGEON_ID: Symbol[
         Optional[list[int]],
         Optional[int],
     ]
 
     PENDING_STARTING_FLOOR: Symbol[
+        Optional[list[int]],
+        Optional[int],
+    ]
+
+    PENDING_MISSION_CLIENT: Symbol[
         Optional[list[int]],
         Optional[int],
     ]

@@ -10576,6 +10576,51 @@ class JpArm9Functions:
         None,
     )
 
+    GetDungeonObjective = Symbol(
+        None,
+        None,
+        None,
+        "GetDungeonObjective",
+        "Gets the dungeon_objective field from DUNGEON_INIT_MAIN.\n\nreturn: dungeon objective",
+        None,
+    )
+
+    GetDungeonIdx = Symbol(
+        None,
+        None,
+        None,
+        "GetDungeonIdx",
+        "Gets the dungeon_idx field from DUNGEON_INIT_MAIN.\n\nreturn: dungeon index",
+        None,
+    )
+
+    GetDungeonId = Symbol(
+        None,
+        None,
+        None,
+        "GetDungeonId",
+        "Gets the id field from DUNGEON_INIT_MAIN.\n\nreturn: dungeon id",
+        None,
+    )
+
+    GetDungeonStartingFloor = Symbol(
+        None,
+        None,
+        None,
+        "GetDungeonStartingFloor",
+        "Gets the floor field from DUNGEON_INIT_MAIN.\n\nreturn: floor",
+        None,
+    )
+
+    LoadDungeonInitMain = Symbol(
+        None,
+        None,
+        None,
+        "LoadDungeonInitMain",
+        "Copies the global DUNGEON_INIT_MAIN into the given dungeon_init_main pointer.\n\nr0: [output] dungeon_init_main",
+        None,
+    )
+
     SetEnterDungeon = Symbol(
         [0x4ECA4],
         [0x204ECA4],
@@ -10585,12 +10630,12 @@ class JpArm9Functions:
         None,
     )
 
-    InitDungeonInit = Symbol(
+    InitDungeonInitMain = Symbol(
         [0x4EDB4],
         [0x204EDB4],
         None,
-        "InitDungeonInit",
-        "Initializes the dungeon_init struct before entering a dungeon.\n\nr0: [output] Pointer to the struct to init\nr1: Dungeon ID",
+        "InitDungeonInitMain",
+        "Initializes the dungeon_init_main struct before entering a dungeon.\n\nr0: [output] Pointer to the struct to init\nr1: Dungeon ID",
         None,
     )
 
@@ -10725,7 +10770,7 @@ class JpArm9Functions:
         [0x204FC34],
         None,
         "AddGuestMonster",
-        "Adds a guest monster to the active team\n\nr0: dungeon_init struct for the dungeon that is about to be entered\nr1: Number of the guest monster to add. Used when more than one monster is added.\nr2: Pointer to the guest monster entry to add to the team (usually located within GUEST_MONSTER_DATA)",
+        "Adds a guest monster to the active team\n\nr0: dungeon_init_main struct for the dungeon that is about to be entered\nr1: Number of the guest monster to add. Used when more than one monster is added.\nr2: Pointer to the guest monster entry to add to the team (usually located within GUEST_MONSTER_DATA)",
         None,
     )
 
@@ -12043,6 +12088,15 @@ class JpArm9Functions:
         None,
     )
 
+    CanMonsterLearnMove = Symbol(
+        None,
+        None,
+        None,
+        "CanMonsterLearnMove",
+        "Returns true if the monster can learn the given move, whether by leveling up or HM/TM.\n\nAlways returns false if the move is Struggle or the monster is the Decoy.\n\nr0: monster id\nr1: move id\nreturn: bool",
+        None,
+    )
+
     GetEvoFamily = Symbol(
         [0x54108],
         [0x2054108],
@@ -12223,12 +12277,12 @@ class JpArm9Functions:
         None,
     )
 
-    GetSecondFormIfValid = Symbol(
+    MaleToFemaleForm = Symbol(
         [0x54EDC],
         [0x2054EDC],
         None,
-        "GetSecondFormIfValid",
-        "Note: unverified, ported from Irdkwia's notes\n\nr0: monster ID\nreturn: second form",
+        "MaleToFemaleForm",
+        "Returns the ID of the second form of the specified monster if the specified ID corresponds to a primary form with male gender and the second form has female gender. If those conditions don't meet, returns the same ID unchanged.\n\nr0: Monster ID\nreturn: ID of the female form of the monster if the requirements meet, same ID otherwise.",
         None,
     )
 
@@ -13141,6 +13195,15 @@ class JpArm9Functions:
         None,
     )
 
+    GetUnfulfilledMissionRestrictions = Symbol(
+        None,
+        None,
+        None,
+        "GetUnfulfilledMissionRestrictions",
+        "Checks if the player's party doesn't meet the restrictions for missions they have active in the given dungeon, and outputs their values if so.\n\nr0: dungeon id\nr1: [output] type id of an unfulfilled type restriction\nr2: [output] monster id of an unfulfilled monster restriction\nreturn: whether at least one unfulfilled mission restriction was found for this dungeon id",
+        None,
+    )
+
     AddMissionToJobList = Symbol(
         [0x5F3B8],
         [0x205F3B8],
@@ -13909,6 +13972,8 @@ class JpArm9Functions:
         "CopyProgressInfoFromScratchFrom", ReadProgressInfoFromSave
     )
 
+    InitDungeonInit = _Deprecated("InitDungeonInit", InitDungeonInitMain)
+
     CopyLogTo = _Deprecated("CopyLogTo", CopyLogToStream)
 
     CopyLogFrom = _Deprecated("CopyLogFrom", CopyLogFromStream)
@@ -13924,6 +13989,8 @@ class JpArm9Functions:
     GetLowKickMultiplier = _Deprecated("GetLowKickMultiplier", GetWeightMultiplier)
 
     AddUniqueStarterMoveTo = _Deprecated("AddUniqueStarterMoveTo", AddStarterEggMove)
+
+    GetSecondFormIfValid = _Deprecated("GetSecondFormIfValid", MaleToFemaleForm)
 
     DisableIqSkill = _Deprecated("DisableIqSkill", ToggleIqSkill)
 
@@ -14964,7 +15031,16 @@ class JpArm9Data:
         [0x20A2C64],
         0x2,
         "WONDER_GUMMI_IQ_GAIN",
-        "IQ gain when ingesting wonder gummis.",
+        "IQ gain when ingesting wonder gummis (15).",
+        "int16_t",
+    )
+
+    WONDER_GUMMI_BELLY_RESTORE = Symbol(
+        None,
+        None,
+        None,
+        "WONDER_GUMMI_BELLY_RESTORE",
+        "Belly gain when ingesting wonder gummis (50).",
         "int16_t",
     )
 
@@ -31540,6 +31616,15 @@ class JpOverlay10Data:
         "int16_t",
     )
 
+    GUMMI_STAT_BOOST_CHANCE = Symbol(
+        None,
+        None,
+        None,
+        "GUMMI_STAT_BOOST_CHANCE",
+        "The chance of a permanent stat boost occurring after eating a Gummi (25%).",
+        "int16_t",
+    )
+
     GOLD_THORN_POWER = Symbol(
         [0x7998],
         [0x22C5BB8],
@@ -46351,6 +46436,33 @@ class JpOverlay29Functions:
         None,
     )
 
+    PlayEscapeEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayEscapeEffect",
+        "Plays the given effect on the entity while making it fly out of the map.\n\nr0: effect id\nr1: entity pointer\nr2: ?",
+        None,
+    )
+
+    PlayStandardEscapeEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayStandardEscapeEffect",
+        "Plays the standard escape effect (the yellow light / Reviver Seed effect, 0x13E) on the entity while making it fly out of the map.\n\nr0: entity pointer",
+        None,
+    )
+
+    PlayEscapeOrbEscapeEffect = Symbol(
+        None,
+        None,
+        None,
+        "PlayEscapeOrbEscapeEffect",
+        "Plays the Escape Orb effect (0x1BC) on the entity while making it fly out of the map.\n\nr0: entity pointer",
+        None,
+    )
+
     PlayStairSensorArrowEffect = Symbol(
         [0xA6B8],
         [0x22E7F98],
@@ -49439,12 +49551,12 @@ class JpOverlay29Functions:
         None,
     )
 
-    AddExpSpecial = Symbol(
+    AddExp = Symbol(
         [0x261AC],
         [0x2303A8C],
         None,
-        "AddExpSpecial",
-        "Adds to a monster's experience points, subject to experience boosting effects.\n\nThis function appears to be called only under special circumstances. Possibly when granting experience from damage (e.g., Joy Ribbon)?\n\nInterestingly, the parameter in r0 isn't actually used. This might be a compiler optimization to avoid shuffling registers, since this function might be called alongside lots of other functions that have both the attacker and defender as the first two arguments.\n\nr0: attacker pointer\nr1: defender pointer\nr2: base experience gain, before boosts",
+        "AddExp",
+        "Adds to a monster's experience points, subject to experience boosting effects.\n\nInterestingly, the parameter in r0 isn't actually used. This might be a compiler optimization to avoid shuffling registers, since this function might be called alongside lots of other functions that have both the attacker and defender as the first two arguments.\n\nr0: attacker pointer\nr1: defender pointer\nr2: base experience gain, before boosts",
         None,
     )
 
@@ -54439,7 +54551,7 @@ class JpOverlay29Functions:
         [0x234D18C],
         None,
         "RunDungeonMode",
-        "This appears to be the top-level function for running dungeon mode.\n\nIt gets called by MainGame right after doing the dungeon fade transition, and once it exits, the dungeon results are processed.\n\nThis function is presumably in charge of allocating the dungeon struct, setting it up, launching the dungeon engine, etc.",
+        "This appears to be the top-level function for running dungeon mode.\n\nIt gets called by MainGame right after doing the dungeon fade transition, and once it exits, the dungeon results are processed.\n\nThis function is presumably in charge of allocating the dungeon struct, setting it up, launching the dungeon engine, etc.\n\nr0: Pointer to the struct containing info used to initialize the dungeon. See type dungeon_init for details.\nr1: ? (always 1)\nreturn: bool",
         None,
     )
 
@@ -54660,6 +54772,8 @@ class JpOverlay29Functions:
     ShouldMonsterRunAwayVariation = _Deprecated(
         "ShouldMonsterRunAwayVariation", ShouldMonsterRunAwayAndShowEffect
     )
+
+    AddExpSpecial = _Deprecated("AddExpSpecial", AddExp)
 
     GetFlashFireStatus = _Deprecated("GetFlashFireStatus", FlashFireShouldActivate)
 
@@ -57517,12 +57631,21 @@ class JpRamData:
         "struct file_stream",
     )
 
+    DUNGEON_INIT_MAIN = Symbol(
+        None,
+        None,
+        None,
+        "DUNGEON_INIT_MAIN",
+        "A struct containing the major info for loading a dungeon, which is copied into the dungeon_init struct in LoadDungeonInitMain.",
+        "struct dungeon_init_main",
+    )
+
     PENDING_DUNGEON_ID = Symbol(
         [0x2ACCB8],
         [0x22ACCB8],
         0x1,
         "PENDING_DUNGEON_ID",
-        "The ID of the selected dungeon when setting off from the overworld.\n\nControls the text and map location during the 'map cutscene' just before entering a dungeon, as well as the actual dungeon loaded afterwards.\n\nThis field is actually part of a larger struct that also contains PENDING_STARTING_FLOOR.\n\ntype: struct dungeon_id_8",
+        "The ID of the selected dungeon when setting off from the overworld.\n\nControls the text and map location during the 'map cutscene' just before entering a dungeon, as well as the actual dungeon loaded afterwards.\n\nThis field is actually part of DUNGEON_INIT_MAIN, a larger struct that also contains PENDING_STARTING_FLOOR and PENDING_MISSION_CLIENT.\n\ntype: struct dungeon_id_8",
         "struct dungeon_id_8",
     )
 
@@ -57533,6 +57656,15 @@ class JpRamData:
         "PENDING_STARTING_FLOOR",
         "The floor number to start from in the dungeon specified by PENDING_DUNGEON_ID.",
         "uint8_t",
+    )
+
+    PENDING_MISSION_CLIENT = Symbol(
+        None,
+        None,
+        None,
+        "PENDING_MISSION_CLIENT",
+        "The ground_monster struct for the current mission client.",
+        "struct ground_monster",
     )
 
     PLAY_TIME_SECONDS = Symbol(
